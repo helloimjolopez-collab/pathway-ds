@@ -3,8 +3,8 @@
 /**
  * sync-tokens.js
  *
- * Reads Figma variable export JSON files from tokens/figma-export/
- * and transforms them into W3C DTCG format, writing the result to
+ * Reads the Figma variable export from tokens/figma-export/pathwaytokens.json
+ * and transforms it into W3C DTCG format, writing the result to
  * tokens/pathway-design-tokens.json.
  *
  * Expected input format (from "Variables Import Export" plugin by Piccia Neri):
@@ -16,12 +16,12 @@
  * Usage:  npm run sync-tokens
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from "node:fs";
-import { resolve, dirname, extname } from "node:path";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
+import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const EXPORT_DIR = resolve(__dirname, "..", "tokens", "figma-export");
+const EXPORT_FILE = resolve(__dirname, "..", "tokens", "figma-export", "pathwaytokens.json");
 const OUTPUT_PATH = resolve(__dirname, "..", "tokens", "pathway-design-tokens.json");
 
 // ---------------------------------------------------------------------------
@@ -166,58 +166,39 @@ function formatValue(raw, dtcgType, collectionName) {
 }
 
 // ---------------------------------------------------------------------------
-// Read all JSON files from the export folder
+// Read the export file
 // ---------------------------------------------------------------------------
-function readExportFiles() {
-  if (!existsSync(EXPORT_DIR)) {
+function readExportFile() {
+  if (!existsSync(EXPORT_FILE)) {
     console.error(
-      `Export folder not found: ${EXPORT_DIR}\n\n` +
+      `Export file not found: ${EXPORT_FILE}\n\n` +
       `To use this script:\n` +
       `  1. In Figma, run the "Variables Import Export" plugin\n` +
       `  2. Export your variables as JSON\n` +
-      `  3. Save the JSON file into: tokens/figma-export/\n` +
+      `  3. Save the file as: tokens/figma-export/pathwaytokens.json\n` +
       `  4. Run this script again: npm run sync-tokens\n`
     );
     process.exit(1);
   }
 
-  const files = readdirSync(EXPORT_DIR).filter(
-    (f) => extname(f).toLowerCase() === ".json"
-  );
+  console.log(`Reading pathwaytokens.json…`);
 
-  if (files.length === 0) {
-    console.error(
-      `No JSON files found in ${EXPORT_DIR}\n` +
-      `Export your Figma variables as JSON and save them in that folder.`
-    );
+  let data;
+  try {
+    data = JSON.parse(readFileSync(EXPORT_FILE, "utf-8"));
+  } catch (err) {
+    console.error(`Could not parse pathwaytokens.json: ${err.message}`);
     process.exit(1);
   }
 
-  let allTokens = {};
-
-  for (const file of files) {
-    const filePath = resolve(EXPORT_DIR, file);
-    console.log(`Reading ${file}…`);
-
-    let data;
-    try {
-      data = JSON.parse(readFileSync(filePath, "utf-8"));
-    } catch (err) {
-      console.warn(`Warning: Could not parse ${file} — skipping. (${err.message})`);
-      continue;
-    }
-
-    const tokens = processExport(data);
-    if (!tokens) {
-      console.warn(`Warning: No tokens found in ${file} — skipping.`);
-      continue;
-    }
-
-    Object.assign(allTokens, tokens);
-    console.log(`  Processed successfully.`);
+  const tokens = processExport(data);
+  if (!tokens) {
+    console.error("No tokens found in pathwaytokens.json.");
+    process.exit(1);
   }
 
-  return allTokens;
+  console.log(`  Processed successfully.`);
+  return tokens;
 }
 
 // ---------------------------------------------------------------------------
@@ -260,13 +241,8 @@ function mergeTokens(existing, incoming) {
 // Main
 // ---------------------------------------------------------------------------
 function main() {
-  console.log("Reading Figma export files…\n");
-  const tokens = readExportFiles();
-
-  if (Object.keys(tokens).length === 0) {
-    console.error("No tokens found in any export file.");
-    process.exit(1);
-  }
+  console.log("Reading Figma export file…\n");
+  const tokens = readExportFile();
 
   console.log(`\nTransforming to W3C DTCG format…`);
   const existing = readExistingTokens();

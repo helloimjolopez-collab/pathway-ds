@@ -1,44 +1,4 @@
 const tokens = {
-  "breakpoints-desktop-1920px": {
-    "value": 1920,
-    "type": "number",
-    "path": [
-      "breakpoints",
-      "desktop-1920px"
-    ]
-  },
-  "breakpoints-desktop-1440px": {
-    "value": 1440,
-    "type": "number",
-    "path": [
-      "breakpoints",
-      "desktop-1440px"
-    ]
-  },
-  "breakpoints-tablet-1024px": {
-    "value": 1024,
-    "type": "number",
-    "path": [
-      "breakpoints",
-      "tablet-1024px"
-    ]
-  },
-  "breakpoints-tablet-768px": {
-    "value": 768,
-    "type": "number",
-    "path": [
-      "breakpoints",
-      "tablet-768px"
-    ]
-  },
-  "breakpoints-mobile-393px": {
-    "value": 393,
-    "type": "number",
-    "path": [
-      "breakpoints",
-      "mobile-393px"
-    ]
-  },
   "primitive-color-cool-neutral-0": {
     "value": "#ffffff",
     "type": "color",
@@ -30158,6 +30118,46 @@ const tokens = {
       "large",
       "semibold",
       "letterspacing"
+    ]
+  },
+  "breakpoints-desktop-1920px": {
+    "value": 1920,
+    "type": "number",
+    "path": [
+      "breakpoints",
+      "desktop-1920px"
+    ]
+  },
+  "breakpoints-desktop-1440px": {
+    "value": 1440,
+    "type": "number",
+    "path": [
+      "breakpoints",
+      "desktop-1440px"
+    ]
+  },
+  "breakpoints-tablet-1024px": {
+    "value": 1024,
+    "type": "number",
+    "path": [
+      "breakpoints",
+      "tablet-1024px"
+    ]
+  },
+  "breakpoints-tablet-768px": {
+    "value": 768,
+    "type": "number",
+    "path": [
+      "breakpoints",
+      "tablet-768px"
+    ]
+  },
+  "breakpoints-mobile-393px": {
+    "value": 393,
+    "type": "number",
+    "path": [
+      "breakpoints",
+      "mobile-393px"
     ]
   }
 };
