@@ -1,0 +1,43 @@
+name: Sync design tokens from Figma export
+
+# Runs whenever a new Figma export JSON is pushed to tokens/figma-export/,
+# or when manually triggered. Transforms the export into W3C DTCG format
+# and commits the updated token file.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tokens/figma-export/**"
+  workflow_dispatch: # Allow manual trigger from GitHub UI
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run token sync
+        run: node scripts/sync-tokens.js
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tokens/pathway-design-tokens.json
+          if git diff --cached --quiet; then
+            echo "No changes — skipping commit."
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git commit -m "chore: sync tokens from Figma $TIMESTAMP"
+            git push
+          fi

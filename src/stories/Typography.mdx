@@ -1,0 +1,10 @@
+import { Meta } from "@storybook/blocks";
+import { createTypographySamples } from "./components/TypographySamples.js";
+
+<Meta title="Tokens/Typography" />
+
+# Typography Tokens
+
+Every type scale step from the Pathway Design System (Desktop mode), rendered live in its actual style. Each row shows the token name, size/weight/line-height, and a sample.
+
+<div ref={(el) => { if (el && !el.hasChildNodes()) el.appendChild(createTypographySamples()); }} />

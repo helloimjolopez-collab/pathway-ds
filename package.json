@@ -1,0 +1,28 @@
+{
+  "name": "pathwaytokens",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "sync-tokens": "node scripts/sync-tokens.js",
+    "push-tokens": "node scripts/push-tokens.js",
+    "sync-and-push": "node scripts/sync-tokens.js && node scripts/push-tokens.js",
+    "audit-tokens": "node scripts/audit-tokens.js",
+    "fix-tokens": "node scripts/fix-tokens.js",
+    "fix-tokens-preview": "node scripts/fix-tokens.js --dry-run",
+    "build-tokens": "node style-dictionary.config.js",
+    "storybook": "node style-dictionary.config.js && storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^8.6.18",
+    "@storybook/addon-docs": "^8.6.18",
+    "@storybook/blocks": "^8.6.18",
+    "@storybook/html-webpack5": "^8.6.18",
+    "storybook": "^8.6.18",
+    "style-dictionary": "^5.4.0"
+  }
+}
