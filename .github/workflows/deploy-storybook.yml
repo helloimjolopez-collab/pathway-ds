@@ -13,6 +13,9 @@ on:
       - ".storybook/**"
       - "style-dictionary.config.js"
       - "package.json"
+  workflow_run:
+    workflows: ["Sync design tokens from Figma export"]
+    types: [completed]
   workflow_dispatch: # Allow manual trigger
 
 jobs:
