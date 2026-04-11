@@ -43,243 +43,6 @@
     }
   },
   {
-    "Pathway Strings": {
-      "modes": {
-        "Mode 1": {
-          "Heading": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "string",
-            "$value": "Heading"
-          },
-          "Title": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "string",
-            "$value": "Title"
-          },
-          "Body": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "string",
-            "$value": "Body"
-          },
-          "Long Text": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "string",
-            "$value": "Long Text"
-          },
-          "Label": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "string",
-            "$value": "Label"
-          },
-          "Supporting Text": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "string",
-            "$value": "Supporting Text"
-          },
-          "Placeholder": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "string",
-            "$value": "Placeholder"
-          },
-          "Input": {
-            "$scopes": [
-              "ALL_SCOPES"
-            ],
-            "$type": "string",
-            "$value": "Input"
-          }
-        }
-      }
-    }
-  },
-  {
-    "Primitive: Border": {
-      "modes": {
-        "Mode 1": {
-          "Border Radius": {
-            "XXS": {
-              "$scopes": [
-                "CORNER_RADIUS"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.2}"
-            },
-            "XS": {
-              "$scopes": [
-                "CORNER_RADIUS"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.4}"
-            },
-            "S": {
-              "$scopes": [
-                "CORNER_RADIUS"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.8}"
-            },
-            "M": {
-              "$scopes": [
-                "CORNER_RADIUS"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.12}"
-            },
-            "L": {
-              "$scopes": [
-                "CORNER_RADIUS"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.16}"
-            },
-            "XL": {
-              "$scopes": [
-                "CORNER_RADIUS"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.24}"
-            },
-            "2XL": {
-              "$scopes": [
-                "CORNER_RADIUS"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.32}"
-            },
-            "3XL": {
-              "$scopes": [
-                "CORNER_RADIUS"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.40}"
-            },
-            "4XL": {
-              "$scopes": [
-                "CORNER_RADIUS"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.48}"
-            },
-            "5XL": {
-              "$scopes": [
-                "CORNER_RADIUS"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.56}"
-            },
-            "6XL": {
-              "$scopes": [
-                "CORNER_RADIUS"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.64}"
-            },
-            "Pill": {
-              "$scopes": [
-                "CORNER_RADIUS"
-              ],
-              "$type": "float",
-              "$value": 999
-            }
-          },
-          "Border Width": {
-            "None": {
-              "$scopes": [
-                "STROKE_FLOAT"
-              ],
-              "$type": "float",
-              "$value": 0
-            },
-            "XS": {
-              "$scopes": [
-                "STROKE_FLOAT"
-              ],
-              "$type": "float",
-              "$value": 0.5
-            },
-            "S": {
-              "$scopes": [
-                "STROKE_FLOAT"
-              ],
-              "$type": "float",
-              "$value": 1
-            },
-            "M": {
-              "$scopes": [
-                "STROKE_FLOAT"
-              ],
-              "$type": "float",
-              "$value": 1.5
-            },
-            "L": {
-              "$scopes": [
-                "STROKE_FLOAT"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.2}"
-            },
-            "XL": {
-              "$scopes": [
-                "STROKE_FLOAT"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.4}"
-            },
-            "2XL": {
-              "$scopes": [
-                "STROKE_FLOAT"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.8}"
-            }
-          }
-        }
-      }
-    }
-  },
-  {
     "Primitive: Color": {
       "modes": {
         "Mode 1": {
@@ -2208,153 +1971,6 @@
     }
   },
   {
-    "Primitive: Spacing": {
-      "modes": {
-        "Mode 1": {
-          "Space": {
-            "None": {
-              "$scopes": [
-                "GAP"
-              ],
-              "$type": "float",
-              "$value": 0
-            },
-            "2XS": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.2}"
-            },
-            "XS": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.4}"
-            },
-            "S": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.8}"
-            },
-            "M": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.12}"
-            },
-            "L": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.16}"
-            },
-            "XL": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.24}"
-            },
-            "2XL": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.32}"
-            },
-            "3XL": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.40}"
-            },
-            "4XL": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.48}"
-            },
-            "5XL": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.56}"
-            },
-            "6XL": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.64}"
-            },
-            "7XL": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.72}"
-            },
-            "8XL": {
-              "$scopes": [
-                "GAP",
-                "PARAGRAPH_SPACING"
-              ],
-              "$type": "float",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.80}"
-            }
-          }
-        }
-      }
-    }
-  },
-  {
     "Primitive: Type": {
       "modes": {
         "Value": {
@@ -3153,6 +2769,10 @@
       "modes": {
         "Mode 1": {
           "Unit": {
+            "1": {
+              "$type": "float",
+              "$value": 1
+            },
             "2": {
               "$type": "float",
               "$value": 2
@@ -3270,6 +2890,18 @@
             "120": {
               "$type": "float",
               "$value": 120
+            },
+            "0 point 5": {
+              "$type": "float",
+              "$value": 0.5
+            },
+            "0 point 75": {
+              "$type": "float",
+              "$value": 0.75
+            },
+            "1 point 5": {
+              "$type": "float",
+              "$value": 1.5
             }
           }
         }
@@ -14990,6 +14622,529 @@
               "$libraryName": "",
               "$collectionName": "Primitive: Color",
               "$value": "{Cool Neutral.220 @ 70%}"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "Semantic: Layout": {
+      "modes": {
+        "Mode 1": {
+          "Button": {
+            "Padding": {
+              "Large": {
+                "Vertical": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "float",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Unit",
+                  "$value": "{Unit.12}"
+                },
+                "Horizontal": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "float",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Unit",
+                  "$value": "{Unit.14}"
+                }
+              },
+              "Medium": {
+                "Vertical": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "float",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Unit",
+                  "$value": "{Unit.10}"
+                },
+                "Horizontal": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "float",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Unit",
+                  "$value": "{Unit.12}"
+                }
+              },
+              "Small": {
+                "Vertical": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "float",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Unit",
+                  "$value": "{Unit.6}"
+                },
+                "Horizontal": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "float",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Unit",
+                  "$value": "{Unit.8}"
+                }
+              }
+            },
+            "Gap": {
+              "Horizontal": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.8}"
+              }
+            },
+            "BorderWidth": {
+              "BorderWidth": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.1 point 5}"
+              }
+            },
+            "CornerRadius": {
+              "CornerRadius": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.8}"
+              }
+            }
+          },
+          "NavItem": {
+            "Large": {
+              "Padding": {
+                "Vertical": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "float",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Unit",
+                  "$value": "{Unit.12}"
+                },
+                "Horizontal": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "float",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Unit",
+                  "$value": "{Unit.14}"
+                }
+              },
+              "Radius": {
+                "Radius": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "float",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Unit",
+                  "$value": "{Unit.8}"
+                }
+              },
+              "Stroke Width": {
+                "Stroke Width": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "float",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Unit",
+                  "$value": "{Unit.1 point 5}"
+                }
+              }
+            }
+          },
+          "Accessibility": {
+            "Touch Target": {
+              "Optimal": {
+                "Size": {
+                  "Height": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.48}"
+                  },
+                  "Width": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.48}"
+                  }
+                },
+                "Padding": {
+                  "Horizontal": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.6}"
+                  },
+                  "Vertical": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.6}"
+                  }
+                }
+              },
+              "Mobile Minimums": {
+                "Size": {
+                  "Height": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.44}"
+                  },
+                  "Width": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.44}"
+                  }
+                },
+                "Padding": {
+                  "Horizontal": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.6}"
+                  },
+                  "Vertical": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.6}"
+                  }
+                }
+              },
+              "Desktop Minimums": {
+                "Size": {
+                  "Height": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.36}"
+                  },
+                  "Width": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.36}"
+                  }
+                },
+                "Padding": {
+                  "Horizontal": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.6}"
+                  },
+                  "Vertical": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.6}"
+                  }
+                }
+              }
+            },
+            "Icon Wrapping": {
+              "Large": {
+                "Size": {
+                  "Height": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.24}"
+                  },
+                  "Width": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.24}"
+                  }
+                }
+              },
+              "Medium": {
+                "Size": {
+                  "Height": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.20}"
+                  },
+                  "Width": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.20}"
+                  }
+                }
+              },
+              "Small": {
+                "Size": {
+                  "Height": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.18}"
+                  },
+                  "Width": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.18}"
+                  }
+                }
+              }
+            }
+          },
+          "Page": {
+            "Padding": {
+              "Top": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.16}"
+              },
+              "Bottom": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.56}"
+              },
+              "Horizontal": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.48}"
+              }
+            },
+            "Gap": {
+              "Horizontal": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.16}"
+              },
+              "Vertical": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.16}"
+              }
+            }
+          },
+          "Page Heading": {
+            "Padding": {
+              "Top": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.16}"
+              },
+              "Bottom": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.36}"
+              }
+            },
+            "Gap": {
+              "Vertical": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.8}"
+              }
+            }
+          },
+          "Section Heading": {
+            "Padding": {
+              "Vertical": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.6}"
+              }
+            },
+            "Gap": {
+              "Vertical": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.8}"
+              }
+            }
+          },
+          "Section": {
+            "Padding": {
+              "Top": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.4}"
+              },
+              "Bottom": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.16}"
+              }
+            },
+            "Gap": {
+              "Vertical": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.8}"
+              },
+              "Horizontal": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.8}"
+              }
+            }
+          },
+          "ToolBar": {
+            "Padding": {
+              "Vertical": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.8}"
+              }
+            },
+            "Gap": {
+              "Vertical": {
+                "$scopes": [
+                  "ALL_SCOPES"
+                ],
+                "$type": "float",
+                "$libraryName": "",
+                "$collectionName": "Primitive: Unit",
+                "$value": "{Unit.8}"
+              }
             }
           }
         }
@@ -26789,542 +26944,6 @@
                     "$libraryName": "",
                     "$collectionName": "Primitive: Type",
                     "$value": "{Letter Spacing.Wide}"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  {
-    "Semantic: Units": {
-      "modes": {
-        "Mode 1": {
-          "Component": {
-            "Button": {
-              "Large": {
-                "Padding": {
-                  "Vertical": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.12}"
-                  },
-                  "Horizontal": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.14}"
-                  }
-                },
-                "Radius": {
-                  "Radius": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Border",
-                    "$value": "{Border Radius.S}"
-                  }
-                },
-                "Stroke Width": {
-                  "Stroke Width": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Border",
-                    "$value": "{Border Width.M}"
-                  }
-                }
-              },
-              "Medium": {
-                "Padding": {
-                  "Vertical": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.10}"
-                  },
-                  "Horizontal": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.12}"
-                  }
-                },
-                "Radius": {
-                  "Radius": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Border",
-                    "$value": "{Border Radius.S}"
-                  }
-                },
-                "Stroke Width": {
-                  "Stroke Width": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Border",
-                    "$value": "{Border Width.M}"
-                  }
-                }
-              },
-              "Small": {
-                "Padding": {
-                  "Vertical": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.6}"
-                  },
-                  "Horizontal": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.8}"
-                  }
-                },
-                "Radius": {
-                  "Radius": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Border",
-                    "$value": "{Border Radius.S}"
-                  }
-                },
-                "Stroke Width": {
-                  "Stroke Width": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Border",
-                    "$value": "{Border Width.M}"
-                  }
-                }
-              }
-            },
-            "NavItem": {
-              "Large": {
-                "Padding": {
-                  "Vertical": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.12}"
-                  },
-                  "Horizontal": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.14}"
-                  }
-                },
-                "Radius": {
-                  "Radius": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Border",
-                    "$value": "{Border Radius.S}"
-                  }
-                },
-                "Stroke Width": {
-                  "Stroke Width": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Border",
-                    "$value": "{Border Width.M}"
-                  }
-                }
-              }
-            }
-          },
-          "Accessibility": {
-            "Touch Target": {
-              "Optimal": {
-                "Size": {
-                  "Height": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.48}"
-                  },
-                  "Width": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.48}"
-                  }
-                },
-                "Padding": {
-                  "Horizontal": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.6}"
-                  },
-                  "Vertical": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.6}"
-                  }
-                }
-              },
-              "Mobile Minimums": {
-                "Size": {
-                  "Height": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.44}"
-                  },
-                  "Width": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.44}"
-                  }
-                },
-                "Padding": {
-                  "Horizontal": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.6}"
-                  },
-                  "Vertical": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.6}"
-                  }
-                }
-              },
-              "Desktop Minimums": {
-                "Size": {
-                  "Height": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.36}"
-                  },
-                  "Width": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.36}"
-                  }
-                },
-                "Padding": {
-                  "Horizontal": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.6}"
-                  },
-                  "Vertical": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.6}"
-                  }
-                }
-              }
-            },
-            "Icon Wrapping": {
-              "Large": {
-                "Size": {
-                  "Height": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.24}"
-                  },
-                  "Width": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.24}"
-                  }
-                }
-              },
-              "Medium": {
-                "Size": {
-                  "Height": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.20}"
-                  },
-                  "Width": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.20}"
-                  }
-                }
-              },
-              "Small": {
-                "Size": {
-                  "Height": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.18}"
-                  },
-                  "Width": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.18}"
-                  }
-                }
-              }
-            }
-          },
-          "Content": {
-            "Spacing": {
-              "Paragraph": {
-                "Bottom": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "float",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Unit",
-                  "$value": "{Unit.16}"
-                },
-                "Top": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "float",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Unit",
-                  "$value": "{Unit.16}"
-                }
-              },
-              "List": {
-                "Bottom": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "float",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Unit",
-                  "$value": "{Unit.16}"
-                },
-                "Top": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "float",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Unit",
-                  "$value": "{Unit.16}"
-                },
-                "Item": {
-                  "Gap": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.8}"
-                  }
-                }
-              },
-              "Table": {
-                "Bottom": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "float",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Unit",
-                  "$value": "{Unit.24}"
-                },
-                "Top": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "float",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Unit",
-                  "$value": "{Unit.24}"
-                },
-                "Cell": {
-                  "Padding": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.12}"
-                  }
-                }
-              },
-              "Heading": {
-                "L": {
-                  "Bottom": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.24}"
-                  },
-                  "Top": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.24}"
-                  }
-                },
-                "M": {
-                  "Bottom": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.20}"
-                  },
-                  "Top": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.20}"
-                  }
-                },
-                "S": {
-                  "Bottom": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.16}"
-                  },
-                  "Top": {
-                    "$scopes": [
-                      "ALL_SCOPES"
-                    ],
-                    "$type": "float",
-                    "$libraryName": "",
-                    "$collectionName": "Primitive: Unit",
-                    "$value": "{Unit.16}"
                   }
                 }
               }
