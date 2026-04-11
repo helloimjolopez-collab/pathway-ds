@@ -1,8 +1,18 @@
 name: Deploy Storybook to GitHub Pages
 
+# Builds Storybook and commits the output into the /storybook/ folder
+# on the main branch. This keeps existing pages (SideNav demos, docs, specs)
+# untouched while adding Storybook at /storybook/.
+
 on:
   push:
     branches: [main]
+    paths:
+      - "tokens/pathway-design-tokens.json"
+      - "src/**"
+      - ".storybook/**"
+      - "style-dictionary.config.js"
+      - "package.json"
   workflow_dispatch: # Allow manual trigger
 
 jobs:
@@ -28,9 +38,24 @@ jobs:
 
       - name: Build Storybook
         run: npx storybook build
+        env:
+          STORYBOOK_ASSET_PREFIX: /pathwaytokens/storybook
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+      - name: Deploy Storybook into /storybook/ folder on main
+        run: |
+          # Remove old storybook folder if it exists
+          rm -rf storybook
+
+          # Move built output into /storybook/
+          mv storybook-static storybook
+
+          # Commit and push
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add storybook/
+          if git diff --cached --quiet; then
+            echo "No Storybook changes — skipping commit."
+          else
+            git commit -m "chore: deploy Storybook [skip ci]"
+            git push
+          fi
