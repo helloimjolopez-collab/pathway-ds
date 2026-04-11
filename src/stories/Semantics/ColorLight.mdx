@@ -1,0 +1,10 @@
+import { Meta } from "@storybook/blocks";
+import { createSemanticColors } from "../components/SemanticColors.js";
+
+<Meta title="Tokens/Semantics/Color (Light Mode)" />
+
+# Semantic Color — Light Mode
+
+Contextual color tokens for light mode, grouped by usage: text, fill, icon, stroke, surface, and overlay. Each token references a primitive color.
+
+<div ref={(el) => { if (el && !el.hasChildNodes()) el.appendChild(createSemanticColors("light-mode")); }} />

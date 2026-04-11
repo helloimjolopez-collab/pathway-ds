@@ -1,0 +1,10 @@
+import { Meta } from "@storybook/blocks";
+import { createPrimitiveColors } from "../components/PrimitiveColors.js";
+
+<Meta title="Tokens/Primitives/Color" />
+
+# Primitive Colors
+
+All base color palettes from the Pathway Design System. These are the raw color values that semantic tokens reference.
+
+<div ref={(el) => { if (el && !el.hasChildNodes()) el.appendChild(createPrimitiveColors()); }} />

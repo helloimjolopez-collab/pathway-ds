@@ -1,0 +1,10 @@
+import { Meta } from "@storybook/blocks";
+import { createPrimitiveUnits } from "../components/PrimitiveUnits.js";
+
+<Meta title="Tokens/Primitives/Spacing & Units" />
+
+# Primitive Spacing & Units
+
+Base spacing unit scale. These values are used by semantic layout tokens for padding, margins, gaps, and sizing.
+
+<div ref={(el) => { if (el && !el.hasChildNodes()) el.appendChild(createPrimitiveUnits()); }} />

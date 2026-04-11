@@ -1,0 +1,10 @@
+import { Meta } from "@storybook/blocks";
+import { createSemanticLayout } from "../components/SemanticLayout.js";
+
+<Meta title="Tokens/Semantics/Layout" />
+
+# Semantic Layout
+
+Layout tokens for component spacing, sizing, and structure: button padding, corner radius, touch targets, page margins, section spacing, toolbar dimensions, and more.
+
+<div ref={(el) => { if (el && !el.hasChildNodes()) el.appendChild(createSemanticLayout()); }} />

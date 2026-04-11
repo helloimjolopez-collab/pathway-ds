@@ -1,0 +1,10 @@
+import { Meta } from "@storybook/blocks";
+import { createPrimitiveTypography } from "../components/PrimitiveTypography.js";
+
+<Meta title="Tokens/Primitives/Typography" />
+
+# Primitive Typography
+
+Base typography values: font families, sizes, weights, line heights, and letter spacing. These are the building blocks that semantic type tokens reference.
+
+<div ref={(el) => { if (el && !el.hasChildNodes()) el.appendChild(createPrimitiveTypography()); }} />
