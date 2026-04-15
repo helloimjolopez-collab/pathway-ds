@@ -271,11 +271,6 @@
   --primitive-unit-unit-0-point-5: 0.5;
   --primitive-unit-unit-0-point-75: 0.75;
   --primitive-unit-unit-1-point-5: 1.5;
-  --breakpoints-desktop-1920px: 1920;
-  --breakpoints-desktop-1440px: 1440;
-  --breakpoints-tablet-1024px: 1024;
-  --breakpoints-tablet-768px: 768;
-  --breakpoints-mobile-393px: 393;
   --primitive-type-size-10: var(--primitive-unit-unit-10);
   --primitive-type-size-11: var(--primitive-unit-unit-11);
   --primitive-type-size-12: var(--primitive-unit-unit-12);
@@ -448,7 +443,6 @@
   --semantic-color-light-mode-text-contextual-navitem-base: var(--primitive-color-cool-neutral-170);
   --semantic-color-light-mode-text-contextual-navitem-hover: var(--primitive-color-cool-neutral-180);
   --semantic-color-light-mode-text-contextual-navitem-focused: var(--primitive-color-cool-neutral-180);
-  --semantic-color-light-mode-text-contextual-navitem-active: var(--primitive-color-brand-100);
   --semantic-color-light-mode-text-contextual-navitem-disabled: var(--primitive-color-cool-neutral-80);
   --semantic-color-light-mode-fill-action-primary-base: var(--primitive-color-brand-300);
   --semantic-color-light-mode-fill-action-primary-hover: var(--primitive-color-brand-200);
@@ -1061,7 +1055,6 @@
   --semantic-color-dark-mode-text-contextual-navitem-base: var(--primitive-color-cool-neutral-170);
   --semantic-color-dark-mode-text-contextual-navitem-hover: var(--primitive-color-cool-neutral-180);
   --semantic-color-dark-mode-text-contextual-navitem-focused: var(--primitive-color-cool-neutral-180);
-  --semantic-color-dark-mode-text-contextual-navitem-active: var(--primitive-color-brand-100);
   --semantic-color-dark-mode-text-contextual-navitem-disabled: var(--primitive-color-cool-neutral-80);
   --semantic-color-dark-mode-fill-action-primary-base: var(--primitive-color-brand-300);
   --semantic-color-dark-mode-fill-action-primary-hover: var(--primitive-color-brand-200);

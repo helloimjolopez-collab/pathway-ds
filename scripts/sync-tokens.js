@@ -213,28 +213,102 @@ function readExistingTokens() {
   }
 }
 
-function mergeTokens(existing, incoming) {
+/**
+ * Produce the output tree from the incoming (Figma) tokens.
+ *
+ * Principle: the Figma export is the source of truth. Anything not in the
+ * incoming tree does not exist. We only preserve DTCG metadata ($themes,
+ * $metadata) from the existing file — never token data. Deleting a variable
+ * in Figma removes it from the derived output on the next sync.
+ */
+function mirrorTokens(existing, incoming) {
   const result = {};
-
-  // Preserve metadata from existing file
   if (existing.$themes) result.$themes = existing.$themes;
   if (existing.$metadata) result.$metadata = existing.$metadata;
-
-  // Add incoming tokens
   for (const [key, value] of Object.entries(incoming)) {
     result[key] = value;
   }
+  return result;
+}
 
-  // Keep existing non-metadata keys not overwritten by incoming
-  for (const [key, value] of Object.entries(existing)) {
+// ---------------------------------------------------------------------------
+// Alias validation — drop tokens that reference non-existent targets
+// ---------------------------------------------------------------------------
+
+/** Resolve a dot-separated token path within the tree. Returns the node or undefined. */
+function resolvePath(tree, dotted) {
+  const parts = dotted.split(".");
+  let cur = tree;
+  for (const part of parts) {
+    if (cur == null || typeof cur !== "object" || !(part in cur)) return undefined;
+    cur = cur[part];
+  }
+  return cur;
+}
+
+/** Is this node a DTCG token leaf (has $type + $value)? */
+function isTokenLeaf(node) {
+  return node && typeof node === "object" && "$type" in node && "$value" in node;
+}
+
+/**
+ * Walk the tree, yielding [pathArray, leafNode] for every DTCG leaf.
+ * pathArray excludes root, e.g. ["semantic-color", "light-mode", "text", …]
+ */
+function* iterateLeaves(tree, pathSoFar = []) {
+  for (const [key, value] of Object.entries(tree)) {
     if (key.startsWith("$")) continue;
-    if (key === "global" && typeof value === "object" && Object.keys(value).length === 0) continue;
-    if (!(key in result)) {
-      result[key] = value;
+    const here = [...pathSoFar, key];
+    if (isTokenLeaf(value)) {
+      yield [here, value];
+    } else if (value && typeof value === "object" && !Array.isArray(value)) {
+      yield* iterateLeaves(value, here);
     }
   }
+}
 
-  return result;
+/** Delete a token at a given path, then prune now-empty parent groups. */
+function deletePath(tree, pathArray) {
+  if (pathArray.length === 0) return;
+  let parents = [tree];
+  for (let i = 0; i < pathArray.length - 1; i++) parents.push(parents[i][pathArray[i]]);
+  delete parents[parents.length - 1][pathArray[pathArray.length - 1]];
+  // Walk back up pruning empty groups
+  for (let i = pathArray.length - 2; i >= 0; i--) {
+    const node = parents[i][pathArray[i]];
+    if (node && typeof node === "object" && Object.keys(node).length === 0) {
+      delete parents[i][pathArray[i]];
+    } else {
+      break;
+    }
+  }
+}
+
+/**
+ * Iteratively drop any token whose $value is an alias to a path that doesn't
+ * exist in the tree. Repeats until the tree is stable, so chained references
+ * (A → B → C, where C is missing) cascade-drop correctly.
+ *
+ * Returns the list of paths that were dropped, so we can log them.
+ */
+function pruneBrokenAliases(tree) {
+  const dropped = [];
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const [path, leaf] of iterateLeaves(tree)) {
+      const raw = leaf.$value;
+      if (typeof raw !== "string" || !/^\{.+\}$/.test(raw)) continue;
+      const target = raw.slice(1, -1);
+      const resolved = resolvePath(tree, target);
+      if (!isTokenLeaf(resolved)) {
+        dropped.push({ path: path.join("."), target });
+        deletePath(tree, path);
+        changed = true;
+      }
+    }
+  }
+  return dropped;
 }
 
 // ---------------------------------------------------------------------------
@@ -246,7 +320,19 @@ function main() {
 
   console.log(`\nTransforming to W3C DTCG format…`);
   const existing = readExistingTokens();
-  const merged = mergeTokens(existing, tokens);
+  const merged = mirrorTokens(existing, tokens);
+
+  // Drop any tokens whose alias target doesn't exist in the tree. The Figma
+  // export is authoritative: if you delete a primitive, any semantic that
+  // pointed at it simply disappears from the derived file. This keeps Style
+  // Dictionary (downstream) from failing on unresolved references.
+  const dropped = pruneBrokenAliases(merged);
+  if (dropped.length) {
+    console.warn(`\n⚠  Dropped ${dropped.length} token${dropped.length === 1 ? "" : "s"} with unresolvable aliases:`);
+    for (const { path, target } of dropped) {
+      console.warn(`     ${path}  →  {${target}}  (target missing in Figma export)`);
+    }
+  }
 
   const outDir = dirname(OUTPUT_PATH);
   if (!existsSync(outDir)) {

@@ -1912,10 +1912,6 @@
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.180}"
             },
-            "active": {
-              "$type": "color",
-              "$value": "{primitive-color.blue.180}"
-            },
             "disabled": {
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.80}"
@@ -4655,10 +4651,6 @@
             "focused": {
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.180}"
-            },
-            "active": {
-              "$type": "color",
-              "$value": "{primitive-color.blue.180}"
             },
             "disabled": {
               "$type": "color",
@@ -11087,28 +11079,6 @@
           }
         }
       }
-    }
-  },
-  "breakpoints": {
-    "desktop-1920px": {
-      "$type": "number",
-      "$value": 1920
-    },
-    "desktop-1440px": {
-      "$type": "number",
-      "$value": 1440
-    },
-    "tablet-1024px": {
-      "$type": "number",
-      "$value": 1024
-    },
-    "tablet-768px": {
-      "$type": "number",
-      "$value": 768
-    },
-    "mobile-393px": {
-      "$type": "number",
-      "$value": 393
     }
   }
 }
