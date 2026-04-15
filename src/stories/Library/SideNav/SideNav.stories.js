@@ -50,7 +50,7 @@ export default {
 // ───── Stories ────────────────────────────────────────────────────────────────
 export const ReferenceDemo = () =>
   iframe({
-    src: "/components/sidenav/sidenav.html",
+    src: "./components/sidenav/sidenav.html",
     title: "sidenav.html — reference implementation with annotated spec panel",
     height: 900,
   });
@@ -67,7 +67,7 @@ ReferenceDemo.parameters = {
 
 export const FigmaMakeDemo = () =>
   iframe({
-    src: "/components/sidenav/sidenav-figmamake.html",
+    src: "./components/sidenav/sidenav-figmamake.html",
     title: "sidenav-figmamake.html — AI-tool-friendly demo (no spec panel)",
     height: 900,
   });
