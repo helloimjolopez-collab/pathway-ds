@@ -2,7 +2,7 @@
 """
 build-component.py
 ──────────────────
-Generates SideNav-figmamake.html from SideNav.html by stripping the
+Generates components/sidenav/sidenav-figmamake.html from components/sidenav/sidenav.html by stripping the
 "Component Documentation" section (everything from @COMPONENT_ONLY_END
 through the end of the annotations zone, while preserving the correct
 JSX closing tags).
@@ -19,8 +19,8 @@ import sys
 from pathlib import Path
 
 REPO_ROOT     = Path(__file__).parent.parent
-SOURCE        = REPO_ROOT / "SideNav.html"
-OUTPUT        = REPO_ROOT / "SideNav-figmamake.html"
+SOURCE        = REPO_ROOT / "components" / "sidenav" / "sidenav.html"
+OUTPUT        = REPO_ROOT / "components" / "sidenav" / "sidenav-figmamake.html"
 CUT_MARKER    = "@COMPONENT_ONLY_END"
 RESUME_MARKER = "end right column"
 

@@ -1,0 +1,122 @@
+/* ─── Pathway Design System — Spinner component CSS ──────────────────────────
+   Component styles only; semantic tokens come from src/tokens/tokens.css which
+   is imported globally by .storybook/preview.js.
+   See components/spinner/spinner-spec.md for the authoritative spec. */
+
+@keyframes pds-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.pds-spinner {
+  --pds-spinner-size: 1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--pds-spinner-size);
+  height: var(--pds-spinner-size);
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+/* Tone × emphasis binding — ONLY icon.static.* tokens. No raw hex, no primitives. */
+.pds-spinner[data-tone="neutral"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-neutral-light); }
+.pds-spinner[data-tone="neutral"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-neutral-subtle); }
+.pds-spinner[data-tone="neutral"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-neutral-base); }
+.pds-spinner[data-tone="neutral"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-neutral-contrast); }
+.pds-spinner[data-tone="neutral"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-neutral-bold); }
+
+.pds-spinner[data-tone="brand"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-brand-light); }
+.pds-spinner[data-tone="brand"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-brand-subtle); }
+.pds-spinner[data-tone="brand"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-brand-base); }
+.pds-spinner[data-tone="brand"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-brand-contrast); }
+.pds-spinner[data-tone="brand"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-brand-bold); }
+
+.pds-spinner[data-tone="info"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-info-light); }
+.pds-spinner[data-tone="info"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-info-subtle); }
+.pds-spinner[data-tone="info"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-info-base); }
+.pds-spinner[data-tone="info"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-info-contrast); }
+.pds-spinner[data-tone="info"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-info-bold); }
+
+.pds-spinner[data-tone="warning"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-warning-light); }
+.pds-spinner[data-tone="warning"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-warning-subtle); }
+.pds-spinner[data-tone="warning"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-warning-base); }
+.pds-spinner[data-tone="warning"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-warning-contrast); }
+.pds-spinner[data-tone="warning"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-warning-bold); }
+
+.pds-spinner[data-tone="danger"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-danger-light); }
+.pds-spinner[data-tone="danger"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-danger-subtle); }
+.pds-spinner[data-tone="danger"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-danger-base); }
+.pds-spinner[data-tone="danger"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-danger-contrast); }
+.pds-spinner[data-tone="danger"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-danger-bold); }
+
+.pds-spinner[data-tone="negative"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-negative-light); }
+.pds-spinner[data-tone="negative"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-negative-subtle); }
+.pds-spinner[data-tone="negative"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-negative-base); }
+.pds-spinner[data-tone="negative"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-negative-contrast); }
+.pds-spinner[data-tone="negative"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-negative-bold); }
+
+.pds-spinner[data-tone="positive"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-positive-light); }
+.pds-spinner[data-tone="positive"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-positive-subtle); }
+.pds-spinner[data-tone="positive"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-positive-base); }
+.pds-spinner[data-tone="positive"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-positive-contrast); }
+.pds-spinner[data-tone="positive"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-positive-bold); }
+
+.pds-spinner[data-tone="accent-amethyst"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-accent-amethyst-light); }
+.pds-spinner[data-tone="accent-amethyst"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-accent-amethyst-subtle); }
+.pds-spinner[data-tone="accent-amethyst"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-accent-amethyst-base); }
+.pds-spinner[data-tone="accent-amethyst"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-accent-amethyst-contrast); }
+.pds-spinner[data-tone="accent-amethyst"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-accent-amethyst-bold); }
+
+.pds-spinner[data-tone="accent-jade"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-accent-jade-light); }
+.pds-spinner[data-tone="accent-jade"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-accent-jade-subtle); }
+.pds-spinner[data-tone="accent-jade"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-accent-jade-base); }
+.pds-spinner[data-tone="accent-jade"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-accent-jade-contrast); }
+.pds-spinner[data-tone="accent-jade"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-accent-jade-bold); }
+
+.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-accent-seabreeze-light); }
+.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-accent-seabreeze-subtle); }
+.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-accent-seabreeze-base); }
+.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-accent-seabreeze-contrast); }
+.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-accent-seabreeze-bold); }
+
+.pds-spinner__svg {
+  width: 100%; height: 100%;
+  display: block;
+  animation: pds-spin 1s linear infinite;
+  overflow: visible;
+}
+.pds-spinner__spoke {
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pds-spinner__svg { animation: none; }
+  .pds-spinner__spoke { opacity: 0.6 !important; }
+}
+.pds-spinner__sr-only {
+  position: absolute;
+  width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ── Storybook-only grid chrome for the multi-swatch stories ───────────────── */
+.sb-spinner-grid {
+  display: flex; flex-wrap: wrap; gap: 24px 28px;
+  padding: 16px; background: #fff;
+  border: 1px solid #edf0f9; border-radius: 12px;
+  font-family: 'Red Hat Text', sans-serif;
+}
+.sb-spinner-cell {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 6px; min-width: 112px;
+}
+.sb-spinner-swatch {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 72px;
+}
+.sb-spinner-label { font-size: 11px; color: #202020; }
+.sb-spinner-token { font-size: 10px; color: #3555a0; font-family: monospace; }

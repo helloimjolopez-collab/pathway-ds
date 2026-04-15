@@ -1,0 +1,24 @@
+import { Meta, Title, Description, Primary, Stories } from "@storybook/blocks";
+import * as SideNavStories from "./SideNav.stories.js";
+
+<Meta of={SideNavStories} />
+
+<Title />
+
+Persistent vertical navigation panel for Ministry Brands Amplify modules. Supports two depth levels (Level 0 parent, Level 1 child-destination), two layout states (expanded 250 px, collapsed 72 px), and three responsive modes (push ≥1024 px, overlay 768–1023 px, hidden-overlay &lt;768 px). Not global app navigation — each module owns its own instance.
+
+The authoritative specification — anatomy, state matrix, design tokens, hover behaviour, popover and tooltip specs, keyboard, screen-reader strings, responsiveness, colour contrast — lives at **`components/sidenav/sidenav-spec.md`**. It is the source of truth for every implementation decision; read it before shipping.
+
+## Reference files
+
+| File | Role |
+|---|---|
+| `components/sidenav/sidenav.html` | Live React demo + annotated specification panel |
+| `components/sidenav/sidenav-figmamake.html` | Same component without the spec panel — for AI codegen tools (Figma Make, v0, Lovable) |
+| `components/sidenav/sidenav-spec.md` | Complete written spec |
+
+The stories below iframe the HTML demos directly so you can interact with them inside Storybook, resize to see responsive behaviour, and open them standalone in a new tab.
+
+<Primary />
+
+<Stories />

@@ -1,0 +1,30 @@
+import { Meta, Title, Description, Primary, Controls, Stories } from "@storybook/blocks";
+import * as SpinnerStories from "./Spinner.stories.js";
+
+<Meta of={SpinnerStories} />
+
+<Title />
+
+Indeterminate activity indicator. One component, eight Figma spoke paths, one keyframe, arbitrary size, and a colour system locked to the `icon.static.*` semantic tokens.
+
+The authoritative specification — decision tree, token mappings, motion, accessibility, HTML examples, and constraints — lives at **`components/spinner/spinner-spec.md`**. Read it before shipping anything; it's the source of truth.
+
+## Quick reference
+
+| Prop | Required | Values | Default |
+|---|---|---|---|
+| `style` | no | `progress-activity` *(only value today)* | `progress-activity` |
+| `tone` | no | `neutral`, `brand`, `info`, `warning`, `danger`, `negative`, `positive`, `accent-amethyst`, `accent-jade`, `accent-seabreeze` | `neutral` |
+| `emphasis` | no | `light`, `subtle`, `base`, `contrast`, `bold` | `base` |
+| `size` | no | any CSS length (`24`, `"1em"`, `"2rem"`, `"50%"`) | `1em` |
+| `label` | no | string — accessible name announced by screen readers | `"Loading"` |
+
+## Colour contract
+
+The spinner does **not** accept raw hex, primitive tokens, or invented semantic names. It accepts `tone` × `emphasis`, and only those combinations that exist in `tokens/pathway-design-tokens.json` → `semantic.light-mode.color.icon.static`. See `components/spinner/spinner-spec.md` §7.1 for the full token table.
+
+<Primary />
+
+<Controls />
+
+<Stories />

@@ -11,6 +11,8 @@ on:
       - "tokens/pathway-design-tokens.json"
       - "src/**"
       - ".storybook/**"
+      - "components/**"
+      - "docs/**"
       - "style-dictionary.config.js"
       - "package.json"
   workflow_run:

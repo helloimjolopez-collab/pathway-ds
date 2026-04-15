@@ -1,14 +1,15 @@
-name: Sync SideNav-figmamake.html
+name: Sync sidenav-figmamake.html
 
-# Runs whenever SideNav.html is changed on main.
-# Regenerates SideNav-figmamake.html (the React demo stripped of the
-# Component Documentation section) and commits it back automatically.
+# Runs whenever components/sidenav/sidenav.html is changed on main.
+# Regenerates components/sidenav/sidenav-figmamake.html (the React demo
+# stripped of the Component Documentation section) and commits it back
+# automatically.
 
 on:
   push:
     branches: [main]
     paths:
-      - SideNav.html
+      - components/sidenav/sidenav.html
 
 jobs:
   sync:
@@ -20,17 +21,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Regenerate SideNav-figmamake.html
+      - name: Regenerate sidenav-figmamake.html
         run: python3 scripts/build-component.py
 
       - name: Commit if changed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add SideNav-figmamake.html
+          git add components/sidenav/sidenav-figmamake.html
           if git diff --cached --quiet; then
             echo "No changes — skipping commit."
           else
-            git commit -m "chore: auto-sync SideNav-figmamake.html from SideNav.html [skip ci]"
+            git commit -m "chore: auto-sync sidenav-figmamake.html from sidenav.html [skip ci]"
             git push
           fi

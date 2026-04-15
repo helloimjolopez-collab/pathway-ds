@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spinner — Pathway Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+  /* ══════════════════════════════════════════════════════════════════════════
+     PATHWAY TOKENS — inlined subset
+     This demo file is self-contained; in a real integration these variables
+     come from src/tokens/tokens.css (built by style-dictionary).
+     Only the primitives and semantic tokens used by the spinner are included.
+     Every variable name below matches the auto-generated name exactly.
+  ══════════════════════════════════════════════════════════════════════════ */
+  :root {
+    /* Primitives used by icon.static.* — lifted verbatim from tokens.css      */
+    --primitive-color-cool-neutral-110: #7b7b7b;
+    --primitive-color-cool-neutral-130: #606060;
+    --primitive-color-cool-neutral-150: #4b4b4b;
+    --primitive-color-cool-neutral-190: #202020;
+    --primitive-color-cool-neutral-210: #161616;
+    --primitive-color-brand-70:  #849cd6;
+    --primitive-color-brand-80:  #718dd0;
+    --primitive-color-brand-90:  #5e7dc9;
+    --primitive-color-brand-300: #3555a0;
+    --primitive-color-brand-400: #273e76;
+    --primitive-color-brand-500: #19284c;
+    --primitive-color-red-80:  #de8c8c;
+    --primitive-color-red-90:  #d36666;
+    --primitive-color-red-100: #c84040;
+    --primitive-color-red-130: #862727;
+    --primitive-color-red-150: #621c1c;
+    --primitive-color-orange-50:  #eeac8b;
+    --primitive-color-orange-60:  #e99065;
+    --primitive-color-orange-80:  #e2601c;
+    --primitive-color-orange-100: #ac4915;
+    --primitive-color-orange-110: #913d12;
+    --primitive-color-green-50:  #afe0b5;
+    --primitive-color-green-60:  #7acc83;
+    --primitive-color-green-70:  #558f5c;
+    --primitive-color-green-90:  #446048;
+    --primitive-color-green-100: #29312a;
+    --primitive-color-saffron-40:  #fce9b9;
+    --primitive-color-saffron-50:  #fbde95;
+    --primitive-color-saffron-80:  #d3aa43;
+    --primitive-color-saffron-90:  #ae8c37;
+    --primitive-color-saffron-100: #85630d;
+    --primitive-color-amethyst-50:  #b7b2de;
+    --primitive-color-amethyst-60:  #9f98d3;
+    --primitive-color-amethyst-80:  #736baa;
+    --primitive-color-amethyst-90:  #5f588c;
+    --primitive-color-amethyst-100: #353341;
+    --primitive-color-jade-40:  #a5dcd7;
+    --primitive-color-jade-60:  #4cb9af;
+    --primitive-color-jade-80:  #1a8e84;
+    --primitive-color-jade-110: #17514c;
+    --primitive-color-jade-120: #213b39;
+    --primitive-color-seabreeze-40:  #b7dcea;
+    --primitive-color-seabreeze-50:  #93cbe0;
+    --primitive-color-seabreeze-60:  #4ba8cb;
+    --primitive-color-seabreeze-90:  #35768e;
+    --primitive-color-seabreeze-100: #2a3b41;
+
+    /* Semantic icon.static.* — the ONLY colour tokens the spinner is permitted
+       to resolve against. Each variable aliases a primitive above; the spinner
+       never reads a primitive directly and never accepts a raw hex.           */
+    --semantic-color-light-mode-icon-static-neutral-light:    var(--primitive-color-cool-neutral-110);
+    --semantic-color-light-mode-icon-static-neutral-subtle:   var(--primitive-color-cool-neutral-130);
+    --semantic-color-light-mode-icon-static-neutral-base:     var(--primitive-color-cool-neutral-150);
+    --semantic-color-light-mode-icon-static-neutral-contrast: var(--primitive-color-cool-neutral-190);
+    --semantic-color-light-mode-icon-static-neutral-bold:     var(--primitive-color-cool-neutral-210);
+
+    --semantic-color-light-mode-icon-static-brand-light:    var(--primitive-color-brand-80);
+    --semantic-color-light-mode-icon-static-brand-subtle:   var(--primitive-color-brand-90);
+    --semantic-color-light-mode-icon-static-brand-base:     var(--primitive-color-brand-300);
+    --semantic-color-light-mode-icon-static-brand-contrast: var(--primitive-color-brand-400);
+    --semantic-color-light-mode-icon-static-brand-bold:     var(--primitive-color-brand-500);
+
+    --semantic-color-light-mode-icon-static-info-light:    var(--primitive-color-brand-70);
+    --semantic-color-light-mode-icon-static-info-subtle:   var(--primitive-color-brand-80);
+    --semantic-color-light-mode-icon-static-info-base:     var(--primitive-color-brand-90);
+    --semantic-color-light-mode-icon-static-info-contrast: var(--primitive-color-brand-400);
+    --semantic-color-light-mode-icon-static-info-bold:     var(--primitive-color-brand-500);
+
+    --semantic-color-light-mode-icon-static-warning-light:    var(--primitive-color-saffron-40);
+    --semantic-color-light-mode-icon-static-warning-subtle:   var(--primitive-color-saffron-50);
+    --semantic-color-light-mode-icon-static-warning-base:     var(--primitive-color-saffron-80);
+    --semantic-color-light-mode-icon-static-warning-contrast: var(--primitive-color-saffron-90);
+    --semantic-color-light-mode-icon-static-warning-bold:     var(--primitive-color-saffron-100);
+
+    --semantic-color-light-mode-icon-static-danger-light:    var(--primitive-color-orange-50);
+    --semantic-color-light-mode-icon-static-danger-subtle:   var(--primitive-color-orange-60);
+    --semantic-color-light-mode-icon-static-danger-base:     var(--primitive-color-orange-80);
+    --semantic-color-light-mode-icon-static-danger-contrast: var(--primitive-color-orange-100);
+    --semantic-color-light-mode-icon-static-danger-bold:     var(--primitive-color-orange-110);
+
+    --semantic-color-light-mode-icon-static-negative-light:    var(--primitive-color-red-80);
+    --semantic-color-light-mode-icon-static-negative-subtle:   var(--primitive-color-red-90);
+    --semantic-color-light-mode-icon-static-negative-base:     var(--primitive-color-red-100);
+    --semantic-color-light-mode-icon-static-negative-contrast: var(--primitive-color-red-130);
+    --semantic-color-light-mode-icon-static-negative-bold:     var(--primitive-color-red-150);
+
+    --semantic-color-light-mode-icon-static-positive-light:    var(--primitive-color-green-50);
+    --semantic-color-light-mode-icon-static-positive-subtle:   var(--primitive-color-green-60);
+    --semantic-color-light-mode-icon-static-positive-base:     var(--primitive-color-green-70);
+    --semantic-color-light-mode-icon-static-positive-contrast: var(--primitive-color-green-90);
+    --semantic-color-light-mode-icon-static-positive-bold:     var(--primitive-color-green-100);
+
+    --semantic-color-light-mode-icon-static-accent-amethyst-light:    var(--primitive-color-amethyst-50);
+    --semantic-color-light-mode-icon-static-accent-amethyst-subtle:   var(--primitive-color-amethyst-60);
+    --semantic-color-light-mode-icon-static-accent-amethyst-base:     var(--primitive-color-amethyst-80);
+    --semantic-color-light-mode-icon-static-accent-amethyst-contrast: var(--primitive-color-amethyst-90);
+    --semantic-color-light-mode-icon-static-accent-amethyst-bold:     var(--primitive-color-amethyst-100);
+
+    --semantic-color-light-mode-icon-static-accent-jade-light:    var(--primitive-color-jade-40);
+    --semantic-color-light-mode-icon-static-accent-jade-subtle:   var(--primitive-color-jade-60);
+    --semantic-color-light-mode-icon-static-accent-jade-base:     var(--primitive-color-jade-80);
+    --semantic-color-light-mode-icon-static-accent-jade-contrast: var(--primitive-color-jade-110);
+    --semantic-color-light-mode-icon-static-accent-jade-bold:     var(--primitive-color-jade-120);
+
+    --semantic-color-light-mode-icon-static-accent-seabreeze-light:    var(--primitive-color-seabreeze-40);
+    --semantic-color-light-mode-icon-static-accent-seabreeze-subtle:   var(--primitive-color-seabreeze-50);
+    --semantic-color-light-mode-icon-static-accent-seabreeze-base:     var(--primitive-color-seabreeze-60);
+    --semantic-color-light-mode-icon-static-accent-seabreeze-contrast: var(--primitive-color-seabreeze-90);
+    --semantic-color-light-mode-icon-static-accent-seabreeze-bold:     var(--primitive-color-seabreeze-100);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+
+  /* ── MOTION ────────────────────────────────────────────────────────────────
+     Spec §6 Motion. One keyframe, reused for every instance regardless of size.
+     Duration 1s · timing linear · iteration infinite.
+  */
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* ── COMPONENT: .pds-spinner ───────────────────────────────────────────────
+     Colour contract (spec §7.1): the spinner accepts ONLY a semantic token
+     from the icon.static family. There is no `color` prop, no currentColor
+     fallback from arbitrary parents, and no raw hex input. Valid tones and
+     emphases are enumerated in §7.1 and §2.1; attempting any other value
+     resolves to `unset` (visually broken — surfaces the bug immediately).
+  */
+  .pds-spinner {
+    --pds-spinner-size: 1em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--pds-spinner-size);
+    height: var(--pds-spinner-size);
+    flex-shrink: 0;
+    line-height: 0;
+    /* The colour is set via the `color` property on this wrapper, driven by
+       the [data-tone]/[data-emphasis] selectors below. Strokes inherit it. */
+  }
+
+  /* Token binding — every valid combination is an explicit rule. Enumerating
+     them (rather than constructing a var name from attributes with CSS
+     concatenation, which CSS can't do) guarantees only valid tones work.    */
+  .pds-spinner[data-tone="neutral"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-neutral-light); }
+  .pds-spinner[data-tone="neutral"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-neutral-subtle); }
+  .pds-spinner[data-tone="neutral"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-neutral-base); }
+  .pds-spinner[data-tone="neutral"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-neutral-contrast); }
+  .pds-spinner[data-tone="neutral"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-neutral-bold); }
+
+  .pds-spinner[data-tone="brand"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-brand-light); }
+  .pds-spinner[data-tone="brand"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-brand-subtle); }
+  .pds-spinner[data-tone="brand"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-brand-base); }
+  .pds-spinner[data-tone="brand"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-brand-contrast); }
+  .pds-spinner[data-tone="brand"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-brand-bold); }
+
+  .pds-spinner[data-tone="info"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-info-light); }
+  .pds-spinner[data-tone="info"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-info-subtle); }
+  .pds-spinner[data-tone="info"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-info-base); }
+  .pds-spinner[data-tone="info"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-info-contrast); }
+  .pds-spinner[data-tone="info"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-info-bold); }
+
+  .pds-spinner[data-tone="warning"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-warning-light); }
+  .pds-spinner[data-tone="warning"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-warning-subtle); }
+  .pds-spinner[data-tone="warning"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-warning-base); }
+  .pds-spinner[data-tone="warning"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-warning-contrast); }
+  .pds-spinner[data-tone="warning"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-warning-bold); }
+
+  .pds-spinner[data-tone="danger"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-danger-light); }
+  .pds-spinner[data-tone="danger"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-danger-subtle); }
+  .pds-spinner[data-tone="danger"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-danger-base); }
+  .pds-spinner[data-tone="danger"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-danger-contrast); }
+  .pds-spinner[data-tone="danger"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-danger-bold); }
+
+  .pds-spinner[data-tone="negative"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-negative-light); }
+  .pds-spinner[data-tone="negative"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-negative-subtle); }
+  .pds-spinner[data-tone="negative"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-negative-base); }
+  .pds-spinner[data-tone="negative"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-negative-contrast); }
+  .pds-spinner[data-tone="negative"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-negative-bold); }
+
+  .pds-spinner[data-tone="positive"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-positive-light); }
+  .pds-spinner[data-tone="positive"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-positive-subtle); }
+  .pds-spinner[data-tone="positive"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-positive-base); }
+  .pds-spinner[data-tone="positive"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-positive-contrast); }
+  .pds-spinner[data-tone="positive"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-positive-bold); }
+
+  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-accent-amethyst-light); }
+  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-accent-amethyst-subtle); }
+  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-accent-amethyst-base); }
+  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-accent-amethyst-contrast); }
+  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-accent-amethyst-bold); }
+
+  .pds-spinner[data-tone="accent-jade"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-accent-jade-light); }
+  .pds-spinner[data-tone="accent-jade"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-accent-jade-subtle); }
+  .pds-spinner[data-tone="accent-jade"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-accent-jade-base); }
+  .pds-spinner[data-tone="accent-jade"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-accent-jade-contrast); }
+  .pds-spinner[data-tone="accent-jade"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-accent-jade-bold); }
+
+  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-accent-seabreeze-light); }
+  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-accent-seabreeze-subtle); }
+  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-accent-seabreeze-base); }
+  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-icon-static-accent-seabreeze-contrast); }
+  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-icon-static-accent-seabreeze-bold); }
+
+  .pds-spinner__svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    animation: spin 1s linear infinite;
+    overflow: visible;
+  }
+  .pds-spinner__spoke {
+    stroke: currentColor;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pds-spinner__svg { animation: none; }
+    .pds-spinner__spoke { opacity: 0.6 !important; }
+  }
+
+  .pds-spinner__sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ── DEMO CHROME (not part of the component) ─────────────────────────────── */
+  .demo-shell { max-width: 1100px; margin: 0 auto; padding: 48px 32px 72px; }
+  .demo-title { font-family: 'Red Hat Text', sans-serif; font-weight: 600; font-size: 22px;
+    line-height: 28px; color: #02060d; margin: 0 0 6px; }
+  .demo-sub { font-family: 'Red Hat Text', sans-serif; font-size: 13px; color: #8890b0; margin: 0 0 28px; }
+  .demo-section { background: #fff; border: 1px solid #edf0f9; border-radius: 12px;
+    padding: 24px 28px; margin-bottom: 20px; }
+  .demo-section-label { font-family: 'Red Hat Text', sans-serif; font-size: 10px; font-weight: 700;
+    color: #7880a0; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 16px; }
+  .demo-row { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+  .demo-cell { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 96px; }
+  .demo-cell-label { font-family: 'Red Hat Text', sans-serif; font-size: 11px; color: #8890b0;
+    font-variant-numeric: tabular-nums; text-align: center; }
+  .demo-cell-token { font-family: 'Red Hat Text', monospace; font-size: 10px; color: #3555a0;
+    font-variant-numeric: tabular-nums; text-align: center; word-break: break-all; }
+  .demo-swatch { display: flex; align-items: center; justify-content: center; min-height: 96px; }
+  .demo-inline { font-family: 'Red Hat Text', sans-serif; font-size: 16px; color: #3555a0;
+    line-height: 22px; }
+  .demo-inline .pds-spinner { vertical-align: -0.15em; margin: 0 4px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+
+// ─── PATHWAY DESIGN SYSTEM — Spinner paths (from Figma) ───────────────────────
+// Source: Figma file 3sw45aVcngFAmpbP6cfrXP, node 40006622:50003
+//   component variant: style = "progress-activity"
+//   inner asset:       node 40006622:50026 "progress-activity-animated"
+//
+// Eight-spoke sunburst, 12×12 viewBox. Each spoke is a short stroked line
+// segment from the inner ring (~1) to the outer ring (~3). The staggered
+// opacity ladder (1.00 → 0.12) breaks the 8-fold rotational symmetry so
+// that rotating the whole SVG produces a visible "head + fading trail".
+// Coordinates are lifted verbatim from the Figma export; do not round.
+const SPINNER_SPOKES = [
+  { d: "M6 1V3",             opacity: 1.00 },  // 12 o'clock — leading head
+  { d: "M8.1 3.9L9.55 2.45", opacity: 0.87 },  //  1:30
+  { d: "M9 6H11",            opacity: 0.75 },  //  3 o'clock
+  { d: "M8.1 8.1L9.55 9.55", opacity: 0.62 },  //  4:30
+  { d: "M6 9V11",            opacity: 0.50 },  //  6 o'clock
+  { d: "M2.45 9.55L3.9 8.1", opacity: 0.37 },  //  7:30
+  { d: "M1 6H3",             opacity: 0.25 },  //  9 o'clock
+  { d: "M2.45 2.45L3.9 3.9", opacity: 0.12 },  // 10:30 — fading tail
+];
+
+// ─── Allowed token enumerations — single source of truth for the colour API ──
+// These arrays MUST stay in sync with the semantic `icon.static` family in
+// tokens/pathway-design-tokens.json. If you add a tone or emphasis there,
+// add it here AND in the [data-tone]/[data-emphasis] CSS block above.
+const TONES = [
+  "neutral",
+  "brand",
+  "info",
+  "warning",
+  "danger",
+  "negative",
+  "positive",
+  "accent-amethyst",
+  "accent-jade",
+  "accent-seabreeze",
+];
+const EMPHASES = ["light", "subtle", "base", "contrast", "bold"];
+
+// ─── SPINNER ──────────────────────────────────────────────────────────────────
+// Props:
+//   style     — variant name. Currently only "progress-activity".
+//   size      — any CSS length. Defaults to 1em.
+//   tone      — one of TONES. Defaults to "neutral".
+//   emphasis  — one of EMPHASES. Defaults to "base".
+//   label     — accessible name. Defaults to "Loading".
+//
+// Colour is resolved via [data-tone][data-emphasis] CSS selectors that map
+// to var(--semantic-color-light-mode-icon-static-{tone}-{emphasis}). There
+// is NO `color` prop and NO currentColor inheritance from arbitrary parents
+// — callers must pick a semantic token from the fixed list.
+function Spinner({ style: styleVariant = "progress-activity",
+                   size, tone = "neutral", emphasis = "base", label = "Loading" }) {
+  const spokes = styleVariant === "progress-activity" ? SPINNER_SPOKES : null;
+  if (!spokes) return null;
+
+  // Defensive guard — invalid tone/emphasis values are surfaced loudly in the
+  // console rather than silently rendering as `color: unset`.
+  if (!TONES.includes(tone)) {
+    console.error(`[Spinner] Invalid tone "${tone}". Allowed: ${TONES.join(", ")}`);
+  }
+  if (!EMPHASES.includes(emphasis)) {
+    console.error(`[Spinner] Invalid emphasis "${emphasis}". Allowed: ${EMPHASES.join(", ")}`);
+  }
+
+  const styleObj = size != null
+    ? { "--pds-spinner-size": typeof size === "number" ? `${size}px` : size }
+    : undefined;
+
+  return (
+    <span className="pds-spinner"
+          data-tone={tone}
+          data-emphasis={emphasis}
+          role="status"
+          aria-live="polite"
+          aria-label={label}
+          style={styleObj}>
+      <svg className="pds-spinner__svg"
+           viewBox="0 0 12 12"
+           xmlns="http://www.w3.org/2000/svg"
+           aria-hidden="true"
+           focusable="false">
+        {spokes.map((s, i) => (
+          <path key={i} className="pds-spinner__spoke" d={s.d} opacity={s.opacity} />
+        ))}
+      </svg>
+      <span className="pds-spinner__sr-only">{label}</span>
+    </span>
+  );
+}
+
+// ─── DEMO ─────────────────────────────────────────────────────────────────────
+function App() {
+  const pxSizes = [12, 16, 20, 24, 32, 48, 64, 96];
+
+  return (
+    <div className="demo-shell">
+      <h1 className="demo-title">Spinner · style=&quot;progress-activity&quot;</h1>
+      <p className="demo-sub">
+        One component · eight Figma spoke paths · one keyframe · arbitrary size ·
+        semantic colour tokens only (icon.static).
+      </p>
+
+      {/* ── Fluid pixel scaling ─────────────────────────────────────────── */}
+      <section className="demo-section">
+        <p className="demo-section-label">Fluid pixel scaling — tone=&quot;neutral&quot;, emphasis=&quot;base&quot;</p>
+        <div className="demo-row">
+          {pxSizes.map(px => (
+            <div key={px} className="demo-cell">
+              <div className="demo-swatch"><Spinner size={px} /></div>
+              <span className="demo-cell-label">{px}px</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Relative units ──────────────────────────────────────────────── */}
+      <section className="demo-section">
+        <p className="demo-section-label">Relative-unit scaling (em · rem · %)</p>
+        <div className="demo-row">
+          <div className="demo-cell">
+            <div className="demo-swatch"><Spinner size="1em" tone="brand" /></div>
+            <span className="demo-cell-label">1em (inherits font-size)</span>
+          </div>
+          <div className="demo-cell">
+            <div className="demo-swatch" style={{ fontSize: 28 }}>
+              <Spinner size="1em" tone="brand" />
+            </div>
+            <span className="demo-cell-label">1em @ 28px parent</span>
+          </div>
+          <div className="demo-cell">
+            <div className="demo-swatch"><Spinner size="2.5rem" tone="brand" /></div>
+            <span className="demo-cell-label">2.5rem</span>
+          </div>
+          <div className="demo-cell">
+            <div className="demo-swatch"
+                 style={{ width: 120, height: 96, display:"flex",
+                          alignItems:"center", justifyContent:"center" }}>
+              <Spinner size="50%" tone="brand" />
+            </div>
+            <span className="demo-cell-label">50% of 120×96 slot</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── All tones at emphasis="base" ────────────────────────────────── */}
+      <section className="demo-section">
+        <p className="demo-section-label">Tones — all 10 families, emphasis=&quot;base&quot;</p>
+        <div className="demo-row">
+          {TONES.map(tone => (
+            <div key={tone} className="demo-cell">
+              <div className="demo-swatch"><Spinner size={32} tone={tone} /></div>
+              <span className="demo-cell-label">{tone}</span>
+              <span className="demo-cell-token">icon.static.{tone}.base</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Emphasis ladder for one tone ────────────────────────────────── */}
+      <section className="demo-section">
+        <p className="demo-section-label">Emphasis ladder — tone=&quot;brand&quot;</p>
+        <div className="demo-row">
+          {EMPHASES.map(emphasis => (
+            <div key={emphasis} className="demo-cell">
+              <div className="demo-swatch"><Spinner size={32} tone="brand" emphasis={emphasis} /></div>
+              <span className="demo-cell-label">{emphasis}</span>
+              <span className="demo-cell-token">icon.static.brand.{emphasis}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Real-context placements ─────────────────────────────────────── */}
+      <section className="demo-section">
+        <p className="demo-section-label">In context</p>
+        <div className="demo-row" style={{ gap: 28 }}>
+          <div className="demo-cell" style={{ alignItems:"flex-start", flex:1, minWidth:280 }}>
+            <div className="demo-swatch" style={{ justifyContent:"flex-start" }}>
+              <p className="demo-inline">
+                Syncing your data
+                <Spinner tone="brand" label="Syncing" />
+                please don’t close this tab.
+              </p>
+            </div>
+            <span className="demo-cell-label">Inline with 16px body copy · tone=&quot;brand&quot;</span>
+          </div>
+          <div className="demo-cell" style={{ alignItems:"flex-start" }}>
+            <div className="demo-swatch"
+                 style={{ width:160, height:120, border:"1px dashed #d8dce8",
+                          borderRadius:10, background:"#fff" }}>
+              <Spinner size={48} tone="brand" label="Loading report" />
+            </div>
+            <span className="demo-cell-label">Empty-state placeholder · tone=&quot;brand&quot;</span>
+          </div>
+          <div className="demo-cell" style={{ alignItems:"flex-start" }}>
+            <div className="demo-swatch"><Spinner size={32} tone="positive" label="Processing payment" /></div>
+            <span className="demo-cell-label">tone=&quot;positive&quot;</span>
+          </div>
+          <div className="demo-cell" style={{ alignItems:"flex-start" }}>
+            <div className="demo-swatch"><Spinner size={32} tone="negative" label="Retrying failed upload" /></div>
+            <span className="demo-cell-label">tone=&quot;negative&quot;</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── What’s NOT allowed ──────────────────────────────────────────── */}
+      <section className="demo-section">
+        <p className="demo-section-label">Not allowed (reference)</p>
+        <p className="demo-sub" style={{ margin:0 }}>
+          The spinner rejects: raw hex strings, primitive tokens (e.g. <code>primitive-color-brand-300</code>),
+          invented semantic tokens (e.g. <code>semantic-success</code>), and any token outside <code>icon.static.*</code>.
+          The <code>color</code> prop does not exist — use <code>tone</code> + <code>emphasis</code>.
+        </p>
+      </section>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

@@ -543,7 +543,7 @@ This is a CSS architectural constraint, not a Figma design concern. No Figma ann
 ## 13. Accessibility
 
 > **Legend used in this section:**
-> - ✅ **Implemented**: present in the current reference demo (`SideNav.html`)
+> - ✅ **Implemented**: present in the current reference demo (`sidenav.html`)
 > - 📋 **Required for production**: standard spec for this pattern, not yet in the demo
 > - ❓ **Unconfirmed**: not yet validated; Figma does not supply an annotation for this
 
@@ -557,7 +557,7 @@ The entire nav is a single Tab stop. Arrow keys navigate within it (see §13.3).
 
 Do not use `role="menu"` / `role="menuitem"`: that is for application context-menus, not site navigation, and screen readers will announce it incorrectly.
 
-> **Note on the reference demo (`SideNav.html`):** The demo currently uses `<nav>` with `role="button"` divs as a visual scaffolding baseline. This is not a production-ready implementation. Production code requires native `<button>` / `<a>` elements, roving-tabindex focus management, and the full arrow key handlers documented in §13.3.
+> **Note on the reference demo (`sidenav.html`):** The demo currently uses `<nav>` with `role="button"` divs as a visual scaffolding baseline. This is not a production-ready implementation. Production code requires native `<button>` / `<a>` elements, roving-tabindex focus management, and the full arrow key handlers documented in §13.3.
 
 ---
 
@@ -712,7 +712,7 @@ The only things that genuinely need to be **done in Figma** (because they are de
 | Gap | Priority | Action needed in Figma |
 |---|---|---|
 | No "focused" state variant in `SideNavItem` | HIGH | Design and add a focused variant to the component: suggested style: `2px solid #3555a0` outline, `2px` offset. This is a visual design decision that must exist in Figma. |
-| No link to this spec in Dev Mode | HIGH | In Figma Dev Mode → Resources panel, add the spec URL: `https://helloimjolopez-collab.github.io/pathwaytokens/SideNav-spec.md`. Takes 30 seconds and means devs always have one click to the full reference. |
+| No link to this spec in Dev Mode | HIGH | In Figma Dev Mode → Resources panel, add the spec URL: `https://github.com/helloimjolopez-collab/pathwaytokens/blob/main/components/sidenav/sidenav-spec.md`. Takes 30 seconds and means devs always have one click to the full reference. |
 | Accessibility section in Figma doc frame is outdated | MEDIUM | Replace with a short plain-text summary (component description, key decisions, any gaps that require design work) and a link to this spec. Do not duplicate tables. |
 
 ---
@@ -940,8 +940,8 @@ This section is for any AI agent implementing this component: Figma Make, Lovabl
 
 | File | What it is |
 |---|---|
-| `SideNav-figmamake.html` | The interactive React prototype: same component as the full demo but without the spec annotations panel. Use this as the live visual and behavioural reference. It is responsive: resize the browser to see all three breakpoint states. Auto-synced from `SideNav.html` on every push. |
-| `SideNav-spec.md` (this file) | Token values, anatomy, state matrix, interaction, accessibility, responsiveness. The authoritative source for all implementation decisions. |
+| `sidenav-figmamake.html` | The interactive React prototype: same component as the full demo but without the spec annotations panel. Use this as the live visual and behavioural reference. It is responsive: resize the browser to see all three breakpoint states. Auto-synced from `sidenav.html` on every push. |
+| `sidenav-spec.md` (this file) | Token values, anatomy, state matrix, interaction, accessibility, responsiveness. The authoritative source for all implementation decisions. |
 
 Both files are needed. The HTML shows you what it looks like and how it behaves. The spec tells you the exact values and rules behind every decision.
 
@@ -1015,8 +1015,9 @@ This applies whether the sidebar is 250px or 72px. Full detail at §6 and §7.
 ### 17.6 Prompt template
 
 ```
-Using SideNav-figmamake.html as the visual reference and SideNav-spec.md
-as the specification, implement a responsive prototype with TopNav + SideNav.
+Using components/sidenav/sidenav-figmamake.html as the visual reference and
+components/sidenav/sidenav-spec.md as the specification, implement a responsive
+prototype with TopNav + SideNav.
 
 Nav items (in order):
 [your list: see §17.2 for format]
