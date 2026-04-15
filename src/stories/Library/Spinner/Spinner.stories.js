@@ -92,7 +92,7 @@ function grid(cells) {
 // ───── Storybook metadata ─────────────────────────────────────────────────────
 export default {
   title: "Components/Spinner",
-  tags: ["autodocs"],
+  // Docs page is supplied by Spinner.mdx — no autodocs tag.
   argTypes: {
     tone: { control: { type: "select" }, options: TONES },
     emphasis: { control: { type: "select" }, options: EMPHASES },

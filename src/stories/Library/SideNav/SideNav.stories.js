@@ -33,7 +33,7 @@ function iframe({ src, height = 720, title }) {
 
 export default {
   title: "Components/SideNav",
-  tags: ["autodocs"],
+  // Docs page is supplied by SideNav.mdx — no autodocs tag.
   parameters: {
     docs: {
       description: {
