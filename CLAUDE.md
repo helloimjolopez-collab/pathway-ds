@@ -40,7 +40,8 @@ src/tokens/tokens.css, src/tokens/tokens.js     ← consumed by Storybook + comp
 
 Rules:
 
-- **The Figma export is authoritative.** If the user deletes a variable in Figma, the sync removes it from every derived file. If the user adds a variable, the sync adds it. **Never tell the user to fix broken aliases in Figma** — if a semantic token points at a deleted primitive, `sync-tokens.js` drops that token silently (with a warning in the CI log) and the build continues.
+- **The Figma export is authoritative.** If the user deletes a variable in Figma, the sync removes it from every derived file. If the user adds a variable, the sync adds it. **Never tell the user to fix broken aliases in Figma as a precondition to running the sync** — if a semantic token points at a deleted primitive, `sync-tokens.js` drops that token silently (with a warning in the CI log) and the build continues.
+- **One-time data migrations are a separate class of work.** When Figma renames or restructures a primitive group (e.g. the historical `Indigo → Brand` rename), a one-off script or `sed` may be needed to rewrite stale references in already-imported data so the tree resolves. Those are ad-hoc jobs, requested explicitly by the user, run once, committed, and done. **Never** bake a one-time rewrite into the recurring sync, audit, or `/update-tokens` routines — a repeating rewrite masks real broken state once the migration is complete and makes future orphans invisible.
 - **`pathway-design-tokens.json` is derived.** Do not hand-edit it. Changes made to it will be wiped by the next Figma sync.
 - **`src/tokens/tokens.css` is derived.** Do not hand-edit it. Style Dictionary regenerates it on every build.
 - If a broken alias matters (e.g. a component visibly breaks because its token disappeared), the fix goes **in Figma**, not in the repo.
