@@ -204,7 +204,7 @@
               "$type": "color",
               "$value": "#070707"
             },
-            "0 @ 90% 2": {
+            "0 @ 90%": {
               "$scopes": [
                 "ALL_SCOPES"
               ],
@@ -616,246 +616,6 @@
               "$value": "rgba(53, 85, 160, 0.04)"
             }
           },
-          "Blue": {
-            "0": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#e5eefc"
-            },
-            "10": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#deeafb"
-            },
-            "15": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#d0e1f9"
-            },
-            "20": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#c3d9f8"
-            },
-            "25": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#b5d0f6"
-            },
-            "30": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#aac9f5"
-            },
-            "35": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#93bbf2"
-            },
-            "40": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#7cacef"
-            },
-            "45": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#659eed"
-            },
-            "50": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#4f8fea"
-            },
-            "60": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#3881e7"
-            },
-            "70": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#2173e5"
-            },
-            "80": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#1967d3"
-            },
-            "90": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#165cbc"
-            },
-            "100": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#1556b1"
-            },
-            "110": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#1452a8"
-            },
-            "120": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#124996"
-            },
-            "130": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#104083"
-            },
-            "140": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#0d3771"
-            },
-            "150": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#0b2e5f"
-            },
-            "160": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#09254d"
-            },
-            "170": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#071c3a"
-            },
-            "180": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#051428"
-            },
-            "190": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#030b16"
-            },
-            "200": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#02060d"
-            },
-            "300": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#010306"
-            },
-            "100 @ 50%": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "rgba(21, 86, 177, 0.5)"
-            },
-            "100 @ 20%": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "rgba(21, 86, 177, 0.2)"
-            },
-            "100 @ 16%": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$value": "rgba(21, 86, 177, 0.16)"
-            },
-            "100 @ 8 %": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$value": "rgba(21, 86, 177, 0.08)"
-            }
-          },
           "Red": {
             "10": {
               "$scopes": [
@@ -1128,7 +888,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#f3faf5"
+              "$value": "#f7fcf8"
             },
             "20": {
               "$scopes": [
@@ -1136,7 +896,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#ebf6ee"
+              "$value": "#e4f5e6"
             },
             "30": {
               "$scopes": [
@@ -1160,7 +920,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#8dc79c"
+              "$value": "#afe0b5"
             },
             "60": {
               "$scopes": [
@@ -1168,7 +928,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#67b57c"
+              "$value": "#7acc83"
             },
             "70": {
               "$scopes": [
@@ -1176,7 +936,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#43a35c"
+              "$value": "#558f5c"
             },
             "80": {
               "$scopes": [
@@ -1184,7 +944,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#398a4e"
+              "$value": "#54845a"
             },
             "90": {
               "$scopes": [
@@ -1192,7 +952,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#2f7241"
+              "$value": "#446048"
             },
             "100": {
               "$scopes": [
@@ -1200,97 +960,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#2e4e37"
-            }
-          },
-          "Amethyst": {
-            "0": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#fdfdff"
-            },
-            "10": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#f8f7fc"
-            },
-            "20": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#f3f2f9"
-            },
-            "30": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#e7e5f4"
-            },
-            "40": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#cfcbe9"
-            },
-            "50": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#b7b2de"
-            },
-            "60": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#9f98d3"
-            },
-            "70": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#877ec8"
-            },
-            "80": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#736baa"
-            },
-            "90": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#5f588c"
-            },
-            "100": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#353341"
+              "$value": "#29312a"
             }
           },
           "Seabreeze": {
@@ -1489,14 +1159,22 @@
               "$value": "#212e2c"
             }
           },
-          "Emerald": {
+          "Amethyst": {
+            "0": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$hiddenFromPublishing": true,
+              "$type": "color",
+              "$value": "#fdfdff"
+            },
             "10": {
               "$scopes": [
                 "ALL_SCOPES"
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#f7fcf8"
+              "$value": "#f8f7fc"
             },
             "20": {
               "$scopes": [
@@ -1504,7 +1182,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#f2faf3"
+              "$value": "#f3f2f9"
             },
             "30": {
               "$scopes": [
@@ -1512,7 +1190,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#e4f5e6"
+              "$value": "#e7e5f4"
             },
             "40": {
               "$scopes": [
@@ -1520,7 +1198,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#caebcd"
+              "$value": "#cfcbe9"
             },
             "50": {
               "$scopes": [
@@ -1528,7 +1206,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#afe0b5"
+              "$value": "#b7b2de"
             },
             "60": {
               "$scopes": [
@@ -1536,7 +1214,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#95d69c"
+              "$value": "#9f98d3"
             },
             "70": {
               "$scopes": [
@@ -1544,7 +1222,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#7acc83"
+              "$value": "#877ec8"
             },
             "80": {
               "$scopes": [
@@ -1552,7 +1230,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#68ad6f"
+              "$value": "#736baa"
             },
             "90": {
               "$scopes": [
@@ -1560,7 +1238,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#558f5c"
+              "$value": "#5f588c"
             },
             "100": {
               "$scopes": [
@@ -1568,31 +1246,7 @@
               ],
               "$hiddenFromPublishing": true,
               "$type": "color",
-              "$value": "#54845a"
-            },
-            "110": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#446048"
-            },
-            "120": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#334235"
-            },
-            "130": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#29312a"
+              "$value": "#353341"
             }
           },
           "Saffron": {
@@ -1699,228 +1353,6 @@
               "$hiddenFromPublishing": true,
               "$type": "color",
               "$value": "#2d2a24"
-            }
-          },
-          "Tangerine": {
-            "10": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#fff8f4"
-            },
-            "20": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#fff3ed"
-            },
-            "30": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#ffe7db"
-            },
-            "40": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#ffd0b7"
-            },
-            "50": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#ffb892"
-            },
-            "60": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#ffa16e"
-            },
-            "70": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#ff894a"
-            },
-            "80": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#d9743f"
-            },
-            "90": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#b26034"
-            },
-            "100": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#864421"
-            },
-            "110": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#643820"
-            },
-            "120": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#4c3529"
-            },
-            "130": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#362b25"
-            }
-          },
-          "Coral": {
-            "10": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#fef7f7"
-            },
-            "20": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#fdf1f1"
-            },
-            "30": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#fbe3e3"
-            },
-            "40": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#f6c6c6"
-            },
-            "50": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#f2aaaa"
-            },
-            "60": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#ed8e8e"
-            },
-            "70": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#e97272"
-            },
-            "80": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#c66161"
-            },
-            "90": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#a35050"
-            },
-            "100": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#8a4949"
-            },
-            "110": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#6c4242"
-            },
-            "120": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#473030"
-            },
-            "130": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#342828"
-            }
-          },
-          "Eggshell": {
-            "20": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$hiddenFromPublishing": true,
-              "$type": "color",
-              "$value": "#fff7ec"
             }
           }
         }
@@ -5300,7 +4732,7 @@
             },
             "Static": {
               "Neutral": {
-                "White": {
+                "Light": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
@@ -5309,7 +4741,7 @@
                   "$collectionName": "Primitive: Color",
                   "$value": "{Cool Neutral.0}"
                 },
-                "Light": {
+                "Subtle": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
@@ -5318,15 +4750,6 @@
                   "$collectionName": "Primitive: Color",
                   "$value": "{Cool Neutral.10}"
                 },
-                "Subtle": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
-                },
                 "Base": {
                   "$scopes": [
                     "ALL_SCOPES"
@@ -5334,25 +4757,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.30}"
-                },
-                "Contrast": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.90}"
-                },
-                "Bold": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.120}"
+                  "$value": "{Cool Neutral.20}"
                 },
                 "Opacity 80": {
                   "$scopes": [
@@ -5794,14 +5199,7 @@
                   "$value": "{Jade.60}"
                 }
               },
-              "Surface": {
-                "White": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$value": "#ffffff"
-                },
+              "Accent_Seabreeze": {
                 "Light": {
                   "$scopes": [
                     "ALL_SCOPES"
@@ -5809,7 +5207,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Seabreeze.20}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -5818,7 +5216,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Seabreeze.30}"
                 },
                 "Base": {
                   "$scopes": [
@@ -5827,7 +5225,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.30}"
+                  "$value": "{Seabreeze.40}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -5836,7 +5234,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.90}"
+                  "$value": "{Seabreeze.90}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -5845,52 +5243,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.120}"
-                },
-                "Opacity 80": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0 @ 80%}"
-                },
-                "Opacity 70": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0 @ 70%}"
-                },
-                "Opacity 30": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0 @ 30%}"
-                },
-                "Opacity 16": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0 @ 16%}"
-                },
-                "Opacity 8": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0 @ 8%}"
+                  "$value": "{Seabreeze.100}"
                 }
               }
             },
@@ -7310,6 +6663,53 @@
                   "$collectionName": "Primitive: Color",
                   "$value": "{Jade.120}"
                 }
+              },
+              "Accent_Seabreeze": {
+                "Light": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Seabreeze.40}"
+                },
+                "Subtle": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Seabreeze.50}"
+                },
+                "Base": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Seabreeze.60}"
+                },
+                "Contrast": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Seabreeze.90}"
+                },
+                "Bold": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Seabreeze.100}"
+                }
               }
             },
             "Contextual": {
@@ -8656,15 +8056,6 @@
                 "$libraryName": "",
                 "$collectionName": "Primitive: Color",
                 "$value": "{Brand.0}"
-              },
-              "Elevated": {
-                "$scopes": [
-                  "ALL_SCOPES"
-                ],
-                "$type": "color",
-                "$libraryName": "",
-                "$collectionName": "Primitive: Color",
-                "$value": "{Brand.0}"
               }
             },
             "Canvas": {
@@ -8688,35 +8079,17 @@
               }
             }
           },
-          "Overlay": {
-            "30": {
+          "Scrim": {
+            "Light": {
               "$scopes": [
                 "ALL_SCOPES"
               ],
               "$type": "color",
               "$libraryName": "",
               "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.0 @ 30%}"
+              "$value": "{Cool Neutral.220 @ 30%}"
             },
-            "70": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.0 @ 70%}"
-            },
-            "30 Static": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.0 @ 30%}"
-            },
-            "30 Inverse": {
+            "Subtle": {
               "$scopes": [
                 "ALL_SCOPES"
               ],
@@ -8725,34 +8098,7 @@
               "$collectionName": "Primitive: Color",
               "$value": "{Cool Neutral.220 @ 50%}"
             },
-            "30 Inverse Static": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.220 @ 50%}"
-            },
-            "70 Static": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.0 @ 70%}"
-            },
-            "70 Inverse": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.220 @ 70%}"
-            },
-            "70 Inverse Static": {
+            "Base": {
               "$scopes": [
                 "ALL_SCOPES"
               ],
@@ -8774,7 +8120,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.100}"
+                  "$value": "{Brand.300}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -8783,7 +8129,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.110}"
+                  "$value": "{Brand.400}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -8792,7 +8138,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.130}"
+                  "$value": "{Brand.500}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -8801,7 +8147,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.130}"
+                  "$value": "{Brand.600}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -8810,7 +8156,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.80}"
+                  "$value": "{Brand.60}"
                 }
               },
               "PrimaryInverse": {
@@ -8821,7 +8167,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.10}"
+                  "$value": "{Brand.90}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -8830,7 +8176,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Brand.100}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -8839,7 +8185,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.20}"
+                  "$value": "{Brand.200}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -8848,7 +8194,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.20}"
+                  "$value": "{Brand.300}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -8857,7 +8203,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.10}"
+                  "$value": "{Brand.70}"
                 }
               },
               "Secondary": {
@@ -8868,7 +8214,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.150}"
+                  "$value": "{Cool Neutral.160}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -8877,7 +8223,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.160}"
+                  "$value": "{Cool Neutral.170}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -8895,7 +8241,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.180}"
+                  "$value": "{Cool Neutral.190}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -8904,7 +8250,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.60}"
+                  "$value": "{Cool Neutral.80}"
                 }
               },
               "SecondaryInverse": {
@@ -8915,7 +8261,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Cool Neutral.120}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -8924,7 +8270,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Cool Neutral.130}"
                 },
                 "Focus": {
                   "$scopes": [
@@ -8933,7 +8279,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Cool Neutral.140}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -8942,7 +8288,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Cool Neutral.150}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -8951,7 +8297,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
+                  "$value": "{Cool Neutral.90}"
                 }
               },
               "Tertiary": {
@@ -8960,35 +8306,45 @@
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.300}"
                 },
                 "Hover": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.400}"
                 },
                 "Focused": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.400}"
                 },
                 "Pressed": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.500}"
                 },
                 "Disabled": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.50}"
                 }
               },
               "TertiaryInverse": {
@@ -8997,35 +8353,45 @@
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.10}"
                 },
                 "Hover": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.0}"
                 },
                 "Focused": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.0}"
                 },
                 "Pressed": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.20}"
                 },
                 "Disabled": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.70}"
                 }
               },
               "Mono": {
@@ -9036,7 +8402,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Cool Neutral.200}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -9045,7 +8411,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.30}"
+                  "$value": "{Cool Neutral.210}"
                 },
                 "Focus": {
                   "$scopes": [
@@ -9054,7 +8420,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
+                  "$value": "{Cool Neutral.220}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -9063,7 +8429,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Cool Neutral.240}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -9072,7 +8438,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
+                  "$value": "{Cool Neutral.130}"
                 }
               },
               "MonoInverse": {
@@ -9083,7 +8449,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Cool Neutral.0}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -9092,7 +8458,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Cool Neutral.0}"
                 },
                 "Focus": {
                   "$scopes": [
@@ -9119,7 +8485,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
+                  "$value": "{Cool Neutral.0}"
                 }
               },
               "Alert": {
@@ -9213,7 +8579,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Saffron.40}"
+                  "$value": "{Saffron.50}"
                 }
               },
               "Danger": {
@@ -9242,7 +8608,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.150}"
+                  "$value": "{Orange.120}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -9251,7 +8617,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.150}"
+                  "$value": "{Orange.140}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -9289,7 +8655,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.30}"
+                  "$value": "{Orange.10}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -9298,7 +8664,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.30}"
+                  "$value": "{Orange.10}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -9318,7 +8684,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.100}"
+                  "$value": "{Red.110}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -9327,7 +8693,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.110}"
+                  "$value": "{Red.120}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -9345,7 +8711,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.130}"
+                  "$value": "{Red.140}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -9383,7 +8749,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.60}"
+                  "$value": "{Red.50}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -9392,7 +8758,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.60}"
+                  "$value": "{Red.20}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -9401,7 +8767,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.80}"
+                  "$value": "{Red.30}"
                 }
               },
               "Success": {
@@ -9430,7 +8796,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Green.100}"
+                  "$value": "{Green.90}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -9468,7 +8834,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Green.10}"
+                  "$value": "{Green.30}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -9486,7 +8852,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Green.30}"
+                  "$value": "{Green.10}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -9515,7 +8881,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.70}"
+                  "$value": "{Amethyst.90}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -9609,7 +8975,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.80}"
+                  "$value": "{Jade.90}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -9656,7 +9022,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.10}"
+                  "$value": "{Jade.30}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -9674,7 +9040,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.30}"
+                  "$value": "{Jade.10}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -9683,7 +9049,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.40}"
+                  "$value": "{Jade.70}"
                 }
               }
             },
@@ -9696,7 +9062,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.170}"
+                  "$value": "{Cool Neutral.180}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -9705,7 +9071,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.150}"
+                  "$value": "{Cool Neutral.170}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -9714,7 +9080,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.200}"
+                  "$value": "{Cool Neutral.190}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -9723,7 +9089,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.200}"
+                  "$value": "{Cool Neutral.210}"
                 }
               },
               "PrimaryInverse": {
@@ -9734,7 +9100,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Cool Neutral.10}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -9743,7 +9109,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Cool Neutral.20}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -9763,7 +9129,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.120}"
+                  "$value": "{Cool Neutral.150}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -9772,7 +9138,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.110}"
+                  "$value": "{Cool Neutral.120}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -9781,7 +9147,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.140}"
+                  "$value": "{Cool Neutral.170}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -9790,7 +9156,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.140}"
+                  "$value": "{Cool Neutral.190}"
                 }
               },
               "SecondaryInverse": {
@@ -9801,7 +9167,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.30}"
+                  "$value": "{Cool Neutral.90}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -9810,7 +9176,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.50}"
+                  "$value": "{Cool Neutral.80}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -9819,7 +9185,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Cool Neutral.110}"
                 }
               },
               "Info": {
@@ -10238,7 +9604,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.60}"
+                  "$value": "{Cool Neutral.170}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -10247,7 +9613,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.50}"
+                  "$value": "{Cool Neutral.180}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -10256,7 +9622,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Cool Neutral.180}"
                 },
                 "Active": {
                   "$scopes": [
@@ -10265,7 +9631,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Blue.180}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -10274,7 +9640,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.80}"
+                  "$value": "{Cool Neutral.80}"
                 }
               }
             }
@@ -10289,7 +9655,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.100}"
+                  "$value": "{Brand.300}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -10298,7 +9664,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.110}"
+                  "$value": "{Brand.200}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -10307,7 +9673,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.130}"
+                  "$value": "{Brand.200}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -10316,7 +9682,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.100}"
+                  "$value": "{Brand.400}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -10325,7 +9691,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.45}"
+                  "$value": "{Brand.50}"
                 }
               },
               "PrimaryInverse": {
@@ -10336,7 +9702,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.100}"
+                  "$value": "{Brand.0}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -10345,7 +9711,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.110}"
+                  "$value": "{Brand.10}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -10354,7 +9720,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.130}"
+                  "$value": "{Brand.20}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -10363,7 +9729,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.100}"
+                  "$value": "{Brand.30}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -10372,7 +9738,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.45}"
+                  "$value": "{Brand.80}"
                 }
               },
               "Secondary": {
@@ -10383,7 +9749,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.110}"
+                  "$value": "{Cool Neutral.30}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -10392,7 +9758,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.120}"
+                  "$value": "{Cool Neutral.20}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -10401,7 +9767,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.130}"
+                  "$value": "{Cool Neutral.20}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -10410,7 +9776,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.140}"
+                  "$value": "{Cool Neutral.30}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -10419,42 +9785,52 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.70}"
+                  "$value": "{Cool Neutral.20}"
                 },
                 "Opacity 70": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.220 @ 70%}"
                 },
                 "Opacity 30": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.220 @ 50%}"
                 },
                 "Opacity 20": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.220 @ 20 %}"
                 },
                 "Opacity 16": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.220 @ 16%}"
                 },
                 "Opacity 8": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.220 @ 8%}"
                 }
               },
               "SecondaryInverse": {
@@ -10465,7 +9841,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
+                  "$value": "{Cool Neutral.10}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -10474,7 +9850,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.50}"
+                  "$value": "{Cool Neutral.20}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -10483,7 +9859,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.60}"
+                  "$value": "{Cool Neutral.20}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -10492,7 +9868,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.60}"
+                  "$value": "{Cool Neutral.30}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -10501,7 +9877,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Cool Neutral.30}"
                 }
               },
               "Tertiary": {
@@ -10512,7 +9888,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Brand.60}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -10521,7 +9897,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.30}"
+                  "$value": "{Brand.70}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -10530,7 +9906,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
+                  "$value": "{Brand.70}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -10539,7 +9915,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
+                  "$value": "{Brand.90}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -10548,7 +9924,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Brand.300}"
                 }
               },
               "TertiaryInverse": {
@@ -10559,7 +9935,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.90}"
+                  "$value": "{Brand.10}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -10568,7 +9944,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.100}"
+                  "$value": "{Brand.0}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -10577,7 +9953,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.110}"
+                  "$value": "{Brand.20}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -10586,7 +9962,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.120}"
+                  "$value": "{Brand.20}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -10595,7 +9971,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
+                  "$value": "{Brand.10}"
                 }
               },
               "Warning": {
@@ -10794,7 +10170,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.100}"
+                  "$value": "{Red.120}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -10812,7 +10188,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.130}"
+                  "$value": "{Red.110}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -10841,7 +10217,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.50}"
+                  "$value": "{Red.40}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -10850,7 +10226,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.60}"
+                  "$value": "{Red.50}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -10859,7 +10235,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.70}"
+                  "$value": "{Red.50}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -10868,7 +10244,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.80}"
+                  "$value": "{Red.60}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -10982,7 +10358,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.70}"
+                  "$value": "{Amethyst.90}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -11000,7 +10376,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.90}"
+                  "$value": "{Amethyst.80}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -11009,7 +10385,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.90}"
+                  "$value": "{Amethyst.100}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -11018,7 +10394,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.30}"
+                  "$value": "{Amethyst.40}"
                 }
               },
               "Accent_Amethyst_Inverse": {
@@ -11029,7 +10405,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.20}"
+                  "$value": "{Amethyst.10}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -11038,7 +10414,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.30}"
+                  "$value": "{Amethyst.20}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -11047,7 +10423,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.40}"
+                  "$value": "{Amethyst.20}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -11056,7 +10432,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.40}"
+                  "$value": "{Amethyst.30}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -11065,7 +10441,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.20}"
+                  "$value": "{Amethyst.10}"
                 }
               },
               "Accent_Jade": {
@@ -11076,7 +10452,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.70}"
+                  "$value": "{Jade.90}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -11094,7 +10470,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.90}"
+                  "$value": "{Jade.80}"
                 },
                 "Selected": {
                   "$scopes": [
@@ -11103,7 +10479,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.90}"
+                  "$value": "{Jade.100}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -11112,7 +10488,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.30}"
+                  "$value": "{Jade.40}"
                 }
               },
               "Accent_Jade_Inverse": {
@@ -11165,13 +10541,6 @@
             },
             "Static": {
               "Neutral": {
-                "White": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$value": "#ffffff"
-                },
                 "Light": {
                   "$scopes": [
                     "ALL_SCOPES"
@@ -11179,7 +10548,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Cool Neutral.170}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -11188,7 +10557,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Cool Neutral.180}"
                 },
                 "Base": {
                   "$scopes": [
@@ -11197,60 +10566,52 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.30}"
-                },
-                "Contrast": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.50}"
-                },
-                "Bold": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.80}"
+                  "$value": "{Cool Neutral.200}"
                 },
                 "Opacity 80": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.220 @ 70%}"
                 },
                 "Opacity 70": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.220 @ 50%}"
                 },
                 "Opacity 30": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.220 @ 30%}"
                 },
                 "Opacity 16": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.220 @ 16%}"
                 },
                 "Opacity 8": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.220 @ 8%}"
                 }
               },
               "Brand": {
@@ -11261,7 +10622,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.10}"
+                  "$value": "{Brand.90}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -11270,7 +10631,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.15}"
+                  "$value": "{Brand.100}"
                 },
                 "Base": {
                   "$scopes": [
@@ -11279,7 +10640,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.130}"
+                  "$value": "{Brand.300}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -11288,7 +10649,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.300}"
+                  "$value": "{Brand.400}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -11297,21 +10658,25 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.400}"
+                  "$value": "{Brand.500}"
                 },
                 "Dark": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.600}"
                 },
                 "Black": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.700}"
                 }
               },
               "Info": {
@@ -11322,7 +10687,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.0}"
+                  "$value": "{Brand.10}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -11331,7 +10696,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.10}"
+                  "$value": "{Brand.20}"
                 },
                 "Base": {
                   "$scopes": [
@@ -11340,7 +10705,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.30}"
+                  "$value": "{Brand.40}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -11349,7 +10714,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Indigo.30}"
+                  "$value": "{Brand.70}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -11358,7 +10723,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.50}"
+                  "$value": "{Brand.90}"
                 }
               },
               "Warning": {
@@ -11643,14 +11008,7 @@
                   "$value": "{Jade.60}"
                 }
               },
-              "Surface": {
-                "White": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$value": "#ffffff"
-                },
+              "Accent_Seabreeze": {
                 "Light": {
                   "$scopes": [
                     "ALL_SCOPES"
@@ -11658,7 +11016,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Seabreeze.20}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -11667,7 +11025,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Seabreeze.30}"
                 },
                 "Base": {
                   "$scopes": [
@@ -11676,7 +11034,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.30}"
+                  "$value": "{Seabreeze.40}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -11685,7 +11043,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.50}"
+                  "$value": "{Seabreeze.90}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -11694,42 +11052,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.80}"
-                },
-                "Opacity 80": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$value": "#ffffff"
-                },
-                "Opacity 70": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$value": "#ffffff"
-                },
-                "Opacity 30": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$value": "#ffffff"
-                },
-                "Opacity 16": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$value": "#ffffff"
-                },
-                "Opacity 8": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$value": "#ffffff"
+                  "$value": "{Seabreeze.100}"
                 }
               }
             },
@@ -11742,7 +11065,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.200}"
+                  "$value": "{Brand.0}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -11751,7 +11074,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.180}"
+                  "$value": "{Cool Neutral.220 @ 4%}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -11760,7 +11083,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.180}"
+                  "$value": "{Brand.300 @ 8%}"
                 },
                 "Active": {
                   "$scopes": [
@@ -11769,7 +11092,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.160}"
+                  "$value": "{Brand.300 @ 8%}"
                 },
                 "Trail": {
                   "$scopes": [
@@ -11778,7 +11101,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.140}"
+                  "$value": "{Cool Neutral.220 @ 2%}"
                 }
               }
             }
@@ -11793,7 +11116,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.100}"
+                  "$value": "{Brand.300}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -11802,7 +11125,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.110}"
+                  "$value": "{Brand.400}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -11811,7 +11134,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.130}"
+                  "$value": "{Brand.500}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -11820,7 +11143,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.130}"
+                  "$value": "{Brand.600}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -11829,7 +11152,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.35}"
+                  "$value": "{Brand.60}"
                 }
               },
               "PrimaryInverse": {
@@ -11840,7 +11163,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.10}"
+                  "$value": "{Brand.90}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -11849,7 +11172,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Brand.100}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -11858,7 +11181,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.20}"
+                  "$value": "{Brand.200}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -11867,7 +11190,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.20}"
+                  "$value": "{Brand.300}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -11876,7 +11199,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.20}"
+                  "$value": "{Brand.70}"
                 }
               },
               "Secondary": {
@@ -11896,7 +11219,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.160}"
+                  "$value": "{Cool Neutral.170}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -11905,7 +11228,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.180}"
+                  "$value": "{Cool Neutral.170}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -11914,7 +11237,54 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.180}"
+                  "$value": "{Cool Neutral.190}"
+                },
+                "Disabled": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.80}"
+                }
+              },
+              "SecondaryInverse": {
+                "Base": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.90}"
+                },
+                "Hover": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.110}"
+                },
+                "Focused": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.120}"
+                },
+                "Pressed": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Cool Neutral.130}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -11926,53 +11296,6 @@
                   "$value": "{Cool Neutral.60}"
                 }
               },
-              "SecondaryInverse": {
-                "Base": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
-                },
-                "Hover": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
-                },
-                "Focused": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
-                },
-                "Pressed": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
-                },
-                "Disabled": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
-                }
-              },
               "Mono": {
                 "Base": {
                   "$scopes": [
@@ -11981,7 +11304,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Cool Neutral.180}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -11990,7 +11313,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Cool Neutral.180}"
                 },
                 "Focus": {
                   "$scopes": [
@@ -11999,7 +11322,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Cool Neutral.180}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -12008,7 +11331,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Cool Neutral.180}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -12017,7 +11340,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
+                  "$value": "{Cool Neutral.180}"
                 }
               },
               "MonoInverse": {
@@ -12028,7 +11351,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Cool Neutral.0}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -12037,7 +11360,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Cool Neutral.0}"
                 },
                 "Focus": {
                   "$scopes": [
@@ -12064,7 +11387,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
+                  "$value": "{Cool Neutral.0}"
                 }
               },
               "Tertiary": {
@@ -12073,35 +11396,45 @@
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.300}"
                 },
                 "Hover": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.400}"
                 },
                 "Focused": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.400}"
                 },
                 "Pressed": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.500}"
                 },
                 "Disabled": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.40}"
                 }
               },
               "TertiaryInverse": {
@@ -12110,35 +11443,45 @@
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.10}"
                 },
                 "Hover": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.0}"
                 },
                 "Focused": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.0}"
                 },
                 "Pressed": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.20}"
                 },
                 "Disabled": {
                   "$scopes": [
                     "ALL_SCOPES"
                   ],
                   "$type": "color",
-                  "$value": "#ffffff"
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Brand.80}"
                 }
               },
               "Warning": {
@@ -12261,7 +11604,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.150}"
+                  "$value": "{Orange.120}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -12270,7 +11613,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.150}"
+                  "$value": "{Orange.130}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -12337,7 +11680,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.100}"
+                  "$value": "{Red.110}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -12346,7 +11689,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.110}"
+                  "$value": "{Red.120}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -12364,7 +11707,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.130}"
+                  "$value": "{Red.140}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -12402,7 +11745,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.60}"
+                  "$value": "{Red.50}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -12411,7 +11754,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.60}"
+                  "$value": "{Red.20}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -12420,7 +11763,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.80}"
+                  "$value": "{Red.30}"
                 }
               },
               "Positive": {
@@ -12628,7 +11971,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.80}"
+                  "$value": "{Jade.90}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -12715,7 +12058,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.50}"
+                  "$value": "{Cool Neutral.110}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -12724,7 +12067,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
+                  "$value": "{Cool Neutral.130}"
                 },
                 "Base": {
                   "$scopes": [
@@ -12733,7 +12076,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.30}"
+                  "$value": "{Cool Neutral.150}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -12742,7 +12085,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Cool Neutral.190}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -12751,7 +12094,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Cool Neutral.210}"
                 }
               },
               "Brand": {
@@ -12762,7 +12105,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.90}"
+                  "$value": "{Brand.80}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -12771,7 +12114,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.80}"
+                  "$value": "{Brand.90}"
                 },
                 "Base": {
                   "$scopes": [
@@ -12780,7 +12123,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.30}"
+                  "$value": "{Brand.300}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -12789,7 +12132,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.25}"
+                  "$value": "{Brand.400}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -12798,7 +12141,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.20}"
+                  "$value": "{Brand.500}"
                 }
               },
               "Info": {
@@ -12809,7 +12152,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.50}"
+                  "$value": "{Brand.70}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -12818,7 +12161,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.40}"
+                  "$value": "{Brand.80}"
                 },
                 "Base": {
                   "$scopes": [
@@ -12827,7 +12170,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.30}"
+                  "$value": "{Brand.90}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -12836,7 +12179,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.10}"
+                  "$value": "{Brand.400}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -12845,7 +12188,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.0}"
+                  "$value": "{Brand.500}"
                 }
               },
               "Warning": {
@@ -12856,7 +12199,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Saffron.70}"
+                  "$value": "{Saffron.40}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -12865,7 +12208,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Saffron.60}"
+                  "$value": "{Saffron.50}"
                 },
                 "Base": {
                   "$scopes": [
@@ -12874,7 +12217,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Saffron.30}"
+                  "$value": "{Saffron.80}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -12883,7 +12226,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Saffron.20}"
+                  "$value": "{Saffron.90}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -12892,7 +12235,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Saffron.10}"
+                  "$value": "{Saffron.100}"
                 }
               },
               "Danger": {
@@ -12903,7 +12246,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.60}"
+                  "$value": "{Orange.50}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -12912,7 +12255,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.50}"
+                  "$value": "{Orange.60}"
                 },
                 "Base": {
                   "$scopes": [
@@ -12921,7 +12264,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.30}"
+                  "$value": "{Orange.80}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -12930,7 +12273,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.20}"
+                  "$value": "{Orange.100}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -12939,7 +12282,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.10}"
+                  "$value": "{Orange.110}"
                 }
               },
               "Negative": {
@@ -12950,7 +12293,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.100}"
+                  "$value": "{Red.80}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -12968,7 +12311,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.60}"
+                  "$value": "{Red.100}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -12977,7 +12320,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.50}"
+                  "$value": "{Red.130}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -12986,7 +12329,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.40}"
+                  "$value": "{Red.150}"
                 }
               },
               "Positive": {
@@ -13006,7 +12349,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Green.70}"
+                  "$value": "{Green.60}"
                 },
                 "Base": {
                   "$scopes": [
@@ -13015,7 +12358,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Green.30}"
+                  "$value": "{Green.70}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -13024,7 +12367,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Green.20}"
+                  "$value": "{Green.90}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -13033,7 +12376,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Green.10}"
+                  "$value": "{Green.100}"
                 }
               },
               "Accent_Amethyst": {
@@ -13044,7 +12387,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.70}"
+                  "$value": "{Amethyst.50}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -13062,7 +12405,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.30}"
+                  "$value": "{Amethyst.80}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -13071,7 +12414,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.20}"
+                  "$value": "{Amethyst.90}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -13080,7 +12423,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.10}"
+                  "$value": "{Amethyst.100}"
                 }
               },
               "Accent_Jade": {
@@ -13091,7 +12434,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.60}"
+                  "$value": "{Jade.40}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -13100,7 +12443,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.50}"
+                  "$value": "{Jade.60}"
                 },
                 "Base": {
                   "$scopes": [
@@ -13109,7 +12452,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.30}"
+                  "$value": "{Jade.80}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -13118,7 +12461,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.20}"
+                  "$value": "{Jade.110}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -13127,7 +12470,54 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Jade.10}"
+                  "$value": "{Jade.120}"
+                }
+              },
+              "Accent_Seabreeze": {
+                "Light": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Seabreeze.40}"
+                },
+                "Subtle": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Seabreeze.50}"
+                },
+                "Base": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Seabreeze.60}"
+                },
+                "Contrast": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Seabreeze.90}"
+                },
+                "Bold": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "color",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Color",
+                  "$value": "{Seabreeze.100}"
                 }
               }
             },
@@ -13140,7 +12530,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.60}"
+                  "$value": "{Cool Neutral.150}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -13149,7 +12539,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.50}"
+                  "$value": "{Cool Neutral.170}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -13158,7 +12548,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Cool Neutral.170}"
                 },
                 "Active": {
                   "$scopes": [
@@ -13167,7 +12557,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Brand.300}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -13176,7 +12566,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.80}"
+                  "$value": "{Brand.60}"
                 }
               }
             }
@@ -13191,7 +12581,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.45}"
+                  "$value": "{Brand.300}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -13200,7 +12590,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.80}"
+                  "$value": "{Brand.200}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -13209,7 +12599,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.90}"
+                  "$value": "{Brand.200}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -13218,7 +12608,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.90}"
+                  "$value": "{Brand.400}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -13227,7 +12617,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.35}"
+                  "$value": "{Brand.70}"
                 }
               },
               "PrimaryInverse": {
@@ -13238,7 +12628,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.100}"
+                  "$value": "{Brand.70}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -13247,7 +12637,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.110}"
+                  "$value": "{Brand.50}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -13256,7 +12646,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.130}"
+                  "$value": "{Brand.60}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -13265,7 +12655,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.130}"
+                  "$value": "{Brand.80}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -13274,7 +12664,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.35}"
+                  "$value": "{Brand.40}"
                 }
               },
               "Secondary": {
@@ -13285,7 +12675,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.70}"
+                  "$value": "{Cool Neutral.150}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -13294,7 +12684,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.100}"
+                  "$value": "{Cool Neutral.160}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -13303,7 +12693,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.130}"
+                  "$value": "{Cool Neutral.170}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -13312,7 +12702,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.140}"
+                  "$value": "{Cool Neutral.180}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -13332,7 +12722,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Cool Neutral.50}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -13341,7 +12731,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Cool Neutral.60}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -13350,7 +12740,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Cool Neutral.70}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -13359,7 +12749,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Cool Neutral.80}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -13379,7 +12769,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.30}"
+                  "$value": "{Brand.60}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -13388,7 +12778,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Indigo.30}"
+                  "$value": "{Brand.40}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -13406,7 +12796,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.50}"
+                  "$value": "{Brand.70}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -13415,7 +12805,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.0}"
+                  "$value": "{Brand.10}"
                 }
               },
               "TertiaryInverse": {
@@ -13661,7 +13051,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.100}"
+                  "$value": "{Red.110}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -13670,7 +13060,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.110}"
+                  "$value": "{Red.100}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -13679,7 +13069,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.130}"
+                  "$value": "{Red.100}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -13688,7 +13078,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.140}"
+                  "$value": "{Red.120}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -13697,7 +13087,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.80}"
+                  "$value": "{Red.60}"
                 }
               },
               "NegativeInverse": {
@@ -13708,7 +13098,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.40}"
+                  "$value": "{Red.80}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -13717,7 +13107,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.50}"
+                  "$value": "{Red.70}"
                 },
                 "Focused": {
                   "$scopes": [
@@ -13726,7 +13116,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.60}"
+                  "$value": "{Red.70}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -13735,7 +13125,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.60}"
+                  "$value": "{Red.80}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -13744,7 +13134,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.80}"
+                  "$value": "{Red.60}"
                 }
               },
               "Positive": {
@@ -14086,7 +13476,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.15}"
+                  "$value": "{Brand.40}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -14095,7 +13485,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.20}"
+                  "$value": "{Brand.50}"
                 },
                 "Base": {
                   "$scopes": [
@@ -14104,7 +13494,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.35}"
+                  "$value": "{Brand.60}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -14113,7 +13503,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.80}"
+                  "$value": "{Brand.80}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -14122,7 +13512,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Blue.110}"
+                  "$value": "{Brand.100}"
                 }
               },
               "Info": {
@@ -14236,7 +13626,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.20}"
+                  "$value": "{Orange.30}"
                 },
                 "Base": {
                   "$scopes": [
@@ -14245,7 +13635,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.30}"
+                  "$value": "{Orange.50}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -14254,7 +13644,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.60}"
+                  "$value": "{Orange.70}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -14465,7 +13855,7 @@
                 "$type": "color",
                 "$libraryName": "",
                 "$collectionName": "Primitive: Color",
-                "$value": "{Cool Neutral.200}"
+                "$value": "{Cool Neutral.230}"
               },
               "Light": {
                 "$scopes": [
@@ -14475,15 +13865,6 @@
                 "$libraryName": "",
                 "$collectionName": "Primitive: Color",
                 "$value": "{Cool Neutral.180}"
-              },
-              "Elevated": {
-                "$scopes": [
-                  "ALL_SCOPES"
-                ],
-                "$type": "color",
-                "$libraryName": "",
-                "$collectionName": "Primitive: Color",
-                "$value": "{Cool Neutral.210}"
               }
             },
             "Canvas": {
@@ -14494,7 +13875,7 @@
                 "$type": "color",
                 "$libraryName": "",
                 "$collectionName": "Primitive: Color",
-                "$value": "{Cool Neutral.200}"
+                "$value": "{Cool Neutral.220}"
               },
               "Light": {
                 "$scopes": [
@@ -14503,12 +13884,21 @@
                 "$type": "color",
                 "$libraryName": "",
                 "$collectionName": "Primitive: Color",
-                "$value": "{Cool Neutral.180}"
+                "$value": "{Brand.0}"
               }
             }
           },
-          "Overlay": {
-            "30": {
+          "Scrim": {
+            "Light": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive: Color",
+              "$value": "{Cool Neutral.220 @ 30%}"
+            },
+            "Subtle": {
               "$scopes": [
                 "ALL_SCOPES"
               ],
@@ -14517,61 +13907,7 @@
               "$collectionName": "Primitive: Color",
               "$value": "{Cool Neutral.220 @ 50%}"
             },
-            "70": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.220 @ 70%}"
-            },
-            "30 Static": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.0 @ 30%}"
-            },
-            "30 Inverse": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.0 @ 30%}"
-            },
-            "30 Inverse Static": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.220 @ 50%}"
-            },
-            "70 Static": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.0 @ 70%}"
-            },
-            "70 Inverse": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.0 @ 70%}"
-            },
-            "70 Inverse Static": {
+            "Base": {
               "$scopes": [
                 "ALL_SCOPES"
               ],
