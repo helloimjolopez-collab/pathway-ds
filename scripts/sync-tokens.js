@@ -13,8 +13,26 @@
  *     ...
  *   ]
  *
+ * Rules this script enforces (see CLAUDE.md §2):
+ *   1. The Figma export is authoritative. Whatever ships in the export is the
+ *      truth; this script mirrors it. No merging with stale previous runs.
+ *   2. Dark-mode tokens are currently filtered out (see §2.1). Pathway is not
+ *      shipping dark mode yet. To re-enable, clear `EXCLUDED_MODE_SLUGS` below
+ *      and delete the TEMPORARILY EXCLUDED notice near the top of the output
+ *      when it prints.
+ *   3. Tokens whose alias target doesn't exist (e.g. a semantic pointing at a
+ *      primitive that was deleted in Figma) are dropped from the output with
+ *      a warning. Never ask the user to fix broken aliases — the script heals
+ *      them by dropping the orphan.
+ *
  * Usage:  npm run sync-tokens
  */
+
+// Modes whose slugified name matches any of these are dropped entirely from
+// the derived output. Slug form — lowercase, dots/spaces → hyphens.
+// Currently dark mode is excluded; remove from this list when Pathway adopts
+// dark mode. See CLAUDE.md §2.1 for the full policy.
+const EXCLUDED_MODE_SLUGS = new Set(["dark-mode", "dark"]);
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { resolve, dirname } from "node:path";
@@ -79,10 +97,24 @@ function processExport(data) {
       }
 
       const modeNames = Object.keys(modes);
+      // isMultiMode is determined by the ORIGINAL export, not by the filtered
+      // set. This keeps CSS variable names stable — if Figma exports a
+      // "Light Mode" + "Dark Mode" pair and we filter one out, the remaining
+      // tokens still carry the mode segment (e.g. "light-mode") so downstream
+      // consumers don't need to change their variable references depending on
+      // whether dark mode happens to be excluded at build time.
       const isMultiMode = modeNames.length > 1;
 
       for (const [modeName, modeTokens] of Object.entries(modes)) {
         const modeSlug = slugify(modeName);
+
+        // Dark mode (and anything else in EXCLUDED_MODE_SLUGS) is dropped
+        // wholesale. See CLAUDE.md §2.1.
+        if (EXCLUDED_MODE_SLUGS.has(modeSlug)) {
+          console.warn(`  Skipping excluded mode: ${collectionName} / ${modeName}`);
+          continue;
+        }
+
         processTokenGroup(modeTokens, [], (path, leaf) => {
           const fullPath = isMultiMode
             ? [collSlug, modeSlug, ...path]
