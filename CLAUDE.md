@@ -55,18 +55,101 @@ Rules:
 - This is a temporary switch. **Do not re-enable dark mode imports until the user explicitly tells you to.** When they do, remove the mode from `EXCLUDED_MODES` and also remove the "TEMPORARILY EXCLUDED" note from the top of the script.
 - If the user asks for dark-mode support for any reason (a component needs a dark-mode variant, a story wants to preview dark, etc.), **stop and confirm** before re-enabling — they may want a different scope (e.g. one component only, or component-level overrides rather than token-level).
 
-## 3. Updating a component from Figma
+## 3. Component reconciliation after token changes
 
-When the user says something like *"I changed the spinner in Figma, update GitHub"* or *"pull the new sidenav design"*:
+When the token library changes — every time `sync-tokens.js` runs and modifies `tokens/pathway-design-tokens.json` or the CSS variable set — every component in `components/**` that references those tokens must be reconciled against Figma.
 
-1. **Identify the Figma node.** Ask for a node URL if one wasn't given. The URL looks like `https://www.figma.com/design/<fileKey>/<name>?node-id=<id>`.
-2. **Fetch the current state** via the Figma MCP server. Useful calls:
+**Principle:** the source of truth for *which tokens a component uses* is Figma, not the component's current GitHub files. If Figma says the SideNav uses `fill/contextual/navitem/base` and the repo says it uses some other token, Figma wins. If a token the repo mentions no longer exists, the fix comes from Figma.
+
+### 3.1 When to run reconciliation
+
+- After every run of `sync-tokens.js` that changes the derived token set (adds, removes, or renames tokens).
+- On user request (`"reconcile the components"`, `"check components against Figma"`, etc.).
+- **Not** on every session start. Reconciliation is a sync-adjacent job, not a routine health check.
+
+### 3.2 Algorithm
+
+1. **Diff the token set.** Compare `tokens/pathway-design-tokens.json` at `HEAD` against its state before the sync. Classify each change: *added*, *removed*, *renamed* (a disappeared name + a new name whose value matches are probably a rename — flag as a rename candidate for the user to confirm; don't auto-rename aggressively).
+
+2. **Find components that reference changed tokens.** For each file under `components/**`, `src/stories/Library/**`, and any `src/tokens/tokens.*` consumer, grep for:
+   - CSS variable names like `--semantic-color-light-mode-icon-static-neutral-base`
+   - Token-path mentions in Markdown like `icon.static.neutral.base` or `Icon/Contextual/NavItem/Base`
+   - Any direct hex values that the spec claimed came from a token (these indicate a hand-copy that's now stale)
+   If the mentioned token appears in the *removed* or *renamed* set, the component is a reconciliation candidate.
+
+3. **For each candidate component, fetch Figma truth.** Open the component's Figma node (see §3.4 for where its node ID lives) and call:
+   - `get_variable_defs(nodeId)` — returns every variable currently bound to that node and its descendants
+   - `get_design_context(nodeId)` — the current reference code with token bindings
+   Compare the set of tokens returned by Figma against the set the component's GitHub files reference.
+
+4. **Reconcile in this order:**
+   - If Figma's token set matches the repo's updated token set: update the component's GitHub files to use the new token names / values. Update HTML, CSS, stories, spec — all of them, together. Verify Storybook still builds.
+   - If Figma's token set *also* references a missing token (Figma itself is out of sync with the newly-updated tokens): add this component to the "needs manual attention" list (see §3.5). Do not rewrite the component to use a different token as a guess.
+   - If the Figma fetch fails (node deleted, MCP error after retry): add the component to the list. Do not guess.
+
+5. **Commit reconciled components.** One commit per logical component update, with a message that says *why* the change was needed (e.g. "reconcile spinner: icon.static.brand-warm renamed to icon.static.brand").
+
+6. **Report unresolved items** at the end of the run. Format (one line per item):
+   ```
+   <component-name>  ·  <file-path>  ·  <stale-token-name>  ·  <reason>
+   ```
+   Where reason is `removed-from-tokens`, `renamed-to-<new>`, `figma-also-stale`, or `figma-fetch-failed`. The user fixes these in Figma, re-exports, and re-runs the sync.
+
+### 3.3 What reconciliation does NOT do
+
+- It does not propose alternative tokens when Figma is itself stale. Guessing at a replacement masks the real problem.
+- It does not rewrite the token file or attempt to resurrect deleted tokens. Figma is still the source of truth for tokens themselves (see §1).
+- It does not change component *behaviour* — only the specific token names, values, and examples that are now wrong. If the behaviour needs to change, that's a component update (§3.6), not a token reconciliation.
+
+### 3.4 Every component must expose its Figma node ID
+
+For reconciliation to work without asking the user every time, every `components/<name>/<name>-spec.md` must contain a "Figma source" section with the file key and the root node ID in a parseable form. The existing sidenav and spinner specs follow this convention:
+
+```markdown
+### Figma source
+- **File:** [<display name>](https://www.figma.com/design/<fileKey>/...)
+- **<Component> component:** [Open in Figma](https://www.figma.com/design/<fileKey>/...?node-id=<nodeId>)
+```
+
+Reconciliation agents extract `<fileKey>` and `<nodeId>` from the URLs with a regex. Do not remove those links or change their format. When adding a new component, copy the pattern exactly.
+
+### 3.5 Reporting unresolved reconciliation items
+
+When a component can't be reconciled cleanly, emit a short block at the end of the run. Example:
+
+```
+Reconciliation — 2 components need manual attention:
+
+  spinner
+    file:   components/spinner/spinner-spec.md
+    stale:  icon.static.accent-jade.base
+    reason: removed-from-tokens
+    next:   delete the accent-jade branch from the Figma spinner node,
+            or restore the accent-jade tokens in Figma
+
+  sidenav
+    file:   components/sidenav/sidenav-spec.md §3.3
+    stale:  text.contextual.navitem.active
+    reason: figma-also-stale  (Figma still aliases this to {Blue.180},
+            which no longer exists)
+    next:   open sidenav in Figma, re-bind the Active text variable
+            to a real primitive, re-export, re-run sync-tokens
+```
+
+Keep entries short. The user decides which ones to act on; your job is to surface the list accurately, not to fix it silently.
+
+### 3.6 Updating a component from Figma (unrelated to token changes)
+
+When the user says *"I changed the spinner in Figma, update GitHub"* or *"pull the new sidenav design"* — i.e. the **component itself** changed, not just its tokens — follow this flow. It's related to but distinct from §3.2 (which runs in response to token changes).
+
+1. **Identify the Figma node.** Use the spec's Figma source section (§3.4); ask for a URL if one isn't there.
+2. **Fetch the current state** via the Figma MCP server:
    - `get_design_context` — reference code + variable bindings
    - `get_metadata` — structural overview for large nodes
    - `get_screenshot` — visual reference
    - `get_variable_defs` — resolved token values bound to the node
 3. **Extract raw assets when needed.** For SVG geometry, `get_design_context` returns a `figma.com/api/mcp/asset/<uuid>` URL; `curl` it. If it 500s, retry a few times before giving up.
-4. **Diff against the current files** in `components/<name>/`. Update the HTML demo and the `-spec.md` together — they must stay consistent.
+4. **Diff against the current files** in `components/<name>/`. Update the HTML demo, the `-spec.md`, and any `src/stories/Library/<Name>/` files together — they must stay consistent.
 5. **Keep the spec structure intact.** See §5 for the required spec sections.
 6. **Verify.** Rebuild Storybook locally (`npx storybook build`) before committing. A broken Storybook build blocks CI.
 
