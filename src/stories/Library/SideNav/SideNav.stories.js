@@ -3,8 +3,8 @@
 // The SideNav reference demo is a self-contained React + Babel app in
 // components/sidenav/sidenav.html. Rather than duplicate that app inside
 // Storybook's HTML framework, these stories iframe the demo files directly.
-// `.storybook/main.js` serves the repo root at `/demos`, so the paths below
-// resolve whether Storybook is running locally or built to static HTML.
+// `.storybook/main.js` serves components/ at `/components`, so the paths
+// below resolve whether Storybook is running locally or built to static HTML.
 
 function iframe({ src, height = 720, title }) {
   const wrap = document.createElement("div");
@@ -50,7 +50,7 @@ export default {
 // ───── Stories ────────────────────────────────────────────────────────────────
 export const ReferenceDemo = () =>
   iframe({
-    src: "/demos/components/sidenav/sidenav.html",
+    src: "/components/sidenav/sidenav.html",
     title: "sidenav.html — reference implementation with annotated spec panel",
     height: 900,
   });
@@ -67,7 +67,7 @@ ReferenceDemo.parameters = {
 
 export const FigmaMakeDemo = () =>
   iframe({
-    src: "/demos/components/sidenav/sidenav-figmamake.html",
+    src: "/components/sidenav/sidenav-figmamake.html",
     title: "sidenav-figmamake.html — AI-tool-friendly demo (no spec panel)",
     height: 900,
   });

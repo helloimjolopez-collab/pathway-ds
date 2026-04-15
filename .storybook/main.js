@@ -6,10 +6,13 @@ const config = {
     name: "@storybook/html-webpack5",
     options: {},
   },
-  // Serve the repo root at /demos/* so stories can iframe the component HTML
-  // demos (e.g. /demos/components/sidenav/sidenav.html) without duplicating the
-  // React/Babel setup inside Storybook.
-  staticDirs: [{ from: "../", to: "/demos" }],
+  // Serve the components/ tree at /components/* so stories can iframe each
+  // component's standalone HTML demo (e.g. /components/sidenav/sidenav.html)
+  // without duplicating the React/Babel setup inside Storybook.
+  // Note: do not mount the repo root — Storybook's build output lives in
+  // storybook-static/, which is a subfolder of the root, and copying a folder
+  // into itself fails with EINVAL.
+  staticDirs: [{ from: "../components", to: "/components" }],
   docs: {},
 };
 
