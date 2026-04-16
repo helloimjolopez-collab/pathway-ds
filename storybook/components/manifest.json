@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "description": "Machine-readable registry of all Pathway design system components. AI agents building products read this to discover available components, their props, and their file locations.",
+  "components": {
+    "sidenav": {
+      "displayName": "SideNav",
+      "description": "Persistent vertical navigation panel. Two levels of depth, expanded/collapsed states, responsive (push/overlay/hidden).",
+      "module": "components/sidenav/sidenav.jsx",
+      "exports": ["SideNav", "SideNavItem", "IndicatorStripe", "CollapseButton", "CollapsedTooltip", "CollapsedPopover", "PopoverRow"],
+      "spec": "components/sidenav/sidenav-spec.md",
+      "demo": "components/sidenav/sidenav.html",
+      "stories": "src/stories/Library/SideNav/SideNav.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40003951:2927"
+      },
+      "props": {
+        "SideNav": {
+          "items": { "type": "Array<NavItem>", "required": true, "description": "Navigation tree. Each item: { id, label, icon?, children? }" },
+          "activeId": { "type": "string", "required": true, "description": "ID of the currently active navigation item" },
+          "onNavigate": { "type": "(id: string) => void", "required": true, "description": "Called when user clicks a destination" },
+          "collapsed": { "type": "boolean", "default": false, "description": "72px icon rail (true) vs 250px expanded (false)" },
+          "onCollapseChange": { "type": "(collapsed: boolean) => void", "required": true, "description": "Called when collapse state changes" },
+          "hideCollapseButton": { "type": "boolean", "default": false, "description": "Hides the collapse/expand control (mobile)" },
+          "defaultExpanded": { "type": "Record<string, boolean>", "default": "{}", "description": "Which groupers start expanded" },
+          "className": { "type": "string", "default": "\"\"", "description": "Additional CSS class" }
+        }
+      },
+      "tokens": [
+        "fill.contextual.navitem.base",
+        "fill.contextual.navitem.hover",
+        "fill.contextual.navitem.active",
+        "fill.contextual.navitem.trail",
+        "fill.static.info.subtle",
+        "text.contextual.navitem.base",
+        "text.contextual.navitem.hover",
+        "text.contextual.navitem.active",
+        "icon.contextual.navitem.base",
+        "icon.contextual.navitem.hover",
+        "icon.contextual.navitem.active"
+      ]
+    },
+    "spinner": {
+      "displayName": "Spinner",
+      "description": "Indeterminate activity indicator. 8-spoke sunburst, arbitrary size, semantic-token-only colour via tone + emphasis.",
+      "module": null,
+      "exports": [],
+      "spec": "components/spinner/spinner-spec.md",
+      "demo": "components/spinner/spinner.html",
+      "stories": "src/stories/Library/Spinner/Spinner.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40006622:50003"
+      },
+      "props": {
+        "Spinner": {
+          "tone": { "type": "string", "options": ["neutral", "brand", "info", "warning", "danger", "negative", "positive", "accent-amethyst", "accent-jade", "accent-seabreeze"], "default": "neutral", "description": "Semantic icon.static tone family" },
+          "emphasis": { "type": "string", "options": ["light", "subtle", "base", "contrast", "bold"], "default": "base", "description": "Emphasis level within the tone" },
+          "size": { "type": "number | string", "default": 24, "description": "Any CSS length (px, em, rem, %)" },
+          "label": { "type": "string", "default": "Loading", "description": "Accessible name announced by screen readers" }
+        }
+      },
+      "tokens": [
+        "icon.static.neutral.*",
+        "icon.static.brand.*",
+        "icon.static.info.*",
+        "icon.static.warning.*",
+        "icon.static.danger.*",
+        "icon.static.negative.*",
+        "icon.static.positive.*",
+        "icon.static.accent-amethyst.*",
+        "icon.static.accent-jade.*",
+        "icon.static.accent-seabreeze.*"
+      ]
+    }
+  }
+}
