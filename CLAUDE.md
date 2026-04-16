@@ -228,7 +228,18 @@ The deployed Storybook lives at:
 
 Data flows one way: **GitHub → Storybook.** Nothing ever flows from Storybook back to GitHub. If Storybook appears out of date, the fix is a push to `main`, not a Storybook rebuild.
 
-## 10. Things that are always wrong
+## 10. Component pipeline: Figma to GitHub to Storybook
+
+Every new component follows the sequence documented in `docs/component-pipeline.md`. The key points for agents:
+
+1. **The `.jsx` is the shared source of truth.** `components/<name>/<name>.jsx` exports the React component. Storybook stories import from it; the standalone `.html` demo inlines the same logic. When the component changes, update both.
+2. **File convention:** `<name>.jsx` + `<name>.html` + `<name>-spec.md` in `components/<name>/`. Stories at `src/stories/Library/<Name>/`.
+3. **Map Figma variants → Storybook argTypes.** Boolean props → boolean control. Enum props → select control. Number props → number control with min/max.
+4. **MDX docs embed the key spec sections inline** (anatomy, state matrix, tokens, accessibility) with `<Primary />` + `<Controls />` + `<Stories />`. Link to the full spec for everything else.
+5. **`components/manifest.json`** is the machine-readable component registry. Update it when adding or changing a component.
+6. **Designer prep:** the designer must complete `docs/figma-prep-checklist.md` before handoff. If they haven't, send them the checklist — don't guess.
+
+## 11. Things that are always wrong
 
 - Committing `node_modules/`, `storybook-static/`, `.env`, `.claude/`, or `.DS_Store` (all in `.gitignore`).
 - Hand-editing derived files (`pathway-design-tokens.json`, `src/tokens/tokens.css`, `src/tokens/tokens.js`, `components/sidenav/sidenav-figmamake.html`).

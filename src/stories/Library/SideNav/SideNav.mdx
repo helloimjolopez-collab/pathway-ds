@@ -1,24 +1,118 @@
-import { Meta, Title, Description, Primary, Stories } from "@storybook/blocks";
-import * as SideNavStories from "./SideNav.stories.js";
+import { Meta, Title, Primary, Controls, Stories } from "@storybook/blocks";
+import * as SideNavStories from "./SideNav.stories.jsx";
 
 <Meta of={SideNavStories} />
 
 <Title />
 
-Persistent vertical navigation panel for Ministry Brands Amplify modules. Supports two depth levels (Level 0 parent, Level 1 child-destination), two layout states (expanded 250 px, collapsed 72 px), and three responsive modes (push ≥1024 px, overlay 768–1023 px, hidden-overlay &lt;768 px). Not global app navigation — each module owns its own instance.
+Persistent vertical navigation panel for Ministry Brands Amplify modules. Supports expanded (250 px) and collapsed (72 px) states, two levels of depth (Level 0 parent, Level 1 child-destination), and three responsive modes (push, overlay, hidden-overlay).
 
-The authoritative specification — anatomy, state matrix, design tokens, hover behaviour, popover and tooltip specs, keyboard, screen-reader strings, responsiveness, colour contrast — lives at **`components/sidenav/sidenav-spec.md`**. It is the source of truth for every implementation decision; read it before shipping.
+Not global app navigation — each module has its own SideNav instance. Not for action buttons or CTAs: navigation only.
 
-## Reference files
+---
 
-| File | Role |
+## Component anatomy
+
+```
+SideNav.Container (250px expanded / 72px collapsed)
+└── SideNavMenu
+│   ├── SideNavItem (Level 0: Destination)
+│   ├── SideNavItem (Level 0: Grouper, expanded)
+│   │   ├── SideNavItem (Level 1: child Destination)
+│   │   └── SideNavItem (Level 1: child Destination)
+│   └── SideNavItem (Level 0: Destination)
+└── Collapse_Expand_Nav_Container
+    ├── Divider
+    └── CollapseButton
+```
+
+**SideNavItem (Level 0):**
+`[indicator 4px][LeadingIcon 24×24][label flex][RowEnd 40×24 — groupers only]`
+
+**SideNavItem (Level 1):**
+`[indicator 4px][label flex, pl-32px]` — no icon, always a destination, never a grouper.
+
+---
+
+## State matrix
+
+| Condition | Fill | Text | Icon | Stripe |
+|---|---|---|---|---|
+| **Base** | NavItem/Base | NavItem/Base | NavItem/Base | hidden |
+| **Hover** | NavItem/Hover | NavItem/Hover | NavItem/Hover | hidden |
+| **Active** (destination) | NavItem/Active | NavItem/Active | NavItem/Active | **visible** |
+| **Trail: expanded** (grouper is open) | NavItem/Trail | NavItem/Active | NavItem/Base | hidden |
+| **Trail: collapsed** (grouper closed, child is active) | NavItem/Active | NavItem/Active | NavItem/Active | **visible** |
+
+Trail-collapsed and Active are visually identical. The only difference is semantic: Active applies to a leaf destination; Trail-collapsed applies to a grouper whose active descendant is hidden.
+
+---
+
+## Token mappings
+
+### Fill
+
+| Semantic Token | Resolved | Used In |
+|---|---|---|
+| `Fill/Contextual/NavItem/Base` | `#fafafa` | Resting fill |
+| `Fill/Contextual/NavItem/Hover` | `#1111110a` | Hover fill |
+| `Fill/Contextual/NavItem/Active` | `#3555a014` | Active + trail-collapsed |
+| `Fill/Contextual/NavItem/Trail` | `#11111105` | Expanded grouper fill |
+| `Fill/Static/Info/Subtle` | `#edf0f9` | Divider + border-right |
+
+### Text
+
+| Semantic Token | Resolved | Used In |
+|---|---|---|
+| `Text/Contextual/NavItem/Base` | `#363636` | Label default |
+| `Text/Contextual/NavItem/Hover` | `#252525` | Label hover |
+| `Text/Contextual/NavItem/Active` | `#051428` | Active + all trail states |
+
+### Icon
+
+| Semantic Token | Resolved | Used In |
+|---|---|---|
+| `Icon/Contextual/NavItem/Base` | `#4b4b4b` | Default + expanded trail |
+| `Icon/Contextual/NavItem/Hover` | `#363636` | Hover |
+| `Icon/Contextual/NavItem/Active` | `#3555a0` | Active + collapsed trail + indicator stripe |
+
+---
+
+## Props
+
+<Controls />
+
+---
+
+## Responsive behaviour
+
+| Viewport | Default state | Expanded behaviour | Can be hidden? |
+|---|---|---|---|
+| &ge;1024 px (Desktop) | Expanded (250 px) | **Push** — content shifts right | No |
+| 768–1023 px (Tablet) | Collapsed (72 px) | **Overlay** — 250 px panel floats above content + scrim | No |
+| &lt;768 px (Mobile) | **Hidden** | **Overlay** — 250 px drawer triggered by TopNav hamburger | Yes |
+
+---
+
+## Accessibility
+
+| Concern | Implementation |
 |---|---|
-| `components/sidenav/sidenav.html` | Live React demo + annotated specification panel |
-| `components/sidenav/sidenav-figmamake.html` | Same component without the spec panel — for AI codegen tools (Figma Make, v0, Lovable) |
-| `components/sidenav/sidenav-spec.md` | Complete written spec |
+| ARIA pattern | `role="tree"` on the nav list; `role="treeitem"` on each item |
+| Active page | `aria-current="page"` on the active destination |
+| Grouper state | `aria-expanded="true/false"` on groupers only |
+| Keyboard | Single tab stop; arrow keys navigate within the tree (Up/Down move, Left/Right expand/collapse) |
+| Collapsed labels | Icon-only items need `aria-label` or a visually-hidden span |
+| Touch targets | `min-height: 48px` on every item (WCAG 2.5.5) |
 
-The stories below iframe the HTML demos directly so you can interact with them inside Storybook, resize to see responsive behaviour, and open them standalone in a new tab.
+---
 
 <Primary />
 
 <Stories />
+
+---
+
+## Full specification
+
+The authoritative spec with complete details (17 sections, 60+ pages) lives at [`components/sidenav/sidenav-spec.md`](https://github.com/helloimjolopez-collab/pathwaytokens/blob/main/components/sidenav/sidenav-spec.md).

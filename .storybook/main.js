@@ -1,17 +1,22 @@
-/** @type {import('@storybook/html-webpack5').StorybookConfig} */
+/** @type {import('@storybook/react-webpack5').StorybookConfig} */
 const config = {
-  stories: ["../src/stories/**/*.mdx", "../src/stories/**/*.stories.@(js|ts)"],
-  addons: ["@storybook/addon-docs", "@storybook/addon-a11y"],
+  stories: [
+    "../src/stories/**/*.mdx",
+    "../src/stories/**/*.stories.@(js|jsx|ts|tsx)",
+  ],
+  addons: [
+    "@storybook/addon-webpack5-compiler-babel",
+    "@storybook/addon-docs",
+    "@storybook/addon-a11y",
+  ],
   framework: {
-    name: "@storybook/html-webpack5",
+    name: "@storybook/react-webpack5",
     options: {},
   },
   // Serve the components/ tree at /components/* so stories can iframe each
-  // component's standalone HTML demo (e.g. /components/sidenav/sidenav.html)
-  // without duplicating the React/Babel setup inside Storybook.
-  // Note: do not mount the repo root — Storybook's build output lives in
-  // storybook-static/, which is a subfolder of the root, and copying a folder
-  // into itself fails with EINVAL.
+  // component's standalone HTML demo (e.g. /components/sidenav/sidenav.html).
+  // Do not mount the repo root — storybook-static/ is a subfolder of it and
+  // copying a folder into itself fails with EINVAL.
   staticDirs: [{ from: "../components", to: "/components" }],
   docs: {},
 };
