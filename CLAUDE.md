@@ -252,10 +252,10 @@ The component pipeline is broken into four skills so different audiences can use
 | `/pathway:component-pipeline` | DS owner | `--mode=create` or `--mode=update`. Composes the three skills above → generates `.jsx` + `.html` + stories + MDX + manifest → commits + pushes | ✅ writes + pushes |
 | `/pathway:tokens-sync` | DS owner | Syncs Figma token export, rebuilds Style Dictionary + Storybook, commits + pushes | ✅ writes + pushes |
 
-All five skills ship in the [`pathway-claude-skills`](https://github.com/helloimjolopez-collab/pathway-claude-skills) plugin (Claude Code). To install:
+All five skills ship in the [`JoLopez-Product-Plugins`](https://github.com/helloimjolopez-collab/JoLopez-Product-Plugins) plugin (Claude Code). To install:
 ```
-/plugin marketplace add helloimjolopez-collab/pathway-claude-skills
-/plugin install pathway@pathway-claude-skills
+/plugin marketplace add helloimjolopez-collab/JoLopez-Product-Plugins
+/plugin install pathway@jolopez-product-plugins
 ```
 
 Token sync (`update-tokens`) is separate — it runs on token changes, independent of component work.
