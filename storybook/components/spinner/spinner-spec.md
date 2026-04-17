@@ -1,5 +1,7 @@
 # Spinner: Pathway Design System Component Spec
 
+**Status:** `REVIEWED` (authored and reviewed by Jo Lopez, 2026-04-17)
+
 Complete implementation reference for the Spinner component. Covers anatomy, the variant system, design tokens, motion, accessibility, usage guidance, and constraints. Use alongside the [Figma source](#figma-source) for a pixel-accurate build.
 
 ---
