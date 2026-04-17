@@ -3,7 +3,7 @@
 
   Copy this file to components/<name>/<name>-spec.md and fill in every
   section. Keep section numbers and headings exactly as they are below —
-  the Pathway Spec Review skill parses this structure.
+  the `/pathway:spec-review` skill parses this structure.
 
   Prompts in [square brackets] are fill-in hints. Delete them once filled.
 
@@ -271,7 +271,7 @@ Complete implementation reference for the {Component} component. Covers anatomy,
   Before flipping Status: to REVIEWED, the human must:
     1. Remove every [fill-in-hint] placeholder
     2. Remove every <!-- marker-comment -->
-    3. Run the Pathway Spec Review skill and resolve every conflict it flags
+    3. Run the `/pathway:spec-review` skill and resolve every conflict it flags
     4. Confirm the Figma source URL in §1 resolves to the intended node
     5. Verify §3 cites only semantic tokens — no raw hex, no primitives
 -->

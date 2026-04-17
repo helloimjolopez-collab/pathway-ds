@@ -237,8 +237,8 @@ Every new component follows the sequence documented in `docs/component-pipeline.
 3. **Map Figma variants → Storybook argTypes.** Boolean props → boolean control. Enum props → select control. Number props → number control with min/max.
 4. **MDX docs follow `docs/storybook-authoring.md`** — narrative prose, Playground + Controls at the top, state matrices as live components (not tables), token rows as name/swatch/hex, accessibility section that cites the overarching spec for system-wide rules. Never bury the Playground below reference tables.
 5. **`components/manifest.json`** is the machine-readable component registry. Update it when adding or changing a component.
-6. **Designer prep:** the designer must complete `docs/figma-prep-checklist.md` before handoff. If they haven't, run the Pathway Component Readiness skill (or send them the checklist) — don't guess.
-7. **The overarching design-system spec** (`docs/design-system-spec.md`) defines system-wide rules for motion, accessibility, colour, spacing, typography, naming. Every component spec inherits from it. Conflicts between a component spec and the overarching spec are resolved by the Pathway Spec Review skill, which requires explicit human sign-off on any deviation.
+6. **Designer prep:** the designer must complete `docs/figma-prep-checklist.md` before handoff. If they haven't, run the `/pathway:component-readiness` skill (or send them the checklist) — don't guess.
+7. **The overarching design-system spec** (`docs/design-system-spec.md`) defines system-wide rules for motion, accessibility, colour, spacing, typography, naming. Every component spec inherits from it. Conflicts between a component spec and the overarching spec are resolved by the `/pathway:spec-review` skill, which requires explicit human sign-off on any deviation.
 
 ### 10.1 The Pathway skills
 
@@ -246,10 +246,17 @@ The component pipeline is broken into four skills so different audiences can use
 
 | Skill | Audience | What it does | Touches repo? |
 |---|---|---|---|
-| `pathway-component-readiness` | Any designer | Runs Figma prep checklist against a component, reports findings | ❌ read-only |
-| `pathway-component-spec-maker` | Any designer | Drafts a `-spec.md` from a Figma component using the template; marks `Status: PENDING HUMAN REVIEW` | ❌ local only |
-| `pathway-spec-review` | Any designer | Reads a draft spec + the overarching spec; walks the user through every conflict; flips `Status:` to `REVIEWED` only when all resolved | ❌ local only |
-| `pathway-component-pipeline` | DS owner | `--mode=create` or `--mode=update`. Composes the three skills above → generates `.jsx` + `.html` + stories + MDX + manifest → commits + pushes | ✅ writes + pushes |
+| `/pathway:component-readiness` | Any designer | Runs Figma prep checklist against a component, reports findings | ❌ read-only |
+| `/pathway:component-spec-maker` | Any designer | Drafts a `-spec.md` from a Figma component using the template; marks `Status: PENDING HUMAN REVIEW` | ❌ local only |
+| `/pathway:spec-review` | Any designer | Reads a draft spec + the overarching spec; walks the user through every conflict; flips `Status:` to `REVIEWED` only when all resolved | ❌ local only |
+| `/pathway:component-pipeline` | DS owner | `--mode=create` or `--mode=update`. Composes the three skills above → generates `.jsx` + `.html` + stories + MDX + manifest → commits + pushes | ✅ writes + pushes |
+| `/pathway:tokens-sync` | DS owner | Syncs Figma token export, rebuilds Style Dictionary + Storybook, commits + pushes | ✅ writes + pushes |
+
+All five skills ship in the [`pathway-claude-skills`](https://github.com/helloimjolopez-collab/pathway-claude-skills) plugin (Claude Code). To install:
+```
+/plugin marketplace add helloimjolopez-collab/pathway-claude-skills
+/plugin install pathway@pathway-claude-skills
+```
 
 Token sync (`update-tokens`) is separate — it runs on token changes, independent of component work.
 
@@ -261,7 +268,7 @@ Token sync (`update-tokens`) is separate — it runs on token changes, independe
 
 - Skills ask questions **one at a time**, never batched. If a skill realises it needs many questions, it opens with: *"I'll need to ask you ~N questions. Want the full list up front or one-by-one?"* and waits for the user's choice.
 - Skills announce each action before performing it and wait for explicit approval: *"I'm about to commit files X, Y, Z. Confirm?"*
-- Skills never auto-flip `Status: PENDING HUMAN REVIEW` to `REVIEWED`. Only the Pathway Spec Review skill, after walking the human through every conflict, flips the status — and only when the human has explicitly signed off on each decision.
+- Skills never auto-flip `Status: PENDING HUMAN REVIEW` to `REVIEWED`. Only the `/pathway:spec-review` skill, after walking the human through every conflict, flips the status — and only when the human has explicitly signed off on each decision.
 - The pipeline skill refuses to run on any spec that is not `Status: REVIEWED`.
 - No skill `git push`es without confirming with the user first.
 - No skill modifies a file in Figma (via `use_figma` or similar) without the user explicitly asking for a Figma write.

@@ -4,7 +4,7 @@
 
 System-wide rules that apply to **every** Pathway component. Individual component specs inherit from this document; when a component needs to deviate from a rule here, the deviation must be flagged in the component spec's §14 (Motion) or §13 (Accessibility) — wherever it applies — and approved by the Spec Review skill.
 
-The Pathway Spec Review skill reads this document alongside every component spec it audits, and surfaces conflicts (e.g. a component says motion duration 500 ms while the system rule below is 300 ms).
+The `/pathway:spec-review` skill reads this document alongside every component spec it audits, and surfaces conflicts (e.g. a component says motion duration 500 ms while the system rule below is 300 ms).
 
 ---
 
