@@ -235,11 +235,46 @@ Every new component follows the sequence documented in `docs/component-pipeline.
 1. **The `.jsx` is the shared source of truth.** `components/<name>/<name>.jsx` exports the React component. Storybook stories import from it; the standalone `.html` demo inlines the same logic. When the component changes, update both.
 2. **File convention:** `<name>.jsx` + `<name>.html` + `<name>-spec.md` in `components/<name>/`. Stories at `src/stories/Library/<Name>/`.
 3. **Map Figma variants → Storybook argTypes.** Boolean props → boolean control. Enum props → select control. Number props → number control with min/max.
-4. **MDX docs embed the key spec sections inline** (anatomy, state matrix, tokens, accessibility) with `<Primary />` + `<Controls />` + `<Stories />`. Link to the full spec for everything else.
+4. **MDX docs follow `docs/storybook-authoring.md`** — narrative prose, Playground + Controls at the top, state matrices as live components (not tables), token rows as name/swatch/hex, accessibility section that cites the overarching spec for system-wide rules. Never bury the Playground below reference tables.
 5. **`components/manifest.json`** is the machine-readable component registry. Update it when adding or changing a component.
-6. **Designer prep:** the designer must complete `docs/figma-prep-checklist.md` before handoff. If they haven't, send them the checklist — don't guess.
+6. **Designer prep:** the designer must complete `docs/figma-prep-checklist.md` before handoff. If they haven't, run the Pathway Component Readiness skill (or send them the checklist) — don't guess.
+7. **The overarching design-system spec** (`docs/design-system-spec.md`) defines system-wide rules for motion, accessibility, colour, spacing, typography, naming. Every component spec inherits from it. Conflicts between a component spec and the overarching spec are resolved by the Pathway Spec Review skill, which requires explicit human sign-off on any deviation.
 
-## 11. Things that are always wrong
+### 10.1 The Pathway skills
+
+The component pipeline is broken into four skills so different audiences can use what applies to them:
+
+| Skill | Audience | What it does | Touches repo? |
+|---|---|---|---|
+| `pathway-component-readiness` | Any designer | Runs Figma prep checklist against a component, reports findings | ❌ read-only |
+| `pathway-component-spec-maker` | Any designer | Drafts a `-spec.md` from a Figma component using the template; marks `Status: PENDING HUMAN REVIEW` | ❌ local only |
+| `pathway-spec-review` | Any designer | Reads a draft spec + the overarching spec; walks the user through every conflict; flips `Status:` to `REVIEWED` only when all resolved | ❌ local only |
+| `pathway-component-pipeline` | DS owner | `--mode=create` or `--mode=update`. Composes the three skills above → generates `.jsx` + `.html` + stories + MDX + manifest → commits + pushes | ✅ writes + pushes |
+
+Token sync (`update-tokens`) is separate — it runs on token changes, independent of component work.
+
+## 11. Human review at every step
+
+**Non-negotiable principle:** every Pathway skill requires explicit human approval at every gate. Claude drafts, recommends, flags — humans decide.
+
+### 11.1 What this means in practice
+
+- Skills ask questions **one at a time**, never batched. If a skill realises it needs many questions, it opens with: *"I'll need to ask you ~N questions. Want the full list up front or one-by-one?"* and waits for the user's choice.
+- Skills announce each action before performing it and wait for explicit approval: *"I'm about to commit files X, Y, Z. Confirm?"*
+- Skills never auto-flip `Status: PENDING HUMAN REVIEW` to `REVIEWED`. Only the Pathway Spec Review skill, after walking the human through every conflict, flips the status — and only when the human has explicitly signed off on each decision.
+- The pipeline skill refuses to run on any spec that is not `Status: REVIEWED`.
+- No skill `git push`es without confirming with the user first.
+- No skill modifies a file in Figma (via `use_figma` or similar) without the user explicitly asking for a Figma write.
+
+### 11.2 What this means for agents
+
+Any agent working on a Pathway task must preserve these gates. If you're composing a larger workflow (e.g. "create a dashboard with the design system"), you still pause at each gate. Skipping a gate to "save time" breaks the principle; a batched-questions implementation is a bug, not an optimisation.
+
+### 11.3 When the user is explicit
+
+If the user says *"just do it, don't ask me"* for a specific action, proceed with that action — their explicit permission replaces the gate. But the next gate still applies unless they've scoped the permission broadly ("do the whole thing, don't ask me").
+
+## 12. Things that are always wrong
 
 - Committing `node_modules/`, `storybook-static/`, `.env`, `.claude/`, or `.DS_Store` (all in `.gitignore`).
 - Hand-editing derived files (`pathway-design-tokens.json`, `src/tokens/tokens.css`, `src/tokens/tokens.js`, `components/sidenav/sidenav-figmamake.html`).

@@ -1,0 +1,209 @@
+# Pathway Design System — Overarching Spec
+
+**Status:** `REVIEWED` (living document — grows as the system grows)
+
+System-wide rules that apply to **every** Pathway component. Individual component specs inherit from this document; when a component needs to deviate from a rule here, the deviation must be flagged in the component spec's §14 (Motion) or §13 (Accessibility) — wherever it applies — and approved by the Spec Review skill.
+
+The Pathway Spec Review skill reads this document alongside every component spec it audits, and surfaces conflicts (e.g. a component says motion duration 500 ms while the system rule below is 300 ms).
+
+---
+
+## 1. Sources of truth
+
+| Domain | Source of truth | Consumed by |
+|---|---|---|
+| Design tokens (primitives, semantics) | Figma library → exported to `tokens/figma-export/pathwaytokens.json` | Style Dictionary → `src/tokens/tokens.css` → components + Storybook |
+| Component visual design (variants, anatomy, states) | Figma (each component's node) | Component `-spec.md` + `.jsx` module |
+| Component implementation (HTML, CSS, props) | The `components/<name>/<name>.jsx` module in this repo | Storybook stories + standalone demo |
+| Component behaviour rules (spec) | The `components/<name>/<name>-spec.md` file in this repo | Every downstream implementation |
+| Overarching system rules | This document | Every component spec |
+
+See `CLAUDE.md` §1 for the detailed governance rules agents follow.
+
+---
+
+## 2. Motion
+
+All motion in Pathway follows these principles unless a component spec explicitly overrides them with a documented rationale.
+
+### 2.1 Duration
+
+| Category | Duration | Use for |
+|---|---|---|
+| `instant` | **150 ms** | Acknowledgements: hover fills, colour transitions, small opacity fades |
+| `short` | **300 ms** | State changes inside a component: expanding / collapsing, popover enter/exit |
+| `medium` | **600 ms** | Cross-component transitions: page content sliding, large layout shifts |
+| `long` | **1 s** | Continuous loops: spinners, skeleton shimmer |
+
+> **Gap:** these values are not yet in `tokens/pathway-design-tokens.json` as formal motion tokens. Components currently hardcode them. Adding a motion token family is tracked as a HIGH-priority gap; once added, components will reference `var(--motion-duration-short)` etc.
+
+### 2.2 Easing
+
+| Curve | Use for |
+|---|---|
+| **`cubic-bezier(0.4, 0, 0.2, 1)`** (standard) | Most transitions — enters AND exits that should feel natural |
+| **`cubic-bezier(0, 0, 0.2, 1)`** (decelerate) | Enters where the element should "glide in" (overlay panels, popovers) |
+| **`cubic-bezier(0.4, 0, 0.6, 1)`** (accelerate) | Exits where the element should "leave with intent" (dismissing overlays) |
+| **`linear`** | Continuous loops only (spinners) — never for bounded transitions |
+
+Asymmetric enter/exit (different curves per direction) is encouraged for overlays; see SideNav spec §16.6 for the reference pattern.
+
+### 2.3 Reduced motion
+
+`@media (prefers-reduced-motion: reduce)` is **mandatory** on every animated component. Under reduced motion:
+
+- Transforms (slides, rotations, scales) are suppressed or replaced with opacity fades.
+- Loops (spinners) stop rotating but remain visible as static glyphs — never hide them entirely.
+- Durations shorten to **150 ms linear** maximum.
+- If the component's meaning depends on motion, document an alternative cue (e.g. the spinner's uniform-opacity static glyph).
+
+Skipping this rule is a WCAG 2.3.3 failure.
+
+---
+
+## 3. Accessibility
+
+### 3.1 Touch targets
+
+Minimum **48 × 48 px** on every interactive element (WCAG 2.5.5). Bound to the semantic token `Accessibility/Touch Target/Optimal/Size`. Smaller targets are permitted only if (a) the element is not the primary interactive affordance and (b) the component spec explicitly annotates the reason.
+
+### 3.2 Focus
+
+Every focusable element must have a **visible focus ring** that is not `outline: none` without a replacement. Use `:focus-visible` (not `:focus`) to avoid painting on mouse click.
+
+System default: `outline: 2px solid var(--semantic-color-light-mode-icon-action-primary-base); outline-offset: 2px;` (resolves to `#3555a0` / 2 px / 2 px offset in light mode).
+
+### 3.3 Contrast
+
+Non-text UI components: **3:1 minimum** (WCAG 1.4.11). Text: **4.5:1 minimum** at the default size (WCAG 1.4.3). Components must verify contrast for every text-on-background combination in §13.6 of their spec.
+
+### 3.4 ARIA patterns
+
+Prefer **native** semantic HTML elements (`<button>`, `<a>`, `<input>`) before ARIA roles. When native elements are insufficient, map to a **published** WAI-ARIA pattern — never invent a role. Common patterns in Pathway:
+
+| Pattern | Used by |
+|---|---|
+| `role="tree"` + `role="treeitem"` | Hierarchical navigation (SideNav) |
+| `role="status"` + `aria-live="polite"` | Indeterminate progress (Spinner) |
+| `role="dialog"` + `aria-modal="true"` | Modals (future) |
+| `role="tablist"` + `role="tab"` | Tabs (future) |
+
+The component spec's §13.0 names which pattern is used; the Spec Review skill verifies the pattern exists and that the component's markup matches.
+
+### 3.5 Screen reader announcements
+
+Every state change the component triggers must have an intended screen-reader output. Document expected strings in the spec's §13.5 — approximate is fine ("Reports, current page, treeitem, 3 of 7") but must be specified.
+
+---
+
+## 4. Colour
+
+### 4.1 Hierarchy
+
+| Layer | Example | Consumers |
+|---|---|---|
+| Primitives | `Brand.300`, `Cool Neutral.150` | Aliased by semantics — **never** referenced directly by components |
+| Static semantics | `Icon/Static/Neutral/Base` | Context-free; used by standalone components (Spinner) |
+| Contextual semantics | `Icon/Contextual/NavItem/Base` | Bound to specific usage (NavItem, Button) |
+| Action semantics | `Icon/Action/Primary/Base` | Interactive states — have matching Hover/Focused/Pressed/Disabled variants |
+
+**Rules:**
+
+1. Components resolve colour only through **semantic** tokens, never primitives, never raw hex. See `CLAUDE.md` §6.
+2. Prefer **contextual** tokens for component-specific usage; fall back to **static** tokens only when no contextual family fits.
+3. When adding a new component that needs a new contextual token family, add the tokens in Figma first, not in code.
+
+### 4.2 Modes
+
+Pathway is light-mode only right now. Dark-mode tokens are exported from Figma but filtered out of the sync (`CLAUDE.md` §2.1). Components target `--semantic-color-light-mode-*` variables explicitly; once dark-mode ships system-wide, components will switch to unprefixed variables in a coordinated migration.
+
+---
+
+## 5. Spacing & layout
+
+### 5.1 Spacing scale
+
+> **Gap:** Pathway does not yet have a named spacing scale. Current components use raw px values (`padding: 12px`, `gap: 8px`) cited in their specs' §4 tables. Adding a spacing-token family is a MEDIUM-priority gap; see each component spec for specific raw values.
+
+When a spacing scale is added, values must be: **2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48, 64**. Components will migrate to the semantic names at that point.
+
+### 5.2 Breakpoints
+
+| Name | Width | Used for |
+|---|---|---|
+| Mobile | **≥ 393 px** | Phones |
+| Tablet | **≥ 768 px** | Small tablets; layout switches from overlay to overlay-with-rail |
+| Small Desktop | **≥ 1024 px** | Layout switches to push (in-flow sidebars) |
+| Desktop | **≥ 1440 px** | Default design canvas |
+
+Components describe responsive behaviour in their §15 (Responsiveness) section against these breakpoints. A component that needs a different breakpoint must document why.
+
+---
+
+## 6. Typography
+
+### 6.1 Families
+
+| Family | Source | Used for |
+|---|---|---|
+| `Red Hat Text` | Google Fonts | All UI text (default) |
+| `Red Hat Display` | Google Fonts | Headings only (H1–H3) |
+
+Both loaded via `@import url('https://fonts.googleapis.com/css2?…&display=swap')`.
+
+### 6.2 Scale
+
+All type styles are bound to semantic tokens in the `Label/*`, `Heading/*`, or `Body/*` families. Raw `font-size` / `font-weight` / `line-height` values are not permitted in component CSS — reference the token bundle.
+
+### 6.3 Weight
+
+Pathway uses **400 (Regular)**, **500 (Medium)**, **600 (SemiBold)**. Italics and weights outside this range require an explicit exception in the component spec.
+
+---
+
+## 7. Naming
+
+### 7.1 File & folder names
+
+Lowercase kebab-case for component folders and files: `components/sidenav/sidenav.jsx`, never `SideNav.jsx` or `side_nav.jsx`. Storybook story folders use PascalCase (`src/stories/Library/SideNav/`) to avoid macOS APFS case-insensitivity collisions — see `CLAUDE.md` §4.
+
+### 7.2 Token names
+
+Lowercase with dots in JSON (`semantic-color.light-mode.icon.static.neutral.base`); style-dictionary emits hyphens for CSS (`--semantic-color-light-mode-icon-static-neutral-base`). Components consume the CSS variable form.
+
+### 7.3 Component prop names
+
+Camel-case: `activeId`, `onNavigate`, `hideCollapseButton`. Boolean props that represent visibility or state use verb-ish names (`isOpen`, `hideX`) — not ambiguous ones (`open`, `hidden`).
+
+---
+
+## 8. Documentation
+
+Every component ships with:
+
+1. A `-spec.md` following `docs/component-spec-template.md`
+2. A `.jsx` React component module
+3. A `.html` standalone demo
+4. Storybook stories (`.stories.jsx`) with interactive controls
+5. An MDX docs page (`.mdx`) following `docs/storybook-authoring.md`
+6. A row in `components/manifest.json`
+
+Skipping any of the six is grounds for the pipeline skill to refuse to proceed.
+
+---
+
+## 9. Human review
+
+**Every skill in the Pathway pipeline requires explicit human review at every gate.** See `CLAUDE.md` §12. No skill auto-promotes a spec from `PENDING HUMAN REVIEW` to `REVIEWED`; no skill commits without user confirmation; no skill pushes without user confirmation. Claude can draft and recommend — humans decide.
+
+---
+
+## 10. Gaps & deferred decisions
+
+| Gap | Priority | Notes |
+|---|---|---|
+| Motion tokens not in the token file | HIGH | Duration and easing are hardcoded in component CSS. Blocks cross-component consistency. |
+| Spacing tokens not in the token file | MEDIUM | Raw px values in every spec. |
+| Dark mode filtered from token sync | MEDIUM | By design, temporary. See `CLAUDE.md` §2.1. |
+| No `icon.static.*` inverse track | MEDIUM | White spinners on brand-filled buttons have no matching semantic token. |
+| No runtime theme-switching mechanism | MEDIUM | Dark/light mode switch is not implemented even though tokens for both exist. |

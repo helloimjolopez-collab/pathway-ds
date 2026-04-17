@@ -1,5 +1,7 @@
 # SideNav: Pathway Design System Component Spec
 
+**Status:** `REVIEWED` (authored and reviewed by Jo Lopez, 2026-04-17)
+
 Complete implementation reference for the SideNav component. Covers anatomy, design tokens, states, spacing, interaction patterns, and accessibility. Use alongside the [Figma source](#figma-source) for a pixel-accurate build.
 
 ---
