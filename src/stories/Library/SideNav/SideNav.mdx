@@ -1,86 +1,117 @@
-import { Meta, Title, Primary, Controls, Stories } from "@storybook/blocks";
-import * as SideNavStories from "./SideNav.stories.jsx";
+import { Meta, Title, Canvas, Controls } from "@storybook/blocks";
+import * as Stories from "./SideNav.stories.jsx";
 
-<Meta of={SideNavStories} />
+<Meta of={Stories} />
 
 <Title />
 
-Persistent vertical navigation panel for Ministry Brands Amplify modules. Supports expanded (250 px) and collapsed (72 px) states, two levels of depth (Level 0 parent, Level 1 child-destination), and three responsive modes (push, overlay, hidden-overlay).
+A persistent vertical navigation panel for Ministry Brands Amplify. Every module gets its own `SideNav` instance — it renders the primary navigation tree and, at all times, communicates where the user is in it. This is module-level navigation, not global app navigation and not action buttons.
 
-Not global app navigation — each module has its own SideNav instance. Not for action buttons or CTAs: navigation only.
+SideNav supports **two levels of depth** (Level 0 parents, Level 1 child-destinations), **two sidebar widths** (250 px expanded, 72 px collapsed), and **three responsive modes** (push on desktop, overlay on tablet, hidden-overlay on mobile).
 
 ---
 
-## Component anatomy
+## Try it
+
+<Canvas of={Stories.Playground} />
+
+<Controls of={Stories.Playground} />
+
+Click items to navigate. Use the **Active item** dropdown to set any of the 14 destinations as the current page, then flip **Sidebar collapsed?** to see how the component compresses to its 72 px rail.
+
+---
+
+## Anatomy
+
+The SideNav is made up of a container, a stack of items, and a collapse control at the bottom. Items can be Level 0 (with an icon) or Level 1 (no icon, indented). Every item has an indicator-stripe column on the left — 4 px wide, structural, always present in the DOM. The stripe only paints when the item is Active or Trail-collapsed.
 
 ```
-SideNav.Container (250px expanded / 72px collapsed)
-└── SideNavMenu
-│   ├── SideNavItem (Level 0: Destination)
-│   ├── SideNavItem (Level 0: Grouper, expanded)
-│   │   ├── SideNavItem (Level 1: child Destination)
-│   │   └── SideNavItem (Level 1: child Destination)
-│   └── SideNavItem (Level 0: Destination)
+SideNav.Container                       250 px expanded · 72 px collapsed
+└── SideNavMenu                         flex column · gap 8 px
+│   ├── SideNavItem · Level 0           48 px min-height
+│   │   [indicator 4 px][leading icon 24×24][label flex][row-end 40×24 · groupers only]
+│   ├── SideNavItem · Level 0 (grouper expanded)
+│   │   ├── SideNavItem · Level 1       no icon · padding-left 32 px
+│   │   └── SideNavItem · Level 1
+│   └── SideNavItem · Level 0
 └── Collapse_Expand_Nav_Container
-    ├── Divider
-    └── CollapseButton
+    ├── Divider                         1 px · Fill/Static/Info/Subtle
+    └── CollapseButton                  item-like row, no indicator stripe
 ```
 
-**SideNavItem (Level 0):**
-`[indicator 4px][LeadingIcon 24×24][label flex][RowEnd 40×24 — groupers only]`
-
-**SideNavItem (Level 1):**
-`[indicator 4px][label flex, pl-32px]` — no icon, always a destination, never a grouper.
+Level 1 children are always destinations — they never group further. This is a hard constraint, not a design convention: the data layer enforces it.
 
 ---
 
-## State matrix
+## States
 
-| Condition | Fill | Text | Icon | Stripe |
-|---|---|---|---|---|
-| **Base** | NavItem/Base | NavItem/Base | NavItem/Base | hidden |
-| **Hover** | NavItem/Hover | NavItem/Hover | NavItem/Hover | hidden |
-| **Active** (destination) | NavItem/Active | NavItem/Active | NavItem/Active | **visible** |
-| **Trail: expanded** (grouper is open) | NavItem/Trail | NavItem/Active | NavItem/Base | hidden |
-| **Trail: collapsed** (grouper closed, child is active) | NavItem/Active | NavItem/Active | NavItem/Active | **visible** |
+Every item can be in one of five states. Fill, text colour, icon colour, and the indicator stripe change together — never mix tokens from different states.
 
-Trail-collapsed and Active are visually identical. The only difference is semantic: Active applies to a leaf destination; Trail-collapsed applies to a grouper whose active descendant is hidden.
+<Canvas of={Stories.StateMatrix} />
+
+**Reading the matrix.** The first three states (Base, Hover, Active) are about what *this* item is doing. The last two are about *this grouper's children*:
+
+- **Trail — expanded** applies to any Level 0 grouper whose children are visible, regardless of which child (if any) is active. The fill is muted (`Fill/NavItem/Trail`, ~2% black), the text is active-coloured, the icon stays grey.
+- **Trail — collapsed** applies when a grouper's active child is hidden — either because the grouper itself is closed, or because the whole sidebar is at 72 px. It's visually identical to Active; the only difference is semantic (Active is a leaf, Trail-collapsed is a parent).
+
+Trail-collapsed means "something inside me is selected, and you can't see it from here." That's why it shares Active's styling — the user needs to see that the grouper itself is on the active path.
+
+---
+
+## Explore a single item
+
+<Canvas of={Stories.NavItemExplorer} />
+
+<Controls of={Stories.NavItemExplorer} />
+
+Smallest unit you can inspect. Change the label to sanity-check long strings, flip between destination / grouper / child, pick any state. Hover is not a variant here — it's pointer-triggered, so see the Playground story above if you want to see the hover fill live.
 
 ---
 
 ## Token mappings
 
+The SideNav binds every colour to a semantic variable in the `Contextual/NavItem/*` family, plus `Fill/Static/Info/Subtle` for the divider and border. No raw hex, no primitives.
+
 ### Fill
 
-| Semantic Token | Resolved | Used In |
-|---|---|---|
-| `Fill/Contextual/NavItem/Base` | `#fafafa` | Resting fill |
-| `Fill/Contextual/NavItem/Hover` | `#1111110a` | Hover fill |
-| `Fill/Contextual/NavItem/Active` | `#3555a014` | Active + trail-collapsed |
-| `Fill/Contextual/NavItem/Trail` | `#11111105` | Expanded grouper fill |
-| `Fill/Static/Info/Subtle` | `#edf0f9` | Divider + border-right |
+<Canvas of={Stories.TokensFill} />
+
+Note that `NavItem/Hover` and `NavItem/Trail` are different tokens even though they look similar (4% vs 2% black). They've diverged over time; if they ever fully merge, it'll happen in the token library, not in the component.
 
 ### Text
 
-| Semantic Token | Resolved | Used In |
-|---|---|---|
-| `Text/Contextual/NavItem/Base` | `#363636` | Label default |
-| `Text/Contextual/NavItem/Hover` | `#252525` | Label hover |
-| `Text/Contextual/NavItem/Active` | `#051428` | Active + all trail states |
+<Canvas of={Stories.TokensText} />
+
+There's no separate "trail text" token — every trail state reuses `Text/NavItem/Active`. If you need the active ink, it's `#051428`.
 
 ### Icon
 
-| Semantic Token | Resolved | Used In |
+<Canvas of={Stories.TokensIcon} />
+
+The Active icon token (`#3555a0`) is also the colour of the **indicator stripe**. Same variable, two places. When Figma updates this token, both repaint together.
+
+### Geometry and typography
+
+| Property | Value | Notes |
 |---|---|---|
-| `Icon/Contextual/NavItem/Base` | `#4b4b4b` | Default + expanded trail |
-| `Icon/Contextual/NavItem/Hover` | `#363636` | Hover |
-| `Icon/Contextual/NavItem/Active` | `#3555a0` | Active + collapsed trail + indicator stripe |
+| Item `min-height` | 48 px | `Accessibility/Touch Target/Optimal` — WCAG 2.5.5 |
+| Leading-icon wrapper | 24 × 24 px | `Accessibility/Icon Wrapping/Large` |
+| Leading-icon glyph | 14 × 14 pt | No token — raw |
+| Item `border-radius` | 8 px | `Component/NavItem/Large/Radius` → `Border/S` |
+| Indicator stripe width | 4 px | No token |
+| Level 1 indent | 24 px on `container.main` | No token |
+| Label font | `Label/Menu/L/Medium` | 16 px / 500 / 22 px line-height, Red Hat Text |
+| Container padding | 14 px vertical · 12 px horizontal | No tokens |
+
+All nav-item labels use the same type style — Level 1 visual hierarchy comes from the indent, not from a smaller font.
 
 ---
 
-## Props
+## Trail in practice
 
-<Controls />
+<Canvas of={Stories.TrailComparison} />
+
+Same `activeId` in both panels. Watch what happens to "View" (the grouper whose child "Balance Sheet" is active) when the sidebar collapses: trail-expanded (muted fill, active text, grey icon) → trail-collapsed (full Active styling, stripe visible). The grouper becomes visually identical to a leaf Active item so the user can see where they are even when the children are hidden.
 
 ---
 
@@ -88,31 +119,37 @@ Trail-collapsed and Active are visually identical. The only difference is semant
 
 | Viewport | Default state | Expanded behaviour | Can be hidden? |
 |---|---|---|---|
-| &ge;1024 px (Desktop) | Expanded (250 px) | **Push** — content shifts right | No |
-| 768–1023 px (Tablet) | Collapsed (72 px) | **Overlay** — 250 px panel floats above content + scrim | No |
-| &lt;768 px (Mobile) | **Hidden** | **Overlay** — 250 px drawer triggered by TopNav hamburger | Yes |
+| ≥ 1024 px · Desktop | Expanded (250 px) | **Push** — content shifts right | No |
+| 768–1023 px · Tablet | Collapsed (72 px) | **Overlay** — 250 px panel floats above content with a scrim | No |
+| < 768 px · Mobile | **Hidden** | **Overlay** — 250 px drawer triggered by TopNav hamburger | Yes |
+
+The 72 px rail is a desktop-and-tablet pattern. On mobile (< 768 px) the component is fully hidden by default; hover popovers don't apply to touch-only screens, and 72 px would consume ~20% of a 390 px viewport. The TopNav hamburger is the sole toggle there.
+
+For the interactive responsive demo, use the iframe below (or open it in a new tab and resize the window):
+
+<Canvas of={Stories.StandaloneDemo} />
 
 ---
 
 ## Accessibility
 
+SideNav uses the ARIA **tree** pattern — `role="tree"` on the list, `role="treeitem"` on each item, `aria-expanded` on groupers only, `aria-current="page"` on the active destination. The entire tree is a single tab stop; arrow keys move within it.
+
 | Concern | Implementation |
 |---|---|
-| ARIA pattern | `role="tree"` on the nav list; `role="treeitem"` on each item |
-| Active page | `aria-current="page"` on the active destination |
-| Grouper state | `aria-expanded="true/false"` on groupers only |
-| Keyboard | Single tab stop; arrow keys navigate within the tree (Up/Down move, Left/Right expand/collapse) |
-| Collapsed labels | Icon-only items need `aria-label` or a visually-hidden span |
-| Touch targets | `min-height: 48px` on every item (WCAG 2.5.5) |
+| Tree landmark | `<ul role="tree" aria-label="Main navigation">` |
+| Active destination | `aria-current="page"` |
+| Grouper state | `aria-expanded="true\|false"` on groupers only — never on leaves |
+| Keyboard | Tab to enter · ↑/↓ to move · ←/→ to collapse/expand or descend · Enter/Space to activate |
+| Collapsed rail | Icon-only items need `aria-label` (or a visually-hidden span) since labels are hidden |
+| Touch target | `min-height: 48 px` on every item |
+| Focus ring | `outline: 2px solid #3555a0; outline-offset: 2px` (uses `Icon/NavItem/Active`) |
+| Reduced motion | The 0.36 s width transition and popover animations collapse to instant opacity fades |
 
----
-
-<Primary />
-
-<Stories />
+The current reference demo uses `role="button"` on `<div>` items as a visual scaffolding baseline — **not** production-ready. Production code needs native `<button>` / `<a>` elements, roving-tabindex focus management, and the full arrow-key handler set. See `sidenav-spec.md` §13.3 for the complete keyboard table.
 
 ---
 
 ## Full specification
 
-The authoritative spec with complete details (17 sections, 60+ pages) lives at [`components/sidenav/sidenav-spec.md`](https://github.com/helloimjolopez-collab/pathwaytokens/blob/main/components/sidenav/sidenav-spec.md).
+The authoritative spec — 17 sections, 1,000+ lines, every token, every rule, every Figma gap — lives at [`components/sidenav/sidenav-spec.md`](https://github.com/helloimjolopez-collab/pathwaytokens/blob/main/components/sidenav/sidenav-spec.md).

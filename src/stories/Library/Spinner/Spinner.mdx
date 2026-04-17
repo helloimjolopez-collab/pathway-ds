@@ -1,30 +1,159 @@
-import { Meta, Title, Description, Primary, Controls, Stories } from "@storybook/blocks";
-import * as SpinnerStories from "./Spinner.stories.jsx";
+import { Meta, Title, Canvas, Controls } from "@storybook/blocks";
+import * as Stories from "./Spinner.stories.jsx";
 
-<Meta of={SpinnerStories} />
+<Meta of={Stories} />
 
 <Title />
 
-Indeterminate activity indicator. One component, eight Figma spoke paths, one keyframe, arbitrary size, and a colour system locked to the `icon.static.*` semantic tokens.
+An indeterminate activity indicator. It signals that a task is underway and the user should wait — but it carries no information about how long the task will take, and no information about how close it is to finishing.
 
-The authoritative specification — decision tree, token mappings, motion, accessibility, HTML examples, and constraints — lives at **`components/spinner/spinner-spec.md`**. Read it before shipping anything; it's the source of truth.
+Use it for short, indeterminate waits (roughly 1–10 seconds) where the duration is unknown and the user's attention is already on the component that's loading: a button they just pressed, a card that's refreshing, a row that's saving. Don't use it when the work is measurable (that wants a `ProgressBar`), when the wait is expected to exceed ~10 seconds (prefer a skeleton), or when nothing is actually in flight.
 
-## Quick reference
+---
 
-| Prop | Required | Values | Default |
-|---|---|---|---|
-| `style` | no | `progress-activity` *(only value today)* | `progress-activity` |
-| `tone` | no | `neutral`, `brand`, `info`, `warning`, `danger`, `negative`, `positive`, `accent-amethyst`, `accent-jade`, `accent-seabreeze` | `neutral` |
-| `emphasis` | no | `light`, `subtle`, `base`, `contrast`, `bold` | `base` |
-| `size` | no | any CSS length (`24`, `"1em"`, `"2rem"`, `"50%"`) | `1em` |
-| `label` | no | string — accessible name announced by screen readers | `"Loading"` |
+## Try it
 
-## Colour contract
+<Canvas of={Stories.Default} />
 
-The spinner does **not** accept raw hex, primitive tokens, or invented semantic names. It accepts `tone` × `emphasis`, and only those combinations that exist in `tokens/pathway-design-tokens.json` → `semantic.light-mode.color.icon.static`. See `components/spinner/spinner-spec.md` §7.1 for the full token table.
+<Controls of={Stories.Default} />
 
-<Primary />
+Pick a **tone**, adjust the **emphasis**, change the **size** — every combination resolves to a real semantic token from `icon.static.*`. The `size` prop accepts any CSS length, so try `1em`, `2rem`, or `48` (interpreted as pixels).
 
-<Controls />
+---
 
-<Stories />
+## Anatomy
+
+```
+span.pds-spinner                        role="status"  aria-live="polite"  aria-label="{label}"
+├── <svg viewBox="0 0 12 12">           animation: spin 1s linear infinite
+│   ├── <path d="M6 1V3"            opacity=1.00 >   ← 12 o'clock — leading "head"
+│   ├── <path d="M8.1 3.9L9.55 2.45" opacity=0.87 >   ← 1:30
+│   ├── <path d="M9 6H11"           opacity=0.75 >   ← 3 o'clock
+│   ├── <path d="M8.1 8.1L9.55 9.55" opacity=0.62 >   ← 4:30
+│   ├── <path d="M6 9V11"           opacity=0.50 >   ← 6 o'clock
+│   ├── <path d="M2.45 9.55L3.9 8.1" opacity=0.37 >   ← 7:30
+│   ├── <path d="M1 6H3"            opacity=0.25 >   ← 9 o'clock
+│   └── <path d="M2.45 2.45L3.9 3.9" opacity=0.12 >   ← 10:30 — fading "tail"
+└── <span class="pds-spinner__sr-only">  visually hidden copy of the label
+```
+
+Eight short stroked line segments radiate from a 12 × 12 viewBox, placed at exact 45° intervals. Each spoke gets a different opacity — the ladder from `1.00` at 12 o'clock down to `0.12` at 10:30. Because eight identical spokes at 45° are rotationally symmetric, a plain rotation would look static; the opacity ladder breaks that symmetry so you see a bright "head" sweeping round with a fading tail behind it.
+
+**The rotation lives on the `<svg>` element**, not the paths. This keeps the spoke coordinates static in the 12×12 space and means there's a single transform origin.
+
+---
+
+## Sizing — one prop, any length
+
+<Canvas of={Stories.FluidSizes} />
+
+No size variants. One component, any CSS length. The SVG is drawn in a 12 × 12 viewBox but renders at `width: 100%; height: 100%` of its wrapper, so scaling is vector-smooth at every size. The stroke width is authored in viewBox units (1 out of 12), so it scales proportionally too — no chunky strokes at small sizes, no hairlines at large ones.
+
+Pass size via any of these equivalent routes:
+
+```jsx
+<Spinner size={32} />                    {/* number → px */}
+<Spinner size="1.5rem" />                {/* any CSS length */}
+<span style={{ fontSize: 28 }}>
+  <Spinner />                            {/* 1em default → inherits font-size */}
+</span>
+<div style={{ "--pds-spinner-size": "48px" }}>
+  <Spinner />                            {/* CSS custom property */}
+</div>
+```
+
+---
+
+## Colour — `icon.static.*` semantic tokens only
+
+Colour is **locked** to the `icon.static.*` family. The component takes `tone` (which family) and `emphasis` (how strong); the two together resolve to a single semantic token. **No `color` prop. No raw hex. No primitive tokens. No invented tokens.**
+
+### Tones
+
+<Canvas of={Stories.AllTones} />
+
+Ten semantic tones, each one a real child of `icon.static` in `tokens/pathway-design-tokens.json`. "Accent" isn't a single tone — it's three distinct families (amethyst, jade, seabreeze), each exposed separately. Warning, danger, and negative look similar in purpose but are distinct tokens: `warning` = "stop and look," `danger` = "failing but recoverable," `negative` = "already failed."
+
+### Emphasis ladder
+
+<Canvas of={Stories.EmphasisLadder} />
+
+Every tone exposes the same five emphasis levels: `light` · `subtle` · `base` *(default)* · `contrast` · `bold`. Start with `base`. Use `light`/`subtle` when the spinner sits on a strongly tinted surface of the same tone (and the base would be too heavy); use `contrast`/`bold` only when `base` doesn't stand out enough. If you reach for `bold` often, the surface is probably wrong.
+
+### How the token resolves
+
+```
+tone=brand + emphasis=base
+  ↓
+--semantic-color-light-mode-icon-static-brand-base
+  ↓
+--primitive-color-brand-300
+  ↓
+#3555a0
+```
+
+Consumers never see the primitive or the hex. The spinner wrapper sets `color: var(--semantic-color-light-mode-icon-static-{tone}-{emphasis})` via a `[data-tone][data-emphasis]` selector; the SVG strokes inherit that via `stroke: currentColor`. That's why "colour inheritance" works *inside* the component but doesn't leak from arbitrary parent elements.
+
+---
+
+## Motion
+
+```css
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.pds-spinner__svg {
+  animation: spin 1s linear infinite;
+}
+```
+
+One keyframe. 1 second. Linear. Infinite. No easing, no pauses, no entrance animation. The spinner is shown at full opacity as soon as the consumer mounts it and runs until they unmount it. The duration and timing are **the contract** — implementations must not change them without a spec amendment.
+
+### Reduced motion
+
+<Canvas of={Stories.ReducedMotion} />
+
+Under `prefers-reduced-motion: reduce` the rotation stops **and** the opacity ladder flattens to a uniform `0.6`. Flattening is important: if the ladder stayed in place without rotation, the static graphic would read as a paused animation with a frozen head. Equal opacity across all eight spokes reads as a neutral "in progress" glyph with no implied direction of motion.
+
+---
+
+## Accessibility
+
+The spinner uses the **live-region status pattern**:
+
+```html
+<span role="status" aria-live="polite" aria-label="Loading">
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 12 12"> … </svg>
+  <span class="pds-spinner__sr-only">Loading</span>
+</span>
+```
+
+- `role="status"` + `aria-live="polite"` — AT announces the status without interrupting. Polite, not assertive: a spinner is not urgent.
+- `aria-label` — the accessible name. Default `"Loading"` is a last-resort; **every production instance should name the task** (`"Saving"`, `"Loading report"`, `"Syncing"`).
+- `aria-hidden="true"` on the `<svg>` — the graphic is decorative; the label is the semantic payload.
+- Visually-hidden `<span>` duplicating the label — belt-and-braces for screen-reader modes that prefer in-DOM text.
+
+The spinner doesn't set `aria-busy` itself. That attribute belongs on the region whose content is loading (the button, the card, the form). Set `aria-busy="true"` there while the spinner is visible.
+
+---
+
+## Constraints
+
+Hard rules:
+
+1. **No size variants.** Size is a continuous CSS length, never a prop enum.
+2. **No motion variants.** All styles run at `1s linear infinite`. No `speed`, no `paused`, no "slow" preset.
+3. **The `style` prop is the variant selector**, not a CSS attribute. Only `style="progress-activity"` exists today.
+4. **No pause-on-hover.** The spinner is the affordance that communicates "still working" — pausing it suggests the task is paused.
+5. **No entrance animation.** Full opacity on mount; the consumer controls timing by choosing when to mount.
+6. **Label is mandatory in production.** The `"Loading"` default is for prototyping; every shipped instance names its task.
+7. **SVG must be inline.** External images can't use `currentColor` and can't be CSS-animated per-path.
+8. **Exactly eight spokes for `progress-activity`.** The opacity ladder is part of the structural design, not theming.
+9. **Reduced motion is mandatory.** Skipping the `prefers-reduced-motion` rule is a WCAG 2.3.3 failure.
+
+---
+
+## Full specification
+
+The authoritative spec lives at [`components/spinner/spinner-spec.md`](https://github.com/helloimjolopez-collab/pathwaytokens/blob/main/components/spinner/spinner-spec.md).
