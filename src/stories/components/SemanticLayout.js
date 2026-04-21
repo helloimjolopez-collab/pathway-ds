@@ -7,7 +7,7 @@ import tokens from "../../tokens/tokens.js";
 export function createSemanticLayout() {
   const groups = {};
   for (const [name, token] of Object.entries(tokens)) {
-    if (token.path[0] !== "semantic-layout") continue;
+    if (token.path[0] !== "semantic-layout-units") continue;
 
     const category = token.path[1]; // button, navitem, accessibility, page, section, etc.
     if (!groups[category]) groups[category] = [];
