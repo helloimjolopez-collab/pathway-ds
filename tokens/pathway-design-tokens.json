@@ -1547,7 +1547,7 @@
               "$value": "{primitive-color.green.60}"
             }
           },
-          "accent_amethyst": {
+          "accent-amethyst": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.80}"
@@ -1569,7 +1569,7 @@
               "$value": "{primitive-color.amethyst.40}"
             }
           },
-          "accent_amethyst_inverse": {
+          "accent-amethyst-inverse": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.20}"
@@ -1591,7 +1591,7 @@
               "$value": "{primitive-color.amethyst.50}"
             }
           },
-          "accent_jade": {
+          "accent-jade": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.jade.80}"
@@ -1613,7 +1613,7 @@
               "$value": "{primitive-color.jade.40}"
             }
           },
-          "accent_jade_inverse": {
+          "accent-jade-inverse": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.jade.20}"
@@ -1841,7 +1841,7 @@
               "$value": "{primitive-color.green.10}"
             }
           },
-          "accent_amethyst": {
+          "accent-amethyst": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.90}"
@@ -1855,7 +1855,7 @@
               "$value": "{primitive-color.amethyst.100}"
             }
           },
-          "accent_amethyst_inverse": {
+          "accent-amethyst-inverse": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.20}"
@@ -1869,7 +1869,7 @@
               "$value": "{primitive-color.amethyst.10}"
             }
           },
-          "accent_jade": {
+          "accent-jade": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.jade.90}"
@@ -1883,7 +1883,7 @@
               "$value": "{primitive-color.jade.110}"
             }
           },
-          "accent_jade_inverse": {
+          "accent-jade-inverse": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.jade.20}"
@@ -2249,7 +2249,7 @@
               "$value": "{primitive-color.green.20}"
             }
           },
-          "accent_amethyst": {
+          "accent-amethyst": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.90}"
@@ -2271,7 +2271,7 @@
               "$value": "{primitive-color.amethyst.40}"
             }
           },
-          "accent_amethyst_inverse": {
+          "accent-amethyst-inverse": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.10}"
@@ -2293,7 +2293,7 @@
               "$value": "{primitive-color.amethyst.10}"
             }
           },
-          "accent_jade": {
+          "accent-jade": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.jade.90}"
@@ -2315,7 +2315,7 @@
               "$value": "{primitive-color.jade.40}"
             }
           },
-          "accent_jade_inverse": {
+          "accent-jade-inverse": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.jade.20}"
@@ -2513,7 +2513,7 @@
               "$value": "{primitive-color.green.70}"
             }
           },
-          "accent_amethyst": {
+          "accent-amethyst": {
             "light": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.10}"
@@ -2535,7 +2535,7 @@
               "$value": "{primitive-color.amethyst.60}"
             }
           },
-          "accent_jade": {
+          "accent-jade": {
             "light": {
               "$type": "color",
               "$value": "{primitive-color.jade.10}"
@@ -2557,7 +2557,7 @@
               "$value": "{primitive-color.jade.60}"
             }
           },
-          "accent_seabreeze": {
+          "accent-seabreeze": {
             "light": {
               "$type": "color",
               "$value": "{primitive-color.seabreeze.20}"
@@ -2959,7 +2959,7 @@
               "$value": "{primitive-color.green.60}"
             }
           },
-          "accent_amethyst": {
+          "accent-amethyst": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.80}"
@@ -2981,7 +2981,7 @@
               "$value": "{primitive-color.amethyst.40}"
             }
           },
-          "accent_amethyst_inverse": {
+          "accent-amethyst-inverse": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.20}"
@@ -3003,7 +3003,7 @@
               "$value": "{primitive-color.amethyst.50}"
             }
           },
-          "accent_jade": {
+          "accent-jade": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.jade.80}"
@@ -3025,7 +3025,7 @@
               "$value": "{primitive-color.jade.40}"
             }
           },
-          "accent_jade_inverse": {
+          "accent-jade-inverse": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.jade.20}"
@@ -3203,7 +3203,7 @@
               "$value": "{primitive-color.green.100}"
             }
           },
-          "accent_amethyst": {
+          "accent-amethyst": {
             "light": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.50}"
@@ -3225,7 +3225,7 @@
               "$value": "{primitive-color.amethyst.100}"
             }
           },
-          "accent_jade": {
+          "accent-jade": {
             "light": {
               "$type": "color",
               "$value": "{primitive-color.jade.40}"
@@ -3247,7 +3247,7 @@
               "$value": "{primitive-color.jade.120}"
             }
           },
-          "accent_seabreeze": {
+          "accent-seabreeze": {
             "light": {
               "$type": "color",
               "$value": "{primitive-color.seabreeze.40}"
@@ -3605,7 +3605,7 @@
               "$value": "{primitive-color.green.60}"
             }
           },
-          "accent_amethyst": {
+          "accent-amethyst": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.70}"
@@ -3627,7 +3627,7 @@
               "$value": "{primitive-color.amethyst.30}"
             }
           },
-          "accent_amethyst_inverse": {
+          "accent-amethyst-inverse": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.20}"
@@ -3649,7 +3649,7 @@
               "$value": "{primitive-color.amethyst.50}"
             }
           },
-          "accent_jade": {
+          "accent-jade": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.jade.70}"
@@ -3671,7 +3671,7 @@
               "$value": "{primitive-color.jade.30}"
             }
           },
-          "accent_jade_inverse": {
+          "accent-jade-inverse": {
             "base": {
               "$type": "color",
               "$value": "{primitive-color.jade.20}"
@@ -3849,7 +3849,7 @@
               "$value": "{primitive-color.green.90}"
             }
           },
-          "accent_amethyst": {
+          "accent-amethyst": {
             "light": {
               "$type": "color",
               "$value": "{primitive-color.amethyst.20}"
@@ -3871,7 +3871,7 @@
               "$value": "{primitive-color.amethyst.90}"
             }
           },
-          "accent_jade": {
+          "accent-jade": {
             "light": {
               "$type": "color",
               "$value": "{primitive-color.jade.20}"
