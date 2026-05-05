@@ -40,6 +40,86 @@
         "icon.contextual.navitem.active"
       ]
     },
+    "checkbox": {
+      "displayName": "Checkbox",
+      "description": "Multi-select selection control. Three states: unchecked, checked, indeterminate. Supports error, highlight, and secondary indeterminate variants. Two sizes. 44×44px touch target always.",
+      "module": "components/checkbox/checkbox.jsx",
+      "exports": ["Checkbox", "IconCheck", "IconDash", "BOX_SIZE", "TARGET_SIZE", "BORDER_WIDTH", "LABEL_GAP"],
+      "spec": "components/checkbox/checkbox-spec.md",
+      "demo": "components/checkbox/checkbox.html",
+      "stories": "src/stories/Library/Checkbox/Checkbox.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40002324:54532"
+      },
+      "props": {
+        "Checkbox": {
+          "checked":       { "type": "boolean", "default": false, "description": "Whether the checkbox is checked" },
+          "indeterminate": { "type": "boolean", "default": false, "description": "Shows dash icon; overrides checked visually; sets aria-checked=mixed" },
+          "error":         { "type": "boolean", "default": false, "description": "Error / negative styling — fill and border switch to negative token family" },
+          "highlight":     { "type": "boolean", "default": false, "description": "Tinted background on the state-layer at rest — for selectable rows" },
+          "secondary":     { "type": "boolean", "default": false, "description": "Secondary indeterminate variant (muted colour) — use with indeterminate only" },
+          "disabled":      { "type": "boolean", "default": false, "description": "Non-interactive; still accessible to screen readers" },
+          "size":          { "type": "\"default\" | \"s\"", "default": "\"default\"", "description": "Visual size of the control. Touch target is always 44×44px." },
+          "label":         { "type": "string", "description": "Optional visible label text" },
+          "onChange":      { "type": "(checked: boolean) => void", "description": "Called on user interaction with the new checked value" },
+          "id":            { "type": "string", "description": "For label htmlFor association" },
+          "name":          { "type": "string", "description": "Form field name" },
+          "value":         { "type": "string", "description": "Form field value" },
+          "className":     { "type": "string", "default": "\"\"", "description": "Additional CSS class on the root element" },
+          "describedBy":   { "type": "string", "description": "aria-describedby pointing to an error message element (error state)" }
+        }
+      },
+      "tokens": {
+        "present": [
+          "fill.action.primary.base",
+          "fill.action.primary.hover",
+          "fill.action.primary.focused",
+          "fill.action.primary.pressed",
+          "fill.action.primary.disabled",
+          "fill.action.primaryinverse.hover",
+          "fill.action.primaryinverse.focused",
+          "fill.action.primaryinverse.pressed",
+          "fill.action.secondary.base",
+          "fill.action.secondary.hover",
+          "fill.action.negative.base",
+          "fill.action.negative.hover",
+          "fill.action.negative.focused",
+          "fill.action.negative.pressed",
+          "fill.action.negative.disabled",
+          "fill.action.negativeinverse.hover",
+          "stroke.action.secondary.base",
+          "stroke.action.secondary.hover",
+          "stroke.action.secondary.focused",
+          "stroke.action.secondary.pressed",
+          "stroke.action.secondary.disabled",
+          "stroke.action.negative.base",
+          "stroke.action.negative.hover",
+          "stroke.action.negative.focused",
+          "stroke.action.negative.pressed",
+          "stroke.action.negative.disabled",
+          "icon.action.primaryinverse.base",
+          "icon.action.negativeinverse.base",
+          "text.static.secondary.base",
+          "cornerradius.small"
+        ],
+        "missing": [
+          "fill.action.secondaryinverse.hover",
+          "fill.action.secondaryinverse.focused",
+          "fill.action.secondaryinverse.pressed",
+          "stroke.action.secondaryinverse.base",
+          "stroke.action.secondaryinverse.disabled",
+          "icon.action.monoinverse.base",
+          "border-radius.xs",
+          "border-width.m"
+        ]
+      },
+      "gaps": [
+        "8 tokens missing from token file — see spec §5.3. fill.action.secondaryinverse.* affects highlight variant resting state (HIGH priority).",
+        "Secondary Indeterminate use case TBD — confirm with design before shipping.",
+        "Highlight variant resting-state token (fill.action.secondaryinverse.base) missing — fallback in use."
+      ]
+    },
     "spinner": {
       "displayName": "Spinner",
       "description": "Indeterminate activity indicator. 8-spoke sunburst, arbitrary size, semantic-token-only colour via tone + emphasis.",
