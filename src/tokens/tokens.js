@@ -3540,7 +3540,7 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-amethyst-base": {
+  "semantic-color-light-mode-text-action-accent_amethyst-base": {
     "value": "#736baa",
     "type": "color",
     "path": [
@@ -3548,11 +3548,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-amethyst-hover": {
+  "semantic-color-light-mode-text-action-accent_amethyst-hover": {
     "value": "#5f588c",
     "type": "color",
     "path": [
@@ -3560,11 +3560,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-amethyst-focused": {
+  "semantic-color-light-mode-text-action-accent_amethyst-focused": {
     "value": "#5f588c",
     "type": "color",
     "path": [
@@ -3572,11 +3572,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "focused"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-amethyst-pressed": {
+  "semantic-color-light-mode-text-action-accent_amethyst-pressed": {
     "value": "#353341",
     "type": "color",
     "path": [
@@ -3584,11 +3584,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-amethyst-disabled": {
+  "semantic-color-light-mode-text-action-accent_amethyst-disabled": {
     "value": "#cfcbe9",
     "type": "color",
     "path": [
@@ -3596,11 +3596,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-amethyst-inverse-base": {
+  "semantic-color-light-mode-text-action-accent_amethyst_inverse-base": {
     "value": "#f3f2f9",
     "type": "color",
     "path": [
@@ -3608,11 +3608,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-amethyst-inverse-hover": {
+  "semantic-color-light-mode-text-action-accent_amethyst_inverse-hover": {
     "value": "#f8f7fc",
     "type": "color",
     "path": [
@@ -3620,11 +3620,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-amethyst-inverse-focused": {
+  "semantic-color-light-mode-text-action-accent_amethyst_inverse-focused": {
     "value": "#e7e5f4",
     "type": "color",
     "path": [
@@ -3632,11 +3632,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "focused"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-amethyst-inverse-pressed": {
+  "semantic-color-light-mode-text-action-accent_amethyst_inverse-pressed": {
     "value": "#e7e5f4",
     "type": "color",
     "path": [
@@ -3644,11 +3644,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-amethyst-inverse-disabled": {
+  "semantic-color-light-mode-text-action-accent_amethyst_inverse-disabled": {
     "value": "#b7b2de",
     "type": "color",
     "path": [
@@ -3656,11 +3656,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-jade-base": {
+  "semantic-color-light-mode-text-action-accent_jade-base": {
     "value": "#1a8e84",
     "type": "color",
     "path": [
@@ -3668,11 +3668,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-jade",
+      "accent_jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-jade-hover": {
+  "semantic-color-light-mode-text-action-accent_jade-hover": {
     "value": "#16756d",
     "type": "color",
     "path": [
@@ -3680,11 +3680,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-jade",
+      "accent_jade",
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-jade-focused": {
+  "semantic-color-light-mode-text-action-accent_jade-focused": {
     "value": "#136059",
     "type": "color",
     "path": [
@@ -3692,11 +3692,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-jade",
+      "accent_jade",
       "focused"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-jade-pressed": {
+  "semantic-color-light-mode-text-action-accent_jade-pressed": {
     "value": "#17514c",
     "type": "color",
     "path": [
@@ -3704,11 +3704,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-jade",
+      "accent_jade",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-jade-disabled": {
+  "semantic-color-light-mode-text-action-accent_jade-disabled": {
     "value": "#a5dcd7",
     "type": "color",
     "path": [
@@ -3716,11 +3716,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-jade",
+      "accent_jade",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-jade-inverse-base": {
+  "semantic-color-light-mode-text-action-accent_jade_inverse-base": {
     "value": "#e9f6f5",
     "type": "color",
     "path": [
@@ -3728,11 +3728,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-jade-inverse-hover": {
+  "semantic-color-light-mode-text-action-accent_jade_inverse-hover": {
     "value": "#d2edeb",
     "type": "color",
     "path": [
@@ -3740,11 +3740,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-jade-inverse-focused": {
+  "semantic-color-light-mode-text-action-accent_jade_inverse-focused": {
     "value": "#d2edeb",
     "type": "color",
     "path": [
@@ -3752,11 +3752,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "focused"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-jade-inverse-pressed": {
+  "semantic-color-light-mode-text-action-accent_jade_inverse-pressed": {
     "value": "#f2faf9",
     "type": "color",
     "path": [
@@ -3764,11 +3764,11 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-text-action-accent-jade-inverse-disabled": {
+  "semantic-color-light-mode-text-action-accent_jade_inverse-disabled": {
     "value": "#1fa79b",
     "type": "color",
     "path": [
@@ -3776,7 +3776,7 @@ const tokens = {
       "light-mode",
       "text",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "disabled"
     ]
   },
@@ -4308,7 +4308,7 @@ const tokens = {
       "contrast"
     ]
   },
-  "semantic-color-light-mode-text-static-accent-amethyst-base": {
+  "semantic-color-light-mode-text-static-accent_amethyst-base": {
     "value": "#5f588c",
     "type": "color",
     "path": [
@@ -4316,11 +4316,11 @@ const tokens = {
       "light-mode",
       "text",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-text-static-accent-amethyst-subtle": {
+  "semantic-color-light-mode-text-static-accent_amethyst-subtle": {
     "value": "#736baa",
     "type": "color",
     "path": [
@@ -4328,11 +4328,11 @@ const tokens = {
       "light-mode",
       "text",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-text-static-accent-amethyst-contrast": {
+  "semantic-color-light-mode-text-static-accent_amethyst-contrast": {
     "value": "#353341",
     "type": "color",
     "path": [
@@ -4340,11 +4340,11 @@ const tokens = {
       "light-mode",
       "text",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-text-static-accent-amethyst-inverse-base": {
+  "semantic-color-light-mode-text-static-accent_amethyst_inverse-base": {
     "value": "#f3f2f9",
     "type": "color",
     "path": [
@@ -4352,11 +4352,11 @@ const tokens = {
       "light-mode",
       "text",
       "static",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-text-static-accent-amethyst-inverse-subtle": {
+  "semantic-color-light-mode-text-static-accent_amethyst_inverse-subtle": {
     "value": "#e7e5f4",
     "type": "color",
     "path": [
@@ -4364,11 +4364,11 @@ const tokens = {
       "light-mode",
       "text",
       "static",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-text-static-accent-amethyst-inverse-contrast": {
+  "semantic-color-light-mode-text-static-accent_amethyst_inverse-contrast": {
     "value": "#f8f7fc",
     "type": "color",
     "path": [
@@ -4376,11 +4376,11 @@ const tokens = {
       "light-mode",
       "text",
       "static",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-text-static-accent-jade-base": {
+  "semantic-color-light-mode-text-static-accent_jade-base": {
     "value": "#16756d",
     "type": "color",
     "path": [
@@ -4388,11 +4388,11 @@ const tokens = {
       "light-mode",
       "text",
       "static",
-      "accent-jade",
+      "accent_jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-text-static-accent-jade-subtle": {
+  "semantic-color-light-mode-text-static-accent_jade-subtle": {
     "value": "#1a8e84",
     "type": "color",
     "path": [
@@ -4400,11 +4400,11 @@ const tokens = {
       "light-mode",
       "text",
       "static",
-      "accent-jade",
+      "accent_jade",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-text-static-accent-jade-contrast": {
+  "semantic-color-light-mode-text-static-accent_jade-contrast": {
     "value": "#17514c",
     "type": "color",
     "path": [
@@ -4412,11 +4412,11 @@ const tokens = {
       "light-mode",
       "text",
       "static",
-      "accent-jade",
+      "accent_jade",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-text-static-accent-jade-inverse-base": {
+  "semantic-color-light-mode-text-static-accent_jade_inverse-base": {
     "value": "#e9f6f5",
     "type": "color",
     "path": [
@@ -4424,11 +4424,11 @@ const tokens = {
       "light-mode",
       "text",
       "static",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-text-static-accent-jade-inverse-subtle": {
+  "semantic-color-light-mode-text-static-accent_jade_inverse-subtle": {
     "value": "#d2edeb",
     "type": "color",
     "path": [
@@ -4436,11 +4436,11 @@ const tokens = {
       "light-mode",
       "text",
       "static",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-text-static-accent-jade-inverse-contrast": {
+  "semantic-color-light-mode-text-static-accent_jade_inverse-contrast": {
     "value": "#f2faf9",
     "type": "color",
     "path": [
@@ -4448,7 +4448,7 @@ const tokens = {
       "light-mode",
       "text",
       "static",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "contrast"
     ]
   },
@@ -5400,7 +5400,7 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-amethyst-base": {
+  "semantic-color-light-mode-fill-action-accent_amethyst-base": {
     "value": "#5f588c",
     "type": "color",
     "path": [
@@ -5408,11 +5408,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-amethyst-hover": {
+  "semantic-color-light-mode-fill-action-accent_amethyst-hover": {
     "value": "#736baa",
     "type": "color",
     "path": [
@@ -5420,11 +5420,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-amethyst-focused": {
+  "semantic-color-light-mode-fill-action-accent_amethyst-focused": {
     "value": "#736baa",
     "type": "color",
     "path": [
@@ -5432,11 +5432,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "focused"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-amethyst-pressed": {
+  "semantic-color-light-mode-fill-action-accent_amethyst-pressed": {
     "value": "#353341",
     "type": "color",
     "path": [
@@ -5444,11 +5444,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-amethyst-disabled": {
+  "semantic-color-light-mode-fill-action-accent_amethyst-disabled": {
     "value": "#cfcbe9",
     "type": "color",
     "path": [
@@ -5456,11 +5456,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-amethyst-inverse-base": {
+  "semantic-color-light-mode-fill-action-accent_amethyst_inverse-base": {
     "value": "#f8f7fc",
     "type": "color",
     "path": [
@@ -5468,11 +5468,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-amethyst-inverse-hover": {
+  "semantic-color-light-mode-fill-action-accent_amethyst_inverse-hover": {
     "value": "#f3f2f9",
     "type": "color",
     "path": [
@@ -5480,11 +5480,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-amethyst-inverse-focused": {
+  "semantic-color-light-mode-fill-action-accent_amethyst_inverse-focused": {
     "value": "#f3f2f9",
     "type": "color",
     "path": [
@@ -5492,11 +5492,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "focused"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-amethyst-inverse-pressed": {
+  "semantic-color-light-mode-fill-action-accent_amethyst_inverse-pressed": {
     "value": "#e7e5f4",
     "type": "color",
     "path": [
@@ -5504,11 +5504,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-amethyst-inverse-disabled": {
+  "semantic-color-light-mode-fill-action-accent_amethyst_inverse-disabled": {
     "value": "#f8f7fc",
     "type": "color",
     "path": [
@@ -5516,11 +5516,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-jade-base": {
+  "semantic-color-light-mode-fill-action-accent_jade-base": {
     "value": "#16756d",
     "type": "color",
     "path": [
@@ -5528,11 +5528,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-jade",
+      "accent_jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-jade-hover": {
+  "semantic-color-light-mode-fill-action-accent_jade-hover": {
     "value": "#1a8e84",
     "type": "color",
     "path": [
@@ -5540,11 +5540,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-jade",
+      "accent_jade",
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-jade-focused": {
+  "semantic-color-light-mode-fill-action-accent_jade-focused": {
     "value": "#1a8e84",
     "type": "color",
     "path": [
@@ -5552,11 +5552,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-jade",
+      "accent_jade",
       "focused"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-jade-selected": {
+  "semantic-color-light-mode-fill-action-accent_jade-selected": {
     "value": "#136059",
     "type": "color",
     "path": [
@@ -5564,11 +5564,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-jade",
+      "accent_jade",
       "selected"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-jade-disabled": {
+  "semantic-color-light-mode-fill-action-accent_jade-disabled": {
     "value": "#a5dcd7",
     "type": "color",
     "path": [
@@ -5576,11 +5576,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-jade",
+      "accent_jade",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-jade-inverse-base": {
+  "semantic-color-light-mode-fill-action-accent_jade_inverse-base": {
     "value": "#e9f6f5",
     "type": "color",
     "path": [
@@ -5588,11 +5588,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-jade-inverse-hover": {
+  "semantic-color-light-mode-fill-action-accent_jade_inverse-hover": {
     "value": "#d2edeb",
     "type": "color",
     "path": [
@@ -5600,11 +5600,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-jade-inverse-pressed": {
+  "semantic-color-light-mode-fill-action-accent_jade_inverse-pressed": {
     "value": "#a5dcd7",
     "type": "color",
     "path": [
@@ -5612,11 +5612,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-jade-inverse-selected": {
+  "semantic-color-light-mode-fill-action-accent_jade_inverse-selected": {
     "value": "#a5dcd7",
     "type": "color",
     "path": [
@@ -5624,11 +5624,11 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "selected"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent-jade-inverse-disabled": {
+  "semantic-color-light-mode-fill-action-accent_jade_inverse-disabled": {
     "value": "#f2faf9",
     "type": "color",
     "path": [
@@ -5636,7 +5636,7 @@ const tokens = {
       "light-mode",
       "fill",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "disabled"
     ]
   },
@@ -6120,7 +6120,7 @@ const tokens = {
       "bold"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-amethyst-light": {
+  "semantic-color-light-mode-fill-static-accent_amethyst-light": {
     "value": "#f8f7fc",
     "type": "color",
     "path": [
@@ -6128,11 +6128,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "light"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-amethyst-subtle": {
+  "semantic-color-light-mode-fill-static-accent_amethyst-subtle": {
     "value": "#f3f2f9",
     "type": "color",
     "path": [
@@ -6140,11 +6140,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-amethyst-base": {
+  "semantic-color-light-mode-fill-static-accent_amethyst-base": {
     "value": "#e7e5f4",
     "type": "color",
     "path": [
@@ -6152,11 +6152,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-amethyst-contrast": {
+  "semantic-color-light-mode-fill-static-accent_amethyst-contrast": {
     "value": "#b7b2de",
     "type": "color",
     "path": [
@@ -6164,11 +6164,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-amethyst-bold": {
+  "semantic-color-light-mode-fill-static-accent_amethyst-bold": {
     "value": "#9f98d3",
     "type": "color",
     "path": [
@@ -6176,11 +6176,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "bold"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-jade-light": {
+  "semantic-color-light-mode-fill-static-accent_jade-light": {
     "value": "#f2faf9",
     "type": "color",
     "path": [
@@ -6188,11 +6188,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-jade",
+      "accent_jade",
       "light"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-jade-subtle": {
+  "semantic-color-light-mode-fill-static-accent_jade-subtle": {
     "value": "#e9f6f5",
     "type": "color",
     "path": [
@@ -6200,11 +6200,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-jade",
+      "accent_jade",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-jade-base": {
+  "semantic-color-light-mode-fill-static-accent_jade-base": {
     "value": "#d2edeb",
     "type": "color",
     "path": [
@@ -6212,11 +6212,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-jade",
+      "accent_jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-jade-contrast": {
+  "semantic-color-light-mode-fill-static-accent_jade-contrast": {
     "value": "#a5dcd7",
     "type": "color",
     "path": [
@@ -6224,11 +6224,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-jade",
+      "accent_jade",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-jade-bold": {
+  "semantic-color-light-mode-fill-static-accent_jade-bold": {
     "value": "#4cb9af",
     "type": "color",
     "path": [
@@ -6236,11 +6236,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-jade",
+      "accent_jade",
       "bold"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-seabreeze-light": {
+  "semantic-color-light-mode-fill-static-accent_seabreeze-light": {
     "value": "#edf6fa",
     "type": "color",
     "path": [
@@ -6248,11 +6248,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-seabreeze",
+      "accent_seabreeze",
       "light"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-seabreeze-subtle": {
+  "semantic-color-light-mode-fill-static-accent_seabreeze-subtle": {
     "value": "#dbeef5",
     "type": "color",
     "path": [
@@ -6260,11 +6260,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-seabreeze",
+      "accent_seabreeze",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-seabreeze-base": {
+  "semantic-color-light-mode-fill-static-accent_seabreeze-base": {
     "value": "#b7dcea",
     "type": "color",
     "path": [
@@ -6272,11 +6272,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-seabreeze",
+      "accent_seabreeze",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-seabreeze-contrast": {
+  "semantic-color-light-mode-fill-static-accent_seabreeze-contrast": {
     "value": "#35768e",
     "type": "color",
     "path": [
@@ -6284,11 +6284,11 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-seabreeze",
+      "accent_seabreeze",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent-seabreeze-bold": {
+  "semantic-color-light-mode-fill-static-accent_seabreeze-bold": {
     "value": "#2a3b41",
     "type": "color",
     "path": [
@@ -6296,7 +6296,7 @@ const tokens = {
       "light-mode",
       "fill",
       "static",
-      "accent-seabreeze",
+      "accent_seabreeze",
       "bold"
     ]
   },
@@ -7320,7 +7320,7 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-amethyst-base": {
+  "semantic-color-light-mode-icon-action-accent_amethyst-base": {
     "value": "#736baa",
     "type": "color",
     "path": [
@@ -7328,11 +7328,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-amethyst-hover": {
+  "semantic-color-light-mode-icon-action-accent_amethyst-hover": {
     "value": "#877ec8",
     "type": "color",
     "path": [
@@ -7340,11 +7340,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-amethyst-pressed": {
+  "semantic-color-light-mode-icon-action-accent_amethyst-pressed": {
     "value": "#5f588c",
     "type": "color",
     "path": [
@@ -7352,11 +7352,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-amethyst-selected": {
+  "semantic-color-light-mode-icon-action-accent_amethyst-selected": {
     "value": "#353341",
     "type": "color",
     "path": [
@@ -7364,11 +7364,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "selected"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-amethyst-disabled": {
+  "semantic-color-light-mode-icon-action-accent_amethyst-disabled": {
     "value": "#cfcbe9",
     "type": "color",
     "path": [
@@ -7376,11 +7376,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-amethyst-inverse-base": {
+  "semantic-color-light-mode-icon-action-accent_amethyst_inverse-base": {
     "value": "#f3f2f9",
     "type": "color",
     "path": [
@@ -7388,11 +7388,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-amethyst-inverse-hover": {
+  "semantic-color-light-mode-icon-action-accent_amethyst_inverse-hover": {
     "value": "#f8f7fc",
     "type": "color",
     "path": [
@@ -7400,11 +7400,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-amethyst-inverse-pressed": {
+  "semantic-color-light-mode-icon-action-accent_amethyst_inverse-pressed": {
     "value": "#e7e5f4",
     "type": "color",
     "path": [
@@ -7412,11 +7412,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-amethyst-inverse-selected": {
+  "semantic-color-light-mode-icon-action-accent_amethyst_inverse-selected": {
     "value": "#e7e5f4",
     "type": "color",
     "path": [
@@ -7424,11 +7424,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "selected"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-amethyst-inverse-disabled": {
+  "semantic-color-light-mode-icon-action-accent_amethyst_inverse-disabled": {
     "value": "#b7b2de",
     "type": "color",
     "path": [
@@ -7436,11 +7436,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-jade-base": {
+  "semantic-color-light-mode-icon-action-accent_jade-base": {
     "value": "#1a8e84",
     "type": "color",
     "path": [
@@ -7448,11 +7448,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-jade",
+      "accent_jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-jade-hover": {
+  "semantic-color-light-mode-icon-action-accent_jade-hover": {
     "value": "#16756d",
     "type": "color",
     "path": [
@@ -7460,11 +7460,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-jade",
+      "accent_jade",
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-jade-pressed": {
+  "semantic-color-light-mode-icon-action-accent_jade-pressed": {
     "value": "#136059",
     "type": "color",
     "path": [
@@ -7472,11 +7472,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-jade",
+      "accent_jade",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-jade-selected": {
+  "semantic-color-light-mode-icon-action-accent_jade-selected": {
     "value": "#17514c",
     "type": "color",
     "path": [
@@ -7484,11 +7484,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-jade",
+      "accent_jade",
       "selected"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-jade-disabled": {
+  "semantic-color-light-mode-icon-action-accent_jade-disabled": {
     "value": "#a5dcd7",
     "type": "color",
     "path": [
@@ -7496,11 +7496,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-jade",
+      "accent_jade",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-jade-inverse-base": {
+  "semantic-color-light-mode-icon-action-accent_jade_inverse-base": {
     "value": "#e9f6f5",
     "type": "color",
     "path": [
@@ -7508,11 +7508,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-jade-inverse-hover": {
+  "semantic-color-light-mode-icon-action-accent_jade_inverse-hover": {
     "value": "#f2faf9",
     "type": "color",
     "path": [
@@ -7520,11 +7520,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-jade-inverse-pressed": {
+  "semantic-color-light-mode-icon-action-accent_jade_inverse-pressed": {
     "value": "#d2edeb",
     "type": "color",
     "path": [
@@ -7532,11 +7532,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-jade-inverse-selected": {
+  "semantic-color-light-mode-icon-action-accent_jade_inverse-selected": {
     "value": "#d2edeb",
     "type": "color",
     "path": [
@@ -7544,11 +7544,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "selected"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent-jade-inverse-disabled": {
+  "semantic-color-light-mode-icon-action-accent_jade_inverse-disabled": {
     "value": "#a5dcd7",
     "type": "color",
     "path": [
@@ -7556,7 +7556,7 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "disabled"
     ]
   },
@@ -7980,7 +7980,7 @@ const tokens = {
       "bold"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-amethyst-light": {
+  "semantic-color-light-mode-icon-static-accent_amethyst-light": {
     "value": "#b7b2de",
     "type": "color",
     "path": [
@@ -7988,11 +7988,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "light"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-amethyst-subtle": {
+  "semantic-color-light-mode-icon-static-accent_amethyst-subtle": {
     "value": "#9f98d3",
     "type": "color",
     "path": [
@@ -8000,11 +8000,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-amethyst-base": {
+  "semantic-color-light-mode-icon-static-accent_amethyst-base": {
     "value": "#736baa",
     "type": "color",
     "path": [
@@ -8012,11 +8012,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-amethyst-contrast": {
+  "semantic-color-light-mode-icon-static-accent_amethyst-contrast": {
     "value": "#5f588c",
     "type": "color",
     "path": [
@@ -8024,11 +8024,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-amethyst-bold": {
+  "semantic-color-light-mode-icon-static-accent_amethyst-bold": {
     "value": "#353341",
     "type": "color",
     "path": [
@@ -8036,11 +8036,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "bold"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-jade-light": {
+  "semantic-color-light-mode-icon-static-accent_jade-light": {
     "value": "#a5dcd7",
     "type": "color",
     "path": [
@@ -8048,11 +8048,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-jade",
+      "accent_jade",
       "light"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-jade-subtle": {
+  "semantic-color-light-mode-icon-static-accent_jade-subtle": {
     "value": "#4cb9af",
     "type": "color",
     "path": [
@@ -8060,11 +8060,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-jade",
+      "accent_jade",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-jade-base": {
+  "semantic-color-light-mode-icon-static-accent_jade-base": {
     "value": "#1a8e84",
     "type": "color",
     "path": [
@@ -8072,11 +8072,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-jade",
+      "accent_jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-jade-contrast": {
+  "semantic-color-light-mode-icon-static-accent_jade-contrast": {
     "value": "#17514c",
     "type": "color",
     "path": [
@@ -8084,11 +8084,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-jade",
+      "accent_jade",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-jade-bold": {
+  "semantic-color-light-mode-icon-static-accent_jade-bold": {
     "value": "#213b39",
     "type": "color",
     "path": [
@@ -8096,11 +8096,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-jade",
+      "accent_jade",
       "bold"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-seabreeze-light": {
+  "semantic-color-light-mode-icon-static-accent_seabreeze-light": {
     "value": "#b7dcea",
     "type": "color",
     "path": [
@@ -8108,11 +8108,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-seabreeze",
+      "accent_seabreeze",
       "light"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-seabreeze-subtle": {
+  "semantic-color-light-mode-icon-static-accent_seabreeze-subtle": {
     "value": "#93cbe0",
     "type": "color",
     "path": [
@@ -8120,11 +8120,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-seabreeze",
+      "accent_seabreeze",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-seabreeze-base": {
+  "semantic-color-light-mode-icon-static-accent_seabreeze-base": {
     "value": "#4ba8cb",
     "type": "color",
     "path": [
@@ -8132,11 +8132,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-seabreeze",
+      "accent_seabreeze",
       "base"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-seabreeze-contrast": {
+  "semantic-color-light-mode-icon-static-accent_seabreeze-contrast": {
     "value": "#35768e",
     "type": "color",
     "path": [
@@ -8144,11 +8144,11 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-seabreeze",
+      "accent_seabreeze",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent-seabreeze-bold": {
+  "semantic-color-light-mode-icon-static-accent_seabreeze-bold": {
     "value": "#2a3b41",
     "type": "color",
     "path": [
@@ -8156,7 +8156,7 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent-seabreeze",
+      "accent_seabreeze",
       "bold"
     ]
   },
@@ -9060,7 +9060,7 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-amethyst-base": {
+  "semantic-color-light-mode-stroke-action-accent_amethyst-base": {
     "value": "#877ec8",
     "type": "color",
     "path": [
@@ -9068,11 +9068,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-amethyst-hover": {
+  "semantic-color-light-mode-stroke-action-accent_amethyst-hover": {
     "value": "#736baa",
     "type": "color",
     "path": [
@@ -9080,11 +9080,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-amethyst-pressed": {
+  "semantic-color-light-mode-stroke-action-accent_amethyst-pressed": {
     "value": "#5f588c",
     "type": "color",
     "path": [
@@ -9092,11 +9092,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-amethyst-selected": {
+  "semantic-color-light-mode-stroke-action-accent_amethyst-selected": {
     "value": "#353341",
     "type": "color",
     "path": [
@@ -9104,11 +9104,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "selected"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-amethyst-disabled": {
+  "semantic-color-light-mode-stroke-action-accent_amethyst-disabled": {
     "value": "#e7e5f4",
     "type": "color",
     "path": [
@@ -9116,11 +9116,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-amethyst",
+      "accent_amethyst",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-amethyst-inverse-base": {
+  "semantic-color-light-mode-stroke-action-accent_amethyst_inverse-base": {
     "value": "#f3f2f9",
     "type": "color",
     "path": [
@@ -9128,11 +9128,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-amethyst-inverse-hover": {
+  "semantic-color-light-mode-stroke-action-accent_amethyst_inverse-hover": {
     "value": "#f8f7fc",
     "type": "color",
     "path": [
@@ -9140,11 +9140,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-amethyst-inverse-pressed": {
+  "semantic-color-light-mode-stroke-action-accent_amethyst_inverse-pressed": {
     "value": "#e7e5f4",
     "type": "color",
     "path": [
@@ -9152,11 +9152,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-amethyst-inverse-selected": {
+  "semantic-color-light-mode-stroke-action-accent_amethyst_inverse-selected": {
     "value": "#e7e5f4",
     "type": "color",
     "path": [
@@ -9164,11 +9164,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "selected"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-amethyst-inverse-disabled": {
+  "semantic-color-light-mode-stroke-action-accent_amethyst_inverse-disabled": {
     "value": "#b7b2de",
     "type": "color",
     "path": [
@@ -9176,11 +9176,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-amethyst-inverse",
+      "accent_amethyst_inverse",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-jade-base": {
+  "semantic-color-light-mode-stroke-action-accent_jade-base": {
     "value": "#1fa79b",
     "type": "color",
     "path": [
@@ -9188,11 +9188,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-jade",
+      "accent_jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-jade-hover": {
+  "semantic-color-light-mode-stroke-action-accent_jade-hover": {
     "value": "#1a8e84",
     "type": "color",
     "path": [
@@ -9200,11 +9200,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-jade",
+      "accent_jade",
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-jade-pressed": {
+  "semantic-color-light-mode-stroke-action-accent_jade-pressed": {
     "value": "#16756d",
     "type": "color",
     "path": [
@@ -9212,11 +9212,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-jade",
+      "accent_jade",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-jade-selected": {
+  "semantic-color-light-mode-stroke-action-accent_jade-selected": {
     "value": "#136059",
     "type": "color",
     "path": [
@@ -9224,11 +9224,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-jade",
+      "accent_jade",
       "selected"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-jade-disabled": {
+  "semantic-color-light-mode-stroke-action-accent_jade-disabled": {
     "value": "#d2edeb",
     "type": "color",
     "path": [
@@ -9236,11 +9236,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-jade",
+      "accent_jade",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-jade-inverse-base": {
+  "semantic-color-light-mode-stroke-action-accent_jade_inverse-base": {
     "value": "#e9f6f5",
     "type": "color",
     "path": [
@@ -9248,11 +9248,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-jade-inverse-hover": {
+  "semantic-color-light-mode-stroke-action-accent_jade_inverse-hover": {
     "value": "#f2faf9",
     "type": "color",
     "path": [
@@ -9260,11 +9260,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-jade-inverse-pressed": {
+  "semantic-color-light-mode-stroke-action-accent_jade_inverse-pressed": {
     "value": "#d2edeb",
     "type": "color",
     "path": [
@@ -9272,11 +9272,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-jade-inverse-selected": {
+  "semantic-color-light-mode-stroke-action-accent_jade_inverse-selected": {
     "value": "#d2edeb",
     "type": "color",
     "path": [
@@ -9284,11 +9284,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "selected"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent-jade-inverse-disabled": {
+  "semantic-color-light-mode-stroke-action-accent_jade_inverse-disabled": {
     "value": "#a5dcd7",
     "type": "color",
     "path": [
@@ -9296,7 +9296,7 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent-jade-inverse",
+      "accent_jade_inverse",
       "disabled"
     ]
   },
@@ -9720,7 +9720,7 @@ const tokens = {
       "bold"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent-amethyst-light": {
+  "semantic-color-light-mode-stroke-static-accent_amethyst-light": {
     "value": "#f3f2f9",
     "type": "color",
     "path": [
@@ -9728,11 +9728,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "light"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent-amethyst-subtle": {
+  "semantic-color-light-mode-stroke-static-accent_amethyst-subtle": {
     "value": "#e7e5f4",
     "type": "color",
     "path": [
@@ -9740,11 +9740,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent-amethyst-base": {
+  "semantic-color-light-mode-stroke-static-accent_amethyst-base": {
     "value": "#cfcbe9",
     "type": "color",
     "path": [
@@ -9752,11 +9752,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent-amethyst-contrast": {
+  "semantic-color-light-mode-stroke-static-accent_amethyst-contrast": {
     "value": "#877ec8",
     "type": "color",
     "path": [
@@ -9764,11 +9764,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent-amethyst-bold": {
+  "semantic-color-light-mode-stroke-static-accent_amethyst-bold": {
     "value": "#5f588c",
     "type": "color",
     "path": [
@@ -9776,11 +9776,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "static",
-      "accent-amethyst",
+      "accent_amethyst",
       "bold"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent-jade-light": {
+  "semantic-color-light-mode-stroke-static-accent_jade-light": {
     "value": "#e9f6f5",
     "type": "color",
     "path": [
@@ -9788,11 +9788,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "static",
-      "accent-jade",
+      "accent_jade",
       "light"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent-jade-subtle": {
+  "semantic-color-light-mode-stroke-static-accent_jade-subtle": {
     "value": "#d2edeb",
     "type": "color",
     "path": [
@@ -9800,11 +9800,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "static",
-      "accent-jade",
+      "accent_jade",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent-jade-base": {
+  "semantic-color-light-mode-stroke-static-accent_jade-base": {
     "value": "#a5dcd7",
     "type": "color",
     "path": [
@@ -9812,11 +9812,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "static",
-      "accent-jade",
+      "accent_jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent-jade-contrast": {
+  "semantic-color-light-mode-stroke-static-accent_jade-contrast": {
     "value": "#1fa79b",
     "type": "color",
     "path": [
@@ -9824,11 +9824,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "static",
-      "accent-jade",
+      "accent_jade",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent-jade-bold": {
+  "semantic-color-light-mode-stroke-static-accent_jade-bold": {
     "value": "#136059",
     "type": "color",
     "path": [
@@ -9836,7 +9836,7 @@ const tokens = {
       "light-mode",
       "stroke",
       "static",
-      "accent-jade",
+      "accent_jade",
       "bold"
     ]
   },
