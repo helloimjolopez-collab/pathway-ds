@@ -1,4 +1,4 @@
-# Agent instructions for `pathwaytokens`
+# Agent instructions for `pathway-ds`
 
 Persistent rules for any AI agent working on this repository. These apply across sessions — don't wait to be told them again. If a rule here conflicts with something in a specific conversation, follow the rule here unless the user explicitly overrides it in the moment.
 
@@ -46,14 +46,12 @@ Rules:
 - **`src/tokens/tokens.css` is derived.** Do not hand-edit it. Style Dictionary regenerates it on every build.
 - If a broken alias matters (e.g. a component visibly breaks because its token disappeared), the fix goes **in Figma**, not in the repo.
 
-### 2.1 Dark mode — TEMPORARILY EXCLUDED
+### 2.1 Dark mode — ENABLED (2026-05-05)
 
-**Dark-mode tokens are not imported from the Figma export right now.** Pathway is not shipping dark mode yet; importing those tokens produces ~1000 unused CSS variables that nobody references and that pollute the Storybook token pages.
+**Dark-mode tokens are now imported from the Figma export.** The `EXCLUDED_MODE_SLUGS` set in `sync-tokens.js` is empty — all modes come through, including dark.
 
-- `sync-tokens.js` filters out any Figma mode whose slug is in its `EXCLUDED_MODES` list. Currently: `dark-mode`, `dark`.
-- The light-mode tokens come through normally.
-- This is a temporary switch. **Do not re-enable dark mode imports until the user explicitly tells you to.** When they do, remove the mode from `EXCLUDED_MODES` and also remove the "TEMPORARILY EXCLUDED" note from the top of the script.
-- If the user asks for dark-mode support for any reason (a component needs a dark-mode variant, a story wants to preview dark, etc.), **stop and confirm** before re-enabling — they may want a different scope (e.g. one component only, or component-level overrides rather than token-level).
+- Light-mode and dark-mode tokens both land in `tokens/pathway-design-tokens.json` and are emitted as CSS variables in `src/tokens/tokens.css`.
+- If the user asks to re-disable dark mode, add `"dark-mode"` and `"dark"` back to `EXCLUDED_MODE_SLUGS` in `sync-tokens.js`.
 
 ## 3. Component reconciliation after token changes
 
@@ -224,7 +222,7 @@ Three GitHub Actions live in `.github/workflows/`:
 
 The deployed Storybook lives at:
 
-- https://helloimjolopez-collab.github.io/pathwaytokens/storybook/
+- https://helloimjolopez-collab.github.io/pathway-ds/storybook/
 
 Data flows one way: **GitHub → Storybook.** Nothing ever flows from Storybook back to GitHub. If Storybook appears out of date, the fix is a push to `main`, not a Storybook rebuild.
 

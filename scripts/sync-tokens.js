@@ -30,9 +30,8 @@
 
 // Modes whose slugified name matches any of these are dropped entirely from
 // the derived output. Slug form — lowercase, dots/spaces → hyphens.
-// Currently dark mode is excluded; remove from this list when Pathway adopts
-// dark mode. See CLAUDE.md §2.1 for the full policy.
-const EXCLUDED_MODE_SLUGS = new Set(["dark-mode", "dark"]);
+// Dark mode is now included. See CLAUDE.md §2.1 for the full policy.
+const EXCLUDED_MODE_SLUGS = new Set([]);
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { resolve, dirname } from "node:path";

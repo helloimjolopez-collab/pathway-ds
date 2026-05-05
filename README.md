@@ -5,7 +5,7 @@ Design system for Ministry Brands Amplify. Tokens + components + specifications,
 ## Layout
 
 ```
-pathwaytokens/
+pathway-ds/
 ├── docs/                        Cross-component design-system docs
 ├── components/                  One folder per component
 │   ├── sidenav/

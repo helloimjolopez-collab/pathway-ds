@@ -44,7 +44,7 @@ jobs:
       - name: Build Storybook
         run: npx storybook build
         env:
-          STORYBOOK_ASSET_PREFIX: /pathwaytokens/storybook
+          STORYBOOK_ASSET_PREFIX: /pathway-ds/storybook
 
       - name: Deploy Storybook into /storybook/ folder on main
         run: |

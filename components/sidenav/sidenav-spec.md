@@ -714,7 +714,7 @@ The only things that genuinely need to be **done in Figma** (because they are de
 | Gap | Priority | Action needed in Figma |
 |---|---|---|
 | No "focused" state variant in `SideNavItem` | HIGH | Design and add a focused variant to the component: suggested style: `2px solid #3555a0` outline, `2px` offset. This is a visual design decision that must exist in Figma. |
-| No link to this spec in Dev Mode | HIGH | In Figma Dev Mode → Resources panel, add the spec URL: `https://github.com/helloimjolopez-collab/pathwaytokens/blob/main/components/sidenav/sidenav-spec.md`. Takes 30 seconds and means devs always have one click to the full reference. |
+| No link to this spec in Dev Mode | HIGH | In Figma Dev Mode → Resources panel, add the spec URL: `https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav-spec.md`. Takes 30 seconds and means devs always have one click to the full reference. |
 | Accessibility section in Figma doc frame is outdated | MEDIUM | Replace with a short plain-text summary (component description, key decisions, any gaps that require design work) and a link to this spec. Do not duplicate tables. |
 
 ---
