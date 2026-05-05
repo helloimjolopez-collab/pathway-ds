@@ -1,0 +1,147 @@
+import { Meta, Title, Canvas, Controls } from "@storybook/blocks";
+import * as Stories from "./Checkbox.stories.jsx";
+
+<Meta of={Stories} />
+
+<Title />
+
+A selection control for **multi-select scenarios** — when the user can pick zero or more independent options from a set. Three visual states: unchecked, checked, and indeterminate (partial).
+
+Use Checkbox for independent options that can all be on at the same time, "Select all" patterns with an indeterminate parent, form fields submitted on Save/Submit, and "Agree to terms" before submission.
+
+---
+
+## Try it
+
+<Canvas of={Stories.Default} />
+
+<Controls of={Stories.Default} />
+
+Toggle the controls above: `checked`, `indeterminate`, `error`, `highlight`, `disabled`, `size`. Every combination resolves to a real semantic token from `fill/stroke/icon.action.*`. No raw hex, no primitive tokens.
+
+---
+
+## When to use — decision tree
+
+| Scenario | Use |
+|---|---|
+| User picks one or more from a set | **Checkbox** ✓ |
+| User picks exactly one from a set | Radio |
+| Binary on/off with immediate effect | Toggle |
+| Card/tile selection | Choice Tile |
+| Mutually exclusive options | Radio — never Checkbox |
+
+---
+
+## Anatomy
+
+```
+label.pds-checkbox   (root — inline-flex, cursor: pointer)
+├── span             (44×44px state-layer — hover/focus/pressed ring)
+│   ├── input        (visually hidden — semantics + keyboard)
+│   └── span         (18×18px visual box — 1.5px border, 4px radius)
+│       └── svg      (checkmark or dash icon — visible when checked/indeterminate)
+└── span             (optional label text — Red Hat Text 400 14px/20px)
+```
+
+The touch target is always **44×44px** regardless of the `size` prop (WCAG 2.5.5).
+
+---
+
+## State matrix
+
+Every type × state combination from the Figma component matrix, all live:
+
+<Canvas of={Stories.StateMatrix} />
+
+---
+
+## Indeterminate / Select all
+
+<Canvas of={Stories.SelectAllPattern} />
+
+The indeterminate state (`aria-checked="mixed"`) signals "some but not all" children are selected. Set `indeterminate={someSelected && !allSelected}` on the parent; pass `checked={allSelected}`. Toggling the parent sets all children to the same state. Screen readers announce this as "partially checked."
+
+**Never set both `checked` and `indeterminate` to `true`** — `indeterminate` takes visual precedence and sets `aria-checked="mixed"` regardless of `checked`.
+
+---
+
+## Error state
+
+<Canvas of={Stories.ErrorWithMessage} />
+
+The `error` prop switches fills and borders to the `fill/stroke.action.negative.*` family. In production, **always associate an error message** via `aria-describedby`:
+
+```jsx
+<Checkbox
+  label="Agree to terms"
+  checked={agreed}
+  error={!agreed && submitted}
+  onChange={setAgreed}
+  describedBy="terms-error"
+/>
+<span id="terms-error">You must agree to continue.</span>
+```
+
+---
+
+## Highlight variant
+
+<Canvas of={Stories.HighlightVariant} />
+
+`highlight` adds a tinted background on the state-layer at rest. Use when the checkbox lives inside a selectable row or card — the tint visually associates the control with the interactive surface.
+
+> **Token gap:** The resting background (`fill.action.secondaryinverse.base`) is missing from the token file. A fallback (`fill.action.secondary.base`) is in use. This will be resolved when the token is added to Figma variables and re-synced. See `checkbox-spec.md §5.3`.
+
+---
+
+## Sizes
+
+<Canvas of={Stories.Sizes} />
+
+Two visual sizes, one touch target. The `s` size reduces the visible box to 16px — use it in dense list contexts. The 44×44px touch target is unchanged.
+
+---
+
+## Accessibility
+
+The Checkbox uses a **native `<input type="checkbox">`** under the hood — no custom role needed.
+
+| State | `aria-checked` | Native prop |
+|---|---|---|
+| Unchecked | *(implicit false)* | `checked={false}` |
+| Checked | *(implicit true)* | `checked={true}` |
+| Indeterminate | `mixed` | `.indeterminate = true` via ref |
+| Disabled | — | `disabled` attribute |
+
+**Keyboard:** `Space` toggles. `Tab` / `Shift+Tab` moves focus. Arrow keys are not used — each checkbox is independently focusable (Radio uses arrows instead).
+
+**Focus ring:** Visible on the 44×44px state-layer. Error variant adds `box-shadow: 0 0 0 3px rgba(170, 54, 54, 0.1)`.
+
+**Screen reader announcements:**
+- Unchecked: "[Label], checkbox, unchecked"
+- Checked: "[Label], checkbox, checked"
+- Indeterminate: "[Label], checkbox, partially checked"
+- Disabled: "[Label], checkbox, dimmed" (platform-dependent)
+
+**Contrast (WCAG):**
+- Checked fill (`#3555a0`) on white → ≥ 3:1 for UI components (1.4.11 ✓)
+- Label text (`#4b4b4b`) on white → ≥ 4.5:1 (1.4.3 ✓)
+- Error fill (`#9d2d2d`) on white → ≥ 3:1 (1.4.11 ✓)
+
+---
+
+## Constraints
+
+1. **No raw hex.** Every colour is a semantic token CSS variable.
+2. **`indeterminate` uses `aria-checked="mixed"`** — not `false`, not `true`.
+3. **Touch target is always 44×44px.** Do not reduce for `size="s"`.
+4. **Error state requires an associated error message** via `aria-describedby` in production.
+5. **Disabled checkboxes remain accessible** — do not `aria-hidden` them.
+6. **`secondary` indeterminate** should not appear without a parent "Select all" context.
+
+---
+
+## Full specification
+
+[`components/checkbox/checkbox-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/checkbox/checkbox-spec.md) — anatomy, all token tables, accessibility, gaps, and governance.

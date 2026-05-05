@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkbox — Pathway Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+  /* ══════════════════════════════════════════════════════════════════════════
+     PATHWAY TOKENS — inlined subset
+     In a real integration these come from src/tokens/tokens.css.
+     Only the primitives + semantics used by Checkbox are included here.
+     All variable names match the Style Dictionary output exactly.
+  ══════════════════════════════════════════════════════════════════════════ */
+  :root {
+    /* Primitives ------------------------------------------------------------ */
+    --primitive-color-brand-0:   #fafafa;
+    --primitive-color-brand-10:  #edf0f9;
+    --primitive-color-brand-20:  #e4e9f6;
+    --primitive-color-brand-30:  #d5ddf1;
+    --primitive-color-brand-50:  #abbbe3;
+    --primitive-color-brand-90:  #5e7dc9;
+    --primitive-color-brand-200: #3d61b7;
+    --primitive-color-brand-300: #3555a0;
+    --primitive-color-brand-400: #273e76;
+
+    --primitive-color-cool-neutral-20:  #f6f6f6;
+    --primitive-color-cool-neutral-30:  #ededed;
+    --primitive-color-cool-neutral-60:  #c4c4c4;
+    --primitive-color-cool-neutral-150: #4b4b4b;
+    --primitive-color-cool-neutral-160: #3b3b3b;
+    --primitive-color-cool-neutral-170: #363636;
+    --primitive-color-cool-neutral-180: #252525;
+
+    --primitive-color-red-30:  #fdf7f7;
+    --primitive-color-red-40:  #fcf4f4;
+    --primitive-color-red-50:  #f9ecec;
+    --primitive-color-red-60:  #f4d9d9;
+    --primitive-color-red-70:  #e7b4b4;
+    --primitive-color-red-110: #aa3636;
+    --primitive-color-red-120: #9d2d2d;
+    --primitive-color-red-130: #862727;
+
+    --primitive-unit-unit-4: 4;
+
+    /* Semantic — fill.action ----------------------------------------------- */
+    --semantic-color-light-mode-fill-action-primary-base:     var(--primitive-color-brand-300);
+    --semantic-color-light-mode-fill-action-primary-hover:    var(--primitive-color-brand-200);
+    --semantic-color-light-mode-fill-action-primary-focused:  var(--primitive-color-brand-200);
+    --semantic-color-light-mode-fill-action-primary-pressed:  var(--primitive-color-brand-400);
+    --semantic-color-light-mode-fill-action-primary-disabled: var(--primitive-color-brand-50);
+
+    --semantic-color-light-mode-fill-action-primaryinverse-hover:   var(--primitive-color-brand-10);
+    --semantic-color-light-mode-fill-action-primaryinverse-focused: var(--primitive-color-brand-20);
+    --semantic-color-light-mode-fill-action-primaryinverse-pressed: var(--primitive-color-brand-30);
+
+    --semantic-color-light-mode-fill-action-secondary-base:  var(--primitive-color-cool-neutral-30);
+    --semantic-color-light-mode-fill-action-secondary-hover: var(--primitive-color-cool-neutral-20);
+
+    --semantic-color-light-mode-fill-action-negative-base:     var(--primitive-color-red-120);
+    --semantic-color-light-mode-fill-action-negative-hover:    var(--primitive-color-red-110);
+    --semantic-color-light-mode-fill-action-negative-focused:  var(--primitive-color-red-110);
+    --semantic-color-light-mode-fill-action-negative-pressed:  var(--primitive-color-red-130);
+    --semantic-color-light-mode-fill-action-negative-disabled: var(--primitive-color-red-70);
+
+    --semantic-color-light-mode-fill-action-negativeinverse-hover: var(--primitive-color-red-50);
+
+    /* Semantic — stroke.action --------------------------------------------- */
+    --semantic-color-light-mode-stroke-action-secondary-base:     var(--primitive-color-cool-neutral-150);
+    --semantic-color-light-mode-stroke-action-secondary-hover:    var(--primitive-color-cool-neutral-160);
+    --semantic-color-light-mode-stroke-action-secondary-focused:  var(--primitive-color-cool-neutral-170);
+    --semantic-color-light-mode-stroke-action-secondary-pressed:  var(--primitive-color-cool-neutral-180);
+    --semantic-color-light-mode-stroke-action-secondary-disabled: var(--primitive-color-cool-neutral-60);
+
+    --semantic-color-light-mode-stroke-action-negative-base:     var(--primitive-color-red-60);
+    --semantic-color-light-mode-stroke-action-negative-hover:    var(--primitive-color-red-40);
+    --semantic-color-light-mode-stroke-action-negative-focused:  var(--primitive-color-red-40);
+    --semantic-color-light-mode-stroke-action-negative-pressed:  var(--primitive-color-red-70);
+    --semantic-color-light-mode-stroke-action-negative-disabled: var(--primitive-color-red-30);
+
+    /* Semantic — icon.action ----------------------------------------------- */
+    --semantic-color-light-mode-icon-action-primaryinverse-base:  var(--primitive-color-brand-90);
+    --semantic-color-light-mode-icon-action-negativeinverse-base: var(--primitive-color-red-40);
+
+    /* Semantic — text.static ----------------------------------------------- */
+    --semantic-color-light-mode-text-static-secondary-base: var(--primitive-color-cool-neutral-150);
+
+    /* Semantic — layout ---------------------------------------------------- */
+    --semantic-layout-units-cornerradius-small: var(--primitive-unit-unit-4);
+  }
+
+  /* ── Demo page chrome ─────────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Red Hat Text', sans-serif;
+    background: #fafafa;
+    color: #363636;
+    padding: 48px 40px;
+    min-height: 100vh;
+  }
+
+  .demo-header {
+    margin-bottom: 48px;
+  }
+  .demo-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 6px;
+  }
+  .demo-header p {
+    font-size: 14px;
+    color: #6b6b6b;
+  }
+
+  .demo-section {
+    margin-bottom: 48px;
+  }
+  .demo-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8b8b8b;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .demo-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .demo-row-label {
+    font-size: 12px;
+    color: #8b8b8b;
+    margin-bottom: 10px;
+  }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+  }
+
+  .demo-surface {
+    background: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    border: 1px solid #e8e8e8;
+  }
+  .demo-surface-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #a0a0a0;
+    margin-bottom: 16px;
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-header">
+  <h1>Checkbox</h1>
+  <p>
+    Pathway Design System · Multi-select control ·
+    <a href="checkbox-spec.md" style="color:#3555a0">Spec</a> ·
+    <a href="https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40002324-54532" style="color:#3555a0" target="_blank">Figma</a>
+  </p>
+</div>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useRef, useEffect } = React;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CHECKBOX COMPONENT
+   Inlined from components/checkbox/checkbox.jsx
+   Source of truth: checkbox.jsx — keep in sync.
+═══════════════════════════════════════════════════════════════════════════ */
+
+const V = {
+  fillCheckedBase:     "var(--semantic-color-light-mode-fill-action-primary-base)",
+  fillCheckedHover:    "var(--semantic-color-light-mode-fill-action-primary-hover)",
+  fillCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primary-focused)",
+  fillCheckedPressed:  "var(--semantic-color-light-mode-fill-action-primary-pressed)",
+  fillCheckedDisabled: "var(--semantic-color-light-mode-fill-action-primary-disabled)",
+
+  borderBase:     "var(--semantic-color-light-mode-stroke-action-secondary-base)",
+  borderHover:    "var(--semantic-color-light-mode-stroke-action-secondary-hover)",
+  borderFocused:  "var(--semantic-color-light-mode-stroke-action-secondary-focused)",
+  borderPressed:  "var(--semantic-color-light-mode-stroke-action-secondary-pressed)",
+  borderDisabled: "var(--semantic-color-light-mode-stroke-action-secondary-disabled)",
+
+  iconPrimary: "var(--semantic-color-light-mode-icon-action-primaryinverse-base)",
+  iconError:   "var(--semantic-color-light-mode-icon-action-negativeinverse-base)",
+
+  stateLayerUncheckedHover:  "var(--semantic-color-light-mode-fill-action-secondary-hover)",
+  stateLayerCheckedHover:    "var(--semantic-color-light-mode-fill-action-primaryinverse-hover)",
+  stateLayerCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primaryinverse-focused)",
+  stateLayerCheckedPressed:  "var(--semantic-color-light-mode-fill-action-primaryinverse-pressed)",
+
+  fillErrorBase:     "var(--semantic-color-light-mode-fill-action-negative-base)",
+  fillErrorHover:    "var(--semantic-color-light-mode-fill-action-negative-hover)",
+  fillErrorFocused:  "var(--semantic-color-light-mode-fill-action-negative-focused)",
+  fillErrorPressed:  "var(--semantic-color-light-mode-fill-action-negative-pressed)",
+  fillErrorDisabled: "var(--semantic-color-light-mode-fill-action-negative-disabled)",
+
+  borderErrorBase:     "var(--semantic-color-light-mode-stroke-action-negative-base)",
+  borderErrorHover:    "var(--semantic-color-light-mode-stroke-action-negative-hover)",
+  borderErrorFocused:  "var(--semantic-color-light-mode-stroke-action-negative-focused)",
+  borderErrorPressed:  "var(--semantic-color-light-mode-stroke-action-negative-pressed)",
+  borderErrorDisabled: "var(--semantic-color-light-mode-stroke-action-negative-disabled)",
+
+  stateLayerErrorHover: "var(--semantic-color-light-mode-fill-action-negativeinverse-hover)",
+  highlightResting:     "var(--semantic-color-light-mode-fill-action-secondary-base)",
+
+  labelColor: "var(--semantic-color-light-mode-text-static-secondary-base)",
+  radius:     "calc(var(--semantic-layout-units-cornerradius-small) * 1px)",
+  radiusFull: "100px",
+};
+
+const BOX_SIZE    = { default: 18, s: 16 };
+const TARGET_SIZE = 44;
+const BORDER_W    = 1.5;
+const LABEL_GAP   = 16;
+
+function IconCheck({ color, size }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false">
+      <path d="M4 9.5L7.5 13L14 6" stroke={color} strokeWidth={BORDER_W} strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconDash({ color, size }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false">
+      <path d="M5 9H13" stroke={color} strokeWidth={BORDER_W} strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function Checkbox({
+  checked = false,
+  indeterminate = false,
+  error = false,
+  highlight = false,
+  disabled = false,
+  size = "default",
+  label,
+  onChange,
+  id,
+  name,
+  value,
+  describedBy,
+}) {
+  const inputRef = useRef(null);
+  const [hovered,  setHovered]  = useState(false);
+  const [focused,  setFocused]  = useState(false);
+  const [pressed,  setPressed]  = useState(false);
+
+  useEffect(() => {
+    if (inputRef.current) inputRef.current.indeterminate = indeterminate;
+  }, [indeterminate]);
+
+  const boxSize = BOX_SIZE[size] || BOX_SIZE.default;
+
+  let boxFill = "transparent";
+  if (disabled && (checked || indeterminate)) {
+    boxFill = error ? V.fillErrorDisabled : V.fillCheckedDisabled;
+  } else if (!disabled && (checked || indeterminate)) {
+    if (error) {
+      boxFill = pressed  ? V.fillErrorPressed
+              : focused  ? V.fillErrorFocused
+              : hovered  ? V.fillErrorHover
+              :             V.fillErrorBase;
+    } else {
+      boxFill = pressed  ? V.fillCheckedPressed
+              : focused  ? V.fillCheckedFocused
+              : hovered  ? V.fillCheckedHover
+              :             V.fillCheckedBase;
+    }
+  }
+
+  let borderColor;
+  if (checked || indeterminate) {
+    borderColor = boxFill;
+  } else if (disabled) {
+    borderColor = error ? V.borderErrorDisabled : V.borderDisabled;
+  } else if (error) {
+    borderColor = pressed  ? V.borderErrorPressed
+                : focused  ? V.borderErrorFocused
+                : hovered  ? V.borderErrorHover
+                :             V.borderErrorBase;
+  } else {
+    borderColor = pressed  ? V.borderPressed
+                : focused  ? V.borderFocused
+                : hovered  ? V.borderHover
+                :             V.borderBase;
+  }
+
+  let stateLayerBg = "transparent";
+  if (!disabled) {
+    if (pressed) {
+      stateLayerBg = (checked || indeterminate)
+        ? V.stateLayerCheckedPressed
+        : (error ? V.stateLayerErrorHover : V.stateLayerUncheckedHover);
+    } else if (hovered || focused) {
+      if (checked || indeterminate) {
+        stateLayerBg = error
+          ? V.stateLayerErrorHover
+          : (focused ? V.stateLayerCheckedFocused : V.stateLayerCheckedHover);
+      } else {
+        stateLayerBg = error ? V.stateLayerErrorHover : V.stateLayerUncheckedHover;
+      }
+    } else if (highlight) {
+      stateLayerBg = V.highlightResting;
+    }
+  }
+
+  const focusShadow = focused && error ? "0 0 0 3px rgba(170, 54, 54, 0.1)" : "none";
+  const iconColor   = error ? V.iconError : V.iconPrimary;
+  const showIcon    = checked || indeterminate;
+
+  return (
+    <label
+      style={{
+        display: "inline-flex", alignItems: "center",
+        gap: label ? LABEL_GAP : 0,
+        cursor: disabled ? "not-allowed" : "pointer",
+        userSelect: "none", fontFamily: "'Red Hat Text', sans-serif",
+      }}
+      onMouseEnter={() => !disabled && setHovered(true)}
+      onMouseLeave={() => { setHovered(false); setPressed(false); }}
+      onMouseDown={()  => !disabled && setPressed(true)}
+      onMouseUp={()    => setPressed(false)}
+    >
+      <span
+        aria-hidden="true"
+        style={{
+          position: "relative", display: "inline-flex",
+          alignItems: "center", justifyContent: "center",
+          width: TARGET_SIZE, height: TARGET_SIZE,
+          borderRadius: V.radiusFull,
+          backgroundColor: stateLayerBg,
+          transition: "background-color 150ms ease-out",
+          boxShadow: focusShadow,
+          flexShrink: 0,
+        }}
+      >
+        <input
+          ref={inputRef}
+          type="checkbox"
+          id={id} name={name} value={value}
+          checked={indeterminate ? false : checked}
+          disabled={disabled}
+          aria-describedby={describedBy}
+          onChange={e => onChange && onChange(e.target.checked)}
+          onFocus={() => setFocused(true)}
+          onBlur={()  => setFocused(false)}
+          style={{
+            position: "absolute", width: boxSize, height: boxSize,
+            opacity: 0, margin: 0, padding: 0, zIndex: 1,
+            cursor: disabled ? "not-allowed" : "pointer",
+          }}
+        />
+        <span
+          aria-hidden="true"
+          style={{
+            display: "inline-flex", alignItems: "center", justifyContent: "center",
+            width: boxSize, height: boxSize,
+            borderRadius: V.radius,
+            border: `${BORDER_W}px solid ${borderColor}`,
+            backgroundColor: boxFill,
+            boxSizing: "border-box",
+            transition: "background-color 150ms ease-out, border-color 150ms ease-out",
+            flexShrink: 0,
+          }}
+        >
+          {showIcon && (indeterminate
+            ? <IconDash  color={iconColor} size={boxSize} />
+            : <IconCheck color={iconColor} size={boxSize} />
+          )}
+        </span>
+      </span>
+
+      {label && (
+        <span style={{ fontSize: 14, lineHeight: "20px", fontWeight: 400, color: V.labelColor }}>
+          {label}
+        </span>
+      )}
+    </label>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DEMO APP
+═══════════════════════════════════════════════════════════════════════════ */
+
+function DemoSection({ title, children }) {
+  return (
+    <div className="demo-section">
+      <p className="demo-section-title">{title}</p>
+      {children}
+    </div>
+  );
+}
+
+function Demo() {
+  // State matrix — individual controls
+  const [c1, setC1] = useState(false);
+  const [c2, setC2] = useState(true);
+  const [c3, setC3] = useState(false);
+  const [c4, setC4] = useState(false);
+  const [c5, setC5] = useState(true);
+
+  // "Select all" example
+  const [items, setItems] = useState([
+    { id: "a", label: "Email notifications", checked: true  },
+    { id: "b", label: "Push notifications",  checked: false },
+    { id: "c", label: "SMS alerts",          checked: true  },
+  ]);
+
+  const allChecked  = items.every(i => i.checked);
+  const someChecked = items.some(i => i.checked) && !allChecked;
+
+  const toggleAll = (checked) =>
+    setItems(items.map(i => ({ ...i, checked })));
+
+  const toggleItem = (id) =>
+    setItems(items.map(i => i.id === id ? { ...i, checked: !i.checked } : i));
+
+  // Error state example
+  const [agreed, setAgreed] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  return (
+    <div>
+      {/* ── Standard states ──────────────────────────────────────────────── */}
+      <DemoSection title="Standard — all states">
+        <div className="demo-surface">
+          <p className="demo-surface-label">Interactive — try hovering, clicking, tabbing</p>
+          <div className="demo-row" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+            <Checkbox label="Unselected" checked={c1} onChange={setC1} id="s1" />
+            <Checkbox label="Selected"   checked={c2} onChange={setC2} id="s2" />
+            <Checkbox label="Disabled — unchecked" disabled id="s3" />
+            <Checkbox label="Disabled — checked"   disabled checked id="s4" />
+          </div>
+        </div>
+      </DemoSection>
+
+      {/* ── Indeterminate ────────────────────────────────────────────────── */}
+      <DemoSection title="Indeterminate / Select all">
+        <div className="demo-surface">
+          <p className="demo-surface-label">Parent drives children — all ↔ some ↔ none</p>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+            <Checkbox
+              label="Select all"
+              checked={allChecked}
+              indeterminate={someChecked}
+              onChange={toggleAll}
+              id="select-all"
+            />
+            <div style={{ marginLeft: 12, display: "flex", flexDirection: "column" }}>
+              {items.map(item => (
+                <Checkbox
+                  key={item.id}
+                  id={item.id}
+                  label={item.label}
+                  checked={item.checked}
+                  onChange={() => toggleItem(item.id)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </DemoSection>
+
+      {/* ── Error states ─────────────────────────────────────────────────── */}
+      <DemoSection title="Error / Negative">
+        <div className="demo-surface">
+          <p className="demo-surface-label">Error unchecked, error checked, error disabled, form example</p>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 4 }}>
+            <Checkbox label="Error — unchecked" error checked={c3} onChange={setC3} id="e1" />
+            <Checkbox label="Error — checked"   error checked onChange={() => {}} id="e2" />
+            <Checkbox label="Error — indeterminate" error indeterminate onChange={() => {}} id="e3" />
+            <Checkbox label="Error — disabled" error disabled id="e4" />
+
+            <div style={{ marginTop: 16, padding: "16px", background: "#fdf7f7", borderRadius: 8, width: "100%" }}>
+              <Checkbox
+                label="I agree to the terms and conditions"
+                checked={agreed}
+                error={!agreed && submitted}
+                onChange={setAgreed}
+                id="agree"
+                describedBy="agree-error"
+              />
+              {!agreed && submitted && (
+                <p id="agree-error" style={{ fontSize: 13, color: "#9d2d2d", marginLeft: 44, marginTop: 4 }}>
+                  You must agree to continue.
+                </p>
+              )}
+              <button
+                onClick={() => setSubmitted(true)}
+                style={{
+                  marginTop: 12, marginLeft: 44,
+                  padding: "8px 16px", borderRadius: 6,
+                  background: "#3555a0", color: "#fff",
+                  border: "none", cursor: "pointer",
+                  fontFamily: "inherit", fontSize: 14,
+                }}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </DemoSection>
+
+      {/* ── Highlight variant ────────────────────────────────────────────── */}
+      <DemoSection title="Highlight variant">
+        <div className="demo-surface">
+          <p className="demo-surface-label">State-layer tinted at rest — for selectable rows</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            {[
+              { label: "Staff meeting — Thursday 9am",  checked: true  },
+              { label: "Volunteer orientation — Friday", checked: false },
+              { label: "Board prep call — Monday",       checked: true  },
+            ].map((row, i) => (
+              <div
+                key={i}
+                style={{
+                  display: "flex", alignItems: "center",
+                  padding: "12px 16px", gap: 12,
+                  background: "#fff",
+                  borderBottom: i < 2 ? "1px solid #f0f0f0" : "none",
+                  borderRadius: i === 0 ? "8px 8px 0 0" : i === 2 ? "0 0 8px 8px" : 0,
+                }}
+              >
+                <Checkbox highlight checked={row.checked} onChange={() => {}} id={`hl-${i}`} />
+                <span style={{ fontSize: 14, color: "#363636" }}>{row.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </DemoSection>
+
+      {/* ── Sizes ────────────────────────────────────────────────────────── */}
+      <DemoSection title="Sizes">
+        <div className="demo-surface">
+          <div className="demo-row">
+            <div>
+              <p className="demo-row-label">Default (18px)</p>
+              <Checkbox label="Default size" checked={c4} onChange={setC4} id="sz-default" />
+            </div>
+            <div>
+              <p className="demo-row-label">Small (16px)</p>
+              <Checkbox label="Small size" size="s" checked={c5} onChange={setC5} id="sz-small" />
+            </div>
+          </div>
+          <p style={{ fontSize: 12, color: "#8b8b8b", marginTop: 8 }}>
+            Touch target is always 44×44px regardless of visual size.
+          </p>
+        </div>
+      </DemoSection>
+
+      {/* ── Without label ────────────────────────────────────────────────── */}
+      <DemoSection title="No label (icon-only)">
+        <div className="demo-surface">
+          <div className="demo-row">
+            <Checkbox checked={false} onChange={() => {}} id="nl1" />
+            <Checkbox checked onChange={() => {}} id="nl2" />
+            <Checkbox indeterminate onChange={() => {}} id="nl3" />
+            <Checkbox error checked={false} onChange={() => {}} id="nl4" />
+            <Checkbox error checked onChange={() => {}} id="nl5" />
+          </div>
+          <p style={{ fontSize: 12, color: "#8b8b8b", marginTop: 8 }}>
+            When no label is provided, always supply <code>aria-label</code> in the parent, or use <code>aria-labelledby</code> pointing to a heading.
+          </p>
+        </div>
+      </DemoSection>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Demo />);
+</script>
+</body>
+</html>
