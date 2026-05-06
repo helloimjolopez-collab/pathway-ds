@@ -2,6 +2,8 @@
 
 Design system for Ministry Brands Amplify. Tokens + components + specifications, all versioned in one place, with Storybook deployed from `main`.
 
+> **First time here? Read [`docs/why-pathway.md`](docs/why-pathway.md) before anything else.** It explains what Pathway is, why Ministry Brands needs it, and why "let's just use Material / shadcn / an off-the-shelf UI" is a misframed question. We already use off-the-shelf primitives. The design system is the layer on top that turns them into a coherent product UI at scale.
+
 ## Layout
 
 ```
