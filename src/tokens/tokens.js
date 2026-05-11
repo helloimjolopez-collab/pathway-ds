@@ -126,7 +126,7 @@ const tokens = {
     ]
   },
   "primitive-color-cool-neutral-140": {
-    "value": "#565656",
+    "value": "#545454",
     "type": "color",
     "path": [
       "primitive-color",
@@ -135,7 +135,7 @@ const tokens = {
     ]
   },
   "primitive-color-cool-neutral-150": {
-    "value": "#4b4b4b",
+    "value": "#484848",
     "type": "color",
     "path": [
       "primitive-color",
@@ -144,7 +144,7 @@ const tokens = {
     ]
   },
   "primitive-color-cool-neutral-160": {
-    "value": "#3b3b3b",
+    "value": "#3d3d3d",
     "type": "color",
     "path": [
       "primitive-color",
@@ -153,7 +153,7 @@ const tokens = {
     ]
   },
   "primitive-color-cool-neutral-170": {
-    "value": "#363636",
+    "value": "#313131",
     "type": "color",
     "path": [
       "primitive-color",
@@ -360,7 +360,7 @@ const tokens = {
     ]
   },
   "primitive-color-warm-neutral-0": {
-    "value": "#fdfdfc",
+    "value": "#fefefd",
     "type": "color",
     "path": [
       "primitive-color",
@@ -368,26 +368,8 @@ const tokens = {
       "0"
     ]
   },
-  "primitive-color-warm-neutral-10": {
-    "value": "#fbfaf9",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "warm-neutral",
-      "10"
-    ]
-  },
-  "primitive-color-warm-neutral-20": {
-    "value": "#f7f5f3",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "warm-neutral",
-      "20"
-    ]
-  },
   "primitive-color-warm-neutral-50": {
-    "value": "#f8f6f4",
+    "value": "#fdfcfb",
     "type": "color",
     "path": [
       "primitive-color",
@@ -396,7 +378,7 @@ const tokens = {
     ]
   },
   "primitive-color-warm-neutral-100": {
-    "value": "#eeebe6",
+    "value": "#fbfaf8",
     "type": "color",
     "path": [
       "primitive-color",
@@ -404,8 +386,17 @@ const tokens = {
       "100"
     ]
   },
+  "primitive-color-warm-neutral-150": {
+    "value": "#f9f7f5",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "150"
+    ]
+  },
   "primitive-color-warm-neutral-200": {
-    "value": "#dcd4cc",
+    "value": "#f7f5f3",
     "type": "color",
     "path": [
       "primitive-color",
@@ -413,8 +404,17 @@ const tokens = {
       "200"
     ]
   },
+  "primitive-color-warm-neutral-250": {
+    "value": "#f3f0ec",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "250"
+    ]
+  },
   "primitive-color-warm-neutral-300": {
-    "value": "#c6b8ab",
+    "value": "#eeebe6",
     "type": "color",
     "path": [
       "primitive-color",
@@ -422,8 +422,17 @@ const tokens = {
       "300"
     ]
   },
+  "primitive-color-warm-neutral-350": {
+    "value": "#e4e0da",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "350"
+    ]
+  },
   "primitive-color-warm-neutral-400": {
-    "value": "#af9888",
+    "value": "#d4cfc8",
     "type": "color",
     "path": [
       "primitive-color",
@@ -431,8 +440,17 @@ const tokens = {
       "400"
     ]
   },
+  "primitive-color-warm-neutral-500": {
+    "value": "#c2bdb5",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "500"
+    ]
+  },
   "primitive-color-warm-neutral-600": {
-    "value": "#917265",
+    "value": "#b0aaa2",
     "type": "color",
     "path": [
       "primitive-color",
@@ -440,8 +458,98 @@ const tokens = {
       "600"
     ]
   },
+  "primitive-color-warm-neutral-700": {
+    "value": "#9b968e",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "700"
+    ]
+  },
+  "primitive-color-warm-neutral-750": {
+    "value": "#87827b",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "750"
+    ]
+  },
+  "primitive-color-warm-neutral-800": {
+    "value": "#5d5953",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "800"
+    ]
+  },
+  "primitive-color-warm-neutral-850": {
+    "value": "#484540",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "850"
+    ]
+  },
+  "primitive-color-warm-neutral-900": {
+    "value": "#3d3b37",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "900"
+    ]
+  },
+  "primitive-color-warm-neutral-925": {
+    "value": "#33312d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "925"
+    ]
+  },
+  "primitive-color-warm-neutral-950": {
+    "value": "#292724",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "950"
+    ]
+  },
+  "primitive-color-warm-neutral-960": {
+    "value": "#1f1d1b",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "960"
+    ]
+  },
+  "primitive-color-warm-neutral-970": {
+    "value": "#171614",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "970"
+    ]
+  },
+  "primitive-color-warm-neutral-980": {
+    "value": "#0f0e0d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "warm-neutral",
+      "980"
+    ]
+  },
   "primitive-color-warm-neutral-200-70": {
-    "value": "#dcd4ccb3",
+    "value": "#d4cfc8",
     "type": "color",
     "path": [
       "primitive-color",
@@ -450,7 +558,7 @@ const tokens = {
     ]
   },
   "primitive-color-warm-neutral-200-30": {
-    "value": "#dcd4cc4d",
+    "value": "#d4cfc84d",
     "type": "color",
     "path": [
       "primitive-color",
@@ -459,7 +567,7 @@ const tokens = {
     ]
   },
   "primitive-color-warm-neutral-200-50": {
-    "value": "#dcd4cc80",
+    "value": "#d4cfc880",
     "type": "color",
     "path": [
       "primitive-color",
@@ -468,7 +576,7 @@ const tokens = {
     ]
   },
   "primitive-color-warm-neutral-200-20": {
-    "value": "#dcd4cc33",
+    "value": "#d4cfc833",
     "type": "color",
     "path": [
       "primitive-color",
@@ -477,7 +585,7 @@ const tokens = {
     ]
   },
   "primitive-color-warm-neutral-200-16": {
-    "value": "#dcd4cc29",
+    "value": "#d4cfc829",
     "type": "color",
     "path": [
       "primitive-color",
@@ -486,7 +594,7 @@ const tokens = {
     ]
   },
   "primitive-color-warm-neutral-200-8": {
-    "value": "#dcd4cc14",
+    "value": "#d4cfc814",
     "type": "color",
     "path": [
       "primitive-color",
@@ -495,7 +603,7 @@ const tokens = {
     ]
   },
   "primitive-color-warm-neutral-200-4": {
-    "value": "#dcd4cc0a",
+    "value": "#d4cfc80a",
     "type": "color",
     "path": [
       "primitive-color",
@@ -513,7 +621,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-10": {
-    "value": "#edf0f9",
+    "value": "#eef2fb",
     "type": "color",
     "path": [
       "primitive-color",
@@ -522,7 +630,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-20": {
-    "value": "#e4e9f6",
+    "value": "#e9eef9",
     "type": "color",
     "path": [
       "primitive-color",
@@ -531,7 +639,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-30": {
-    "value": "#d5ddf1",
+    "value": "#e0e7f7",
     "type": "color",
     "path": [
       "primitive-color",
@@ -540,7 +648,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-40": {
-    "value": "#becae9",
+    "value": "#c0ceef",
     "type": "color",
     "path": [
       "primitive-color",
@@ -549,7 +657,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-50": {
-    "value": "#abbbe3",
+    "value": "#a0b5e6",
     "type": "color",
     "path": [
       "primitive-color",
@@ -558,7 +666,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-60": {
-    "value": "#98acdc",
+    "value": "#86a0dd",
     "type": "color",
     "path": [
       "primitive-color",
@@ -567,7 +675,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-70": {
-    "value": "#849cd6",
+    "value": "#6e8bd4",
     "type": "color",
     "path": [
       "primitive-color",
@@ -576,7 +684,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-80": {
-    "value": "#718dd0",
+    "value": "#5d7cca",
     "type": "color",
     "path": [
       "primitive-color",
@@ -585,7 +693,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-90": {
-    "value": "#5e7dc9",
+    "value": "#5475c6",
     "type": "color",
     "path": [
       "primitive-color",
@@ -603,7 +711,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-200": {
-    "value": "#3d61b7",
+    "value": "#4364b6",
     "type": "color",
     "path": [
       "primitive-color",
@@ -612,7 +720,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-300": {
-    "value": "#3555a0",
+    "value": "#3a5aaa",
     "type": "color",
     "path": [
       "primitive-color",
@@ -621,7 +729,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-400": {
-    "value": "#273e76",
+    "value": "#345499",
     "type": "color",
     "path": [
       "primitive-color",
@@ -630,7 +738,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-500": {
-    "value": "#19284c",
+    "value": "#2d4889",
     "type": "color",
     "path": [
       "primitive-color",
@@ -639,7 +747,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-600": {
-    "value": "#0b1222",
+    "value": "#22386b",
     "type": "color",
     "path": [
       "primitive-color",
@@ -648,7 +756,7 @@ const tokens = {
     ]
   },
   "primitive-color-brand-700": {
-    "value": "#04070d",
+    "value": "#1b2d57",
     "type": "color",
     "path": [
       "primitive-color",
@@ -656,62 +764,197 @@ const tokens = {
       "700"
     ]
   },
-  "primitive-color-brand-300-50": {
-    "value": "#3555a080",
+  "primitive-color-brand-800": {
+    "value": "#152343",
     "type": "color",
     "path": [
       "primitive-color",
       "brand",
-      "300-50"
+      "800"
     ]
   },
-  "primitive-color-brand-300-30": {
-    "value": "#3555a04d",
+  "primitive-color-brand-850": {
+    "value": "#101a33",
     "type": "color",
     "path": [
       "primitive-color",
       "brand",
-      "300-30"
+      "850"
     ]
   },
-  "primitive-color-brand-300-20": {
-    "value": "#3555a033",
+  "primitive-color-brand-900": {
+    "value": "#0a1223",
     "type": "color",
     "path": [
       "primitive-color",
       "brand",
-      "300-20"
+      "900"
     ]
   },
-  "primitive-color-brand-300-16": {
-    "value": "#3555a029",
+  "primitive-color-brand-950": {
+    "value": "#060a15",
     "type": "color",
     "path": [
       "primitive-color",
       "brand",
-      "300-16"
+      "950"
     ]
   },
-  "primitive-color-brand-300-8": {
-    "value": "#3555a014",
+  "primitive-color-brand-50-90": {
+    "value": "#a0b5e6e6",
     "type": "color",
     "path": [
       "primitive-color",
       "brand",
-      "300-8"
+      "50-90"
     ]
   },
-  "primitive-color-brand-300-4": {
-    "value": "#3555a00a",
+  "primitive-color-brand-50-70": {
+    "value": "#a0b5e6b3",
     "type": "color",
     "path": [
       "primitive-color",
       "brand",
-      "300-4"
+      "50-70"
+    ]
+  },
+  "primitive-color-brand-50-50": {
+    "value": "#a0b5e680",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "50-50"
+    ]
+  },
+  "primitive-color-brand-50-30": {
+    "value": "#a0b5e64d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "50-30"
+    ]
+  },
+  "primitive-color-brand-50-20": {
+    "value": "#a0b5e633",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "50-20"
+    ]
+  },
+  "primitive-color-brand-50-16": {
+    "value": "#a0b5e629",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "50-16"
+    ]
+  },
+  "primitive-color-brand-50-8": {
+    "value": "#a0b5e614",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "50-8"
+    ]
+  },
+  "primitive-color-brand-50-4": {
+    "value": "#a0b5e60a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "50-4"
+    ]
+  },
+  "primitive-color-brand-900-90": {
+    "value": "#0a1223e6",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "900-90"
+    ]
+  },
+  "primitive-color-brand-900-70": {
+    "value": "#0a1223b3",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "900-70"
+    ]
+  },
+  "primitive-color-brand-900-50": {
+    "value": "#0a122380",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "900-50"
+    ]
+  },
+  "primitive-color-brand-900-30": {
+    "value": "#0a12234d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "900-30"
+    ]
+  },
+  "primitive-color-brand-900-20": {
+    "value": "#0a122333",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "900-20"
+    ]
+  },
+  "primitive-color-brand-900-16": {
+    "value": "#0a122329",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "900-16"
+    ]
+  },
+  "primitive-color-brand-900-8": {
+    "value": "#0a122314",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "900-8"
+    ]
+  },
+  "primitive-color-brand-900-4": {
+    "value": "#0a12230a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "brand",
+      "900-4"
+    ]
+  },
+  "primitive-color-red-0": {
+    "value": "#fdfafa",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "0"
     ]
   },
   "primitive-color-red-10": {
-    "value": "#fefdfd",
+    "value": "#faefef",
     "type": "color",
     "path": [
       "primitive-color",
@@ -720,7 +963,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-20": {
-    "value": "#fefbfb",
+    "value": "#f5dfdf",
     "type": "color",
     "path": [
       "primitive-color",
@@ -729,7 +972,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-30": {
-    "value": "#fdf7f7",
+    "value": "#f0cdcd",
     "type": "color",
     "path": [
       "primitive-color",
@@ -738,7 +981,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-40": {
-    "value": "#fcf4f4",
+    "value": "#e9b7b7",
     "type": "color",
     "path": [
       "primitive-color",
@@ -747,7 +990,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-50": {
-    "value": "#f9ecec",
+    "value": "#e29f9f",
     "type": "color",
     "path": [
       "primitive-color",
@@ -756,7 +999,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-60": {
-    "value": "#f4d9d9",
+    "value": "#d98686",
     "type": "color",
     "path": [
       "primitive-color",
@@ -765,7 +1008,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-70": {
-    "value": "#e7b4b4",
+    "value": "#cf6e6e",
     "type": "color",
     "path": [
       "primitive-color",
@@ -774,7 +1017,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-80": {
-    "value": "#de8c8c",
+    "value": "#c55858",
     "type": "color",
     "path": [
       "primitive-color",
@@ -783,7 +1026,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-90": {
-    "value": "#d36666",
+    "value": "#ba4646",
     "type": "color",
     "path": [
       "primitive-color",
@@ -792,7 +1035,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-100": {
-    "value": "#c84040",
+    "value": "#b03a3a",
     "type": "color",
     "path": [
       "primitive-color",
@@ -801,7 +1044,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-110": {
-    "value": "#aa3636",
+    "value": "#a63232",
     "type": "color",
     "path": [
       "primitive-color",
@@ -819,7 +1062,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-130": {
-    "value": "#862727",
+    "value": "#882727",
     "type": "color",
     "path": [
       "primitive-color",
@@ -828,7 +1071,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-140": {
-    "value": "#6e2020",
+    "value": "#722121",
     "type": "color",
     "path": [
       "primitive-color",
@@ -837,7 +1080,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-150": {
-    "value": "#621c1c",
+    "value": "#5f1b1b",
     "type": "color",
     "path": [
       "primitive-color",
@@ -846,7 +1089,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-160": {
-    "value": "#3e1212",
+    "value": "#4d1616",
     "type": "color",
     "path": [
       "primitive-color",
@@ -855,7 +1098,7 @@ const tokens = {
     ]
   },
   "primitive-color-red-170": {
-    "value": "#330f0f",
+    "value": "#3e1212",
     "type": "color",
     "path": [
       "primitive-color",
@@ -863,8 +1106,125 @@ const tokens = {
       "170"
     ]
   },
+  "primitive-color-red-180": {
+    "value": "#2f0e0e",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "180"
+    ]
+  },
+  "primitive-color-red-190": {
+    "value": "#230a0a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "190"
+    ]
+  },
+  "primitive-color-red-200": {
+    "value": "#170606",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "200"
+    ]
+  },
+  "primitive-color-red-210": {
+    "value": "#0c0303",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "210"
+    ]
+  },
+  "primitive-color-red-120-80": {
+    "value": "#9d2d2dcc",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "120-80"
+    ]
+  },
+  "primitive-color-red-120-70": {
+    "value": "#9d2d2db3",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "120-70"
+    ]
+  },
+  "primitive-color-red-120-50": {
+    "value": "#9d2d2d80",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "120-50"
+    ]
+  },
+  "primitive-color-red-120-30": {
+    "value": "#9d2d2d4d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "120-30"
+    ]
+  },
+  "primitive-color-red-120-20": {
+    "value": "#9d2d2d33",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "120-20"
+    ]
+  },
+  "primitive-color-red-120-16": {
+    "value": "#9d2d2d29",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "120-16"
+    ]
+  },
+  "primitive-color-red-120-8": {
+    "value": "#9d2d2d14",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "120-8"
+    ]
+  },
+  "primitive-color-red-120-4": {
+    "value": "#9d2d2d0a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "red",
+      "120-4"
+    ]
+  },
+  "primitive-color-orange-0": {
+    "value": "#fcfafa",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "0"
+    ]
+  },
   "primitive-color-orange-10": {
-    "value": "#fdf7f3",
+    "value": "#f9f1ed",
     "type": "color",
     "path": [
       "primitive-color",
@@ -873,7 +1233,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-20": {
-    "value": "#fcf1ec",
+    "value": "#f9e2d6",
     "type": "color",
     "path": [
       "primitive-color",
@@ -882,7 +1242,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-30": {
-    "value": "#f9e3d8",
+    "value": "#f9d2bc",
     "type": "color",
     "path": [
       "primitive-color",
@@ -891,7 +1251,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-40": {
-    "value": "#f4c8b1",
+    "value": "#fabd9d",
     "type": "color",
     "path": [
       "primitive-color",
@@ -900,7 +1260,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-50": {
-    "value": "#eeac8b",
+    "value": "#fda97b",
     "type": "color",
     "path": [
       "primitive-color",
@@ -909,7 +1269,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-60": {
-    "value": "#e99065",
+    "value": "#fe9156",
     "type": "color",
     "path": [
       "primitive-color",
@@ -918,7 +1278,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-70": {
-    "value": "#e67337",
+    "value": "#f97b38",
     "type": "color",
     "path": [
       "primitive-color",
@@ -927,7 +1287,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-80": {
-    "value": "#e2601c",
+    "value": "#f56618",
     "type": "color",
     "path": [
       "primitive-color",
@@ -936,7 +1296,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-90": {
-    "value": "#c75519",
+    "value": "#e1580e",
     "type": "color",
     "path": [
       "primitive-color",
@@ -945,7 +1305,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-100": {
-    "value": "#ac4915",
+    "value": "#c14d0f",
     "type": "color",
     "path": [
       "primitive-color",
@@ -954,7 +1314,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-110": {
-    "value": "#913d12",
+    "value": "#a5420d",
     "type": "color",
     "path": [
       "primitive-color",
@@ -963,7 +1323,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-120": {
-    "value": "#75320f",
+    "value": "#8d380b",
     "type": "color",
     "path": [
       "primitive-color",
@@ -972,7 +1332,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-130": {
-    "value": "#5a260b",
+    "value": "#72300c",
     "type": "color",
     "path": [
       "primitive-color",
@@ -981,7 +1341,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-140": {
-    "value": "#3f1b08",
+    "value": "#59270c",
     "type": "color",
     "path": [
       "primitive-color",
@@ -990,7 +1350,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-150": {
-    "value": "#240f04",
+    "value": "#45200c",
     "type": "color",
     "path": [
       "primitive-color",
@@ -999,7 +1359,7 @@ const tokens = {
     ]
   },
   "primitive-color-orange-160": {
-    "value": "#160903",
+    "value": "#36190b",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1007,8 +1367,125 @@ const tokens = {
       "160"
     ]
   },
+  "primitive-color-orange-170": {
+    "value": "#28140a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "170"
+    ]
+  },
+  "primitive-color-orange-180": {
+    "value": "#1d0f08",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "180"
+    ]
+  },
+  "primitive-color-orange-190": {
+    "value": "#150b06",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "190"
+    ]
+  },
+  "primitive-color-orange-200": {
+    "value": "#0f0805",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "200"
+    ]
+  },
+  "primitive-color-orange-210": {
+    "value": "#090503",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "210"
+    ]
+  },
+  "primitive-color-orange-80-70": {
+    "value": "#f56618b3",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "80-70"
+    ]
+  },
+  "primitive-color-orange-80-50": {
+    "value": "#f5661880",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "80-50"
+    ]
+  },
+  "primitive-color-orange-80-30": {
+    "value": "#f566184d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "80-30"
+    ]
+  },
+  "primitive-color-orange-80-20": {
+    "value": "#f5661833",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "80-20"
+    ]
+  },
+  "primitive-color-orange-80-16": {
+    "value": "#f5661829",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "80-16"
+    ]
+  },
+  "primitive-color-orange-80-8": {
+    "value": "#f5661814",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "80-8"
+    ]
+  },
+  "primitive-color-orange-80-4": {
+    "value": "#f566180a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "orange",
+      "80-4"
+    ]
+  },
+  "primitive-color-green-0": {
+    "value": "#f8fcf9",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "0"
+    ]
+  },
   "primitive-color-green-10": {
-    "value": "#f7fcf8",
+    "value": "#f0faf1",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1017,7 +1494,7 @@ const tokens = {
     ]
   },
   "primitive-color-green-20": {
-    "value": "#e4f5e6",
+    "value": "#dff6e2",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1026,7 +1503,7 @@ const tokens = {
     ]
   },
   "primitive-color-green-30": {
-    "value": "#d9edde",
+    "value": "#c9edce",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1035,7 +1512,7 @@ const tokens = {
     ]
   },
   "primitive-color-green-40": {
-    "value": "#b3dbbd",
+    "value": "#b4e4b9",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1044,7 +1521,7 @@ const tokens = {
     ]
   },
   "primitive-color-green-50": {
-    "value": "#afe0b5",
+    "value": "#9edba5",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1053,7 +1530,7 @@ const tokens = {
     ]
   },
   "primitive-color-green-60": {
-    "value": "#7acc83",
+    "value": "#7acd84",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1062,7 +1539,7 @@ const tokens = {
     ]
   },
   "primitive-color-green-70": {
-    "value": "#558f5c",
+    "value": "#59c56b",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1071,7 +1548,7 @@ const tokens = {
     ]
   },
   "primitive-color-green-80": {
-    "value": "#54845a",
+    "value": "#3db856",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1080,7 +1557,7 @@ const tokens = {
     ]
   },
   "primitive-color-green-90": {
-    "value": "#446048",
+    "value": "#36a14f",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1089,7 +1566,7 @@ const tokens = {
     ]
   },
   "primitive-color-green-100": {
-    "value": "#29312a",
+    "value": "#358d4b",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1097,8 +1574,152 @@ const tokens = {
       "100"
     ]
   },
+  "primitive-color-green-110": {
+    "value": "#2a793e",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "110"
+    ]
+  },
+  "primitive-color-green-120": {
+    "value": "#1f602e",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "120"
+    ]
+  },
+  "primitive-color-green-130": {
+    "value": "#174f26",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "130"
+    ]
+  },
+  "primitive-color-green-140": {
+    "value": "#0d351b",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "140"
+    ]
+  },
+  "primitive-color-green-150": {
+    "value": "#092012",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "150"
+    ]
+  },
+  "primitive-color-green-160": {
+    "value": "#07180e",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "160"
+    ]
+  },
+  "primitive-color-green-170": {
+    "value": "#06110a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "170"
+    ]
+  },
+  "primitive-color-green-180": {
+    "value": "#040b07",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "180"
+    ]
+  },
+  "primitive-color-green-190": {
+    "value": "#020604",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "190"
+    ]
+  },
+  "primitive-color-green-110-70": {
+    "value": "#2a793eb3",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "110-70"
+    ]
+  },
+  "primitive-color-green-110-50": {
+    "value": "#2a793e80",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "110-50"
+    ]
+  },
+  "primitive-color-green-110-30": {
+    "value": "#2a793e4d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "110-30"
+    ]
+  },
+  "primitive-color-green-110-20": {
+    "value": "#2a793e33",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "110-20"
+    ]
+  },
+  "primitive-color-green-110-16": {
+    "value": "#2a793e29",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "110-16"
+    ]
+  },
+  "primitive-color-green-110-8": {
+    "value": "#2a793e14",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "110-8"
+    ]
+  },
+  "primitive-color-green-110-4": {
+    "value": "#2a793e0a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "green",
+      "110-4"
+    ]
+  },
   "primitive-color-seabreeze-10": {
-    "value": "#f4fafc",
+    "value": "#f6fbfd",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1107,7 +1728,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-20": {
-    "value": "#edf6fa",
+    "value": "#e9f6fc",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1116,7 +1737,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-30": {
-    "value": "#dbeef5",
+    "value": "#dbf0fb",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1125,7 +1746,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-40": {
-    "value": "#b7dcea",
+    "value": "#c4e7f8",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1134,7 +1755,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-50": {
-    "value": "#93cbe0",
+    "value": "#b1e1f6",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1143,7 +1764,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-60": {
-    "value": "#4ba8cb",
+    "value": "#95d4ee",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1152,7 +1773,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-70": {
-    "value": "#4ba8cb",
+    "value": "#7bc7e5",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1161,7 +1782,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-80": {
-    "value": "#408fad",
+    "value": "#66badb",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1170,7 +1791,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-90": {
-    "value": "#35768e",
+    "value": "#5ab1d3",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1179,7 +1800,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-100": {
-    "value": "#2a3b41",
+    "value": "#52abce",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1188,7 +1809,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-110": {
-    "value": "#242e31",
+    "value": "#4ba8cb",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1196,8 +1817,251 @@ const tokens = {
       "110"
     ]
   },
+  "primitive-color-seabreeze-120": {
+    "value": "#3597bb",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "seabreeze",
+      "120"
+    ]
+  },
+  "primitive-color-seabreeze-130": {
+    "value": "#2a7e9d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "seabreeze",
+      "130"
+    ]
+  },
+  "primitive-color-seabreeze-140": {
+    "value": "#216883",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "seabreeze",
+      "140"
+    ]
+  },
+  "primitive-color-seabreeze-150": {
+    "value": "#185167",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "seabreeze",
+      "150"
+    ]
+  },
+  "primitive-color-seabreeze-160": {
+    "value": "#123c4e",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "seabreeze",
+      "160"
+    ]
+  },
+  "primitive-color-seabreeze-170": {
+    "value": "#0e2c39",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "seabreeze",
+      "170"
+    ]
+  },
+  "primitive-color-seabreeze-180": {
+    "value": "#0a1d26",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "seabreeze",
+      "180"
+    ]
+  },
+  "primitive-color-seabreeze-190": {
+    "value": "#060f14",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "seabreeze",
+      "190"
+    ]
+  },
+  "primitive-color-lagoon-10": {
+    "value": "#f8fbfc",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "10"
+    ]
+  },
+  "primitive-color-lagoon-20": {
+    "value": "#edf6f7",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "20"
+    ]
+  },
+  "primitive-color-lagoon-30": {
+    "value": "#deeff2",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "30"
+    ]
+  },
+  "primitive-color-lagoon-40": {
+    "value": "#c9e5e9",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "40"
+    ]
+  },
+  "primitive-color-lagoon-50": {
+    "value": "#afd9de",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "50"
+    ]
+  },
+  "primitive-color-lagoon-60": {
+    "value": "#9aced5",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "60"
+    ]
+  },
+  "primitive-color-lagoon-70": {
+    "value": "#89c5cd",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "70"
+    ]
+  },
+  "primitive-color-lagoon-80": {
+    "value": "#7bbec6",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "80"
+    ]
+  },
+  "primitive-color-lagoon-90": {
+    "value": "#5dbac6",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "90"
+    ]
+  },
+  "primitive-color-lagoon-100": {
+    "value": "#3db7c7",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "100"
+    ]
+  },
+  "primitive-color-lagoon-110": {
+    "value": "#2dabbe",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "110"
+    ]
+  },
+  "primitive-color-lagoon-120": {
+    "value": "#23a4b8",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "120"
+    ]
+  },
+  "primitive-color-lagoon-130": {
+    "value": "#1e99ae",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "130"
+    ]
+  },
+  "primitive-color-lagoon-140": {
+    "value": "#187f91",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "140"
+    ]
+  },
+  "primitive-color-lagoon-150": {
+    "value": "#146171",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "150"
+    ]
+  },
+  "primitive-color-lagoon-160": {
+    "value": "#104956",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "160"
+    ]
+  },
+  "primitive-color-lagoon-170": {
+    "value": "#0c323b",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "170"
+    ]
+  },
+  "primitive-color-lagoon-180": {
+    "value": "#092127",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "180"
+    ]
+  },
+  "primitive-color-lagoon-190": {
+    "value": "#07171c",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "lagoon",
+      "190"
+    ]
+  },
   "primitive-color-jade-10": {
-    "value": "#f2faf9",
+    "value": "#f8fcfb",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1206,7 +2070,7 @@ const tokens = {
     ]
   },
   "primitive-color-jade-20": {
-    "value": "#e9f6f5",
+    "value": "#edf8f5",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1215,7 +2079,7 @@ const tokens = {
     ]
   },
   "primitive-color-jade-30": {
-    "value": "#d2edeb",
+    "value": "#daf1eb",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1224,7 +2088,7 @@ const tokens = {
     ]
   },
   "primitive-color-jade-40": {
-    "value": "#a5dcd7",
+    "value": "#c7ebe1",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1233,7 +2097,7 @@ const tokens = {
     ]
   },
   "primitive-color-jade-50": {
-    "value": "#79cac3",
+    "value": "#abe2d5",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1242,7 +2106,7 @@ const tokens = {
     ]
   },
   "primitive-color-jade-60": {
-    "value": "#4cb9af",
+    "value": "#94dbc9",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1251,7 +2115,7 @@ const tokens = {
     ]
   },
   "primitive-color-jade-70": {
-    "value": "#1fa79b",
+    "value": "#85d6c2",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1260,7 +2124,7 @@ const tokens = {
     ]
   },
   "primitive-color-jade-80": {
-    "value": "#1a8e84",
+    "value": "#79d2bc",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1269,7 +2133,7 @@ const tokens = {
     ]
   },
   "primitive-color-jade-90": {
-    "value": "#16756d",
+    "value": "#6fceb7",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1278,7 +2142,7 @@ const tokens = {
     ]
   },
   "primitive-color-jade-100": {
-    "value": "#136059",
+    "value": "#41c8a9",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1287,7 +2151,7 @@ const tokens = {
     ]
   },
   "primitive-color-jade-110": {
-    "value": "#17514c",
+    "value": "#2bab92",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1296,7 +2160,7 @@ const tokens = {
     ]
   },
   "primitive-color-jade-120": {
-    "value": "#213b39",
+    "value": "#208877",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1305,7 +2169,7 @@ const tokens = {
     ]
   },
   "primitive-color-jade-130": {
-    "value": "#212e2c",
+    "value": "#1a766a",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1313,8 +2177,125 @@ const tokens = {
       "130"
     ]
   },
+  "primitive-color-jade-140": {
+    "value": "#176358",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "140"
+    ]
+  },
+  "primitive-color-jade-150": {
+    "value": "#135349",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "150"
+    ]
+  },
+  "primitive-color-jade-160": {
+    "value": "#10423b",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "160"
+    ]
+  },
+  "primitive-color-jade-170": {
+    "value": "#0d362f",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "170"
+    ]
+  },
+  "primitive-color-jade-180": {
+    "value": "#0a2925",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "180"
+    ]
+  },
+  "primitive-color-jade-190": {
+    "value": "#061d19",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "190"
+    ]
+  },
+  "primitive-color-jade-110-70": {
+    "value": "#2bab92b3",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "110-70"
+    ]
+  },
+  "primitive-color-jade-110-50": {
+    "value": "#2bab9280",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "110-50"
+    ]
+  },
+  "primitive-color-jade-110-30": {
+    "value": "#2bab924d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "110-30"
+    ]
+  },
+  "primitive-color-jade-110-20": {
+    "value": "#2bab9233",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "110-20"
+    ]
+  },
+  "primitive-color-jade-110-16": {
+    "value": "#2bab9229",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "110-16"
+    ]
+  },
+  "primitive-color-jade-110-8": {
+    "value": "#2bab9214",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "110-8"
+    ]
+  },
+  "primitive-color-jade-110-4": {
+    "value": "#2bab920a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "jade",
+      "110-4"
+    ]
+  },
   "primitive-color-amethyst-0": {
-    "value": "#fdfdff",
+    "value": "#faf9fc",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1323,7 +2304,7 @@ const tokens = {
     ]
   },
   "primitive-color-amethyst-10": {
-    "value": "#f8f7fc",
+    "value": "#f4f2fa",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1332,7 +2313,7 @@ const tokens = {
     ]
   },
   "primitive-color-amethyst-20": {
-    "value": "#f3f2f9",
+    "value": "#e8e6f5",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1341,7 +2322,7 @@ const tokens = {
     ]
   },
   "primitive-color-amethyst-30": {
-    "value": "#e7e5f4",
+    "value": "#dcd9ef",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1350,7 +2331,7 @@ const tokens = {
     ]
   },
   "primitive-color-amethyst-40": {
-    "value": "#cfcbe9",
+    "value": "#cbc6e8",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1359,7 +2340,7 @@ const tokens = {
     ]
   },
   "primitive-color-amethyst-50": {
-    "value": "#b7b2de",
+    "value": "#b9b3e0",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1368,7 +2349,7 @@ const tokens = {
     ]
   },
   "primitive-color-amethyst-60": {
-    "value": "#9f98d3",
+    "value": "#a8a0d8",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1377,7 +2358,7 @@ const tokens = {
     ]
   },
   "primitive-color-amethyst-70": {
-    "value": "#877ec8",
+    "value": "#9a90d0",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1386,7 +2367,7 @@ const tokens = {
     ]
   },
   "primitive-color-amethyst-80": {
-    "value": "#736baa",
+    "value": "#877ec8",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1395,7 +2376,7 @@ const tokens = {
     ]
   },
   "primitive-color-amethyst-90": {
-    "value": "#5f588c",
+    "value": "#6e64b8",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1404,7 +2385,7 @@ const tokens = {
     ]
   },
   "primitive-color-amethyst-100": {
-    "value": "#353341",
+    "value": "#5951a0",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1412,8 +2393,134 @@ const tokens = {
       "100"
     ]
   },
+  "primitive-color-amethyst-120": {
+    "value": "#464080",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "120"
+    ]
+  },
+  "primitive-color-amethyst-130": {
+    "value": "#353063",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "130"
+    ]
+  },
+  "primitive-color-amethyst-140": {
+    "value": "#2b2751",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "140"
+    ]
+  },
+  "primitive-color-amethyst-150": {
+    "value": "#221e3f",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "150"
+    ]
+  },
+  "primitive-color-amethyst-160": {
+    "value": "#19172f",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "160"
+    ]
+  },
+  "primitive-color-amethyst-170": {
+    "value": "#11101f",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "170"
+    ]
+  },
+  "primitive-color-amethyst-180": {
+    "value": "#080812",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "180"
+    ]
+  },
+  "primitive-color-amethyst-100-70": {
+    "value": "#5951a0b3",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "100-70"
+    ]
+  },
+  "primitive-color-amethyst-100-50": {
+    "value": "#5951a080",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "100-50"
+    ]
+  },
+  "primitive-color-amethyst-100-25": {
+    "value": "#5951a040",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "100-25"
+    ]
+  },
+  "primitive-color-amethyst-100-16": {
+    "value": "#5951a029",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "100-16"
+    ]
+  },
+  "primitive-color-amethyst-100-8": {
+    "value": "#5951a014",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "100-8"
+    ]
+  },
+  "primitive-color-amethyst-100-4": {
+    "value": "#5951a00a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "amethyst",
+      "100-4"
+    ]
+  },
+  "primitive-color-saffron-0": {
+    "value": "#fefdfb",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "0"
+    ]
+  },
   "primitive-color-saffron-10": {
-    "value": "#fffcf4",
+    "value": "#fdfbf2",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1422,7 +2529,7 @@ const tokens = {
     ]
   },
   "primitive-color-saffron-20": {
-    "value": "#fef9ed",
+    "value": "#fcf7e3",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1431,7 +2538,7 @@ const tokens = {
     ]
   },
   "primitive-color-saffron-30": {
-    "value": "#fef4dc",
+    "value": "#fcf3d4",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1440,7 +2547,7 @@ const tokens = {
     ]
   },
   "primitive-color-saffron-40": {
-    "value": "#fce9b9",
+    "value": "#fcefc5",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1449,7 +2556,7 @@ const tokens = {
     ]
   },
   "primitive-color-saffron-50": {
-    "value": "#fbde95",
+    "value": "#fbeab1",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1458,7 +2565,7 @@ const tokens = {
     ]
   },
   "primitive-color-saffron-60": {
-    "value": "#f9d372",
+    "value": "#fbe39d",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1467,7 +2574,7 @@ const tokens = {
     ]
   },
   "primitive-color-saffron-70": {
-    "value": "#f8c84f",
+    "value": "#fade89",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1476,7 +2583,7 @@ const tokens = {
     ]
   },
   "primitive-color-saffron-80": {
-    "value": "#d3aa43",
+    "value": "#f9d87b",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1485,7 +2592,7 @@ const tokens = {
     ]
   },
   "primitive-color-saffron-90": {
-    "value": "#ae8c37",
+    "value": "#f9d36c",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1494,7 +2601,7 @@ const tokens = {
     ]
   },
   "primitive-color-saffron-100": {
-    "value": "#85630d",
+    "value": "#f9cd5d",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1503,7 +2610,7 @@ const tokens = {
     ]
   },
   "primitive-color-saffron-110": {
-    "value": "#5f4c19",
+    "value": "#f8ca56",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1512,7 +2619,7 @@ const tokens = {
     ]
   },
   "primitive-color-saffron-120": {
-    "value": "#4b422b",
+    "value": "#f8c84f",
     "type": "color",
     "path": [
       "primitive-color",
@@ -1521,12 +2628,353 @@ const tokens = {
     ]
   },
   "primitive-color-saffron-130": {
-    "value": "#2d2a24",
+    "value": "#f0a119",
     "type": "color",
     "path": [
       "primitive-color",
       "saffron",
       "130"
+    ]
+  },
+  "primitive-color-saffron-140": {
+    "value": "#c67410",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "140"
+    ]
+  },
+  "primitive-color-saffron-150": {
+    "value": "#99520f",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "150"
+    ]
+  },
+  "primitive-color-saffron-160": {
+    "value": "#73390d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "160"
+    ]
+  },
+  "primitive-color-saffron-170": {
+    "value": "#55290c",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "170"
+    ]
+  },
+  "primitive-color-saffron-180": {
+    "value": "#381b0a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "180"
+    ]
+  },
+  "primitive-color-saffron-190": {
+    "value": "#261208",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "190"
+    ]
+  },
+  "primitive-color-saffron-200": {
+    "value": "#180c06",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "200"
+    ]
+  },
+  "primitive-color-saffron-210": {
+    "value": "#0c0603",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "210"
+    ]
+  },
+  "primitive-color-saffron-130-50": {
+    "value": "#f0a11980",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "130-50"
+    ]
+  },
+  "primitive-color-saffron-130-30": {
+    "value": "#f0a1194d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "130-30"
+    ]
+  },
+  "primitive-color-saffron-130-16": {
+    "value": "#f0a11929",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "130-16"
+    ]
+  },
+  "primitive-color-saffron-130-8": {
+    "value": "#f0a11914",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "saffron",
+      "130-8"
+    ]
+  },
+  "primitive-color-sidenav-label": {
+    "value": "Accounting",
+    "type": "string",
+    "path": [
+      "primitive-color",
+      "sidenav-label"
+    ]
+  },
+  "primitive-color-mauve-0": {
+    "value": "#fcf9fb",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "0"
+    ]
+  },
+  "primitive-color-mauve-10": {
+    "value": "#faf2f7",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "10"
+    ]
+  },
+  "primitive-color-mauve-20": {
+    "value": "#f7e9f2",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "20"
+    ]
+  },
+  "primitive-color-mauve-30": {
+    "value": "#f2d9e9",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "30"
+    ]
+  },
+  "primitive-color-mauve-40": {
+    "value": "#ebc6de",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "40"
+    ]
+  },
+  "primitive-color-mauve-50": {
+    "value": "#e2accf",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "50"
+    ]
+  },
+  "primitive-color-mauve-60": {
+    "value": "#d586b9",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "60"
+    ]
+  },
+  "primitive-color-mauve-70": {
+    "value": "#c85fa5",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "70"
+    ]
+  },
+  "primitive-color-mauve-80": {
+    "value": "#b83d8f",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "80"
+    ]
+  },
+  "primitive-color-mauve-90": {
+    "value": "#9b3178",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "90"
+    ]
+  },
+  "primitive-color-mauve-100": {
+    "value": "#842a66",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "100"
+    ]
+  },
+  "primitive-color-mauve-110": {
+    "value": "#74255a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "110"
+    ]
+  },
+  "primitive-color-mauve-120": {
+    "value": "#65204e",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "120"
+    ]
+  },
+  "primitive-color-mauve-130": {
+    "value": "#521940",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "130"
+    ]
+  },
+  "primitive-color-mauve-140": {
+    "value": "#441335",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "140"
+    ]
+  },
+  "primitive-color-mauve-150": {
+    "value": "#380f2d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "150"
+    ]
+  },
+  "primitive-color-mauve-160": {
+    "value": "#2d0b24",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "160"
+    ]
+  },
+  "primitive-color-mauve-170": {
+    "value": "#21081b",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "170"
+    ]
+  },
+  "primitive-color-mauve-180": {
+    "value": "#180614",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "180"
+    ]
+  },
+  "primitive-color-mauve-190": {
+    "value": "#12050f",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "190"
+    ]
+  },
+  "primitive-color-mauve-200": {
+    "value": "#0c030a",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "200"
+    ]
+  },
+  "primitive-color-mauve-80-50": {
+    "value": "#b83d8f80",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "80-50"
+    ]
+  },
+  "primitive-color-mauve-80-30": {
+    "value": "#b83d8f4d",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "80-30"
+    ]
+  },
+  "primitive-color-mauve-80-16": {
+    "value": "#b83d8f29",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "80-16"
+    ]
+  },
+  "primitive-color-mauve-80-8": {
+    "value": "#b83d8f14",
+    "type": "color",
+    "path": [
+      "primitive-color",
+      "mauve",
+      "80-8"
     ]
   },
   "primitive-type-family-brand": {
@@ -2257,7 +3705,7 @@ const tokens = {
     ]
   },
   "primitive-type-letter-spacing-compact": {
-    "value": -0.009999999776482582,
+    "value": 0,
     "type": "number",
     "path": [
       "primitive-type",
@@ -2266,7 +3714,7 @@ const tokens = {
     ]
   },
   "primitive-type-letter-spacing-standard": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "primitive-type",
@@ -2275,7 +3723,7 @@ const tokens = {
     ]
   },
   "primitive-type-letter-spacing-wide": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "primitive-type",
@@ -2581,7 +4029,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-primary-base": {
-    "value": "#3555a0",
+    "value": "#2d4889",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2593,7 +4041,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-primary-hover": {
-    "value": "#273e76",
+    "value": "#22386b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2604,20 +4052,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-primary-focused": {
-    "value": "#19284c",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "primary",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-text-action-primary-pressed": {
-    "value": "#0b1222",
+    "value": "#1b2d57",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2629,7 +4065,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-primary-disabled": {
-    "value": "#98acdc",
+    "value": "#a0b5e6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2641,7 +4077,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-primaryinverse-base": {
-    "value": "#5e7dc9",
+    "value": "#ffffff",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2653,7 +4089,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-primaryinverse-hover": {
-    "value": "#4b6ec3",
+    "value": "#ffffff",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2664,20 +4100,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-primaryinverse-focused": {
-    "value": "#3d61b7",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "primaryinverse",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-text-action-primaryinverse-pressed": {
-    "value": "#3555a0",
+    "value": "#eef2fb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2689,7 +4113,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-primaryinverse-disabled": {
-    "value": "#849cd6",
+    "value": "#ffffffe6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2701,7 +4125,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-secondary-base": {
-    "value": "#3b3b3b",
+    "value": "#313131",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2713,7 +4137,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-secondary-hover": {
-    "value": "#363636",
+    "value": "#252525",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2724,20 +4148,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-secondary-focused": {
-    "value": "#252525",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "secondary",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-text-action-secondary-pressed": {
-    "value": "#202020",
+    "value": "#1b1b1b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2749,7 +4161,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-secondary-disabled": {
-    "value": "#a6a6a6",
+    "value": "#979797",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2761,7 +4173,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-secondaryinverse-base": {
-    "value": "#6b6b6b",
+    "value": "#545454",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2773,7 +4185,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-secondaryinverse-hover": {
-    "value": "#606060",
+    "value": "#484848",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2784,20 +4196,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-secondaryinverse-focus": {
-    "value": "#565656",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "secondaryinverse",
-      "focus"
-    ]
-  },
   "semantic-color-light-mode-text-action-secondaryinverse-pressed": {
-    "value": "#4b4b4b",
+    "value": "#3d3d3d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2821,7 +4221,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-tertiary-base": {
-    "value": "#3555a0",
+    "value": "#2d4889",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2833,7 +4233,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-tertiary-hover": {
-    "value": "#273e76",
+    "value": "#22386b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2844,20 +4244,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-tertiary-focused": {
-    "value": "#273e76",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "tertiary",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-text-action-tertiary-pressed": {
-    "value": "#19284c",
+    "value": "#1b2d57",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2869,7 +4257,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-tertiary-disabled": {
-    "value": "#abbbe3",
+    "value": "#a0b5e6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2880,68 +4268,8 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-text-action-tertiaryinverse-base": {
-    "value": "#edf0f9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "tertiaryinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-action-tertiaryinverse-hover": {
-    "value": "#fafafa",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "tertiaryinverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-text-action-tertiaryinverse-focused": {
-    "value": "#fafafa",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "tertiaryinverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-text-action-tertiaryinverse-pressed": {
-    "value": "#e4e9f6",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "tertiaryinverse",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-text-action-tertiaryinverse-disabled": {
-    "value": "#849cd6",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "tertiaryinverse",
-      "disabled"
-    ]
-  },
   "semantic-color-light-mode-text-action-mono-base": {
-    "value": "#1b1b1b",
+    "value": "#fbfbfb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2953,7 +4281,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-mono-hover": {
-    "value": "#161616",
+    "value": "#ffffff",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2964,20 +4292,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-mono-focus": {
-    "value": "#111111",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "mono",
-      "focus"
-    ]
-  },
   "semantic-color-light-mode-text-action-mono-pressed": {
-    "value": "#070707",
+    "value": "#ffffff",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2989,7 +4305,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-mono-disabled": {
-    "value": "#606060",
+    "value": "#ffffffcc",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3000,68 +4316,8 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-text-action-monoinverse-base": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "monoinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-action-monoinverse-hover": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "monoinverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-text-action-monoinverse-focus": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "monoinverse",
-      "focus"
-    ]
-  },
-  "semantic-color-light-mode-text-action-monoinverse-pressed": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "monoinverse",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-text-action-monoinverse-disabled": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "monoinverse",
-      "disabled"
-    ]
-  },
   "semantic-color-light-mode-text-action-alert-base": {
-    "value": "#ae8c37",
+    "value": "#c67410",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3073,7 +4329,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-alert-hover": {
-    "value": "#85630d",
+    "value": "#f0a119",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3084,20 +4340,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-alert-focused": {
-    "value": "#85630d",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "alert",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-text-action-alert-pressed": {
-    "value": "#5f4c19",
+    "value": "#99520f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3109,7 +4353,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-alert-disabled": {
-    "value": "#f9d372",
+    "value": "#f0a11980",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3120,68 +4364,8 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-text-action-alertinverse-base": {
-    "value": "#fef9ed",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "alertinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-action-alertinverse-hover": {
-    "value": "#fffcf4",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "alertinverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-text-action-alertinverse-focused": {
-    "value": "#fef4dc",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "alertinverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-text-action-alertinverse-pressed": {
-    "value": "#fef4dc",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "alertinverse",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-text-action-alertinverse-disabled": {
-    "value": "#fbde95",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "alertinverse",
-      "disabled"
-    ]
-  },
   "semantic-color-light-mode-text-action-danger-base": {
-    "value": "#ac4915",
+    "value": "#a5420d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3193,7 +4377,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-danger-hover": {
-    "value": "#913d12",
+    "value": "#c14d0f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3204,20 +4388,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-danger-focused": {
-    "value": "#75320f",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "danger",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-text-action-danger-pressed": {
-    "value": "#3f1b08",
+    "value": "#72300c",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3229,7 +4401,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-danger-disabled": {
-    "value": "#f4c8b1",
+    "value": "#f56618b3",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3240,68 +4412,8 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-text-action-dangerinverse-base": {
-    "value": "#fcf1ec",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "dangerinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-action-dangerinverse-hover": {
-    "value": "#fdf7f3",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "dangerinverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-text-action-dangerinverse-focused": {
-    "value": "#fdf7f3",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "dangerinverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-text-action-dangerinverse-pressed": {
-    "value": "#fdf7f3",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "dangerinverse",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-text-action-dangerinverse-disabled": {
-    "value": "#eeac8b",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "dangerinverse",
-      "disabled"
-    ]
-  },
   "semantic-color-light-mode-text-action-negative-base": {
-    "value": "#aa3636",
+    "value": "#b03a3a",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3324,20 +4436,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-negative-focused": {
-    "value": "#862727",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "negative",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-text-action-negative-pressed": {
-    "value": "#6e2020",
+    "value": "#882727",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3349,7 +4449,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-negative-disabled": {
-    "value": "#de8c8c",
+    "value": "#e9b7b7",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3360,428 +4460,104 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-text-action-negativeinverse-base": {
-    "value": "#fcf4f4",
+  "semantic-color-light-mode-text-action-positive-base": {
+    "value": "#1f602e",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "action",
-      "negativeinverse",
+      "positive",
       "base"
     ]
   },
-  "semantic-color-light-mode-text-action-negativeinverse-hover": {
-    "value": "#f9ecec",
+  "semantic-color-light-mode-text-action-positive-hover": {
+    "value": "#2a793e",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "action",
-      "negativeinverse",
+      "positive",
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-negativeinverse-focused": {
-    "value": "#f9ecec",
+  "semantic-color-light-mode-text-action-positive-pressed": {
+    "value": "#174f26",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "action",
-      "negativeinverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-text-action-negativeinverse-pressed": {
-    "value": "#fefbfb",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "negativeinverse",
+      "positive",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-text-action-negativeinverse-disabled": {
-    "value": "#fdf7f7",
+  "semantic-color-light-mode-text-action-positive-disabled": {
+    "value": "#2a793e80",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "action",
-      "negativeinverse",
+      "positive",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-text-action-success-base": {
-    "value": "#54845a",
+  "semantic-color-light-mode-text-action-accent-jade-base": {
+    "value": "#176358",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "action",
-      "success",
+      "accent-jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-text-action-success-hover": {
-    "value": "#446048",
+  "semantic-color-light-mode-text-action-accent-jade-hover": {
+    "value": "#135349",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "action",
-      "success",
+      "accent-jade",
       "hover"
     ]
   },
-  "semantic-color-light-mode-text-action-success-focused": {
-    "value": "#446048",
+  "semantic-color-light-mode-text-action-accent-jade-pressed": {
+    "value": "#0d362f",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "action",
-      "success",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-text-action-success-pressed": {
-    "value": "#29312a",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "success",
+      "accent-jade",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-text-action-success-disabled": {
-    "value": "#afe0b5",
+  "semantic-color-light-mode-text-action-accent-jade-disabled": {
+    "value": "#2bab92b3",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "action",
-      "success",
+      "accent-jade",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-text-action-successinverse-base": {
-    "value": "#e4f5e6",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "successinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-action-successinverse-hover": {
-    "value": "#d9edde",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "successinverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-text-action-successinverse-focused": {
-    "value": "#d9edde",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "successinverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-text-action-successinverse-pressed": {
-    "value": "#f7fcf8",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "successinverse",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-text-action-successinverse-disabled": {
-    "value": "#7acc83",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "successinverse",
-      "disabled"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_amethyst-base": {
-    "value": "#736baa",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_amethyst",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_amethyst-hover": {
-    "value": "#5f588c",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_amethyst",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_amethyst-focused": {
-    "value": "#5f588c",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_amethyst",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_amethyst-pressed": {
-    "value": "#353341",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_amethyst",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_amethyst-disabled": {
-    "value": "#cfcbe9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_amethyst",
-      "disabled"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_amethyst_inverse-base": {
-    "value": "#f3f2f9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_amethyst_inverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_amethyst_inverse-hover": {
-    "value": "#f8f7fc",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_amethyst_inverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_amethyst_inverse-focused": {
-    "value": "#e7e5f4",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_amethyst_inverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_amethyst_inverse-pressed": {
-    "value": "#e7e5f4",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_amethyst_inverse",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_amethyst_inverse-disabled": {
-    "value": "#b7b2de",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_amethyst_inverse",
-      "disabled"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_jade-base": {
-    "value": "#1a8e84",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_jade",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_jade-hover": {
-    "value": "#16756d",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_jade",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_jade-focused": {
-    "value": "#136059",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_jade",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_jade-pressed": {
-    "value": "#17514c",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_jade",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_jade-disabled": {
-    "value": "#a5dcd7",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_jade",
-      "disabled"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_jade_inverse-base": {
-    "value": "#e9f6f5",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_jade_inverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_jade_inverse-hover": {
-    "value": "#d2edeb",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_jade_inverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_jade_inverse-focused": {
-    "value": "#d2edeb",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_jade_inverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_jade_inverse-pressed": {
-    "value": "#f2faf9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_jade_inverse",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-text-action-accent_jade_inverse-disabled": {
-    "value": "#1fa79b",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "action",
-      "accent_jade_inverse",
-      "disabled"
-    ]
-  },
-  "semantic-color-light-mode-text-static-primary-base": {
-    "value": "#252525",
+  "semantic-color-light-mode-text-static-primary-light": {
+    "value": "#313131",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3789,11 +4565,11 @@ const tokens = {
       "text",
       "static",
       "primary",
-      "base"
+      "light"
     ]
   },
   "semantic-color-light-mode-text-static-primary-subtle": {
-    "value": "#363636",
+    "value": "#252525",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3804,8 +4580,20 @@ const tokens = {
       "subtle"
     ]
   },
-  "semantic-color-light-mode-text-static-primary-bold": {
+  "semantic-color-light-mode-text-static-primary-base": {
     "value": "#202020",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "text",
+      "static",
+      "primary",
+      "base"
+    ]
+  },
+  "semantic-color-light-mode-text-static-primary-bold": {
+    "value": "#1b1b1b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3817,7 +4605,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-static-primary-contrast": {
-    "value": "#161616",
+    "value": "#111111",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3828,44 +4616,8 @@ const tokens = {
       "contrast"
     ]
   },
-  "semantic-color-light-mode-text-static-primaryinverse-base": {
-    "value": "#fbfbfb",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "primaryinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-static-primaryinverse-subtle": {
-    "value": "#f6f6f6",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "primaryinverse",
-      "subtle"
-    ]
-  },
-  "semantic-color-light-mode-text-static-primaryinverse-contrast": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "primaryinverse",
-      "contrast"
-    ]
-  },
-  "semantic-color-light-mode-text-static-secondary-base": {
-    "value": "#4b4b4b",
+  "semantic-color-light-mode-text-static-secondary-light": {
+    "value": "#7b7b7b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3873,11 +4625,11 @@ const tokens = {
       "text",
       "static",
       "secondary",
-      "base"
+      "light"
     ]
   },
   "semantic-color-light-mode-text-static-secondary-subtle": {
-    "value": "#6b6b6b",
+    "value": "#606060",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3888,8 +4640,20 @@ const tokens = {
       "subtle"
     ]
   },
+  "semantic-color-light-mode-text-static-secondary-base": {
+    "value": "#484848",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "text",
+      "static",
+      "secondary",
+      "base"
+    ]
+  },
   "semantic-color-light-mode-text-static-secondary-bold": {
-    "value": "#363636",
+    "value": "#202020",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3901,7 +4665,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-static-secondary-contrast": {
-    "value": "#202020",
+    "value": "#161616",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3912,44 +4676,8 @@ const tokens = {
       "contrast"
     ]
   },
-  "semantic-color-light-mode-text-static-secondaryinverse-base": {
-    "value": "#979797",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "secondaryinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-static-secondaryinverse-subtle": {
-    "value": "#a6a6a6",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "secondaryinverse",
-      "subtle"
-    ]
-  },
-  "semantic-color-light-mode-text-static-secondaryinverse-contrast": {
-    "value": "#7b7b7b",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "secondaryinverse",
-      "contrast"
-    ]
-  },
   "semantic-color-light-mode-text-static-info-base": {
-    "value": "#849cd6",
+    "value": "#2d4889",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3961,7 +4689,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-static-info-subtle": {
-    "value": "#abbbe3",
+    "value": "#3a5aaa",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3973,7 +4701,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-static-info-contrast": {
-    "value": "#718dd0",
+    "value": "#22386b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3984,44 +4712,8 @@ const tokens = {
       "contrast"
     ]
   },
-  "semantic-color-light-mode-text-static-infoinverse-base": {
-    "value": "#edf0f9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "infoinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-static-infoinverse-subtle": {
-    "value": "#d5ddf1",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "infoinverse",
-      "subtle"
-    ]
-  },
-  "semantic-color-light-mode-text-static-infoinverse-contrast": {
-    "value": "#fafafa",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "infoinverse",
-      "contrast"
-    ]
-  },
   "semantic-color-light-mode-text-static-alert-base": {
-    "value": "#85630d",
+    "value": "#55290c",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4033,7 +4725,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-static-alert-subtle": {
-    "value": "#ae8c37",
+    "value": "#73390d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4045,7 +4737,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-static-alert-contrast": {
-    "value": "#5f4c19",
+    "value": "#261208",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4056,44 +4748,8 @@ const tokens = {
       "contrast"
     ]
   },
-  "semantic-color-light-mode-text-static-alertinverse-base": {
-    "value": "#fef9ed",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "alertinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-static-alertinverse-subtle": {
-    "value": "#fce9b9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "alertinverse",
-      "subtle"
-    ]
-  },
-  "semantic-color-light-mode-text-static-alertinverse-contrast": {
-    "value": "#fffcf4",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "alertinverse",
-      "contrast"
-    ]
-  },
   "semantic-color-light-mode-text-static-danger-base": {
-    "value": "#ac4915",
+    "value": "#a5420d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4105,7 +4761,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-static-danger-subtle": {
-    "value": "#e67337",
+    "value": "#c14d0f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4117,7 +4773,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-static-danger-contrast": {
-    "value": "#913d12",
+    "value": "#72300c",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4128,44 +4784,8 @@ const tokens = {
       "contrast"
     ]
   },
-  "semantic-color-light-mode-text-static-dangerinverse-base": {
-    "value": "#fcf1ec",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "dangerinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-static-dangerinverse-subtle": {
-    "value": "#f9e3d8",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "dangerinverse",
-      "subtle"
-    ]
-  },
-  "semantic-color-light-mode-text-static-dangerinverse-contrast": {
-    "value": "#fdf7f3",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "dangerinverse",
-      "contrast"
-    ]
-  },
   "semantic-color-light-mode-text-static-negative-base": {
-    "value": "#aa3636",
+    "value": "#882727",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4177,7 +4797,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-static-negative-subtle": {
-    "value": "#c84040",
+    "value": "#9d2d2d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4189,7 +4809,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-static-negative-contrast": {
-    "value": "#862727",
+    "value": "#5f1b1b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4200,44 +4820,8 @@ const tokens = {
       "contrast"
     ]
   },
-  "semantic-color-light-mode-text-static-negativeinverse-base": {
-    "value": "#f9ecec",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "negativeinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-static-negativeinverse-subtle": {
-    "value": "#f4d9d9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "negativeinverse",
-      "subtle"
-    ]
-  },
-  "semantic-color-light-mode-text-static-negativeinverse-contrast": {
-    "value": "#fcf4f4",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "negativeinverse",
-      "contrast"
-    ]
-  },
   "semantic-color-light-mode-text-static-positive-base": {
-    "value": "#446048",
+    "value": "#1f602e",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4249,7 +4833,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-static-positive-subtle": {
-    "value": "#54845a",
+    "value": "#358d4b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4261,7 +4845,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-static-positive-contrast": {
-    "value": "#29312a",
+    "value": "#0d351b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4272,188 +4856,80 @@ const tokens = {
       "contrast"
     ]
   },
-  "semantic-color-light-mode-text-static-positiveinverse-base": {
-    "value": "#e4f5e6",
+  "semantic-color-light-mode-text-static-accent-amethyst-base": {
+    "value": "#353063",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "static",
-      "positiveinverse",
+      "accent-amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-text-static-positiveinverse-subtle": {
-    "value": "#d9edde",
+  "semantic-color-light-mode-text-static-accent-amethyst-subtle": {
+    "value": "#464080",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "static",
-      "positiveinverse",
+      "accent-amethyst",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-text-static-positiveinverse-contrast": {
-    "value": "#f7fcf8",
+  "semantic-color-light-mode-text-static-accent-amethyst-contrast": {
+    "value": "#221e3f",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "static",
-      "positiveinverse",
+      "accent-amethyst",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-text-static-accent_amethyst-base": {
-    "value": "#5f588c",
+  "semantic-color-light-mode-text-static-accent-jade-base": {
+    "value": "#135349",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "static",
-      "accent_amethyst",
+      "accent-jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-text-static-accent_amethyst-subtle": {
-    "value": "#736baa",
+  "semantic-color-light-mode-text-static-accent-jade-subtle": {
+    "value": "#1a766a",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "static",
-      "accent_amethyst",
+      "accent-jade",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-text-static-accent_amethyst-contrast": {
-    "value": "#353341",
+  "semantic-color-light-mode-text-static-accent-jade-contrast": {
+    "value": "#10423b",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "text",
       "static",
-      "accent_amethyst",
-      "contrast"
-    ]
-  },
-  "semantic-color-light-mode-text-static-accent_amethyst_inverse-base": {
-    "value": "#f3f2f9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "accent_amethyst_inverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-static-accent_amethyst_inverse-subtle": {
-    "value": "#e7e5f4",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "accent_amethyst_inverse",
-      "subtle"
-    ]
-  },
-  "semantic-color-light-mode-text-static-accent_amethyst_inverse-contrast": {
-    "value": "#f8f7fc",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "accent_amethyst_inverse",
-      "contrast"
-    ]
-  },
-  "semantic-color-light-mode-text-static-accent_jade-base": {
-    "value": "#16756d",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "accent_jade",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-static-accent_jade-subtle": {
-    "value": "#1a8e84",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "accent_jade",
-      "subtle"
-    ]
-  },
-  "semantic-color-light-mode-text-static-accent_jade-contrast": {
-    "value": "#17514c",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "accent_jade",
-      "contrast"
-    ]
-  },
-  "semantic-color-light-mode-text-static-accent_jade_inverse-base": {
-    "value": "#e9f6f5",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "accent_jade_inverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-text-static-accent_jade_inverse-subtle": {
-    "value": "#d2edeb",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "accent_jade_inverse",
-      "subtle"
-    ]
-  },
-  "semantic-color-light-mode-text-static-accent_jade_inverse-contrast": {
-    "value": "#f2faf9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "text",
-      "static",
-      "accent_jade_inverse",
+      "accent-jade",
       "contrast"
     ]
   },
   "semantic-color-light-mode-text-contextual-navitem-base": {
-    "value": "#363636",
+    "value": "#313131",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4488,8 +4964,20 @@ const tokens = {
       "focused"
     ]
   },
+  "semantic-color-light-mode-text-contextual-navitem-active": {
+    "value": "#1b2d57",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "text",
+      "contextual",
+      "navitem",
+      "active"
+    ]
+  },
   "semantic-color-light-mode-text-contextual-navitem-disabled": {
-    "value": "#a6a6a6",
+    "value": "#11111180",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4501,7 +4989,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-primary-base": {
-    "value": "#3555a0",
+    "value": "#345499",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4513,7 +5001,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-primary-hover": {
-    "value": "#3d61b7",
+    "value": "#4364b6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4524,20 +5012,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-primary-focused": {
-    "value": "#3d61b7",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "primary",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-fill-action-primary-pressed": {
-    "value": "#273e76",
+    "value": "#2d4889",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4549,7 +5025,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-primary-disabled": {
-    "value": "#abbbe3",
+    "value": "#c0ceef",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4573,7 +5049,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-primaryinverse-hover": {
-    "value": "#edf0f9",
+    "value": "#eef2fb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4584,20 +5060,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-primaryinverse-focused": {
-    "value": "#e4e9f6",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "primaryinverse",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-fill-action-primaryinverse-pressed": {
-    "value": "#d5ddf1",
+    "value": "#e0e7f7",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4609,7 +5073,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-primaryinverse-disabled": {
-    "value": "#718dd0",
+    "value": "#a0b5e633",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4621,7 +5085,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-secondary-base": {
-    "value": "#ededed",
+    "value": "#f6f6f6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4633,7 +5097,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-secondary-hover": {
-    "value": "#f6f6f6",
+    "value": "#ededed",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4644,20 +5108,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-secondary-focused": {
-    "value": "#f6f6f6",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "secondary",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-fill-action-secondary-pressed": {
-    "value": "#ededed",
+    "value": "#e1e1e1",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4669,7 +5121,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-secondary-disabled": {
-    "value": "#f6f6f6",
+    "value": "#1111110a",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4678,66 +5130,6 @@ const tokens = {
       "action",
       "secondary",
       "disabled"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-secondary-opacity-70": {
-    "value": "#111111b3",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "secondary",
-      "opacity-70"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-secondary-opacity-30": {
-    "value": "#11111180",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "secondary",
-      "opacity-30"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-secondary-opacity-20": {
-    "value": "#11111133",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "secondary",
-      "opacity-20"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-secondary-opacity-16": {
-    "value": "#11111129",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "secondary",
-      "opacity-16"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-secondary-opacity-8": {
-    "value": "#11111114",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "secondary",
-      "opacity-8"
     ]
   },
   "semantic-color-light-mode-fill-action-secondaryinverse-base": {
@@ -4753,7 +5145,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-secondaryinverse-hover": {
-    "value": "#f6f6f6",
+    "value": "#11111105",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4764,20 +5156,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-secondaryinverse-focused": {
-    "value": "#f6f6f6",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "secondaryinverse",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-fill-action-secondaryinverse-pressed": {
-    "value": "#ededed",
+    "value": "#f6f6f6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4789,7 +5169,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-secondaryinverse-disabled": {
-    "value": "#ededed",
+    "value": "#11111105",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4801,7 +5181,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-tertiary-base": {
-    "value": "#98acdc",
+    "value": "#eef2fb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4813,7 +5193,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-tertiary-hover": {
-    "value": "#849cd6",
+    "value": "#e9eef9",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4824,20 +5204,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-tertiary-focused": {
-    "value": "#849cd6",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "tertiary",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-fill-action-tertiary-pressed": {
-    "value": "#5e7dc9",
+    "value": "#e0e7f7",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4849,7 +5217,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-tertiary-disabled": {
-    "value": "#3555a0",
+    "value": "#a0b5e614",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4860,68 +5228,56 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-fill-action-tertiaryinverse-base": {
-    "value": "#edf0f9",
+  "semantic-color-light-mode-fill-action-tertiary-inverse-base": {
+    "value": "#eef2fb",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "tertiaryinverse",
+      "tertiary-inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-action-tertiaryinverse-hover": {
-    "value": "#fafafa",
+  "semantic-color-light-mode-fill-action-tertiary-inverse-hover": {
+    "value": "#e9eef9",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "tertiaryinverse",
+      "tertiary-inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-tertiaryinverse-focused": {
-    "value": "#e4e9f6",
+  "semantic-color-light-mode-fill-action-tertiary-inverse-pressed": {
+    "value": "#e0e7f7",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "tertiaryinverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-tertiaryinverse-pressed": {
-    "value": "#e4e9f6",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "tertiaryinverse",
+      "tertiary-inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-tertiaryinverse-disabled": {
-    "value": "#edf0f9",
+  "semantic-color-light-mode-fill-action-tertiary-inverse-disabled": {
+    "value": "#a0b5e614",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "tertiaryinverse",
+      "tertiary-inverse",
       "disabled"
     ]
   },
   "semantic-color-light-mode-fill-action-warning-base": {
-    "value": "#d3aa43",
+    "value": "#f8c84f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4933,7 +5289,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-warning-hover": {
-    "value": "#ae8c37",
+    "value": "#f9cd5d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4944,20 +5300,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-warning-pressed": {
-    "value": "#85630d",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "warning",
-      "pressed"
-    ]
-  },
   "semantic-color-light-mode-fill-action-warning-selected": {
-    "value": "#85630d",
+    "value": "#f0a119",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4969,7 +5313,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-warning-disabled": {
-    "value": "#fce9b9",
+    "value": "#fcefc5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4981,7 +5325,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-warninginverse-base": {
-    "value": "#fef9ed",
+    "value": "#fefdfb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4993,7 +5337,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-warninginverse-hover": {
-    "value": "#fef4dc",
+    "value": "#fdfbf2",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5005,7 +5349,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-warninginverse-pressed": {
-    "value": "#fce9b9",
+    "value": "#fcf7e3",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5016,20 +5360,8 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-warninginverse-selected": {
-    "value": "#fce9b9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "warninginverse",
-      "selected"
-    ]
-  },
   "semantic-color-light-mode-fill-action-warninginverse-disabled": {
-    "value": "#fef9ed",
+    "value": "#f0a11980",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5041,7 +5373,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-danger-base": {
-    "value": "#e67337",
+    "value": "#f97b38",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5053,7 +5385,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-danger-hover": {
-    "value": "#ac4915",
+    "value": "#c14d0f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5065,7 +5397,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-danger-pressed": {
-    "value": "#913d12",
+    "value": "#a5420d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5076,20 +5408,8 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-danger-selected": {
-    "value": "#913d12",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "danger",
-      "selected"
-    ]
-  },
   "semantic-color-light-mode-fill-action-danger-disabled": {
-    "value": "#f4c8b1",
+    "value": "#fabd9d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5101,7 +5421,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-dangerinverse-base": {
-    "value": "#fcf1ec",
+    "value": "#fcfafa",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5113,7 +5433,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-dangerinverse-hover": {
-    "value": "#f9e3d8",
+    "value": "#f9f1ed",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5125,7 +5445,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-dangerinverse-pressed": {
-    "value": "#f4c8b1",
+    "value": "#f9e2d6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5136,20 +5456,8 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-dangerinverse-selected": {
-    "value": "#f4c8b1",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "dangerinverse",
-      "selected"
-    ]
-  },
   "semantic-color-light-mode-fill-action-dangerinverse-disabled": {
-    "value": "#fcf1ec",
+    "value": "#f5661880",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5173,7 +5481,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-negative-hover": {
-    "value": "#aa3636",
+    "value": "#a63232",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5184,20 +5492,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-negative-focused": {
-    "value": "#aa3636",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "negative",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-fill-action-negative-pressed": {
-    "value": "#862727",
+    "value": "#882727",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5209,7 +5505,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-negative-disabled": {
-    "value": "#e7b4b4",
+    "value": "#9d2d2d80",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5221,7 +5517,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-negativeinverse-base": {
-    "value": "#fcf4f4",
+    "value": "#faefef",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5233,7 +5529,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-negativeinverse-hover": {
-    "value": "#f9ecec",
+    "value": "#faefef",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5244,20 +5540,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-negativeinverse-focused": {
-    "value": "#f9ecec",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "negativeinverse",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-fill-action-negativeinverse-pressed": {
-    "value": "#f4d9d9",
+    "value": "#f5dfdf",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5269,7 +5553,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-negativeinverse-disabled": {
-    "value": "#f9ecec",
+    "value": "#9d2d2d29",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5281,7 +5565,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-positive-base": {
-    "value": "#558f5c",
+    "value": "#59c56b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5293,7 +5577,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-positive-hover": {
-    "value": "#54845a",
+    "value": "#3db856",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5305,7 +5589,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-positive-pressed": {
-    "value": "#446048",
+    "value": "#36a14f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5316,20 +5600,8 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-positive-selected": {
-    "value": "#446048",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "positive",
-      "selected"
-    ]
-  },
   "semantic-color-light-mode-fill-action-positive-disabled": {
-    "value": "#b3dbbd",
+    "value": "#b4e4b9",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5341,7 +5613,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-positiveinverse-base": {
-    "value": "#e4f5e6",
+    "value": "#dff6e2",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5353,7 +5625,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-positiveinverse-hover": {
-    "value": "#d9edde",
+    "value": "#c9edce",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5365,7 +5637,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-positiveinverse-pressed": {
-    "value": "#b3dbbd",
+    "value": "#9edba5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5374,22 +5646,10 @@ const tokens = {
       "action",
       "positiveinverse",
       "pressed"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-positiveinverse-selected": {
-    "value": "#afe0b5",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "positiveinverse",
-      "selected"
     ]
   },
   "semantic-color-light-mode-fill-action-positiveinverse-disabled": {
-    "value": "#e4f5e6",
+    "value": "#dff6e2",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5400,243 +5660,195 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_amethyst-base": {
-    "value": "#5f588c",
+  "semantic-color-light-mode-fill-action-accent-amethyst-base": {
+    "value": "#6e64b8",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_amethyst",
+      "accent-amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_amethyst-hover": {
-    "value": "#736baa",
+  "semantic-color-light-mode-fill-action-accent-amethyst-hover": {
+    "value": "#877ec8",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_amethyst",
+      "accent-amethyst",
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_amethyst-focused": {
-    "value": "#736baa",
+  "semantic-color-light-mode-fill-action-accent-amethyst-pressed": {
+    "value": "#5951a0",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_amethyst",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-accent_amethyst-pressed": {
-    "value": "#353341",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "accent_amethyst",
+      "accent-amethyst",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_amethyst-disabled": {
-    "value": "#cfcbe9",
+  "semantic-color-light-mode-fill-action-accent-amethyst-disabled": {
+    "value": "#cbc6e8",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_amethyst",
+      "accent-amethyst",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_amethyst_inverse-base": {
-    "value": "#f8f7fc",
+  "semantic-color-light-mode-fill-action-accent-amethyst-inverse-base": {
+    "value": "#faf9fc",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_amethyst_inverse",
+      "accent-amethyst-inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_amethyst_inverse-hover": {
-    "value": "#f3f2f9",
+  "semantic-color-light-mode-fill-action-accent-amethyst-inverse-hover": {
+    "value": "#f4f2fa",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_amethyst_inverse",
+      "accent-amethyst-inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_amethyst_inverse-focused": {
-    "value": "#f3f2f9",
+  "semantic-color-light-mode-fill-action-accent-amethyst-inverse-pressed": {
+    "value": "#dcd9ef",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_amethyst_inverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-accent_amethyst_inverse-pressed": {
-    "value": "#e7e5f4",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "accent_amethyst_inverse",
+      "accent-amethyst-inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_amethyst_inverse-disabled": {
-    "value": "#f8f7fc",
+  "semantic-color-light-mode-fill-action-accent-amethyst-inverse-disabled": {
+    "value": "#cbc6e8",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_amethyst_inverse",
+      "accent-amethyst-inverse",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_jade-base": {
-    "value": "#16756d",
+  "semantic-color-light-mode-fill-action-accent-jade-base": {
+    "value": "#6fceb7",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_jade",
+      "accent-jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_jade-hover": {
-    "value": "#1a8e84",
+  "semantic-color-light-mode-fill-action-accent-jade-hover": {
+    "value": "#79d2bc",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_jade",
+      "accent-jade",
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_jade-focused": {
-    "value": "#1a8e84",
+  "semantic-color-light-mode-fill-action-accent-jade-selected": {
+    "value": "#41c8a9",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_jade",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-accent_jade-selected": {
-    "value": "#136059",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "accent_jade",
+      "accent-jade",
       "selected"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_jade-disabled": {
-    "value": "#a5dcd7",
+  "semantic-color-light-mode-fill-action-accent-jade-disabled": {
+    "value": "#c7ebe1",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_jade",
+      "accent-jade",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_jade_inverse-base": {
-    "value": "#e9f6f5",
+  "semantic-color-light-mode-fill-action-accent-jade-inverse-base": {
+    "value": "#edf8f5",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_jade_inverse",
+      "accent-jade-inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_jade_inverse-hover": {
-    "value": "#d2edeb",
+  "semantic-color-light-mode-fill-action-accent-jade-inverse-hover": {
+    "value": "#daf1eb",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_jade_inverse",
+      "accent-jade-inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_jade_inverse-pressed": {
-    "value": "#a5dcd7",
+  "semantic-color-light-mode-fill-action-accent-jade-inverse-pressed": {
+    "value": "#c7ebe1",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_jade_inverse",
+      "accent-jade-inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-accent_jade_inverse-selected": {
-    "value": "#a5dcd7",
+  "semantic-color-light-mode-fill-action-accent-jade-inverse-disabled": {
+    "value": "#f8fcfb",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "action",
-      "accent_jade_inverse",
-      "selected"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-accent_jade_inverse-disabled": {
-    "value": "#f2faf9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "accent_jade_inverse",
+      "accent-jade-inverse",
       "disabled"
     ]
   },
@@ -5737,7 +5949,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-brand-light": {
-    "value": "#5e7dc9",
+    "value": "#6e8bd4",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5749,7 +5961,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-brand-subtle": {
-    "value": "#4b6ec3",
+    "value": "#3a5aaa",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5761,7 +5973,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-brand-base": {
-    "value": "#3555a0",
+    "value": "#2d4889",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5773,7 +5985,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-brand-contrast": {
-    "value": "#273e76",
+    "value": "#22386b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5785,7 +5997,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-brand-bold": {
-    "value": "#19284c",
+    "value": "#1b2d57",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5797,7 +6009,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-brand-dark": {
-    "value": "#0b1222",
+    "value": "#152343",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5809,7 +6021,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-brand-black": {
-    "value": "#04070d",
+    "value": "#0a1223",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5821,7 +6033,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-info-light": {
-    "value": "#edf0f9",
+    "value": "#eef2fb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5833,7 +6045,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-info-subtle": {
-    "value": "#e4e9f6",
+    "value": "#e9eef9",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5845,7 +6057,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-info-base": {
-    "value": "#becae9",
+    "value": "#c0ceef",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5857,7 +6069,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-info-contrast": {
-    "value": "#849cd6",
+    "value": "#6e8bd4",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5869,7 +6081,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-info-bold": {
-    "value": "#5e7dc9",
+    "value": "#5475c6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5881,7 +6093,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-warning-light": {
-    "value": "#fffcf4",
+    "value": "#fdfbf2",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5893,7 +6105,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-warning-subtle": {
-    "value": "#fef9ed",
+    "value": "#fcf7e3",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5905,7 +6117,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-warning-base": {
-    "value": "#fef4dc",
+    "value": "#fcf3d4",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5917,7 +6129,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-warning-contrast": {
-    "value": "#fbde95",
+    "value": "#fbeab1",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5929,7 +6141,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-warning-bold": {
-    "value": "#f8c84f",
+    "value": "#fade89",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5941,7 +6153,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-danger-light": {
-    "value": "#fdf7f3",
+    "value": "#fcfafa",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5953,7 +6165,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-danger-subtle": {
-    "value": "#fcf1ec",
+    "value": "#f9e2d6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5965,7 +6177,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-danger-base": {
-    "value": "#f9e3d8",
+    "value": "#f9d2bc",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5977,7 +6189,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-danger-contrast": {
-    "value": "#f4c8b1",
+    "value": "#fabd9d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5989,7 +6201,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-danger-bold": {
-    "value": "#e99065",
+    "value": "#fe9156",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6001,7 +6213,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-negative-light": {
-    "value": "#fcf4f4",
+    "value": "#fdfafa",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6013,7 +6225,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-negative-subtle": {
-    "value": "#f9ecec",
+    "value": "#faefef",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6025,7 +6237,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-negative-base": {
-    "value": "#f4d9d9",
+    "value": "#f5dfdf",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6037,7 +6249,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-negative-contrast": {
-    "value": "#e7b4b4",
+    "value": "#cf6e6e",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6049,7 +6261,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-negative-bold": {
-    "value": "#d36666",
+    "value": "#ba4646",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6061,7 +6273,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-positive-light": {
-    "value": "#f7fcf8",
+    "value": "#f0faf1",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6073,7 +6285,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-positive-subtle": {
-    "value": "#e4f5e6",
+    "value": "#dff6e2",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6085,7 +6297,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-positive-base": {
-    "value": "#d9edde",
+    "value": "#c9edce",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6097,7 +6309,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-positive-contrast": {
-    "value": "#afe0b5",
+    "value": "#9edba5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6109,7 +6321,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-positive-bold": {
-    "value": "#558f5c",
+    "value": "#59c56b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6120,183 +6332,183 @@ const tokens = {
       "bold"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_amethyst-light": {
-    "value": "#f8f7fc",
+  "semantic-color-light-mode-fill-static-accent-amethyst-light": {
+    "value": "#f4f2fa",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "light"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_amethyst-subtle": {
-    "value": "#f3f2f9",
+  "semantic-color-light-mode-fill-static-accent-amethyst-subtle": {
+    "value": "#e8e6f5",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_amethyst-base": {
-    "value": "#e7e5f4",
+  "semantic-color-light-mode-fill-static-accent-amethyst-base": {
+    "value": "#dcd9ef",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_amethyst-contrast": {
-    "value": "#b7b2de",
+  "semantic-color-light-mode-fill-static-accent-amethyst-contrast": {
+    "value": "#b9b3e0",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_amethyst-bold": {
-    "value": "#9f98d3",
+  "semantic-color-light-mode-fill-static-accent-amethyst-bold": {
+    "value": "#a8a0d8",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "bold"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_jade-light": {
-    "value": "#f2faf9",
+  "semantic-color-light-mode-fill-static-accent-jade-light": {
+    "value": "#f8fcfb",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_jade",
+      "accent-jade",
       "light"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_jade-subtle": {
-    "value": "#e9f6f5",
+  "semantic-color-light-mode-fill-static-accent-jade-subtle": {
+    "value": "#edf8f5",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_jade",
+      "accent-jade",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_jade-base": {
-    "value": "#d2edeb",
+  "semantic-color-light-mode-fill-static-accent-jade-base": {
+    "value": "#daf1eb",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_jade",
+      "accent-jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_jade-contrast": {
-    "value": "#a5dcd7",
+  "semantic-color-light-mode-fill-static-accent-jade-contrast": {
+    "value": "#c7ebe1",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_jade",
+      "accent-jade",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_jade-bold": {
-    "value": "#4cb9af",
+  "semantic-color-light-mode-fill-static-accent-jade-bold": {
+    "value": "#94dbc9",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_jade",
+      "accent-jade",
       "bold"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_seabreeze-light": {
-    "value": "#edf6fa",
+  "semantic-color-light-mode-fill-static-accent-seabreeze-light": {
+    "value": "#e9f6fc",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_seabreeze",
+      "accent-seabreeze",
       "light"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_seabreeze-subtle": {
-    "value": "#dbeef5",
+  "semantic-color-light-mode-fill-static-accent-seabreeze-subtle": {
+    "value": "#dbf0fb",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_seabreeze",
+      "accent-seabreeze",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_seabreeze-base": {
-    "value": "#b7dcea",
+  "semantic-color-light-mode-fill-static-accent-seabreeze-base": {
+    "value": "#c4e7f8",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_seabreeze",
+      "accent-seabreeze",
       "base"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_seabreeze-contrast": {
-    "value": "#35768e",
+  "semantic-color-light-mode-fill-static-accent-seabreeze-contrast": {
+    "value": "#5ab1d3",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_seabreeze",
+      "accent-seabreeze",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-fill-static-accent_seabreeze-bold": {
-    "value": "#2a3b41",
+  "semantic-color-light-mode-fill-static-accent-seabreeze-bold": {
+    "value": "#52abce",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "fill",
       "static",
-      "accent_seabreeze",
+      "accent-seabreeze",
       "bold"
     ]
   },
@@ -6313,7 +6525,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-contextual-navitem-hover": {
-    "value": "#1111110a",
+    "value": "#11111105",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6325,7 +6537,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-contextual-navitem-focused": {
-    "value": "#3555a014",
+    "value": "#11111105",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6337,7 +6549,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-contextual-navitem-active": {
-    "value": "#3555a014",
+    "value": "#a0b5e629",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6361,7 +6573,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-primary-base": {
-    "value": "#3555a0",
+    "value": "#345499",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6373,7 +6585,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-primary-hover": {
-    "value": "#273e76",
+    "value": "#2d4889",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6384,20 +6596,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-primary-focused": {
-    "value": "#19284c",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "primary",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-icon-action-primary-pressed": {
-    "value": "#0b1222",
+    "value": "#1b2d57",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6409,7 +6609,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-primary-disabled": {
-    "value": "#98acdc",
+    "value": "#a0b5e6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6421,7 +6621,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-primaryinverse-base": {
-    "value": "#5e7dc9",
+    "value": "#ffffff",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6433,7 +6633,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-primaryinverse-hover": {
-    "value": "#4b6ec3",
+    "value": "#ffffff",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6444,20 +6644,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-primaryinverse-focused": {
-    "value": "#3d61b7",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "primaryinverse",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-icon-action-primaryinverse-pressed": {
-    "value": "#3555a0",
+    "value": "#eef2fb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6469,7 +6657,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-primaryinverse-disabled": {
-    "value": "#849cd6",
+    "value": "#ffffffe6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6481,7 +6669,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-secondary-base": {
-    "value": "#4b4b4b",
+    "value": "#313131",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6493,7 +6681,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-secondary-hover": {
-    "value": "#363636",
+    "value": "#252525",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6504,20 +6692,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-secondary-focused": {
-    "value": "#363636",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "secondary",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-icon-action-secondary-pressed": {
-    "value": "#202020",
+    "value": "#1b1b1b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6529,7 +6705,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-secondary-disabled": {
-    "value": "#a6a6a6",
+    "value": "#979797",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6540,31 +6716,7 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-icon-action-secondaryinverse-base": {
-    "value": "#979797",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "secondaryinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-secondaryinverse-hover": {
-    "value": "#7b7b7b",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "secondaryinverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-secondaryinverse-focused": {
+  "semantic-color-light-mode-icon-action-secondary-inverse-base": {
     "value": "#6b6b6b",
     "type": "color",
     "path": [
@@ -6572,11 +6724,11 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "secondaryinverse",
-      "focused"
+      "secondary-inverse",
+      "base"
     ]
   },
-  "semantic-color-light-mode-icon-action-secondaryinverse-pressed": {
+  "semantic-color-light-mode-icon-action-secondary-inverse-hover": {
     "value": "#606060",
     "type": "color",
     "path": [
@@ -6584,24 +6736,36 @@ const tokens = {
       "light-mode",
       "icon",
       "action",
-      "secondaryinverse",
-      "pressed"
+      "secondary-inverse",
+      "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-secondaryinverse-disabled": {
-    "value": "#c4c4c4",
+  "semantic-color-light-mode-icon-action-secondary-inverse-pressed": {
+    "value": "#3d3d3d",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "action",
-      "secondaryinverse",
+      "secondary-inverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-light-mode-icon-action-secondary-inverse-disabled": {
+    "value": "#d2d2d2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "icon",
+      "action",
+      "secondary-inverse",
       "disabled"
     ]
   },
   "semantic-color-light-mode-icon-action-mono-base": {
-    "value": "#252525",
+    "value": "#fbfbfb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6613,7 +6777,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-mono-hover": {
-    "value": "#252525",
+    "value": "#ffffff",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6624,20 +6788,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-mono-focus": {
-    "value": "#252525",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "mono",
-      "focus"
-    ]
-  },
   "semantic-color-light-mode-icon-action-mono-pressed": {
-    "value": "#252525",
+    "value": "#ffffff",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6649,7 +6801,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-mono-disabled": {
-    "value": "#252525",
+    "value": "#ffffffcc",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6660,68 +6812,8 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-icon-action-monoinverse-base": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "monoinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-monoinverse-hover": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "monoinverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-monoinverse-focus": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "monoinverse",
-      "focus"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-monoinverse-pressed": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "monoinverse",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-monoinverse-disabled": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "monoinverse",
-      "disabled"
-    ]
-  },
   "semantic-color-light-mode-icon-action-tertiary-base": {
-    "value": "#3555a0",
+    "value": "#2d4889",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6733,7 +6825,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-tertiary-hover": {
-    "value": "#273e76",
+    "value": "#22386b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6744,20 +6836,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-tertiary-focused": {
-    "value": "#273e76",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "tertiary",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-icon-action-tertiary-pressed": {
-    "value": "#19284c",
+    "value": "#1b2d57",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6769,7 +6849,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-tertiary-disabled": {
-    "value": "#becae9",
+    "value": "#a0b5e6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6780,188 +6860,56 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-icon-action-tertiaryinverse-base": {
-    "value": "#edf0f9",
+  "semantic-color-light-mode-icon-action-alert-base": {
+    "value": "#c67410",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "action",
-      "tertiaryinverse",
+      "alert",
       "base"
     ]
   },
-  "semantic-color-light-mode-icon-action-tertiaryinverse-hover": {
-    "value": "#fafafa",
+  "semantic-color-light-mode-icon-action-alert-hover": {
+    "value": "#f0a119",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "action",
-      "tertiaryinverse",
+      "alert",
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-tertiaryinverse-focused": {
-    "value": "#fafafa",
+  "semantic-color-light-mode-icon-action-alert-pressed": {
+    "value": "#99520f",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "action",
-      "tertiaryinverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-tertiaryinverse-pressed": {
-    "value": "#e4e9f6",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "tertiaryinverse",
+      "alert",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-icon-action-tertiaryinverse-disabled": {
-    "value": "#718dd0",
+  "semantic-color-light-mode-icon-action-alert-disabled": {
+    "value": "#f0a11980",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "action",
-      "tertiaryinverse",
-      "disabled"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-warning-base": {
-    "value": "#ae8c37",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "warning",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-warning-hover": {
-    "value": "#85630d",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "warning",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-warning-pressed": {
-    "value": "#85630d",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "warning",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-warning-selected": {
-    "value": "#5f4c19",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "warning",
-      "selected"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-warning-disabled": {
-    "value": "#f9d372",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "warning",
-      "disabled"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-warninginverse-base": {
-    "value": "#fef9ed",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "warninginverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-warninginverse-hover": {
-    "value": "#fffcf4",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "warninginverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-warninginverse-pressed": {
-    "value": "#fef4dc",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "warninginverse",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-warninginverse-selected": {
-    "value": "#fef4dc",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "warninginverse",
-      "selected"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-warninginverse-disabled": {
-    "value": "#fce9b9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "warninginverse",
+      "alert",
       "disabled"
     ]
   },
   "semantic-color-light-mode-icon-action-danger-base": {
-    "value": "#ac4915",
+    "value": "#a5420d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6973,7 +6921,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-danger-hover": {
-    "value": "#913d12",
+    "value": "#c14d0f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6984,20 +6932,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-danger-focused": {
-    "value": "#75320f",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "danger",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-icon-action-danger-pressed": {
-    "value": "#5a260b",
+    "value": "#72300c",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7009,7 +6945,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-danger-disabled": {
-    "value": "#f4c8b1",
+    "value": "#f56618b3",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7020,68 +6956,8 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-icon-action-dangerinverse-base": {
-    "value": "#fcf1ec",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "dangerinverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-dangerinverse-hover": {
-    "value": "#fdf7f3",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "dangerinverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-dangerinverse-pressed": {
-    "value": "#f9e3d8",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "dangerinverse",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-dangerinverse-selected": {
-    "value": "#f9e3d8",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "dangerinverse",
-      "selected"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-dangerinverse-disabled": {
-    "value": "#eeac8b",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "dangerinverse",
-      "disabled"
-    ]
-  },
   "semantic-color-light-mode-icon-action-negative-base": {
-    "value": "#aa3636",
+    "value": "#b03a3a",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7104,20 +6980,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-negative-focused": {
-    "value": "#862727",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "negative",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-icon-action-negative-pressed": {
-    "value": "#6e2020",
+    "value": "#882727",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7129,7 +6993,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-negative-disabled": {
-    "value": "#de8c8c",
+    "value": "#e9b7b7",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7141,7 +7005,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-negativeinverse-base": {
-    "value": "#fcf4f4",
+    "value": "#e9b7b7",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7153,7 +7017,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-negativeinverse-hover": {
-    "value": "#f9ecec",
+    "value": "#e29f9f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7164,20 +7028,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-negativeinverse-focused": {
-    "value": "#f9ecec",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "negativeinverse",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-icon-action-negativeinverse-pressed": {
-    "value": "#fefbfb",
+    "value": "#f5dfdf",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7189,7 +7041,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-negativeinverse-disabled": {
-    "value": "#fdf7f7",
+    "value": "#f0cdcd",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7201,7 +7053,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-positive-base": {
-    "value": "#54845a",
+    "value": "#3db856",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7213,7 +7065,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-positive-hover": {
-    "value": "#446048",
+    "value": "#36a14f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7225,7 +7077,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-positive-pressed": {
-    "value": "#29312a",
+    "value": "#358d4b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7236,20 +7088,8 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-light-mode-icon-action-positive-selected": {
-    "value": "#29312a",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "positive",
-      "selected"
-    ]
-  },
   "semantic-color-light-mode-icon-action-positive-disabled": {
-    "value": "#afe0b5",
+    "value": "#9edba5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7261,7 +7101,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-positiveinverse-base": {
-    "value": "#e4f5e6",
+    "value": "#dff6e2",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7273,7 +7113,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-positiveinverse-hover": {
-    "value": "#f7fcf8",
+    "value": "#f0faf1",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7285,7 +7125,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-positiveinverse-pressed": {
-    "value": "#d9edde",
+    "value": "#c9edce",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7294,22 +7134,10 @@ const tokens = {
       "action",
       "positiveinverse",
       "pressed"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-positiveinverse-selected": {
-    "value": "#d9edde",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "positiveinverse",
-      "selected"
     ]
   },
   "semantic-color-light-mode-icon-action-positiveinverse-disabled": {
-    "value": "#7acc83",
+    "value": "#7acd84",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7320,244 +7148,64 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent_amethyst-base": {
-    "value": "#736baa",
+  "semantic-color-light-mode-icon-action-accent-jade-base": {
+    "value": "#79d2bc",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "action",
-      "accent_amethyst",
+      "accent-jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent_amethyst-hover": {
-    "value": "#877ec8",
+  "semantic-color-light-mode-icon-action-accent-jade-hover": {
+    "value": "#6fceb7",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "action",
-      "accent_amethyst",
+      "accent-jade",
       "hover"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent_amethyst-pressed": {
-    "value": "#5f588c",
+  "semantic-color-light-mode-icon-action-accent-jade-selected": {
+    "value": "#2bab92",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "action",
-      "accent_amethyst",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_amethyst-selected": {
-    "value": "#353341",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_amethyst",
+      "accent-jade",
       "selected"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent_amethyst-disabled": {
-    "value": "#cfcbe9",
+  "semantic-color-light-mode-icon-action-accent-jade-disabled": {
+    "value": "#c7ebe1",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "action",
-      "accent_amethyst",
+      "accent-jade",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-icon-action-accent_amethyst_inverse-base": {
-    "value": "#f3f2f9",
+  "semantic-color-light-mode-icon-static-neutral-xlight": {
+    "value": "#979797",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
-      "action",
-      "accent_amethyst_inverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_amethyst_inverse-hover": {
-    "value": "#f8f7fc",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_amethyst_inverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_amethyst_inverse-pressed": {
-    "value": "#e7e5f4",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_amethyst_inverse",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_amethyst_inverse-selected": {
-    "value": "#e7e5f4",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_amethyst_inverse",
-      "selected"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_amethyst_inverse-disabled": {
-    "value": "#b7b2de",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_amethyst_inverse",
-      "disabled"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_jade-base": {
-    "value": "#1a8e84",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_jade",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_jade-hover": {
-    "value": "#16756d",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_jade",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_jade-pressed": {
-    "value": "#136059",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_jade",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_jade-selected": {
-    "value": "#17514c",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_jade",
-      "selected"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_jade-disabled": {
-    "value": "#a5dcd7",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_jade",
-      "disabled"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_jade_inverse-base": {
-    "value": "#e9f6f5",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_jade_inverse",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_jade_inverse-hover": {
-    "value": "#f2faf9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_jade_inverse",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_jade_inverse-pressed": {
-    "value": "#d2edeb",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_jade_inverse",
-      "pressed"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_jade_inverse-selected": {
-    "value": "#d2edeb",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_jade_inverse",
-      "selected"
-    ]
-  },
-  "semantic-color-light-mode-icon-action-accent_jade_inverse-disabled": {
-    "value": "#a5dcd7",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "action",
-      "accent_jade_inverse",
-      "disabled"
+      "static",
+      "neutral",
+      "xlight"
     ]
   },
   "semantic-color-light-mode-icon-static-neutral-light": {
@@ -7585,7 +7233,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-neutral-base": {
-    "value": "#4b4b4b",
+    "value": "#484848",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7621,7 +7269,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-brand-light": {
-    "value": "#718dd0",
+    "value": "#5d7cca",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7633,7 +7281,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-brand-subtle": {
-    "value": "#5e7dc9",
+    "value": "#5475c6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7645,7 +7293,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-brand-base": {
-    "value": "#3555a0",
+    "value": "#3a5aaa",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7657,7 +7305,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-brand-contrast": {
-    "value": "#273e76",
+    "value": "#345499",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7669,7 +7317,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-brand-bold": {
-    "value": "#19284c",
+    "value": "#2d4889",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7680,8 +7328,32 @@ const tokens = {
       "bold"
     ]
   },
+  "semantic-color-light-mode-icon-static-mono-light": {
+    "value": "#fbfbfb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "icon",
+      "static",
+      "mono",
+      "light"
+    ]
+  },
+  "semantic-color-light-mode-icon-static-mono-base": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "icon",
+      "static",
+      "mono",
+      "base"
+    ]
+  },
   "semantic-color-light-mode-icon-static-info-light": {
-    "value": "#849cd6",
+    "value": "#6e8bd4",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7693,7 +7365,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-info-subtle": {
-    "value": "#718dd0",
+    "value": "#5d7cca",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7705,7 +7377,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-info-base": {
-    "value": "#5e7dc9",
+    "value": "#5475c6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7717,7 +7389,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-info-contrast": {
-    "value": "#273e76",
+    "value": "#345499",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7729,7 +7401,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-info-bold": {
-    "value": "#19284c",
+    "value": "#2d4889",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7741,7 +7413,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-warning-light": {
-    "value": "#fce9b9",
+    "value": "#fcefc5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7753,7 +7425,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-warning-subtle": {
-    "value": "#fbde95",
+    "value": "#fbeab1",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7765,7 +7437,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-warning-base": {
-    "value": "#d3aa43",
+    "value": "#f9d87b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7777,7 +7449,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-warning-contrast": {
-    "value": "#ae8c37",
+    "value": "#f9d36c",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7789,7 +7461,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-warning-bold": {
-    "value": "#85630d",
+    "value": "#f9cd5d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7801,7 +7473,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-danger-light": {
-    "value": "#eeac8b",
+    "value": "#fda97b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7813,7 +7485,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-danger-subtle": {
-    "value": "#e99065",
+    "value": "#fe9156",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7825,7 +7497,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-danger-base": {
-    "value": "#e2601c",
+    "value": "#f56618",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7837,7 +7509,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-danger-contrast": {
-    "value": "#ac4915",
+    "value": "#c14d0f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7849,7 +7521,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-danger-bold": {
-    "value": "#913d12",
+    "value": "#a5420d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7861,7 +7533,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-negative-light": {
-    "value": "#de8c8c",
+    "value": "#cf6e6e",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7873,7 +7545,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-negative-subtle": {
-    "value": "#d36666",
+    "value": "#c55858",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7885,7 +7557,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-negative-base": {
-    "value": "#c84040",
+    "value": "#b03a3a",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7897,7 +7569,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-negative-contrast": {
-    "value": "#862727",
+    "value": "#9d2d2d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7909,7 +7581,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-negative-bold": {
-    "value": "#621c1c",
+    "value": "#882727",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7921,7 +7593,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-positive-light": {
-    "value": "#afe0b5",
+    "value": "#9edba5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7933,7 +7605,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-positive-subtle": {
-    "value": "#7acc83",
+    "value": "#7acd84",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7945,7 +7617,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-positive-base": {
-    "value": "#558f5c",
+    "value": "#59c56b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7957,7 +7629,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-positive-contrast": {
-    "value": "#446048",
+    "value": "#36a14f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7969,7 +7641,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-static-positive-bold": {
-    "value": "#29312a",
+    "value": "#358d4b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7980,151 +7652,163 @@ const tokens = {
       "bold"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_amethyst-light": {
-    "value": "#b7b2de",
+  "semantic-color-light-mode-icon-static-accent-amethyst-light": {
+    "value": "#b9b3e0",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "light"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_amethyst-subtle": {
-    "value": "#9f98d3",
+  "semantic-color-light-mode-icon-static-accent-amethyst-subtle": {
+    "value": "#9a90d0",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_amethyst-base": {
-    "value": "#736baa",
+  "semantic-color-light-mode-icon-static-accent-amethyst-base": {
+    "value": "#877ec8",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_amethyst-contrast": {
-    "value": "#5f588c",
+  "semantic-color-light-mode-icon-static-accent-amethyst-contrast": {
+    "value": "#6e64b8",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_amethyst-bold": {
-    "value": "#353341",
+  "semantic-color-light-mode-icon-static-accent-amethyst-bold": {
+    "value": "#464080",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "bold"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_jade-light": {
-    "value": "#a5dcd7",
+  "semantic-color-light-mode-icon-static-accent-jade-light": {
+    "value": "#c7ebe1",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_jade",
+      "accent-jade",
       "light"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_jade-subtle": {
-    "value": "#4cb9af",
+  "semantic-color-light-mode-icon-static-accent-jade-subtle": {
+    "value": "#94dbc9",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_jade",
+      "accent-jade",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_jade-base": {
-    "value": "#1a8e84",
+  "semantic-color-light-mode-icon-static-accent-jade-base": {
+    "value": "#6fceb7",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_jade",
+      "accent-jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_jade-contrast": {
-    "value": "#17514c",
+  "semantic-color-light-mode-icon-static-accent-jade-contrast": {
+    "value": "#2bab92",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_jade",
+      "accent-jade",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_jade-bold": {
-    "value": "#213b39",
+  "semantic-color-light-mode-icon-static-accent-jade-bold": {
+    "value": "#1a766a",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_jade",
+      "accent-jade",
       "bold"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_seabreeze-light": {
-    "value": "#b7dcea",
+  "semantic-color-light-mode-icon-static-accent-seabreeze-light": {
+    "value": "#b1e1f6",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_seabreeze",
+      "accent-seabreeze",
       "light"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_seabreeze-subtle": {
-    "value": "#93cbe0",
+  "semantic-color-light-mode-icon-static-accent-seabreeze-subtle": {
+    "value": "#95d4ee",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_seabreeze",
+      "accent-seabreeze",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_seabreeze-base": {
+  "semantic-color-light-mode-icon-static-accent-seabreeze-base": {
+    "value": "#5ab1d3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "icon",
+      "static",
+      "accent-seabreeze",
+      "base"
+    ]
+  },
+  "semantic-color-light-mode-icon-static-accent-seabreeze-contrast": {
     "value": "#4ba8cb",
     "type": "color",
     "path": [
@@ -8132,36 +7816,84 @@ const tokens = {
       "light-mode",
       "icon",
       "static",
-      "accent_seabreeze",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-icon-static-accent_seabreeze-contrast": {
-    "value": "#35768e",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "icon",
-      "static",
-      "accent_seabreeze",
+      "accent-seabreeze",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-icon-static-accent_seabreeze-bold": {
-    "value": "#2a3b41",
+  "semantic-color-light-mode-icon-static-accent-seabreeze-bold": {
+    "value": "#2a7e9d",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "icon",
       "static",
-      "accent_seabreeze",
+      "accent-seabreeze",
+      "bold"
+    ]
+  },
+  "semantic-color-light-mode-icon-static-accent-lagoon-light": {
+    "value": "#deeff2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "icon",
+      "static",
+      "accent-lagoon",
+      "light"
+    ]
+  },
+  "semantic-color-light-mode-icon-static-accent-lagoon-subtle": {
+    "value": "#afd9de",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "icon",
+      "static",
+      "accent-lagoon",
+      "subtle"
+    ]
+  },
+  "semantic-color-light-mode-icon-static-accent-lagoon-base": {
+    "value": "#89c5cd",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "icon",
+      "static",
+      "accent-lagoon",
+      "base"
+    ]
+  },
+  "semantic-color-light-mode-icon-static-accent-lagoon-contrast": {
+    "value": "#3db7c7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "icon",
+      "static",
+      "accent-lagoon",
+      "contrast"
+    ]
+  },
+  "semantic-color-light-mode-icon-static-accent-lagoon-bold": {
+    "value": "#1e99ae",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "icon",
+      "static",
+      "accent-lagoon",
       "bold"
     ]
   },
   "semantic-color-light-mode-icon-contextual-navitem-base": {
-    "value": "#4b4b4b",
+    "value": "#484848",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8173,7 +7905,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-contextual-navitem-hover": {
-    "value": "#363636",
+    "value": "#313131",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8185,7 +7917,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-contextual-navitem-focused": {
-    "value": "#363636",
+    "value": "#313131",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8197,7 +7929,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-contextual-navitem-active": {
-    "value": "#3555a0",
+    "value": "#2d4889",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8209,7 +7941,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-contextual-navitem-disabled": {
-    "value": "#98acdc",
+    "value": "#86a0dd",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8221,7 +7953,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-primary-base": {
-    "value": "#3555a0",
+    "value": "#5d7cca",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8233,7 +7965,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-primary-hover": {
-    "value": "#3d61b7",
+    "value": "#c0ceef",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8244,20 +7976,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-primary-focused": {
-    "value": "#3d61b7",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "primary",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-stroke-action-primary-pressed": {
-    "value": "#273e76",
+    "value": "#6e8bd4",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8269,7 +7989,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-primary-disabled": {
-    "value": "#849cd6",
+    "value": "#e0e7f7",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8280,68 +8000,56 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-stroke-action-primaryinverse-base": {
-    "value": "#849cd6",
+  "semantic-color-light-mode-stroke-action-primary-inverse-base": {
+    "value": "#c0ceef",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "primaryinverse",
+      "primary-inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-action-primaryinverse-hover": {
-    "value": "#abbbe3",
+  "semantic-color-light-mode-stroke-action-primary-inverse-hover": {
+    "value": "#e0e7f7",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "primaryinverse",
+      "primary-inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-primaryinverse-focused": {
-    "value": "#98acdc",
+  "semantic-color-light-mode-stroke-action-primary-inverse-pressed": {
+    "value": "#a0b5e6",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "primaryinverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-stroke-action-primaryinverse-pressed": {
-    "value": "#718dd0",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "primaryinverse",
+      "primary-inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-primaryinverse-disabled": {
-    "value": "#becae9",
+  "semantic-color-light-mode-stroke-action-primary-inverse-disabled": {
+    "value": "#e0e7f7",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "primaryinverse",
+      "primary-inverse",
       "disabled"
     ]
   },
   "semantic-color-light-mode-stroke-action-secondary-base": {
-    "value": "#4b4b4b",
+    "value": "#a6a6a6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8353,7 +8061,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-secondary-hover": {
-    "value": "#3b3b3b",
+    "value": "#8b8b8b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8364,20 +8072,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-secondary-focused": {
-    "value": "#363636",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "secondary",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-stroke-action-secondary-pressed": {
-    "value": "#252525",
+    "value": "#7b7b7b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8389,7 +8085,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-secondary-disabled": {
-    "value": "#c4c4c4",
+    "value": "#e1e1e1",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8400,7 +8096,7 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-stroke-action-secondaryinverse-base": {
+  "semantic-color-light-mode-stroke-action-secondary-inverse-base": {
     "value": "#d2d2d2",
     "type": "color",
     "path": [
@@ -8408,11 +8104,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "secondaryinverse",
+      "secondary-inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-action-secondaryinverse-hover": {
+  "semantic-color-light-mode-stroke-action-secondary-inverse-hover": {
     "value": "#c4c4c4",
     "type": "color",
     "path": [
@@ -8420,23 +8116,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "secondaryinverse",
+      "secondary-inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-secondaryinverse-focused": {
-    "value": "#b5b5b5",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "secondaryinverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-stroke-action-secondaryinverse-pressed": {
+  "semantic-color-light-mode-stroke-action-secondary-inverse-pressed": {
     "value": "#a6a6a6",
     "type": "color",
     "path": [
@@ -8444,11 +8128,11 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "secondaryinverse",
+      "secondary-inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-secondaryinverse-disabled": {
+  "semantic-color-light-mode-stroke-action-secondary-inverse-disabled": {
     "value": "#e1e1e1",
     "type": "color",
     "path": [
@@ -8456,12 +8140,12 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "secondaryinverse",
+      "secondary-inverse",
       "disabled"
     ]
   },
   "semantic-color-light-mode-stroke-action-tertiary-base": {
-    "value": "#98acdc",
+    "value": "#c0ceef",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8473,7 +8157,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-tertiary-hover": {
-    "value": "#becae9",
+    "value": "#e0e7f7",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8484,20 +8168,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-tertiary-focused": {
-    "value": "#becae9",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "tertiary",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-stroke-action-tertiary-pressed": {
-    "value": "#849cd6",
+    "value": "#a0b5e6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8509,7 +8181,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-tertiary-disabled": {
-    "value": "#edf0f9",
+    "value": "#eef2fb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8521,7 +8193,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-tertiaryinverse-base": {
-    "value": "#edf0f9",
+    "value": "#eef2fb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8544,20 +8216,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-tertiaryinverse-focused": {
-    "value": "#fafafa",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "tertiaryinverse",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-stroke-action-tertiaryinverse-pressed": {
-    "value": "#d5ddf1",
+    "value": "#e0e7f7",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8569,7 +8229,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-tertiaryinverse-disabled": {
-    "value": "#becae9",
+    "value": "#c0ceef",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8581,7 +8241,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-warning-base": {
-    "value": "#f8c84f",
+    "value": "#fade89",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8593,7 +8253,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-warning-hover": {
-    "value": "#d3aa43",
+    "value": "#f9d87b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8605,7 +8265,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-warning-pressed": {
-    "value": "#ae8c37",
+    "value": "#f9d36c",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8616,20 +8276,8 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-warning-selected": {
-    "value": "#ae8c37",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "warning",
-      "selected"
-    ]
-  },
   "semantic-color-light-mode-stroke-action-warning-disabled": {
-    "value": "#fce9b9",
+    "value": "#fcefc5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8641,7 +8289,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-warninginverse-base": {
-    "value": "#fef9ed",
+    "value": "#fcf7e3",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8653,7 +8301,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-warninginverse-hover": {
-    "value": "#fffcf4",
+    "value": "#fdfbf2",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8665,7 +8313,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-warninginverse-pressed": {
-    "value": "#fef4dc",
+    "value": "#fcf3d4",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8676,20 +8324,8 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-warninginverse-selected": {
-    "value": "#fef4dc",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "warninginverse",
-      "selected"
-    ]
-  },
   "semantic-color-light-mode-stroke-action-warninginverse-disabled": {
-    "value": "#fce9b9",
+    "value": "#fcefc5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8701,7 +8337,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-danger-base": {
-    "value": "#e99065",
+    "value": "#fe9156",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8713,7 +8349,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-danger-hover": {
-    "value": "#e67337",
+    "value": "#f97b38",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8725,7 +8361,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-danger-pressed": {
-    "value": "#ac4915",
+    "value": "#a5420d",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8736,20 +8372,8 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-danger-selected": {
-    "value": "#913d12",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "danger",
-      "selected"
-    ]
-  },
   "semantic-color-light-mode-stroke-action-danger-disabled": {
-    "value": "#f9e3d8",
+    "value": "#f9d2bc",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8761,7 +8385,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-dangerinverse-base": {
-    "value": "#fcf1ec",
+    "value": "#f9e2d6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8773,7 +8397,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-dangerinverse-hover": {
-    "value": "#fdf7f3",
+    "value": "#fcfafa",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8785,7 +8409,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-dangerinverse-pressed": {
-    "value": "#f9e3d8",
+    "value": "#f9d2bc",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8796,20 +8420,8 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-dangerinverse-selected": {
-    "value": "#f9e3d8",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "dangerinverse",
-      "selected"
-    ]
-  },
   "semantic-color-light-mode-stroke-action-dangerinverse-disabled": {
-    "value": "#eeac8b",
+    "value": "#fda97b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8821,7 +8433,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-negative-base": {
-    "value": "#aa3636",
+    "value": "#e29f9f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8833,7 +8445,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-negative-hover": {
-    "value": "#c84040",
+    "value": "#e9b7b7",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8844,20 +8456,8 @@ const tokens = {
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-negative-focused": {
-    "value": "#c84040",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "negative",
-      "focused"
-    ]
-  },
   "semantic-color-light-mode-stroke-action-negative-pressed": {
-    "value": "#9d2d2d",
+    "value": "#d98686",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8869,7 +8469,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-negative-disabled": {
-    "value": "#f4d9d9",
+    "value": "#f0cdcd",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8880,68 +8480,56 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-stroke-action-negativeinverse-base": {
-    "value": "#de8c8c",
+  "semantic-color-light-mode-stroke-action-negative-inverse-base": {
+    "value": "#f0cdcd",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "negativeinverse",
+      "negative-inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-action-negativeinverse-hover": {
-    "value": "#e7b4b4",
+  "semantic-color-light-mode-stroke-action-negative-inverse-hover": {
+    "value": "#e9b7b7",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "negativeinverse",
+      "negative-inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-negativeinverse-focused": {
-    "value": "#e7b4b4",
+  "semantic-color-light-mode-stroke-action-negative-inverse-pressed": {
+    "value": "#e29f9f",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "negativeinverse",
-      "focused"
-    ]
-  },
-  "semantic-color-light-mode-stroke-action-negativeinverse-pressed": {
-    "value": "#de8c8c",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "negativeinverse",
+      "negative-inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-negativeinverse-disabled": {
-    "value": "#f4d9d9",
+  "semantic-color-light-mode-stroke-action-negative-inverse-disabled": {
+    "value": "#f0cdcd",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "negativeinverse",
+      "negative-inverse",
       "disabled"
     ]
   },
   "semantic-color-light-mode-stroke-action-positive-base": {
-    "value": "#558f5c",
+    "value": "#59c56b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8953,7 +8541,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-positive-hover": {
-    "value": "#54845a",
+    "value": "#3db856",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8965,7 +8553,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-positive-pressed": {
-    "value": "#446048",
+    "value": "#358d4b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8976,20 +8564,8 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-positive-selected": {
-    "value": "#29312a",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "positive",
-      "selected"
-    ]
-  },
   "semantic-color-light-mode-stroke-action-positive-disabled": {
-    "value": "#d9edde",
+    "value": "#c9edce",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9001,7 +8577,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-positiveinverse-base": {
-    "value": "#e4f5e6",
+    "value": "#dff6e2",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9013,7 +8589,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-positiveinverse-hover": {
-    "value": "#f7fcf8",
+    "value": "#f0faf1",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9025,7 +8601,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-positiveinverse-pressed": {
-    "value": "#d9edde",
+    "value": "#c9edce",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9036,20 +8612,8 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-positiveinverse-selected": {
-    "value": "#d9edde",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "positiveinverse",
-      "selected"
-    ]
-  },
   "semantic-color-light-mode-stroke-action-positiveinverse-disabled": {
-    "value": "#7acc83",
+    "value": "#7acd84",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9060,7 +8624,19 @@ const tokens = {
       "disabled"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_amethyst-base": {
+  "semantic-color-light-mode-stroke-action-accent-amethyst-base": {
+    "value": "#9a90d0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "action",
+      "accent-amethyst",
+      "base"
+    ]
+  },
+  "semantic-color-light-mode-stroke-action-accent-amethyst-hover": {
     "value": "#877ec8",
     "type": "color",
     "path": [
@@ -9068,235 +8644,175 @@ const tokens = {
       "light-mode",
       "stroke",
       "action",
-      "accent_amethyst",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-stroke-action-accent_amethyst-hover": {
-    "value": "#736baa",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "accent_amethyst",
+      "accent-amethyst",
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_amethyst-pressed": {
-    "value": "#5f588c",
+  "semantic-color-light-mode-stroke-action-accent-amethyst-pressed": {
+    "value": "#5951a0",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_amethyst",
+      "accent-amethyst",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_amethyst-selected": {
-    "value": "#353341",
+  "semantic-color-light-mode-stroke-action-accent-amethyst-disabled": {
+    "value": "#dcd9ef",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_amethyst",
-      "selected"
-    ]
-  },
-  "semantic-color-light-mode-stroke-action-accent_amethyst-disabled": {
-    "value": "#e7e5f4",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "accent_amethyst",
+      "accent-amethyst",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_amethyst_inverse-base": {
-    "value": "#f3f2f9",
+  "semantic-color-light-mode-stroke-action-accent-amethyst-inverse-base": {
+    "value": "#e8e6f5",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_amethyst_inverse",
+      "accent-amethyst-inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_amethyst_inverse-hover": {
-    "value": "#f8f7fc",
+  "semantic-color-light-mode-stroke-action-accent-amethyst-inverse-hover": {
+    "value": "#f4f2fa",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_amethyst_inverse",
+      "accent-amethyst-inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_amethyst_inverse-pressed": {
-    "value": "#e7e5f4",
+  "semantic-color-light-mode-stroke-action-accent-amethyst-inverse-pressed": {
+    "value": "#dcd9ef",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_amethyst_inverse",
+      "accent-amethyst-inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_amethyst_inverse-selected": {
-    "value": "#e7e5f4",
+  "semantic-color-light-mode-stroke-action-accent-amethyst-inverse-disabled": {
+    "value": "#b9b3e0",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_amethyst_inverse",
-      "selected"
-    ]
-  },
-  "semantic-color-light-mode-stroke-action-accent_amethyst_inverse-disabled": {
-    "value": "#b7b2de",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "accent_amethyst_inverse",
+      "accent-amethyst-inverse",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_jade-base": {
-    "value": "#1fa79b",
+  "semantic-color-light-mode-stroke-action-accent-jade-base": {
+    "value": "#85d6c2",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_jade",
+      "accent-jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_jade-hover": {
-    "value": "#1a8e84",
+  "semantic-color-light-mode-stroke-action-accent-jade-hover": {
+    "value": "#79d2bc",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_jade",
+      "accent-jade",
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_jade-pressed": {
-    "value": "#16756d",
+  "semantic-color-light-mode-stroke-action-accent-jade-pressed": {
+    "value": "#41c8a9",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_jade",
+      "accent-jade",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_jade-selected": {
-    "value": "#136059",
+  "semantic-color-light-mode-stroke-action-accent-jade-disabled": {
+    "value": "#daf1eb",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_jade",
-      "selected"
-    ]
-  },
-  "semantic-color-light-mode-stroke-action-accent_jade-disabled": {
-    "value": "#d2edeb",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "accent_jade",
+      "accent-jade",
       "disabled"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_jade_inverse-base": {
-    "value": "#e9f6f5",
+  "semantic-color-light-mode-stroke-action-accent-jade-inverse-base": {
+    "value": "#edf8f5",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_jade_inverse",
+      "accent-jade-inverse",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_jade_inverse-hover": {
-    "value": "#f2faf9",
+  "semantic-color-light-mode-stroke-action-accent-jade-inverse-hover": {
+    "value": "#f8fcfb",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_jade_inverse",
+      "accent-jade-inverse",
       "hover"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_jade_inverse-pressed": {
-    "value": "#d2edeb",
+  "semantic-color-light-mode-stroke-action-accent-jade-inverse-pressed": {
+    "value": "#daf1eb",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_jade_inverse",
+      "accent-jade-inverse",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-stroke-action-accent_jade_inverse-selected": {
-    "value": "#d2edeb",
+  "semantic-color-light-mode-stroke-action-accent-jade-inverse-disabled": {
+    "value": "#c7ebe1",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "action",
-      "accent_jade_inverse",
-      "selected"
-    ]
-  },
-  "semantic-color-light-mode-stroke-action-accent_jade_inverse-disabled": {
-    "value": "#a5dcd7",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "stroke",
-      "action",
-      "accent_jade_inverse",
+      "accent-jade-inverse",
       "disabled"
     ]
   },
@@ -9361,7 +8877,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-brand-light": {
-    "value": "#becae9",
+    "value": "#c0ceef",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9373,7 +8889,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-brand-subtle": {
-    "value": "#abbbe3",
+    "value": "#a0b5e6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9385,7 +8901,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-brand-base": {
-    "value": "#98acdc",
+    "value": "#86a0dd",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9397,7 +8913,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-brand-contrast": {
-    "value": "#718dd0",
+    "value": "#5d7cca",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9433,7 +8949,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-info-subtle": {
-    "value": "#edf0f9",
+    "value": "#eef2fb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9445,7 +8961,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-info-base": {
-    "value": "#d5ddf1",
+    "value": "#e0e7f7",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9457,7 +8973,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-info-contrast": {
-    "value": "#becae9",
+    "value": "#c0ceef",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9469,7 +8985,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-info-bold": {
-    "value": "#98acdc",
+    "value": "#86a0dd",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9481,7 +8997,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-alert-light": {
-    "value": "#fef9ed",
+    "value": "#fcf7e3",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9493,7 +9009,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-alert-subtle": {
-    "value": "#fef4dc",
+    "value": "#fcf3d4",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9505,7 +9021,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-alert-base": {
-    "value": "#fce9b9",
+    "value": "#fcefc5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9517,7 +9033,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-alert-contrast": {
-    "value": "#f8c84f",
+    "value": "#fade89",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9529,7 +9045,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-alert-bold": {
-    "value": "#ae8c37",
+    "value": "#f9d36c",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9541,7 +9057,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-danger-light": {
-    "value": "#fdf7f3",
+    "value": "#fcfafa",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9553,7 +9069,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-danger-subtle": {
-    "value": "#f9e3d8",
+    "value": "#f9d2bc",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9565,7 +9081,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-danger-base": {
-    "value": "#eeac8b",
+    "value": "#fda97b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9577,7 +9093,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-danger-contrast": {
-    "value": "#e67337",
+    "value": "#f97b38",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9589,7 +9105,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-danger-bold": {
-    "value": "#ac4915",
+    "value": "#c14d0f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9601,7 +9117,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-negative-light": {
-    "value": "#f9ecec",
+    "value": "#e29f9f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9613,7 +9129,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-negative-subtle": {
-    "value": "#f4d9d9",
+    "value": "#d98686",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9625,7 +9141,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-negative-base": {
-    "value": "#e7b4b4",
+    "value": "#cf6e6e",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9637,7 +9153,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-negative-contrast": {
-    "value": "#d36666",
+    "value": "#ba4646",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9649,7 +9165,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-negative-bold": {
-    "value": "#aa3636",
+    "value": "#a63232",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9661,7 +9177,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-positive-light": {
-    "value": "#e4f5e6",
+    "value": "#dff6e2",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9673,7 +9189,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-positive-subtle": {
-    "value": "#d9edde",
+    "value": "#c9edce",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9685,7 +9201,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-positive-base": {
-    "value": "#b3dbbd",
+    "value": "#b4e4b9",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9697,7 +9213,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-positive-contrast": {
-    "value": "#7acc83",
+    "value": "#7acd84",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9709,7 +9225,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-static-positive-bold": {
-    "value": "#446048",
+    "value": "#36a14f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9720,128 +9236,140 @@ const tokens = {
       "bold"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent_amethyst-light": {
-    "value": "#f3f2f9",
+  "semantic-color-light-mode-stroke-static-accent-amethyst-light": {
+    "value": "#e8e6f5",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "light"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent_amethyst-subtle": {
-    "value": "#e7e5f4",
+  "semantic-color-light-mode-stroke-static-accent-amethyst-subtle": {
+    "value": "#dcd9ef",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent_amethyst-base": {
-    "value": "#cfcbe9",
+  "semantic-color-light-mode-stroke-static-accent-amethyst-base": {
+    "value": "#cbc6e8",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent_amethyst-contrast": {
-    "value": "#877ec8",
+  "semantic-color-light-mode-stroke-static-accent-amethyst-contrast": {
+    "value": "#9a90d0",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent_amethyst-bold": {
-    "value": "#5f588c",
+  "semantic-color-light-mode-stroke-static-accent-amethyst-bold": {
+    "value": "#6e64b8",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "static",
-      "accent_amethyst",
+      "accent-amethyst",
       "bold"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent_jade-light": {
-    "value": "#e9f6f5",
+  "semantic-color-light-mode-stroke-static-accent-jade-light": {
+    "value": "#edf8f5",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "static",
-      "accent_jade",
+      "accent-jade",
       "light"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent_jade-subtle": {
-    "value": "#d2edeb",
+  "semantic-color-light-mode-stroke-static-accent-jade-subtle": {
+    "value": "#daf1eb",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "static",
-      "accent_jade",
+      "accent-jade",
       "subtle"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent_jade-base": {
-    "value": "#a5dcd7",
+  "semantic-color-light-mode-stroke-static-accent-jade-base": {
+    "value": "#c7ebe1",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "static",
-      "accent_jade",
+      "accent-jade",
       "base"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent_jade-contrast": {
-    "value": "#1fa79b",
+  "semantic-color-light-mode-stroke-static-accent-jade-contrast": {
+    "value": "#85d6c2",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "static",
-      "accent_jade",
+      "accent-jade",
       "contrast"
     ]
   },
-  "semantic-color-light-mode-stroke-static-accent_jade-bold": {
-    "value": "#136059",
+  "semantic-color-light-mode-stroke-static-accent-jade-bold": {
+    "value": "#41c8a9",
     "type": "color",
     "path": [
       "semantic-color",
       "light-mode",
       "stroke",
       "static",
-      "accent_jade",
+      "accent-jade",
       "bold"
+    ]
+  },
+  "semantic-color-light-mode-stroke-contextual-focusring-base": {
+    "value": "#6e8bd4",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "contextual",
+      "focusring",
+      "base"
     ]
   },
   "semantic-color-light-mode-surface-nav-base": {
-    "value": "#edf0f9",
+    "value": "#eef2fb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9863,7 +9391,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-surface-canvas-base": {
-    "value": "#edf0f9",
+    "value": "#eef2fb",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9914,6 +9442,5420 @@ const tokens = {
       "base"
     ]
   },
+  "semantic-color-dark-mode-text-action-primary-base": {
+    "value": "#e9eef9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "primary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-primary-hover": {
+    "value": "#eef2fb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "primary",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-primary-pressed": {
+    "value": "#eef2fb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "primary",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-primary-disabled": {
+    "value": "#0a122380",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "primary",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-primaryinverse-base": {
+    "value": "#152343",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "primaryinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-primaryinverse-hover": {
+    "value": "#0a1223",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "primaryinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-primaryinverse-pressed": {
+    "value": "#060a15",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "primaryinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-primaryinverse-disabled": {
+    "value": "#ffffff4d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "primaryinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-secondary-base": {
+    "value": "#e1e1e1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "secondary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-secondary-hover": {
+    "value": "#ededed",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "secondary",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-secondary-pressed": {
+    "value": "#f6f6f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "secondary",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-secondary-disabled": {
+    "value": "#ffffff29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "secondary",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-secondaryinverse-base": {
+    "value": "#e1e1e1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "secondaryinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-secondaryinverse-hover": {
+    "value": "#ededed",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "secondaryinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-secondaryinverse-pressed": {
+    "value": "#f6f6f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "secondaryinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-secondaryinverse-disabled": {
+    "value": "#ffffff29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "secondaryinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-tertiary-base": {
+    "value": "#a0b5e6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "tertiary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-tertiary-hover": {
+    "value": "#c0ceef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "tertiary",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-tertiary-pressed": {
+    "value": "#e0e7f7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "tertiary",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-tertiary-disabled": {
+    "value": "#0a12234d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "tertiary",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-mono-base": {
+    "value": "#fbfbfb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "mono",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-mono-hover": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "mono",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-mono-pressed": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "mono",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-mono-disabled": {
+    "value": "#ffffff29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "mono",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-alert-base": {
+    "value": "#fbeab1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "alert",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-alert-hover": {
+    "value": "#f9d87b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "alert",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-alert-pressed": {
+    "value": "#f9cd5d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "alert",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-alert-disabled": {
+    "value": "#f0a1194d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "alert",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-danger-base": {
+    "value": "#fabd9d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "danger",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-danger-hover": {
+    "value": "#fe9156",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "danger",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-danger-pressed": {
+    "value": "#f97b38",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "danger",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-danger-disabled": {
+    "value": "#f5661880",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "danger",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-negative-base": {
+    "value": "#f0cdcd",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "negative",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-negative-hover": {
+    "value": "#e9b7b7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "negative",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-negative-pressed": {
+    "value": "#e29f9f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "negative",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-negative-disabled": {
+    "value": "#9d2d2d4d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "negative",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-positive-base": {
+    "value": "#b4e4b9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "positive",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-positive-hover": {
+    "value": "#7acd84",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "positive",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-positive-pressed": {
+    "value": "#59c56b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "positive",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-positive-disabled": {
+    "value": "#2a793eb3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "positive",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-accent-jade-base": {
+    "value": "#abe2d5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "accent-jade",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-accent-jade-hover": {
+    "value": "#85d6c2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "accent-jade",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-accent-jade-pressed": {
+    "value": "#41c8a9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "accent-jade",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-text-action-accent-jade-disabled": {
+    "value": "#2bab9280",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "action",
+      "accent-jade",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-primary-light": {
+    "value": "#f6f6f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "primary",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-primary-subtle": {
+    "value": "#ededed",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "primary",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-primary-base": {
+    "value": "#f6f6f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "primary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-primary-bold": {
+    "value": "#fbfbfb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "primary",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-primary-contrast": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "primary",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-secondary-light": {
+    "value": "#ededed",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "secondary",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-secondary-subtle": {
+    "value": "#ededed",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "secondary",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-secondary-base": {
+    "value": "#e1e1e1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "secondary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-secondary-bold": {
+    "value": "#f6f6f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "secondary",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-secondary-contrast": {
+    "value": "#fbfbfb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "secondary",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-info-base": {
+    "value": "#a0b5e6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "info",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-info-subtle": {
+    "value": "#c0ceef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "info",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-info-contrast": {
+    "value": "#86a0dd",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "info",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-alert-base": {
+    "value": "#fade89",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "alert",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-alert-subtle": {
+    "value": "#fbe39d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "alert",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-alert-contrast": {
+    "value": "#f9cd5d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "alert",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-danger-base": {
+    "value": "#fabd9d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "danger",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-danger-subtle": {
+    "value": "#fe9156",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "danger",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-danger-contrast": {
+    "value": "#f97b38",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "danger",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-negative-base": {
+    "value": "#e9b7b7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "negative",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-negative-subtle": {
+    "value": "#d98686",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "negative",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-negative-contrast": {
+    "value": "#f0cdcd",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "negative",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-positive-base": {
+    "value": "#9edba5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "positive",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-positive-subtle": {
+    "value": "#c9edce",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "positive",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-positive-contrast": {
+    "value": "#c9edce",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "positive",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-accent-amethyst-base": {
+    "value": "#cbc6e8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "accent-amethyst",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-accent-amethyst-subtle": {
+    "value": "#9a90d0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "accent-amethyst",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-accent-amethyst-contrast": {
+    "value": "#e8e6f5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "accent-amethyst",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-accent-jade-base": {
+    "value": "#abe2d5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "accent-jade",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-accent-jade-subtle": {
+    "value": "#79d2bc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "accent-jade",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-text-static-accent-jade-contrast": {
+    "value": "#c7ebe1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "static",
+      "accent-jade",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-text-contextual-navitem-base": {
+    "value": "#e1e1e1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "contextual",
+      "navitem",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-text-contextual-navitem-hover": {
+    "value": "#f6f6f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "contextual",
+      "navitem",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-text-contextual-navitem-focused": {
+    "value": "#f6f6f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "contextual",
+      "navitem",
+      "focused"
+    ]
+  },
+  "semantic-color-dark-mode-text-contextual-navitem-active": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "contextual",
+      "navitem",
+      "active"
+    ]
+  },
+  "semantic-color-dark-mode-text-contextual-navitem-disabled": {
+    "value": "#ffffff4d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "text",
+      "contextual",
+      "navitem",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-primary-base": {
+    "value": "#e0e7f7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "primary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-primary-hover": {
+    "value": "#e9eef9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "primary",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-primary-pressed": {
+    "value": "#c0ceef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "primary",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-primary-disabled": {
+    "value": "#0a12234d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "primary",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-primaryinverse-base": {
+    "value": "#a0b5e614",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "primaryinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-primaryinverse-hover": {
+    "value": "#0a122329",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "primaryinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-primaryinverse-pressed": {
+    "value": "#ffffff14",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "primaryinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-primaryinverse-disabled": {
+    "value": "#0a12230a",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "primaryinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-secondary-base": {
+    "value": "#ffffff14",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "secondary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-secondary-hover": {
+    "value": "#ffffff29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "secondary",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-secondary-pressed": {
+    "value": "#ffffff29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "secondary",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-secondary-disabled": {
+    "value": "#ffffff14",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "secondary",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-secondaryinverse-base": {
+    "value": "#ffffff14",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "secondaryinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-secondaryinverse-hover": {
+    "value": "#ffffff29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "secondaryinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-secondaryinverse-pressed": {
+    "value": "#ffffff29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "secondaryinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-secondaryinverse-disabled": {
+    "value": "#ffffff14",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "secondaryinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-tertiary-base": {
+    "value": "#a0b5e60a",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "tertiary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-tertiary-hover": {
+    "value": "#a0b5e614",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "tertiary",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-tertiary-pressed": {
+    "value": "#a0b5e629",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "tertiary",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-tertiary-disabled": {
+    "value": "#0a12230a",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "tertiary",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-tertiary-inverse-base": {
+    "value": "#a0b5e60a",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "tertiary-inverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-tertiary-inverse-hover": {
+    "value": "#a0b5e614",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "tertiary-inverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-tertiary-inverse-pressed": {
+    "value": "#a0b5e629",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "tertiary-inverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-tertiary-inverse-disabled": {
+    "value": "#0a12230a",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "tertiary-inverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-warning-base": {
+    "value": "#fefdfb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "warning",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-warning-hover": {
+    "value": "#fdfbf2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "warning",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-warning-selected": {
+    "value": "#fcf7e3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "warning",
+      "selected"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-warning-disabled": {
+    "value": "#f0a11980",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "warning",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-warninginverse-base": {
+    "value": "#fefdfb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "warninginverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-warninginverse-hover": {
+    "value": "#f0a1194d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "warninginverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-warninginverse-pressed": {
+    "value": "#f0a11980",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "warninginverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-warninginverse-disabled": {
+    "value": "#f9cd5d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "warninginverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-danger-base": {
+    "value": "#fcfafa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "danger",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-danger-hover": {
+    "value": "#f9f1ed",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "danger",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-danger-pressed": {
+    "value": "#f9e2d6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "danger",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-danger-disabled": {
+    "value": "#f56618b3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "danger",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-dangerinverse-base": {
+    "value": "#fcfafa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "dangerinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-dangerinverse-hover": {
+    "value": "#f9d2bc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "dangerinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-dangerinverse-pressed": {
+    "value": "#f5661880",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "dangerinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-dangerinverse-disabled": {
+    "value": "#f56618",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "dangerinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-negative-base": {
+    "value": "#9d2d2db3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "negative",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-negative-hover": {
+    "value": "#9d2d2d80",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "negative",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-negative-pressed": {
+    "value": "#9d2d2dcc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "negative",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-negative-disabled": {
+    "value": "#9d2d2d29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "negative",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-negativeinverse-base": {
+    "value": "#fdfafa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "negativeinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-negativeinverse-hover": {
+    "value": "#9d2d2d33",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "negativeinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-negativeinverse-pressed": {
+    "value": "#9d2d2d80",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "negativeinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-negativeinverse-disabled": {
+    "value": "#c55858",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "negativeinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-positive-base": {
+    "value": "#59c56b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "positive",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-positive-hover": {
+    "value": "#3db856",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "positive",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-positive-pressed": {
+    "value": "#36a14f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "positive",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-positive-disabled": {
+    "value": "#b4e4b9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "positive",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-positiveinverse-base": {
+    "value": "#dff6e2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "positiveinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-positiveinverse-hover": {
+    "value": "#c9edce",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "positiveinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-positiveinverse-pressed": {
+    "value": "#9edba5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "positiveinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-positiveinverse-disabled": {
+    "value": "#dff6e2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "positiveinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-amethyst-base": {
+    "value": "#6e64b8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-amethyst",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-amethyst-hover": {
+    "value": "#877ec8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-amethyst",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-amethyst-pressed": {
+    "value": "#5951a0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-amethyst",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-amethyst-disabled": {
+    "value": "#cbc6e8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-amethyst",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-amethyst-inverse-base": {
+    "value": "#f4f2fa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-amethyst-inverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-amethyst-inverse-hover": {
+    "value": "#e8e6f5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-amethyst-inverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-amethyst-inverse-pressed": {
+    "value": "#dcd9ef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-amethyst-inverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-amethyst-inverse-disabled": {
+    "value": "#f4f2fa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-amethyst-inverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-jade-base": {
+    "value": "#6fceb7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-jade",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-jade-hover": {
+    "value": "#79d2bc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-jade",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-jade-selected": {
+    "value": "#41c8a9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-jade",
+      "selected"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-jade-disabled": {
+    "value": "#c7ebe1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-jade",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-jade-inverse-base": {
+    "value": "#edf8f5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-jade-inverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-jade-inverse-hover": {
+    "value": "#daf1eb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-jade-inverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-jade-inverse-pressed": {
+    "value": "#c7ebe1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-jade-inverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-fill-action-accent-jade-inverse-disabled": {
+    "value": "#f8fcfb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "action",
+      "accent-jade-inverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-neutral-light": {
+    "value": "#313131",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "neutral",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-neutral-subtle": {
+    "value": "#252525",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "neutral",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-neutral-base": {
+    "value": "#1b1b1b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "neutral",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-neutral-opacity-80": {
+    "value": "#111111b3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "neutral",
+      "opacity-80"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-neutral-opacity-70": {
+    "value": "#11111180",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "neutral",
+      "opacity-70"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-neutral-opacity-30": {
+    "value": "#1111114d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "neutral",
+      "opacity-30"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-neutral-opacity-16": {
+    "value": "#11111129",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "neutral",
+      "opacity-16"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-neutral-opacity-8": {
+    "value": "#11111114",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "neutral",
+      "opacity-8"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-brand-light": {
+    "value": "#5475c6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "brand",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-brand-subtle": {
+    "value": "#4b6ec3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "brand",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-brand-base": {
+    "value": "#3a5aaa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "brand",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-brand-contrast": {
+    "value": "#345499",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "brand",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-brand-bold": {
+    "value": "#2d4889",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "brand",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-brand-dark": {
+    "value": "#22386b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "brand",
+      "dark"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-brand-black": {
+    "value": "#1b2d57",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "brand",
+      "black"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-info-light": {
+    "value": "#eef2fb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "info",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-info-subtle": {
+    "value": "#e9eef9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "info",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-info-base": {
+    "value": "#c0ceef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "info",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-info-contrast": {
+    "value": "#6e8bd4",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "info",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-info-bold": {
+    "value": "#5475c6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "info",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-warning-light": {
+    "value": "#fdfbf2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "warning",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-warning-subtle": {
+    "value": "#fcf7e3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "warning",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-warning-base": {
+    "value": "#fcf3d4",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "warning",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-warning-contrast": {
+    "value": "#fbeab1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "warning",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-warning-bold": {
+    "value": "#fade89",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "warning",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-danger-light": {
+    "value": "#fcfafa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "danger",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-danger-subtle": {
+    "value": "#f9e2d6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "danger",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-danger-base": {
+    "value": "#f9d2bc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "danger",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-danger-contrast": {
+    "value": "#fabd9d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "danger",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-danger-bold": {
+    "value": "#fe9156",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "danger",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-negative-light": {
+    "value": "#e9b7b7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "negative",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-negative-subtle": {
+    "value": "#e29f9f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "negative",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-negative-base": {
+    "value": "#d98686",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "negative",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-negative-contrast": {
+    "value": "#cf6e6e",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "negative",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-negative-bold": {
+    "value": "#ba4646",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "negative",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-positive-light": {
+    "value": "#f0faf1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "positive",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-positive-subtle": {
+    "value": "#dff6e2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "positive",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-positive-base": {
+    "value": "#c9edce",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "positive",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-positive-contrast": {
+    "value": "#9edba5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "positive",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-positive-bold": {
+    "value": "#59c56b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "positive",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-amethyst-light": {
+    "value": "#f4f2fa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-amethyst",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-amethyst-subtle": {
+    "value": "#e8e6f5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-amethyst",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-amethyst-base": {
+    "value": "#dcd9ef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-amethyst",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-amethyst-contrast": {
+    "value": "#b9b3e0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-amethyst",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-amethyst-bold": {
+    "value": "#a8a0d8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-amethyst",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-jade-light": {
+    "value": "#f8fcfb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-jade",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-jade-subtle": {
+    "value": "#edf8f5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-jade",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-jade-base": {
+    "value": "#daf1eb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-jade",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-jade-contrast": {
+    "value": "#c7ebe1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-jade",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-jade-bold": {
+    "value": "#94dbc9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-jade",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-seabreeze-light": {
+    "value": "#e9f6fc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-seabreeze",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-seabreeze-subtle": {
+    "value": "#dbf0fb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-seabreeze",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-seabreeze-base": {
+    "value": "#c4e7f8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-seabreeze",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-seabreeze-contrast": {
+    "value": "#5ab1d3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-seabreeze",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-fill-static-accent-seabreeze-bold": {
+    "value": "#52abce",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "static",
+      "accent-seabreeze",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-fill-contextual-navitem-base": {
+    "value": "#fafafa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "contextual",
+      "navitem",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-fill-contextual-navitem-hover": {
+    "value": "#1111110a",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "contextual",
+      "navitem",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-fill-contextual-navitem-focused": {
+    "value": "#0a122314",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "contextual",
+      "navitem",
+      "focused"
+    ]
+  },
+  "semantic-color-dark-mode-fill-contextual-navitem-active": {
+    "value": "#0a122314",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "contextual",
+      "navitem",
+      "active"
+    ]
+  },
+  "semantic-color-dark-mode-fill-contextual-navitem-trail": {
+    "value": "#11111105",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "fill",
+      "contextual",
+      "navitem",
+      "trail"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-primary-base": {
+    "value": "#e9eef9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "primary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-primary-hover": {
+    "value": "#eef2fb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "primary",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-primary-pressed": {
+    "value": "#eef2fb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "primary",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-primary-disabled": {
+    "value": "#0a122380",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "primary",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-primaryinverse-base": {
+    "value": "#152343",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "primaryinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-primaryinverse-hover": {
+    "value": "#0a1223",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "primaryinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-primaryinverse-pressed": {
+    "value": "#060a15",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "primaryinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-primaryinverse-disabled": {
+    "value": "#ffffff4d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "primaryinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-secondary-base": {
+    "value": "#e1e1e1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "secondary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-secondary-hover": {
+    "value": "#ededed",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "secondary",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-secondary-pressed": {
+    "value": "#f6f6f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "secondary",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-secondary-disabled": {
+    "value": "#ffffff29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "secondary",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-secondary-inverse-base": {
+    "value": "#e1e1e1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "secondary-inverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-secondary-inverse-hover": {
+    "value": "#ededed",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "secondary-inverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-secondary-inverse-pressed": {
+    "value": "#f6f6f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "secondary-inverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-secondary-inverse-disabled": {
+    "value": "#ffffff29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "secondary-inverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-mono-base": {
+    "value": "#fbfbfb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "mono",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-mono-hover": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "mono",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-mono-pressed": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "mono",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-mono-disabled": {
+    "value": "#ffffff29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "mono",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-tertiary-base": {
+    "value": "#a0b5e6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "tertiary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-tertiary-hover": {
+    "value": "#c0ceef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "tertiary",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-tertiary-pressed": {
+    "value": "#e0e7f7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "tertiary",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-tertiary-disabled": {
+    "value": "#0a12234d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "tertiary",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-alert-base": {
+    "value": "#fbeab1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "alert",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-alert-hover": {
+    "value": "#f9d87b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "alert",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-alert-pressed": {
+    "value": "#f9cd5d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "alert",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-alert-disabled": {
+    "value": "#f0a11980",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "alert",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-danger-base": {
+    "value": "#fabd9d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "danger",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-danger-hover": {
+    "value": "#fe9156",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "danger",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-danger-pressed": {
+    "value": "#f97b38",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "danger",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-danger-disabled": {
+    "value": "#f5661880",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "danger",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-negative-base": {
+    "value": "#f0cdcd",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "negative",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-negative-hover": {
+    "value": "#e9b7b7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "negative",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-negative-pressed": {
+    "value": "#e29f9f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "negative",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-negative-disabled": {
+    "value": "#9d2d2d4d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "negative",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-negativeinverse-base": {
+    "value": "#e9b7b7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "negativeinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-negativeinverse-hover": {
+    "value": "#e29f9f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "negativeinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-negativeinverse-pressed": {
+    "value": "#f5dfdf",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "negativeinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-negativeinverse-disabled": {
+    "value": "#f0cdcd",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "negativeinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-positive-base": {
+    "value": "#3db856",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "positive",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-positive-hover": {
+    "value": "#36a14f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "positive",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-positive-pressed": {
+    "value": "#358d4b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "positive",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-positive-disabled": {
+    "value": "#9edba5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "positive",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-positiveinverse-base": {
+    "value": "#dff6e2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "positiveinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-positiveinverse-hover": {
+    "value": "#f0faf1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "positiveinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-positiveinverse-pressed": {
+    "value": "#c9edce",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "positiveinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-positiveinverse-disabled": {
+    "value": "#7acd84",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "positiveinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-accent-jade-base": {
+    "value": "#79d2bc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "accent-jade",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-accent-jade-hover": {
+    "value": "#6fceb7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "accent-jade",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-accent-jade-selected": {
+    "value": "#2bab92",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "accent-jade",
+      "selected"
+    ]
+  },
+  "semantic-color-dark-mode-icon-action-accent-jade-disabled": {
+    "value": "#c7ebe1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "action",
+      "accent-jade",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-neutral-xlight": {
+    "value": "#7b7b7b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "neutral",
+      "xlight"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-neutral-light": {
+    "value": "#7b7b7b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "neutral",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-neutral-subtle": {
+    "value": "#606060",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "neutral",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-neutral-base": {
+    "value": "#484848",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "neutral",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-neutral-contrast": {
+    "value": "#202020",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "neutral",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-neutral-bold": {
+    "value": "#161616",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "neutral",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-brand-light": {
+    "value": "#5d7cca",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "brand",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-brand-subtle": {
+    "value": "#5475c6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "brand",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-brand-base": {
+    "value": "#3a5aaa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "brand",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-brand-contrast": {
+    "value": "#345499",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "brand",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-brand-bold": {
+    "value": "#2d4889",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "brand",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-mono-light": {
+    "value": "#fbfbfb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "mono",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-mono-base": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "mono",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-info-light": {
+    "value": "#6e8bd4",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "info",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-info-subtle": {
+    "value": "#5d7cca",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "info",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-info-base": {
+    "value": "#5475c6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "info",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-info-contrast": {
+    "value": "#345499",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "info",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-info-bold": {
+    "value": "#2d4889",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "info",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-warning-light": {
+    "value": "#fcefc5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "warning",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-warning-subtle": {
+    "value": "#fbeab1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "warning",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-warning-base": {
+    "value": "#f9d87b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "warning",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-warning-contrast": {
+    "value": "#f9d36c",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "warning",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-warning-bold": {
+    "value": "#f9cd5d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "warning",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-danger-light": {
+    "value": "#fda97b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "danger",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-danger-subtle": {
+    "value": "#fe9156",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "danger",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-danger-base": {
+    "value": "#f56618",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "danger",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-danger-contrast": {
+    "value": "#c14d0f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "danger",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-danger-bold": {
+    "value": "#a5420d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "danger",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-negative-light": {
+    "value": "#c55858",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "negative",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-negative-subtle": {
+    "value": "#ba4646",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "negative",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-negative-base": {
+    "value": "#b03a3a",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "negative",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-negative-contrast": {
+    "value": "#882727",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "negative",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-negative-bold": {
+    "value": "#5f1b1b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "negative",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-positive-light": {
+    "value": "#9edba5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "positive",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-positive-subtle": {
+    "value": "#7acd84",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "positive",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-positive-base": {
+    "value": "#59c56b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "positive",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-positive-contrast": {
+    "value": "#36a14f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "positive",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-positive-bold": {
+    "value": "#358d4b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "positive",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-amethyst-light": {
+    "value": "#b9b3e0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-amethyst",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-amethyst-subtle": {
+    "value": "#a8a0d8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-amethyst",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-amethyst-base": {
+    "value": "#877ec8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-amethyst",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-amethyst-contrast": {
+    "value": "#6e64b8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-amethyst",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-amethyst-bold": {
+    "value": "#5951a0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-amethyst",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-jade-light": {
+    "value": "#c7ebe1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-jade",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-jade-subtle": {
+    "value": "#94dbc9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-jade",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-jade-base": {
+    "value": "#2bab92",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-jade",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-jade-contrast": {
+    "value": "#208877",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-jade",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-jade-bold": {
+    "value": "#176358",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-jade",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-seabreeze-light": {
+    "value": "#b1e1f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-seabreeze",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-seabreeze-subtle": {
+    "value": "#95d4ee",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-seabreeze",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-seabreeze-base": {
+    "value": "#5ab1d3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-seabreeze",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-seabreeze-contrast": {
+    "value": "#4ba8cb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-seabreeze",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-seabreeze-bold": {
+    "value": "#2a7e9d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-seabreeze",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-lagoon-light": {
+    "value": "#deeff2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-lagoon",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-lagoon-subtle": {
+    "value": "#afd9de",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-lagoon",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-lagoon-base": {
+    "value": "#89c5cd",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-lagoon",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-lagoon-contrast": {
+    "value": "#3db7c7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-lagoon",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-icon-static-accent-lagoon-bold": {
+    "value": "#1e99ae",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "static",
+      "accent-lagoon",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-icon-contextual-navitem-base": {
+    "value": "#d2d2d2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "contextual",
+      "navitem",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-icon-contextual-navitem-hover": {
+    "value": "#f6f6f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "contextual",
+      "navitem",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-icon-contextual-navitem-focused": {
+    "value": "#f6f6f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "contextual",
+      "navitem",
+      "focused"
+    ]
+  },
+  "semantic-color-dark-mode-icon-contextual-navitem-active": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "contextual",
+      "navitem",
+      "active"
+    ]
+  },
+  "semantic-color-dark-mode-icon-contextual-navitem-disabled": {
+    "value": "#ffffff4d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "icon",
+      "contextual",
+      "navitem",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-primary-base": {
+    "value": "#a0b5e6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "primary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-primary-hover": {
+    "value": "#c0ceef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "primary",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-primary-pressed": {
+    "value": "#86a0dd",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "primary",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-primary-disabled": {
+    "value": "#0a12234d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "primary",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-primary-inverse-base": {
+    "value": "#a0b5e6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "primary-inverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-primary-inverse-hover": {
+    "value": "#c0ceef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "primary-inverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-primary-inverse-pressed": {
+    "value": "#86a0dd",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "primary-inverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-primary-inverse-disabled": {
+    "value": "#0a12234d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "primary-inverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-secondary-base": {
+    "value": "#ffffff29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "secondary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-secondary-hover": {
+    "value": "#ffffff14",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "secondary",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-secondary-pressed": {
+    "value": "#1111114d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "secondary",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-secondary-disabled": {
+    "value": "#ffffff14",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "secondary",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-secondary-inverse-base": {
+    "value": "#ffffff29",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "secondary-inverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-secondary-inverse-hover": {
+    "value": "#ffffff14",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "secondary-inverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-secondary-inverse-pressed": {
+    "value": "#1111114d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "secondary-inverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-secondary-inverse-disabled": {
+    "value": "#ffffff14",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "secondary-inverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-tertiary-base": {
+    "value": "#a0b5e629",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "tertiary",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-tertiary-hover": {
+    "value": "#a0b5e633",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "tertiary",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-tertiary-pressed": {
+    "value": "#a0b5e64d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "tertiary",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-tertiary-disabled": {
+    "value": "#a0b5e60a",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "tertiary",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-tertiaryinverse-base": {
+    "value": "#eef2fb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "tertiaryinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-tertiaryinverse-hover": {
+    "value": "#fafafa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "tertiaryinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-tertiaryinverse-pressed": {
+    "value": "#e0e7f7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "tertiaryinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-tertiaryinverse-disabled": {
+    "value": "#c0ceef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "tertiaryinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-warning-base": {
+    "value": "#fade89",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "warning",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-warning-hover": {
+    "value": "#f9d87b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "warning",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-warning-pressed": {
+    "value": "#f9d36c",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "warning",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-warning-disabled": {
+    "value": "#fcefc5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "warning",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-warninginverse-base": {
+    "value": "#fcf7e3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "warninginverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-warninginverse-hover": {
+    "value": "#fdfbf2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "warninginverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-warninginverse-pressed": {
+    "value": "#fcf3d4",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "warninginverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-warninginverse-disabled": {
+    "value": "#fcefc5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "warninginverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-danger-base": {
+    "value": "#fe9156",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "danger",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-danger-hover": {
+    "value": "#f97b38",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "danger",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-danger-pressed": {
+    "value": "#a5420d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "danger",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-danger-disabled": {
+    "value": "#f9d2bc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "danger",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-dangerinverse-base": {
+    "value": "#f9e2d6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "dangerinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-dangerinverse-hover": {
+    "value": "#fcfafa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "dangerinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-dangerinverse-pressed": {
+    "value": "#f9d2bc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "dangerinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-dangerinverse-disabled": {
+    "value": "#fda97b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "dangerinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-negative-base": {
+    "value": "#e29f9f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "negative",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-negative-hover": {
+    "value": "#9d2d2d80",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "negative",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-negative-pressed": {
+    "value": "#9d2d2dcc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "negative",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-negative-disabled": {
+    "value": "#9d2d2d33",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "negative",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-negative-inverse-base": {
+    "value": "#e29f9f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "negative-inverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-negative-inverse-hover": {
+    "value": "#9d2d2d80",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "negative-inverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-negative-inverse-pressed": {
+    "value": "#9d2d2dcc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "negative-inverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-negative-inverse-disabled": {
+    "value": "#9d2d2d33",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "negative-inverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-positive-base": {
+    "value": "#59c56b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "positive",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-positive-hover": {
+    "value": "#3db856",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "positive",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-positive-pressed": {
+    "value": "#358d4b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "positive",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-positive-disabled": {
+    "value": "#c9edce",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "positive",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-positiveinverse-base": {
+    "value": "#dff6e2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "positiveinverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-positiveinverse-hover": {
+    "value": "#f0faf1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "positiveinverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-positiveinverse-pressed": {
+    "value": "#c9edce",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "positiveinverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-positiveinverse-disabled": {
+    "value": "#7acd84",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "positiveinverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-amethyst-base": {
+    "value": "#9a90d0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-amethyst",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-amethyst-hover": {
+    "value": "#877ec8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-amethyst",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-amethyst-pressed": {
+    "value": "#5951a0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-amethyst",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-amethyst-disabled": {
+    "value": "#dcd9ef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-amethyst",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-amethyst-inverse-base": {
+    "value": "#e8e6f5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-amethyst-inverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-amethyst-inverse-hover": {
+    "value": "#f4f2fa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-amethyst-inverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-amethyst-inverse-pressed": {
+    "value": "#dcd9ef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-amethyst-inverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-amethyst-inverse-disabled": {
+    "value": "#b9b3e0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-amethyst-inverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-jade-base": {
+    "value": "#85d6c2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-jade",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-jade-hover": {
+    "value": "#79d2bc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-jade",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-jade-pressed": {
+    "value": "#41c8a9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-jade",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-jade-disabled": {
+    "value": "#daf1eb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-jade",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-jade-inverse-base": {
+    "value": "#edf8f5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-jade-inverse",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-jade-inverse-hover": {
+    "value": "#f8fcfb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-jade-inverse",
+      "hover"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-jade-inverse-pressed": {
+    "value": "#daf1eb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-jade-inverse",
+      "pressed"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-action-accent-jade-inverse-disabled": {
+    "value": "#c7ebe1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "action",
+      "accent-jade-inverse",
+      "disabled"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-neutral-light": {
+    "value": "#f6f6f6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "neutral",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-neutral-subtle": {
+    "value": "#ededed",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "neutral",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-neutral-base": {
+    "value": "#e1e1e1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "neutral",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-neutral-contrast": {
+    "value": "#a6a6a6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "neutral",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-neutral-bold": {
+    "value": "#6b6b6b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "neutral",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-brand-light": {
+    "value": "#c0ceef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "brand",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-brand-subtle": {
+    "value": "#a0b5e6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "brand",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-brand-base": {
+    "value": "#86a0dd",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "brand",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-brand-contrast": {
+    "value": "#5d7cca",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "brand",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-brand-bold": {
+    "value": "#4b6ec3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "brand",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-info-light": {
+    "value": "#fafafa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "info",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-info-subtle": {
+    "value": "#eef2fb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "info",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-info-base": {
+    "value": "#e0e7f7",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "info",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-info-contrast": {
+    "value": "#c0ceef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "info",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-info-bold": {
+    "value": "#86a0dd",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "info",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-alert-light": {
+    "value": "#fcf7e3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "alert",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-alert-subtle": {
+    "value": "#fcf3d4",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "alert",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-alert-base": {
+    "value": "#fcefc5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "alert",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-alert-contrast": {
+    "value": "#fade89",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "alert",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-alert-bold": {
+    "value": "#f9d36c",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "alert",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-danger-light": {
+    "value": "#fcfafa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "danger",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-danger-subtle": {
+    "value": "#f9d2bc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "danger",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-danger-base": {
+    "value": "#fda97b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "danger",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-danger-contrast": {
+    "value": "#f97b38",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "danger",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-danger-bold": {
+    "value": "#c14d0f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "danger",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-negative-light": {
+    "value": "#e29f9f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "negative",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-negative-subtle": {
+    "value": "#d98686",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "negative",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-negative-base": {
+    "value": "#cf6e6e",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "negative",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-negative-contrast": {
+    "value": "#ba4646",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "negative",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-negative-bold": {
+    "value": "#a63232",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "negative",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-positive-light": {
+    "value": "#dff6e2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "positive",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-positive-subtle": {
+    "value": "#c9edce",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "positive",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-positive-base": {
+    "value": "#b4e4b9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "positive",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-positive-contrast": {
+    "value": "#7acd84",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "positive",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-positive-bold": {
+    "value": "#36a14f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "positive",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-accent-amethyst-light": {
+    "value": "#e8e6f5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "accent-amethyst",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-accent-amethyst-subtle": {
+    "value": "#dcd9ef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "accent-amethyst",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-accent-amethyst-base": {
+    "value": "#cbc6e8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "accent-amethyst",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-accent-amethyst-contrast": {
+    "value": "#9a90d0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "accent-amethyst",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-accent-amethyst-bold": {
+    "value": "#6e64b8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "accent-amethyst",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-accent-jade-light": {
+    "value": "#edf8f5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "accent-jade",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-accent-jade-subtle": {
+    "value": "#daf1eb",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "accent-jade",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-accent-jade-base": {
+    "value": "#c7ebe1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "accent-jade",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-accent-jade-contrast": {
+    "value": "#85d6c2",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "accent-jade",
+      "contrast"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-static-accent-jade-bold": {
+    "value": "#41c8a9",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "static",
+      "accent-jade",
+      "bold"
+    ]
+  },
+  "semantic-color-dark-mode-stroke-contextual-focusring-base": {
+    "value": "#ffffff4d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "stroke",
+      "contextual",
+      "focusring",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-surface-nav-base": {
+    "value": "#0c0c0c",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "surface",
+      "nav",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-surface-nav-light": {
+    "value": "#252525",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "surface",
+      "nav",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-surface-canvas-base": {
+    "value": "#111111",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "surface",
+      "canvas",
+      "base"
+    ]
+  },
+  "semantic-color-dark-mode-surface-canvas-light": {
+    "value": "#fafafa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "surface",
+      "canvas",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-scrim-light": {
+    "value": "#1111114d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "scrim",
+      "light"
+    ]
+  },
+  "semantic-color-dark-mode-scrim-subtle": {
+    "value": "#11111180",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "scrim",
+      "subtle"
+    ]
+  },
+  "semantic-color-dark-mode-scrim-base": {
+    "value": "#111111b3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "dark-mode",
+      "scrim",
+      "base"
+    ]
+  },
   "semantic-layout-units-borderwidth-xthin": {
     "value": 0.5,
     "type": "number",
@@ -9959,6 +14901,24 @@ const tokens = {
       "thick"
     ]
   },
+  "semantic-layout-units-borderwidth-xthick": {
+    "value": 4,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "borderwidth",
+      "xthick"
+    ]
+  },
+  "semantic-layout-units-borderwidth-xxthick": {
+    "value": 6,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "borderwidth",
+      "xxthick"
+    ]
+  },
   "semantic-layout-units-cornerradius-xsmall": {
     "value": 2,
     "type": "number",
@@ -10002,6 +14962,15 @@ const tokens = {
       "semantic-layout-units",
       "cornerradius",
       "full"
+    ]
+  },
+  "semantic-layout-units-gap-xxxtight": {
+    "value": 2,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "gap",
+      "xxxtight"
     ]
   },
   "semantic-layout-units-gap-xxtight": {
@@ -10216,6 +15185,42 @@ const tokens = {
       "horizontal"
     ]
   },
+  "semantic-layout-units-contextual-button-border-width-thin-thin": {
+    "value": 0.75,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "button",
+      "border-width",
+      "thin",
+      "thin"
+    ]
+  },
+  "semantic-layout-units-contextual-button-border-width-base-base": {
+    "value": 1.5,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "button",
+      "border-width",
+      "base",
+      "base"
+    ]
+  },
+  "semantic-layout-units-contextual-button-border-width-thick-thick": {
+    "value": 2,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "button",
+      "border-width",
+      "thick",
+      "thick"
+    ]
+  },
   "semantic-layout-units-contextual-navitem-large-padding-vertical": {
     "value": 12,
     "type": "number",
@@ -10265,7 +15270,7 @@ const tokens = {
     ]
   },
   "semantic-layout-units-contextual-page-padding-top": {
-    "value": 16,
+    "value": 12,
     "type": "number",
     "path": [
       "semantic-layout-units",
@@ -10287,7 +15292,7 @@ const tokens = {
     ]
   },
   "semantic-layout-units-contextual-page-padding-horizontal": {
-    "value": 48,
+    "value": 36,
     "type": "number",
     "path": [
       "semantic-layout-units",
@@ -10320,7 +15325,7 @@ const tokens = {
     ]
   },
   "semantic-layout-units-contextual-page-heading-padding-top": {
-    "value": 16,
+    "value": 8,
     "type": "number",
     "path": [
       "semantic-layout-units",
@@ -10331,7 +15336,7 @@ const tokens = {
     ]
   },
   "semantic-layout-units-contextual-page-heading-padding-bottom": {
-    "value": 36,
+    "value": 16,
     "type": "number",
     "path": [
       "semantic-layout-units",
@@ -10440,7 +15445,123 @@ const tokens = {
       "vertical"
     ]
   },
-  "semantic-layout-units-accessibility-touch-target-optimal-size-height": {
+  "semantic-layout-units-contextual-focused-element-cornerradius-cornerradius": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "focused-element",
+      "cornerradius",
+      "cornerradius"
+    ]
+  },
+  "semantic-layout-units-contextual-focused-element-borderwidth-borderwidth": {
+    "value": 2,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "focused-element",
+      "borderwidth",
+      "borderwidth"
+    ]
+  },
+  "semantic-layout-units-contextual-card-gap-gap": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "card",
+      "gap",
+      "gap"
+    ]
+  },
+  "semantic-layout-units-contextual-card-padding-medium-vertical": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "card",
+      "padding",
+      "medium",
+      "vertical"
+    ]
+  },
+  "semantic-layout-units-contextual-card-padding-medium-horizontal": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "card",
+      "padding",
+      "medium",
+      "horizontal"
+    ]
+  },
+  "semantic-layout-units-contextual-card-padding-small-vertical": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "card",
+      "padding",
+      "small",
+      "vertical"
+    ]
+  },
+  "semantic-layout-units-contextual-card-padding-small-horizontal": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "card",
+      "padding",
+      "small",
+      "horizontal"
+    ]
+  },
+  "semantic-layout-units-contextual-card-border-width-base-base": {
+    "value": 0.5,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "card",
+      "border-width",
+      "base",
+      "base"
+    ]
+  },
+  "semantic-layout-units-contextual-card-border-width-thick-thick": {
+    "value": 0.75,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "card",
+      "border-width",
+      "thick",
+      "thick"
+    ]
+  },
+  "semantic-layout-units-contextual-card-cornerradius-cornerradius": {
+    "value": 8,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "card",
+      "cornerradius",
+      "cornerradius"
+    ]
+  },
+  "semantic-layout-units-accessibility-touch-target-optimal-height": {
     "value": 48,
     "type": "number",
     "path": [
@@ -10448,11 +15569,10 @@ const tokens = {
       "accessibility",
       "touch-target",
       "optimal",
-      "size",
       "height"
     ]
   },
-  "semantic-layout-units-accessibility-touch-target-optimal-size-width": {
+  "semantic-layout-units-accessibility-touch-target-optimal-width": {
     "value": 48,
     "type": "number",
     "path": [
@@ -10460,199 +15580,50 @@ const tokens = {
       "accessibility",
       "touch-target",
       "optimal",
-      "size",
       "width"
     ]
   },
-  "semantic-layout-units-accessibility-touch-target-optimal-padding-horizontal": {
-    "value": 6,
-    "type": "number",
-    "path": [
-      "semantic-layout-units",
-      "accessibility",
-      "touch-target",
-      "optimal",
-      "padding",
-      "horizontal"
-    ]
-  },
-  "semantic-layout-units-accessibility-touch-target-optimal-padding-vertical": {
-    "value": 6,
-    "type": "number",
-    "path": [
-      "semantic-layout-units",
-      "accessibility",
-      "touch-target",
-      "optimal",
-      "padding",
-      "vertical"
-    ]
-  },
-  "semantic-layout-units-accessibility-touch-target-mobile-minimums-size-height": {
+  "semantic-layout-units-accessibility-touch-target-mobile-minimum-height": {
     "value": 44,
     "type": "number",
     "path": [
       "semantic-layout-units",
       "accessibility",
       "touch-target",
-      "mobile-minimums",
-      "size",
+      "mobile-minimum",
       "height"
     ]
   },
-  "semantic-layout-units-accessibility-touch-target-mobile-minimums-size-width": {
+  "semantic-layout-units-accessibility-touch-target-mobile-minimum-width": {
     "value": 44,
     "type": "number",
     "path": [
       "semantic-layout-units",
       "accessibility",
       "touch-target",
-      "mobile-minimums",
-      "size",
+      "mobile-minimum",
       "width"
     ]
   },
-  "semantic-layout-units-accessibility-touch-target-mobile-minimums-padding-horizontal": {
-    "value": 6,
-    "type": "number",
-    "path": [
-      "semantic-layout-units",
-      "accessibility",
-      "touch-target",
-      "mobile-minimums",
-      "padding",
-      "horizontal"
-    ]
-  },
-  "semantic-layout-units-accessibility-touch-target-mobile-minimums-padding-vertical": {
-    "value": 6,
-    "type": "number",
-    "path": [
-      "semantic-layout-units",
-      "accessibility",
-      "touch-target",
-      "mobile-minimums",
-      "padding",
-      "vertical"
-    ]
-  },
-  "semantic-layout-units-accessibility-touch-target-desktop-minimums-size-height": {
+  "semantic-layout-units-accessibility-touch-target-desktop-minimum-height": {
     "value": 36,
     "type": "number",
     "path": [
       "semantic-layout-units",
       "accessibility",
       "touch-target",
-      "desktop-minimums",
-      "size",
+      "desktop-minimum",
       "height"
     ]
   },
-  "semantic-layout-units-accessibility-touch-target-desktop-minimums-size-width": {
+  "semantic-layout-units-accessibility-touch-target-desktop-minimum-width": {
     "value": 36,
     "type": "number",
     "path": [
       "semantic-layout-units",
       "accessibility",
       "touch-target",
-      "desktop-minimums",
-      "size",
-      "width"
-    ]
-  },
-  "semantic-layout-units-accessibility-touch-target-desktop-minimums-padding-horizontal": {
-    "value": 6,
-    "type": "number",
-    "path": [
-      "semantic-layout-units",
-      "accessibility",
-      "touch-target",
-      "desktop-minimums",
-      "padding",
-      "horizontal"
-    ]
-  },
-  "semantic-layout-units-accessibility-touch-target-desktop-minimums-padding-vertical": {
-    "value": 6,
-    "type": "number",
-    "path": [
-      "semantic-layout-units",
-      "accessibility",
-      "touch-target",
-      "desktop-minimums",
-      "padding",
-      "vertical"
-    ]
-  },
-  "semantic-layout-units-accessibility-icon-wrapping-large-size-height": {
-    "value": 24,
-    "type": "number",
-    "path": [
-      "semantic-layout-units",
-      "accessibility",
-      "icon-wrapping",
-      "large",
-      "size",
-      "height"
-    ]
-  },
-  "semantic-layout-units-accessibility-icon-wrapping-large-size-width": {
-    "value": 24,
-    "type": "number",
-    "path": [
-      "semantic-layout-units",
-      "accessibility",
-      "icon-wrapping",
-      "large",
-      "size",
-      "width"
-    ]
-  },
-  "semantic-layout-units-accessibility-icon-wrapping-medium-size-height": {
-    "value": 20,
-    "type": "number",
-    "path": [
-      "semantic-layout-units",
-      "accessibility",
-      "icon-wrapping",
-      "medium",
-      "size",
-      "height"
-    ]
-  },
-  "semantic-layout-units-accessibility-icon-wrapping-medium-size-width": {
-    "value": 20,
-    "type": "number",
-    "path": [
-      "semantic-layout-units",
-      "accessibility",
-      "icon-wrapping",
-      "medium",
-      "size",
-      "width"
-    ]
-  },
-  "semantic-layout-units-accessibility-icon-wrapping-small-size-height": {
-    "value": 18,
-    "type": "number",
-    "path": [
-      "semantic-layout-units",
-      "accessibility",
-      "icon-wrapping",
-      "small",
-      "size",
-      "height"
-    ]
-  },
-  "semantic-layout-units-accessibility-icon-wrapping-small-size-width": {
-    "value": 18,
-    "type": "number",
-    "path": [
-      "semantic-layout-units",
-      "accessibility",
-      "icon-wrapping",
-      "small",
-      "size",
+      "desktop-minimum",
       "width"
     ]
   },
@@ -10696,7 +15667,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-display-xl-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -10761,7 +15732,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-display-xl-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -10826,7 +15797,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-display-l-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -10891,7 +15862,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-display-l-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -10956,7 +15927,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-display-base-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11021,7 +15992,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-display-base-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11086,7 +16057,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-page-xl-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11151,7 +16122,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-page-xl-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11216,7 +16187,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-page-l-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11281,7 +16252,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-page-l-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11346,7 +16317,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-page-base-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11411,7 +16382,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-page-base-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11476,7 +16447,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-section-l-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11541,7 +16512,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-section-l-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11606,7 +16577,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-section-l-bold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11671,7 +16642,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-section-base-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11736,7 +16707,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-section-base-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11801,7 +16772,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-section-base-bold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11866,7 +16837,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-section-s-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11931,7 +16902,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-section-s-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -11996,7 +16967,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-section-s-bold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -12256,7 +17227,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-local-base-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -12321,7 +17292,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-local-base-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -12382,7 +17353,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-local-s-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -12442,7 +17413,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-heading-local-xs-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -12450,6 +17421,396 @@ const tokens = {
       "heading",
       "local",
       "xs",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-regular-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "regular",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-regular-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "regular",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-regular-fontweight": {
+    "value": 400,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "regular",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-regular-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "regular",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-regular-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-medium-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-medium-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-medium-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "medium",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-semibold-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "semibold",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-semibold-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "semibold",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-semibold-fontweight": {
+    "value": 600,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "semibold",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-semibold-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "semibold",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-text-body-xsmall-semibold-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "xsmall",
+      "semibold",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-regular-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "regular",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-regular-fontsize": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "regular",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-regular-fontweight": {
+    "value": 400,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "regular",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-regular-lineheight": {
+    "value": 20,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "regular",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-regular-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-medium-fontsize": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-medium-lineheight": {
+    "value": 20,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-medium-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "medium",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-semibold-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "semibold",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-semibold-fontsize": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "semibold",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-semibold-fontweight": {
+    "value": 600,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "semibold",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-semibold-lineheight": {
+    "value": 20,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "semibold",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-text-body-small-semibold-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "small",
+      "semibold",
       "letterspacing"
     ]
   },
@@ -12506,7 +17867,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-text-body-base-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -12515,6 +17876,71 @@ const tokens = {
       "body",
       "base",
       "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-text-body-base-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "base",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-text-body-base-medium-fontsize": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "base",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-text-body-base-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "base",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-text-body-base-medium-lineheight": {
+    "value": 22,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "base",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-text-body-base-medium-letterspacing": {
+    "value": 0.10000000149011612,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "text",
+      "body",
+      "base",
+      "medium",
       "letterspacing"
     ]
   },
@@ -12571,7 +17997,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-text-body-base-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -12583,7 +18009,7 @@ const tokens = {
       "letterspacing"
     ]
   },
-  "semantic-type-desktop-text-body-l-regular-fontfamily": {
+  "semantic-type-desktop-text-body-large-regular-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -12591,12 +18017,12 @@ const tokens = {
       "desktop",
       "text",
       "body",
-      "l",
+      "large",
       "regular",
       "fontfamily"
     ]
   },
-  "semantic-type-desktop-text-body-l-regular-fontsize": {
+  "semantic-type-desktop-text-body-large-regular-fontsize": {
     "value": 18,
     "type": "number",
     "path": [
@@ -12604,12 +18030,12 @@ const tokens = {
       "desktop",
       "text",
       "body",
-      "l",
+      "large",
       "regular",
       "fontsize"
     ]
   },
-  "semantic-type-desktop-text-body-l-regular-fontweight": {
+  "semantic-type-desktop-text-body-large-regular-fontweight": {
     "value": 400,
     "type": "number",
     "path": [
@@ -12617,12 +18043,12 @@ const tokens = {
       "desktop",
       "text",
       "body",
-      "l",
+      "large",
       "regular",
       "fontweight"
     ]
   },
-  "semantic-type-desktop-text-body-l-regular-lineheight": {
+  "semantic-type-desktop-text-body-large-regular-lineheight": {
     "value": 30,
     "type": "number",
     "path": [
@@ -12630,142 +18056,12 @@ const tokens = {
       "desktop",
       "text",
       "body",
-      "l",
+      "large",
       "regular",
       "lineheight"
     ]
   },
-  "semantic-type-desktop-text-body-l-regular-letterspacing": {
-    "value": 0,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "desktop",
-      "text",
-      "body",
-      "l",
-      "regular",
-      "letterspacing"
-    ]
-  },
-  "semantic-type-desktop-text-body-l-semibold-fontfamily": {
-    "value": "Red Hat Text",
-    "type": "string",
-    "path": [
-      "semantic-type",
-      "desktop",
-      "text",
-      "body",
-      "l",
-      "semibold",
-      "fontfamily"
-    ]
-  },
-  "semantic-type-desktop-text-body-l-semibold-fontsize": {
-    "value": 18,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "desktop",
-      "text",
-      "body",
-      "l",
-      "semibold",
-      "fontsize"
-    ]
-  },
-  "semantic-type-desktop-text-body-l-semibold-fontweight": {
-    "value": 600,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "desktop",
-      "text",
-      "body",
-      "l",
-      "semibold",
-      "fontweight"
-    ]
-  },
-  "semantic-type-desktop-text-body-l-semibold-lineheight": {
-    "value": 30,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "desktop",
-      "text",
-      "body",
-      "l",
-      "semibold",
-      "lineheight"
-    ]
-  },
-  "semantic-type-desktop-text-body-l-semibold-letterspacing": {
-    "value": 0,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "desktop",
-      "text",
-      "body",
-      "l",
-      "semibold",
-      "letterspacing"
-    ]
-  },
-  "semantic-type-desktop-text-body-s-regular-fontfamily": {
-    "value": "Red Hat Text",
-    "type": "string",
-    "path": [
-      "semantic-type",
-      "desktop",
-      "text",
-      "body",
-      "s",
-      "regular",
-      "fontfamily"
-    ]
-  },
-  "semantic-type-desktop-text-body-s-regular-fontsize": {
-    "value": 14,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "desktop",
-      "text",
-      "body",
-      "s",
-      "regular",
-      "fontsize"
-    ]
-  },
-  "semantic-type-desktop-text-body-s-regular-fontweight": {
-    "value": 400,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "desktop",
-      "text",
-      "body",
-      "s",
-      "regular",
-      "fontweight"
-    ]
-  },
-  "semantic-type-desktop-text-body-s-regular-lineheight": {
-    "value": 20,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "desktop",
-      "text",
-      "body",
-      "s",
-      "regular",
-      "lineheight"
-    ]
-  },
-  "semantic-type-desktop-text-body-s-regular-letterspacing": {
+  "semantic-type-desktop-text-body-large-regular-letterspacing": {
     "value": 0.10000000149011612,
     "type": "number",
     "path": [
@@ -12773,12 +18069,12 @@ const tokens = {
       "desktop",
       "text",
       "body",
-      "s",
+      "large",
       "regular",
       "letterspacing"
     ]
   },
-  "semantic-type-desktop-text-body-s-medium-fontfamily": {
+  "semantic-type-desktop-text-body-large-medium-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -12786,25 +18082,25 @@ const tokens = {
       "desktop",
       "text",
       "body",
-      "s",
+      "large",
       "medium",
       "fontfamily"
     ]
   },
-  "semantic-type-desktop-text-body-s-medium-fontsize": {
-    "value": 14,
+  "semantic-type-desktop-text-body-large-medium-fontsize": {
+    "value": 18,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "text",
       "body",
-      "s",
+      "large",
       "medium",
       "fontsize"
     ]
   },
-  "semantic-type-desktop-text-body-s-medium-fontweight": {
+  "semantic-type-desktop-text-body-large-medium-fontweight": {
     "value": 500,
     "type": "number",
     "path": [
@@ -12812,25 +18108,25 @@ const tokens = {
       "desktop",
       "text",
       "body",
-      "s",
+      "large",
       "medium",
       "fontweight"
     ]
   },
-  "semantic-type-desktop-text-body-s-medium-lineheight": {
-    "value": 20,
+  "semantic-type-desktop-text-body-large-medium-lineheight": {
+    "value": 30,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "text",
       "body",
-      "s",
+      "large",
       "medium",
       "lineheight"
     ]
   },
-  "semantic-type-desktop-text-body-s-medium-letterspacing": {
+  "semantic-type-desktop-text-body-large-medium-letterspacing": {
     "value": 0.10000000149011612,
     "type": "number",
     "path": [
@@ -12838,12 +18134,12 @@ const tokens = {
       "desktop",
       "text",
       "body",
-      "s",
+      "large",
       "medium",
       "letterspacing"
     ]
   },
-  "semantic-type-desktop-text-body-s-semibold-fontfamily": {
+  "semantic-type-desktop-text-body-large-semibold-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -12851,25 +18147,25 @@ const tokens = {
       "desktop",
       "text",
       "body",
-      "s",
+      "large",
       "semibold",
       "fontfamily"
     ]
   },
-  "semantic-type-desktop-text-body-s-semibold-fontsize": {
-    "value": 14,
+  "semantic-type-desktop-text-body-large-semibold-fontsize": {
+    "value": 18,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "text",
       "body",
-      "s",
+      "large",
       "semibold",
       "fontsize"
     ]
   },
-  "semantic-type-desktop-text-body-s-semibold-fontweight": {
+  "semantic-type-desktop-text-body-large-semibold-fontweight": {
     "value": 600,
     "type": "number",
     "path": [
@@ -12877,25 +18173,25 @@ const tokens = {
       "desktop",
       "text",
       "body",
-      "s",
+      "large",
       "semibold",
       "fontweight"
     ]
   },
-  "semantic-type-desktop-text-body-s-semibold-lineheight": {
-    "value": 20,
+  "semantic-type-desktop-text-body-large-semibold-lineheight": {
+    "value": 30,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "text",
       "body",
-      "s",
+      "large",
       "semibold",
       "lineheight"
     ]
   },
-  "semantic-type-desktop-text-body-s-semibold-letterspacing": {
+  "semantic-type-desktop-text-body-large-semibold-letterspacing": {
     "value": 0.10000000149011612,
     "type": "number",
     "path": [
@@ -12903,7 +18199,7 @@ const tokens = {
       "desktop",
       "text",
       "body",
-      "s",
+      "large",
       "semibold",
       "letterspacing"
     ]
@@ -12961,7 +18257,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-text-supporting-base-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -13026,7 +18322,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-text-supporting-base-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -13038,7 +18334,7 @@ const tokens = {
       "letterspacing"
     ]
   },
-  "semantic-type-desktop-text-supporting-s-regular-fontfamily": {
+  "semantic-type-desktop-text-supporting-small-regular-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -13046,12 +18342,12 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "s",
+      "small",
       "regular",
       "fontfamily"
     ]
   },
-  "semantic-type-desktop-text-supporting-s-regular-fontsize": {
+  "semantic-type-desktop-text-supporting-small-regular-fontsize": {
     "value": 11,
     "type": "number",
     "path": [
@@ -13059,12 +18355,12 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "s",
+      "small",
       "regular",
       "fontsize"
     ]
   },
-  "semantic-type-desktop-text-supporting-s-regular-fontweight": {
+  "semantic-type-desktop-text-supporting-small-regular-fontweight": {
     "value": 400,
     "type": "number",
     "path": [
@@ -13072,12 +18368,12 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "s",
+      "small",
       "regular",
       "fontweight"
     ]
   },
-  "semantic-type-desktop-text-supporting-s-regular-lineheight": {
+  "semantic-type-desktop-text-supporting-small-regular-lineheight": {
     "value": 16,
     "type": "number",
     "path": [
@@ -13085,25 +18381,25 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "s",
+      "small",
       "regular",
       "lineheight"
     ]
   },
-  "semantic-type-desktop-text-supporting-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-desktop-text-supporting-small-regular-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "text",
       "supporting",
-      "s",
+      "small",
       "regular",
       "letterspacing"
     ]
   },
-  "semantic-type-desktop-text-supporting-s-semibold-fontfamily": {
+  "semantic-type-desktop-text-supporting-small-semibold-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -13111,12 +18407,12 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "s",
+      "small",
       "semibold",
       "fontfamily"
     ]
   },
-  "semantic-type-desktop-text-supporting-s-semibold-fontsize": {
+  "semantic-type-desktop-text-supporting-small-semibold-fontsize": {
     "value": 11,
     "type": "number",
     "path": [
@@ -13124,12 +18420,12 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "s",
+      "small",
       "semibold",
       "fontsize"
     ]
   },
-  "semantic-type-desktop-text-supporting-s-semibold-fontweight": {
+  "semantic-type-desktop-text-supporting-small-semibold-fontweight": {
     "value": 600,
     "type": "number",
     "path": [
@@ -13137,12 +18433,12 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "s",
+      "small",
       "semibold",
       "fontweight"
     ]
   },
-  "semantic-type-desktop-text-supporting-s-semibold-lineheight": {
+  "semantic-type-desktop-text-supporting-small-semibold-lineheight": {
     "value": 16,
     "type": "number",
     "path": [
@@ -13150,25 +18446,25 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "s",
+      "small",
       "semibold",
       "lineheight"
     ]
   },
-  "semantic-type-desktop-text-supporting-s-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-desktop-text-supporting-small-semibold-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "text",
       "supporting",
-      "s",
+      "small",
       "semibold",
       "letterspacing"
     ]
   },
-  "semantic-type-desktop-text-supporting-xs-regular-fontfamily": {
+  "semantic-type-desktop-text-supporting-xsmall-regular-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -13176,12 +18472,12 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "regular",
       "fontfamily"
     ]
   },
-  "semantic-type-desktop-text-supporting-xs-regular-fontsize": {
+  "semantic-type-desktop-text-supporting-xsmall-regular-fontsize": {
     "value": 10,
     "type": "number",
     "path": [
@@ -13189,12 +18485,12 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "regular",
       "fontsize"
     ]
   },
-  "semantic-type-desktop-text-supporting-xs-regular-fontweight": {
+  "semantic-type-desktop-text-supporting-xsmall-regular-fontweight": {
     "value": 400,
     "type": "number",
     "path": [
@@ -13202,12 +18498,12 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "regular",
       "fontweight"
     ]
   },
-  "semantic-type-desktop-text-supporting-xs-regular-lineheight": {
+  "semantic-type-desktop-text-supporting-xsmall-regular-lineheight": {
     "value": 14,
     "type": "number",
     "path": [
@@ -13215,25 +18511,25 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "regular",
       "lineheight"
     ]
   },
-  "semantic-type-desktop-text-supporting-xs-regular-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-desktop-text-supporting-xsmall-regular-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "regular",
       "letterspacing"
     ]
   },
-  "semantic-type-desktop-text-supporting-xs-semibold-fontfamily": {
+  "semantic-type-desktop-text-supporting-xsmall-semibold-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -13241,12 +18537,12 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "semibold",
       "fontfamily"
     ]
   },
-  "semantic-type-desktop-text-supporting-xs-semibold-fontsize": {
+  "semantic-type-desktop-text-supporting-xsmall-semibold-fontsize": {
     "value": 10,
     "type": "number",
     "path": [
@@ -13254,12 +18550,12 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "semibold",
       "fontsize"
     ]
   },
-  "semantic-type-desktop-text-supporting-xs-semibold-fontweight": {
+  "semantic-type-desktop-text-supporting-xsmall-semibold-fontweight": {
     "value": 600,
     "type": "number",
     "path": [
@@ -13267,12 +18563,12 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "semibold",
       "fontweight"
     ]
   },
-  "semantic-type-desktop-text-supporting-xs-semibold-lineheight": {
+  "semantic-type-desktop-text-supporting-xsmall-semibold-lineheight": {
     "value": 14,
     "type": "number",
     "path": [
@@ -13280,20 +18576,20 @@ const tokens = {
       "desktop",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "semibold",
       "lineheight"
     ]
   },
-  "semantic-type-desktop-text-supporting-xs-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-desktop-text-supporting-xsmall-semibold-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "semibold",
       "letterspacing"
     ]
@@ -13351,7 +18647,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-text-dense-base-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -13416,7 +18712,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-text-dense-base-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -13428,7 +18724,7 @@ const tokens = {
       "letterspacing"
     ]
   },
-  "semantic-type-desktop-text-dense-s-regular-fontfamily": {
+  "semantic-type-desktop-text-dense-small-regular-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -13436,12 +18732,12 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "s",
+      "small",
       "regular",
       "fontfamily"
     ]
   },
-  "semantic-type-desktop-text-dense-s-regular-fontsize": {
+  "semantic-type-desktop-text-dense-small-regular-fontsize": {
     "value": 11,
     "type": "number",
     "path": [
@@ -13449,12 +18745,12 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "s",
+      "small",
       "regular",
       "fontsize"
     ]
   },
-  "semantic-type-desktop-text-dense-s-regular-fontweight": {
+  "semantic-type-desktop-text-dense-small-regular-fontweight": {
     "value": 400,
     "type": "number",
     "path": [
@@ -13462,12 +18758,12 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "s",
+      "small",
       "regular",
       "fontweight"
     ]
   },
-  "semantic-type-desktop-text-dense-s-regular-lineheight": {
+  "semantic-type-desktop-text-dense-small-regular-lineheight": {
     "value": 14,
     "type": "number",
     "path": [
@@ -13475,25 +18771,25 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "s",
+      "small",
       "regular",
       "lineheight"
     ]
   },
-  "semantic-type-desktop-text-dense-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-desktop-text-dense-small-regular-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "text",
       "dense",
-      "s",
+      "small",
       "regular",
       "letterspacing"
     ]
   },
-  "semantic-type-desktop-text-dense-s-semibold-fontfamily": {
+  "semantic-type-desktop-text-dense-small-semibold-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -13501,12 +18797,12 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "s",
+      "small",
       "semibold",
       "fontfamily"
     ]
   },
-  "semantic-type-desktop-text-dense-s-semibold-fontsize": {
+  "semantic-type-desktop-text-dense-small-semibold-fontsize": {
     "value": 11,
     "type": "number",
     "path": [
@@ -13514,12 +18810,12 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "s",
+      "small",
       "semibold",
       "fontsize"
     ]
   },
-  "semantic-type-desktop-text-dense-s-semibold-fontweight": {
+  "semantic-type-desktop-text-dense-small-semibold-fontweight": {
     "value": 600,
     "type": "number",
     "path": [
@@ -13527,12 +18823,12 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "s",
+      "small",
       "semibold",
       "fontweight"
     ]
   },
-  "semantic-type-desktop-text-dense-s-semibold-lineheight": {
+  "semantic-type-desktop-text-dense-small-semibold-lineheight": {
     "value": 14,
     "type": "number",
     "path": [
@@ -13540,25 +18836,25 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "s",
+      "small",
       "semibold",
       "lineheight"
     ]
   },
-  "semantic-type-desktop-text-dense-s-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-desktop-text-dense-small-semibold-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "text",
       "dense",
-      "s",
+      "small",
       "semibold",
       "letterspacing"
     ]
   },
-  "semantic-type-desktop-text-dense-xs-regular-fontfamily": {
+  "semantic-type-desktop-text-dense-xsmall-regular-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -13566,12 +18862,12 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "regular",
       "fontfamily"
     ]
   },
-  "semantic-type-desktop-text-dense-xs-regular-fontsize": {
+  "semantic-type-desktop-text-dense-xsmall-regular-fontsize": {
     "value": 10,
     "type": "number",
     "path": [
@@ -13579,12 +18875,12 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "regular",
       "fontsize"
     ]
   },
-  "semantic-type-desktop-text-dense-xs-regular-fontweight": {
+  "semantic-type-desktop-text-dense-xsmall-regular-fontweight": {
     "value": 400,
     "type": "number",
     "path": [
@@ -13592,12 +18888,12 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "regular",
       "fontweight"
     ]
   },
-  "semantic-type-desktop-text-dense-xs-regular-lineheight": {
+  "semantic-type-desktop-text-dense-xsmall-regular-lineheight": {
     "value": 12,
     "type": "number",
     "path": [
@@ -13605,25 +18901,25 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "regular",
       "lineheight"
     ]
   },
-  "semantic-type-desktop-text-dense-xs-regular-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-desktop-text-dense-xsmall-regular-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "regular",
       "letterspacing"
     ]
   },
-  "semantic-type-desktop-text-dense-xs-semibold-fontfamily": {
+  "semantic-type-desktop-text-dense-xsmall-semibold-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -13631,12 +18927,12 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "semibold",
       "fontfamily"
     ]
   },
-  "semantic-type-desktop-text-dense-xs-semibold-fontsize": {
+  "semantic-type-desktop-text-dense-xsmall-semibold-fontsize": {
     "value": 10,
     "type": "number",
     "path": [
@@ -13644,12 +18940,12 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "semibold",
       "fontsize"
     ]
   },
-  "semantic-type-desktop-text-dense-xs-semibold-fontweight": {
+  "semantic-type-desktop-text-dense-xsmall-semibold-fontweight": {
     "value": 600,
     "type": "number",
     "path": [
@@ -13657,12 +18953,12 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "semibold",
       "fontweight"
     ]
   },
-  "semantic-type-desktop-text-dense-xs-semibold-lineheight": {
+  "semantic-type-desktop-text-dense-xsmall-semibold-lineheight": {
     "value": 12,
     "type": "number",
     "path": [
@@ -13670,20 +18966,20 @@ const tokens = {
       "desktop",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "semibold",
       "lineheight"
     ]
   },
-  "semantic-type-desktop-text-dense-xs-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-desktop-text-dense-xsmall-semibold-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "semibold",
       "letterspacing"
     ]
@@ -13737,7 +19033,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-button-base-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -13797,7 +19093,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-button-l-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -13857,7 +19153,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-button-s-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -13917,7 +19213,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-button-xs-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -13981,7 +19277,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-input-base-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14046,7 +19342,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-input-base-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14111,7 +19407,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-input-base-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14176,7 +19472,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-input-l-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14241,7 +19537,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-input-l-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14306,7 +19602,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-input-l-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14371,7 +19667,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-input-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14436,7 +19732,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-input-s-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14501,7 +19797,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-input-s-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14566,7 +19862,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-option-base-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14575,6 +19871,71 @@ const tokens = {
       "option",
       "base",
       "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-option-base-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "base",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-option-base-medium-fontsize": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "base",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-option-base-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "base",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-option-base-medium-lineheight": {
+    "value": 20,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "base",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-option-base-medium-letterspacing": {
+    "value": 0.10000000149011612,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "base",
+      "medium",
       "letterspacing"
     ]
   },
@@ -14631,7 +19992,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-option-base-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14696,7 +20057,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-option-l-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14705,6 +20066,71 @@ const tokens = {
       "option",
       "l",
       "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-option-l-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "l",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-option-l-medium-fontsize": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "l",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-option-l-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "l",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-option-l-medium-lineheight": {
+    "value": 22,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "l",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-option-l-medium-letterspacing": {
+    "value": 0.10000000149011612,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "l",
+      "medium",
       "letterspacing"
     ]
   },
@@ -14761,7 +20187,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-option-l-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14826,7 +20252,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-option-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14835,6 +20261,71 @@ const tokens = {
       "option",
       "s",
       "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-option-s-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "s",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-option-s-medium-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "s",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-option-s-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "s",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-option-s-medium-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "s",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-option-s-medium-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "option",
+      "s",
+      "medium",
       "letterspacing"
     ]
   },
@@ -14891,7 +20382,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-option-s-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14956,7 +20447,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-tab-base-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -14965,6 +20456,71 @@ const tokens = {
       "tab",
       "base",
       "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-tab-base-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "tab",
+      "base",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-tab-base-medium-fontsize": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "tab",
+      "base",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-tab-base-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "tab",
+      "base",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-tab-base-medium-lineheight": {
+    "value": 20,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "tab",
+      "base",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-tab-base-medium-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "tab",
+      "base",
+      "medium",
       "letterspacing"
     ]
   },
@@ -15021,7 +20577,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-tab-base-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15086,7 +20642,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-tab-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15095,6 +20651,71 @@ const tokens = {
       "tab",
       "s",
       "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-tab-s-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "tab",
+      "s",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-tab-s-medium-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "tab",
+      "s",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-tab-s-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "tab",
+      "s",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-tab-s-medium-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "tab",
+      "s",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-tab-s-medium-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "tab",
+      "s",
+      "medium",
       "letterspacing"
     ]
   },
@@ -15151,7 +20772,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-tab-s-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15216,7 +20837,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-menu-base-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15281,7 +20902,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-menu-base-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15346,7 +20967,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-menu-l-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15411,7 +21032,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-menu-l-medium-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15476,7 +21097,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-menu-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15541,7 +21162,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-menu-s-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15606,7 +21227,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-progress-base-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15671,7 +21292,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-progress-base-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15736,7 +21357,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-progress-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15801,7 +21422,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-progress-s-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15866,7 +21487,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-badge-small-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15931,7 +21552,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-badge-small-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -15996,7 +21617,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-badge-small-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16061,7 +21682,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-badge-base-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16126,7 +21747,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-badge-base-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16191,7 +21812,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-badge-base-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16256,7 +21877,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-badge-large-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16321,7 +21942,7 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-badge-large-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16386,13 +22007,598 @@ const tokens = {
     ]
   },
   "semantic-type-desktop-label-badge-large-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "desktop",
       "label",
       "badge",
+      "large",
+      "semibold",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-regular-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "regular",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-regular-fontsize": {
+    "value": 11,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "regular",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-regular-fontweight": {
+    "value": 400,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "regular",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-regular-lineheight": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "regular",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-regular-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-medium-fontsize": {
+    "value": 11,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-medium-lineheight": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-medium-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "medium",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-semibold-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "semibold",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-semibold-fontsize": {
+    "value": 11,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "semibold",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-semibold-fontweight": {
+    "value": 600,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "semibold",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-semibold-lineheight": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "semibold",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-section-small-semibold-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "small",
+      "semibold",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-regular-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "regular",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-regular-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "regular",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-regular-fontweight": {
+    "value": 400,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "regular",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-regular-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "regular",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-regular-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-medium-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-medium-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-medium-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "medium",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-semibold-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "semibold",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-semibold-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "semibold",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-semibold-fontweight": {
+    "value": 600,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "semibold",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-semibold-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "semibold",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-section-base-semibold-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "base",
+      "semibold",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-regular-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "regular",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-regular-fontsize": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "regular",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-regular-fontweight": {
+    "value": 400,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "regular",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-regular-lineheight": {
+    "value": 20,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "regular",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-regular-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-medium-fontsize": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-medium-lineheight": {
+    "value": 20,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-medium-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "medium",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-semibold-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "semibold",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-semibold-fontsize": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "semibold",
+      "fontsize"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-semibold-fontweight": {
+    "value": 600,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "semibold",
+      "fontweight"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-semibold-lineheight": {
+    "value": 20,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
+      "large",
+      "semibold",
+      "lineheight"
+    ]
+  },
+  "semantic-type-desktop-label-section-large-semibold-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "desktop",
+      "label",
+      "section",
       "large",
       "semibold",
       "letterspacing"
@@ -16438,7 +22644,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-display-xl-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16503,7 +22709,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-display-xl-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16568,7 +22774,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-display-l-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16633,7 +22839,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-display-l-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16698,7 +22904,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-display-base-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16763,7 +22969,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-display-base-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16828,7 +23034,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-page-xl-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16893,7 +23099,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-page-xl-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -16958,7 +23164,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-page-l-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17023,7 +23229,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-page-l-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17088,7 +23294,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-page-base-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17153,7 +23359,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-page-base-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17218,7 +23424,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-section-l-medium-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17283,7 +23489,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-section-l-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17348,7 +23554,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-section-l-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17413,7 +23619,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-section-base-medium-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17478,7 +23684,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-section-base-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17543,7 +23749,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-section-base-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17608,7 +23814,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-section-s-medium-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17673,7 +23879,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-section-s-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17738,7 +23944,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-section-s-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17803,7 +24009,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-section-xs-medium-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17868,7 +24074,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-section-xs-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17933,7 +24139,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-section-xs-bold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -17998,7 +24204,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-local-base-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -18063,7 +24269,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-local-base-bold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -18124,7 +24330,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-local-s-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -18184,7 +24390,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-heading-local-xs-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -18192,6 +24398,396 @@ const tokens = {
       "heading",
       "local",
       "xs",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-regular-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "regular",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-regular-fontsize": {
+    "value": 11,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "regular",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-regular-fontweight": {
+    "value": 400,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "regular",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-regular-lineheight": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "regular",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-regular-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-medium-fontsize": {
+    "value": 11,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-medium-lineheight": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-medium-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "medium",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-semibold-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "semibold",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-semibold-fontsize": {
+    "value": 11,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "semibold",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-semibold-fontweight": {
+    "value": 600,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "semibold",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-semibold-lineheight": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "semibold",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-text-body-xsmall-semibold-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "xsmall",
+      "semibold",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-regular-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "regular",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-regular-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "regular",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-regular-fontweight": {
+    "value": 400,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "regular",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-regular-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "regular",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-regular-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-medium-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-medium-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-medium-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "medium",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-semibold-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "semibold",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-semibold-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "semibold",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-semibold-fontweight": {
+    "value": 600,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "semibold",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-semibold-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "semibold",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-text-body-small-semibold-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "small",
+      "semibold",
       "letterspacing"
     ]
   },
@@ -18248,7 +24844,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-text-body-base-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -18257,6 +24853,71 @@ const tokens = {
       "body",
       "base",
       "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-text-body-base-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "base",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-text-body-base-medium-fontsize": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "base",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-text-body-base-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "base",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-text-body-base-medium-lineheight": {
+    "value": 20,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "base",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-text-body-base-medium-letterspacing": {
+    "value": 0.10000000149011612,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "text",
+      "body",
+      "base",
+      "medium",
       "letterspacing"
     ]
   },
@@ -18313,7 +24974,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-text-body-base-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -18325,7 +24986,7 @@ const tokens = {
       "letterspacing"
     ]
   },
-  "semantic-type-mobile-text-body-l-regular-fontfamily": {
+  "semantic-type-mobile-text-body-large-regular-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -18333,12 +24994,12 @@ const tokens = {
       "mobile",
       "text",
       "body",
-      "l",
+      "large",
       "regular",
       "fontfamily"
     ]
   },
-  "semantic-type-mobile-text-body-l-regular-fontsize": {
+  "semantic-type-mobile-text-body-large-regular-fontsize": {
     "value": 16,
     "type": "number",
     "path": [
@@ -18346,12 +25007,12 @@ const tokens = {
       "mobile",
       "text",
       "body",
-      "l",
+      "large",
       "regular",
       "fontsize"
     ]
   },
-  "semantic-type-mobile-text-body-l-regular-fontweight": {
+  "semantic-type-mobile-text-body-large-regular-fontweight": {
     "value": 400,
     "type": "number",
     "path": [
@@ -18359,12 +25020,12 @@ const tokens = {
       "mobile",
       "text",
       "body",
-      "l",
+      "large",
       "regular",
       "fontweight"
     ]
   },
-  "semantic-type-mobile-text-body-l-regular-lineheight": {
+  "semantic-type-mobile-text-body-large-regular-lineheight": {
     "value": 28,
     "type": "number",
     "path": [
@@ -18372,142 +25033,12 @@ const tokens = {
       "mobile",
       "text",
       "body",
-      "l",
+      "large",
       "regular",
       "lineheight"
     ]
   },
-  "semantic-type-mobile-text-body-l-regular-letterspacing": {
-    "value": 0,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "mobile",
-      "text",
-      "body",
-      "l",
-      "regular",
-      "letterspacing"
-    ]
-  },
-  "semantic-type-mobile-text-body-l-semibold-fontfamily": {
-    "value": "Red Hat Text",
-    "type": "string",
-    "path": [
-      "semantic-type",
-      "mobile",
-      "text",
-      "body",
-      "l",
-      "semibold",
-      "fontfamily"
-    ]
-  },
-  "semantic-type-mobile-text-body-l-semibold-fontsize": {
-    "value": 16,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "mobile",
-      "text",
-      "body",
-      "l",
-      "semibold",
-      "fontsize"
-    ]
-  },
-  "semantic-type-mobile-text-body-l-semibold-fontweight": {
-    "value": 600,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "mobile",
-      "text",
-      "body",
-      "l",
-      "semibold",
-      "fontweight"
-    ]
-  },
-  "semantic-type-mobile-text-body-l-semibold-lineheight": {
-    "value": 28,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "mobile",
-      "text",
-      "body",
-      "l",
-      "semibold",
-      "lineheight"
-    ]
-  },
-  "semantic-type-mobile-text-body-l-semibold-letterspacing": {
-    "value": 0,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "mobile",
-      "text",
-      "body",
-      "l",
-      "semibold",
-      "letterspacing"
-    ]
-  },
-  "semantic-type-mobile-text-body-s-regular-fontfamily": {
-    "value": "Red Hat Text",
-    "type": "string",
-    "path": [
-      "semantic-type",
-      "mobile",
-      "text",
-      "body",
-      "s",
-      "regular",
-      "fontfamily"
-    ]
-  },
-  "semantic-type-mobile-text-body-s-regular-fontsize": {
-    "value": 12,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "mobile",
-      "text",
-      "body",
-      "s",
-      "regular",
-      "fontsize"
-    ]
-  },
-  "semantic-type-mobile-text-body-s-regular-fontweight": {
-    "value": 400,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "mobile",
-      "text",
-      "body",
-      "s",
-      "regular",
-      "fontweight"
-    ]
-  },
-  "semantic-type-mobile-text-body-s-regular-lineheight": {
-    "value": 18,
-    "type": "number",
-    "path": [
-      "semantic-type",
-      "mobile",
-      "text",
-      "body",
-      "s",
-      "regular",
-      "lineheight"
-    ]
-  },
-  "semantic-type-mobile-text-body-s-regular-letterspacing": {
+  "semantic-type-mobile-text-body-large-regular-letterspacing": {
     "value": 0.10000000149011612,
     "type": "number",
     "path": [
@@ -18515,12 +25046,12 @@ const tokens = {
       "mobile",
       "text",
       "body",
-      "s",
+      "large",
       "regular",
       "letterspacing"
     ]
   },
-  "semantic-type-mobile-text-body-s-medium-fontfamily": {
+  "semantic-type-mobile-text-body-large-medium-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -18528,25 +25059,25 @@ const tokens = {
       "mobile",
       "text",
       "body",
-      "s",
+      "large",
       "medium",
       "fontfamily"
     ]
   },
-  "semantic-type-mobile-text-body-s-medium-fontsize": {
-    "value": 12,
+  "semantic-type-mobile-text-body-large-medium-fontsize": {
+    "value": 16,
     "type": "number",
     "path": [
       "semantic-type",
       "mobile",
       "text",
       "body",
-      "s",
+      "large",
       "medium",
       "fontsize"
     ]
   },
-  "semantic-type-mobile-text-body-s-medium-fontweight": {
+  "semantic-type-mobile-text-body-large-medium-fontweight": {
     "value": 500,
     "type": "number",
     "path": [
@@ -18554,25 +25085,25 @@ const tokens = {
       "mobile",
       "text",
       "body",
-      "s",
+      "large",
       "medium",
       "fontweight"
     ]
   },
-  "semantic-type-mobile-text-body-s-medium-lineheight": {
-    "value": 18,
+  "semantic-type-mobile-text-body-large-medium-lineheight": {
+    "value": 28,
     "type": "number",
     "path": [
       "semantic-type",
       "mobile",
       "text",
       "body",
-      "s",
+      "large",
       "medium",
       "lineheight"
     ]
   },
-  "semantic-type-mobile-text-body-s-medium-letterspacing": {
+  "semantic-type-mobile-text-body-large-medium-letterspacing": {
     "value": 0.10000000149011612,
     "type": "number",
     "path": [
@@ -18580,12 +25111,12 @@ const tokens = {
       "mobile",
       "text",
       "body",
-      "s",
+      "large",
       "medium",
       "letterspacing"
     ]
   },
-  "semantic-type-mobile-text-body-s-semibold-fontfamily": {
+  "semantic-type-mobile-text-body-large-semibold-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -18593,25 +25124,25 @@ const tokens = {
       "mobile",
       "text",
       "body",
-      "s",
+      "large",
       "semibold",
       "fontfamily"
     ]
   },
-  "semantic-type-mobile-text-body-s-semibold-fontsize": {
-    "value": 12,
+  "semantic-type-mobile-text-body-large-semibold-fontsize": {
+    "value": 16,
     "type": "number",
     "path": [
       "semantic-type",
       "mobile",
       "text",
       "body",
-      "s",
+      "large",
       "semibold",
       "fontsize"
     ]
   },
-  "semantic-type-mobile-text-body-s-semibold-fontweight": {
+  "semantic-type-mobile-text-body-large-semibold-fontweight": {
     "value": 600,
     "type": "number",
     "path": [
@@ -18619,25 +25150,25 @@ const tokens = {
       "mobile",
       "text",
       "body",
-      "s",
+      "large",
       "semibold",
       "fontweight"
     ]
   },
-  "semantic-type-mobile-text-body-s-semibold-lineheight": {
-    "value": 18,
+  "semantic-type-mobile-text-body-large-semibold-lineheight": {
+    "value": 28,
     "type": "number",
     "path": [
       "semantic-type",
       "mobile",
       "text",
       "body",
-      "s",
+      "large",
       "semibold",
       "lineheight"
     ]
   },
-  "semantic-type-mobile-text-body-s-semibold-letterspacing": {
+  "semantic-type-mobile-text-body-large-semibold-letterspacing": {
     "value": 0.10000000149011612,
     "type": "number",
     "path": [
@@ -18645,7 +25176,7 @@ const tokens = {
       "mobile",
       "text",
       "body",
-      "s",
+      "large",
       "semibold",
       "letterspacing"
     ]
@@ -18703,7 +25234,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-text-supporting-base-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -18768,7 +25299,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-text-supporting-base-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -18780,7 +25311,7 @@ const tokens = {
       "letterspacing"
     ]
   },
-  "semantic-type-mobile-text-supporting-s-regular-fontfamily": {
+  "semantic-type-mobile-text-supporting-small-regular-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -18788,12 +25319,12 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "s",
+      "small",
       "regular",
       "fontfamily"
     ]
   },
-  "semantic-type-mobile-text-supporting-s-regular-fontsize": {
+  "semantic-type-mobile-text-supporting-small-regular-fontsize": {
     "value": 11,
     "type": "number",
     "path": [
@@ -18801,12 +25332,12 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "s",
+      "small",
       "regular",
       "fontsize"
     ]
   },
-  "semantic-type-mobile-text-supporting-s-regular-fontweight": {
+  "semantic-type-mobile-text-supporting-small-regular-fontweight": {
     "value": 400,
     "type": "number",
     "path": [
@@ -18814,12 +25345,12 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "s",
+      "small",
       "regular",
       "fontweight"
     ]
   },
-  "semantic-type-mobile-text-supporting-s-regular-lineheight": {
+  "semantic-type-mobile-text-supporting-small-regular-lineheight": {
     "value": 16,
     "type": "number",
     "path": [
@@ -18827,25 +25358,25 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "s",
+      "small",
       "regular",
       "lineheight"
     ]
   },
-  "semantic-type-mobile-text-supporting-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-mobile-text-supporting-small-regular-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "mobile",
       "text",
       "supporting",
-      "s",
+      "small",
       "regular",
       "letterspacing"
     ]
   },
-  "semantic-type-mobile-text-supporting-s-semibold-fontfamily": {
+  "semantic-type-mobile-text-supporting-small-semibold-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -18853,12 +25384,12 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "s",
+      "small",
       "semibold",
       "fontfamily"
     ]
   },
-  "semantic-type-mobile-text-supporting-s-semibold-fontsize": {
+  "semantic-type-mobile-text-supporting-small-semibold-fontsize": {
     "value": 11,
     "type": "number",
     "path": [
@@ -18866,12 +25397,12 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "s",
+      "small",
       "semibold",
       "fontsize"
     ]
   },
-  "semantic-type-mobile-text-supporting-s-semibold-fontweight": {
+  "semantic-type-mobile-text-supporting-small-semibold-fontweight": {
     "value": 600,
     "type": "number",
     "path": [
@@ -18879,12 +25410,12 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "s",
+      "small",
       "semibold",
       "fontweight"
     ]
   },
-  "semantic-type-mobile-text-supporting-s-semibold-lineheight": {
+  "semantic-type-mobile-text-supporting-small-semibold-lineheight": {
     "value": 16,
     "type": "number",
     "path": [
@@ -18892,25 +25423,25 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "s",
+      "small",
       "semibold",
       "lineheight"
     ]
   },
-  "semantic-type-mobile-text-supporting-s-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-mobile-text-supporting-small-semibold-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "mobile",
       "text",
       "supporting",
-      "s",
+      "small",
       "semibold",
       "letterspacing"
     ]
   },
-  "semantic-type-mobile-text-supporting-xs-regular-fontfamily": {
+  "semantic-type-mobile-text-supporting-xsmall-regular-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -18918,12 +25449,12 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "regular",
       "fontfamily"
     ]
   },
-  "semantic-type-mobile-text-supporting-xs-regular-fontsize": {
+  "semantic-type-mobile-text-supporting-xsmall-regular-fontsize": {
     "value": 10,
     "type": "number",
     "path": [
@@ -18931,12 +25462,12 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "regular",
       "fontsize"
     ]
   },
-  "semantic-type-mobile-text-supporting-xs-regular-fontweight": {
+  "semantic-type-mobile-text-supporting-xsmall-regular-fontweight": {
     "value": 400,
     "type": "number",
     "path": [
@@ -18944,12 +25475,12 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "regular",
       "fontweight"
     ]
   },
-  "semantic-type-mobile-text-supporting-xs-regular-lineheight": {
+  "semantic-type-mobile-text-supporting-xsmall-regular-lineheight": {
     "value": 14,
     "type": "number",
     "path": [
@@ -18957,25 +25488,25 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "regular",
       "lineheight"
     ]
   },
-  "semantic-type-mobile-text-supporting-xs-regular-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-mobile-text-supporting-xsmall-regular-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "mobile",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "regular",
       "letterspacing"
     ]
   },
-  "semantic-type-mobile-text-supporting-xs-semibold-fontfamily": {
+  "semantic-type-mobile-text-supporting-xsmall-semibold-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -18983,12 +25514,12 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "semibold",
       "fontfamily"
     ]
   },
-  "semantic-type-mobile-text-supporting-xs-semibold-fontsize": {
+  "semantic-type-mobile-text-supporting-xsmall-semibold-fontsize": {
     "value": 10,
     "type": "number",
     "path": [
@@ -18996,12 +25527,12 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "semibold",
       "fontsize"
     ]
   },
-  "semantic-type-mobile-text-supporting-xs-semibold-fontweight": {
+  "semantic-type-mobile-text-supporting-xsmall-semibold-fontweight": {
     "value": 600,
     "type": "number",
     "path": [
@@ -19009,12 +25540,12 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "semibold",
       "fontweight"
     ]
   },
-  "semantic-type-mobile-text-supporting-xs-semibold-lineheight": {
+  "semantic-type-mobile-text-supporting-xsmall-semibold-lineheight": {
     "value": 14,
     "type": "number",
     "path": [
@@ -19022,20 +25553,20 @@ const tokens = {
       "mobile",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "semibold",
       "lineheight"
     ]
   },
-  "semantic-type-mobile-text-supporting-xs-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-mobile-text-supporting-xsmall-semibold-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "mobile",
       "text",
       "supporting",
-      "xs",
+      "xsmall",
       "semibold",
       "letterspacing"
     ]
@@ -19093,7 +25624,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-text-dense-base-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -19158,7 +25689,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-text-dense-base-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -19170,7 +25701,7 @@ const tokens = {
       "letterspacing"
     ]
   },
-  "semantic-type-mobile-text-dense-s-regular-fontfamily": {
+  "semantic-type-mobile-text-dense-small-regular-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -19178,12 +25709,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "s",
+      "small",
       "regular",
       "fontfamily"
     ]
   },
-  "semantic-type-mobile-text-dense-s-regular-fontsize": {
+  "semantic-type-mobile-text-dense-small-regular-fontsize": {
     "value": 11,
     "type": "number",
     "path": [
@@ -19191,12 +25722,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "s",
+      "small",
       "regular",
       "fontsize"
     ]
   },
-  "semantic-type-mobile-text-dense-s-regular-fontweight": {
+  "semantic-type-mobile-text-dense-small-regular-fontweight": {
     "value": 400,
     "type": "number",
     "path": [
@@ -19204,12 +25735,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "s",
+      "small",
       "regular",
       "fontweight"
     ]
   },
-  "semantic-type-mobile-text-dense-s-regular-lineheight": {
+  "semantic-type-mobile-text-dense-small-regular-lineheight": {
     "value": 14,
     "type": "number",
     "path": [
@@ -19217,12 +25748,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "s",
+      "small",
       "regular",
       "lineheight"
     ]
   },
-  "semantic-type-mobile-text-dense-s-regular-letterspacing": {
+  "semantic-type-mobile-text-dense-small-regular-letterspacing": {
     "value": 0.6000000238418579,
     "type": "number",
     "path": [
@@ -19230,12 +25761,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "s",
+      "small",
       "regular",
       "letterspacing"
     ]
   },
-  "semantic-type-mobile-text-dense-s-semibold-fontfamily": {
+  "semantic-type-mobile-text-dense-small-semibold-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -19243,12 +25774,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "s",
+      "small",
       "semibold",
       "fontfamily"
     ]
   },
-  "semantic-type-mobile-text-dense-s-semibold-fontsize": {
+  "semantic-type-mobile-text-dense-small-semibold-fontsize": {
     "value": 11,
     "type": "number",
     "path": [
@@ -19256,12 +25787,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "s",
+      "small",
       "semibold",
       "fontsize"
     ]
   },
-  "semantic-type-mobile-text-dense-s-semibold-fontweight": {
+  "semantic-type-mobile-text-dense-small-semibold-fontweight": {
     "value": 600,
     "type": "number",
     "path": [
@@ -19269,12 +25800,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "s",
+      "small",
       "semibold",
       "fontweight"
     ]
   },
-  "semantic-type-mobile-text-dense-s-semibold-lineheight": {
+  "semantic-type-mobile-text-dense-small-semibold-lineheight": {
     "value": 14,
     "type": "number",
     "path": [
@@ -19282,12 +25813,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "s",
+      "small",
       "semibold",
       "lineheight"
     ]
   },
-  "semantic-type-mobile-text-dense-s-semibold-letterspacing": {
+  "semantic-type-mobile-text-dense-small-semibold-letterspacing": {
     "value": 0.6000000238418579,
     "type": "number",
     "path": [
@@ -19295,12 +25826,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "s",
+      "small",
       "semibold",
       "letterspacing"
     ]
   },
-  "semantic-type-mobile-text-dense-xs-regular-fontfamily": {
+  "semantic-type-mobile-text-dense-xsmall-regular-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -19308,12 +25839,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "regular",
       "fontfamily"
     ]
   },
-  "semantic-type-mobile-text-dense-xs-regular-fontsize": {
+  "semantic-type-mobile-text-dense-xsmall-regular-fontsize": {
     "value": 10,
     "type": "number",
     "path": [
@@ -19321,12 +25852,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "regular",
       "fontsize"
     ]
   },
-  "semantic-type-mobile-text-dense-xs-regular-fontweight": {
+  "semantic-type-mobile-text-dense-xsmall-regular-fontweight": {
     "value": 400,
     "type": "number",
     "path": [
@@ -19334,12 +25865,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "regular",
       "fontweight"
     ]
   },
-  "semantic-type-mobile-text-dense-xs-regular-lineheight": {
+  "semantic-type-mobile-text-dense-xsmall-regular-lineheight": {
     "value": 12,
     "type": "number",
     "path": [
@@ -19347,25 +25878,25 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "regular",
       "lineheight"
     ]
   },
-  "semantic-type-mobile-text-dense-xs-regular-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-mobile-text-dense-xsmall-regular-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "mobile",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "regular",
       "letterspacing"
     ]
   },
-  "semantic-type-mobile-text-dense-xs-semibold-fontfamily": {
+  "semantic-type-mobile-text-dense-xsmall-semibold-fontfamily": {
     "value": "Red Hat Text",
     "type": "string",
     "path": [
@@ -19373,12 +25904,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "semibold",
       "fontfamily"
     ]
   },
-  "semantic-type-mobile-text-dense-xs-semibold-fontsize": {
+  "semantic-type-mobile-text-dense-xsmall-semibold-fontsize": {
     "value": 10,
     "type": "number",
     "path": [
@@ -19386,12 +25917,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "semibold",
       "fontsize"
     ]
   },
-  "semantic-type-mobile-text-dense-xs-semibold-fontweight": {
+  "semantic-type-mobile-text-dense-xsmall-semibold-fontweight": {
     "value": 600,
     "type": "number",
     "path": [
@@ -19399,12 +25930,12 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "semibold",
       "fontweight"
     ]
   },
-  "semantic-type-mobile-text-dense-xs-semibold-lineheight": {
+  "semantic-type-mobile-text-dense-xsmall-semibold-lineheight": {
     "value": 12,
     "type": "number",
     "path": [
@@ -19412,20 +25943,20 @@ const tokens = {
       "mobile",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "semibold",
       "lineheight"
     ]
   },
-  "semantic-type-mobile-text-dense-xs-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+  "semantic-type-mobile-text-dense-xsmall-semibold-letterspacing": {
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "mobile",
       "text",
       "dense",
-      "xs",
+      "xsmall",
       "semibold",
       "letterspacing"
     ]
@@ -19479,7 +26010,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-button-base-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -19539,7 +26070,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-button-l-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -19599,7 +26130,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-button-s-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -19659,7 +26190,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-button-xs-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -19723,7 +26254,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-input-base-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -19788,7 +26319,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-input-base-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -19853,7 +26384,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-input-base-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -19918,7 +26449,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-input-l-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -19983,7 +26514,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-input-l-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20048,7 +26579,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-input-l-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20113,7 +26644,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-input-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20178,7 +26709,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-input-s-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20243,7 +26774,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-input-s-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20308,7 +26839,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-option-base-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20317,6 +26848,71 @@ const tokens = {
       "option",
       "base",
       "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-option-base-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "base",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-option-base-medium-fontsize": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "base",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-option-base-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "base",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-option-base-medium-lineheight": {
+    "value": 20,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "base",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-option-base-medium-letterspacing": {
+    "value": 0.10000000149011612,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "base",
+      "medium",
       "letterspacing"
     ]
   },
@@ -20373,7 +26969,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-option-base-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20438,7 +27034,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-option-l-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20447,6 +27043,71 @@ const tokens = {
       "option",
       "l",
       "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-option-l-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "l",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-option-l-medium-fontsize": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "l",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-option-l-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "l",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-option-l-medium-lineheight": {
+    "value": 22,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "l",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-option-l-medium-letterspacing": {
+    "value": 0.10000000149011612,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "l",
+      "medium",
       "letterspacing"
     ]
   },
@@ -20503,7 +27164,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-option-l-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20568,7 +27229,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-option-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20577,6 +27238,71 @@ const tokens = {
       "option",
       "s",
       "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-option-s-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "s",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-option-s-medium-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "s",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-option-s-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "s",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-option-s-medium-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "s",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-option-s-medium-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "option",
+      "s",
+      "medium",
       "letterspacing"
     ]
   },
@@ -20633,7 +27359,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-option-s-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20698,7 +27424,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-tab-base-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20707,6 +27433,71 @@ const tokens = {
       "tab",
       "base",
       "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-tab-base-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "tab",
+      "base",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-tab-base-medium-fontsize": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "tab",
+      "base",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-tab-base-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "tab",
+      "base",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-tab-base-medium-lineheight": {
+    "value": 20,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "tab",
+      "base",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-tab-base-medium-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "tab",
+      "base",
+      "medium",
       "letterspacing"
     ]
   },
@@ -20763,7 +27554,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-tab-base-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20828,7 +27619,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-tab-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20837,6 +27628,71 @@ const tokens = {
       "tab",
       "s",
       "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-tab-s-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "tab",
+      "s",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-tab-s-medium-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "tab",
+      "s",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-tab-s-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "tab",
+      "s",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-tab-s-medium-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "tab",
+      "s",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-tab-s-medium-letterspacing": {
+    "value": 0.30000001192092896,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "tab",
+      "s",
+      "medium",
       "letterspacing"
     ]
   },
@@ -20893,7 +27749,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-tab-s-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -20958,7 +27814,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-menu-base-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21023,7 +27879,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-menu-base-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21088,7 +27944,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-menu-l-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21153,7 +28009,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-menu-l-medium-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21218,7 +28074,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-menu-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21283,7 +28139,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-menu-s-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21348,7 +28204,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-progress-base-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21413,7 +28269,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-progress-base-semibold-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21478,7 +28334,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-progress-s-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21543,7 +28399,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-progress-s-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21608,7 +28464,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-badge-small-regular-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21673,7 +28529,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-badge-small-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21738,7 +28594,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-badge-small-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21803,7 +28659,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-badge-base-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21868,7 +28724,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-badge-base-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21933,7 +28789,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-badge-base-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -21998,7 +28854,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-badge-large-regular-letterspacing": {
-    "value": 0,
+    "value": 0.10000000149011612,
     "type": "number",
     "path": [
       "semantic-type",
@@ -22063,7 +28919,7 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-badge-large-medium-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
@@ -22128,13 +28984,598 @@ const tokens = {
     ]
   },
   "semantic-type-mobile-label-badge-large-semibold-letterspacing": {
-    "value": 0.10000000149011612,
+    "value": 0.30000001192092896,
     "type": "number",
     "path": [
       "semantic-type",
       "mobile",
       "label",
       "badge",
+      "large",
+      "semibold",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-regular-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "regular",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-regular-fontsize": {
+    "value": 10,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "regular",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-regular-fontweight": {
+    "value": 400,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "regular",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-regular-lineheight": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "regular",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-regular-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-medium-fontsize": {
+    "value": 10,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-medium-lineheight": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-medium-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "medium",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-semibold-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "semibold",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-semibold-fontsize": {
+    "value": 10,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "semibold",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-semibold-fontweight": {
+    "value": 600,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "semibold",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-semibold-lineheight": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "semibold",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-section-small-semibold-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "small",
+      "semibold",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-regular-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "regular",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-regular-fontsize": {
+    "value": 11,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "regular",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-regular-fontweight": {
+    "value": 400,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "regular",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-regular-lineheight": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "regular",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-regular-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-medium-fontsize": {
+    "value": 11,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-medium-lineheight": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-medium-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "medium",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-semibold-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "semibold",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-semibold-fontsize": {
+    "value": 11,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "semibold",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-semibold-fontweight": {
+    "value": 600,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "semibold",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-semibold-lineheight": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "semibold",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-section-base-semibold-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "base",
+      "semibold",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-regular-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "regular",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-regular-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "regular",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-regular-fontweight": {
+    "value": 400,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "regular",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-regular-lineheight": {
+    "value": 20,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "regular",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-regular-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "regular",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-medium-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "medium",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-medium-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "medium",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-medium-fontweight": {
+    "value": 500,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "medium",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-medium-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "medium",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-medium-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "medium",
+      "letterspacing"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-semibold-fontfamily": {
+    "value": "Red Hat Text",
+    "type": "string",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "semibold",
+      "fontfamily"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-semibold-fontsize": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "semibold",
+      "fontsize"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-semibold-fontweight": {
+    "value": 600,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "semibold",
+      "fontweight"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-semibold-lineheight": {
+    "value": 18,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
+      "large",
+      "semibold",
+      "lineheight"
+    ]
+  },
+  "semantic-type-mobile-label-section-large-semibold-letterspacing": {
+    "value": 0.6000000238418579,
+    "type": "number",
+    "path": [
+      "semantic-type",
+      "mobile",
+      "label",
+      "section",
       "large",
       "semibold",
       "letterspacing"
