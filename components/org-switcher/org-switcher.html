@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OrgSwitcher — Pathway DS (Placeholder)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- NOTE: PLACEHOLDER — all tokens are hardcoded. Replace with
+       var(--semantic-color-*) once the Figma node is confirmed.
+       See components/org-switcher/org-switcher-spec.md §17. -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Red Hat Text", sans-serif;
+      background: #f5f5f5;
+      padding: 40px 24px;
+      min-height: 100vh;
+      color: #363636;
+    }
+
+    h1 { font-size: 14px; font-weight: 700; color: #71717a; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 32px; }
+
+    .demo-row {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 560px;
+    }
+
+    .demo-block {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .demo-block h2 {
+      font-size: 11px;
+      font-weight: 600;
+      color: #a1a1aa;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    /* ── Trigger ─────────────────────────────────────────────────── */
+    .pds-org-switcher { position: relative; display: inline-block; }
+
+    .pds-org-trigger {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      background: transparent;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      color: #363636;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 120ms ease;
+      white-space: nowrap;
+    }
+    .pds-org-trigger:hover  { background: #1111110a; }
+    .pds-org-trigger.is-open { background: #11111114; }
+    .pds-org-trigger:focus-visible {
+      outline: 2px solid #3555a0;
+      outline-offset: 2px;
+    }
+    .pds-org-trigger[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+    .pds-org-chevron {
+      width: 16px; height: 16px;
+      transition: transform 150ms ease;
+      flex-shrink: 0;
+    }
+    .pds-org-trigger.is-open .pds-org-chevron { transform: rotate(180deg); }
+
+    /* ── Panel ───────────────────────────────────────────────────── */
+    .pds-org-panel {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      min-width: 240px;
+      max-height: 320px;
+      overflow-y: auto;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+      padding: 4px 0;
+      list-style: none;
+      z-index: 1000;
+      animation: panelIn 140ms ease forwards;
+    }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      @keyframes panelIn { from { opacity: 0; } to { opacity: 1; } }
+    }
+
+    .pds-org-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background 100ms ease;
+    }
+    .pds-org-row:hover     { background: #f5f5f5; }
+    .pds-org-row.is-active { background: #edf0f9; }
+    .pds-org-row:focus-visible {
+      outline: 2px solid #3555a0;
+      outline-offset: -2px;
+    }
+
+    .pds-org-avatar {
+      width: 32px; height: 32px;
+      border-radius: 6px;
+      background: #edf0f9;
+      color: #3555a0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .pds-org-name-block { flex: 1; min-width: 0; }
+    .pds-org-name {
+      font-size: 14px; font-weight: 500;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .pds-org-campus { font-size: 12px; color: #71717a; }
+
+    .pds-org-active-mark { color: #3555a0; flex-shrink: 0; }
+
+    /* ── Resize pill ─────────────────────────────────────────────── */
+    .resize-controls {
+      margin-top: 24px;
+      display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    }
+    .resize-controls label { font-size: 12px; color: #71717a; margin-right: 4px; }
+    .resize-controls button {
+      font-family: inherit; font-size: 12px; font-weight: 500;
+      padding: 4px 12px; border-radius: 20px;
+      border: 1px solid #e5e7eb; background: #fff; cursor: pointer;
+      transition: background 100ms ease;
+    }
+    .resize-controls button:hover { background: #f5f5f5; }
+    .resize-controls button.active { background: #edf0f9; border-color: #3555a0; color: #3555a0; }
+  </style>
+</head>
+<body>
+  <h1>Org Switcher — Pathway DS · Placeholder</h1>
+
+  <div class="demo-row">
+
+    <!-- Desktop variant -->
+    <div class="demo-block">
+      <h2>Desktop — full names</h2>
+      <div id="demo-desktop"></div>
+    </div>
+
+    <!-- Mobile variant -->
+    <div class="demo-block">
+      <h2>Mobile — abbreviated display</h2>
+      <div id="demo-mobile"></div>
+    </div>
+
+    <!-- Abbreviation showcase -->
+    <div class="demo-block">
+      <h2>Abbreviation examples (Appendix A)</h2>
+      <div id="demo-abbr"></div>
+    </div>
+
+    <!-- Resize controls -->
+    <div class="resize-controls">
+      <label>Simulate viewport:</label>
+      <button id="btn-desktop" class="active" onclick="setMode('desktop')">Desktop ≥768px</button>
+      <button id="btn-mobile" onclick="setMode('mobile')">Mobile &lt;768px</button>
+    </div>
+
+  </div>
+
+  <script type="text/babel">
+    // ── Abbreviation utilities (mirrors org-switcher.jsx) ──────────────────
+    const SKIP_WORDS = new Set(["the","a","an","of","in","at","for","and","or"]);
+
+    function abbreviateOrg(name) {
+      if (!name) return "???";
+      const words = name.trim().split(/\s+/);
+      const sig = words.filter(w => !SKIP_WORDS.has(w.toLowerCase()));
+      if (sig.length === 0) return name.slice(0, 3).toUpperCase();
+      if (sig.length === 1) return sig[0].slice(0, 3).toUpperCase();
+      if (sig.length === 2) {
+        const [w1, w2] = sig;
+        return (w1[0] + (w1[1] || w1[0]) + w2[0]).toUpperCase();
+      }
+      return (sig[0][0] + sig[1][0] + sig[2][0]).toUpperCase();
+    }
+
+    const DIRECTIONALS = new Set(["west","east","north","south","central","downtown","northeast","northwest","southeast","southwest"]);
+    const USPS = {
+      georgia:"GA", tennessee:"TN", florida:"FL", texas:"TX", california:"CA",
+      "new york":"NY", ohio:"OH", illinois:"IL", pennsylvania:"PA", virginia:"VA",
+    };
+
+    function abbreviateCampus(name) {
+      if (!name) return "";
+      const lower = name.trim().toLowerCase();
+      if (USPS[lower]) return USPS[lower];
+      const words = name.trim().split(/\s+/);
+      if (words.length === 1) return lower.slice(0, 2).toUpperCase();
+      if (words.length === 2) {
+        const [a, b] = words.map(w => w.toLowerCase());
+        const aDir = DIRECTIONALS.has(a), bDir = DIRECTIONALS.has(b);
+        if (aDir || bDir) {
+          const place = aDir ? b : a;
+          const dir   = aDir ? a : b;
+          return (place[0] + dir[0]).toUpperCase();
+        }
+        return (a[0] + b[0]).toUpperCase();
+      }
+      return lower.slice(0, 2).toUpperCase();
+    }
+
+    function mobileLabel(orgName, campusName) {
+      const org = abbreviateOrg(orgName);
+      const cam = campusName ? abbreviateCampus(campusName) : "";
+      return cam ? `${org} | ${cam}` : org;
+    }
+
+    // ── Demo data ──────────────────────────────────────────────────────────
+    const ORGS = [
+      { id: "gcc-west",  orgName: "Grace Community Church",   campusName: "West" },
+      { id: "gcc-east",  orgName: "Grace Community Church",   campusName: "East" },
+      { id: "ncc-nn",    orgName: "Nashville Christian Church", campusName: "Nashville North" },
+      { id: "npc",       orgName: "Northpoint Church",         campusName: "" },
+      { id: "npc-kn",    orgName: "Northpoint Church",         campusName: "Knoxville" },
+      { id: "ele-mc",    orgName: "Elevation",                 campusName: "Main Campus" },
+    ];
+
+    const ABBR_EXAMPLES = [
+      ["Grace Community Church", "West"],
+      ["Nashville Christian Church", "Nashville North"],
+      ["Northpoint Church", ""],
+      ["Northpoint Church", "Knoxville"],
+      ["Crossroads Church", "Downtown"],
+      ["Elevation", "Main Campus"],
+      ["Church of the Highlands", "North"],
+      ["Knoxville Sanctuary", "East"],
+    ];
+
+    // ── React components ───────────────────────────────────────────────────
+    function OrgAvatar({ name }) {
+      const initials = abbreviateOrg(name).slice(0, 2);
+      return (
+        <div style={{
+          width:32, height:32, borderRadius:6, background:"#edf0f9", color:"#3555a0",
+          display:"flex", alignItems:"center", justifyContent:"center",
+          fontWeight:700, fontSize:11, flexShrink:0,
+        }}>{initials}</div>
+      );
+    }
+
+    function Chevron({ open }) {
+      return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"
+          style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform 150ms ease", flexShrink:0 }}>
+          <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      );
+    }
+
+    function Check() {
+      return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      );
+    }
+
+    function OrgSwitcherDemo({ initialIndex = 0, forceMobile = false }) {
+      const [open, setOpen] = React.useState(false);
+      const [active, setActive] = React.useState(initialIndex);
+      const rootRef = React.useRef(null);
+
+      React.useEffect(() => {
+        if (!open) return;
+        const h = e => { if (rootRef.current && !rootRef.current.contains(e.target)) setOpen(false); };
+        document.addEventListener("pointerdown", h);
+        return () => document.removeEventListener("pointerdown", h);
+      }, [open]);
+
+      React.useEffect(() => {
+        if (!open) return;
+        const h = e => { if (e.key === "Escape") setOpen(false); };
+        document.addEventListener("keydown", h);
+        return () => document.removeEventListener("keydown", h);
+      }, [open]);
+
+      const org  = ORGS[active];
+      const label = forceMobile
+        ? mobileLabel(org.orgName, org.campusName)
+        : org.campusName ? `${org.orgName}  |  ${org.campusName}` : org.orgName;
+
+      return (
+        <div ref={rootRef} style={{ position:"relative", display:"inline-block" }}>
+          <button
+            type="button"
+            className={`pds-org-trigger${open ? " is-open" : ""}`}
+            aria-haspopup="listbox"
+            aria-expanded={open}
+            aria-controls="pds-panel"
+            aria-label={`Current organisation: ${org.orgName}${org.campusName ? ", " + org.campusName : ""}. Switch organisation.`}
+            onClick={() => setOpen(o => !o)}
+          >
+            <span aria-hidden="true">{label}</span>
+            <Chevron open={open} />
+          </button>
+
+          {open && (
+            <ul id="pds-panel" role="listbox" aria-label="Select organisation" className="pds-org-panel">
+              {ORGS.map((o, i) => (
+                <li key={o.id} role="option" aria-selected={i === active} tabIndex={0}
+                  className={`pds-org-row${i === active ? " is-active" : ""}`}
+                  onClick={() => { setActive(i); setOpen(false); }}
+                  onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { setActive(i); setOpen(false); } }}
+                >
+                  <OrgAvatar name={o.orgName} />
+                  <div className="pds-org-name-block">
+                    <div className="pds-org-name">{o.orgName}</div>
+                    {o.campusName && <div className="pds-org-campus">{o.campusName}</div>}
+                  </div>
+                  {i === active && <span className="pds-org-active-mark"><Check /></span>}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      );
+    }
+
+    function AbbrTable() {
+      return (
+        <table style={{ width:"100%", borderCollapse:"collapse", fontSize:13 }}>
+          <thead>
+            <tr style={{ borderBottom:"1px solid #e5e7eb" }}>
+              <th style={{ textAlign:"left", padding:"6px 8px", color:"#71717a", fontWeight:500 }}>Org name</th>
+              <th style={{ textAlign:"left", padding:"6px 8px", color:"#71717a", fontWeight:500 }}>Campus</th>
+              <th style={{ textAlign:"left", padding:"6px 8px", color:"#3555a0", fontWeight:600 }}>Mobile</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ABBR_EXAMPLES.map(([org, campus], i) => (
+              <tr key={i} style={{ borderBottom:"1px solid #f5f5f5" }}>
+                <td style={{ padding:"6px 8px" }}>{org}</td>
+                <td style={{ padding:"6px 8px", color:"#71717a" }}>{campus || "—"}</td>
+                <td style={{ padding:"6px 8px", fontWeight:600, fontFamily:"monospace", color:"#363636" }}>
+                  {mobileLabel(org, campus)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+    }
+
+    let desktopRoot, mobileRoot, abbrRoot;
+    function mountAll(isMobile) {
+      if (!desktopRoot) desktopRoot = ReactDOM.createRoot(document.getElementById("demo-desktop"));
+      if (!mobileRoot)  mobileRoot  = ReactDOM.createRoot(document.getElementById("demo-mobile"));
+      if (!abbrRoot)    abbrRoot    = ReactDOM.createRoot(document.getElementById("demo-abbr"));
+      desktopRoot.render(<OrgSwitcherDemo forceMobile={false} />);
+      mobileRoot.render(<OrgSwitcherDemo forceMobile={true} initialIndex={2} />);
+      abbrRoot.render(<AbbrTable />);
+    }
+
+    window.setMode = function(mode) {
+      document.getElementById("btn-desktop").classList.toggle("active", mode === "desktop");
+      document.getElementById("btn-mobile").classList.toggle("active", mode === "mobile");
+    };
+
+    mountAll();
+  </script>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</body>
+</html>

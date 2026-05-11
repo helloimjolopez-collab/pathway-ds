@@ -1,0 +1,67 @@
+import { Meta, Canvas, Controls, Story } from "@storybook/blocks";
+import * as OrgSwitcherStories from "./OrgSwitcher.stories";
+
+<Meta of={OrgSwitcherStories} />
+
+# Org Switcher
+
+> **Status: PLACEHOLDER** — spec is `PENDING HUMAN REVIEW`. Figma node not yet confirmed.
+> Token values, spacing, and visual design are hardcoded approximations.
+> Do not use in production. Full pipeline will run once the spec reaches `REVIEWED`.
+
+The Org Switcher lets a signed-in user see their active organisation and campus, and switch to a different one. It lives in the global shell (top navigation bar) and is visible at all times in multi-org contexts.
+
+**Desktop:** renders the full organisation name and campus name separated by a pipe.
+**Mobile:** renders abbreviated initialisations per the rules in [Appendix A of the spec](../../../components/org-switcher/org-switcher-spec.md).
+
+---
+
+## Playground
+
+<Canvas of={OrgSwitcherStories.Playground} />
+<Controls of={OrgSwitcherStories.Playground} />
+
+---
+
+## Desktop vs Mobile display
+
+The trigger label switches automatically based on viewport width (breakpoint: 768 px).
+
+<Canvas of={OrgSwitcherStories.Desktop} />
+<Canvas of={OrgSwitcherStories.Mobile} />
+
+---
+
+## Abbreviation Showcase
+
+The abbreviation logic (`abbreviateOrg`, `abbreviateCampus`) is a pure utility exported from the component module so it can be tested and used independently of React.
+Rules are defined in full in [Appendix A of the spec](../../../components/org-switcher/org-switcher-spec.md).
+
+<Canvas of={OrgSwitcherStories.AbbreviationShowcase} />
+
+---
+
+## Disabled state
+
+Single-org users see the trigger rendered as disabled — no panel opens.
+
+<Canvas of={OrgSwitcherStories.Disabled} />
+
+---
+
+## Accessibility
+
+- Trigger uses `aria-haspopup="listbox"`, `aria-expanded`, and `aria-controls`.
+- The visible abbreviated label is `aria-hidden="true"`; the button's `aria-label` always announces the full org name.
+- Panel uses `role="listbox"`; rows use `role="option"` with `aria-selected`.
+- Keyboard: `Enter`/`Space` toggles panel; `Arrow Up`/`Down` navigates rows; `Escape` closes.
+- Full keyboard spec: [org-switcher-spec.md §13.3](../../../components/org-switcher/org-switcher-spec.md).
+
+---
+
+## Spec & source
+
+- Full spec: [`components/org-switcher/org-switcher-spec.md`](../../../components/org-switcher/org-switcher-spec.md)
+- Component module: [`components/org-switcher/org-switcher.jsx`](../../../components/org-switcher/org-switcher.jsx)
+- Standalone demo: [`components/org-switcher/org-switcher.html`](../../../components/org-switcher/org-switcher.html)
+- Figma node: **TBD** — add to spec §1 before running the full pipeline.

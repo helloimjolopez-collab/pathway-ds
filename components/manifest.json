@@ -120,6 +120,37 @@
         "Highlight variant resting-state token (fill.action.secondaryinverse.base) missing — fallback in use."
       ]
     },
+    "org-switcher": {
+      "displayName": "OrgSwitcher",
+      "description": "PLACEHOLDER — Organisation and campus context switcher. Shows full names on desktop; abbreviated initialisations on mobile per Appendix A abbreviation rules. Lives in the global shell (top nav). Spec status: PENDING HUMAN REVIEW. Figma node TBD.",
+      "status": "PLACEHOLDER",
+      "module": "components/org-switcher/org-switcher.jsx",
+      "exports": ["OrgSwitcher", "abbreviateOrg", "abbreviateCampus", "mobileLabel"],
+      "spec": "components/org-switcher/org-switcher-spec.md",
+      "demo": "components/org-switcher/org-switcher.html",
+      "stories": "src/stories/Library/OrgSwitcher/OrgSwitcher.stories.jsx",
+      "figma": {
+        "fileKey": "TBD",
+        "nodeId": "TBD"
+      },
+      "props": {
+        "OrgSwitcher": {
+          "orgName":    { "type": "string",   "required": true,  "description": "Full organisation name" },
+          "campusName": { "type": "string",   "default": "\"\"", "description": "Full campus or sub-org name. Omit or pass empty string when no campus." },
+          "orgs":       { "type": "Array<{ id: string, orgName: string, campusName?: string }>", "default": "[]", "description": "All orgs available to the signed-in user, shown in the switcher panel." },
+          "onOrgChange":{ "type": "(id: string) => void", "description": "Called with the selected org id when user picks a row." },
+          "disabled":   { "type": "boolean",  "default": false,  "description": "True for single-org users — trigger renders but panel does not open." },
+          "mobile":     { "type": "boolean",  "default": false,  "description": "Force mobile abbreviated display regardless of viewport (useful for testing / Storybook)." }
+        }
+      },
+      "tokens": [],
+      "gaps": [
+        "Figma node not confirmed — all token values are hardcoded placeholders.",
+        "Panel mobile behaviour (dropdown vs bottom sheet) not yet decided.",
+        "ARIA pattern choice (Disclosure+listbox vs Combobox) deferred.",
+        "All spacing and colour tokens TBD from Figma."
+      ]
+    },
     "spinner": {
       "displayName": "Spinner",
       "description": "Indeterminate activity indicator. 8-spoke sunburst, arbitrary size, semantic-token-only colour via tone + emphasis.",
