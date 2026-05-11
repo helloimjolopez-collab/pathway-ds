@@ -49,12 +49,10 @@
     /* Semantic — fill.action ----------------------------------------------- */
     --semantic-color-light-mode-fill-action-primary-base:     var(--primitive-color-brand-300);
     --semantic-color-light-mode-fill-action-primary-hover:    var(--primitive-color-brand-200);
-    --semantic-color-light-mode-fill-action-primary-focused:  var(--primitive-color-brand-200);
     --semantic-color-light-mode-fill-action-primary-pressed:  var(--primitive-color-brand-400);
     --semantic-color-light-mode-fill-action-primary-disabled: var(--primitive-color-brand-50);
 
     --semantic-color-light-mode-fill-action-primaryinverse-hover:   var(--primitive-color-brand-10);
-    --semantic-color-light-mode-fill-action-primaryinverse-focused: var(--primitive-color-brand-20);
     --semantic-color-light-mode-fill-action-primaryinverse-pressed: var(--primitive-color-brand-30);
 
     --semantic-color-light-mode-fill-action-secondary-base:  var(--primitive-color-cool-neutral-30);
@@ -62,7 +60,6 @@
 
     --semantic-color-light-mode-fill-action-negative-base:     var(--primitive-color-red-120);
     --semantic-color-light-mode-fill-action-negative-hover:    var(--primitive-color-red-110);
-    --semantic-color-light-mode-fill-action-negative-focused:  var(--primitive-color-red-110);
     --semantic-color-light-mode-fill-action-negative-pressed:  var(--primitive-color-red-130);
     --semantic-color-light-mode-fill-action-negative-disabled: var(--primitive-color-red-70);
 
@@ -71,13 +68,11 @@
     /* Semantic — stroke.action --------------------------------------------- */
     --semantic-color-light-mode-stroke-action-secondary-base:     var(--primitive-color-cool-neutral-150);
     --semantic-color-light-mode-stroke-action-secondary-hover:    var(--primitive-color-cool-neutral-160);
-    --semantic-color-light-mode-stroke-action-secondary-focused:  var(--primitive-color-cool-neutral-170);
     --semantic-color-light-mode-stroke-action-secondary-pressed:  var(--primitive-color-cool-neutral-180);
     --semantic-color-light-mode-stroke-action-secondary-disabled: var(--primitive-color-cool-neutral-60);
 
     --semantic-color-light-mode-stroke-action-negative-base:     var(--primitive-color-red-60);
     --semantic-color-light-mode-stroke-action-negative-hover:    var(--primitive-color-red-40);
-    --semantic-color-light-mode-stroke-action-negative-focused:  var(--primitive-color-red-40);
     --semantic-color-light-mode-stroke-action-negative-pressed:  var(--primitive-color-red-70);
     --semantic-color-light-mode-stroke-action-negative-disabled: var(--primitive-color-red-30);
 
@@ -191,13 +186,13 @@ const { useState, useRef, useEffect } = React;
 const V = {
   fillCheckedBase:     "var(--semantic-color-light-mode-fill-action-primary-base)",
   fillCheckedHover:    "var(--semantic-color-light-mode-fill-action-primary-hover)",
-  fillCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primary-focused)",
+  fillCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primary-hover)",
   fillCheckedPressed:  "var(--semantic-color-light-mode-fill-action-primary-pressed)",
   fillCheckedDisabled: "var(--semantic-color-light-mode-fill-action-primary-disabled)",
 
   borderBase:     "var(--semantic-color-light-mode-stroke-action-secondary-base)",
   borderHover:    "var(--semantic-color-light-mode-stroke-action-secondary-hover)",
-  borderFocused:  "var(--semantic-color-light-mode-stroke-action-secondary-focused)",
+  borderFocused:  "var(--semantic-color-light-mode-stroke-action-secondary-hover)",
   borderPressed:  "var(--semantic-color-light-mode-stroke-action-secondary-pressed)",
   borderDisabled: "var(--semantic-color-light-mode-stroke-action-secondary-disabled)",
 
@@ -206,18 +201,18 @@ const V = {
 
   stateLayerUncheckedHover:  "var(--semantic-color-light-mode-fill-action-secondary-hover)",
   stateLayerCheckedHover:    "var(--semantic-color-light-mode-fill-action-primaryinverse-hover)",
-  stateLayerCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primaryinverse-focused)",
+  stateLayerCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primaryinverse-hover)",
   stateLayerCheckedPressed:  "var(--semantic-color-light-mode-fill-action-primaryinverse-pressed)",
 
   fillErrorBase:     "var(--semantic-color-light-mode-fill-action-negative-base)",
   fillErrorHover:    "var(--semantic-color-light-mode-fill-action-negative-hover)",
-  fillErrorFocused:  "var(--semantic-color-light-mode-fill-action-negative-focused)",
+  fillErrorFocused:  "var(--semantic-color-light-mode-fill-action-negative-hover)",
   fillErrorPressed:  "var(--semantic-color-light-mode-fill-action-negative-pressed)",
   fillErrorDisabled: "var(--semantic-color-light-mode-fill-action-negative-disabled)",
 
   borderErrorBase:     "var(--semantic-color-light-mode-stroke-action-negative-base)",
   borderErrorHover:    "var(--semantic-color-light-mode-stroke-action-negative-hover)",
-  borderErrorFocused:  "var(--semantic-color-light-mode-stroke-action-negative-focused)",
+  borderErrorFocused:  "var(--semantic-color-light-mode-stroke-action-negative-hover)",
   borderErrorPressed:  "var(--semantic-color-light-mode-stroke-action-negative-pressed)",
   borderErrorDisabled: "var(--semantic-color-light-mode-stroke-action-negative-disabled)",
 
