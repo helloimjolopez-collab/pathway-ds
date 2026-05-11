@@ -5,14 +5,13 @@ import * as OrgSwitcherStories from "./OrgSwitcher.stories";
 
 # Org Switcher
 
-> **Status: PLACEHOLDER** — spec is `PENDING HUMAN REVIEW`. Figma node not yet confirmed.
-> Token values, spacing, and visual design are hardcoded approximations.
+> **Status: PLACEHOLDER** — spec is `PENDING HUMAN REVIEW`. Figma node confirmed (`40006819:14583`); panel not yet designed.
 > Do not use in production. Full pipeline will run once the spec reaches `REVIEWED`.
 
 The Org Switcher lets a signed-in user see their active organisation and campus, and switch to a different one. It lives in the global shell (top navigation bar) and is visible at all times in multi-org contexts.
 
 **Desktop:** renders the full organisation name and campus name separated by a pipe.
-**Mobile:** renders abbreviated initialisations per the rules in [Appendix A of the spec](../../../components/org-switcher/org-switcher-spec.md).
+**Mobile:** renders abbreviated initialisations per the rules in [Appendix A of the spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher-spec.md#appendix-a-abbreviation-guidelines).
 
 ---
 
@@ -32,12 +31,28 @@ The trigger label switches automatically based on viewport width (breakpoint: 76
 
 ---
 
+## Logo vs Initials Placeholder
+
+Pass a `logoUrl` to show the org's image; omit it to render a two-letter initials block.
+
+<Canvas of={OrgSwitcherStories.LogoVsPlaceholder} />
+
+---
+
 ## Abbreviation Showcase
 
+Direct link to share: [`?path=/story/library-orgswitcher--abbreviation-showcase`](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/story/library-orgswitcher--abbreviation-showcase)
+
 The abbreviation logic (`abbreviateOrg`, `abbreviateCampus`) is a pure utility exported from the component module so it can be tested and used independently of React.
-Rules are defined in full in [Appendix A of the spec](../../../components/org-switcher/org-switcher-spec.md).
+Rules are defined in full in [Appendix A of the spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher-spec.md#appendix-a-abbreviation-guidelines).
 
 <Canvas of={OrgSwitcherStories.AbbreviationShowcase} />
+
+---
+
+## States
+
+<Canvas of={OrgSwitcherStories.States} />
 
 ---
 
@@ -51,17 +66,16 @@ Single-org users see the trigger rendered as disabled — no panel opens.
 
 ## Accessibility
 
-- Trigger uses `aria-haspopup="listbox"`, `aria-expanded`, and `aria-controls`.
-- The visible abbreviated label is `aria-hidden="true"`; the button's `aria-label` always announces the full org name.
-- Panel uses `role="listbox"`; rows use `role="option"` with `aria-selected`.
-- Keyboard: `Enter`/`Space` toggles panel; `Arrow Up`/`Down` navigates rows; `Escape` closes.
-- Full keyboard spec: [org-switcher-spec.md §13.3](../../../components/org-switcher/org-switcher-spec.md).
+- Trigger uses `aria-haspopup="true"`, `aria-expanded`, and an `aria-label` that always announces the full org name.
+- The visible abbreviated label is not separately announced; the button label carries the full context.
+- Keyboard: `Enter`/`Space` toggles panel; `Escape` closes (panel TBD).
+- Full keyboard spec: [org-switcher-spec.md §13](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher-spec.md#13-accessibility).
 
 ---
 
 ## Spec & source
 
-- Full spec: [`components/org-switcher/org-switcher-spec.md`](../../../components/org-switcher/org-switcher-spec.md)
-- Component module: [`components/org-switcher/org-switcher.jsx`](../../../components/org-switcher/org-switcher.jsx)
-- Standalone demo: [`components/org-switcher/org-switcher.html`](../../../components/org-switcher/org-switcher.html)
-- Figma node: **TBD** — add to spec §1 before running the full pipeline.
+- Full spec: [components/org-switcher/org-switcher-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher-spec.md)
+- Component module: [components/org-switcher/org-switcher.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher.jsx)
+- Standalone demo: [components/org-switcher/org-switcher.html](https://helloimjolopez-collab.github.io/pathway-ds/components/org-switcher/org-switcher.html)
+- Figma node: [40006819:14583](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583)
