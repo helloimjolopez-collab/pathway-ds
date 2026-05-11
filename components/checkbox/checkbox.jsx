@@ -21,14 +21,14 @@ const V = {
   // Box fill — standard checked / indeterminate
   fillCheckedBase:     "var(--semantic-color-light-mode-fill-action-primary-base)",
   fillCheckedHover:    "var(--semantic-color-light-mode-fill-action-primary-hover)",
-  fillCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primary-focused)",
+  fillCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primary-hover)",
   fillCheckedPressed:  "var(--semantic-color-light-mode-fill-action-primary-pressed)",
   fillCheckedDisabled: "var(--semantic-color-light-mode-fill-action-primary-disabled)",
 
   // Box border — standard unchecked
   borderBase:     "var(--semantic-color-light-mode-stroke-action-secondary-base)",
   borderHover:    "var(--semantic-color-light-mode-stroke-action-secondary-hover)",
-  borderFocused:  "var(--semantic-color-light-mode-stroke-action-secondary-focused)",
+  borderFocused:  "var(--semantic-color-light-mode-stroke-action-secondary-hover)",
   borderPressed:  "var(--semantic-color-light-mode-stroke-action-secondary-pressed)",
   borderDisabled: "var(--semantic-color-light-mode-stroke-action-secondary-disabled)",
 
@@ -43,20 +43,20 @@ const V = {
 
   // State-layer — checked hover / focused / pressed
   stateLayerCheckedHover:    "var(--semantic-color-light-mode-fill-action-primaryinverse-hover)",
-  stateLayerCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primaryinverse-focused)",
+  stateLayerCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primaryinverse-hover)",
   stateLayerCheckedPressed:  "var(--semantic-color-light-mode-fill-action-primaryinverse-pressed)",
 
   // Box fill — error checked / indeterminate
   fillErrorBase:     "var(--semantic-color-light-mode-fill-action-negative-base)",
   fillErrorHover:    "var(--semantic-color-light-mode-fill-action-negative-hover)",
-  fillErrorFocused:  "var(--semantic-color-light-mode-fill-action-negative-focused)",
+  fillErrorFocused:  "var(--semantic-color-light-mode-fill-action-negative-hover)",
   fillErrorPressed:  "var(--semantic-color-light-mode-fill-action-negative-pressed)",
   fillErrorDisabled: "var(--semantic-color-light-mode-fill-action-negative-disabled)",
 
   // Box border — error unchecked
   borderErrorBase:     "var(--semantic-color-light-mode-stroke-action-negative-base)",
   borderErrorHover:    "var(--semantic-color-light-mode-stroke-action-negative-hover)",
-  borderErrorFocused:  "var(--semantic-color-light-mode-stroke-action-negative-focused)",
+  borderErrorFocused:  "var(--semantic-color-light-mode-stroke-action-negative-hover)",
   borderErrorPressed:  "var(--semantic-color-light-mode-stroke-action-negative-pressed)",
   borderErrorDisabled: "var(--semantic-color-light-mode-stroke-action-negative-disabled)",
 
