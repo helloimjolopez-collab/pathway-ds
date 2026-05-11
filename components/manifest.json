@@ -122,7 +122,7 @@
     },
     "org-switcher": {
       "displayName": "OrgSwitcher",
-      "description": "PLACEHOLDER — Organisation and campus context switcher. Shows full names on desktop; abbreviated initialisations on mobile per Appendix A abbreviation rules. Lives in the global shell (top nav). Spec status: PENDING HUMAN REVIEW. Figma node TBD.",
+      "description": "Organisation and campus context switcher. Shows full names on desktop; abbreviated initialisations on mobile per Appendix A abbreviation rules. Lives in the global shell (top nav, dark surface). Trigger only — panel not yet designed. Spec status: PENDING HUMAN REVIEW.",
       "status": "PLACEHOLDER",
       "module": "components/org-switcher/org-switcher.jsx",
       "exports": ["OrgSwitcher", "abbreviateOrg", "abbreviateCampus", "mobileLabel"],
@@ -130,25 +130,47 @@
       "demo": "components/org-switcher/org-switcher.html",
       "stories": "src/stories/Library/OrgSwitcher/OrgSwitcher.stories.jsx",
       "figma": {
-        "fileKey": "TBD",
-        "nodeId": "TBD"
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40006819:14583"
       },
       "props": {
         "OrgSwitcher": {
           "orgName":    { "type": "string",   "required": true,  "description": "Full organisation name" },
           "campusName": { "type": "string",   "default": "\"\"", "description": "Full campus or sub-org name. Omit or pass empty string when no campus." },
-          "orgs":       { "type": "Array<{ id: string, orgName: string, campusName?: string }>", "default": "[]", "description": "All orgs available to the signed-in user, shown in the switcher panel." },
-          "onOrgChange":{ "type": "(id: string) => void", "description": "Called with the selected org id when user picks a row." },
+          "logoUrl":    { "type": "string",   "description": "Org logo image URL. Omit to show two-letter initials placeholder." },
+          "open":       { "type": "boolean",  "default": false,  "description": "Whether the downstream panel is open — flips the chevron icon." },
+          "onClick":    { "type": "() => void", "description": "Click handler — use to toggle your panel." },
           "disabled":   { "type": "boolean",  "default": false,  "description": "True for single-org users — trigger renders but panel does not open." },
-          "mobile":     { "type": "boolean",  "default": false,  "description": "Force mobile abbreviated display regardless of viewport (useful for testing / Storybook)." }
+          "mobile":     { "type": "boolean",  "default": false,  "description": "Force mobile abbreviated display regardless of viewport (useful for testing / Storybook)." },
+          "className":  { "type": "string",   "default": "\"\"", "description": "Additional CSS class on the root element." }
         }
       },
-      "tokens": [],
+      "tokens": [
+        "dark-mode.fill.action.tertiary.base",
+        "dark-mode.fill.action.primaryinverse.hover",
+        "dark-mode.fill.action.primaryinverse.pressed",
+        "dark-mode.stroke.action.tertiary.base",
+        "dark-mode.stroke.action.tertiary.hover",
+        "dark-mode.stroke.action.tertiary.pressed",
+        "dark-mode.text.action.mono.base",
+        "dark-mode.text.action.mono.hover",
+        "dark-mode.text.action.mono.pressed",
+        "dark-mode.icon.action.mono.base",
+        "dark-mode.icon.action.mono.hover",
+        "dark-mode.icon.action.mono.pressed",
+        "layout.units.cornerradius.medium",
+        "layout.units.cornerradius.small",
+        "layout.units.borderwidth.base",
+        "layout.units.padding.xxtight",
+        "layout.units.padding.xxxtight",
+        "layout.units.padding.xtight",
+        "layout.units.gap.xxtight"
+      ],
       "gaps": [
-        "Figma node not confirmed — all token values are hardcoded placeholders.",
-        "Panel mobile behaviour (dropdown vs bottom sheet) not yet decided.",
-        "ARIA pattern choice (Disclosure+listbox vs Combobox) deferred.",
-        "All spacing and colour tokens TBD from Figma."
+        "Panel (dropdown / bottom sheet) not yet designed in Figma — trigger only ships.",
+        "ARIA pattern choice (Disclosure+listbox vs Combobox) deferred until panel is designed.",
+        "logoUrl placeholder tint (rgba(53,85,160,0.25)) is not a semantic token — TBD once brand-avatar token is added to Figma.",
+        "Panel mobile behaviour (dropdown vs bottom sheet) not yet decided."
       ]
     },
     "spinner": {

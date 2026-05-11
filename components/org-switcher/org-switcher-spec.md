@@ -22,7 +22,7 @@ The switcher opens a panel (dropdown or bottom sheet depending on viewport) list
 ### Figma source
 
 - **File:** [Pathway Design System Master File MB 2.0](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/)
-- **Org Switcher component:** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=TBD) ← node ID required before pipeline can run
+- **Org Switcher component:** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583)
 
 ---
 
@@ -30,13 +30,14 @@ The switcher opens a panel (dropdown or bottom sheet depending on viewport) list
 
 | To change… | Owner | Where |
 |---|---|---|
-| Trigger colours, typography, spacing tokens | Figma: Org Switcher component | Figma source (node TBD) |
+| Trigger colours, typography, spacing tokens | Figma: Org Switcher component | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583) |
 | Primitive or semantic token values | Figma: Variables panel | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) |
-| Panel surface, shadow, border | Figma: Org Switcher component | Figma source (node TBD) |
+| Org logo / avatar appearance | Figma: Org Switcher → Container.Avatar | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583) |
+| Panel / dropdown surface and layout | Not yet designed — deferred | §17 |
 | Abbreviation rules (mobile display) | This spec | [Appendix A](#appendix-a-abbreviation-guidelines) |
 | Desktop full-name display format | This spec | §5.1 |
 | Mobile abbreviated display format | This spec | §5.2 + Appendix A |
-| Org row layout (avatar, name, active indicator) | Figma: Org Switcher component | Figma source (node TBD) |
+| Chevron icon rotation (open/closed) | This spec | §11 |
 | Open/close animation | This spec | §14 |
 | Keyboard navigation | This spec | §13.3 |
 | Responsive breakpoints | This spec | §15 |
@@ -46,25 +47,27 @@ The switcher opens a panel (dropdown or bottom sheet depending on viewport) list
 
 ## 2. Component Anatomy
 
+The Figma component (node `40006819:14583`) defines **the trigger button only**. The panel/dropdown is not yet designed; it is a deferred deliverable (see §17).
+
 ```
-OrgSwitcher.Root
-├── OrgSwitcher.Trigger                   (button, always visible)
-│   ├── OrgSwitcher.TriggerLabel          (text: full name desktop / abbr mobile)
-│   └── OrgSwitcher.TriggerChevron        (icon: chevron-down / chevron-up)
-└── OrgSwitcher.Panel                     (conditionally rendered when open)
-    ├── OrgSwitcher.PanelHeader           (optional: "Switch organisation" label)
-    └── OrgSwitcher.OrgList
-        └── OrgSwitcher.OrgRow            (repeats per org)
-            ├── OrgSwitcher.OrgAvatar     (initials or logo mark)
-            ├── OrgSwitcher.OrgNameBlock
-            │   ├── OrgSwitcher.OrgName   (full org name)
-            │   └── OrgSwitcher.CampusName (full campus/sub-org name, if present)
-            └── OrgSwitcher.ActiveMark    (check or indicator for current selection)
+OrgSwitcher.Root                        min-h/w 48px (touch target), p-4px, max-w: 316px (desktop) / 114px (mobile)
+└── Container.Main                      h-36px, border 1px, rounded-8px
+     ├── Container.RowStart             flex, items-center, gap-4px (desktop) | 20×20px (mobile)
+     │    ├── Container.Avatar          24×24px (desktop) | fills 20×20px (mobile), p-4px
+     │    │    └── Avatar              border 1px, rounded-4px, overflow-hidden
+     │    │         └── Image          org logo or initials placeholder
+     │    └── Container.Label          max-w-248px, pr-4px — DESKTOP ONLY (inside RowStart)
+     │         └── label text          14px / 500 / 20px lh / 0.3px ls
+     ├── Container.Label               px-2px — MOBILE ONLY (outside RowStart)
+     │    └── abbreviated text         12px / 500 / 18px lh / 0.3px ls (e.g. "SHC | KV")
+     └── Container.RowEnd              p-2px
+          └── Container.IconTrailing   p-2px, 16×16px
+               └── expand_more icon   SVG chevron, rotates 180° when open
 ```
 
-### Trigger states
+> **Note on logo vs placeholder:** The Avatar renders the org's logo image when `logoUrl` is provided. When absent, it renders a two-letter initials block (computed from the org name via `abbreviateOrg()`).
 
-The trigger renders differently per context:
+### Trigger label format
 
 | Context | Label content |
 |---|---|
@@ -77,79 +80,83 @@ The trigger renders differently per context:
 
 ## 3. Design Tokens
 
-> **Status:** Token mappings are **TBD** — requires Figma node inspection. All rows below are placeholders derived from system conventions. Verify against Figma before shipping.
-
-### 3.1 Surface
-
-| Semantic Token | Primitive | Resolved Value | Usage |
-|---|---|---|---|
-| `TBD` | `TBD` | `TBD` | Trigger background (resting) |
-| `TBD` | `TBD` | `TBD` | Panel surface |
-| `TBD` | `TBD` | `TBD` | Panel border |
-| `TBD` | `TBD` | `TBD` | Panel shadow |
+All tokens confirmed from Figma node `40006819:14583`. This component uses **dark-mode tokens** — it is designed for use on dark/brand-coloured navigation surfaces.
 
 ### 3.2 Fill
 
-| Semantic Token | Primitive | Resolved Value | Usage |
+| Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `TBD` | `TBD` | `TBD` | Trigger fill — base |
-| `TBD` | `TBD` | `TBD` | Trigger fill — hover |
-| `TBD` | `TBD` | `TBD` | Trigger fill — pressed |
-| `TBD` | `TBD` | `TBD` | Trigger fill — open |
-| `TBD` | `TBD` | `TBD` | Org row fill — hover |
-| `TBD` | `TBD` | `TBD` | Org row fill — active (current org) |
+| `fill.action.tertiary.base` | `--semantic-color-dark-mode-fill-action-tertiary-base` | `rgba(160,181,230,0.04)` | Trigger background — base |
+| `fill.action.primaryinverse.hover` | `--semantic-color-dark-mode-fill-action-primaryinverse-hover` | `rgba(10,18,35,0.16)` | Trigger background — hover |
+| `fill.action.primaryinverse.pressed` | `--semantic-color-dark-mode-fill-action-primaryinverse-pressed` | `rgba(255,255,255,0.08)` | Trigger background — pressed |
 
-### 3.3 Text
+### 3.3 Stroke
 
-| Semantic Token | Primitive | Resolved Value | Usage |
+| Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `TBD` | `TBD` | `TBD` | Trigger label text — base |
-| `TBD` | `TBD` | `TBD` | Trigger label text — hover/open |
-| `TBD` | `TBD` | `TBD` | Org name in panel |
-| `TBD` | `TBD` | `TBD` | Campus name in panel (secondary) |
+| `stroke.action.tertiary.base` | `--semantic-color-dark-mode-stroke-action-tertiary-base` | `rgba(160,181,230,0.16)` | Trigger border + avatar border — base |
+| `stroke.action.tertiary.hover` | `--semantic-color-dark-mode-stroke-action-tertiary-hover` | `rgba(160,181,230,0.20)` | Trigger border + avatar border — hover |
+| `stroke.action.tertiary.pressed` | `--semantic-color-dark-mode-stroke-action-tertiary-pressed` | `rgba(160,181,230,0.30)` | Trigger border + avatar border — pressed |
 
-### 3.4 Icon
+### 3.4 Text
 
-| Semantic Token | Primitive | Resolved Value | Usage |
+| Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `TBD` | `TBD` | `TBD` | Chevron — base |
-| `TBD` | `TBD` | `TBD` | Chevron — open state |
-| `TBD` | `TBD` | `TBD` | Active mark (check icon) |
+| `text.action.mono.base` | `--semantic-color-dark-mode-text-action-mono-base` | `#fbfbfb` | Label text — base |
+| `text.action.mono.hover` | `--semantic-color-dark-mode-text-action-mono-hover` | `#ffffff` | Label text — hover |
+| `text.action.mono.pressed` | `--semantic-color-dark-mode-text-action-mono-pressed` | `#ffffff` | Label text — pressed |
 
-### 3.5 Geometry
+### 3.5 Icon
 
-| Property | Value | Token |
+| Semantic Token | CSS Variable | Resolved Value | Usage |
+|---|---|---|---|
+| `icon.action.mono.base` | `--semantic-color-dark-mode-icon-action-mono-base` | `#fbfbfb` | Chevron + avatar border tint — base |
+| `icon.action.mono.hover` | `--semantic-color-dark-mode-icon-action-mono-hover` | `#ffffff` | Chevron — hover |
+| `icon.action.mono.pressed` | `--semantic-color-dark-mode-icon-action-mono-pressed` | `#ffffff` | Chevron — pressed |
+
+### 3.6 Geometry
+
+| Property | Value | CSS Variable |
 |---|---|---|
-| Trigger border radius | TBD | `TBD` |
-| Panel border radius | TBD | `TBD` |
-| Panel border width | TBD | `TBD` |
-| Org avatar size | TBD | `TBD` |
+| Trigger corner radius | 8px | `--semantic-layout-units-cornerradius-medium` |
+| Avatar corner radius | 4px | `--semantic-layout-units-cornerradius-small` |
+| Border width | 1px | `--semantic-layout-units-borderwidth-base` |
 
-### 3.6 Typography
+### 3.7 Typography
 
-| Usage | Token | Weight | Size | Line-height |
-|---|---|---|---|---|
-| Trigger label (desktop) | `TBD` | TBD | TBD | TBD |
-| Trigger label (mobile, abbr) | `TBD` | TBD | TBD | TBD |
-| Org name in panel | `TBD` | TBD | TBD | TBD |
-| Campus name in panel | `TBD` | TBD | TBD | TBD |
+| Usage | CSS Variable prefix | Weight | Size | Line-height | Letter-spacing |
+|---|---|---|---|---|---|
+| Trigger label — desktop | `--semantic-type-desktop-label-button-s-` | 500 | 14px | 20px | 0.3px |
+| Trigger label — mobile (abbr) | `--semantic-type-desktop-label-button-xs-` | 500 | 12px | 18px | 0.3px |
+| Font family (both) | `--semantic-type-desktop-label-button-s-fontfamily` | — | Red Hat Text | — | — |
 
 ---
 
 ## 4. Layout & Spacing
 
-> **Status:** All spacing values TBD — requires Figma node inspection.
+All values confirmed from Figma node `40006819:14583`.
 
-| Value | Figma class or raw | px | Semantic token |
-|---|---|---|---|
-| Trigger horizontal padding | TBD | TBD | **None — TBD** |
-| Trigger vertical padding | TBD | TBD | **None — TBD** |
-| Panel offset from trigger | TBD | TBD | **None — TBD** |
-| Panel internal padding | TBD | TBD | **None — TBD** |
-| Org row height | TBD | TBD | **None — TBD** |
-| Org row horizontal padding | TBD | TBD | **None — TBD** |
-| Gap between avatar and name | TBD | TBD | **None — TBD** |
-| Active mark right margin | TBD | TBD | **None — TBD** |
+| Value | px | CSS Variable |
+|---|---|---|
+| Root outer padding (all sides) | 4px | `--semantic-layout-units-padding-xxtight` |
+| Root min-height / min-width (touch target) | 48px | raw |
+| Root max-width — desktop | 316px | raw |
+| Root max-width — mobile | 114px | raw |
+| Inner button height | 36px | raw |
+| Inner button padding (desktop) — all sides | 4px | `--semantic-layout-units-padding-xxtight` |
+| Inner button padding (mobile) — left/top/bottom | 4px | `--semantic-layout-units-padding-xxtight` |
+| Inner button padding (mobile) — right | 2px | `--semantic-layout-units-padding-xxxtight` |
+| Gap between avatar and label (desktop, inside RowStart) | 4px | `--semantic-layout-units-gap-xxtight` |
+| Container.Avatar — desktop | 24×24px | raw |
+| Container.Avatar — mobile | 20×20px | raw |
+| Avatar inner padding (all sides) | 4px | `--semantic-layout-units-padding-xxtight` |
+| Container.RowEnd padding | 2px | `--semantic-layout-units-padding-xxxtight` |
+| Container.IconTrailing padding | 2px | `--semantic-layout-units-padding-xxxtight` |
+| Chevron icon size | 16×16px | raw |
+| Desktop label max-width | 248px | raw |
+| Desktop label right padding | 4px | `--semantic-layout-units-padding-xxtight` |
+| Mobile label horizontal padding | 2px | `--semantic-layout-units-padding-xxxtight` |
+| Panel layout spacing | TBD — panel not yet designed | — |
 
 ---
 
@@ -169,16 +176,17 @@ The trigger renders differently per context:
 - No truncation: the abbreviated form is always short enough to render fully at mobile widths.
 - Chevron icon trails the text on the right.
 
-### 5.3 Panel — org row (with campus)
+### 5.3 Avatar — logo present
 
-- Avatar: organisation logotype or initials block.
-- Primary text: full org name.
-- Secondary text: full campus name.
-- Active mark: visible only on the currently active row.
+When `logoUrl` is provided, the avatar renders the org's logo image as a cropped `object-fit: cover` fill inside the bordered rounded container.
 
-### 5.4 Panel — org row (no campus)
+### 5.4 Avatar — no logo (placeholder)
 
-- Same as §5.3, secondary text row absent.
+When `logoUrl` is absent, the avatar renders the first two letters of the org's abbreviated name (per Appendix A §4) in a tinted block. This is the initials-fallback placeholder.
+
+### 5.5 Panel variants
+
+Not yet designed in Figma. Deferred — see §17.
 
 ---
 
@@ -186,23 +194,21 @@ The trigger renders differently per context:
 
 ### Trigger states
 
-| Condition | Fill | Text | Chevron | Notes |
-|---|---|---|---|---|
-| **Base** | `TBD` | `TBD` | `TBD` | Resting, panel closed |
-| **Hover** | `TBD` | `TBD` | `TBD` | Pointer over trigger |
-| **Focused** | `TBD` | `TBD` | `TBD` | Keyboard focus ring visible |
-| **Pressed** | `TBD` | `TBD` | `TBD` | Mousedown / tap |
-| **Open** | `TBD` | `TBD` | Flipped 180° | Panel is visible |
-| **Disabled** | `TBD` | `TBD` | `TBD` | Single-org users |
+All confirmed from Figma (6 variants: State × Type = {Base, Hover, Pressed} × {Desktop, Mobile}).
 
-### Org row states (inside panel)
-
-| Condition | Fill | Org name text | Campus text | Active mark |
+| Condition | Fill | Stroke | Text | Chevron |
 |---|---|---|---|---|
-| **Base** | `TBD` | `TBD` | `TBD` | Hidden |
-| **Hover** | `TBD` | `TBD` | `TBD` | Hidden |
-| **Active (current org)** | `TBD` | `TBD` | `TBD` | Visible |
-| **Pressed** | `TBD` | `TBD` | `TBD` | — |
+| **Base** | `fill.action.tertiary.base` · `rgba(160,181,230,0.04)` | `stroke.action.tertiary.base` · `rgba(160,181,230,0.16)` | `text.action.mono.base` · `#fbfbfb` | `icon.action.mono.base` · `#fbfbfb` |
+| **Hover** | `fill.action.primaryinverse.hover` · `rgba(10,18,35,0.16)` | `stroke.action.tertiary.hover` · `rgba(160,181,230,0.20)` | `text.action.mono.hover` · `#ffffff` | `icon.action.mono.hover` · `#ffffff` |
+| **Pressed** | `fill.action.primaryinverse.pressed` · `rgba(255,255,255,0.08)` | `stroke.action.tertiary.pressed` · `rgba(160,181,230,0.30)` | `text.action.mono.pressed` · `#ffffff` | `icon.action.mono.pressed` · `#ffffff` |
+| **Disabled** | Base fill | Base stroke | `text.action.mono.disabled` | `icon.action.mono.disabled` |
+| **Open** | Hover fill | Hover stroke | Hover text | Rotated 180° |
+
+The avatar border uses the same stroke token as the outer button border per state.
+
+### Panel states
+
+Not yet designed in Figma. Deferred — see §17.
 
 ### State logic rules
 
@@ -263,9 +269,9 @@ No separate "compact" Figma variant is expected — the breakpoint switch handle
 
 ## 11. Iconography
 
-- **Chevron:** system chevron-down icon. Rotates to chevron-up (180° transform) when panel is open. Icon size: TBD. Icon token: TBD.
-- **ActiveMark:** system check icon. Size: TBD. Token: TBD.
-- **OrgAvatar fallback:** rendered as text (initials), not an icon.
+- **Chevron:** `expand_more` icon from Figma (path confirmed). 16×16px container (including 2px internal padding on all sides), so effective icon area ~12×12px. Fill uses `icon.action.mono.*` per state. Rotates 180° (`transform: rotate(180deg)`) when the panel is open; transition: 150ms ease.
+- **OrgAvatar — logo:** org logo image rendered `object-fit: cover`, filling a square container. Size: 16×16px inner (24×24px outer including 4px padding). Corner radius: 4px (`cornerradius.small`). Border: 1px solid `stroke.action.tertiary.*` per state.
+- **OrgAvatar — placeholder:** two-letter initials derived from `abbreviateOrg(orgName).slice(0,2)`, rendered in a tinted block when no `logoUrl` is provided. No separate icon asset needed.
 
 ---
 
@@ -398,16 +404,14 @@ Breakpoint values per `docs/design-system-spec.md` §Breakpoints.
 
 | Gap | Priority | Notes |
 |---|---|---|
-| Figma node ID missing | HIGH | Pipeline cannot generate code without it. Add to §1 Figma source section. |
-| All design token values TBD | HIGH | Requires Figma node inspection for all §3 and §4 values. |
-| Panel mobile behaviour (dropdown vs bottom sheet) | HIGH | Needs design decision before implementation. |
-| ARIA pattern choice (Disclosure vs Combobox) | HIGH | Combobox is required if org list supports search/filter. |
-| OrgAvatar — logo mark vs initials | MEDIUM | Does the component receive a logo URL prop, or always compute initials? |
-| Panel max-height and scroll behaviour | MEDIUM | What happens when user has many orgs? |
-| Single-org disabled state visual | MEDIUM | Does the trigger look different, or identical but inert? |
-| Abbreviation collision handling in product | MEDIUM | Appendix A §4.5 / §5.6 defines rules; product DB must store overrides. |
-| Animation values (duration, easing) | MEDIUM | Verify against system motion spec once Figma is ready. |
-| Panel header copy ("Switch organisation") | LOW | Confirm with content strategy. |
+| Panel / dropdown not designed | HIGH | Figma only defines the trigger (node `40006819:14583`). The switcher panel (org list, selection, active mark) needs a Figma pass before the full component ships. |
+| ARIA pattern choice (Disclosure vs Combobox) | HIGH | Combobox required if org list supports search/filter. Decide before accessibility review. |
+| Panel mobile behaviour (dropdown vs bottom sheet) | HIGH | No Figma reference yet. Needs design decision. |
+| Single-org disabled state visual | MEDIUM | Current impl: trigger at 50% opacity, inert. Confirm this matches design intent. |
+| Abbreviation collision handling | MEDIUM | Appendix A §4.5 / §5.6 defines resolution rules; product DB must support storing per-org override values. |
+| Animation values | MEDIUM | Chevron: 150ms ease (placeholder). Verify against `docs/design-system-spec.md §Motion` once panel is designed. |
+| `logoUrl` placeholder tint | LOW | Avatar placeholder uses `rgba(53,85,160,0.25)` — not a semantic token. Confirm correct token at spec review. |
+| Panel header copy | LOW | "Switch organisation" copy not yet confirmed with content strategy. |
 
 ---
 

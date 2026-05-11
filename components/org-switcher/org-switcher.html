@@ -3,395 +3,382 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OrgSwitcher — Pathway DS (Placeholder)</title>
+  <title>OrgSwitcher — Pathway DS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet" />
-
-  <!-- NOTE: PLACEHOLDER — all tokens are hardcoded. Replace with
-       var(--semantic-color-*) once the Figma node is confirmed.
-       See components/org-switcher/org-switcher-spec.md §17. -->
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Red Hat Text", sans-serif; padding: 0; background: #1a1f2e; min-height: 100vh; color: #fbfbfb; }
 
-    body {
-      font-family: "Red Hat Text", sans-serif;
-      background: #f5f5f5;
-      padding: 40px 24px;
-      min-height: 100vh;
-      color: #363636;
-    }
-
-    h1 { font-size: 14px; font-weight: 700; color: #71717a; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 32px; }
-
-    .demo-row {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      max-width: 560px;
-    }
-
-    .demo-block {
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 20px;
-    }
-
-    .demo-block h2 {
-      font-size: 11px;
-      font-weight: 600;
-      color: #a1a1aa;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 16px;
-    }
-
-    /* ── Trigger ─────────────────────────────────────────────────── */
-    .pds-org-switcher { position: relative; display: inline-block; }
-
-    .pds-org-trigger {
+    /* ── Nav shell (dark surface context) ─────────────────────── */
+    .nav-shell {
+      background: #1e2540;
+      border-bottom: 1px solid rgba(160,181,230,0.12);
+      padding: 0 20px;
       display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 10px;
-      background: transparent;
-      border: 1px solid #e5e7eb;
-      border-radius: 6px;
-      color: #363636;
+      height: 56px;
+      gap: 12px;
+    }
+    .nav-logo { font-weight: 700; font-size: 15px; color: #fbfbfb; letter-spacing: 0.05em; margin-right: auto; }
+
+    /* ── Dark-mode tokens (used by trigger) ───────────────────── */
+    :root {
+      --semantic-color-dark-mode-fill-action-tertiary-base:         rgba(160,181,230,0.04);
+      --semantic-color-dark-mode-fill-action-primaryinverse-hover:  rgba(10,18,35,0.16);
+      --semantic-color-dark-mode-fill-action-primaryinverse-pressed:rgba(255,255,255,0.08);
+      --semantic-color-dark-mode-stroke-action-tertiary-base:        rgba(160,181,230,0.16);
+      --semantic-color-dark-mode-stroke-action-tertiary-hover:       rgba(160,181,230,0.20);
+      --semantic-color-dark-mode-stroke-action-tertiary-pressed:     rgba(160,181,230,0.30);
+      --semantic-color-dark-mode-text-action-mono-base:    #fbfbfb;
+      --semantic-color-dark-mode-text-action-mono-hover:   #ffffff;
+      --semantic-color-dark-mode-text-action-mono-pressed: #ffffff;
+      --semantic-color-dark-mode-icon-action-mono-base:    #fbfbfb;
+      --semantic-color-dark-mode-icon-action-mono-hover:   #ffffff;
+      --semantic-color-dark-mode-icon-action-mono-pressed: #ffffff;
+      --semantic-layout-units-cornerradius-medium: 8px;
+      --semantic-layout-units-cornerradius-small:  4px;
+      --semantic-layout-units-borderwidth-base:    1px;
+      --semantic-layout-units-padding-xxtight:  4px;
+      --semantic-layout-units-padding-xxxtight: 2px;
+      --semantic-layout-units-gap-xxtight:      4px;
+      --semantic-type-desktop-label-button-s-fontfamily:    "Red Hat Text", sans-serif;
+      --semantic-type-desktop-label-button-s-letterspacing: 0.3px;
+      --semantic-type-desktop-label-button-xs-fontfamily:   "Red Hat Text", sans-serif;
+      --semantic-type-desktop-label-button-xs-letterspacing:0.3px;
+    }
+
+    /* ── Trigger ──────────────────────────────────────────────── */
+    .pds-org-switcher {
+      min-height: 48px; min-width: 48px;
+      padding: var(--semantic-layout-units-padding-xxtight);
+      display: inline-flex; flex-direction: column; align-items: flex-start;
+      position: relative;
+    }
+    .pds-org-switcher.is-mobile  { max-width: 114px; }
+    .pds-org-switcher.is-desktop { max-width: 316px; }
+
+    .pds-org-btn {
+      display: flex; align-items: center;
+      height: 36px; max-height: 36px; min-height: 36px;
+      border-radius: var(--semantic-layout-units-cornerradius-medium);
+      border: var(--semantic-layout-units-borderwidth-base) solid var(--semantic-color-dark-mode-stroke-action-tertiary-base);
+      background: var(--semantic-color-dark-mode-fill-action-tertiary-base);
+      color: var(--semantic-color-dark-mode-text-action-mono-base);
       cursor: pointer;
       font-family: inherit;
-      font-size: 14px;
-      font-weight: 500;
-      transition: background 120ms ease;
-      white-space: nowrap;
+      transition: background 120ms ease, border-color 120ms ease, color 100ms ease;
+      outline: none;
+      position: relative;
     }
-    .pds-org-trigger:hover  { background: #1111110a; }
-    .pds-org-trigger.is-open { background: #11111114; }
-    .pds-org-trigger:focus-visible {
-      outline: 2px solid #3555a0;
+    .pds-org-btn.is-desktop { gap: var(--semantic-layout-units-gap-xxtight); padding: var(--semantic-layout-units-padding-xxtight); }
+    .pds-org-btn.is-mobile  { padding: 4px 2px 4px 4px; }
+
+    .pds-org-btn:hover {
+      background: var(--semantic-color-dark-mode-fill-action-primaryinverse-hover);
+      border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-hover);
+      color: var(--semantic-color-dark-mode-text-action-mono-hover);
+    }
+    .pds-org-btn:active, .pds-org-btn.is-pressed {
+      background: var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed);
+      border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-pressed);
+      color: var(--semantic-color-dark-mode-text-action-mono-pressed);
+    }
+    .pds-org-btn:focus-visible {
+      outline: 2px solid var(--semantic-color-dark-mode-icon-action-mono-hover);
       outline-offset: 2px;
     }
-    .pds-org-trigger[disabled] { opacity: 0.5; cursor: not-allowed; }
+    .pds-org-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    .pds-org-chevron {
-      width: 16px; height: 16px;
-      transition: transform 150ms ease;
-      flex-shrink: 0;
+    /* Row start */
+    .pds-row-start {
+      display: flex; align-items: center; flex-shrink: 0;
     }
-    .pds-org-trigger.is-open .pds-org-chevron { transform: rotate(180deg); }
+    .pds-row-start.is-desktop { gap: var(--semantic-layout-units-gap-xxtight); height: 24px; }
+    .pds-row-start.is-mobile  { justify-content: center; width: 20px; height: 20px; }
 
-    /* ── Panel ───────────────────────────────────────────────────── */
-    .pds-org-panel {
-      position: absolute;
-      top: calc(100% + 4px);
-      left: 0;
-      min-width: 240px;
-      max-height: 320px;
-      overflow-y: auto;
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.10);
-      padding: 4px 0;
-      list-style: none;
-      z-index: 1000;
-      animation: panelIn 140ms ease forwards;
-    }
-    @keyframes panelIn {
-      from { opacity: 0; transform: translateY(-4px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      @keyframes panelIn { from { opacity: 0; } to { opacity: 1; } }
-    }
-
-    .pds-org-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      cursor: pointer;
-      transition: background 100ms ease;
-    }
-    .pds-org-row:hover     { background: #f5f5f5; }
-    .pds-org-row.is-active { background: #edf0f9; }
-    .pds-org-row:focus-visible {
-      outline: 2px solid #3555a0;
-      outline-offset: -2px;
-    }
-
-    .pds-org-avatar {
-      width: 32px; height: 32px;
-      border-radius: 6px;
-      background: #edf0f9;
-      color: #3555a0;
+    /* Avatar */
+    .pds-avatar-wrap {
       display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 11px;
+      padding: var(--semantic-layout-units-padding-xxtight);
+      flex-shrink: 0; position: relative;
+    }
+    .pds-avatar-wrap.is-desktop { width: 24px; height: 24px; }
+    .pds-avatar-wrap.is-mobile  { width: 100%; height: 100%; aspect-ratio: 1; }
+
+    .pds-avatar {
+      flex: 1 0 0; height: 100%; min-width: 1px;
+      border: 1px solid var(--semantic-color-dark-mode-stroke-action-tertiary-base);
+      border-radius: var(--semantic-layout-units-cornerradius-small);
+      overflow: hidden; position: relative;
+      transition: border-color 120ms ease;
+    }
+    .pds-org-btn:hover   .pds-avatar { border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-hover); }
+    .pds-org-btn:active  .pds-avatar { border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-pressed); }
+
+    .pds-avatar img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+    .pds-avatar-placeholder {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(53,85,160,0.25);
+      font-size: 7px; font-weight: 700; color: #fbfbfb; line-height: 1;
+      user-select: none;
+    }
+
+    /* Desktop label */
+    .pds-label-desktop {
+      display: flex; align-items: center; height: 100%;
+      max-width: 248px; padding-right: var(--semantic-layout-units-padding-xxtight);
       flex-shrink: 0;
     }
-
-    .pds-org-name-block { flex: 1; min-width: 0; }
-    .pds-org-name {
-      font-size: 14px; font-weight: 500;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    .pds-label-desktop p {
+      flex: 1 0 0;
+      font-family: var(--semantic-type-desktop-label-button-s-fontfamily);
+      font-weight: 500; font-size: 14px; line-height: 20px;
+      letter-spacing: var(--semantic-type-desktop-label-button-s-letterspacing);
+      color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      min-width: 1px;
     }
-    .pds-org-campus { font-size: 12px; color: #71717a; }
 
-    .pds-org-active-mark { color: #3555a0; flex-shrink: 0; }
+    /* Mobile label */
+    .pds-label-mobile {
+      display: flex; align-items: center; height: 100%;
+      padding: 0 var(--semantic-layout-units-padding-xxxtight);
+      flex-shrink: 0;
+    }
+    .pds-label-mobile p {
+      font-family: var(--semantic-type-desktop-label-button-xs-fontfamily);
+      font-weight: 500; font-size: 12px; line-height: 18px;
+      letter-spacing: var(--semantic-type-desktop-label-button-xs-letterspacing);
+      color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
 
-    /* ── Resize pill ─────────────────────────────────────────────── */
-    .resize-controls {
-      margin-top: 24px;
-      display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    /* Row end / chevron */
+    .pds-row-end {
+      display: flex; align-items: center; justify-content: center;
+      padding: var(--semantic-layout-units-padding-xxxtight); flex-shrink: 0;
     }
-    .resize-controls label { font-size: 12px; color: #71717a; margin-right: 4px; }
-    .resize-controls button {
-      font-family: inherit; font-size: 12px; font-weight: 500;
-      padding: 4px 12px; border-radius: 20px;
-      border: 1px solid #e5e7eb; background: #fff; cursor: pointer;
-      transition: background 100ms ease;
+    .pds-icon-trailing {
+      display: flex; align-items: center; justify-content: center;
+      padding: var(--semantic-layout-units-padding-xxxtight);
+      width: 16px; height: 16px; flex-shrink: 0;
     }
-    .resize-controls button:hover { background: #f5f5f5; }
-    .resize-controls button.active { background: #edf0f9; border-color: #3555a0; color: #3555a0; }
+    .pds-chevron {
+      display: block; width: 100%; height: 100%;
+      transition: transform 150ms ease;
+      fill: var(--semantic-color-dark-mode-icon-action-mono-base);
+    }
+    .pds-org-btn:hover  .pds-chevron { fill: var(--semantic-color-dark-mode-icon-action-mono-hover); }
+    .pds-org-btn:active .pds-chevron { fill: var(--semantic-color-dark-mode-icon-action-mono-pressed); }
+    .pds-org-btn.is-open .pds-chevron { transform: rotate(180deg); }
+
+    /* ── Demo panels ──────────────────────────────────────────── */
+    .demo-section { padding: 32px 24px; }
+    .demo-section + .demo-section { border-top: 1px solid rgba(160,181,230,0.08); }
+    .demo-section h2 { font-size: 11px; font-weight: 600; color: rgba(160,181,230,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+    .demo-row { display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+
+    /* Abbreviation table */
+    .abbr-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
+    .abbr-table th { text-align: left; padding: 6px 8px; color: rgba(160,181,230,0.5); font-weight: 500; border-bottom: 1px solid rgba(160,181,230,0.12); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .abbr-table td { padding: 7px 8px; border-bottom: 1px solid rgba(160,181,230,0.06); color: rgba(251,251,251,0.8); }
+    .abbr-table td.mobile-col { font-weight: 700; font-family: monospace; color: #fbfbfb; }
   </style>
 </head>
 <body>
-  <h1>Org Switcher — Pathway DS · Placeholder</h1>
 
-  <div class="demo-row">
-
-    <!-- Desktop variant -->
-    <div class="demo-block">
-      <h2>Desktop — full names</h2>
-      <div id="demo-desktop"></div>
-    </div>
-
-    <!-- Mobile variant -->
-    <div class="demo-block">
-      <h2>Mobile — abbreviated display</h2>
-      <div id="demo-mobile"></div>
-    </div>
-
-    <!-- Abbreviation showcase -->
-    <div class="demo-block">
-      <h2>Abbreviation examples (Appendix A)</h2>
-      <div id="demo-abbr"></div>
-    </div>
-
-    <!-- Resize controls -->
-    <div class="resize-controls">
-      <label>Simulate viewport:</label>
-      <button id="btn-desktop" class="active" onclick="setMode('desktop')">Desktop ≥768px</button>
-      <button id="btn-mobile" onclick="setMode('mobile')">Mobile &lt;768px</button>
-    </div>
-
+  <!-- Nav shell showing the switcher in context -->
+  <div class="nav-shell">
+    <div class="nav-logo">Pathway</div>
+    <div id="nav-trigger-desktop"></div>
+    <div id="nav-trigger-mobile"></div>
   </div>
 
-  <script type="text/babel">
-    // ── Abbreviation utilities (mirrors org-switcher.jsx) ──────────────────
-    const SKIP_WORDS = new Set(["the","a","an","of","in","at","for","and","or"]);
+  <!-- Demo sections -->
+  <div class="demo-section">
+    <h2>Trigger states — Desktop</h2>
+    <div class="demo-row" id="demo-states-desktop"></div>
+  </div>
 
+  <div class="demo-section">
+    <h2>Trigger states — Mobile</h2>
+    <div class="demo-row" id="demo-states-mobile"></div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Abbreviation examples (Appendix A)</h2>
+    <table class="abbr-table" id="abbr-table">
+      <thead><tr><th>Org name</th><th>Campus</th><th>Mobile label</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    // ── Abbreviation utilities ───────────────────────────────────────────────
+    const SKIP = new Set(["the","a","an","of","in","at","for","and","or"]);
     function abbreviateOrg(name) {
       if (!name) return "???";
-      const words = name.trim().split(/\s+/);
-      const sig = words.filter(w => !SKIP_WORDS.has(w.toLowerCase()));
-      if (sig.length === 0) return name.slice(0, 3).toUpperCase();
-      if (sig.length === 1) return sig[0].slice(0, 3).toUpperCase();
-      if (sig.length === 2) {
-        const [w1, w2] = sig;
-        return (w1[0] + (w1[1] || w1[0]) + w2[0]).toUpperCase();
-      }
-      return (sig[0][0] + sig[1][0] + sig[2][0]).toUpperCase();
+      const sig = name.trim().split(/\s+/).filter(w => !SKIP.has(w.toLowerCase()));
+      if (!sig.length) return name.slice(0,3).toUpperCase();
+      if (sig.length === 1) return sig[0].slice(0,3).toUpperCase();
+      if (sig.length === 2) return (sig[0][0] + (sig[0][1]||sig[0][0]) + sig[1][0]).toUpperCase();
+      return (sig[0][0]+sig[1][0]+sig[2][0]).toUpperCase();
     }
-
-    const DIRECTIONALS = new Set(["west","east","north","south","central","downtown","northeast","northwest","southeast","southwest"]);
-    const USPS = {
-      georgia:"GA", tennessee:"TN", florida:"FL", texas:"TX", california:"CA",
-      "new york":"NY", ohio:"OH", illinois:"IL", pennsylvania:"PA", virginia:"VA",
-    };
-
+    const DIRS = new Set(["west","east","north","south","central","downtown","northeast","northwest","southeast","southwest"]);
+    const USPS = {georgia:"GA",tennessee:"TN",florida:"FL",texas:"TX",california:"CA","new york":"NY",ohio:"OH",illinois:"IL",pennsylvania:"PA",virginia:"VA"};
     function abbreviateCampus(name) {
       if (!name) return "";
       const lower = name.trim().toLowerCase();
       if (USPS[lower]) return USPS[lower];
       const words = name.trim().split(/\s+/);
-      if (words.length === 1) return lower.slice(0, 2).toUpperCase();
-      if (words.length === 2) {
-        const [a, b] = words.map(w => w.toLowerCase());
-        const aDir = DIRECTIONALS.has(a), bDir = DIRECTIONALS.has(b);
-        if (aDir || bDir) {
-          const place = aDir ? b : a;
-          const dir   = aDir ? a : b;
-          return (place[0] + dir[0]).toUpperCase();
-        }
-        return (a[0] + b[0]).toUpperCase();
+      if (words.length === 1) return lower.slice(0,2).toUpperCase();
+      const [a,b] = words.map(w=>w.toLowerCase());
+      const aD=DIRS.has(a), bD=DIRS.has(b);
+      if (aD||bD) { const pl=aD?b:a, di=aD?a:b; return (pl[0]+di[0]).toUpperCase(); }
+      return (a[0]+b[0]).toUpperCase();
+    }
+    function mobileLabel(org, campus) {
+      const o = abbreviateOrg(org), c = campus ? abbreviateCampus(campus) : "";
+      return c ? `${o} | ${c}` : o;
+    }
+
+    // ── Render trigger ───────────────────────────────────────────────────────
+    const CHEVRON_PATH = "M8 10.275a.93.93 0 0 1-.3-.05.72.72 0 0 1-.263-.162L3.637 6.263a.636.636 0 0 1 0-.9.636.636 0 0 1 .9 0L8 8.826l3.463-3.463a.636.636 0 0 1 .9 0 .636.636 0 0 1 0 .9L8.563 10.063a.72.72 0 0 1-.263.162.93.93 0 0 1-.3.05Z";
+
+    function buildTrigger({ orgName, campusName = "", logoUrl = "", mobile = false, isOpen = false, disabled = false, id }) {
+      const abbr  = mobileLabel(orgName, campusName);
+      const full  = campusName ? `${orgName}  |  ${campusName}` : orgName;
+      const initials = abbreviateOrg(orgName).slice(0,2);
+      const modeClass = mobile ? "is-mobile" : "is-desktop";
+
+      const root = document.createElement("div");
+      root.className = `pds-org-switcher ${modeClass}`;
+      if (id) root.id = id;
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = `pds-org-btn ${modeClass}${isOpen ? " is-open" : ""}`;
+      if (disabled) btn.disabled = true;
+      btn.setAttribute("aria-haspopup","true");
+      btn.setAttribute("aria-expanded", String(isOpen));
+      btn.setAttribute("aria-label", `Current organisation: ${orgName}${campusName ? ", "+campusName : ""}. Activate to switch.`);
+
+      // Row start
+      const rs = document.createElement("div");
+      rs.className = `pds-row-start ${modeClass}`;
+
+      const aw = document.createElement("div");
+      aw.className = `pds-avatar-wrap ${modeClass}`;
+      const av = document.createElement("div");
+      av.className = "pds-avatar";
+      if (logoUrl) {
+        const img = document.createElement("img");
+        img.src = logoUrl; img.alt = ""; img.setAttribute("aria-hidden","true");
+        av.appendChild(img);
+      } else {
+        const ph = document.createElement("div");
+        ph.className = "pds-avatar-placeholder";
+        ph.textContent = initials;
+        ph.style.fontSize = mobile ? "6px" : "7px";
+        av.appendChild(ph);
       }
-      return lower.slice(0, 2).toUpperCase();
+      aw.appendChild(av);
+      rs.appendChild(aw);
+
+      if (!mobile) {
+        const ld = document.createElement("div");
+        ld.className = "pds-label-desktop";
+        const p = document.createElement("p");
+        p.textContent = full;
+        ld.appendChild(p);
+        rs.appendChild(ld);
+      }
+      btn.appendChild(rs);
+
+      if (mobile) {
+        const lm = document.createElement("div");
+        lm.className = "pds-label-mobile";
+        const p = document.createElement("p");
+        p.textContent = abbr;
+        lm.appendChild(p);
+        btn.appendChild(lm);
+      }
+
+      // Row end / chevron
+      const re = document.createElement("div"); re.className = "pds-row-end";
+      const it = document.createElement("div"); it.className = "pds-icon-trailing";
+      const svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+      svg.setAttribute("viewBox","0 0 16 16"); svg.setAttribute("fill","none");
+      svg.setAttribute("aria-hidden","true"); svg.classList.add("pds-chevron");
+      const path = document.createElementNS("http://www.w3.org/2000/svg","path");
+      path.setAttribute("d", CHEVRON_PATH);
+      path.setAttribute("fill","inherit");
+      svg.appendChild(path); it.appendChild(svg); re.appendChild(it);
+      btn.appendChild(re);
+
+      // Toggle open state on click
+      btn.addEventListener("click", () => {
+        btn.classList.toggle("is-open");
+        btn.setAttribute("aria-expanded", String(btn.classList.contains("is-open")));
+      });
+
+      root.appendChild(btn);
+      return root;
     }
 
-    function mobileLabel(orgName, campusName) {
-      const org = abbreviateOrg(orgName);
-      const cam = campusName ? abbreviateCampus(campusName) : "";
-      return cam ? `${org} | ${cam}` : org;
-    }
-
-    // ── Demo data ──────────────────────────────────────────────────────────
-    const ORGS = [
-      { id: "gcc-west",  orgName: "Grace Community Church",   campusName: "West" },
-      { id: "gcc-east",  orgName: "Grace Community Church",   campusName: "East" },
-      { id: "ncc-nn",    orgName: "Nashville Christian Church", campusName: "Nashville North" },
-      { id: "npc",       orgName: "Northpoint Church",         campusName: "" },
-      { id: "npc-kn",    orgName: "Northpoint Church",         campusName: "Knoxville" },
-      { id: "ele-mc",    orgName: "Elevation",                 campusName: "Main Campus" },
+    // ── Demo data ────────────────────────────────────────────────────────────
+    const EXAMPLES = [
+      { orgName: "Grace Community Church",    campusName: "West" },
+      { orgName: "Nashville Christian Church", campusName: "Nashville North" },
+      { orgName: "Northpoint Church",          campusName: "Knoxville" },
+      { orgName: "Elevation",                  campusName: "Main Campus" },
+      { orgName: "Church of the Highlands",    campusName: "North" },
     ];
 
-    const ABBR_EXAMPLES = [
-      ["Grace Community Church", "West"],
-      ["Nashville Christian Church", "Nashville North"],
-      ["Northpoint Church", ""],
-      ["Northpoint Church", "Knoxville"],
-      ["Crossroads Church", "Downtown"],
-      ["Elevation", "Main Campus"],
-      ["Church of the Highlands", "North"],
-      ["Knoxville Sanctuary", "East"],
+    const ABBR_ROWS = [
+      ["Grace Community Church",    "West"],
+      ["Grace Community Church",    "Georgia"],
+      ["Nashville Christian Church","Nashville North"],
+      ["Nashville Christian Church","Nashville South"],
+      ["Northpoint Church",         ""],
+      ["Northpoint Church",         "Knoxville"],
+      ["Crossroads Church",         "Downtown"],
+      ["Elevation",                 "Main Campus"],
+      ["Church of the Highlands",   "North"],
+      ["Knoxville Sanctuary",       "East"],
     ];
 
-    // ── React components ───────────────────────────────────────────────────
-    function OrgAvatar({ name }) {
-      const initials = abbreviateOrg(name).slice(0, 2);
-      return (
-        <div style={{
-          width:32, height:32, borderRadius:6, background:"#edf0f9", color:"#3555a0",
-          display:"flex", alignItems:"center", justifyContent:"center",
-          fontWeight:700, fontSize:11, flexShrink:0,
-        }}>{initials}</div>
-      );
-    }
+    // Nav bar: one desktop trigger (interactive)
+    document.getElementById("nav-trigger-desktop").appendChild(
+      buildTrigger({ orgName:"Sacred Heart Church-ITD", campusName:"Knoxville", mobile:false })
+    );
+    // Nav bar: one mobile trigger
+    document.getElementById("nav-trigger-mobile").appendChild(
+      buildTrigger({ orgName:"Sacred Heart Church-ITD", campusName:"Knoxville", mobile:true })
+    );
 
-    function Chevron({ open }) {
-      return (
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"
-          style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform 150ms ease", flexShrink:0 }}>
-          <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      );
-    }
+    // States — desktop
+    const sd = document.getElementById("demo-states-desktop");
+    EXAMPLES.slice(0,3).forEach(ex => sd.appendChild(buildTrigger({ ...ex, mobile:false })));
+    sd.appendChild(buildTrigger({ orgName:"Crossroads Church", campusName:"", mobile:false, disabled:true }));
 
-    function Check() {
-      return (
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      );
-    }
+    // States — mobile
+    const sm = document.getElementById("demo-states-mobile");
+    EXAMPLES.slice(0,4).forEach(ex => sm.appendChild(buildTrigger({ ...ex, mobile:true })));
 
-    function OrgSwitcherDemo({ initialIndex = 0, forceMobile = false }) {
-      const [open, setOpen] = React.useState(false);
-      const [active, setActive] = React.useState(initialIndex);
-      const rootRef = React.useRef(null);
-
-      React.useEffect(() => {
-        if (!open) return;
-        const h = e => { if (rootRef.current && !rootRef.current.contains(e.target)) setOpen(false); };
-        document.addEventListener("pointerdown", h);
-        return () => document.removeEventListener("pointerdown", h);
-      }, [open]);
-
-      React.useEffect(() => {
-        if (!open) return;
-        const h = e => { if (e.key === "Escape") setOpen(false); };
-        document.addEventListener("keydown", h);
-        return () => document.removeEventListener("keydown", h);
-      }, [open]);
-
-      const org  = ORGS[active];
-      const label = forceMobile
-        ? mobileLabel(org.orgName, org.campusName)
-        : org.campusName ? `${org.orgName}  |  ${org.campusName}` : org.orgName;
-
-      return (
-        <div ref={rootRef} style={{ position:"relative", display:"inline-block" }}>
-          <button
-            type="button"
-            className={`pds-org-trigger${open ? " is-open" : ""}`}
-            aria-haspopup="listbox"
-            aria-expanded={open}
-            aria-controls="pds-panel"
-            aria-label={`Current organisation: ${org.orgName}${org.campusName ? ", " + org.campusName : ""}. Switch organisation.`}
-            onClick={() => setOpen(o => !o)}
-          >
-            <span aria-hidden="true">{label}</span>
-            <Chevron open={open} />
-          </button>
-
-          {open && (
-            <ul id="pds-panel" role="listbox" aria-label="Select organisation" className="pds-org-panel">
-              {ORGS.map((o, i) => (
-                <li key={o.id} role="option" aria-selected={i === active} tabIndex={0}
-                  className={`pds-org-row${i === active ? " is-active" : ""}`}
-                  onClick={() => { setActive(i); setOpen(false); }}
-                  onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { setActive(i); setOpen(false); } }}
-                >
-                  <OrgAvatar name={o.orgName} />
-                  <div className="pds-org-name-block">
-                    <div className="pds-org-name">{o.orgName}</div>
-                    {o.campusName && <div className="pds-org-campus">{o.campusName}</div>}
-                  </div>
-                  {i === active && <span className="pds-org-active-mark"><Check /></span>}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      );
-    }
-
-    function AbbrTable() {
-      return (
-        <table style={{ width:"100%", borderCollapse:"collapse", fontSize:13 }}>
-          <thead>
-            <tr style={{ borderBottom:"1px solid #e5e7eb" }}>
-              <th style={{ textAlign:"left", padding:"6px 8px", color:"#71717a", fontWeight:500 }}>Org name</th>
-              <th style={{ textAlign:"left", padding:"6px 8px", color:"#71717a", fontWeight:500 }}>Campus</th>
-              <th style={{ textAlign:"left", padding:"6px 8px", color:"#3555a0", fontWeight:600 }}>Mobile</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ABBR_EXAMPLES.map(([org, campus], i) => (
-              <tr key={i} style={{ borderBottom:"1px solid #f5f5f5" }}>
-                <td style={{ padding:"6px 8px" }}>{org}</td>
-                <td style={{ padding:"6px 8px", color:"#71717a" }}>{campus || "—"}</td>
-                <td style={{ padding:"6px 8px", fontWeight:600, fontFamily:"monospace", color:"#363636" }}>
-                  {mobileLabel(org, campus)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      );
-    }
-
-    let desktopRoot, mobileRoot, abbrRoot;
-    function mountAll(isMobile) {
-      if (!desktopRoot) desktopRoot = ReactDOM.createRoot(document.getElementById("demo-desktop"));
-      if (!mobileRoot)  mobileRoot  = ReactDOM.createRoot(document.getElementById("demo-mobile"));
-      if (!abbrRoot)    abbrRoot    = ReactDOM.createRoot(document.getElementById("demo-abbr"));
-      desktopRoot.render(<OrgSwitcherDemo forceMobile={false} />);
-      mobileRoot.render(<OrgSwitcherDemo forceMobile={true} initialIndex={2} />);
-      abbrRoot.render(<AbbrTable />);
-    }
-
-    window.setMode = function(mode) {
-      document.getElementById("btn-desktop").classList.toggle("active", mode === "desktop");
-      document.getElementById("btn-mobile").classList.toggle("active", mode === "mobile");
-    };
-
-    mountAll();
+    // Abbreviation table
+    const tbody = document.querySelector("#abbr-table tbody");
+    ABBR_ROWS.forEach(([org, campus]) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${org}</td>
+        <td style="color:rgba(160,181,230,0.5)">${campus || "—"}</td>
+        <td class="mobile-col">${mobileLabel(org, campus)}</td>
+      `;
+      tbody.appendChild(tr);
+    });
   </script>
-
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </body>
 </html>
