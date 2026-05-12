@@ -184,10 +184,11 @@ const ABBR_EXAMPLES = [
   ["Nashville Christian Church", "Nashville South"],
   ["Northpoint Church",          ""],
   ["Northpoint Church",          "Knoxville"],
+  ["Knoxville Sanctuary",        "East"],
   ["Crossroads Church",          "Downtown"],
   ["Elevation",                  "Main Campus"],
   ["Church of the Highlands",    "North"],
-  ["Knoxville Sanctuary",        "East"],
+  ["Axios Church",               "West"],
 ];
 
 export const AbbreviationShowcase = () => (
