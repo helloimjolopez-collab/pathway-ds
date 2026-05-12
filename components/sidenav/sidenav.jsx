@@ -20,23 +20,23 @@ import ReactDOM from "react-dom";
 export const T = {
   fill: {
     navBase:    "#fafafa",
-    navHover:   "#1111110a",
-    navActive:  "#3555a014",
+    navHover:   "#11111105",
+    navActive:  "#a0b5e629",
     navTrail:   "#11111105",
     infoSubtle: "#edf0f9",
   },
   surface: { navLight: "#fafafa" },
   text: {
-    navBase:   "#363636",
+    navBase:   "#313131",
     navHover:  "#252525",
-    navActive: "#051428",
+    navActive: "#1b2d57",
   },
   icon: {
-    navBase:   "#4b4b4b",
-    navHover:  "#363636",
-    navActive: "#3555a0",
+    navBase:   "#484848",
+    navHover:  "#313131",
+    navActive: "#2d4889",
   },
-  indicator: "#3555a0",
+  indicator: "#2d4889",
   radius:    8,
 };
 
@@ -44,13 +44,13 @@ export const T = {
 export const L = {
   navPadH:     12,
   navPadV:     14,
-  navW:        250,
+  navW:        220,
   navWcol:     72,
   menuGap:     8,
   menuPadB:    24,
   itemH:       48,
   iconWrap:    24,
-  iconInner:   14,
+  iconInner:   16,
   rowPadH:     8,
   textPad:     6,
   childIndent: 24,
@@ -153,7 +153,7 @@ export function SideNavItem({
           pointerEvents: isSidebarCollapsed ? "none" : "auto",
           transition: "max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease" }}>
           <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500,
-            fontSize: 16, lineHeight: "22px", color: textColor, margin: 0,
+            fontSize: 14, lineHeight: "20px", color: textColor, margin: 0,
             whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
             transition: "color 0.15s ease" }}>
             {item.label}
@@ -198,7 +198,7 @@ export function SideNavItem({
 
       {/* Collapsed destination → tooltip */}
       {isSidebarCollapsed && !hasChildren && popoverOpen && anchorRect &&
-        <CollapsedTooltip label={item.label} anchorRect={anchorRect}
+        <SideNavTooltip label={item.label} anchorRect={anchorRect}
           onMouseEnter={() => {
             const rect = itemRef.current ? itemRef.current.getBoundingClientRect() : anchorRect;
             onPopoverEnter && onPopoverEnter(item.id, rect);
@@ -209,8 +209,8 @@ export function SideNavItem({
   );
 }
 
-// ─── CollapsedTooltip ─────────────────────────────────────────────────────────
-export function CollapsedTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }) {
+// ─── SideNavTooltip ─────────────────────────────────────────────────────────
+export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }) {
   if (!anchorRect) return null;
   return ReactDOM.createPortal(
     <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
@@ -223,7 +223,7 @@ export function CollapsedTooltip({ label, anchorRect, onMouseEnter, onMouseLeave
         padding: "6px 8px", whiteSpace: "nowrap", pointerEvents: "auto",
         animation: "popoverInCentered 150ms cubic-bezier(0,0,0.2,1) forwards" }}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
-        fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px", color: "#252525" }}>
+        fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px", color: "#202020" }}>
         {label}
       </span>
     </div>,
@@ -311,8 +311,8 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
                     : <CollapseIcon size={18} color={colIconColor} />)}
             </div>
             <span style={{ paddingLeft: L.textPad, paddingRight: L.textPad,
-              fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500, fontSize: 16,
-              lineHeight: "22px", color: h ? T.text.navHover : T.text.navBase,
+              fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500, fontSize: 14,
+              lineHeight: "20px", color: h ? T.text.navHover : T.text.navBase,
               transition: "color 0.15s ease, max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease",
               maxWidth: isSidebarCollapsed ? 0 : 120,
               opacity: isSidebarCollapsed ? 0 : 1,

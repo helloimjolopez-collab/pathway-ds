@@ -48,6 +48,23 @@ All motion in Pathway follows these principles unless a component spec explicitl
 
 Asymmetric enter/exit (different curves per direction) is encouraged for overlays; see SideNav spec §16.6 for the reference pattern.
 
+### 2.4 Component contextual motion overrides
+
+Some components require durations outside the standard scale because their physical scale or interaction semantics demand it. These are not exceptions — they are intentional contextual tokens, approved per the spec review process. Each override lives in the component's spec alongside a one-sentence justification.
+
+#### SideNav (approved 2026-05-12)
+
+| Token | Duration | Standard | Rationale |
+|---|---|---|---|
+| `Motion/SideNav/Panel/Width` | **360ms** | short (300ms) | Full-panel width transition; 300ms reads as abrupt at this physical scale |
+| `Motion/SideNav/Label/Fade` | **180ms** | instant (150ms) | Labels must begin fading before the panel finishes collapsing to avoid a visible text flash |
+| `Motion/SideNav/Overlay/Enter` | **380ms** | short (300ms) | Full-height panel entering viewport; 300ms feels mechanical, 380ms reads as deliberate |
+| `Motion/SideNav/Overlay/Exit` | **300ms** | short (300ms) | Matches standard; exits are snappier than enters by design |
+
+See SideNav spec §8.3 and §16.6 for implementation detail.
+
+> **Gap:** these contextual tokens are not yet in `tokens/pathway-design-tokens.json`. They are documented here as the intent. Once a motion token family is added to Figma, these should be the first contextual entries.
+
 ### 2.3 Reduced motion
 
 `@media (prefers-reduced-motion: reduce)` is **mandatory** on every animated component. Under reduced motion:

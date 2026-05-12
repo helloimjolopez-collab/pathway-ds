@@ -62,7 +62,7 @@ function Shell({ initialActiveId = "balance_sheet", collapsed: initialCollapsed 
       />
       <div style={{ flex: 1, padding: 24, overflow: "auto" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
-          <div style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(53,85,160,0.08)" }} />
+          <div style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(160,181,230,0.16)" }} />
           <h1 style={{ fontSize: 18, fontWeight: 600, color: "#02060d", margin: 0 }}>
             {activeId.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
           </h1>
@@ -96,8 +96,8 @@ function ItemStage({ width = 280, children, caption, tokens }) {
       {tokens && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
           {tokens.map(t => (
-            <code key={t} style={{ fontSize: 10, color: "#3555a0",
-              background: "rgba(53,85,160,0.07)", padding: "2px 6px",
+            <code key={t} style={{ fontSize: 10, color: "#2d4889",
+              background: "rgba(160,181,230,0.16)", padding: "2px 6px",
               borderRadius: 3, fontFamily: "monospace" }}>{t}</code>
           ))}
         </div>
@@ -133,7 +133,7 @@ export default {
       description: {
         component:
           "Persistent vertical navigation panel for Ministry Brands Amplify modules. Two levels " +
-          "of depth, two sidebar widths (250 px expanded, 72 px collapsed), three responsive " +
+          "of depth, two sidebar widths (220 px expanded, 72 px collapsed), three responsive " +
           "modes (push / overlay / hidden-overlay). See the full specification for every token, " +
           "state rule, and ARIA attribute.",
       },
@@ -149,7 +149,7 @@ export default {
     collapsed: {
       name: "Sidebar collapsed?",
       control: { type: "boolean" },
-      description: "Toggle between 250 px expanded and 72 px icon-only rail.",
+      description: "Toggle between 220 px expanded and 72 px icon-only rail.",
     },
     hideCollapseButton: {
       name: "Hide the collapse control",
@@ -224,8 +224,8 @@ export const StateMatrix = () => {
             {sampleDest.icon({ size: L.iconInner, color: T.icon.navHover })}
           </div>
           <div style={{ flex: 1, paddingLeft: L.textPad, paddingRight: L.rowPadH, overflow: "hidden" }}>
-            <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500, fontSize: 16,
-              lineHeight: "22px", color: T.text.navHover, margin: 0, whiteSpace: "nowrap" }}>
+            <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500, fontSize: 14,
+              lineHeight: "20px", color: T.text.navHover, margin: 0, whiteSpace: "nowrap" }}>
               {sampleDest.label}
             </p>
           </div>
@@ -268,8 +268,8 @@ export const StateMatrix = () => {
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
             {row.tokens.map(t => (
-              <code key={t} style={{ fontSize: 10, color: "#3555a0",
-                background: "rgba(53,85,160,0.07)", padding: "2px 6px", borderRadius: 3,
+              <code key={t} style={{ fontSize: 10, color: "#2d4889",
+                background: "rgba(160,181,230,0.16)", padding: "2px 6px", borderRadius: 3,
                 fontFamily: "monospace" }}>{t}</code>
             ))}
           </div>
@@ -348,20 +348,20 @@ NavItemExplorer.parameters = {
 // ─── Token showcases — each row: token name · swatch · element using it ─────
 const FILL_ROWS = [
   { token: "Fill/Contextual/NavItem/Base",   value: T.fill.navBase,   hex: "#fafafa" },
-  { token: "Fill/Contextual/NavItem/Hover",  value: T.fill.navHover,  hex: "#1111110a" },
-  { token: "Fill/Contextual/NavItem/Active", value: T.fill.navActive, hex: "#3555a014" },
+  { token: "Fill/Contextual/NavItem/Hover",  value: T.fill.navHover,  hex: "#11111105" },
+  { token: "Fill/Contextual/NavItem/Active", value: T.fill.navActive, hex: "#a0b5e629" },
   { token: "Fill/Contextual/NavItem/Trail",  value: T.fill.navTrail,  hex: "#11111105" },
   { token: "Fill/Static/Info/Subtle",        value: T.fill.infoSubtle, hex: "#edf0f9" },
 ];
 const TEXT_ROWS = [
-  { token: "Text/Contextual/NavItem/Base",   value: T.text.navBase,   hex: "#363636" },
+  { token: "Text/Contextual/NavItem/Base",   value: T.text.navBase,   hex: "#313131" },
   { token: "Text/Contextual/NavItem/Hover",  value: T.text.navHover,  hex: "#252525" },
-  { token: "Text/Contextual/NavItem/Active", value: T.text.navActive, hex: "#051428" },
+  { token: "Text/Contextual/NavItem/Active", value: T.text.navActive, hex: "#1b2d57" },
 ];
 const ICON_ROWS = [
-  { token: "Icon/Contextual/NavItem/Base",   value: T.icon.navBase,   hex: "#4b4b4b" },
-  { token: "Icon/Contextual/NavItem/Hover",  value: T.icon.navHover,  hex: "#363636" },
-  { token: "Icon/Contextual/NavItem/Active", value: T.icon.navActive, hex: "#3555a0" },
+  { token: "Icon/Contextual/NavItem/Base",   value: T.icon.navBase,   hex: "#484848" },
+  { token: "Icon/Contextual/NavItem/Hover",  value: T.icon.navHover,  hex: "#313131" },
+  { token: "Icon/Contextual/NavItem/Active", value: T.icon.navActive, hex: "#2d4889" },
 ];
 
 function TokenRow({ token, value, hex }) {
@@ -369,7 +369,7 @@ function TokenRow({ token, value, hex }) {
     <div style={{ display: "grid", gridTemplateColumns: "280px 1fr 100px",
       gap: 16, alignItems: "center", padding: "10px 0",
       borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text',sans-serif" }}>
-      <code style={{ fontSize: 12, color: "#3555a0", fontFamily: "monospace" }}>{token}</code>
+      <code style={{ fontSize: 12, color: "#2d4889", fontFamily: "monospace" }}>{token}</code>
       <div style={{ width: "100%", height: 32, borderRadius: 6,
         background: value, border: "1px solid rgba(0,0,0,0.07)" }} />
       <code style={{ fontSize: 12, color: "#555", fontFamily: "monospace" }}>{hex}</code>
@@ -380,7 +380,7 @@ function TokenRow({ token, value, hex }) {
 export const TokensFill = () => (
   <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
-      The five fill tokens applied to nav items and container surfaces. Trail and Hover look similar but are distinct: Hover is 4% black, Trail is 2% black — kept separate so future tuning doesn't need to choose.
+      The five fill tokens applied to nav items and container surfaces. Hover and Trail currently resolve to the same hex (#11111105, ≈2% black) but remain distinct tokens — kept separate so future tuning doesn't need to choose.
     </p>
     {FILL_ROWS.map(r => <TokenRow key={r.token} {...r} />)}
   </div>
@@ -401,7 +401,7 @@ export const TokensText = () => (
 export const TokensIcon = () => (
   <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
-      Three icon tokens. The Active token (#3555a0) is also the colour of the indicator stripe.
+      Three icon tokens. The Active token (#2d4889) is also the colour of the indicator stripe.
     </p>
     {ICON_ROWS.map(r => <TokenRow key={r.token} {...r} />)}
   </div>
@@ -452,7 +452,7 @@ export const StandaloneDemo = () => (
       fontFamily: "'Red Hat Text', sans-serif", fontSize: 12, color: "#8890b0" }}>
       <span>The full reference demo — includes the TopNav, responsive breakpoints, and the spec annotations panel below the component.</span>
       <a href="./components/sidenav/sidenav.html" target="_blank" rel="noopener"
-        style={{ color: "#3555a0", textDecoration: "none", fontWeight: 500 }}>
+        style={{ color: "#2d4889", textDecoration: "none", fontWeight: 500 }}>
         Open in new tab ↗
       </a>
     </div>

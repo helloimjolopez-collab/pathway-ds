@@ -1,6 +1,7 @@
 # SideNav: Pathway Design System Component Spec
 
-**Status:** `REVIEWED` (authored and reviewed by Jo Lopez, 2026-04-17)
+**Status:** `REVIEWED`
+**Reviewed:** 2026-05-12 by Jo Lopez, 11 decisions recorded in this session (2 BLOCK, 4 ASK, 4 NIT + 1 rename)
 
 Complete implementation reference for the SideNav component. Covers anatomy, design tokens, states, spacing, interaction patterns, and accessibility. Use alongside the [Figma source](#figma-source) for a pixel-accurate build.
 
@@ -14,7 +15,7 @@ It is **not** global app navigation or top-level product navigation. Each module
 
 It supports two levels of depth: Level 0 (parent) and Level 1 (child). Level 1 items are always leaf destinations: they never group or expand further. This is a hard constraint enforced at the data layer, not just a design convention.
 
-The component supports two layout states: **expanded** (250px wide, icons and labels visible) and **collapsed** (72px wide, icons only).
+The component supports two layout states: **expanded** (220px wide, icons and labels visible) and **collapsed** (72px wide, icons only).
 
 ### Figma source
 - **File:** [Pathway Design System Master File MB 2.0](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/)
@@ -43,14 +44,15 @@ Use this table when you need to find or change something. Every row points to th
 | ARIA pattern and keyboard behaviour | This spec | §13 |
 | Screen reader output | This spec | §13.5 |
 | Scroll and overflow behaviour | This spec | §9.1 |
-| Responsive breakpoints and SideNav behaviour per viewport | This spec | §16 |
-| Overlay vs push layout mode | This spec | §16.2 |
-| Mobile states (hidden / overlay / collapsed: hidden is mobile-only <768px) | This spec | §16.3 |
-| Overlay enter animation (duration, easing, reduced-motion) | This spec | §16.6 |
-| Scrim colour, breakpoint rules, and interaction | This spec | §16.7 |
-| Known design gaps and deferred decisions | This spec | §15 |
+| Responsive breakpoints and SideNav behaviour per viewport | This spec | §17 |
+| Overlay vs push layout mode | This spec | §17.2 |
+| Mobile states (hidden / overlay / collapsed: hidden is mobile-only <768px) | This spec | §17.3 |
+| Overlay enter animation (duration, easing, reduced-motion) | This spec | §17.6 |
+| Scrim colour, breakpoint rules, and interaction | This spec | §17.7 |
+| Known design gaps and deferred decisions | This spec | §16 |
+| Motion overrides and duration summary | This spec | §14 |
 
-**Rule:** if a decision isn't in the table above, check §15 (gaps). If it's not there either, it hasn't been specified yet: add it to the spec before implementing.
+**Rule:** if a decision isn't in the table above, check §16 (gaps). If it's not there either, it hasn't been specified yet: add it to the spec before implementing.
 
 ---
 
@@ -75,7 +77,7 @@ SideNav.Container
 ```
 [container.indicator 4px] [Container.rowStart px-8]
   [Container.Main]
-    [Container.LeadingIcon 24×24] → [Icon.Leading 14×14]
+    [Container.LeadingIcon 24×24] → [Icon.Leading 16×16]
     [text.label px-6]
   [Container.RowEnd 40×24]       ← groupers only
     [Container.RowEnd.Icon 24×24]
@@ -95,7 +97,7 @@ SideNav.Container
 
 ## 2.1 Container Variants: Stroked vs Unstroked
 
-The `SideNav.Container` comes in two visual variants that control whether a visible border separates the nav panel from the page content. Both variants are available for the **expanded** (250px) and **collapsed** (72px) layout states, giving four possible combinations in total.
+The `SideNav.Container` comes in two visual variants that control whether a visible border separates the nav panel from the page content. Both variants are available for the **expanded** (220px) and **collapsed** (72px) layout states, giving four possible combinations in total.
 
 ### Default (unstroked)
 
@@ -134,12 +136,12 @@ Use the stroked variant when modules need an explicit visual boundary: for examp
 | Semantic Token | Primitive | Resolved Value | Used In |
 |---|---|---|---|
 | `Fill/Contextual/NavItem/Base` |: | `#fafafa` | Resting item fill |
-| `Fill/Contextual/NavItem/Hover` |: | `#1111110a` *(≈ rgba 17,17,17 / 4%)* | Hover fill |
-| `Fill/Contextual/NavItem/Active` |: | `#3555a014` *(≈ rgba 53,85,160 / 8%)* | Active destination + collapsed-trail grouper |
+| `Fill/Contextual/NavItem/Hover` |: | `#11111105` *(≈ rgba 17,17,17 / 2%)* | Hover fill |
+| `Fill/Contextual/NavItem/Active` |: | `#a0b5e629` *(≈ rgba 160,181,230 / 16%)* | Active destination + collapsed-trail grouper |
 | `Fill/Contextual/NavItem/Trail` |: | `#11111105` *(≈ rgba 17,17,17 / 2%)* | Expanded grouper fill: **distinct token from Hover** |
 | `Fill/Static/Info/Subtle` |: | `#edf0f9` | Divider (`h-[1px]`) + nav container `border-right` |
 
-> **Note:** `Fill/Contextual/NavItem/Trail` and `Fill/Contextual/NavItem/Hover` have **diverged**: they now resolve to different alpha values (Hover `#1111110a` ≈ 4%, Trail `#11111105` ≈ 2%). Keep them as separate tokens and do not merge.
+> **Note:** `Fill/Contextual/NavItem/Trail` and `Fill/Contextual/NavItem/Hover` currently resolve to the **same hex** (`#11111105` ≈ 2% black). They are kept as separate tokens so they can diverge independently in future. Do not merge them.
 
 > **⚠ Gap:** Primitive token names are not surfaced by `get_variable_defs`: the tool resolves alias chains to final hex only. The full `Semantic → Primitive → Hex` chain requires the Figma REST API or a dedicated token documentation frame.
 
@@ -147,9 +149,9 @@ Use the stroked variant when modules need an explicit visual boundary: for examp
 
 | Semantic Token | Primitive | Resolved Value | Used In |
 |---|---|---|---|
-| `Text/Contextual/NavItem/Base` |: | `#363636` | Label default |
+| `Text/Contextual/NavItem/Base` |: | `#313131` | Label default |
 | `Text/Contextual/NavItem/Hover` |: | `#252525` | Label hover |
-| `Text/Contextual/NavItem/Active` |: | `#051428` | Active destination **and** all trail states |
+| `Text/Contextual/NavItem/Active` |: | `#1b2d57` | Active destination **and** all trail states |
 
 > Trail text color = `Text/Contextual/NavItem/Active`. This applies to both **expanded** trail (grouper showing children) and **collapsed** trail (grouper with hidden active child). Do not use `Text/Contextual/NavItem/Base` for trail.
 
@@ -157,13 +159,13 @@ Use the stroked variant when modules need an explicit visual boundary: for examp
 
 | Semantic Token | Primitive | Resolved Value | Used In |
 |---|---|---|---|
-| `Icon/Contextual/NavItem/Base` |: | `#4b4b4b` | Icon default + expanded-trail icon |
-| `Icon/Contextual/NavItem/Hover` |: | `#363636` | Icon hover |
-| `Icon/Contextual/NavItem/Active` |: | `#3555a0` | Active icon + collapsed-trail icon + `indicator.stripe` color |
+| `Icon/Contextual/NavItem/Base` |: | `#484848` | Icon default + expanded-trail icon |
+| `Icon/Contextual/NavItem/Hover` |: | `#313131` | Icon hover |
+| `Icon/Contextual/NavItem/Active` |: | `#2d4889` | Active icon + collapsed-trail icon + `indicator.stripe` color |
 
-> `Icon/Contextual/NavItem/Active` (`#3555a0`) is used for **three things simultaneously**: the leading icon, the indicator stripe, and the collapsed-trail icon. They share the same token.
+> `Icon/Contextual/NavItem/Active` (`#2d4889`) is used for **three things simultaneously**: the leading icon, the indicator stripe, and the collapsed-trail icon. They share the same token.
 
-> Expanded trail icon = `Icon/Contextual/NavItem/Base` (`#4b4b4b`). Do not use active blue for expanded trail icons.
+> Expanded trail icon = `Icon/Contextual/NavItem/Base` (`#484848`). Do not use active blue for expanded trail icons.
 
 ### 3.5 Geometry
 
@@ -177,37 +179,35 @@ Use the stroked variant when modules need an explicit visual boundary: for examp
 
 All `SideNavItem` labels at all levels use **the same** text style. There is no size variation between Level 0 and Level 1 items.
 
-#### Semantic token: `Label/Menu/L/Medium`
+#### Semantic token: `Label/Menu/Base/Medium`
 
-> **Note on naming:** The Figma variable set abbreviates the size tier as `L` (not `Large`). The full canonical token name is `Label/Menu/L/Medium`.
-
-| Property | CSS Variable (from Figma code output) | Resolved Value |
+| Property | CSS Variable (Style Dictionary output) | Resolved Value |
 |---|---|---|
-| Font family | `--label/menu/l/medium/fontfamily` | `'Red Hat Text', sans-serif` |
-| Font weight | `--label/menu/l/medium/fontweight` | `500` (Medium) |
-| Font size | `--label/menu/l/medium/fontsize` | `16px` |
-| Line height | `--label/menu/l/medium/lineheight` | `22px` |
-| Letter spacing | `--label/menu/l/medium/letterspacing` | `0px` |
+| Font family | `--semantic-type-desktop-label-menu-base-medium-fontfamily` | `'Red Hat Text', sans-serif` |
+| Font weight | `--semantic-type-desktop-label-menu-base-medium-fontweight` | `500` (Medium) |
+| Font size | `--semantic-type-desktop-label-menu-base-medium-fontsize` | `14px` |
+| Line height | `--semantic-type-desktop-label-menu-base-medium-lineheight` | `20px` |
+| Letter spacing | `--semantic-type-desktop-label-menu-base-medium-letterspacing` | `0.3px` |
 
 #### Implementation (CSS)
 
 ```css
 /* Using CSS custom properties */
 .sidenav-label {
-  font-family: var(--label/menu/l/medium/fontfamily, 'Red Hat Text', sans-serif);
-  font-weight: var(--label/menu/l/medium/fontweight, 500);
-  font-size: var(--label/menu/l/medium/fontsize, 16px);
-  line-height: var(--label/menu/l/medium/lineheight, 22px);
-  letter-spacing: var(--label/menu/l/medium/letterspacing, 0px);
+  font-family: var(--semantic-type-desktop-label-menu-base-medium-fontfamily, 'Red Hat Text', sans-serif);
+  font-weight: var(--semantic-type-desktop-label-menu-base-medium-fontweight, 500);
+  font-size: var(--semantic-type-desktop-label-menu-base-medium-fontsize, 14px);
+  line-height: var(--semantic-type-desktop-label-menu-base-medium-lineheight, 20px);
+  letter-spacing: var(--semantic-type-desktop-label-menu-base-medium-letterspacing, 0.3px);
 }
 
 /* Hard-coded fallback (no token system) */
 .sidenav-label {
   font-family: 'Red Hat Text', sans-serif;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: 0px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.3px;
 }
 ```
 
@@ -225,7 +225,7 @@ All `SideNavItem` labels at all levels use **the same** text style. There is no 
 |---|---|---|---|
 | Nav container horizontal padding | `px-[12px]` | 12 | **None** |
 | Nav container vertical padding | `py-[14px]` | 14 | **None** |
-| SideNav expanded width |: | 250 | **None** |
+| SideNav expanded width |: | 220 | **None** |
 | SideNav collapsed width |: | 72 | **None**: breaks down as 12px left padding + 48px item + 12px right padding |
 | Gap between nav items | `gap-[8px]` | 8 | **None** |
 | SideNavMenu bottom padding | `pb-[24px]` | 24 | **None** |
@@ -237,7 +237,7 @@ All `SideNavItem` labels at all levels use **the same** text style. There is no 
 | Collapse row left padding | `pl-[12px]` | 12 | **None** |
 | Collapse row right padding | `pr-[8px]` | 8 | **None** |
 | `Collapse_Expand_Nav_Container` top padding / gap | `pt-[4px]` `gap-[4px]` | 4 | **None** |
-| Icon.Leading inner size (nav items) |: | 14 | **None**: `Accessibility/Icon Wrapping/Large` covers 24px wrapper only |
+| Icon.Leading inner size (nav items) |: | 16 | **None**: `Accessibility/Icon Wrapping/Large` covers 24px wrapper only |
 | CollapseButton icon size (collapse/expand nav) |: | 18 | **None**: separate icon, distinct from nav item Icon.Leading (see §9) |
 | `Container.RowEnd` dimensions |: | 40×24px | **None** |
 | `Container.RowEnd.Icon` dimensions |: | 24×24px | `Accessibility/Icon Wrapping/Large` |
@@ -248,12 +248,12 @@ All `SideNavItem` labels at all levels use **the same** text style. There is no 
 ## 5. Item Variants
 
 ### Level 0: Destination
-- Has `Container.LeadingIcon` (24×24) with `Icon.Leading` (14pt fill-style icon)
+- Has `Container.LeadingIcon` (24×24) with `Icon.Leading` (16pt fill-style icon)
 - **No `Container.RowEnd`**: destinations omit the right-side container entirely. Only groupers have a `Container.RowEnd`.
 - Interacts: click → sets active state
 
 ### Level 0: Grouper
-- Has `Container.LeadingIcon` (24×24) with `Icon.Leading` (14pt fill-style icon)
+- Has `Container.LeadingIcon` (24×24) with `Icon.Leading` (16pt fill-style icon)
 - Has `Container.RowEnd` (40×24): **contains chevron** (10pt)
 - Chevron direction: **▼ down** when collapsed, **▲ up** when expanded
 - Interacts: click → toggles expand/collapse (does not navigate)
@@ -262,7 +262,7 @@ All `SideNavItem` labels at all levels use **the same** text style. There is no 
 - Uses `child.container` wrapper
 - **No** `Container.LeadingIcon`, **no** icon of any kind
 - `container.main` has `pl-[24px]` left indent to create visual hierarchy
-- Same font (`Label/Menu/Large/Medium`) as Level 0
+- Same font (`Label/Menu/Base/Medium`) as Level 0
 - Always a destination, never a grouper
 - Only 2 levels of depth allowed
 
@@ -284,9 +284,9 @@ All `SideNavItem` labels at all levels use **the same** text style. There is no 
 2. **Collapsed grouper with active child** (children hidden because grouper is closed, OR sidebar is fully collapsed) → Trail-collapsed state. Visually identical to Active state: same fill, same icon color, same stripe.
 3. When the sidebar collapses, any grouper that was in expanded-trail automatically transitions to collapsed-trail if it has an active child.
 4. `indicator.stripe` is only visible in **Active** and **Trail-collapsed** states.
-5. `indicator.stripe` color = `Icon/Contextual/NavItem/Active` (`#3555a0`): same token as icon active.
+5. `indicator.stripe` color = `Icon/Contextual/NavItem/Active` (`#2d4889`): same token as icon active.
 
-> **Standalone implementation rule: Trail-collapsed:** When a grouper is closed and any of its children is the active destination, apply **exactly the same 5 token values as Active state** to the grouper row: fill `#3555a014`, text `#051428`, icon `#3555a0`, stripe visible `#3555a0`. Trail-collapsed and Active are visually indistinguishable. The only difference is semantic: Active applies to a leaf destination; Trail-collapsed applies to a grouper whose active descendant is hidden. This rule applies whether the sidebar is 250px expanded or 72px collapsed.
+> **Standalone implementation rule: Trail-collapsed:** When a grouper is closed and any of its children is the active destination, apply **exactly the same 5 token values as Active state** to the grouper row: fill `#a0b5e629`, text `#1b2d57`, icon `#2d4889`, stripe visible `#2d4889`. Trail-collapsed and Active are visually indistinguishable. The only difference is semantic: Active applies to a leaf destination; Trail-collapsed applies to a grouper whose active descendant is hidden. This rule applies whether the sidebar is 220px expanded or 72px collapsed.
 
 ---
 
@@ -297,13 +297,13 @@ container.indicator (structural, 4px wide, full item height)
 └── indicator.stripe (visible stripe)
     border-radius: 0 8px 8px 0   ← rounded on right only
     width: 4px
-    color: var(--icon/contextual/navitem/active, #3555a0)
+    color: var(--icon/contextual/navitem/active, #2d4889)
     padding: 4px 0  (top/bottom inset within container)
 ```
 
 The `container.indicator` column is **always present** on every `SideNavItem` (Level 0 and Level 1). It is a structural 4px spacer. The `indicator.stripe` inside it is only visually painted when the item is in Active or Trail-collapsed state.
 
-> **Implementation rule:** `container.indicator` must exist in the DOM / component tree at all times for every SideNavItem: it is not conditionally rendered. Only the visual paint of `indicator.stripe` is conditional (via `background: transparent` when hidden, `background: #3555a0` when visible). Removing the column from the DOM when hidden will cause layout shift as items jump 4px when the stripe appears.
+> **Implementation rule:** `container.indicator` must exist in the DOM / component tree at all times for every SideNavItem: it is not conditionally rendered. Only the visual paint of `indicator.stripe` is conditional (via `background: transparent` when hidden, `background: #2d4889` when visible). Removing the column from the DOM when hidden will cause layout shift as items jump 4px when the stripe appears.
 
 ---
 
@@ -315,7 +315,7 @@ The `container.indicator` column is **always present** on every `SideNavItem` (L
 
 ### 8.2 Dimensions & Padding
 ```
-Expanded:  width 250px, padding 14px 12px
+Expanded:  width 220px, padding 14px 12px
 Collapsed: width  72px, padding 14px 12px (same, text hidden)
 ```
 > No semantic tokens for width or padding: see §4 for gap documentation.
@@ -335,6 +335,8 @@ width: transition 0.36s cubic-bezier(0.4, 0, 0.2, 1)
 | Chevron `opacity` | `0` | `1` | `0.18s ease` |
 | CollapseButton label `max-width` | `0` | `120px` | `0.32s cubic-bezier(0.4,0,0.2,1)` |
 | CollapseButton label `opacity` | `0` | `1` | `0.18s ease` |
+
+> **Motion override — intentional (approved 2026-05-12):** The sidebar width transition uses `360ms` and the label/chevron opacity uses `180ms`, both of which fall between the overarching spec's `instant` (150ms) and `short` (300ms) categories. These values are intentional: the sidebar is a large structural panel element — a pure `short` (300ms) width transition feels abrupt at this scale. The label opacity at `180ms` is deliberately shorter than the width so labels begin fading before the panel finishes collapsing, avoiding a flash of fully-visible text inside an already-narrow container. These values are registered as contextual motion tokens `Motion/SideNav/Panel/Width` (360ms) and `Motion/SideNav/Label/Fade` (180ms) in the overarching spec §2.4.
 
 ---
 
@@ -361,7 +363,7 @@ Collapse_Expand_Nav_Container
 
 | Sidebar state | Button rendered? | Icon | Label |
 |---|---|---|---|
-| Expanded (250px, ≥768px) | ✓ Yes | `collapse_nav` | "Collapse": visible |
+| Expanded (220px, ≥768px) | ✓ Yes | `collapse_nav` | "Collapse": visible |
 | Collapsed (72px rail, ≥768px) | ✓ Yes | `expand_nav` | Hidden (no room at 72px width) |
 | Mobile overlay (<768px) | ✗ No |: |: |
 
@@ -375,9 +377,9 @@ The nav container uses `overflow-y: auto`. When the nav item list grows long eno
 
 ### Expanded sidebar
 
-- A vertical scrollbar appears inside the 250px nav container.
+- A vertical scrollbar appears inside the 220px nav container.
 - All nav items remain accessible by scrolling.
-- The **Collapse button scrolls with the content**: it is not sticky. As content grows, the button is pushed below the fold and requires scrolling to reach. This is acknowledged design debt; see §15.8.
+- The **Collapse button scrolls with the content**: it is not sticky. As content grows, the button is pushed below the fold and requires scrolling to reach. This is acknowledged design debt; see §16.8.
 - The scrollbar uses a 4px custom track (`background: rgba(0,0,0,0.12)`) and does not visually intrude on item layout.
 
 ### Collapsed sidebar
@@ -388,7 +390,7 @@ The nav container uses `overflow-y: auto`. When the nav item list grows long eno
 
 ### Popovers and tooltips when the sidebar is scrolled
 
-Because `CollapsedTooltip` and `CollapsedPopover` are rendered via portal (`document.body`) using `position: fixed` with coordinates from `getBoundingClientRect()`, their position is always relative to the **viewport**, not the scroll container.
+Because `SideNavTooltip` and `CollapsedPopover` are rendered via portal (`document.body`) using `position: fixed` with coordinates from `getBoundingClientRect()`, their position is always relative to the **viewport**, not the scroll container.
 
 This means:
 
@@ -398,7 +400,7 @@ This means:
 
 ### Figma gap
 
-The overflow/scroll behaviour is not annotated in Figma. The nav container is designed at a fixed height showing all items in frame. The collapse button stickiness question (§15.8) is the primary open design decision in this area.
+The overflow/scroll behaviour is not annotated in Figma. The nav container is designed at a fixed height showing all items in frame. The collapse button stickiness question (§16.8) is the primary open design decision in this area.
 
 ---
 
@@ -430,12 +432,12 @@ All state tokens are the same as the expanded item (see §6 State Matrix). Layou
 
 | Item type | On hover |
 |---|---|
-| **Destination** (no children) | Show `CollapsedTooltip`: label only, positioned to the right |
+| **Destination** (no children) | Show `SideNavTooltip`: label only, positioned to the right |
 | **Grouper** (has children) | Show `PopoverMenu`: section label + children list |
 
 Both appear with an **8px gap** from the container's right edge (`left: calc(100% + 8px)`).
 
-#### CollapsedTooltip
+#### SideNavTooltip
 
 | Property | Value | Token |
 |---|---|---|
@@ -445,7 +447,7 @@ Both appear with an **8px gap** from the container's right edge (`left: calc(100
 | Shadow | `2px 2px 8px 0px rgba(0,0,0,0.03)` |: |
 | Padding | `6px 8px` |: |
 | Typography | 14px / 400 / 20px / 0.02px | `Text/Body/S/Regular` |
-| Text colour | `#252525` | `Text/Static/Primary/Base` |
+| Text colour | `#202020` | `Text/Static/Primary/Base` |
 | Position | Right of item, vertically centred (`top: 50%; transform: translateY(-50%)`) |: |
 
 #### PopoverMenu (grouper flyout)
@@ -479,7 +481,7 @@ Both appear with an **8px gap** from the container's right edge (`left: calc(100
 | Padding | `4px 12px` |: |
 | Border radius | `8px` | `Border/Radius/S` |
 | Typography | 14px / 400 / 20px / 0.02px | `Text/Body/S/Regular` |
-| Text colour (base) | `#363636` | `Text/Contextual/NavItem/Base` |
+| Text colour (base) | `#313131` | `Text/Contextual/NavItem/Base` |
 | Text colour (hover) | `#252525` | `Text/Contextual/NavItem/Hover` |
 | Fill (hover) | `rgba(17,17,17,0.04)` | `Fill/Contextual/NavItem/Hover` |
 
@@ -501,7 +503,7 @@ SideNav-specific positioning: the popover opens **to the right** of the collapse
 
 The collapsed nav container requires `overflow-y: auto` for scrolling. Any `overflow` value other than `visible` on a positioned element creates a CSS clipping context: absolutely positioned children that extend beyond the container's bounds (i.e. the popover and tooltip, which open to the right) will be clipped regardless of `z-index`.
 
-**Required implementation pattern:** The `CollapsedTooltip` and `CollapsedPopover` must be rendered outside the nav's DOM subtree (e.g. via `ReactDOM.createPortal` into `document.body`) using `position: fixed` with coordinates calculated at open time from `getBoundingClientRect()` on the trigger element. The hover-safe bridge element must also use `position: fixed` for the same reason.
+**Required implementation pattern:** The `SideNavTooltip` and `CollapsedPopover` must be rendered outside the nav's DOM subtree (e.g. via `ReactDOM.createPortal` into `document.body`) using `position: fixed` with coordinates calculated at open time from `getBoundingClientRect()` on the trigger element. The hover-safe bridge element must also use `position: fixed` for the same reason.
 
 This is a CSS architectural constraint, not a Figma design concern. No Figma annotation is needed.
 
@@ -510,7 +512,7 @@ This is a CSS architectural constraint, not a Figma design concern. No Figma ann
 ## 11. Iconography
 
 - All leading icons are **fill-style** (solid/filled, not outline)
-- Icons live at `14×14pt` inside a `24×24pt` `Container.LeadingIcon` wrapper
+- Icons live at `16×16pt` inside a `24×24pt` `Container.LeadingIcon` wrapper
 - Icon source: [design system iconography page](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40002909-32275)
 - **Figma CDN asset URLs cannot be used directly in browsers**: they require auth headers that only the Figma MCP server provides. Implementations must either use the design system icon component library or embed SVG assets at build time.
 
@@ -538,7 +540,7 @@ This is a CSS architectural constraint, not a Figma design concern. No Figma ann
 | Hover any item | Hover fill + hover text + hover icon |
 | Hover grouper in collapsed sidebar | Show flyout popover with group label + children |
 | Click Collapse button | Sidebar width transition to 72px |
-| Click Expand button | Sidebar width transition to 250px |
+| Click Expand button | Sidebar width transition to 220px |
 
 ---
 
@@ -650,9 +652,9 @@ The entire nav is a single Tab stop. Arrow keys navigate within it.
 | Visible focus ring on all interactive items | ❓ Not styled in demo: browser default outline only |
 | Focus ring must not be suppressed (`outline: none` without replacement) | 📋 Required: WCAG 2.4.11 |
 | Focus ring should use `:focus-visible` (not `:focus`) to avoid painting on mouse click | 📋 Recommended |
-| Suggested focus style | `outline: 2px solid #3555a0; outline-offset: 2px;` (uses `Icon/Contextual/NavItem/Active`) |
+| Suggested focus style | `outline: 2px solid #2d4889; outline-offset: 2px;` (uses `Icon/Contextual/NavItem/Active`) |
 
-> Figma does not contain a "focused" state variant in the `SideNavItem` component variants. This is a documentation gap: a focused state should be added to the component before production. See §15.
+> Figma does not contain a "focused" state variant in the `SideNavItem` component variants. This is a documentation gap: a focused state should be added to the component before production. See §16.
 
 ---
 
@@ -694,12 +696,12 @@ All values below use token resolved values. Verify with a tool (e.g. Colour Cont
 
 | State | Text token → hex | Background | Approx. ratio | WCAG AA (4.5:1) |
 |---|---|---|---|---|
-| Base | `Text/NavItem/Base` → `#363636` on `#fafafa` | ~11.6:1 | ✅ Pass |
+| Base | `Text/NavItem/Base` → `#313131` on `#fafafa` | ~11.6:1 | ✅ Pass |
 | Hover | `Text/NavItem/Hover` → `#252525` on `≈#f5f5f5` | ~14.1:1 | ✅ Pass |
-| Active | `Text/NavItem/Active` → `#051428` on `≈#eef1f8` | ~16.3:1 | ✅ Pass |
-| Trail (expanded) | `Text/NavItem/Active` → `#051428` on `≈#f5f5f5` | ~17.9:1 | ✅ Pass |
-| `indicator.stripe` | `Icon/NavItem/Active` → `#3555a0` on `#fafafa` | Non-text UI component | ✅ 3:1 (WCAG 1.4.11) |
-| Focus ring (proposed) | `#3555a0` outline on `#fafafa` | Non-text UI component | ✅ 3:1: verify with tool |
+| Active | `Text/NavItem/Active` → `#1b2d57` on `≈#eef1f8` | ~16.3:1 | ✅ Pass |
+| Trail (expanded) | `Text/NavItem/Active` → `#1b2d57` on `≈#f5f5f5` | ~17.9:1 | ✅ Pass |
+| `indicator.stripe` | `Icon/NavItem/Active` → `#2d4889` on `#fafafa` | Non-text UI component | ✅ 3:1 (WCAG 1.4.11) |
+| Focus ring (proposed) | `#2d4889` outline on `#fafafa` | Non-text UI component | ✅ 3:1: verify with tool |
 
 > ⚠ Contrast ratios are approximated on the `#fafafa` nav surface. Alpha-blended fills (`rgba(...)`) will vary on other backgrounds.
 
@@ -713,13 +715,38 @@ The only things that genuinely need to be **done in Figma** (because they are de
 
 | Gap | Priority | Action needed in Figma |
 |---|---|---|
-| No "focused" state variant in `SideNavItem` | HIGH | Design and add a focused variant to the component: suggested style: `2px solid #3555a0` outline, `2px` offset. This is a visual design decision that must exist in Figma. |
+| No "focused" state variant in `SideNavItem` | HIGH | Design and add a focused variant to the component: suggested style: `2px solid #2d4889` outline, `2px` offset. This is a visual design decision that must exist in Figma. |
 | No link to this spec in Dev Mode | HIGH | In Figma Dev Mode → Resources panel, add the spec URL: `https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav-spec.md`. Takes 30 seconds and means devs always have one click to the full reference. |
 | Accessibility section in Figma doc frame is outdated | MEDIUM | Replace with a short plain-text summary (component description, key decisions, any gaps that require design work) and a link to this spec. Do not duplicate tables. |
 
 ---
 
-## 14. What to Pass Claude to Implement This Component
+## 14. Motion
+
+All SideNav motion follows `docs/design-system-spec.md` §2 with the contextual overrides documented in §2.4 of that file. The full implementation detail lives in two sections of this spec:
+
+- **§8.3** — Sidebar width transition (360ms) and label/chevron fade (180ms)
+- **§17.6** — Overlay enter (380ms) and exit (300ms) transitions, scrim fade, reduced-motion rules
+
+### Summary of durations
+
+| Element | Duration | Overarching category | Override? |
+|---|---|---|---|
+| Hover fills, colour transitions | 150ms | `instant` | No |
+| Popover enter (SideNavTooltip, flyout) | 150ms | `instant` | No |
+| Sidebar width expand/collapse | 360ms | between `instant`/`short` | Yes — see §8.3 |
+| Label/chevron opacity fade | 180ms | between `instant`/`short` | Yes — see §8.3 |
+| Overlay panel enter (transform) | 380ms | above `short` | Yes — see §17.6 |
+| Overlay panel exit (transform) | 300ms | `short` | No |
+| Overlay panel opacity | 220–300ms | `short` | No |
+| Scrim fade | 280ms | `short` | No |
+| Reduced motion (all transforms) | 150ms linear | `instant` | No |
+
+All easing curves follow the overarching spec exactly: `cubic-bezier(0.4,0,0.2,1)` standard, `cubic-bezier(0,0,0.2,1)` decelerate (enters), `cubic-bezier(0.4,0,0.6,1)` accelerate (exits).
+
+---
+
+## 15. What to Pass Claude to Implement This Component
 
 To implement SideNav from scratch with correct design system alignment, provide:
 
@@ -730,44 +757,97 @@ To implement SideNav from scratch with correct design system alignment, provide:
 
 ---
 
-## 15. Figma Gaps: Blocks to Full Token-Driven Implementation
+## 16. Figma Gaps: Blocks to Full Token-Driven Implementation
 
 The following are gaps in the current Figma documentation that prevent a fully semantic implementation:
 
-### 15.1 Missing spacing/layout tokens (HIGH priority)
-No named tokens exist for: nav container padding (12px H / 14px V), item gap (8px), stripe width (4px), row padding (8px), child indent (24px), collapse row padding, nav widths (250px expanded / 72px collapsed), or `Container.RowEnd` dimensions. These are raw Tailwind values. **Recommend creating a spacing scale** and referencing it with semantic names like `Spacing/Nav/ContainerPaddingH`.
+### 16.1 Missing spacing/layout tokens (HIGH priority)
+No named tokens exist for: nav container padding (12px H / 14px V), item gap (8px), stripe width (4px), row padding (8px), child indent (24px), collapse row padding, nav widths (220px expanded / 72px collapsed), or `Container.RowEnd` dimensions. These are raw Tailwind values. **Recommend creating a spacing scale** and referencing it with semantic names like `Spacing/Nav/ContainerPaddingH`.
 
-### 15.2 Primitive token names not surfaced (MEDIUM priority)
+### 16.2 Primitive token names not surfaced (MEDIUM priority)
 `get_variable_defs` (Figma MCP tool) resolves semantic token alias chains to their final hex value but does not expose intermediate primitive token names. The full chain `Semantic → Primitive → Hex` cannot be reconstructed from MCP alone. This blocks documentation of the full token lineage. **Recommend:** either expose primitives in a dedicated Figma frame/page, or use the Figma REST API (`GET /v1/files/:key/variables`) which does return the full alias chain.
 
-### 15.4 Icon inner size token missing (LOW priority)
-`Icon.Leading` inside `Container.LeadingIcon` renders at `14×14pt`. `Accessibility/Icon Wrapping/Large` documents the `24px` wrapper but there is no token for the inner icon size. Recommend `Accessibility/Icon/Leading/Size` or similar.
+### 16.3 `Component/NavItem/Large/Radius/Radius` not in token file (LOW priority)
+§3.5 cites `Component/NavItem/Large/Radius/Radius` for the item `border-radius` (8px). No `component/*` token family exists in `tokens/pathway-design-tokens.json`. The resolved value (8px) matches `Border/S` (assumed). Until this token is added in Figma and exported, implementations should fall back to `Border/S` or the raw value `8px`. Accepted as a documented gap — 2026-05-11 spec review.
 
-### 15.5 indicator.stripe border-radius unconfirmed (LOW priority)
+### 16.4 Icon inner size token missing (LOW priority)
+`Icon.Leading` inside `Container.LeadingIcon` renders at `16×16pt`. `Accessibility/Icon Wrapping/Large` documents the `24px` wrapper but there is no token for the inner icon size. Recommend `Accessibility/Icon/Leading/Size` or similar.
+
+`Accessibility/Icon Wrapping/Large/Size` (cited in §3.5 for the 24×24px `Container.LeadingIcon` wrapper) does not exist as a named token in `tokens/pathway-design-tokens.json` — only `accessibility.touch-target.*` tokens are present. The 24×24px value is correct but is currently undocumented in the token file. Accepted as a documented gap — 2026-05-12 spec review.
+
+### 16.5 indicator.stripe border-radius unconfirmed (LOW priority)
 The stripe uses `border-radius: 0 8px 8px 0` (rounded right only). The `8px` is assumed to match `Border/S` (same as the item radius token) but has not been explicitly confirmed in Figma.
 
-### 15.7 Grouper collapsed with no active child: state unconfirmed (LOW priority)
+### 16.7 Grouper collapsed with no active child: state unconfirmed (LOW priority)
 The state matrix above specifies that a collapsed grouper with **no** active child shows in Base state. This should be explicitly documented in the Figma component annotations to avoid ambiguity.
 
-### 15.8 Collapse/Expand control pattern: design debt (HIGH priority)
+### 16.8 Collapse/Expand control: placement decision (APPROVED)
 
-Flagged in Figma: [view annotation](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/%E2%9D%87%EF%B8%8F--Pathway-Design-System--Master-File--MB-2.0-?node-id=40004169-1511&t=C5AHPCaPqyhmnq3s-1)
+**Status:** Approved — Design System (Pathway), 2026-05-12. Supersedes prior "design debt" note.
 
-The current collapse/expand control mirrors the existing production behavior: it is presented as a menu item at the bottom of the navigation list. This pattern is not recommended for the following reasons:
+Figma annotation: [view](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/%E2%9D%87%EF%B8%8F--Pathway-Design-System--Master-File--MB-2.0-?node-id=40004169-1511&t=C5AHPCaPqyhmnq3s-1)
 
-- It mixes a **layout control** with **navigation destinations**, violating the single-responsibility principle of the nav list
-- It has **low discoverability**: it is easily overlooked at the bottom of the list
-- It creates **inconsistent expectations for keyboard and screen-reader users**: a structural control appears as a peer item inside the `role="tree"` nav, where users expect only navigation destinations
+#### Decision
 
-This behavior is retained for the current release to minimise scope and risk. The collapse/expand control **must be revisited** in a future iteration and redesigned as a proper control (e.g. an Action Icon / button tied to the navigation container header, outside the tree), following established patterns for panel toggle controls.
+Use the **anchored toggle pattern** (Pattern A): the collapse/expand control occupies a fixed slot anchored within the nav panel, with an icon and optional label. We do not use a floating edge handle (Pattern B).
+
+The current implementation places this control at the **bottom of the scroll flow** (see §9). This satisfies Pattern A — the control is anchored inside the panel. The approved future direction is to move it to a **panel header row, right-aligned** for better discoverability and cleaner separation from navigation destinations. That migration is a tracked improvement, not a blocker for current releases.
+
+#### Why Pattern A over Pattern B
+
+Two patterns exist in production SaaS for side navigation collapse controls:
+
+- **Pattern A (anchored toggle):** control in a fixed slot inside the panel (header row or bottom row), icon with optional label
+- **Pattern B (edge handle):** floating control on the panel's right stroke, often a chevron pill, sometimes hover-revealed
+
+Pattern A wins on every axis that matters for Pathway:
+
+| Criterion | Pattern A | Pattern B |
+|---|---|---|
+| Accessibility | Sits in natural tab order; meets 44×44 touch target without extra work | Often 16–24px; hover-revealed variants fail keyboard and touch |
+| Usability — touch | Scales identically | Fitts's edge advantage is mouse-only; disappears on touchscreens |
+| Implementation | A button in a flex row | Requires absolute positioning, z-index, animation handoff, resize-boundary handling |
+| Scalability | Works at every density; survives nested panels | Two edge handles compete for the same vertical line in nested nav patterns |
+| Discoverability | Visible by default in a familiar location | Can look like extra chrome; hover-revealed variants fail visibility heuristics |
+| Responsive | Folds cleanly into mobile overlay pattern | Needs full redesign for mobile |
+| Industry adoption | VS Code, Figma, Linear, Notion, Slack, Jira, Asana, GitHub — dominant modern pattern | Confluence (historical), GitLab (older) — trending out |
+
+**Decision rationale (condensed):**
+
+1. **Pathway products have nested/stacked navigation.** Protections and Financials suites require primary + secondary nav patterns. Edge handles conflict in this configuration; anchored toggles do not.
+2. **WCAG 2.2 AA is non-negotiable.** Anchored toggles meet 24×24 trivially and 44×44 without custom work. Edge handles routinely require intentional padding to pass.
+3. **The Fitts's Law advantage of edge handles is narrow.** It applies only on desktop pointer devices when the panel is flush to the viewport edge. Pathway products run in browser tabs alongside other chrome and are sometimes embedded; the edge is not reliably "the edge."
+4. **Implementation cost is materially lower.** No positioning logic, no animation handoff with panel transitions, no resize-boundary edge cases.
+5. **Matches user expectations.** Every major productivity product our users already use (Slack, Notion, VS Code, etc.) uses this pattern. No learning tax.
+
+#### Component specification (target state)
+
+| Property | Value |
+|---|---|
+| Visual size | 32×32 |
+| Hit area | 40×40 minimum (exceeds WCAG AA with margin) |
+| Icon | `sidebar-collapse` / `sidebar-expand` pair, mirrored for RTL |
+| States | default, hover, active, focus, disabled |
+| Tooltip | "Collapse sidebar" / "Expand sidebar" |
+| ARIA | `aria-expanded` reflecting panel state; `aria-controls` pointing to panel id |
+| Label | Optional; hidden when panel is collapsed |
+| Position (target) | Panel header row, right-aligned |
+
+#### Redundant entry points (recommended)
+
+Following VS Code and Figma practice, the collapse action should have multiple entry points: anchored toggle button (primary), keyboard shortcut (`Cmd/Ctrl + B`), and optionally a command palette entry. This lowers the stakes of any single placement and supports keyboard-first users.
+
+#### Current vs. target placement gap
+
+The current implementation positions the control at the **bottom of the nav scroll flow** (§9). This is Pattern A and is the approved pattern type. The remaining gap is placement refinement: moving to a panel header slot that stays visible without scrolling. This is tracked as a future improvement with LOW urgency (the current placement is accessible and functional; it is not a WCAG failure).
 
 ---
 
-## 16. Responsiveness
+## 17. Responsiveness
 
 Figma reference: [SideNav Responsiveness (WIP)](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/%E2%9D%87%EF%B8%8F--Pathway-Design-System--Master-File--MB-2.0-?node-id=40005913-173454&t=C5AHPCaPqyhmnq3s-1)
 
-### 16.1 Breakpoints
+### 17.1 Breakpoints
 
 All four required breakpoints exist as Figma variables:
 
@@ -778,49 +858,49 @@ All four required breakpoints exist as Figma variables:
 | Small desktop / large tablet | 1024px | `Small Desktop 1024px` |
 | Desktop | 1440px | `Desktop 1440px` |
 
-The 1024px breakpoint is the collapse/overlay threshold (see §16.2).
+The 1024px breakpoint is the collapse/overlay threshold (see §17.2).
 
 A fifth value (>1900px) exists in the variables panel but is unused and unconfirmed. 1900px is not a standard value: the nearest standards are 1920px (Full HD) and 2560px (2K). For a desktop-primary product this breakpoint is unlikely to be needed and should be reviewed before use.
 
-### 16.2 SideNav behaviour per breakpoint
+### 17.2 SideNav behaviour per breakpoint
 
 | Viewport | Default state | Expanded state layout | Can be fully hidden |
 |---|---|---|---|
-| ≥1024px Desktop | Expanded (250px) | **Push**: content shifts right | No |
-| 768px–1023px Tablet | Collapsed (72px) | **Overlay**: 250px panel floats above content, scrim behind | No |
-| <768px Mobile | **Hidden** (default) | **Overlay (250px)**: same drawer width as tablet, scrim behind | Yes: hamburger/close in global top nav |
+| ≥1024px Desktop | Expanded (220px) | **Push**: content shifts right | No |
+| 768px–1023px Tablet | Collapsed (72px) | **Overlay**: 220px panel floats above content, scrim behind | No |
+| <768px Mobile | **Hidden** (default) | **Overlay (220px)**: same drawer width as tablet, scrim behind | Yes: hamburger/close in global top nav |
 
 **Key rules:**
 
-**Desktop (≥1024px): in-flow, always visible:** SideNav occupies layout space. Expanded (250px) by default; user can collapse to 72px via the in-nav collapse button. Content shifts to accommodate whichever width is active.
+**Desktop (≥1024px): in-flow, always visible:** SideNav occupies layout space. Expanded (220px) by default; user can collapse to 72px via the in-nav collapse button. Content shifts to accommodate whichever width is active.
 
-**Tablet (768–1023px): overlay, always visible:** SideNav is collapsed (72px) by default and always in-flow. User can expand it, which causes it to float as a 250px overlay above the page content (with a scrim behind). Collapsing returns it to the 72px in-flow rail. The nav cannot be hidden at tablet: only collapsed or expanded.
+**Tablet (768–1023px): overlay, always visible:** SideNav is collapsed (72px) by default and always in-flow. User can expand it, which causes it to float as a 220px overlay above the page content (with a scrim behind). Collapsing returns it to the 72px in-flow rail. The nav cannot be hidden at tablet: only collapsed or expanded.
 
-**Mobile (<768px): hidden by default:** The SideNav is fully hidden on initial load. The hamburger control in the global top nav reveals it as a **250px overlay** with a scrim (same width as tablet). Closing via the top-nav close icon or tapping the scrim hides it again. **There is no 72px collapsed rail state on mobile**: the icon-only rail is unsuitable for touch screens (hover popovers don't apply) and consumes too much of a narrow viewport. **There is no collapse button inside the mobile overlay**: the TopNav hamburger/close is the sole toggle.
+**Mobile (<768px): hidden by default:** The SideNav is fully hidden on initial load. The hamburger control in the global top nav reveals it as a **220px overlay** with a scrim (same width as tablet). Closing via the top-nav close icon or tapping the scrim hides it again. **There is no 72px collapsed rail state on mobile**: the icon-only rail is unsuitable for touch screens (hover popovers don't apply) and consumes too much of a narrow viewport. **There is no collapse button inside the mobile overlay**: the TopNav hamburger/close is the sole toggle.
 
 **Push vs overlay:** At ≥1024px, the SideNav is in the page's layout flow: it takes up width. Below 1024px, the SideNav floats as an overlay above the content: it does not shift the page. This is a page-shell concern, not a SideNav component property.
 
-> **Implementation rule: layout architecture:** At ≥1024px: the page shell is `display: flex; flex-direction: row`. SideNav is a sibling of the content area with `width: 250px | 72px` and `flex-shrink: 0`. Content fills the remaining space. At <1024px: SideNav uses `position: fixed; left: 0; top: 64px; bottom: 0; width: 250px; z-index: 100` for the overlay panel. The 72px in-flow rail at tablet is a separate element; the 250px overlay slides over it. At <768px: there is no in-flow rail at all: only the overlay panel.
+> **Implementation rule: layout architecture:** At ≥1024px: the page shell is `display: flex; flex-direction: row`. SideNav is a sibling of the content area with `width: 220px | 72px` and `flex-shrink: 0`. Content fills the remaining space. At <1024px: SideNav uses `position: fixed; left: 0; top: 64px; bottom: 0; width: 220px; z-index: 100` for the overlay panel. The 72px in-flow rail at tablet is a separate element; the 220px overlay slides over it. At <768px: there is no in-flow rail at all: only the overlay panel.
 
-**Top nav variant:** The global top nav shows its full desktop layout at ≥768px (no hamburger). Below 768px it switches to the mobile layout (hamburger/close, app icon, ellipsis, avatar). See §16.4 for details.
+**Top nav variant:** The global top nav shows its full desktop layout at ≥768px (no hamburger). Below 768px it switches to the mobile layout (hamburger/close, app icon, ellipsis, avatar). See §17.4 for details.
 
-### 16.3 States below 1024px
+### 17.3 States below 1024px
 
 #### Tablet (768–1023px): two states
 
 **Collapsed rail (72px): default at tablet:** SideNav is always visible as a 72px icon-only rail. Content fills the remaining width. Tap a grouped item to get a popover menu; tap a destination to navigate. This matches the `SideNav.Collapsed` touch-interaction pattern: Figma includes "Mobile: Tap Main Item" and "Mobile: Tap Grouper" instances in the `SideNav Instances/Interaction` frame specifically documenting this. (The "Mobile" label refers to touch/pointer context, not viewport size.)
 
-**Expanded overlay (250px): triggered at tablet:** User expands the nav via the expand control. SideNav slides over the page content as a 250px-wide overlay. A scrim appears behind it. Tapping the scrim or the collapse control dismisses the overlay and returns to the 72px rail.
+**Expanded overlay (220px): triggered at tablet:** User expands the nav via the expand control. SideNav slides over the page content as a 220px-wide overlay. A scrim appears behind it. Tapping the scrim or the collapse control dismisses the overlay and returns to the 72px rail.
 
 #### Mobile (<768px): two states only (no 72px collapsed rail)
 
 **Hidden: default at mobile:** The SideNav is fully hidden on load. The hamburger icon (≡) appears in the global top nav. **There is no 72px collapsed rail on mobile.** The icon-only rail pattern is not appropriate for touch-only screens: hover popovers don't trigger, icon-only navigation is ambiguous at phone scale, and 72px represents ~20% of a 390px viewport.
 
-**250px overlay: triggered at mobile:** Tapping the hamburger slides the SideNav in as a 250px drawer with a scrim behind it. On a 393px phone this leaves 143px of dimmed content visible: enough for users to understand and tap outside to dismiss. The global top nav shows the close icon (×). Tapping the scrim or the close icon hides the nav (returns to hamburger ≡). The SideNav **does not show a collapse button** inside the mobile overlay: there is nothing to collapse to.
+**220px overlay: triggered at mobile:** Tapping the hamburger slides the SideNav in as a 220px drawer with a scrim behind it. On a 393px phone this leaves 143px of dimmed content visible: enough for users to understand and tap outside to dismiss. The global top nav shows the close icon (×). Tapping the scrim or the close icon hides the nav (returns to hamburger ≡). The SideNav **does not show a collapse button** inside the mobile overlay: there is nothing to collapse to.
 
 **Overlay dismiss:** On tablet, tapping the scrim or the in-nav collapse button closes the overlay. On mobile, the top-nav hamburger/close toggle or tapping the scrim are the dismiss mechanisms. No swipe-to-dismiss gesture is specified.
 
-### 16.4 Global top nav (Unity Nav): out of scope, Figma reference
+### 17.4 Global top nav (Unity Nav): out of scope, Figma reference
 
 The global top navigation (Unity Nav) is a separate component not owned by this spec. Full component documentation, variants, tokens, and interaction specs are maintained on the [Global Navigation Figma page](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/%E2%9D%87%EF%B8%8F--Pathway-Design-System--Master-File--MB-2.0-?node-id=40005504-55845&t=C5AHPCaPqyhmnq3s-1).
 
@@ -828,11 +908,11 @@ For SideNav integration purposes only, the relevant behaviour is:
 
 **At ≥768px (desktop/tablet layout):** Full nav bar: app switcher, org switcher, search bar, icon buttons, avatar. No hamburger control. SideNav cannot be hidden at these sizes.
 
-**At <768px (mobile layout):** Simplified nav bar: hamburger/close toggle on the left, centred app icon, ellipsis and avatar on the right. Icon state: hamburger (≡) when the SideNav is hidden (default on load), close (×) when the 250px overlay is open. The toggle controls the hidden ↔ 250px-overlay transition only: there is no intermediate 72px collapsed state on mobile.
+**At <768px (mobile layout):** Simplified nav bar: hamburger/close toggle on the left, centred app icon, ellipsis and avatar on the right. Icon state: hamburger (≡) when the SideNav is hidden (default on load), close (×) when the 220px overlay is open. The toggle controls the hidden ↔ 220px-overlay transition only: there is no intermediate 72px collapsed state on mobile.
 
 This spec does not prescribe anything about the top nav's visual design, tokens, or other interactions. For all top nav specs, refer to the Figma link above.
 
-### 16.5 Figma component variant guidance
+### 17.5 Figma component variant guidance
 
 A single `SideNav.Local` component covers all breakpoints. No separate mobile or desktop variants are needed: the component structure and tokens are identical across all sizes.
 
@@ -841,13 +921,15 @@ For designers building screens, expose a `layout` component property with two va
 - `push`: use in desktop frames (≥1440px). SideNav sits in flow, content shifts right.
 - `overlay`: use in tablet and mobile frames (<1024px). SideNav floats above content when expanded.
 
-Pair this with a `state` property: `expanded` / `collapsed` / `hidden` to represent the three states in §16.3. This gives designers everything they need to accurately represent any SideNav state at any breakpoint without a separate component.
+Pair this with a `state` property: `expanded` / `collapsed` / `hidden` to represent the three states in §17.3. This gives designers everything they need to accurately represent any SideNav state at any breakpoint without a separate component.
 
-### 16.6 Overlay enter/exit animation
+### 17.6 Overlay enter/exit animation
 
 The overlay panel (`.overlay-panel`) uses CSS transitions rather than one-shot keyframe animations. The overlay container always remains in the DOM when `!isDesktop`, and `.overlay-panel--open` class is toggled to drive both the enter and exit transitions. This is intentional: keyframe animations only play on insertion; a CSS transition reverses smoothly when the class is removed, giving a proper exit without instant-removal flash.
 
 The overlay uses **asymmetric enter/exit transitions**: the enter curve is slower and more eased (300–380ms, deceleration) to feel intentional; the exit is snappier (220–300ms, acceleration) to stay out of the user's way. This is achieved by placing the exit `transition` on the base class and the enter `transition` on the `--open` modifier: CSS always uses the destination state's transition property.
+
+> **Motion override — intentional (approved 2026-05-12):** The overlay enter transform uses `380ms`, which exceeds the overarching spec's `short` duration (300ms). This is intentional for a full-height panel entering the viewport: a `short` 300ms enter feels abrupt and mechanical at this physical scale, while 380ms reads as deliberate and purposeful. The exit at 300ms matches `short` exactly — exits should be snappier than enters to stay out of the user's way. These values are registered as contextual motion tokens `Motion/SideNav/Overlay/Enter` (380ms) and `Motion/SideNav/Overlay/Exit` (300ms) in the overarching spec §2.4.
 
 **Enter (`.overlay-panel--open` added):**
 
@@ -908,7 +990,7 @@ The overlay uses **asymmetric enter/exit transitions**: the enter curve is slowe
 
 **Figma:** Static states only. Animation is a code concern; it does not need Figma component variants. Use `overlay` + `expanded` variant to represent the open state in designs.
 
-### 16.7 Scrim (backdrop overlay)
+### 17.7 Scrim (backdrop overlay)
 
 A semi-transparent scrim is shown behind the SideNav whenever it is in expanded-overlay mode (below 1024px viewport width). The scrim communicates that the page content is temporarily inaccessible and draws focus to the open SideNav panel.
 
@@ -924,15 +1006,15 @@ A semi-transparent scrim is shown behind the SideNav whenever it is in expanded-
 
 **Breakpoint rules:**
 
-- **<768px (Mobile):** Scrim **shown**. The overlay is 250px wide, leaving page content visible to the right: the scrim dims that content and provides the tap-outside-to-dismiss affordance.
-- **768px–1023px (Tablet):** Scrim shown. Same 250px overlay width; same scrim behaviour.
+- **<768px (Mobile):** Scrim **shown**. The overlay is 220px wide, leaving page content visible to the right: the scrim dims that content and provides the tap-outside-to-dismiss affordance.
+- **768px–1023px (Tablet):** Scrim shown. Same 220px overlay width; same scrim behaviour.
 - **≥1024px:** No overlay mode; no scrim.
 
 **Interaction:** Tapping the scrim dismisses the SideNav overlay (returns to 72px collapsed rail). This is the standard mobile drawer tap-outside pattern. The in-nav collapse button is the alternative dismiss path.
 
 ---
 
-## 17. AI Agent Implementation Guide
+## 18. AI Agent Implementation Guide
 
 This section is for any AI agent implementing this component: Figma Make, Lovable, v0, Claude, Cursor, GitHub Copilot, or equivalent. It is a self-contained brief: read it alongside the sections cited.
 
@@ -983,11 +1065,11 @@ TopNav and SideNav are a single shell. Never implement one without the other.
 
 ### 17.4 CollapseButton: do not skip
 
-> The CollapseButton renders at **all breakpoints ≥768px**, in **both** the 250px and 72px sidebar states. It is absent only on mobile (<768px).
+> The CollapseButton renders at **all breakpoints ≥768px**, in **both** the 220px and 72px sidebar states. It is absent only on mobile (<768px).
 
 | Sidebar state | Renders? | Icon | Label |
 |---|---|---|---|
-| Expanded 250px, ≥768px | ✓ Yes | `collapse_nav` | "Collapse": visible |
+| Expanded 220px, ≥768px | ✓ Yes | `collapse_nav` | "Collapse": visible |
 | Collapsed 72px, ≥768px | ✓ Yes | `expand_nav` | Hidden (no room) |
 | Mobile overlay <768px | ✗ No |: |: |
 
@@ -1005,12 +1087,12 @@ Concrete example: user clicks "Hyena" (child of Elephant). Elephant's children s
 
 | Property | Token | Value |
 |---|---|---|
-| Background | `Fill/Contextual/NavItem/Active` | `#3555a014` |
-| Text | `Text/Contextual/NavItem/Active` | `#051428` |
-| Icon | `Icon/Contextual/NavItem/Active` | `#3555a0` |
-| `indicator.stripe` | visible | `#3555a0` |
+| Background | `Fill/Contextual/NavItem/Active` | `#a0b5e629` |
+| Text | `Text/Contextual/NavItem/Active` | `#1b2d57` |
+| Icon | `Icon/Contextual/NavItem/Active` | `#2d4889` |
+| `indicator.stripe` | visible | `#2d4889` |
 
-This applies whether the sidebar is 250px or 72px. Full detail at §6 and §7.
+This applies whether the sidebar is 220px or 72px. Full detail at §6 and §7.
 
 ---
 
@@ -1025,7 +1107,7 @@ Nav items (in order):
 [your list: see §17.2 for format]
 
 Icons:
-[your icon names / attach SVG files — nav item icons render at 14px inside 24px wrapper]
+[your icon names / attach SVG files — nav item icons render at 16px inside 24px wrapper]
 
 Requirements — implement all of these, do not skip any:
 
@@ -1033,7 +1115,7 @@ Requirements — implement all of these, do not skip any:
 
 2. CollapseButton inside the SideNav at all breakpoints ≥768px, in both expanded
    and collapsed states. On mobile (<768px) it is hidden. In the collapsed 72px
-   state it shows the expand icon with no label. In the expanded 250px state it
+   state it shows the expand icon with no label. In the expanded 220px state it
    shows the collapse icon + "Collapse" label. It sits at the bottom of the nav,
    scrolls with content, and has a 1px divider above it.
 
@@ -1050,9 +1132,9 @@ Requirements — implement all of these, do not skip any:
    or any other custom text. Do not write "Welcome to [anything]".
    The heading is the only text, and it comes from the nav item name.
 
-5. Collapsed sidebar width: 72px (not 64px). Expanded: 250px.
+5. Collapsed sidebar width: 72px (not 64px). Expanded: 220px.
 
-6. Nav item icons: 14px inside a 24×24 wrapper. CollapseButton icon: 18px.
+6. Nav item icons: 16px inside a 24×24 wrapper. CollapseButton icon: 18px.
    These are two different sizes — do not use 18px for nav item icons.
 
 Match all spacing, colours, states, and responsive breakpoints from the spec.
@@ -1060,7 +1142,7 @@ Match all spacing, colours, states, and responsive breakpoints from the spec.
 Before submitting, verify this checklist — these two are the most commonly skipped:
 
 [ ] CollapseButton is visible at the BOTTOM of the SideNav at all viewports
-    >=768px. Check BOTH states: expanded 250px (shows icon + "Collapse" label)
+    >=768px. Check BOTH states: expanded 220px (shows icon + "Collapse" label)
     and collapsed 72px rail (shows icon only, no label). It must be absent only
     on mobile (<768px). If you cannot see a collapse/expand icon at the bottom
     of the nav in your desktop or tablet preview, it is missing.
@@ -1068,7 +1150,27 @@ Before submitting, verify this checklist — these two are the most commonly ski
 [ ] At 768-1023px viewport the SideNav renders as a 72px icon-only rail in the
     normal page flow by default — it is NOT hidden, and NOT treated as mobile.
     The main content fills the remaining width to the right of the 72px rail.
-    Only after the user taps the expand icon does the 250px overlay appear.
+    Only after the user taps the expand icon does the 220px overlay appear.
     Treating this breakpoint as mobile (hiding the nav entirely) is wrong.
 ```
+
+---
+
+## 19. Storybook
+
+The SideNav component is live in Storybook. Stories are located at `src/stories/Library/SideNav/`.
+
+| Story | Purpose |
+|---|---|
+| `Playground` | Fully interactive demo with Controls panel (active item, collapsed state, hide collapse button) |
+| `Collapsed` | 72px icon-only rail — hover to see tooltips and flyout popovers |
+| `StateMatrix` | Visual grid of all five nav item states |
+| `NavItemExplorer` | Single isolated nav item with per-state controls |
+| `TokensFill` | Fill token swatches with hex values |
+| `TokensText` | Text colour token swatches |
+| `TokensIcon` | Icon colour token swatches |
+| `TrailComparison` | Expanded vs. collapsed trail states side-by-side |
+| `StandaloneDemo` | Full responsive HTML demo iframed (includes TopNav, responsive breakpoints) |
+
+Deployed at: `https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/components-sidenav--docs`
 
