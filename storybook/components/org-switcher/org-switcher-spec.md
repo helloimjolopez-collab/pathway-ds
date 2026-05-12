@@ -467,40 +467,64 @@ In priority order:
 
 All organisation names are abbreviated to **exactly three uppercase letters with no periods**.
 
-Words that are **never initialled**: articles (the, a, an), prepositions (of, in, at, for), and conjunctions (and, or). These are skipped entirely when counting significant words.
+Words that are **never initialled**: articles (the, a, an), prepositions (of, in, at, for), and conjunctions (and, or, but). Strip these first — they do not count as significant words and are invisible to all rules below.
 
 ### A.4.1 Three or more significant words
 
-Take the first letter of the first three significant words.
+Take the first letter of each of the first three significant words.
 
 | Full Name | Abbr. | Derivation |
 |---|---|---|
 | Grace Community Church | GCC | Grace + Community + Church |
 | Nashville Christian Church | NCC | Nashville + Christian + Church |
 | Crossroads Community Fellowship | CCF | Crossroads + Community + Fellowship |
-| Church of the Highlands | CHH | Church + Highlands ("of" and "the" skipped) — see §A.4.3 |
 
 ### A.4.2 Two significant words
 
-When only two significant words are available, take the first letter of each word, then the first two letters of the most distinctive word (usually the proper name or first noun) provide the third character — specifically the **second letter of the more distinctive word**.
+The first (most distinctive) word contributes **two characters**. The second word contributes **one character** — always its first letter. Which two characters the first word contributes depends on its nature:
+
+#### A.4.2a — First word is a place name (city, town, neighbourhood)
+
+Use the first two letters of the place name, following USPS geographic convention (the same method used in §A.5.2 for campus abbreviations).
 
 | Full Name | Abbr. | Derivation |
 |---|---|---|
-| Northpoint Church | NPC | N (Northpoint) + P (second letter of Northpoint) + C (Church) |
-| Knoxville Sanctuary | KXS | K (Knoxville) + X (second letter of Knoxville) + S (Sanctuary) |
-| Hillside Fellowship | HIF | H (Hillside) + I (second letter of Hillside) + F (Fellowship) |
-| Crossroads Church | CRC | C (Crossroads) + R (second letter of Crossroads) + C (Church) |
+| Knoxville Sanctuary | KNS | KN (Knoxville, USPS-style) + S (Sanctuary) |
+| Franklin Fellowship | FRF | FR (Franklin) + F (Fellowship) |
+| Memphis Church | MEC | ME (Memphis) + C (Church) |
 
-> **Rule stated plainly:** First letter of word 1 + second letter of word 1 + first letter of word 2. The distinctive proper name (word 1) contributes two characters; the generic descriptor (Church, Fellowship, etc.) contributes one. This follows the AP and CMOS principle that the primary identifying element of a name carries more weight in abbreviation.
+#### A.4.2b — First word is a compound word (two fused words)
 
-### A.4.3 Two significant words where one is a generic religious term
+Use the first letter of each of the two fused words as the two characters.
 
-When the name has only two words and the second word is a generic religious term (Church, Chapel, Ministry, Fellowship), the same rule applies as §A.4.2 — the proper name contributes two characters. When constructs like "Church of the Highlands" reduce to only two significant words after skipping articles and prepositions, treat the remaining two words normally under §A.4.2.
+| Full Name | Abbr. | Derivation |
+|---|---|---|
+| Northpoint Church | NPC | N (North) + P (Point) + C (Church) |
+| Crossroads Church | CRC | C (Cross) + R (Roads) + C (Church) |
+| Hillside Fellowship | HLF | H (Hill) + L (Side) + F (Fellowship) |
+| Charlestown Church | CTC | C (Charles) + T (Town) + C (Church) |
+
+#### A.4.2c — First word is a single, non-place, non-compound word
+
+Use the first letter and the second letter of the word. Exception: if the word contains a more phonetically distinctive letter (X, Z, Q) after the first letter, use that letter instead of the natural second letter, as it better identifies the word.
+
+| Full Name | Abbr. | Derivation |
+|---|---|---|
+| Elevation Church | ELC | E + L (natural second letter) + C (Church) |
+| Triumph Church | TRC | T + R (natural second letter) + C (Church) |
+| Axios Church | AXC | A + X (more distinctive than natural second letter I) + C (Church) |
+
+### A.4.3 Two significant words after stripping articles and prepositions
+
+Names like "Church of the Highlands" reduce to two significant words once non-significant words are removed. Apply §A.4.2 to the remaining two words normally.
 
 | Full Name | Significant Words | Abbr. | Derivation |
 |---|---|---|---|
-| Church of the Highlands | Church + Highlands | CHH | C (Church) + H (Highlands) + H (second letter of Highlands) |
-| City of Grace | City + Grace | CGR | C (City) + G (Grace) + R (second letter of Grace) |
+| Church of the Highlands | Church + Highlands | CHH | §A.4.2c: C (Church) + H + H (first letter + second letter of Highlands) |
+| City of Grace | City + Grace | CIG | §A.4.2c: C + I (City first + second letter) + G (Grace first letter) |
+
+> **Note on Church of the Highlands:** Church contributes C (first letter). Highlands contributes H + H (first letter + second letter per §A.4.2c). Result: **CHH**.
+> **Note on City of Grace:** City is word 1, Grace is word 2. City contributes C + I (§A.4.2c, first + second letter). Grace contributes G (first letter). Result: **CIG**.
 
 ### A.4.4 Single-word names
 
@@ -516,13 +540,13 @@ Take the **first three letters** of the word, uppercased. This follows the trunc
 
 If two organisations in the same user's context produce the same three-letter abbreviation:
 
-1. Use the third letter of the most distinctive word instead of the second: NPC (Northpoint Church) vs. NPC (Northpark Chapel) → NPC vs. **NTC** (Nor**T**hpark Chapel, using T)
+1. Use the third letter of the most distinctive word instead of the second: NPC (Northpoint Church) vs. NPC (Northpark Chapel) → NPC vs. **NKC** (using K, the third letter of Northpark)
 2. If still identical, apply §A.4.4 to the most distinctive word (first three letters of that word)
 3. Document the override as an implementation note on the org record
 
 ---
 
-## A.5 Campus and Sub-Organization — Two-Initial Rule
+## A.5 Campus and Sub-Organisation — Two-Initial Rule
 
 Campus and sub-org identifiers are abbreviated to **exactly two uppercase letters with no periods**. The two-letter format follows the USPS two-letter state abbreviation convention, which AP defers to for geographic identifiers, adapted here for directional and place-name campus identifiers.
 
@@ -541,7 +565,7 @@ Use the first two letters of the directional word, uppercased.
 
 ### A.5.2 Single place name (city, neighbourhood, or proper noun)
 
-If the name matches a U.S. state, use the **official USPS two-letter state code**.
+If the name matches a U.S. state, use the **official USPS two-letter state code** — this is both intuitive and standardised, and AP defers to USPS codes for all state-level geographic identifiers.
 
 For all other place names, use the **first letter + first consonant after the first vowel**, uppercased.
 
@@ -614,19 +638,22 @@ These apply to all abbreviations in the org switcher regardless of derivation me
 ### A.7.1 Organisation name → 3 letters
 
 ```
-Skip all articles (the, a, an) and prepositions (of, in, at) first — they are never initialled.
+Strip all articles (the, a, an) and prepositions (of, in, at, for) and conjunctions (and, or, but) first.
 How many significant words remain?
-├── 3 or more  →  First letter of each of the first 3 significant words (§A.4.1)
-├── 2 words    →  First letter of word 1 + second letter of word 1 + first letter of word 2 (§A.4.2)
-└── 1 word     →  First 3 letters of the word (§A.4.4)
-Duplicate in same user context?  →  §A.4.5
+├── 3 or more → First letter of each of the first 3 significant words (§A.4.1)
+├── 2 words   → Word 1 contributes 2 characters + Word 2 contributes its first letter (§A.4.2)
+│              ├── Word 1 is a place name?    → first 2 letters of place (USPS-style) (§A.4.2a)
+│              ├── Word 1 is a compound word? → first letter of each fused word (§A.4.2b)
+│              └── Word 1 is a plain word?    → first letter + second letter (or more distinctive letter if X/Z/Q present) (§A.4.2c)
+└── 1 word    → First 3 letters of the word (§A.4.4)
+Duplicate in same user context? → §A.4.5
 ```
 
 ### A.7.2 Campus / sub-org name → 2 letters
 
 ```
 Is it a U.S. state name?           →  USPS two-letter code
-Is it a single directional word?   →  First 2 letters of that word
+Is it a single directional word?   →  First 2 letters of that word (see table §A.5.1 for Downtown exception)
 Is it a single place name?         →  First letter + first consonant after first vowel
 Is it place + directional?         →  Place initial + directional initial (place always first)
 Is it two descriptive words?       →  First letter of each word
@@ -645,12 +672,13 @@ Duplicate within same org?         →  §A.5.6
 | Grace Community Church  \|  Georgia | Georgia | GCC \| GA | §A.4.1, §A.5.2 + USPS |
 | Nashville Christian Church  \|  Nashville North | Nashville North | NCC \| NN | §A.4.1, §A.5.3 |
 | Nashville Christian Church  \|  Nashville South | Nashville South | NCC \| NS | §A.4.1, §A.5.3 |
-| Northpoint Church | (none) | NPC | §A.4.2 |
-| Northpoint Church  \|  Knoxville | Knoxville | NPC \| KN | §A.4.2, §A.5.2 |
-| Crossroads Church  \|  Downtown | Downtown | CRC \| DT | §A.4.2, §A.5.1 |
+| Northpoint Church | (none) | NPC | §A.4.2b |
+| Northpoint Church  \|  Knoxville | Knoxville | NPC \| KN | §A.4.2b, §A.5.2 |
+| Knoxville Sanctuary  \|  East | East | KNS \| EA | §A.4.2a, §A.5.1 |
+| Crossroads Church  \|  Downtown | Downtown | CRC \| DT | §A.4.2b, §A.5.1 |
 | Elevation  \|  Main Campus | Main Campus | ELE \| MC | §A.4.4, §A.5.4 |
 | Church of the Highlands  \|  North | North | CHH \| NO | §A.4.3, §A.5.1 |
-| Knoxville Sanctuary  \|  East | East | KXS \| EA | §A.4.2, §A.5.1 |
+| Axios Church  \|  West | West | AXC \| WE | §A.4.2c, §A.5.1 |
 
 ---
 
@@ -671,7 +699,7 @@ This appendix does **not** govern:
 | Version | Date | Notes |
 |---|---|---|
 | 1.0 | May 2026 | Initial release |
-| 1.1 | May 2026 | §4 rewritten — two-word and single-word org rules clarified; renumbered as Appendix A for Pathway spec integration |
+| 1.1 | May 2026 | §A.4 rewritten — two-word org rules expanded into §A.4.2a/b/c (place name / compound word / plain word); "but" added to skip-word list; §A.4.5 duplicate example corrected; §A.8 examples updated (KNS, AXC) |
 
 **Primary authority:** AP Stylebook (current edition)
 **Secondary:** Chicago Manual of Style (18th ed.), USPS Publication 28

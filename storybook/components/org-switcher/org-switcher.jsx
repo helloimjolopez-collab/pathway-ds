@@ -52,27 +52,85 @@ const T = {
 // Implements Appendix A of org-switcher-spec.md.
 // Pure functions — importable independently of React.
 
-const SKIP_WORDS = new Set(["the","a","an","of","in","at","for","and","or"]);
+// Articles, prepositions, conjunctions — never initialled (spec §A.4).
+const SKIP_WORDS = new Set(["the","a","an","of","in","at","for","and","or","but"]);
+
+// Known compound org-name words and their constituent parts (spec §A.4.2b).
+// Word 1 of a two-significant-word name → [part1, part2] so initials are part1[0]+part2[0].
+const COMPOUND_SPLITS = {
+  northpoint:  ["north","point"],
+  crossroads:  ["cross","roads"],
+  hillside:    ["hill","side"],
+  hillcrest:   ["hill","crest"],
+  charlestown: ["charles","town"],
+  brookside:   ["brook","side"],
+  lakewood:    ["lake","wood"],
+  riverwood:   ["river","wood"],
+  ridgewood:   ["ridge","wood"],
+  northwood:   ["north","wood"],
+  eastwood:    ["east","wood"],
+  westwood:    ["west","wood"],
+  southwood:   ["south","wood"],
+  northridge:  ["north","ridge"],
+  westridge:   ["west","ridge"],
+  eastridge:   ["east","ridge"],
+  southridge:  ["south","ridge"],
+  northfield:  ["north","field"],
+  westfield:   ["west","field"],
+  springfield: ["spring","field"],
+  brookfield:  ["brook","field"],
+  clearwater:  ["clear","water"],
+  greenwood:   ["green","wood"],
+  stonegate:   ["stone","gate"],
+  cornerstone: ["corner","stone"],
+  livingstone: ["living","stone"],
+  lifegate:    ["life","gate"],
+  newlife:     ["new","life"],
+};
 
 /**
  * Abbreviate an organisation name to exactly 3 uppercase letters.
- * See spec Appendix A §4.
+ * See spec Appendix A §A.4.
  */
 export function abbreviateOrg(name) {
   if (!name) return "???";
   const words = name.trim().split(/\s+/);
   const sig = words.filter(w => !SKIP_WORDS.has(w.toLowerCase()));
   if (sig.length === 0) return name.slice(0,3).toUpperCase();
+
+  // §A.4.4 single word → first 3 letters
   if (sig.length === 1) return sig[0].slice(0,3).toUpperCase();
+
   if (sig.length === 2) {
     const [w1, w2] = sig;
-    return (w1[0] + (w1[1] || w1[0]) + w2[0]).toUpperCase();
+    const w1l = w1.toLowerCase();
+
+    // §A.4.2b compound word: first letter of each fused part + first letter of word 2
+    if (COMPOUND_SPLITS[w1l]) {
+      const [p1, p2] = COMPOUND_SPLITS[w1l];
+      return (p1[0] + p2[0] + w2[0]).toUpperCase();
+    }
+
+    // §A.4.2a place name and §A.4.2c plain word both use first 2 chars of w1 + first of w2.
+    // Exception per §A.4.2c: if a more distinctive letter (X, Z, Q) exists after pos 0, prefer it.
+    const afterFirst = w1.slice(1);
+    const distinctive = afterFirst.match(/[xzq]/i);
+    const second = distinctive ? distinctive[0] : (w1[1] || w1[0]);
+    return (w1[0] + second + w2[0]).toUpperCase();
   }
+
+  // §A.4.1 three or more significant words → first letter of first three
   return (sig[0][0] + sig[1][0] + sig[2][0]).toUpperCase();
 }
 
-const DIRECTIONALS = new Set(["west","east","north","south","central","downtown",
-  "northeast","northwest","southeast","southwest"]);
+// Exact two-letter codes for single directional campus words (spec §A.5.1).
+const DIRECTIONAL_CODES = {
+  west: "WE", east: "EA", north: "NO", south: "SO",
+  central: "CE", downtown: "DT",
+  northeast: "NE", northwest: "NW", southeast: "SE", southwest: "SW",
+};
+
+const DIRECTIONALS = new Set(Object.keys(DIRECTIONAL_CODES));
 
 const USPS_STATES = {
   alabama:"AL", alaska:"AK", arizona:"AZ", arkansas:"AR", california:"CA",
@@ -90,23 +148,36 @@ const USPS_STATES = {
 
 /**
  * Abbreviate a campus or sub-org name to exactly 2 uppercase letters.
- * See spec Appendix A §5.
+ * See spec Appendix A §A.5.
  */
 export function abbreviateCampus(name) {
   if (!name) return "";
   const lower = name.trim().toLowerCase();
+
+  // §A.5.2 U.S. states → USPS code
   if (USPS_STATES[lower]) return USPS_STATES[lower];
+
   const words = name.trim().split(/\s+/);
-  if (words.length === 1) return lower.slice(0,2).toUpperCase();
+
+  if (words.length === 1) {
+    // §A.5.1 single directional → exact code (e.g. Downtown → DT, not DO)
+    if (DIRECTIONAL_CODES[lower]) return DIRECTIONAL_CODES[lower];
+    // §A.5.2 / §A.5.5 single place or non-directional → first 2 letters
+    return lower.slice(0,2).toUpperCase();
+  }
+
   if (words.length === 2) {
     const [a, b] = words.map(w => w.toLowerCase());
     const aDir = DIRECTIONALS.has(a), bDir = DIRECTIONALS.has(b);
+    // §A.5.3 place + directional → place initial first, regardless of word order
     if (aDir || bDir) {
       const place = aDir ? b : a, dir = aDir ? a : b;
       return (place[0] + dir[0]).toUpperCase();
     }
+    // §A.5.4 two descriptive words → first letter of each
     return (a[0] + b[0]).toUpperCase();
   }
+
   return lower.slice(0,2).toUpperCase();
 }
 
