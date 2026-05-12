@@ -129,7 +129,7 @@ const T = {
     navTrail:   "#11111105",             // Fill/Contextual/NavItem/Trail  (≈rgba(17,17,17,0.02))
     // Note: Hover and Trail resolve to the same hex now but remain distinct tokens
     // that may diverge again in future. Keep them separate — do not merge.
-    infoSubtle: "#edf0f9",               // Fill/Static/Info/Subtle — divider + nav border-right
+    infoSubtle: "#f6f6f6",               // Stroke/Static/Neutral/Light — divider + nav border-right (was Fill/Static/Info/Subtle #edf0f9, updated 2026-05-12)
   },
   surface: {
     navLight:   "#fafafa",               // Surface/Nav/Light — nav container background
@@ -143,9 +143,10 @@ const T = {
     secondary:  "#7b7b7b",               // Text/Static/Secondary/Light — SectionLabel
   },
   icon: {
-    navBase:    "#484848",               // Icon/Contextual/NavItem/Base — also trail-expanded icon
-    navHover:   "#313131",               // Icon/Contextual/NavItem/Hover
-    navActive:  "#2d4889",               // Icon/Contextual/NavItem/Active — icon + indicator.stripe
+    navBase:          "#484848",               // Icon/Contextual/NavItem/Base — also trail-expanded icon
+    navHover:         "#313131",               // Icon/Contextual/NavItem/Hover
+    navActive:        "#2d4889",               // Icon/Contextual/NavItem/Active — icon + indicator.stripe
+    actionSecondary:  "#6b6b6b",               // Icon/Action/Secondary Inverse/Base — CollapseButton action icon (added 2026-05-12)
   },
   indicator:    "#2d4889",               // indicator.stripe = var(--icon/contextual/navitem/active)
   radius:       8,                       // Component/NavItem/Large/Radius/Radius → 8px
@@ -156,12 +157,12 @@ const T = {
 // named spacing/layout tokens. Recommend adding spacing tokens to the design
 // system for: nav container padding, item row padding, child indent, gap.
 const L = {
-  navPadH:     12,   // SideNav.Container px-[12px]
-  navPadV:     14,   // SideNav.Container py-[14px]
-  navW:        220,  // SideNav expanded width (no token)
-  navWcol:     72,   // SideNav collapsed width — Figma: 72px (12px padding × 2 + 48px item)
-  menuGap:     8,    // SideNavMenu gap-[8px] between items
-  menuPadB:    24,   // SideNavMenu pb-[24px]
+  navPadH:     16,   // SideNav.Container px-[16px] (updated from 12px, 2026-05-12)
+  navPadV:     12,   // SideNav.Container py-[12px] (updated from 14px, 2026-05-12)
+  navW:        240,  // SideNav expanded width (updated from 220px, 2026-05-12)
+  navWcol:     72,   // SideNav collapsed width — Figma: 72px
+  menuGap:     0,    // SideNavMenu gap — items are flush (updated from 8px, 2026-05-12)
+  menuPadB:    56,   // SideNavMenu bottom spacer before CollapseButton (updated from 24px, 2026-05-12)
   itemH:       48,   // Accessibility/Touch Target/Optimal/Size → 48px ✓ HAS TOKEN
   iconWrap:    24,   // Accessibility/Icon Wrapping/Large/Size → 24px ✓ HAS TOKEN
   iconInner:   16,   // Icon.Leading size inside Container.LeadingIcon (no token)
@@ -240,20 +241,18 @@ const IC = {
       <path d="M3 10.5L8 5.5L13 10.5" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   ),
-  // collapse-8b7b2585.svg — circle border + left chevron (collapse = close sidebar)
-  collapse: ({size=18, color}) => (
-    <svg width={size} height={size} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0.25" y="0.25" width="17.5" height="17.5" rx="8.75" stroke={color} strokeWidth="0.5"/>
-      <path fill={color} d="M10.8231 4.91184C10.5881 4.67685 10.2093 4.67685 9.97427 4.91184L5.98891 8.8972C5.80187 9.08424 5.80187 9.38638 5.98891 9.57342L9.97427 13.5588C10.2093 13.7938 10.5881 13.7938 10.8231 13.5588C11.0581 13.3238 11.0581 12.9449 10.8231 12.7099L7.35094 9.23291L10.8279 5.75591C11.0581 5.52571 11.0581 5.14204 10.8231 4.91184Z"/>
+  // right_panel_open — shown when sidebar is EXPANDED; click = collapse
+  // Figma: SideBar Expand/Collapse, Type=Collapse. Token: Icon/Action/Secondary Inverse/Base (#6b6b6b)
+  collapse: ({size=12, color}) => (
+    <svg width={size} height={size} viewBox="0 0 12 12" fill="none">
+      <path d="M5.66667 7.86667V4.13333C5.66667 3.97778 5.6 3.87222 5.46667 3.81667C5.33333 3.76111 5.21111 3.78889 5.1 3.9L3.46667 5.53333C3.33333 5.66667 3.26667 5.82222 3.26667 6C3.26667 6.17778 3.33333 6.33333 3.46667 6.46667L5.1 8.1C5.21111 8.21111 5.33333 8.23889 5.46667 8.18333C5.6 8.12778 5.66667 8.02222 5.66667 7.86667ZM1.33333 12C0.966667 12 0.652778 11.8694 0.391667 11.6083C0.130556 11.3472 0 11.0333 0 10.6667V1.33333C0 0.966667 0.130556 0.652778 0.391667 0.391667C0.652778 0.130556 0.966667 0 1.33333 0H10.6667C11.0333 0 11.3472 0.130556 11.6083 0.391667C11.8694 0.652778 12 0.966667 12 1.33333V10.6667C12 11.0333 11.8694 11.3472 11.6083 11.6083C11.3472 11.8694 11.0333 12 10.6667 12H1.33333ZM8.66667 10.6667H10.6667V1.33333H8.66667V10.6667ZM7.33333 10.6667V1.33333H1.33333V10.6667H7.33333Z" fill={color}/>
     </svg>
   ),
-  // expand — same icon mirrored: right chevron = open sidebar
-  expand: ({size=18, color}) => (
-    <svg width={size} height={size} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0.25" y="0.25" width="17.5" height="17.5" rx="8.75" stroke={color} strokeWidth="0.5"/>
-      <g transform="scale(-1,1) translate(-18,0)">
-        <path fill={color} d="M10.8231 4.91184C10.5881 4.67685 10.2093 4.67685 9.97427 4.91184L5.98891 8.8972C5.80187 9.08424 5.80187 9.38638 5.98891 9.57342L9.97427 13.5588C10.2093 13.7938 10.5881 13.7938 10.8231 13.5588C11.0581 13.3238 11.0581 12.9449 10.8231 12.7099L7.35094 9.23291L10.8279 5.75591C11.0581 5.52571 11.0581 5.14204 10.8231 4.91184Z"/>
-      </g>
+  // left_panel_open — shown when sidebar is COLLAPSED; click = expand
+  // Figma: SideBar Expand/Collapse, Type=Expand. Token: Icon/Action/Secondary Inverse/Base (#6b6b6b)
+  expand: ({size=12, color}) => (
+    <svg width={size} height={size} viewBox="0 0 12 12" fill="none">
+      <path d="M6.33333 4.13333V7.86667C6.33333 8.02222 6.4 8.12778 6.53333 8.18333C6.66667 8.23889 6.78889 8.21111 6.9 8.1L8.53333 6.46667C8.66667 6.33333 8.73333 6.17778 8.73333 6C8.73333 5.82222 8.66667 5.66667 8.53333 5.53333L6.9 3.9C6.78889 3.78889 6.66667 3.76111 6.53333 3.81667C6.4 3.87222 6.33333 3.97778 6.33333 4.13333ZM1.33333 12C0.966667 12 0.652778 11.8694 0.391667 11.6083C0.130556 11.3472 0 11.0333 0 10.6667V1.33333C0 0.966667 0.130556 0.652778 0.391667 0.391667C0.652778 0.130556 0.966667 0 1.33333 0H10.6667C11.0333 0 11.3472 0.130556 11.6083 0.391667C11.8694 0.652778 12 0.966667 12 1.33333V10.6667C12 11.0333 11.8694 11.3472 11.6083 11.6083C11.3472 11.8694 11.0333 12 10.6667 12H1.33333ZM3.33333 10.6667V1.33333H1.33333V10.6667H3.33333ZM4.66667 10.6667H10.6667V1.33333H4.66667V10.6667Z" fill={color}/>
     </svg>
   ),
 };
@@ -270,6 +269,10 @@ function IconImg({ name, size=14, color }) {
   const Ic = IC[name];
   return Ic ? <Ic size={size} color={color} /> : null;
 }
+
+// Convenience wrappers for the CollapseButton action icons
+function RightPanelOpenIcon({ color }) { return <IC.collapse size={12} color={color} />; }
+function LeftPanelOpenIcon({ color })  { return <IC.expand   size={12} color={color} />; }
 
 // ─── NAV DATA — Real Accounting SideNav (Figma node 40004790:47259) ───────────
 // Groupers (have chevron): Applications, View, Modify
@@ -605,14 +608,15 @@ function PopoverRow({ item, onClick, activeId }) {
 }
 
 // ─── COLLAPSE BUTTON ──────────────────────────────────────────────────────────
-// Structure: container.rowStart pl-[12px] pr-[8px] → container.main [icon 24px][label]
-// NO indicator stripe (differs from SideNavItem). NO Container.RowEnd chevron.
+// Redesigned 2026-05-12: Slot.RowStart (4px stripe) + Container.Main (label) +
+// Slot.RowEnd (Action Icon: right_panel_open / left_panel_open 12×12 SVGs).
+// Action icon uses Icon/Action/Secondary Inverse/Base (#6b6b6b) — static, no hover change.
+// NO indicator stripe. NO Container.RowEnd chevron.
 function CollapseButton({ isSidebarCollapsed, onToggle }) {
   const [h, setH] = useState(false);
-  const colIconColor = h ? T.icon.navHover : T.icon.navBase;
   return (
     <div style={{ width:"100%" }}>
-      {/* Divider: h-[1px] bg-Fill/Static/Info/Subtle (#edf0f9) */}
+      {/* Divider: h-[1px] bg-Stroke/Static/Neutral/Light (#f6f6f6) */}
       <div style={{ height:1, backgroundColor:T.fill.infoSubtle, marginBottom:L.collapseGap }} />
       <div onClick={onToggle} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
         aria-label={isSidebarCollapsed ? "Expand navigation" : "Collapse navigation"}
@@ -621,24 +625,29 @@ function CollapseButton({ isSidebarCollapsed, onToggle }) {
         style={{ display:"flex", alignItems:"center", minHeight:L.itemH, width:"100%",
           borderRadius:T.radius, backgroundColor: h ? T.fill.navHover : T.fill.navBase,
           cursor:"pointer", transition:"background-color 0.15s ease", overflow:"hidden" }}>
-        <div style={{ display:"flex", flex:1, alignItems:"center",
-          paddingLeft:L.colPadL, paddingRight:L.colPadR, height:"100%" }}>
-          <div style={{ display:"flex", flex:1, alignItems:"center", minHeight:24 }}>
-            <div style={{ width:L.iconWrap, height:L.iconWrap, display:"flex",
-              alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-              <IconImg name={isSidebarCollapsed ? "expand" : "collapse"} size={18} color={colIconColor} />
-            </div>
-            {/* Always rendered — fades/shrinks out when collapsed so text doesn't
-                pop in before the width transition completes on expand */}
-            <span style={{ paddingLeft:L.textPad, paddingRight:L.textPad,
-              fontFamily:"'Red Hat Text',sans-serif", fontWeight:500, fontSize:14,
-              lineHeight:"20px", letterSpacing:"0.3px", color: h ? T.text.navHover : T.text.navBase,
-              transition:"color 0.15s ease, max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease",
-              maxWidth: isSidebarCollapsed ? 0 : 120,
-              opacity:  isSidebarCollapsed ? 0 : 1,
-              overflow: "hidden", whiteSpace: "nowrap",
-              pointerEvents: isSidebarCollapsed ? "none" : "auto" }}>Collapse</span>
-          </div>
+
+        {/* Slot.RowStart — 4px stripe column (structural, no paint) */}
+        <div style={{ width:L.stripeW, alignSelf:"stretch", flexShrink:0 }} />
+
+        {/* Container.Main — label (fades/shrinks when collapsed) */}
+        <div style={{ flex:1, paddingLeft:L.rowPadH,
+          maxWidth: isSidebarCollapsed ? 0 : 200,
+          opacity:  isSidebarCollapsed ? 0 : 1,
+          overflow:"hidden",
+          transition:"max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease",
+          pointerEvents: isSidebarCollapsed ? "none" : "auto" }}>
+          <span style={{ fontFamily:"'Red Hat Text',sans-serif", fontWeight:500, fontSize:14,
+            lineHeight:"20px", letterSpacing:"0.3px",
+            color: h ? T.text.navHover : T.text.navBase,
+            transition:"color 0.15s ease", whiteSpace:"nowrap" }}>Collapse</span>
+        </div>
+
+        {/* Slot.RowEnd — Action Icon (right_panel_open=collapse / left_panel_open=expand) */}
+        <div style={{ width:40, height:L.iconWrap, display:"flex",
+          alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+          {isSidebarCollapsed
+            ? <LeftPanelOpenIcon color={T.icon.actionSecondary} />
+            : <RightPanelOpenIcon color={T.icon.actionSecondary} />}
         </div>
       </div>
     </div>
@@ -646,10 +655,10 @@ function CollapseButton({ isSidebarCollapsed, onToggle }) {
 }
 
 // ─── SIDENAV CONTAINER ────────────────────────────────────────────────────────
-// Surface/Nav/Light (#fafafa), border-r Fill/Static/Info/Subtle (#edf0f9)
-// Padding: px-[12px] py-[14px] (no semantic tokens — Figma gap)
-// Width: 220px expanded, 72px collapsed — Figma: 72px (12px padding × 2 + 48px item)
-// Border-right: 0.5px (--border-width/xs) solid Fill/Static/Info/Subtle (#edf0f9)
+// Surface/Nav/Light (#fafafa), border-r Stroke/Static/Neutral/Light (#f6f6f6)
+// Padding: px-[16px] py-[12px] (no semantic tokens — Figma gap; updated 2026-05-12)
+// Width: 240px expanded, 72px collapsed (updated from 220px, 2026-05-12)
+// Border-right: 0.5px solid Stroke/Static/Neutral/Light (#f6f6f6)
 //
 // Props:
 //   activeId          — id of the currently active nav item
@@ -694,7 +703,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
       // Surface/Nav/Light
       backgroundColor: T.surface.navLight,
       display:"flex", flexDirection:"column",
-      // Padding: px-[12px] py-[14px] — no spacing tokens in Figma
+      // Padding: px-[16px] py-[12px] — no spacing tokens in Figma (updated 2026-05-12)
       padding:`${L.navPadV}px ${L.navPadH}px`,
       boxSizing:"border-box", flexShrink:0,
       transition:"width 0.36s cubic-bezier(0.4,0,0.2,1)",
@@ -703,7 +712,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
       borderRight:`0.5px solid ${T.fill.infoSubtle}`,
       overflowY:"auto",
     }}>
-      {/* SideNavMenu: gap-[8px] between items, pb-[24px] */}
+      {/* SideNavMenu: gap-[0px] — items flush (updated from 8px, 2026-05-12) */}
       <div style={{ display:"flex", flexDirection:"column", flex:1, gap:L.menuGap }}>
         {NAV.map(item => {
           const hasChildren = !!(item.children && item.children.length);
@@ -722,7 +731,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
 
               {/* Level 1 children — visible only when grouper expanded + sidebar expanded */}
               {hasChildren && isExpanded && !sidebarCollapsed && (
-                <div style={{ display:"flex", flexDirection:"column", gap:L.menuGap, marginTop:2 }}>
+                <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
                   {item.children.map(child => (
                     <SideNavItem key={child.id} item={child}
                       isActive={child.id === activeId} isTrail={false}
@@ -735,8 +744,8 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
           );
         })}
 
-        {/* Spacer pushes collapse button to bottom */}
-        <div style={{ flex:1 }} />
+        {/* Bottom spacer — 56px before collapse button (updated from flex:1 + 24px, 2026-05-12) */}
+        <div style={{ flex:1, minHeight:L.menuPadB }} />
 
         {/* Collapse_Expand_Nav_Container: pt-[4px] gap-[4px].
             Always in DOM; display:none on mobile (<768px) where no 72px rail exists.
@@ -762,7 +771,7 @@ const TOKEN_ROWS = [
   { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Hover",  prim:"—",        value:"#11111105",            role:"Item hover fill (≈rgba 17,17,17 / 2%)" },
   { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Active", prim:"—",        value:"#a0b5e629",            role:"Active + collapsed-trail fill (≈rgba 160,181,230 / 16%)" },
   { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Trail",  prim:"—",        value:"#11111105",            role:"Expanded grouper fill (≈rgba 17,17,17 / 2%) — same hex as Hover, distinct tokens" },
-  { cat:"Fill",    semantic:"Fill/Static/Info/Subtle",        prim:"—",        value:"#edf0f9",              role:"Divider + nav border-right" },
+  { cat:"Fill",    semantic:"Stroke/Static/Neutral/Light",    prim:"—",        value:"#f6f6f6",              role:"Divider + nav border-right (updated 2026-05-12, was Fill/Static/Info/Subtle #edf0f9)" },
   // Text
   { cat:"Text",    semantic:"Text/Contextual/NavItem/Base",   prim:"—",        value:"#313131",              role:"Label default" },
   { cat:"Text",    semantic:"Text/Contextual/NavItem/Hover",  prim:"—",        value:"#252525",              role:"Label hover" },
@@ -771,15 +780,18 @@ const TOKEN_ROWS = [
   { cat:"Icon",    semantic:"Icon/Contextual/NavItem/Base",   prim:"—",        value:"#484848",              role:"Icon default + expanded trail icon" },
   { cat:"Icon",    semantic:"Icon/Contextual/NavItem/Hover",  prim:"—",        value:"#313131",              role:"Icon hover" },
   { cat:"Icon",    semantic:"Icon/Contextual/NavItem/Active", prim:"—",        value:"#2d4889",              role:"Icon active + collapsed-trail + indicator.stripe" },
+  { cat:"Icon",    semantic:"Icon/Action/Secondary Inverse/Base", prim:"—",   value:"#6b6b6b",              role:"CollapseButton action icon (added 2026-05-12)" },
   // Geometry
   { cat:"Radius",  semantic:"Component/NavItem/Large/Radius", prim:"Border/S", value:"8px",                  role:"Item corner radius" },
   // Spacing — no tokens
-  { cat:"⚠ Spacing (no token)", semantic:"Nav container padding H",prim:"—",  value:"12px",                 role:"px-[12px] on SideNav.Container" },
-  { cat:"⚠ Spacing (no token)", semantic:"Nav container padding V",prim:"—",  value:"14px",                 role:"py-[14px] on SideNav.Container" },
-  { cat:"⚠ Spacing (no token)", semantic:"Item gap",              prim:"—",    value:"8px",                  role:"gap-[8px] on SideNavMenu" },
+  { cat:"⚠ Spacing (no token)", semantic:"Nav container padding H",prim:"—",  value:"16px",                 role:"px-[16px] on SideNav.Container (updated 2026-05-12, was 12px)" },
+  { cat:"⚠ Spacing (no token)", semantic:"Nav container padding V",prim:"—",  value:"12px",                 role:"py-[12px] on SideNav.Container (updated 2026-05-12, was 14px)" },
+  { cat:"⚠ Spacing (no token)", semantic:"Item gap",              prim:"—",    value:"0px",                  role:"gap-[0px] on SideNavMenu — items are flush (updated 2026-05-12, was 8px)" },
   { cat:"⚠ Spacing (no token)", semantic:"Row horizontal padding",prim:"—",    value:"8px",                  role:"Container.rowStart px-[8px]" },
   { cat:"⚠ Spacing (no token)", semantic:"Child indent",          prim:"—",    value:"24px",                 role:"container.main pl-[24px] for L1 items" },
   { cat:"⚠ Spacing (no token)", semantic:"Indicator stripe width",prim:"—",    value:"4px",                  role:"indicator.stripe width" },
+  { cat:"⚠ Spacing (no token)", semantic:"Bottom spacer before CollapseButton",prim:"—", value:"56px",       role:"flex-1 min-height before collapse area (updated 2026-05-12, was 24px)" },
+  { cat:"⚠ Spacing (no token)", semantic:"Expanded nav width",    prim:"—",    value:"240px",                role:"SideNav.Container expanded width (updated 2026-05-12, was 220px)" },
   // Tokens that ARE confirmed
   { cat:"✓ Access.", semantic:"Accessibility/Touch Target/Optimal", prim:"—",  value:"48px",                 role:"Item min-height" },
   { cat:"✓ Access.", semantic:"Accessibility/Icon Wrapping/Large",  prim:"—",  value:"24px",                 role:"Container.LeadingIcon size" },
@@ -1095,7 +1107,7 @@ function App() {
   // Even on a 393px phone, 250px leaves a 143px scrim strip to tap outside.
   // Full-width overlays feel like modals and destroy context; 250px is industry
   // standard (Gmail, Slack, WhatsApp all use ~260–320px drawers on phone).
-  const overlayNavW = 220;
+  const overlayNavW = 240;
 
   return (
     <div style={{ display:"flex", flexDirection:"column", height:"100vh",
@@ -1179,11 +1191,11 @@ function App() {
             This simulates the actual app page. The heading + breadcrumb
             update as you navigate the SideNav on the left.
             ════════════════════════════════════════════════════════════════ */}
-        <div style={{ background:"#fafafa", borderBottom:"2px solid #edf0f9" }}>
+        <div style={{ background:"#fafafa", borderBottom:"2px solid #f6f6f6" }}>
 
           {/* App top-bar */}
           <div style={{ height:52, display:"flex", alignItems:"center",
-            borderBottom:"1px solid #edf0f9", padding:"0 32px",
+            borderBottom:"1px solid #f6f6f6", padding:"0 32px",
             background:"#fff", gap:8 }}>
             {/* Breadcrumb */}
             <span style={{ fontSize:12, color:"#c0c0c0", fontFamily:"'Red Hat Text',sans-serif" }}>
@@ -1305,7 +1317,7 @@ function App() {
               padding:"1px 6px", fontFamily:"monospace", fontSize:12, color:"#2a2d3a" };
             const Row = ({ic, children, last}) => (
               <div style={{ display:"flex", gap:12, padding:"10px 0",
-                borderBottom: last ? "none" : "1px solid #edf0f9", alignItems:"flex-start" }}>
+                borderBottom: last ? "none" : "1px solid #f6f6f6", alignItems:"flex-start" }}>
                 {ic}
                 <p style={BODY}>{children}</p>
               </div>
@@ -1447,7 +1459,7 @@ function App() {
                     ].map(([varName, val], i, arr) => (
                       <div key={varName} style={{ display:"flex", alignItems:"baseline",
                         gap:16, padding:"9px 0",
-                        borderBottom: i < arr.length-1 ? "1px solid #edf0f9" : "none",
+                        borderBottom: i < arr.length-1 ? "1px solid #f6f6f6" : "none",
                         flexWrap:"wrap" }}>
                         <code style={{ fontFamily:"monospace", fontSize:12, color:"#2d4889",
                           flexShrink:0 }}>{varName}</code>

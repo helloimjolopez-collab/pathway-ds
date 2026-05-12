@@ -7,7 +7,7 @@ import * as Stories from "./SideNav.stories.jsx";
 
 A persistent vertical navigation panel for Ministry Brands Amplify. Every module gets its own `SideNav` instance — it renders the primary navigation tree and, at all times, communicates where the user is in it. This is module-level navigation, not global app navigation and not action buttons.
 
-SideNav supports **two levels of depth** (Level 0 parents, Level 1 child-destinations), **two sidebar widths** (250 px expanded, 72 px collapsed), and **three responsive modes** (push on desktop, overlay on tablet, hidden-overlay on mobile).
+SideNav supports **two levels of depth** (Level 0 parents, Level 1 child-destinations), **two sidebar widths** (240 px expanded, 72 px collapsed), and **three responsive modes** (push on desktop, overlay on tablet, hidden-overlay on mobile).
 
 ---
 
@@ -19,6 +19,8 @@ SideNav supports **two levels of depth** (Level 0 parents, Level 1 child-destina
 
 Click items to navigate. Use the **Active item** dropdown to set any of the 14 destinations as the current page, then flip **Sidebar collapsed?** to see how the component compresses to its 72 px rail.
 
+> **Updated 2026-05-12 — Figma sync:** Expanded width 220 px → **240 px**, container padding H 12 px → **16 px**, container padding V 14 px → **12 px**, menu item gap 8 px → **0 px**, bottom spacer 24 px → **56 px**. Border/divider token changed from `Fill/Static/Info/Subtle` to `Stroke/Static/Neutral/Light` (`#f6f6f6`). CollapseButton redesigned with new `right_panel_open` / `left_panel_open` Figma action icons in `Icon/Action/Secondary Inverse/Base` (`#6b6b6b`).
+
 ---
 
 ## Anatomy
@@ -26,8 +28,8 @@ Click items to navigate. Use the **Active item** dropdown to set any of the 14 d
 The SideNav is made up of a container, a stack of items, and a collapse control at the bottom. Items can be Level 0 (with an icon) or Level 1 (no icon, indented). Every item has an indicator-stripe column on the left — 4 px wide, structural, always present in the DOM. The stripe only paints when the item is Active or Trail-collapsed.
 
 ```
-SideNav.Container                       250 px expanded · 72 px collapsed
-└── SideNavMenu                         flex column · gap 8 px
+SideNav.Container                       240 px expanded · 72 px collapsed
+└── SideNavMenu                         flex column · gap 0 px (items are flush)
 │   ├── SideNavItem · Level 0           48 px min-height
 │   │   [indicator 4 px][leading icon 24×24][label flex][row-end 40×24 · groupers only]
 │   ├── SideNavItem · Level 0 (grouper expanded)
@@ -108,6 +110,10 @@ The **SectionLabel** (Figma node 40006794-5977) is the header row inside the fly
 
 <Canvas of={Stories.TokensMotion} />
 
+### Radius
+
+<Canvas of={Stories.TokensRadius} />
+
 ---
 
 ## Trail in practice
@@ -122,9 +128,9 @@ Same `activeId` in both panels. Watch what happens to "View" (the grouper whose 
 
 | Viewport | Default state | Expanded behaviour | Can be hidden? |
 |---|---|---|---|
-| ≥ 1024 px · Desktop | Expanded (250 px) | **Push** — content shifts right | No |
-| 768–1023 px · Tablet | Collapsed (72 px) | **Overlay** — 250 px panel floats above content with a scrim | No |
-| < 768 px · Mobile | **Hidden** | **Overlay** — 250 px drawer triggered by TopNav hamburger | Yes |
+| ≥ 1024 px · Desktop | Expanded (240 px) | **Push** — content shifts right | No |
+| 768–1023 px · Tablet | Collapsed (72 px) | **Overlay** — 240 px panel floats above content with a scrim | No |
+| < 768 px · Mobile | **Hidden** | **Overlay** — 240 px drawer triggered by TopNav hamburger | Yes |
 
 The 72 px rail is a desktop-and-tablet pattern. On mobile (< 768 px) the component is fully hidden by default; hover popovers don't apply to touch-only screens, and 72 px would consume ~20% of a 390 px viewport. The TopNav hamburger is the sole toggle there.
 

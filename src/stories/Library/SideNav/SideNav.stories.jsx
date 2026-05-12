@@ -133,7 +133,7 @@ export default {
       description: {
         component:
           "Persistent vertical navigation panel for Ministry Brands Amplify modules. Two levels " +
-          "of depth, two sidebar widths (220 px expanded, 72 px collapsed), three responsive " +
+          "of depth, two sidebar widths (240 px expanded, 72 px collapsed), three responsive " +
           "modes (push / overlay / hidden-overlay). See the full specification for every token, " +
           "state rule, and ARIA attribute.",
       },
@@ -149,7 +149,7 @@ export default {
     collapsed: {
       name: "Sidebar collapsed?",
       control: { type: "boolean" },
-      description: "Toggle between 220 px expanded and 72 px icon-only rail.",
+      description: "Toggle between 240 px expanded and 72 px icon-only rail.",
     },
     hideCollapseButton: {
       name: "Hide the collapse control",
@@ -347,32 +347,34 @@ NavItemExplorer.parameters = {
 
 // ─── Token showcases — each row: token name · swatch · element using it ─────
 const FILL_ROWS = [
-  { token: "Fill/Contextual/NavItem/Base",   value: T.fill.navBase,   hex: "#fafafa" },
-  { token: "Fill/Contextual/NavItem/Hover",  value: T.fill.navHover,  hex: "#11111105" },
-  { token: "Fill/Contextual/NavItem/Active", value: T.fill.navActive, hex: "#a0b5e629" },
-  { token: "Fill/Contextual/NavItem/Trail",  value: T.fill.navTrail,  hex: "#11111105" },
-  { token: "Fill/Static/Info/Subtle",        value: T.fill.infoSubtle, hex: "#edf0f9" },
+  { token: "Fill/Contextual/NavItem/Base",      value: T.fill.navBase,   hex: "#fafafa",   role: "Nav item resting state" },
+  { token: "Fill/Contextual/NavItem/Hover",     value: T.fill.navHover,  hex: "#11111105", role: "Nav item pointer-over (~4% black)" },
+  { token: "Fill/Contextual/NavItem/Active",    value: T.fill.navActive, hex: "#a0b5e629", role: "Active destination + Trail-collapsed" },
+  { token: "Fill/Contextual/NavItem/Trail",     value: T.fill.navTrail,  hex: "#11111105", role: "Trail-expanded grouper (~4% black, distinct from Hover)" },
+  { token: "Stroke/Static/Neutral/Light",       value: T.fill.infoSubtle, hex: "#f6f6f6", role: "Container right border · Popover border · Divider" },
 ];
 const TEXT_ROWS = [
-  { token: "Text/Contextual/NavItem/Base",   value: T.text.navBase,   hex: "#313131" },
-  { token: "Text/Contextual/NavItem/Hover",  value: T.text.navHover,  hex: "#252525" },
-  { token: "Text/Contextual/NavItem/Active", value: T.text.navActive, hex: "#1b2d57" },
+  { token: "Text/Contextual/NavItem/Base",   value: T.text.navBase,   hex: "#313131", role: "Resting label" },
+  { token: "Text/Contextual/NavItem/Hover",  value: T.text.navHover,  hex: "#252525", role: "Hovered label" },
+  { token: "Text/Contextual/NavItem/Active", value: T.text.navActive, hex: "#1b2d57", role: "Active + all trail states (no separate trail-text token)" },
 ];
 const ICON_ROWS = [
-  { token: "Icon/Contextual/NavItem/Base",   value: T.icon.navBase,   hex: "#484848" },
-  { token: "Icon/Contextual/NavItem/Hover",  value: T.icon.navHover,  hex: "#313131" },
-  { token: "Icon/Contextual/NavItem/Active", value: T.icon.navActive, hex: "#2d4889" },
+  { token: "Icon/Contextual/NavItem/Base",           value: T.icon.navBase,          hex: "#484848", role: "Leading icon resting" },
+  { token: "Icon/Contextual/NavItem/Hover",          value: T.icon.navHover,         hex: "#313131", role: "Leading icon hovered" },
+  { token: "Icon/Contextual/NavItem/Active",         value: T.icon.navActive,        hex: "#2d4889", role: "Leading icon active — also indicator stripe" },
+  { token: "Icon/Action/Secondary Inverse/Base",     value: T.icon.actionSecondary,  hex: "#6b6b6b", role: "CollapseButton action icon (right_panel_open / left_panel_open)" },
 ];
 
-function TokenRow({ token, value, hex }) {
+function TokenRow({ token, value, hex, role }) {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "280px 1fr 100px",
-      gap: 16, alignItems: "center", padding: "10px 0",
+    <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
+      gap: 12, alignItems: "center", padding: "10px 0",
       borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text',sans-serif" }}>
       <code style={{ fontSize: 12, color: "#2d4889", fontFamily: "monospace" }}>{token}</code>
-      <div style={{ width: "100%", height: 32, borderRadius: 6,
+      <div style={{ width: 64, height: 28, borderRadius: 6,
         background: value, border: "1px solid rgba(0,0,0,0.07)" }} />
       <code style={{ fontSize: 12, color: "#555", fontFamily: "monospace" }}>{hex}</code>
+      {role && <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>}
     </div>
   );
 }
@@ -380,13 +382,21 @@ function TokenRow({ token, value, hex }) {
 export const TokensFill = () => (
   <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
-      The five fill tokens applied to nav items and container surfaces. Hover and Trail currently resolve to the same hex (#11111105, ≈2% black) but remain distinct tokens — kept separate so future tuning doesn't need to choose.
+      Five fill tokens applied to nav items and container surfaces. Hover and Trail both resolve to <code>#11111105</code> (≈4% black) but are kept as distinct tokens — they've diverged before and can again.
+      The border/divider token changed from <code>Fill/Static/Info/Subtle</code> to <code>Stroke/Static/Neutral/Light</code> (<code>#f6f6f6</code>) in the 2026-05-12 Figma update.
     </p>
+    <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
+      gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4 }}>
+      {["Token", "Swatch", "Hex", "Role"].map(h => (
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+          textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
+      ))}
+    </div>
     {FILL_ROWS.map(r => <TokenRow key={r.token} {...r} />)}
   </div>
 );
 TokensFill.parameters = {
-  docs: { description: { story: "Fill tokens used by nav items and the container border." } },
+  docs: { description: { story: "Fill tokens used by nav items and the container border/divider." } },
 };
 
 export const TokensText = () => (
@@ -394,6 +404,13 @@ export const TokensText = () => (
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
       Three text tokens. Active is also used for <em>every</em> trail state — there is no separate trail-text token.
     </p>
+    <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
+      gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4 }}>
+      {["Token", "Swatch", "Hex", "Role"].map(h => (
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+          textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
+      ))}
+    </div>
     {TEXT_ROWS.map(r => <TokenRow key={r.token} {...r} />)}
   </div>
 );
@@ -401,8 +418,16 @@ export const TokensText = () => (
 export const TokensIcon = () => (
   <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
-      Three icon tokens. The Active token (#2d4889) is also the colour of the indicator stripe.
+      Four icon tokens. The NavItem/Active token (<code>#2d4889</code>) is also the colour of the indicator stripe.
+      The <code>Icon/Action/Secondary Inverse/Base</code> token (<code>#6b6b6b</code>) is new as of 2026-05-12 — it drives the CollapseButton's action icon (right_panel_open / left_panel_open) and does not change on hover.
     </p>
+    <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
+      gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4 }}>
+      {["Token", "Swatch", "Hex", "Role"].map(h => (
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+          textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
+      ))}
+    </div>
     {ICON_ROWS.map(r => <TokenRow key={r.token} {...r} />)}
   </div>
 );
@@ -473,19 +498,20 @@ TokensTypography.parameters = {
 
 // ─── Spacing tokens ─────────────────────────────────────────────────────────
 const SPACING_ROWS = [
-  { name: "Nav container padding H",  value: "12px",  token: "— (no token)",  role: "px-[12px] on SideNav.Container" },
-  { name: "Nav container padding V",  value: "14px",  token: "— (no token)",  role: "py-[14px] on SideNav.Container" },
-  { name: "Item min-height",          value: "48px",  token: "Accessibility/Touch Target/Optimal", role: "WCAG 2.5.5 minimum" },
+  { name: "Nav container padding H",  value: "16px",  token: "— (no token)",  role: "px-[16px] on SideNav.Container (updated from 12px, 2026-05-12)" },
+  { name: "Nav container padding V",  value: "12px",  token: "— (no token)",  role: "py-[12px] on SideNav.Container (updated from 14px, 2026-05-12)" },
+  { name: "Item min-height",          value: "48px",  token: "Accessibility/Touch Target/Optimal", role: "WCAG 2.5.5 minimum — enforced on every item" },
   { name: "Icon wrapper size",        value: "24px",  token: "Accessibility/Icon Wrapping/Large",  role: "Container.LeadingIcon" },
   { name: "Leading-icon glyph",       value: "16px",  token: "— (no token)",  role: "Icon.Leading inside wrapper" },
-  { name: "Item gap",                 value: "8px",   token: "— (no token)",  role: "gap-[8px] on SideNavMenu" },
+  { name: "SideNavMenu item gap",     value: "0px",   token: "— (no token)",  role: "gap-[0px] on SideNavMenu (updated from 8px — items flush, spacing from padding)" },
+  { name: "Bottom spacer (menuPadB)", value: "56px",  token: "— (no token)",  role: "Space before CollapseButton (updated from 24px, 2026-05-12)" },
   { name: "Row horizontal padding",   value: "8px",   token: "— (no token)",  role: "Container.rowStart px-[8px]" },
   { name: "Label text padding",       value: "6px",   token: "— (no token)",  role: "text.label px-[6px]" },
   { name: "Level 1 indent",           value: "32px",  token: "— (no token)",  role: "rowStart 8px + container.main 24px" },
-  { name: "Indicator stripe width",   value: "4px",   token: "— (no token)",  role: "indicator.stripe always in DOM" },
-  { name: "SectionLabel padding L",   value: "12px",  token: "Padding/Tight", role: "CollapsedPopover section header" },
+  { name: "Indicator stripe width",   value: "4px",   token: "— (no token)",  role: "indicator.stripe — always in DOM, structural" },
+  { name: "SectionLabel padding L",   value: "12px",  token: "Padding/Tight",  role: "CollapsedPopover section header" },
   { name: "SectionLabel padding V",   value: "8px",   token: "Padding/XTight", role: "CollapsedPopover section header" },
-  { name: "Expanded sidebar width",   value: "220px", token: "— (no token)",  role: "SideNav.Container expanded" },
+  { name: "Expanded sidebar width",   value: "240px", token: "— (no token)",  role: "SideNav.Container expanded (updated from 220px, 2026-05-12)" },
   { name: "Collapsed sidebar width",  value: "72px",  token: "— (no token)",  role: "SideNav.Container collapsed rail" },
 ];
 
@@ -563,6 +589,56 @@ export const TokensMotion = () => (
 );
 TokensMotion.parameters = {
   docs: { description: { story: "Motion durations for all animated parts of the SideNav. Blue = approved contextual override above system standard." } },
+};
+
+// ─── Radius tokens ──────────────────────────────────────────────────────────
+const RADIUS_ROWS = [
+  { name: "Nav item",           value: "8px",  token: "Radius/M",             role: "SideNavItem.Container border-radius" },
+  { name: "Indicator stripe",   value: "8px",  token: "Radius/M",             role: "indicator.stripe border-radius (0 top-left, 8px top-right, 8px bottom-right, 0 bottom-left)" },
+  { name: "CollapseButton",     value: "8px",  token: "Radius/M",             role: "CollapseButton row border-radius" },
+  { name: "PopoverRow item",    value: "8px",  token: "Radius/M",             role: "PopoverRow within CollapsedPopover" },
+  { name: "CollapsedPopover",   value: "8px",  token: "Radius/M",             role: "CollapsedPopover panel border-radius" },
+  { name: "SideNavTooltip",     value: "8px",  token: "Radius/M",             role: "Destination tooltip border-radius" },
+  { name: "SideNav.Container",  value: "0px",  token: "— (no token)",         role: "Panel itself has no radius — flush with viewport/module edges" },
+];
+
+function RadiusRow({ name, value, token, role }) {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "180px 60px 200px 1fr",
+      gap: 12, alignItems: "center", padding: "8px 0",
+      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text',sans-serif" }}>
+      <span style={{ fontSize: 12, color: "#313131" }}>{name}</span>
+      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+        <div style={{ width: 28, height: 28, border: "1.5px solid #2d4889",
+          borderRadius: parseInt(value) || 0, background: "rgba(160,181,230,0.12)" }} />
+        <code style={{ fontSize: 12, fontWeight: 600, color: "#2d4889", fontFamily: "monospace" }}>{value}</code>
+      </div>
+      <code style={{ fontSize: 11, color: token.startsWith("—") ? "#bbb" : "#2d4889",
+        fontFamily: "monospace" }}>{token}</code>
+      <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>
+    </div>
+  );
+}
+
+export const TokensRadius = () => (
+  <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
+    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
+      Radius values used across all SideNav surfaces. All interactive elements use{" "}
+      <code style={{ fontSize: 12 }}>Radius/M</code> (8px). The container panel itself has no radius
+      — it is flush with the module layout edge.
+    </p>
+    <div style={{ display: "grid", gridTemplateColumns: "180px 60px 200px 1fr",
+      gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4 }}>
+      {["Element", "Value", "Token", "Role"].map(h => (
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+          textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
+      ))}
+    </div>
+    {RADIUS_ROWS.map(r => <RadiusRow key={r.name} {...r} />)}
+  </div>
+);
+TokensRadius.parameters = {
+  docs: { description: { story: "Border-radius values for all SideNav surfaces. Everything interactive is Radius/M (8px); the panel itself is flush." } },
 };
 
 // ─── Section Label showcase ─────────────────────────────────────────────────
