@@ -19,45 +19,47 @@ import ReactDOM from "react-dom";
 // those tokens are restored in Figma.
 export const T = {
   fill: {
-    navBase:    "#fafafa",
-    navHover:   "#1111110a",
-    navActive:  "#3555a014",
-    navTrail:   "#11111105",
-    infoSubtle: "#edf0f9",
+    navBase:    "#fafafa",   // Fill/Contextual/NavItem/Base
+    navHover:   "#11111105", // Fill/Contextual/NavItem/Hover  (~4% black)
+    navActive:  "#a0b5e629", // Fill/Contextual/NavItem/Active (~16% brand blue)
+    navTrail:   "#11111105", // Fill/Contextual/NavItem/Trail  (~4% black, same hex as Hover — kept distinct)
+    infoSubtle: "#f6f6f6",   // Stroke/Static/Neutral/Light — container right border
   },
-  surface: { navLight: "#fafafa" },
+  surface: { navLight: "#fafafa" }, // Surface/Nav/Light
   text: {
-    navBase:   "#363636",
-    navHover:  "#252525",
-    navActive: "#051428",
+    navBase:      "#313131", // Text/Contextual/NavItem/Base
+    navHover:     "#252525", // Text/Contextual/NavItem/Hover
+    navActive:    "#1b2d57", // Text/Contextual/NavItem/Active
+    secondary:    "#7b7b7b", // Text/Static/Secondary/Light — SectionLabel
   },
   icon: {
-    navBase:   "#4b4b4b",
-    navHover:  "#363636",
-    navActive: "#3555a0",
+    navBase:          "#484848", // Icon/Contextual/NavItem/Base
+    navHover:         "#313131", // Icon/Contextual/NavItem/Hover
+    navActive:        "#2d4889", // Icon/Contextual/NavItem/Active — also indicator stripe
+    actionSecondary:  "#6b6b6b", // Icon/Action/Secondary Inverse/Base — CollapseButton icon
   },
-  indicator: "#3555a0",
-  radius:    8,
+  indicator: "#2d4889", // Icon/Contextual/NavItem/Active — indicator stripe colour
+  radius:    8,         // Radius/M
 };
 
 // ─── LAYOUT VALUES (no semantic tokens in Figma — raw values) ─────────────────
 export const L = {
-  navPadH:     12,
-  navPadV:     14,
-  navW:        250,
-  navWcol:     72,
-  menuGap:     8,
-  menuPadB:    24,
-  itemH:       48,
-  iconWrap:    24,
-  iconInner:   14,
-  rowPadH:     8,
-  textPad:     6,
-  childIndent: 24,
-  stripeW:     4,
-  colPadL:     12,
-  colPadR:     8,
-  collapseGap: 4,
+  navPadH:     16,   // horizontal padding on SideNav.Container (updated from 12)
+  navPadV:     12,   // vertical padding on SideNav.Container (updated from 14)
+  navW:        240,  // expanded sidebar width (updated from 220px)
+  navWcol:     72,   // collapsed rail width
+  menuGap:     0,    // gap between SideNavMenu items (updated from 8px — items are flush)
+  menuPadB:    56,   // bottom padding in SideNavMenu (space before collapse button, updated from 24)
+  itemH:       48,   // min-height per item (Accessibility/Touch Target/Optimal)
+  iconWrap:    24,   // leading icon wrapper (Accessibility/Icon Wrapping/Large)
+  iconInner:   16,   // icon glyph size inside wrapper
+  rowPadH:     8,    // horizontal padding in Container.rowStart
+  textPad:     6,    // label text padding
+  childIndent: 24,   // level-1 left indent inside rowStart 8px
+  stripeW:     4,    // indicator stripe width
+  colPadL:     12,   // collapse button left padding (Padding/Tight)
+  colPadR:     8,    // collapse button right padding (Padding/XTight)
+  collapseGap: 4,    // gap above collapse button divider
 };
 
 // ─── IndicatorStripe ──────────────────────────────────────────────────────────
@@ -153,7 +155,7 @@ export function SideNavItem({
           pointerEvents: isSidebarCollapsed ? "none" : "auto",
           transition: "max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease" }}>
           <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500,
-            fontSize: 16, lineHeight: "22px", color: textColor, margin: 0,
+            fontSize: 14, lineHeight: "20px", letterSpacing: "0.3px", color: textColor, margin: 0,
             whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
             transition: "color 0.15s ease" }}>
             {item.label}
@@ -198,7 +200,7 @@ export function SideNavItem({
 
       {/* Collapsed destination → tooltip */}
       {isSidebarCollapsed && !hasChildren && popoverOpen && anchorRect &&
-        <CollapsedTooltip label={item.label} anchorRect={anchorRect}
+        <SideNavTooltip label={item.label} anchorRect={anchorRect}
           onMouseEnter={() => {
             const rect = itemRef.current ? itemRef.current.getBoundingClientRect() : anchorRect;
             onPopoverEnter && onPopoverEnter(item.id, rect);
@@ -209,8 +211,8 @@ export function SideNavItem({
   );
 }
 
-// ─── CollapsedTooltip ─────────────────────────────────────────────────────────
-export function CollapsedTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }) {
+// ─── SideNavTooltip ─────────────────────────────────────────────────────────
+export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }) {
   if (!anchorRect) return null;
   return ReactDOM.createPortal(
     <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
@@ -223,11 +225,30 @@ export function CollapsedTooltip({ label, anchorRect, onMouseEnter, onMouseLeave
         padding: "6px 8px", whiteSpace: "nowrap", pointerEvents: "auto",
         animation: "popoverInCentered 150ms cubic-bezier(0,0,0.2,1) forwards" }}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
-        fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px", color: "#252525" }}>
+        fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px", color: "#202020" }}>
         {label}
       </span>
     </div>,
     document.body
+  );
+}
+
+// ─── SectionLabel ─────────────────────────────────────────────────────────────
+// Figma node 40006794-5977 — building block used in CollapsedPopover headers.
+// Tokens: Text/Static/Secondary/Light (#7b7b7b), Label/Section/Small/Semibold
+//         (11px / 600 / 16px / 0.6px letter-spacing, uppercase)
+// Padding: Padding/Tight (12px left), Padding/XTight (8px vertical)
+export function SectionLabel({ label }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", width: "100%",
+      paddingLeft: 12, paddingTop: 8, paddingBottom: 8 }}>
+      <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 600,
+        fontSize: 11, lineHeight: "16px", letterSpacing: "0.6px",
+        color: T.text.secondary, textTransform: "uppercase",
+        whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+        {label}
+      </span>
+    </div>
   );
 }
 
@@ -242,16 +263,9 @@ export function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMo
         boxShadow: "2px 2px 8px 4px rgba(0,0,0,0.03)",
         padding: 6, minWidth: 200, pointerEvents: "auto",
         animation: "popoverIn 150ms cubic-bezier(0,0,0.2,1) forwards" }}>
-      {/* Section label */}
-      <div style={{ display: "flex", alignItems: "center", minHeight: 40,
-        paddingRight: 12, borderBottom: "0.5px solid #ededed" }}>
-        <div style={{ width: 4, alignSelf: "stretch", borderRadius: "0 8px 8px 0",
-          backgroundColor: "transparent", flexShrink: 0 }} />
-        <span style={{ paddingLeft: 8, fontFamily: "'Red Hat Text',sans-serif",
-          fontWeight: 400, fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px",
-          color: "#6b6b6b", whiteSpace: "nowrap" }}>
-          {item.label}
-        </span>
+      {/* Section label — Figma component 40006794-5977 */}
+      <div style={{ borderBottom: "0.5px solid #ededed" }}>
+        <SectionLabel label={item.label} />
       </div>
       {item.children.map(child =>
         <PopoverRow key={child.id} item={child} onClick={onClick} activeId={activeId} />
@@ -286,9 +300,13 @@ export function PopoverRow({ item, onClick, activeId }) {
 }
 
 // ─── CollapseButton ───────────────────────────────────────────────────────────
+// Redesigned in Figma (2026-05-12): now uses Slot.RowStart (Module.Mark icon)
+// + Slot.RowEnd (Action Icon). The action icon uses Icon/Action/Secondary Inverse/Base
+// (#6b6b6b) — different from nav item icons. SVG assets fetched from Figma directly.
 export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, expandIcon }) {
   const [h, setH] = useState(false);
-  const colIconColor = h ? T.icon.navHover : T.icon.navBase;
+  const labelColor = h ? T.text.navHover : T.text.navBase;
+  const actionIconColor = T.icon.actionSecondary; // #6b6b6b — always static, no hover change
   return (
     <div style={{ width: "100%" }}>
       <div style={{ height: 1, backgroundColor: T.fill.infoSubtle, marginBottom: L.collapseGap }} />
@@ -299,28 +317,36 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
         style={{ display: "flex", alignItems: "center", minHeight: L.itemH, width: "100%",
           borderRadius: T.radius, backgroundColor: h ? T.fill.navHover : T.fill.navBase,
           cursor: "pointer", transition: "background-color 0.15s ease", overflow: "hidden" }}>
-        <div style={{ display: "flex", flex: 1, alignItems: "center",
-          paddingLeft: L.colPadL, paddingRight: L.colPadR, height: "100%" }}>
-          <div style={{ display: "flex", flex: 1, alignItems: "center", minHeight: 24 }}>
-            <div style={{ width: L.iconWrap, height: L.iconWrap, display: "flex",
-              alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-              {isSidebarCollapsed
-                ? (expandIcon ? expandIcon({ size: 18, color: colIconColor })
-                    : <ExpandIcon size={18} color={colIconColor} />)
-                : (collapseIcon ? collapseIcon({ size: 18, color: colIconColor })
-                    : <CollapseIcon size={18} color={colIconColor} />)}
-            </div>
-            <span style={{ paddingLeft: L.textPad, paddingRight: L.textPad,
-              fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500, fontSize: 16,
-              lineHeight: "22px", color: h ? T.text.navHover : T.text.navBase,
-              transition: "color 0.15s ease, max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease",
-              maxWidth: isSidebarCollapsed ? 0 : 120,
-              opacity: isSidebarCollapsed ? 0 : 1,
-              overflow: "hidden", whiteSpace: "nowrap",
-              pointerEvents: isSidebarCollapsed ? "none" : "auto" }}>
-              Collapse
-            </span>
-          </div>
+
+        {/* Slot.RowStart — 4px stripe column (structural, always present) */}
+        <div style={{ width: L.stripeW, alignSelf: "stretch", flexShrink: 0 }} />
+
+        {/* Container.Main — label (hidden when collapsed) */}
+        <div style={{ flex: 1, paddingLeft: L.rowPadH,
+          maxWidth: isSidebarCollapsed ? 0 : 200,
+          opacity: isSidebarCollapsed ? 0 : 1,
+          overflow: "hidden",
+          transition: "max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease",
+          pointerEvents: isSidebarCollapsed ? "none" : "auto" }}>
+          <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500, fontSize: 14,
+            lineHeight: "20px", letterSpacing: "0.3px", color: labelColor,
+            transition: "color 0.15s ease", whiteSpace: "nowrap" }}>
+            Collapse
+          </span>
+        </div>
+
+        {/* Slot.RowEnd — Action Icon (right_panel_open / left_panel_open from Figma) */}
+        <div style={{ width: 40, height: L.iconWrap, display: "flex",
+          alignItems: "center", justifyContent: "center", flexShrink: 0,
+          marginLeft: isSidebarCollapsed ? "auto" : 0,
+          paddingLeft: isSidebarCollapsed ? 0 : 0 }}>
+          {isSidebarCollapsed
+            ? (expandIcon
+                ? expandIcon({ size: 12, color: actionIconColor })
+                : <LeftPanelOpenIcon color={actionIconColor} />)
+            : (collapseIcon
+                ? collapseIcon({ size: 12, color: actionIconColor })
+                : <RightPanelOpenIcon color={actionIconColor} />)}
         </div>
       </div>
     </div>
@@ -373,6 +399,7 @@ export function SideNav({
       borderRight: `0.5px solid ${T.fill.infoSubtle}`,
       overflowY: "auto",
     }}>
+      {/* SideNavMenu — gap 0px (items are flush; spacing comes from item padding) */}
       <div style={{ display: "flex", flexDirection: "column", flex: 1, gap: L.menuGap }}>
         {items.map(item => {
           const hasChildren = !!(item.children && item.children.length);
@@ -389,7 +416,7 @@ export function SideNav({
                 onPopoverEnter={onPopoverEnter} onPopoverLeave={onPopoverLeave}
                 activeId={activeId} />
               {hasChildren && isExp && !collapsed && (
-                <div style={{ display: "flex", flexDirection: "column", gap: L.menuGap, marginTop: 2 }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
                   {item.children.map(child => (
                     <SideNavItem key={child.id} item={child}
                       isActive={child.id === activeId} isTrail={false}
@@ -401,7 +428,8 @@ export function SideNav({
             </div>
           );
         })}
-        <div style={{ flex: 1 }} />
+        {/* Bottom spacer — L.menuPadB (56px) before collapse button */}
+        <div style={{ flex: 1, minHeight: L.menuPadB }} />
         <div style={{ paddingTop: L.collapseGap, display: hideCollapseButton ? "none" : "block" }}>
           <CollapseButton isSidebarCollapsed={collapsed}
             onToggle={() => onCollapseChange && onCollapseChange(!collapsed)} />
@@ -411,7 +439,7 @@ export function SideNav({
   );
 }
 
-// ─── Built-in chevron/collapse icons (defaults when consumers don't inject) ───
+// ─── Built-in chevron icons ───────────────────────────────────────────────────
 function ChevDown({ size = 10, color }) {
   return (
     <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
@@ -426,21 +454,26 @@ function ChevUp({ size = 10, color }) {
     </svg>
   );
 }
-function CollapseIcon({ size = 18, color }) {
+
+// ─── Collapse / Expand action icons (fetched from Figma 2026-05-12) ──────────
+// right_panel_open — used on the collapse button when sidebar is EXPANDED (click to collapse)
+// Token: Icon/Action/Secondary Inverse/Base (#6b6b6b)
+// Figma component: SideBar Expand/Collapse, Type=Collapse, node 40006793:3783
+function RightPanelOpenIcon({ size = 12, color = T.icon.actionSecondary }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0.25" y="0.25" width="17.5" height="17.5" rx="8.75" stroke={color} strokeWidth="0.5" />
-      <path fill={color} d="M10.8231 4.91184C10.5881 4.67685 10.2093 4.67685 9.97427 4.91184L5.98891 8.8972C5.80187 9.08424 5.80187 9.38638 5.98891 9.57342L9.97427 13.5588C10.2093 13.7938 10.5881 13.7938 10.8231 13.5588C11.0581 13.3238 11.0581 12.9449 10.8231 12.7099L7.35094 9.23291L10.8279 5.75591C11.0581 5.52571 11.0581 5.14204 10.8231 4.91184Z" />
+    <svg width={size} height={size} viewBox="0 0 12 12" fill="none">
+      <path d="M5.66667 7.86667V4.13333C5.66667 3.97778 5.6 3.87222 5.46667 3.81667C5.33333 3.76111 5.21111 3.78889 5.1 3.9L3.46667 5.53333C3.33333 5.66667 3.26667 5.82222 3.26667 6C3.26667 6.17778 3.33333 6.33333 3.46667 6.46667L5.1 8.1C5.21111 8.21111 5.33333 8.23889 5.46667 8.18333C5.6 8.12778 5.66667 8.02222 5.66667 7.86667ZM1.33333 12C0.966667 12 0.652778 11.8694 0.391667 11.6083C0.130556 11.3472 0 11.0333 0 10.6667V1.33333C0 0.966667 0.130556 0.652778 0.391667 0.391667C0.652778 0.130556 0.966667 0 1.33333 0H10.6667C11.0333 0 11.3472 0.130556 11.6083 0.391667C11.8694 0.652778 12 0.966667 12 1.33333V10.6667C12 11.0333 11.8694 11.3472 11.6083 11.6083C11.3472 11.8694 11.0333 12 10.6667 12H1.33333ZM8.66667 10.6667H10.6667V1.33333H8.66667V10.6667ZM7.33333 10.6667V1.33333H1.33333V10.6667H7.33333Z" fill={color} />
     </svg>
   );
 }
-function ExpandIcon({ size = 18, color }) {
+
+// left_panel_open — used on the collapse button when sidebar is COLLAPSED (click to expand)
+// Token: Icon/Action/Secondary Inverse/Base (#6b6b6b)
+// Figma component: SideBar Expand/Collapse, Type=Expand, node 40006793:3783
+function LeftPanelOpenIcon({ size = 12, color = T.icon.actionSecondary }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0.25" y="0.25" width="17.5" height="17.5" rx="8.75" stroke={color} strokeWidth="0.5" />
-      <g transform="scale(-1,1) translate(-18,0)">
-        <path fill={color} d="M10.8231 4.91184C10.5881 4.67685 10.2093 4.67685 9.97427 4.91184L5.98891 8.8972C5.80187 9.08424 5.80187 9.38638 5.98891 9.57342L9.97427 13.5588C10.2093 13.7938 10.5881 13.7938 10.8231 13.5588C11.0581 13.3238 11.0581 12.9449 10.8231 12.7099L7.35094 9.23291L10.8279 5.75591C11.0581 5.52571 11.0581 5.14204 10.8231 4.91184Z" />
-      </g>
+    <svg width={size} height={size} viewBox="0 0 12 12" fill="none">
+      <path d="M6.33333 4.13333V7.86667C6.33333 8.02222 6.4 8.12778 6.53333 8.18333C6.66667 8.23889 6.78889 8.21111 6.9 8.1L8.53333 6.46667C8.66667 6.33333 8.73333 6.17778 8.73333 6C8.73333 5.82222 8.66667 5.66667 8.53333 5.53333L6.9 3.9C6.78889 3.78889 6.66667 3.76111 6.53333 3.81667C6.4 3.87222 6.33333 3.97778 6.33333 4.13333ZM1.33333 12C0.966667 12 0.652778 11.8694 0.391667 11.6083C0.130556 11.3472 0 11.0333 0 10.6667V1.33333C0 0.966667 0.130556 0.652778 0.391667 0.391667C0.652778 0.130556 0.966667 0 1.33333 0H10.6667C11.0333 0 11.3472 0.130556 11.6083 0.391667C11.8694 0.652778 12 0.966667 12 1.33333V10.6667C12 11.0333 11.8694 11.3472 11.6083 11.6083C11.3472 11.8694 11.0333 12 10.6667 12H1.33333ZM3.33333 10.6667V1.33333H1.33333V10.6667H3.33333ZM4.66667 10.6667H10.6667V1.33333H4.66667V10.6667Z" fill={color} />
     </svg>
   );
 }
