@@ -15,7 +15,7 @@
  *   StandaloneDemo   — iframe to the full responsive HTML demo
  */
 import React, { useState } from "react";
-import { SideNav, SideNavItem, IndicatorStripe, T, L } from "../../../../components/sidenav/sidenav.jsx";
+import { SideNav, SideNavItem, SectionLabel, IndicatorStripe, T, L } from "../../../../components/sidenav/sidenav.jsx";
 import { NAV_ITEMS, ALL_ITEM_IDS } from "./sidenavDemoData.jsx";
 
 // ─── Popover-animation keyframes (once per document) ────────────────────────
@@ -225,7 +225,7 @@ export const StateMatrix = () => {
           </div>
           <div style={{ flex: 1, paddingLeft: L.textPad, paddingRight: L.rowPadH, overflow: "hidden" }}>
             <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500, fontSize: 14,
-              lineHeight: "20px", color: T.text.navHover, margin: 0, whiteSpace: "nowrap" }}>
+              lineHeight: "20px", letterSpacing: "0.3px", color: T.text.navHover, margin: 0, whiteSpace: "nowrap" }}>
               {sampleDest.label}
             </p>
           </div>
@@ -406,6 +406,218 @@ export const TokensIcon = () => (
     {ICON_ROWS.map(r => <TokenRow key={r.token} {...r} />)}
   </div>
 );
+
+// ─── Typography tokens ──────────────────────────────────────────────────────
+const TYPOGRAPHY_ROWS = [
+  {
+    token: "Label/Menu/Base/Medium",
+    role: "Nav item label — Level 0 and Level 1",
+    value: "14px / 500 / 20px / 0.3px",
+    sample: (
+      <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500,
+        fontSize: 14, lineHeight: "20px", letterSpacing: "0.3px", color: T.text.navBase }}>
+        Balance Sheet
+      </span>
+    ),
+  },
+  {
+    token: "Label/Section/Small/Semibold",
+    role: "SectionLabel — CollapsedPopover group header",
+    value: "11px / 600 / 16px / 0.6px · uppercase",
+    sample: <SectionLabel label="Planning" />,
+  },
+  {
+    token: "Text/Body/S/Regular (Tooltip)",
+    role: "SideNavTooltip label text",
+    value: "14px / 400 / 20px / 0.02px",
+    sample: (
+      <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
+        fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px", color: "#202020" }}>
+        Reports
+      </span>
+    ),
+  },
+];
+
+function TypographyRow({ token, role, value, sample }) {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "240px 1fr 160px",
+      gap: 16, alignItems: "center", padding: "12px 0",
+      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text',sans-serif" }}>
+      <div>
+        <code style={{ fontSize: 12, color: "#2d4889", fontFamily: "monospace", display: "block" }}>{token}</code>
+        <span style={{ fontSize: 11, color: "#8890b0", marginTop: 2, display: "block" }}>{role}</span>
+      </div>
+      <div style={{ padding: "4px 8px", background: T.surface.navLight,
+        border: `0.5px solid ${T.fill.infoSubtle}`, borderRadius: 6 }}>
+        {sample}
+      </div>
+      <code style={{ fontSize: 11, color: "#555", fontFamily: "monospace" }}>{value}</code>
+    </div>
+  );
+}
+
+export const TokensTypography = () => (
+  <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
+    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
+      Three type styles used by the SideNav. All use Red Hat Text. Nav item labels apply
+      {" "}<code>Label/Menu/Base/Medium</code> at every level — Level 1 hierarchy comes from
+      the indent, not a smaller font.
+    </p>
+    {TYPOGRAPHY_ROWS.map(r => <TypographyRow key={r.token} {...r} />)}
+  </div>
+);
+TokensTypography.parameters = {
+  docs: { description: { story: "Typography tokens applied across all SideNav text elements." } },
+};
+
+// ─── Spacing tokens ─────────────────────────────────────────────────────────
+const SPACING_ROWS = [
+  { name: "Nav container padding H",  value: "12px",  token: "— (no token)",  role: "px-[12px] on SideNav.Container" },
+  { name: "Nav container padding V",  value: "14px",  token: "— (no token)",  role: "py-[14px] on SideNav.Container" },
+  { name: "Item min-height",          value: "48px",  token: "Accessibility/Touch Target/Optimal", role: "WCAG 2.5.5 minimum" },
+  { name: "Icon wrapper size",        value: "24px",  token: "Accessibility/Icon Wrapping/Large",  role: "Container.LeadingIcon" },
+  { name: "Leading-icon glyph",       value: "16px",  token: "— (no token)",  role: "Icon.Leading inside wrapper" },
+  { name: "Item gap",                 value: "8px",   token: "— (no token)",  role: "gap-[8px] on SideNavMenu" },
+  { name: "Row horizontal padding",   value: "8px",   token: "— (no token)",  role: "Container.rowStart px-[8px]" },
+  { name: "Label text padding",       value: "6px",   token: "— (no token)",  role: "text.label px-[6px]" },
+  { name: "Level 1 indent",           value: "32px",  token: "— (no token)",  role: "rowStart 8px + container.main 24px" },
+  { name: "Indicator stripe width",   value: "4px",   token: "— (no token)",  role: "indicator.stripe always in DOM" },
+  { name: "SectionLabel padding L",   value: "12px",  token: "Padding/Tight", role: "CollapsedPopover section header" },
+  { name: "SectionLabel padding V",   value: "8px",   token: "Padding/XTight", role: "CollapsedPopover section header" },
+  { name: "Expanded sidebar width",   value: "220px", token: "— (no token)",  role: "SideNav.Container expanded" },
+  { name: "Collapsed sidebar width",  value: "72px",  token: "— (no token)",  role: "SideNav.Container collapsed rail" },
+];
+
+function SpacingRow({ name, value, token, role }) {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "200px 60px 260px 1fr",
+      gap: 12, alignItems: "center", padding: "8px 0",
+      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text',sans-serif" }}>
+      <span style={{ fontSize: 12, color: "#313131" }}>{name}</span>
+      <code style={{ fontSize: 12, fontWeight: 600, color: "#2d4889", fontFamily: "monospace" }}>{value}</code>
+      <code style={{ fontSize: 11, color: token.startsWith("—") ? "#c00" : "#2d4889",
+        fontFamily: "monospace" }}>{token}</code>
+      <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>
+    </div>
+  );
+}
+
+export const TokensSpacing = () => (
+  <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
+    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
+      Spacing and layout values. Most are raw px — no spacing token family exists yet in the
+      Pathway token file (tracked as a MEDIUM-priority gap). Red token names = no token; black = real token.
+    </p>
+    {SPACING_ROWS.map(r => <SpacingRow key={r.name} {...r} />)}
+  </div>
+);
+TokensSpacing.parameters = {
+  docs: { description: { story: "Spacing and layout values used by the SideNav. Most are raw px — spacing tokens are a pending gap." } },
+};
+
+// ─── Motion tokens ──────────────────────────────────────────────────────────
+const MOTION_ROWS = [
+  { name: "Panel width",         duration: "360ms", standard: "short (300ms)", curve: "cubic-bezier(0.4,0,0.2,1)", token: "Motion/SideNav/Panel/Width",       rationale: "Full-panel width; 300ms reads abrupt" },
+  { name: "Label fade",          duration: "180ms", standard: "instant (150ms)", curve: "ease",                     token: "Motion/SideNav/Label/Fade",       rationale: "Labels begin fading before panel finishes" },
+  { name: "Overlay enter",       duration: "380ms", standard: "short (300ms)",   curve: "cubic-bezier(0,0,0.2,1)", token: "Motion/SideNav/Overlay/Enter",    rationale: "Full-height panel gliding in; 300ms feels mechanical" },
+  { name: "Overlay exit",        duration: "300ms", standard: "short (300ms)",   curve: "cubic-bezier(0.4,0,0.6,1)", token: "Motion/SideNav/Overlay/Exit",  rationale: "Matches standard — exits are snappier by design" },
+  { name: "Item colour/fill",    duration: "150ms", standard: "instant (150ms)", curve: "ease",                     token: "— (standard)",                  rationale: "Hover/active fill and colour transitions" },
+  { name: "Popover enter",       duration: "150ms", standard: "instant (150ms)", curve: "cubic-bezier(0,0,0.2,1)", token: "— (standard)",                  rationale: "Tooltip and flyout popover appear" },
+  { name: "Scrim",               duration: "280ms", standard: "short (300ms)",   curve: "cubic-bezier(0.4,0,0.2,1)", token: "— (standard ~)",              rationale: "Overlay scrim fade" },
+];
+
+function MotionRow({ name, duration, standard, curve, token, rationale }) {
+  const isOverride = !token.startsWith("—");
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "160px 70px 130px 260px 1fr",
+      gap: 12, alignItems: "center", padding: "8px 0",
+      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text',sans-serif" }}>
+      <span style={{ fontSize: 12, color: "#313131", fontWeight: isOverride ? 600 : 400 }}>{name}</span>
+      <code style={{ fontSize: 12, fontWeight: 600,
+        color: isOverride ? "#2d4889" : "#555", fontFamily: "monospace" }}>{duration}</code>
+      <span style={{ fontSize: 11, color: "#8890b0" }}>{standard}</span>
+      <code style={{ fontSize: 11, color: isOverride ? "#2d4889" : "#999", fontFamily: "monospace" }}>{token}</code>
+      <span style={{ fontSize: 11, color: "#8890b0" }}>{rationale}</span>
+    </div>
+  );
+}
+
+export const TokensMotion = () => (
+  <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
+    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
+      Motion durations for the SideNav. Bold blue entries are approved contextual overrides — they
+      intentionally exceed the system-wide standard (see overarching spec §2.4 and sidenav-spec §14).
+      All motion is suppressed to 150ms linear opacity fades under{" "}
+      <code style={{ fontSize: 12 }}>prefers-reduced-motion: reduce</code>.
+    </p>
+    <div style={{ display: "grid", gridTemplateColumns: "160px 70px 130px 260px 1fr",
+      gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4 }}>
+      {["Property", "Duration", "Standard", "Token", "Rationale"].map(h => (
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+          textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
+      ))}
+    </div>
+    {MOTION_ROWS.map(r => <MotionRow key={r.name} {...r} />)}
+  </div>
+);
+TokensMotion.parameters = {
+  docs: { description: { story: "Motion durations for all animated parts of the SideNav. Blue = approved contextual override above system standard." } },
+};
+
+// ─── Section Label showcase ─────────────────────────────────────────────────
+export const SectionLabelStory = () => (
+  <div style={{ fontFamily: "'Red Hat Text',sans-serif", display: "flex", flexDirection: "column", gap: 24 }}>
+    <div>
+      <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
+        The <strong>SectionLabel</strong> (Figma node 40006794-5977) is a building block used as the
+        header row inside the CollapsedPopover flyout. It renders the grouper's label in uppercase
+        small-semibold type, separated from the child items by a bottom divider.
+      </p>
+      <div style={{ width: 220, border: "0.5px solid #ededed", borderRadius: 8,
+        background: "#fff", boxShadow: "2px 2px 8px 4px rgba(0,0,0,0.03)", padding: 6 }}>
+        <div style={{ borderBottom: "0.5px solid #ededed" }}>
+          <SectionLabel label="Applications" />
+        </div>
+        {["Overview", "Installed", "Scheduled"].map(label => (
+          <div key={label} style={{ display: "flex", alignItems: "center", minHeight: 40,
+            borderRadius: 8, padding: "0 8px", cursor: "pointer" }}>
+            <div style={{ width: 4, alignSelf: "stretch", borderRadius: "0 4px 4px 0",
+              backgroundColor: "transparent", flexShrink: 0 }} />
+            <span style={{ padding: "0 8px", fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
+              fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px", color: T.text.navBase }}>
+              {label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div>
+      <p style={{ fontSize: 12, fontWeight: 600, color: "#4b4b4b",
+        textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 8px" }}>Token reference</p>
+      <div style={{ display: "grid", gridTemplateColumns: "auto auto 1fr", gap: "8px 16px",
+        alignItems: "center", fontSize: 12 }}>
+        <code style={{ fontFamily: "monospace", color: "#2d4889" }}>Text/Static/Secondary/Light</code>
+        <div style={{ width: 24, height: 24, borderRadius: 4, background: T.text.secondary,
+          border: "1px solid rgba(0,0,0,0.07)" }} />
+        <span style={{ color: "#555" }}>#7b7b7b — label colour</span>
+        <code style={{ fontFamily: "monospace", color: "#2d4889" }}>Label/Section/Small/Semibold</code>
+        <span style={{ color: "#8890b0", fontSize: 11 }}>—</span>
+        <span style={{ color: "#555" }}>11px / 600 / 16px / 0.6px letter-spacing / uppercase</span>
+        <code style={{ fontFamily: "monospace", color: "#2d4889" }}>Padding/Tight</code>
+        <span style={{ color: "#8890b0", fontSize: 11 }}>—</span>
+        <span style={{ color: "#555" }}>12px — left padding</span>
+        <code style={{ fontFamily: "monospace", color: "#2d4889" }}>Padding/XTight</code>
+        <span style={{ color: "#8890b0", fontSize: 11 }}>—</span>
+        <span style={{ color: "#555" }}>8px — vertical padding</span>
+      </div>
+    </div>
+  </div>
+);
+SectionLabelStory.storyName = "SectionLabel";
+SectionLabelStory.parameters = {
+  docs: { description: { story: "The SectionLabel building block (Figma 40006794-5977) — header row for the collapsed flyout popover." } },
+};
 
 // ─── Trail comparison ───────────────────────────────────────────────────────
 export const TrailComparison = () => {

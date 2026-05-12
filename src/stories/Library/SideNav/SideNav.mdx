@@ -82,28 +82,31 @@ Note that `NavItem/Hover` and `NavItem/Trail` are different tokens even though t
 
 <Canvas of={Stories.TokensText} />
 
-There's no separate "trail text" token — every trail state reuses `Text/NavItem/Active`. If you need the active ink, it's `#051428`.
+There's no separate "trail text" token — every trail state reuses `Text/NavItem/Active`. If you need the active ink, it's `#1b2d57`.
 
 ### Icon
 
 <Canvas of={Stories.TokensIcon} />
 
-The Active icon token (`#3555a0`) is also the colour of the **indicator stripe**. Same variable, two places. When Figma updates this token, both repaint together.
+The Active icon token (`#2d4889`) is also the colour of the **indicator stripe**. Same variable, two places. When Figma updates this token, both repaint together.
 
-### Geometry and typography
+### Section Label
 
-| Property | Value | Notes |
-|---|---|---|
-| Item `min-height` | 48 px | `Accessibility/Touch Target/Optimal` — WCAG 2.5.5 |
-| Leading-icon wrapper | 24 × 24 px | `Accessibility/Icon Wrapping/Large` |
-| Leading-icon glyph | 14 × 14 pt | No token — raw |
-| Item `border-radius` | 8 px | `Component/NavItem/Large/Radius` → `Border/S` |
-| Indicator stripe width | 4 px | No token |
-| Level 1 indent | 24 px on `container.main` | No token |
-| Label font | `Label/Menu/L/Medium` | 16 px / 500 / 22 px line-height, Red Hat Text |
-| Container padding | 14 px vertical · 12 px horizontal | No tokens |
+The **SectionLabel** (Figma node 40006794-5977) is the header row inside the flyout popover shown when hovering a collapsed grouper. It uses a distinct type style — small semibold uppercase — separate from the nav item label style.
 
-All nav-item labels use the same type style — Level 1 visual hierarchy comes from the indent, not from a smaller font.
+<Canvas of={Stories.SectionLabelStory} />
+
+### Typography
+
+<Canvas of={Stories.TokensTypography} />
+
+### Spacing
+
+<Canvas of={Stories.TokensSpacing} />
+
+### Motion
+
+<Canvas of={Stories.TokensMotion} />
 
 ---
 

@@ -27,9 +27,10 @@ export const T = {
   },
   surface: { navLight: "#fafafa" },
   text: {
-    navBase:   "#313131",
-    navHover:  "#252525",
-    navActive: "#1b2d57",
+    navBase:      "#313131",
+    navHover:     "#252525",
+    navActive:    "#1b2d57",
+    secondary:    "#7b7b7b",  // Text/Static/Secondary/Light — SectionLabel
   },
   icon: {
     navBase:   "#484848",
@@ -153,7 +154,7 @@ export function SideNavItem({
           pointerEvents: isSidebarCollapsed ? "none" : "auto",
           transition: "max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease" }}>
           <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500,
-            fontSize: 14, lineHeight: "20px", color: textColor, margin: 0,
+            fontSize: 14, lineHeight: "20px", letterSpacing: "0.3px", color: textColor, margin: 0,
             whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
             transition: "color 0.15s ease" }}>
             {item.label}
@@ -231,6 +232,25 @@ export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }
   );
 }
 
+// ─── SectionLabel ─────────────────────────────────────────────────────────────
+// Figma node 40006794-5977 — building block used in CollapsedPopover headers.
+// Tokens: Text/Static/Secondary/Light (#7b7b7b), Label/Section/Small/Semibold
+//         (11px / 600 / 16px / 0.6px letter-spacing, uppercase)
+// Padding: Padding/Tight (12px left), Padding/XTight (8px vertical)
+export function SectionLabel({ label }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", width: "100%",
+      paddingLeft: 12, paddingTop: 8, paddingBottom: 8 }}>
+      <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 600,
+        fontSize: 11, lineHeight: "16px", letterSpacing: "0.6px",
+        color: T.text.secondary, textTransform: "uppercase",
+        whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+        {label}
+      </span>
+    </div>
+  );
+}
+
 // ─── CollapsedPopover ─────────────────────────────────────────────────────────
 export function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMouseLeave, activeId }) {
   if (!anchorRect) return null;
@@ -242,16 +262,9 @@ export function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMo
         boxShadow: "2px 2px 8px 4px rgba(0,0,0,0.03)",
         padding: 6, minWidth: 200, pointerEvents: "auto",
         animation: "popoverIn 150ms cubic-bezier(0,0,0.2,1) forwards" }}>
-      {/* Section label */}
-      <div style={{ display: "flex", alignItems: "center", minHeight: 40,
-        paddingRight: 12, borderBottom: "0.5px solid #ededed" }}>
-        <div style={{ width: 4, alignSelf: "stretch", borderRadius: "0 8px 8px 0",
-          backgroundColor: "transparent", flexShrink: 0 }} />
-        <span style={{ paddingLeft: 8, fontFamily: "'Red Hat Text',sans-serif",
-          fontWeight: 400, fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px",
-          color: "#6b6b6b", whiteSpace: "nowrap" }}>
-          {item.label}
-        </span>
+      {/* Section label — Figma component 40006794-5977 */}
+      <div style={{ borderBottom: "0.5px solid #ededed" }}>
+        <SectionLabel label={item.label} />
       </div>
       {item.children.map(child =>
         <PopoverRow key={child.id} item={child} onClick={onClick} activeId={activeId} />
@@ -312,7 +325,7 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
             </div>
             <span style={{ paddingLeft: L.textPad, paddingRight: L.textPad,
               fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500, fontSize: 14,
-              lineHeight: "20px", color: h ? T.text.navHover : T.text.navBase,
+              lineHeight: "20px", letterSpacing: "0.3px", color: h ? T.text.navHover : T.text.navBase,
               transition: "color 0.15s ease, max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease",
               maxWidth: isSidebarCollapsed ? 0 : 120,
               opacity: isSidebarCollapsed ? 0 : 1,

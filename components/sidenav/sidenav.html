@@ -140,6 +140,7 @@ const T = {
     navBase:    "#313131",               // Text/Contextual/NavItem/Base
     navHover:   "#252525",               // Text/Contextual/NavItem/Hover
     navActive:  "#1b2d57",               // Text/Contextual/NavItem/Active — also used for all trail states
+    secondary:  "#7b7b7b",               // Text/Static/Secondary/Light — SectionLabel
   },
   icon: {
     navBase:    "#484848",               // Icon/Contextual/NavItem/Base — also trail-expanded icon
@@ -425,7 +426,7 @@ function SideNavItem({ item, isActive, isTrail, isExpanded, isSidebarCollapsed,
           pointerEvents: isSidebarCollapsed ? "none" : "auto",
           transition:"max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease" }}>
           <p style={{ fontFamily:"'Red Hat Text',sans-serif", fontWeight:500,
-            fontSize:14, lineHeight:"20px", color:textColor, margin:0,
+            fontSize:14, lineHeight:"20px", letterSpacing:"0.3px", color:textColor, margin:0,
             whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis",
             transition:"color 0.15s ease" }}>
             {item.label}
@@ -520,12 +521,31 @@ function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }) {
   );
 }
 
+// ── SectionLabel ─────────────────────────────────────────────────────────────
+// Figma node 40006794-5977 — building block used in CollapsedPopover headers.
+// Tokens: Text/Static/Secondary/Light (#7b7b7b), Label/Section/Small/Semibold
+//         (11px / 600 / 16px / 0.6px letter-spacing, uppercase)
+// Padding: Padding/Tight (12px left), Padding/XTight (8px vertical)
+function SectionLabel({ label }) {
+  return (
+    <div style={{ display:"flex", alignItems:"center", width:"100%",
+      paddingLeft:12, paddingTop:8, paddingBottom:8 }}>
+      <span style={{ fontFamily:"'Red Hat Text',sans-serif", fontWeight:600,
+        fontSize:11, lineHeight:"16px", letterSpacing:"0.6px",
+        color:T.text.secondary, textTransform:"uppercase",
+        whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>
+        {label}
+      </span>
+    </div>
+  );
+}
+
 // ── CollapsedPopover ─────────────────────────────────────────────────────────
 // Shown on hover of a collapsed grouper item. Contains a SectionLabel (group
 // name) + list of child items.
 // Tokens: Fill/Static/Surface/White, Stroke/Static/Neutral/Subtle (#ededed) 0.5px,
 //         Border/Radius/S (8px), Shadow.Medium (2px 2px 8px 4px rgba(0,0,0,0.03))
-// Section label: Label/Menu/Base/Regular (14px/400/20px), #6b6b6b, bottom border
+// Section label: Label/Section/Small/Semibold (11px/600/16px/0.6px), #7b7b7b, uppercase, bottom border
 // Items: Text/Body/S/Regular (14px/400/20px), Text/Contextual/NavItem/Base (#313131)
 // Offset: 8px from container right edge (bridge covers gap — see above)
 function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMouseLeave, activeId }) {
@@ -544,16 +564,9 @@ function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMouseLeav
         pointerEvents:"auto",
         animation:"popoverIn 150ms cubic-bezier(0,0,0.2,1) forwards" }}>
 
-      {/* PopoverMenu.SectionLabel — group name with 4px left indicator slot + bottom divider */}
-      <div style={{ display:"flex", alignItems:"center", minHeight:40,
-        paddingRight:12, borderBottom:"0.5px solid #ededed", marginBottom:0 }}>
-        <div style={{ width:4, alignSelf:"stretch", borderRadius:"0 8px 8px 0",
-          backgroundColor:"transparent", flexShrink:0 }} />
-        <span style={{ paddingLeft:8, fontFamily:"'Red Hat Text',sans-serif",
-          fontWeight:400, fontSize:14, lineHeight:"20px", letterSpacing:"0.02px",
-          color:"#6b6b6b", whiteSpace:"nowrap" }}>
-          {item.label}
-        </span>
+      {/* SectionLabel — Figma component 40006794-5977 */}
+      <div style={{ borderBottom:"0.5px solid #ededed" }}>
+        <SectionLabel label={item.label} />
       </div>
 
       {/* PopoverMenu.Items */}
@@ -619,7 +632,7 @@ function CollapseButton({ isSidebarCollapsed, onToggle }) {
                 pop in before the width transition completes on expand */}
             <span style={{ paddingLeft:L.textPad, paddingRight:L.textPad,
               fontFamily:"'Red Hat Text',sans-serif", fontWeight:500, fontSize:14,
-              lineHeight:"20px", color: h ? T.text.navHover : T.text.navBase,
+              lineHeight:"20px", letterSpacing:"0.3px", color: h ? T.text.navHover : T.text.navBase,
               transition:"color 0.15s ease, max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease",
               maxWidth: isSidebarCollapsed ? 0 : 120,
               opacity:  isSidebarCollapsed ? 0 : 1,
