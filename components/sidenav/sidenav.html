@@ -15,10 +15,7 @@
   html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; transition: background 0.2s; }
-  *:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); }
-  * { scrollbar-width: thin; scrollbar-color: transparent transparent; }
-  *:hover { scrollbar-color: rgba(0,0,0,0.18) transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
 
   /* ── OPEN IN CHROME BUTTON ─────────────────────────────────────────────── */
   #open-in-chrome {
@@ -497,26 +494,36 @@ function LeftPanelOpenIcon({ color })  { return <IC.expand   size={14} color={co
 // Groupers (have chevron): Applications, View, Modify
 // Destinations: Enter, Manage, Reports, Help
 // Level 1 children: NO icon, always Destination (Figma annotation confirmed)
-const NAV = [
-  { id:"applications", label:"Applications", icon:"apps",       children:[
-    { id:"overview",  label:"Overview"  },
-    { id:"installed", label:"Installed" },
-    { id:"scheduled", label:"Scheduled" },
+const NAV_SECTIONS = [
+  { section: "Music", items: [
+    { id:"music",     label:"Music",     icon:"music_note",    children:[
+      { id:"songs",     label:"Songs"     },
+      { id:"albums",    label:"Albums"    },
+      { id:"playlists", label:"Playlists" },
+    ]},
+    { id:"media",     label:"Media",     icon:"video_library" },
+    { id:"live",      label:"Live",      icon:"live_tv"       },
   ]},
-  { id:"enter",   label:"Enter",   icon:"add_doc"    },
-  { id:"manage",  label:"Manage",  icon:"tune"       },
-  { id:"view",    label:"View",    icon:"view",      children:[
-    { id:"trial_balance",    label:"Trial Balance"    },
-    { id:"balance_sheet",    label:"Balance Sheet"    },
-    { id:"income_statement", label:"Income Statement" },
+  { section: "People", items: [
+    { id:"groups",    label:"Groups",    icon:"group",         children:[
+      { id:"small_groups", label:"Small Groups" },
+      { id:"youth",        label:"Youth"        },
+      { id:"adults",       label:"Adults"       },
+    ]},
+    { id:"members",   label:"Members",   icon:"person"        },
+    { id:"volunteers",label:"Volunteers",icon:"volunteer_activism" },
   ]},
-  { id:"reports", label:"Reports", icon:"reports"    },
-  { id:"modify",  label:"Modify",  icon:"table_edit", children:[
-    { id:"chart_of_accounts", label:"Chart of Accounts" },
-    { id:"journal_entries",   label:"Journal Entries"   },
+  { section: "Services", items: [
+    { id:"services",  label:"Services",  icon:"church",        children:[
+      { id:"sunday",       label:"Sunday Service" },
+      { id:"events",       label:"Events"         },
+    ]},
+    { id:"giving",    label:"Giving",    icon:"favorite"      },
   ]},
-  { id:"help",    label:"Help",    icon:"help"       },
 ];
+
+// Flat alias — keeps all existing NAV.flatMap / NAV.find calls working unchanged.
+const NAV = NAV_SECTIONS.flatMap(s => s.items);
 
 // ─── LIST SECTION DEMO DATA ───────────────────────────────────────────────────
 // Shown as a SideNavListSection in the expanded nav — demonstrates "RECENT CONTENT"
@@ -1067,51 +1074,52 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
       <div style={{ display:"flex", flexDirection:"column", flex:1,
         gap:L.menuGap, paddingTop:L.menuPadT }}>
 
-        {/* NavSectionLabel — "MAIN MENU" group header, fades with nav expand/collapse */}
-        <div style={{ opacity: sidebarCollapsed ? 0 : 1,
-          maxHeight: sidebarCollapsed ? 0 : 40, overflow:"hidden",
-          transition:"opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
-          <NavSectionLabel label="Main Menu" />
-        </div>
-
-        {NAV.map(item => {
-          const hasChildren = !!(item.children && item.children.length);
-          const isActive   = item.id === activeId;
-          const isTrail    = item.id === trailParentId;
-          const isExpanded = !!expanded[item.id];
-          return (
-            <div key={item.id}>
-              <SideNavItem item={item} isActive={isActive} isTrail={isTrail}
-                isExpanded={isExpanded} isSidebarCollapsed={sidebarCollapsed}
-                isChild={false} onClick={onNavigate} onToggle={toggleExpand}
-                popoverOpen={popoverId === item.id}
-                anchorRect={popoverId === item.id ? popoverRect : null}
-                onPopoverEnter={onPopoverEnter} onPopoverLeave={onPopoverLeave}
-                activeId={activeId} />
-
-              {/* Level 1 children — grid-template-rows 0fr→1fr gives animated height     */}
-              {/* Always in DOM when sidebar expanded so the collapse animation plays.    */}
-              {/* Spring easing on both expand and collapse feels physical and alive.     */}
-              {hasChildren && !sidebarCollapsed && (
-                <div style={{
-                  display: "grid",
-                  gridTemplateRows: isExpanded ? "1fr" : "0fr",
-                  // No overshoot here — spring on height pushes items below into a bounce.
-                  // Use smooth decelerate-to-rest: fast start, glides to final position.
-                  transition: "grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
-                  <div style={{ overflow:"hidden" }}>
-                    {item.children.map(child => (
-                      <SideNavItem key={child.id} item={child}
-                        isActive={child.id === activeId} isTrail={false}
-                        isExpanded={false} isSidebarCollapsed={false}
-                        isChild={true} onClick={onNavigate} onToggle={() => {}} />
-                    ))}
-                  </div>
-                </div>
-              )}
+        {/* Section groups — MUSIC / PEOPLE / SERVICES — each with a NavSectionLabel header */}
+        {NAV_SECTIONS.map(({ section, items }) => (
+          <div key={section}>
+            {/* Section label fades/collapses when sidebar is collapsed (icon-only rail) */}
+            <div style={{ opacity: sidebarCollapsed ? 0 : 1,
+              maxHeight: sidebarCollapsed ? 0 : 40, overflow:"hidden",
+              transition:"opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
+              <NavSectionLabel label={section} />
             </div>
-          );
-        })}
+
+            {items.map(item => {
+              const hasChildren = !!(item.children && item.children.length);
+              const isActive   = item.id === activeId;
+              const isTrail    = item.id === trailParentId;
+              const isExpanded = !!expanded[item.id];
+              return (
+                <div key={item.id}>
+                  <SideNavItem item={item} isActive={isActive} isTrail={isTrail}
+                    isExpanded={isExpanded} isSidebarCollapsed={sidebarCollapsed}
+                    isChild={false} onClick={onNavigate} onToggle={toggleExpand}
+                    popoverOpen={popoverId === item.id}
+                    anchorRect={popoverId === item.id ? popoverRect : null}
+                    onPopoverEnter={onPopoverEnter} onPopoverLeave={onPopoverLeave}
+                    activeId={activeId} />
+
+                  {/* Level 1 children — grid-template-rows 0fr→1fr animated height */}
+                  {hasChildren && !sidebarCollapsed && (
+                    <div style={{
+                      display: "grid",
+                      gridTemplateRows: isExpanded ? "1fr" : "0fr",
+                      transition: "grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
+                      <div style={{ overflow:"hidden" }}>
+                        {item.children.map(child => (
+                          <SideNavItem key={child.id} item={child}
+                            isActive={child.id === activeId} isTrail={false}
+                            isExpanded={false} isSidebarCollapsed={false}
+                            isChild={true} onClick={onNavigate} onToggle={() => {}} />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        ))}
 
         {/* SideNavListSection — "Recent Content" demo, fades with nav expand/collapse */}
         <div style={{ opacity: sidebarCollapsed ? 0 : 1,
