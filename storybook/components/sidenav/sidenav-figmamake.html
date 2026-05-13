@@ -494,31 +494,32 @@ function LeftPanelOpenIcon({ color })  { return <IC.expand   size={14} color={co
 // Groupers (have chevron): Applications, View, Modify
 // Destinations: Enter, Manage, Reports, Help
 // Level 1 children: NO icon, always Destination (Figma annotation confirmed)
+// Original Accounting nav items — icons match the IconImg registry above.
+// Sections are added purely for demonstration — they're optional per spec §2.3.
 const NAV_SECTIONS = [
-  { section: "Music", items: [
-    { id:"music",     label:"Music",     icon:"music_note",    children:[
-      { id:"songs",     label:"Songs"     },
-      { id:"albums",    label:"Albums"    },
-      { id:"playlists", label:"Playlists" },
+  { section: "Overview", items: [
+    { id:"applications", label:"Applications", icon:"apps", children:[
+      { id:"overview",  label:"Overview"  },
+      { id:"installed", label:"Installed" },
+      { id:"scheduled", label:"Scheduled" },
     ]},
-    { id:"media",     label:"Media",     icon:"video_library" },
-    { id:"live",      label:"Live",      icon:"live_tv"       },
   ]},
-  { section: "People", items: [
-    { id:"groups",    label:"Groups",    icon:"group",         children:[
-      { id:"small_groups", label:"Small Groups" },
-      { id:"youth",        label:"Youth"        },
-      { id:"adults",       label:"Adults"       },
+  { section: "Workflows", items: [
+    { id:"enter",   label:"Enter",   icon:"add_doc" },
+    { id:"manage",  label:"Manage",  icon:"tune"    },
+    { id:"view",    label:"View",    icon:"view",   children:[
+      { id:"trial_balance",    label:"Trial Balance"    },
+      { id:"balance_sheet",    label:"Balance Sheet"    },
+      { id:"income_statement", label:"Income Statement" },
     ]},
-    { id:"members",   label:"Members",   icon:"person"        },
-    { id:"volunteers",label:"Volunteers",icon:"volunteer_activism" },
+    { id:"reports", label:"Reports", icon:"reports" },
   ]},
-  { section: "Services", items: [
-    { id:"services",  label:"Services",  icon:"church",        children:[
-      { id:"sunday",       label:"Sunday Service" },
-      { id:"events",       label:"Events"         },
+  { section: "Tools", items: [
+    { id:"modify",  label:"Modify",  icon:"table_edit", children:[
+      { id:"chart_of_accounts", label:"Chart of Accounts" },
+      { id:"journal_entries",   label:"Journal Entries"   },
     ]},
-    { id:"giving",    label:"Giving",    icon:"favorite"      },
+    { id:"help",    label:"Help",    icon:"help" },
   ]},
 ];
 
@@ -1074,13 +1075,15 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
       <div style={{ display:"flex", flexDirection:"column", flex:1,
         gap:L.menuGap, paddingTop:L.menuPadT }}>
 
-        {/* Flat render loop — section labels are siblings of nav items, not wrappers.
-            Figma: SectionLabel instances sit inline inside SideNavMenu alongside SideNavItem
-            instances. Wrapping breaks the parent gap:6px flex layout.
-            Collapsed rail: section label → Divider (thin line), per Figma node 40006794:6144. */}
-        {NAV_SECTIONS.flatMap(({ section, items }, sIdx) => [
-          /* Section label — or divider in rail mode */
-          <React.Fragment key={`section-${section}`}>
+        {/* Section groups — each section is ONE flex child of the menu, so gap:6px
+            applies only between sections, not between an item and its own children.
+            Items render EXACTLY as they did before sections existed — SideNavItem is
+            untouched. The section wrapper only adds a header (NavSectionLabel expanded,
+            Divider in rail) above each group. */}
+        {NAV_SECTIONS.map(({ section, items }, sIdx) => (
+          <div key={section} style={{ display:"flex", flexDirection:"column",
+            gap:L.menuGap, flexShrink:0 }}>
+
             {/* Expanded: NavSectionLabel (40px, fades out as rail collapses) */}
             <div style={{ opacity: sidebarCollapsed ? 0 : 1,
               maxHeight: sidebarCollapsed ? 0 : 40, overflow:"hidden",
@@ -1088,7 +1091,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
               flexShrink: 0 }}>
               <NavSectionLabel label={section} />
             </div>
-            {/* Collapsed rail: Divider replaces the section label (same token as NavHeader divider) */}
+            {/* Collapsed rail: Divider replaces the section label (skip for first section) */}
             {sIdx > 0 && (
               <div style={{ opacity: sidebarCollapsed ? 1 : 0,
                 maxHeight: sidebarCollapsed ? 5 : 0, overflow:"hidden",
@@ -1097,44 +1100,47 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
                 <div style={{ height:1, backgroundColor:T.fill.infoSubtle }} />
               </div>
             )}
-          </React.Fragment>,
 
-          /* Items — exactly as before, no changes to SideNavItem */
-          ...items.map(item => {
-            const hasChildren = !!(item.children && item.children.length);
-            const isActive   = item.id === activeId;
-            const isTrail    = item.id === trailParentId;
-            const isExpanded = !!expanded[item.id];
-            return (
-              <React.Fragment key={item.id}>
-                <SideNavItem item={item} isActive={isActive} isTrail={isTrail}
-                  isExpanded={isExpanded} isSidebarCollapsed={sidebarCollapsed}
-                  isChild={false} onClick={onNavigate} onToggle={toggleExpand}
-                  popoverOpen={popoverId === item.id}
-                  anchorRect={popoverId === item.id ? popoverRect : null}
-                  onPopoverEnter={onPopoverEnter} onPopoverLeave={onPopoverLeave}
-                  activeId={activeId} />
+            {/* Items — each item + its children grouped in one wrapper div so the
+                section's flex gap applies between distinct items, NOT between an
+                item and its own expanded child list. This matches the original
+                pre-section render exactly. */}
+            {items.map(item => {
+              const hasChildren = !!(item.children && item.children.length);
+              const isActive   = item.id === activeId;
+              const isTrail    = item.id === trailParentId;
+              const isExpanded = !!expanded[item.id];
+              return (
+                <div key={item.id}>
+                  <SideNavItem item={item} isActive={isActive} isTrail={isTrail}
+                    isExpanded={isExpanded} isSidebarCollapsed={sidebarCollapsed}
+                    isChild={false} onClick={onNavigate} onToggle={toggleExpand}
+                    popoverOpen={popoverId === item.id}
+                    anchorRect={popoverId === item.id ? popoverRect : null}
+                    onPopoverEnter={onPopoverEnter} onPopoverLeave={onPopoverLeave}
+                    activeId={activeId} />
 
-                {/* Level 1 children — grid-template-rows 0fr→1fr animated height */}
-                {hasChildren && !sidebarCollapsed && (
-                  <div style={{
-                    display: "grid",
-                    gridTemplateRows: isExpanded ? "1fr" : "0fr",
-                    transition: "grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
-                    <div style={{ overflow:"hidden" }}>
-                      {item.children.map(child => (
-                        <SideNavItem key={child.id} item={child}
-                          isActive={child.id === activeId} isTrail={false}
-                          isExpanded={false} isSidebarCollapsed={false}
-                          isChild={true} onClick={onNavigate} onToggle={() => {}} />
-                      ))}
+                  {/* Level 1 children — grid-template-rows 0fr→1fr animated height */}
+                  {hasChildren && !sidebarCollapsed && (
+                    <div style={{
+                      display: "grid",
+                      gridTemplateRows: isExpanded ? "1fr" : "0fr",
+                      transition: "grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
+                      <div style={{ overflow:"hidden" }}>
+                        {item.children.map(child => (
+                          <SideNavItem key={child.id} item={child}
+                            isActive={child.id === activeId} isTrail={false}
+                            isExpanded={false} isSidebarCollapsed={false}
+                            isChild={true} onClick={onNavigate} onToggle={() => {}} />
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </React.Fragment>
-            );
-          }),
-        ])}
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        ))}
 
         {/* SideNavListSection — "Recent Content" demo, fades with nav expand/collapse */}
         <div style={{ opacity: sidebarCollapsed ? 0 : 1,
