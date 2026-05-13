@@ -186,7 +186,7 @@ SideNav uses the ARIA **tree** pattern — `role="tree"` on the list, `role="tre
 | Collapsed rail | Icon-only items need `aria-label` (or a visually-hidden span) since labels are hidden |
 | Touch target | `min-height: 48 px` on every item |
 | Focus ring | `outline: 2px solid #3555a0; outline-offset: 2px` (uses `Icon/NavItem/Active`) |
-| Reduced motion | The 0.36 s width transition and popover animations collapse to instant opacity fades |
+| Reduced motion | The 380 ms width transition and popover animations collapse to instant opacity fades |
 
 The current reference demo uses `role="button"` on `<div>` items as a visual scaffolding baseline — **not** production-ready. Production code needs native `<button>` / `<a>` elements, roving-tabindex focus management, and the full arrow-key handler set. See `sidenav-spec.md` §13.3 for the complete keyboard table.
 
