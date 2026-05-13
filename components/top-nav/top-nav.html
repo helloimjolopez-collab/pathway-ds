@@ -233,12 +233,21 @@ function abbreviateOrg(name) {
   return (sig[0]||"???").slice(0,3).toUpperCase();
 }
 
+const PLACE_SUFFIXES = [
+  "ville","field","burg","burgh","berg","town","port","ford",
+  "wood","land","dale","view","gate","bridge","worth","shire",
+];
 function abbreviateCampus(campus) {
   if (!campus) return "";
   const sig = campus.replace(/-/g," ").split(/\s+/).filter(w => !SKIP.has(w.toLowerCase()));
   if (!sig.length) return campus.slice(0,2).toUpperCase();
-  if (sig.length === 1) { const w = sig[0]; return (w[0]+w[w.length-1]).toUpperCase(); }
-  return (sig[0][0]+sig[1][0]).toUpperCase();
+  if (sig.length >= 2) return (sig[0][0]+sig[1][0]).toUpperCase();
+  // Single word — check compound place-name suffix (e.g. Knoxville → KV)
+  const w = sig[0], wl = w.toLowerCase();
+  for (const sfx of PLACE_SUFFIXES) {
+    if (wl.endsWith(sfx) && w.length > sfx.length + 1) return (w[0]+sfx[0]).toUpperCase();
+  }
+  return (w[0]+w[w.length-1]).toUpperCase();
 }
 
 function mobileLabel(orgName, campusName) {

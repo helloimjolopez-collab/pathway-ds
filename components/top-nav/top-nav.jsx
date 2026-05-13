@@ -100,21 +100,38 @@ export function abbreviateOrg(name) {
 
 /**
  * Abbreviate a campus name to 2 uppercase letters.
- * Rules (Two-Letter Rule): single word → first+last letter; two+ words → first
- * letter of first two significant words.
- * Directional prefixes (North/South/East/West/Upper/Lower) get 1-letter code.
+ * Rules (Two-Letter Rule per §10.2):
+ *   - Two+ significant words: first letter of first two words (e.g. "Main Campus" → MC)
+ *   - Single word with a recognisable place-name suffix (-ville, -field, -burg, -town,
+ *     -port, -ford, -wood, -land, -dale, -view, -gate, -bridge, -worth, -shire, -berg):
+ *     take first letter of root + first letter of suffix (e.g. "Knoxville" → KV)
+ *   - Single word, no suffix: first + last letter (e.g. "East" → ET)
  */
+const PLACE_SUFFIXES = [
+  "ville","field","burg","burgh","berg","town","port","ford",
+  "wood","land","dale","view","gate","bridge","worth","shire",
+];
+
 export function abbreviateCampus(campus) {
   if (!campus) return "";
   const words = campus.replace(/-/g, " ").split(/\s+/).filter(Boolean);
   const sig = words.filter(w => !SKIP_WORDS.has(w.toLowerCase()));
   if (sig.length === 0) return campus.slice(0, 2).toUpperCase();
-  if (sig.length === 1) {
-    const w = sig[0];
-    return (w[0] + w[w.length - 1]).toUpperCase();
+  if (sig.length >= 2) {
+    // Two+ significant words: first letter of first two
+    return (sig[0][0] + sig[1][0]).toUpperCase();
   }
-  // Two or more significant words: first letter of first two
-  return (sig[0][0] + sig[1][0]).toUpperCase();
+  // Single word — check for compound place-name suffix
+  const w = sig[0];
+  const wl = w.toLowerCase();
+  for (const suffix of PLACE_SUFFIXES) {
+    if (wl.endsWith(suffix) && w.length > suffix.length + 1) {
+      // e.g. Knoxville: root=Knox → K, suffix=ville → V
+      return (w[0] + suffix[0]).toUpperCase();
+    }
+  }
+  // Fallback: first + last letter
+  return (w[0] + w[w.length - 1]).toUpperCase();
 }
 
 /**
