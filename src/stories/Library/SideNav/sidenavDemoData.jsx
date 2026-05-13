@@ -33,6 +33,7 @@ export const ALL_ITEM_IDS = [
 ];
 
 // ─── NAV data (matching sidenav.html, Figma node 40004790:47259) ─────────────
+// Flat items — used by stories that want a single ungrouped list.
 export const NAV_ITEMS = [
   { id: "applications", label: "Applications", icon: Icons.apps, children: [
     { id: "overview",  label: "Overview" },
@@ -53,3 +54,34 @@ export const NAV_ITEMS = [
   ]},
   { id: "help",    label: "Help",    icon: Icons.help },
 ];
+
+// Sectioned items — same items, grouped into OVERVIEW / WORKFLOWS / TOOLS.
+// Pass this to <SideNav sections={NAV_SECTIONS} /> to render with NavSectionLabel
+// headings (expanded) or rail dividers (collapsed).
+export const NAV_SECTIONS = [
+  { section: "Overview", items: [
+    NAV_ITEMS[0], // Applications
+  ]},
+  { section: "Workflows", items: [
+    NAV_ITEMS[1], // Enter
+    NAV_ITEMS[2], // Manage
+    NAV_ITEMS[3], // View
+    NAV_ITEMS[4], // Reports
+  ]},
+  { section: "Tools", items: [
+    NAV_ITEMS[5], // Modify
+    NAV_ITEMS[6], // Help
+  ]},
+];
+
+// Demo data for the SideNavListSection (icon-less bullet-dot list under the main nav)
+export const LIST_SECTION_ITEMS = [
+  { id: "ls_hope_easter",    label: "The Hope of Easter" },
+  { id: "ls_sunday_morning", label: "Sunday Morning Service" },
+  { id: "ls_volunteer_list", label: "Volunteer Training" },
+];
+
+export const LIST_SECTION = {
+  label: "Recent Content",
+  items: LIST_SECTION_ITEMS,
+};

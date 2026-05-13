@@ -15,8 +15,8 @@
  *   StandaloneDemo   — iframe to the full responsive HTML demo
  */
 import React, { useState } from "react";
-import { SideNav, SideNavItem, SectionLabel, IndicatorStripe, T, L } from "../../../../components/sidenav/sidenav.jsx";
-import { NAV_ITEMS, ALL_ITEM_IDS } from "./sidenavDemoData.jsx";
+import { SideNav, SideNavItem, SectionLabel, NavSectionLabel, BulletDot, ListItem, SideNavListSection, IndicatorStripe, T, L } from "../../../../components/sidenav/sidenav.jsx";
+import { NAV_ITEMS, NAV_SECTIONS, LIST_SECTION, ALL_ITEM_IDS } from "./sidenavDemoData.jsx";
 
 // ─── Popover-animation keyframes (once per document) ────────────────────────
 if (typeof document !== "undefined" && !document.getElementById("pds-sidenav-keyframes")) {
@@ -52,7 +52,8 @@ function Shell({ initialActiveId = "balance_sheet", collapsed: initialCollapsed 
       border: "1px solid #edf0f9", borderRadius: 12, overflow: "hidden",
       fontFamily: "'Red Hat Text', sans-serif" }}>
       <SideNav
-        items={NAV_ITEMS}
+        sections={NAV_SECTIONS}
+        listSection={LIST_SECTION}
         activeId={activeId}
         onNavigate={setActiveId}
         collapsed={collapsed}
