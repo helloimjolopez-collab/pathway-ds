@@ -382,34 +382,54 @@ Icons are fill-style from the design system (`collapse_nav`, `expand_nav`), not 
 
 ## 9.1 Overflow and scroll behaviour
 
-The nav container uses `overflow-y: auto`. When the nav item list grows long enough to exceed the viewport height, a scrollbar appears inside the nav container.
+The nav container uses `overflow-y: auto`. When the nav item list grows long enough to exceed the available height, a scrollbar appears inside the nav container. The nav occupies the full height between the fixed TopNav bar and the bottom of the viewport.
 
 ### Expanded sidebar
 
-- A vertical scrollbar appears inside the 240px nav container.
-- All nav items remain accessible by scrolling.
-- The **Collapse button scrolls with the content**: it is not sticky. As content grows, the button is pushed below the fold and requires scrolling to reach. This is acknowledged design debt; see §16.8.
-- The scrollbar uses a 4px custom track (`background: rgba(0,0,0,0.12)`) and does not visually intrude on item layout.
+- A vertical scrollbar appears inside the 240 px nav container.
+- All nav items (including any `SideNavListSection` groups) remain accessible by scrolling.
+- The **NavHeader (CollapseButton) is positioned at the top of the nav**, not the bottom. It is fully visible at all scroll positions and does not scroll with the item list. Implementation: `position: sticky; top: 0; z-index: 2` within the flex column.
+- The scrollable item list sits below the NavHeader in a `flex: 1; overflow-y: auto` inner container.
 
 ### Collapsed sidebar
 
-- Same `overflow-y: auto` behaviour. A scrollbar appears inside the 72px nav container.
-- The scrollbar (4px) overlaps the right edge of the container but does not affect icon centering, as icons are centred within their 48×48px hit area with 12px padding each side.
-- The **Collapse button (expand icon in this state) is again not sticky** and scrolls with content.
+- Same `overflow-y: auto` behaviour on the item list. A 4 px scrollbar appears when overflow occurs.
+- The scrollbar (4 px) overlaps the right edge of the 72 px container but does not affect icon centering — icons are centred within their 48 × 48 px hit area with 12 px padding each side.
+- The NavHeader (expand icon in this state) is also sticky at the top and always visible.
+
+### Custom scrollbar implementation
+
+Apply these CSS rules to the nav container element (and globally to the demo page):
+
+```css
+/* Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: rgba(0,0,0,0.12); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.22); }
+
+/* Firefox */
+.sidenav-scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.12) transparent;
+}
+```
+
+The 4 px scrollbar is intentionally narrow so it does not visually intrude on item layout. No token maps directly to the thumb opacity — `rgba(0,0,0,0.12)` is a documented implementation constant until a scrollbar semantic token is introduced.
 
 ### Popovers and tooltips when the sidebar is scrolled
 
-Because `SideNavTooltip` and `CollapsedPopover` are rendered via portal (`document.body`) using `position: fixed` with coordinates from `getBoundingClientRect()`, their position is always relative to the **viewport**, not the scroll container.
+`SideNavTooltip` and `CollapsedPopover` are rendered via portal (`document.body`) using `position: fixed` with coordinates from `getBoundingClientRect()`. Their position is always relative to the **viewport**, not the scroll container.
 
 This means:
 
 - If the user opens a popover/tooltip and then scrolls the nav, the overlay does **not** follow the item: it stays at its original screen position until dismissed.
-- In practice this is not an issue: the popover/tooltip is shown on hover and dismissed on mouse leave (300ms delay). A user cannot simultaneously hover an item and scroll the nav without triggering the leave event.
+- In practice this is not an issue: the popover/tooltip is shown on hover and dismissed on mouse leave (300 ms delay). A user cannot simultaneously hover an item and scroll the nav without triggering the leave event.
 - If a scroll event causes an item to move out of view, the popover closes via the normal mouse-leave path.
 
 ### Figma gap
 
-The overflow/scroll behaviour is not annotated in Figma. The nav container is designed at a fixed height showing all items in frame. The collapse button stickiness question (§16.8) is the primary open design decision in this area.
+The overflow/scroll behaviour is not annotated in Figma. The nav container is designed at a fixed height showing all items in frame. The NavHeader sticky behaviour (§16.8) and scrollbar token (above) are the primary open implementation decisions in this area.
 
 ---
 
@@ -909,17 +929,36 @@ A fifth value (>1900px) exists in the variables panel but is unused and unconfir
 
 **Overlay dismiss:** On tablet, tapping the scrim or the in-nav collapse button closes the overlay. On mobile, the top-nav hamburger/close toggle or tapping the scrim are the dismiss mechanisms. No swipe-to-dismiss gesture is specified.
 
-### 17.4 Global top nav (Unity Nav): out of scope, Figma reference
+### 17.4 Global top nav (TopNav.Global): out of scope, Figma reference
 
-The global top navigation (Unity Nav) is a separate component not owned by this spec. Full component documentation, variants, tokens, and interaction specs are maintained on the [Global Navigation Figma page](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/%E2%9D%87%EF%B8%8F--Pathway-Design-System--Master-File--MB-2.0-?node-id=40005504-55845&t=C5AHPCaPqyhmnq3s-1).
+The global top navigation is a separate component not owned by this spec. The Pathway Design System has standardised on **TopNav.Global** (Figma node `40005504:55844`) — a **brand-blue (`Fill/Static/Brand/Base` → `#2d4889`)** nav bar with a fixed height of **56 px**. Full component documentation is maintained on the [TopNav Figma page](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/%E2%9D%87%EF%B8%8F--Pathway-Design-System--Master-File--MB-2.0-?node-id=40005504-55844).
 
-For SideNav integration purposes only, the relevant behaviour is:
+**TopNav.Global slot layout (left → right) — as read from Figma 2026-05-13:**
+- **Row Start:** SideNav control (mobile hamburger `menu`, hidden ≥768px via CSS) · ModuleSwitcher (Amplify Home icon + `expand_more` chevron, no text label) · OrgSwitcher (church logo 20×20 sq + "Sacred Heart Church-ITD | Knoxville" label + `expand_more` chevron; container has `stroke/action/tertiary/base` border)
+- **Row End:** Search (48×48 wrapper → 32×32 circle button with `cornerradius/full:64px` and `search` icon) · Desktop: 2× Notifications bell (`notifications` Material Symbol, 48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Accent_Amethyst/Base #dcd9ef`, "JL" in `#221e3f`)
 
-**At ≥768px (desktop/tablet layout):** Full nav bar: app switcher, org switcher, search bar, icon buttons, avatar. No hamburger control. SideNav cannot be hidden at these sizes.
+**Breakpoint variants (Figma node IDs):**
+- Desktop 1440px: `40007103:17678` — `justify-content: space-between`, right slot `width: 216px`
+- Tablet 768px: `40007067:8151` — `px: 12px`, right slot has `more_vert` instead of 2 bells
+- Mobile 393px: `40007067:8205` — hamburger appears left, org label truncates to `max-width: 80px`
 
-**At <768px (mobile layout):** Simplified nav bar: hamburger/close toggle on the left, centred app icon, ellipsis and avatar on the right. Icon state: hamburger (≡) when the SideNav is hidden (default on load), close (×) when the 240px overlay is open. The toggle controls the hidden ↔ 240px-overlay transition only: there is no intermediate 72px collapsed state on mobile.
+**Height and z-index:**
+- Height: 56 px (54 px on tablet per Figma, unified to 56 px in implementation)
+- `position: fixed; top: 0; left: 0; right: 0; z-index: 100`
+- SideNav overlay sits at z-index 100 (same layer — overlay panels appear inside the body area, not above the top nav)
+- Dropdown menus from the top nav sit at z-index 200
 
-This spec does not prescribe anything about the top nav's visual design, tokens, or other interactions. For all top nav specs, refer to the Figma link above.
+**Icons:** All TopNav icons use **Material Symbols Outlined** (Google Fonts CDN, FILL 0, wght 300). Exception: the Amplify Home module icon and the church org logo are branded image assets (Figma CDN URLs, expire ~7 days — replace with stable CDN in production).
+
+**SideNav integration at breakpoints:**
+
+**At ≥768px (desktop/tablet layout):** Full nav bar. No hamburger. SideNav cannot be hidden at these sizes.
+
+**At <768px (mobile layout):** Hamburger button (`.topnav__sidenav-control`) becomes visible via CSS (`display: none !important` by default → `display: flex !important` at `max-width: 767px`). Tapping the hamburger calls `onSideNavToggle` which opens the 240 px overlay drawer. Closing via scrim tap calls the same handler. The icon state is managed by the App shell, not inside TopNav.Global.
+
+**Demo HTML reference:** `components/sidenav/sidenav.html` integrates TopNav.Global as of 2026-05-13 (rebuilt from Figma MCP read on that date).
+
+This spec does not prescribe anything about the top nav's visual design, tokens, or other interactions beyond the integration points above.
 
 ### 17.5 Figma component variant guidance
 
@@ -1008,7 +1047,7 @@ A semi-transparent scrim is shown behind the SideNav whenever it is in expanded-
 | Property | Value | Notes |
 |---|---|---|
 | Colour | `rgba(0, 0, 0, 0.32)` | 32% black: standard modal-overlay opacity |
-| Position | `position: fixed; top: 64px; left: 0; right: 0; bottom: 0` | Sits below the top nav bar |
+| Position | `position: fixed; top: 56px; left: 0; right: 0; bottom: 0` | Sits below TopNav.Global (56 px tall) |
 | Z-index | `99` | Behind SideNav overlay (`z-index: 100`), above page content |
 | Enter animation | Opacity `0` → `1`, `280ms`, `cubic-bezier(0.4,0,0.2,1)` | Synchronised with nav slide-in |
 | Exit animation | Opacity `1` → `0`, same duration and easing | CSS transition reversal: scrim stays in DOM |
