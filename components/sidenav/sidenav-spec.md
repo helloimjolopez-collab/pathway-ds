@@ -188,39 +188,65 @@ The divider that replaces a section label uses identical tokens to the `NavHeade
 
 **Implementation pattern (React):**
 
-```jsx
-// Section labels and their replacement dividers are flat siblings in the flex container.
-// They are NOT wrappers around items — wrapping breaks the parent gap: 6px.
+Section labels must **not** alter `SideNavItem` rendering in any way. The pattern below keeps `SideNavItem` and its expand-collapse animation untouched, and groups each section in its own flex column so the parent menu's `gap: 6 px` applies only between sections, never between an item and its own expanded children.
 
-NAV_SECTIONS.flatMap(({ section, items }, sIdx) => [
-  <React.Fragment key={`section-${section}`}>
-    {/* Expanded: NavSectionLabel fades out as rail narrows */}
+```jsx
+// Parent: SideNavMenu is a flex column with gap: 6px between sections.
+// Each section is ONE child of the parent. Inside the section, items + their
+// children stay in their original wrapper divs — IDENTICAL to a sectionless nav.
+
+NAV_SECTIONS.map(({ section, items }, sIdx) => (
+  <div key={section} style={{
+    display: 'flex', flexDirection: 'column',
+    gap: 6,                     // same gap between items as the parent uses between sections
+    flexShrink: 0,
+  }}>
+    {/* Expanded: NavSectionLabel — fades out + collapses height as rail narrows */}
     <div style={{
       opacity: sidebarCollapsed ? 0 : 1,
       maxHeight: sidebarCollapsed ? 0 : 40,
       overflow: 'hidden',
-      transition: 'opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)'
+      transition: 'opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)',
     }}>
       <NavSectionLabel label={section} />
     </div>
 
-    {/* Collapsed rail: Divider replaces the section label. Skip for sIdx === 0 (no divider above first section). */}
+    {/* Collapsed rail: Divider replaces the label. Skip for sIdx === 0
+        (no divider above the very first section). */}
     {sIdx > 0 && (
       <div style={{
         opacity: sidebarCollapsed ? 1 : 0,
         maxHeight: sidebarCollapsed ? 5 : 0,
         overflow: 'hidden',
         transition: 'opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)',
-        padding: '2px 0'
+        padding: '2px 0',
       }}>
         <div style={{ height: 1, backgroundColor: '#f6f6f6' }} />
       </div>
     )}
-  </React.Fragment>,
 
-  ...items.map(item => /* SideNavItem rendering — unchanged */),
-])
+    {/* Items: render EXACTLY as a sectionless nav would. SideNavItem and its
+        children-grid live in their own wrapper div so the section's flex gap
+        applies between distinct items, never between an item and its own
+        expanded child list. */}
+    {items.map(item => (
+      <div key={item.id}>
+        <SideNavItem item={item} /* ...props unchanged... */ />
+        {item.children && !sidebarCollapsed && (
+          <div style={{ display: 'grid', gridTemplateRows: isExpanded ? '1fr' : '0fr',
+            transition: 'grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1)' }}>
+            <div style={{ overflow: 'hidden' }}>
+              {item.children.map(child => <SideNavItem key={child.id} item={child} /* ... */ />)}
+            </div>
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+))
 ```
+
+> **Critical:** Do **NOT** modify `SideNavItem` to add awareness of sections. The component is unchanged from the no-sections layout. Sections are added at the parent menu level only.
 
 ### 2.3.1 Optional icon slot
 
