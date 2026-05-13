@@ -20,6 +20,12 @@ on:
     types: [completed]
   workflow_dispatch: # Allow manual trigger
 
+# Only one deploy at a time. If a newer commit triggers a deploy while
+# one is in progress, cancel the older run.
+concurrency:
+  group: deploy-storybook
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -27,8 +33,11 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout
+      - name: Checkout (latest main)
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Set up Node 20
         uses: actions/setup-node@v4
@@ -62,6 +71,8 @@ jobs:
             echo "No Storybook changes — skipping commit."
           else
             git commit -m "chore: deploy Storybook [skip ci]"
-            git pull --rebase origin main
-            git push
+            # Pull latest then push (handles any commits made since checkout)
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
           fi
