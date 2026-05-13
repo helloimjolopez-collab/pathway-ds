@@ -847,15 +847,21 @@ The chevron lives in `Container.RowEnd` (40×24px), which is only present on gro
 
 **Expand/collapse animation:**
 
-The Level 1 child list uses CSS Grid `grid-template-rows` to animate between zero height (collapsed) and natural height (expanded). This avoids JavaScript height calculations and supports dynamic content length.
+The Level 1 child list uses CSS Grid `grid-template-rows` to animate between zero height (collapsed) and natural height (expanded). This avoids JavaScript height calculations and supports dynamic content length. The inner wrapper additionally fades opacity 0 → 1 (with a 60 ms delay behind the height grow) so children emerge gracefully rather than clipping into existence.
 
 ```jsx
 <div style={{
   display: 'grid',
   gridTemplateRows: isExpanded ? '1fr' : '0fr',
-  transition: 'grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1)'
+  transition: 'grid-template-rows 340ms cubic-bezier(0.22, 1, 0.36, 1)'
 }}>
-  <div style={{ overflow: 'hidden' }}>
+  <div style={{
+    overflow: 'hidden',
+    opacity: isExpanded ? 1 : 0,
+    transition: isExpanded
+      ? 'opacity 240ms ease 60ms'   // fade in slightly behind the grow
+      : 'opacity 160ms ease'         // exit faster (no delay)
+  }}>
     {item.children.map(child => <SideNavItem ... />)}
   </div>
 </div>
@@ -863,12 +869,17 @@ The Level 1 child list uses CSS Grid `grid-template-rows` to animate between zer
 
 | Property | Value |
 |---|---|
-| Animation type | CSS `grid-template-rows: 0fr → 1fr` |
-| Duration | `300ms` |
-| Easing | `cubic-bezier(0.4, 0, 0.2, 1)` — standard decelerate |
-| Collapsed value | `0fr` (zero height, children clipped) |
-| Expanded value | `1fr` (full natural height) |
+| Animation type | CSS `grid-template-rows: 0fr → 1fr` + opacity fade |
+| Height duration | `340ms` |
+| Height easing | `cubic-bezier(0.22, 1, 0.36, 1)` — easeOutQuart, smooth decelerate without spring |
+| Children opacity (expand) | `0 → 1`, `240ms ease`, `60ms delay` |
+| Children opacity (collapse) | `1 → 0`, `160ms ease`, no delay (snappier exit) |
+| Chevron rotation | `340ms cubic-bezier(0.22, 1, 0.36, 1)` — matches accordion timing so chevron + panel land together |
 | Inner wrapper | `overflow: hidden` — required for the clip to work |
+
+> **Why easeOutQuart and not the standard `cubic-bezier(0.4, 0, 0.2, 1)`:** The standard curve is fine for short hover transitions but feels mechanical on a panel that grows several rows tall. `cubic-bezier(0.22, 1, 0.36, 1)` is "easeOutQuart" — it starts fast and decelerates strongly into the resting position, which reads as a polished, considered motion at the larger scale of an accordion. It does not overshoot (no bounce), so items below the grouper do not jiggle.
+
+> **Why matching chevron timing:** Previously the chevron used a 420 ms spring while the accordion used 300 ms standard ease, so the chevron landed ~120 ms after the panel finished opening. Matching both to 340 ms with the same curve makes the two motions feel like a single coherent action.
 
 > **Why grid-template-rows:** `max-height` transitions require a hard ceiling value and produce uneven timing (slow at the start when the element is short, fast at the end). `grid-template-rows: 0fr → 1fr` produces perfectly even timing because the fraction unit is relative to the natural content height, regardless of how many children are present.
 
@@ -1097,7 +1108,10 @@ All SideNav motion follows `docs/design-system-spec.md` §2 with the contextual 
 |---|---|---|---|
 | Hover fills, colour transitions | 150ms | `instant` | No |
 | Popover enter (SideNavTooltip, flyout) | 150ms | `instant` | No |
-| Grouper accordion expand/collapse | 300ms | `short` | No — see §12.1 |
+| Grouper accordion expand/collapse | 340ms · easeOutQuart | `short` | No — see §12.1 |
+| Grouper child opacity fade-in | 240ms / 60ms delay | `instant`–`short` | No — see §12.1 |
+| Grouper child opacity fade-out | 160ms | `instant` | No — see §12.1 |
+| Chevron rotation (matches accordion) | 340ms · easeOutQuart | `short` | No |
 | NavSectionLabel fade / Divider crossfade | 220–300ms | `short` | No — see §2.3 |
 | Sidebar width expand/collapse | 360ms | between `instant`/`short` | Yes — see §8.3 |
 | Label/chevron opacity fade | 180ms | between `instant`/`short` | Yes — see §8.3 |
