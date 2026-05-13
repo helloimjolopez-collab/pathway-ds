@@ -15,7 +15,10 @@
   html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; transition: background 0.2s; }
+  *:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); }
+  * { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+  *:hover { scrollbar-color: rgba(0,0,0,0.18) transparent; }
 
   /* ── OPEN IN CHROME BUTTON ─────────────────────────────────────────────── */
   #open-in-chrome {
