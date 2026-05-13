@@ -44,6 +44,11 @@ Use this table when you need to find or change something. Every row points to th
 | ARIA pattern and keyboard behaviour | This spec | §13 |
 | Screen reader output | This spec | §13.5 |
 | Scroll and overflow behaviour | This spec | §9.1 |
+| NavSectionLabel anatomy, tokens, collapsed rail → divider behaviour, icon slot, usage rules | This spec | §2.3 |
+| SideNavListSection anatomy, tokens, ListItem spec, visibility rules | This spec | §2.4 |
+| Grouper accordion expand/collapse animation, multi-open behaviour, DOM strategy | This spec | §12.1 |
+| Grouper collapsed-rail behaviour (popover vs accordion) | This spec | §12.2 |
+| Trail state transitions when sidebar collapses / section label interaction | This spec | §12.3–12.5 |
 | Responsive breakpoints and SideNav behaviour per viewport | This spec | §17 |
 | Overlay vs push layout mode | This spec | §17.2 |
 | Mobile states (hidden / overlay / collapsed: hidden is mobile-only <768px) | This spec | §17.3 |
@@ -60,16 +65,30 @@ Use this table when you need to find or change something. Every row points to th
 
 ```
 SideNav.Container
-└── SideNavMenu
+└── SideNavMenu   (flex column, gap: 6px between all direct children)
+│   │
+│   │   ── optional section group ──
+│   ├── NavSectionLabel           ← "MUSIC" / "PEOPLE" / etc. — optional, omit if not needed
 │   ├── SideNavItem (Level 0: Destination)
 │   ├── SideNavItem (Level 0: Grouper, expanded)
 │   │   ├── SideNavItem (Level 1: child Destination)
 │   │   └── SideNavItem (Level 1: child Destination)
-│   └── SideNavItem (Level 0: Destination)
+│   │
+│   │   ── another section group ──
+│   ├── NavSectionLabel           ← next section label — Divider in collapsed rail
+│   ├── SideNavItem (Level 0: Destination)
+│   │
+│   │   ── flat list section (optional) ──
+│   └── SideNavListSection
+│       ├── NavSectionLabel       ← list section heading ("Recent Content" etc.)
+│       └── ListItem (×N)         ← icon-less flat items with bullet dot
+│
 └── Collapse_Expand_Nav_Container
     ├── Divider
     └── Collapse (SideNavItem-like row, no indicator stripe)
 ```
+
+> **Key structural rule:** `NavSectionLabel` and `SideNavListSection` are **flat siblings** of `SideNavItem` inside the `SideNavMenu` flex container. They are never wrappers around items. The parent `gap: 6px` applies uniformly between every direct child — section labels, nav items, and list sections all share the same 6 px rhythm.
 
 ### SideNavItem internal structure
 
@@ -119,6 +138,175 @@ Use the stroked variant when modules need an explicit visual boundary: for examp
 > **Usage guidance:** Neither variant is "correct": the choice belongs to the individual module team, not the design system. Use the variant that produces the clearest visual hierarchy for that module's specific page backgrounds.
 
 > **Figma:** Both variants (Expanded/Stroked, Expanded/Unstroked, Collapsed/Stroked, Collapsed/Unstroked) are available as separate component instances in the SideNavComponents frame.
+
+---
+
+## 2.3 NavSectionLabel
+
+**Figma:** `SectionLabel` instance inside `SideNavMenu` (Figma node `40006794:5975`, seen in context frame `40006794:5874`). Also called `SideNav.SectionLabel` in the Figma layer tree.
+
+NavSectionLabel is an **optional** in-nav section heading that organises items within a module's SideNav into named groups (e.g. "MUSIC", "PEOPLE", "SERVICES"). Not all modules use sections. Modules with fewer than ~5 items or with a single coherent topic do not need them.
+
+### Anatomy
+
+```
+NavSectionLabel
+└── Container.Main  (h-40px, pl-4px, pr-4px, py-8px, gap-4px)
+    ├── [optional] Container.Icon  ← icon slot, hidden by default (see §2.3.1)
+    └── Container.Label  (flex-1)
+        └── text  (uppercase, 11px, semibold, #606060)
+```
+
+### Tokens
+
+| Property | Semantic token | Resolved value |
+|---|---|---|
+| Height | *(raw)* | `40px` fixed |
+| Left / right padding | `Gap/XTight` | `4px` |
+| Top / bottom padding | `Padding/Tight` | `8px` |
+| Font family | `Label/Section/Small/Semibold/FontFamily` | `'Red Hat Text', sans-serif` |
+| Font weight | `Label/Section/Small/Semibold/FontWeight` | `600` (SemiBold) |
+| Font size | `Label/Section/Small/Semibold/FontSize` | `11px` |
+| Line height | `Label/Section/Small/Semibold/LineHeight` | `16px` |
+| Letter spacing | `Label/Section/Small/Semibold/LetterSpacing` | `0.6px` |
+| Text transform | *(design rule)* | `uppercase` |
+| Text colour | `Text/Static/Secondary/Subtle` | `#606060` |
+
+### Collapsed rail behaviour
+
+In the 72px collapsed rail, `NavSectionLabel` **is replaced by a thin `Divider` line** — it does not just fade or hide. This is intentional: the collapsed rail has no room for text labels, but sections still need visual separation between groups.
+
+The divider that replaces a section label uses identical tokens to the `NavHeader` divider:
+
+| Property | Value | Token |
+|---|---|---|
+| Height | `1px` | *(raw)* |
+| Colour | `#f6f6f6` | `Stroke/Static/Neutral/Light` |
+| Surrounding padding | `2px top / 2px bottom` | *(raw)* |
+
+**First section rule:** If the first `NavSectionLabel` in the list is replaced by a divider in rail mode, no divider is rendered above the very first section (there is nothing above it to separate). Subsequent sections each get a divider between them. This matches Figma node `40006794:6144`.
+
+**Implementation pattern (React):**
+
+```jsx
+// Section labels and their replacement dividers are flat siblings in the flex container.
+// They are NOT wrappers around items — wrapping breaks the parent gap: 6px.
+
+NAV_SECTIONS.flatMap(({ section, items }, sIdx) => [
+  <React.Fragment key={`section-${section}`}>
+    {/* Expanded: NavSectionLabel fades out as rail narrows */}
+    <div style={{
+      opacity: sidebarCollapsed ? 0 : 1,
+      maxHeight: sidebarCollapsed ? 0 : 40,
+      overflow: 'hidden',
+      transition: 'opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)'
+    }}>
+      <NavSectionLabel label={section} />
+    </div>
+
+    {/* Collapsed rail: Divider replaces the section label. Skip for sIdx === 0 (no divider above first section). */}
+    {sIdx > 0 && (
+      <div style={{
+        opacity: sidebarCollapsed ? 1 : 0,
+        maxHeight: sidebarCollapsed ? 5 : 0,
+        overflow: 'hidden',
+        transition: 'opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+        padding: '2px 0'
+      }}>
+        <div style={{ height: 1, backgroundColor: '#f6f6f6' }} />
+      </div>
+    )}
+  </React.Fragment>,
+
+  ...items.map(item => /* SideNavItem rendering — unchanged */),
+])
+```
+
+### 2.3.1 Optional icon slot
+
+Figma's `SectionLabel` component includes an optional icon slot (`Container.Icon`) to the left of the label text. The icon is **hidden by default** in all current usages. Modules may enable it if their design requires an icon alongside the section heading, but this is not expected to be common. The icon, if used, should follow the same `16px inside 24px wrapper` pattern as `SideNavItem` leading icons.
+
+### Usage rules
+
+- **Optional, not mandatory.** Modules without a need for sections should omit NavSectionLabel entirely and use a flat item list.
+- **Never wrap items.** NavSectionLabel is always a sibling of the items it heads, not a parent wrapper.
+- **Gap is inherited.** The 6px `gap` of the `SideNavMenu` flex container applies between the section label and the item below it — no extra margin is needed on the label itself.
+- **One label per section.** Nested section labels (a label inside a label's group) are not supported and not needed: the SideNav only supports two levels of item depth.
+- **Labels collapse to dividers, not nothing.** In the 72px rail, every section boundary (except the topmost) must render a divider. Omitting the divider in rail mode makes sections invisible to the user and loses the visual grouping intent.
+
+---
+
+## 2.4 SideNavListSection
+
+**Figma:** `SideNav.ListSection` (node `40007332:8034`). A labelled group of flat navigation items — no icons, no children, no expand/collapse. Used for context-specific link lists such as "Recent Content", "Pinned Items", or "Bookmarks".
+
+### When to use
+
+Use `SideNavListSection` when a module needs to surface a dynamic, flat list of contextual links (e.g. recently visited records, pinned pages, bookmarked items) as part of the nav. These are **not hierarchical destinations** — they do not fit the `Level 0 / Level 1` item model. They are flat reference links to specific content.
+
+**Do not use** for primary navigation. If the links represent the module's top-level destinations, use `SideNavItem` instead.
+
+### Anatomy
+
+```
+SideNavListSection
+├── NavSectionLabel  (40px, e.g. "RECENT CONTENT")
+└── [list of ListItems, no gap between them]
+    └── ListItem
+        ├── IndicatorStripe (4px, same structural column as SideNavItem)
+        ├── Container.LeadingIcon (24×24)
+        │   └── BulletDot (6px filled circle)
+        └── text.label
+```
+
+### ListItem tokens
+
+| Property | Token | Resolved value |
+|---|---|---|
+| Min-height | `Accessibility/Touch Target/Optimal/Size` | `48px` |
+| Border radius | `Component/NavItem/Large/Radius/Radius` | `8px` |
+| Fill (base) | `Fill/Contextual/NavItem/Base` | `#fafafa` (transparent) |
+| Fill (hover) | `Fill/Contextual/NavItem/Hover` | `rgba(17,17,17,0.02)` |
+| Fill (active) | `Fill/Contextual/NavItem/Active` | `rgba(160,181,230,0.16)` |
+| Text (base) | `Text/Contextual/NavItem/Base` | `#313131` |
+| Text (hover) | `Text/Contextual/NavItem/Hover` | `#252525` |
+| Text (active) | `Text/Contextual/NavItem/Active` | `#1b2d57` |
+| Bullet dot (base) | `Icon/Contextual/NavItem/Base` | `#484848` |
+| Bullet dot (hover) | `Icon/Contextual/NavItem/Hover` | `#313131` |
+| Bullet dot (active) | `Icon/Contextual/NavItem/Active` | `#2d4889` |
+| Font size | `Text/Body/XSmall/Regular` | `12px` |
+| Font weight | `Text/Body/XSmall/Regular` | `400` |
+| Line height | `Text/Body/XSmall/Regular` | `18px` |
+| Letter spacing | `Text/Body/XSmall/Regular` | `0.6px` |
+
+### BulletDot sub-component
+
+The bullet dot sits inside a `24×24` `Container.LeadingIcon` wrapper (same dimensions as the icon wrapper on `SideNavItem`). The dot itself is a `6×6px` filled circle — it does not use a Material Symbol. Its colour follows the same `Base/Hover/Active` token cycle as `SideNavItem` icons.
+
+### Visibility: collapsed rail
+
+`SideNavListSection` is **only shown in the expanded sidebar (240px)**. In the 72px collapsed rail it fades out entirely — it receives `opacity: 0; max-height: 0; overflow: hidden` with the same transition as NavSectionLabel. There is no icon-only equivalent of a list section for the rail.
+
+```jsx
+{/* SideNavListSection — only in expanded nav */}
+<div style={{
+  opacity: sidebarCollapsed ? 0 : 1,
+  maxHeight: sidebarCollapsed ? 0 : 400,
+  overflow: 'hidden',
+  transition: 'opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)'
+}}>
+  <SideNavListSection
+    label="Recent Content"
+    items={LIST_SECTION_ITEMS}
+    activeId={activeId}
+    onNavigate={onNavigate}
+  />
+</div>
+```
+
+### State matrix
+
+ListItems follow the exact same `Base / Hover / Active` state matrix as `SideNavItem` destinations. The `indicator.stripe` column is always present structurally; it is only painted when the item is active. The Trail state does not apply — list section items are never groupers.
 
 ---
 
@@ -251,6 +439,12 @@ All `SideNavItem` labels at all levels use **the same** text style. There is no 
 | `Container.RowEnd` dimensions |: | 40×24px | **None** |
 | `Container.RowEnd.Icon` dimensions |: | 24×24px | `Accessibility/Icon Wrapping/Large` |
 | Chevron icon size |: | 10pt | **None** |
+| NavSectionLabel height | `h-[40px]` | 40 | **None** |
+| NavSectionLabel left/right padding | `px-[4px]` | 4 | `Gap/XTight` |
+| NavSectionLabel top/bottom padding | `py-[8px]` | 8 | `Padding/Tight` |
+| NavSectionLabel font size | *(type scale)* | 11 | `Label/Section/Small/Semibold/FontSize` |
+| NavSectionLabel letter spacing | *(type scale)* | 0.6px | `Label/Section/Small/Semibold/LetterSpacing` |
+| SideNavListSection bullet dot size | *(raw)* | 6 | **None** |
 
 ---
 
@@ -274,6 +468,18 @@ All `SideNavItem` labels at all levels use **the same** text style. There is no 
 - Same font (`Label/Menu/Base/Medium`) as Level 0
 - Always a destination, never a grouper
 - Only 2 levels of depth allowed
+
+### NavSectionLabel (content divider, optional)
+- A 40px-tall uppercase heading that labels a group of nav items within the menu
+- Not an interactive element — no hover state, no click handler
+- **Optional**: omit entirely for modules that do not need sections
+- Full spec at §2.3
+
+### SideNavListSection (flat contextual list, optional)
+- A labelled group of flat, icon-less list items (bullet-dot leading icon)
+- Only visible in expanded sidebar — hidden in 72px collapsed rail
+- Not for primary navigation; for contextual links (recent items, pinned items, etc.)
+- Full spec at §2.4
 
 ---
 
@@ -399,23 +605,36 @@ The nav container uses `overflow-y: auto`. When the nav item list grows long eno
 
 ### Custom scrollbar implementation
 
-Apply these CSS rules to the nav container element (and globally to the demo page):
+The scrollbar thumb is **transparent at rest** and only becomes visible when the user hovers over a scrollable area. This keeps the nav visually clean when the user is not actively scrolling.
+
+Apply these CSS rules globally (they cascade to all scrollable elements in the nav):
 
 ```css
 /* Webkit (Chrome, Safari, Edge) */
 ::-webkit-scrollbar        { width: 4px; }
 ::-webkit-scrollbar-track  { background: transparent; }
-::-webkit-scrollbar-thumb  { background: rgba(0,0,0,0.12); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.22); }
+::-webkit-scrollbar-thumb  {
+  background: transparent;       /* hidden at rest */
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+*:hover::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.18);  /* visible on hover */
+}
 
 /* Firefox */
-.sidenav-scroll-container {
+* {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,0.12) transparent;
+  scrollbar-color: transparent transparent;   /* hidden at rest */
+}
+*:hover {
+  scrollbar-color: rgba(0,0,0,0.18) transparent; /* visible on hover */
 }
 ```
 
-The 4 px scrollbar is intentionally narrow so it does not visually intrude on item layout. No token maps directly to the thumb opacity — `rgba(0,0,0,0.12)` is a documented implementation constant until a scrollbar semantic token is introduced.
+> **Note:** The `:hover` selector on `*` targets the scrollable container itself, not the scrollbar track. In Webkit, `::-webkit-scrollbar-thumb` cannot transition smoothly on its own — the `background: transparent` → `rgba(...)` swap happens instantly on hover, which is acceptable behaviour.
+
+The 4 px scrollbar is intentionally narrow so it does not visually intrude on item layout. `rgba(0,0,0,0.18)` is a documented implementation constant — no token maps directly to scrollbar thumb opacity.
 
 ### Popovers and tooltips when the sidebar is scrolled
 
@@ -545,17 +764,34 @@ This is a CSS architectural constraint, not a Figma design concern. No Figma ann
 - Icon source: [design system iconography page](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40002909-32275)
 - **Figma CDN asset URLs cannot be used directly in browsers**: they require auth headers that only the Figma MCP server provides. Implementations must either use the design system icon component library or embed SVG assets at build time.
 
-### Accounting SideNav icon mapping
+### Demo SideNav icon mapping (current reference implementation)
 
-| Nav Item | Icon name | Grouper |
+The reference demo (`sidenav.html`) uses a church management context with three sections. All icons are **Material Symbols Outlined** (Google Fonts CDN).
+
+#### MUSIC section
+
+| Nav Item | Icon name (Material Symbols) | Grouper |
 |---|---|---|
-| Applications | `apps` | ✓ |
-| Enter | `add_doc` |: |
-| Manage | `tune` (Vector) |: |
-| View | `view` (eye Vector) | ✓ |
-| Reports | `reports` |: |
-| Modify | `table_edit` | ✓ |
-| Help | `help` (Vector) |: |
+| Music | `music_note` | ✓ (children: Songs, Albums, Playlists) |
+| Media | `video_library` |: |
+| Live | `live_tv` |: |
+
+#### PEOPLE section
+
+| Nav Item | Icon name (Material Symbols) | Grouper |
+|---|---|---|
+| Groups | `group` | ✓ (children: Small Groups, Youth, Adults) |
+| Members | `person` |: |
+| Volunteers | `volunteer_activism` |: |
+
+#### SERVICES section
+
+| Nav Item | Icon name (Material Symbols) | Grouper |
+|---|---|---|
+| Services | `church` | ✓ (children: Sunday Service, Events) |
+| Giving | `favorite` |: |
+
+> **Note:** These items are demo data chosen to illustrate the section-label pattern in a realistic church management context. Production modules supply their own item lists, icons, and section headings.
 
 ---
 
@@ -564,12 +800,84 @@ This is a CSS architectural constraint, not a Figma design concern. No Figma ann
 | Trigger | Behavior |
 |---|---|
 | Click destination (L0 or L1) | Set that item as active |
-| Click grouper (expanded sidebar) | Toggle expand/collapse |
+| Click grouper (expanded sidebar) | Toggle expand/collapse (accordion) |
 | Click grouper (collapsed sidebar) | No expand: show flyout popover instead |
 | Hover any item | Hover fill + hover text + hover icon |
 | Hover grouper in collapsed sidebar | Show flyout popover with group label + children |
 | Click Collapse button | Sidebar width transition to 72px |
 | Click Expand button | Sidebar width transition to 240px |
+
+### 12.1 Grouper accordion expand/collapse (expanded sidebar)
+
+When the sidebar is in the 240px expanded state, clicking a Level 0 Grouper toggles its Level 1 children between visible and hidden using an **animated accordion**.
+
+**Multiple-open:** Multiple groupers can be open simultaneously. There is no single-open constraint (no accordion auto-close). The user may expand all groupers at once; the nav scrolls if the total height exceeds the viewport.
+
+**Chevron direction:**
+- Collapsed (children hidden): chevron points **down** (`▼`)
+- Expanded (children visible): chevron points **up** (`▲`)
+
+The chevron lives in `Container.RowEnd` (40×24px), which is only present on grouper items. Destination items have no `Container.RowEnd`.
+
+**Expand/collapse animation:**
+
+The Level 1 child list uses CSS Grid `grid-template-rows` to animate between zero height (collapsed) and natural height (expanded). This avoids JavaScript height calculations and supports dynamic content length.
+
+```jsx
+<div style={{
+  display: 'grid',
+  gridTemplateRows: isExpanded ? '1fr' : '0fr',
+  transition: 'grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1)'
+}}>
+  <div style={{ overflow: 'hidden' }}>
+    {item.children.map(child => <SideNavItem ... />)}
+  </div>
+</div>
+```
+
+| Property | Value |
+|---|---|
+| Animation type | CSS `grid-template-rows: 0fr → 1fr` |
+| Duration | `300ms` |
+| Easing | `cubic-bezier(0.4, 0, 0.2, 1)` — standard decelerate |
+| Collapsed value | `0fr` (zero height, children clipped) |
+| Expanded value | `1fr` (full natural height) |
+| Inner wrapper | `overflow: hidden` — required for the clip to work |
+
+> **Why grid-template-rows:** `max-height` transitions require a hard ceiling value and produce uneven timing (slow at the start when the element is short, fast at the end). `grid-template-rows: 0fr → 1fr` produces perfectly even timing because the fraction unit is relative to the natural content height, regardless of how many children are present.
+
+**Children always in DOM:** The Level 1 child list is always in the DOM when the sidebar is expanded (not conditionally rendered). This is required so the collapse animation plays when a grouper is closed — if the children were removed immediately, there would be nothing to animate. The children are only truly absent from the DOM in the 72px collapsed rail, where they are not rendered at all (popovers handle the collapsed case instead).
+
+### 12.2 Grouper behaviour in collapsed rail (72px)
+
+In the collapsed rail, clicking a grouper does not expand it accordion-style. There is no room for Level 1 children in a 72px rail. Instead:
+
+- Hovering a grouper opens the `CollapsedPopover` flyout (see §10.3)
+- The popover contains the group name (`PopoverMenu.SectionLabel`) and the children as `PopoverMenu.Item` rows
+- Clicking a child inside the popover navigates to that destination and sets it active
+- The grouper row itself shows Trail-collapsed state when any of its children is active (see §6)
+
+### 12.3 Trail state transitions
+
+Trail state is managed purely by the current `activeId` and the open/closed state of each grouper:
+
+1. User navigates to a Level 1 child → child is active, parent grouper enters **Trail-expanded** (children visible) or **Trail-collapsed** (children hidden or sidebar at 72px).
+2. User collapses the sidebar to 72px while a child is active → all expanded groupers with an active child immediately switch to Trail-collapsed. The accordion close animation does not play (the sidebar width transition takes priority as the visual signal).
+3. User re-expands the sidebar → Trail-expanded state resumes (grouper shows its children again).
+4. User clicks a different destination (not a child of this grouper) → grouper returns to Base state; no trail.
+
+### 12.4 NavSectionLabel interaction
+
+`NavSectionLabel` has **no interactive states**. It does not respond to hover, click, or focus. It is a purely decorative/organisational element. Do not assign `role="button"`, `tabindex`, or event handlers to it.
+
+### 12.5 SideNavListSection interaction
+
+`ListItem` within a `SideNavListSection` behaves identically to a Level 0 Destination item:
+- Hover → hover fill, hover text, hover bullet dot colour
+- Click → set as active, update `activeId`
+- Active → active fill, active text, active bullet dot colour, indicator stripe visible
+
+List section items do not have children and are never groupers. They do not interact with the Trail state logic.
 
 ---
 
@@ -763,6 +1071,8 @@ All SideNav motion follows `docs/design-system-spec.md` §2 with the contextual 
 |---|---|---|---|
 | Hover fills, colour transitions | 150ms | `instant` | No |
 | Popover enter (SideNavTooltip, flyout) | 150ms | `instant` | No |
+| Grouper accordion expand/collapse | 300ms | `short` | No — see §12.1 |
+| NavSectionLabel fade / Divider crossfade | 220–300ms | `short` | No — see §2.3 |
 | Sidebar width expand/collapse | 360ms | between `instant`/`short` | Yes — see §8.3 |
 | Label/chevron opacity fade | 180ms | between `instant`/`short` | Yes — see §8.3 |
 | Overlay panel enter (transform) | 380ms | above `short` | Yes — see §17.6 |
