@@ -27,10 +27,11 @@ export const T = {
   },
   surface: { navLight: "#fafafa" }, // Surface/Nav/Light
   text: {
-    navBase:      "#313131", // Text/Contextual/NavItem/Base
-    navHover:     "#252525", // Text/Contextual/NavItem/Hover
-    navActive:    "#1b2d57", // Text/Contextual/NavItem/Active
-    secondary:    "#7b7b7b", // Text/Static/Secondary/Light — SectionLabel
+    navBase:        "#313131", // Text/Contextual/NavItem/Base
+    navHover:       "#252525", // Text/Contextual/NavItem/Hover
+    navActive:      "#1b2d57", // Text/Contextual/NavItem/Active
+    secondary:      "#7b7b7b", // Text/Static/Secondary/Light — PopoverMenu.SectionLabel
+    secondarySubtle:"#606060", // Text/Static/Secondary/Subtle — NavSectionLabel (in-nav heading)
   },
   icon: {
     navBase:          "#484848", // Icon/Contextual/NavItem/Base
@@ -153,7 +154,7 @@ export function SideNavItem({
           opacity: isSidebarCollapsed ? 0 : 1,
           overflow: "hidden",
           pointerEvents: isSidebarCollapsed ? "none" : "auto",
-          transition: "max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease" }}>
+          transition: "max-width 360ms cubic-bezier(0.32, 0.72, 0, 1), opacity 200ms ease" }}>
           <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500,
             fontSize: 14, lineHeight: "20px", letterSpacing: "0.3px", color: textColor, margin: 0,
             whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
@@ -169,10 +170,12 @@ export function SideNavItem({
             maxWidth: isSidebarCollapsed ? 0 : 40,
             opacity: isSidebarCollapsed ? 0 : 1,
             overflow: "hidden",
-            transition: "max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease" }}>
-            {isExpanded
-              ? (chevronUp ? chevronUp({ size: 10, color: iconColor }) : <ChevUp size={10} color={iconColor} />)
-              : (chevronDown ? chevronDown({ size: 10, color: iconColor }) : <ChevDown size={10} color={iconColor} />)}
+            transition: "max-width 360ms cubic-bezier(0.32, 0.72, 0, 1), opacity 200ms ease" }}>
+            {/* Chevron rotation matches accordion timing — 340ms easeOutQuart */}
+            <div style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+              transition: "transform 340ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
+              {chevronDown ? chevronDown({ size: 10, color: iconColor }) : <ChevDown size={10} color={iconColor} />}
+            </div>
           </div>
         )}
       </div>
@@ -354,8 +357,95 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
 }
 
 // ─── SideNav (top-level container) ────────────────────────────────────────────
+// ── NavSectionLabel ──────────────────────────────────────────────────────────
+// Optional in-nav section heading. Figma: SideNav.SectionLabel (node 40006794:5975).
+// Tokens: Label/Section/Small/Semibold (11px/600/16px/0.6px), Text/Static/Secondary/Subtle (#606060)
+// Container: h-[40px], pl-[4px], pr-[4px], py-[8px]
+// In collapsed rail: hidden — replaced by a Divider (rendered by SideNav itself, see §2.3)
+export function NavSectionLabel({ label }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", height: 40, width: "100%",
+      paddingLeft: 4, paddingRight: 4, paddingTop: 8, paddingBottom: 8,
+      flexShrink: 0 }}>
+      <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 600,
+        fontSize: 11, lineHeight: "16px", letterSpacing: "0.6px",
+        textTransform: "uppercase", color: T.text.secondarySubtle || "#606060",
+        whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+        {label}
+      </span>
+    </div>
+  );
+}
+
+// ── BulletDot ────────────────────────────────────────────────────────────────
+// 6px filled circle — leading icon for SideNavListSection's ListItem.
+// Color cycles Base / Hover / Active just like SideNavItem icons.
+export function BulletDot({ color }) {
+  return (
+    <div style={{ width: 6, height: 6, borderRadius: "50%",
+      backgroundColor: color, flexShrink: 0 }} />
+  );
+}
+
+// ── ListItem ─────────────────────────────────────────────────────────────────
+// Figma: SideNavItemList (node 40007332:6994). Used inside SideNavListSection.
+// 48px min-height, 12px/400/18px/0.6px Text/Body/XSmall/Regular.
+// Same Base/Hover/Active token cycle as SideNavItem destinations.
+export function ListItem({ item, isActive, onClick }) {
+  const [hovered, setHovered] = useState(false);
+  const bg       = isActive ? T.fill.navActive : hovered ? T.fill.navHover : "transparent";
+  const color    = isActive ? T.text.navActive : hovered ? T.text.navHover : T.text.navBase;
+  const dotColor = isActive ? T.icon.navActive : hovered ? T.icon.navHover : T.icon.navBase;
+  return (
+    <div onClick={() => onClick && onClick(item.id)}
+      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
+      role="button" tabIndex={0}
+      onKeyDown={e => (e.key === "Enter" || e.key === " ") && onClick && onClick(item.id)}
+      style={{ display: "flex", alignItems: "center", minHeight: L.itemH, width: "100%",
+        borderRadius: T.radius, backgroundColor: bg, cursor: "pointer",
+        overflow: "hidden", transition: "background-color 0.15s ease",
+        userSelect: "none" }}>
+      <IndicatorStripe visible={isActive} />
+      <div style={{ width: L.iconWrap, height: L.iconWrap, display: "flex",
+        alignItems: "center", justifyContent: "center", flexShrink: 0,
+        marginLeft: L.rowPadH }}>
+        <BulletDot color={dotColor} />
+      </div>
+      <div style={{ flex: 1, minWidth: 0, paddingLeft: L.textPad, paddingRight: L.rowPadH }}>
+        <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
+          fontSize: 12, lineHeight: "18px", letterSpacing: "0.6px", color,
+          margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+          transition: "color 0.15s ease" }}>
+          {item.label}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ── SideNavListSection ───────────────────────────────────────────────────────
+// Figma: SideNav.ListSection (node 40007332:8034). A labelled grouping of flat
+// nav items — no icons, no children, no expand/collapse. Used for contextual
+// link lists (Recent Content, Pinned, Bookmarks). Only shown in expanded sidebar.
+export function SideNavListSection({ label, items, activeId, onNavigate }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 6, width: "100%", flexShrink: 0 }}>
+      <NavSectionLabel label={label} />
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        {items.map(item => (
+          <ListItem key={item.id} item={item}
+            isActive={item.id === activeId}
+            onClick={onNavigate} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function SideNav({
   items,
+  sections,
+  listSection,
   activeId,
   onNavigate,
   collapsed = false,
@@ -369,8 +459,15 @@ export function SideNav({
   const [popoverRect, setPopoverRect] = useState(null);
   const timerRef = useRef(null);
 
+  // Build a single flat list of all nav items for trail computation, regardless of
+  // whether the data was passed as flat `items` or as `sections` (which contain items).
+  // This keeps the active/trail logic unchanged from the flat-items API.
+  const flatItems = sections
+    ? sections.flatMap(s => s.items)
+    : (items || []);
+
   const trailParentId = (() => {
-    const p = items.find(item => item.children && item.children.some(c => c.id === activeId));
+    const p = flatItems.find(item => item.children && item.children.some(c => c.id === activeId));
     return p ? p.id : null;
   })();
 
@@ -387,6 +484,49 @@ export function SideNav({
     }, 300);
   };
 
+  // Renders one nav item + its animated child list. Shared between flat-items and
+  // sectioned renders so behaviour is identical regardless of which API is used.
+  const renderItem = (item) => {
+    const hasChildren = !!(item.children && item.children.length);
+    const isActive = item.id === activeId;
+    const isTrail = item.id === trailParentId;
+    const isExp = !!expanded[item.id];
+    return (
+      <div key={item.id}>
+        <SideNavItem item={item} isActive={isActive} isTrail={isTrail}
+          isExpanded={isExp} isSidebarCollapsed={collapsed}
+          isChild={false} onClick={onNavigate} onToggle={toggleExpand}
+          popoverOpen={popoverId === item.id}
+          anchorRect={popoverId === item.id ? popoverRect : null}
+          onPopoverEnter={onPopoverEnter} onPopoverLeave={onPopoverLeave}
+          activeId={activeId} />
+        {/* Level 1 children — animated accordion. grid-template-rows 0fr→1fr at
+            340ms easeOutQuart, with inner wrapper opacity fade 240ms (60ms delay
+            on expand, no delay on collapse for snappier exit). */}
+        {hasChildren && !collapsed && (
+          <div style={{
+            display: "grid",
+            gridTemplateRows: isExp ? "1fr" : "0fr",
+            transition: "grid-template-rows 340ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
+            <div style={{
+              overflow: "hidden",
+              opacity: isExp ? 1 : 0,
+              transition: isExp
+                ? "opacity 240ms ease 60ms"
+                : "opacity 160ms ease" }}>
+              {item.children.map(child => (
+                <SideNavItem key={child.id} item={child}
+                  isActive={child.id === activeId} isTrail={false}
+                  isExpanded={false} isSidebarCollapsed={false}
+                  isChild={true} onClick={onNavigate} onToggle={() => {}} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <nav className={className} style={{
       width: collapsed ? L.navWcol : L.navW,
@@ -395,40 +535,55 @@ export function SideNav({
       display: "flex", flexDirection: "column",
       padding: `${L.navPadV}px ${L.navPadH}px`,
       boxSizing: "border-box", flexShrink: 0,
-      transition: "width 0.36s cubic-bezier(0.4,0,0.2,1)",
+      // Smooth-spring curve — soft personality, no overshoot.
+      transition: "width 380ms cubic-bezier(0.32, 0.72, 0, 1)",
       borderRight: `0.5px solid ${T.fill.infoSubtle}`,
       overflowY: "auto",
     }}>
-      {/* SideNavMenu — gap 0px (items are flush; spacing comes from item padding) */}
+      {/* SideNavMenu — flex column, 6px gap between direct children
+          (sections, list section, collapse area). Items inside a section have
+          their own 6px gap; an item + its expanded children share one wrapper
+          so gap applies only between distinct items. */}
       <div style={{ display: "flex", flexDirection: "column", flex: 1, gap: L.menuGap }}>
-        {items.map(item => {
-          const hasChildren = !!(item.children && item.children.length);
-          const isActive = item.id === activeId;
-          const isTrail = item.id === trailParentId;
-          const isExp = !!expanded[item.id];
-          return (
-            <div key={item.id}>
-              <SideNavItem item={item} isActive={isActive} isTrail={isTrail}
-                isExpanded={isExp} isSidebarCollapsed={collapsed}
-                isChild={false} onClick={onNavigate} onToggle={toggleExpand}
-                popoverOpen={popoverId === item.id}
-                anchorRect={popoverId === item.id ? popoverRect : null}
-                onPopoverEnter={onPopoverEnter} onPopoverLeave={onPopoverLeave}
-                activeId={activeId} />
-              {hasChildren && isExp && !collapsed && (
-                <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-                  {item.children.map(child => (
-                    <SideNavItem key={child.id} item={child}
-                      isActive={child.id === activeId} isTrail={false}
-                      isExpanded={false} isSidebarCollapsed={false}
-                      isChild={true} onClick={onNavigate} onToggle={() => {}} />
-                  ))}
-                </div>
-              )}
+
+        {/* Sectioned render — when `sections` prop is provided */}
+        {sections && sections.map(({ section, items: secItems }, sIdx) => (
+          <div key={section} style={{ display: "flex", flexDirection: "column",
+            gap: L.menuGap, flexShrink: 0 }}>
+            {/* Expanded: NavSectionLabel; fades to 0 height as rail collapses */}
+            <div style={{ opacity: collapsed ? 0 : 1,
+              maxHeight: collapsed ? 0 : 40, overflow: "hidden",
+              transition: "opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+              flexShrink: 0 }}>
+              <NavSectionLabel label={section} />
             </div>
-          );
-        })}
-        {/* Bottom spacer — L.menuPadB (56px) before collapse button */}
+            {/* Collapsed rail: Divider replaces the section label (skip first section) */}
+            {sIdx > 0 && (
+              <div style={{ opacity: collapsed ? 1 : 0,
+                maxHeight: collapsed ? 5 : 0, overflow: "hidden",
+                transition: "opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+                padding: "2px 0", flexShrink: 0 }}>
+                <div style={{ height: 1, backgroundColor: T.fill.infoSubtle }} />
+              </div>
+            )}
+            {secItems.map(renderItem)}
+          </div>
+        ))}
+
+        {/* Flat render — when only `items` is provided (backward compatibility) */}
+        {!sections && (items || []).map(renderItem)}
+
+        {/* SideNavListSection — optional. Hidden in collapsed rail. */}
+        {listSection && (
+          <div style={{ opacity: collapsed ? 0 : 1,
+            maxHeight: collapsed ? 0 : 400, overflow: "hidden",
+            transition: "opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
+            <SideNavListSection label={listSection.label} items={listSection.items}
+              activeId={activeId} onNavigate={onNavigate} />
+          </div>
+        )}
+
+        {/* Bottom spacer — fills remaining height before collapse button */}
         <div style={{ flex: 1, minHeight: L.menuPadB }} />
         <div style={{ paddingTop: L.collapseGap, display: hideCollapseButton ? "none" : "block" }}>
           <CollapseButton isSidebarCollapsed={collapsed}
