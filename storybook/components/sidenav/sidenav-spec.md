@@ -563,21 +563,23 @@ Collapsed: width  72px, padding 14px 12px (same, text hidden)
 
 ### 8.3 Transition
 ```
-width: transition 0.36s cubic-bezier(0.4, 0, 0.2, 1)
+width: transition 380ms cubic-bezier(0.32, 0.72, 0, 1)
 ```
 
 **Label and chevron fade:** Item labels, chevrons, and the CollapseButton "Collapse" text are always present in the DOM. They fade out/in using `max-width` + `opacity` transitions so text does not pop-in at full opacity inside the still-narrow container during an expand animation.
 
 | Element | Collapsed value | Expanded value | Transition |
 |---|---|---|---|
-| Label `max-width` | `0` | `200px` | `0.32s cubic-bezier(0.4,0,0.2,1)` |
-| Label `opacity` | `0` | `1` | `0.18s ease` |
-| Chevron `max-width` | `0` | `40px` | `0.32s cubic-bezier(0.4,0,0.2,1)` |
-| Chevron `opacity` | `0` | `1` | `0.18s ease` |
-| CollapseButton label `max-width` | `0` | `120px` | `0.32s cubic-bezier(0.4,0,0.2,1)` |
-| CollapseButton label `opacity` | `0` | `1` | `0.18s ease` |
+| Label `max-width` | `0` | `200px` | `360ms cubic-bezier(0.32, 0.72, 0, 1)` |
+| Label `opacity` | `0` | `1` | `200ms ease` |
+| Chevron `max-width` | `0` | `40px` | `360ms cubic-bezier(0.32, 0.72, 0, 1)` |
+| Chevron `opacity` | `0` | `1` | `200ms ease` |
+| CollapseButton label `max-width` | `0` | `120px` | `360ms cubic-bezier(0.32, 0.72, 0, 1)` |
+| CollapseButton label `opacity` | `0` | `1` | `200ms ease` |
 
-> **Motion override — intentional (approved 2026-05-12):** The sidebar width transition uses `360ms` and the label/chevron opacity uses `180ms`, both of which fall between the overarching spec's `instant` (150ms) and `short` (300ms) categories. These values are intentional: the sidebar is a large structural panel element — a pure `short` (300ms) width transition feels abrupt at this scale. The label opacity at `180ms` is deliberately shorter than the width so labels begin fading before the panel finishes collapsing, avoiding a flash of fully-visible text inside an already-narrow container. These values are registered as contextual motion tokens `Motion/SideNav/Panel/Width` (360ms) and `Motion/SideNav/Label/Fade` (180ms) in the overarching spec §2.4.
+> **Motion override — intentional (updated 2026-05-13):** The sidebar width transition uses `380ms` with `cubic-bezier(0.32, 0.72, 0, 1)` — a smooth-spring curve with a soft, characterful ease but **no overshoot**. Previously the implementation used a strongly bouncy `cubic-bezier(0.34, 1.56, 0.64, 1)` at 500 ms, which felt overly springy for a structural panel. The new curve preserves a hint of warmth and personality without the visible bounce. The label/chevron motion matches: 360 ms max-width with the same curve, 200 ms ease opacity. Opacity is slightly shorter than width so labels finish fading before the panel finishes collapsing, avoiding a flash of fully-visible text inside an already-narrow container. Registered as contextual motion tokens `Motion/SideNav/Panel/Width` (380ms) and `Motion/SideNav/Label/Fade` (360ms width / 200ms opacity) in the overarching spec §2.4.
+
+> **Why `cubic-bezier(0.32, 0.72, 0, 1)` and not the standard `cubic-bezier(0.4, 0, 0.2, 1)`:** The standard Material curve is correct but reads as clinical at the scale of a 240→72 px panel. The smooth-spring curve borrows Apple's HIG easing language — strong initial acceleration that decelerates smoothly into rest — giving the motion warmth and presence without the literal physical bounce of an overshoot. It is the same family of curve used for the grouper accordion (`cubic-bezier(0.22, 1, 0.36, 1)`), keeping the two motions feeling coherent.
 
 ---
 
@@ -1113,8 +1115,9 @@ All SideNav motion follows `docs/design-system-spec.md` §2 with the contextual 
 | Grouper child opacity fade-out | 160ms | `instant` | No — see §12.1 |
 | Chevron rotation (matches accordion) | 340ms · easeOutQuart | `short` | No |
 | NavSectionLabel fade / Divider crossfade | 220–300ms | `short` | No — see §2.3 |
-| Sidebar width expand/collapse | 360ms | between `instant`/`short` | Yes — see §8.3 |
-| Label/chevron opacity fade | 180ms | between `instant`/`short` | Yes — see §8.3 |
+| Sidebar width expand/collapse | 380ms · smooth-spring | between `short`/`medium` | Yes — see §8.3 (updated 2026-05-13: smoother, no overshoot) |
+| Label/chevron max-width | 360ms · smooth-spring | `short` | Yes — see §8.3 |
+| Label/chevron opacity fade | 200ms ease | between `instant`/`short` | Yes — see §8.3 |
 | Overlay panel enter (transform) | 380ms | above `short` | Yes — see §17.6 |
 | Overlay panel exit (transform) | 300ms | `short` | No |
 | Overlay panel opacity | 220–300ms | `short` | No |
