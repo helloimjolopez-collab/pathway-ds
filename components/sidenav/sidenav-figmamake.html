@@ -681,9 +681,10 @@ function SideNavItem({ item, isActive, isTrail, isExpanded, isSidebarCollapsed,
             opacity:  isSidebarCollapsed ? 0 : 1,
             overflow: "hidden",
             transition:"max-width 500ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 220ms ease" }}>
-            {/* Rotate chevron — spring so it swings into place */}
+            {/* Rotate chevron — easeOutQuart so it lands with the accordion panel.
+                Keeps a hint of spring character without overshooting past the item below. */}
             <div style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-              transition:"transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1)" }}>
+              transition:"transform 340ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
               <IC.chevDown size={10} color={iconColor} />
             </div>
           </div>
@@ -1120,13 +1121,21 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
                     onPopoverEnter={onPopoverEnter} onPopoverLeave={onPopoverLeave}
                     activeId={activeId} />
 
-                  {/* Level 1 children — grid-template-rows 0fr→1fr animated height */}
+                  {/* Level 1 children — grid-template-rows 0fr→1fr animated height.
+                      Uses easeOutQuart curve for a smooth, decelerating expand that feels
+                      polished without bouncing. Children fade in slightly behind the height
+                      animation (40ms delay) so they emerge gracefully rather than clipping. */}
                   {hasChildren && !sidebarCollapsed && (
                     <div style={{
                       display: "grid",
                       gridTemplateRows: isExpanded ? "1fr" : "0fr",
-                      transition: "grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
-                      <div style={{ overflow:"hidden" }}>
+                      transition: "grid-template-rows 340ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
+                      <div style={{
+                        overflow:"hidden",
+                        opacity: isExpanded ? 1 : 0,
+                        transition: isExpanded
+                          ? "opacity 240ms ease 60ms"
+                          : "opacity 160ms ease" }}>
                         {item.children.map(child => (
                           <SideNavItem key={child.id} item={child}
                             isActive={child.id === activeId} isTrail={false}
@@ -1164,40 +1173,106 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
 // ⚠ KEEP IN SYNC with sidenav-spec.md §§3–4 (Design Tokens + Layout & Spacing).
 // When token values change in Figma, update both this array AND the spec markdown.
 const TOKEN_ROWS = [
-  // Surface
+  // ── Surface ────────────────────────────────────────────────────────────────
   { cat:"Surface", semantic:"Surface/Nav/Light",              prim:"—",        value:"#fafafa",              role:"SideNav container background" },
-  { cat:"Surface", semantic:"Surface/Canvas/Light",           prim:"Brand/10",  value:"#fafafa",              role:"Page/viewport background (confirmed Figma variable)" },
-  // Fill
-  { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Base",   prim:"—",        value:"#fafafa",              role:"Item resting fill" },
+  { cat:"Surface", semantic:"Surface/Canvas/Light",           prim:"Brand/10", value:"#fafafa",              role:"Page/viewport background (confirmed Figma variable)" },
+  { cat:"Surface", semantic:"Fill/Static/Surface/White",      prim:"—",        value:"#ffffff",              role:"PopoverMenu surface + SideNavTooltip background" },
+
+  // ── Fill (NavItem states) ──────────────────────────────────────────────────
+  { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Base",   prim:"—",        value:"#fafafa",              role:"Item resting fill (effectively transparent on nav surface)" },
   { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Hover",  prim:"—",        value:"#11111105",            role:"Item hover fill (≈rgba 17,17,17 / 2%)" },
   { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Active", prim:"—",        value:"#a0b5e629",            role:"Active + collapsed-trail fill (≈rgba 160,181,230 / 16%)" },
-  { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Trail",  prim:"—",        value:"#11111105",            role:"Expanded grouper fill (≈rgba 17,17,17 / 2%) — same hex as Hover, distinct tokens" },
-  { cat:"Fill",    semantic:"Stroke/Static/Neutral/Light",    prim:"—",        value:"#f6f6f6",              role:"Divider + nav border-right (updated 2026-05-12, was Fill/Static/Info/Subtle #edf0f9)" },
-  // Text
-  { cat:"Text",    semantic:"Text/Contextual/NavItem/Base",   prim:"—",        value:"#313131",              role:"Label default" },
-  { cat:"Text",    semantic:"Text/Contextual/NavItem/Hover",  prim:"—",        value:"#252525",              role:"Label hover" },
-  { cat:"Text",    semantic:"Text/Contextual/NavItem/Active", prim:"—",        value:"#1b2d57",              role:"Label active + ALL trail states" },
-  // Icon
-  { cat:"Icon",    semantic:"Icon/Contextual/NavItem/Base",   prim:"—",        value:"#484848",              role:"Icon default + expanded trail icon" },
-  { cat:"Icon",    semantic:"Icon/Contextual/NavItem/Hover",  prim:"—",        value:"#313131",              role:"Icon hover" },
-  { cat:"Icon",    semantic:"Icon/Contextual/NavItem/Active", prim:"—",        value:"#2d4889",              role:"Icon active + collapsed-trail + indicator.stripe" },
-  { cat:"Icon",    semantic:"Icon/Action/Secondary Inverse/Base", prim:"—",   value:"#6b6b6b",              role:"NavHeader action icon (updated 2026-05-13)" },
-  { cat:"Text",    semantic:"Text/Static/Secondary/Subtle",       prim:"Cool-Neutral/130", value:"#606060", role:"PopoverMenu.SectionLabel text (updated 2026-05-13)" },
-  // Geometry
-  { cat:"Radius",  semantic:"Component/NavItem/Large/Radius", prim:"Border/S", value:"8px",                  role:"Item corner radius" },
-  // Spacing — no tokens
-  { cat:"⚠ Spacing (no token)", semantic:"Nav padding H expanded",prim:"—",    value:"16px",                 role:"px-[16px] on SideNav.Container expanded (updated 2026-05-13)" },
-  { cat:"⚠ Spacing (no token)", semantic:"Nav padding H collapsed",prim:"—",   value:"12px",                 role:"px-[12px] on SideNav.Container collapsed (updated 2026-05-13)" },
-  { cat:"⚠ Spacing (no token)", semantic:"Nav container padding V",prim:"—",   value:"top:8px / btm:12px",   role:"pt-[8px] pb-[12px] on SideNav.Container (updated 2026-05-13, was 12px)" },
-  { cat:"⚠ Spacing (no token)", semantic:"Item gap",              prim:"—",     value:"6px",                  role:"gap-[6px] / Gap/XTight on SideNavMenu (updated 2026-05-13, was 0px)" },
-  { cat:"⚠ Spacing (no token)", semantic:"NavHeader → menu gap",  prim:"—",     value:"8px",                  role:"paddingTop between NavHeader divider and first nav item (2026-05-13)" },
-  { cat:"⚠ Spacing (no token)", semantic:"Row horizontal padding",prim:"—",     value:"8px",                  role:"Container.rowStart px-[8px]" },
-  { cat:"⚠ Spacing (no token)", semantic:"Child indent",          prim:"—",     value:"24px",                 role:"container.main pl-[24px] for L1 items" },
-  { cat:"⚠ Spacing (no token)", semantic:"Indicator stripe width",prim:"—",     value:"4px",                  role:"indicator.stripe width" },
-  { cat:"⚠ Spacing (no token)", semantic:"Expanded nav width",    prim:"—",     value:"240px",                role:"SideNav.Container expanded width (updated 2026-05-12, was 220px)" },
-  // Tokens that ARE confirmed
-  { cat:"✓ Access.", semantic:"Accessibility/Touch Target/Optimal", prim:"—",  value:"48px",                 role:"Item min-height" },
-  { cat:"✓ Access.", semantic:"Accessibility/Icon Wrapping/Large",  prim:"—",  value:"24px",                 role:"Container.LeadingIcon size" },
+  { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Trail",  prim:"—",        value:"#11111105",            role:"Expanded grouper fill (same hex as Hover, distinct tokens)" },
+
+  // ── Stroke ─────────────────────────────────────────────────────────────────
+  { cat:"Stroke",  semantic:"Stroke/Static/Neutral/Light",    prim:"—",        value:"#f6f6f6",              role:"Nav border-right · NavHeader divider · section-label divider in 72px rail (replaces NavSectionLabel)" },
+  { cat:"Stroke",  semantic:"Stroke/Static/Neutral/Subtle",   prim:"—",        value:"#ededed",              role:"PopoverMenu border + PopoverMenu.SectionLabel bottom border" },
+
+  // ── Text (item) ────────────────────────────────────────────────────────────
+  { cat:"Text",    semantic:"Text/Contextual/NavItem/Base",   prim:"—",        value:"#313131",              role:"SideNavItem label default · PopoverMenu.Item base · ListItem base" },
+  { cat:"Text",    semantic:"Text/Contextual/NavItem/Hover",  prim:"—",        value:"#252525",              role:"SideNavItem label hover · PopoverMenu.Item hover · ListItem hover" },
+  { cat:"Text",    semantic:"Text/Contextual/NavItem/Active", prim:"—",        value:"#1b2d57",              role:"SideNavItem label active + ALL trail states · ListItem active" },
+  { cat:"Text",    semantic:"Text/Static/Secondary/Subtle",   prim:"Cool-Neutral/130", value:"#606060",       role:"NavSectionLabel text (MUSIC / PEOPLE etc.) + PopoverMenu.SectionLabel text" },
+  { cat:"Text",    semantic:"Text/Static/Primary/Base",       prim:"—",        value:"#202020",              role:"SideNavTooltip text" },
+
+  // ── Icon ───────────────────────────────────────────────────────────────────
+  { cat:"Icon",    semantic:"Icon/Contextual/NavItem/Base",   prim:"—",        value:"#484848",              role:"Leading icon default · expanded-trail icon · ListItem BulletDot base" },
+  { cat:"Icon",    semantic:"Icon/Contextual/NavItem/Hover",  prim:"—",        value:"#313131",              role:"Leading icon hover · ListItem BulletDot hover" },
+  { cat:"Icon",    semantic:"Icon/Contextual/NavItem/Active", prim:"—",        value:"#2d4889",              role:"Active icon · collapsed-trail icon · indicator.stripe paint · ListItem BulletDot active" },
+  { cat:"Icon",    semantic:"Icon/Action/Secondary Inverse/Base", prim:"—",    value:"#6b6b6b",              role:"NavHeader action icon (right_panel_open / left_panel_open, 12×12)" },
+
+  // ── Typography ─────────────────────────────────────────────────────────────
+  { cat:"Typography", semantic:"Label/Menu/Base/Medium",        prim:"—",      value:"14px / 500 / 20px / 0.3px", role:"SideNavItem label (both L0 and L1) · PopoverMenu.Item · 'Red Hat Text' Medium" },
+  { cat:"Typography", semantic:"Label/Section/Small/Semibold",  prim:"—",      value:"11px / 600 / 16px / 0.6px UPPERCASE", role:"NavSectionLabel (MUSIC / PEOPLE / SERVICES) · 'Red Hat Text' SemiBold" },
+  { cat:"Typography", semantic:"Text/Body/XSmall/Regular",      prim:"—",      value:"12px / 400 / 18px / 0.6px", role:"SideNavListSection ListItem text" },
+  { cat:"Typography", semantic:"Text/Body/S/Regular",           prim:"—",      value:"14px / 400 / 20px / 0.02px", role:"SideNavTooltip + PopoverMenu.Item text" },
+  { cat:"Typography", semantic:"Label/Menu/Base/Regular",       prim:"—",      value:"14px / 400 / 20px / 0.02px", role:"PopoverMenu.SectionLabel text (in flyout, NOT uppercase)" },
+
+  // ── Geometry & radius ──────────────────────────────────────────────────────
+  { cat:"Radius",  semantic:"Component/NavItem/Large/Radius",  prim:"Border/S", value:"8px",                  role:"SideNavItem corner radius · PopoverMenu.Item radius · ListItem radius" },
+  { cat:"Radius",  semantic:"Border/Radius/S",                 prim:"—",        value:"8px",                  role:"PopoverMenu surface · SideNavTooltip · indicator.stripe right-side curve" },
+
+  // ── Shadow (popover & tooltip) ─────────────────────────────────────────────
+  { cat:"Shadow",  semantic:"Shadow/Medium",                   prim:"—",        value:"2px 2px 8px 4px rgba(0,0,0,0.03)", role:"PopoverMenu (collapsed-grouper flyout) drop shadow" },
+  { cat:"Shadow",  semantic:"Tooltip shadow (raw)",            prim:"—",        value:"2px 2px 8px 0 rgba(0,0,0,0.03)",   role:"SideNavTooltip drop shadow" },
+
+  // ── NavSectionLabel layout (no spacing tokens yet) ─────────────────────────
+  { cat:"⚠ Spacing (no token)", semantic:"NavSectionLabel height",        prim:"—",    value:"40px",                 role:"Section heading row height (h-[40px])" },
+  { cat:"⚠ Spacing (no token)", semantic:"NavSectionLabel padding L/R",   prim:"Gap/XTight", value:"4px",            role:"NavSectionLabel pl-[4px] pr-[4px]" },
+  { cat:"⚠ Spacing (no token)", semantic:"NavSectionLabel padding T/B",   prim:"Padding/Tight", value:"8px",          role:"NavSectionLabel py-[8px]" },
+  { cat:"⚠ Spacing (no token)", semantic:"Rail section divider height",   prim:"—",    value:"1px",                  role:"Divider that replaces NavSectionLabel in 72px rail (Stroke/Static/Neutral/Light)" },
+  { cat:"⚠ Spacing (no token)", semantic:"Rail section divider padding",  prim:"—",    value:"2px top / 2px btm",    role:"Vertical padding around the rail divider line" },
+
+  // ── SideNavListSection (ListItem) layout ───────────────────────────────────
+  { cat:"⚠ Spacing (no token)", semantic:"ListItem min-height",           prim:"Accessibility/Touch Target", value:"48px", role:"SideNavListSection ListItem row height" },
+  { cat:"⚠ Spacing (no token)", semantic:"BulletDot size",                prim:"—",    value:"6px",                  role:"Filled circle leading icon in ListItem (inside 24×24 wrapper)" },
+  { cat:"⚠ Spacing (no token)", semantic:"ListSection internal gap",      prim:"Gap/XTight", value:"6px",            role:"Gap between NavSectionLabel and ListItems" },
+
+  // ── PopoverMenu (collapsed grouper flyout) layout ──────────────────────────
+  { cat:"⚠ Spacing (no token)", semantic:"PopoverMenu padding",           prim:"—",    value:"6px",                  role:"Inner padding around PopoverMenu items" },
+  { cat:"⚠ Spacing (no token)", semantic:"PopoverMenu min-width",         prim:"—",    value:"200px",                role:"PopoverMenu minimum width" },
+  { cat:"⚠ Spacing (no token)", semantic:"PopoverMenu offset from rail",  prim:"—",    value:"8px",                  role:"left: calc(100% + 8px) gap from rail right edge" },
+  { cat:"⚠ Spacing (no token)", semantic:"PopoverMenu.Item height",       prim:"—",    value:"40px min",             role:"Each row in the popover" },
+  { cat:"⚠ Spacing (no token)", semantic:"PopoverMenu.Item padding",      prim:"—",    value:"4px 12px",             role:"PopoverMenu.Item inner padding" },
+
+  // ── SideNavTooltip (destination hover) layout ──────────────────────────────
+  { cat:"⚠ Spacing (no token)", semantic:"SideNavTooltip padding",        prim:"—",    value:"6px 8px",              role:"Tooltip inner padding" },
+  { cat:"⚠ Spacing (no token)", semantic:"SideNavTooltip border",         prim:"Stroke/Static/Neutral/Light", value:"0.5px #f6f6f6", role:"Tooltip border" },
+  { cat:"⚠ Spacing (no token)", semantic:"SideNavTooltip offset",         prim:"—",    value:"8px",                  role:"Distance from rail right edge" },
+
+  // ── SideNav container spacing ──────────────────────────────────────────────
+  { cat:"⚠ Spacing (no token)", semantic:"Nav padding H expanded",        prim:"—",    value:"16px",                 role:"px-[16px] on SideNav.Container expanded (updated 2026-05-13)" },
+  { cat:"⚠ Spacing (no token)", semantic:"Nav padding H collapsed",       prim:"—",    value:"12px",                 role:"px-[12px] on SideNav.Container collapsed (updated 2026-05-13)" },
+  { cat:"⚠ Spacing (no token)", semantic:"Nav container padding V",       prim:"—",    value:"top:8px / btm:12px",   role:"pt-[8px] pb-[12px] on SideNav.Container" },
+  { cat:"⚠ Spacing (no token)", semantic:"Item gap",                      prim:"Gap/XTight", value:"6px",            role:"gap-[6px] on SideNavMenu (between sections + within sections)" },
+  { cat:"⚠ Spacing (no token)", semantic:"NavHeader → menu gap",          prim:"—",    value:"8px",                  role:"paddingTop between NavHeader divider and first nav item" },
+  { cat:"⚠ Spacing (no token)", semantic:"Row horizontal padding",        prim:"—",    value:"8px",                  role:"Container.rowStart px-[8px]" },
+  { cat:"⚠ Spacing (no token)", semantic:"Child indent",                  prim:"—",    value:"24px",                 role:"container.main pl-[24px] for L1 items" },
+  { cat:"⚠ Spacing (no token)", semantic:"Indicator stripe width",        prim:"—",    value:"4px",                  role:"indicator.stripe column width on every item" },
+  { cat:"⚠ Spacing (no token)", semantic:"Expanded nav width",            prim:"—",    value:"240px",                role:"SideNav.Container expanded width" },
+  { cat:"⚠ Spacing (no token)", semantic:"Collapsed nav width",           prim:"—",    value:"72px",                 role:"SideNav.Container rail width (12 + 48 + 12)" },
+  { cat:"⚠ Spacing (no token)", semantic:"CollapseButton icon size",      prim:"—",    value:"12×12",                role:"NavHeader right_panel_open / left_panel_open SVGs" },
+
+  // ── Motion (durations + easing) ────────────────────────────────────────────
+  { cat:"Motion",  semantic:"Hover / colour transitions",     prim:"—",        value:"150ms",                role:"Item fill/text/icon hover transitions (instant category)" },
+  { cat:"Motion",  semantic:"Grouper accordion expand",        prim:"—",        value:"340ms · easeOutQuart", role:"grid-template-rows 0fr→1fr · cubic-bezier(0.22, 1, 0.36, 1)" },
+  { cat:"Motion",  semantic:"Children opacity fade-in",        prim:"—",        value:"240ms / 60ms delay",   role:"Inner child wrapper opacity 0→1 (when expanding)" },
+  { cat:"Motion",  semantic:"Children opacity fade-out",       prim:"—",        value:"160ms",                role:"Inner child wrapper opacity 1→0 (when collapsing — snappier exit)" },
+  { cat:"Motion",  semantic:"Chevron rotation",                prim:"—",        value:"340ms · easeOutQuart", role:"Grouper chevron 0°→180° · matches accordion timing" },
+  { cat:"Motion",  semantic:"Sidebar width transition",        prim:"Motion/SideNav/Panel/Width", value:"360ms · standard", role:"240px ↔ 72px · cubic-bezier(0.4, 0, 0.2, 1)" },
+  { cat:"Motion",  semantic:"Label / chevron fade",            prim:"Motion/SideNav/Label/Fade",  value:"180ms / 0.32s max-width", role:"Item label + grouper chevron fade as rail collapses" },
+  { cat:"Motion",  semantic:"NavSectionLabel ↔ Divider",       prim:"—",        value:"220ms opacity / 300ms max-height", role:"Crossfade between section label (expanded) and rail divider (collapsed)" },
+  { cat:"Motion",  semantic:"Popover / Tooltip enter",         prim:"—",        value:"150ms",                role:"CollapsedPopover + SideNavTooltip fade-in (instant category)" },
+  { cat:"Motion",  semantic:"Hover-safe popover close delay",  prim:"—",        value:"300ms",                role:"Timer after mouse leaves both item and popover (WCAG 2.5.1)" },
+  { cat:"Motion",  semantic:"Overlay panel enter",             prim:"Motion/SideNav/Overlay/Enter", value:"380ms · decelerate", role:"<1024px overlay slide-in · cubic-bezier(0, 0, 0.2, 1)" },
+  { cat:"Motion",  semantic:"Overlay panel exit",              prim:"Motion/SideNav/Overlay/Exit",  value:"300ms · accelerate", role:"<1024px overlay slide-out · cubic-bezier(0.4, 0, 0.6, 1)" },
+  { cat:"Motion",  semantic:"Scrim fade",                      prim:"—",        value:"280ms · standard",     role:"Backdrop opacity 0↔1 behind overlay" },
+  { cat:"Motion",  semantic:"Reduced motion (all transforms)", prim:"—",        value:"150ms linear",         role:"prefers-reduced-motion: reduce — transforms suppressed, opacity-only" },
+
+  // ── Confirmed accessibility tokens ─────────────────────────────────────────
+  { cat:"✓ Access.", semantic:"Accessibility/Touch Target/Optimal", prim:"—", value:"48px",                 role:"SideNavItem + ListItem min-height" },
+  { cat:"✓ Access.", semantic:"Accessibility/Icon Wrapping/Large",  prim:"—", value:"24px",                 role:"Container.LeadingIcon size (icon wrapper)" },
+  { cat:"✓ Access.", semantic:"Icon glyph inside wrapper",          prim:"—", value:"14px (16px in spec)",  role:"Icon.Leading SVG viewBox · sized to fit 24px wrapper visually" },
 ];
 
 // ─── FLAT STATUS ICONS (replace emoji badges) ─────────────────────────────────
