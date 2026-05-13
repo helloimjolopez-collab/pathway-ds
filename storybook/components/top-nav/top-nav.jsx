@@ -13,100 +13,51 @@ import React, { useState, useEffect, useRef } from "react";
 
 // ─── DESIGN TOKENS (dark-mode surface — all controls on brand-blue bg) ─────────
 // Values sourced from get_variable_defs on Figma node 40007067:6508.
-// Consume via CSS vars where available; raw fallbacks for CDN/Storybook isolation.
 export const T = {
-  // Nav bar surface
-  navBg:              "#2d4889",   // Fill/Static/Brand/Base
-
-  // Interactive controls (dark-mode tokens — applied on brand-blue surface)
-  orgFill:            "rgba(160,181,230,0.04)",   // Fill/Action/Tertiary/Base
-  orgStroke:          "rgba(160,181,230,0.16)",   // Stroke/Action/Tertiary/Base
-  orgStrokeHover:     "rgba(160,181,230,0.20)",   // Stroke/Action/Tertiary/Hover
-  searchFill:         "rgba(160,181,230,0.08)",   // Fill/Action/PrimaryInverse/Base
-  controlHover:       "rgba(10,18,35,0.16)",      // Fill/Action/PrimaryInverse/Hover
-  controlPressed:     "rgba(255,255,255,0.08)",   // Fill/Action/PrimaryInverse/Pressed
-  controlActive:      "rgba(255,255,255,0.08)",   // pressed = active for toggles
-
-  // Text / icon on nav bar
-  monoBase:           "#fbfbfb",   // Text/Action/Mono/Base = Icon/Action/Mono/Base
-
-  // Profile avatar (light-mode accent — always the same regardless of app mode)
-  avatarBg:           "#dcd9ef",   // Fill/Static/Accent_Amethyst/Base
-  avatarText:         "#221e3f",   // Text/Static/Accent-Amethyst/Contrast
-
-  // Dropdown / panel (on white surface — light-mode tokens)
-  panelBorder:        "rgba(45,72,137,0.12)",
-  panelShadow:        "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
-  activeItem:         "#eef2fb",   // NOTE: no semantic token yet — tracked in spec §17
-  itemText:           "#252525",
-  itemTextBase:       "#484848",
-  itemMeta:           "#6b6b6b",
+  navBg:          "#2d4889",                    // Fill/Static/Brand/Base
+  orgFill:        "rgba(160,181,230,0.04)",      // Fill/Action/Tertiary/Base
+  orgStroke:      "rgba(160,181,230,0.16)",      // Stroke/Action/Tertiary/Base
+  orgStrokeHover: "rgba(160,181,230,0.20)",
+  searchFill:     "rgba(160,181,230,0.08)",      // Fill/Action/PrimaryInverse/Base
+  controlHover:   "rgba(10,18,35,0.16)",         // Fill/Action/PrimaryInverse/Hover
+  controlPressed: "rgba(255,255,255,0.08)",      // pressed / active toggle
+  noLogoBg:       "rgba(255,255,255,0.08)",      // Fill/Action/Secondary/Base (no-logo avatar)
+  monoBase:       "#fbfbfb",                    // Text/Action/Mono/Base = Icon/Action/Mono/Base
+  avatarBg:       "#dcd9ef",                    // Fill/Static/Accent_Amethyst/Base
+  avatarText:     "#221e3f",                    // Text/Static/Accent-Amethyst/Contrast
+  panelBorder:    "rgba(45,72,137,0.12)",
+  panelShadow:    "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
+  activeItem:     "#eef2fb",
+  itemText:       "#252525",
+  itemTextBase:   "#484848",
+  itemMeta:       "#6b6b6b",
 };
 
 // ─── LAYOUT VALUES ─────────────────────────────────────────────────────────────
-// Sourced from Figma get_design_context measurements on Desktop/Tablet/Mobile nodes.
 export const L = {
-  // Desktop (≥1024px)
-  deskPadH:   16,   // px-[16px]
-  deskPadV:   4,    // py-[4px]
-  deskH:      56,   // max-h-[56px]
-  deskOrgMax: 316,  // OrgSwitcher max-w
-
-  // Tablet (768–1023px)
-  tabPadH:    12,   // px-[12px]
-  tabH:       54,   // max-h-[54px]
-
-  // Mobile (<768px)
-  mobPadH:    8,    // px-[8px]
-  mobH:       56,   // max-h-[56px]
-  mobOrgMax:  120,  // OrgSwitcher max-w on mobile
-
-  // Controls
-  touchTarget:  48, // min touch target (WCAG 2.5.5)
-  modInnerH:    36, // ModuleSwitcher inner height
-  orgAvatarNav: 20, // org avatar size in nav bar
-  orgAvatarSm:  24, // org avatar wrapper in nav bar
-  orgAvatarPanel: 32, // org avatar in panel dropdown
-  searchPill:   32, // search pill outer size
-  avatarSize:   32, // profile avatar size
-  radius:       8,  // CornerRadius/Medium
-  radiusSm:     4,  // CornerRadius/Small
-
-  // Org avatar crop (Figma-defined, §7.2.1)
-  logoW:    "196.31%",
-  logoH:    "228.29%",
-  logoL:    "-47.05%",
-  logoT:    "-63.31%",
+  deskPadH: 16, deskPadV: 4, deskH: 56,
+  tabPadH:  12, tabH: 54,
+  mobPadH:  8,  mobH: 56,
+  deskOrgMax: 316, mobOrgMax: 120,
+  touchTarget: 48, modInnerH: 36,
+  orgAvatarNav: 20, orgAvatarSm: 24, orgAvatarPanel: 32,
+  searchPill: 32, avatarSize: 32,
+  radius: 8, radiusSm: 4,
+  // Org logo crop values — Figma §7.2.1
+  logoW: "196.31%", logoH: "228.29%", logoL: "-47.05%", logoT: "-63.31%",
 };
 
 // ─── ABBREVIATION UTILITIES ────────────────────────────────────────────────────
-// Implements §10.2 AP-based abbreviation rules.
-
 const SKIP_WORDS = new Set(["the","a","an","of","in","at","for","and","or","but"]);
 
-/**
- * Abbreviate an org name to exactly 3 uppercase letters.
- * Rules: skip articles/prepositions/conjunctions; take first letter of first 3
- * significant words. If 2 significant words, repeat last letter. If 1, first 3 chars.
- */
 export function abbreviateOrg(name) {
   if (!name) return "???";
-  const words = name.replace(/-/g, " ").split(/\s+/).filter(Boolean);
-  const sig = words.filter(w => !SKIP_WORDS.has(w.toLowerCase()));
-  if (sig.length >= 3) return (sig[0][0] + sig[1][0] + sig[2][0]).toUpperCase();
-  if (sig.length === 2) return (sig[0][0] + sig[1][0] + sig[1][0]).toUpperCase();
-  return sig[0].slice(0, 3).toUpperCase();
+  const sig = name.replace(/-/g," ").split(/\s+/).filter(w => !SKIP_WORDS.has(w.toLowerCase()));
+  if (sig.length >= 3) return (sig[0][0]+sig[1][0]+sig[2][0]).toUpperCase();
+  if (sig.length === 2) return (sig[0][0]+sig[1][0]+sig[1][0]).toUpperCase();
+  return sig[0].slice(0,3).toUpperCase();
 }
 
-/**
- * Abbreviate a campus name to 2 uppercase letters.
- * Rules (Two-Letter Rule per §10.2):
- *   - Two+ significant words: first letter of first two words (e.g. "Main Campus" → MC)
- *   - Single word with a recognisable place-name suffix (-ville, -field, -burg, -town,
- *     -port, -ford, -wood, -land, -dale, -view, -gate, -bridge, -worth, -shire, -berg):
- *     take first letter of root + first letter of suffix (e.g. "Knoxville" → KV)
- *   - Single word, no suffix: first + last letter (e.g. "East" → ET)
- */
 const PLACE_SUFFIXES = [
   "ville","field","burg","burgh","berg","town","port","ford",
   "wood","land","dale","view","gate","bridge","worth","shire",
@@ -114,48 +65,80 @@ const PLACE_SUFFIXES = [
 
 export function abbreviateCampus(campus) {
   if (!campus) return "";
-  const words = campus.replace(/-/g, " ").split(/\s+/).filter(Boolean);
-  const sig = words.filter(w => !SKIP_WORDS.has(w.toLowerCase()));
-  if (sig.length === 0) return campus.slice(0, 2).toUpperCase();
-  if (sig.length >= 2) {
-    // Two+ significant words: first letter of first two
-    return (sig[0][0] + sig[1][0]).toUpperCase();
+  const sig = campus.replace(/-/g," ").split(/\s+/).filter(w => !SKIP_WORDS.has(w.toLowerCase()));
+  if (!sig.length) return campus.slice(0,2).toUpperCase();
+  if (sig.length >= 2) return (sig[0][0]+sig[1][0]).toUpperCase();
+  const w = sig[0], wl = w.toLowerCase();
+  for (const sfx of PLACE_SUFFIXES) {
+    if (wl.endsWith(sfx) && w.length > sfx.length+1) return (w[0]+sfx[0]).toUpperCase();
   }
-  // Single word — check for compound place-name suffix
-  const w = sig[0];
-  const wl = w.toLowerCase();
-  for (const suffix of PLACE_SUFFIXES) {
-    if (wl.endsWith(suffix) && w.length > suffix.length + 1) {
-      // e.g. Knoxville: root=Knox → K, suffix=ville → V
-      return (w[0] + suffix[0]).toUpperCase();
-    }
-  }
-  // Fallback: first + last letter
-  return (w[0] + w[w.length - 1]).toUpperCase();
+  return (w[0]+w[w.length-1]).toUpperCase();
+}
+
+export function mobileLabel(orgName, campusName) {
+  const org = abbreviateOrg(orgName);
+  return campusName ? `${org} | ${abbreviateCampus(campusName)}` : org;
+}
+
+// ─── FIGMA CUSTOM SVG ICONS ────────────────────────────────────────────────────
+// These are custom Figma-exported SVG paths. Do NOT replace with Material Symbols.
+// Source: get_design_context on TopNav.Global desktop/tablet/mobile + no-logo variant.
+
+// Module=Home, Style=Flat, Color=White — node I40007067:5241;40006803:50605;40006853:34204
+const HOME_ICON_PATH =
+  "M16.5811 38.6244V32.8265C16.5811 31.3486 17.7937 30.1359 19.2716 30.1359H24.7095C25.4295 30.1359 26.1116 30.4202 26.6232 30.9128C27.1347 31.4054 27.4189 32.0875 27.4189 32.8075V38.6054C27.4189 39.2307 27.6653 39.8181 28.1011 40.2538C28.5368 40.6896 29.1242 40.9359 29.7495 40.9359H33.4632C35.1874 40.9359 36.8547 40.2538 38.0863 39.0412C39.3179 37.8286 40 36.1802 40 34.4559V17.9717C40 16.5696 39.3747 15.2623 38.2947 14.3717L25.6568 4.34858C23.4589 2.58647 20.3137 2.64331 18.1726 4.48121L5.83789 14.3528C4.72 15.2244 4.03789 16.5317 4 17.9528V34.437C4 38.037 6.93684 40.9549 10.5368 40.9359H14.1747C15.4632 40.9359 16.5053 39.9128 16.5242 38.6244H16.5811Z";
+
+// Org avatar placeholder (no logo) — node I40007243:73405;40006817:14372;40007243:73426;84:22159
+const CHURCH_ICON_PATH =
+  "M0 12.6667V9.53333C0 9.26667 0.0722222 9.025 0.216667 8.80833C0.361111 8.59167 0.555556 8.42778 0.8 8.31667L2.66667 7.48333V6.15C2.66667 5.89444 2.73333 5.66389 2.86667 5.45833C3 5.25278 3.17778 5.08889 3.4 4.96667L6 3.66667V2.66667H5.33333C5.14444 2.66667 4.98611 2.60278 4.85833 2.475C4.73056 2.34722 4.66667 2.18889 4.66667 2C4.66667 1.81111 4.73056 1.65278 4.85833 1.525C4.98611 1.39722 5.14444 1.33333 5.33333 1.33333H6V0.666667C6 0.477778 6.06389 0.319444 6.19167 0.191667C6.31944 0.0638889 6.47778 0 6.66667 0C6.85556 0 7.01389 0.0638889 7.14167 0.191667C7.26944 0.319444 7.33333 0.477778 7.33333 0.666667V1.33333H8C8.18889 1.33333 8.34722 1.39722 8.475 1.525C8.60278 1.65278 8.66667 1.81111 8.66667 2C8.66667 2.18889 8.60278 2.34722 8.475 2.475C8.34722 2.60278 8.18889 2.66667 8 2.66667H7.33333V3.66667L9.93333 4.96667C10.1556 5.08889 10.3333 5.25278 10.4667 5.45833C10.6 5.66389 10.6667 5.89444 10.6667 6.15V7.48333L12.5333 8.31667C12.7778 8.42778 12.9722 8.59167 13.1167 8.80833C13.2611 9.025 13.3333 9.26667 13.3333 9.53333V12.6667C13.3333 13.0333 13.2028 13.3472 12.9417 13.6083C12.6806 13.8694 12.3667 14 12 14H8.66667C8.47778 14 8.31944 13.9361 8.19167 13.8083C8.06389 13.6806 8 13.5222 8 13.3333V12C8 11.6333 7.86944 11.3194 7.60833 11.0583C7.34722 10.7972 7.03333 10.6667 6.66667 10.6667C6.3 10.6667 5.98611 10.7972 5.725 11.0583C5.46389 11.3194 5.33333 11.6333 5.33333 12V13.3333C5.33333 13.5222 5.26944 13.6806 5.14167 13.8083C5.01389 13.9361 4.85556 14 4.66667 14H1.33333C0.966667 14 0.652778 13.8694 0.391667 13.6083C0.130556 13.3472 0 13.0333 0 12.6667ZM6.66667 8.33333C6.94444 8.33333 7.18056 8.23611 7.375 8.04167C7.56944 7.84722 7.66667 7.61111 7.66667 7.33333C7.66667 7.05556 7.56944 6.81944 7.375 6.625C7.18056 6.43056 6.94444 6.33333 6.66667 6.33333C6.38889 6.33333 6.15278 6.43056 5.95833 6.625C5.76389 6.81944 5.66667 7.05556 5.66667 7.33333C5.66667 7.61111 5.76389 7.84722 5.95833 8.04167C6.15278 8.23611 6.38889 8.33333 6.66667 8.33333Z";
+
+/**
+ * Custom home icon for the ModuleSwitcher.
+ * Figma: Module=Home, Style=Flat, Color=White
+ * Do NOT replace with Material Symbols — this is a custom Figma asset.
+ */
+export function HomeModuleIcon({ size = 22 }) {
+  return (
+    <svg
+      viewBox="0 0 44 44" width={size} height={size}
+      fill="none" xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      style={{ display: "block", flexShrink: 0 }}
+    >
+      <path d={HOME_ICON_PATH} fill="white" />
+    </svg>
+  );
 }
 
 /**
- * Build the mobile display label: "ORG | CA" or just "ORG" when no campus.
+ * Org avatar placeholder shown when an org has no logo on file.
+ * Figma: church icon, node 40007243:73426 — positioned at inset 4.17% 8.33% 8.33% 8.33%
+ * within the 16px inner avatar frame.
  */
-export function mobileLabel(orgName, campusName) {
-  const org = abbreviateOrg(orgName);
-  if (!campusName) return org;
-  const cam = abbreviateCampus(campusName);
-  return `${org} | ${cam}`;
+export function OrgAvatarPlaceholder() {
+  return (
+    <div style={{ position: "absolute", inset: "4.17% 8.33% 8.33% 8.33%" }}>
+      <svg
+        viewBox="0 0 13.3333 14" width="100%" height="100%"
+        fill="none" xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true" style={{ display: "block" }}
+      >
+        <path d={CHURCH_ICON_PATH} fill="white" fillOpacity="0.7" />
+      </svg>
+    </div>
+  );
 }
 
 // ─── MATERIAL SYMBOL HELPER ────────────────────────────────────────────────────
-// All Pathway icons use Google Material Symbols (outlined variant).
+// Used for all icons EXCEPT the custom Figma SVGs above.
 function Icon({ name, size = 20, style: extraStyle }) {
   return (
     <span
       className="material-symbols-outlined"
       style={{
-        fontSize: size,
-        lineHeight: 1,
-        display: "block",
+        fontSize: size, lineHeight: 1, display: "block",
         userSelect: "none",
-        fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' size",
+        fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24",
         ...extraStyle,
       }}
       aria-hidden="true"
@@ -165,23 +148,90 @@ function Icon({ name, size = 20, style: extraStyle }) {
   );
 }
 
-// ─── MODULE DATA (app-level) ───────────────────────────────────────────────────
+// ─── MODULE DATA ───────────────────────────────────────────────────────────────
 export const DEFAULT_MODULES = [
-  { id: "home",   label: "Amplify Home",    icon: "home" },
-  { id: "people", label: "People",          icon: "group" },
-  { id: "giving", label: "Giving",          icon: "volunteer_activism" },
-  { id: "events", label: "Events",          icon: "event" },
-  { id: "comms",  label: "Communications",  icon: "mail" },
+  { id: "home",   label: "Amplify Home",   icon: "home" },
+  { id: "people", label: "People",         icon: "group" },
+  { id: "giving", label: "Giving",         icon: "volunteer_activism" },
+  { id: "events", label: "Events",         icon: "event" },
+  { id: "comms",  label: "Communications", icon: "mail" },
 ];
 
 // ─── TopNavSearch ──────────────────────────────────────────────────────────────
-export function TopNavSearch({ onClick }) {
-  const [hov, setHov] = useState(false);
+/**
+ * Search control. Collapsed: pill button. Expanded: inline text input.
+ * Manages its own expand/collapse state; calls onSearchOpen when expanding.
+ */
+export function TopNavSearch({ onSearchOpen }) {
+  const [expanded, setExpanded]   = useState(false);
+  const [query, setQuery]         = useState("");
+  const [hov, setHov]             = useState(false);
+  const inputRef                  = useRef(null);
+
+  const open = () => {
+    setExpanded(true);
+    onSearchOpen?.();
+    // Defer focus so the input is in the DOM first
+    requestAnimationFrame(() => inputRef.current?.focus());
+  };
+  const close = () => { setExpanded(false); setQuery(""); };
+
+  useEffect(() => {
+    if (!expanded) return;
+    const h = (e) => { if (e.key === "Escape") close(); };
+    document.addEventListener("keydown", h);
+    return () => document.removeEventListener("keydown", h);
+  }, [expanded]);
+
+  if (expanded) {
+    return (
+      <div
+        style={{ display: "flex", alignItems: "center",
+          minHeight: L.touchTarget, minWidth: L.searchPill }}
+      >
+        <div style={{
+          display: "flex", alignItems: "center", gap: 4,
+          height: L.searchPill, padding: "0 6px 0 8px",
+          background: T.searchFill,
+          border: `0.75px solid ${T.monoBase}`,
+          borderRadius: 9999, minWidth: 200, maxWidth: 280,
+          transition: "min-width 180ms ease",
+        }}>
+          <Icon name="search" size={16} style={{ color: T.monoBase, flexShrink: 0 }} />
+          <input
+            ref={inputRef}
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="Search…"
+            aria-label="Search"
+            style={{
+              flex: 1, background: "transparent", border: "none", outline: "none",
+              color: T.monoBase, fontSize: 13, fontWeight: 400, minWidth: 0,
+              fontFamily: "'Red Hat Text', sans-serif",
+            }}
+          />
+          <button
+            onClick={close}
+            aria-label="Close search"
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              background: "transparent", border: "none", cursor: "pointer",
+              padding: 3, borderRadius: 4, flexShrink: 0,
+              color: T.monoBase, opacity: 0.7,
+            }}
+          >
+            <Icon name="close" size={14} style={{ color: T.monoBase }} />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center",
       minHeight: L.touchTarget, minWidth: L.touchTarget }}>
       <button
-        onClick={onClick}
+        onClick={open}
         onMouseEnter={() => setHov(true)}
         onMouseLeave={() => setHov(false)}
         aria-label="Open search"
@@ -201,11 +251,9 @@ export function TopNavSearch({ onClick }) {
 }
 
 // ─── TopNavActions ─────────────────────────────────────────────────────────────
-// Desktop: two notification bell buttons.
-// Tablet/Mobile: single more_vert (three-dot) button.
 export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore }) {
-  const [hov0, setHov0] = useState(false);
-  const [hov1, setHov1] = useState(false);
+  const [hov0, setHov0]       = useState(false);
+  const [hov1, setHov1]       = useState(false);
   const [hovMore, setHovMore] = useState(false);
 
   const btnStyle = (hov) => ({
@@ -220,16 +268,14 @@ export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore 
     return (
       <div style={{ display: "flex", alignItems: "center" }}>
         {[
-          { hov: hov0, setHov: setHov0, label: "Notifications", idx: 0 },
-          { hov: hov1, setHov: setHov1, label: "Alerts", idx: 1 },
-        ].map(({ hov, setHov, label, idx }) => (
+          { hov: hov0, setHov: setHov0, label: "Notifications" },
+          { hov: hov1, setHov: setHov1, label: "Alerts" },
+        ].map(({ hov, setHov, label }, idx) => (
           <div key={idx} style={{ display: "flex", alignItems: "center", justifyContent: "center",
             minHeight: L.touchTarget, minWidth: L.touchTarget, padding: 6 }}>
             <button
-              onMouseEnter={() => setHov(true)}
-              onMouseLeave={() => setHov(false)}
-              onClick={onNotifications}
-              aria-label={label}
+              onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+              onClick={onNotifications} aria-label={label}
               style={btnStyle(hov)}
             >
               <Icon name="notifications" size={20} style={{ color: T.monoBase }} />
@@ -240,15 +286,12 @@ export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore 
     );
   }
 
-  // Tablet and Mobile: more_vert
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center",
       minHeight: L.touchTarget, minWidth: L.touchTarget }}>
       <button
-        onMouseEnter={() => setHovMore(true)}
-        onMouseLeave={() => setHovMore(false)}
-        onClick={onMore}
-        aria-label="More actions"
+        onMouseEnter={() => setHovMore(true)} onMouseLeave={() => setHovMore(false)}
+        onClick={onMore} aria-label="More actions"
         style={btnStyle(hovMore)}
       >
         <Icon name="more_vert" size={20} style={{ color: T.monoBase }} />
@@ -258,39 +301,35 @@ export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore 
 }
 
 // ─── TopNavProfile ─────────────────────────────────────────────────────────────
-export function TopNavProfile({ user, open, onToggle }) {
+export function TopNavProfile({ user, open, onToggle, mobile = false }) {
   const [hov, setHov] = useState(false);
-  const showsInitials = !user.avatarUrl;
-
   return (
     <div style={{ position: "relative", display: "flex", alignItems: "center",
       justifyContent: "center", minHeight: L.touchTarget, minWidth: L.touchTarget, padding: 2 }}>
       <button
         onClick={onToggle}
-        onMouseEnter={() => setHov(true)}
-        onMouseLeave={() => setHov(false)}
-        aria-haspopup="true"
-        aria-expanded={open}
+        onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+        aria-haspopup="true" aria-expanded={open}
         aria-label={`Account — ${user.name}`}
         style={{
           display: "flex", alignItems: "center", justifyContent: "center",
           width: 44, height: 44,
-          background: open ? T.controlActive : hov ? T.controlHover : "transparent",
+          background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
           border: "none", borderRadius: "50%", cursor: "pointer", padding: 6,
           transition: "background 120ms ease",
         }}
       >
         <div style={{
           width: L.avatarSize, height: L.avatarSize, borderRadius: "50%",
-          background: T.avatarBg,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 14, fontWeight: 600, letterSpacing: "0.3px",
-          color: T.avatarText,
-          lineHeight: 1, flexShrink: 0, overflow: "hidden",
+          background: T.avatarBg, display: "flex", alignItems: "center", justifyContent: "center",
+          // Desktop/Tablet: Text/Body/Small/Semibold 14px/600
+          // Mobile: Text/Supporting/Small/Semibold 11px/600 (Figma)
+          fontSize: mobile ? 11 : 14, fontWeight: 600, letterSpacing: "0.3px",
+          color: T.avatarText, lineHeight: 1, flexShrink: 0, overflow: "hidden",
         }}>
-          {showsInitials
-            ? user.initials
-            : <img src={user.avatarUrl} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          {user.avatarUrl
+            ? <img src={user.avatarUrl} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            : user.initials
           }
         </div>
       </button>
@@ -299,65 +338,61 @@ export function TopNavProfile({ user, open, onToggle }) {
 }
 
 // ─── OrgSwitcher ──────────────────────────────────────────────────────────────
-export function OrgSwitcher({ org, open, onToggle, mobile = false, className = "" }) {
-  const [hov, setHov] = useState(false);
+export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
+  const [hov, setHov]           = useState(false);
   const [imgFailed, setImgFailed] = useState(false);
+
+  const hasLogo = org.logoUrl && !imgFailed;
 
   const label = mobile
     ? mobileLabel(org.name, org.campus)
     : org.name + (org.campus ? " | " + org.campus : "");
 
+  // Desktop/Tablet: Label/Button/S — 14px/500/20px
+  // Mobile: Label/Button/XS — 12px/500/18px (Figma annotation)
   const labelStyle = mobile
-    ? { fontSize: 12, fontWeight: 500, lineHeight: "18px", letterSpacing: "0.3px" }  // Label/Button/XS
-    : { fontSize: 14, fontWeight: 500, lineHeight: "20px", letterSpacing: "0.3px" }; // Label/Button/S
-
-  const maxOrgW = mobile ? L.mobOrgMax : L.deskOrgMax;
+    ? { fontSize: 12, fontWeight: 500, lineHeight: "18px", letterSpacing: "0.3px" }
+    : { fontSize: 14, fontWeight: 500, lineHeight: "20px", letterSpacing: "0.3px" };
 
   return (
-    <div
-      style={{ position: "relative", padding: mobile ? "4px 2px" : 4, maxWidth: maxOrgW }}
-      className={className}
-    >
+    <div style={{ position: "relative", padding: mobile ? "4px 2px" : 4,
+      maxWidth: mobile ? L.mobOrgMax : L.deskOrgMax }}>
       <button
-        onMouseEnter={() => setHov(true)}
-        onMouseLeave={() => setHov(false)}
+        onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
         onClick={onToggle}
-        aria-haspopup="true"
-        aria-expanded={open}
-        aria-label={`Switch organisation — ${org.name}${org.campus ? ", " + org.campus : ""}`}
+        aria-haspopup="true" aria-expanded={open}
+        aria-label={`Switch organisation — ${org.name}${org.campus ? ", "+org.campus : ""}`}
         style={{
           display: "flex", alignItems: "center", gap: 4,
           minHeight: 36, padding: mobile ? "4px 2px" : 4, borderRadius: L.radius,
-          background: open ? T.controlActive : hov ? T.controlHover : T.orgFill,
+          background: open ? T.controlPressed : hov ? T.controlHover : T.orgFill,
           border: `1px solid ${open || hov ? T.orgStrokeHover : T.orgStroke}`,
-          cursor: "pointer",
-          color: T.monoBase,
-          fontFamily: "inherit",
+          cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
           transition: "background 120ms ease, border-color 120ms ease",
         }}
       >
-        {/* Org avatar */}
-        <div style={{ display: "flex", alignItems: "center", gap: 4, height: 20, padding: "0 2px" }}>
-          <div style={{ width: L.orgAvatarSm, height: L.orgAvatarSm, padding: 2, display: "flex",
-            alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+        {/* Avatar container */}
+        <div style={{ display: "flex", alignItems: "center", gap: 4,
+          height: 20, padding: "0 2px" }}>
+          <div style={{ width: L.orgAvatarSm, height: L.orgAvatarSm, padding: 2,
+            display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            {/* Inner 20×20 avatar frame */}
             <div style={{
               width: L.orgAvatarNav, height: L.orgAvatarNav, borderRadius: L.radiusSm,
               border: `1px solid ${T.orgStroke}`,
-              background: `rgba(45,72,137,0.25)`,
+              // With logo: transparent bg; no logo: Fill/Action/Secondary/Base per Figma
+              background: hasLogo ? "transparent" : T.noLogoBg,
               display: "flex", alignItems: "center", justifyContent: "center",
-              overflow: "hidden", position: "relative",
+              overflow: "hidden", position: "relative", flexShrink: 0,
             }}>
-              {org.logoUrl && !imgFailed
+              {hasLogo
                 ? <img
-                    src={org.logoUrl}
-                    alt=""
+                    src={org.logoUrl} alt=""
                     onError={() => setImgFailed(true)}
-                    style={{ position: "absolute", width: L.logoW, height: L.logoH, left: L.logoL, top: L.logoT }}
+                    style={{ position: "absolute",
+                      width: L.logoW, height: L.logoH, left: L.logoL, top: L.logoT }}
                   />
-                : <span style={{ fontSize: 7, fontWeight: 700, letterSpacing: ".04em",
-                    color: T.monoBase, lineHeight: 1 }}>
-                    {org.initials}
-                  </span>
+                : <OrgAvatarPlaceholder />
               }
             </div>
           </div>
@@ -367,24 +402,24 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false, className = "
             style={{
               ...labelStyle,
               whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-              maxWidth: mobile ? 70 : 248,
-              color: T.monoBase, paddingRight: 4,
+              maxWidth: mobile ? 70 : 248, color: T.monoBase, paddingRight: 4,
             }}
           >
             {label}
           </span>
-          {/* Accessible label for mobile (full, unabbreviated) */}
           {mobile && (
-            <span className="sr-only" style={{ position: "absolute", left: -9999, width: 1, height: 1, overflow: "hidden" }}>
-              {org.name}{org.campus ? ", " + org.campus : ""}
+            <span style={{ position: "absolute", left: -9999, width: 1, height: 1, overflow: "hidden" }}>
+              {org.name}{org.campus ? ", "+org.campus : ""}
             </span>
           )}
         </div>
         {/* Chevron */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center",
+        <div style={{
+          display: "flex", alignItems: "center", justifyContent: "center",
           width: 16, height: 16, marginRight: 2,
           transform: open ? "rotate(180deg)" : "none",
-          transition: "transform 180ms ease" }}>
+          transition: "transform 180ms ease",
+        }}>
           <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
         </div>
       </button>
@@ -394,49 +429,52 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false, className = "
 
 // ─── ModuleSwitcher ────────────────────────────────────────────────────────────
 export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint = "desktop" }) {
-  const [hov, setHov] = useState(false);
-  const active = modules.find(m => m.id === activeId) || modules[0];
-  const showLabel = breakpoint === "desktop"; // tablet and mobile: icon only
+  const [hov, setHov]   = useState(false);
+  const active          = modules.find(m => m.id === activeId) || modules[0];
+  const showLabel       = breakpoint === "desktop";
 
   return (
     <div style={{ position: "relative", padding: "4px 2px" }}>
       <button
-        onMouseEnter={() => setHov(true)}
-        onMouseLeave={() => setHov(false)}
+        onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
         onClick={onToggle}
-        aria-haspopup="listbox"
-        aria-expanded={open}
+        aria-haspopup="listbox" aria-expanded={open}
         aria-label={`Switch module — ${active.label}`}
         style={{
           display: "flex", alignItems: "center",
           maxHeight: L.modInnerH, minHeight: L.modInnerH, padding: 4, borderRadius: L.radius,
-          background: open ? T.controlActive : hov ? T.controlHover : "transparent",
+          background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
           border: `1px solid ${open ? T.orgStrokeHover : "transparent"}`,
-          cursor: "pointer",
-          color: T.monoBase,
-          fontFamily: "inherit",
+          cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
           transition: "background 120ms ease, border-color 120ms ease",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 4, paddingRight: showLabel ? 2 : 0 }}>
-          {/* Module icon */}
-          <div style={{ width: 30, height: 30, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Icon name={active.icon} size={22} style={{ color: T.monoBase }} />
+        <div style={{ display: "flex", alignItems: "center", gap: 4,
+          paddingRight: showLabel ? 2 : 0 }}>
+          {/* Module icon — custom SVG for home; Material Symbol for all others */}
+          <div style={{ width: 30, height: 30, display: "flex", alignItems: "center",
+            justifyContent: "center", flexShrink: 0 }}>
+            {active.id === "home"
+              ? <HomeModuleIcon size={22} />
+              : <Icon name={active.icon} size={22} style={{ color: T.monoBase }} />
+            }
           </div>
           {/* Label — desktop only */}
           {showLabel && (
-            <span style={{ fontSize: 14, fontWeight: 500, lineHeight: "20px", letterSpacing: "0.3px",
-              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-              maxWidth: 160, color: T.monoBase }}>
+            <span style={{ fontSize: 14, fontWeight: 500, lineHeight: "20px",
+              letterSpacing: "0.3px", whiteSpace: "nowrap", overflow: "hidden",
+              textOverflow: "ellipsis", maxWidth: 160, color: T.monoBase }}>
               {active.label}
             </span>
           )}
         </div>
         {/* Chevron */}
-        <div style={{ width: 16, height: 16, display: "flex", alignItems: "center",
+        <div style={{
+          width: 16, height: 16, display: "flex", alignItems: "center",
           justifyContent: "center", marginLeft: 4,
           transform: open ? "rotate(180deg)" : "none",
-          transition: "transform 180ms ease" }}>
+          transition: "transform 180ms ease",
+        }}>
           <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
         </div>
       </button>
@@ -449,27 +487,26 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
  * TopNav.Global component.
  *
  * Props:
- *   items            — NavItem[]  (not used directly; kept for future use)
- *   activeId         — string     (currently active navigation item ID — passed through to onNavigate)
  *   modules          — Array<{id, label, icon}>  (default: DEFAULT_MODULES)
- *   activeModuleId   — string     (id of active module)
+ *   activeModuleId   — string
  *   org              — { id, name, campus?, initials, logoUrl?, bg? }
+ *                      logoUrl absent or undefined → shows church placeholder icon
  *   user             — { name, initials, email, avatarUrl? }
- *   breakpoint       — "desktop" | "tablet" | "mobile"  (consumer controls this; use window.innerWidth)
+ *   breakpoint       — "desktop" | "tablet" | "mobile"
  *   onModuleSelect   — (id: string) => void
- *   onOrgSelect      — () => void  (opens the panel — panel design pending)
+ *   onOrgSelect      — () => void
  *   onSearchOpen     — () => void
  *   onSideNavToggle  — () => void  (mobile only)
  *   onNotifications  — () => void
- *   onMore           — () => void  (tablet/mobile three-dot menu)
+ *   onMore           — () => void
  *   className        — string
  */
 export function TopNav({
-  modules = DEFAULT_MODULES,
-  activeModuleId = "home",
-  org = { id: "shc", name: "Sacred Heart Church-ITD", campus: "Knoxville", initials: "SH", bg: "#2d4889" },
-  user = { name: "Jo Lopez", initials: "JL", email: "jo@sacredheart.org" },
-  breakpoint = "desktop",
+  modules         = DEFAULT_MODULES,
+  activeModuleId  = "home",
+  org             = { id: "shc", name: "Sacred Heart Church-ITD", campus: "Knoxville", initials: "SH" },
+  user            = { name: "Jo Lopez", initials: "JL", email: "jo@sacredheart.org" },
+  breakpoint      = "desktop",
   onModuleSelect,
   onOrgSelect,
   onSearchOpen,
@@ -478,41 +515,35 @@ export function TopNav({
   onMore,
   className = "",
 }) {
-  const [openPanel, setOpenPanel] = useState(null); // "module" | "org" | "profile" | null
-  const [currentModuleId, setCurrentModuleId] = useState(activeModuleId);
-  const navRef = useRef(null);
+  const [openPanel, setOpenPanel]       = useState(null); // "module"|"org"|"profile"|null
+  const [currentModuleId, setModuleId]  = useState(activeModuleId);
+  const navRef                          = useRef(null);
 
   const isMobile  = breakpoint === "mobile";
   const isTablet  = breakpoint === "tablet";
-  const isDesktop = breakpoint === "desktop";
+  const padH      = isMobile ? L.mobPadH : isTablet ? L.tabPadH : L.deskPadH;
+  const navH      = isTablet ? L.tabH : 56;
 
-  const padH = isMobile ? L.mobPadH : isTablet ? L.tabPadH : L.deskPadH;
-  const navH = isTablet ? L.tabH : 56;
-
-  const toggle = (panel) => setOpenPanel(x => x === panel ? null : x = panel);
+  const toggle = (p) => setOpenPanel(x => x === p ? null : p);
   const close  = () => setOpenPanel(null);
 
-  // Close panels on outside click
   useEffect(() => {
-    const handler = (e) => { if (!navRef.current?.contains(e.target)) close(); };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+    const h = (e) => { if (!navRef.current?.contains(e.target)) close(); };
+    document.addEventListener("mousedown", h);
+    return () => document.removeEventListener("mousedown", h);
   }, []);
 
-  // Close panels on Escape
   useEffect(() => {
-    const handler = (e) => { if (e.key === "Escape") close(); };
-    document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
+    const h = (e) => { if (e.key === "Escape") close(); };
+    document.addEventListener("keydown", h);
+    return () => document.removeEventListener("keydown", h);
   }, []);
 
   const handleModuleSelect = (id) => {
-    setCurrentModuleId(id);
+    setModuleId(id);
     close();
     onModuleSelect?.(id);
   };
-
-  const activeModule = modules.find(m => m.id === currentModuleId) || modules[0];
 
   return (
     <nav
@@ -529,7 +560,8 @@ export function TopNav({
     >
       {/* ── Slot.RowStart ── */}
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-        {/* Hamburger (mobile only) */}
+
+        {/* Hamburger — mobile only */}
         {isMobile && (
           <button
             onClick={onSideNavToggle}
@@ -553,17 +585,15 @@ export function TopNav({
           breakpoint={breakpoint}
         />
 
-        {/* ModuleSwitcher dropdown */}
+        {/* Module dropdown */}
         {openPanel === "module" && (
-          <ul
-            role="listbox"
-            aria-label="Switch module"
+          <ul role="listbox" aria-label="Switch module"
             style={{
               position: "absolute", top: "calc(100% + 4px)", left: padH,
               width: 243, background: "#fff",
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
-              boxShadow: T.panelShadow,
-              padding: 4, zIndex: 300, margin: 0, listStyle: "none",
+              boxShadow: T.panelShadow, padding: 4, zIndex: 300,
+              margin: 0, listStyle: "none",
               animation: "tnDropIn 140ms ease-out both",
             }}
           >
@@ -573,16 +603,19 @@ export function TopNav({
                   onClick={() => handleModuleSelect(m.id)}
                   style={{
                     display: "flex", alignItems: "center", gap: 10,
-                    padding: "9px 10px", borderRadius: 6,
+                    padding: "9px 10px", borderRadius: 6, width: "100%", textAlign: "left",
                     color: m.id === currentModuleId ? T.itemText : T.itemTextBase,
-                    fontSize: 13,
-                    fontWeight: m.id === currentModuleId ? 500 : 400,
+                    fontSize: 13, fontWeight: m.id === currentModuleId ? 500 : 400,
                     background: m.id === currentModuleId ? T.activeItem : "transparent",
-                    border: "none", width: "100%", textAlign: "left",
-                    fontFamily: "inherit", cursor: "pointer",
+                    border: "none", fontFamily: "inherit", cursor: "pointer",
                   }}
                 >
-                  <Icon name={m.icon} size={18} style={{ color: m.id === currentModuleId ? T.itemText : T.itemTextBase, opacity: 0.8 }} />
+                  {/* Use custom SVG for home, Material Symbol for others */}
+                  {m.id === "home"
+                    ? <HomeModuleIcon size={18} />
+                    : <Icon name={m.icon} size={18} style={{
+                        color: m.id === currentModuleId ? T.itemText : T.itemTextBase, opacity: 0.8 }} />
+                  }
                   {m.label}
                 </button>
               </li>
@@ -598,17 +631,15 @@ export function TopNav({
           mobile={isMobile}
         />
 
-        {/* OrgSwitcher panel (panel design TBD — §17) */}
+        {/* Org panel (placeholder — full design pending §17) */}
         {openPanel === "org" && (
-          <div
-            role="dialog"
-            aria-label="Switch organisation"
+          <div role="dialog" aria-label="Switch organisation"
             style={{
-              position: "absolute", top: "calc(100% + 4px)", left: isMobile ? padH : padH + 40,
+              position: "absolute", top: "calc(100% + 4px)",
+              left: isMobile ? padH : padH + 40,
               width: 280, background: "#fff",
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
-              boxShadow: T.panelShadow,
-              padding: 8, zIndex: 300,
+              boxShadow: T.panelShadow, padding: 8, zIndex: 300,
               animation: "tnDropIn 140ms ease-out both",
             }}
           >
@@ -616,16 +647,11 @@ export function TopNav({
               textTransform: "uppercase", padding: "4px 8px 6px", color: "#b5b5b5" }}>
               Organisations
             </div>
-            {/* Placeholder: org list slot — panel design pending (§17) */}
-            <div
-              style={{ display: "flex", alignItems: "center", gap: 10, padding: 8,
-                borderRadius: 6, background: T.activeItem }}
-            >
-              <div style={{
-                width: L.orgAvatarPanel, height: L.orgAvatarPanel, borderRadius: L.radiusSm,
-                background: org.bg || T.navBg,
-                display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-              }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10,
+              padding: 8, borderRadius: 6, background: T.activeItem }}>
+              <div style={{ width: L.orgAvatarPanel, height: L.orgAvatarPanel,
+                borderRadius: L.radiusSm, background: org.bg || T.navBg,
+                display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 <span style={{ fontSize: 9, fontWeight: 700, color: "#fff" }}>{org.initials}</span>
               </div>
               <div style={{ minWidth: 0 }}>
@@ -644,37 +670,31 @@ export function TopNav({
 
       {/* ── Slot.RowEnd ── */}
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-        {/* Search pill */}
-        <TopNavSearch onClick={onSearchOpen} />
 
-        {/* Action icons */}
-        <TopNavActions
-          breakpoint={breakpoint}
-          onNotifications={onNotifications}
-          onMore={onMore}
-        />
+        <TopNavSearch onSearchOpen={onSearchOpen} />
 
-        {/* Profile */}
+        <TopNavActions breakpoint={breakpoint} onNotifications={onNotifications} onMore={onMore} />
+
         <TopNavProfile
           user={user}
           open={openPanel === "profile"}
           onToggle={() => toggle("profile")}
+          mobile={isMobile}
         />
 
         {/* Profile menu */}
         {openPanel === "profile" && (
-          <div
-            role="menu"
+          <div role="menu"
             style={{
               position: "absolute", top: "calc(100% + 4px)", right: padH,
               width: 200, background: "#fff",
               border: `1px solid rgba(45,72,137,0.10)`, borderRadius: L.radius,
-              boxShadow: T.panelShadow,
-              padding: 4, zIndex: 300,
+              boxShadow: T.panelShadow, padding: 4, zIndex: 300,
               animation: "tnDropIn 140ms ease-out both",
             }}
           >
-            <div style={{ padding: "10px 12px 8px", borderBottom: "1px solid rgba(0,0,0,0.06)", marginBottom: 4 }}>
+            <div style={{ padding: "10px 12px 8px",
+              borderBottom: "1px solid rgba(0,0,0,0.06)", marginBottom: 4 }}>
               <div style={{ fontSize: 13, fontWeight: 600, color: T.itemText }}>{user.name}</div>
               <div style={{ fontSize: 11, color: T.itemMeta, marginTop: 1 }}>{user.email}</div>
             </div>

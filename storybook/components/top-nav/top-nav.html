@@ -9,38 +9,37 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
-<!-- Real Pathway token file — all colour tokens resolved from here, never inlined -->
+<!-- Real Pathway token file — colours resolved from here, never inlined -->
 <link rel="stylesheet" href="../../src/tokens/tokens.css">
 <style>
 /*
   TopNav.Global — Pathway Design System
   Figma: https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6508
   Spec:  components/top-nav/top-nav-spec.md
-  Breakpoints:
-    Desktop  ≥1024px  — 1440×56px, full labels, two bell icons
-    Tablet   768-1023px — 768×54px, module icon only, more_vert
-    Mobile   <768px   — 393×56px, hamburger, abbreviated label, more_vert
+  Breakpoints (Figma):
+    Desktop  ≥1024px  1440×56px  full labels, two bell icons
+    Tablet   768-1023px  768×54px  icon only, more_vert
+    Mobile   <768px   393×56px   hamburger, abbreviated label, 11px initials
 */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; }
 #root { height: 100%; }
 
-/* Material Symbols baseline */
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   line-height: 1; display: block; user-select: none;
 }
 
-/* Demo chrome */
-.demo-wrap  { min-height: 100vh; display: flex; flex-direction: column; }
-.demo-toolbar { background: #1a1a2e; padding: 10px 20px; display: flex; align-items: center; gap: 8px;
-  font-family: 'Red Hat Text', sans-serif; flex-shrink: 0; }
-.demo-toolbar__label { color: #666; font-size: 11px; font-weight: 600; letter-spacing: .07em;
-  text-transform: uppercase; margin-right: 4px; }
+/* ── Demo chrome ─────────────────────────────────────────────────────────────── */
+.demo-wrap   { min-height: 100vh; display: flex; flex-direction: column; }
+.demo-toolbar { background: #1a1a2e; padding: 10px 20px; display: flex; align-items: center;
+  gap: 8px; font-family: 'Red Hat Text', sans-serif; flex-shrink: 0; }
+.demo-toolbar__label { color: #666; font-size: 11px; font-weight: 600;
+  letter-spacing: .07em; text-transform: uppercase; margin-right: 4px; }
 .demo-toolbar__btn { padding: 5px 14px; border-radius: 6px; border: none; cursor: pointer;
   font-size: 12px; font-weight: 500; font-family: inherit; transition: background 120ms ease; }
-.demo-toolbar__btn--active { background: #2d4889; color: #fff; }
+.demo-toolbar__btn--active   { background: #2d4889; color: #fff; }
 .demo-toolbar__btn--inactive { background: rgba(255,255,255,0.06); color: #aaa; }
 .demo-page  { flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 24px; }
 .demo-section { background: #fff; border-radius: 10px; overflow: visible;
@@ -49,12 +48,11 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
   letter-spacing: .07em; text-transform: uppercase; color: #888;
   border-bottom: 1px solid #f0f0f0; }
 
-/* ── TOPNAV SHELL ───────────────────────────────────────────────────────────── */
+/* ── TopNav shell ─────────────────────────────────────────────────────────────── */
 .topnav {
   background: var(--semantic-color-light-mode-fill-static-brand-base, #2d4889);
   display: flex; align-items: center; justify-content: space-between;
-  height: 56px; max-height: 56px;
-  padding: 4px 16px;
+  height: 56px; max-height: 56px; padding: 4px 16px;
   position: relative; overflow: visible; z-index: 100;
   font-family: 'Red Hat Text', sans-serif;
 }
@@ -63,93 +61,126 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 .topnav__start { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .topnav__end   { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
-/* ── ICON BUTTON (generic 48×48 touch target) ─────────────────────────────── */
+/* ── Icon button (48×48 touch target) ─────────────────────────────────────────── */
 .tn-iconbtn { display: flex; align-items: center; justify-content: center;
   min-height: 48px; min-width: 48px; }
 .tn-iconbtn__inner {
   display: flex; align-items: center; justify-content: center;
-  padding: 8px; border-radius: 8px;
-  background: transparent; border: none; cursor: pointer;
-  color: #fbfbfb; transition: background 120ms ease;
+  padding: 8px; border-radius: 8px; background: transparent;
+  border: none; cursor: pointer; color: #fbfbfb; transition: background 120ms ease;
 }
-.tn-iconbtn__inner:hover   { background: rgba(10,18,35,0.16); }
-.tn-iconbtn__inner:active  { background: rgba(255,255,255,0.08); }
+.tn-iconbtn__inner:hover  { background: rgba(10,18,35,0.16); }
+.tn-iconbtn__inner:active { background: rgba(255,255,255,0.08); }
 
-/* ── MODULE SWITCHER ─────────────────────────────────────────────────────────*/
+/* ── Module Switcher ─────────────────────────────────────────────────────────── */
 .tn-mod { position: relative; padding: 4px 2px; }
 .tn-mod__btn {
   display: flex; align-items: center;
-  height: 36px; padding: 4px; gap: 0; border-radius: 8px;
-  background: transparent;
-  border: 1px solid transparent; cursor: pointer;
-  color: var(--semantic-color-dark-mode-text-action-mono-base, #fbfbfb);
-  font-family: inherit; transition: background 120ms ease, border-color 120ms ease;
+  height: 36px; padding: 4px; border-radius: 8px;
+  background: transparent; border: 1px solid transparent;
+  cursor: pointer; color: #fbfbfb; font-family: inherit;
+  transition: background 120ms ease, border-color 120ms ease;
 }
-.tn-mod__btn:hover, .tn-mod__btn[aria-expanded="true"] {
-  background: rgba(10,18,35,0.16);
-  border-color: rgba(160,181,230,0.20);
-}
+.tn-mod__btn:hover              { background: rgba(10,18,35,0.16); border-color: rgba(160,181,230,0.20); }
 .tn-mod__btn[aria-expanded="true"] { background: rgba(255,255,255,0.08); border-color: rgba(160,181,230,0.30); }
-.tn-mod__icon-wrap { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+.tn-mod__icon-wrap { width: 30px; height: 30px; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0; }
 .tn-mod__label { font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: 0.3px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px;
-  color: #fbfbfb; padding: 0 2px; }
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 160px; color: #fbfbfb; padding: 0 2px; }
 .tn-mod__chev { width: 16px; height: 16px; display: flex; align-items: center;
   justify-content: center; margin-left: 4px; transition: transform 180ms ease; }
 .tn-mod__btn[aria-expanded="true"] .tn-mod__chev { transform: rotate(180deg); }
 
-/* ── ORG SWITCHER ─────────────────────────────────────────────────────────── */
+/* ── Org Switcher ─────────────────────────────────────────────────────────────── */
 .tn-org { position: relative; padding: 4px; }
 .tn-org.is-mobile { padding: 4px 2px; max-width: 120px; }
 .tn-org__btn {
   display: flex; align-items: center; gap: 4px;
   min-height: 36px; padding: 4px; border-radius: 8px;
-  background: var(--semantic-color-dark-mode-fill-action-tertiary-base, rgba(160,181,230,0.04));
-  border: 1px solid var(--semantic-color-dark-mode-stroke-action-tertiary-base, rgba(160,181,230,0.16));
+  background: rgba(160,181,230,0.04);
+  border: 1px solid rgba(160,181,230,0.16);
   cursor: pointer; color: #fbfbfb; font-family: inherit;
   transition: background 120ms ease, border-color 120ms ease;
 }
 .tn-org.is-mobile .tn-org__btn { padding: 4px 2px; }
-.tn-org__btn:hover { background: rgba(10,18,35,0.16); border-color: rgba(160,181,230,0.20); }
+.tn-org__btn:hover              { background: rgba(10,18,35,0.16); border-color: rgba(160,181,230,0.20); }
 .tn-org__btn[aria-expanded="true"] { background: rgba(255,255,255,0.08); border-color: rgba(160,181,230,0.30); }
 .tn-org__avatar-row { display: flex; align-items: center; gap: 4px; height: 20px; padding: 0 2px; }
 .tn-org__avatar-pad { width: 24px; height: 24px; padding: 2px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+/* Org avatar: 20×20, radius 4px, border */
 .tn-org__avatar {
   width: 20px; height: 20px; border-radius: 4px;
   border: 1px solid rgba(160,181,230,0.16);
-  background: rgba(45,72,137,0.25);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden; position: relative; flex-shrink: 0;
 }
-.tn-org__avatar img { position: absolute;
-  width: 196.31%; height: 228.29%; left: -47.05%; top: -63.31%; }
-.tn-org__initials { font-size: 7px; font-weight: 700; letter-spacing: .04em; color: #fbfbfb; line-height: 1; }
-/* Desktop/Tablet: Label/Button/S — 14px/500 */
+/* With logo: transparent bg */
+.tn-org__avatar { background: transparent; }
+/* No logo: Fill/Action/Secondary/Base (Figma) */
+.tn-org__avatar.no-logo { background: rgba(255,255,255,0.08); }
+
+/* Org logo image: Figma crop values */
+.tn-org__avatar img {
+  position: absolute;
+  width: 196.31%; height: 228.29%; left: -47.05%; top: -63.31%;
+}
+
+/* Church placeholder icon: positioned at inset 4.17% 8.33% 8.33% 8.33% */
+.tn-org__placeholder {
+  position: absolute;
+  inset: 4.17% 8.33% 8.33% 8.33%;
+}
+
+/* Desktop/Tablet label: Label/Button/S 14px/500 */
 .tn-org__label { font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: 0.3px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   max-width: 248px; color: #fbfbfb; padding-right: 4px; }
-/* Mobile: Label/Button/XS — 12px/500/18px (Figma) */
+/* Mobile label: Label/Button/XS 12px/500 (Figma) */
 .tn-org.is-mobile .tn-org__label { font-size: 12px; line-height: 18px; max-width: 70px; }
 .tn-org__chev { width: 16px; height: 16px; display: flex; align-items: center;
   justify-content: center; margin-right: 2px; transition: transform 180ms ease; }
 .tn-org__btn[aria-expanded="true"] .tn-org__chev { transform: rotate(180deg); }
 
-/* ── SEARCH PILL ─────────────────────────────────────────────────────────────*/
+/* ── Search pill ─────────────────────────────────────────────────────────────── */
 .tn-search { display: flex; align-items: center; justify-content: center;
   min-height: 48px; min-width: 48px; }
-.tn-search__btn {
+.tn-search__pill {
   display: flex; align-items: center; justify-content: center;
   height: 32px; width: 32px;
-  background: var(--semantic-color-dark-mode-fill-action-primaryinverse-base, rgba(160,181,230,0.08));
-  border: 0.75px solid var(--semantic-color-dark-mode-icon-action-mono-base, #fbfbfb);
+  background: rgba(160,181,230,0.08);
+  border: 0.75px solid #fbfbfb;
   border-radius: 9999px; cursor: pointer; flex-shrink: 0;
   color: #fbfbfb; transition: background 120ms ease;
 }
-.tn-search__btn:hover  { background: rgba(10,18,35,0.16); }
-.tn-search__btn:active { background: rgba(255,255,255,0.08); }
+.tn-search__pill:hover  { background: rgba(10,18,35,0.16); }
+.tn-search__pill:active { background: rgba(255,255,255,0.08); }
 
-/* ── PROFILE ─────────────────────────────────────────────────────────────────*/
+/* Expanded search */
+.tn-search__expanded {
+  display: flex; align-items: center; gap: 4px;
+  height: 32px; padding: 0 6px 0 8px;
+  background: rgba(160,181,230,0.08);
+  border: 0.75px solid #fbfbfb;
+  border-radius: 9999px; min-width: 200px; max-width: 280px;
+}
+.tn-search__input {
+  flex: 1; background: transparent; border: none; outline: none;
+  color: #fbfbfb; font-size: 13px; font-weight: 400; min-width: 0;
+  font-family: 'Red Hat Text', sans-serif;
+}
+.tn-search__input::placeholder { color: rgba(251,251,251,0.5); }
+.tn-search__close {
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: none; cursor: pointer;
+  padding: 3px; border-radius: 4px; flex-shrink: 0;
+  color: #fbfbfb; opacity: 0.7;
+}
+.tn-search__close:hover { opacity: 1; }
+
+/* ── Profile ─────────────────────────────────────────────────────────────────── */
 .tn-profile { position: relative; display: flex; align-items: center; justify-content: center;
   min-height: 48px; min-width: 48px; padding: 2px; }
 .tn-profile__btn { display: flex; align-items: center; justify-content: center;
@@ -157,34 +188,34 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
   border-radius: 50%; cursor: pointer; padding: 6px; transition: background 120ms ease; }
 .tn-profile__btn:hover              { background: rgba(10,18,35,0.16); }
 .tn-profile__btn[aria-expanded="true"] { background: rgba(255,255,255,0.08); }
+/* Desktop/Tablet: Text/Body/Small/Semibold 14px/600 */
 .tn-profile__avatar {
   width: 32px; height: 32px; border-radius: 50%;
-  background: var(--semantic-color-light-mode-fill-static-accent-amethyst-base, #dcd9ef);
+  background: #dcd9ef;
   display: flex; align-items: center; justify-content: center;
-  /* Desktop/Tablet: Text size 14px/600 */
   font-size: 14px; font-weight: 600; letter-spacing: 0.3px;
-  color: var(--semantic-color-light-mode-text-static-accent-amethyst-contrast, #221e3f);
-  line-height: 1; flex-shrink: 0;
+  color: #221e3f; line-height: 1; flex-shrink: 0;
 }
-/* Mobile profile initials: Text/Supporting/Small/Semibold — 11px/600 (Figma) */
+/* Mobile: Text/Supporting/Small/Semibold 11px/600 (Figma) */
 .topnav.is-mobile .tn-profile__avatar { font-size: 11px; }
 
-/* ── DROPDOWNS ───────────────────────────────────────────────────────────────*/
+/* ── Dropdowns ───────────────────────────────────────────────────────────────── */
 .tn-dropdown, .tn-panel, .tn-profile-menu {
   position: absolute; background: #fff; border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06);
   z-index: 300; animation: tnDropIn 140ms ease-out both;
 }
-.tn-dropdown { top: calc(100% + 4px); left: 0; width: 243px;
+.tn-dropdown    { top: calc(100% + 4px); left: 0; width: 243px;
   border: 1px solid rgba(45,72,137,0.12); padding: 4px; list-style: none; margin: 0; }
-.tn-panel    { top: calc(100% + 4px); left: 40px; width: 280px;
+.tn-panel       { top: calc(100% + 4px); left: 40px; width: 280px;
   border: 1px solid rgba(45,72,137,0.12); padding: 8px; }
 .tn-profile-menu { top: calc(100% + 4px); right: 0; width: 200px;
   border: 1px solid rgba(45,72,137,0.10); padding: 4px; }
 
 .tn-dropdown__item { width: 100%; display: flex; align-items: center; gap: 10px;
   padding: 9px 10px; border-radius: 6px; background: transparent;
-  border: none; font-family: inherit; font-size: 13px; color: #484848; text-align: left; cursor: pointer; }
+  border: none; font-family: inherit; font-size: 13px; color: #484848;
+  text-align: left; cursor: pointer; }
 .tn-dropdown__item--active { color: #252525; font-weight: 500; background: #eef2fb; }
 .tn-dropdown__item:hover:not(.tn-dropdown__item--active) { background: #f5f6fa; }
 
@@ -196,22 +227,24 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 .tn-panel__org:hover:not(.tn-panel__org--active) { background: #f5f6fa; }
 .tn-panel__org-avatar { width: 32px; height: 32px; border-radius: 4px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.tn-panel__org-name { font-size: 13px; font-weight: 500; color: #252525;
+.tn-panel__org-name   { font-size: 13px; font-weight: 500; color: #252525;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tn-panel__org-campus { font-size: 11px; color: #6b6b6b; margin-top: 1px; }
 
-.tn-profile-menu__header { padding: 10px 12px 8px; border-bottom: 1px solid rgba(0,0,0,0.06); margin-bottom: 4px; }
+.tn-profile-menu__header { padding: 10px 12px 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.06); margin-bottom: 4px; }
 .tn-profile-menu__name  { font-size: 13px; font-weight: 600; color: #252525; }
 .tn-profile-menu__email { font-size: 11px; color: #6b6b6b; margin-top: 1px; }
 .tn-profile-menu__item { width: 100%; display: flex; align-items: center; gap: 8px;
   padding: 8px 10px; border-radius: 6px; background: transparent;
-  border: none; font-family: inherit; font-size: 13px; color: #313131; text-align: left; cursor: pointer; }
+  border: none; font-family: inherit; font-size: 13px; color: #313131;
+  text-align: left; cursor: pointer; }
 .tn-profile-menu__item:hover { background: #f5f6fa; }
 .tn-profile-menu__item--danger { color: #c0392b; }
 
 @keyframes tnDropIn {
   from { opacity: 0; transform: translateY(-4px) scale(0.99); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
 }
 @media (prefers-reduced-motion: reduce) {
   @keyframes tnDropIn { from { opacity: 0; } to { opacity: 1; } }
@@ -223,7 +256,53 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 <script type="text/babel">
 const { useState, useRef, useEffect } = React;
 
-// ─── ABBREVIATION UTILITIES — §10.2 AP rules ──────────────────────────────────
+// ─── FIGMA CUSTOM SVG ICONS ──────────────────────────────────────────────────
+// Custom Figma exports — do NOT replace with Material Symbols.
+
+// Module=Home, Style=Flat, Color=White (Figma node 40006853:34204)
+const HOME_ICON_PATH =
+  "M16.5811 38.6244V32.8265C16.5811 31.3486 17.7937 30.1359 19.2716 30.1359H24.7095C25.4295 30.1359 26.1116 30.4202 26.6232 30.9128C27.1347 31.4054 27.4189 32.0875 27.4189 32.8075V38.6054C27.4189 39.2307 27.6653 39.8181 28.1011 40.2538C28.5368 40.6896 29.1242 40.9359 29.7495 40.9359H33.4632C35.1874 40.9359 36.8547 40.2538 38.0863 39.0412C39.3179 37.8286 40 36.1802 40 34.4559V17.9717C40 16.5696 39.3747 15.2623 38.2947 14.3717L25.6568 4.34858C23.4589 2.58647 20.3137 2.64331 18.1726 4.48121L5.83789 14.3528C4.72 15.2244 4.03789 16.5317 4 17.9528V34.437C4 38.037 6.93684 40.9549 10.5368 40.9359H14.1747C15.4632 40.9359 16.5053 39.9128 16.5242 38.6244H16.5811Z";
+
+// Org avatar placeholder — church icon (Figma node 40007243:73426;84:22159)
+const CHURCH_ICON_PATH =
+  "M0 12.6667V9.53333C0 9.26667 0.0722222 9.025 0.216667 8.80833C0.361111 8.59167 0.555556 8.42778 0.8 8.31667L2.66667 7.48333V6.15C2.66667 5.89444 2.73333 5.66389 2.86667 5.45833C3 5.25278 3.17778 5.08889 3.4 4.96667L6 3.66667V2.66667H5.33333C5.14444 2.66667 4.98611 2.60278 4.85833 2.475C4.73056 2.34722 4.66667 2.18889 4.66667 2C4.66667 1.81111 4.73056 1.65278 4.85833 1.525C4.98611 1.39722 5.14444 1.33333 5.33333 1.33333H6V0.666667C6 0.477778 6.06389 0.319444 6.19167 0.191667C6.31944 0.0638889 6.47778 0 6.66667 0C6.85556 0 7.01389 0.0638889 7.14167 0.191667C7.26944 0.319444 7.33333 0.477778 7.33333 0.666667V1.33333H8C8.18889 1.33333 8.34722 1.39722 8.475 1.525C8.60278 1.65278 8.66667 1.81111 8.66667 2C8.66667 2.18889 8.60278 2.34722 8.475 2.475C8.34722 2.60278 8.18889 2.66667 8 2.66667H7.33333V3.66667L9.93333 4.96667C10.1556 5.08889 10.3333 5.25278 10.4667 5.45833C10.6 5.66389 10.6667 5.89444 10.6667 6.15V7.48333L12.5333 8.31667C12.7778 8.42778 12.9722 8.59167 13.1167 8.80833C13.2611 9.025 13.3333 9.26667 13.3333 9.53333V12.6667C13.3333 13.0333 13.2028 13.3472 12.9417 13.6083C12.6806 13.8694 12.3667 14 12 14H8.66667C8.47778 14 8.31944 13.9361 8.19167 13.8083C8.06389 13.6806 8 13.5222 8 13.3333V12C8 11.6333 7.86944 11.3194 7.60833 11.0583C7.34722 10.7972 7.03333 10.6667 6.66667 10.6667C6.3 10.6667 5.98611 10.7972 5.725 11.0583C5.46389 11.3194 5.33333 11.6333 5.33333 12V13.3333C5.33333 13.5222 5.26944 13.6806 5.14167 13.8083C5.01389 13.9361 4.85556 14 4.66667 14H1.33333C0.966667 14 0.652778 13.8694 0.391667 13.6083C0.130556 13.3472 0 13.0333 0 12.6667ZM6.66667 8.33333C6.94444 8.33333 7.18056 8.23611 7.375 8.04167C7.56944 7.84722 7.66667 7.61111 7.66667 7.33333C7.66667 7.05556 7.56944 6.81944 7.375 6.625C7.18056 6.43056 6.94444 6.33333 6.66667 6.33333C6.38889 6.33333 6.15278 6.43056 5.95833 6.625C5.76389 6.81944 5.66667 7.05556 5.66667 7.33333C5.66667 7.61111 5.76389 7.84722 5.95833 8.04167C6.15278 8.23611 6.38889 8.33333 6.66667 8.33333Z";
+
+// ─── ICON COMPONENTS ─────────────────────────────────────────────────────────
+// Material Symbols (for icons that ARE Material Symbols in Figma)
+function Icon({ name, size = 20, style: extraStyle }) {
+  return (
+    <span className="material-symbols-outlined" aria-hidden="true"
+      style={{ fontSize: size, ...extraStyle }}>
+      {name}
+    </span>
+  );
+}
+
+// Custom Figma home icon for ModuleSwitcher
+function HomeModuleIcon({ size = 22 }) {
+  return (
+    <svg viewBox="0 0 44 44" width={size} height={size}
+      fill="none" xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true" style={{ display: "block", flexShrink: 0 }}>
+      <path d={HOME_ICON_PATH} fill="white" />
+    </svg>
+  );
+}
+
+// Custom Figma church icon — org avatar when no logo on file
+function OrgAvatarPlaceholder() {
+  return (
+    <div className="tn-org__placeholder">
+      <svg viewBox="0 0 13.3333 14" width="100%" height="100%"
+        fill="none" xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true" style={{ display: "block" }}>
+        <path d={CHURCH_ICON_PATH} fill="white" fillOpacity="0.7" />
+      </svg>
+    </div>
+  );
+}
+
+// ─── ABBREVIATION UTILITIES — §10.2 AP rules ─────────────────────────────────
 const SKIP = new Set(["the","a","an","of","in","at","for","and","or","but"]);
 
 function abbreviateOrg(name) {
@@ -242,20 +321,19 @@ function abbreviateCampus(campus) {
   const sig = campus.replace(/-/g," ").split(/\s+/).filter(w => !SKIP.has(w.toLowerCase()));
   if (!sig.length) return campus.slice(0,2).toUpperCase();
   if (sig.length >= 2) return (sig[0][0]+sig[1][0]).toUpperCase();
-  // Single word — check compound place-name suffix (e.g. Knoxville → KV)
   const w = sig[0], wl = w.toLowerCase();
   for (const sfx of PLACE_SUFFIXES) {
-    if (wl.endsWith(sfx) && w.length > sfx.length + 1) return (w[0]+sfx[0]).toUpperCase();
+    if (wl.endsWith(sfx) && w.length > sfx.length+1) return (w[0]+sfx[0]).toUpperCase();
   }
   return (w[0]+w[w.length-1]).toUpperCase();
 }
-
 function mobileLabel(orgName, campusName) {
-  const org = abbreviateOrg(orgName);
-  return campusName ? `${org} | ${abbreviateCampus(campusName)}` : org;
+  return campusName
+    ? `${abbreviateOrg(orgName)} | ${abbreviateCampus(campusName)}`
+    : abbreviateOrg(orgName);
 }
 
-// ─── DATA ─────────────────────────────────────────────────────────────────────
+// ─── DATA ────────────────────────────────────────────────────────────────────
 const MODULES = [
   { id: "home",   label: "Amplify Home",   icon: "home" },
   { id: "people", label: "People",         icon: "group" },
@@ -264,38 +342,34 @@ const MODULES = [
   { id: "comms",  label: "Communications", icon: "mail" },
 ];
 
+// ORGS — no logoUrl so all show the church placeholder; demonstrates the no-logo state
 const ORGS = [
   { id: "shc",        name: "Sacred Heart Church-ITD", campus: "Knoxville",   initials: "SH", bg: "#2d4889" },
   { id: "fellowship", name: "Fellowship Church",        campus: "Main Campus", initials: "FC", bg: "#22386b" },
   { id: "grace",      name: "Grace Community Church",   campus: "West Campus", initials: "GC", bg: "#345499" },
 ];
 
-// ─── ICON — Google Material Symbols (Outlined) ────────────────────────────────
-function Icon({ name, size = 20 }) {
-  return (
-    <span className="material-symbols-outlined" aria-hidden="true" style={{ fontSize: size }}>
-      {name}
-    </span>
-  );
-}
-
 // ─── TOPNAV ───────────────────────────────────────────────────────────────────
 function TopNav({
   orgName      = "Sacred Heart Church-ITD",
   campusName   = "Knoxville",
-  logoUrl      = "",
+  logoUrl      = "",              // leave empty to show church placeholder
   userName     = "Jo Lopez",
   userInitials = "JL",
   userEmail    = "jo@sacredheart.org",
   activeModule = "home",
-  breakpoint   = "desktop",   // "desktop" | "tablet" | "mobile"
-  initOpen     = null,        // pre-open a panel for demo snapshots
+  breakpoint   = "desktop",      // "desktop" | "tablet" | "mobile"
+  initOpen     = null,           // pre-open for demo snapshots
 }) {
-  const [open, setOpen]           = useState(initOpen);
-  const [moduleId, setModuleId]   = useState(activeModule);
-  const [currentOrg, setOrg]      = useState(ORGS[0]);
-  const [imgFailed, setImgFailed] = useState(false);
-  const navRef = useRef(null);
+  const [open, setOpen]             = useState(initOpen);
+  const [moduleId, setModuleId]     = useState(activeModule);
+  const [currentOrg, setOrg]        = useState(ORGS[0]);
+  const [imgFailed, setImgFailed]   = useState(false);
+  // Search expand state
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQ]   = useState("");
+  const searchInputRef              = useRef(null);
+  const navRef                      = useRef(null);
 
   const isMobile  = breakpoint === "mobile";
   const isTablet  = breakpoint === "tablet";
@@ -304,23 +378,41 @@ function TopNav({
   const toggle = p => setOpen(x => x === p ? null : p);
   const close  = () => setOpen(null);
 
+  const openSearch = () => {
+    setSearchOpen(true);
+    close();
+    requestAnimationFrame(() => searchInputRef.current && searchInputRef.current.focus());
+  };
+  const closeSearch = () => { setSearchOpen(false); setSearchQ(""); };
+
   useEffect(() => {
-    const h = e => { if (navRef.current && !navRef.current.contains(e.target)) close(); };
+    const h = e => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        close();
+        // Only close search if clicking outside the nav entirely
+        closeSearch();
+      }
+    };
     document.addEventListener("mousedown", h);
     return () => document.removeEventListener("mousedown", h);
   }, []);
+
   useEffect(() => {
-    const h = e => { if (e.key === "Escape") close(); };
+    const h = e => {
+      if (e.key === "Escape") { close(); closeSearch(); }
+    };
     document.addEventListener("keydown", h);
     return () => document.removeEventListener("keydown", h);
   }, []);
 
   const activeModData = MODULES.find(m => m.id === moduleId) || MODULES[0];
+  const hasLogo       = !!logoUrl && !imgFailed;
   const displayLabel  = isMobile
     ? mobileLabel(currentOrg.name, currentOrg.campus)
     : currentOrg.name + (currentOrg.campus ? " | " + currentOrg.campus : "");
 
-  const navClass = ["topnav", isTablet && "is-tablet", isMobile && "is-mobile"].filter(Boolean).join(" ");
+  const navClass = ["topnav", isTablet && "is-tablet", isMobile && "is-mobile"]
+    .filter(Boolean).join(" ");
 
   return (
     <nav className={navClass} aria-label="Global navigation" ref={navRef}>
@@ -328,7 +420,7 @@ function TopNav({
       {/* ── ROW START ── */}
       <div className="topnav__start">
 
-        {/* Hamburger — mobile only; icon: menu */}
+        {/* Hamburger — mobile only */}
         {isMobile && (
           <div className="tn-iconbtn">
             <button className="tn-iconbtn__inner" aria-label="Open navigation menu">
@@ -347,13 +439,19 @@ function TopNav({
             onClick={() => toggle("module")}
           >
             <div className="tn-mod__icon-wrap">
-              <Icon name={activeModData.icon} size={22} />
+              {/* Home module = custom Figma SVG; others = Material Symbol */}
+              {activeModData.id === "home"
+                ? <HomeModuleIcon size={22} />
+                : <Icon name={activeModData.icon} size={22} />
+              }
             </div>
-            {/* Label: desktop only (tablet = icon + chevron only) */}
+            {/* Label: desktop only */}
             {isDesktop && (
               <span className="tn-mod__label">{activeModData.label}</span>
             )}
-            <div className="tn-mod__chev"><Icon name="expand_more" size={16} /></div>
+            <div className="tn-mod__chev">
+              <Icon name="expand_more" size={16} />
+            </div>
           </button>
 
           {open === "module" && (
@@ -364,7 +462,11 @@ function TopNav({
                     className={`tn-dropdown__item${m.id === moduleId ? " tn-dropdown__item--active" : ""}`}
                     onClick={() => { setModuleId(m.id); close(); }}
                   >
-                    <Icon name={m.icon} size={18} />
+                    {m.id === "home"
+                      ? <HomeModuleIcon size={18} />
+                      : <Icon name={m.icon} size={18}
+                          style={{ color: m.id === moduleId ? "#252525" : "#484848", opacity: 0.8 }} />
+                    }
                     {m.label}
                   </button>
                 </li>
@@ -379,30 +481,29 @@ function TopNav({
             className="tn-org__btn"
             aria-haspopup="true"
             aria-expanded={String(open === "org")}
-            aria-label={`Switch organisation — ${currentOrg.name}${currentOrg.campus ? ", " + currentOrg.campus : ""}`}
+            aria-label={`Switch organisation — ${currentOrg.name}${currentOrg.campus ? ", "+currentOrg.campus : ""}`}
             onClick={() => toggle("org")}
           >
             <div className="tn-org__avatar-row">
               <div className="tn-org__avatar-pad">
-                <div className="tn-org__avatar">
-                  {logoUrl && !imgFailed
+                {/* Avatar: with logo shows image; no logo shows church SVG placeholder */}
+                <div className={`tn-org__avatar${hasLogo ? "" : " no-logo"}`}>
+                  {hasLogo
                     ? <img src={logoUrl} alt="" onError={() => setImgFailed(true)} />
-                    : <span className="tn-org__initials">{currentOrg.initials}</span>
+                    : <OrgAvatarPlaceholder />
                   }
                 </div>
               </div>
-              {/* Mobile label: 12px/500 (Label/Button/XS per Figma)
-                  Desktop/Tablet: 14px/500 (Label/Button/S per Figma) */}
-              <span className="tn-org__label" aria-hidden={isMobile ? "true" : undefined}>
-                {displayLabel}
-              </span>
+              <span className="tn-org__label">{displayLabel}</span>
               {isMobile && (
                 <span style={{ position:"absolute", left:-9999, width:1, height:1, overflow:"hidden" }}>
-                  {currentOrg.name}{currentOrg.campus ? ", " + currentOrg.campus : ""}
+                  {currentOrg.name}{currentOrg.campus ? ", "+currentOrg.campus : ""}
                 </span>
               )}
             </div>
-            <div className="tn-org__chev"><Icon name="expand_more" size={16} /></div>
+            <div className="tn-org__chev">
+              <Icon name="expand_more" size={16} />
+            </div>
           </button>
 
           {open === "org" && (
@@ -413,7 +514,7 @@ function TopNav({
                   className={`tn-panel__org${org.id === currentOrg.id ? " tn-panel__org--active" : ""}`}
                   role="option" aria-selected={org.id === currentOrg.id} tabIndex={0}
                   onClick={() => { setOrg(org); close(); }}
-                  onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { setOrg(org); close(); } }}
+                  onKeyDown={e => { if (e.key==="Enter"||e.key===" ") { setOrg(org); close(); } }}
                 >
                   <div className="tn-panel__org-avatar" style={{ background: org.bg }}>
                     <span style={{ fontSize:9, fontWeight:700, color:"#fff" }}>{org.initials}</span>
@@ -433,17 +534,33 @@ function TopNav({
       {/* ── ROW END ── */}
       <div className="topnav__end">
 
-        {/* Search pill */}
+        {/* Search — collapsed pill → expanded input */}
         <div className="tn-search">
-          <button className="tn-search__btn" aria-label="Open search">
-            <Icon name="search" size={16} />
-          </button>
+          {searchOpen ? (
+            <div className="tn-search__expanded">
+              <Icon name="search" size={16} style={{ color: "#fbfbfb", flexShrink: 0 }} />
+              <input
+                ref={searchInputRef}
+                className="tn-search__input"
+                value={searchQuery}
+                onChange={e => setSearchQ(e.target.value)}
+                placeholder="Search…"
+                aria-label="Search"
+              />
+              <button className="tn-search__close" onClick={closeSearch} aria-label="Close search">
+                <Icon name="close" size={14} style={{ color: "#fbfbfb" }} />
+              </button>
+            </div>
+          ) : (
+            <button className="tn-search__pill" aria-label="Open search" onClick={openSearch}>
+              <Icon name="search" size={16} style={{ color: "#fbfbfb" }} />
+            </button>
+          )}
         </div>
 
         {/* Action icons
-            Desktop  → two notification bells (icon: notifications)
-            Tablet   → more_vert
-            Mobile   → more_vert                                   */}
+            Desktop → two notification bells
+            Tablet/Mobile → more_vert          */}
         {isDesktop ? (
           <>
             <div className="tn-iconbtn">
@@ -474,9 +591,7 @@ function TopNav({
             aria-label={`Account — ${userName}`}
             onClick={() => toggle("profile")}
           >
-            {/* Avatar initials:
-                Desktop/Tablet → 14px/600
-                Mobile         → 11px/600 (Text/Supporting/Small/Semibold per Figma) */}
+            {/* Desktop/Tablet: 14px/600; Mobile: 11px/600 (Figma) */}
             <div className="tn-profile__avatar">{userInitials}</div>
           </button>
 
@@ -486,8 +601,8 @@ function TopNav({
                 <div className="tn-profile-menu__name">{userName}</div>
                 <div className="tn-profile-menu__email">{userEmail}</div>
               </div>
-              {["Profile settings", "Settings"].map(label => (
-                <button key={label} className="tn-profile-menu__item" role="menuitem">{label}</button>
+              {["Profile settings","Settings"].map(l => (
+                <button key={l} className="tn-profile-menu__item" role="menuitem">{l}</button>
               ))}
               <button className="tn-profile-menu__item tn-profile-menu__item--danger" role="menuitem">
                 Sign out
@@ -511,48 +626,60 @@ function App() {
         <span className="demo-toolbar__label">Breakpoint</span>
         {["desktop","tablet","mobile"].map(b => (
           <button key={b}
-            className={`demo-toolbar__btn demo-toolbar__btn--${bp === b ? "active" : "inactive"}`}
+            className={`demo-toolbar__btn demo-toolbar__btn--${bp===b?"active":"inactive"}`}
             onClick={() => setBp(b)}>
-            {b[0].toUpperCase() + b.slice(1)}
+            {b[0].toUpperCase()+b.slice(1)}
           </button>
         ))}
       </div>
 
-      {/* Live preview */}
-      <div className="demo-section" style={{ margin: 0, borderRadius: 0 }}>
+      {/* Live interactive preview */}
+      <div className="demo-section" style={{ margin:0, borderRadius:0 }}>
         <TopNav breakpoint={bp} />
       </div>
 
-      {/* Static variant reference */}
       <div className="demo-page">
+
         <div className="demo-section">
-          <div className="demo-section__label">Desktop — 1440×56px — full labels, two bell icons</div>
+          <div className="demo-section__label">Desktop — 1440×56px — full label, two bells, home SVG icon</div>
           <TopNav breakpoint="desktop" />
         </div>
+
         <div className="demo-section">
-          <div className="demo-section__label">Tablet — 768×54px — module icon only, more_vert actions</div>
+          <div className="demo-section__label">Tablet — 768×54px — module icon only, more_vert</div>
           <TopNav breakpoint="tablet" />
         </div>
+
         <div className="demo-section">
           <div className="demo-section__label">Mobile — 393×56px — hamburger · "SHC | KV" · more_vert · 11px initials</div>
           <TopNav breakpoint="mobile" />
         </div>
+
+        <div className="demo-section">
+          <div className="demo-section__label">Org avatar — no logo on file (church SVG placeholder per Figma node 40007243:73405)</div>
+          <TopNav breakpoint="desktop" orgName="Cornerstone Community" campusName="Main Campus" logoUrl="" />
+        </div>
+
         <div className="demo-section">
           <div className="demo-section__label">Single org — no campus (pipe omitted)</div>
           <TopNav breakpoint="desktop" orgName="Cornerstone Church" campusName="" />
         </div>
+
         <div className="demo-section">
           <div className="demo-section__label">Module dropdown open</div>
           <TopNav breakpoint="desktop" initOpen="module" />
         </div>
+
         <div className="demo-section">
           <div className="demo-section__label">Org panel open</div>
           <TopNav breakpoint="desktop" initOpen="org" />
         </div>
+
         <div className="demo-section">
           <div className="demo-section__label">Profile menu open</div>
           <TopNav breakpoint="desktop" initOpen="profile" />
         </div>
+
       </div>
     </div>
   );
