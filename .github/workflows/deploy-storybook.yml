@@ -57,21 +57,29 @@ jobs:
 
       - name: Deploy Storybook into /storybook/ folder on main
         run: |
-          # Remove old storybook folder if it exists
-          rm -rf storybook
-
-          # Move built output into /storybook/
-          mv storybook-static storybook
-
-          # Commit and push
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Remove old storybook folder and replace with fresh build
+          rm -rf storybook
+          mv storybook-static storybook
+
+          # Stage only the storybook output — ignore derived token files and other build artifacts
           git add storybook/
+
           if git diff --cached --quiet; then
             echo "No Storybook changes — skipping commit."
           else
+            # Discard any other uncommitted changes from the build (tokens.css etc.)
+            # so that the rebase/push can proceed cleanly
+            git checkout -- .
+            git clean -fd --exclude=storybook
+
+            # Re-stage storybook (clean wiped the index)
+            git add storybook/
             git commit -m "chore: deploy Storybook [skip ci]"
-            # Pull latest then push (handles any commits made since checkout)
+
+            # Rebase onto latest main in case another commit landed since checkout
             git fetch origin main
             git rebase origin/main
             git push origin HEAD:main
