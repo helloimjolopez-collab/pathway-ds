@@ -62,5 +62,6 @@ jobs:
             echo "No Storybook changes — skipping commit."
           else
             git commit -m "chore: deploy Storybook [skip ci]"
+            git pull --rebase origin main
             git push
           fi
