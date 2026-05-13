@@ -10419,7 +10419,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.110}"
+                  "$value": "{Cool Neutral.0 @ 16%}"
                 },
                 "Light": {
                   "$scopes": [
@@ -10428,7 +10428,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.110}"
+                  "$value": "{Cool Neutral.0 @ 30%}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -10437,7 +10437,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.130}"
+                  "$value": "{Cool Neutral.0 @ 70%}"
                 },
                 "Base": {
                   "$scopes": [
@@ -10446,7 +10446,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.150}"
+                  "$value": "{Cool Neutral.0 @ 80%}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -10455,7 +10455,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.190}"
+                  "$value": "{Cool Neutral.0 @ 90%}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -10464,7 +10464,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.210}"
+                  "$value": "{Cool Neutral.0}"
                 }
               },
               "Brand": {
@@ -12351,9 +12351,18 @@
               "$type": "float",
               "$libraryName": "",
               "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.8}"
+              "$value": "{Unit.6}"
             },
             "Tight": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "float",
+              "$libraryName": "",
+              "$collectionName": "Primitive: Unit",
+              "$value": "{Unit.8}"
+            },
+            "Medium": {
               "$scopes": [
                 "ALL_SCOPES"
               ],
@@ -12416,9 +12425,18 @@
               "$type": "float",
               "$libraryName": "",
               "$collectionName": "Primitive: Unit",
-              "$value": "{Unit.8}"
+              "$value": "{Unit.6}"
             },
             "Tight": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "float",
+              "$libraryName": "",
+              "$collectionName": "Primitive: Unit",
+              "$value": "{Unit.8}"
+            },
+            "Medium": {
               "$scopes": [
                 "ALL_SCOPES"
               ],

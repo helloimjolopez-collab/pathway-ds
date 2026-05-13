@@ -173,6 +173,53 @@
         "Panel mobile behaviour (dropdown vs bottom sheet) not yet decided."
       ]
     },
+    "top-nav": {
+      "displayName": "TopNav.Global",
+      "description": "Fixed global navigation bar. Persists across all modules and viewports. Brand-blue surface, dark-mode tokens throughout. Three slots: ModuleSwitcher (left), OrgSwitcher (left), Search + ActionIcons + Profile (right). Spec status: PENDING HUMAN REVIEW.",
+      "status": "PENDING HUMAN REVIEW",
+      "module": "components/top-nav/top-nav.html",
+      "spec": "components/top-nav/top-nav-spec.md",
+      "demo": "components/top-nav/top-nav.html",
+      "stories": "src/stories/Library/TopNav/TopNav.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40007067:6508"
+      },
+      "props": {
+        "TopNav": {
+          "activeModuleId": { "type": "string", "required": true, "description": "ID of the currently active module ('home'|'people'|'giving'|'events'|'comms')" },
+          "activeOrgId":    { "type": "string", "required": true, "description": "ID of the currently active organization" },
+          "orgs":           { "type": "Array<{id,name,campus?,logoUrl?,initials,bg}>", "required": true, "description": "List of organizations the user can switch between" },
+          "user":           { "type": "{name,initials,email,avatarUrl?}", "required": true, "description": "Current user profile for the avatar and menu" },
+          "onModuleSelect": { "type": "(id: string) => void", "description": "Called when user selects a module" },
+          "onOrgSelect":    { "type": "(id: string) => void", "description": "Called when user selects an org" },
+          "onSearchOpen":   { "type": "() => void", "description": "Called when search pill is clicked" },
+          "onSideNavToggle":{ "type": "() => void", "description": "Called when hamburger is clicked (mobile only)" }
+        }
+      },
+      "tokens": [
+        "light-mode.fill.static.brand.base",
+        "dark-mode.fill.action.tertiary.base",
+        "dark-mode.fill.action.primaryinverse.base",
+        "dark-mode.fill.action.primaryinverse.hover",
+        "dark-mode.fill.action.primaryinverse.pressed",
+        "dark-mode.stroke.action.tertiary.base",
+        "dark-mode.stroke.action.tertiary.hover",
+        "dark-mode.stroke.action.tertiary.pressed",
+        "dark-mode.text.action.mono.base",
+        "dark-mode.icon.action.mono.base",
+        "light-mode.fill.static.accent.amethyst.base",
+        "light-mode.text.static.accent.amethyst.contrast"
+      ],
+      "gaps": [
+        "Active item token in dropdowns: uses raw #eef2fb — no semantic token exists yet (HIGH).",
+        "Notification badge / dot on bell icon not yet designed (HIGH).",
+        "Mobile profile tap behavior not specified (HIGH).",
+        "Destructive item (Sign out) uses raw red — no semantic danger token (MEDIUM).",
+        "TopNav position sticky vs fixed not resolved (MEDIUM).",
+        "Logo crop parameters tuned for Sacred Heart logo only (MEDIUM)."
+      ]
+    },
     "spinner": {
       "displayName": "Spinner",
       "description": "Indeterminate activity indicator. 8-spoke sunburst, arbitrary size, semantic-token-only colour via tone + emphasis.",

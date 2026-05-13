@@ -1,0 +1,124 @@
+{/* TopNav.Global — Pathway Design System
+    Spec: components/top-nav/top-nav-spec.md
+    Figma: https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6508
+*/}
+
+import { Canvas, Controls, Meta, Story } from "@storybook/blocks";
+import * as TopNavStories from "./TopNav.stories";
+
+<Meta of={TopNavStories} />
+
+# TopNav.Global
+
+The fixed horizontal bar that sits at the top of every page in Ministry Brands Amplify. It persists across all modules and all screen sizes. Three responsibilities: show which module the user is in (ModuleSwitcher), show which organization and campus they are operating as (OrgSwitcher), and provide quick access to search, notifications, and the user profile.
+
+**Always on the brand-blue surface.** All interactive controls use dark-mode tokens regardless of the app's active color scheme.
+
+**Spec:** `components/top-nav/top-nav-spec.md` · **Figma:** [Open node 40007067-6508](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6508)
+
+---
+
+## Playground
+
+<Canvas of={TopNavStories.Playground} />
+<Controls of={TopNavStories.Playground} />
+
+---
+
+## Mobile layout
+
+On viewports below 768px: hamburger added, module label hidden, org label abbreviated per AP-based rules (see spec §10.2), bell icons hidden.
+
+<Canvas of={TopNavStories.Mobile} />
+
+---
+
+## Org logo fallback
+
+When no logo URL is provided, the avatar shows the org's two-letter initials. Derived by taking the first letter of the first two significant words (skipping articles and prepositions).
+
+<Canvas of={TopNavStories.OrgLogoFallback} />
+
+---
+
+## Org switcher panel
+
+<Canvas of={TopNavStories.OrgPanelOpen} />
+
+---
+
+## Module dropdown
+
+<Canvas of={TopNavStories.ModuleDropdownOpen} />
+
+---
+
+## Profile menu
+
+<Canvas of={TopNavStories.ProfileMenuOpen} />
+
+---
+
+## Single org (no campus)
+
+When the org has no campus, the pipe separator is omitted from the label.
+
+<Canvas of={TopNavStories.SingleOrg} />
+
+---
+
+## Design tokens
+
+All colors on the nav bar surface are resolved through dark-mode semantic tokens.
+
+| Token | Resolved | Usage |
+|---|---|---|
+| `semantic-color.light-mode.fill.static.brand.base` | `#2d4889` | Nav bar background |
+| `semantic-color.dark-mode.fill.action.tertiary.base` | `rgba(160,181,230,0.04)` | OrgSwitcher base fill |
+| `semantic-color.dark-mode.stroke.action.tertiary.base` | `rgba(160,181,230,0.16)` | OrgSwitcher border |
+| `semantic-color.dark-mode.fill.action.primaryinverse.base` | `rgba(160,181,230,0.08)` | Search pill fill |
+| `semantic-color.dark-mode.fill.action.primaryinverse.hover` | `rgba(10,18,35,0.16)` | All controls hover |
+| `semantic-color.dark-mode.fill.action.primaryinverse.pressed` | `rgba(255,255,255,0.08)` | All controls pressed |
+| `semantic-color.dark-mode.text.action.mono.base` | `#fbfbfb` | All text + icons on nav bar |
+| `semantic-color.light-mode.fill.static.accent.amethyst.base` | `#dcd9ef` | Profile avatar background |
+| `semantic-color.light-mode.text.static.accent.amethyst.contrast` | `#221e3f` | Profile avatar initials |
+
+> All token values are sourced from `src/tokens/tokens.css`. Never hardcode these hex values in component code.
+
+---
+
+## Org logo rules
+
+### When a logo is present
+
+The org logo image is rendered inside a `20×20px` container with `border-radius: 4px`. The image is positioned absolutely at `width: 196.31%, height: 228.29%, left: -47.05%, top: -63.31%` — a Figma-defined crop offset that centers the visual focus of the logo.
+
+In the org panel, logos render at `32×32px` with `border-radius: 4px`.
+
+### When no logo is available
+
+The avatar shows two-letter initials derived from the org name:
+
+- Three or more significant words: first letter of each of the first three words.
+- Two significant words: first letter of each word, then repeat the last (e.g. `FC` + `C` = `FCC`).
+- One significant word: first three letters of that word.
+- Articles (the, a, an), prepositions (of, in, at, for), and conjunctions (and, or) are skipped.
+
+Never show a broken image or empty box. Implement with `onerror` on the `<img>` tag.
+
+---
+
+## Accessibility
+
+- All interactive controls have 48×48px touch targets (WCAG 2.5.5).
+- ModuleSwitcher and OrgSwitcher use the Disclosure (Show/Hide) ARIA pattern.
+- `aria-expanded` is set on every trigger button.
+- On mobile, the OrgSwitcher `<button>` carries `aria-label` with the full unabbreviated org name even though the visual label is abbreviated.
+- Escape closes any open panel and returns focus to its trigger.
+- Focus ring: `2px solid rgba(160,181,230,0.7)` at `outline-offset: 2px`.
+
+---
+
+## Full standalone demo
+
+<Canvas of={TopNavStories.StandaloneDemo} />

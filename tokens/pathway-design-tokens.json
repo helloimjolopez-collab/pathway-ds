@@ -5104,27 +5104,27 @@
           "neutral": {
             "xlight": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.110}"
+              "$value": "{primitive-color.cool-neutral.0-16}"
             },
             "light": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.110}"
+              "$value": "{primitive-color.cool-neutral.0-30}"
             },
             "subtle": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.130}"
+              "$value": "{primitive-color.cool-neutral.0-70}"
             },
             "base": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.150}"
+              "$value": "{primitive-color.cool-neutral.0-80}"
             },
             "contrast": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.190}"
+              "$value": "{primitive-color.cool-neutral.0-90}"
             },
             "bold": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.210}"
+              "$value": "{primitive-color.cool-neutral.0}"
             }
           },
           "brand": {
@@ -6021,9 +6021,13 @@
       },
       "xtight": {
         "$type": "number",
-        "$value": "{primitive-unit.unit.8}"
+        "$value": "{primitive-unit.unit.6}"
       },
       "tight": {
+        "$type": "number",
+        "$value": "{primitive-unit.unit.8}"
+      },
+      "medium": {
         "$type": "number",
         "$value": "{primitive-unit.unit.12}"
       },
@@ -6051,9 +6055,13 @@
       },
       "xtight": {
         "$type": "number",
-        "$value": "{primitive-unit.unit.8}"
+        "$value": "{primitive-unit.unit.6}"
       },
       "tight": {
+        "$type": "number",
+        "$value": "{primitive-unit.unit.8}"
+      },
+      "medium": {
         "$type": "number",
         "$value": "{primitive-unit.unit.12}"
       },

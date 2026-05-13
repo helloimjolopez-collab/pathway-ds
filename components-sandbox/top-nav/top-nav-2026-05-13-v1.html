@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TopNav.Global — Pathway Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+/* ── TOKEN VARIABLES ──────────────────────────────────────────────────────── */
+/* Inlined from src/tokens/tokens.css — dark-mode families only.             */
+/* In production these are consumed from the shared token file.              */
+:root {
+  /* Primitives (resolved values) */
+  --primitive-color-brand-0:  #fafafa;
+  --primitive-color-brand-10: #eef2fb;
+  --primitive-color-brand-20: #e9eef9;
+  --primitive-color-brand-30: #e0e7f7;
+  --primitive-color-brand-40: #c0ceef;
+  --primitive-color-brand-50: #a0b5e6;
+  --primitive-color-brand-60: #86a0dd;
+  --primitive-color-brand-90: #5475c6;
+  --primitive-color-brand-100:#4b6ec3;
+  --primitive-color-brand-700:#1b2d57;
+  --primitive-color-brand-800:#152343;
+  --primitive-color-brand-850:#101a33;
+  --primitive-color-brand-900:#0a1223;
+  --primitive-color-brand-950:#060a15;
+  --primitive-color-brand-50-4:  rgba(160,181,230,0.04);
+  --primitive-color-brand-50-8:  rgba(160,181,230,0.08);
+  --primitive-color-brand-50-12: rgba(160,181,230,0.12);
+  --primitive-color-brand-50-16: rgba(160,181,230,0.16);
+  --primitive-color-brand-50-20: rgba(160,181,230,0.20);
+  --primitive-color-brand-50-30: rgba(160,181,230,0.30);
+  --primitive-color-cool-neutral-0:  #ffffff;
+  --primitive-color-cool-neutral-10: #fbfbfb;
+  --primitive-color-cool-neutral-20: #f6f6f6;
+  --primitive-color-cool-neutral-30: #ededed;
+  --primitive-color-cool-neutral-40: #e1e1e1;
+  --primitive-color-cool-neutral-50: #d2d2d2;
+  --primitive-color-cool-neutral-70: #b5b5b5;
+  --primitive-color-cool-neutral-80: #a6a6a6;
+  --primitive-color-cool-neutral-100:#8b8b8b;
+  --primitive-color-cool-neutral-120:#6b6b6b;
+  --primitive-color-cool-neutral-150:#484848;
+  --primitive-color-cool-neutral-170:#313131;
+  --primitive-color-cool-neutral-180:#252525;
+  --primitive-color-cool-neutral-200:#1b1b1b;
+  --primitive-color-cool-neutral-210:#161616;
+  --primitive-color-cool-neutral-230:#0c0c0c;
+  --primitive-color-cool-neutral-0-8:  rgba(255,255,255,0.08);
+  --primitive-color-cool-neutral-0-16: rgba(255,255,255,0.16);
+  --primitive-color-cool-neutral-0-30: rgba(255,255,255,0.30);
+  --primitive-color-cool-neutral-0-70: rgba(255,255,255,0.70);
+
+  /* Semantic — dark-mode surfaces */
+  --semantic-color-dark-mode-surface-nav-base:  var(--primitive-color-cool-neutral-230); /* #0c0c0c */
+  --semantic-color-dark-mode-surface-nav-light: var(--primitive-color-cool-neutral-180); /* #252525 */
+
+  /* Semantic — dark-mode fill/action */
+  --semantic-color-dark-mode-fill-action-tertiary-base:    var(--primitive-color-brand-50-4);
+  --semantic-color-dark-mode-fill-action-tertiary-hover:   var(--primitive-color-brand-50-8);
+  --semantic-color-dark-mode-fill-action-tertiary-pressed: var(--primitive-color-brand-50-16);
+  --semantic-color-dark-mode-fill-action-primaryinverse-hover:   var(--primitive-color-brand-900-16, rgba(10,18,35,0.16));
+  --semantic-color-dark-mode-fill-action-primaryinverse-pressed: var(--primitive-color-cool-neutral-0-8);
+
+  /* Semantic — dark-mode stroke/action */
+  --semantic-color-dark-mode-stroke-action-tertiary-base:    var(--primitive-color-brand-50-16);
+  --semantic-color-dark-mode-stroke-action-tertiary-hover:   var(--primitive-color-brand-50-20);
+  --semantic-color-dark-mode-stroke-action-tertiary-pressed: var(--primitive-color-brand-50-30);
+
+  /* Semantic — dark-mode text */
+  --semantic-color-dark-mode-text-action-mono-base:    var(--primitive-color-cool-neutral-10);
+  --semantic-color-dark-mode-text-action-mono-hover:   var(--primitive-color-cool-neutral-0);
+  --semantic-color-dark-mode-text-action-mono-pressed: var(--primitive-color-cool-neutral-0);
+  --semantic-color-dark-mode-text-action-secondary-base:   var(--primitive-color-cool-neutral-40);
+  --semantic-color-dark-mode-text-action-secondary-hover:  var(--primitive-color-cool-neutral-30);
+
+  /* Semantic — dark-mode icon */
+  --semantic-color-dark-mode-icon-action-mono-base:    var(--primitive-color-cool-neutral-10);
+  --semantic-color-dark-mode-icon-action-mono-hover:   var(--primitive-color-cool-neutral-0);
+  --semantic-color-dark-mode-icon-action-mono-pressed: var(--primitive-color-cool-neutral-0);
+
+  /* Layout units */
+  --semantic-layout-units-cornerradius-medium: 8px;
+  --semantic-layout-units-cornerradius-small:  4px;
+  --semantic-layout-units-borderwidth-base:    1px;
+  --semantic-layout-units-padding-xxtight:     4px;
+  --semantic-layout-units-padding-xxxtight:    2px;
+  --semantic-layout-units-padding-xtight:      8px;
+  --semantic-layout-units-gap-xxtight:         4px;
+}
+
+/* ── RESET ────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: #0e1829; font-family: 'Red Hat Text', sans-serif; }
+button { background: none; border: none; cursor: pointer; font-family: inherit; }
+input  { font-family: inherit; }
+#root  { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ── ANIMATIONS ───────────────────────────────────────────────────────────── */
+@keyframes dropdownIn {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes searchExpand {
+  from { width: 36px; opacity: 0.6; }
+  to   { width: var(--search-expanded-w, 280px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  @keyframes dropdownIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes panelIn    { from { opacity:0; } to { opacity:1; } }
+  @keyframes searchExpand { from { opacity:0.6; } to { opacity:1; } }
+}
+
+/* ── TOP NAV ──────────────────────────────────────────────────────────────── */
+.topnav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 56px;
+  /* Nav surface: dark brand navy — brand-900.
+     NOTE: Semantic token pending: expected --semantic-color-dark-mode-fill-static-surface-nav.
+     Current best match: --primitive-color-brand-900 (#0a1223).
+     See top-nav-spec.md §3 gaps. */
+  background: #0a1223;
+  z-index: 100;
+  display: flex; align-items: center;
+  padding: 0 8px;
+  gap: 0;
+  border-bottom: 1px solid rgba(160,181,230,0.10);
+}
+
+.topnav__row-start {
+  display: flex; align-items: center; gap: 4px;
+  flex: 0 0 auto;
+}
+.topnav__spacer { flex: 1; }
+.topnav__row-end {
+  display: flex; align-items: center; gap: 2px;
+  flex: 0 0 auto;
+}
+
+/* ── NAV BUTTON (shared ghost button) ────────────────────────────────────── */
+.nav-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 36px; min-width: 36px;
+  padding: 0 8px;
+  gap: 6px;
+  border: 1px solid transparent;
+  border-radius: var(--semantic-layout-units-cornerradius-medium, 8px);
+  background: var(--semantic-color-dark-mode-fill-action-tertiary-base);
+  color: var(--semantic-color-dark-mode-text-action-mono-base);
+  font-size: 13px; font-weight: 500; line-height: 1;
+  white-space: nowrap;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+  position: relative;
+}
+.nav-btn:hover {
+  background: var(--semantic-color-dark-mode-fill-action-tertiary-hover);
+  border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-hover);
+  color: var(--semantic-color-dark-mode-text-action-mono-hover);
+}
+.nav-btn:active,
+.nav-btn[aria-expanded="true"] {
+  background: var(--semantic-color-dark-mode-fill-action-tertiary-pressed);
+  border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-pressed);
+  color: var(--semantic-color-dark-mode-text-action-mono-pressed);
+}
+.nav-btn:focus-visible {
+  outline: 2px solid rgba(160,181,230,0.7);
+  outline-offset: 2px;
+}
+.nav-btn--icon {
+  padding: 0; width: 36px;
+}
+/* Active state has a border */
+.nav-btn[aria-expanded="true"] {
+  border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-pressed);
+}
+
+/* Icon size */
+.nav-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* Chevron rotation */
+.nav-btn__chevron {
+  width: 14px !important; height: 14px !important;
+  transition: transform 180ms ease;
+}
+.nav-btn[aria-expanded="true"] .nav-btn__chevron {
+  transform: rotate(180deg);
+}
+
+/* ── SIDENAV CONTROL (mobile hamburger) ───────────────────────────────────── */
+.topnav__sidenav-control { display: none; }
+
+/* ── MODULE SWITCHER ─────────────────────────────────────────────────────── */
+.module-switcher { position: relative; }
+
+.module-switcher__trigger {
+  /* inherits .nav-btn */
+  min-width: unset;
+}
+
+.module-switcher__icon-wrap {
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.module-switcher__icon-wrap svg { width: 16px; height: 16px; }
+
+.module-switcher__label {
+  font-size: 13px; font-weight: 500;
+  max-width: 160px; overflow: hidden; text-overflow: ellipsis;
+}
+
+.module-switcher__dropdown {
+  position: absolute; top: calc(100% + 8px); left: 0;
+  min-width: 200px;
+  background: #111826;
+  border: 1px solid rgba(160,181,230,0.14);
+  border-radius: 10px;
+  padding: 6px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.30);
+  z-index: 200;
+  animation: dropdownIn 150ms ease-out both;
+}
+
+.module-switcher__item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: var(--semantic-color-dark-mode-text-action-secondary-base);
+  font-size: 13px; font-weight: 400;
+  cursor: pointer;
+  transition: background 100ms ease, color 100ms ease;
+  border: none; background: transparent; width: 100%; text-align: left;
+  font-family: inherit;
+}
+.module-switcher__item:hover {
+  background: rgba(160,181,230,0.08);
+  color: var(--semantic-color-dark-mode-text-action-secondary-hover);
+}
+.module-switcher__item:focus-visible {
+  outline: 2px solid rgba(160,181,230,0.7);
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+.module-switcher__item--active {
+  background: rgba(160,181,230,0.10);
+  color: var(--semantic-color-dark-mode-text-action-mono-base);
+  font-weight: 500;
+}
+.module-switcher__item--active:hover {
+  background: rgba(160,181,230,0.14);
+}
+.module-switcher__item svg {
+  width: 16px; height: 16px; flex-shrink: 0;
+  opacity: 0.7;
+}
+.module-switcher__item--active svg { opacity: 1; }
+
+/* ── ORG SWITCHER ─────────────────────────────────────────────────────────── */
+.org-switcher { position: relative; }
+
+.org-switcher__trigger {
+  /* inherits .nav-btn */
+  gap: 6px;
+}
+
+.org-switcher__avatar {
+  width: 24px; height: 24px;
+  border-radius: 4px;
+  background: rgba(53,85,160,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.02em;
+  color: rgba(160,181,230,0.9);
+  flex-shrink: 0;
+  border: 1px solid rgba(160,181,230,0.20);
+  overflow: hidden;
+}
+.org-switcher__avatar img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+.org-switcher__label {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 13px; font-weight: 500;
+}
+.org-switcher__label-org {
+  max-width: 120px; overflow: hidden; text-overflow: ellipsis;
+}
+.org-switcher__label-sep {
+  opacity: 0.4; font-size: 11px; font-weight: 400;
+}
+.org-switcher__label-campus {
+  max-width: 80px; overflow: hidden; text-overflow: ellipsis;
+}
+
+.org-switcher__panel {
+  position: absolute; top: calc(100% + 8px); left: 0;
+  min-width: 240px;
+  background: #111826;
+  border: 1px solid rgba(160,181,230,0.14);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.30);
+  z-index: 200;
+  animation: panelIn 150ms ease-out both;
+  color: rgba(160,181,230,0.6);
+  font-size: 12px; line-height: 1.5;
+}
+.org-switcher__panel p { margin-bottom: 8px; }
+.org-switcher__panel p:last-child { margin-bottom: 0; }
+.org-switcher__panel strong { color: rgba(160,181,230,0.9); font-weight: 600; }
+
+/* ── SEARCH ───────────────────────────────────────────────────────────────── */
+.topnav-search { position: relative; display: flex; align-items: center; }
+
+.topnav-search__trigger { /* .nav-btn--icon */ }
+
+.topnav-search__field {
+  display: flex; align-items: center; gap: 6px;
+  height: 36px;
+  background: rgba(160,181,230,0.07);
+  border: 1px solid rgba(160,181,230,0.16);
+  border-radius: 8px;
+  padding: 0 8px 0 10px;
+  animation: searchExpand 180ms ease-out both;
+  overflow: hidden;
+  width: 280px;
+}
+@media (max-width: 767px) {
+  .topnav-search__field { width: 200px; }
+}
+
+.topnav-search__field svg {
+  width: 15px; height: 15px; flex-shrink: 0;
+  color: rgba(160,181,230,0.5);
+}
+.topnav-search__input {
+  flex: 1; min-width: 0;
+  background: transparent; border: none;
+  color: var(--semantic-color-dark-mode-text-action-mono-base);
+  font-size: 13px; font-weight: 400;
+  caret-color: rgba(160,181,230,0.8);
+}
+.topnav-search__input::placeholder { color: rgba(160,181,230,0.40); }
+.topnav-search__input:focus { outline: none; }
+.topnav-search__field:focus-within {
+  border-color: rgba(160,181,230,0.35);
+  background: rgba(160,181,230,0.09);
+}
+.topnav-search__clear {
+  display: flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  background: rgba(160,181,230,0.10);
+  border: none; border-radius: 50%; cursor: pointer;
+  color: rgba(160,181,230,0.6);
+  flex-shrink: 0;
+  padding: 0;
+}
+.topnav-search__clear:hover { background: rgba(160,181,230,0.18); }
+.topnav-search__clear svg { width: 10px; height: 10px; }
+
+/* ── PROFILE AVATAR ───────────────────────────────────────────────────────── */
+.topnav-profile__trigger { /* .nav-btn--icon */ }
+.topnav-profile__avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, #3a5aaa 0%, #2d4889 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.9);
+  overflow: hidden; flex-shrink: 0;
+  border: 1.5px solid rgba(160,181,230,0.25);
+}
+
+/* ── NOTIFICATION BADGE ───────────────────────────────────────────────────── */
+.nav-btn--with-badge { overflow: visible; }
+.nav-btn__badge {
+  position: absolute; top: 4px; right: 4px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #e05252;
+  border: 1.5px solid #0a1223;
+}
+
+/* ── SEPARATOR ────────────────────────────────────────────────────────────── */
+.topnav__sep {
+  width: 1px; height: 20px;
+  background: rgba(160,181,230,0.12);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .topnav__sidenav-control { display: flex; }
+
+  /* Mobile: abbreviated org names, smaller avatar */
+  .org-switcher__avatar { width: 20px; height: 20px; font-size: 8px; }
+  .org-switcher__label-org  { max-width: 60px; }
+  .org-switcher__label-campus { max-width: 50px; }
+
+  /* Hide module switcher full label on narrow screens */
+  .module-switcher__label { display: none; }
+
+  /* Search expands to fill available space */
+  .topnav-search__field { width: calc(100vw - 120px); }
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  /* Tablet: abbreviated org names (handled in JS via mobile prop) */
+  .org-switcher__label-org  { max-width: 100px; }
+}
+
+/* ── SCRIM (click outside to close) ──────────────────────────────────────── */
+.topnav-scrim {
+  position: fixed; inset: 0;
+  z-index: 99;
+  background: transparent;
+}
+
+/* ── DEMO CHROME ──────────────────────────────────────────────────────────── */
+.demo-page {
+  padding-top: 56px; /* nav height */
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0e1829 0%, #0a1120 100%);
+}
+.demo-content {
+  padding: 40px 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.demo-content h1 {
+  font-size: 22px; font-weight: 600; color: rgba(160,181,230,0.85);
+  margin-bottom: 8px;
+}
+.demo-content p {
+  font-size: 13px; color: rgba(160,181,230,0.45); line-height: 1.6;
+  margin-bottom: 24px;
+}
+.demo-pills {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 32px;
+}
+.demo-pill {
+  padding: 5px 12px; border-radius: 99px;
+  background: rgba(160,181,230,0.07);
+  border: 1px solid rgba(160,181,230,0.12);
+  color: rgba(160,181,230,0.55);
+  font-size: 12px; font-weight: 500;
+  cursor: default;
+}
+.demo-pill--active {
+  background: rgba(53,85,160,0.20);
+  border-color: rgba(160,181,230,0.25);
+  color: rgba(160,181,230,0.9);
+}
+.demo-content-block {
+  background: rgba(160,181,230,0.04);
+  border: 1px solid rgba(160,181,230,0.08);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.demo-content-block h2 {
+  font-size: 14px; font-weight: 600; color: rgba(160,181,230,0.7);
+  margin-bottom: 12px;
+}
+.demo-content-block p {
+  font-size: 13px; color: rgba(160,181,230,0.35); margin-bottom: 0; line-height: 1.7;
+}
+.demo-search-results {
+  margin-top: 8px;
+}
+.demo-search-result {
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: rgba(160,181,230,0.06);
+  border: 1px solid rgba(160,181,230,0.08);
+  margin-bottom: 6px;
+  font-size: 13px; color: rgba(160,181,230,0.6);
+}
+
+.demo-state-indicator {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: rgba(10,18,35,0.92);
+  border: 1px solid rgba(160,181,230,0.15);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 12px; color: rgba(160,181,230,0.6);
+  font-family: 'Red Hat Text', monospace;
+  backdrop-filter: blur(8px);
+  z-index: 50;
+  pointer-events: none;
+  letter-spacing: 0.02em;
+}
+.demo-state-indicator span { color: rgba(160,181,230,0.9); font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useRef, useCallback } = React;
+
+/* ── ABBREVIATION UTILITIES ──────────────────────────────────────────────── */
+const SKIP_WORDS = new Set(["the","a","an","of","in","at","for","and","or","but"]);
+
+function abbreviateOrg(orgName) {
+  if (!orgName) return "";
+  const words = orgName.split(/\s+/).filter(w => w);
+  const significant = words.filter(w => !SKIP_WORDS.has(w.toLowerCase()));
+  if (significant.length === 0) return orgName.slice(0,3).toUpperCase();
+  if (significant.length === 1) {
+    const w = significant[0];
+    return (w[0] + (w[Math.floor(w.length/3)] || w[1] || "") + (w[Math.floor(2*w.length/3)] || w[2] || "")).toUpperCase().slice(0,3);
+  }
+  if (significant.length === 2) {
+    const a = significant[0], b = significant[1];
+    return (a[0] + b.slice(0,2)).toUpperCase();
+  }
+  return significant.slice(0,3).map(w=>w[0]).join("").toUpperCase();
+}
+
+function abbreviateCampus(campusName) {
+  if (!campusName) return "";
+  const words = campusName.split(/\s+/).filter(w => w);
+  const DIRS = { north:"N", south:"S", east:"E", west:"W", northeast:"NE", northwest:"NW", southeast:"SE", southwest:"SW" };
+  const significant = words.filter(w => !SKIP_WORDS.has(w.toLowerCase()));
+  if (significant.length === 1) {
+    const w = significant[0].toLowerCase();
+    if (DIRS[w]) return DIRS[w];
+    return significant[0].slice(0,2).toUpperCase();
+  }
+  return significant.slice(0,2).map(w => {
+    const d = DIRS[w.toLowerCase()];
+    return d || w[0].toUpperCase();
+  }).join("");
+}
+
+function mobileLabel(orgName, campusName) {
+  const org = abbreviateOrg(orgName);
+  if (!campusName) return org;
+  const campus = abbreviateCampus(campusName);
+  return `${org} | ${campus}`;
+}
+
+/* ── ICONS ───────────────────────────────────────────────────────────────── */
+const Icons = {
+  /* Grid / modules */
+  Grid: () => (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1.5" y="1.5" width="5" height="5" rx="1"/>
+      <rect x="9.5" y="1.5" width="5" height="5" rx="1"/>
+      <rect x="1.5" y="9.5" width="5" height="5" rx="1"/>
+      <rect x="9.5" y="9.5" width="5" height="5" rx="1"/>
+    </svg>
+  ),
+  ChevronDown: () => (
+    <svg className="nav-btn__chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 5l4 4 4-4"/>
+    </svg>
+  ),
+  Search: ({ size = 16 }) => (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="7" cy="7" r="4.5"/>
+      <path d="M10.5 10.5l3 3"/>
+    </svg>
+  ),
+  Bell: () => (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 12.5a2 2 0 004 0"/>
+      <path d="M8 2a1 1 0 00-1 1v.5A4 4 0 003 7.5V10H2.5a.5.5 0 000 1h11a.5.5 0 000-1H13V7.5A4 4 0 009 3.5V3a1 1 0 00-1-1z"/>
+    </svg>
+  ),
+  Menu: () => (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+      <path d="M2 4h12M2 8h12M2 12h12"/>
+    </svg>
+  ),
+  X: () => (
+    <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+      <path d="M1.5 1.5l7 7M8.5 1.5l-7 7"/>
+    </svg>
+  ),
+  Check: () => (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 8l3.5 3.5L13 4.5"/>
+    </svg>
+  ),
+  /* Module icons */
+  Home: () => (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 6.5L8 2l6 4.5V13.5a.5.5 0 01-.5.5h-4V10H6.5v4H3a.5.5 0 01-.5-.5V6.5z"/>
+    </svg>
+  ),
+  People: () => (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="6" cy="5.5" r="2.5"/>
+      <path d="M1 13.5a5 5 0 0110 0"/>
+      <circle cx="12" cy="5.5" r="2"/>
+      <path d="M14 12.5a4 4 0 00-4-3.5"/>
+    </svg>
+  ),
+  Giving: () => (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 2l1.8 3.6 4 .6-2.9 2.8.7 3.9L8 11l-3.6 1.9.7-3.9L2.2 6.2l4-.6L8 2z"/>
+    </svg>
+  ),
+  AppBuilder: () => (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1.5" y="1.5" width="13" height="13" rx="2"/>
+      <path d="M5 8h6M8 5v6"/>
+    </svg>
+  ),
+  Websites: () => (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="8" cy="8" r="6"/>
+      <path d="M2 8h12M8 2c-1.7 2-2.5 4-2.5 6s.8 4 2.5 6M8 2c1.7 2 2.5 4 2.5 6S9.7 14 8 14"/>
+    </svg>
+  ),
+  Streaming: () => (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 4.5a1 1 0 011-1h8a1 1 0 011 1v5a1 1 0 01-1 1H4a1 1 0 01-1-1V4.5z"/>
+      <path d="M6 11.5l-1 2h6l-1-2M5 13.5h6"/>
+      <path d="M6.5 7L9.5 8.5 6.5 10V7z" fill="currentColor" stroke="none"/>
+    </svg>
+  ),
+  Content: () => (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2.5 2.5h11a.5.5 0 01.5.5v10a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5V3a.5.5 0 01.5-.5z"/>
+      <path d="M5 5.5h6M5 8h6M5 10.5h4"/>
+    </svg>
+  ),
+  Explore: () => (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="8" cy="8" r="6"/>
+      <path d="M10.5 5.5l-2 4-4 2 2-4 4-2z"/>
+      <circle cx="8" cy="8" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+  ),
+};
+
+const MODULE_ITEMS = [
+  { id: "home",        label: "Home",        Icon: Icons.Home },
+  { id: "people",      label: "People",       Icon: Icons.People },
+  { id: "giving",      label: "Giving",       Icon: Icons.Giving },
+  { id: "app-builder", label: "App Builder",  Icon: Icons.AppBuilder },
+  { id: "websites",    label: "Websites",     Icon: Icons.Websites },
+  { id: "streaming",   label: "Streaming",    Icon: Icons.Streaming },
+  { id: "content",     label: "Content",      Icon: Icons.Content },
+  { id: "explore",     label: "Explore",      Icon: Icons.Explore },
+];
+
+const DEMO_ORG = { orgName: "Grace Community Church", campusName: "West" };
+
+/* ── MODULE SWITCHER ─────────────────────────────────────────────────────── */
+function ModuleSwitcher({ open, onToggle, activeModule, onSelect, isMobile }) {
+  const ref = useRef(null);
+  const triggerRef = useRef(null);
+  const active = MODULE_ITEMS.find(m => m.id === activeModule) || MODULE_ITEMS[0];
+  const ActiveIcon = active.Icon;
+
+  // Keyboard: arrow keys + enter + escape within the dropdown
+  const handleKeyDown = (e) => {
+    if (!open) return;
+    const items = ref.current?.querySelectorAll('[role="menuitem"]');
+    if (!items) return;
+    const arr = Array.from(items);
+    const cur = document.activeElement;
+    const idx = arr.indexOf(cur);
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      arr[(idx + 1) % arr.length]?.focus();
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      arr[(idx - 1 + arr.length) % arr.length]?.focus();
+    } else if (e.key === "Escape") {
+      onToggle();
+      triggerRef.current?.focus();
+    }
+  };
+
+  return (
+    <div className="module-switcher" ref={ref} onKeyDown={handleKeyDown}>
+      <button
+        ref={triggerRef}
+        className="nav-btn module-switcher__trigger"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-label={`Module switcher, current: ${active.label}`}
+        onClick={onToggle}
+      >
+        <span className="module-switcher__icon-wrap"><ActiveIcon /></span>
+        {!isMobile && (
+          <span className="module-switcher__label">{active.label}</span>
+        )}
+        <Icons.ChevronDown />
+      </button>
+
+      {open && (
+        <div
+          className="module-switcher__dropdown"
+          role="menu"
+          aria-label="Modules"
+        >
+          {MODULE_ITEMS.map(item => (
+            <button
+              key={item.id}
+              role="menuitem"
+              className={`module-switcher__item${item.id === activeModule ? " module-switcher__item--active" : ""}`}
+              onClick={() => { onSelect(item.id); onToggle(); }}
+              tabIndex={0}
+            >
+              <item.Icon />
+              {item.label}
+              {item.id === activeModule && (
+                <span style={{ marginLeft: "auto", opacity: 0.8 }}>
+                  <Icons.Check />
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── ORG SWITCHER ────────────────────────────────────────────────────────── */
+function OrgSwitcherTrigger({ open, onToggle, orgName, campusName, isMobile }) {
+  const triggerRef = useRef(null);
+  const initials = (orgName || "").split(" ").filter(w => !SKIP_WORDS.has(w.toLowerCase())).slice(0,2).map(w=>w[0]).join("").toUpperCase();
+
+  const label = isMobile
+    ? mobileLabel(orgName, campusName)
+    : campusName
+      ? <><span className="org-switcher__label-org">{orgName}</span><span className="org-switcher__label-sep">|</span><span className="org-switcher__label-campus">{campusName}</span></>
+      : <span className="org-switcher__label-org">{orgName}</span>;
+
+  return (
+    <div className="org-switcher">
+      <button
+        ref={triggerRef}
+        className="nav-btn org-switcher__trigger"
+        aria-haspopup="true"
+        aria-expanded={open}
+        aria-label={`${orgName}${campusName ? ", " + campusName : ""} — org switcher`}
+        onClick={onToggle}
+      >
+        <span className="org-switcher__avatar">{initials}</span>
+        <span className="org-switcher__label">
+          {isMobile
+            ? <span className="org-switcher__label-org">{mobileLabel(orgName, campusName)}</span>
+            : <>
+                <span className="org-switcher__label-org">{orgName}</span>
+                {campusName && <>
+                  <span className="org-switcher__label-sep">|</span>
+                  <span className="org-switcher__label-campus">{campusName}</span>
+                </>}
+              </>
+          }
+        </span>
+        <Icons.ChevronDown />
+      </button>
+
+      {open && (
+        <div className="org-switcher__panel" role="dialog" aria-label="Switch organisation">
+          <p><strong>Organisation switcher</strong></p>
+          <p>Grace Community Church · West</p>
+          <p style={{ marginTop: 12, padding: "8px 10px", background: "rgba(160,181,230,0.06)", borderRadius: 6, fontSize: 11 }}>
+            Panel not yet designed in Figma.<br/>
+            Spec gap: panel awaiting design. Trigger is complete.
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── SEARCH ──────────────────────────────────────────────────────────────── */
+function TopNavSearch({ open, onToggle }) {
+  const inputRef = useRef(null);
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    if (open) {
+      setTimeout(() => inputRef.current?.focus(), 20);
+    } else {
+      setQuery("");
+    }
+  }, [open]);
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape") { onToggle(); }
+  };
+
+  return (
+    <div className="topnav-search">
+      {open ? (
+        <div className="topnav-search__field" role="search" aria-label="Site search">
+          <Icons.Search size={15} />
+          <input
+            ref={inputRef}
+            className="topnav-search__input"
+            type="search"
+            placeholder="Search…"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
+            aria-label="Search"
+          />
+          {query && (
+            <button className="topnav-search__clear" onClick={() => setQuery("")} aria-label="Clear search">
+              <Icons.X />
+            </button>
+          )}
+        </div>
+      ) : (
+        <button
+          className="nav-btn nav-btn--icon topnav-search__trigger"
+          aria-label="Open search"
+          onClick={onToggle}
+        >
+          <Icons.Search />
+        </button>
+      )}
+    </div>
+  );
+}
+
+/* ── TOP NAV ─────────────────────────────────────────────────────────────── */
+function TopNav({ activeModule, onModuleSelect, onSideNavToggle }) {
+  const [moduleSwitcherOpen, setModuleSwitcherOpen] = useState(false);
+  const [orgSwitcherOpen, setOrgSwitcherOpen]       = useState(false);
+  const [searchOpen, setSearchOpen]                 = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const handler = (e) => setIsMobile(e.matches);
+    setIsMobile(mq.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  // Close on click outside via scrim (one scrim per open panel)
+  const closeAll = () => {
+    setModuleSwitcherOpen(false);
+    setOrgSwitcherOpen(false);
+    setSearchOpen(false);
+  };
+
+  const anyOpen = moduleSwitcherOpen || orgSwitcherOpen;
+
+  // Escape key closes everything
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === "Escape") closeAll();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
+  return (
+    <>
+      {anyOpen && <div className="topnav-scrim" onClick={closeAll} aria-hidden="true"/>}
+
+      <header className="topnav" role="banner">
+        {/* ── Row Start ──────────────────────────────────── */}
+        <div className="topnav__row-start">
+          {/* Mobile: sidenav toggle */}
+          <button
+            className="nav-btn nav-btn--icon topnav__sidenav-control"
+            aria-label="Open navigation menu"
+            onClick={onSideNavToggle}
+          >
+            <Icons.Menu />
+          </button>
+
+          {/* Module Switcher */}
+          <ModuleSwitcher
+            open={moduleSwitcherOpen}
+            onToggle={() => setModuleSwitcherOpen(p => !p)}
+            activeModule={activeModule}
+            onSelect={onModuleSelect}
+            isMobile={isMobile}
+          />
+
+          {/* Divider */}
+          <div className="topnav__sep" aria-hidden="true"/>
+
+          {/* Org Switcher */}
+          <OrgSwitcherTrigger
+            open={orgSwitcherOpen}
+            onToggle={() => { setOrgSwitcherOpen(p => !p); }}
+            orgName={DEMO_ORG.orgName}
+            campusName={DEMO_ORG.campusName}
+            isMobile={isMobile}
+          />
+        </div>
+
+        {/* ── Spacer ─────────────────────────────────────── */}
+        <div className="topnav__spacer" aria-hidden="true"/>
+
+        {/* ── Row End ────────────────────────────────────── */}
+        <div className="topnav__row-end">
+          {/* Search */}
+          <TopNavSearch
+            open={searchOpen}
+            onToggle={() => setSearchOpen(p => !p)}
+          />
+
+          {/* Actions / Notifications */}
+          {!searchOpen && (
+            <button
+              className="nav-btn nav-btn--icon nav-btn--with-badge"
+              aria-label="Notifications (3 unread)"
+            >
+              <Icons.Bell />
+              <span className="nav-btn__badge" aria-hidden="true"/>
+            </button>
+          )}
+
+          {/* Separator before profile */}
+          {!searchOpen && <div className="topnav__sep" aria-hidden="true"/>}
+
+          {/* Profile */}
+          <button
+            className="nav-btn nav-btn--icon topnav-profile__trigger"
+            aria-label="Account: Jo Lopez"
+            aria-haspopup="true"
+          >
+            <span className="topnav-profile__avatar">JL</span>
+          </button>
+        </div>
+      </header>
+    </>
+  );
+}
+
+/* ── DEMO APP ────────────────────────────────────────────────────────────── */
+function App() {
+  const [activeModule, setActiveModule] = useState("people");
+  const [sideNavVisible, setSideNavVisible] = useState(false);
+  const activeItem = MODULE_ITEMS.find(m => m.id === activeModule) || MODULE_ITEMS[0];
+
+  const stateStr = `active module: ${activeItem.label}`;
+
+  return (
+    <div className="demo-page">
+      <TopNav
+        activeModule={activeModule}
+        onModuleSelect={setActiveModule}
+        onSideNavToggle={() => setSideNavVisible(v => !v)}
+      />
+
+      <div className="demo-content">
+        <h1>{activeItem.label}</h1>
+        <p>
+          TopNav.Global demo — Pathway Design System.
+          Click the module switcher (left) to change active module.
+          Click the org switcher to see the trigger state. Use search to expand the search field.
+        </p>
+
+        <div className="demo-pills">
+          {MODULE_ITEMS.map(m => (
+            <span
+              key={m.id}
+              className={`demo-pill${m.id === activeModule ? " demo-pill--active" : ""}`}
+              onClick={() => setActiveModule(m.id)}
+              role="button" tabIndex={0}
+              onKeyDown={e => e.key==="Enter" && setActiveModule(m.id)}
+            >
+              {m.label}
+            </span>
+          ))}
+        </div>
+
+        <div className="demo-content-block">
+          <h2>Component notes</h2>
+          <p>
+            Slot.RowStart: SideNav control (mobile only) · ModuleSwitcher · OrgSwitcher.<br/>
+            Slot.RowEnd: Search (expands in-place) · Actions (bell) · Profile (avatar).<br/>
+            ModuleSwitcher and Search can be open simultaneously.<br/>
+            Dismiss any open panel: click its trigger again, or click outside (scrim), or press Escape.<br/>
+            Keyboard: Tab to navigate, Enter/Space to open, arrow keys in the module menu, Escape to close.
+          </p>
+        </div>
+
+        <div className="demo-content-block">
+          <h2>Breakpoints</h2>
+          <p>
+            ≥1440px (Desktop): full org name + campus name, module label visible.<br/>
+            768–1439px (Tablet): same layout, slightly constrained widths.<br/>
+            &lt;768px (Mobile): hamburger appears, org name abbreviated (e.g. GCC | W), module label hidden.
+          </p>
+        </div>
+
+        <div className="demo-content-block">
+          <h2>Spec status</h2>
+          <p>
+            Version: v1 · Date: 2026-05-13 · Branch: feat/component-top-nav<br/>
+            Status: PENDING HUMAN REVIEW<br/>
+            Panel specs deferred: OrgSwitcher panel, Profile panel.<br/>
+            Token gap: nav surface background pending --semantic-color-dark-mode-fill-static-surface-nav.
+          </p>
+        </div>
+      </div>
+
+      {/* State indicator */}
+      <div className="demo-state-indicator">
+        {stateStr}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

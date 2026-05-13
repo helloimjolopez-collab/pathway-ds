@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TopNav.Global — Pathway Design System</title>
+
+<!-- Real Pathway token file — never inline token values -->
+<link rel="stylesheet" href="../../src/tokens/tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────────────────────────────────────────────────────────
+   TopNav.Global — Component Demo
+   Source of truth: Figma file 3sw45aVcngFAmpbP6cfrXP, node 40007067:6508
+   All color tokens reference src/tokens/tokens.css — never inline values.
+   Dimension tokens (padding, gap, radius) are stored as unitless numbers in
+   tokens.css so CSS fallbacks carry the px unit.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Red Hat Text', sans-serif;
+  background: #f0f0f0;
+  min-height: 100vh;
+}
+
+/* ── COMPONENT-SCOPED ALIASES ────────────────────────────────────────────── */
+/* Map Figma token paths → actual CSS vars from tokens.css                    */
+/* Figma: fill/static/brand/base (#2d4889) → light-mode brand-500            */
+:root {
+  --tn-surface:       var(--semantic-color-light-mode-fill-static-brand-base, #2d4889);
+
+  /* Interactive buttons on dark/brand surface → dark-mode primaryinverse */
+  --tn-fill-base:     var(--semantic-color-dark-mode-fill-action-primaryinverse-base,    rgba(160,181,230,0.08));
+  --tn-fill-hover:    var(--semantic-color-dark-mode-fill-action-primaryinverse-hover,   rgba(10,18,35,0.16));
+  --tn-fill-pressed:  var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed, rgba(255,255,255,0.08));
+
+  /* Borders */
+  --tn-stroke-base:    var(--semantic-color-dark-mode-stroke-action-tertiary-base,    rgba(160,181,230,0.16));
+  --tn-stroke-hover:   var(--semantic-color-dark-mode-stroke-action-tertiary-hover,   rgba(160,181,230,0.20));
+  --tn-stroke-pressed: var(--semantic-color-dark-mode-stroke-action-tertiary-pressed, rgba(160,181,230,0.30));
+
+  /* Text */
+  --tn-text-base:    var(--semantic-color-dark-mode-text-action-mono-base,    #fbfbfb);
+  --tn-text-hover:   var(--semantic-color-dark-mode-text-action-mono-hover,   #ffffff);
+  --tn-text-muted:   var(--semantic-color-dark-mode-text-action-secondary-base, #e1e1e1);
+
+  /* Icons */
+  --tn-icon-base:    var(--semantic-color-dark-mode-icon-action-mono-base,    #fbfbfb);
+  --tn-icon-hover:   var(--semantic-color-dark-mode-icon-action-mono-hover,   #ffffff);
+
+  /* Search specific: Figma stroke/action/primary-inverse/base */
+  --tn-search-stroke: var(--semantic-color-dark-mode-stroke-action-primary-inverse-base, #a0b5e6);
+
+  /* Profile avatar: fill/static/accent_amethyst/base */
+  --tn-avatar-fill:  var(--semantic-color-light-mode-fill-static-accent-amethyst-base, #dcd9ef);
+  --tn-avatar-text:  var(--semantic-color-light-mode-text-static-accent-amethyst-contrast, #221e3f);
+
+  /* Org avatar accent */
+  --tn-org-avatar-fill:   rgba(160,181,230,0.12);
+  --tn-org-avatar-stroke: var(--semantic-color-dark-mode-stroke-action-tertiary-base, rgba(160,181,230,0.16));
+  --tn-org-avatar-text:   var(--semantic-color-dark-mode-text-action-mono-base, #fbfbfb);
+
+  /* Radius — unitless tokens need px fallback */
+  --tn-radius-md: 8px;
+  --tn-radius-sm: 4px;
+  --tn-radius-full: 9999px;
+}
+
+/* ── DEMO FRAME ──────────────────────────────────────────────────────────── */
+.demo-wrap {
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.demo-label {
+  font-family: 'Red Hat Text', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+  margin-bottom: 8px;
+}
+.demo-frame {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06);
+}
+.demo-frame--mobile {
+  max-width: 393px;
+}
+
+/* ── TOP NAV SHELL ───────────────────────────────────────────────────────── */
+.topnav {
+  position: relative;
+  height: 56px;
+  background: var(--tn-surface);
+  display: flex;
+  align-items: center;
+  padding: var(--semantic-layout-units-padding-xxtight, 4px) var(--semantic-layout-units-padding-xtight, 8px);
+  border-bottom: 1px solid rgba(160,181,230,0.10);
+  gap: 0;
+  z-index: 1;
+}
+
+/* ── ROW AREAS ───────────────────────────────────────────────────────────── */
+.topnav__start {
+  display: flex;
+  align-items: center;
+  gap: var(--semantic-layout-units-gap-xtight, 8px);
+  flex: 0 0 auto;
+}
+.topnav__spacer { flex: 1; }
+.topnav__end {
+  display: flex;
+  align-items: center;
+  gap: var(--semantic-layout-units-gap-xxtight, 4px);
+  flex: 0 0 auto;
+}
+
+/* ── BASE BUTTON ─────────────────────────────────────────────────────────── */
+.tn-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  min-width: 36px;
+  padding: 0 var(--semantic-layout-units-padding-xtight, 8px);
+  gap: var(--semantic-layout-units-gap-xxtight, 4px);
+  background: var(--tn-fill-base);
+  border: 1px solid var(--tn-stroke-base);
+  border-radius: var(--tn-radius-md);
+  color: var(--tn-text-base);
+  font-family: 'Red Hat Text', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+  position: relative;
+  flex-shrink: 0;
+}
+.tn-btn:hover {
+  background: var(--tn-fill-hover);
+  border-color: var(--tn-stroke-hover);
+  color: var(--tn-text-hover);
+}
+.tn-btn:active,
+.tn-btn[aria-expanded="true"] {
+  background: var(--tn-fill-pressed);
+  border-color: var(--tn-stroke-pressed);
+  color: var(--tn-text-hover);
+}
+.tn-btn:focus-visible {
+  outline: 2px solid var(--tn-search-stroke);
+  outline-offset: 2px;
+}
+.tn-btn--icon {
+  padding: 0;
+  width: 36px;
+}
+.tn-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--tn-icon-base);
+  transition: color 120ms ease;
+}
+.tn-btn:hover svg,
+.tn-btn[aria-expanded="true"] svg { color: var(--tn-icon-hover); }
+
+/* ── CHEVRON ─────────────────────────────────────────────────────────────── */
+.tn-chev {
+  width: 14px !important;
+  height: 14px !important;
+  opacity: 0.7;
+  transition: transform 180ms ease, opacity 120ms ease;
+}
+.tn-btn[aria-expanded="true"] .tn-chev {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ── SIDENAV CONTROL (mobile hamburger) ─────────────────────────────────── */
+.tn-sidenav-ctrl { display: none; }
+
+/* ── MODULE SWITCHER ─────────────────────────────────────────────────────── */
+.tn-mod { position: relative; }
+.tn-mod__icon-wrap {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.tn-mod__icon-wrap svg { width: 16px; height: 16px; }
+.tn-mod__label {
+  font-size: 13px;
+  font-weight: 500;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Module Switcher dropdown — Figma: white bg, shadow 0px 8px 8px rgba(0,0,0,0.1) */
+.tn-mod__dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 243px;
+  max-height: 520px;
+  overflow-y: auto;
+  background: var(--primitive-color-cool-neutral-0, #ffffff);
+  border: 1px solid var(--semantic-color-light-mode-stroke-action-tertiary-base, rgba(160,181,230,0.16));
+  border-radius: var(--tn-radius-md);
+  box-shadow: 0px 8px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+  padding: 4px;
+  z-index: 200;
+  animation: tnDropIn 140ms ease-out both;
+}
+.tn-mod__dropdown.is-open { display: block; }
+
+.tn-mod__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 6px;
+  color: var(--semantic-color-light-mode-text-action-secondary-base, #6b6b6b);
+  font-family: 'Red Hat Text', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: background 100ms ease, color 100ms ease;
+}
+.tn-mod__item:hover {
+  background: var(--semantic-color-light-mode-fill-action-tertiary-hover, #e9eef9);
+  color: var(--semantic-color-light-mode-text-action-primary-base, #313131);
+}
+.tn-mod__item:focus-visible {
+  outline: 2px solid var(--semantic-color-light-mode-stroke-action-tertiary-pressed, rgba(160,181,230,0.30));
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+.tn-mod__item--active {
+  background: var(--semantic-color-light-mode-fill-action-tertiary-base, #eef2fb);
+  color: var(--semantic-color-light-mode-text-action-primary-base, #313131);
+  font-weight: 500;
+}
+.tn-mod__item--active:hover {
+  background: var(--semantic-color-light-mode-fill-action-tertiary-hover, #e9eef9);
+}
+.tn-mod__item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--semantic-color-light-mode-icon-action-secondary-base, #6b6b6b);
+  opacity: 0.65;
+}
+.tn-mod__item--active svg,
+.tn-mod__item:hover svg { opacity: 1; }
+.tn-mod__item-label { flex: 1; }
+
+/* ── ORG SWITCHER ────────────────────────────────────────────────────────── */
+.tn-org { position: relative; }
+.tn-org__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--tn-radius-sm);
+  background: var(--tn-org-avatar-fill);
+  border: 1px solid var(--tn-org-avatar-stroke);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--tn-org-avatar-text);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.tn-org__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tn-org__name {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.tn-org__name-org {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tn-org__name-sep {
+  opacity: 0.4;
+  font-size: 11px;
+  font-weight: 400;
+}
+.tn-org__name-campus {
+  max-width: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.8;
+}
+/* Org panel dropdown (PLACEHOLDER — spec gap: panel not yet designed in Figma) */
+.tn-org__panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 240px;
+  background: var(--primitive-color-cool-neutral-0, #ffffff);
+  border: 1px solid var(--semantic-color-light-mode-stroke-action-tertiary-base, rgba(160,181,230,0.16));
+  border-radius: var(--tn-radius-md);
+  box-shadow: 0px 8px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+  padding: 16px;
+  z-index: 200;
+  color: #6b6b6b;
+  font-size: 12px;
+  line-height: 1.5;
+  animation: tnDropIn 140ms ease-out both;
+}
+.tn-org__panel.is-open { display: block; }
+.tn-org__panel-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9797979;
+  margin-bottom: 8px;
+}
+.tn-org__panel-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+.tn-org__panel-item:hover {
+  background: var(--semantic-color-light-mode-fill-action-tertiary-hover, #e9eef9);
+}
+.tn-org__panel-item--active {
+  background: var(--semantic-color-light-mode-fill-action-tertiary-base, #eef2fb);
+  font-weight: 500;
+}
+.tn-org__panel-av {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  background: rgba(45,72,137,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: #2d4889;
+  flex-shrink: 0;
+}
+.tn-org__panel-name { font-size: 13px; color: #252525; }
+.tn-org__panel-campus { font-size: 11px; color: #6b6b6b; }
+
+/* ── SEARCH ──────────────────────────────────────────────────────────────── */
+.tn-search { position: relative; display: flex; align-items: center; }
+.tn-search__trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  width: 280px;
+  padding: 0 var(--semantic-layout-units-padding-xtight, 8px) 0 10px;
+  background: var(--tn-fill-base);
+  border: 1px solid var(--tn-search-stroke);
+  border-radius: var(--tn-radius-full);
+  cursor: text;
+  transition: width 180ms ease, background 120ms ease, border-color 120ms ease;
+}
+.tn-search__trigger.is-open {
+  background: var(--primitive-color-cool-neutral-0, #ffffff);
+  border-color: var(--semantic-color-light-mode-stroke-action-secondary-base, #d2d2d2);
+  width: 320px;
+}
+.tn-search__icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: var(--tn-search-stroke);
+  opacity: 0.6;
+  transition: color 120ms ease, opacity 120ms ease;
+}
+.tn-search__trigger.is-open .tn-search__icon {
+  color: #6b6b6b;
+  opacity: 1;
+}
+.tn-search__input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  font-family: 'Red Hat Text', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--tn-text-base);
+  caret-color: var(--tn-search-stroke);
+  outline: none;
+}
+.tn-search__trigger.is-open .tn-search__input {
+  color: var(--semantic-color-light-mode-text-action-primary-base, #252525);
+  caret-color: #2d4889;
+}
+.tn-search__input::placeholder {
+  color: var(--tn-text-base);
+  opacity: 0.40;
+}
+.tn-search__trigger.is-open .tn-search__input::placeholder {
+  color: #9797979;
+  opacity: 1;
+}
+.tn-search__clear {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: rgba(0,0,0,0.06);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  transition: background 100ms ease;
+}
+.tn-search__clear:hover { background: rgba(0,0,0,0.12); }
+.tn-search__clear svg { width: 10px; height: 10px; color: #484848; }
+.tn-search__trigger.is-open .tn-search__clear { display: flex; }
+
+/* ── NOTIFICATION BADGE ──────────────────────────────────────────────────── */
+.tn-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--semantic-color-light-mode-fill-action-negative-base, #e05252);
+  border: 1.5px solid var(--tn-surface);
+  pointer-events: none;
+}
+
+/* ── PROFILE AVATAR ──────────────────────────────────────────────────────── */
+.tn-profile { position: relative; }
+.tn-profile__btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--tn-stroke-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 2px;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+.tn-profile__btn:hover {
+  background: var(--tn-fill-hover);
+  border-color: var(--tn-stroke-hover);
+}
+.tn-profile__btn[aria-expanded="true"] {
+  background: var(--tn-fill-pressed);
+  border-color: var(--tn-stroke-pressed);
+}
+.tn-profile__av {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--tn-avatar-fill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--tn-avatar-text);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.tn-profile__av img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Profile menu */
+.tn-profile__menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 200px;
+  background: var(--primitive-color-cool-neutral-0, #ffffff);
+  border: 1px solid var(--semantic-color-light-mode-stroke-action-tertiary-base, rgba(160,181,230,0.16));
+  border-radius: var(--tn-radius-md);
+  box-shadow: 0px 8px 8px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+  padding: 4px;
+  z-index: 200;
+  animation: tnDropIn 140ms ease-out both;
+}
+.tn-profile__menu.is-open { display: block; }
+.tn-profile__menu-header {
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  margin-bottom: 4px;
+}
+.tn-profile__menu-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #252525;
+}
+.tn-profile__menu-email {
+  font-size: 11px;
+  color: #6b6b6b;
+  margin-top: 1px;
+}
+.tn-profile__menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-family: 'Red Hat Text', sans-serif;
+  font-size: 13px;
+  color: #313131;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+.tn-profile__menu-item:hover {
+  background: var(--semantic-color-light-mode-fill-action-tertiary-hover, #e9eef9);
+}
+.tn-profile__menu-item svg { width: 15px; height: 15px; color: #6b6b6b; flex-shrink: 0; }
+.tn-profile__menu-item--danger { color: #c0392b; }
+.tn-profile__menu-item--danger svg { color: #c0392b; }
+.tn-profile__menu-item--danger:hover { background: #fff0ee; }
+
+/* ── SCRIM (closes dropdowns on outside click) ───────────────────────────── */
+.tn-scrim {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: transparent;
+}
+.tn-scrim.is-active { display: block; }
+
+/* ── ANIMATIONS ──────────────────────────────────────────────────────────── */
+@keyframes tnDropIn {
+  from { opacity: 0; transform: translateY(-4px) scale(0.99); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  @keyframes tnDropIn { from { opacity: 0; } to { opacity: 1; } }
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+
+/* Mobile ≤767px */
+@media (max-width: 767px) {
+  .tn-sidenav-ctrl { display: flex; }
+
+  /* OrgSwitcher: abbreviated names */
+  .tn-org__name-org { max-width: 40px; }
+  .tn-org__name-campus { max-width: 36px; }
+
+  /* Module label hidden on mobile */
+  .tn-mod__label { display: none; }
+  .tn-mod__icon-wrap { margin-right: 0; }
+
+  /* Search collapses to icon button */
+  .tn-search__trigger {
+    width: 36px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  .tn-search__trigger.is-open {
+    width: 180px;
+    border-radius: var(--tn-radius-full);
+  }
+  .tn-search__input { display: none; }
+  .tn-search__trigger.is-open .tn-search__input { display: block; }
+}
+
+/* Tablet 768–1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tn-search__trigger { width: 220px; }
+  .tn-search__trigger.is-open { width: 280px; }
+  .tn-mod__label { max-width: 100px; }
+}
+
+/* ── DEMO PAGE CHROME ────────────────────────────────────────────────────── */
+.page-content {
+  min-height: 300px;
+  background: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Red Hat Text', sans-serif;
+  font-size: 13px;
+  color: #9797979;
+}
+</style>
+</head>
+<body>
+
+<!-- ── SCRIM ──────────────────────────────────────────────────────────────── -->
+<div class="tn-scrim" id="scrim" onclick="closeAll()"></div>
+
+<div class="demo-wrap">
+
+  <!-- ── DESKTOP VIEW ─────────────────────────────────────────────────────── -->
+  <div>
+    <div class="demo-label">Desktop — 1440px</div>
+    <div class="demo-frame">
+      <nav class="topnav" role="navigation" aria-label="Global navigation">
+
+        <!-- Row start -->
+        <div class="topnav__start">
+
+          <!-- SideNav.Control (hidden desktop, shown mobile) -->
+          <button class="tn-btn tn-btn--icon tn-sidenav-ctrl" aria-label="Open navigation menu">
+            <!-- Hamburger icon -->
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+          <!-- ModuleSwitcher -->
+          <div class="tn-mod" id="mod-switcher">
+            <button
+              class="tn-btn"
+              id="mod-btn"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-controls="mod-dropdown"
+              onclick="toggleDropdown('mod-btn','mod-dropdown')"
+            >
+              <span class="tn-mod__icon-wrap" aria-hidden="true">
+                <!-- People/ChMS module icon -->
+                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.5 7.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM1 13.5c0-2.485 2.015-4.5 4.5-4.5s4.5 2.015 4.5 4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10.5 6.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
+                  <path d="M12.5 9.5c1.657 0 3 1.343 3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
+                </svg>
+              </span>
+              <span class="tn-mod__label">People</span>
+              <svg class="tn-chev" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <ul class="tn-mod__dropdown" id="mod-dropdown" role="listbox" aria-label="Switch module">
+              <li role="option" aria-selected="true">
+                <button class="tn-mod__item tn-mod__item--active" onclick="selectModule(this, 'People')">
+                  <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M5.5 7.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM1 13.5c0-2.485 2.015-4.5 4.5-4.5s4.5 2.015 4.5 4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10.5 6.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
+                    <path d="M12.5 9.5c1.657 0 3 1.343 3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
+                  </svg>
+                  <span class="tn-mod__item-label">People</span>
+                </button>
+              </li>
+              <li role="option" aria-selected="false">
+                <button class="tn-mod__item" onclick="selectModule(this, 'Giving')">
+                  <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M8 2.5C8 2.5 3 5.5 3 9a5 5 0 0 0 10 0c0-3.5-5-6.5-5-6.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="tn-mod__item-label">Giving</span>
+                </button>
+              </li>
+              <li role="option" aria-selected="false">
+                <button class="tn-mod__item" onclick="selectModule(this, 'Events')">
+                  <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="3.5" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+                    <path d="M2 7h12M5.5 2v3M10.5 2v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                  </svg>
+                  <span class="tn-mod__item-label">Events</span>
+                </button>
+              </li>
+              <li role="option" aria-selected="false">
+                <button class="tn-mod__item" onclick="selectModule(this, 'Groups')">
+                  <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="4.5" cy="6" r="2" stroke="currentColor" stroke-width="1.3"/>
+                    <circle cx="11.5" cy="6" r="2" stroke="currentColor" stroke-width="1.3"/>
+                    <circle cx="8" cy="5" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+                    <path d="M1 13c0-1.933 1.567-3.5 3.5-3.5M11.5 9.5c1.933 0 3.5 1.567 3.5 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                    <path d="M5 13c0-1.657 1.343-3 3-3s3 1.343 3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                  </svg>
+                  <span class="tn-mod__item-label">Groups</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- OrgSwitcher -->
+          <div class="tn-org" id="org-switcher">
+            <button
+              class="tn-btn"
+              id="org-btn"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="org-panel"
+              onclick="toggleDropdown('org-btn','org-panel')"
+              style="gap: 6px;"
+            >
+              <div class="tn-org__avatar" aria-hidden="true">GCC</div>
+              <div class="tn-org__name">
+                <span class="tn-org__name-org">Grace Community</span>
+                <span class="tn-org__name-sep">|</span>
+                <span class="tn-org__name-campus">West</span>
+              </div>
+              <svg class="tn-chev" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <div class="tn-org__panel" id="org-panel" role="dialog" aria-label="Switch organisation">
+              <div class="tn-org__panel-title" style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#979797;margin-bottom:8px;">Organisations</div>
+              <div class="tn-org__panel-item tn-org__panel-item--active">
+                <div class="tn-org__panel-av" style="background:rgba(45,72,137,0.10);color:#2d4889;">GCC</div>
+                <div>
+                  <div class="tn-org__panel-name">Grace Community</div>
+                  <div class="tn-org__panel-campus">West Campus</div>
+                </div>
+              </div>
+              <div class="tn-org__panel-item">
+                <div class="tn-org__panel-av" style="background:rgba(45,72,137,0.08);color:#2d4889;">FBC</div>
+                <div>
+                  <div class="tn-org__panel-name">First Baptist</div>
+                  <div class="tn-org__panel-campus">Main Campus</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spacer -->
+        <div class="topnav__spacer" aria-hidden="true"></div>
+
+        <!-- Row end -->
+        <div class="topnav__end">
+
+          <!-- Search -->
+          <div class="tn-search" id="search-wrap">
+            <div
+              class="tn-search__trigger"
+              id="search-trigger"
+              onclick="focusSearch()"
+            >
+              <!-- Search icon -->
+              <svg class="tn-search__icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M10.5 10.5L13.5 13.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+              <input
+                class="tn-search__input"
+                id="search-input"
+                type="search"
+                placeholder="Search…"
+                aria-label="Search"
+                onfocus="openSearch()"
+                onblur="blurSearch(event)"
+              >
+              <button
+                class="tn-search__clear"
+                aria-label="Clear search"
+                onclick="clearSearch(event)"
+                tabindex="-1"
+              >
+                <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Actions: Notifications -->
+          <button
+            class="tn-btn tn-btn--icon"
+            aria-label="Notifications (3 unread)"
+            style="position:relative;"
+          >
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M8 2a4.5 4.5 0 0 0-4.5 4.5v3l-1 1.5h11L12.5 9.5v-3A4.5 4.5 0 0 0 8 2ZM6.5 12.5a1.5 1.5 0 0 0 3 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="tn-badge" aria-hidden="true"></div>
+          </button>
+
+          <!-- Actions: Help -->
+          <button class="tn-btn tn-btn--icon" aria-label="Help">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M6 6.5a2 2 0 1 1 2.5 1.936C7.9 8.7 8 9.2 8 9.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              <circle cx="8" cy="11.5" r="0.7" fill="currentColor"/>
+            </svg>
+          </button>
+
+          <!-- Profile -->
+          <div class="tn-profile" id="profile-wrap">
+            <button
+              class="tn-profile__btn"
+              id="profile-btn"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="profile-menu"
+              aria-label="Account menu — Jo Lopez"
+              onclick="toggleDropdown('profile-btn','profile-menu')"
+            >
+              <div class="tn-profile__av">JL</div>
+            </button>
+
+            <div class="tn-profile__menu" id="profile-menu" role="menu">
+              <div class="tn-profile__menu-header">
+                <div class="tn-profile__menu-name">Jo Lopez</div>
+                <div class="tn-profile__menu-email">jo@gracecommunity.org</div>
+              </div>
+              <button class="tn-profile__menu-item" role="menuitem">
+                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="8" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+                  <path d="M3 13.5c0-2.485 2.015-4.5 5-4.5s5 2.015 5 4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+                Profile settings
+              </button>
+              <button class="tn-profile__menu-item" role="menuitem">
+                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/>
+                  <path d="M8 3v1M8 12v1M3 8H2M14 8h-1M4.757 4.757l.707.707M10.536 10.536l.707.707M4.757 11.243l.707-.707M10.536 5.464l.707-.707" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+                Settings
+              </button>
+              <button class="tn-profile__menu-item tn-profile__menu-item--danger" role="menuitem">
+                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M6 3h4M3 5.5h10l-1 8H4l-1-8Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Sign out
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </nav>
+      <div class="page-content" style="height:120px;">Page content area</div>
+    </div>
+  </div>
+
+  <!-- ── MOBILE VIEW ──────────────────────────────────────────────────────── -->
+  <div>
+    <div class="demo-label">Mobile — 393px</div>
+    <div class="demo-frame demo-frame--mobile">
+      <nav class="topnav" role="navigation" aria-label="Global navigation">
+
+        <!-- Row start: hamburger + org switcher -->
+        <div class="topnav__start">
+
+          <!-- SideNav.Control (hamburger) -->
+          <button class="tn-btn tn-btn--icon tn-sidenav-ctrl" style="display:flex;" aria-label="Open navigation menu">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+          <!-- ModuleSwitcher mobile: icon only -->
+          <button class="tn-btn tn-btn--icon" aria-label="Switch module — People" aria-haspopup="true">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M5.5 7.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM1 13.5c0-2.485 2.015-4.5 4.5-4.5s4.5 2.015 4.5 4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10.5 6.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
+            </svg>
+          </button>
+
+          <!-- OrgSwitcher mobile: abbreviated -->
+          <button class="tn-btn" aria-haspopup="true" aria-label="Switch organisation — GCC West" style="gap:5px;padding:0 6px;">
+            <div class="tn-org__avatar" style="width:20px;height:20px;font-size:7px;" aria-hidden="true">GCC</div>
+            <div class="tn-org__name">
+              <span class="tn-org__name-org" style="max-width:36px;">GCC</span>
+              <span class="tn-org__name-sep">|</span>
+              <span class="tn-org__name-campus" style="max-width:28px;">WE</span>
+            </div>
+            <svg class="tn-chev" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="topnav__spacer" aria-hidden="true"></div>
+
+        <!-- Row end: search icon + notifications + profile -->
+        <div class="topnav__end">
+          <!-- Search (icon only on mobile) -->
+          <button class="tn-btn tn-btn--icon" aria-label="Search">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M10.5 10.5L13.5 13.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+          <!-- Notifications -->
+          <button class="tn-btn tn-btn--icon" aria-label="Notifications" style="position:relative;">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M8 2a4.5 4.5 0 0 0-4.5 4.5v3l-1 1.5h11L12.5 9.5v-3A4.5 4.5 0 0 0 8 2ZM6.5 12.5a1.5 1.5 0 0 0 3 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="tn-badge" aria-hidden="true"></div>
+          </button>
+
+          <!-- Profile -->
+          <button class="tn-profile__btn" aria-label="Account menu — Jo Lopez">
+            <div class="tn-profile__av">JL</div>
+          </button>
+        </div>
+      </nav>
+      <div class="page-content" style="height:80px;">Page content area</div>
+    </div>
+  </div>
+
+</div><!-- /demo-wrap -->
+
+<script>
+// ─── DROPDOWN TOGGLE ──────────────────────────────────────────────────────────
+function closeAll() {
+  document.querySelectorAll('[aria-expanded="true"]').forEach(btn => {
+    btn.setAttribute('aria-expanded', 'false');
+  });
+  document.querySelectorAll('.is-open').forEach(el => el.classList.remove('is-open'));
+  document.getElementById('scrim').classList.remove('is-active');
+}
+
+function toggleDropdown(btnId, panelId) {
+  const btn = document.getElementById(btnId);
+  const panel = document.getElementById(panelId);
+  const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+  closeAll();
+
+  if (!isOpen) {
+    btn.setAttribute('aria-expanded', 'true');
+    panel.classList.add('is-open');
+    document.getElementById('scrim').classList.add('is-active');
+    // Focus first focusable item in panel
+    const firstItem = panel.querySelector('button, [href], input, [tabindex]');
+    if (firstItem) setTimeout(() => firstItem.focus(), 50);
+  }
+}
+
+// ─── MODULE SELECT ────────────────────────────────────────────────────────────
+function selectModule(el, name) {
+  // Remove active from all
+  el.closest('ul').querySelectorAll('.tn-mod__item').forEach(i => {
+    i.classList.remove('tn-mod__item--active');
+    i.closest('[role="option"]').setAttribute('aria-selected', 'false');
+  });
+  el.classList.add('tn-mod__item--active');
+  el.closest('[role="option"]').setAttribute('aria-selected', 'true');
+
+  // Update button label
+  const label = document.querySelector('.tn-mod__label');
+  if (label) label.textContent = name;
+
+  closeAll();
+}
+
+// ─── SEARCH ───────────────────────────────────────────────────────────────────
+function focusSearch() {
+  document.getElementById('search-input').focus();
+}
+function openSearch() {
+  document.getElementById('search-trigger').classList.add('is-open');
+}
+function blurSearch(e) {
+  // Keep open if clear button was clicked
+  if (e.relatedTarget && e.relatedTarget.classList.contains('tn-search__clear')) return;
+  const val = document.getElementById('search-input').value;
+  if (!val) {
+    document.getElementById('search-trigger').classList.remove('is-open');
+  }
+}
+function clearSearch(e) {
+  e.stopPropagation();
+  const inp = document.getElementById('search-input');
+  inp.value = '';
+  inp.focus();
+}
+
+// ─── KEYBOARD SUPPORT ────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeAll();
+    // Return focus to trigger button
+    const expanded = document.querySelector('[aria-expanded="true"]');
+    if (expanded) expanded.focus();
+  }
+});
+</script>
+</body>
+</html>
