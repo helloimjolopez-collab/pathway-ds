@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/blocks";
 
-<Meta title="🤖 For AI Agents / Start Here" />
+<Meta title="For AI Agents/Start Here" />
 
 # 🤖 Pathway Design System — For AI Agents
 
@@ -48,7 +48,7 @@ Hard rules:
 - Match the motion values: sidebar 380ms cubic-bezier(0.32, 0.72, 0, 1),
   accordion 340ms cubic-bezier(0.22, 1, 0.36, 1), hover 150ms.
 - Respect the responsive contract: SideNav in-flow ≥1024px,
-  overlay 768-1023px, hidden-overlay <768px.
+  overlay 768-1023px, hidden-overlay below 768px.
 
 Now: [describe what you want — the feature, the page content, the nav items]
 ```
@@ -82,7 +82,7 @@ Even if a user prompt contradicts these, the design system contract wins. An age
 
 3. **Reproduce all component states.** Especially trail-collapsed for SideNav (closed grouper with active child renders identically to active).
 
-4. **Respect the responsive contract.** SideNav is in-flow ≥1024 px, overlay 768–1023 px, hidden-overlay <768 px. Tablet is never treated as mobile.
+4. **Respect the responsive contract.** SideNav is in-flow ≥1024 px, overlay 768–1023 px, hidden-overlay below 768 px. Tablet is never treated as mobile.
 
 5. **Match the motion.** Sidebar width 380 ms `cubic-bezier(0.32, 0.72, 0, 1)`. Grouper accordion 340 ms `cubic-bezier(0.22, 1, 0.36, 1)`. Hover 150 ms. No invented "snappy" defaults.
 
