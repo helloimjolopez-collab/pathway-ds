@@ -89,6 +89,12 @@ import { Checkbox } from "components/checkbox/checkbox.jsx";
 
 ---
 
+## For Figma Make
+
+Paste [`checkbox.html`](./checkbox.html) into the Figma Make prompt — already clean, no docs panel.
+
+---
+
 ## Figma source
 
 - **File:** Pathway Design System Master File MB 2.0 (`fileKey: 3sw45aVcngFAmpbP6cfrXP`)

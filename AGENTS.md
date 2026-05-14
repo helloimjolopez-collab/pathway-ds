@@ -101,6 +101,22 @@ Do not guess values from your training data. Do not ask the user "what colour sh
 
 ---
 
+## A note on Figma Make
+
+Figma Make lives inside Figma and does not auto-discover this repo the way Cursor / Codex / Aider do. To use the Pathway design system in Figma Make:
+
+- For visual reference, use the components in the [Figma library](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) directly — they exist as proper Figma instances.
+- For code reference, paste the relevant component's self-contained HTML demo file into the Figma Make prompt:
+  - **SideNav**: paste [`components/sidenav/sidenav-figmamake.html`](./components/sidenav/sidenav-figmamake.html) (the docs-stripped variant, auto-synced from `sidenav.html`)
+  - **TopNav**: paste [`components/top-nav/top-nav.html`](./components/top-nav/top-nav.html) (already clean — no docs panel)
+  - **Spinner / Checkbox / OrgSwitcher**: paste the component's `<name>.html` directly — none of them have a docs panel that needs stripping
+
+Pair that with the relevant `agent-brief.md` for the contract rules, and Figma Make will produce output that matches the design system.
+
+Figma Code Connect is **not** set up. When it is, this section should point at the Code Connect mapping instead.
+
+---
+
 ## How this repo is published
 
 | Channel | URL | What's there |

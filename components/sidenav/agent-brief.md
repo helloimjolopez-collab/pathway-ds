@@ -148,6 +148,12 @@ Before submitting your prototype, confirm:
 
 ---
 
+## For Figma Make
+
+Paste [`sidenav-figmamake.html`](./sidenav-figmamake.html) into the Figma Make prompt as code reference. It's the same demo as `sidenav.html` with the docs panel stripped, auto-synced on every push. Pair with this brief for the contract rules.
+
+---
+
 ## Where to go next
 
 - **Full spec with every detail:** [sidenav-spec.md](./sidenav-spec.md) — 1,500+ lines, organised by section, governance table at the top tells you which decisions live where.

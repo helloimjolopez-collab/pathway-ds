@@ -110,6 +110,22 @@ Do not guess values from your training data. Do not ask the user "what colour sh
 
 ---
 
+## A note on Figma Make
+
+Figma Make lives inside Figma and does not auto-discover this repo the way Cursor / Codex / Aider do. To use the Pathway design system in Figma Make:
+
+- For visual reference, use the components in the [Figma library](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) directly — they exist as proper Figma instances.
+- For code reference, paste the relevant component's self-contained HTML demo file into the Figma Make prompt:
+  - **SideNav**: paste [`components/sidenav/sidenav-figmamake.html`](./components/sidenav/sidenav-figmamake.html) (the docs-stripped variant, auto-synced from `sidenav.html`)
+  - **TopNav**: paste [`components/top-nav/top-nav.html`](./components/top-nav/top-nav.html) (already clean — no docs panel)
+  - **Spinner / Checkbox / OrgSwitcher**: paste the component's `<name>.html` directly — none of them have a docs panel that needs stripping
+
+Pair that with the relevant `agent-brief.md` for the contract rules, and Figma Make will produce output that matches the design system.
+
+Figma Code Connect is **not** set up. When it is, this section should point at the Code Connect mapping instead.
+
+---
+
 ## How this repo is published
 
 | Channel | URL | What's there |
@@ -501,6 +517,12 @@ Before submitting your prototype, confirm:
 
 ---
 
+## For Figma Make
+
+Paste [`sidenav-figmamake.html`](./sidenav-figmamake.html) into the Figma Make prompt as code reference. It's the same demo as `sidenav.html` with the docs panel stripped, auto-synced on every push. Pair with this brief for the contract rules.
+
+---
+
 ## Where to go next
 
 - **Full spec with every detail:** [sidenav-spec.md](./sidenav-spec.md) — 1,500+ lines, organised by section, governance table at the top tells you which decisions live where.
@@ -620,6 +642,12 @@ If the real `top-nav.jsx` module isn't available, copy the implementation block 
 
 ---
 
+## For Figma Make
+
+Paste [`top-nav.html`](./top-nav.html) into the Figma Make prompt — it's already clean (no docs panel). Pair with this brief for the contract rules.
+
+---
+
 ## Figma source
 
 - **File:** Pathway Design System Master File MB 2.0 (`fileKey: 3sw45aVcngFAmpbP6cfrXP`)
@@ -724,6 +752,12 @@ Or inline the SVG from [spinner.html](./spinner.html) — same result.
 
 ---
 
+## For Figma Make
+
+Paste [`spinner.html`](./spinner.html) into the Figma Make prompt — already clean, no docs panel.
+
+---
+
 ## Figma source
 
 - **File:** Pathway Design System Master File MB 2.0 (`fileKey: 3sw45aVcngFAmpbP6cfrXP`)
@@ -821,6 +855,12 @@ import { Checkbox } from "components/checkbox/checkbox.jsx";
 - `aria-checked` is `true | false | "mixed"` (mixed = indeterminate)
 - The label must be programmatically associated (wrap with `<label>` or use `aria-labelledby`)
 - Focus ring required and must be visible — never `outline: none` without a replacement
+
+---
+
+## For Figma Make
+
+Paste [`checkbox.html`](./checkbox.html) into the Figma Make prompt — already clean, no docs panel.
 
 ---
 
@@ -936,6 +976,12 @@ If no logo is provided, render a 20×20 circle with the first letter of `org.nam
 - Dropdown is a `role="listbox"` with org and campus options as `role="option"`
 - Focus moves to the dropdown on open; Esc closes and returns focus to the trigger
 - Tab cycles through orgs first, then campuses
+
+---
+
+## For Figma Make
+
+Paste [`org-switcher.html`](./org-switcher.html) into the Figma Make prompt — already clean, no docs panel.
 
 ---
 

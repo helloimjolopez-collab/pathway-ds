@@ -104,6 +104,12 @@ If no logo is provided, render a 20×20 circle with the first letter of `org.nam
 
 ---
 
+## For Figma Make
+
+Paste [`org-switcher.html`](./org-switcher.html) into the Figma Make prompt — already clean, no docs panel.
+
+---
+
 ## Figma source
 
 - **File:** Pathway Design System Master File MB 2.0 (`fileKey: 3sw45aVcngFAmpbP6cfrXP`)
