@@ -583,34 +583,37 @@ width: transition 380ms cubic-bezier(0.32, 0.72, 0, 1)
 
 ---
 
-## 9. Collapse_Expand_Nav_Container
+## 9. NavHeader (collapse / expand control)
 
-Sits at the **bottom of the scroll flow**: it scrolls with the nav items, it is not sticky/fixed.
+> **Migration note (2026-05-13):** The collapse/expand control moved from the **bottom of the scroll flow** to the **TOP of the nav**. The component name in code is now `NavHeader` (was `CollapseButton` / `Collapse_Expand_Nav_Container`). The old `CollapseButton` symbol remains exported in `sidenav.jsx` for backward compatibility but is no longer rendered by `<SideNav />` itself.
+
+The NavHeader is the first row inside the SideNav container, above all nav items and section labels. It is sticky at the top so it stays visible no matter how far the user scrolls through the nav.
 
 ```
-Collapse_Expand_Nav_Container
-├── Divider
-│   height: 1px
-│   background: Fill/Static/Info/Subtle (#edf0f9)
-└── Collapse row
-    container.rowStart: pl-[12px] pr-[8px]   ← note: different padding from SideNavItem
-    └── container.main
-        ├── Icon wrapper 24×24: collapse_nav icon (18pt)
-        └── text.label px-[6px]: "Collapse"
-    container.rowEnd: empty (no chevron)
+NavHeader  (48px row + 1px divider below)
+├── Container.Main  (h-[48px], full width, hover fill)
+│   ├── Expanded (240px): action icon right-aligned in Slot.RowEnd (36×36 wrapper, 12×12 icon)
+│   └── Collapsed (72px): action icon centered (12×12)
+└── Divider  (1px, Stroke/Static/Neutral/Light #f6f6f6, py-[2px])
 ```
 
-**Key difference from `SideNavItem`:** The Collapse row does **not** have a `container.indicator` / `indicator.stripe` column. It also uses `pl-[12px]` instead of the item's `px-[8px]`.
+**Action icons:** `right_panel_open` (when sidebar is expanded — click to collapse) and `left_panel_open` (when sidebar is collapsed — click to expand). Both 12×12 SVG glyphs, fill colour `Icon/Action/Secondary Inverse/Base` (`#6b6b6b`).
 
-**Visibility rule:** The CollapseButton is rendered at **all desktop and tablet breakpoints (≥768px)** regardless of whether the sidebar is expanded or collapsed. It is only hidden on mobile (<768px), where the TopNav hamburger is the sole toggle and there is no 72px rail state.
+**Key differences from `SideNavItem`:**
+- No `container.indicator` / `indicator.stripe` column
+- No leading icon (the action icon lives in the row-end / centered slot)
+- No "Collapse" text label (the previous design had one — removed 2026-05-13)
+- No active / trail states — only base and hover
 
-| Sidebar state | Button rendered? | Icon | Label |
+**Visibility rule:** NavHeader is rendered at **all desktop and tablet breakpoints (≥768 px)** regardless of whether the sidebar is expanded or collapsed. It is hidden only on mobile (<768 px), where the TopNav hamburger is the sole toggle and there is no 72 px rail state.
+
+| Sidebar state | NavHeader rendered? | Action icon | Position |
 |---|---|---|---|
-| Expanded (240px, ≥768px) | ✓ Yes | `collapse_nav` | "Collapse": visible |
-| Collapsed (72px rail, ≥768px) | ✓ Yes | `expand_nav` | Hidden (no room at 72px width) |
-| Mobile overlay (<768px) | ✗ No |: |: |
+| Expanded (240px, ≥768px) | ✓ Yes | `right_panel_open` (12×12 `#6b6b6b`) | Right-aligned in Slot.RowEnd |
+| Collapsed (72px rail, ≥768px) | ✓ Yes | `left_panel_open` (12×12 `#6b6b6b`) | Centered |
+| Mobile overlay (<768px) | ✗ No | — | — |
 
-Icons are fill-style from the design system (`collapse_nav`, `expand_nav`), not generic chevrons.
+The 1 px divider below the NavHeader is always rendered when the NavHeader is rendered. The 8 px gap between the divider and the first nav item is provided by `paddingTop: L.menuPadT` on the SideNavMenu (not by margin on the divider).
 
 ---
 
@@ -839,7 +842,16 @@ The reference demo (`sidenav.html`) uses a church management context with three 
 
 When the sidebar is in the 240px expanded state, clicking a Level 0 Grouper toggles its Level 1 children between visible and hidden using an **animated accordion**.
 
-**Multiple-open:** Multiple groupers can be open simultaneously. There is no single-open constraint (no accordion auto-close). The user may expand all groupers at once; the nav scrolls if the total height exceeds the viewport.
+**Single-open accordion (updated 2026-05-13):** Only one grouper is open at a time. Opening a grouper automatically closes any other previously expanded grouper. This keeps the nav compact and the active context obvious. The collapse animation on the previously-open grouper runs in parallel with the expand on the newly-opened one — both use the same 340 ms easeOutQuart curve.
+
+```js
+// Reference implementation (matches sidenav.html and sidenav.jsx)
+const toggleExpand = id => setExpanded(prev => {
+  const isNowOpen = !prev[id];
+  if (isNowOpen) return { [id]: true };   // close all others, open this one
+  const next = { ...prev }; delete next[id]; return next;
+});
+```
 
 **Chevron direction:**
 - Collapsed (children hidden): chevron points **down** (`▼`)
@@ -1101,7 +1113,8 @@ The only things that genuinely need to be **done in Figma** (because they are de
 
 All SideNav motion follows `docs/design-system-spec.md` §2 with the contextual overrides documented in §2.4 of that file. The full implementation detail lives in two sections of this spec:
 
-- **§8.3** — Sidebar width transition (360ms) and label/chevron fade (180ms)
+- **§8.3** — Sidebar width transition (380ms smooth-spring) + label/chevron max-width (360ms same curve) + opacity (200ms ease)
+- **§12.1** — Grouper accordion (340ms easeOutQuart) + children opacity fade-in (240ms / 60ms delay) + chevron rotation (340ms same curve)
 - **§17.6** — Overlay enter (380ms) and exit (300ms) transitions, scrim fade, reduced-motion rules
 
 ### Summary of durations
@@ -1173,7 +1186,7 @@ Figma annotation: [view](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/%E2
 
 Use the **anchored toggle pattern** (Pattern A): the collapse/expand control occupies a fixed slot anchored within the nav panel, with an icon and optional label. We do not use a floating edge handle (Pattern B).
 
-The current implementation places this control at the **bottom of the scroll flow** (see §9). This satisfies Pattern A — the control is anchored inside the panel. The approved future direction is to move it to a **panel header row, right-aligned** for better discoverability and cleaner separation from navigation destinations. That migration is a tracked improvement, not a blocker for current releases.
+The current implementation places this control as a **NavHeader at the top of the nav** (see §9). This satisfies Pattern A — the control is anchored inside the panel, right-aligned in the header row, with sticky positioning so it never scrolls out of view. The previous bottom-of-scroll-flow placement was migrated to the top on 2026-05-13.
 
 #### Why Pattern A over Pattern B
 
@@ -1221,7 +1234,7 @@ Following VS Code and Figma practice, the collapse action should have multiple e
 
 #### Current vs. target placement gap
 
-The current implementation positions the control at the **bottom of the nav scroll flow** (§9). This is Pattern A and is the approved pattern type. The remaining gap is placement refinement: moving to a panel header slot that stays visible without scrolling. This is tracked as a future improvement with LOW urgency (the current placement is accessible and functional; it is not a WCAG failure).
+The current implementation positions the control as a **NavHeader at the top of the panel** (§9). This is Pattern A and is the approved pattern type. The placement migration from "bottom of scroll flow" to "panel header" was completed on 2026-05-13 — the control now stays visible regardless of scroll position. No further migration work is required for this control.
 
 ---
 
@@ -1514,11 +1527,11 @@ Requirements — implement all of these, do not skip any:
 
 1. TopNav and SideNav together as a single shell. Never one without the other.
 
-2. CollapseButton inside the SideNav at all breakpoints ≥768px, in both expanded
+2. NavHeader inside the SideNav at all breakpoints ≥768px, in both expanded
    and collapsed states. On mobile (<768px) it is hidden. In the collapsed 72px
-   state it shows the expand icon with no label. In the expanded 240px state it
-   shows the collapse icon + "Collapse" label. It sits at the bottom of the nav,
-   scrolls with content, and has a 1px divider above it.
+   state the action icon is centered (left_panel_open, 12×12). In the expanded
+   240px state the action icon is right-aligned (right_panel_open, 12×12). It
+   sits at the TOP of the nav, is sticky, and has a 1px divider below it.
 
 3. Trail-collapsed state: when a grouper's child is active and the grouper is
    closed (or sidebar is 72px collapsed), the grouper shows Active-state styling:

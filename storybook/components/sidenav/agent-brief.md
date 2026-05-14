@@ -27,7 +27,7 @@ Full spec: [sidenav-spec.md](./sidenav-spec.md). Working code: [sidenav.html](./
 
 3. **Trail-collapsed state**: when a grouper is closed and one of its children is the active destination, the grouper itself shows **Active styling**: same fill (`#a0b5e629`), same text (`#1b2d57`), same icon (`#2d4889`), stripe visible. This applies whether the sidebar is 240 px or 72 px. See [§6](./sidenav-spec.md#6-state-matrix).
 
-4. **Grouper expand/collapse is an accordion**, animated via `grid-template-rows: 0fr → 1fr` at **340 ms `cubic-bezier(0.22, 1, 0.36, 1)`** (easeOutQuart) with the children fading in at **240 ms / 60 ms delay**. The chevron rotates with the same 340 ms timing. Multiple groupers can be open at once — no single-open constraint. Children stay in the DOM when the sidebar is expanded so the collapse animation can play. See [§12.1](./sidenav-spec.md#121-grouper-accordion-expandcollapse-expanded-sidebar).
+4. **Grouper expand/collapse is an accordion**, animated via `grid-template-rows: 0fr → 1fr` at **340 ms `cubic-bezier(0.22, 1, 0.36, 1)`** (easeOutQuart) with the children fading in at **240 ms / 60 ms delay**. The chevron rotates with the same 340 ms timing. **Only one grouper is open at a time** — opening a grouper auto-closes any other expanded grouper (single-open accordion). Children stay in the DOM when the sidebar is expanded so the collapse animation can play. See [§12.1](./sidenav-spec.md#121-grouper-accordion-expandcollapse-expanded-sidebar).
 
    The **sidebar width itself** (240↔72 px) animates at **380 ms `cubic-bezier(0.32, 0.72, 0, 1)`** (smooth-spring, no overshoot). Item labels and chevrons collapse at 360 ms with the same curve, opacity at 200 ms ease. Do **not** use the strongly-bouncy `cubic-bezier(0.34, 1.56, 0.64, 1)` — it overshoots and feels jaunty at panel scale. See [§8.3](./sidenav-spec.md#83-transition).
 
@@ -37,7 +37,7 @@ Full spec: [sidenav-spec.md](./sidenav-spec.md). Working code: [sidenav.html](./
 
 7. **Section labels are flat siblings of nav items, never wrappers.** Wrapping items inside a section div breaks the parent `gap: 6 px` flex layout. See [§2.3](./sidenav-spec.md#23-navsectionlabel) "Implementation pattern."
 
-8. **The CollapseButton renders at ALL breakpoints ≥768 px**, in both the 240 px and 72 px states. It is absent only on mobile (<768 px). At 72 px it shows the expand icon with no label. At 240 px it shows the collapse icon + "Collapse" label. It sits at the **bottom of the scroll flow**, scrolls with content, and has a 1 px divider above it. See [§9](./sidenav-spec.md#9-collapse_expand_nav_container).
+8. **The NavHeader (expand/collapse control) renders at the TOP of the nav at ALL breakpoints ≥768 px**, in both the 240 px and 72 px states. It is absent only on mobile (<768 px). At 72 px the action icon is **centered**; at 240 px it is **right-aligned** in Slot.RowEnd. The icon is 12×12 (`right_panel_open` when expanded, `left_panel_open` when collapsed), colour `Icon/Action/Secondary Inverse/Base` (`#6b6b6b`). A 1 px `Stroke/Static/Neutral/Light` (`#f6f6f6`) divider sits **below** the NavHeader. It is sticky-positioned so it never scrolls out of view. See [§9](./sidenav-spec.md#9-navheader-collapse--expand-control).
 
 9. **Responsive contract**:
    - **≥1024 px**: SideNav is in flow (`flex-shrink: 0`), 240 px or 72 px. Content shifts.
@@ -140,7 +140,7 @@ Before submitting your prototype, confirm:
 - [ ] Trail-collapsed state works (collapse a grouper whose child is active — grouper shows active styling)
 - [ ] Grouper expand/collapse animates via grid-template-rows (not max-height)
 - [ ] At 72 px: hovering a grouper opens a popover, not an accordion
-- [ ] CollapseButton appears at the bottom in both expanded and collapsed states (and is hidden only on mobile <768 px)
+- [ ] NavHeader (collapse/expand control) appears at the TOP of the nav, sticky, in both expanded and collapsed states (hidden only on mobile <768 px). 12×12 action icon (`right_panel_open` when expanded, `left_panel_open` when collapsed), `#6b6b6b`, 1px divider below.
 - [ ] Scrollbar is invisible at rest, appears only on hover (4 px wide)
 - [ ] At <768 px: nav is hidden by default, hamburger in TopNav reveals 240 px overlay with scrim
 - [ ] If sections are used: section labels become divider lines in the 72 px rail (not hidden)
