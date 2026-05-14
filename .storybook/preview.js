@@ -14,7 +14,7 @@ const preview = {
     options: {
       storySort: {
         order: [
-          "For AI Agents",
+          "Welcome",
           "Tokens", ["Primitives", "Semantics"],
           "Components",
           "Library",

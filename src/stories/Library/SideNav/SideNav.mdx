@@ -11,39 +11,6 @@ SideNav supports **two levels of depth** (Level 0 parents, Level 1 child-destina
 
 ---
 
-## 🤖 Prototyping with Claude / Figma Make / v0
-
-**Building a prototype that uses Pathway navigation? Don't let your AI agent reinvent the SideNav.** Paste the three links below into your AI session as context, then describe what you want to build. The agent will produce a prototype that uses this component correctly — same tokens, same states, same responsive behaviour.
-
-**Copy this into Claude / Figma Make / v0:**
-
-```
-I'm prototyping a feature for the Pathway Design System. Use the SideNav
-component exactly as specified in these files — do NOT invent your own
-navigation:
-
-1. Agent brief (read this first — concise):
-   https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/agent-brief.md
-
-2. Full spec (anatomy, tokens, states, accessibility, responsive):
-   https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav-spec.md
-
-3. Working reference implementation (React+Babel, runnable as-is):
-   https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav.html
-
-Hard rules:
-- Use the exact tokens in the spec — never invent colours or invent token names
-- Use the exact 240 px / 72 px widths and the responsive rules in spec §17
-- Reproduce the Trail-collapsed state (spec §6) — do not skip it
-- The CollapseButton renders at ≥768 px in both states (spec §9)
-
-Now: [describe what you want — the feature, the page content, the nav items]
-```
-
-> **Why this exists:** AI agents will happily build a "navigation sidebar" from scratch if you let them. The result will look generic and won't match the design system. The three links above are the minimum set that gets a Pathway-correct SideNav out of any modern AI agent.
-
----
-
 ## Try it
 
 <Canvas of={Stories.Playground} />
