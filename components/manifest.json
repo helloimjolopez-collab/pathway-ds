@@ -15,7 +15,7 @@
       "displayName": "SideNav",
       "description": "Persistent vertical navigation panel. Two levels of depth, expanded/collapsed states, responsive (push/overlay/hidden). Optional NavSectionLabel headings + optional SideNavListSection for contextual link lists.",
       "module": "components/sidenav/sidenav.jsx",
-      "exports": ["SideNav", "SideNavItem", "IndicatorStripe", "CollapseButton", "SideNavTooltip", "CollapsedPopover", "PopoverRow", "SectionLabel", "NavSectionLabel", "BulletDot", "ListItem", "SideNavListSection", "T", "L"],
+      "exports": ["SideNav", "SideNavItem", "IndicatorStripe", "NavHeader", "CollapseButton", "SideNavTooltip", "CollapsedPopover", "PopoverRow", "SectionLabel", "NavSectionLabel", "BulletDot", "ListItem", "SideNavListSection", "T", "L"],
       "spec": "components/sidenav/sidenav-spec.md",
       "agentBrief": "components/sidenav/agent-brief.md",
       "demo": "components/sidenav/sidenav.html",

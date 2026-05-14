@@ -15,7 +15,7 @@
  *   StandaloneDemo   — iframe to the full responsive HTML demo
  */
 import React, { useState } from "react";
-import { SideNav, SideNavItem, SectionLabel, NavSectionLabel, BulletDot, ListItem, SideNavListSection, IndicatorStripe, T, L } from "../../../../components/sidenav/sidenav.jsx";
+import { SideNav, SideNavItem, SectionLabel, NavSectionLabel, NavHeader, BulletDot, ListItem, SideNavListSection, IndicatorStripe, T, L } from "../../../../components/sidenav/sidenav.jsx";
 import { NAV_ITEMS, NAV_SECTIONS, LIST_SECTION, ALL_ITEM_IDS } from "./sidenavDemoData.jsx";
 
 // ─── Popover-animation keyframes (once per document) ────────────────────────

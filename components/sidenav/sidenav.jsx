@@ -362,6 +362,51 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
 // Tokens: Label/Section/Small/Semibold (11px/600/16px/0.6px), Text/Static/Secondary/Subtle (#606060)
 // Container: h-[40px], pl-[4px], pr-[4px], py-[8px]
 // In collapsed rail: hidden — replaced by a Divider (rendered by SideNav itself, see §2.3)
+// ── NavHeader ────────────────────────────────────────────────────────────────
+// Sits at the TOP of the SideNav. 48px row with the expand/collapse action icon
+// in Slot.RowEnd (expanded) or centered (collapsed). Divider below.
+// Matches Figma "Slot.NavHeader" (node 40007331:7794).
+// Hidden on mobile (<768px) — TopNav hamburger is the sole toggle there.
+export function NavHeader({ isSidebarCollapsed, onToggle, collapseIcon, expandIcon }) {
+  const [h, setH] = useState(false);
+  const actionIconColor = T.icon.actionSecondary; // #6b6b6b — always static
+  return (
+    <div style={{ width: "100%", flexShrink: 0 }}>
+      <div onClick={onToggle} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+        aria-label={isSidebarCollapsed ? "Expand navigation" : "Collapse navigation"}
+        role="button" tabIndex={0}
+        onKeyDown={e => (e.key === "Enter" || e.key === " ") && onToggle()}
+        style={{ display: "flex", alignItems: "center", height: L.itemH, width: "100%",
+          borderRadius: T.radius, cursor: "pointer",
+          backgroundColor: h ? T.fill.navHover : "transparent",
+          transition: "background-color 0.15s ease" }}>
+        {isSidebarCollapsed ? (
+          /* Collapsed: centered action icon */
+          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {expandIcon
+              ? expandIcon({ size: 12, color: actionIconColor })
+              : <LeftPanelOpenIcon color={actionIconColor} />}
+          </div>
+        ) : (
+          /* Expanded: right-aligned action icon in Slot.RowEnd */
+          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+            <div style={{ width: 36, height: 36, display: "flex",
+              alignItems: "center", justifyContent: "center" }}>
+              {collapseIcon
+                ? collapseIcon({ size: 12, color: actionIconColor })
+                : <RightPanelOpenIcon color={actionIconColor} />}
+            </div>
+          </div>
+        )}
+      </div>
+      {/* Divider — Stroke/Static/Neutral/Light, py-[2px] in Figma */}
+      <div style={{ padding: "2px 0" }}>
+        <div style={{ height: 1, backgroundColor: T.fill.infoSubtle }} />
+      </div>
+    </div>
+  );
+}
+
 export function NavSectionLabel({ label }) {
   return (
     <div style={{ display: "flex", alignItems: "center", height: 40, width: "100%",
@@ -471,7 +516,13 @@ export function SideNav({
     return p ? p.id : null;
   })();
 
-  const toggleExpand = id => setExpanded(p => ({ ...p, [id]: !p[id] }));
+  // Accordion behaviour: opening one grouper auto-closes any other that's open.
+  // Matches the demo HTML (2026-05-13).
+  const toggleExpand = id => setExpanded(prev => {
+    const isNowOpen = !prev[id];
+    if (isNowOpen) return { [id]: true };       // close all others
+    const next = { ...prev }; delete next[id]; return next;
+  });
   const onPopoverEnter = (id, rect) => {
     clearTimeout(timerRef.current);
     setPopoverId(id);
@@ -540,11 +591,19 @@ export function SideNav({
       borderRight: `0.5px solid ${T.fill.infoSubtle}`,
       overflowY: "auto",
     }}>
+      {/* NavHeader — TOP of nav (moved from bottom 2026-05-13). Hidden on
+          mobile (<768px) where the TopNav hamburger is the sole toggle. */}
+      {!hideCollapseButton && (
+        <NavHeader isSidebarCollapsed={collapsed}
+          onToggle={() => onCollapseChange && onCollapseChange(!collapsed)} />
+      )}
+
       {/* SideNavMenu — flex column, 6px gap between direct children
-          (sections, list section, collapse area). Items inside a section have
-          their own 6px gap; an item + its expanded children share one wrapper
-          so gap applies only between distinct items. */}
-      <div style={{ display: "flex", flexDirection: "column", flex: 1, gap: L.menuGap }}>
+          (sections, list section). Items inside a section have their own 6px
+          gap; an item + its expanded children share one wrapper so gap applies
+          only between distinct items. */}
+      <div style={{ display: "flex", flexDirection: "column", flex: 1, gap: L.menuGap,
+        paddingTop: L.menuPadT || 8 }}>
 
         {/* Sectioned render — when `sections` prop is provided */}
         {sections && sections.map(({ section, items: secItems }, sIdx) => (
@@ -583,12 +642,8 @@ export function SideNav({
           </div>
         )}
 
-        {/* Bottom spacer — fills remaining height before collapse button */}
+        {/* Bottom spacer — fills remaining height */}
         <div style={{ flex: 1, minHeight: L.menuPadB }} />
-        <div style={{ paddingTop: L.collapseGap, display: hideCollapseButton ? "none" : "block" }}>
-          <CollapseButton isSidebarCollapsed={collapsed}
-            onToggle={() => onCollapseChange && onCollapseChange(!collapsed)} />
-        </div>
       </div>
     </nav>
   );
