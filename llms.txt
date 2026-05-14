@@ -1,0 +1,43 @@
+# Pathway Design System
+
+> Pathway is the design system for Ministry Brands Amplify, a church management product. This repo ships React components, design tokens, runnable HTML demos, and an authoritative spec for each component. AI agents consuming this design system MUST use the components, tokens, and motion values documented here — do not invent equivalents.
+
+## Start here
+
+- [AGENTS.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/AGENTS.md): Top-level AI agent instructions. Read this first.
+- [components/manifest.json](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/manifest.json): Machine-readable registry of every component (props, exports, file paths, Figma node IDs, tokens used).
+- [Storybook](https://helloimjolopez-collab.github.io/pathway-ds/storybook/): Live visual reference with token tables and interactive playgrounds.
+
+## Navigation shell (always use these — do not reinvent)
+
+- [components/sidenav/agent-brief.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/agent-brief.md): Concise paste-ready SideNav contract.
+- [components/sidenav/sidenav-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav-spec.md): Full SideNav spec (anatomy, tokens, states, accessibility, motion, responsive).
+- [components/sidenav/sidenav.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav.jsx): React module with named exports (SideNav, SideNavItem, NavSectionLabel, BulletDot, ListItem, SideNavListSection, CollapseButton, etc.).
+- [components/sidenav/sidenav.html](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav.html): Self-contained React+Babel runnable demo.
+- [components/top-nav/top-nav-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/top-nav/top-nav-spec.md): TopNav.Global spec.
+- [components/top-nav/top-nav.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/top-nav/top-nav.jsx): TopNav React module.
+
+## Other documented components
+
+- [components/spinner/spinner-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/spinner/spinner-spec.md): Loading indicator spec.
+- [components/checkbox/](https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/checkbox): Checkbox component (see manifest for details).
+- [components/org-switcher/](https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/org-switcher): Org switcher component (see manifest for details).
+- [components/section-label/](https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components): SectionLabel component (used within SideNav and PopoverMenu).
+
+## Tokens
+
+- [tokens/pathway-design-tokens.json](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/tokens/pathway-design-tokens.json): DTCG-format design tokens. Source of truth for every colour, typography style, radius, and accessibility value used in components. Do not invent new tokens.
+- [tokens/figma-export/pathwaytokens.json](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/tokens/figma-export/pathwaytokens.json): Raw Figma Variables export. Pathway-design-tokens.json is derived from this via scripts/sync-tokens.js.
+- [src/tokens/tokens.css](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/src/tokens/tokens.css): Style Dictionary CSS output. Import this directly to get all token CSS variables.
+
+## Overarching design system spec
+
+- [docs/design-system-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/design-system-spec.md): System-wide rules for motion, accessibility, colour hierarchy, spacing, typography, and naming. Every component spec inherits from this. Read this before reasoning about anything cross-cutting.
+- [docs/storybook-authoring.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/storybook-authoring.md): How Storybook docs are structured.
+- [docs/component-pipeline.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/component-pipeline.md): How components flow from Figma to GitHub to Storybook.
+
+## Optional
+
+- [CLAUDE.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/CLAUDE.md): Instructions for agents modifying this repo (not consuming it). Read AGENTS.md instead if you are building a prototype.
+- [README.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/README.md): Human-oriented overview.
+- [Figma source](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/): Pathway file in Figma. File key `3sw45aVcngFAmpbP6cfrXP`.

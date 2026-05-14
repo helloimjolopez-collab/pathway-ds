@@ -1,13 +1,23 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "description": "Machine-readable registry of all Pathway design system components. AI agents building products read this to discover available components, their props, and their file locations.",
+  "aiResources": {
+    "entryPoint": "AGENTS.md",
+    "compactIndex": "llms.txt",
+    "fullKnowledgeBase": "llms-full.txt",
+    "tokenBrief": "tokens/agent-brief.md",
+    "contributorRules": "CLAUDE.md",
+    "storybookUrl": "https://helloimjolopez-collab.github.io/pathway-ds/storybook/",
+    "storybookAgentPage": "https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/-for-ai-agents-start-here--docs"
+  },
   "components": {
     "sidenav": {
       "displayName": "SideNav",
-      "description": "Persistent vertical navigation panel. Two levels of depth, expanded/collapsed states, responsive (push/overlay/hidden).",
+      "description": "Persistent vertical navigation panel. Two levels of depth, expanded/collapsed states, responsive (push/overlay/hidden). Optional NavSectionLabel headings + optional SideNavListSection for contextual link lists.",
       "module": "components/sidenav/sidenav.jsx",
-      "exports": ["SideNav", "SideNavItem", "IndicatorStripe", "CollapseButton", "CollapsedTooltip", "CollapsedPopover", "PopoverRow"],
+      "exports": ["SideNav", "SideNavItem", "IndicatorStripe", "CollapseButton", "SideNavTooltip", "CollapsedPopover", "PopoverRow", "SectionLabel", "NavSectionLabel", "BulletDot", "ListItem", "SideNavListSection", "T", "L"],
       "spec": "components/sidenav/sidenav-spec.md",
+      "agentBrief": "components/sidenav/agent-brief.md",
       "demo": "components/sidenav/sidenav.html",
       "stories": "src/stories/Library/SideNav/SideNav.stories.jsx",
       "figma": {
@@ -16,15 +26,27 @@
       },
       "props": {
         "SideNav": {
-          "items": { "type": "Array<NavItem>", "required": true, "description": "Navigation tree. Each item: { id, label, icon?, children? }" },
+          "items": { "type": "Array<NavItem>", "required": false, "description": "Flat navigation tree — use this OR `sections`, not both. Each item: { id, label, icon?, children? }" },
+          "sections": { "type": "Array<{ section: string, items: NavItem[] }>", "required": false, "description": "Sectioned navigation — renders NavSectionLabel headings between groups (or rail dividers in collapsed mode). Use this OR `items`." },
+          "listSection": { "type": "{ label: string, items: Array<{id,label}> }", "required": false, "description": "Optional flat contextual list appended after the main nav (e.g. 'Recent Content'). Hidden in collapsed rail." },
           "activeId": { "type": "string", "required": true, "description": "ID of the currently active navigation item" },
           "onNavigate": { "type": "(id: string) => void", "required": true, "description": "Called when user clicks a destination" },
-          "collapsed": { "type": "boolean", "default": false, "description": "72px icon rail (true) vs 250px expanded (false)" },
+          "collapsed": { "type": "boolean", "default": false, "description": "72px icon rail (true) vs 240px expanded (false)" },
           "onCollapseChange": { "type": "(collapsed: boolean) => void", "required": true, "description": "Called when collapse state changes" },
           "hideCollapseButton": { "type": "boolean", "default": false, "description": "Hides the collapse/expand control (mobile)" },
           "defaultExpanded": { "type": "Record<string, boolean>", "default": "{}", "description": "Which groupers start expanded" },
           "className": { "type": "string", "default": "\"\"", "description": "Additional CSS class" }
         }
+      },
+      "motion": {
+        "sidebarWidth": "380ms cubic-bezier(0.32, 0.72, 0, 1)",
+        "labelChevronMaxWidth": "360ms cubic-bezier(0.32, 0.72, 0, 1)",
+        "labelChevronOpacity": "200ms ease",
+        "grouperAccordion": "340ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "grouperChildrenFadeIn": "240ms ease 60ms",
+        "grouperChildrenFadeOut": "160ms ease",
+        "chevronRotation": "340ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "hoverTransitions": "150ms ease"
       },
       "tokens": [
         "fill.contextual.navitem.base",
@@ -46,6 +68,7 @@
       "module": "components/checkbox/checkbox.jsx",
       "exports": ["Checkbox", "IconCheck", "IconDash", "BOX_SIZE", "TARGET_SIZE", "BORDER_WIDTH", "LABEL_GAP"],
       "spec": "components/checkbox/checkbox-spec.md",
+      "agentBrief": "components/checkbox/agent-brief.md",
       "demo": "components/checkbox/checkbox.html",
       "stories": "src/stories/Library/Checkbox/Checkbox.stories.jsx",
       "figma": {
@@ -127,6 +150,7 @@
       "module": "components/org-switcher/org-switcher.jsx",
       "exports": ["OrgSwitcher", "abbreviateOrg", "abbreviateCampus", "mobileLabel"],
       "spec": "components/org-switcher/org-switcher-spec.md",
+      "agentBrief": "components/org-switcher/agent-brief.md",
       "demo": "components/org-switcher/org-switcher.html",
       "stories": "src/stories/Library/OrgSwitcher/OrgSwitcher.stories.jsx",
       "figma": {
@@ -179,6 +203,7 @@
       "status": "PENDING HUMAN REVIEW",
       "module": "components/top-nav/top-nav.html",
       "spec": "components/top-nav/top-nav-spec.md",
+      "agentBrief": "components/top-nav/agent-brief.md",
       "demo": "components/top-nav/top-nav.html",
       "stories": "src/stories/Library/TopNav/TopNav.stories.jsx",
       "figma": {
@@ -226,6 +251,7 @@
       "module": null,
       "exports": [],
       "spec": "components/spinner/spinner-spec.md",
+      "agentBrief": "components/spinner/agent-brief.md",
       "demo": "components/spinner/spinner.html",
       "stories": "src/stories/Library/Spinner/Spinner.stories.jsx",
       "figma": {

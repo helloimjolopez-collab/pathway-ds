@@ -1,0 +1,945 @@
+# Pathway Design System — Full AI-Readable Knowledge Base
+
+> This file is the single-fetch concatenation of every `agent-brief.md` and `AGENTS.md` in the Pathway repo. An AI agent that needs everything in one request should pull this file.
+>
+> Smaller index: [llms.txt](./llms.txt).
+> Authoritative per-component specs live at `components/<name>/<name>-spec.md`.
+
+---
+
+# AGENTS.md — Instructions for AI Agents
+
+> **Read this file first if you are an AI agent (Claude, Claude Code, Claude Design, Cursor, v0, Figma Make, Lovable, GPT, etc.) building anything that touches this codebase.**
+>
+> If you are a human, see [`README.md`](./README.md) for human-oriented setup.
+
+This is **Pathway**, the design system for Ministry Brands Amplify (a church management product). This file tells you exactly how to consume it correctly so you don't reinvent components that already exist.
+
+---
+
+## Two scenarios — pick one
+
+### A. You are **building a prototype** that should use the Pathway design system
+
+You are working in some other project (a feature prototype, a new page, a Figma Make canvas, a Cursor session in a downstream app) and you need to put the Pathway navigation shell, tokens, or components into it.
+
+**Do NOT reinvent the SideNav, TopNav, tokens, or any component listed in [`components/manifest.json`](./components/manifest.json).** They exist. Use them as-is.
+
+For navigation specifically:
+
+1. Read [`components/sidenav/agent-brief.md`](./components/sidenav/agent-brief.md) — short, concrete, paste-friendly summary of the SideNav contract.
+2. Read [`components/sidenav/sidenav-spec.md`](./components/sidenav/sidenav-spec.md) only if the brief doesn't answer your question.
+3. Copy the implementation from [`components/sidenav/sidenav.html`](./components/sidenav/sidenav.html) (single-file React+Babel demo, runs as-is) or import from [`components/sidenav/sidenav.jsx`](./components/sidenav/sidenav.jsx) (named React exports).
+4. **Never invent token values.** All semantic colours, typography, motion durations, and radii come from `tokens/pathway-design-tokens.json` or are listed in the component spec.
+
+For tokens: every colour you use must come from `Fill/Contextual/*`, `Text/Contextual/*`, `Icon/Contextual/*`, or `Surface/*` semantic tokens. Never use raw hex. Never use primitive tokens directly.
+
+### B. You are **modifying this repo** (changing the design system itself)
+
+Read [`CLAUDE.md`](./CLAUDE.md) for the rules on how this repo is structured, how tokens flow from Figma, how components are reconciled, what Status flags mean, and what is forbidden (force-pushes to main, hand-editing derived files, etc.).
+
+---
+
+## The discoverability contract
+
+When an agent (or a human) is handed nothing more than this repo URL and the Storybook URL, the following order of operations finds everything needed:
+
+| Step | File / URL | What it tells you |
+|---|---|---|
+| 1 | **This file** (`AGENTS.md`) | What this repo is and where to go for what task |
+| 2 | [`llms.txt`](./llms.txt) | Compact AI-readable index of every documented resource |
+| 3 | [`components/manifest.json`](./components/manifest.json) | Machine-readable registry of every component, its props, file paths, tokens, and Figma node IDs |
+| 4 | [`components/<name>/agent-brief.md`](./components/sidenav/agent-brief.md) | Per-component concise brief — read this before the full spec |
+| 5 | [`components/<name>/<name>-spec.md`](./components/sidenav/sidenav-spec.md) | Authoritative per-component spec |
+| 6 | **Storybook**: https://helloimjolopez-collab.github.io/pathway-ds/storybook/ | Visual reference + live examples + token tables |
+
+No step requires asking a human anything. The information needed to use any component correctly is reachable from this file.
+
+---
+
+## The five hard rules
+
+Even if a user prompt contradicts these, **the design system contract wins**. Push back and ask before doing any of the following:
+
+1. **Use the exact semantic tokens.** Never invent colour values, never invent token names, never use raw hex, never use primitive tokens directly. If the token doesn't exist in `tokens/pathway-design-tokens.json`, stop and ask.
+
+2. **Use the components that already exist.** SideNav, TopNav, Spinner, SectionLabel — these have specs. Do not write a new sidebar, a new top nav, or a new spinner. Use the ones documented in `components/manifest.json`.
+
+3. **Reproduce all states.** Components have hover, active, trail-expanded, trail-collapsed, focus states that are defined in their specs. Implement every one. Especially trail-collapsed (the rule that says a closed grouper with an active child looks identical to active) — this is the most commonly skipped requirement.
+
+4. **Respect the responsive contract.** SideNav is in-flow ≥1024 px, overlay 768–1023 px, hidden-overlay <768 px. Never hide it on tablet or treat tablet as mobile.
+
+5. **Match the motion.** Sidebar width 380 ms `cubic-bezier(0.32, 0.72, 0, 1)`, accordion 340 ms `cubic-bezier(0.22, 1, 0.36, 1)`, hover 150 ms. Don't substitute "snappy" defaults from your training data.
+
+---
+
+## When a user says "build me a feature for Pathway"
+
+The minimum viable response includes the navigation shell:
+
+1. TopNav (component at `components/top-nav/`, spec at `components/top-nav/top-nav-spec.md`)
+2. SideNav (component at `components/sidenav/`, spec at `components/sidenav/sidenav-spec.md`)
+3. Page content area to the right of SideNav, below TopNav
+
+If you produce a prototype that lacks one of these, you have not built a Pathway feature — you have built a generic web page. Always ship the shell.
+
+---
+
+## Component status quick reference
+
+Read [`components/manifest.json`](./components/manifest.json) for the authoritative list. As of the latest manifest, available components include:
+
+- **`sidenav`** — navigation panel, two levels, expanded/collapsed/overlay
+- **`top-nav`** — global top bar, brand-blue, 56px, responsive
+- **`spinner`** — loading indicator
+- **`section-label`** — small uppercase heading (used inside SideNav)
+- **`checkbox`**, **`org-switcher`** — see manifest
+
+If you need a component that isn't in the manifest, you can use a generic primitive (button, input) **only if** you ensure the typography (Red Hat Text), surface colours, and radii match Pathway. Better: ask the user whether a component exists that you're missing.
+
+---
+
+## What to do when you're uncertain
+
+- **Look first at the manifest.** It's machine-readable and exhaustive.
+- **Then at the agent-brief for the relevant component.** It's the fastest authoritative summary.
+- **Then the full spec.** Use the spec's Table of Contents to jump to the section you need.
+- **Then Figma.** The Pathway file key is `3sw45aVcngFAmpbP6cfrXP`. Use the Figma MCP server (`mcp__Figma__*` or `mcp__c5ffa7b0-*__*`) to fetch design context for any node ID listed in the manifest.
+
+Do not guess values from your training data. Do not ask the user "what colour should the active state be" — that colour is defined.
+
+---
+
+## How this repo is published
+
+| Channel | URL | What's there |
+|---|---|---|
+| Repo | https://github.com/helloimjolopez-collab/pathway-ds | Source code, specs, this file |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/ | Live component playgrounds, token tables, MDX docs |
+| Live demos | https://helloimjolopez-collab.github.io/pathway-ds/components/&lt;name&gt;/&lt;name&gt;.html | Self-contained runnable demos (e.g. `/components/sidenav/sidenav.html`) |
+| Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP | Source of truth for tokens and visual design |
+
+All four are public. An AI agent given any one of these can navigate to the others through the manifest.
+
+---
+
+# Tokens — full reference
+
+# Pathway Tokens — Agent Brief
+
+Read this **first** if you are an AI agent (Claude, Figma Make, v0, Cursor, etc.) about to invent any UI element that isn't already a documented Pathway component. This file tells you the rules for picking colours, typography, spacing, motion, and radii so the thing you build looks like it belongs to Pathway.
+
+If a documented component exists for what you're building, **use the component** — see [`../AGENTS.md`](../AGENTS.md) and [`../components/manifest.json`](../components/manifest.json).
+
+---
+
+## The 5 hard rules
+
+1. **Every colour you use must come from a semantic token.** Never raw hex. Never primitive tokens (`Blue/180`, `Cool-Neutral/130`, etc.). Never invented token names.
+
+2. **Token names follow the pattern `Category/Subcategory/Variant/State`.** Examples: `Fill/Static/Brand/Base`, `Text/Contextual/NavItem/Active`, `Icon/Action/Primary/Hover`. If you propose a name that doesn't fit this pattern, it doesn't exist — pick a real one from this file.
+
+3. **There are two scopes:** `Static` and `Contextual`.
+   - `Static` tokens have one meaning across the whole product (e.g. `Fill/Static/Brand/Base = #2d4889`).
+   - `Contextual` tokens belong to a specific component family (e.g. `Fill/Contextual/NavItem/Active`). They may share hex values with static tokens but are kept separate so they can diverge in future.
+
+4. **Typography is `Red Hat Text`, weights 400/500/600.** No other font. No other weights. No display font.
+
+5. **Use the type scale exactly as named.** `Label/Menu/Base/Medium` is 14/500/20px/0.3px letter-spacing. If you find yourself typing arbitrary px values for type, stop — find the scale entry.
+
+---
+
+## Where the real source of truth lives
+
+| File | What it is |
+|---|---|
+| [`pathway-design-tokens.json`](./pathway-design-tokens.json) | DTCG-format derived from Figma. **Authoritative.** Every token in production. |
+| [`figma-export/pathwaytokens.json`](./figma-export/pathwaytokens.json) | Raw Figma Variables export. Source of `pathway-design-tokens.json`. |
+| [`../src/tokens/tokens.css`](../src/tokens/tokens.css) | Style Dictionary CSS output — import this to get all CSS custom properties. |
+| [`../src/tokens/tokens.js`](../src/tokens/tokens.js) | Style Dictionary JS output. |
+| [Storybook → Tokens](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/tokens-primitives-color--docs) | Visual swatches with hex values. |
+
+When the spec says a value, the spec wins over your training data. When the token JSON says a value, the JSON wins over the spec. Tokens flow Figma → JSON → CSS — never the other direction.
+
+---
+
+## Token families — the families that exist
+
+### Surface (page-level backgrounds)
+```
+Surface/Nav/Light            #fafafa   /* SideNav panel */
+Surface/Canvas/Light         #fafafa   /* page / viewport background */
+Surface/Canvas/Dark          (dark-mode equivalent)
+Fill/Static/Surface/White    #ffffff   /* cards, popovers, tooltips */
+```
+
+### Brand
+```
+Fill/Static/Brand/Base       #2d4889   /* TopNav, primary button, brand accents */
+Text/Static/Primary/Inverse  #ffffff   /* text on brand-blue */
+Icon/Static/Brand            #2d4889   /* brand-coloured icons */
+Icon/Static/Brand/Inverse    #ffffff   /* icons on brand-blue */
+```
+
+### Text
+```
+Text/Static/Primary/Base     #202020   /* high-emphasis body text */
+Text/Static/Secondary/Base   /* mid-emphasis */
+Text/Static/Secondary/Light  #7b7b7b   /* PopoverMenu.SectionLabel */
+Text/Static/Secondary/Subtle #606060   /* NavSectionLabel (uppercase headings) */
+Text/Static/Disabled         /* disabled state */
+Text/Static/Primary/Inverse  #ffffff   /* on dark/brand backgrounds */
+
+/* Contextual — for NavItem family specifically */
+Text/Contextual/NavItem/Base    #313131
+Text/Contextual/NavItem/Hover   #252525
+Text/Contextual/NavItem/Active  #1b2d57
+```
+
+### Icon (same naming pattern as Text)
+```
+Icon/Static/Brand                  #2d4889
+Icon/Static/Neutral/Base           /* default neutral icon */
+Icon/Static/Neutral/Subtle         /* dim neutral icon */
+Icon/Action/Primary/Base           /* primary action icon */
+Icon/Action/Secondary/Base         /* secondary action icon */
+Icon/Action/Secondary Inverse/Base #6b6b6b
+Icon/Action/Tertiary/Base
+/* Plus accent variants — jade (success), garnet (danger), citrine (warning), sapphire (info) */
+Icon/Contextual/NavItem/Base    #484848
+Icon/Contextual/NavItem/Hover   #313131
+Icon/Contextual/NavItem/Active  #2d4889   /* also indicator stripe colour */
+```
+
+### Fill (component-level backgrounds)
+```
+Fill/Static/Brand/Base       #2d4889   /* primary button, TopNav */
+Fill/Static/Surface/White    #ffffff
+Fill/Static/Accent_Amethyst/Base #dcd9ef  /* Profile avatar background */
+Fill/Action/Primary/Base     /* primary button rest */
+Fill/Action/Primary/Hover
+Fill/Action/Primary/Active
+Fill/Action/Tertiary/Base    /* outline / subtle button */
+/* Plus accent fills — jade, garnet, citrine, sapphire — for status surfaces */
+
+/* Contextual — NavItem family */
+Fill/Contextual/NavItem/Base     #fafafa
+Fill/Contextual/NavItem/Hover    rgba(17,17,17,0.02)
+Fill/Contextual/NavItem/Active   rgba(160,181,230,0.16)
+Fill/Contextual/NavItem/Trail    rgba(17,17,17,0.02)
+```
+
+### Stroke (borders)
+```
+Stroke/Static/Neutral/Light   #f6f6f6   /* nav border, NavHeader divider, rail section divider */
+Stroke/Static/Neutral/Subtle  #ededed   /* popover border, list-section bottom border */
+Stroke/Static/Neutral/Default /* form input border */
+Stroke/Action/Primary/Base    /* primary-action focus ring */
+Stroke/Action/Tertiary/Base   rgba(255,255,255,0.16)  /* OrgSwitcher pill border on brand-blue */
+```
+
+### Typography (semantic type scale)
+```
+Label/Menu/Base/Medium         14px / 500 / 20px / 0.3px  Red Hat Text
+                               → SideNavItem label, PopoverMenu.Item, primary button
+Label/Menu/Base/Regular        14px / 400 / 20px / 0.02px Red Hat Text
+                               → PopoverMenu.SectionLabel (in flyout, not uppercase)
+Label/Section/Small/Semibold   11px / 600 / 16px / 0.6px UPPERCASE Red Hat Text
+                               → NavSectionLabel (in-nav uppercase headings)
+Text/Body/S/Regular            14px / 400 / 20px / 0.02px Red Hat Text
+                               → SideNavTooltip text, body copy
+Text/Body/XSmall/Regular       12px / 400 / 18px / 0.6px Red Hat Text
+                               → SideNavListSection ListItem text, captions
+Heading/H1                     /* defined in tokens.json — see Storybook Typography page */
+Heading/H2
+Heading/H3
+```
+
+All text uses `'Red Hat Text', sans-serif`. Load via Google Fonts:
+```html
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600&display=swap" />
+```
+
+### Radius
+```
+Border/Radius/XS   4px    /* Checkbox box */
+Border/Radius/S    8px    /* Buttons, nav items, popovers, tooltips */
+Border/Radius/M    12px   /* Cards */
+Border/Radius/L    16px   /* Large cards, dialogs */
+Border/Radius/Full 64px+  /* Circles (avatars, search button) */
+
+Component/NavItem/Large/Radius  8px  /* SideNavItem specifically */
+```
+
+### Spacing (no full token scale yet — work in progress)
+Spacing is currently not fully tokenized. Use these standard values until a scale exists:
+```
+2 · 4 · 6 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 56 · 64
+```
+Component-specific spacing values are documented in each component's spec under §4 (Layout & Spacing).
+
+### Motion (durations + easing)
+```
+/* Standard categories from docs/design-system-spec.md §2 */
+instant   150ms   /* hover, focus, colour swaps */
+short     300ms   /* small structural moves, modal enter */
+medium    600ms   /* page transitions */
+long      900ms+  /* hero animations (rare) */
+
+/* Component-specific overrides (registered, do NOT invent your own) */
+Motion/SideNav/Panel/Width    380ms · cubic-bezier(0.32, 0.72, 0, 1)  /* 240↔72 px */
+Motion/SideNav/Label/Fade     360ms · same curve · 200ms opacity
+Motion/SideNav/Accordion      340ms · cubic-bezier(0.22, 1, 0.36, 1)  /* grouper expand */
+Motion/SideNav/Overlay/Enter  380ms · cubic-bezier(0, 0, 0.2, 1)
+Motion/SideNav/Overlay/Exit   300ms · cubic-bezier(0.4, 0, 0.6, 1)
+
+/* Easing curves */
+Standard:    cubic-bezier(0.4, 0, 0.2, 1)
+Decelerate:  cubic-bezier(0, 0, 0.2, 1)   /* enters */
+Accelerate:  cubic-bezier(0.4, 0, 0.6, 1) /* exits */
+SmoothSpring:cubic-bezier(0.32, 0.72, 0, 1)  /* SideNav width */
+EaseOutQuart:cubic-bezier(0.22, 1, 0.36, 1)  /* accordion */
+```
+
+**Always respect `prefers-reduced-motion: reduce`** — collapse all transforms to instant opacity fades at 150ms linear.
+
+### Accessibility tokens
+```
+Accessibility/Touch Target/Optimal   48px   /* item min-height */
+Accessibility/Touch Target/Minimum   44px   /* absolute minimum, WCAG 2.5.5 */
+Accessibility/Icon Wrapping/Small    16px
+Accessibility/Icon Wrapping/Medium   20px
+Accessibility/Icon Wrapping/Large    24px
+```
+
+---
+
+## When you have to invent a new UI element
+
+If no component exists for what you need (e.g. a custom card, a banner, a confirmation message):
+
+1. **Background:** pick from the Surface or Fill families. White cards use `Fill/Static/Surface/White`. Subtle grey panels use `Surface/Canvas/Light` (`#fafafa`). Don't invent new surface colours.
+
+2. **Border:** `Stroke/Static/Neutral/Subtle` (`#ededed`) for separating elements, `Stroke/Static/Neutral/Light` (`#f6f6f6`) for very subtle structural dividers.
+
+3. **Radius:** 8px (`Border/Radius/S`) for almost anything. 12px (`Border/Radius/M`) for cards. 64px+ for circles. Never invent radii.
+
+4. **Padding:** use the spacing scale numbers above. Standard card padding is 16 or 24. Standard form-row gap is 8 or 12.
+
+5. **Typography:** `Label/Menu/Base/Medium` for buttons and emphasised labels. `Text/Body/S/Regular` for body. `Label/Section/Small/Semibold` for section headings. Never use arbitrary px sizes.
+
+6. **Motion:** 150ms for hover/colour. 300ms for entering/leaving. Standard easing curve for almost everything. Reduced-motion always respected.
+
+7. **Accessibility:** all interactive elements have a visible focus ring (use brand-blue `#2d4889` outline 2px with 2px offset). All touch targets at minimum 44×44. All text passes WCAG AA contrast on its intended background.
+
+If you find yourself reaching for a colour, size, or motion value that isn't in the families above, stop and ask the user. Don't make it up.
+
+---
+
+## What to do when you can't find a token
+
+1. **Search [`pathway-design-tokens.json`](./pathway-design-tokens.json) by name fragment.** Most components reference token names verbatim in their spec — the name is reachable from there.
+
+2. **Search Storybook's token pages.** The Tokens section under `Semantics/` has full swatches with hex values and CSS variable names.
+
+3. **Check the Figma file directly via MCP.** File key `3sw45aVcngFAmpbP6cfrXP`. The Variables panel is the absolute source of truth.
+
+4. **Ask the user.** Don't invent. If a token is missing, that's a real gap in the design system that the user (or design team) needs to fill in Figma.
+
+---
+
+# Component: SideNav
+
+# SideNav — Agent Brief
+
+A condensed, paste-friendly summary of the Pathway SideNav for AI agents (Claude, Figma Make, v0, Cursor, etc.) building prototypes that include navigation.
+
+Read this **first**. If you need more detail on any rule, follow the link to the full spec section.
+
+---
+
+## What this is
+
+The Pathway SideNav is a **persistent vertical navigation panel** used by every module in Ministry Brands Amplify. It is module-level navigation — not global app navigation, not action buttons, not a menu.
+
+**Hard contract:**
+- Two levels of depth max. Level 0 (parent, may have an icon) and Level 1 (child, no icon, indented). Level 1 items never have children — this is enforced at the data layer, not just visually.
+- Two widths: **240 px expanded** and **72 px collapsed (icon-only rail)**.
+- Three responsive modes: **push** at ≥1024 px, **overlay** at 768–1023 px, **overlay-or-hidden** at <768 px.
+
+Full spec: [sidenav-spec.md](./sidenav-spec.md). Working code: [sidenav.html](./sidenav.html) (single-file React+Babel CDN demo, just open it in a browser). Module: [sidenav.jsx](./sidenav.jsx).
+
+---
+
+## The 10 rules an AI agent must not skip
+
+1. **Use semantic tokens, never raw hex or primitives.** Every colour comes from a `Fill/Contextual/NavItem/*`, `Text/Contextual/NavItem/*`, or `Icon/Contextual/NavItem/*` token. See [§3](./sidenav-spec.md#3-design-tokens).
+
+2. **The `indicator.stripe` column is always in the DOM**, 4 px wide, on every SideNavItem. Only its visual paint is conditional (transparent vs. `#2d4889`). Do not conditionally render the column — removing it causes a 4 px layout shift when an item becomes active. See [§7](./sidenav-spec.md#7-indicatorstripe-sub-component).
+
+3. **Trail-collapsed state**: when a grouper is closed and one of its children is the active destination, the grouper itself shows **Active styling**: same fill (`#a0b5e629`), same text (`#1b2d57`), same icon (`#2d4889`), stripe visible. This applies whether the sidebar is 240 px or 72 px. See [§6](./sidenav-spec.md#6-state-matrix).
+
+4. **Grouper expand/collapse is an accordion**, animated via `grid-template-rows: 0fr → 1fr` at **340 ms `cubic-bezier(0.22, 1, 0.36, 1)`** (easeOutQuart) with the children fading in at **240 ms / 60 ms delay**. The chevron rotates with the same 340 ms timing. Multiple groupers can be open at once — no single-open constraint. Children stay in the DOM when the sidebar is expanded so the collapse animation can play. See [§12.1](./sidenav-spec.md#121-grouper-accordion-expandcollapse-expanded-sidebar).
+
+   The **sidebar width itself** (240↔72 px) animates at **380 ms `cubic-bezier(0.32, 0.72, 0, 1)`** (smooth-spring, no overshoot). Item labels and chevrons collapse at 360 ms with the same curve, opacity at 200 ms ease. Do **not** use the strongly-bouncy `cubic-bezier(0.34, 1.56, 0.64, 1)` — it overshoots and feels jaunty at panel scale. See [§8.3](./sidenav-spec.md#83-transition).
+
+5. **In the 72 px collapsed rail, groupers do NOT accordion.** Hovering a grouper opens a `CollapsedPopover` flyout (8 px from the rail's right edge) with the group name and children as rows. See [§10.3](./sidenav-spec.md#103-hover-behaviour-destinations-vs-groupers).
+
+6. **Section labels (`NavSectionLabel`) are OPTIONAL.** Use them only when a module needs to organise items into named groups ("MUSIC", "PEOPLE", etc.). When the sidebar collapses to 72 px, section labels become **`Divider` lines** (1 px, `#f6f6f6`) — not hidden. The first section has no divider above it. See [§2.3](./sidenav-spec.md#23-navsectionlabel).
+
+7. **Section labels are flat siblings of nav items, never wrappers.** Wrapping items inside a section div breaks the parent `gap: 6 px` flex layout. See [§2.3](./sidenav-spec.md#23-navsectionlabel) "Implementation pattern."
+
+8. **The CollapseButton renders at ALL breakpoints ≥768 px**, in both the 240 px and 72 px states. It is absent only on mobile (<768 px). At 72 px it shows the expand icon with no label. At 240 px it shows the collapse icon + "Collapse" label. It sits at the **bottom of the scroll flow**, scrolls with content, and has a 1 px divider above it. See [§9](./sidenav-spec.md#9-collapse_expand_nav_container).
+
+9. **Responsive contract**:
+   - **≥1024 px**: SideNav is in flow (`flex-shrink: 0`), 240 px or 72 px. Content shifts.
+   - **768–1023 px**: 72 px rail in flow by default. Tapping expand → 240 px overlay with scrim.
+   - **<768 px**: SideNav **hidden by default**. Hamburger in TopNav reveals a 240 px overlay with scrim. **No 72 px rail at all on mobile.**
+   See [§17.2](./sidenav-spec.md#172-sidenav-behaviour-per-breakpoint).
+
+10. **TopNav and SideNav ship together** as a single shell. Never implement one without the other. TopNav lives at `components/top-nav/` (or, until that lands, the inline reference in `sidenav.html`). The mobile hamburger lives in TopNav and calls `onSideNavToggle`.
+
+---
+
+## The exact tokens you need
+
+Paste these into your CSS or token system **as-is**. The names match `tokens/pathway-design-tokens.json` exactly.
+
+### Fill (item background)
+```
+--fill-contextual-navitem-base:   transparent       /* resting */
+--fill-contextual-navitem-hover:  rgba(17,17,17,0.02)
+--fill-contextual-navitem-active: rgba(160,181,230,0.16)   /* #a0b5e629 */
+--fill-contextual-navitem-trail:  rgba(17,17,17,0.02)      /* expanded grouper */
+```
+
+### Text
+```
+--text-contextual-navitem-base:   #313131
+--text-contextual-navitem-hover:  #252525
+--text-contextual-navitem-active: #1b2d57   /* used for active AND all trail states */
+```
+
+### Icon
+```
+--icon-contextual-navitem-base:   #484848
+--icon-contextual-navitem-hover:  #313131
+--icon-contextual-navitem-active: #2d4889   /* icon + indicator stripe + collapsed-trail icon */
+```
+
+### Surface & stroke
+```
+--surface-nav-light:           #fafafa          /* nav background */
+--stroke-static-neutral-light: #f6f6f6          /* nav border, NavHeader divider, rail section divider */
+--stroke-static-neutral-subtle: #ededed         /* popover border */
+```
+
+### Section label (optional)
+```
+font:        11px/16px 'Red Hat Text', 600 SemiBold, 0.6px letter-spacing, UPPERCASE
+color:       #606060   /* Text/Static/Secondary/Subtle */
+height:      40px
+padding:     8px 4px
+```
+
+### Geometry
+```
+border-radius (items):       8px      /* Component/NavItem/Large/Radius/Radius */
+min-height (items):          48px     /* Accessibility/Touch Target/Optimal/Size */
+icon wrapper:                24x24    /* Container.LeadingIcon */
+icon glyph inside wrapper:   16x16
+indicator stripe width:      4px
+indicator stripe radius:     0 8px 8px 0   /* rounded on the right only */
+expanded width:              240px
+collapsed width:             72px
+```
+
+---
+
+## Minimal nav-item data shape
+
+```js
+const NAV = [
+  // Destination (Level 0, no children)
+  { id: 'reports', label: 'Reports', icon: 'reports' },
+
+  // Grouper (Level 0, has children — children are always Level 1 leaves)
+  { id: 'view', label: 'View', icon: 'view', children: [
+    { id: 'trial_balance',    label: 'Trial Balance' },
+    { id: 'balance_sheet',    label: 'Balance Sheet' },
+  ]},
+];
+
+// With optional sections:
+const NAV_SECTIONS = [
+  { section: 'Music',  items: [ /* ... */ ] },
+  { section: 'People', items: [ /* ... */ ] },
+];
+```
+
+Icons are **Material Symbols Outlined** in the demo. Replace with whatever icon system the prototype uses, but keep the **16 px inside 24 px wrapper** rule.
+
+---
+
+## What "done" looks like (prototype checklist)
+
+Before submitting your prototype, confirm:
+
+- [ ] SideNav uses `#fafafa` background and matches the 240 px / 72 px width contract
+- [ ] Every item is 48 px min-height with an 8 px border-radius
+- [ ] The 4 px indicator stripe column is always present on every item
+- [ ] An active item shows: light blue fill, dark blue text, blue icon, visible stripe
+- [ ] Trail-collapsed state works (collapse a grouper whose child is active — grouper shows active styling)
+- [ ] Grouper expand/collapse animates via grid-template-rows (not max-height)
+- [ ] At 72 px: hovering a grouper opens a popover, not an accordion
+- [ ] CollapseButton appears at the bottom in both expanded and collapsed states (and is hidden only on mobile <768 px)
+- [ ] Scrollbar is invisible at rest, appears only on hover (4 px wide)
+- [ ] At <768 px: nav is hidden by default, hamburger in TopNav reveals 240 px overlay with scrim
+- [ ] If sections are used: section labels become divider lines in the 72 px rail (not hidden)
+- [ ] No raw hex, no primitive token names, no made-up token names in the code
+
+---
+
+## Where to go next
+
+- **Full spec with every detail:** [sidenav-spec.md](./sidenav-spec.md) — 1,500+ lines, organised by section, governance table at the top tells you which decisions live where.
+- **Runnable reference:** [sidenav.html](./sidenav.html) — open it in a browser, resize the window to see all breakpoints, copy any pattern that works.
+- **React module to import:** [sidenav.jsx](./sidenav.jsx) — named exports, self-contained, drop-in for any React project.
+- **Live Storybook:** https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/components-sidenav--docs
+- **Figma source:** [SideNav in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003951-2927)
+
+If anything in this brief disagrees with the full spec, **the full spec wins**. This brief is a condensed pointer, not the source of truth.
+
+---
+
+# Component: TopNav.Global
+
+# TopNav.Global — Agent Brief
+
+A condensed, paste-friendly summary of the Pathway TopNav.Global for AI agents (Claude, Figma Make, v0, Cursor, etc.) building prototypes that include the global top navigation.
+
+Read this **first**. The full spec is at [top-nav-spec.md](./top-nav-spec.md).
+
+---
+
+## What this is
+
+`TopNav.Global` is the **fixed horizontal bar at the top of every Pathway page**. It is the only navigation element that persists across all modules and all screen sizes. It pairs with the SideNav as the application shell — never ship one without the other.
+
+**Three jobs:** (1) ModuleSwitcher — which module you're in, (2) OrgSwitcher — which church/campus you're operating as, (3) Search + Notifications + Profile.
+
+**Hard contract:**
+- **Height: 56 px** (54 px on tablet per Figma; unified to 56 px in implementation)
+- **Background: `Fill/Static/Brand/Base` → `#2d4889`** (brand blue, NOT dark navy)
+- **Position: `fixed; top: 0; left: 0; right: 0; z-index: 100`**
+- All icons are **Material Symbols Outlined** (Google Fonts CDN). Branded assets (Amplify Home icon, org logo) are SVGs/images.
+- Three breakpoint variants: Desktop (1440px), Tablet (768px), Mobile (393px) — see §3 in the full spec.
+
+Working code: [top-nav.html](./top-nav.html). Module: [top-nav.jsx](./top-nav.jsx). Full spec: [top-nav-spec.md](./top-nav-spec.md).
+
+---
+
+## The 8 rules an AI agent must not skip
+
+1. **Ship TopNav and SideNav together as a single shell.** Never produce a prototype with only one of them.
+
+2. **Use the brand-blue background.** `Fill/Static/Brand/Base` → `#2d4889`. Not dark navy (`#0a1223`). Not custom.
+
+3. **Slot layout (left → right) is fixed:**
+   - **Row Start:** SideNav hamburger (mobile only, hidden ≥768px) · ModuleSwitcher (Amplify Home icon + `expand_more` chevron, NO text) · OrgSwitcher (church logo 20×20 + org name + `expand_more` chevron, with `stroke/action/tertiary/base` border)
+   - **Row End:** Search (48×48 wrapper → 32×32 circle with `cornerradius/full: 64px` + `search` icon) · Desktop: 2× `notifications` bells (48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Accent_Amethyst/Base` `#dcd9ef`, initials in `#221e3f`)
+
+4. **The mobile hamburger lives in TopNav.** It calls `onSideNavToggle` to open the SideNav overlay. The TopNav owns this control, not the SideNav.
+
+5. **Desktop shows 2 notification bells; tablet and mobile show `more_vert`.** Not the other way around. See Figma node `40007067:8151` (tablet) and `40007067:8205` (mobile).
+
+6. **Profile is amethyst, always.** Background `Fill/Static/Accent_Amethyst/Base` (`#dcd9ef`), text `Text/Static/Accent-Amethyst/Contrast` (`#221e3f`). Initials, not photos.
+
+7. **Search is a 32×32 circle, not a search field.** `cornerradius/full: 64px`. Click expands a dropdown/modal — the bar stays narrow at all times.
+
+8. **All Material Symbols Outlined, no exceptions.** Specifically: `menu`, `expand_more`, `search`, `notifications`, `more_vert`. Use Google Fonts CDN: `https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`.
+
+---
+
+## The exact tokens you need
+
+```
+--fill-static-brand-base:            #2d4889   /* TopNav background */
+--fill-static-surface-white:         #ffffff   /* Search circle, Profile (if overridden) */
+--fill-static-accent-amethyst-base:  #dcd9ef   /* Profile avatar background */
+--text-static-accent-amethyst-contrast: #221e3f /* Profile initials text */
+--stroke-action-tertiary-base:       rgba(255,255,255,0.16)  /* OrgSwitcher pill border */
+--text-static-primary-inverse:       #ffffff   /* TopNav labels + icons */
+```
+
+Typography for org name and module label: `Label/Menu/Base/Medium` — `'Red Hat Text'`, 500 weight, 14px / 20px / 0.3px letter-spacing, white text.
+
+### Cornerradius
+```
+cornerradius/medium:  8px    /* OrgSwitcher pill */
+cornerradius/full:    64px   /* Search circle, Profile circle */
+```
+
+### Spacing
+```
+TopNav height:        56px   (54px on tablet per Figma; use 56px in code)
+TopNav padding:       12px L/R on tablet · 16px L/R on desktop
+SearchButton wrapper: 48×48
+SearchButton inner:   32×32 (cornerradius full 64)
+Bell wrapper:         48×48
+Profile wrapper:      32×32 (cornerradius full 64)
+Slot gap:             8px between siblings on the right
+```
+
+---
+
+## Minimal usage
+
+```jsx
+import { TopNav } from "components/top-nav/top-nav.jsx";
+
+<TopNav onSideNavToggle={handleHamburger} />
+```
+
+If the real `top-nav.jsx` module isn't available, copy the implementation block from [top-nav.html](./top-nav.html) — it's a self-contained React+Babel CDN demo that runs as-is.
+
+---
+
+## What "done" looks like (prototype checklist)
+
+- [ ] TopNav is 56 px tall, brand-blue (`#2d4889`), fixed at top of viewport
+- [ ] ModuleSwitcher shows Amplify Home icon + `expand_more`, no text label
+- [ ] OrgSwitcher shows church logo + org name + `expand_more`, in a bordered pill
+- [ ] Search is a 32×32 circle with `search` icon (not a text field)
+- [ ] Desktop has TWO notification bells; tablet/mobile has one `more_vert`
+- [ ] Profile is amethyst (`#dcd9ef` bg, `#221e3f` text), 32×32 circle, initials only
+- [ ] Mobile (<768px): hamburger appears on the left, hidden at ≥768px
+- [ ] All icons are Material Symbols Outlined from Google Fonts CDN
+- [ ] SideNav is shipped alongside (use `components/sidenav/`)
+
+---
+
+## Figma source
+
+- **File:** Pathway Design System Master File MB 2.0 (`fileKey: 3sw45aVcngFAmpbP6cfrXP`)
+- **Component:** [TopNav.Global in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40005504-55844)
+- **Breakpoint variants:**
+  - Desktop 1440px: `40007103:17678`
+  - Tablet 768px: `40007067:8151`
+  - Mobile 393px: `40007067:8205`
+
+If anything in this brief disagrees with the full spec, **the full spec wins**.
+
+---
+
+# Component: Spinner
+
+# Spinner — Agent Brief
+
+A condensed, paste-friendly summary of the Pathway Spinner for AI agents (Claude, Figma Make, v0, Cursor, etc.).
+
+Read this **first**. The full spec is at [spinner-spec.md](./spinner-spec.md).
+
+---
+
+## What this is
+
+`Spinner` is an **indeterminate progress indicator**. It signals that something is happening, but says nothing about how long it will take or how close it is to finishing.
+
+**Use it when:** the wait is short (< ~10 s), duration is unknown, and you cannot show a meaningful percentage.
+
+**Do NOT use it when:**
+- Duration is known or measurable → use a determinate progress bar
+- Wait exceeds ~10 s → use a skeleton or status message
+- No wait is happening → don't show a spinner just for decoration
+
+The component is a **rotating sunburst built from SVG paths**. Single structural form, with a `style` property that today has one value (`progress-activity`). Future styles (`bar`, `dots`) may be added without breaking the API.
+
+Working code: [spinner.html](./spinner.html). Full spec: [spinner-spec.md](./spinner-spec.md).
+
+---
+
+## The 6 rules an AI agent must not skip
+
+1. **Use the documented semantic icon tokens.** The spinner's colour comes from `Icon/Static/*` or `Icon/Action/*` semantic tokens. Never raw hex, never a primitive. Allowed tones are listed in §7.1 of the spec.
+
+2. **The geometry is fixed.** Don't reinvent the sunburst — it's an 8-spoke rotating SVG with specific path data. Copy from [spinner.html](./spinner.html).
+
+3. **Animation: smooth continuous rotation, no easing.** `animation: rotate 0.8s linear infinite` is the canonical value. Don't ease in/out — it must feel mechanical and constant or it looks like it's stopping.
+
+4. **Respect `prefers-reduced-motion: reduce`.** Replace the rotation with a static dot pulse or simply a static icon. Never strip the wait signal entirely.
+
+5. **The spinner is a primitive — it doesn't own the wait state.** The consuming component is responsible for the surrounding label ("Loading..."), the network request, and the announce-to-screen-reader logic. The spinner just spins.
+
+6. **Sizes come from `Accessibility/Icon Wrapping/*` tokens.** Don't pick arbitrary px values.
+
+---
+
+## Tokens
+
+```
+/* Colour — pick one tone per usage */
+icon-static-brand           /* primary brand spinner */
+icon-static-neutral-base    /* neutral grey spinner */
+icon-static-neutral-subtle  /* extra-subtle */
+icon-action-primary-base    /* on action buttons */
+icon-action-secondary-base  /* secondary action spinner */
+/* Plus accent tokens for status (success, danger, warning, info) — see §7.1 */
+```
+
+### Sizes
+```
+Accessibility/Icon Wrapping/Small:    16px
+Accessibility/Icon Wrapping/Medium:   20px
+Accessibility/Icon Wrapping/Large:    24px
+/* Larger sizes (32px, 48px) are also tokenized — see spec */
+```
+
+### Motion
+```
+animation:  rotate 0.8s linear infinite
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+```
+
+---
+
+## Minimal usage
+
+```jsx
+import { Spinner } from "components/spinner/spinner.html"; // or wherever exported
+
+<Spinner size={24} tone="brand" />
+```
+
+Or inline the SVG from [spinner.html](./spinner.html) — same result.
+
+---
+
+## Accessibility
+
+- `role="status"` (or `aria-live="polite"`) wrapping the spinner + its label
+- Include a visually-hidden `<span>` with text (e.g. "Loading...") so screen readers announce the wait
+- Don't put `role="status"` on the spinner SVG itself — put it on the container that has the label
+
+---
+
+## Figma source
+
+- **File:** Pathway Design System Master File MB 2.0 (`fileKey: 3sw45aVcngFAmpbP6cfrXP`)
+- **Component:** see `spinner-spec.md` §1 for the Figma node URL
+
+---
+
+# Component: Checkbox
+
+# Checkbox — Agent Brief
+
+A condensed, paste-friendly summary of the Pathway Checkbox for AI agents (Claude, Figma Make, v0, Cursor, etc.).
+
+Read this **first**. The full spec is at [checkbox-spec.md](./checkbox-spec.md). Status: `PENDING HUMAN REVIEW` — the spec is provisional but the component is implemented and ready to consume.
+
+---
+
+## What this is
+
+`Checkbox` is a **multi-select selection control**. Use it when the user can pick zero or more independent options from a set.
+
+**Do NOT use it for:**
+- **Single-select** between mutually exclusive options → use Radio
+- **Binary on/off mode** outside a form (e.g. dark mode toggle, notifications enabled) → use Toggle
+- **A boolean inside a form submission** → Checkbox is correct here
+
+Working code: [checkbox.html](./checkbox.html). Module: [checkbox.jsx](./checkbox.jsx). Full spec: [checkbox-spec.md](./checkbox-spec.md).
+
+---
+
+## The 5 rules an AI agent must not skip
+
+1. **Three checked states exist:** `unchecked`, `checked`, and `indeterminate` (the parent-of-a-mixed-selection state). Don't omit indeterminate — it appears in any tree/list checkbox.
+
+2. **All four interaction states must be implemented:** base, hover, focus, disabled. Plus the three checked states above = 12 combinations. The spec has the full matrix.
+
+3. **Touch target is 24×24 visually but 44×44 minimum hit area.** Wrap the visible 24×24 box in a 44×44 label or padded container. WCAG 2.5.5.
+
+4. **The label is part of the click target.** Clicking the text toggles the box. Don't make the label a separate non-interactive sibling.
+
+5. **Use semantic tokens for the fill, stroke, and check icon.** The check icon is `Icon/Static/Brand/Inverse` (white on brand-blue fill when checked). Never hardcode.
+
+---
+
+## Tokens (semantic — read the spec for the full list)
+
+```
+/* Box fill */
+--fill-action-primary-base       /* checked fill */
+--fill-static-surface-white      /* unchecked fill */
+
+/* Box stroke */
+--stroke-static-neutral-default  /* unchecked stroke */
+--stroke-action-primary-base     /* checked + indeterminate stroke */
+
+/* Check icon */
+--icon-static-brand-inverse      /* the check itself (white on blue) */
+
+/* Text label */
+--text-static-primary-base       /* enabled label */
+--text-static-primary-disabled   /* disabled label */
+```
+
+### Geometry
+```
+Visible size:       24×24
+Touch target:       44×44 minimum (around the visible 24×24)
+Border radius:      4px  (Border/Radius/XS)
+Stroke width:       1.5px
+Gap label↔box:      8px
+```
+
+---
+
+## Minimal usage
+
+```jsx
+import { Checkbox } from "components/checkbox/checkbox.jsx";
+
+<Checkbox
+  checked={value}
+  onChange={setValue}
+  label="I agree to the terms"
+/>
+
+// Indeterminate (parent of partial selection):
+<Checkbox checked="indeterminate" onChange={handleSelectAll} label="Select all" />
+```
+
+---
+
+## Accessibility
+
+- Use a native `<input type="checkbox">` underlying the visual — never recreate the input semantic with `<div role="checkbox">`
+- `aria-checked` is `true | false | "mixed"` (mixed = indeterminate)
+- The label must be programmatically associated (wrap with `<label>` or use `aria-labelledby`)
+- Focus ring required and must be visible — never `outline: none` without a replacement
+
+---
+
+## Figma source
+
+- **File:** Pathway Design System Master File MB 2.0 (`fileKey: 3sw45aVcngFAmpbP6cfrXP`)
+- **Component:** [Checkbox in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40002324-54532)
+
+---
+
+# Component: Org Switcher
+
+# Org Switcher — Agent Brief
+
+A condensed, paste-friendly summary of the Pathway Org Switcher for AI agents (Claude, Figma Make, v0, Cursor, etc.).
+
+Read this **first**. The full spec is at [org-switcher-spec.md](./org-switcher-spec.md). Status: `PENDING HUMAN REVIEW` — provisional but implemented and consumable.
+
+---
+
+## What this is
+
+`OrgSwitcher` is a **contextual navigation control** that shows the user's current organisation + campus, and lets them switch. It lives inside the TopNav.Global, in the left slot, between ModuleSwitcher and the search/notifications area.
+
+**Do NOT use it for:**
+- Module-level navigation (that's SideNav)
+- Settings access
+- User-profile menu actions
+- A generic dropdown / select control — it is **specifically scoped to org+campus switching**
+
+It has two distinct display modes driven by viewport:
+
+- **Desktop / Tablet (≥768px)**: full pill with logo + org name + chevron, e.g. `[🏠 logo] Sacred Heart Church-ITD | Knoxville  ⌄`
+- **Mobile (<768px)**: collapsed to logo + truncated name (max 80 px) + chevron, hides separator and campus name
+
+Working code: [org-switcher.html](./org-switcher.html). Module: [org-switcher.jsx](./org-switcher.jsx). Full spec: [org-switcher-spec.md](./org-switcher-spec.md). Mobile abbreviation rules: see Appendix A of the spec.
+
+---
+
+## The 7 rules an AI agent must not skip
+
+1. **Always inside TopNav.Global.** Don't render it outside the TopNav, don't put it on a page, don't make it standalone.
+
+2. **The logo is the org logo, not the product logo.** It's a 20×20 image (or a fallback initial-letter avatar if no logo is set). Source per-org.
+
+3. **The org name is `Org` then `|` then `Campus`.** "Sacred Heart Church-ITD | Knoxville" is the format. On mobile it truncates org with ellipsis at 80 px max-width and may drop the `|Campus` portion.
+
+4. **Bordered pill, not a button.** Border is `stroke/action/tertiary/base` (semi-transparent white on the brand-blue TopNav background). Radius `cornerradius/medium: 8px`.
+
+5. **Chevron is `expand_more` from Material Symbols Outlined.** Same icon family as the rest of the TopNav. 20px size, white.
+
+6. **Click opens a dropdown panel** with searchable org list + campus list. Don't substitute a modal, full page, or inline switcher. The dropdown is anchored to the OrgSwitcher pill.
+
+7. **The pill colour responds to TopNav theme.** Text and chevron use `Text/Static/Primary/Inverse` (`#ffffff`) on the brand-blue TopNav. Don't use dark text.
+
+---
+
+## Tokens
+
+```
+/* Pill */
+--stroke-action-tertiary-base:   rgba(255,255,255,0.16)
+--text-static-primary-inverse:   #ffffff   /* org name */
+--cornerradius-medium:           8px
+
+/* Logo */
+20×20 px image, no border, rendered inline within the pill
+
+/* Chevron */
+expand_more · Material Symbols Outlined · 20px · white
+
+/* Dropdown panel (when open) */
+--fill-static-surface-white:     #ffffff
+--stroke-static-neutral-subtle:  #ededed
+--cornerradius-medium:           8px
+shadow: 2px 2px 8px 4px rgba(0,0,0,0.06)
+```
+
+### Layout
+```
+Pill height:          32px (matches Profile circle height)
+Pill internal gap:    8px between logo, text, chevron
+Pill padding:         0 12px
+Mobile max-width:     80px on the org name (truncated with ellipsis)
+```
+
+### Typography
+```
+Org+campus label: 'Red Hat Text' Medium · 14px / 20px / 0.3px letter-spacing
+```
+
+---
+
+## Minimal usage
+
+```jsx
+import { OrgSwitcher } from "components/org-switcher/org-switcher.jsx";
+
+<OrgSwitcher
+  org={{ name: "Sacred Heart Church-ITD", logoUrl: "/orgs/sacred-heart.png" }}
+  campus={{ name: "Knoxville" }}
+  onSwitch={handleOrgSwitch}
+/>
+```
+
+If no logo is provided, render a 20×20 circle with the first letter of `org.name` in `Fill/Static/Accent_Amethyst/Base` (same pattern as the Profile avatar).
+
+---
+
+## Accessibility
+
+- Trigger button has `aria-haspopup="listbox"` and `aria-expanded` reflecting dropdown state
+- Dropdown is a `role="listbox"` with org and campus options as `role="option"`
+- Focus moves to the dropdown on open; Esc closes and returns focus to the trigger
+- Tab cycles through orgs first, then campuses
+
+---
+
+## Figma source
+
+- **File:** Pathway Design System Master File MB 2.0 (`fileKey: 3sw45aVcngFAmpbP6cfrXP`)
+- **Component:** see `org-switcher-spec.md` for the Figma node URL

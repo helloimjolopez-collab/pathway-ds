@@ -1,0 +1,17 @@
+# Cursor AI rules for this repo
+# Cursor reads .cursorrules at the project root. Same content as AGENTS.md applies.
+
+This is the Pathway Design System repo for Ministry Brands Amplify.
+
+PRIMARY INSTRUCTION: Before writing any UI code in this repo or any project that consumes this design system, read AGENTS.md at the repo root. It tells you which components exist, which tokens to use, and what you must NEVER reinvent (SideNav, TopNav, tokens).
+
+If you are modifying this repo's source, also read CLAUDE.md for contributor rules.
+
+Hard rules that apply at all times:
+- Use semantic tokens only. Never raw hex. Never primitive tokens directly. Never made-up token names.
+- Use the components in components/ — do not invent equivalents (SideNav, TopNav, Spinner, Checkbox, OrgSwitcher).
+- Match the motion values exactly (sidebar width 380ms cubic-bezier(0.32, 0.72, 0, 1), accordion 340ms cubic-bezier(0.22, 1, 0.36, 1), hover 150ms).
+- Respect the responsive contract (SideNav in-flow ≥1024px, overlay 768-1023px, hidden-overlay <768px).
+- Implement ALL component states from each spec — especially trail-collapsed for SideNav.
+
+Read tokens/agent-brief.md before inventing any new UI element. It tells you the families that exist and the rules for picking values when you must improvise.
