@@ -545,13 +545,20 @@ TokensSpacing.parameters = {
 
 // ─── Motion tokens ──────────────────────────────────────────────────────────
 const MOTION_ROWS = [
-  { name: "Panel width",         duration: "360ms", standard: "short (300ms)", curve: "cubic-bezier(0.4,0,0.2,1)", token: "Motion/SideNav/Panel/Width",       rationale: "Full-panel width; 300ms reads abrupt" },
-  { name: "Label fade",          duration: "180ms", standard: "instant (150ms)", curve: "ease",                     token: "Motion/SideNav/Label/Fade",       rationale: "Labels begin fading before panel finishes" },
-  { name: "Overlay enter",       duration: "380ms", standard: "short (300ms)",   curve: "cubic-bezier(0,0,0.2,1)", token: "Motion/SideNav/Overlay/Enter",    rationale: "Full-height panel gliding in; 300ms feels mechanical" },
-  { name: "Overlay exit",        duration: "300ms", standard: "short (300ms)",   curve: "cubic-bezier(0.4,0,0.6,1)", token: "Motion/SideNav/Overlay/Exit",  rationale: "Matches standard — exits are snappier by design" },
-  { name: "Item colour/fill",    duration: "150ms", standard: "instant (150ms)", curve: "ease",                     token: "— (standard)",                  rationale: "Hover/active fill and colour transitions" },
-  { name: "Popover enter",       duration: "150ms", standard: "instant (150ms)", curve: "cubic-bezier(0,0,0.2,1)", token: "— (standard)",                  rationale: "Tooltip and flyout popover appear" },
-  { name: "Scrim",               duration: "280ms", standard: "short (300ms)",   curve: "cubic-bezier(0.4,0,0.2,1)", token: "— (standard ~)",              rationale: "Overlay scrim fade" },
+  { name: "Panel width",          duration: "380ms", standard: "short+ (>300ms)",  curve: "cubic-bezier(0.32, 0.72, 0, 1)", token: "Motion/SideNav/Panel/Width",  rationale: "240↔72px width — smooth-spring, no overshoot (updated 2026-05-13)" },
+  { name: "Label/chevron width",  duration: "360ms", standard: "short (300ms)",    curve: "cubic-bezier(0.32, 0.72, 0, 1)", token: "Motion/SideNav/Label/Fade",  rationale: "Item label + chevron max-width — same curve as panel width" },
+  { name: "Label/chevron opacity",duration: "200ms", standard: "instant–short",    curve: "ease",                            token: "—",                          rationale: "Slightly shorter than width so labels land before width finishes" },
+  { name: "Grouper accordion",    duration: "340ms", standard: "short (300ms)",    curve: "cubic-bezier(0.22, 1, 0.36, 1)", token: "Motion/SideNav/Accordion",   rationale: "grid-template-rows 0fr→1fr · easeOutQuart (single-open accordion)" },
+  { name: "Children fade-in",     duration: "240ms / 60ms delay", standard: "short", curve: "ease",                         token: "—",                          rationale: "Inner wrapper opacity 0→1 — delayed 60ms behind height grow" },
+  { name: "Children fade-out",    duration: "160ms",  standard: "instant–short",   curve: "ease",                            token: "—",                          rationale: "Snappier exit when collapsing — no delay" },
+  { name: "Chevron rotation",     duration: "340ms",  standard: "short (300ms)",   curve: "cubic-bezier(0.22, 1, 0.36, 1)", token: "—",                          rationale: "Matches accordion — chevron + panel land together" },
+  { name: "Section label / Rail divider crossfade", duration: "220ms / 300ms", standard: "short", curve: "cubic-bezier(0.4,0,0.2,1)", token: "—",                rationale: "Opacity 220ms + max-height 300ms when sidebar collapses to rail" },
+  { name: "Overlay enter",        duration: "380ms",  standard: "short+ (>300ms)", curve: "cubic-bezier(0,0,0.2,1)",         token: "Motion/SideNav/Overlay/Enter", rationale: "Full-height panel gliding in; 300ms feels mechanical" },
+  { name: "Overlay exit",         duration: "300ms",  standard: "short (300ms)",   curve: "cubic-bezier(0.4,0,0.6,1)",      token: "Motion/SideNav/Overlay/Exit",  rationale: "Matches standard — exits are snappier by design" },
+  { name: "Item colour/fill",     duration: "150ms",  standard: "instant (150ms)", curve: "ease",                            token: "— (standard)",                rationale: "Hover/active fill and colour transitions" },
+  { name: "Popover enter",        duration: "150ms",  standard: "instant (150ms)", curve: "cubic-bezier(0,0,0.2,1)",        token: "— (standard)",                rationale: "Tooltip and flyout popover appear" },
+  { name: "Hover-safe close delay", duration: "300ms", standard: "short (300ms)",  curve: "—",                               token: "—",                          rationale: "Timer after mouse leaves item + popover (WCAG 2.5.1)" },
+  { name: "Scrim",                duration: "280ms",  standard: "short (300ms)",   curve: "cubic-bezier(0.4,0,0.2,1)",      token: "— (standard ~)",              rationale: "Overlay scrim fade" },
 ];
 
 function MotionRow({ name, duration, standard, curve, token, rationale }) {

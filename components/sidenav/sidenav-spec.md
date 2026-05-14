@@ -839,7 +839,16 @@ The reference demo (`sidenav.html`) uses a church management context with three 
 
 When the sidebar is in the 240px expanded state, clicking a Level 0 Grouper toggles its Level 1 children between visible and hidden using an **animated accordion**.
 
-**Multiple-open:** Multiple groupers can be open simultaneously. There is no single-open constraint (no accordion auto-close). The user may expand all groupers at once; the nav scrolls if the total height exceeds the viewport.
+**Single-open accordion (updated 2026-05-13):** Only one grouper is open at a time. Opening a grouper automatically closes any other previously expanded grouper. This keeps the nav compact and the active context obvious. The collapse animation on the previously-open grouper runs in parallel with the expand on the newly-opened one — both use the same 340 ms easeOutQuart curve.
+
+```js
+// Reference implementation (matches sidenav.html and sidenav.jsx)
+const toggleExpand = id => setExpanded(prev => {
+  const isNowOpen = !prev[id];
+  if (isNowOpen) return { [id]: true };   // close all others, open this one
+  const next = { ...prev }; delete next[id]; return next;
+});
+```
 
 **Chevron direction:**
 - Collapsed (children hidden): chevron points **down** (`▼`)
@@ -1101,7 +1110,8 @@ The only things that genuinely need to be **done in Figma** (because they are de
 
 All SideNav motion follows `docs/design-system-spec.md` §2 with the contextual overrides documented in §2.4 of that file. The full implementation detail lives in two sections of this spec:
 
-- **§8.3** — Sidebar width transition (360ms) and label/chevron fade (180ms)
+- **§8.3** — Sidebar width transition (380ms smooth-spring) + label/chevron max-width (360ms same curve) + opacity (200ms ease)
+- **§12.1** — Grouper accordion (340ms easeOutQuart) + children opacity fade-in (240ms / 60ms delay) + chevron rotation (340ms same curve)
 - **§17.6** — Overlay enter (380ms) and exit (300ms) transitions, scrim fade, reduced-motion rules
 
 ### Summary of durations
