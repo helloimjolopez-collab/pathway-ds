@@ -87,6 +87,12 @@ Or inline the SVG from [spinner.html](./spinner.html) — same result.
 
 ---
 
+## For Figma Make
+
+Paste [`spinner.html`](./spinner.html) into the Figma Make prompt — already clean, no docs panel.
+
+---
+
 ## Figma source
 
 - **File:** Pathway Design System Master File MB 2.0 (`fileKey: 3sw45aVcngFAmpbP6cfrXP`)

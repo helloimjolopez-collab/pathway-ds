@@ -103,6 +103,12 @@ If the real `top-nav.jsx` module isn't available, copy the implementation block 
 
 ---
 
+## For Figma Make
+
+Paste [`top-nav.html`](./top-nav.html) into the Figma Make prompt — it's already clean (no docs panel). Pair with this brief for the contract rules.
+
+---
+
 ## Figma source
 
 - **File:** Pathway Design System Master File MB 2.0 (`fileKey: 3sw45aVcngFAmpbP6cfrXP`)
