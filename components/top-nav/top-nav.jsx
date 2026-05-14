@@ -43,8 +43,6 @@ export const L = {
   orgAvatarNav: 20, orgAvatarSm: 24, orgAvatarPanel: 32,
   searchPill: 32, avatarSize: 32,
   radius: 8, radiusSm: 4,
-  // Org logo crop values — Figma §7.2.1
-  logoW: "196.31%", logoH: "228.29%", logoL: "-47.05%", logoT: "-63.31%",
 };
 
 // ─── ABBREVIATION UTILITIES ────────────────────────────────────────────────────
@@ -185,19 +183,19 @@ export function TopNavSearch({ onSearchOpen }) {
 
   if (expanded) {
     return (
-      <div
-        style={{ display: "flex", alignItems: "center",
-          minHeight: L.touchTarget, minWidth: L.searchPill }}
-      >
+      <div style={{ display: "flex", alignItems: "center",
+        minHeight: L.touchTarget, minWidth: L.touchTarget }}>
         <div style={{
-          display: "flex", alignItems: "center", gap: 4,
-          height: L.searchPill, padding: "0 6px 0 8px",
-          background: T.searchFill,
-          border: `0.75px solid ${T.monoBase}`,
-          borderRadius: 9999, minWidth: 200, maxWidth: 280,
-          transition: "min-width 180ms ease",
+          display: "flex", alignItems: "center", gap: 8,
+          height: 36, padding: "0 8px",
+          background: "white",
+          border: "1px solid #6e8bd4",
+          borderRadius: 9999, width: 320,
         }}>
-          <Icon name="search" size={16} style={{ color: T.monoBase, flexShrink: 0 }} />
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center",
+            width: 24, height: 24, flexShrink: 0 }}>
+            <Icon name="search" size={16} style={{ color: "#606060" }} />
+          </div>
           <input
             ref={inputRef}
             value={query}
@@ -206,22 +204,25 @@ export function TopNavSearch({ onSearchOpen }) {
             aria-label="Search"
             style={{
               flex: 1, background: "transparent", border: "none", outline: "none",
-              color: T.monoBase, fontSize: 13, fontWeight: 400, minWidth: 0,
+              color: "#252525", fontSize: 14, fontWeight: 400, lineHeight: "20px",
+              letterSpacing: "0.3px", minWidth: 0,
               fontFamily: "'Red Hat Text', sans-serif",
             }}
           />
-          <button
-            onClick={close}
-            aria-label="Close search"
-            style={{
-              display: "flex", alignItems: "center", justifyContent: "center",
-              background: "transparent", border: "none", cursor: "pointer",
-              padding: 3, borderRadius: 4, flexShrink: 0,
-              color: T.monoBase, opacity: 0.7,
-            }}
-          >
-            <Icon name="close" size={14} style={{ color: T.monoBase }} />
-          </button>
+          {query.length > 0 && (
+            <button
+              onClick={() => { setQuery(""); inputRef.current?.focus(); }}
+              aria-label="Clear search"
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center",
+                background: "transparent", border: "none", cursor: "pointer",
+                padding: 0, borderRadius: 9999, flexShrink: 0,
+                width: 24, height: 24,
+              }}
+            >
+              <Icon name="cancel" size={20} style={{ color: "#606060" }} />
+            </button>
+          )}
         </div>
       </div>
     );
@@ -368,7 +369,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           background: open ? T.controlPressed : hov ? T.controlHover : T.orgFill,
           border: `1px solid ${open || hov ? T.orgStrokeHover : T.orgStroke}`,
           cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
-          transition: "background 120ms ease, border-color 120ms ease",
+          transition: "background 150ms cubic-bezier(0.4,0,0.2,1), border-color 150ms cubic-bezier(0.4,0,0.2,1)",
         }}
       >
         {/* Avatar container */}
@@ -389,8 +390,8 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
                 ? <img
                     src={org.logoUrl} alt=""
                     onError={() => setImgFailed(true)}
-                    style={{ position: "absolute",
-                      width: L.logoW, height: L.logoH, left: L.logoL, top: L.logoT }}
+                    style={{ width: "100%", height: "100%", objectFit: "cover",
+                      display: "block" }}
                   />
                 : <OrgAvatarPlaceholder />
               }
@@ -418,7 +419,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           display: "flex", alignItems: "center", justifyContent: "center",
           width: 16, height: 16, marginRight: 2,
           transform: open ? "rotate(180deg)" : "none",
-          transition: "transform 180ms ease",
+          transition: "transform 200ms cubic-bezier(0.4,0,0.2,1)",
         }}>
           <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
         </div>
@@ -446,7 +447,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
           border: `1px solid ${open ? T.orgStrokeHover : "transparent"}`,
           cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
-          transition: "background 120ms ease, border-color 120ms ease",
+          transition: "background 150ms cubic-bezier(0.4,0,0.2,1), border-color 150ms cubic-bezier(0.4,0,0.2,1)",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 4,
@@ -473,7 +474,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           width: 16, height: 16, display: "flex", alignItems: "center",
           justifyContent: "center", marginLeft: 4,
           transform: open ? "rotate(180deg)" : "none",
-          transition: "transform 180ms ease",
+          transition: "transform 200ms cubic-bezier(0.4,0,0.2,1)",
         }}>
           <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
         </div>
@@ -594,7 +595,7 @@ export function TopNav({
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
               margin: 0, listStyle: "none",
-              animation: "tnDropIn 140ms ease-out both",
+              animation: "tnDropIn 200ms cubic-bezier(0,0,0.2,1) both",
             }}
           >
             {modules.map(m => (
@@ -640,7 +641,7 @@ export function TopNav({
               width: 280, background: "#fff",
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 8, zIndex: 300,
-              animation: "tnDropIn 140ms ease-out both",
+              animation: "tnDropIn 200ms cubic-bezier(0,0,0.2,1) both",
             }}
           >
             <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: ".07em",
@@ -651,8 +652,14 @@ export function TopNav({
               padding: 8, borderRadius: 6, background: T.activeItem }}>
               <div style={{ width: L.orgAvatarPanel, height: L.orgAvatarPanel,
                 borderRadius: L.radiusSm, background: org.bg || T.navBg,
-                display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <span style={{ fontSize: 9, fontWeight: 700, color: "#fff" }}>{org.initials}</span>
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0, overflow: "hidden",
+                border: `1px solid ${T.orgStroke}` }}>
+                {hasLogo
+                  ? <img src={org.logoUrl} alt="" style={{ width: "100%", height: "100%",
+                      objectFit: "cover", display: "block" }} />
+                  : <span style={{ fontSize: 9, fontWeight: 700, color: "#fff" }}>{org.initials}</span>
+                }
               </div>
               <div style={{ minWidth: 0 }}>
                 <div style={{ fontSize: 13, fontWeight: 500, color: T.itemText,
@@ -690,7 +697,7 @@ export function TopNav({
               width: 200, background: "#fff",
               border: `1px solid rgba(45,72,137,0.10)`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
-              animation: "tnDropIn 140ms ease-out both",
+              animation: "tnDropIn 200ms cubic-bezier(0,0,0.2,1) both",
             }}
           >
             <div style={{ padding: "10px 12px 8px",
