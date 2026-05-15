@@ -2,6 +2,44 @@
 
 Design system for Ministry Brands Amplify. Tokens + components + specifications, all versioned in one place, with Storybook deployed from `main`.
 
+## Using the tokens
+
+The Pathway token library is published to npm and updated automatically on every token sync.
+
+```bash
+npm install @helloimjolopez-pathway/pathway-tokens
+```
+
+```js
+// CSS custom properties — import once in your app entry point
+import "@helloimjolopez-pathway/pathway-tokens/css";
+
+// JS token object
+import tokens from "@helloimjolopez-pathway/pathway-tokens";
+
+// Raw DTCG JSON (for tooling)
+import tokenJson from "@helloimjolopez-pathway/pathway-tokens/json";
+```
+
+Without a bundler — link the CSS directly:
+
+```html
+<link rel="stylesheet" href="https://helloimjolopez-collab.github.io/pathway-ds/storybook/tokens.css" />
+```
+
+Once loaded, use the custom properties anywhere:
+
+```css
+.my-component {
+  background: var(--semantic-color-light-mode-fill-static-brand-base);
+  color:      var(--semantic-color-light-mode-text-static-primary-inverse);
+}
+```
+
+Full token reference: [Storybook → Tokens](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/tokens-primitives-color--docs) · [Token architecture](tokens/README.md) · [Agent brief](tokens/agent-brief.md)
+
+---
+
 ## Layout
 
 ```
