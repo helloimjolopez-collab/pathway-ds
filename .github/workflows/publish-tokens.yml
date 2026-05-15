@@ -36,17 +36,33 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Bump version in package.json
+        run: |
+          BUMP="${{ github.event.inputs.bump }}"
+          CURRENT=$(jq -r '.version' package.json)
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
+          if [ "$BUMP" = "major" ]; then NEW="$((MAJOR+1)).0.0"
+          elif [ "$BUMP" = "minor" ]; then NEW="${MAJOR}.$((MINOR+1)).0"
+          else NEW="${MAJOR}.${MINOR}.$((PATCH+1))"
+          fi
+          jq --arg v "$NEW" '.version = $v' package.json > tmp.json && mv tmp.json package.json
+          echo "NEW_VERSION=$NEW" >> $GITHUB_ENV
+
       - name: Build tokens (Style Dictionary)
         run: node style-dictionary.config.js
 
       - name: Build dist/
         run: node scripts/build-dist.js
 
-      - name: Bump version and tag
+      - name: Commit, tag and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          npm version ${{ github.event.inputs.bump }} -m "chore(release): v%s [skip ci]"
+          git add package.json
+          git commit -m "chore(release): v${{ env.NEW_VERSION }} [skip ci]"
+          git tag "v${{ env.NEW_VERSION }}"
+          git fetch origin main
+          git rebase origin/main
           git push origin main --follow-tags
 
       - name: Publish to npm
