@@ -5,7 +5,7 @@ Cross-component design-system documentation. Everything in this folder applies t
 This folder is intentionally empty to start. As the system grows, add markdown files here for:
 
 - **`overview.md`** — what Pathway is, what it covers, what it doesn't, for whom
-- **`token-architecture.md`** — primitives → semantic → contextual layers, alias chains, naming rules
+- **`../tokens/README.md`** — primitives → semantic layers, alias chains, naming rules (already exists)
 - **`contributing.md`** — how to add a component, review gates, commit conventions
 - **`governance.md`** — ownership model, who decides what, deprecation policy, versioning
 - **`accessibility.md`** — baseline AA/AAA expectations, pattern library
