@@ -12,9 +12,10 @@ If a documented component exists for what you're building, **use the component**
 
 2. **Token names follow the pattern `Category/Subcategory/Variant/State`.** Examples: `Fill/Static/Brand/Base`, `Text/Contextual/NavItem/Active`, `Icon/Action/Primary/Hover`. If you propose a name that doesn't fit this pattern, it doesn't exist — pick a real one from this file.
 
-3. **There are two scopes:** `Static` and `Contextual`.
-   - `Static` tokens have one meaning across the whole product (e.g. `Fill/Static/Brand/Base = #2d4889`).
-   - `Contextual` tokens belong to a specific component family (e.g. `Fill/Contextual/NavItem/Active`). They may share hex values with static tokens but are kept separate so they can diverge in future.
+3. **There are three scopes:** `Static`, `Action`, and `Contextual`.
+   - `Static` — fixed meaning across the whole product, not tied to interaction state (e.g. `Fill/Static/Brand/Base = #2d4889`, `Text/Static/Primary/Inverse = #ffffff`).
+   - `Action` — for interactive elements; always come with states (`Base`, `Hover`, `Pressed`, `Disabled`) and variants (`Primary`, `Secondary`, `Tertiary`). Use these on buttons, links, focus rings, and interactive controls (e.g. `Fill/Action/Primary/Base`, `Fill/Action/Primary/Hover`, `Stroke/Action/Tertiary/Base`).
+   - `Contextual` — scoped to a specific component family; they may share hex values with other scopes today but are kept separate so they can diverge independently (e.g. `Fill/Contextual/NavItem/Active`, `Icon/Contextual/NavItem/Hover`).
 
 4. **Typography is `Red Hat Text`, weights 400/500/600.** No other font. No other weights. No display font.
 
