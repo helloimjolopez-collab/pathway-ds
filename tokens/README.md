@@ -75,24 +75,40 @@ Figma variable value   →   Primitive token   →   Semantic token   →   Comp
 
 ---
 
+## The six Figma variable collections
+
+Pathway organises all variables into six collections in Figma. Understanding them tells you exactly what exists and where to look.
+
+| Collection | Layer | What it contains |
+|-----------|-------|-----------------|
+| **Primitive: Color** | Primitive | 12 named colour palettes (Cool Neutral, Warm Neutral, Brand, Red, Orange, Green, Seabreeze, Lagoon, Jade, Amethyst, Saffron, Mauve). Each has a numbered step scale; higher = darker. |
+| **Primitive: Type** | Primitive | Raw font settings: family, weight, size, line-height, letter-spacing. |
+| **Primitive: Unit** | Primitive | Raw numeric values (1–120, plus sub-pixel steps) used as the spacing base. |
+| **Semantic: Color** | Semantic | Purpose-named colour tokens in Light Mode and Dark Mode. Path: `Role / Scope / Variant / State`. Roles: Text, Fill, Icon, Stroke, Surface, Scrim. |
+| **Semantic: Layout & Units** | Semantic | Global spacing contracts (BorderWidth, CornerRadius, Gap, Padding) plus contextual component-specific layout values. |
+| **Semantic: Type** | Semantic | Named type styles in Desktop and Mobile modes. Path: `Category / Subcategory / Size / Weight`. Categories: Heading, Text, Label. |
+
 ## Hierarchy at a glance
 
 ```
 Figma Variables (source of truth for all token values)
   │
-  ▼
-Primitive tokens              ← raw values: #ffffff, #4b6ec3, 4px…
-  │   never consumed directly     named by what they are
-  │   aliased by ↓
-  ▼
-Semantic tokens               ← purpose-named aliases
-  │   these are the component contract   named by when and where to use them
-  │   emitted as ↓
-  ▼
-CSS custom properties         ← var(--semantic-color-light-mode-…)
-  │   in src/tokens/tokens.css
-  ▼
-Component styles
+  ├── Primitive: Color       ← raw palettes: Cool Neutral, Brand, Red…
+  ├── Primitive: Type        ← raw font settings: size, weight, line-height…
+  ├── Primitive: Unit        ← raw numbers: 4, 8, 12, 16…
+  │         (never consumed directly — only aliased by semantics)
+  │
+  ├── Semantic: Color        ← Role / Scope / Variant / State
+  │     └── e.g. Fill / Static / Brand / Base → {Brand.500}
+  ├── Semantic: Layout & Units ← BorderWidth / Base, CornerRadius / Medium…
+  └── Semantic: Type         ← Heading / Display / XL / Bold, Label / Button / Base…
+            │
+            │ emitted as CSS custom properties by Style Dictionary
+            ▼
+      src/tokens/tokens.css  ← var(--semantic-color-light-mode-fill-static-brand-base)
+            │
+            ▼
+      Component styles
 ```
 
 ---

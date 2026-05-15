@@ -10,14 +10,14 @@ If a documented component exists for what you're building, **use the component**
 
 1. **Every colour you use must come from a semantic token.** Never raw hex. Never primitive tokens (`Blue/180`, `Cool-Neutral/130`, etc.). Never invented token names.
 
-2. **Token names follow the pattern `Category/Subcategory/Variant/State`.** Examples: `Fill/Static/Brand/Base`, `Text/Contextual/NavItem/Active`, `Icon/Action/Primary/Hover`. If you propose a name that doesn't fit this pattern, it doesn't exist — pick a real one from this file.
+2. **Semantic colour token names follow `Role / Scope / Variant / State`.** Examples: `Fill/Static/Brand/Base`, `Text/Contextual/NavItem/Active`, `Icon/Action/Primary/Hover`. Type token names follow `Category/Subcategory/Size/Weight` (e.g. `Heading/Display/XL/Bold`, `Label/Button/Base`). Layout token names follow `Category/Size` (e.g. `BorderWidth/Base`, `CornerRadius/Medium`). If you propose a name that isn't in this file, it doesn't exist — look it up.
 
 3. **There are three scopes:** `Static`, `Action`, and `Contextual`.
    - `Static` — fixed meaning across the whole product, not tied to interaction state (e.g. `Fill/Static/Brand/Base = #2d4889`, `Text/Static/Primary/Inverse = #ffffff`).
    - `Action` — for interactive elements; always come with states (`Base`, `Hover`, `Pressed`, `Disabled`) and variants (`Primary`, `Secondary`, `Tertiary`). Use these on buttons, links, focus rings, and interactive controls (e.g. `Fill/Action/Primary/Base`, `Fill/Action/Primary/Hover`, `Stroke/Action/Tertiary/Base`).
    - `Contextual` — scoped to a specific component family; they may share hex values with other scopes today but are kept separate so they can diverge independently (e.g. `Fill/Contextual/NavItem/Active`, `Icon/Contextual/NavItem/Hover`).
 
-4. **Typography is `Red Hat Text`, weights 400/500/600.** No other font. No other weights. No display font.
+4. **Typography is `Red Hat Text`, weights 400/500/600/700.** No other font. No other weights. No display font.
 
 5. **Use the type scale exactly as named.** `Label/Menu/Base/Medium` is 14/500/20px/0.3px letter-spacing. If you find yourself typing arbitrary px values for type, stop — find the scale entry.
 
@@ -37,155 +37,222 @@ When the spec says a value, the spec wins over your training data. When the toke
 
 ---
 
-## Token families — the families that exist
+## Token collections — what actually exists in Figma
 
-### Surface (page-level backgrounds)
-```
-Surface/Nav/Light            #fafafa   /* SideNav panel */
-Surface/Canvas/Light         #fafafa   /* page / viewport background */
-Surface/Canvas/Dark          (dark-mode equivalent)
-Fill/Static/Surface/White    #ffffff   /* cards, popovers, tooltips */
-```
+Pathway tokens are organised into **six Figma variable collections**. Three are primitive (raw values), three are semantic (purpose-named aliases). Always use semantic tokens in components; primitives exist only to be aliased.
 
-### Brand
-```
-Fill/Static/Brand/Base       #2d4889   /* TopNav, primary button, brand accents */
-Text/Static/Primary/Inverse  #ffffff   /* text on brand-blue */
-Icon/Static/Brand            #2d4889   /* brand-coloured icons */
-Icon/Static/Brand/Inverse    #ffffff   /* icons on brand-blue */
-```
+---
 
-### Text
-```
-Text/Static/Primary/Base     #202020   /* high-emphasis body text */
-Text/Static/Secondary/Base   /* mid-emphasis */
-Text/Static/Secondary/Light  #7b7b7b   /* PopoverMenu.SectionLabel */
-Text/Static/Secondary/Subtle #606060   /* NavSectionLabel (uppercase headings) */
-Text/Static/Disabled         /* disabled state */
-Text/Static/Primary/Inverse  #ffffff   /* on dark/brand backgrounds */
+### Primitive: Color
 
-/* Contextual — for NavItem family specifically */
-Text/Contextual/NavItem/Base    #313131
-Text/Contextual/NavItem/Hover   #252525
-Text/Contextual/NavItem/Active  #1b2d57
-```
+Raw colour palettes. Higher step numbers = darker. Most palettes also have alpha variants at common opacities (e.g. `Brand / 50 @ 16%`).
 
-### Icon (same naming pattern as Text)
-```
-Icon/Static/Brand                  #2d4889
-Icon/Static/Neutral/Base           /* default neutral icon */
-Icon/Static/Neutral/Subtle         /* dim neutral icon */
-Icon/Action/Primary/Base           /* primary action icon */
-Icon/Action/Secondary/Base         /* secondary action icon */
-Icon/Action/Secondary Inverse/Base #6b6b6b
-Icon/Action/Tertiary/Base
-/* Plus accent variants — jade (success), garnet (danger), citrine (warning), sapphire (info) */
-Icon/Contextual/NavItem/Base    #484848
-Icon/Contextual/NavItem/Hover   #313131
-Icon/Contextual/NavItem/Active  #2d4889   /* also indicator stripe colour */
-```
+| Palette | Range | Notes |
+|---------|-------|-------|
+| Cool Neutral | 0–240 | White → near-black. The main neutral. |
+| Warm Neutral | 0–980 | Warm off-white → warm near-black. |
+| Brand | 0–950 | Blue family. `500 = #2d4889` is the primary brand blue. |
+| Red | 0–210 | Negative / error. |
+| Orange | 0–210 | Danger / warning. |
+| Green | 0–190 | Positive / success. |
+| Seabreeze | 10–190 | Light blue-cyan. |
+| Lagoon | 10–190 | Teal-cyan. |
+| Jade | 10–190 | Green-teal. |
+| Amethyst | 0–180 | Purple. `30 = #dcd9ef`, `150 = #221e3f` (profile avatar). |
+| Saffron | 0–210 | Amber-yellow. Alert range. |
+| Mauve | 0–200 | Pink-purple. |
 
-### Fill (component-level backgrounds)
-```
-Fill/Static/Brand/Base       #2d4889   /* primary button, TopNav */
-Fill/Static/Surface/White    #ffffff
-Fill/Static/Accent_Amethyst/Base #dcd9ef  /* Profile avatar background */
-Fill/Action/Primary/Base     /* primary button rest */
-Fill/Action/Primary/Hover
-Fill/Action/Primary/Active
-Fill/Action/Tertiary/Base    /* outline / subtle button */
-/* Plus accent fills — jade, garnet, citrine, sapphire — for status surfaces */
+Primitives are **never referenced in components**. They are only aliased by semantic tokens.
 
-/* Contextual — NavItem family */
-Fill/Contextual/NavItem/Base     #fafafa
-Fill/Contextual/NavItem/Hover    rgba(17,17,17,0.02)
-Fill/Contextual/NavItem/Active   rgba(160,181,230,0.16)
-Fill/Contextual/NavItem/Trail    rgba(17,17,17,0.02)
-```
+---
 
-### Stroke (borders)
-```
-Stroke/Static/Neutral/Light   #f6f6f6   /* nav border, NavHeader divider, rail section divider */
-Stroke/Static/Neutral/Subtle  #ededed   /* popover border, list-section bottom border */
-Stroke/Static/Neutral/Default /* form input border */
-Stroke/Action/Primary/Base    /* primary-action focus ring */
-Stroke/Action/Tertiary/Base   rgba(255,255,255,0.16)  /* OrgSwitcher pill border on brand-blue */
-```
+### Primitive: Type
 
-### Typography (semantic type scale)
+Raw typographic values, referenced by semantic type tokens. Do not use directly.
+
+- `Family / Brand` → `"Red Hat Text"` (the only typeface)
+- `Weight` → 300 · 400 · 500 · 600 · 700
+- `Size` → 10 · 11 · 12 · 14 · 16 · 18 · 20 · 24 · 32 · 36 · 40 · 48 · 56
+- `Line Height` → per size · per density: Tight · Single · Relaxed · Spacious
+- `Letter Spacing` → Compact · Standard · Wide · ExtraWide
+
+---
+
+### Primitive: Unit
+
+Raw numeric values: 1, 2, 4, 6, 8, 10, 11, 12, 14, 16, 18, 20, 24, 26, 28, 32, 36, 40, 44, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120 (plus 0.5, 0.75, 1.5). Referenced by semantic layout tokens. Do not use directly.
+
+---
+
+### Semantic: Color
+
+**Two modes: Light Mode · Dark Mode.**
+
+Token path: `Role / Scope / Variant / State`
+
+**Roles** — what the token colours:
+
+| Role | Usage |
+|------|-------|
+| `Text` | Foreground text |
+| `Fill` | Component background fills |
+| `Icon` | Icon colour |
+| `Stroke` | Borders, outlines, focus rings |
+| `Surface` | Page-level backgrounds (no Scope level — path is `Surface / Nav / Base`, `Surface / Canvas / Light`) |
+| `Scrim` | Overlay backgrounds (no Scope level — path is `Scrim / Light`, `Scrim / Subtle`, `Scrim / Base`) |
+
+**Scopes** (apply to Text, Fill, Icon, Stroke):
+
+**`Static`** — fixed value, not interaction-state dependent.
 ```
-Label/Menu/Base/Medium         14px / 500 / 20px / 0.3px  Red Hat Text
-                               → SideNavItem label, PopoverMenu.Item, primary button
-Label/Menu/Base/Regular        14px / 400 / 20px / 0.02px Red Hat Text
-                               → PopoverMenu.SectionLabel (in flyout, not uppercase)
-Label/Section/Small/Semibold   11px / 600 / 16px / 0.6px UPPERCASE Red Hat Text
-                               → NavSectionLabel (in-nav uppercase headings)
-Text/Body/S/Regular            14px / 400 / 20px / 0.02px Red Hat Text
-                               → SideNavTooltip text, body copy
-Text/Body/XSmall/Regular       12px / 400 / 18px / 0.6px Red Hat Text
-                               → SideNavListSection ListItem text, captions
-Heading/H1                     /* defined in tokens.json — see Storybook Typography page */
-Heading/H2
-Heading/H3
+Variants: Neutral · Brand · Info · Warning · Danger · Negative · Positive
+          Accent_Amethyst · Accent_Jade · Accent_Seabreeze · Accent_Lagoon
+States:   Light · Subtle · Base · Contrast · Bold · Dark · Black
+          (not every variant has every state — check the JSON)
+
+Examples:
+  Fill / Static / Brand / Base     → #2d4889  (TopNav, primary button)
+  Fill / Static / Neutral / Light  → #ffffff  (cards, popovers)
+  Fill / Static / Neutral / Subtle → #fbfbfb  (subtle backgrounds)
+  Fill / Static / Accent_Amethyst / Base → #dcd9ef  (profile avatar)
+  Text / Static / Primary / Base   → #202020
+  Text / Static / Primary / Inverse → #ffffff  (text on dark/brand)
+  Icon / Static / Brand / Bold     → #2d4889
+  Stroke / Static / Neutral / Light  → #f6f6f6  (nav borders, dividers)
+  Stroke / Static / Neutral / Subtle → #ededed  (popover borders)
+  Surface / Nav / Light  → #fafafa
+  Surface / Canvas / Light → #fafafa
 ```
 
-All text uses `'Red Hat Text', sans-serif`. Load via Google Fonts:
+**`Action`** — interactive elements. Always have interaction states.
+```
+Variants: Primary · PrimaryInverse · Secondary · SecondaryInverse · Tertiary · TertiaryInverse
+          Mono · Warning · WarningInverse · Danger · DangerInverse
+          Negative · NegativeInverse · Positive · PositiveInverse
+          Alert · Accent_Amethyst · Accent_Amethyst_Inverse · Accent_Jade · Accent_Jade_Inverse
+States:   Base · Hover · Pressed · Disabled (sometimes Selected)
+
+Examples:
+  Fill / Action / Primary / Base    → {Brand.400}   (primary button rest)
+  Fill / Action / Primary / Hover   → {Brand.200}   (primary button hover)
+  Fill / Action / Primary / Pressed → {Brand.500}
+  Fill / Action / Primary / Disabled → {Brand.40}
+  Fill / Action / Secondary / Base  → {Cool Neutral.20}
+  Stroke / Action / Tertiary / Base → rgba(255,255,255,0.16)  (OrgSwitcher pill)
+  Icon / Action / Primary / Base    → {Brand.400}
+  Icon / Action / Secondary Inverse / Base → #6b6b6b
+```
+
+**`Contextual`** — scoped to a specific component family.
+```
+Text / Contextual / NavItem / Base|Hover|Focused|Active|Disabled
+Fill / Contextual / NavItem / Base|Hover|Focused|Active|Trail
+Icon / Contextual / NavItem / Base|Hover|Focused|Active|Disabled
+Stroke / Contextual / FocusRing / Base
+
+Examples (Light Mode):
+  Fill / Contextual / NavItem / Base   → transparent
+  Fill / Contextual / NavItem / Hover  → rgba(17,17,17,0.02)
+  Fill / Contextual / NavItem / Active → rgba(160,181,230,0.16)
+  Text / Contextual / NavItem / Base   → #313131
+  Text / Contextual / NavItem / Active → #1b2d57
+  Icon / Contextual / NavItem / Active → #2d4889
+```
+
+---
+
+### Semantic: Layout & Units
+
+**Single mode.**
+
+**Global tokens** — `Category / Size`:
+
+| Category | Sizes |
+|----------|-------|
+| `BorderWidth` | XThin · Thin · Base · Medium · Thick · XThick · XXThick |
+| `CornerRadius` | XSmall (2px) · Small (4px) · Medium (8px) · Large (16px) · Full (64px) |
+| `Gap` | XXXTight (2) · XXTight (4) · XTight (6) · Tight (8) · Medium (12) · Base (16) · Relaxed (24) · Wide (36) |
+| `Padding` | XXXTight (2) → Collosal (120), 12 steps |
+
+**Contextual tokens** — `Contextual / Component / Property / …`:
+- `Contextual / Button / Gap · Padding · Border Width`
+- `Contextual / NavItem / Large / Padding · Radius · Stroke Width`
+- `Contextual / Page / Padding · Gap`
+- `Contextual / Page Heading / Padding · Gap`
+- `Contextual / Section Heading / Padding · Gap`
+- `Contextual / Section / Padding · Gap`
+- `Contextual / ToolBar / Padding · Gap`
+- `Contextual / Focused Element / CornerRadius · BorderWidth`
+- `Contextual / Card / Gap · Padding · Border Width · CornerRadius`
+
+**Accessibility tokens** — `Accessibility / Touch Target / Size / Dimension`:
+- Optimal: 48×48px · Mobile Minimum: 44×44px · Desktop Minimum: 36×36px
+
+---
+
+### Semantic: Type
+
+**Two modes: Desktop · Mobile** (values can differ).
+
+Token path: `Category / Subcategory / Size / Weight`
+
+**`Heading`**
+```
+Display / XL | L | Base    — Bold · Semibold     — 56 / 48 / 40px
+Page    / XL | L | Base    — Bold · Semibold     — 36 / 32 / 24px
+Section / L | Base | S | XS — Medium · Semibold · Bold — 20 / 18 / 16 / 14px
+Local   / Base | S | XS    — Semibold · Bold     — 14 / 12 / 11px
+```
+
+**`Text`**
+```
+Body      / Large | Base | Small | XSmall — Regular · Medium · Semibold — 18 / 16 / 14 / 12px
+Supporting / Base | Small | XSmall         — Regular · Semibold          — 12 / 11 / 10px
+Dense      / Base | Small | XSmall         — Regular · Semibold          — 12 / 11 / 10px (tight line-height)
+```
+
+**`Label`**
+```
+Button   / Base | L | S | XS   — Medium weight          — 16 / 18 / 14 / 12px
+Input    / Base | L | S        — Regular · Medium · Semibold — 14 / 16 / 12px
+Option   / Base | L | S        — Regular · Medium · Semibold — 14 / 16 / 12px
+Tab      / Base | S            — Regular · Medium · Semibold — 14 / 12px
+Menu     / Base | L | S        — Regular · Medium           — 14 / 16 / 12px
+Progress / Base | S            — Regular · Semibold          — 14 / 12px
+Badge    / Small | Base | Large — Regular · Medium · Semibold — 11 / 12 / 14px
+Section  / Small | Base | Large — Regular · Medium · Semibold — 11 / 12 / 14px
+```
+
+Specific px values: `Label/Menu/Base/Medium` = 14px / 500 / 20px line-height / 0.3px letter-spacing.
+
+All type uses `'Red Hat Text', sans-serif`. Load via Google Fonts:
 ```html
 <link rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600&display=swap" />
+  href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,400;0,500;0,600;0,700&display=swap" />
 ```
 
-### Radius
-```
-Border/Radius/XS   4px    /* Checkbox box */
-Border/Radius/S    8px    /* Buttons, nav items, popovers, tooltips */
-Border/Radius/M    12px   /* Cards */
-Border/Radius/L    16px   /* Large cards, dialogs */
-Border/Radius/Full 64px+  /* Circles (avatars, search button) */
+---
 
-Component/NavItem/Large/Radius  8px  /* SideNavItem specifically */
+### Motion (not a Figma variable collection — documented separately)
 ```
-
-### Spacing (no full token scale yet — work in progress)
-Spacing is currently not fully tokenized. Use these standard values until a scale exists:
-```
-2 · 4 · 6 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 56 · 64
-```
-Component-specific spacing values are documented in each component's spec under §4 (Layout & Spacing).
-
-### Motion (durations + easing)
-```
-/* Standard categories from docs/design-system-spec.md §2 */
 instant   150ms   /* hover, focus, colour swaps */
 short     300ms   /* small structural moves, modal enter */
 medium    600ms   /* page transitions */
 long      900ms+  /* hero animations (rare) */
 
-/* Component-specific overrides (registered, do NOT invent your own) */
-Motion/SideNav/Panel/Width    380ms · cubic-bezier(0.32, 0.72, 0, 1)  /* 240↔72 px */
+/* Component-specific (registered — do NOT invent your own) */
+Motion/SideNav/Panel/Width    380ms · cubic-bezier(0.32, 0.72, 0, 1)
 Motion/SideNav/Label/Fade     360ms · same curve · 200ms opacity
-Motion/SideNav/Accordion      340ms · cubic-bezier(0.22, 1, 0.36, 1)  /* grouper expand */
+Motion/SideNav/Accordion      340ms · cubic-bezier(0.22, 1, 0.36, 1)
 Motion/SideNav/Overlay/Enter  380ms · cubic-bezier(0, 0, 0.2, 1)
 Motion/SideNav/Overlay/Exit   300ms · cubic-bezier(0.4, 0, 0.6, 1)
 
-/* Easing curves */
-Standard:    cubic-bezier(0.4, 0, 0.2, 1)
-Decelerate:  cubic-bezier(0, 0, 0.2, 1)   /* enters */
-Accelerate:  cubic-bezier(0.4, 0, 0.6, 1) /* exits */
-SmoothSpring:cubic-bezier(0.32, 0.72, 0, 1)  /* SideNav width */
-EaseOutQuart:cubic-bezier(0.22, 1, 0.36, 1)  /* accordion */
+Standard easing:    cubic-bezier(0.4, 0, 0.2, 1)
+Decelerate (enter): cubic-bezier(0, 0, 0.2, 1)
+Accelerate (exit):  cubic-bezier(0.4, 0, 0.6, 1)
 ```
 
 **Always respect `prefers-reduced-motion: reduce`** — collapse all transforms to instant opacity fades at 150ms linear.
-
-### Accessibility tokens
-```
-Accessibility/Touch Target/Optimal   48px   /* item min-height */
-Accessibility/Touch Target/Minimum   44px   /* absolute minimum, WCAG 2.5.5 */
-Accessibility/Icon Wrapping/Small    16px
-Accessibility/Icon Wrapping/Medium   20px
-Accessibility/Icon Wrapping/Large    24px
-```
 
 ---
 
