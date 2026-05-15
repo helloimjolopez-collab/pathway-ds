@@ -64,6 +64,9 @@ jobs:
           rm -rf storybook
           mv storybook-static storybook
 
+          # Expose the built token CSS as a standalone file at /storybook/tokens.css
+          cp src/tokens/tokens.css storybook/tokens.css
+
           # Stage only the storybook output — ignore derived token files and other build artifacts
           git add storybook/
 

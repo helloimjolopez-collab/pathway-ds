@@ -160,6 +160,32 @@ const dark = t("Fill/Contextual/NavItem/Base", "dark");  // dark mode
 
 ---
 
+## Using tokens in a project
+
+Import the CSS directly — it's served as a static file from the Storybook deployment and stays in sync with every token push:
+
+```html
+<link rel="stylesheet"
+  href="https://helloimjolopez-collab.github.io/pathway-ds/storybook/tokens.css" />
+```
+
+Or in CSS:
+
+```css
+@import url('https://helloimjolopez-collab.github.io/pathway-ds/storybook/tokens.css');
+```
+
+Once imported, all CSS custom properties are available:
+
+```css
+.my-component {
+  background: var(--semantic-color-light-mode-fill-static-brand-base);
+  color: var(--semantic-color-light-mode-text-static-primary-inverse);
+}
+```
+
+---
+
 ## Files in this folder
 
 | File | What it is | Edit? |

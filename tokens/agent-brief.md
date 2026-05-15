@@ -29,8 +29,9 @@ If a documented component exists for what you're building, **use the component**
 |---|---|
 | [`pathway-design-tokens.json`](./pathway-design-tokens.json) | DTCG-format derived from Figma. **Authoritative.** Every token in production. |
 | [`figma-export/pathwaytokens.json`](./figma-export/pathwaytokens.json) | Raw Figma Variables export. Source of `pathway-design-tokens.json`. |
-| [`../src/tokens/tokens.css`](../src/tokens/tokens.css) | Style Dictionary CSS output — import this to get all CSS custom properties. |
+| [`../src/tokens/tokens.css`](../src/tokens/tokens.css) | Style Dictionary CSS output — all CSS custom properties. |
 | [`../src/tokens/tokens.js`](../src/tokens/tokens.js) | Style Dictionary JS output. |
+| **[tokens.css (live URL)](https://helloimjolopez-collab.github.io/pathway-ds/storybook/tokens.css)** | **Directly importable CSS — copy the link or `@import` it.** Updated on every deploy. |
 | [Storybook → Tokens](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/tokens-primitives-color--docs) | Visual swatches with hex values. |
 
 When the spec says a value, the spec wins over your training data. When the token JSON says a value, the JSON wins over the spec. Tokens flow Figma → JSON → CSS — never the other direction.
