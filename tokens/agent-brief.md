@@ -31,7 +31,7 @@ If a documented component exists for what you're building, **use the component**
 | [`figma-export/pathwaytokens.json`](./figma-export/pathwaytokens.json) | Raw Figma Variables export. Source of `pathway-design-tokens.json`. |
 | [`../src/tokens/tokens.css`](../src/tokens/tokens.css) | Style Dictionary CSS output — all CSS custom properties. |
 | [`../src/tokens/tokens.js`](../src/tokens/tokens.js) | Style Dictionary JS output. |
-| **npm: `@helloimjolopez-collab/pathway-tokens`** | **`npm install @helloimjolopez-collab/pathway-tokens` — ships `dist/tokens.css`, `dist/tokens.js`, `dist/tokens.json`.** |
+| **npm: `@helloimjolopez-pathway/pathway-tokens`** | **`npm install @helloimjolopez-pathway/pathway-tokens` — ships `dist/tokens.css`, `dist/tokens.js`, `dist/tokens.json`.** |
 | **[tokens.css (live URL)](https://helloimjolopez-collab.github.io/pathway-ds/storybook/tokens.css)** | Directly importable CSS without npm — updated on every deploy. |
 | [Storybook → Tokens](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/tokens-primitives-color--docs) | Visual swatches with hex values. |
 

@@ -165,20 +165,20 @@ const dark = t("Fill/Contextual/NavItem/Base", "dark");  // dark mode
 ### npm (recommended)
 
 ```bash
-npm install @helloimjolopez-collab/pathway-tokens
+npm install @helloimjolopez-pathway/pathway-tokens
 ```
 
 Then import what you need:
 
 ```js
 // CSS custom properties — add to your app entry point
-import "@helloimjolopez-collab/pathway-tokens/css";
+import "@helloimjolopez-pathway/pathway-tokens/css";
 
 // JS token object (for JS-driven theming, token lookups, etc.)
-import tokens from "@helloimjolopez-collab/pathway-tokens";
+import tokens from "@helloimjolopez-pathway/pathway-tokens";
 
 // Raw DTCG JSON (for tooling that reads token definitions)
-import tokenJson from "@helloimjolopez-collab/pathway-tokens/json";
+import tokenJson from "@helloimjolopez-pathway/pathway-tokens/json";
 ```
 
 In plain HTML or a project without a bundler, link the CSS directly:
@@ -199,7 +199,7 @@ Once the CSS is loaded, all custom properties are available:
 
 ### When moving to the Ministry Brands org repo
 
-Republish under `@ministry-brands/pathway-tokens` and update the package name in `package.json`. All import paths change from `@helloimjolopez-collab/pathway-tokens` to `@ministry-brands/pathway-tokens`.
+Republish under `@ministry-brands/pathway-tokens` and update the package name in `package.json`. All import paths change from `@helloimjolopez-pathway/pathway-tokens` to `@ministry-brands/pathway-tokens`.
 
 ---
 
