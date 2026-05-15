@@ -162,20 +162,33 @@ const dark = t("Fill/Contextual/NavItem/Base", "dark");  // dark mode
 
 ## Using tokens in a project
 
-Import the CSS directly — it's served as a static file from the Storybook deployment and stays in sync with every token push:
+### npm (recommended)
+
+```bash
+npm install @helloimjolopez-collab/pathway-tokens
+```
+
+Then import what you need:
+
+```js
+// CSS custom properties — add to your app entry point
+import "@helloimjolopez-collab/pathway-tokens/css";
+
+// JS token object (for JS-driven theming, token lookups, etc.)
+import tokens from "@helloimjolopez-collab/pathway-tokens";
+
+// Raw DTCG JSON (for tooling that reads token definitions)
+import tokenJson from "@helloimjolopez-collab/pathway-tokens/json";
+```
+
+In plain HTML or a project without a bundler, link the CSS directly:
 
 ```html
 <link rel="stylesheet"
   href="https://helloimjolopez-collab.github.io/pathway-ds/storybook/tokens.css" />
 ```
 
-Or in CSS:
-
-```css
-@import url('https://helloimjolopez-collab.github.io/pathway-ds/storybook/tokens.css');
-```
-
-Once imported, all CSS custom properties are available:
+Once the CSS is loaded, all custom properties are available:
 
 ```css
 .my-component {
@@ -183,6 +196,10 @@ Once imported, all CSS custom properties are available:
   color: var(--semantic-color-light-mode-text-static-primary-inverse);
 }
 ```
+
+### When moving to the Ministry Brands org repo
+
+Republish under `@ministry-brands/pathway-tokens` and update the package name in `package.json`. All import paths change from `@helloimjolopez-collab/pathway-tokens` to `@ministry-brands/pathway-tokens`.
 
 ---
 

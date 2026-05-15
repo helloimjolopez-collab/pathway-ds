@@ -1,10 +1,25 @@
 {
-  "name": "pathway-ds",
+  "name": "@helloimjolopez-collab/pathway-tokens",
   "version": "1.0.0",
-  "private": true,
+  "description": "Pathway Design System tokens — CSS custom properties, JS export, and DTCG JSON",
+  "license": "UNLICENSED",
   "type": "module",
   "engines": {
     "node": ">=20"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/tokens.js",
+  "style": "./dist/tokens.css",
+  "exports": {
+    ".": "./dist/tokens.js",
+    "./css": "./dist/tokens.css",
+    "./json": "./dist/tokens.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
     "sync-tokens": "node scripts/sync-tokens.js",
@@ -14,6 +29,7 @@
     "fix-tokens": "node scripts/fix-tokens.js",
     "fix-tokens-preview": "node scripts/fix-tokens.js --dry-run",
     "build-tokens": "node style-dictionary.config.js",
+    "build-dist": "node style-dictionary.config.js && node scripts/build-dist.js",
     "storybook": "node style-dictionary.config.js && storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
