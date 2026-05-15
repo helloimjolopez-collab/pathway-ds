@@ -58,7 +58,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add package.json
+          git add package.json src/tokens/
           git commit -m "chore(release): v${{ env.NEW_VERSION }} [skip ci]"
           git tag "v${{ env.NEW_VERSION }}"
           git fetch origin main
