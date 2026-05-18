@@ -3,21 +3,45 @@
  *
  * Trigger + panel component for switching organisation/campus context.
  * Lives in the global shell (dark top nav bar).
- * Desktop: full org + campus name. Mobile: abbreviated per Appendix A.
+ * Desktop: full org name + optional city/diocese name (Catholic orgs only).
+ * Mobile: abbreviated per Appendix A of org-switcher-spec.md.
  *
  * Spec:   components/org-switcher/org-switcher-spec.md
  * Figma:  https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007336-9453
+ *         Base Desktop: node 40006819:14581
+ *         Base Mobile:  node 40006820:14757
+ *         Placeholder:  node 40007243:73405
+ *
+ * ── Figma annotations (data-development-annotations) ──────────────────────────
+ * • Container.OrgLabel     — "Text truncates if going beyond 248pt"
+ * • Container.OrgName      — "Text Truncates if frame going beyond 170pt"
+ * • Container.CityName.Catholic — "Text Truncates if going beyond 72pt |
+ *     Container.CityName.Catholic is only implemented and/or shown for Catholic orgs.
+ *     CityName does not apply to Protestant orgs. CityName is NOT a suborg name."
+ * • Logo must always scale to fill frame proportionally (object-fit: cover).
+ *   If org has no logo, use the church placeholder icon (node 40007243:73405).
  */
 
 import React, { useState, useRef, useEffect } from "react";
 
+// ─── CHURCH PLACEHOLDER ICON ──────────────────────────────────────────────────
+// Figma node: I40007243:73405;40006817:14372;40007243:73426;84:22159
+// Used in the trigger avatar AND in the panel org-logo when no logoUrl is provided.
+// DO NOT replace with initials — Figma explicitly specifies this SVG.
+const CHURCH_ICON_PATH =
+  "M0 12.6667V9.53333C0 9.26667 0.0722222 9.025 0.216667 8.80833C0.361111 8.59167 0.555556 8.42778 0.8 8.31667L2.66667 7.48333V6.15C2.66667 5.89444 2.73333 5.66389 2.86667 5.45833C3 5.25278 3.17778 5.08889 3.4 4.96667L6 3.66667V2.66667H5.33333C5.14444 2.66667 4.98611 2.60278 4.85833 2.475C4.73056 2.34722 4.66667 2.18889 4.66667 2C4.66667 1.81111 4.73056 1.65278 4.85833 1.525C4.98611 1.39722 5.14444 1.33333 5.33333 1.33333H6V0.666667C6 0.477778 6.06389 0.319444 6.19167 0.191667C6.31944 0.0638889 6.47778 0 6.66667 0C6.85556 0 7.01389 0.0638889 7.14167 0.191667C7.26944 0.319444 7.33333 0.477778 7.33333 0.666667V1.33333H8C8.18889 1.33333 8.34722 1.39722 8.475 1.525C8.60278 1.65278 8.66667 1.81111 8.66667 2C8.66667 2.18889 8.60278 2.34722 8.475 2.475C8.34722 2.60278 8.18889 2.66667 8 2.66667H7.33333V3.66667L9.93333 4.96667C10.1556 5.08889 10.3333 5.25278 10.4667 5.45833C10.6 5.66389 10.6667 5.89444 10.6667 6.15V7.48333L12.5333 8.31667C12.7778 8.42778 12.9722 8.59167 13.1167 8.80833C13.2611 9.025 13.3333 9.26667 13.3333 9.53333V12.6667C13.3333 13.0333 13.2028 13.3472 12.9417 13.6083C12.6806 13.8694 12.3667 14 12 14H8.66667C8.47778 14 8.31944 13.9361 8.19167 13.8083C8.06389 13.6806 8 13.5222 8 13.3333V12C8 11.6333 7.86944 11.3194 7.60833 11.0583C7.34722 10.7972 7.03333 10.6667 6.66667 10.6667C6.3 10.6667 5.98611 10.7972 5.725 11.0583C5.46389 11.3194 5.33333 11.6333 5.33333 12V13.3333C5.33333 13.5222 5.26944 13.6806 5.14167 13.8083C5.01389 13.9361 4.85556 14 4.66667 14H1.33333C0.966667 14 0.652778 13.8694 0.391667 13.6083C0.130556 13.3472 0 13.0333 0 12.6667ZM6.66667 8.33333C6.94444 8.33333 7.18056 8.23611 7.375 8.04167C7.56944 7.84722 7.66667 7.61111 7.66667 7.33333C7.66667 7.05556 7.56944 6.81944 7.375 6.625C7.18056 6.43056 6.94444 6.33333 6.66667 6.33333C6.38889 6.33333 6.15278 6.43056 5.95833 6.625C5.76389 6.81944 5.66667 7.05556 5.66667 7.33333C5.66667 7.61111 5.76389 7.84722 5.95833 8.04167C6.15278 8.23611 6.38889 8.33333 6.66667 8.33333Z";
+
 // ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
 // All dark-mode tokens — this component is designed for dark/brand nav surfaces.
 const T = {
-  // Container fills
+  // Container fills (trigger button)
   fillBase:    "var(--semantic-color-dark-mode-fill-action-tertiary-base,    rgba(160,181,230,0.04))",
   fillHover:   "var(--semantic-color-dark-mode-fill-action-primaryinverse-hover,   rgba(10,18,35,0.16))",
   fillPressed: "var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed, rgba(255,255,255,0.08))",
+
+  // Avatar placeholder background — token: fill.action.secondary.base
+  // Figma node 40007243:73405: bg-[var(--fill/action/secondary/base,rgba(255,255,255,0.08))]
+  fillAvatarPlaceholder: "var(--semantic-color-dark-mode-fill-action-secondary-base, rgba(255,255,255,0.08))",
 
   // Border
   strokeBase:    "var(--semantic-color-dark-mode-stroke-action-tertiary-base,    rgba(160,181,230,0.16))",
@@ -51,9 +75,6 @@ const T = {
   // Active org highlight
   activeOrg:     "#eef2fb",
   orgHover:      "#f8f8f8",
-
-  // Org logo branded bg (brand-500)
-  logoBrandBg:   "#2d4889",
 
   // Layout
   radiusMedium: "var(--semantic-layout-units-cornerradius-medium, 8px)",
@@ -221,8 +242,37 @@ function Icon({ name, size = 20, style }) {
 
 // ─── SUB-COMPONENTS ───────────────────────────────────────────────────────────
 
-// Org avatar in the trigger: logo image if provided, otherwise initials block.
-function TriggerAvatar({ logoUrl, orgName, size, borderColor }) {
+/**
+ * Church SVG rendered inside the avatar frame when no org logo is on file.
+ * Figma: node 40007243:73426, positioned at inset 4.17% 8.33% 8.33% 8.33%
+ * within the 16px inner avatar frame (= the Avatar div minus its border).
+ * DO NOT replace with text initials — Figma explicitly specifies this icon.
+ */
+function ChurchPlaceholderIcon() {
+  return (
+    <div style={{ position: "absolute", inset: "4.17% 8.33% 8.33% 8.33%" }}>
+      <svg
+        viewBox="0 0 13.3333 14"
+        width="100%" height="100%"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        style={{ display: "block" }}
+      >
+        <path d={CHURCH_ICON_PATH} fill="white" fillOpacity="0.7" />
+      </svg>
+    </div>
+  );
+}
+
+/**
+ * Org avatar in the trigger button.
+ * — Logo present: renders org logo as object-fit: cover fill.
+ *   "Logo must always scale to fill frame proportionally." (Figma annotation)
+ * — No logo: renders church placeholder SVG on fill.action.secondary.base background.
+ *   (Figma node 40007243:73405 — NOT initials.)
+ */
+function TriggerAvatar({ logoUrl, size, borderColor }) {
   return (
     <div style={{
       width: size, height: size,
@@ -230,45 +280,36 @@ function TriggerAvatar({ logoUrl, orgName, size, borderColor }) {
       display: "flex", alignItems: "center", justifyContent: "center",
       flexShrink: 0,
     }}>
+      {/* Avatar box: border + corner radius from Figma tokens */}
       <div style={{
         flex: "1 0 0", height: "100%",
         border: `${T.borderWidth} solid ${borderColor}`,
         borderRadius: T.radiusSmall,
         overflow: "hidden",
         position: "relative",
+        background: logoUrl ? "transparent" : T.fillAvatarPlaceholder,
       }}>
         {logoUrl ? (
           <img
             src={logoUrl}
             alt=""
             aria-hidden="true"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
         ) : (
-          <div style={{
-            position: "absolute", inset: 0,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            background: "rgba(53,85,160,0.25)",
-          }}>
-            <span style={{
-              fontSize: Math.max(7, Math.round((size - 8) * 0.55)),
-              fontWeight: 700,
-              color: "#fbfbfb",
-              lineHeight: 1,
-              fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
-              userSelect: "none",
-            }}>
-              {abbreviateOrg(orgName).slice(0,2)}
-            </span>
-          </div>
+          <ChurchPlaceholderIcon />
         )}
       </div>
     </div>
   );
 }
 
-// Panel org logo: 48×48 with border-radius 8px, image or branded initials.
-function PanelOrgLogo({ logoUrl, orgName }) {
+/**
+ * Org logo in the panel list rows: 48×48, border-radius 8px.
+ * — Logo present: object-fit: cover fill.
+ * — No logo: church placeholder SVG on fill.action.secondary.base background.
+ */
+function PanelOrgLogo({ logoUrl }) {
   return (
     <div style={{
       width: 48, height: 48,
@@ -276,29 +317,28 @@ function PanelOrgLogo({ logoUrl, orgName }) {
       overflow: "hidden",
       flexShrink: 0,
       position: "relative",
-      background: T.logoBrandBg,
+      background: T.fillAvatarPlaceholder,
+      border: `${T.borderWidth} solid rgba(0,0,0,0.08)`,
     }}>
       {logoUrl ? (
         <img
           src={logoUrl}
           alt=""
           aria-hidden="true"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
       ) : (
-        <div style={{
-          position: "absolute", inset: 0,
-          display: "flex", alignItems: "center", justifyContent: "center",
-        }}>
-          <span style={{
-            fontSize: 11, fontWeight: 700,
-            color: "#ffffff",
-            lineHeight: 1,
-            fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
-            userSelect: "none",
-          }}>
-            {abbreviateOrg(orgName).slice(0,2)}
-          </span>
+        <div style={{ position: "absolute", inset: "8.33% 12.5% 12.5% 12.5%" }}>
+          <svg
+            viewBox="0 0 13.3333 14"
+            width="100%" height="100%"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            style={{ display: "block" }}
+          >
+            <path d={CHURCH_ICON_PATH} fill="#606060" fillOpacity="0.7" />
+          </svg>
         </div>
       )}
     </div>
@@ -358,7 +398,7 @@ function OrgListItem({ org, isActive, onSelect }) {
         transition: "background 150ms cubic-bezier(0.4,0,0.2,1)",
       }}
     >
-      <PanelOrgLogo logoUrl={org.logoUrl} orgName={org.name} />
+      <PanelOrgLogo logoUrl={org.logoUrl} />
 
       {/* Text column */}
       <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 2 }}>
@@ -502,9 +542,23 @@ function OrgPanel({ orgs = [], activeOrgId, onOrgSelect }) {
  * Designed for use on a dark/brand-coloured top navigation surface.
  * The `open` state is controlled externally; the caller owns open/close logic.
  *
- * @param {string}   orgName        Full organisation name
- * @param {string}   [campusName]   Full campus name (empty if no campus)
- * @param {string}   [logoUrl]      Org logo image URL. Omit for initials placeholder.
+ * Desktop label structure (Figma nodes 40006819:14581 / 40007477:12230 / 40007477:12205):
+ *   Container.OrgName (max 170px)  ←  orgName
+ *   Container.CityName.Catholic (max 72px, Catholic orgs ONLY)  ←  cityName
+ *
+ * ⚠️  CityName rules (Figma annotation on node 40007477:12205):
+ *   - Only shown for Catholic organisations.
+ *   - It is the CITY or DIOCESE name, NOT a campus or sub-org name.
+ *   - Protestant orgs show only `orgName` — no pipe, no second field.
+ *
+ * Mobile label uses the abbreviated form from Appendix A (campusName prop drives
+ * the campus abbreviation — this is separate from the desktop CityName.Catholic).
+ *
+ * @param {string}   orgName        Full organisation name (max 170px before truncation)
+ * @param {string}   [cityName]     City/diocese name — Catholic orgs only. Shown after " | " on desktop.
+ *                                  Max 72px before truncation. NOT a suborg name.
+ * @param {string}   [campusName]   Campus name — drives mobile abbreviated label only (Appendix A §5).
+ * @param {string}   [logoUrl]      Org logo URL. Omit → church SVG placeholder (never initials).
  * @param {Array}    [orgs]         Panel org list: [{id, name, campus?, logoUrl?, users?: [{color}]}]
  * @param {string}   [activeOrgId]  Which org is highlighted in the panel
  * @param {Function} [onOrgSelect]  (orgId) => void — called when user picks an org
@@ -516,7 +570,8 @@ function OrgPanel({ orgs = [], activeOrgId, onOrgSelect }) {
  */
 export function OrgSwitcher({
   orgName    = "Organisation",
-  campusName = "",
+  cityName   = "",   // Catholic orgs only — city/diocese name shown on desktop
+  campusName = "",   // Campus abbreviation source for mobile label
   logoUrl,
   orgs       = [],
   activeOrgId,
@@ -548,18 +603,18 @@ export function OrgSwitcher({
   const text   = isActive ? T.textPressed  : hovered ? T.textHover   : T.textBase;
   const icon   = isActive ? T.iconPressed  : hovered ? T.iconHover   : T.iconBase;
 
-  const desktopLabel = campusName ? `${orgName}  |  ${campusName}` : orgName;
-  const mobileText   = mobileLabel(orgName, campusName);
+  // Mobile label uses campusName for abbreviation (Appendix A §5)
+  const mobileText = mobileLabel(orgName, campusName);
 
-  const ariaLabel = campusName
-    ? `Current organisation: ${orgName}, ${campusName}. Activate to switch.`
+  const ariaLabel = cityName
+    ? `Current organisation: ${orgName}, ${cityName}. Activate to switch.`
     : `Current organisation: ${orgName}. Activate to switch.`;
 
-  // Figma dimensions
+  // Figma dimensions (nodes 40006819:14581 desktop / 40006820:14757 mobile)
   const OUTER_MIN  = 48;
   const BTN_H      = 36;
   const AVATAR_SZ  = isMobile ? 20 : 24;
-  const MAX_W      = isMobile ? 114 : 316;
+  const MAX_W      = isMobile ? 108 : 316; // Mobile Container.Main max-width = 108px (Figma node 40006820:14758)
 
   return (
     <div
@@ -626,36 +681,68 @@ export function OrgSwitcher({
             height: 24,
           }),
         }}>
-          {/* Avatar */}
+          {/* Avatar — logo or church placeholder per Figma */}
           <TriggerAvatar
             logoUrl={logoUrl}
-            orgName={orgName}
             size={AVATAR_SZ}
             borderColor={stroke}
           />
 
-          {/* Desktop label */}
+          {/* Desktop label — two separate containers per Figma anatomy
+              Container.OrgLabel (max 248px) →
+                Container.OrgName (max 170px, fixed 170px) + Container.CityName.Catholic (max 72px)
+              Annotation: CityName is Catholic orgs only — NOT a suborg name. */}
           {!isMobile && (
             <div style={{
               display: "flex", alignItems: "center", height: "100%",
-              maxWidth: 248, paddingRight: T.pXxtight, flexShrink: 0,
+              maxWidth: 248, flexShrink: 0,
             }}>
-              <p style={{
-                flex: "1 0 0",
-                fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
-                fontWeight: 500,
-                fontSize: 14,
-                lineHeight: "20px",
-                letterSpacing: "var(--semantic-type-desktop-label-button-s-letterspacing, 0.3px)",
-                color: text,
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                minWidth: 1,
-                margin: 0,
+              {/* Container.OrgName — max 170px, truncates independently */}
+              <div style={{
+                display: "flex", alignItems: "center", height: "100%",
+                width: 170, maxWidth: 170, flexShrink: 0,
               }}>
-                {desktopLabel}
-              </p>
+                <p style={{
+                  flex: "1 0 0",
+                  fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
+                  fontWeight: "var(--semantic-type-desktop-label-button-s-fontweight, 500)",
+                  fontSize: "var(--semantic-type-desktop-label-button-s-fontsize, 14px)",
+                  lineHeight: "var(--semantic-type-desktop-label-button-s-lineheight, 20px)",
+                  letterSpacing: "var(--semantic-type-desktop-label-button-s-letterspacing, 0.3px)",
+                  color: text,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  minWidth: 1,
+                  margin: 0,
+                }}>
+                  {orgName}
+                </p>
+              </div>
+              {/* Container.CityName.Catholic — max 72px, Catholic orgs only.
+                  NOT a suborg name. Shows diocese/city name with leading " | ". */}
+              {cityName && (
+                <div style={{
+                  display: "flex", alignItems: "center", height: "100%",
+                  maxWidth: 72, flexShrink: 0,
+                }}>
+                  <p style={{
+                    fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
+                    fontWeight: "var(--semantic-type-desktop-label-button-s-fontweight, 500)",
+                    fontSize: "var(--semantic-type-desktop-label-button-s-fontsize, 14px)",
+                    lineHeight: "var(--semantic-type-desktop-label-button-s-lineheight, 20px)",
+                    letterSpacing: "var(--semantic-type-desktop-label-button-s-letterspacing, 0.3px)",
+                    color: text,
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    maxWidth: 72,
+                    margin: 0,
+                  }}>
+                    {` | ${cityName}`}
+                  </p>
+                </div>
+              )}
             </div>
           )}
         </div>
