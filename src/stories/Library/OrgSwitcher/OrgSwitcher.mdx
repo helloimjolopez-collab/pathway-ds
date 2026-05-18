@@ -12,8 +12,8 @@ import * as OrgSwitcherStories from "./OrgSwitcher.stories";
 
 The Org Switcher lets a signed-in user see their active organisation and campus, and switch to a different one. It lives in the global shell (top navigation bar) and is visible at all times in multi-org contexts.
 
-**Desktop:** renders the full organisation name and campus name separated by a pipe.
-**Mobile:** renders abbreviated initialisations per the rules in [Appendix A of the spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher-spec.md#appendix-a-abbreviation-guidelines).
+**Desktop:** renders the full organisation name (max 170px). For Catholic orgs only, a second container shows the city/diocese name (max 72px) after a pipe.
+**Mobile:** renders the full organisation name truncated by `text-overflow: ellipsis` at `Container.Label` max-width 60px. No abbreviation — "Grace Community Church" displays as "Grace Comm…".
 
 **Always on the brand-blue surface.** All interactive controls use dark-mode tokens regardless of the app's active color scheme.
 
@@ -36,29 +36,27 @@ When `open={true}`, a panel renders below the trigger at `top: calc(100% + 4px)`
 
 ---
 
-## Mobile layout
+## With logo (default)
 
-On viewports below 768px (or when `mobile={true}` is forced), the label switches to the abbreviated format. The panel is the same as desktop.
+When the org has a logo on file, the avatar renders the image with `object-fit: cover` so it fills the frame proportionally.
 
-<Canvas of={OrgSwitcherStories.Mobile} />
+<Canvas of={OrgSwitcherStories.WithLogo} />
 
 ---
 
-## No logo — initials fallback
+## No logo (church placeholder)
 
-When `logoUrl` is omitted or empty, the avatar renders a branded `#2d4889` background with 2-letter initials derived from `abbreviateOrg()`. In the panel list, logos use the same fallback at 48×48px.
+When `logoUrl` is omitted or empty, the avatar renders the church/building SVG icon (Figma node `40007243:73426`) on a `fill.action.secondary.base` (`rgba(255,255,255,0.08)`) background. **Never use text initials** — Figma explicitly specifies this icon.
 
 <Canvas of={OrgSwitcherStories.NoLogo} />
 
 ---
 
-## Abbreviation Showcase
+## Mobile layout
 
-The abbreviation logic (`abbreviateOrg`, `abbreviateCampus`, `mobileLabel`) is a pure utility exported from the component module so it can be tested and used independently of React.
+On viewports below 768px (or when `mobile={true}` is forced), the trigger compacts to a 108px max-width pill. The avatar shrinks to 20×20 outer (16×16 inner) and the org name is rendered in `Label/Button/XS` (12px / 500 / 18px lh), truncated by CSS `text-overflow: ellipsis` at `Container.Label` max-width 60px. **No abbreviation** — the full org name is the source string, truncated visually.
 
-Rules are defined in full in [Appendix A of the spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher-spec.md#appendix-a-abbreviation-guidelines).
-
-<Canvas of={OrgSwitcherStories.AbbreviationShowcase} />
+<Canvas of={OrgSwitcherStories.Mobile} />
 
 ---
 
@@ -103,7 +101,7 @@ The panel (316px wide, `z-index: 300`) contains:
 ## Accessibility
 
 - Trigger uses `aria-haspopup="true"`, `aria-expanded`, and an `aria-label` that always announces the full org name.
-- On mobile, the visible abbreviated label is separate from the button's `aria-label`, which carries the full unabbreviated name.
+- On mobile, the visually-truncated label is separate from the button's `aria-label`, which carries the full org name.
 - Panel uses `role="dialog"` with `aria-label="Switch organisation"`. Org list uses `role="listbox"`.
 - Keyboard: `Enter`/`Space` toggles panel; `Escape` closes (wire up in the parent shell's keydown handler).
 - Focus ring: `2px solid rgba(255,255,255,0.9)` on the trigger button.

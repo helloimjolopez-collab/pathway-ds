@@ -81,15 +81,6 @@
     }
     .demo-section__body { padding: 20px 16px; }
 
-    /* Abbreviation table */
-    .abbr-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .abbr-table th {
-      text-align: left; padding: 6px 8px; font-weight: 600;
-      border-bottom: 2px solid #e5e7eb; color: #71717a; font-size: 11px;
-      text-transform: uppercase; letter-spacing: 0.06em;
-    }
-    .abbr-table td { padding: 7px 8px; border-bottom: 1px solid #f5f5f5; color: #363636; }
-    .abbr-table td.mono { font-weight: 700; font-family: monospace; color: #363636; }
   </style>
 </head>
 <body>
@@ -338,7 +329,7 @@ function OrgPanel({ orgs=[], activeOrgId, onOrgSelect }) {
 //   cityName   — city/diocese for Catholic orgs ONLY (max 72px). NOT a suborg name.
 //   campusName — campus name for mobile abbreviation (Appendix A §5)
 //   logoUrl    — org logo URL; omit → church SVG placeholder (never initials)
-function OrgSwitcher({ orgName="Organisation", cityName="", campusName="", logoUrl, orgs=[], activeOrgId, onOrgSelect, open=false, onClick, disabled=false, mobile=false }) {
+function OrgSwitcher({ orgName="Organisation", cityName="", logoUrl, orgs=[], activeOrgId, onOrgSelect, open=false, onClick, disabled=false, mobile=false }) {
   const [pressed,  setPressed]  = useState(false);
   const [hovered,  setHovered]  = useState(false);
 
@@ -348,8 +339,9 @@ function OrgSwitcher({ orgName="Organisation", cityName="", campusName="", logoU
   const text   = isActive ? T.textPressed  : hovered ? T.textHover   : T.textBase;
   const icon   = isActive ? T.iconPressed  : hovered ? T.iconHover   : T.iconBase;
 
-  // Mobile: campus name drives abbreviated label
-  const mobileText = mobileLabel(orgName, campusName);
+  // Mobile shows the FULL orgName truncated by ellipsis at max-width:60.
+  // NOT abbreviated. "Grace Community Church" → "Grace Comm…" via CSS truncation.
+  const mobileText = orgName;
   // Avatar outer container size per Figma: desktop 24×24, mobile 20×20
   const AVATAR_SZ = mobile ? 20 : 24;
 
@@ -383,7 +375,9 @@ function OrgSwitcher({ orgName="Organisation", cityName="", campusName="", logoU
           opacity: disabled ? 0.5 : 1,
           cursor: disabled ? "not-allowed" : "pointer",
           padding:"4px",
-          gap:"2px",
+          // Desktop has 2px gap between RowStart and RowEnd; mobile has NO gap
+          // (Figma node 40006820:14758 vs 40006817:14391)
+          ...(mobile ? {} : { gap:"2px" }),
           boxSizing:"border-box",
           outline:"none",
           transition:"background 120ms ease, border-color 120ms ease",
@@ -401,12 +395,12 @@ function OrgSwitcher({ orgName="Organisation", cityName="", campusName="", logoU
           <TriggerAvatar logoUrl={logoUrl} size={AVATAR_SZ} borderColor={stroke} />
 
           {/* Desktop label: Container.OrgLabel (max-w 248)
-              ├── Container.OrgName (max-w 170, content-sized, truncates)
+              ├── Container.OrgName (w-170 max-w-170 fixed per Figma)
               └── Container.CityName.Catholic (max-w 72, Catholic orgs only) */}
           {!mobile && (
             <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:248, flexShrink:0, minWidth:0 }}>
-              <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:170, flexShrink:1, minWidth:0 }}>
-                <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:170 }}>{orgName}</p>
+              <div style={{ display:"flex", alignItems:"center", height:"100%", width:170, maxWidth:170, flexShrink:0, minWidth:0 }}>
+                <p style={{ ...T.typeS, flex:"1 0 0", color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, minWidth:0 }}>{orgName}</p>
               </div>
               {cityName && (
                 <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:72, flexShrink:0, minWidth:0 }}>
@@ -424,10 +418,11 @@ function OrgSwitcher({ orgName="Organisation", cityName="", campusName="", logoU
           )}
         </div>
 
-        {/* Container.RowEnd (chevron) — p:2px xxxtight */}
+        {/* Container.RowEnd: p:2px around Container.IconTrailing */}
         <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"2px", flexShrink:0 }}>
-          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", width:16, height:16, transform: open ? "rotate(180deg)" : "none", transition:"transform 200ms cubic-bezier(0.4,0,0.2,1)" }}>
-            <Icon name="expand_more" size={16} style={{ color:icon }} />
+          {/* Container.IconTrailing: size 16×16 with 2px inner padding → 12×12 icon */}
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", width:16, height:16, padding:"2px", boxSizing:"border-box", transform: open ? "rotate(180deg)" : "none", transition:"transform 200ms cubic-bezier(0.4,0,0.2,1)" }}>
+            <Icon name="expand_more" size={12} style={{ color:icon }} />
           </div>
         </div>
       </button>
@@ -449,19 +444,8 @@ function NavShell({ children }) {
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
-  const [navMobOpen, setNavMobOpen] = useState(false);
   const [panelOpen, setPanelOpen] = useState(false);
   const [activeOrg, setActiveOrg] = useState("shc");
-  const [abbr_rows] = useState([
-    ["Grace Community Church",    "West"],
-    ["Nashville Christian Church","Nashville North"],
-    ["Northern Kentucky Baptist Church",""],
-    ["Cross Point",               "Main Campus"],
-    ["Sacred Heart Church-ITD",   "Knoxville"],
-    ["Church of the Highlands",   "North"],
-    ["Crossroads Church",         "Downtown"],
-    ["Elevation",                 "Main Campus"],
-  ]);
 
   const current = DEMO_ORGS.find(o => o.id === activeOrg) || DEMO_ORGS[0];
 
@@ -476,7 +460,7 @@ function App() {
       {/* ── Nav shell — live interactive trigger ── */}
       <NavShell>
         <OrgSwitcher
-          orgName={current.name} cityName={current.cityName} campusName={current.campus} logoUrl={current.logoUrl}
+          orgName={current.name} cityName={current.cityName} logoUrl={current.logoUrl}
           orgs={DEMO_ORGS} activeOrgId={activeOrg} onOrgSelect={handleOrgSelect}
           open={navOpen} onClick={() => setNavOpen(o => !o)}
         />
@@ -517,51 +501,22 @@ function App() {
           <div className="demo-section__label">Trigger + Panel — Desktop, open</div>
           <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px", minHeight:420 }}>
             <OrgSwitcher
-              orgName={current.name} cityName={current.cityName} campusName={current.campus} logoUrl={current.logoUrl}
+              orgName={current.name} cityName={current.cityName} logoUrl={current.logoUrl}
               orgs={DEMO_ORGS} activeOrgId={activeOrg} onOrgSelect={handleOrgSelect}
               open={panelOpen} onClick={() => setPanelOpen(o => !o)}
             />
           </div>
         </div>
 
-        {/* Mobile — abbreviated, mix of logo + no-logo */}
+        {/* Mobile — full org name truncated with ellipsis at 60px max-width */}
         <div className="demo-section">
-          <div className="demo-section__label">Trigger — Mobile, abbreviated (logo image left, placeholder right)</div>
+          <div className="demo-section__label">Trigger — Mobile (full org name truncated, no abbreviation)</div>
           <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px" }}>
             <div style={{ display:"flex", gap:12, flexWrap:"wrap", alignItems:"flex-start", position:"relative" }}>
-              {DEMO_ORGS.slice(0,4).map(o => (
-                <OrgSwitcher key={o.id} orgName={o.name} cityName={o.cityName} campusName={o.campus} logoUrl={o.logoUrl} mobile />
+              {DEMO_ORGS.slice(0,5).map(o => (
+                <OrgSwitcher key={o.id} orgName={o.name} cityName={o.cityName} logoUrl={o.logoUrl} mobile />
               ))}
             </div>
-          </div>
-        </div>
-
-        {/* Abbreviation showcase */}
-        <div className="demo-section">
-          <div className="demo-section__label">Abbreviation Showcase (Appendix A)</div>
-          <div className="demo-section__body">
-            <table className="abbr-table">
-              <thead>
-                <tr>
-                  <th>Org name</th>
-                  <th>Campus</th>
-                  <th>Mobile label</th>
-                  <th>Org abbr.</th>
-                  <th>Campus abbr.</th>
-                </tr>
-              </thead>
-              <tbody>
-                {abbr_rows.map(([org, campus], i) => (
-                  <tr key={i}>
-                    <td>{org}</td>
-                    <td style={{ color:"#71717a" }}>{campus || "—"}</td>
-                    <td className="mono">{mobileLabel(org, campus)}</td>
-                    <td style={{ fontFamily:"monospace", color:"#71717a" }}>{abbreviateOrg(org)}</td>
-                    <td style={{ fontFamily:"monospace", color:"#71717a" }}>{campus ? abbreviateCampus(campus) : "—"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
           </div>
         </div>
 

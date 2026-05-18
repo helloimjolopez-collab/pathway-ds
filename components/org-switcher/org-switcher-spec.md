@@ -15,7 +15,7 @@ It is **not** used for module-level navigation (that is SideNav's job), for sett
 The component has two distinct display modes driven by viewport:
 
 - **Desktop** (`≥ 768 px`): renders the full organisation name in `Container.OrgName` (max 170px). For **Catholic organisations only**, a second `Container.CityName.Catholic` (max 72px) shows the city or diocese name after a pipe separator: `Sacred Heart Church-ITD  |  Knoxville`. **Protestant orgs show only the org name — no pipe, no second field.** The trigger is a styled button element, not a plain text label.
-- **Mobile** (`< 768 px`): renders abbreviated initialisations of both the org name and the campus name per the rules in [Appendix A](#appendix-a-abbreviation-guidelines): `GCC | WE`. The pipe and campus abbreviation are suppressed when no campus or sub-org exists.
+- **Mobile** (`< 768 px`): renders the full `orgName` truncated by CSS `text-overflow: ellipsis` at the `Container.Label` max-width of 60px. **There is no abbreviation** — "Grace Community Church" renders as "Grace Comm…". This is a visual truncation, not an initialism.
 
 > **⚠ Figma annotation (node 40007477:12205):** "Container.CityName.Catholic is only implemented and/or shown for Catholic orgs. CityName does not apply to Protestant orgs. CityName is NOT a suborg name."
 
@@ -80,8 +80,7 @@ OrgSwitcher.Root                           min-h/w 48px (touch target), p-4px, m
 |---|---|
 | Desktop, Catholic org with city name | `{Full Org Name}` (max 170px) + ` \| {City/Diocese Name}` (max 72px) |
 | Desktop, Protestant org / no city name | `{Full Org Name}` only — no pipe, no second field |
-| Mobile, with campus | `{ORG} \| {CA}` (per Appendix A) |
-| Mobile, no campus | `{ORG}` (per Appendix A) |
+| Mobile | `{Full Org Name}` truncated by `text-overflow: ellipsis` at 60px max-width. No abbreviation. |
 
 ---
 
@@ -180,10 +179,12 @@ All values confirmed from Figma node `40006819:14583`.
 
 ### 5.2 Mobile trigger
 
-- Renders the abbreviated org initialism (exactly 3 uppercase letters, no periods) computed per [Appendix A §4](#a4-organization-name--three-initial-rule).
-- When a campus or sub-org is active, appends ` | ` then the 2-letter campus abbreviation computed per [Appendix A §5](#a5-campus-and-sub-organization--two-initial-rule).
-- No truncation: the abbreviated form is always short enough to render fully at mobile widths.
+- Renders the **full `orgName`** truncated by CSS `text-overflow: ellipsis` at `Container.Label` max-width 60px.
+- **No abbreviation.** "Grace Community Church" displays as "Grace Comm…".
+- The cityName field is NOT shown on mobile (`Container.CityName.Catholic` is desktop-only).
 - Chevron icon trails the text on the right.
+
+> Earlier iterations of this component used a 3-letter org abbreviation + 2-letter campus code per [Appendix A](#appendix-a-deprecated--legacy-abbreviation-rules). Figma node 40006820:14757 was updated to use visual truncation instead; the abbreviation utilities (`abbreviateOrg`, `abbreviateCampus`, `mobileLabel`) remain exported from `org-switcher.jsx` for backward compatibility but are not used by the component.
 
 ### 5.3 Avatar — logo present
 
@@ -398,8 +399,8 @@ All text-on-background combinations must meet WCAG AA (4.5:1 for body text, 3:1 
 
 | Viewport | Trigger label | Panel behaviour |
 |---|---|---|
-| `≥ 768 px` (desktop) | Full org name + campus name | Dropdown anchored below trigger |
-| `< 768 px` (mobile) | Abbreviated `ORG \| CA` | Bottom sheet or anchored dropdown (TBD) |
+| `≥ 768 px` (desktop) | Full org name (max 170px) + city name for Catholic orgs (max 72px) | Dropdown anchored below trigger |
+| `< 768 px` (mobile) | Full org name truncated by `text-overflow: ellipsis` at 60px. No abbreviation. | Bottom sheet or anchored dropdown (TBD) |
 
 Breakpoint values per `docs/design-system-spec.md` §Breakpoints.
 
@@ -437,9 +438,11 @@ Not yet in Storybook. Placeholder story file at `src/stories/Library/OrgSwitcher
 
 ---
 
-# Appendix A: Abbreviation Guidelines
+# Appendix A (DEPRECATED) — Legacy Abbreviation Rules
 
-**Mobile UI Display Standard for Organization and Campus Names**
+> **⚠ DEPRECATED 2026-05-18.** Figma was updated so that mobile uses CSS text-overflow truncation of the full org name (Figma node 40006820:14757 / 40007067:13274 — "Grace Comm…"). The 3-letter org abbreviation + 2-letter campus code rules below are kept for historical reference only. The component no longer applies them.
+
+**Mobile UI Display Standard for Organization and Campus Names** *(historical)*
 Version 1.1 · Based on AP Stylebook and supporting standards
 
 ---

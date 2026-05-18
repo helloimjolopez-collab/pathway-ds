@@ -559,13 +559,14 @@ function OrgPanel({ orgs = [], activeOrgId, onOrgSelect }) {
  *   - It is the CITY or DIOCESE name, NOT a campus or sub-org name.
  *   - Protestant orgs show only `orgName` — no pipe, no second field.
  *
- * Mobile label uses the abbreviated form from Appendix A (campusName prop drives
- * the campus abbreviation — this is separate from the desktop CityName.Catholic).
+ * Mobile label (Figma node 40006820:14757 / 40007067:13274):
+ *   - Renders the FULL `orgName` truncated by text-overflow:ellipsis at max-width 60px.
+ *   - NOT abbreviated. "Grace Community Church" renders as "Grace Comm…".
  *
- * @param {string}   orgName        Full organisation name (max 170px before truncation)
+ * @param {string}   orgName        Full organisation name. Desktop truncates at 170px;
+ *                                  mobile truncates at 60px (with ellipsis on both).
  * @param {string}   [cityName]     City/diocese name — Catholic orgs only. Shown after " | " on desktop.
  *                                  Max 72px before truncation. NOT a suborg name.
- * @param {string}   [campusName]   Campus name — drives mobile abbreviated label only (Appendix A §5).
  * @param {string}   [logoUrl]      Org logo URL. Omit → church SVG placeholder (never initials).
  * @param {Array}    [orgs]         Panel org list: [{id, name, campus?, logoUrl?, users?: [{color}]}]
  * @param {string}   [activeOrgId]  Which org is highlighted in the panel
@@ -579,7 +580,6 @@ function OrgPanel({ orgs = [], activeOrgId, onOrgSelect }) {
 export function OrgSwitcher({
   orgName    = "Organisation",
   cityName   = "",   // Catholic orgs only — city/diocese name shown on desktop
-  campusName = "",   // Campus abbreviation source for mobile label
   logoUrl,
   orgs       = [],
   activeOrgId,
@@ -611,8 +611,11 @@ export function OrgSwitcher({
   const text   = isActive ? T.textPressed  : hovered ? T.textHover   : T.textBase;
   const icon   = isActive ? T.iconPressed  : hovered ? T.iconHover   : T.iconBase;
 
-  // Mobile label uses campusName for abbreviation (Appendix A §5)
-  const mobileText = mobileLabel(orgName, campusName);
+  // Mobile shows the full orgName truncated with text-overflow ellipsis
+  // at the Container.Label max-width (60px). Per Figma node 40007067:13274,
+  // mobile is NOT abbreviated — "Grace Community Church" renders as
+  // "Grace Comm…" by visual truncation, not initialism.
+  const mobileText = orgName;
 
   const ariaLabel = cityName
     ? `Current organisation: ${orgName}, ${cityName}. Activate to switch.`
@@ -698,7 +701,9 @@ export function OrgSwitcher({
           opacity: disabled ? 0.5 : 1,
           cursor: disabled ? "not-allowed" : "pointer",
           padding: T.pXxtight,             // 4px all sides (Figma Container.Main)
-          gap: T.pXxxtight,                // 2px between RowStart and RowEnd
+          // Desktop has 2px gap between RowStart and RowEnd; mobile has NO gap
+          // (Figma node 40006820:14758 vs 40006817:14391)
+          ...(isMobile ? {} : { gap: T.pXxxtight }),
           boxSizing: "border-box",
           outline: "none",
           transition: "background 120ms ease, border-color 120ms ease",
@@ -738,18 +743,20 @@ export function OrgSwitcher({
               display: "flex", alignItems: "center", height: "100%",
               maxWidth: 248, flexShrink: 0, minWidth: 0,
             }}>
+              {/* Container.OrgName: w-170 max-w-170 (Figma fixed width) */}
               <div style={{
                 display: "flex", alignItems: "center", height: "100%",
-                maxWidth: 170, flexShrink: 1, minWidth: 0,
+                width: 170, maxWidth: 170, flexShrink: 0, minWidth: 0,
               }}>
                 <p style={{
                   ...TYPE_S,
+                  flex: "1 0 0",
                   color: text,
                   whiteSpace: "nowrap",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   margin: 0,
-                  maxWidth: 170,
+                  minWidth: 0,
                 }}>
                   {orgName}
                 </p>
@@ -797,18 +804,21 @@ export function OrgSwitcher({
           )}
         </div>
 
-        {/* ── Container.RowEnd (chevron) ── */}
+        {/* ── Container.RowEnd: p:2 around Container.IconTrailing ── */}
         <div style={{
           display: "flex", alignItems: "center", justifyContent: "center",
           padding: T.pXxxtight, flexShrink: 0,
         }}>
+          {/* Container.IconTrailing: size 16×16, p:2, contains the chevron */}
           <div style={{
             display: "flex", alignItems: "center", justifyContent: "center",
             width: 16, height: 16,
+            padding: T.pXxxtight, // 2px — inner padding per Figma
+            boxSizing: "border-box",
             transform: open ? "rotate(180deg)" : "none",
             transition: "transform 200ms cubic-bezier(0.4,0,0.2,1)",
           }}>
-            <Icon name="expand_more" size={16} style={{ color: icon }} />
+            <Icon name="expand_more" size={12} style={{ color: icon }} />
           </div>
         </div>
       </button>

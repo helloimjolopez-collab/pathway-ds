@@ -5,8 +5,7 @@
  * Figma: https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583
  */
 import React, { useState } from "react";
-import { OrgSwitcher, abbreviateOrg, abbreviateCampus, mobileLabel }
-  from "../../../../components/org-switcher/org-switcher.jsx";
+import { OrgSwitcher } from "../../../../components/org-switcher/org-switcher.jsx";
 
 // ── Demo logo ─────────────────────────────────────────────────────────────────
 // Sacred Heart Church logo exported from Figma node 40006817:14372.
@@ -64,14 +63,13 @@ export default {
     },
   },
   argTypes: {
-    orgName:     { control: "text",    name: "Org name",     description: "Full organisation name (max 170px on desktop before truncation)" },
-    cityName:    { control: "text",    name: "City name",    description: "Catholic orgs ONLY — city/diocese name shown after pipe on desktop (max 72px). NOT a suborg name." },
-    campusName:  { control: "text",    name: "Campus name",  description: "Drives mobile abbreviated label (Appendix A §5). Empty if none." },
-    logoUrl:     { control: "text",    name: "Logo URL",     description: "Org logo image URL. Empty → renders church SVG placeholder." },
+    orgName:     { control: "text",    name: "Org name",      description: "Full organisation name. Desktop truncates at 170px; mobile truncates at 60px. Both use text-overflow: ellipsis." },
+    cityName:    { control: "text",    name: "City name",     description: "Catholic orgs ONLY — city/diocese name shown after pipe on desktop (max 72px). NOT a suborg name." },
+    logoUrl:     { control: "text",    name: "Logo URL",      description: "Org logo image URL. Empty → renders church SVG placeholder." },
     activeOrgId: { control: "text",    name: "Active org ID", description: "Which org is highlighted in the panel list" },
     open:        { control: "boolean", name: "Open",          description: "Controlled open state — flips chevron and shows panel" },
     disabled:    { control: "boolean", name: "Disabled",      description: "True for single-org users — trigger renders but panel does not open" },
-    mobile:      { control: "boolean", name: "Mobile",        description: "Force mobile abbreviated display regardless of viewport" },
+    mobile:      { control: "boolean", name: "Mobile",        description: "Force mobile compact display (108px max, full name truncated) regardless of viewport" },
   },
 };
 
@@ -98,7 +96,6 @@ export const Playground = PlaygroundTemplate.bind({});
 Playground.args = {
   orgName:    "Sacred Heart Church-ITD",
   cityName:   "Knoxville",
-  campusName: "Knoxville",
   logoUrl:    SACRED_HEART_LOGO,
   activeOrgId: "shc",
   open:       false,
@@ -162,7 +159,6 @@ export const PanelOpen = () => {
       <OrgSwitcher
         orgName={current.name}
         cityName={current.cityName}
-        campusName={current.campus}
         logoUrl={current.logoUrl}
         orgs={DEMO_ORGS}
         activeOrgId={activeOrg}
@@ -176,80 +172,18 @@ export const PanelOpen = () => {
 PanelOpen.storyName = "Panel — Open";
 
 // ── Mobile ────────────────────────────────────────────────────────────────────
+// Mobile renders the FULL orgName truncated by CSS at max-width 60px.
+// No abbreviation — "Grace Community Church" displays as "Grace Comm…".
 export const Mobile = () => (
   <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: 8 }}>
     {DEMO_ORGS.map(o => (
       <DarkShell key={o.id}>
-        <OrgSwitcher mobile orgName={o.name} cityName={o.cityName} campusName={o.campus} logoUrl={o.logoUrl || undefined} />
+        <OrgSwitcher mobile orgName={o.name} cityName={o.cityName} logoUrl={o.logoUrl || undefined} />
       </DarkShell>
     ))}
   </div>
 );
-Mobile.storyName = "Mobile — abbreviated";
-
-// ── Abbreviation Showcase ──────────────────────────────────────────────────────
-const ABBR_EXAMPLES = [
-  ["Grace Community Church",           "West"],
-  ["Grace Community Church",           "Georgia"],
-  ["Nashville Christian Church",       "Nashville North"],
-  ["Nashville Christian Church",       "Nashville South"],
-  ["Northern Kentucky Baptist Church", ""],
-  ["Cross Point",                      "Main Campus"],
-  ["Sacred Heart Church-ITD",          "Knoxville"],
-  ["Northpoint Church",                ""],
-  ["Northpoint Church",                "Knoxville"],
-  ["Crossroads Church",                "Downtown"],
-  ["Elevation",                        "Main Campus"],
-  ["Church of the Highlands",          "North"],
-  ["Knoxville Sanctuary",              "East"],
-  ["Axios Church",                     "West"],
-];
-
-export const AbbreviationShowcase = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff", borderRadius: 8 }}>
-    <p style={{ fontSize: 12, color: "#71717a", marginBottom: 16 }}>
-      Abbreviation output per spec Appendix A. Compare desktop full label vs mobile abbreviated label.
-    </p>
-    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-      <thead>
-        <tr style={{ borderBottom: "2px solid #e5e7eb" }}>
-          <th style={{ textAlign: "left", padding: "6px 8px", color: "#71717a", fontWeight: 600 }}>Org name</th>
-          <th style={{ textAlign: "left", padding: "6px 8px", color: "#71717a", fontWeight: 600 }}>Campus</th>
-          <th style={{ textAlign: "left", padding: "6px 8px", color: "#3555a0", fontWeight: 700 }}>Mobile label</th>
-          <th style={{ textAlign: "left", padding: "6px 8px", color: "#71717a", fontWeight: 600 }}>Org abbr.</th>
-          <th style={{ textAlign: "left", padding: "6px 8px", color: "#71717a", fontWeight: 600 }}>Campus abbr.</th>
-          <th style={{ textAlign: "left", padding: "6px 8px", color: "#71717a", fontWeight: 600 }}>Mobile trigger</th>
-        </tr>
-      </thead>
-      <tbody>
-        {ABBR_EXAMPLES.map(([org, campus], i) => (
-          <tr key={i} style={{ borderBottom: "1px solid #f5f5f5" }}>
-            <td style={{ padding: "7px 8px" }}>{org}</td>
-            <td style={{ padding: "7px 8px", color: "#71717a" }}>{campus || "—"}</td>
-            <td style={{ padding: "7px 8px", fontWeight: 700, fontFamily: "monospace", color: "#363636" }}>
-              {mobileLabel(org, campus)}
-            </td>
-            <td style={{ padding: "7px 8px", fontFamily: "monospace", color: "#71717a" }}>
-              {abbreviateOrg(org)}
-            </td>
-            <td style={{ padding: "7px 8px", fontFamily: "monospace", color: "#71717a" }}>
-              {campus ? abbreviateCampus(campus) : "—"}
-            </td>
-            <td style={{ padding: "4px 8px" }}>
-              <div style={{ background: "#2d4889", borderRadius: 6, padding: "2px 4px", display: "inline-block" }}>
-                <OrgSwitcher mobile orgName={org} campusName={campus} />
-              </div>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
-AbbreviationShowcase.storyName = "Abbreviation Showcase (Appendix A)";
-AbbreviationShowcase.parameters = {
-  backgrounds: { default: "light" },
-};
+Mobile.storyName = "Mobile — full name truncated";
 
 // ── Tokens — Typography ────────────────────────────────────────────────────────
 export const TokensTypography = () => {
