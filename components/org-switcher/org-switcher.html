@@ -382,10 +382,10 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
   const AVATAR_SZ = mobile ? 20 : 24;
 
   return (
-    // Outer wrapper (touch target) — desktop p:4px, mobile px:2 py:4 asymmetric
+    // Outer wrapper (touch target) — desktop p:4 content-sized, mobile px:2 py:4 fixed w-108
     <div style={{
       minHeight:48, minWidth:48,
-      maxWidth: mobile ? 108 : 316,
+      ...(mobile ? { width:108 } : { maxWidth:316 }),
       ...(mobile ? { paddingLeft:"2px", paddingRight:"2px", paddingTop:"4px", paddingBottom:"4px" } : { padding:"4px" }),
       display:"flex", flexDirection:"column",
       alignItems:"flex-start", justifyContent:"center",
@@ -404,7 +404,7 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
         style={{
           display:"flex", alignItems:"center",
           height:36, maxHeight:36, minHeight:36,
-          maxWidth: mobile ? 108 : 308,  // Figma 40006817:14391 max-w-[308px]
+          maxWidth: mobile ? 102 : 308,  // Container.Main: mobile 40006820:14758 max-w-102, desktop 40006817:14391 max-w-308
           borderRadius:"8px",
           border:`1px solid ${stroke}`,
           background: disabled ? T.fillBase : fill,
@@ -420,13 +420,11 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
         }}>
 
         {/* Container.RowStart
-            Mobile: gap 2px, h 20px, w 80px fixed — contains Avatar + Label
-            Desktop: gap 4px, h 24px, content-sized — contains Avatar + OrgLabel */}
+            Mobile (40006820:14759): gap 4px (xxtight), h 20, max-w 74 content-sized
+            Desktop (40006817:14390): gap 4px (xxtight), h 24, content-sized */}
         <div style={{
-          display:"flex", alignItems:"center", flexShrink:0,
-          ...(mobile
-            ? { gap:"2px", height:20, width:80 }
-            : { gap:"4px", height:24 }),
+          display:"flex", alignItems:"center", flexShrink:0, gap:"4px",
+          ...(mobile ? { height:20, maxWidth:74 } : { height:24 }),
         }}>
           <TriggerAvatar logoUrl={logoUrl} size={AVATAR_SZ} borderColor={stroke} />
 
@@ -448,10 +446,11 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
             </div>
           )}
 
-          {/* Mobile label: Container.Label inside RowStart, flex 1 0 0, max-w 60 */}
+          {/* Mobile label: Container.Label (Figma 40007067:13273) — fixed w-50,
+              NO flex grow. Typography is Label/Button/S (14px) — same as desktop. */}
           {mobile && (
-            <div style={{ display:"flex", alignItems:"center", height:"100%", flex:"1 0 0", maxWidth:60, minWidth:1 }}>
-              <p style={{ ...T.typeXS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, flex:"1 0 0" }}>{mobileText}</p>
+            <div style={{ display:"flex", alignItems:"center", height:"100%", width:50, flexShrink:0, minWidth:0 }}>
+              <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:50 }}>{mobileText}</p>
             </div>
           )}
         </div>

@@ -46,7 +46,7 @@ It is **not** used for module-level navigation (that is SideNav's job), for sett
 The component has two distinct display modes driven by viewport:
 
 - **Desktop** (`≥ 768 px`): renders the full organisation name in `Container.OrgName` (max 180px). For **Catholic organisations only**, a second `Container.CityName.Catholic` (max 72px) shows the city or diocese name after a pipe separator: `Sacred Heart Church-ITD  |  Knoxville`. **Protestant orgs show only the org name — no pipe, no second field.** See §0.1 for the full Catholic-only rule. The trigger is a styled button element, not a plain text label.
-- **Mobile** (`< 768 px`): renders the full `orgName` truncated by CSS `text-overflow: ellipsis` at the `Container.Label` max-width of 60px. **There is no abbreviation** — "Grace Community Church" renders as "Grace Comm…". This is a visual truncation, not an initialism.
+- **Mobile** (`< 768 px`): renders the full `orgName` in a **fixed 50px-wide** `Container.Label`, truncated by CSS `text-overflow: ellipsis`. Typography is `Label/Button/S` (14px / 500 / 20px — same as desktop, not the previous 12px XS variant). **There is no abbreviation** — "Grace Community Church" renders as "Grace…" by visual truncation, not initialism. CityName is never shown on mobile (desktop-only container).
 
 Clicking the trigger opens the panel. **The panel is out of scope in v1** (placeholder only — see §0).
 
@@ -81,24 +81,33 @@ Clicking the trigger opens the panel. **The panel is out of scope in v1** (place
 The Figma component (node `40006819:14583`) defines **the trigger button only**. The panel/dropdown is not yet designed; it is a deferred deliverable (see §17).
 
 ```
-OrgSwitcher.Root                           min-h/w 48px (touch target), p-4px, max-w: 316px (desktop) / 108px (mobile)
-└── Container.Main                         h-36px, border 1px, rounded-8px, max-w: 300px (desktop) / 108px (mobile)
-     ├── Container.RowStart                flex, items-center, gap-4px (desktop) | gap-2px (mobile)
-     │    ├── Container.Avatar             p-2px, 24×24px (desktop) | 20×20px (mobile), flex-shrink-0
+OrgSwitcher.Root                           min-h/w 48px (touch target)
+                                           Desktop: content-sized, max-w 316, p-4px
+                                           Mobile: FIXED w-108, px-2px py-4px
+└── Container.Main                         h-36, border 1px, rounded-8px
+                                           Desktop: max-w 308, p-4, gap-2px between RowStart and RowEnd
+                                           Mobile: max-w 102, p-4, NO gap
+     ├── Container.RowStart                flex, items-center, gap-4px (xxtight, both)
+     │                                     Desktop: h-24, content-sized
+     │                                     Mobile: h-20, max-w 74 content-sized
+     │    ├── Container.Avatar             p-2px (xxxtight), flex-shrink-0
+     │    │                                Desktop: 24×24 outer / 20×20 inner Avatar
+     │    │                                Mobile: 20×20 outer / 16×16 inner Avatar
      │    │    └── Avatar                 border 1px, rounded-4px, overflow-hidden
      │    │         ├─ [logo present]     <img> object-fit: cover — fills proportionally
      │    │         └─ [no logo]          fill.action.secondary.base bg + church SVG placeholder
      │    │                               (Figma node 40007243:73426 — NOT text initials)
-     │    └── Container.OrgLabel          max-w-248px — DESKTOP ONLY (annotation: "Text truncates if going beyond 248pt")
-     │         ├── Container.OrgName      max-w-170px, w-170px — annotation: "Text Truncates if frame going beyond 170pt"
-     │         │    └── orgName text      14px / 500 (Label/Button/S) / 20px lh / 0.3px ls
-     │         └── Container.CityName.Catholic  max-w-72px — Catholic orgs ONLY
-     │              └── " | {cityName}"  14px / 500 (Label/Button/S) — annotation: "NOT a suborg name"
-     ├── Container.Label                  px-2px — MOBILE ONLY (outside RowStart)
-     │    └── abbreviated text            12px / 500 (Label/Button/XS) / 18px lh / 0.3px ls (e.g. "SHC | KV")
-     └── Container.RowEnd                 p-2px
-          └── Container.IconTrailing      p-2px, 16×16px
-               └── expand_more icon      SVG chevron, rotates 180° when open
+     │    ├── Container.OrgLabel          DESKTOP ONLY — max-w-248 (annotation: "truncates beyond 248pt")
+     │    │    ├── Container.OrgName      max-w-180, content-sized — truncates with ellipsis at 180
+     │    │    │    └── orgName text      14px / 500 (Label/Button/S) / 20px lh / 0.3px ls
+     │    │    └── Container.CityName.Catholic  max-w-72 — Catholic orgs ONLY (spec §0.1)
+     │    │         └── " | {cityName}"  14px / 500 (Label/Button/S) — NOT a suborg name
+     │    └── Container.Label             MOBILE ONLY — FIXED w-50, INSIDE RowStart
+     │         └── orgName text (trunc)  14px / 500 (Label/Button/S) / 20px lh / 0.3px ls
+     │                                    same typography as desktop; truncated by ellipsis at 50px
+     └── Container.RowEnd                 p-2px (xxxtight)
+          └── Container.IconTrailing      size-16px, p-2px → 12×12 icon area
+               └── expand_more icon      Material Symbol chevron, rotates 180° when open
 ```
 
 > **Logo rule (Figma annotation):** "Logo must always scale to fill frame proportionally. If org does not have a logo, use placeholder org logo here: node 40007243-73405." — The placeholder is the church/building SVG icon, **not text initials**.
@@ -160,10 +169,12 @@ All tokens confirmed from Figma node `40006819:14583`. This component uses **dar
 
 ### 3.7 Typography
 
+Both desktop and mobile use **`Label/Button/S`** for the org name. Mobile no longer uses `Label/Button/XS` (changed in v1; previously mobile rendered abbreviated text at 12px).
+
 | Usage | CSS Variable prefix | Weight | Size | Line-height | Letter-spacing |
 |---|---|---|---|---|---|
 | Trigger label — desktop | `--semantic-type-desktop-label-button-s-` | 500 | 14px | 20px | 0.3px |
-| Trigger label — mobile (abbr) | `--semantic-type-desktop-label-button-xs-` | 500 | 12px | 18px | 0.3px |
+| Trigger label — mobile | `--semantic-type-desktop-label-button-s-` | 500 | 14px | 20px | 0.3px |
 | Font family (both) | `--semantic-type-desktop-label-button-s-fontfamily` | — | Red Hat Text | — | — |
 
 ---
@@ -176,24 +187,29 @@ All values confirmed from Figma node `40006819:14583`.
 |---|---|---|
 | Root outer padding (all sides) | 4px | `--semantic-layout-units-padding-xxtight` |
 | Root min-height / min-width (touch target) | 48px | raw |
-| Root max-width — desktop | 316px | raw |
-| Root max-width — mobile | 108px | raw — Figma node 40006820:14758 |
+| Root max-width — desktop | 316px | raw — content-sized up to max |
+| Root width — mobile | **108px (fixed)** | raw — Figma node 40006820:14757 `w-[108px]` |
 | Inner button height | 36px | raw |
-| Inner button padding (desktop) — all sides | 4px | `--semantic-layout-units-padding-xxtight` |
-| Inner button padding (mobile) — left/top/bottom | 4px | `--semantic-layout-units-padding-xxtight` |
-| Inner button padding (mobile) — right | 2px | `--semantic-layout-units-padding-xxxtight` |
-| Gap between avatar and label (desktop, inside RowStart) | 4px | `--semantic-layout-units-gap-xxtight` |
+| Inner button (Container.Main) max-width — desktop | 308px | raw — Figma `max-w-[308px]` |
+| Inner button (Container.Main) max-width — mobile | 102px | raw — Figma `max-w-[102px]` |
+| Container.Main padding (both) | 4px | `--semantic-layout-units-padding-xxtight` |
+| Container.Main gap (desktop only) | 2px | `--semantic-layout-units-padding-xxxtight` — between RowStart and RowEnd. Mobile has NO gap. |
+| Outer wrapper padding — desktop | 4px all sides | `--semantic-layout-units-padding-xxtight` |
+| Outer wrapper padding — mobile | px:2 py:4 (asymmetric) | xxxtight horizontal, xxtight vertical |
+| Container.RowStart gap (both) | 4px | `--semantic-layout-units-gap-xxtight` |
+| Container.RowStart height — desktop | 24px | raw |
+| Container.RowStart height — mobile | 20px | raw |
+| Container.RowStart max-width — mobile | 74px | raw — content-sized (Avatar 20 + gap 4 + Label 50 = 74) |
 | Container.Avatar — desktop | 24×24px | raw |
 | Container.Avatar — mobile | 20×20px | raw |
-| Avatar inner padding (all sides) | 4px | `--semantic-layout-units-padding-xxtight` |
+| Avatar inner padding (both) | 2px | `--semantic-layout-units-padding-xxxtight` |
 | Container.RowEnd padding | 2px | `--semantic-layout-units-padding-xxxtight` |
-| Container.IconTrailing padding | 2px | `--semantic-layout-units-padding-xxxtight` |
-| Chevron icon size | 16×16px | raw |
+| Container.IconTrailing size + inner padding | 16×16px / 2px | raw / `--semantic-layout-units-padding-xxxtight` |
+| Chevron icon area | 12×12px | inside the 16×16 padded box |
 | Container.OrgLabel max-width (desktop) | 248px | raw — annotation: "Text truncates if going beyond 248pt" |
-| Container.OrgName width + max-width (desktop) | 170px | raw — annotation: "Text Truncates if frame going beyond 170pt" |
-| Container.CityName.Catholic max-width (desktop) | 72px | raw — Catholic orgs only |
-| Mobile label horizontal padding | 2px | `--semantic-layout-units-padding-xxxtight` |
-| Container.Label max-width (mobile) | 60px | raw — Figma node 40007067:13273 |
+| Container.OrgName max-width (desktop) | 180px | raw — content-sized, annotation: "Text Truncates if frame going beyond 170pt" |
+| Container.CityName.Catholic max-width (desktop) | 72px | raw — Catholic orgs only (spec §0.1) |
+| Container.Label width (mobile) | **50px (fixed)** | raw — Figma node 40007067:13273 `w-[50px]` |
 
 ---
 
@@ -208,10 +224,12 @@ All values confirmed from Figma node `40006819:14583`.
 
 ### 5.2 Mobile trigger
 
-- Renders the **full `orgName`** truncated by CSS `text-overflow: ellipsis` at `Container.Label` max-width 60px.
-- **No abbreviation.** "Grace Community Church" displays as "Grace Comm…".
-- The cityName field is NOT shown on mobile (`Container.CityName.Catholic` is desktop-only).
-- Chevron icon trails the text on the right.
+- Total root frame is fixed `108×48`. Container.Main inside is `36×102` max.
+- Renders the **full `orgName`** in a **fixed 50px-wide** `Container.Label`, truncated by CSS `text-overflow: ellipsis`.
+- **Typography is `Label/Button/S` (14px / 500 / 20px / 0.3px ls)** — same as desktop. Mobile previously used `Label/Button/XS` (12px); that was removed in this version.
+- **No abbreviation.** "Grace Community Church" displays as "Grace…" by visual truncation.
+- The cityName field is **never** shown on mobile (`Container.CityName.Catholic` is desktop-only, regardless of orgType).
+- Chevron icon (16×16 with 2px inner padding → 12×12 area) sits at the right edge with no gap between it and the label/RowStart.
 
 > Earlier iterations of this component used a 3-letter org abbreviation + 2-letter campus code per [Appendix A](#appendix-a-deprecated--legacy-abbreviation-rules). Figma node 40006820:14757 was updated to use visual truncation instead; the abbreviation utilities (`abbreviateOrg`, `abbreviateCampus`, `mobileLabel`) remain exported from `org-switcher.jsx` for backward compatibility but are not used by the component.
 

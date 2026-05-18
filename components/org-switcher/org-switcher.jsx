@@ -752,7 +752,10 @@ export function OrgSwitcher({
       style={{
         minHeight: OUTER_MIN,
         minWidth:  OUTER_MIN,
-        maxWidth:  MAX_W,
+        // Mobile root is fixed w-108 per Figma 40006820:14757. Desktop is
+        // content-sized up to MAX_W (the auto-generated w-238 is just Figma
+        // freezing the default content; annotation §0 makes it max).
+        ...(isMobile ? { width: 108 } : { maxWidth: MAX_W }),
         // Figma mobile outer wrapper: px-2px py-4px asymmetric. Desktop: 4px all.
         ...(isMobile
           ? { paddingLeft: T.pXxxtight, paddingRight: T.pXxxtight, paddingTop: T.pXxtight, paddingBottom: T.pXxtight }
@@ -762,6 +765,7 @@ export function OrgSwitcher({
         alignItems: "flex-start",
         justifyContent: "center",
         position:  "relative",
+        boxSizing: "border-box",
       }}
     >
       {/* ── Container.Main (inner button) ──
@@ -784,7 +788,7 @@ export function OrgSwitcher({
           height: BTN_H,
           maxHeight: BTN_H,
           minHeight: BTN_H,
-          maxWidth: isMobile ? 108 : 308,  // Container.Main max-width (Figma 40006817:14391)
+          maxWidth: isMobile ? 102 : 308,  // Container.Main max-width: mobile 40006820:14758, desktop 40006817:14391
           position: "relative",
           borderRadius: T.radiusMedium,
           border: `${T.borderWidth} solid ${stroke}`,
@@ -803,18 +807,19 @@ export function OrgSwitcher({
         onBlur={e   => e.currentTarget.style.outline = "none"}
       >
         {/* ── Container.RowStart ──
-            Mobile: gap:2px, h:20px, w:80px (fixed) — Avatar + Label
-            Desktop: gap:4px, h:24px, content-sized — Avatar + OrgLabel */}
+            Mobile (Figma 40006820:14759): gap:4px (xxtight), h:20px,
+              max-width:74 (content-sized — Avatar 20 + gap 4 + Label 50 = 74)
+            Desktop (Figma 40006817:14390): gap:4px (xxtight), h:24px,
+              content-sized */}
         <div style={{
           display: "flex",
           alignItems: "center",
           flexShrink: 0,
+          gap: T.gapXxtight,   // 4px xxtight — same for both
           ...(isMobile ? {
-            gap: T.pXxxtight,    // 2px xxxtight
             height: 20,
-            width: 80,           // Figma fixed width
+            maxWidth: 74,
           } : {
-            gap: T.gapXxtight,   // 4px xxtight
             height: 24,
           }),
         }}>
@@ -879,21 +884,23 @@ export function OrgSwitcher({
             </div>
           )}
 
-          {/* ── Mobile label — Container.Label
-              flex 1 0 0, max-w-60, min-w 1px, h-full, INSIDE RowStart */}
+          {/* ── Mobile label — Container.Label (Figma node 40007067:13273)
+              Fixed w-50, h-full, NO flex grow. Typography is Label/Button/S
+              (14px / 20 / 0.3) — same as desktop, NOT XS. The org name is
+              truncated by text-overflow:ellipsis at 50px. */}
           {isMobile && (
             <div style={{
               display: "flex", alignItems: "center", height: "100%",
-              flex: "1 0 0", maxWidth: 60, minWidth: 1,
+              width: 50, flexShrink: 0, minWidth: 0,
             }}>
               <p style={{
-                ...TYPE_XS,
+                ...TYPE_S,
                 color: text,
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 margin: 0,
-                flex: "1 0 0",
+                maxWidth: 50,
               }}>
                 {mobileText}
               </p>
