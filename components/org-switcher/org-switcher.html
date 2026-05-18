@@ -395,12 +395,13 @@ function OrgSwitcher({ orgName="Organisation", cityName="", logoUrl, orgs=[], ac
           <TriggerAvatar logoUrl={logoUrl} size={AVATAR_SZ} borderColor={stroke} />
 
           {/* Desktop label: Container.OrgLabel (max-w 248)
-              ├── Container.OrgName (w-170 max-w-170 fixed per Figma)
+              ├── Container.OrgName (max-w 170, CONTENT-SIZED — annotation:
+              │    "Text Truncates if frame going beyond 170pt")
               └── Container.CityName.Catholic (max-w 72, Catholic orgs only) */}
           {!mobile && (
             <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:248, flexShrink:0, minWidth:0 }}>
-              <div style={{ display:"flex", alignItems:"center", height:"100%", width:170, maxWidth:170, flexShrink:0, minWidth:0 }}>
-                <p style={{ ...T.typeS, flex:"1 0 0", color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, minWidth:0 }}>{orgName}</p>
+              <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:170, flexShrink:1, minWidth:0 }}>
+                <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:170 }}>{orgName}</p>
               </div>
               {cityName && (
                 <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:72, flexShrink:0, minWidth:0 }}>

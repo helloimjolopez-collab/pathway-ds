@@ -743,20 +743,23 @@ export function OrgSwitcher({
               display: "flex", alignItems: "center", height: "100%",
               maxWidth: 248, flexShrink: 0, minWidth: 0,
             }}>
-              {/* Container.OrgName: w-170 max-w-170 (Figma fixed width) */}
+              {/* Container.OrgName: max-w 170 (CONTENT-SIZED, not fixed).
+                  Figma annotation: "Text Truncates if frame going beyond 170pt"
+                  — this is a max-width truncation rule, not a fixed width.
+                  Short names like "Cross Point" → container shrinks to fit text.
+                  Long names → truncated with ellipsis at 170px. */}
               <div style={{
                 display: "flex", alignItems: "center", height: "100%",
-                width: 170, maxWidth: 170, flexShrink: 0, minWidth: 0,
+                maxWidth: 170, flexShrink: 1, minWidth: 0,
               }}>
                 <p style={{
                   ...TYPE_S,
-                  flex: "1 0 0",
                   color: text,
                   whiteSpace: "nowrap",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   margin: 0,
-                  minWidth: 0,
+                  maxWidth: 170,
                 }}>
                   {orgName}
                 </p>
