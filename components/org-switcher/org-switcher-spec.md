@@ -1,8 +1,39 @@
 # Org Switcher — Pathway Design System Component Spec
 
-**Status:** `PENDING HUMAN REVIEW`
+**Status:** `REVIEWED`
+**Version:** `v1`
 
-Complete implementation reference for the Org Switcher component. Covers anatomy, design tokens, states, spacing, interaction patterns, and accessibility. Use alongside the [Figma source](#figma-source) for a pixel-accurate build. See [Appendix A](#appendix-a-abbreviation-guidelines) for the full mobile display abbreviation standard.
+Complete implementation reference for the Org Switcher component. Covers anatomy, design tokens, states, spacing, interaction patterns, and accessibility. Use alongside the [Figma source](#figma-source) for a pixel-accurate build. See [Appendix A](#appendix-a-deprecated--legacy-abbreviation-rules) for legacy/historical abbreviation rules.
+
+---
+
+## 0. Scope of this version (v1)
+
+**This version of the Org Switcher updates only the trigger control in the top nav.**
+
+| Sub-component | Scope in v1 | Notes |
+|---|---|---|
+| **Trigger button (Base/Hover/Pressed × Desktop/Mobile)** | ✅ IN SCOPE | Visual + interaction spec is authoritative. Pixel-accurate against Figma. |
+| **Avatar (logo image / church placeholder)** | ✅ IN SCOPE | Logo: `object-fit: cover` proportional fill. Placeholder: church SVG. |
+| **Container.CityName.Catholic** | ✅ IN SCOPE | Catholic orgs only (see §0.1). |
+| **Open/closed chevron rotation** | ✅ IN SCOPE | 200ms `cubic-bezier(0.4,0,0.2,1)`. |
+| **Drop panel (open state)** | ⚠️ OUT OF SCOPE — placeholder only | The panel implementation in this repo is a working-but-non-canonical placeholder. It is NOT in the design system yet. Do not treat the panel code, dimensions, header copy, search styling, row layout, or module-icon system as authoritative. The panel will be specified in a later version. |
+| Module icons row in panel rows | ⚠️ OUT OF SCOPE | Placeholder. Real Pathway module icon system to come. |
+| Panel header / search / row dimensions | ⚠️ OUT OF SCOPE | Placeholder. |
+
+**Rule:** changes to the trigger in this spec are normative. Changes to the panel placeholder are non-normative — do not modify it from Figma without an explicit design-system pass on the panel itself.
+
+### 0.1 CityName is Catholic-only — never Protestant
+
+`Container.CityName.Catholic` (the second text container after the org name, separated by ` | `) is **only ever shown for Catholic organisations**.
+
+- It carries the **city or diocese** name — never a campus, suborg, region, or other identifier.
+- Protestant organisations render the trigger with `orgName` only. No pipe. No second container. The Catholic city container is not rendered at all (not just hidden) for Protestant orgs.
+- The `showCityName` / `cityName` prop is bound to the org's record-level `orgType: "catholic"` discriminant. The component **must not** render `Container.CityName.Catholic` when `orgType !== "catholic"`, even if a city string is supplied.
+
+> **⚠ Figma annotation (node 40007477:12205):** "Container.CityName.Catholic is only implemented and/or shown for Catholic orgs. CityName does not apply to Protestant orgs. CityName is NOT a suborg name."
+
+---
 
 ---
 
@@ -14,10 +45,10 @@ It is **not** used for module-level navigation (that is SideNav's job), for sett
 
 The component has two distinct display modes driven by viewport:
 
-- **Desktop** (`≥ 768 px`): renders the full organisation name and, when a campus exists, the full campus name separated by a pipe: `Grace Community Church  |  West Campus`. The trigger is a styled button element, not a plain text label.
-- **Mobile** (`< 768 px`): renders abbreviated initialisations of both the org name and the campus name per the rules in [Appendix A](#appendix-a-abbreviation-guidelines): `GCC | WE`. The pipe and campus abbreviation are suppressed when no campus or sub-org exists.
+- **Desktop** (`≥ 768 px`): renders the full organisation name in `Container.OrgName` (max 180px). For **Catholic organisations only**, a second `Container.CityName.Catholic` (max 72px) shows the city or diocese name after a pipe separator: `Sacred Heart Church-ITD  |  Knoxville`. **Protestant orgs show only the org name — no pipe, no second field.** See §0.1 for the full Catholic-only rule. The trigger is a styled button element, not a plain text label.
+- **Mobile** (`< 768 px`): renders the full `orgName` in a **fixed 50px-wide** `Container.Label`, truncated by CSS `text-overflow: ellipsis`. Typography is `Label/Button/S` (14px / 500 / 20px — same as desktop, not the previous 12px XS variant). **There is no abbreviation** — "Grace Community Church" renders as "Grace…" by visual truncation, not initialism. CityName is never shown on mobile (desktop-only container).
 
-The switcher opens a panel (dropdown or bottom sheet depending on viewport) listing all organisations the signed-in user has access to. Selecting a row switches context and closes the panel.
+Clicking the trigger opens the panel. **The panel is out of scope in v1** (placeholder only — see §0).
 
 ### Figma source
 
@@ -33,8 +64,8 @@ The switcher opens a panel (dropdown or bottom sheet depending on viewport) list
 | Trigger colours, typography, spacing tokens | Figma: Org Switcher component | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583) |
 | Primitive or semantic token values | Figma: Variables panel | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) |
 | Org logo / avatar appearance | Figma: Org Switcher → Container.Avatar | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583) |
-| Panel / dropdown surface and layout | Not yet designed — deferred | §17 |
-| Abbreviation rules (mobile display) | This spec | [Appendix A](#appendix-a-abbreviation-guidelines) |
+| Panel / dropdown surface and layout | **Out of scope in v1** — placeholder only | §0 |
+| Mobile display behaviour (truncation, no abbreviation) | This spec | §5.2 |
 | Desktop full-name display format | This spec | §5.1 |
 | Mobile abbreviated display format | This spec | §5.2 + Appendix A |
 | Chevron icon rotation (open/closed) | This spec | §11 |
@@ -50,31 +81,44 @@ The switcher opens a panel (dropdown or bottom sheet depending on viewport) list
 The Figma component (node `40006819:14583`) defines **the trigger button only**. The panel/dropdown is not yet designed; it is a deferred deliverable (see §17).
 
 ```
-OrgSwitcher.Root                        min-h/w 48px (touch target), p-4px, max-w: 316px (desktop) / 114px (mobile)
-└── Container.Main                      h-36px, border 1px, rounded-8px
-     ├── Container.RowStart             flex, items-center, gap-4px (desktop) | 20×20px (mobile)
-     │    ├── Container.Avatar          24×24px (desktop) | fills 20×20px (mobile), p-4px
-     │    │    └── Avatar              border 1px, rounded-4px, overflow-hidden
-     │    │         └── Image          org logo or initials placeholder
-     │    └── Container.Label          max-w-248px, pr-4px — DESKTOP ONLY (inside RowStart)
-     │         └── label text          14px / 500 / 20px lh / 0.3px ls
-     ├── Container.Label               px-2px — MOBILE ONLY (outside RowStart)
-     │    └── abbreviated text         12px / 500 / 18px lh / 0.3px ls (e.g. "SHC | KV")
-     └── Container.RowEnd              p-2px
-          └── Container.IconTrailing   p-2px, 16×16px
-               └── expand_more icon   SVG chevron, rotates 180° when open
+OrgSwitcher.Root                           min-h/w 48px (touch target)
+                                           Desktop: content-sized, max-w 316, p-4px
+                                           Mobile: FIXED w-108, px-2px py-4px
+└── Container.Main                         h-36, border 1px, rounded-8px
+                                           Desktop: max-w 308, p-4, gap-2px between RowStart and RowEnd
+                                           Mobile: max-w 102, p-4, NO gap
+     ├── Container.RowStart                flex, items-center, gap-4px (xxtight, both)
+     │                                     Desktop: h-24, content-sized
+     │                                     Mobile: h-20, max-w 74 content-sized
+     │    ├── Container.Avatar             p-2px (xxxtight), flex-shrink-0
+     │    │                                Desktop: 24×24 outer / 20×20 inner Avatar
+     │    │                                Mobile: 20×20 outer / 16×16 inner Avatar
+     │    │    └── Avatar                 border 1px, rounded-4px, overflow-hidden
+     │    │         ├─ [logo present]     <img> object-fit: cover — fills proportionally
+     │    │         └─ [no logo]          fill.action.secondary.base bg + church SVG placeholder
+     │    │                               (Figma node 40007243:73426 — NOT text initials)
+     │    ├── Container.OrgLabel          DESKTOP ONLY — max-w-248 (annotation: "truncates beyond 248pt")
+     │    │    ├── Container.OrgName      max-w-180, content-sized — truncates with ellipsis at 180
+     │    │    │    └── orgName text      14px / 500 (Label/Button/S) / 20px lh / 0.3px ls
+     │    │    └── Container.CityName.Catholic  max-w-72 — Catholic orgs ONLY (spec §0.1)
+     │    │         └── " | {cityName}"  14px / 500 (Label/Button/S) — NOT a suborg name
+     │    └── Container.Label             MOBILE ONLY — FIXED w-50, INSIDE RowStart
+     │         └── orgName text (trunc)  14px / 500 (Label/Button/S) / 20px lh / 0.3px ls
+     │                                    same typography as desktop; truncated by ellipsis at 50px
+     └── Container.RowEnd                 p-2px (xxxtight)
+          └── Container.IconTrailing      size-16px, p-2px → 12×12 icon area
+               └── expand_more icon      Material Symbol chevron, rotates 180° when open
 ```
 
-> **Note on logo vs placeholder:** The Avatar renders the org's logo image when `logoUrl` is provided. When absent, it renders a two-letter initials block (computed from the org name via `abbreviateOrg()`).
+> **Logo rule (Figma annotation):** "Logo must always scale to fill frame proportionally. If org does not have a logo, use placeholder org logo here: node 40007243-73405." — The placeholder is the church/building SVG icon, **not text initials**.
 
 ### Trigger label format
 
 | Context | Label content |
 |---|---|
-| Desktop, with campus | `{Full Org Name}  \|  {Full Campus Name}` |
-| Desktop, no campus | `{Full Org Name}` |
-| Mobile, with campus | `{ORG} \| {CA}` (per Appendix A) |
-| Mobile, no campus | `{ORG}` (per Appendix A) |
+| Desktop, Catholic org with city name | `{Full Org Name}` (max 170px) + ` \| {City/Diocese Name}` (max 72px) |
+| Desktop, Protestant org / no city name | `{Full Org Name}` only — no pipe, no second field |
+| Mobile | `{Full Org Name}` truncated by `text-overflow: ellipsis` at 60px max-width. No abbreviation. |
 
 ---
 
@@ -89,6 +133,7 @@ All tokens confirmed from Figma node `40006819:14583`. This component uses **dar
 | `fill.action.tertiary.base` | `--semantic-color-dark-mode-fill-action-tertiary-base` | `rgba(160,181,230,0.04)` | Trigger background — base |
 | `fill.action.primaryinverse.hover` | `--semantic-color-dark-mode-fill-action-primaryinverse-hover` | `rgba(10,18,35,0.16)` | Trigger background — hover |
 | `fill.action.primaryinverse.pressed` | `--semantic-color-dark-mode-fill-action-primaryinverse-pressed` | `rgba(255,255,255,0.08)` | Trigger background — pressed |
+| `fill.action.secondary.base` | `--semantic-color-dark-mode-fill-action-secondary-base` | `rgba(255,255,255,0.08)` | Avatar placeholder background (when no org logo) — Figma node 40007243:73405 |
 
 ### 3.3 Stroke
 
@@ -124,10 +169,12 @@ All tokens confirmed from Figma node `40006819:14583`. This component uses **dar
 
 ### 3.7 Typography
 
+Both desktop and mobile use **`Label/Button/S`** for the org name. Mobile no longer uses `Label/Button/XS` (changed in v1; previously mobile rendered abbreviated text at 12px).
+
 | Usage | CSS Variable prefix | Weight | Size | Line-height | Letter-spacing |
 |---|---|---|---|---|---|
 | Trigger label — desktop | `--semantic-type-desktop-label-button-s-` | 500 | 14px | 20px | 0.3px |
-| Trigger label — mobile (abbr) | `--semantic-type-desktop-label-button-xs-` | 500 | 12px | 18px | 0.3px |
+| Trigger label — mobile | `--semantic-type-desktop-label-button-s-` | 500 | 14px | 20px | 0.3px |
 | Font family (both) | `--semantic-type-desktop-label-button-s-fontfamily` | — | Red Hat Text | — | — |
 
 ---
@@ -140,23 +187,29 @@ All values confirmed from Figma node `40006819:14583`.
 |---|---|---|
 | Root outer padding (all sides) | 4px | `--semantic-layout-units-padding-xxtight` |
 | Root min-height / min-width (touch target) | 48px | raw |
-| Root max-width — desktop | 316px | raw |
-| Root max-width — mobile | 114px | raw |
+| Root max-width — desktop | 316px | raw — content-sized up to max |
+| Root width — mobile | **108px (fixed)** | raw — Figma node 40006820:14757 `w-[108px]` |
 | Inner button height | 36px | raw |
-| Inner button padding (desktop) — all sides | 4px | `--semantic-layout-units-padding-xxtight` |
-| Inner button padding (mobile) — left/top/bottom | 4px | `--semantic-layout-units-padding-xxtight` |
-| Inner button padding (mobile) — right | 2px | `--semantic-layout-units-padding-xxxtight` |
-| Gap between avatar and label (desktop, inside RowStart) | 4px | `--semantic-layout-units-gap-xxtight` |
+| Inner button (Container.Main) max-width — desktop | 308px | raw — Figma `max-w-[308px]` |
+| Inner button (Container.Main) max-width — mobile | 102px | raw — Figma `max-w-[102px]` |
+| Container.Main padding (both) | 4px | `--semantic-layout-units-padding-xxtight` |
+| Container.Main gap (desktop only) | 2px | `--semantic-layout-units-padding-xxxtight` — between RowStart and RowEnd. Mobile has NO gap. |
+| Outer wrapper padding — desktop | 4px all sides | `--semantic-layout-units-padding-xxtight` |
+| Outer wrapper padding — mobile | px:2 py:4 (asymmetric) | xxxtight horizontal, xxtight vertical |
+| Container.RowStart gap (both) | 4px | `--semantic-layout-units-gap-xxtight` |
+| Container.RowStart height — desktop | 24px | raw |
+| Container.RowStart height — mobile | 20px | raw |
+| Container.RowStart max-width — mobile | 74px | raw — content-sized (Avatar 20 + gap 4 + Label 50 = 74) |
 | Container.Avatar — desktop | 24×24px | raw |
 | Container.Avatar — mobile | 20×20px | raw |
-| Avatar inner padding (all sides) | 4px | `--semantic-layout-units-padding-xxtight` |
+| Avatar inner padding (both) | 2px | `--semantic-layout-units-padding-xxxtight` |
 | Container.RowEnd padding | 2px | `--semantic-layout-units-padding-xxxtight` |
-| Container.IconTrailing padding | 2px | `--semantic-layout-units-padding-xxxtight` |
-| Chevron icon size | 16×16px | raw |
-| Desktop label max-width | 248px | raw |
-| Desktop label right padding | 4px | `--semantic-layout-units-padding-xxtight` |
-| Mobile label horizontal padding | 2px | `--semantic-layout-units-padding-xxxtight` |
-| Panel layout spacing | TBD — panel not yet designed | — |
+| Container.IconTrailing size + inner padding | 16×16px / 2px | raw / `--semantic-layout-units-padding-xxxtight` |
+| Chevron icon area | 12×12px | inside the 16×16 padded box |
+| Container.OrgLabel max-width (desktop) | 248px | raw — annotation: "Text truncates if going beyond 248pt" |
+| Container.OrgName max-width (desktop) | 180px | raw — content-sized, annotation: "Text Truncates if frame going beyond 170pt" |
+| Container.CityName.Catholic max-width (desktop) | 72px | raw — Catholic orgs only (spec §0.1) |
+| Container.Label width (mobile) | **50px (fixed)** | raw — Figma node 40007067:13273 `w-[50px]` |
 
 ---
 
@@ -171,22 +224,95 @@ All values confirmed from Figma node `40006819:14583`.
 
 ### 5.2 Mobile trigger
 
-- Renders the abbreviated org initialism (exactly 3 uppercase letters, no periods) computed per [Appendix A §4](#a4-organization-name--three-initial-rule).
-- When a campus or sub-org is active, appends ` | ` then the 2-letter campus abbreviation computed per [Appendix A §5](#a5-campus-and-sub-organization--two-initial-rule).
-- No truncation: the abbreviated form is always short enough to render fully at mobile widths.
-- Chevron icon trails the text on the right.
+- Total root frame is fixed `108×48`. Container.Main inside is `36×102` max.
+- Renders the **full `orgName`** in a **fixed 50px-wide** `Container.Label`, truncated by CSS `text-overflow: ellipsis`.
+- **Typography is `Label/Button/S` (14px / 500 / 20px / 0.3px ls)** — same as desktop. Mobile previously used `Label/Button/XS` (12px); that was removed in this version.
+- **No abbreviation.** "Grace Community Church" displays as "Grace…" by visual truncation.
+- The cityName field is **never** shown on mobile (`Container.CityName.Catholic` is desktop-only, regardless of orgType).
+- Chevron icon (16×16 with 2px inner padding → 12×12 area) sits at the right edge with no gap between it and the label/RowStart.
+
+> Earlier iterations of this component used a 3-letter org abbreviation + 2-letter campus code per [Appendix A](#appendix-a-deprecated--legacy-abbreviation-rules). Figma node 40006820:14757 was updated to use visual truncation instead; the abbreviation utilities (`abbreviateOrg`, `abbreviateCampus`, `mobileLabel`) remain exported from `org-switcher.jsx` for backward compatibility but are not used by the component.
 
 ### 5.3 Avatar — logo present
 
-When `logoUrl` is provided, the avatar renders the org's logo image as a cropped `object-fit: cover` fill inside the bordered rounded container.
+When `logoUrl` is provided, the avatar renders the org's logo image as an `object-fit: cover` fill inside the bordered rounded container. The image always scales to fill the frame proportionally — no hardcoded crop offsets or percentages.
+
+> **Figma annotation:** "Logo must always scale to fill frame proportionally."
 
 ### 5.4 Avatar — no logo (placeholder)
 
-When `logoUrl` is absent, the avatar renders the first two letters of the org's abbreviated name (per Appendix A §4) in a tinted block. This is the initials-fallback placeholder.
+When `logoUrl` is absent (or fails to load), the avatar renders the **church/building SVG icon** on a `fill.action.secondary.base` (`rgba(255,255,255,0.08)`) background.
 
-### 5.5 Panel variants
+- Figma node: `40007243:73405` (full placeholder state), inner icon `40007243:73426`
+- Icon inset: `4.17% 8.33% 8.33% 8.33%` within the 16px inner avatar frame
+- `fill="white"` with `fillOpacity="0.7"`
+- **Never use text initials as the placeholder.** Figma explicitly specifies this icon.
 
-Not yet designed in Figma. Deferred — see §17.
+### 5.5 Panel — ⚠️ OUT OF SCOPE IN v1 (PLACEHOLDER ONLY)
+
+> **The drop panel is NOT part of the v1 design system release.**
+>
+> The panel implementation currently in `org-switcher.jsx` / `org-switcher.html` is a working placeholder so the trigger has something to open against. Do **not** treat any of the panel's dimensions, header copy, search styling, row layout, module-icon system, or colour values as authoritative. The panel will get its own design-system pass in a later version.
+>
+> If you are working from this spec to ship code: **only the trigger sub-component (§§ 2–5.4 and 6–15 as they apply to the trigger) is normative.** The §5.5/§5.6 content below is non-normative reference describing the placeholder, not the v1 contract.
+
+Per current Figma placeholder "Primary" (node `40007336:10287`). Opens below the trigger at `top: calc(100% + 4px)` and anchors to the trigger's left edge. The panel extends beyond the trigger's right edge when the trigger is narrow.
+
+**Container dimensions:**
+- Desktop: 414px wide
+- Mobile: 380px wide (fits within phone viewport with side margins)
+- Padding: `pt:18px pb:24px px:18px`
+- Background: `#ffffff`
+- Border radius: 8px
+- Shadow: `0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)`
+- Internal `gap: 12px` between Header, Search, and List
+
+**Header (Breadcrumb — node `40007336:10288`):**
+- "My Organizations" — `Red Hat Text SemiBold 14px / line-height: normal`
+- Color: `#6b6b6b` (text.base.secondary)
+- Container padding: `px:10 py:4`, radius: 4
+
+**Search input (node `40007336:10289`):**
+- Bordered rectangle (NOT pill)
+- Border: `1px solid #b5b5b5` (stroke.input.default)
+- Border radius: 4px
+- Padding: 8px all sides
+- `gap: 4px` between icon and input
+- Search icon: 24×24 Material Symbol `search`
+- Placeholder: "Search" — `Red Hat Text Regular 16px / 24px line-height / color #6b6b6b`
+
+**Org list row (Switcher Items_V4 — node `40007336:10291`):**
+- Height: 78px, full panel inner width (370px desktop)
+- Background: `#ffffff` (active: `#eef2fb`)
+- Border radius: 8px
+- Padding: 16px all sides
+- Layout: `flex items-center gap:16` →
+  - **Logo Name Modules** (`flex: 1 0 0, gap:12`):
+    - **Logo** — 64×46 RECTANGLE, `border-radius: 4`, `background: #0f3e80` (navy). Contains the org's branded logo image (`object-fit: contain, padding: 6px`) or the church placeholder SVG centered.
+    - **Name + Modules column** (`flex-col, gap:6`):
+      - Org name — `Red Hat Text SemiBold 14px / 22px line-height / color #363636`
+      - Modules row — 18×18 colored chips with `-2px` right margin (visually overlap by 2px). 1.5px white border on each chip.
+  - **Chevron right** — `chevron_right` 20×20, color `#979797`
+
+### 5.6 Module icons
+
+Each row displays 18×18 chips representing the Pathway modules the org has access to. Module catalog (from Figma `OrgSwitcherModuleIconsLaunch` variants):
+
+| Module key | Background | Material Symbol |
+|---|---|---|
+| `people` | `#877ec8` | `person` |
+| `giving` | `#4ba8cb` | `volunteer_activism` |
+| `app-builder` | `#6fceb7` | `build` |
+| `websites` | `#2bb6c4` | `language` |
+| `streaming` | `#e07d6e` | `live_tv` |
+| `content` | `#e8b15e` | `article` |
+| `communications` | `#d96c9e` | `chat` |
+| `worship` | `#8b6dd8` | `music_note` |
+| `protections` | `#5b8def` | `shield` |
+| `events` | `#4caf7d` | `event` |
+| `accounting` | `#f8c84f` | `account_balance` |
+
+Each org passes a `modules: string[]` array to the component. Modules render in the order provided.
 
 ---
 
@@ -269,9 +395,9 @@ No separate "compact" Figma variant is expected — the breakpoint switch handle
 
 ## 11. Iconography
 
-- **Chevron:** `expand_more` icon from Figma (path confirmed). 16×16px container (including 2px internal padding on all sides), so effective icon area ~12×12px. Fill uses `icon.action.mono.*` per state. Rotates 180° (`transform: rotate(180deg)`) when the panel is open; transition: 150ms ease.
-- **OrgAvatar — logo:** org logo image rendered `object-fit: cover`, filling a square container. Size: 16×16px inner (24×24px outer including 4px padding). Corner radius: 4px (`cornerradius.small`). Border: 1px solid `stroke.action.tertiary.*` per state.
-- **OrgAvatar — placeholder:** two-letter initials derived from `abbreviateOrg(orgName).slice(0,2)`, rendered in a tinted block when no `logoUrl` is provided. No separate icon asset needed.
+- **Chevron:** `expand_more` Material Symbol (Rounded). 16×16px container (including 2px internal padding), effective area ~12×12px. Fill: `icon.action.mono.*` per state. Rotates 180° when panel is open; transition: `200ms cubic-bezier(0.4,0,0.2,1)`.
+- **OrgAvatar — logo:** org logo image, `object-fit: cover`, fills the square avatar frame proportionally. Desktop outer: 24×24px (4px padding → 16×16px inner). Mobile outer: 20×20px (4px padding → 12×12px inner). Corner radius: `cornerradius.small` (4px). Border: 1px solid `stroke.action.tertiary.*` per state.
+- **OrgAvatar — placeholder:** church/building SVG icon from Figma (node `40007243:73426`). Positioned at `inset: 4.17% 8.33% 8.33% 8.33%` within the inner avatar frame. `fill="white"` + `fillOpacity="0.7"`. Background: `fill.action.secondary.base` (`rgba(255,255,255,0.08)`). **Never use text initials** — this is the Figma-specified placeholder.
 
 ---
 
@@ -367,14 +493,14 @@ All text-on-background combinations must meet WCAG AA (4.5:1 for body text, 3:1 
 
 ## 14. Motion
 
-| Property | Value | Why |
+| Property | Value | Notes |
 |---|---|---|
-| Panel enter duration | TBD | Confirm against `docs/design-system-spec.md` §Motion |
-| Panel enter easing | TBD | Per system motion spec |
-| Panel exit duration | TBD | Exit slightly faster than enter (system convention) |
-| Chevron rotation duration | TBD | Matches panel enter duration |
-| Chevron rotation easing | TBD | Per system motion spec |
-| Reduced motion | No translate/opacity transitions; panel snaps in/out | `prefers-reduced-motion: reduce` |
+| Panel enter duration | 200ms | `cubic-bezier(0,0,0.2,1)` decelerate — panel drops in from above |
+| Panel enter transform | `translateY(-6px) → translateY(0)` + opacity 0→1 | Matches top-nav dropdown pattern |
+| Panel exit | Unmounts immediately (no exit animation) | Standard Pathway dropdown behaviour |
+| Chevron rotation duration | 200ms | `cubic-bezier(0.4,0,0.2,1)` standard ease — same tier as panel |
+| Chevron rotation | `rotate(0deg)` → `rotate(180deg)` when open | |
+| Reduced motion | No translate/opacity transitions; panel snaps in/out | `prefers-reduced-motion: reduce` — CSS media query |
 
 ---
 
@@ -382,8 +508,8 @@ All text-on-background combinations must meet WCAG AA (4.5:1 for body text, 3:1 
 
 | Viewport | Trigger label | Panel behaviour |
 |---|---|---|
-| `≥ 768 px` (desktop) | Full org name + campus name | Dropdown anchored below trigger |
-| `< 768 px` (mobile) | Abbreviated `ORG \| CA` | Bottom sheet or anchored dropdown (TBD) |
+| `≥ 768 px` (desktop) | Full org name (max 170px) + city name for Catholic orgs (max 72px) | Dropdown anchored below trigger |
+| `< 768 px` (mobile) | Full org name truncated by `text-overflow: ellipsis` at 60px. No abbreviation. | Bottom sheet or anchored dropdown (TBD) |
 
 Breakpoint values per `docs/design-system-spec.md` §Breakpoints.
 
@@ -404,14 +530,9 @@ Breakpoint values per `docs/design-system-spec.md` §Breakpoints.
 
 | Gap | Priority | Notes |
 |---|---|---|
-| Panel / dropdown not designed | HIGH | Figma only defines the trigger (node `40006819:14583`). The switcher panel (org list, selection, active mark) needs a Figma pass before the full component ships. |
-| ARIA pattern choice (Disclosure vs Combobox) | HIGH | Combobox required if org list supports search/filter. Decide before accessibility review. |
-| Panel mobile behaviour (dropdown vs bottom sheet) | HIGH | No Figma reference yet. Needs design decision. |
+| **Panel — entire sub-component** | **DEFERRED to next version** | Out of scope in v1. Whole panel design (header, search, row layout, module icons, mobile bottom-sheet vs dropdown, dimensions, ARIA pattern choice, keyboard nav within panel) lands in a later version. Placeholder lives in the repo so the trigger is testable end-to-end. |
+| CityName.Catholic — product data mapping | HIGH | The product database / API must supply `cityName` AND a `orgType: "catholic"` discriminant. Component renders `Container.CityName.Catholic` ONLY when `orgType === "catholic"` (see §0.1). Confirm data model with backend. |
 | Single-org disabled state visual | MEDIUM | Current impl: trigger at 50% opacity, inert. Confirm this matches design intent. |
-| Abbreviation collision handling | MEDIUM | Appendix A §4.5 / §5.6 defines resolution rules; product DB must support storing per-org override values. |
-| Animation values | MEDIUM | Chevron: 150ms ease (placeholder). Verify against `docs/design-system-spec.md §Motion` once panel is designed. |
-| `logoUrl` placeholder tint | LOW | Avatar placeholder uses `rgba(53,85,160,0.25)` — not a semantic token. Confirm correct token at spec review. |
-| Panel header copy | LOW | "Switch organisation" copy not yet confirmed with content strategy. |
 
 ---
 
@@ -423,9 +544,11 @@ Not yet in Storybook. Placeholder story file at `src/stories/Library/OrgSwitcher
 
 ---
 
-# Appendix A: Abbreviation Guidelines
+# Appendix A (DEPRECATED) — Legacy Abbreviation Rules
 
-**Mobile UI Display Standard for Organization and Campus Names**
+> **⚠ DEPRECATED 2026-05-18.** Figma was updated so that mobile uses CSS text-overflow truncation of the full org name (Figma node 40006820:14757 / 40007067:13274 — "Grace Comm…"). The 3-letter org abbreviation + 2-letter campus code rules below are kept for historical reference only. The component no longer applies them.
+
+**Mobile UI Display Standard for Organization and Campus Names** *(historical)*
 Version 1.1 · Based on AP Stylebook and supporting standards
 
 ---
