@@ -11,36 +11,33 @@
 
 import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
+import { t } from "../../tokens/resolve-tokens.js";
 
 // ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
-// Semantic token → resolved value. Kept as constants (not CSS vars) because the
-// contextual.navitem.* family was dropped by sync-tokens (Blue.180 orphan).
-// Migrate to var(--semantic-color-light-mode-fill-contextual-navitem-*) once
-// those tokens are restored in Figma.
 export const T = {
   fill: {
-    navBase:    "#fafafa",   // Fill/Contextual/NavItem/Base
-    navHover:   "#11111105", // Fill/Contextual/NavItem/Hover  (~4% black)
-    navActive:  "#a0b5e629", // Fill/Contextual/NavItem/Active (~16% brand blue)
-    navTrail:   "#11111105", // Fill/Contextual/NavItem/Trail  (~4% black, same hex as Hover — kept distinct)
-    infoSubtle: "#f6f6f6",   // Stroke/Static/Neutral/Light — container right border
+    navBase:    t("Fill/Contextual/NavItem/Base"),
+    navHover:   t("Fill/Contextual/NavItem/Hover"),
+    navActive:  t("Fill/Contextual/NavItem/Active"),
+    navTrail:   t("Fill/Contextual/NavItem/Trail"),   // same resolved value as Hover — kept distinct
+    infoSubtle: t("Stroke/Static/Neutral/Light"),      // container right border
   },
-  surface: { navLight: "#fafafa" }, // Surface/Nav/Light
+  surface: { navLight: t("Surface/Nav/Light") },
   text: {
-    navBase:        "#313131", // Text/Contextual/NavItem/Base
-    navHover:       "#252525", // Text/Contextual/NavItem/Hover
-    navActive:      "#1b2d57", // Text/Contextual/NavItem/Active
-    secondary:      "#7b7b7b", // Text/Static/Secondary/Light — PopoverMenu.SectionLabel
-    secondarySubtle:"#606060", // Text/Static/Secondary/Subtle — NavSectionLabel (in-nav heading)
+    navBase:         t("Text/Contextual/NavItem/Base"),
+    navHover:        t("Text/Contextual/NavItem/Hover"),
+    navActive:       t("Text/Contextual/NavItem/Active"),
+    secondary:       t("Text/Static/Secondary/Light"),   // PopoverMenu.SectionLabel
+    secondarySubtle: t("Text/Static/Secondary/Subtle"),  // NavSectionLabel
   },
   icon: {
-    navBase:          "#484848", // Icon/Contextual/NavItem/Base
-    navHover:         "#313131", // Icon/Contextual/NavItem/Hover
-    navActive:        "#2d4889", // Icon/Contextual/NavItem/Active — also indicator stripe
-    actionSecondary:  "#6b6b6b", // Icon/Action/Secondary Inverse/Base — CollapseButton icon
+    navBase:         t("Icon/Contextual/NavItem/Base"),
+    navHover:        t("Icon/Contextual/NavItem/Hover"),
+    navActive:       t("Icon/Contextual/NavItem/Active"),  // also indicator stripe
+    actionSecondary: t("Icon/Action/Secondary Inverse/Base"), // CollapseButton icon
   },
-  indicator: "#2d4889", // Icon/Contextual/NavItem/Active — indicator stripe colour
-  radius:    8,         // Radius/M
+  indicator: t("Icon/Contextual/NavItem/Active"),
+  radius:    8,  // Radius/M
 };
 
 // ─── LAYOUT VALUES (no semantic tokens in Figma — raw values) ─────────────────

@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  echo "Usage: $(basename "$0") <token-id> <theme>" >&2
+  echo "  token-id  Slash-separated semantic token, e.g. Fill/Contextual/NavItem/Base" >&2
+  echo "  theme     light or dark" >&2
+  exit 1
+}
+
+[[ $# -eq 2 ]] || usage
+
+TOKEN_ID="$1"
+THEME_INPUT="$2"
+
+case "$THEME_INPUT" in
+  light) THEME="light-mode" ;;
+  dark)  THEME="dark-mode"  ;;
+  light-mode|dark-mode) THEME="$THEME_INPUT" ;;
+  *) echo "Error: theme must be 'light' or 'dark'" >&2; exit 1 ;;
+esac
+
+TOKENS_FILE="$(dirname "$0")/tokens/pathway-design-tokens.json"
+[[ -f "$TOKENS_FILE" ]] || { echo "Error: $TOKENS_FILE not found" >&2; exit 1; }
+
+# Build a jq path from slash-separated segments, lowercased
+build_jq_path() {
+  local input="$1"
+  local path=""
+  IFS='/' read -ra segments <<< "$input"
+  for seg in "${segments[@]}"; do
+    lower=$(echo "$seg" | tr '[:upper:]' '[:lower:]')
+    path="${path}.${lower}"
+  done
+  echo "$path"
+}
+
+SEMANTIC_PATH=$(build_jq_path "$TOKEN_ID")
+
+# Step 1: resolve semantic token -> primitive token reference string
+PRIMITIVE_REF=$(jq -r ".[\"semantic-color\"][\"$THEME\"]${SEMANTIC_PATH}.\"\$value\"" "$TOKENS_FILE")
+
+if [[ -z "$PRIMITIVE_REF" || "$PRIMITIVE_REF" == "null" ]]; then
+  echo "Error: semantic token '$TOKEN_ID' not found under $THEME" >&2
+  exit 1
+fi
+
+# Strip enclosing {…} — format is "{primitive-color.foo.bar}"
+PRIMITIVE_ID="${PRIMITIVE_REF#\{}"
+PRIMITIVE_ID="${PRIMITIVE_ID%\}}"
+
+# Build jq path from dot-separated primitive ID; numeric segments quoted as strings
+build_primitive_jq_path() {
+  local input="$1"
+  local path="."
+  IFS='.' read -ra parts <<< "$input"
+  for part in "${parts[@]}"; do
+    path="${path}[\"${part}\"]"
+  done
+  echo "$path"
+}
+
+PRIMITIVE_PATH=$(build_primitive_jq_path "$PRIMITIVE_ID")
+
+# Step 2: resolve primitive token -> hex color
+HEX=$(jq -r "${PRIMITIVE_PATH}.\"\$value\"" "$TOKENS_FILE")
+
+if [[ -z "$HEX" || "$HEX" == "null" ]]; then
+  echo "Error: primitive token '$PRIMITIVE_ID' not found" >&2
+  exit 1
+fi
+
+echo "$HEX"
