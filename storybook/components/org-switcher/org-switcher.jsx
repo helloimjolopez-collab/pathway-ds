@@ -1,16 +1,12 @@
 /**
  * OrgSwitcher — Pathway Design System
  *
- * Trigger component for switching organisation/campus context.
+ * Trigger + panel component for switching organisation/campus context.
  * Lives in the global shell (dark top nav bar).
  * Desktop: full org + campus name. Mobile: abbreviated per Appendix A.
  *
- * NOTE: Component is not fully shipped — spec is PENDING HUMAN REVIEW.
- * The panel/dropdown is not yet designed in Figma; this module ships the
- * trigger only. Do not use in production until spec reaches REVIEWED.
- *
  * Spec:   components/org-switcher/org-switcher-spec.md
- * Figma:  https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583
+ * Figma:  https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007336-9453
  */
 
 import React, { useState, useRef, useEffect } from "react";
@@ -38,6 +34,27 @@ const T = {
   iconHover:   "var(--semantic-color-dark-mode-icon-action-mono-hover,   #ffffff)",
   iconPressed: "var(--semantic-color-dark-mode-icon-action-mono-pressed, #ffffff)",
 
+  // Panel (light surface)
+  panelBg:     "#ffffff",
+  panelShadow: "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
+  panelRadius: "8px",
+
+  // Panel text
+  panelHeading:  "#252525",
+  panelOrgName:  "#252525",
+  panelCampus:   "#6b6b6b",
+  panelSearch:   "#606060",
+  panelChevron:  "#c0c0c0",
+  searchBg:      "#f4f4f4",
+  searchBorder:  "#e0e0e0",
+
+  // Active org highlight
+  activeOrg:     "#eef2fb",
+  orgHover:      "#f8f8f8",
+
+  // Org logo branded bg (brand-500)
+  logoBrandBg:   "#2d4889",
+
   // Layout
   radiusMedium: "var(--semantic-layout-units-cornerradius-medium, 8px)",
   radiusSmall:  "var(--semantic-layout-units-cornerradius-small,  4px)",
@@ -48,6 +65,12 @@ const T = {
   gapXxtight:   "var(--semantic-layout-units-gap-xxtight,         4px)",
 };
 
+// User avatar colors cycling palette
+const USER_COLORS = [
+  "#5b8def","#9c6dd8","#d96c6c","#4caf7d",
+  "#e08c2d","#2b9ec3","#c45d9e","#7cb342",
+];
+
 // ─── ABBREVIATION UTILITIES ───────────────────────────────────────────────────
 // Implements Appendix A of org-switcher-spec.md.
 // Pure functions — importable independently of React.
@@ -56,7 +79,6 @@ const T = {
 const SKIP_WORDS = new Set(["the","a","an","of","in","at","for","and","or","but"]);
 
 // Known compound org-name words and their constituent parts (spec §A.4.2b).
-// Word 1 of a two-significant-word name → [part1, part2] so initials are part1[0]+part2[0].
 const COMPOUND_SPLITS = {
   northpoint:  ["north","point"],
   crossroads:  ["cross","roads"],
@@ -105,21 +127,20 @@ export function abbreviateOrg(name) {
     const [w1, w2] = sig;
     const w1l = w1.toLowerCase();
 
-    // §A.4.2b compound word: first letter of each fused part + first letter of word 2
+    // §A.4.2b compound word
     if (COMPOUND_SPLITS[w1l]) {
       const [p1, p2] = COMPOUND_SPLITS[w1l];
       return (p1[0] + p2[0] + w2[0]).toUpperCase();
     }
 
-    // §A.4.2a place name and §A.4.2c plain word both use first 2 chars of w1 + first of w2.
-    // Exception per §A.4.2c: if a more distinctive letter (X, Z, Q) exists after pos 0, prefer it.
+    // §A.4.2a / §A.4.2c
     const afterFirst = w1.slice(1);
     const distinctive = afterFirst.match(/[xzq]/i);
     const second = distinctive ? distinctive[0] : (w1[1] || w1[0]);
     return (w1[0] + second + w2[0]).toUpperCase();
   }
 
-  // §A.4.1 three or more significant words → first letter of first three
+  // §A.4.1 three or more significant words
   return (sig[0][0] + sig[1][0] + sig[2][0]).toUpperCase();
 }
 
@@ -154,27 +175,23 @@ export function abbreviateCampus(name) {
   if (!name) return "";
   const lower = name.trim().toLowerCase();
 
-  // §A.5.2 U.S. states → USPS code
+  // §A.5.2 U.S. states
   if (USPS_STATES[lower]) return USPS_STATES[lower];
 
   const words = name.trim().split(/\s+/);
 
   if (words.length === 1) {
-    // §A.5.1 single directional → exact code (e.g. Downtown → DT, not DO)
     if (DIRECTIONAL_CODES[lower]) return DIRECTIONAL_CODES[lower];
-    // §A.5.2 / §A.5.5 single place or non-directional → first 2 letters
     return lower.slice(0,2).toUpperCase();
   }
 
   if (words.length === 2) {
     const [a, b] = words.map(w => w.toLowerCase());
     const aDir = DIRECTIONALS.has(a), bDir = DIRECTIONALS.has(b);
-    // §A.5.3 place + directional → place initial first, regardless of word order
     if (aDir || bDir) {
       const place = aDir ? b : a, dir = aDir ? a : b;
       return (place[0] + dir[0]).toUpperCase();
     }
-    // §A.5.4 two descriptive words → first letter of each
     return (a[0] + b[0]).toUpperCase();
   }
 
@@ -188,32 +205,24 @@ export function mobileLabel(orgName, campusName) {
   return cam ? `${org} | ${cam}` : org;
 }
 
-// ─── SUB-COMPONENTS ───────────────────────────────────────────────────────────
-
-// Chevron SVG from Figma (fill driven by CSS var for state-aware colour).
-function ChevronIcon({ color, open }) {
+// ─── ICON HELPER ──────────────────────────────────────────────────────────────
+// Material Symbols Rounded — requires the font to be loaded in the page.
+function Icon({ name, size = 20, style }) {
   return (
-    <svg
-      width="16" height="16" viewBox="0 0 16 16" fill="none"
+    <span
+      className="material-symbols-rounded"
       aria-hidden="true"
-      style={{
-        display: "block", flexShrink: 0,
-        transform: open ? "rotate(180deg)" : "none",
-        transition: "transform 150ms ease",
-      }}
+      style={{ fontSize: size, lineHeight: 1, display: "block", userSelect: "none", ...style }}
     >
-      {/* expand_more path from Figma asset, scaled to 16×16 */}
-      <path
-        d="M8 10.275a.93.93 0 0 1-.3-.05.72.72 0 0 1-.263-.162L3.637 6.263a.636.636 0 0 1 0-.9.636.636 0 0 1 .9 0L8 8.826l3.463-3.463a.636.636 0 0 1 .9 0 .636.636 0 0 1 0 .9L8.563 10.063a.72.72 0 0 1-.263.162.93.93 0 0 1-.3.05Z"
-        fill={color}
-      />
-    </svg>
+      {name}
+    </span>
   );
 }
 
-// Org avatar: logo image if provided, otherwise initials block.
-function OrgAvatar({ logoUrl, orgName, size, borderColor }) {
-  const inner = size - 8; // 4px padding each side
+// ─── SUB-COMPONENTS ───────────────────────────────────────────────────────────
+
+// Org avatar in the trigger: logo image if provided, otherwise initials block.
+function TriggerAvatar({ logoUrl, orgName, size, borderColor }) {
   return (
     <div style={{
       width: size, height: size,
@@ -236,14 +245,13 @@ function OrgAvatar({ logoUrl, orgName, size, borderColor }) {
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
           />
         ) : (
-          // Placeholder: two-letter initials in a branded block
           <div style={{
             position: "absolute", inset: 0,
             display: "flex", alignItems: "center", justifyContent: "center",
             background: "rgba(53,85,160,0.25)",
           }}>
             <span style={{
-              fontSize: Math.max(7, Math.round(inner * 0.55)),
+              fontSize: Math.max(7, Math.round((size - 8) * 0.55)),
               fontWeight: 700,
               color: "#fbfbfb",
               lineHeight: 1,
@@ -259,27 +267,260 @@ function OrgAvatar({ logoUrl, orgName, size, borderColor }) {
   );
 }
 
+// Panel org logo: 48×48 with border-radius 8px, image or branded initials.
+function PanelOrgLogo({ logoUrl, orgName }) {
+  return (
+    <div style={{
+      width: 48, height: 48,
+      borderRadius: 8,
+      overflow: "hidden",
+      flexShrink: 0,
+      position: "relative",
+      background: T.logoBrandBg,
+    }}>
+      {logoUrl ? (
+        <img
+          src={logoUrl}
+          alt=""
+          aria-hidden="true"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      ) : (
+        <div style={{
+          position: "absolute", inset: 0,
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <span style={{
+            fontSize: 11, fontWeight: 700,
+            color: "#ffffff",
+            lineHeight: 1,
+            fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
+            userSelect: "none",
+          }}>
+            {abbreviateOrg(orgName).slice(0,2)}
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Overlapping user avatar row (up to 8 shown).
+function UserAvatarRow({ users = [] }) {
+  const visible = users.slice(0, 8);
+  return (
+    <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+      {visible.map((u, i) => (
+        <div
+          key={i}
+          style={{
+            width: 20, height: 20,
+            borderRadius: "50%",
+            border: "1.5px solid white",
+            background: u.color || USER_COLORS[i % USER_COLORS.length],
+            display: "flex", alignItems: "center", justifyContent: "center",
+            marginLeft: i === 0 ? 0 : -6,
+            overflow: "hidden",
+            position: "relative",
+            zIndex: visible.length - i,
+          }}
+        >
+          <Icon name="person" size={12} style={{ color: "white" }} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Individual org list item in the panel.
+function OrgListItem({ org, isActive, onSelect }) {
+  const [hovered, setHovered] = useState(false);
+
+  const bg = isActive
+    ? T.activeOrg
+    : hovered ? T.orgHover : "transparent";
+
+  return (
+    <button
+      type="button"
+      onClick={() => onSelect(org.id)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: "flex", alignItems: "center", gap: 10,
+        padding: "10px 12px",
+        width: "100%",
+        background: bg,
+        border: "none",
+        cursor: "pointer",
+        fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
+        textAlign: "left",
+        transition: "background 150ms cubic-bezier(0.4,0,0.2,1)",
+      }}
+    >
+      <PanelOrgLogo logoUrl={org.logoUrl} orgName={org.name} />
+
+      {/* Text column */}
+      <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 2 }}>
+        <div style={{
+          fontSize: 14, fontWeight: 500,
+          color: T.panelOrgName,
+          whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+        }}>
+          {org.name}
+        </div>
+        {org.campus && (
+          <div style={{
+            fontSize: 12, fontWeight: 400,
+            color: T.panelCampus,
+            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+          }}>
+            {org.campus}
+          </div>
+        )}
+      </div>
+
+      {/* User avatar row */}
+      {org.users && org.users.length > 0 && (
+        <UserAvatarRow users={org.users} />
+      )}
+
+      {/* Chevron */}
+      <Icon name="chevron_right" size={16} style={{ color: T.panelChevron, flexShrink: 0 }} />
+    </button>
+  );
+}
+
+// The panel that opens below the trigger.
+function OrgPanel({ orgs = [], activeOrgId, onOrgSelect }) {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filtered = orgs.filter(org =>
+    !searchQuery.trim() ||
+    org.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (org.campus && org.campus.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
+  return (
+    <div
+      role="dialog"
+      aria-label="Switch organisation"
+      style={{
+        position: "absolute",
+        top: "calc(100% + 4px)",
+        left: 0,
+        zIndex: 300,
+        width: 316,
+        background: T.panelBg,
+        borderRadius: T.panelRadius,
+        boxShadow: T.panelShadow,
+        overflow: "hidden",
+        animation: "orgPanelIn 200ms cubic-bezier(0,0,0.2,1) both",
+      }}
+    >
+      <style>{`
+        @keyframes orgPanelIn {
+          from { opacity: 0; transform: translateY(-6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+
+      {/* Header */}
+      <div style={{
+        padding: "16px 16px 12px",
+        fontSize: 14, fontWeight: 600,
+        color: T.panelHeading,
+        fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
+      }}>
+        My Organizations
+      </div>
+
+      {/* Search bar */}
+      <div style={{ padding: "0 12px 12px" }}>
+        <div style={{
+          display: "flex", alignItems: "center", gap: 8,
+          height: 36,
+          background: T.searchBg,
+          border: `1px solid ${T.searchBorder}`,
+          borderRadius: 9999,
+          padding: "0 12px",
+        }}>
+          <Icon name="search" size={16} style={{ color: T.panelSearch, flexShrink: 0 }} />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            placeholder="Search"
+            aria-label="Search organisations"
+            style={{
+              flex: 1, border: "none", background: "transparent",
+              outline: "none", fontSize: 14, fontWeight: 400,
+              color: T.panelHeading,
+              fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Org list */}
+      <div
+        role="listbox"
+        aria-label="Organisations"
+        style={{
+          maxHeight: 320,
+          overflowY: "auto",
+        }}
+      >
+        {filtered.map(org => (
+          <OrgListItem
+            key={org.id}
+            org={org}
+            isActive={org.id === activeOrgId}
+            onSelect={onOrgSelect || (() => {})}
+          />
+        ))}
+        {filtered.length === 0 && (
+          <div style={{
+            padding: "16px 12px",
+            fontSize: 13, color: T.panelCampus,
+            fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
+            textAlign: "center",
+          }}>
+            No organisations found
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ─── MAIN EXPORT ──────────────────────────────────────────────────────────────
 
 /**
- * OrgSwitcher trigger button.
+ * OrgSwitcher — trigger button + panel.
  *
  * Designed for use on a dark/brand-coloured top navigation surface.
- * Render it inside a containing element that provides the dark background.
+ * The `open` state is controlled externally; the caller owns open/close logic.
  *
  * @param {string}   orgName        Full organisation name
  * @param {string}   [campusName]   Full campus name (empty if no campus)
  * @param {string}   [logoUrl]      Org logo image URL. Omit for initials placeholder.
- * @param {boolean}  [open]         Whether the downstream panel is open (flips chevron)
- * @param {Function} [onClick]      Click handler — use to toggle your panel
+ * @param {Array}    [orgs]         Panel org list: [{id, name, campus?, logoUrl?, users?: [{color}]}]
+ * @param {string}   [activeOrgId]  Which org is highlighted in the panel
+ * @param {Function} [onOrgSelect]  (orgId) => void — called when user picks an org
+ * @param {boolean}  [open]         Whether the panel is open (controlled externally)
+ * @param {Function} [onClick]      () => void — toggle handler
  * @param {boolean}  [disabled]     True for single-org users
- * @param {boolean}  [mobile]       Force mobile abbreviated display (auto-detects by default)
+ * @param {boolean}  [mobile]       Force mobile abbreviated display
  * @param {string}   [className]    Additional class on the root element
  */
 export function OrgSwitcher({
   orgName    = "Organisation",
   campusName = "",
   logoUrl,
+  orgs       = [],
+  activeOrgId,
+  onOrgSelect,
   open       = false,
   onClick,
   disabled   = false,
@@ -301,10 +542,11 @@ export function OrgSwitcher({
   }, [mobile]);
 
   // Resolve state-dependent tokens
-  const fill   = pressed ? T.fillPressed   : hovered ? T.fillHover   : T.fillBase;
-  const stroke = pressed ? T.strokePressed : hovered ? T.strokeHover : T.strokeBase;
-  const text   = pressed ? T.textPressed   : hovered ? T.textHover   : T.textBase;
-  const icon   = pressed ? T.iconPressed   : hovered ? T.iconHover   : T.iconBase;
+  const isActive = open || pressed;
+  const fill   = isActive ? T.fillPressed  : hovered ? T.fillHover   : T.fillBase;
+  const stroke = isActive ? T.strokePressed: hovered ? T.strokeHover : T.strokeBase;
+  const text   = isActive ? T.textPressed  : hovered ? T.textHover   : T.textBase;
+  const icon   = isActive ? T.iconPressed  : hovered ? T.iconHover   : T.iconBase;
 
   const desktopLabel = campusName ? `${orgName}  |  ${campusName}` : orgName;
   const mobileText   = mobileLabel(orgName, campusName);
@@ -314,7 +556,7 @@ export function OrgSwitcher({
     : `Current organisation: ${orgName}. Activate to switch.`;
 
   // Figma dimensions
-  const OUTER_MIN  = 48;  // min-h / min-w (touch target)
+  const OUTER_MIN  = 48;
   const BTN_H      = 36;
   const AVATAR_SZ  = isMobile ? 20 : 24;
   const MAX_W      = isMobile ? 114 : 316;
@@ -360,14 +602,13 @@ export function OrgSwitcher({
           padding: 0,
           outline: "none",
           transition: "background 120ms ease, border-color 120ms ease",
-          // State-specific inner padding from Figma
           ...(isMobile ? {
-            paddingLeft: T.pXxtight, paddingRight: T.pXxxtight, paddingTop: T.pXxtight, paddingBottom: T.pXxtight,
+            paddingLeft: T.pXxtight, paddingRight: T.pXxxtight,
+            paddingTop: T.pXxtight, paddingBottom: T.pXxtight,
           } : {
             gap: T.gapXxtight, padding: T.pXxtight,
           }),
         }}
-        // Focus ring
         onFocus={e  => e.currentTarget.style.outline = `2px solid ${T.iconHover}`}
         onBlur={e   => e.currentTarget.style.outline = "none"}
       >
@@ -386,14 +627,14 @@ export function OrgSwitcher({
           }),
         }}>
           {/* Avatar */}
-          <OrgAvatar
+          <TriggerAvatar
             logoUrl={logoUrl}
             orgName={orgName}
             size={AVATAR_SZ}
             borderColor={stroke}
           />
 
-          {/* Desktop label (inside RowStart) */}
+          {/* Desktop label */}
           {!isMobile && (
             <div style={{
               display: "flex", alignItems: "center", height: "100%",
@@ -419,7 +660,7 @@ export function OrgSwitcher({
           )}
         </div>
 
-        {/* Mobile label (outside RowStart, after avatar) */}
+        {/* Mobile label */}
         {isMobile && (
           <div style={{
             display: "flex", alignItems: "center", height: "100%",
@@ -450,13 +691,23 @@ export function OrgSwitcher({
         }}>
           <div style={{
             display: "flex", alignItems: "center", justifyContent: "center",
-            padding: T.pXxxtight, flexShrink: 0,
             width: 16, height: 16,
+            transform: open ? "rotate(180deg)" : "none",
+            transition: "transform 200ms cubic-bezier(0.4,0,0.2,1)",
           }}>
-            <ChevronIcon color={icon} open={open} />
+            <Icon name="expand_more" size={16} style={{ color: icon }} />
           </div>
         </div>
       </button>
+
+      {/* ── Panel ── */}
+      {open && !disabled && (
+        <OrgPanel
+          orgs={orgs}
+          activeOrgId={activeOrgId}
+          onOrgSelect={onOrgSelect}
+        />
+      )}
     </div>
   );
 }

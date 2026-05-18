@@ -330,42 +330,70 @@
   Open in Chrome
 </a>
 <div id="root"></div>
+<!-- ─── SEMANTIC TOKEN RESOLVER ──────────────────────────────────────────────
+     Inline fallback — mirrors tokens/resolve-tokens.js (the ES-module library
+     used by sidenav.jsx and Storybook). Keep in sync when tokens change.
+     The module script below overrides this with the live resolver when the
+     file is served; the inline version ensures Babel processes correctly
+     even in offline / file:// contexts where the module can't load.         -->
+<script>
+(function () {
+  var R = {
+    "Fill/Contextual/NavItem/Base":        "#fafafa",
+    "Fill/Contextual/NavItem/Hover":       "#11111105",
+    "Fill/Contextual/NavItem/Active":      "#a0b5e629",
+    "Fill/Contextual/NavItem/Trail":       "#11111105",
+    "Stroke/Static/Neutral/Light":         "#f6f6f6",
+    "Surface/Nav/Light":                   "#fafafa",
+    "Surface/Canvas/Light":                "#fafafa",
+    "Text/Contextual/NavItem/Base":        "#313131",
+    "Text/Contextual/NavItem/Hover":       "#252525",
+    "Text/Contextual/NavItem/Active":      "#1b2d57",
+    "Text/Static/Secondary/Light":         "#7b7b7b",
+    "Text/Static/Secondary/Subtle":        "#606060",
+    "Icon/Contextual/NavItem/Base":        "#484848",
+    "Icon/Contextual/NavItem/Hover":       "#313131",
+    "Icon/Contextual/NavItem/Active":      "#2d4889",
+    "Icon/Action/Secondary Inverse/Base":  "#6b6b6b",
+  };
+  window.t = function (id) { return R[id] !== undefined ? R[id] : id; };
+})();
+</script>
+<script type="module">
+  import { t } from "../../tokens/resolve-tokens.js";
+  window.t = t;
+</script>
 <script type="text/babel">
 const { useState, useRef, useEffect } = React;
 
 // ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
-// Semantic token → (Primitive: not exposed by get_variable_defs — tool resolves
-// alias chains to final hex only, does not surface intermediate names) → value
 const T = {
   fill: {
-    navBase:    "#fafafa",               // Fill/Contextual/NavItem/Base
-    navHover:   "#11111105",             // Fill/Contextual/NavItem/Hover  (≈rgba(17,17,17,0.02))
-    navActive:  "#a0b5e629",             // Fill/Contextual/NavItem/Active (≈rgba(160,181,230,0.16))
-    navTrail:   "#11111105",             // Fill/Contextual/NavItem/Trail  (≈rgba(17,17,17,0.02))
-    // Note: Hover and Trail resolve to the same hex now but remain distinct tokens
-    // that may diverge again in future. Keep them separate — do not merge.
-    infoSubtle: "#f6f6f6",               // Stroke/Static/Neutral/Light — divider + nav border-right (was Fill/Static/Info/Subtle #edf0f9, updated 2026-05-12)
+    navBase:    t("Fill/Contextual/NavItem/Base"),
+    navHover:   t("Fill/Contextual/NavItem/Hover"),
+    navActive:  t("Fill/Contextual/NavItem/Active"),
+    navTrail:   t("Fill/Contextual/NavItem/Trail"),   // same resolved value as Hover — kept distinct
+    infoSubtle: t("Stroke/Static/Neutral/Light"),      // divider + nav border-right
   },
   surface: {
-    navLight:   "#fafafa",               // Surface/Nav/Light — nav container background
-    canvas:     "#fafafa",               // Surface/Canvas/Light — page/viewport background
-    // Confirmed in Figma variable library: Surface/Canvas/Light → Brand/10 → #fafafa
+    navLight: t("Surface/Nav/Light"),
+    canvas:   t("Surface/Canvas/Light"),
   },
   text: {
-    navBase:         "#313131",          // Text/Contextual/NavItem/Base
-    navHover:        "#252525",          // Text/Contextual/NavItem/Hover
-    navActive:       "#1b2d57",          // Text/Contextual/NavItem/Active — also used for all trail states
-    secondary:       "#7b7b7b",          // Text/Static/Secondary/Light
-    secondarySubtle: "#606060",          // Text/Static/Secondary/Subtle — PopoverMenu.SectionLabel (updated 2026-05-13)
+    navBase:         t("Text/Contextual/NavItem/Base"),
+    navHover:        t("Text/Contextual/NavItem/Hover"),
+    navActive:       t("Text/Contextual/NavItem/Active"),  // also used for trail states
+    secondary:       t("Text/Static/Secondary/Light"),
+    secondarySubtle: t("Text/Static/Secondary/Subtle"),    // PopoverMenu.SectionLabel
   },
   icon: {
-    navBase:          "#484848",               // Icon/Contextual/NavItem/Base — also trail-expanded icon
-    navHover:         "#313131",               // Icon/Contextual/NavItem/Hover
-    navActive:        "#2d4889",               // Icon/Contextual/NavItem/Active — icon + indicator.stripe
-    actionSecondary:  "#6b6b6b",               // Icon/Action/Secondary Inverse/Base — CollapseButton action icon (added 2026-05-12)
+    navBase:         t("Icon/Contextual/NavItem/Base"),    // also trail-expanded icon
+    navHover:        t("Icon/Contextual/NavItem/Hover"),
+    navActive:       t("Icon/Contextual/NavItem/Active"),  // icon + indicator.stripe
+    actionSecondary: t("Icon/Action/Secondary Inverse/Base"), // CollapseButton action icon
   },
-  indicator:    "#2d4889",               // indicator.stripe = var(--icon/contextual/navitem/active)
-  radius:       8,                       // Component/NavItem/Large/Radius/Radius → 8px
+  indicator: t("Icon/Contextual/NavItem/Active"),
+  radius:    8,  // Component/NavItem/Large/Radius/Radius → 8px
 };
 
 // ─── LAYOUT VALUES (from Figma — no semantic token names found for these) ─────
