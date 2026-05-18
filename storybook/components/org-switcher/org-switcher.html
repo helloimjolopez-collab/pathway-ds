@@ -6,27 +6,31 @@
   <title>OrgSwitcher — Pathway DS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "Red Hat Text", sans-serif; padding: 0; background: #1a1f2e; min-height: 100vh; color: #fbfbfb; }
-
-    /* ── Nav shell (dark surface context) ─────────────────────── */
-    .nav-shell {
-      background: #1e2540;
-      border-bottom: 1px solid rgba(160,181,230,0.12);
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      height: 56px;
-      gap: 12px;
+    html, body {
+      font-family: "Red Hat Text", sans-serif;
+      background: #f0f2f5;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
-    .nav-logo { font-weight: 700; font-size: 15px; color: #fbfbfb; letter-spacing: 0.05em; margin-right: auto; }
 
-    /* ── Dark-mode tokens (used by trigger) ───────────────────── */
+    .material-symbols-rounded {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1; display: block; user-select: none;
+    }
+
+    /* ── Dark-mode tokens ───────────────────────────────────────── */
     :root {
-      --semantic-color-dark-mode-fill-action-tertiary-base:         rgba(160,181,230,0.04);
-      --semantic-color-dark-mode-fill-action-primaryinverse-hover:  rgba(10,18,35,0.16);
-      --semantic-color-dark-mode-fill-action-primaryinverse-pressed:rgba(255,255,255,0.08);
+      --semantic-color-dark-mode-fill-action-tertiary-base:          rgba(160,181,230,0.04);
+      --semantic-color-dark-mode-fill-action-primaryinverse-hover:   rgba(10,18,35,0.16);
+      --semantic-color-dark-mode-fill-action-primaryinverse-pressed: rgba(255,255,255,0.08);
       --semantic-color-dark-mode-stroke-action-tertiary-base:        rgba(160,181,230,0.16);
       --semantic-color-dark-mode-stroke-action-tertiary-hover:       rgba(160,181,230,0.20);
       --semantic-color-dark-mode-stroke-action-tertiary-pressed:     rgba(160,181,230,0.30);
@@ -36,349 +40,529 @@
       --semantic-color-dark-mode-icon-action-mono-base:    #fbfbfb;
       --semantic-color-dark-mode-icon-action-mono-hover:   #ffffff;
       --semantic-color-dark-mode-icon-action-mono-pressed: #ffffff;
+
+      /* Avatar placeholder fill (no-logo state) */
+      --semantic-color-dark-mode-fill-action-secondary-base: rgba(255,255,255,0.08);
+
+      /* Geometry tokens */
       --semantic-layout-units-cornerradius-medium: 8px;
       --semantic-layout-units-cornerradius-small:  4px;
       --semantic-layout-units-borderwidth-base:    1px;
       --semantic-layout-units-padding-xxtight:  4px;
       --semantic-layout-units-padding-xxxtight: 2px;
       --semantic-layout-units-gap-xxtight:      4px;
+
+      /* Typography tokens — desktop trigger label (Label/Button/S) — Figma node 40006820:14750 */
       --semantic-type-desktop-label-button-s-fontfamily:    "Red Hat Text", sans-serif;
+      --semantic-type-desktop-label-button-s-fontweight:    500;
+      --semantic-type-desktop-label-button-s-fontsize:      14px;
+      --semantic-type-desktop-label-button-s-lineheight:    20px;
       --semantic-type-desktop-label-button-s-letterspacing: 0.3px;
-      --semantic-type-desktop-label-button-xs-fontfamily:   "Red Hat Text", sans-serif;
-      --semantic-type-desktop-label-button-xs-letterspacing:0.3px;
+
+      /* Typography tokens — mobile abbreviated label (Label/Button/XS) — Figma node 40007067:13274 */
+      --semantic-type-desktop-label-button-xs-fontfamily:    "Red Hat Text", sans-serif;
+      --semantic-type-desktop-label-button-xs-fontweight:    500;
+      --semantic-type-desktop-label-button-xs-fontsize:      12px;
+      --semantic-type-desktop-label-button-xs-lineheight:    18px;
+      --semantic-type-desktop-label-button-xs-letterspacing: 0.3px;
     }
 
-    /* ── Trigger ──────────────────────────────────────────────── */
-    .pds-org-switcher {
-      min-height: 48px; min-width: 48px;
-      padding: var(--semantic-layout-units-padding-xxtight);
-      display: inline-flex; flex-direction: column; align-items: flex-start;
-      position: relative;
+    /* ── Demo chrome ────────────────────────────────────────────── */
+    .demo-wrap { display: flex; flex-direction: column; min-height: 100vh; }
+    .demo-page { flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 24px; }
+    .demo-section {
+      background: #fff; border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.07); overflow: visible;
     }
-    .pds-org-switcher.is-mobile  { max-width: 114px; }
-    .pds-org-switcher.is-desktop { max-width: 316px; }
+    .demo-section__label {
+      padding: 10px 16px; font-size: 11px; font-weight: 600;
+      letter-spacing: .07em; text-transform: uppercase; color: #888;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .demo-section__body { padding: 20px 16px; }
 
-    .pds-org-btn {
-      display: flex; align-items: center;
-      height: 36px; max-height: 36px; min-height: 36px;
-      border-radius: var(--semantic-layout-units-cornerradius-medium);
-      border: var(--semantic-layout-units-borderwidth-base) solid var(--semantic-color-dark-mode-stroke-action-tertiary-base);
-      background: var(--semantic-color-dark-mode-fill-action-tertiary-base);
-      color: var(--semantic-color-dark-mode-text-action-mono-base);
-      cursor: pointer;
-      font-family: inherit;
-      transition: background 120ms ease, border-color 120ms ease, color 100ms ease;
-      outline: none;
-      position: relative;
-    }
-    .pds-org-btn.is-desktop { gap: var(--semantic-layout-units-gap-xxtight); padding: var(--semantic-layout-units-padding-xxtight); }
-    .pds-org-btn.is-mobile  { padding: 4px 2px 4px 4px; }
-
-    .pds-org-btn:hover {
-      background: var(--semantic-color-dark-mode-fill-action-primaryinverse-hover);
-      border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-hover);
-      color: var(--semantic-color-dark-mode-text-action-mono-hover);
-    }
-    .pds-org-btn:active, .pds-org-btn.is-pressed {
-      background: var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed);
-      border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-pressed);
-      color: var(--semantic-color-dark-mode-text-action-mono-pressed);
-    }
-    .pds-org-btn:focus-visible {
-      outline: 2px solid var(--semantic-color-dark-mode-icon-action-mono-hover);
-      outline-offset: 2px;
-    }
-    .pds-org-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    /* Row start */
-    .pds-row-start {
-      display: flex; align-items: center; flex-shrink: 0;
-    }
-    .pds-row-start.is-desktop { gap: var(--semantic-layout-units-gap-xxtight); height: 24px; }
-    .pds-row-start.is-mobile  { justify-content: center; width: 20px; height: 20px; }
-
-    /* Avatar */
-    .pds-avatar-wrap {
-      display: flex; align-items: center; justify-content: center;
-      padding: var(--semantic-layout-units-padding-xxtight);
-      flex-shrink: 0; position: relative;
-    }
-    .pds-avatar-wrap.is-desktop { width: 24px; height: 24px; }
-    .pds-avatar-wrap.is-mobile  { width: 100%; height: 100%; aspect-ratio: 1; }
-
-    .pds-avatar {
-      flex: 1 0 0; height: 100%; min-width: 1px;
-      border: 1px solid var(--semantic-color-dark-mode-stroke-action-tertiary-base);
-      border-radius: var(--semantic-layout-units-cornerradius-small);
-      overflow: hidden; position: relative;
-      transition: border-color 120ms ease;
-    }
-    .pds-org-btn:hover   .pds-avatar { border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-hover); }
-    .pds-org-btn:active  .pds-avatar { border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-pressed); }
-
-    .pds-avatar img {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-    }
-    .pds-avatar-placeholder {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(53,85,160,0.25);
-      font-size: 7px; font-weight: 700; color: #fbfbfb; line-height: 1;
-      user-select: none;
-    }
-
-    /* Desktop label */
-    .pds-label-desktop {
-      display: flex; align-items: center; height: 100%;
-      max-width: 248px; padding-right: var(--semantic-layout-units-padding-xxtight);
-      flex-shrink: 0;
-    }
-    .pds-label-desktop p {
-      flex: 1 0 0;
-      font-family: var(--semantic-type-desktop-label-button-s-fontfamily);
-      font-weight: 500; font-size: 14px; line-height: 20px;
-      letter-spacing: var(--semantic-type-desktop-label-button-s-letterspacing);
-      color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      min-width: 1px;
-    }
-
-    /* Mobile label */
-    .pds-label-mobile {
-      display: flex; align-items: center; height: 100%;
-      padding: 0 var(--semantic-layout-units-padding-xxxtight);
-      flex-shrink: 0;
-    }
-    .pds-label-mobile p {
-      font-family: var(--semantic-type-desktop-label-button-xs-fontfamily);
-      font-weight: 500; font-size: 12px; line-height: 18px;
-      letter-spacing: var(--semantic-type-desktop-label-button-xs-letterspacing);
-      color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-
-    /* Row end / chevron */
-    .pds-row-end {
-      display: flex; align-items: center; justify-content: center;
-      padding: var(--semantic-layout-units-padding-xxxtight); flex-shrink: 0;
-    }
-    .pds-icon-trailing {
-      display: flex; align-items: center; justify-content: center;
-      padding: var(--semantic-layout-units-padding-xxxtight);
-      width: 16px; height: 16px; flex-shrink: 0;
-    }
-    .pds-chevron {
-      display: block; width: 100%; height: 100%;
-      transition: transform 150ms ease;
-      fill: var(--semantic-color-dark-mode-icon-action-mono-base);
-    }
-    .pds-org-btn:hover  .pds-chevron { fill: var(--semantic-color-dark-mode-icon-action-mono-hover); }
-    .pds-org-btn:active .pds-chevron { fill: var(--semantic-color-dark-mode-icon-action-mono-pressed); }
-    .pds-org-btn.is-open .pds-chevron { transform: rotate(180deg); }
-
-    /* ── Demo panels ──────────────────────────────────────────── */
-    .demo-section { padding: 32px 24px; }
-    .demo-section + .demo-section { border-top: 1px solid rgba(160,181,230,0.08); }
-    .demo-section h2 { font-size: 11px; font-weight: 600; color: rgba(160,181,230,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
-    .demo-row { display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
-
-    /* Abbreviation table */
-    .abbr-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
-    .abbr-table th { text-align: left; padding: 6px 8px; color: rgba(160,181,230,0.5); font-weight: 500; border-bottom: 1px solid rgba(160,181,230,0.12); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
-    .abbr-table td { padding: 7px 8px; border-bottom: 1px solid rgba(160,181,230,0.06); color: rgba(251,251,251,0.8); }
-    .abbr-table td.mobile-col { font-weight: 700; font-family: monospace; color: #fbfbfb; }
   </style>
 </head>
 <body>
+<div id="root"></div>
 
-  <!-- Nav shell showing the switcher in context -->
-  <div class="nav-shell">
-    <div class="nav-logo">Pathway</div>
-    <div id="nav-trigger-desktop"></div>
-    <div id="nav-trigger-mobile"></div>
-  </div>
+<script type="text/babel">
+const { useState, useRef, useEffect } = React;
 
-  <!-- Demo sections -->
-  <div class="demo-section">
-    <h2>Trigger states — Desktop</h2>
-    <div class="demo-row" id="demo-states-desktop"></div>
-  </div>
+// ── Tokens ──────────────────────────────────────────────────────────────────
+const T = {
+  fillBase:    "var(--semantic-color-dark-mode-fill-action-tertiary-base,    rgba(160,181,230,0.04))",
+  fillHover:   "var(--semantic-color-dark-mode-fill-action-primaryinverse-hover,   rgba(10,18,35,0.16))",
+  fillPressed: "var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed, rgba(255,255,255,0.08))",
+  strokeBase:    "var(--semantic-color-dark-mode-stroke-action-tertiary-base,    rgba(160,181,230,0.16))",
+  strokeHover:   "var(--semantic-color-dark-mode-stroke-action-tertiary-hover,   rgba(160,181,230,0.20))",
+  strokePressed: "var(--semantic-color-dark-mode-stroke-action-tertiary-pressed, rgba(160,181,230,0.30))",
+  textBase:    "var(--semantic-color-dark-mode-text-action-mono-base,    #fbfbfb)",
+  textHover:   "var(--semantic-color-dark-mode-text-action-mono-hover,   #ffffff)",
+  textPressed: "var(--semantic-color-dark-mode-text-action-mono-pressed, #ffffff)",
+  iconBase:    "var(--semantic-color-dark-mode-icon-action-mono-base,    #fbfbfb)",
+  iconHover:   "var(--semantic-color-dark-mode-icon-action-mono-hover,   #ffffff)",
+  iconPressed: "var(--semantic-color-dark-mode-icon-action-mono-pressed, #ffffff)",
+  fillAvatarPlaceholder: "var(--semantic-color-dark-mode-fill-action-secondary-base, rgba(255,255,255,0.08))",
+  // Typography (Figma: Label/Button/S and Label/Button/XS)
+  typeS: {
+    fontFamily:    "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
+    fontWeight:    "var(--semantic-type-desktop-label-button-s-fontweight, 500)",
+    fontSize:      "var(--semantic-type-desktop-label-button-s-fontsize, 14px)",
+    lineHeight:    "var(--semantic-type-desktop-label-button-s-lineheight, 20px)",
+    letterSpacing: "var(--semantic-type-desktop-label-button-s-letterspacing, 0.3px)",
+  },
+  typeXS: {
+    fontFamily:    "var(--semantic-type-desktop-label-button-xs-fontfamily, 'Red Hat Text', sans-serif)",
+    fontWeight:    "var(--semantic-type-desktop-label-button-xs-fontweight, 500)",
+    fontSize:      "var(--semantic-type-desktop-label-button-xs-fontsize, 12px)",
+    lineHeight:    "var(--semantic-type-desktop-label-button-xs-lineheight, 18px)",
+    letterSpacing: "var(--semantic-type-desktop-label-button-xs-letterspacing, 0.3px)",
+  },
+  radiusMedium: "var(--semantic-layout-units-cornerradius-medium, 8px)",
+  radiusSmall:  "var(--semantic-layout-units-cornerradius-small,  4px)",
+  borderWidth:  "var(--semantic-layout-units-borderwidth-base,    1px)",
+  pXxtight:  "var(--semantic-layout-units-padding-xxtight,  4px)",
+  pXxxtight: "var(--semantic-layout-units-padding-xxxtight, 2px)",
+  gapXxtight:"var(--semantic-layout-units-gap-xxtight,      4px)",
+  panelBg:     "#ffffff",
+  panelShadow: "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
+  panelHeading:  "#252525",
+  panelOrgName:  "#252525",
+  panelCampus:   "#6b6b6b",
+  panelSearch:   "#606060",
+  panelChevron:  "#c0c0c0",
+  searchBg:      "#f4f4f4",
+  searchBorder:  "#e0e0e0",
+  activeOrg:     "#eef2fb",
+  orgHover:      "#f8f8f8",
+  logoBrandBg:   "#2d4889",
+};
 
-  <div class="demo-section">
-    <h2>Trigger states — Mobile</h2>
-    <div class="demo-row" id="demo-states-mobile"></div>
-  </div>
+const USER_COLORS = ["#5b8def","#9c6dd8","#d96c6c","#4caf7d","#e08c2d","#2b9ec3","#c45d9e","#7cb342"];
 
-  <div class="demo-section">
-    <h2>Abbreviation examples (Appendix A)</h2>
-    <table class="abbr-table" id="abbr-table">
-      <thead><tr><th>Org name</th><th>Campus</th><th>Mobile label</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-
-  <script>
-    // ── Abbreviation utilities ───────────────────────────────────────────────
-    const SKIP = new Set(["the","a","an","of","in","at","for","and","or"]);
-    function abbreviateOrg(name) {
-      if (!name) return "???";
-      const sig = name.trim().split(/\s+/).filter(w => !SKIP.has(w.toLowerCase()));
-      if (!sig.length) return name.slice(0,3).toUpperCase();
-      if (sig.length === 1) return sig[0].slice(0,3).toUpperCase();
-      if (sig.length === 2) return (sig[0][0] + (sig[0][1]||sig[0][0]) + sig[1][0]).toUpperCase();
-      return (sig[0][0]+sig[1][0]+sig[2][0]).toUpperCase();
+// ── Abbreviation utilities ──────────────────────────────────────────────────
+const SKIP_WORDS = new Set(["the","a","an","of","in","at","for","and","or","but"]);
+const COMPOUND_SPLITS = {
+  northpoint:["north","point"], crossroads:["cross","roads"],
+  hillside:["hill","side"], cornerstone:["corner","stone"],
+  newlife:["new","life"],
+};
+function abbreviateOrg(name) {
+  if (!name) return "???";
+  const sig = name.trim().split(/\s+/).filter(w => !SKIP_WORDS.has(w.toLowerCase()));
+  if (!sig.length) return name.slice(0,3).toUpperCase();
+  if (sig.length === 1) return sig[0].slice(0,3).toUpperCase();
+  if (sig.length === 2) {
+    const [w1, w2] = sig;
+    if (COMPOUND_SPLITS[w1.toLowerCase()]) {
+      const [p1,p2] = COMPOUND_SPLITS[w1.toLowerCase()];
+      return (p1[0]+p2[0]+w2[0]).toUpperCase();
     }
-    const DIRS = new Set(["west","east","north","south","central","downtown","northeast","northwest","southeast","southwest"]);
-    const USPS = {georgia:"GA",tennessee:"TN",florida:"FL",texas:"TX",california:"CA","new york":"NY",ohio:"OH",illinois:"IL",pennsylvania:"PA",virginia:"VA"};
-    function abbreviateCampus(name) {
-      if (!name) return "";
-      const lower = name.trim().toLowerCase();
-      if (USPS[lower]) return USPS[lower];
-      const words = name.trim().split(/\s+/);
-      if (words.length === 1) return lower.slice(0,2).toUpperCase();
-      const [a,b] = words.map(w=>w.toLowerCase());
-      const aD=DIRS.has(a), bD=DIRS.has(b);
-      if (aD||bD) { const pl=aD?b:a, di=aD?a:b; return (pl[0]+di[0]).toUpperCase(); }
-      return (a[0]+b[0]).toUpperCase();
-    }
-    function mobileLabel(org, campus) {
-      const o = abbreviateOrg(org), c = campus ? abbreviateCampus(campus) : "";
-      return c ? `${o} | ${c}` : o;
-    }
+    const after = w1.slice(1);
+    const dist = after.match(/[xzq]/i);
+    const sec = dist ? dist[0] : (w1[1]||w1[0]);
+    return (w1[0]+sec+w2[0]).toUpperCase();
+  }
+  return (sig[0][0]+sig[1][0]+sig[2][0]).toUpperCase();
+}
+const DIR_CODES = {west:"WE",east:"EA",north:"NO",south:"SO",central:"CE",downtown:"DT",northeast:"NE",northwest:"NW",southeast:"SE",southwest:"SW"};
+const DIRS = new Set(Object.keys(DIR_CODES));
+const USPS = {alabama:"AL",alaska:"AK",arizona:"AZ",arkansas:"AR",california:"CA",colorado:"CO",connecticut:"CT",delaware:"DE",florida:"FL",georgia:"GA",hawaii:"HI",idaho:"ID",illinois:"IL",indiana:"IN",iowa:"IA",kansas:"KS",kentucky:"KY",louisiana:"LA",maine:"ME",maryland:"MD",massachusetts:"MA",michigan:"MI",minnesota:"MN",mississippi:"MS",missouri:"MO",montana:"MT",nebraska:"NE",nevada:"NV","new hampshire":"NH","new jersey":"NJ","new mexico":"NM","new york":"NY","north carolina":"NC","north dakota":"ND",ohio:"OH",oklahoma:"OK",oregon:"OR",pennsylvania:"PA","rhode island":"RI","south carolina":"SC","south dakota":"SD",tennessee:"TN",texas:"TX",utah:"UT",vermont:"VT",virginia:"VA",washington:"WA","west virginia":"WV",wisconsin:"WI",wyoming:"WY"};
+function abbreviateCampus(name) {
+  if (!name) return "";
+  const lower = name.trim().toLowerCase();
+  if (USPS[lower]) return USPS[lower];
+  const words = name.trim().split(/\s+/);
+  if (words.length === 1) { if (DIR_CODES[lower]) return DIR_CODES[lower]; return lower.slice(0,2).toUpperCase(); }
+  if (words.length === 2) {
+    const [a,b] = words.map(w=>w.toLowerCase());
+    const aD=DIRS.has(a),bD=DIRS.has(b);
+    if (aD||bD) { const pl=aD?b:a,di=aD?a:b; return (pl[0]+di[0]).toUpperCase(); }
+    return (a[0]+b[0]).toUpperCase();
+  }
+  return lower.slice(0,2).toUpperCase();
+}
+function mobileLabel(orgName, campusName) {
+  const o = abbreviateOrg(orgName), c = campusName ? abbreviateCampus(campusName) : "";
+  return c ? `${o} | ${c}` : o;
+}
 
-    // ── Render trigger ───────────────────────────────────────────────────────
-    const CHEVRON_PATH = "M8 10.275a.93.93 0 0 1-.3-.05.72.72 0 0 1-.263-.162L3.637 6.263a.636.636 0 0 1 0-.9.636.636 0 0 1 .9 0L8 8.826l3.463-3.463a.636.636 0 0 1 .9 0 .636.636 0 0 1 0 .9L8.563 10.063a.72.72 0 0 1-.263.162.93.93 0 0 1-.3.05Z";
+// ── Icon ────────────────────────────────────────────────────────────────────
+function Icon({ name, size=20, style }) {
+  return <span className="material-symbols-rounded" aria-hidden="true" style={{ fontSize:size, lineHeight:1, display:"block", userSelect:"none", ...style }}>{name}</span>;
+}
 
-    function buildTrigger({ orgName, campusName = "", logoUrl = "", mobile = false, isOpen = false, disabled = false, id }) {
-      const abbr  = mobileLabel(orgName, campusName);
-      const full  = campusName ? `${orgName}  |  ${campusName}` : orgName;
-      const initials = abbreviateOrg(orgName).slice(0,2);
-      const modeClass = mobile ? "is-mobile" : "is-desktop";
+// ── Church placeholder icon ──────────────────────────────────────────────────
+// Figma node 40007243:73426 — used when org has no logo on file.
+// DO NOT replace with text initials — Figma annotation specifies this SVG.
+const CHURCH_ICON_PATH =
+  "M0 12.6667V9.53333C0 9.26667 0.0722222 9.025 0.216667 8.80833C0.361111 8.59167 0.555556 8.42778 0.8 8.31667L2.66667 7.48333V6.15C2.66667 5.89444 2.73333 5.66389 2.86667 5.45833C3 5.25278 3.17778 5.08889 3.4 4.96667L6 3.66667V2.66667H5.33333C5.14444 2.66667 4.98611 2.60278 4.85833 2.475C4.73056 2.34722 4.66667 2.18889 4.66667 2C4.66667 1.81111 4.73056 1.65278 4.85833 1.525C4.98611 1.39722 5.14444 1.33333 5.33333 1.33333H6V0.666667C6 0.477778 6.06389 0.319444 6.19167 0.191667C6.31944 0.0638889 6.47778 0 6.66667 0C6.85556 0 7.01389 0.0638889 7.14167 0.191667C7.26944 0.319444 7.33333 0.477778 7.33333 0.666667V1.33333H8C8.18889 1.33333 8.34722 1.39722 8.475 1.525C8.60278 1.65278 8.66667 1.81111 8.66667 2C8.66667 2.18889 8.60278 2.34722 8.475 2.475C8.34722 2.60278 8.18889 2.66667 8 2.66667H7.33333V3.66667L9.93333 4.96667C10.1556 5.08889 10.3333 5.25278 10.4667 5.45833C10.6 5.66389 10.6667 5.89444 10.6667 6.15V7.48333L12.5333 8.31667C12.7778 8.42778 12.9722 8.59167 13.1167 8.80833C13.2611 9.025 13.3333 9.26667 13.3333 9.53333V12.6667C13.3333 13.0333 13.2028 13.3472 12.9417 13.6083C12.6806 13.8694 12.3667 14 12 14H8.66667C8.47778 14 8.31944 13.9361 8.19167 13.8083C8.06389 13.6806 8 13.5222 8 13.3333V12C8 11.6333 7.86944 11.3194 7.60833 11.0583C7.34722 10.7972 7.03333 10.6667 6.66667 10.6667C6.3 10.6667 5.98611 10.7972 5.725 11.0583C5.46389 11.3194 5.33333 11.6333 5.33333 12V13.3333C5.33333 13.5222 5.26944 13.6806 5.14167 13.8083C5.01389 13.9361 4.85556 14 4.66667 14H1.33333C0.966667 14 0.652778 13.8694 0.391667 13.6083C0.130556 13.3472 0 13.0333 0 12.6667ZM6.66667 8.33333C6.94444 8.33333 7.18056 8.23611 7.375 8.04167C7.56944 7.84722 7.66667 7.61111 7.66667 7.33333C7.66667 7.05556 7.56944 6.81944 7.375 6.625C7.18056 6.43056 6.94444 6.33333 6.66667 6.33333C6.38889 6.33333 6.15278 6.43056 5.95833 6.625C5.76389 6.81944 5.66667 7.05556 5.66667 7.33333C5.66667 7.61111 5.76389 7.84722 5.95833 8.04167C6.15278 8.23611 6.38889 8.33333 6.66667 8.33333Z";
 
-      const root = document.createElement("div");
-      root.className = `pds-org-switcher ${modeClass}`;
-      if (id) root.id = id;
+// ── Demo data ────────────────────────────────────────────────────────────────
+// In production, `logoUrl` is the org's logo image from MB's media service.
+// The Sacred Heart logo below is the exact PNG exported from Figma node
+// 40006817:14372 (committed to components/org-switcher/assets/).
+// Orgs that have a logo on file → render the image with object-fit: cover.
+// Orgs that do NOT have a logo on file → render the church placeholder SVG.
+const SACRED_HEART_LOGO = "./assets/sacred-heart-logo.png";
 
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = `pds-org-btn ${modeClass}${isOpen ? " is-open" : ""}`;
-      if (disabled) btn.disabled = true;
-      btn.setAttribute("aria-haspopup","true");
-      btn.setAttribute("aria-expanded", String(isOpen));
-      btn.setAttribute("aria-label", `Current organisation: ${orgName}${campusName ? ", "+campusName : ""}. Activate to switch.`);
+// Each org has a `modules` array listing the Pathway modules it subscribes to.
+// These render as small colored chips in the panel row (Figma "Modules").
+const ALL_MODULES = ["people","giving","app-builder","websites","streaming","content","communications","worship","protections","events","accounting"];
+const DEMO_ORGS = [
+  // Protestant orgs — orgType defaults to "protestant", cityName never rendered
+  { id:"grace",  name:"Grace Church",                     orgType:"protestant", logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
+  { id:"city",   name:"City Hope Church",                 orgType:"protestant", logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
+  { id:"nkbc",   name:"Northern Kentucky Baptist Church", orgType:"protestant", logoUrl: SACRED_HEART_LOGO, modules: ["people","giving","communications","events"] },
+  { id:"cp",     name:"Cross Point",                      orgType:"protestant", logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
+  // Catholic org — cityName IS rendered because orgType==="catholic"
+  { id:"shc",    name:"Sacred Heart Church-ITD",          orgType:"catholic",   cityName:"Knoxville", logoUrl: "", modules: ["people","giving","content","events"] },
+];
 
-      // Row start
-      const rs = document.createElement("div");
-      rs.className = `pds-row-start ${modeClass}`;
+// ── Sub-components ───────────────────────────────────────────────────────────
 
-      const aw = document.createElement("div");
-      aw.className = `pds-avatar-wrap ${modeClass}`;
-      const av = document.createElement("div");
-      av.className = "pds-avatar";
-      if (logoUrl) {
-        const img = document.createElement("img");
-        img.src = logoUrl; img.alt = ""; img.setAttribute("aria-hidden","true");
-        av.appendChild(img);
-      } else {
-        const ph = document.createElement("div");
-        ph.className = "pds-avatar-placeholder";
-        ph.textContent = initials;
-        ph.style.fontSize = mobile ? "6px" : "7px";
-        av.appendChild(ph);
+// Avatar trigger — logo or church placeholder per Figma.
+// Container.Avatar: 2px (xxxtight) padding per Figma — NOT 4px.
+// Avatar inner: bg.fill.action.secondary.base, 1px border, rounded 4px.
+// Logo image: object-fit cover — fills frame proportionally per Figma annotation.
+function TriggerAvatar({ logoUrl, size, borderColor }) {
+  return (
+    <div style={{
+      width:size, height:size,
+      padding:"2px",   // xxxtight per Figma Container.Avatar
+      display:"flex", alignItems:"center", justifyContent:"center",
+      flexShrink:0,
+      boxSizing:"border-box",
+    }}>
+      <div style={{
+        flex:"1 0 0", height:"100%",
+        border:`1px solid ${borderColor}`,
+        borderRadius:"4px",
+        overflow:"hidden",
+        position:"relative",
+        background: T.fillAvatarPlaceholder,  // shows behind letterbox if logo aspect mismatch
+        boxSizing:"border-box",
+      }}>
+        {logoUrl
+          ? <img src={logoUrl} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+          : <div style={{ position:"absolute", inset:"4.17% 8.33% 8.33% 8.33%" }}>
+              <svg viewBox="0 0 13.3333 14" width="100%" height="100%" fill="none" aria-hidden="true" style={{ display:"block" }}>
+                <path d={CHURCH_ICON_PATH} fill="white" fillOpacity="0.7" />
+              </svg>
+            </div>
+        }
+      </div>
+    </div>
+  );
+}
+
+// Panel org branding — 64×46 RECTANGLE, dark navy bg, contains logo image.
+// Figma node I40007336:10291;10550:89851 "Logo".
+function PanelOrgBranding({ logoUrl }) {
+  return (
+    <div style={{ width:64, height:46, borderRadius:4, overflow:"hidden", flexShrink:0, position:"relative", background:"#0f3e80" }}>
+      {logoUrl
+        ? <img src={logoUrl} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", display:"block", padding:6, boxSizing:"border-box" }} />
+        : <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
+            <svg viewBox="0 0 13.3333 14" width={20} height={20} fill="none" aria-hidden="true">
+              <path d={CHURCH_ICON_PATH} fill="white" fillOpacity="0.85" />
+            </svg>
+          </div>
       }
-      aw.appendChild(av);
-      rs.appendChild(aw);
+    </div>
+  );
+}
 
-      if (!mobile) {
-        const ld = document.createElement("div");
-        ld.className = "pds-label-desktop";
-        const p = document.createElement("p");
-        p.textContent = full;
-        ld.appendChild(p);
-        rs.appendChild(ld);
-      }
-      btn.appendChild(rs);
+// Module icons row — 18×18 colored chips with -2px overlap (Figma "Modules" row).
+const MODULE_CATALOG = {
+  "people":         { bg:"#877ec8", icon:"person" },
+  "giving":         { bg:"#4ba8cb", icon:"volunteer_activism" },
+  "app-builder":    { bg:"#6fceb7", icon:"build" },
+  "websites":       { bg:"#2bb6c4", icon:"language" },
+  "streaming":      { bg:"#e07d6e", icon:"live_tv" },
+  "content":        { bg:"#e8b15e", icon:"article" },
+  "communications": { bg:"#d96c9e", icon:"chat" },
+  "worship":        { bg:"#8b6dd8", icon:"music_note" },
+  "protections":    { bg:"#5b8def", icon:"shield" },
+  "events":         { bg:"#4caf7d", icon:"event" },
+  "accounting":     { bg:"#f8c84f", icon:"account_balance" },
+};
+function ModuleIconsRow({ modules=[] }) {
+  if (!modules.length) return null;
+  return (
+    <div style={{ display:"flex", alignItems:"flex-start", flexShrink:0 }}>
+      {modules.map((m, i) => {
+        const def = MODULE_CATALOG[m];
+        if (!def) return null;
+        return (
+          <div key={`${m}-${i}`} title={m.replace(/-/g," ")}
+            style={{ width:18, height:18, borderRadius:9999, background:def.bg, display:"flex", alignItems:"center", justifyContent:"center", marginRight:-2, flexShrink:0, overflow:"hidden", border:"1.5px solid #ffffff", boxSizing:"border-box" }}>
+            <Icon name={def.icon} size={10} style={{ color:"#ffffff" }} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
-      if (mobile) {
-        const lm = document.createElement("div");
-        lm.className = "pds-label-mobile";
-        const p = document.createElement("p");
-        p.textContent = abbr;
-        lm.appendChild(p);
-        btn.appendChild(lm);
-      }
+// OrgListItem — 78px row with 64×46 logo, name + module icons, chevron.
+function OrgListItem({ org, isActive, onSelect }) {
+  const [hovered, setHovered] = useState(false);
+  const bg = isActive ? T.activeOrg : hovered ? T.orgHover : "#ffffff";
+  return (
+    <button type="button" onClick={() => onSelect(org.id)}
+      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
+      style={{ display:"flex", alignItems:"center", gap:16, padding:16, width:"100%", minHeight:78, background:bg, border:"none", borderRadius:8, cursor:"pointer", fontFamily:"'Red Hat Text', sans-serif", textAlign:"left", transition:"background 150ms cubic-bezier(0.4,0,0.2,1)", boxSizing:"border-box" }}>
+      <div style={{ display:"flex", alignItems:"center", gap:12, flex:"1 0 0", minWidth:0 }}>
+        <PanelOrgBranding logoUrl={org.logoUrl} />
+        <div style={{ flex:"1 0 0", minWidth:0, display:"flex", flexDirection:"column", gap:6, justifyContent:"center" }}>
+          <p style={{ fontFamily:"'Red Hat Text', sans-serif", fontWeight:600, fontSize:14, lineHeight:"22px", color:"#363636", margin:0, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{org.name}</p>
+          <ModuleIconsRow modules={org.modules || []} />
+        </div>
+      </div>
+      <Icon name="chevron_right" size={20} style={{ color:"#979797", flexShrink:0 }} />
+    </button>
+  );
+}
 
-      // Row end / chevron
-      const re = document.createElement("div"); re.className = "pds-row-end";
-      const it = document.createElement("div"); it.className = "pds-icon-trailing";
-      const svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
-      svg.setAttribute("viewBox","0 0 16 16"); svg.setAttribute("fill","none");
-      svg.setAttribute("aria-hidden","true"); svg.classList.add("pds-chevron");
-      const path = document.createElementNS("http://www.w3.org/2000/svg","path");
-      path.setAttribute("d", CHEVRON_PATH);
-      path.setAttribute("fill","inherit");
-      svg.appendChild(path); it.appendChild(svg); re.appendChild(it);
-      btn.appendChild(re);
+// OrgPanel — 414 wide (mobile 380), white bg, pt:18 pb:24 px:18, gap-12.
+function OrgPanel({ orgs=[], activeOrgId, onOrgSelect, mobile=false }) {
+  const [query, setQuery] = useState("");
+  const filtered = orgs.filter(o => !query.trim() || o.name.toLowerCase().includes(query.toLowerCase()));
+  return (
+    <div role="dialog" aria-label="Switch organisation" style={{ position:"absolute", top:"calc(100% + 4px)", left:0, zIndex:300, width: mobile ? 380 : 414, background:"#ffffff", borderRadius:8, boxShadow:T.panelShadow, overflow:"hidden", animation:"orgPanelIn 200ms cubic-bezier(0,0,0.2,1) both", paddingTop:18, paddingBottom:24, paddingLeft:18, paddingRight:18, display:"flex", flexDirection:"column", gap:12, boxSizing:"border-box" }}>
+      <style>{`@keyframes orgPanelIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }`}</style>
 
-      // Toggle open state on click
-      btn.addEventListener("click", () => {
-        btn.classList.toggle("is-open");
-        btn.setAttribute("aria-expanded", String(btn.classList.contains("is-open")));
-      });
+      {/* Breadcrumb header — "My Organizations" */}
+      <div style={{ display:"flex", alignItems:"center", padding:"4px 10px", borderRadius:4, flexShrink:0 }}>
+        <p style={{ margin:0, fontFamily:"'Red Hat Text', sans-serif", fontWeight:600, fontSize:14, lineHeight:"normal", color:"#6b6b6b", whiteSpace:"nowrap" }}>My Organizations</p>
+      </div>
 
-      root.appendChild(btn);
-      return root;
-    }
+      {/* Search — bordered rectangle */}
+      <div style={{ display:"flex", alignItems:"center", gap:4, padding:8, border:"1px solid #b5b5b5", borderRadius:4, background:"#ffffff", flexShrink:0, overflow:"hidden" }}>
+        <Icon name="search" size={24} style={{ color:"#6b6b6b", flexShrink:0 }} />
+        <input type="text" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search" aria-label="Search organisations"
+          style={{ flex:1, border:"none", background:"transparent", outline:"none", fontFamily:"'Red Hat Text', sans-serif", fontWeight:400, fontSize:16, lineHeight:"24px", color:"#363636" }} />
+      </div>
 
-    // ── Demo data ────────────────────────────────────────────────────────────
-    const EXAMPLES = [
-      { orgName: "Grace Community Church",    campusName: "West" },
-      { orgName: "Nashville Christian Church", campusName: "Nashville North" },
-      { orgName: "Northpoint Church",          campusName: "Knoxville" },
-      { orgName: "Elevation",                  campusName: "Main Campus" },
-      { orgName: "Church of the Highlands",    campusName: "North" },
-    ];
+      {/* Org list — Switcher Items_V4 rows */}
+      <div role="listbox" aria-label="Organisations" style={{ flex:"1 0 0", display:"flex", flexDirection:"column", gap:16, maxHeight:380, overflowY:"auto", minHeight:0 }}>
+        {filtered.map(org => <OrgListItem key={org.id} org={org} isActive={org.id===activeOrgId} onSelect={onOrgSelect||(() => {})} />)}
+        {filtered.length===0 && <div style={{ padding:"16px 12px", fontSize:14, color:"#6b6b6b", fontFamily:"'Red Hat Text', sans-serif", textAlign:"center" }}>No organisations found</div>}
+      </div>
+    </div>
+  );
+}
 
-    const ABBR_ROWS = [
-      ["Grace Community Church",    "West"],
-      ["Grace Community Church",    "Georgia"],
-      ["Nashville Christian Church","Nashville North"],
-      ["Nashville Christian Church","Nashville South"],
-      ["Northpoint Church",         ""],
-      ["Northpoint Church",         "Knoxville"],
-      ["Crossroads Church",         "Downtown"],
-      ["Elevation",                 "Main Campus"],
-      ["Church of the Highlands",   "North"],
-      ["Knoxville Sanctuary",       "East"],
-    ];
+// OrgSwitcher component (spec §0)
+// Props:
+//   orgName  — full org name (desktop max 180px, mobile max 60px, both truncate with ellipsis)
+//   orgType  — "protestant" (default) | "catholic". Gates cityName visibility.
+//   cityName — city/diocese name. RENDERED ONLY when orgType === "catholic" (spec §0.1).
+//              Even if a string is supplied, Protestant orgs render no city container.
+//   logoUrl  — org logo URL; omit → church SVG placeholder (never initials)
+function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName="", logoUrl, orgs=[], activeOrgId, onOrgSelect, open=false, onClick, disabled=false, mobile=false }) {
+  const [pressed,  setPressed]  = useState(false);
+  const [hovered,  setHovered]  = useState(false);
 
-    // Nav bar: one desktop trigger (interactive)
-    document.getElementById("nav-trigger-desktop").appendChild(
-      buildTrigger({ orgName:"Sacred Heart Church-ITD", campusName:"Knoxville", mobile:false })
-    );
-    // Nav bar: one mobile trigger
-    document.getElementById("nav-trigger-mobile").appendChild(
-      buildTrigger({ orgName:"Sacred Heart Church-ITD", campusName:"Knoxville", mobile:true })
-    );
+  const isActive = open || pressed;
+  const fill   = isActive ? T.fillPressed  : hovered ? T.fillHover   : T.fillBase;
+  const stroke = isActive ? T.strokePressed: hovered ? T.strokeHover : T.strokeBase;
+  const text   = isActive ? T.textPressed  : hovered ? T.textHover   : T.textBase;
+  const icon   = isActive ? T.iconPressed  : hovered ? T.iconHover   : T.iconBase;
 
-    // States — desktop
-    const sd = document.getElementById("demo-states-desktop");
-    EXAMPLES.slice(0,3).forEach(ex => sd.appendChild(buildTrigger({ ...ex, mobile:false })));
-    sd.appendChild(buildTrigger({ orgName:"Crossroads Church", campusName:"", mobile:false, disabled:true }));
+  // Mobile shows the FULL orgName truncated by ellipsis at max-width:60.
+  // NOT abbreviated. "Grace Community Church" → "Grace Comm…" via CSS truncation.
+  const mobileText = orgName;
+  // CityName.Catholic — Catholic orgs ONLY (spec §0.1). Protestant orgs never
+  // render the city container, even if a cityName string is supplied.
+  const showCityName = orgType === "catholic" && Boolean(cityName);
+  // Avatar outer container size per Figma: desktop 24×24, mobile 20×20
+  const AVATAR_SZ = mobile ? 20 : 24;
 
-    // States — mobile
-    const sm = document.getElementById("demo-states-mobile");
-    EXAMPLES.slice(0,4).forEach(ex => sm.appendChild(buildTrigger({ ...ex, mobile:true })));
+  return (
+    // Outer wrapper (touch target) — desktop p:4 content-sized, mobile px:2 py:4 fixed w-108
+    <div style={{
+      minHeight:48, minWidth:48,
+      ...(mobile ? { width:108 } : { maxWidth:316 }),
+      ...(mobile ? { paddingLeft:"2px", paddingRight:"2px", paddingTop:"4px", paddingBottom:"4px" } : { padding:"4px" }),
+      display:"flex", flexDirection:"column",
+      alignItems:"flex-start", justifyContent:"center",
+      position:"relative",
+      boxSizing:"border-box",
+    }}>
+      {/* Container.Main (button): p:4px uniform, gap:2px between RowStart and RowEnd */}
+      <button type="button" disabled={disabled}
+        aria-haspopup="true" aria-expanded={open}
+        aria-label={showCityName ? `Current organisation: ${orgName}, ${cityName}. Activate to switch.` : `Current organisation: ${orgName}. Activate to switch.`}
+        onClick={onClick}
+        onMouseEnter={() => !disabled && setHovered(true)}
+        onMouseLeave={() => { setHovered(false); setPressed(false); }}
+        onMouseDown={() => !disabled && setPressed(true)}
+        onMouseUp={() => setPressed(false)}
+        style={{
+          display:"flex", alignItems:"center",
+          height:36, maxHeight:36, minHeight:36,
+          maxWidth: mobile ? 102 : 308,  // Container.Main: mobile 40006820:14758 max-w-102, desktop 40006817:14391 max-w-308
+          borderRadius:"8px",
+          border:`1px solid ${stroke}`,
+          background: disabled ? T.fillBase : fill,
+          opacity: disabled ? 0.5 : 1,
+          cursor: disabled ? "not-allowed" : "pointer",
+          padding:"4px",
+          // Desktop has 2px gap between RowStart and RowEnd; mobile has NO gap
+          // (Figma node 40006820:14758 vs 40006817:14391)
+          ...(mobile ? {} : { gap:"2px" }),
+          boxSizing:"border-box",
+          outline:"none",
+          transition:"background 120ms ease, border-color 120ms ease",
+        }}>
 
-    // Abbreviation table
-    const tbody = document.querySelector("#abbr-table tbody");
-    ABBR_ROWS.forEach(([org, campus]) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${org}</td>
-        <td style="color:rgba(160,181,230,0.5)">${campus || "—"}</td>
-        <td class="mobile-col">${mobileLabel(org, campus)}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  </script>
+        {/* Container.RowStart
+            Mobile (40006820:14759): gap 4px (xxtight), h 20, max-w 74 content-sized
+            Desktop (40006817:14390): gap 4px (xxtight), h 24, content-sized */}
+        <div style={{
+          display:"flex", alignItems:"center", flexShrink:0, gap:"4px",
+          ...(mobile ? { height:20, maxWidth:74 } : { height:24 }),
+        }}>
+          <TriggerAvatar logoUrl={logoUrl} size={AVATAR_SZ} borderColor={stroke} />
+
+          {/* Desktop label: Container.OrgLabel (max-w 248)
+              ├── Container.OrgName (max-w 170, CONTENT-SIZED — annotation:
+              │    "Text Truncates if frame going beyond 170pt")
+              └── Container.CityName.Catholic (max-w 72, Catholic orgs only) */}
+          {!mobile && (
+            <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:248, flexShrink:0, minWidth:0 }}>
+              <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:180, flexShrink:1, minWidth:0 }}>
+                <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:180 }}>{orgName}</p>
+              </div>
+              {/* CityName.Catholic — gated on orgType==="catholic" (spec §0.1) */}
+              {showCityName && (
+                <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:72, flexShrink:0, minWidth:0 }}>
+                  <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", maxWidth:72, margin:0 }}>{` | ${cityName}`}</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Mobile label: Container.Label (Figma 40007067:13273) — fixed w-50,
+              NO flex grow. Typography is Label/Button/S (14px) — same as desktop. */}
+          {mobile && (
+            <div style={{ display:"flex", alignItems:"center", height:"100%", width:50, flexShrink:0, minWidth:0 }}>
+              <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:50 }}>{mobileText}</p>
+            </div>
+          )}
+        </div>
+
+        {/* Container.RowEnd: p:2px around Container.IconTrailing */}
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"2px", flexShrink:0 }}>
+          {/* Container.IconTrailing: size 16×16 with 2px inner padding → 12×12 icon */}
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", width:16, height:16, padding:"2px", boxSizing:"border-box", transform: open ? "rotate(180deg)" : "none", transition:"transform 200ms cubic-bezier(0.4,0,0.2,1)" }}>
+            <Icon name="expand_more" size={12} style={{ color:icon }} />
+          </div>
+        </div>
+      </button>
+
+      {open && !disabled && <OrgPanel orgs={orgs} activeOrgId={activeOrgId} onOrgSelect={onOrgSelect} mobile={mobile} />}
+    </div>
+  );
+}
+
+// ── Demo wrapper ─────────────────────────────────────────────────────────────
+function NavShell({ children }) {
+  return (
+    <div style={{ background:"#2d4889", borderBottom:"1px solid rgba(160,181,230,0.12)", padding:"0 20px", display:"flex", alignItems:"center", height:56, gap:12, position:"relative", overflow:"visible" }}>
+      <span style={{ fontWeight:700, fontSize:15, color:"#fbfbfb", letterSpacing:"0.05em" }}>Pathway</span>
+      {children}
+    </div>
+  );
+}
+
+function App() {
+  const [navOpen, setNavOpen] = useState(false);
+  const [panelOpen, setPanelOpen] = useState(false);
+  const [activeOrg, setActiveOrg] = useState("grace");
+
+  const current = DEMO_ORGS.find(o => o.id === activeOrg) || DEMO_ORGS[0];
+
+  const handleOrgSelect = (id) => {
+    setActiveOrg(id);
+    setPanelOpen(false);
+  };
+
+  return (
+    <div className="demo-wrap">
+
+      {/* ── Nav shell — live interactive trigger ── */}
+      <NavShell>
+        <OrgSwitcher
+          orgName={current.name} orgType={current.orgType} cityName={current.cityName} logoUrl={current.logoUrl}
+          orgs={DEMO_ORGS} activeOrgId={activeOrg} onOrgSelect={handleOrgSelect}
+          open={navOpen} onClick={() => setNavOpen(o => !o)}
+        />
+        <span style={{ fontSize:11, color:"rgba(251,251,251,0.5)", marginLeft:8 }}>(click to toggle panel)</span>
+      </NavShell>
+
+      <div className="demo-page">
+
+        {/* Desktop — DEFAULT state: org WITH logo on file */}
+        <div className="demo-section">
+          <div className="demo-section__label">Trigger — Desktop, org has logo on file (default state)</div>
+          <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px" }}>
+            <div style={{ display:"flex", gap:12, flexWrap:"wrap" }}>
+              {/* Catholic org — logo image + cityName after pipe (orgType==="catholic") */}
+              <OrgSwitcher orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
+              {/* Protestant orgs — no cityName ever, even if a string is passed */}
+              <OrgSwitcher orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
+              <OrgSwitcher orgName="Cross Point" logoUrl={SACRED_HEART_LOGO} />
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop — NO LOGO state: org with no logo on file → church placeholder */}
+        <div className="demo-section">
+          <div className="demo-section__label">Trigger — Desktop, org has NO logo on file (church placeholder)</div>
+          <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px" }}>
+            <div style={{ display:"flex", gap:12, flexWrap:"wrap" }}>
+              {/* Same orgs, no logo on file — fall back to church SVG */}
+              <OrgSwitcher orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl="" />
+              <OrgSwitcher orgName="Grace Community Church" logoUrl="" />
+              <OrgSwitcher orgName="Cross Point" logoUrl="" />
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop — trigger open with panel (NOTE: panel is OUT OF SCOPE in v1 — placeholder only) */}
+        <div className="demo-section">
+          <div className="demo-section__label">Trigger + Panel — Desktop, open (⚠ panel is placeholder, out of scope in v1)</div>
+          <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px", minHeight:420 }}>
+            <OrgSwitcher
+              orgName={current.name} orgType={current.orgType} cityName={current.cityName} logoUrl={current.logoUrl}
+              orgs={DEMO_ORGS} activeOrgId={activeOrg} onOrgSelect={handleOrgSelect}
+              open={panelOpen} onClick={() => setPanelOpen(o => !o)}
+            />
+          </div>
+        </div>
+
+        {/* Mobile — full org name truncated with ellipsis at 60px max-width */}
+        <div className="demo-section">
+          <div className="demo-section__label">Trigger — Mobile (full org name truncated, no abbreviation)</div>
+          <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px" }}>
+            <div style={{ display:"flex", gap:12, flexWrap:"wrap", alignItems:"flex-start", position:"relative" }}>
+              {DEMO_ORGS.slice(0,5).map(o => (
+                <OrgSwitcher key={o.id} orgName={o.name} orgType={o.orgType} cityName={o.cityName} logoUrl={o.logoUrl} mobile />
+              ))}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+</script>
 </body>
 </html>
