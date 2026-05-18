@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search — Pathway Component Demo</title>
+  <link rel="stylesheet" href="http://localhost:7890/src/tokens/tokens.css">
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Resolve unitless layout tokens to px ───────────────── */
+    /*
+      All --semantic-layout-units-* and --primitive-unit-* tokens resolve to
+      unitless numbers (e.g. 64, not 64px). Wrap with calc(* 1px) here so
+      the rest of the component CSS can consume them directly as lengths.
+    */
+    :root {
+      --s-radius-full:       calc(var(--primitive-unit-unit-64)  * 1px); /* 64px */
+      --s-radius-medium:     calc(var(--primitive-unit-unit-8)   * 1px); /* 8px  */
+      --s-radius-focused:    calc(var(--primitive-unit-unit-12)  * 1px); /* 12px */
+      --s-bw-thin:           calc(var(--primitive-unit-unit-0-point-75) * 1px); /* 0.75px */
+      --s-bw-base:           calc(var(--primitive-unit-unit-1)   * 1px); /* 1px  */
+      --s-gap-xtight:        calc(var(--primitive-unit-unit-8)   * 1px); /* 8px  */
+      --s-pad-xtight:        calc(var(--primitive-unit-unit-8)   * 1px); /* 8px  */
+      --s-pad-xxtight:       calc(var(--primitive-unit-unit-4)   * 1px); /* 4px  */
+      --s-font-size-input:   calc(var(--primitive-type-size-14)  * 1px); /* 14px */
+      --s-line-height-input: calc(var(--primitive-type-line-height-14pt-single) * 1px); /* 20px */
+      --s-letter-spacing:    calc(var(--primitive-type-letter-spacing-wide) * 1px); /* 0.3px */
+    }
+
+    /* ── Page ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--semantic-color-light-mode-fill-static-info-light);
+      font-family: var(--semantic-type-desktop-label-input-base-regular-fontfamily), sans-serif;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    .page-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--semantic-color-light-mode-text-static-secondary-subtle);
+      margin-bottom: 32px;
+    }
+
+    /* ── State grid ─────────────────────────────────────────── */
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 48px;
+    }
+
+    .grid-row {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      padding: 0 0 16px;
+    }
+
+    .grid-row:last-child { padding-bottom: 0; }
+
+    .grid-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--semantic-color-light-mode-text-static-secondary-subtle);
+      width: 72px;
+      flex-shrink: 0;
+    }
+
+    .grid-cols {
+      display: flex;
+      gap: 40px;
+    }
+
+    /* Section divider */
+    .section-divider {
+      border: none;
+      border-top: 0.75px solid var(--semantic-color-light-mode-stroke-action-secondary-inverse-base);
+      margin: 32px 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--semantic-color-light-mode-text-static-secondary-subtle);
+      margin-bottom: 24px;
+    }
+
+    /* ── Search component ───────────────────────────────────── */
+
+    /* Touch target wrapper */
+    .search {
+      height: 48px;
+      min-height: 48px;
+      min-width: 48px;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Visual pill */
+    .search__inner {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: var(--s-gap-xtight); /* 8px */
+      padding-inline: var(--s-pad-xtight); /* 8px */
+      min-height: 36px;
+      width: 100%;
+      border-radius: var(--s-radius-full); /* 64px */
+      overflow: clip;
+      border-style: solid;
+      border-width: var(--s-bw-thin); /* 0.75px */
+      border-color: var(--semantic-color-light-mode-stroke-action-secondary-inverse-base); /* #d2d2d2 */
+      background: var(--semantic-color-light-mode-fill-static-neutral-light); /* white */
+    }
+
+    /* Hover */
+    .search--hover .search__inner {
+      border-width: var(--s-bw-base); /* 1px */
+      border-color: var(--semantic-color-light-mode-stroke-action-secondary-inverse-hover); /* #c4c4c4 */
+    }
+
+    /* Focused */
+    .search--focused .search__inner {
+      border-width: var(--s-bw-base);
+      border-color: var(--semantic-color-light-mode-stroke-action-primary-inverse-pressed); /* #a0b5e6 */
+    }
+
+    /* With-value */
+    .search--with-value .search__inner {
+      border-width: var(--s-bw-base);
+      border-color: var(--semantic-color-light-mode-stroke-action-primary-inverse-pressed);
+    }
+
+    /* Disabled — opacity on the outer touch target */
+    .search--disabled {
+      opacity: 0.38;
+    }
+    .search--disabled .search__inner {
+      border-width: var(--s-bw-base);
+      border-color: var(--primitive-color-cool-neutral-30); /* #ededed */
+      background: var(--primitive-color-cool-neutral-10); /* #fbfbfb */
+    }
+
+    /* Error */
+    .search--error .search__inner {
+      border-width: var(--s-bw-base);
+      border-color: var(--primitive-color-red-100); /* #b03a3a */
+    }
+
+    /* ── Leading icon slot ─────────────────────────────────── */
+    .search__lead {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    /* Icon button — 24×24 outer, 12px corner (focused-element token) */
+    .search__icon-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--s-radius-focused); /* 12px */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    /* Inner pill — full circle, 4px padding */
+    .icon-pill {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--s-pad-xxtight); /* 4px */
+      border-radius: var(--s-radius-full); /* 64px */
+    }
+
+    .search__icon-btn:hover .icon-pill,
+    .search--hover .search__icon-btn .icon-pill {
+      background: var(--semantic-color-light-mode-fill-action-secondaryinverse-hover);
+    }
+    .search__icon-btn:active .icon-pill {
+      background: var(--semantic-color-light-mode-fill-action-secondaryinverse-pressed);
+    }
+
+    /* Icon SVG — 16×16 */
+    .search__icon-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--semantic-color-light-mode-icon-action-secondary-inverse-base); /* #6b6b6b */
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .search--hover .search__icon-btn svg {
+      fill: var(--semantic-color-light-mode-icon-action-secondary-inverse-hover); /* #545454 */
+    }
+
+    .search--disabled .search__icon-btn svg {
+      fill: var(--semantic-color-light-mode-icon-action-secondary-disabled); /* #979797 */
+    }
+
+    .search--error .search__icon-btn svg {
+      fill: var(--semantic-color-light-mode-icon-action-negative-base); /* #b03a3a */
+    }
+
+    /* ── Label slot ────────────────────────────────────────── */
+    .search__label {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .search__input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: var(--semantic-type-desktop-label-input-base-regular-fontfamily), sans-serif;
+      font-size: var(--s-font-size-input); /* 14px */
+      font-weight: 400; /* 400 */
+      line-height: var(--s-line-height-input);
+      letter-spacing: var(--s-letter-spacing);
+      color: var(--semantic-color-light-mode-text-static-secondary-bold); /* #202020 */
+    }
+
+    .search__input::placeholder {
+      color: var(--semantic-color-light-mode-text-static-secondary-subtle); /* #606060 */
+    }
+
+    /* Static text for non-interactive states */
+    .search__text {
+      font-family: var(--semantic-type-desktop-label-input-base-regular-fontfamily), sans-serif;
+      font-size: var(--s-font-size-input);
+      font-weight: 400;
+      line-height: var(--s-line-height-input);
+      letter-spacing: var(--s-letter-spacing);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .search__text--placeholder {
+      color: var(--semantic-color-light-mode-text-static-secondary-subtle);
+    }
+
+    .search__text--value {
+      color: var(--semantic-color-light-mode-text-static-secondary-bold);
+    }
+
+    /* ── Trailing icon buttons ─────────────────────────────── */
+
+    /* Cancel button (no divider, appears before filter wrap) */
+    .search__cancel {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--s-radius-focused);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .search__cancel:hover .icon-pill {
+      background: var(--semantic-color-light-mode-fill-action-secondaryinverse-hover);
+    }
+    .search__cancel:active .icon-pill {
+      background: var(--semantic-color-light-mode-fill-action-secondaryinverse-pressed);
+    }
+
+    .search__cancel svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--semantic-color-light-mode-icon-action-secondary-inverse-base);
+      flex-shrink: 0;
+      display: block;
+    }
+
+    /* Filter wrapper — left border divider + 4px padding */
+    .search__filter-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
+      border-left: var(--s-bw-thin) solid
+        var(--semantic-color-light-mode-stroke-action-primary-inverse-base); /* 0.75px #c0ceef */
+      padding-left: var(--s-pad-xxtight); /* 4px */
+    }
+
+    /* Filter button (inside the filter wrap) */
+    .search__filter-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--s-radius-focused);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .search__filter-btn:hover .icon-pill {
+      background: var(--semantic-color-light-mode-fill-action-secondaryinverse-hover);
+    }
+    .search__filter-btn:active .icon-pill {
+      background: var(--semantic-color-light-mode-fill-action-secondaryinverse-pressed);
+    }
+
+    .search__filter-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--semantic-color-light-mode-icon-action-secondary-inverse-base);
+      flex-shrink: 0;
+      display: block;
+    }
+
+    /* ── Filter-active state (Figma 40007351-13533) ────────────
+       Blue border on the whole bar. Funnel pill gets tertiary-base
+       fill (#eef2fb). Input and search icon stay fully interactive.
+    ─────────────────────────────────────────────────────────── */
+    .search--filter-active .search__inner {
+      border-width: var(--s-bw-base);
+      border-color: var(--semantic-color-light-mode-stroke-action-primary-inverse-pressed); /* #a0b5e6 */
+    }
+
+    .search--filter-active .search__filter-btn .icon-pill {
+      background: var(--semantic-color-light-mode-fill-action-tertiary-base); /* #eef2fb */
+    }
+
+    /* Badge container — wraps filter btn, positions dot */
+    .search__badge-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search__badge {
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--semantic-color-light-mode-fill-action-primary-base);
+      border: 1.5px solid var(--semantic-color-light-mode-fill-static-neutral-light);
+      display: none;
+    }
+
+    .search--filter-active .search__badge {
+      display: block;
+    }
+
+    /* ── Interactive demo ───────────────────────────────────── */
+    .demo-section {
+      margin-top: 48px;
+    }
+
+    .demo-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .demo-note {
+      font-size: 11px;
+      color: var(--semantic-color-light-mode-text-static-secondary-subtle);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Dark surface context section ──────────────────────── */
+    .nav-context {
+      margin-top: 56px;
+      background: #1b2a4a;
+      border-radius: 12px;
+      padding: 24px 32px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-context .search__inner {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .nav-context .search__text--placeholder {
+      color: rgba(255,255,255,0.45);
+    }
+
+    .nav-context .search__icon-btn svg,
+    .nav-context .search__cancel svg,
+    .nav-context .search__filter-btn svg {
+      fill: rgba(255,255,255,0.6);
+    }
+
+    .nav-context .search__filter-wrap {
+      border-left-color: rgba(255,255,255,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Open in Chrome -->
+  <a href="http://localhost:7890/components/search/search.html" target="_blank"
+     style="position:fixed; top:16px; right:16px; z-index:9999;
+            display:inline-flex; align-items:center; gap:6px;
+            background:#1b2a4a; color:#fff; font-family:'Red Hat Text',sans-serif;
+            font-size:12px; font-weight:500; padding:8px 14px;
+            border-radius:20px; text-decoration:none; box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    Open in Chrome
+  </a>
+
+  <p class="page-title">Search — Component States</p>
+
+  <!-- ── Column headers ────────────────────────────────────── -->
+  <div style="display:flex; gap:40px; margin-bottom:8px; padding-left:112px;">
+    <div style="width:320px; font-size:11px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:var(--semantic-color-light-mode-text-static-secondary-subtle);">No Filter</div>
+    <div style="width:320px; font-size:11px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:var(--semantic-color-light-mode-text-static-secondary-subtle);">Has Filter</div>
+  </div>
+
+  <!-- ── State grid ─────────────────────────────────────────── -->
+  <div class="grid">
+
+    <!-- Idle -->
+    <div class="grid-row">
+      <span class="grid-label">Idle</span>
+      <div class="grid-cols">
+        <!-- Idle / No filter -->
+        <div class="search">
+          <div class="search__inner">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text search__text--placeholder">Search...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Idle / Has filter -->
+        <div class="search">
+          <div class="search__inner">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text search__text--placeholder">Search...</span>
+            </div>
+            <div class="search__filter-wrap">
+              <button class="search__filter-btn" aria-label="Open filters">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"/></svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hover -->
+    <div class="grid-row">
+      <span class="grid-label">Hover</span>
+      <div class="grid-cols">
+        <!-- Hover / No filter -->
+        <div class="search search--hover">
+          <div class="search__inner">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text search__text--placeholder">Search...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hover / Has filter -->
+        <div class="search search--hover">
+          <div class="search__inner">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text search__text--placeholder">Search...</span>
+            </div>
+            <div class="search__filter-wrap">
+              <button class="search__filter-btn" aria-label="Open filters">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"/></svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Focused -->
+    <div class="grid-row">
+      <span class="grid-label">Focused</span>
+      <div class="grid-cols">
+        <!-- Focused / No filter -->
+        <div class="search search--focused">
+          <div class="search__inner">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text search__text--placeholder">Search...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Focused / Has filter -->
+        <div class="search search--focused">
+          <div class="search__inner">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text search__text--placeholder">Search...</span>
+            </div>
+            <div class="search__filter-wrap">
+              <button class="search__filter-btn" aria-label="Open filters">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"/></svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- With-value -->
+    <div class="grid-row">
+      <span class="grid-label">With value</span>
+      <div class="grid-cols">
+        <!-- With-value / No filter -->
+        <div class="search search--with-value">
+          <div class="search__inner">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text search__text--value">Input</span>
+            </div>
+            <button class="search__cancel" aria-label="Clear">
+              <span class="icon-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- With-value / Has filter -->
+        <!-- Layout: [search] [input] [cancel — no divider] [| funnel — with divider] -->
+        <div class="search search--with-value">
+          <div class="search__inner">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text search__text--value">Input</span>
+            </div>
+            <!-- Cancel: no divider -->
+            <button class="search__cancel" aria-label="Clear">
+              <span class="icon-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
+              </span>
+            </button>
+            <!-- Filter: left border divider + 4px padding -->
+            <div class="search__filter-wrap">
+              <button class="search__filter-btn" aria-label="Open filters">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"/></svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled -->
+    <div class="grid-row">
+      <span class="grid-label">Disabled</span>
+      <div class="grid-cols">
+        <!-- Disabled / No filter -->
+        <div class="search search--disabled">
+          <div class="search__inner">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Search" disabled>
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text search__text--placeholder">Search...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disabled / Has filter -->
+        <div class="search search--disabled">
+          <div class="search__inner">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Search" disabled>
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text search__text--placeholder">Search...</span>
+            </div>
+            <div class="search__filter-wrap">
+              <button class="search__filter-btn" aria-label="Open filters" disabled>
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"/></svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error -->
+    <div class="grid-row">
+      <span class="grid-label">Error</span>
+      <div class="grid-cols">
+        <!-- Error / No filter -->
+        <div class="search search--error">
+          <div class="search__inner">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text search__text--placeholder">Search...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error / Has filter -->
+        <div class="search search--error">
+          <div class="search__inner">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text search__text--placeholder">Search...</span>
+            </div>
+            <div class="search__filter-wrap">
+              <button class="search__filter-btn" aria-label="Open filters">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"/></svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /grid -->
+
+  <hr class="section-divider">
+
+  <!-- ── Filter-active state (new addition) ───────────────── -->
+  <p class="section-label">Filter Active — new states (not yet in Figma)</p>
+
+  <div style="display:flex; gap:40px; margin-bottom:48px;">
+
+    <!-- Filter active, no text in input -->
+    <div>
+      <p style="font-size:11px; color:var(--semantic-color-light-mode-text-static-secondary-subtle); margin-bottom:8px; letter-spacing:0.04em;">Filters applied, no text</p>
+      <div class="search search--filter-active">
+        <div class="search__inner">
+          <div class="search__lead">
+            <button class="search__icon-btn" aria-label="Search">
+              <span class="icon-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </button>
+          </div>
+          <div class="search__label">
+            <span class="search__text search__text--placeholder">Search...</span>
+          </div>
+          <div class="search__filter-wrap">
+            <div class="search__badge-wrap">
+              <button class="search__filter-btn" aria-label="Open filters (filters active)">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"/></svg>
+                </span>
+              </button>
+              <span class="search__badge" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter active, text in input -->
+    <div>
+      <p style="font-size:11px; color:var(--semantic-color-light-mode-text-static-secondary-subtle); margin-bottom:8px; letter-spacing:0.04em;">Filters applied, with text</p>
+      <div class="search search--filter-active search--with-value">
+        <div class="search__inner">
+          <div class="search__lead">
+            <button class="search__icon-btn" aria-label="Search">
+              <span class="icon-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </button>
+          </div>
+          <div class="search__label">
+            <span class="search__text search__text--value">Input</span>
+          </div>
+          <button class="search__cancel" aria-label="Clear text">
+            <span class="icon-pill">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
+            </span>
+          </button>
+          <div class="search__filter-wrap">
+            <div class="search__badge-wrap">
+              <button class="search__filter-btn" aria-label="Open filters (filters active)">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"/></svg>
+                </span>
+              </button>
+              <span class="search__badge" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ── Interactive demo ─────────────────────────────────── -->
+  <p class="section-label">Interactive — try it</p>
+
+  <div style="margin-bottom: 48px;">
+
+    <!-- Interactive: No filter -->
+    <div class="demo-row">
+      <div class="search" id="bar-a" aria-label="Search (no filter)">
+        <div class="search__inner">
+          <div class="search__lead">
+            <button class="search__icon-btn" aria-label="Search">
+              <span class="icon-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </button>
+          </div>
+          <div class="search__label">
+            <input class="search__input" id="input-a" type="text" placeholder="Search..." autocomplete="off">
+          </div>
+          <button class="search__cancel" id="cancel-a" aria-label="Clear" style="display:none">
+            <span class="icon-pill">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+      <span class="demo-note">No filter</span>
+    </div>
+
+    <!-- Interactive: Has filter -->
+    <div class="demo-row">
+      <div class="search" id="bar-b" aria-label="Search (has filter)">
+        <div class="search__inner">
+          <div class="search__lead">
+            <button class="search__icon-btn" aria-label="Search">
+              <span class="icon-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </button>
+          </div>
+          <div class="search__label">
+            <input class="search__input" id="input-b" type="text" placeholder="Search..." autocomplete="off">
+          </div>
+          <!-- Cancel shown when text present -->
+          <button class="search__cancel" id="cancel-b" aria-label="Clear" style="display:none">
+            <span class="icon-pill">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
+            </span>
+          </button>
+          <!-- Filter: always present -->
+          <div class="search__filter-wrap">
+            <div class="search__badge-wrap">
+              <button class="search__filter-btn" id="filter-b" aria-label="Open filters">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"/></svg>
+                </span>
+              </button>
+              <span class="search__badge" id="badge-b" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="demo-note" id="note-b">Has filter — tap funnel to toggle filter-active state</span>
+    </div>
+
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ── Nav surface context ──────────────────────────────── -->
+  <p class="section-label">Nav context (dark surface)</p>
+  <div class="nav-context">
+    <div class="search" style="width:280px;">
+      <div class="search__inner" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.14);">
+        <div class="search__lead">
+          <button class="search__icon-btn" aria-label="Search">
+            <span class="icon-pill">
+              <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:rgba(255,255,255,0.6)"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            </span>
+          </button>
+        </div>
+        <div class="search__label">
+          <span class="search__text" style="color:rgba(255,255,255,0.45)">Search...</span>
+        </div>
+        <div class="search__filter-wrap" style="border-left-color:rgba(255,255,255,0.2)">
+          <button class="search__filter-btn" aria-label="Open filters">
+            <span class="icon-pill">
+              <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:rgba(255,255,255,0.6)"><path d="M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z"/></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ── TopNav Search (Figma 40007095-4048) ─────────────── -->
+  <p class="section-label">TopNav Search — collapsed / expanded / open</p>
+
+  <!-- States reference row -->
+  <div style="display:flex; gap:40px; margin-bottom:40px; align-items:flex-start; flex-wrap:wrap;">
+
+    <!-- Collapsed -->
+    <div>
+      <p style="font-size:11px; color:var(--semantic-color-light-mode-text-static-secondary-subtle); margin-bottom:12px; letter-spacing:0.04em;">Collapsed (dark surface)</p>
+      <div style="background:#1b2a4a; border-radius:12px; padding:8px; display:inline-flex;">
+        <button class="topnav-search-btn" aria-label="Search" aria-expanded="false"
+          style="width:48px; height:48px; border-radius:12px; border:1.5px solid rgba(251,251,251,0.14);
+                 background:rgba(160,181,230,0.08); cursor:pointer; display:flex;
+                 align-items:center; justify-content:center; flex-shrink:0;">
+          <span style="width:36px; height:36px; border-radius:64px; display:flex; align-items:center; justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" style="fill:rgba(251,251,251,0.9)" aria-hidden="true">
+              <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Expanded (idle) -->
+    <div>
+      <p style="font-size:11px; color:var(--semantic-color-light-mode-text-static-secondary-subtle); margin-bottom:12px; letter-spacing:0.04em;">Expanded — idle</p>
+      <div style="background:#1b2a4a; border-radius:12px; padding:8px; display:inline-flex; align-items:center; gap:4px;">
+        <div class="search" style="width:320px;">
+          <div class="search__inner" style="background:rgba(255,255,255,0.06); border-color:rgba(251,251,251,0.14); border-width:1.5px;">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Collapse search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:rgba(251,251,251,0.9)">
+                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                  </svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text" style="color:rgba(255,255,255,0.45)">Search...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Open state indicator -->
+    <div>
+      <p style="font-size:11px; color:var(--semantic-color-light-mode-text-static-secondary-subtle); margin-bottom:12px; letter-spacing:0.04em;">Open (search active + dropdown)</p>
+      <div style="background:#1b2a4a; border-radius:12px; padding:8px; display:inline-flex; align-items:flex-start; gap:4px; position:relative;">
+        <div class="search" style="width:320px;">
+          <div class="search__inner" style="background:rgba(255,255,255,0.06); border-color:#a0b5e6; border-width:1px;">
+            <div class="search__lead">
+              <button class="search__icon-btn" aria-label="Collapse search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:rgba(251,251,251,0.9)">
+                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                  </svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <span class="search__text" style="color:rgba(255,255,255,0.9)">Sunday service</span>
+            </div>
+            <button class="search__cancel" aria-label="Clear">
+              <span class="icon-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:rgba(255,255,255,0.7)">
+                  <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <!-- Dropdown indicator (placeholder — open state TBD) -->
+        <div style="position:absolute; top:calc(100% - 4px); left:8px; right:8px;
+                    background:white; border-radius:12px; padding:12px 16px;
+                    box-shadow:0 8px 24px rgba(0,0,0,0.18); z-index:10;">
+          <p style="font-size:11px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase;
+                    color:var(--semantic-color-light-mode-text-static-secondary-subtle); margin-bottom:8px;">Results panel</p>
+          <p style="font-size:12px; color:var(--semantic-color-light-mode-text-static-secondary-subtle); font-style:italic;">
+            Open state TBD — dropdown design not yet spec'd
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Interactive TopNav Search -->
+  <p class="section-label" style="margin-top:32px;">TopNav Search — interactive (tap the icon to expand / collapse)</p>
+
+  <div style="background:#1b2a4a; border-radius:16px; padding:16px 20px; display:flex;
+              align-items:center; gap:12px; margin-bottom:48px; overflow:hidden;">
+
+    <!-- Wordmark placeholder -->
+    <div style="font-size:13px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.04em; flex-shrink:0;">
+      Ministry Brands
+    </div>
+
+    <div style="flex:1;"></div>
+
+    <!-- TopNav search container — animates width -->
+    <div id="topnav-wrap" style="display:flex; align-items:center; overflow:hidden;">
+
+      <!-- Collapsed button (visible when collapsed) -->
+      <button id="topnav-btn" aria-label="Open search" aria-expanded="false"
+        style="width:48px; height:48px; border-radius:12px; border:1.5px solid rgba(251,251,251,0.14);
+               background:rgba(160,181,230,0.08); cursor:pointer; display:flex;
+               align-items:center; justify-content:center; flex-shrink:0; transition:opacity 0.15s;">
+        <span style="width:36px; height:36px; border-radius:64px; display:flex; align-items:center; justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" style="fill:rgba(251,251,251,0.9)" aria-hidden="true">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+        </span>
+      </button>
+
+      <!-- Expanded bar (hidden when collapsed, slides in) -->
+      <div id="topnav-bar"
+        style="width:0; opacity:0; overflow:hidden; transition:width 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease; display:flex; align-items:center;">
+        <div class="search" style="width:320px; flex-shrink:0;">
+          <div class="search__inner" style="background:rgba(255,255,255,0.06); border-color:rgba(251,251,251,0.14); border-width:1.5px;">
+            <div class="search__lead">
+              <button id="topnav-collapse" class="search__icon-btn" aria-label="Collapse search">
+                <span class="icon-pill">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:rgba(251,251,251,0.9)">
+                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                  </svg>
+                </span>
+              </button>
+            </div>
+            <div class="search__label">
+              <input id="topnav-input" class="search__input" type="text" placeholder="Search..."
+                autocomplete="off" style="color:rgba(255,255,255,0.9);">
+            </div>
+            <button id="topnav-cancel" class="search__cancel" aria-label="Clear" style="display:none">
+              <span class="icon-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:rgba(255,255,255,0.7)">
+                  <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder nav icons -->
+    <div style="display:flex; gap:8px; flex-shrink:0;">
+      <div style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" style="fill:rgba(255,255,255,0.5)" aria-hidden="true"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+      </div>
+      <div style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.08); overflow:hidden; display:flex; align-items:center; justify-content:center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" style="fill:rgba(255,255,255,0.5)" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── JS ───────────────────────────────────────────────── -->
+  <script>
+    /* ── Focus / blur state management ─────────────────────── */
+    document.querySelectorAll('.search__input').forEach(input => {
+      const bar = input.closest('.search');
+
+      input.addEventListener('focus', () => {
+        bar.classList.remove('search--with-value');
+        bar.classList.add('search--focused');
+      });
+
+      input.addEventListener('blur', () => {
+        bar.classList.remove('search--focused');
+        if (input.value.length > 0) {
+          bar.classList.add('search--with-value');
+        }
+      });
+
+      input.addEventListener('mouseenter', () => {
+        if (document.activeElement !== input) {
+          bar.classList.add('search--hover');
+        }
+      });
+      input.addEventListener('mouseleave', () => bar.classList.remove('search--hover'));
+    });
+
+    /* ── Bar A: no-filter interactive ─────────────────────── */
+    (function() {
+      const bar    = document.getElementById('bar-a');
+      const input  = document.getElementById('input-a');
+      const cancel = document.getElementById('cancel-a');
+
+      function updateCancel() {
+        cancel.style.display = input.value.length > 0 ? '' : 'none';
+        bar.classList.toggle('search--with-value', document.activeElement !== input && input.value.length > 0);
+      }
+
+      input.addEventListener('input', updateCancel);
+
+      cancel.addEventListener('click', e => {
+        e.stopPropagation();
+        input.value = '';
+        cancel.style.display = 'none';
+        bar.classList.remove('search--with-value');
+        input.focus();
+      });
+    })();
+
+    /* ── Bar B: has-filter interactive ─────────────────────── */
+    (function() {
+      const bar      = document.getElementById('bar-b');
+      const input    = document.getElementById('input-b');
+      const cancel   = document.getElementById('cancel-b');
+      const filterBtn = document.getElementById('filter-b');
+      const badge    = document.getElementById('badge-b');
+      const note     = document.getElementById('note-b');
+      let filterActive = false;
+
+      function updateCancel() {
+        /* Clear shows whenever there is text — regardless of filter state */
+        cancel.style.display = input.value.length > 0 ? '' : 'none';
+      }
+
+      input.addEventListener('input', updateCancel);
+
+      cancel.addEventListener('click', e => {
+        e.stopPropagation();
+        input.value = '';
+        updateCancel();
+        if (!filterActive) input.focus();
+      });
+
+      filterBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        filterActive = !filterActive;
+
+        if (filterActive) {
+          /* Simulate returning from filter page with filters applied */
+          bar.classList.add('search--filter-active');
+          bar.classList.remove('search--focused', 'search--with-value', 'search--hover');
+          badge.style.display = 'block';
+          note.textContent = 'Filter active — blue border, funnel highlighted, input still active. Tap funnel to clear.';
+        } else {
+          bar.classList.remove('search--filter-active');
+          badge.style.display = 'none';
+          note.textContent = 'Has filter — tap funnel to toggle filter-active state';
+          updateCancel();
+          input.focus();
+        }
+      });
+
+      updateCancel();
+    })();
+
+    /* ── TopNav Search: collapse / expand ──────────────────── */
+    (function() {
+      const btn      = document.getElementById('topnav-btn');
+      const bar      = document.getElementById('topnav-bar');
+      const collapse = document.getElementById('topnav-collapse');
+      const input    = document.getElementById('topnav-input');
+      const cancel   = document.getElementById('topnav-cancel');
+      let expanded   = false;
+
+      function open() {
+        expanded = true;
+        btn.style.display = 'none';
+        bar.style.width   = '336px';
+        bar.style.opacity = '1';
+        btn.setAttribute('aria-expanded', 'true');
+        /* Focus input after transition starts */
+        setTimeout(() => input.focus(), 120);
+      }
+
+      function close() {
+        expanded = false;
+        bar.style.width   = '0';
+        bar.style.opacity = '0';
+        /* Show collapsed button after bar has slid away */
+        setTimeout(() => {
+          btn.style.display = 'flex';
+        }, 200);
+        btn.setAttribute('aria-expanded', 'false');
+      }
+
+      btn.addEventListener('click', open);
+
+      collapse.addEventListener('click', e => {
+        e.stopPropagation();
+        close();
+        /* Input value is preserved — it stays in input.value */
+      });
+
+      input.addEventListener('input', () => {
+        cancel.style.display = input.value.length > 0 ? '' : 'none';
+      });
+
+      cancel.addEventListener('click', e => {
+        e.stopPropagation();
+        input.value = '';
+        cancel.style.display = 'none';
+        input.focus();
+      });
+    })();
+  </script>
+
+</body>
+</html>

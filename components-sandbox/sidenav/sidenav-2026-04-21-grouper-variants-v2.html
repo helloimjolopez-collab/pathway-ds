@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en" data-pathway-prototype="true">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SideNav — Grouper Variants v2 (Prototype) — Pathway</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,-25..0&display=block" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    user-select: none;
+  }
+
+  .prototype-banner {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: #fff7e6;
+    border-bottom: 1px solid #f5d98a;
+    color: #7a5c10;
+    font-family: 'Red Hat Text', sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .prototype-banner strong {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+    background: #7a5c10;
+    color: #fff7e6;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  @keyframes popoverInCentered {
+    from { opacity: 0; transform: translateX(-4px) translateY(-50%); }
+    to   { opacity: 1; transform: translateX(0)    translateY(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    @keyframes popoverInCentered {
+      from { opacity: 0; transform: translateY(-50%); }
+      to   { opacity: 1; transform: translateY(-50%); }
+    }
+  }
+</style>
+</head>
+<body>
+<div class="prototype-banner">
+  <strong>Prototype v2</strong>
+  <span>Not production. Generated 2026-04-21 by pathway-component-prototype. Lives in <code>components-sandbox/sidenav/</code>.</span>
+</div>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useRef } = React;
+
+// ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
+// Every value here resolves to a real entry in tokens/pathway-design-tokens.json
+// at commit 98ee386. See the TOKEN COVERAGE REPORT at the bottom of this file.
+const T = {
+  fill: {
+    navBase:    "#fafafa",   // fill.contextual.navitem.base
+    navHover:   "#1111110a", // fill.contextual.navitem.hover
+    navActive:  "#3555a014", // fill.contextual.navitem.active
+    infoSubtle: "#edf0f9",   // fill.static.info.subtle — panel border-right, collapse divider
+  },
+  surface: {
+    navLight: "#fafafa",     // surface.nav.light
+  },
+  text: {
+    navBase:       "#363636", // text.contextual.navitem.base
+    navHover:      "#252525", // text.contextual.navitem.hover
+    navActive:     "#051428", // text.contextual.navitem.active — also grouper trail-collapsed label
+    grouperIdle:   "#4b4b4b", // text.static.secondary.base
+    grouperHover:  "#363636", // text.static.secondary.bold
+  },
+  icon: {
+    navBase:       "#4b4b4b", // icon.contextual.navitem.base
+    navHover:      "#363636", // icon.contextual.navitem.hover
+    navActive:     "#3555a0", // icon.contextual.navitem.active — also grouper trail-collapsed chevron + dot
+    grouperIdle:   "#606060", // icon.static.neutral.subtle
+    grouperHover:  "#4b4b4b", // icon.static.neutral.base
+  },
+  indicator: "#3555a0",       // primitive-color.brand.300
+  radius:    8,
+};
+
+// ─── LAYOUT VALUES ────────────────────────────────────────────────────────────
+const L = {
+  navPadH: 12, navPadV: 14,
+  navW: 250,   navWcol: 72,
+  menuGap: 8,
+  itemH: 48,   iconWrap: 24, iconInner: 14,
+  rowPadH: 8,  textPad: 6,
+  stripeW: 4,
+  colPadL: 12, colPadR: 8, collapseGap: 4,
+  grouperPadV: 8, grouperPadH: 12,
+  grouperMarginTop: 16, grouperMarginBot: 4,
+  trailDotSize: 6,
+};
+
+// ─── Material Symbols icon component ─────────────────────────────────────────
+// Prototype-only icon library. Production would use the Pathway icon set.
+// See Token Coverage Report for details on this substitution.
+function MSIcon({ name, size = 16, color = "#4b4b4b" }) {
+  return (
+    <span className="material-symbols-outlined"
+      style={{
+        fontSize: size,
+        color: color,
+        lineHeight: 1,
+        transition: "color 0.15s ease",
+      }}
+      aria-hidden="true">
+      {name}
+    </span>
+  );
+}
+
+// ─── NAV DATA (Option 2 — flattened) ──────────────────────────────────────────
+// Top level contains groupers only. Groupers contain destinations only.
+// Destinations are leaf items with icons and no children.
+const NAV = [
+  { id: "workspace", type: "grouper-default", label: "Workspace", children: [
+    { id: "overview",  label: "Overview",  icon: "dashboard" },
+    { id: "installed", label: "Installed", icon: "deployed_code" },
+    { id: "scheduled", label: "Scheduled", icon: "schedule" },
+    { id: "enter",     label: "Enter",     icon: "edit_note" },
+    { id: "manage",    label: "Manage",    icon: "tune" },
+  ]},
+  { id: "accounting", type: "grouper-expandable", label: "Accounting", children: [
+    { id: "trial_balance",     label: "Trial Balance",     icon: "balance" },
+    { id: "balance_sheet",     label: "Balance Sheet",     icon: "account_balance" },
+    { id: "income_statement",  label: "Income Statement",  icon: "trending_up" },
+    { id: "reports",           label: "Reports",           icon: "summarize" },
+    { id: "chart_of_accounts", label: "Chart of Accounts", icon: "account_tree" },
+    { id: "journal_entries",   label: "Journal Entries",   icon: "history_edu" },
+  ]},
+  { id: "support", type: "grouper-default", label: "Support", children: [
+    { id: "help", label: "Help", icon: "help" },
+  ]},
+];
+
+// Which grouper contains a given destination id
+function findContainingGrouper(id) {
+  return NAV.find(g => g.children.some(c => c.id === id));
+}
+
+// ─── IndicatorStripe ──────────────────────────────────────────────────────────
+function IndicatorStripe({ visible }) {
+  return (
+    <div style={{ width: L.stripeW, alignSelf: "stretch", display: "flex",
+      flexDirection: "column", alignItems: "flex-start",
+      justifyContent: "center", padding: "4px 0", flexShrink: 0 }}>
+      <div style={{ flex: "1 0 0", width: L.stripeW, minHeight: 1,
+        borderRadius: "0 8px 8px 0",
+        backgroundColor: visible ? T.indicator : "transparent",
+        transition: "background-color 0.15s ease" }} />
+    </div>
+  );
+}
+
+// ─── DestinationItem ──────────────────────────────────────────────────────────
+// Leaf items only. No children. No chevron. No trail state.
+// States: base, hover, active.
+function DestinationItem({ item, isActive, isSidebarCollapsed, onClick,
+  tooltipOpen, anchorRect, onPopoverEnter, onPopoverLeave }) {
+
+  const [hovered, setHovered] = useState(false);
+  const itemRef = useRef(null);
+
+  const fillBg   = isActive ? T.fill.navActive : hovered ? T.fill.navHover : T.fill.navBase;
+  const textColor = isActive ? T.text.navActive : hovered ? T.text.navHover : T.text.navBase;
+  const iconColor = isActive ? T.icon.navActive : hovered ? T.icon.navHover : T.icon.navBase;
+
+  return (
+    <div ref={itemRef} style={{ position: "relative" }}>
+      <div role="button" tabIndex={0}
+        aria-current={isActive ? "page" : undefined}
+        onClick={() => onClick(item.id)}
+        onKeyDown={e => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onClick(item.id))}
+        onMouseEnter={() => {
+          setHovered(true);
+          if (isSidebarCollapsed && onPopoverEnter) {
+            const rect = itemRef.current ? itemRef.current.getBoundingClientRect() : null;
+            onPopoverEnter(item.id, rect);
+          }
+        }}
+        onMouseLeave={() => {
+          setHovered(false);
+          if (isSidebarCollapsed && onPopoverLeave) onPopoverLeave();
+        }}
+        style={{ display: "flex", alignItems: "center", minHeight: L.itemH, width: "100%",
+          borderRadius: T.radius, backgroundColor: fillBg, cursor: "pointer",
+          overflow: "hidden", transition: "background-color 0.15s ease",
+          userSelect: "none" }}>
+        <IndicatorStripe visible={isActive} />
+        <div style={{ width: L.iconWrap, height: L.iconWrap, display: "flex",
+          alignItems: "center", justifyContent: "center", flexShrink: 0,
+          marginLeft: L.rowPadH }}>
+          <MSIcon name={item.icon} size={16} color={iconColor} />
+        </div>
+        <div style={{ flex: 1, minWidth: 0,
+          paddingLeft: L.textPad, paddingRight: L.rowPadH,
+          maxWidth: isSidebarCollapsed ? 0 : 200,
+          opacity:  isSidebarCollapsed ? 0 : 1,
+          overflow: "hidden",
+          pointerEvents: isSidebarCollapsed ? "none" : "auto",
+          transition: "max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease" }}>
+          <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500,
+            fontSize: 16, lineHeight: "22px", color: textColor, margin: 0,
+            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+            transition: "color 0.15s ease" }}>
+            {item.label}
+          </p>
+        </div>
+      </div>
+
+      {/* Hover-safe bridge */}
+      {isSidebarCollapsed && tooltipOpen && anchorRect && (
+        <div style={{ position: "fixed",
+          left: anchorRect.right, top: anchorRect.top,
+          width: 8, height: anchorRect.height, zIndex: 999 }}
+          onMouseEnter={() => {
+            const rect = itemRef.current ? itemRef.current.getBoundingClientRect() : anchorRect;
+            onPopoverEnter && onPopoverEnter(item.id, rect);
+          }} />
+      )}
+
+      {isSidebarCollapsed && tooltipOpen && anchorRect && (
+        <CollapsedTooltip label={item.label} anchorRect={anchorRect}
+          onMouseEnter={() => {
+            const rect = itemRef.current ? itemRef.current.getBoundingClientRect() : anchorRect;
+            onPopoverEnter && onPopoverEnter(item.id, rect);
+          }}
+          onMouseLeave={onPopoverLeave} />
+      )}
+    </div>
+  );
+}
+
+// ─── CollapsedTooltip ─────────────────────────────────────────────────────────
+function CollapsedTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }) {
+  if (!anchorRect) return null;
+  return ReactDOM.createPortal(
+    <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
+      style={{ position: "fixed",
+        left: anchorRect.right + 8,
+        top:  anchorRect.top + anchorRect.height / 2,
+        zIndex: 1000,
+        backgroundColor: "#fff",
+        border: "0.5px solid #f6f6f6",
+        borderRadius: 8,
+        boxShadow: "2px 2px 8px 0px rgba(0,0,0,0.03)",
+        padding: "6px 8px",
+        whiteSpace: "nowrap",
+        pointerEvents: "auto",
+        animation: "popoverInCentered 150ms cubic-bezier(0,0,0.2,1) forwards" }}>
+      <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
+        fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px",
+        color: "#252525" }}>
+        {label}
+      </span>
+    </div>,
+    document.body
+  );
+}
+
+// ─── GrouperLabel ─────────────────────────────────────────────────────────────
+// Two variants:
+//   "default"    — static, non-interactive label.
+//   "expandable" — click toggles its destinations. Adds trail-collapsed state when
+//                  closed and holding the active destination.
+// Never rendered when the sidebar is railed (72px).
+function GrouperLabel({ label, variant, isExpanded, containsActive, onToggle }) {
+  const [hovered, setHovered] = useState(false);
+  const isExpandable = variant === "expandable";
+
+  // Trail-collapsed: expandable grouper, children hidden, but holding active dest
+  const isTrailCollapsed = isExpandable && !isExpanded && containsActive;
+
+  const textColor =
+    isTrailCollapsed              ? T.text.navActive
+    : (isExpandable && hovered)   ? T.text.grouperHover
+    :                               T.text.grouperIdle;
+  const chevColor =
+    isTrailCollapsed              ? T.icon.navActive
+    : (isExpandable && hovered)   ? T.icon.grouperHover
+    :                               T.icon.grouperIdle;
+
+  const common = {
+    display: "flex", alignItems: "center",
+    paddingTop: L.grouperPadV, paddingBottom: L.grouperPadV,
+    paddingLeft: L.grouperPadH, paddingRight: L.grouperPadH,
+    marginTop: L.grouperMarginTop, marginBottom: L.grouperMarginBot,
+    width: "100%", userSelect: "none",
+    transition: "color 0.15s ease",
+  };
+
+  const trailDot = isTrailCollapsed ? (
+    <span style={{ width: L.trailDotSize, height: L.trailDotSize,
+      borderRadius: "50%", backgroundColor: T.indicator,
+      flexShrink: 0, marginRight: 6,
+      transition: "background-color 0.15s ease" }}
+      aria-hidden="true" />
+  ) : null;
+
+  const labelSpan = (
+    <span style={{
+      // Typography: semantic-type.desktop.label.dense.s.semibold
+      fontFamily: "'Red Hat Text',sans-serif",
+      fontSize: 11, fontWeight: 600, lineHeight: "16px",
+      letterSpacing: "0.1px",
+      textTransform: "uppercase",
+      color: textColor,
+      transition: "color 0.15s ease",
+      flex: 1, minWidth: 0,
+      whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+    }}>{label}</span>
+  );
+
+  if (!isExpandable) {
+    return (
+      <div style={{ ...common, cursor: "default" }} aria-hidden="false">
+        {labelSpan}
+      </div>
+    );
+  }
+
+  return (
+    <div role="button" tabIndex={0}
+      aria-expanded={isExpanded}
+      onClick={onToggle}
+      onKeyDown={e => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onToggle())}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ ...common, cursor: "pointer" }}>
+      {trailDot}
+      {labelSpan}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center",
+        width: 16, height: 16, marginLeft: 8, flexShrink: 0 }}>
+        <MSIcon
+          name={isExpanded ? "keyboard_arrow_up" : "keyboard_arrow_down"}
+          size={16}
+          color={chevColor} />
+      </div>
+    </div>
+  );
+}
+
+// ─── CollapseButton ───────────────────────────────────────────────────────────
+function CollapseButton({ isSidebarCollapsed, onToggle }) {
+  const [h, setH] = useState(false);
+  const colIconColor = h ? T.icon.navHover : T.icon.navBase;
+  return (
+    <div style={{ width: "100%" }}>
+      <div style={{ height: 1, backgroundColor: T.fill.infoSubtle, marginBottom: L.collapseGap }} />
+      <div onClick={onToggle} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+        aria-label={isSidebarCollapsed ? "Expand navigation" : "Collapse navigation"}
+        role="button" tabIndex={0}
+        onKeyDown={e => (e.key === "Enter" || e.key === " ") && onToggle()}
+        style={{ display: "flex", alignItems: "center", minHeight: L.itemH, width: "100%",
+          borderRadius: T.radius, backgroundColor: h ? T.fill.navHover : T.fill.navBase,
+          cursor: "pointer", transition: "background-color 0.15s ease", overflow: "hidden" }}>
+        <div style={{ display: "flex", flex: 1, alignItems: "center",
+          paddingLeft: L.colPadL, paddingRight: L.colPadR, height: "100%" }}>
+          <div style={{ display: "flex", flex: 1, alignItems: "center", minHeight: 24 }}>
+            <div style={{ width: L.iconWrap, height: L.iconWrap, display: "flex",
+              alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <MSIcon
+                name={isSidebarCollapsed ? "chevron_right" : "chevron_left"}
+                size={20} color={colIconColor} />
+            </div>
+            <span style={{ paddingLeft: L.textPad, paddingRight: L.textPad,
+              fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500, fontSize: 16,
+              lineHeight: "22px", color: h ? T.text.navHover : T.text.navBase,
+              transition: "color 0.15s ease, max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease",
+              maxWidth: isSidebarCollapsed ? 0 : 120,
+              opacity:  isSidebarCollapsed ? 0 : 1,
+              overflow: "hidden", whiteSpace: "nowrap",
+              pointerEvents: isSidebarCollapsed ? "none" : "auto" }}>Collapse</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── SideNav container ────────────────────────────────────────────────────────
+function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange }) {
+  const [expandedGrouper, setExpandedGrouper] = useState({ accounting: true });
+  const [tooltipId, setTooltipId] = useState(null);
+  const [tooltipRect, setTooltipRect] = useState(null);
+  const timerRef = useRef(null);
+
+  const activeGrouper = findContainingGrouper(activeId);
+  const activeGrouperId = activeGrouper ? activeGrouper.id : null;
+
+  const toggleGrouper = id => setExpandedGrouper(p => ({ ...p, [id]: !p[id] }));
+
+  // Auto-expand the containing grouper when a destination is clicked.
+  const handleNavigate = (id) => {
+    const g = findContainingGrouper(id);
+    if (g && g.type === "grouper-expandable") {
+      setExpandedGrouper(p => ({ ...p, [g.id]: true }));
+    }
+    onNavigate(id);
+  };
+
+  const onPopoverEnter = (id, rect) => {
+    clearTimeout(timerRef.current);
+    setTooltipId(id);
+    if (rect) setTooltipRect(rect);
+  };
+  const onPopoverLeave = () => {
+    timerRef.current = setTimeout(() => { setTooltipId(null); setTooltipRect(null); }, 300);
+  };
+
+  return (
+    <nav style={{
+      width: sidebarCollapsed ? L.navWcol : L.navW,
+      height: "100%",
+      backgroundColor: T.surface.navLight,
+      display: "flex", flexDirection: "column",
+      padding: `${L.navPadV}px ${L.navPadH}px`,
+      boxSizing: "border-box", flexShrink: 0,
+      transition: "width 0.36s cubic-bezier(0.4,0,0.2,1)",
+      borderRight: `0.5px solid ${T.fill.infoSubtle}`,
+      overflowY: "auto",
+    }}>
+      <div style={{ display: "flex", flexDirection: "column", flex: 1, gap: L.menuGap }}>
+        {NAV.map(section => {
+          const isExpandable = section.type === "grouper-expandable";
+          const isGrouperOpen = isExpandable ? !!expandedGrouper[section.id] : true;
+          const containsActive = activeGrouperId === section.id;
+          const showChildren = sidebarCollapsed ? true : (isExpandable ? isGrouperOpen : true);
+
+          return (
+            <React.Fragment key={section.id}>
+              {!sidebarCollapsed && (
+                <GrouperLabel
+                  label={section.label}
+                  variant={isExpandable ? "expandable" : "default"}
+                  isExpanded={isGrouperOpen}
+                  containsActive={containsActive}
+                  onToggle={() => toggleGrouper(section.id)} />
+              )}
+              {showChildren && section.children.map(child => (
+                <DestinationItem key={child.id} item={child}
+                  isActive={child.id === activeId}
+                  isSidebarCollapsed={sidebarCollapsed}
+                  onClick={handleNavigate}
+                  tooltipOpen={tooltipId === child.id}
+                  anchorRect={tooltipId === child.id ? tooltipRect : null}
+                  onPopoverEnter={onPopoverEnter}
+                  onPopoverLeave={onPopoverLeave} />
+              ))}
+            </React.Fragment>
+          );
+        })}
+
+        <div style={{ flex: 1 }} />
+        <div style={{ paddingTop: L.collapseGap }}>
+          <CollapseButton isSidebarCollapsed={sidebarCollapsed}
+            onToggle={() => onCollapseChange(!sidebarCollapsed)} />
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+// ─── App ──────────────────────────────────────────────────────────────────────
+function App() {
+  const [activeId, setActiveId] = useState("trial_balance");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  const allDestinations = NAV.flatMap(g => g.children);
+  const activeItem = allDestinations.find(i => i.id === activeId);
+  const activeLabel = activeItem ? activeItem.label : "";
+  const activeGrouper = findContainingGrouper(activeId);
+
+  return (
+    <div style={{ position: "fixed", inset: 0, paddingTop: 33, display: "flex" }}>
+      <SideNav
+        activeId={activeId}
+        onNavigate={setActiveId}
+        sidebarCollapsed={sidebarCollapsed}
+        onCollapseChange={setSidebarCollapsed} />
+
+      <main style={{ flex: 1, overflow: "auto", padding: "40px 56px",
+        fontFamily: "'Red Hat Text',sans-serif", color: "#363636" }}>
+        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+          <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em",
+            textTransform: "uppercase", color: "#6b6b6b", marginBottom: 8 }}>
+            {activeGrouper ? activeGrouper.label : "No section"} — active destination
+          </p>
+          <h1 style={{ fontSize: 32, fontWeight: 600, lineHeight: "40px",
+            color: "#051428", margin: "0 0 16px" }}>
+            {activeLabel || "Nothing selected"}
+          </h1>
+          <p style={{ fontSize: 14, lineHeight: "22px", color: "#4b4b4b", marginBottom: 32 }}>
+            v2 applies Option 2: groupers are the only structural layer, destinations
+            are always flat leaves. No more grouper-plus-destination hybrid. Click
+            any destination to navigate; click <strong>ACCOUNTING</strong> to toggle
+            its group; notice the trail-collapsed dot when a grouper holds the
+            active destination but is closed.
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 32 }}>
+            <div style={{ padding: "16px 20px", border: "1px solid #edf0f9",
+              borderRadius: 12, background: "#fff" }}>
+              <p style={{ fontSize: 12, fontWeight: 600, color: "#3555a0",
+                textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>
+                Demo the trail-collapsed state
+              </p>
+              <ol style={{ paddingLeft: 18, fontSize: 13, lineHeight: "20px",
+                color: "#4b4b4b" }}>
+                <li>Trial Balance is active, ACCOUNTING is expanded.</li>
+                <li>Click <strong>ACCOUNTING</strong> to collapse it.</li>
+                <li>The label turns dark and a blue dot appears — this is trail-collapsed.</li>
+                <li>Click <strong>ACCOUNTING</strong> again to reopen.</li>
+              </ol>
+            </div>
+            <div style={{ padding: "16px 20px", border: "1px solid #edf0f9",
+              borderRadius: 12, background: "#fff" }}>
+              <p style={{ fontSize: 12, fontWeight: 600, color: "#3555a0",
+                textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>
+                Demo auto-expand
+              </p>
+              <ol style={{ paddingLeft: 18, fontSize: 13, lineHeight: "20px",
+                color: "#4b4b4b" }}>
+                <li>Close ACCOUNTING, then click <strong>Overview</strong> in Workspace.</li>
+                <li>ACCOUNTING stays closed (no active child there anymore).</li>
+                <li>Click <strong>ACCOUNTING</strong> → still closed, but no trail dot.</li>
+                <li>Now click <strong>Reports</strong> — ACCOUNTING auto-expands.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div style={{ padding: "16px 20px", border: "1px solid #edf0f9",
+            borderRadius: 12, background: "#fff", marginBottom: 16 }}>
+            <p style={{ fontSize: 12, fontWeight: 600, color: "#3555a0",
+              textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>
+              What changed from v1
+            </p>
+            <ul style={{ listStyle: "disc", paddingLeft: 18, fontSize: 13,
+              lineHeight: "20px", color: "#4b4b4b" }}>
+              <li>Removed destination-with-children entirely. Destinations are always flat leaves.</li>
+              <li>Applications / View / Modify dissolved; their former children promoted to top-level siblings under the right grouper.</li>
+              <li>Added trail-collapsed state on expandable groupers (label color + caret color + 6px brand dot).</li>
+              <li>Added auto-expand on navigation (clicking a destination opens its grouper if it was closed).</li>
+              <li>Switched icon library from Pathway's 7-icon set to Material Symbols. Prototype-only choice; production would use Pathway icons.</li>
+            </ul>
+          </div>
+
+          <div style={{ padding: "12px 16px", border: "1px dashed #f5d98a",
+            borderRadius: 8, background: "#fff7e6", fontSize: 12, lineHeight: "18px",
+            color: "#7a5c10" }}>
+            <strong style={{ fontWeight: 600 }}>Prototype note:</strong> all colors,
+            sizes, and spacing resolve to real tokens in
+            <code style={{ background: "rgba(122,92,16,0.08)", padding: "1px 4px",
+              borderRadius: 3, margin: "0 4px", fontFamily: "monospace" }}>
+              tokens/pathway-design-tokens.json
+            </code>
+            at commit <code style={{ fontFamily: "monospace" }}>98ee386</code>. Material
+            Symbols is a prototype-only substitute for the Pathway icon set.
+            Recommended system additions are in
+            <code style={{ fontFamily: "monospace" }}>
+              sidenav-2026-04-21-grouper-variants-token-recommendations.md
+            </code>.
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+<!--
+================================================================================
+TOKEN COVERAGE REPORT — v2 (as approved on 2026-04-21)
+================================================================================
+
+Grounding: tokens/pathway-design-tokens.json @ 98ee386
+
+── WHAT CHANGED vs v1 ────────────────────────────────────────────────────────
+
+v2 removes the destination-with-children pattern entirely (Option 2), adds a
+trail-collapsed state for expandable groupers (ported from spec §6 and re-styled
+for the quiet-label treatment), adds auto-expand-on-navigate, and switches the
+icon library to Material Symbols for broader semantic coverage.
+
+No new tokens are required. Every new visual treatment resolves to a token
+already used elsewhere in the component.
+
+── FULLY COVERED ─────────────────────────────────────────────────────────────
+
+Carried over from existing SideNav (no change):
+  fill.contextual.navitem.base         → #fafafa
+  fill.contextual.navitem.hover        → #1111110a
+  fill.contextual.navitem.active       → #3555a014
+  fill.static.info.subtle              → #edf0f9
+  text.contextual.navitem.base         → #363636
+  text.contextual.navitem.hover        → #252525
+  text.contextual.navitem.active       → #051428  (destination active + grouper
+                                                   trail-collapsed label)
+  icon.contextual.navitem.base         → #4b4b4b
+  icon.contextual.navitem.hover        → #363636
+  icon.contextual.navitem.active       → #3555a0  (destination active + grouper
+                                                   trail-collapsed caret)
+  surface.nav.light                    → #fafafa
+  primitive-color.brand.300            → #3555a0  (indicator stripe +
+                                                   trail-collapsed dot)
+
+Grouper visual tokens (unchanged from v1):
+  text.static.secondary.base           → #4b4b4b   (grouper label idle)
+  text.static.secondary.bold           → #363636   (grouper hover, expandable)
+  icon.static.neutral.subtle           → #606060   (grouper chevron idle)
+  icon.static.neutral.base             → #4b4b4b   (grouper chevron hover)
+
+Typography (unchanged from v1):
+  primitive-type.family.brand                → Red Hat Text
+  primitive-type.size.11                     → 11
+  primitive-type.weight.600                  → 600
+  primitive-type.line-height.11pt.single     → 16
+  primitive-type.letter-spacing.wide         → 0.1
+  (composed reference: semantic-type.desktop.label.dense.s.semibold)
+
+Spacing (unchanged from v1):
+  primitive-unit.unit.4                → 4
+  primitive-unit.unit.6                → 6   (trail-collapsed dot size)
+  primitive-unit.unit.8                → 8
+  primitive-unit.unit.12               → 12
+  primitive-unit.unit.16               → 16
+
+── MISSING TOKENS ────────────────────────────────────────────────────────────
+
+None. Every visual decision resolves to a real token.
+
+── SUBOPTIMAL TOKENS (used-but-not-ideal) ────────────────────────────────────
+
+Same four items as v1. See
+sidenav-2026-04-21-grouper-variants-token-recommendations.md for full analysis.
+
+  1. text.static.secondary.base for section-label color
+     (would benefit from text.contextual.section-label.*)
+  2. semantic-type.desktop.label.dense.s.semibold for section-label typography
+     (would benefit from semantic-type.desktop.section-label.*)
+  3. primitive-type.letter-spacing.wide at all-caps 11px
+     (would benefit from a mid-tier letter-spacing primitive)
+  4. Compact row-height for groupers composed from spacing tokens
+     (would benefit from a compact-row semantic if row heights are tokenized)
+
+── PROTOTYPE-ONLY SUBSTITUTIONS ──────────────────────────────────────────────
+
+Material Symbols (Google Fonts, outlined, FILL=1) replaces the Pathway icon set
+for this prototype only. Reason: the Pathway icon set shipping with the sidenav
+today has 7 icons, which is insufficient to give twelve flattened destinations
+distinct, semantically-accurate icons. Material Symbols covers the gap so the
+demo reads clearly.
+
+Production path: expand the Pathway icon library to cover the destinations added
+here (balance, account_balance, trending_up, summarize, account_tree,
+history_edu, schedule, dashboard, deployed_code, edit_note) and revert icon
+bindings to the Pathway set. Until then, this prototype should not be taken as
+an approved visual reference for production icons.
+
+Icon sizing: Material Symbols render at 16px (font-size) in this prototype —
+slightly larger than the Pathway spec's 14px target — because Material glyphs
+lose detail below 16px. Pathway icons, being designed for 14px, would drop back
+to 14px in production with no visual cost.
+
+── DESIGN-SYSTEM RECOMMENDATIONS ─────────────────────────────────────────────
+
+Same four as v1. No new recommendations from v2 — the new patterns (trail-
+collapsed, auto-expand) are pure behavior and reuse existing tokens.
+
+================================================================================
+-->
+</body>
+</html>

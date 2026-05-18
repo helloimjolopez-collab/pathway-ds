@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en" data-pathway-prototype="true">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search — TopNav (Position C locked, switcher refinements) — Prototype v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
+
+  .prototype-banner {
+    position: sticky; top: 0; left: 0; right: 0; z-index: 1000;
+    background: #fff7e6; border-bottom: 1px solid #f5d98a;
+    color: #7a5c10; font-family: 'Red Hat Text', sans-serif;
+    font-size: 12px; line-height: 16px; padding: 8px 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .prototype-banner strong {
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    font-size: 11px; background: #7a5c10; color: #fff7e6;
+    padding: 2px 6px; border-radius: 3px;
+  }
+
+  /* Search input placeholder — explicit opacity for accessibility.
+     Browser default (~0.54) drops below WCAG AA on the translucent fill.
+     Using 0.85 to clear AA (~5:1 contrast on the effective background). */
+  .pds-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.85);
+    opacity: 1;
+  }
+  .pds-search-input::-webkit-input-placeholder { color: rgba(255,255,255,0.85); }
+  .pds-search-input::-moz-placeholder         { color: rgba(255,255,255,0.85); opacity: 1; }
+  .pds-search-input:-ms-input-placeholder     { color: rgba(255,255,255,0.85); }
+
+  /* Hamburger ONLY at <1024px. On desktop the SideNav handles its own
+     collapse/expand; the hamburger is meaningless. */
+  .topnav-hamburger { display: flex; }
+  @media (min-width: 1024px) {
+    .topnav-hamburger { display: none !important; }
+  }
+
+  /* Responsive TopNav. Staged hiding to match user's Figma:
+     • ≥768px (tablet+): everything visible — module + org switcher + action
+       cluster + module-specific action + avatar.
+     • <768px (mobile): hide org switcher + divider. Action cluster condenses
+       to a single overflow "⋮" icon.
+     • <480px (small mobile): hide the module label too — leaving hamburger,
+       module icon, search trigger, overflow, and avatar. */
+  @media (max-width: 767px) {
+    .pds-topnav .topnav-org-switcher       { display: none !important; }
+    .pds-topnav .topnav-divider            { display: none !important; }
+    .pds-topnav .topnav-action-cluster     { display: none !important; }
+    .pds-topnav .topnav-mobile-overflow    { display: flex !important; }
+  }
+  @media (max-width: 479px) {
+    .pds-topnav .topnav-module-label       { display: none !important; }
+  }
+  /* Hidden by default at ≥768; CSS above flips it on at <768 */
+  .pds-topnav .topnav-mobile-overflow      { display: none; }
+
+  /* Search visibility based on breakpoint:
+     • ≥1024px (desktop): always-expanded inline search bar visible.
+       The icon trigger is hidden — search is always reachable directly.
+     • <1024px (tablet + mobile): only the search icon visible.
+       Tapping it opens a full-screen overlay. The expanded inline bar
+       is hidden because it doesn't fit the narrower TopNav. */
+  .pds-search-bar-expanded { display: flex; }
+  .pds-search-trigger      { display: none; }
+  @media (max-width: 1023px) {
+    .pds-search-bar-expanded { display: none !important; }
+    .pds-search-trigger      { display: inline-flex !important; }
+  }
+</style>
+</head>
+<body>
+<div class="prototype-banner">
+  <strong>Prototype v2</strong>
+  <span>Search · Position B locked, switcher refinements · Generated 2026-04-28 by pathway-component-prototype.</span>
+</div>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useRef, useEffect } = React;
+// (useEffect imported above for the Esc-key handler in the mobile overlay)
+
+// ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
+// Every value resolves to a real entry in tokens/pathway-design-tokens.json,
+// EXCEPT the translucent search bar fill (`searchInverseTranslucent`), which
+// uses primitive cool-neutral.0-16 directly. Flagged in coverage report.
+const T = {
+  topnav: {
+    bg:       "#0f3e80",                 // Brand Colors/Dark Cerulean (existing TopNav)
+    text:     "#ffffff",                 // primitive cool-neutral.0
+    iconText: "rgba(255,255,255,0.85)",  // approximation; matches existing TopNav usage
+    hover:    "rgba(255,255,255,0.12)",  // primitive cool-neutral.0-* (existing TopNav usage)
+    divider:  "rgba(255,255,255,0.2)",   // existing TopNav usage
+  },
+  // PROTOTYPE-ONLY: no semantic exists yet for translucent-on-dark fills.
+  // Resolves to primitive-color.cool-neutral.0-16 (rgba(255,255,255,0.16)).
+  // Flagged in coverage report as a system gap to fill before shipping.
+  searchInverseTranslucent: "rgba(255,255,255,0.16)",
+};
+
+// ─── SVG ICONS (subset from v6 SideNav prototype) ─────────────────────────────
+const Icons = {
+  hamburger: ({size=18, color="#fff"}) => (
+    <svg width={size} height={14*size/18} viewBox="0 0 18 14" fill="none">
+      <rect y="0" width="18" height="2" rx="1" fill={color}/>
+      <rect y="6" width="18" height="2" rx="1" fill={color}/>
+      <rect y="12" width="18" height="2" rx="1" fill={color}/>
+    </svg>
+  ),
+  search: ({size=18, color="#fff"}) => (
+    <svg width={size} height={size} viewBox="0 0 18 18" fill="none">
+      <circle cx="8" cy="8" r="5.5" stroke={color} strokeWidth="1.6"/>
+      <line x1="12.2" y1="12.2" x2="15.5" y2="15.5" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
+    </svg>
+  ),
+  close: ({size=14, color="#fff"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none">
+      <path d="M2 2 L12 12 M12 2 L2 12" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
+    </svg>
+  ),
+  chevDownWhite: ({size=10}) => (
+    <svg width={size} height={size*0.6} viewBox="0 0 10 6" fill="none">
+      <path d="M1 1l4 4 4-4" stroke="#fff" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  help: ({size=18}) => (
+    <svg width={size} height={size} viewBox="0 0 18 18" fill="none">
+      <circle cx="9" cy="9" r="7.5" stroke="#fff" strokeWidth="1.4" opacity="0.85"/>
+      <path d="M6.8 6.8c0-1.2 1-2.2 2.2-2.2s2.2 1 2.2 2.2c0 1-.7 1.6-1.4 2-.6.4-.8.7-.8 1.2" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" opacity="0.85"/>
+      <circle cx="9" cy="13" r="0.8" fill="#fff" opacity="0.85"/>
+    </svg>
+  ),
+  settings: ({size=18}) => (
+    <svg width={size} height={size} viewBox="0 0 18 18" fill="none">
+      <circle cx="9" cy="9" r="2.2" stroke="#fff" strokeWidth="1.4" opacity="0.85"/>
+      <path d="M9 1.5v1.8M9 14.7v1.8M1.5 9h1.8M14.7 9h1.8M3.63 3.63l1.27 1.27M13.1 13.1l1.27 1.27M3.63 14.37l1.27-1.27M13.1 4.9l1.27-1.27" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" opacity="0.85"/>
+    </svg>
+  ),
+  bell: ({size=18}) => (
+    <svg width={size*16/18} height={size} viewBox="0 0 16 18" fill="none">
+      <path d="M8 1a5.5 5.5 0 00-5.5 5.5v3.5L1 13h14l-1.5-3V6.5A5.5 5.5 0 008 1z" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round" opacity="0.85"/>
+      <path d="M6.5 15c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5" stroke="#fff" strokeWidth="1.4" opacity="0.85"/>
+    </svg>
+  ),
+  // Solid white home icon — no surrounding box (matches Figma module switcher).
+  home: ({size=20, color="#fff"}) => (
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none">
+      <path d="M3 9.5L10 3.5L17 9.5V16.5C17 17.0523 16.5523 17.5 16 17.5H12.5V12.5H7.5V17.5H4C3.44772 17.5 3 17.0523 3 16.5V9.5Z"
+        fill={color}/>
+    </svg>
+  ),
+};
+
+// ─── Reusable bits ─────────────────────────────────────────────────────────────
+function ActionIconButton({ children, ariaLabel }) {
+  const [h, setH] = useState(false);
+  return (
+    <button type="button" aria-label={ariaLabel}
+      onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      style={{
+        width: 36, height: 36, borderRadius: 6,
+        border: "none", padding: 0,
+        background: h ? T.topnav.hover : "transparent",
+        cursor: "pointer", color: "#fff",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        transition: "background-color 0.15s ease",
+        flexShrink: 0,
+      }}>
+      {children}
+    </button>
+  );
+}
+
+// ─── Search trigger (mobile/tablet only — collapsed icon) ─────────────────────
+// At <1024px the search bar collapses to this icon. Visually distinct from
+// the generic action icons (help/settings/bell): circular pill shape with
+// always-visible translucent fill. Reads as "shrunken search bar" rather
+// than another action icon. Tap → opens full-screen overlay.
+function SearchIconButton({ onClick }) {
+  const [h, setH] = useState(false);
+  return (
+    <button type="button" aria-label="Open search"
+      className="pds-search-trigger"
+      onClick={onClick}
+      onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      style={{
+        width: 36, height: 36,
+        borderRadius: 999,
+        border: "none", padding: 0,
+        background: h ? "rgba(255,255,255,0.22)" : T.searchInverseTranslucent,
+        cursor: "pointer",
+        alignItems: "center", justifyContent: "center",
+        transition: "background-color 0.15s ease",
+        flexShrink: 0,
+      }}>
+      <Icons.search size={16} color="rgba(255,255,255,0.9)" />
+    </button>
+  );
+}
+
+// Mobile-only overflow trigger (replaces the action cluster at <768px)
+function OverflowIconButton() {
+  const [h, setH] = useState(false);
+  return (
+    <button type="button" aria-label="More actions"
+      className="topnav-mobile-overflow"
+      onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      style={{
+        width: 36, height: 36, borderRadius: 6,
+        border: "none", padding: 0,
+        background: h ? T.topnav.hover : "transparent",
+        cursor: "pointer", color: "#fff",
+        alignItems: "center", justifyContent: "center",
+        transition: "background-color 0.15s ease",
+        flexShrink: 0,
+      }}>
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="4" r="1.5" fill="#fff" />
+        <circle cx="9" cy="9" r="1.5" fill="#fff" />
+        <circle cx="9" cy="14" r="1.5" fill="#fff" />
+      </svg>
+    </button>
+  );
+}
+
+// ─── Search bar (always-expanded — desktop) ───────────────────────────────────
+// At ≥1024px the search bar is always visible inline in the TopNav at the
+// chosen position. Locally controls input value so the clear (X) button
+// shows only when there's text to clear. The X inside clears text — to
+// "close" the search there's nothing to close on desktop; it's just an
+// always-available input. Pattern: Slack, Linear, GitHub.
+function SearchBarExpanded({ width = "100%", maxWidth = 480 }) {
+  const [value, setValue] = useState("");
+  return (
+    <div className="pds-search-bar-expanded" style={{
+      width,
+      maxWidth,
+      height: 40,
+      borderRadius: 999,
+      background: T.searchInverseTranslucent,
+      alignItems: "center",
+      // Symmetric horizontal padding for balanced breathing room. When the
+      // clear (X) button is visible it sits inside this padding zone;
+      // when empty, the placeholder gets 14px of clearance to the right edge.
+      paddingLeft: 14, paddingRight: 14, gap: 10,
+      flexShrink: 1,
+      transition: "width 0.28s cubic-bezier(0.4,0,0.2,1)",
+    }}>
+      <Icons.search size={16} color="rgba(255,255,255,0.85)" />
+      <input
+        className="pds-search-input"
+        autoFocus
+        placeholder="Search across Amplify…"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        style={{
+          flex: 1, minWidth: 0,
+          background: "transparent", border: "none", outline: "none",
+          color: "#fff",
+          fontFamily: "'Red Hat Text', sans-serif",
+          fontSize: 14, fontWeight: 400, lineHeight: "20px",
+          letterSpacing: "0.1px",
+        }}
+      />
+      {value.length > 0 && (
+        <button type="button" aria-label="Clear search"
+          onClick={() => setValue("")}
+          style={{
+            width: 28, height: 28, borderRadius: 999,
+            border: "none", background: "transparent",
+            cursor: "pointer", color: "#fff",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0,
+          }}>
+          <Icons.close size={12} color="rgba(255,255,255,0.85)" />
+        </button>
+      )}
+    </div>
+  );
+}
+
+// ─── TopNav demonstration component ────────────────────────────────────────────
+// Three positioning variants. At ≥1024px the search bar is always-expanded
+// inline at the chosen position. At <1024px CSS replaces it with the
+// SearchIconButton at the same anchor (controlled via .pds-search-bar-expanded
+// vs .pds-search-trigger visibility rules).
+function TopNavDemo({ position, onMobileSearchOpen }) {
+  const isCenter = position === "center";
+  const isRightL = position === "right-leftmost";
+  const isRightR = position === "right-rightmost";
+
+  const actionStyles = {
+    display: "flex", alignItems: "center", gap: 0,
+    flexShrink: 0,
+  };
+
+  // The search slot renders BOTH the always-expanded bar and the mobile icon.
+  // CSS hides one or the other based on viewport width.
+  const renderSearchSlot = () => (
+    <>
+      <SearchBarExpanded />
+      <SearchIconButton onClick={onMobileSearchOpen} />
+    </>
+  );
+
+  return (
+    <div className="pds-topnav" style={{
+      width: "100%",
+      height: 64,
+      backgroundColor: T.topnav.bg,
+      display: "flex", alignItems: "center",
+      padding: "0 16px 0 8px",
+      color: "#fff",
+      fontFamily: "'Red Hat Text', sans-serif",
+      borderRadius: 8,
+      position: "relative",
+      overflow: "hidden",
+      minWidth: 0,
+    }}>
+      {/* LEFT cluster — always visible, always anchored.
+          Hamburger only at <1024px (handled by .topnav-hamburger CSS).
+          Module switcher: solid home icon + label + chevron, NO surrounding box.
+          Org switcher: small initials tile + chevron (matches Figma "GC" pattern). */}
+      <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0, minWidth: 0 }}>
+        <button className="topnav-hamburger"
+          style={{ width: 40, height: 40, border: "none", background: "transparent",
+          cursor: "pointer", alignItems: "center", justifyContent: "center",
+          borderRadius: 6, flexShrink: 0 }}>
+          <Icons.hamburger />
+        </button>
+        <div className="topnav-module-switcher"
+          style={{ display: "flex", alignItems: "center", gap: 8,
+          padding: "4px 10px 4px 8px", height: 40, borderRadius: 6, flexShrink: 0,
+          cursor: "pointer" }}>
+          <Icons.home size={20} />
+          <span className="topnav-module-label"
+            style={{ fontSize: 14, fontWeight: 500, color: "#fff", letterSpacing: "0.02px" }}>
+            Amplify Home
+          </span>
+          <Icons.chevDownWhite />
+        </div>
+        <div className="topnav-divider" style={{ width: 1, height: 24, marginLeft: 8, marginRight: 8,
+          background: T.topnav.divider, flexShrink: 0 }} />
+        <div className="topnav-org-switcher"
+          style={{ display: "flex", alignItems: "center", gap: 6,
+          padding: "4px 8px 4px 4px", height: 36, borderRadius: 6, flexShrink: 0,
+          cursor: "pointer" }}>
+          <div className="topnav-org-tile"
+            style={{ width: 28, height: 28, borderRadius: 6,
+            background: "#f6c34c",
+            color: "#363636",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontFamily: "'Red Hat Text', sans-serif",
+            fontSize: 12, fontWeight: 700, letterSpacing: "0.02px",
+            flexShrink: 0 }}>
+            GC
+          </div>
+          <Icons.chevDownWhite />
+        </div>
+      </div>
+
+      {/* CENTER position: search slot in the horizontal middle */}
+      {isCenter ? (
+        <div style={{
+          flex: 1,
+          display: "flex", justifyContent: "center", alignItems: "center",
+          paddingLeft: 16, paddingRight: 16, minWidth: 0,
+        }}>
+          {renderSearchSlot()}
+        </div>
+      ) : (
+        <div style={{ flex: 1 }} />
+      )}
+
+      {/* RIGHT cluster — varies by position */}
+      <div style={{
+        display: "flex", alignItems: "center", gap: 8,
+        flexShrink: 0, paddingLeft: isCenter ? 0 : 16,
+        minWidth: 0,
+      }}>
+        {isRightL && renderSearchSlot()}
+        <div className="topnav-action-cluster" style={actionStyles}>
+          <ActionIconButton ariaLabel="Help"><Icons.help /></ActionIconButton>
+          <ActionIconButton ariaLabel="Settings"><Icons.settings /></ActionIconButton>
+          <ActionIconButton ariaLabel="Notifications"><Icons.bell /></ActionIconButton>
+        </div>
+        <OverflowIconButton />
+        {isRightR && renderSearchSlot()}
+        <Avatar />
+      </div>
+    </div>
+  );
+}
+
+function Avatar() {
+  return (
+    <div style={{
+      width: 36, height: 36, borderRadius: "50%",
+      background: "linear-gradient(135deg, #5072b8 0%, #8196c6 100%)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      color: "#fff", fontWeight: 600, fontSize: 13,
+      flexShrink: 0,
+    }}>JL</div>
+  );
+}
+
+// ─── Comparison row ────────────────────────────────────────────────────────────
+function ComparisonRow({ title, description, position, onMobileSearchOpen }) {
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 8 }}>
+        <h3 style={{ fontSize: 14, fontWeight: 600, color: "#051428", margin: 0,
+          fontFamily: "'Red Hat Text', sans-serif" }}>{title}</h3>
+        <p style={{ fontSize: 12, color: "#6b6b6b", margin: 0,
+          fontFamily: "'Red Hat Text', sans-serif", lineHeight: "16px" }}>{description}</p>
+      </div>
+      <TopNavDemo position={position} onMobileSearchOpen={onMobileSearchOpen} />
+    </div>
+  );
+}
+
+// ─── Mobile/tablet search overlay (full-screen) ───────────────────────────────
+function MobileSearchOverlay({ onClose }) {
+  const [value, setValue] = useState("");
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 1100,
+      background: "#fafafa",
+      display: "flex", flexDirection: "column",
+    }}>
+      <div style={{
+        height: 64, backgroundColor: T.topnav.bg,
+        display: "flex", alignItems: "center", padding: "0 8px",
+        gap: 4,
+      }}>
+        <button type="button" aria-label="Close search" onClick={onClose}
+          style={{
+            width: 40, height: 40, borderRadius: 6,
+            border: "none", background: "transparent",
+            cursor: "pointer", color: "#fff",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0,
+          }}>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M12 4L6 10L12 16" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+        <div style={{
+          flex: 1, height: 40, borderRadius: 999,
+          background: T.searchInverseTranslucent,
+          display: "flex", alignItems: "center",
+          paddingLeft: 14, paddingRight: 14, gap: 10,
+        }}>
+          <Icons.search size={16} color="rgba(255,255,255,0.85)" />
+          <input
+            className="pds-search-input"
+            autoFocus
+            placeholder="Search across Amplify…"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            style={{
+              flex: 1, minWidth: 0,
+              background: "transparent", border: "none", outline: "none",
+              color: "#fff",
+              fontFamily: "'Red Hat Text', sans-serif",
+              fontSize: 16, fontWeight: 400, lineHeight: "22px",
+              letterSpacing: "0.1px",
+            }}
+          />
+          {value.length > 0 && (
+            <button type="button" aria-label="Clear search"
+              onClick={() => setValue("")}
+              style={{
+                width: 28, height: 28, borderRadius: 999,
+                border: "none", background: "transparent",
+                cursor: "pointer", color: "#fff",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0,
+              }}>
+              <Icons.close size={12} color="rgba(255,255,255,0.85)" />
+            </button>
+          )}
+        </div>
+      </div>
+      <div style={{ flex: 1, padding: 24, color: "#6b6b6b", fontSize: 14,
+        fontFamily: "'Red Hat Text', sans-serif" }}>
+        <p style={{ marginBottom: 8 }}>
+          <strong style={{ color: "#363636" }}>Mobile/tablet search overlay.</strong>
+        </p>
+        <p>This is the surface where typeahead results, recent searches, AI
+          suggestions, and the advanced search link will live. Content is
+          stubbed for now — we'll design it in the next iteration.</p>
+        <p style={{ marginTop: 16 }}>
+          Tap the back arrow or press Escape to dismiss.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ─── App ──────────────────────────────────────────────────────────────────────
+function App() {
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+
+  // Esc closes the mobile overlay
+  useEffect(() => {
+    if (!mobileSearchOpen) return;
+    const onKey = (e) => { if (e.key === "Escape") setMobileSearchOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileSearchOpen]);
+
+  return (
+    <div style={{ padding: 32, maxWidth: 1280, margin: "0 auto",
+      fontFamily: "'Red Hat Text', sans-serif" }}>
+      <h1 style={{ fontSize: 24, fontWeight: 600, color: "#051428", marginBottom: 8 }}>
+        TopNav with Search — position locked (left of action icons)
+      </h1>
+      <p style={{ fontSize: 14, color: "#4b4b4b", lineHeight: "22px", marginBottom: 24 }}>
+        Position B selected: the always-expanded search bar (desktop) or magnifying-
+        glass icon (tablet/mobile) sits to the left of the action cluster
+        (help / settings / bell), between the org switcher and the actions.
+        v2 refinements: solid home icon for module switcher, GC initials tile for
+        org switcher (matching Figma), hamburger only at &lt;1024px, search
+        collapsed-icon styled distinctly from action icons.
+      </p>
+
+      <div style={{
+        background: "#fff", border: "1px solid #edf0f9", borderRadius: 12,
+        padding: "12px 16px", marginBottom: 24, fontSize: 13, lineHeight: "20px",
+        color: "#4b4b4b",
+      }}>
+        <strong style={{ fontWeight: 600, color: "#051428" }}>How to compare:</strong>
+        &nbsp;at desktop width (≥1024px) you'll see the always-expanded search bar
+        and no hamburger. Resize below 1024px and the hamburger appears, the
+        search collapses to a circular pill icon (visually distinct from the
+        action icons), and the org switcher hides at &lt;768px. Tap the search
+        icon to see the mobile overlay.
+      </div>
+
+      <ComparisonRow
+        title="TopNav with search at position B"
+        description="Search bar sits to the left of the action cluster (help / settings / bell), between the org switcher and the actions. At ≥1024px shown as always-expanded bar. At <1024px shown as circular pill icon."
+        position="right-leftmost"
+        onMobileSearchOpen={() => setMobileSearchOpen(true)} />
+
+      <div style={{
+        marginTop: 32, padding: "16px 20px",
+        border: "1px dashed #f5d98a", borderRadius: 8,
+        background: "#fff7e6", color: "#7a5c10", fontSize: 13, lineHeight: "20px",
+      }}>
+        <strong style={{ fontWeight: 600 }}>About the search bar fill:</strong> the
+        translucent rgba(255,255,255,0.16) used here is primitive
+        <code style={{ fontFamily: "monospace", padding: "0 4px" }}>cool-neutral.0-16</code>.
+        Pathway has no semantic token for an inverse-translucent fill yet — flagged
+        in the coverage report at the bottom of this file. When the Search component
+        ships, Figma should add a <code style={{ fontFamily: "monospace" }}>Fill/Action/Inverse/Translucent</code>
+        semantic that resolves to this primitive.
+      </div>
+
+      <div style={{
+        marginTop: 16, padding: "16px 20px", border: "1px solid #edf0f9",
+        borderRadius: 12, background: "#fff", fontSize: 13, lineHeight: "20px",
+        color: "#4b4b4b",
+      }}>
+        <p style={{ fontSize: 11, fontWeight: 600, color: "#3555a0",
+          textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>
+          v2 refinements
+        </p>
+        <ul style={{ listStyle: "disc", paddingLeft: 18 }}>
+          <li><strong>Hamburger</strong> hidden on desktop (≥1024px), only visible at &lt;1024px where the SideNav becomes overlay</li>
+          <li><strong>Module switcher</strong> uses a solid white home icon + "Amplify Home" + chevron, no surrounding box (matches your Figma)</li>
+          <li><strong>Org switcher</strong> uses a small yellow initials tile ("GC") + chevron (matches your Figma's secondary-context pattern)</li>
+          <li><strong>Collapsed search icon</strong> is a circular pill with the always-visible translucent fill — visually distinct from the squared-off action icons (help/settings/bell) but still reads as a button</li>
+          <li><strong>Position B only</strong> — search sits left of the action cluster (between org switcher and help/settings/bell). Comparison rows for A and C dropped now that you've locked in the placement</li>
+        </ul>
+      </div>
+
+      {mobileSearchOpen && <MobileSearchOverlay onClose={() => setMobileSearchOpen(false)} />}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+<!--
+================================================================================
+TOKEN COVERAGE REPORT — Search TopNav positioning exploration (2026-04-28)
+================================================================================
+Grounding: tokens/pathway-design-tokens.json (current main).
+
+Scope: this prototype is a LAYOUT EXPLORATION only. It demonstrates three
+positioning options (center, right-leftmost, right-rightmost) × three
+expansion behaviors (push aside, hide actions, overlay) for the Search
+icon-to-bar pattern in the TopNav. Once a combination is picked, a v1 Search
+prototype will be built with full token coverage.
+
+── FULLY COVERED ─────────────────────────────────────────────────────────────
+TopNav (already used in production / SideNav v6 prototype):
+  Brand Colors/Dark Cerulean (#0f3e80)         → TopNav background
+  primitive-color.cool-neutral.0 (#ffffff)     → Text and icon strokes on TopNav
+  Action icon button hover (rgba 255,255,255,0.12) — existing usage; this is
+    primitive cool-neutral.0-12-equivalent (Pathway uses 0-8 / 0-16 etc; the
+    0.12 here is between primitives — see suboptimal note)
+
+Typography (existing primitives):
+  primitive-type.family.brand                 → Red Hat Text
+  primitive-type.size.14                       → 14
+  primitive-type.weight.400 / 500 / 600        → 400 / 500 / 600
+  primitive-type.line-height.14pt.single (=20)
+  primitive-type.letter-spacing.wide (0.1)
+
+── MISSING TOKENS ────────────────────────────────────────────────────────────
+  1. Search bar inverse-translucent fill — used for the expanded search bar
+     background on the dark TopNav. Currently there is no semantic token for
+     this. Used primitive `cool-neutral.0-16` (rgba 255,255,255,0.16) as a
+     PROTOTYPE-ONLY exception, flagged here.
+
+     Proposed semantic to add in Figma BEFORE shipping:
+       Fill/Action/Inverse/Translucent → resolves to primitive cool-neutral.0-16
+     Rationale: matches the existing translucent search variants seen in
+     the user's Figma source (node 40006888:7695). The current Figma binds
+     have no Fill semantic on those nodes — they appear to use raw values.
+
+── SUBOPTIMAL TOKENS ─────────────────────────────────────────────────────────
+  1. Action icon hover opacity (0.12) is between primitives 0-8 (0.08) and
+     0-16 (0.16). The existing TopNav uses 0.12 inline. Suggest standardizing
+     to either 0-8 or 0-16, OR adding a 0-12 primitive.
+
+── DESIGN-SYSTEM RECOMMENDATIONS ─────────────────────────────────────────────
+  1. Add Fill/Action/Inverse/Translucent semantic family with at least:
+       .base    → cool-neutral.0-16 (rgba 255,255,255,0.16)  search bar fill
+       .hover   → cool-neutral.0-30 (rgba 255,255,255,0.30)  search bar hover
+       .active  → cool-neutral.0-16 (rgba 255,255,255,0.16)  same as base or tuned
+     This unblocks the Search component AND any other inverse-translucent
+     UI (chips on dark, controls on dark backgrounds, etc).
+  2. Consider adding cool-neutral.0-12 primitive to align with Pathway's
+     existing 0.12 usage in TopNav button hover. Or normalize that usage
+     to 0-8 / 0-16.
+
+================================================================================
+-->
+</body>
+</html>

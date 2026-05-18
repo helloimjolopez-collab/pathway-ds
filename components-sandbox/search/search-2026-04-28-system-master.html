@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en" data-pathway-prototype="true">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search System — Master Demo (Prototype)</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
+
+  .prototype-banner {
+    position: sticky; top: 0; left: 0; right: 0; z-index: 1000;
+    background: #fff7e6; border-bottom: 1px solid #f5d98a;
+    color: #7a5c10; font-family: 'Red Hat Text', sans-serif;
+    font-size: 12px; line-height: 16px; padding: 8px 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .prototype-banner strong {
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    font-size: 11px; background: #7a5c10; color: #fff7e6;
+    padding: 2px 6px; border-radius: 3px;
+  }
+
+  /* Search input placeholder, all tones */
+  .pds-search-input::placeholder { color: rgba(255,255,255,0.85); opacity: 1; }
+  .pds-search-input.tone-default::placeholder { color: #6b6b6b; }
+</style>
+</head>
+<body>
+<div class="prototype-banner">
+  <strong>Prototype</strong>
+  <span>Search system master demo · Generated 2026-04-28 · See companion spec at <code>search-2026-04-28-system-spec.md</code>.</span>
+</div>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useRef } = React;
+
+// ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
+const T = {
+  // Pill fills
+  pillDefault:      "#ffffff",
+  pillDefaultHover: "#fbfbfb",
+  pillInverse:      "rgba(255,255,255,0.16)",
+  pillInverseHover: "rgba(255,255,255,0.22)",
+
+  // Borders (default tone)
+  borderDefault:    "#d2d2d2",
+  borderFocus:      "#3555a0",
+
+  // Text
+  textDefault:      "#363636",
+  placeholderDefault: "#6b6b6b",
+  placeholderInverse: "rgba(255,255,255,0.85)",
+
+  // Icons
+  iconDefault:      "#363636",
+  iconInverse:      "rgba(255,255,255,0.85)",
+
+  // Surfaces
+  canvas:           "#fafafa",
+  surfaceWhite:     "#ffffff",
+  surfaceNav:       "#fafafa",
+  topnavBg:         "#0f3e80",
+
+  // Filter chip
+  chipFill:         "#edf0f9",
+  chipText:         "#3555a0",
+  chipBorder:       "rgba(53,85,160,0.2)",
+
+  // Section
+  sectionBorder:    "#edf0f9",
+
+  // Misc
+  brand:            "#3555a0",
+  radius:           8,
+};
+
+// ─── ICONS ─────────────────────────────────────────────────────────────────────
+const Ic = {
+  search: ({size=16, color="#363636"}) => (
+    <svg width={size} height={size} viewBox="0 0 18 18" fill="none">
+      <circle cx="8" cy="8" r="5.5" stroke={color} strokeWidth="1.6"/>
+      <line x1="12.2" y1="12.2" x2="15.5" y2="15.5" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
+    </svg>
+  ),
+  close: ({size=12, color="#363636"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none">
+      <path d="M2 2 L12 12 M12 2 L2 12" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
+    </svg>
+  ),
+  plus: ({size=14, color="#363636"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none">
+      <path d="M7 2v10 M2 7h10" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
+    </svg>
+  ),
+  filter: ({size=14, color="#363636"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none">
+      <path d="M2 3h10l-3.5 4.5v3.5l-3 1V7.5L2 3z" stroke={color} strokeWidth="1.4" strokeLinejoin="round"/>
+    </svg>
+  ),
+  sparkles: ({size=14, color="#3555a0"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none">
+      <path d="M7 1.5l1 3 3 1-3 1-1 3-1-3-3-1 3-1 1-3z" fill={color}/>
+      <circle cx="11.5" cy="11" r="1" fill={color}/>
+    </svg>
+  ),
+  chev: ({size=10, color="#363636", direction="down"}) => {
+    const rot = { down: 0, up: 180, right: -90, left: 90 }[direction];
+    return (
+      <svg width={size} height={size} viewBox="0 0 16 16" fill="none"
+        style={{ transform: `rotate(${rot}deg)` }}>
+        <path d="M3 5.5L8 10.5L13 5.5" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    );
+  },
+  back: ({size=20, color="#fff"}) => (
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none">
+      <path d="M12 4L6 10L12 16" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  command: ({size=14, color="#6b6b6b"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none">
+      <path d="M5 5h4v4H5V5zM5 5V3.5A1.5 1.5 0 113.5 5H5zM9 5V3.5A1.5 1.5 0 1010.5 5H9zM5 9v1.5A1.5 1.5 0 113.5 9H5zM9 9v1.5A1.5 1.5 0 1010.5 9H9z" stroke={color} strokeWidth="1.2" strokeLinejoin="round"/>
+    </svg>
+  ),
+  spinner: ({size=16, color="#363636"}) => (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none"
+      style={{ animation: "spin 0.8s linear infinite" }}>
+      <circle cx="8" cy="8" r="6" stroke={color} strokeWidth="1.5" strokeOpacity="0.2"/>
+      <path d="M14 8a6 6 0 00-6-6" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+    </svg>
+  ),
+};
+
+// ─── ATOMS / MOLECULES ─────────────────────────────────────────────────────────
+
+// SearchInputChrome — the pill container (atom)
+function Pill({ children, tone="default", size="m", focused, error, disabled, style={}, ...rest }) {
+  const heights = { s: 28, m: 36, l: 44 };
+  const padX    = { s: 10, m: 14, l: 16 };
+  const fillBase = tone === "inverse" ? T.pillInverse : T.pillDefault;
+  const borderColor = tone === "inverse" ? "transparent"
+                    : error             ? "#c34a4a"
+                    : focused           ? T.borderFocus
+                    :                     T.borderDefault;
+  const borderWidth = tone === "inverse" ? 0
+                    : focused || error  ? 1.5
+                    :                     1;
+  return (
+    <div style={{
+      height: heights[size],
+      borderRadius: 999,
+      background: disabled ? "#f4f4f4" : fillBase,
+      border: borderWidth > 0 ? `${borderWidth}px solid ${borderColor}` : "none",
+      paddingLeft: padX[size], paddingRight: padX[size],
+      gap: 8,
+      display: "flex", alignItems: "center",
+      opacity: disabled ? 0.55 : 1,
+      ...style,
+    }} {...rest}>
+      {children}
+    </div>
+  );
+}
+
+// FilterChip (atom)
+function FilterChip({ dimension, value, onRemove }) {
+  const [h, setH] = useState(false);
+  return (
+    <span style={{
+      display: "inline-flex", alignItems: "center", gap: 6,
+      height: 24, paddingLeft: 8, paddingRight: 4,
+      borderRadius: 999,
+      background: T.chipFill,
+      border: `1px solid ${T.chipBorder}`,
+      fontSize: 12, fontWeight: 500, color: T.chipText,
+      whiteSpace: "nowrap", flexShrink: 0,
+    }}>
+      <span style={{ fontWeight: 600 }}>{dimension}:</span>
+      <span>{value}</span>
+      {onRemove && (
+        <button
+          onClick={onRemove}
+          onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+          aria-label={`Remove ${dimension}: ${value} filter`}
+          style={{
+            width: 18, height: 18, borderRadius: 999, border: "none",
+            background: h ? "rgba(53,85,160,0.16)" : "transparent",
+            cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+            padding: 0,
+          }}>
+          <Ic.close size={10} color={T.chipText} />
+        </button>
+      )}
+    </span>
+  );
+}
+
+// SectionHeader inside dropdowns (atom)
+function SectionHeader({ children }) {
+  return (
+    <div style={{
+      paddingTop: 10, paddingBottom: 4, paddingLeft: 12, paddingRight: 12,
+      fontSize: 11, fontWeight: 500, lineHeight: "16px", letterSpacing: "0.1px",
+      textTransform: "uppercase", color: "#6b6b6b",
+    }}>
+      {children}
+    </div>
+  );
+}
+
+// SuggestionRow inside dropdowns (atom)
+function SuggestionRow({ icon, label, meta, kbd, onClick }) {
+  const [h, setH] = useState(false);
+  return (
+    <div onClick={onClick}
+      onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      style={{
+        display: "flex", alignItems: "center", gap: 10,
+        padding: "8px 12px", cursor: "pointer",
+        background: h ? "#f6f6f6" : "transparent",
+        transition: "background 0.1s ease",
+      }}>
+      {icon && <span style={{ flexShrink: 0, width: 16, height: 16,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        color: T.iconDefault }}>{icon}</span>}
+      <span style={{ flex: 1, fontSize: 14, color: T.textDefault, whiteSpace: "nowrap",
+        overflow: "hidden", textOverflow: "ellipsis" }}>
+        {label}
+      </span>
+      {meta && <span style={{ fontSize: 12, color: "#6b6b6b", flexShrink: 0 }}>{meta}</span>}
+      {kbd && <span style={{ fontSize: 11, color: "#6b6b6b", border: "1px solid #d2d2d2",
+        borderRadius: 4, padding: "1px 6px", flexShrink: 0,
+        fontFamily: "monospace" }}>{kbd}</span>}
+    </div>
+  );
+}
+
+// DropdownPanel (molecule)
+function DropdownPanel({ children, width = "100%", style = {} }) {
+  return (
+    <div style={{
+      position: "absolute", top: "calc(100% + 6px)", left: 0,
+      width, minWidth: 320,
+      background: T.surfaceWhite,
+      border: `0.5px solid ${T.sectionBorder}`,
+      borderRadius: 12,
+      boxShadow: "0 4px 16px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)",
+      paddingTop: 6, paddingBottom: 6,
+      maxHeight: 400, overflowY: "auto",
+      zIndex: 100,
+      ...style,
+    }}>
+      {children}
+    </div>
+  );
+}
+
+// ─── SEARCH (the workhorse organism) ──────────────────────────────────────────
+function Search({
+  tone = "default",
+  size = "m",
+  filters = "none",
+  mode = "filter",
+  withLabel = false,
+  withHelpText = false,
+  label,
+  helpText,
+  placeholder = "Search…",
+  value: controlledValue,
+  onChange,
+  appliedFilters = [],
+  onFiltersChange,
+  onSubmit,
+  onSuggest,
+  loading = false,
+  disabled = false,
+  error = null,
+  style = {},
+  // For demo
+  showDropdown = false,
+  dropdownContent = null,
+}) {
+  const [localValue, setLocalValue] = useState("");
+  const value = controlledValue !== undefined ? controlledValue : localValue;
+  const handleChange = (v) => {
+    if (controlledValue === undefined) setLocalValue(v);
+    onChange && onChange(v);
+  };
+  const [focused, setFocused] = useState(false);
+
+  const inputColor    = tone === "inverse" ? "#fff" : T.textDefault;
+  const phColor       = tone === "inverse" ? T.placeholderInverse : T.placeholderDefault;
+  const iconColor     = tone === "inverse" ? T.iconInverse : T.iconDefault;
+  const fontSize      = size === "s" ? 12 : size === "l" ? 16 : 14;
+  const lineHeight    = size === "s" ? "16px" : size === "l" ? "22px" : "20px";
+
+  const labelStyle = {
+    display: "block", marginBottom: 6,
+    fontSize: 12, fontWeight: 500, color: T.textDefault,
+    fontFamily: "'Red Hat Text', sans-serif",
+  };
+  const helpStyle = {
+    display: "block", marginTop: 6,
+    fontSize: 12, color: error ? "#c34a4a" : "#6b6b6b",
+    fontFamily: "'Red Hat Text', sans-serif",
+  };
+
+  const showClear = !disabled && value.length > 0 && !loading;
+
+  return (
+    <div style={{ position: "relative", ...style }}>
+      {withLabel && label && <label style={labelStyle}>{label}</label>}
+      <Pill tone={tone} size={size} focused={focused} error={error} disabled={disabled}
+        style={{ position: "relative" }}>
+        {/* Leading icon or spinner */}
+        {loading
+          ? <Ic.spinner size={size==="s"?14:16} color={iconColor} />
+          : <Ic.search size={size==="s"?14:size==="l"?18:16} color={iconColor} />}
+
+        {/* Inline filter chips (filters="chips") */}
+        {filters === "chips" && appliedFilters.map((f, i) => (
+          <FilterChip key={i} dimension={f.dimension} value={f.value}
+            onRemove={() => onFiltersChange && onFiltersChange(
+              appliedFilters.filter((_, j) => j !== i)
+            )} />
+        ))}
+
+        {/* Input */}
+        <input
+          className={`pds-search-input tone-${tone}`}
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => handleChange(e.target.value)}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          onKeyDown={(e) => {
+            if (mode === "submit" && e.key === "Enter") {
+              onSubmit && onSubmit(value);
+            }
+          }}
+          disabled={disabled}
+          style={{
+            flex: 1, minWidth: 0,
+            background: "transparent", border: "none", outline: "none",
+            color: inputColor,
+            fontFamily: "'Red Hat Text', sans-serif",
+            fontSize, lineHeight,
+            letterSpacing: "0.02px",
+          }}
+        />
+
+        {/* Right-side affordances */}
+        {filters === "advanced" && (
+          <button style={{
+            border: "none", background: "transparent", cursor: "pointer",
+            color: T.brand, fontSize: 12, fontWeight: 500,
+            padding: "0 6px", flexShrink: 0,
+          }}>Advanced</button>
+        )}
+
+        {showClear && (
+          <button onClick={() => handleChange("")} aria-label="Clear search"
+            style={{
+              width: 24, height: 24, borderRadius: 999, border: "none",
+              background: "transparent", cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              flexShrink: 0,
+            }}>
+            <Ic.close size={12} color={iconColor} />
+          </button>
+        )}
+
+        {filters === "chips" && !showClear && (
+          <button aria-label="Add filter"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 4,
+              height: 24, padding: "0 8px",
+              border: "1px dashed " + (tone==="inverse" ? "rgba(255,255,255,0.3)" : "#d2d2d2"),
+              borderRadius: 999, background: "transparent", cursor: "pointer",
+              color: tone === "inverse" ? "rgba(255,255,255,0.85)" : "#6b6b6b",
+              fontSize: 12, fontWeight: 500, flexShrink: 0,
+            }}>
+            <Ic.plus size={10} color={tone === "inverse" ? "rgba(255,255,255,0.85)" : "#6b6b6b"} />
+            Filter
+          </button>
+        )}
+      </Pill>
+      {withHelpText && (helpText || error) && (
+        <span style={helpStyle}>{error || helpText}</span>
+      )}
+      {showDropdown && dropdownContent && <DropdownPanel>{dropdownContent}</DropdownPanel>}
+    </div>
+  );
+}
+
+// ─── DEMO SECTIONS ────────────────────────────────────────────────────────────
+
+function Section({ title, summary, children, dark }) {
+  return (
+    <section style={{
+      background: dark ? "#0f3e80" : "#fff",
+      borderRadius: 12,
+      border: dark ? "none" : "1px solid #edf0f9",
+      padding: "20px 24px", marginBottom: 20,
+    }}>
+      <h2 style={{ fontSize: 16, fontWeight: 600, color: dark ? "#fff" : "#051428",
+        marginBottom: 4 }}>
+        {title}
+      </h2>
+      <p style={{ fontSize: 13, color: dark ? "rgba(255,255,255,0.7)" : "#4b4b4b",
+        lineHeight: "20px", marginBottom: 20 }}>
+        {summary}
+      </p>
+      <div>{children}</div>
+    </section>
+  );
+}
+
+function Caption({ children }) {
+  return (
+    <p style={{ fontSize: 11, fontWeight: 600, color: "#6b6b6b",
+      textTransform: "uppercase", letterSpacing: "0.08em", marginTop: 16, marginBottom: 8 }}>
+      {children}
+    </p>
+  );
+}
+
+// ─── DEMO 1: OmniSearch (link to v2) ──────────────────────────────────────────
+function OmniSearchDemo() {
+  return (
+    <Section
+      dark
+      title="OmniSearch — TopNav cross-platform"
+      summary="The platform-wide global search. Lives only in the TopNav. Always-expanded inline at desktop ≥1024px; collapses to circular pill icon at <1024px and opens a full-screen overlay. The full demo lives in v2.">
+      <div style={{
+        background: "rgba(255,255,255,0.05)",
+        border: "1px dashed rgba(255,255,255,0.2)",
+        borderRadius: 8, padding: 16, color: "#fff", fontSize: 13, lineHeight: "20px",
+      }}>
+        See the full interactive OmniSearch (with TopNav chrome, breakpoint behavior, and mobile overlay) in:
+        <code style={{ display: "block", marginTop: 8, padding: "6px 10px",
+          background: "rgba(255,255,255,0.1)", borderRadius: 4,
+          fontFamily: "monospace", fontSize: 12 }}>
+          search-2026-04-28-topnav-positioning-v2.html
+        </code>
+        <p style={{ marginTop: 12 }}>Below is just the always-expanded bar in isolation:</p>
+      </div>
+      <div style={{ marginTop: 16, padding: "16px 20px", background: "#0a3168",
+        borderRadius: 8, display: "flex", justifyContent: "flex-start" }}>
+        <div style={{ width: 480, position: "relative" }}>
+          <Search tone="inverse" size="m" placeholder="Search across Amplify…" />
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+// ─── DEMO 2: Search at toolbar (with chips) ───────────────────────────────────
+function ToolbarSearchDemo() {
+  const [q, setQ] = useState("");
+  const [appliedFilters, setAppliedFilters] = useState([
+    { dimension: "Status", value: "Open" },
+    { dimension: "Owner", value: "Me" },
+  ]);
+  return (
+    <Section
+      title="Search at toolbar — list/table"
+      summary="Lives above a list or data table. size='m' with filters='chips'. Live-filters the content below as the user types or adjusts chips. Most common Search variant in product UIs.">
+      <Caption>Variant: filters="none"</Caption>
+      <Search size="m" placeholder="Search invoices…" mode="filter" />
+
+      <Caption>Variant: filters="chips" (with applied filters)</Caption>
+      <Search size="m" placeholder="Search invoices…" mode="filter"
+        filters="chips" appliedFilters={appliedFilters}
+        onFiltersChange={setAppliedFilters} />
+
+      <Caption>Variant: filters="advanced" (link to AdvancedSearch screen)</Caption>
+      <Search size="m" placeholder="Search invoices…" mode="filter" filters="advanced" />
+    </Section>
+  );
+}
+
+// ─── DEMO 3: Search at sidenav ────────────────────────────────────────────────
+function SidenavSearchDemo() {
+  return (
+    <Section
+      title="Search at sidenav — module-level"
+      summary="Lives inside the SideNav of a module. size='s', filters='none' typically. Filters the visible nav items as user types.">
+      <div style={{
+        width: 220, background: T.surfaceNav,
+        borderRight: "0.5px solid #edf0f9",
+        padding: "14px 12px", borderRadius: 8,
+      }}>
+        <div style={{ marginBottom: 12 }}>
+          <Search size="s" placeholder="Filter settings…" mode="filter" />
+        </div>
+        <div style={{ fontSize: 11, fontWeight: 500, color: "#6b6b6b",
+          textTransform: "uppercase", letterSpacing: "0.1px", padding: "8px 12px" }}>
+          Workspace
+        </div>
+        <div style={{ display: "flex", alignItems: "center", padding: "10px 12px",
+          fontSize: 14, color: "#363636" }}>Applications</div>
+        <div style={{ display: "flex", alignItems: "center", padding: "10px 12px",
+          fontSize: 14, color: "#363636" }}>Enter</div>
+        <div style={{ display: "flex", alignItems: "center", padding: "10px 12px",
+          fontSize: 14, color: "#363636" }}>Manage</div>
+      </div>
+    </Section>
+  );
+}
+
+// ─── DEMO 4: Search as form field ─────────────────────────────────────────────
+function FormSearchDemo() {
+  return (
+    <Section
+      title="Search as form field — withLabel + withHelpText"
+      summary="Form-flavored Search with a label above and help text below. Used inside forms when the user is searching for something to set as a value (often paired with mode='submit').">
+      <div style={{ maxWidth: 420 }}>
+        <Search
+          size="m"
+          withLabel withHelpText
+          label="Find a member"
+          helpText="Searches active members and staff."
+          placeholder="Type a name or email"
+          mode="submit" />
+      </div>
+
+      <Caption>Error state</Caption>
+      <div style={{ maxWidth: 420 }}>
+        <Search
+          size="m"
+          withLabel withHelpText
+          label="Find a member"
+          error="No matching members found."
+          placeholder="Type a name or email"
+          mode="submit" />
+      </div>
+    </Section>
+  );
+}
+
+// ─── DEMO 5: Search in modal (typeahead) ──────────────────────────────────────
+function ModalSearchDemo() {
+  const [open, setOpen] = useState(false);
+  return (
+    <Section
+      title="Search in modal — typeahead picker"
+      summary="Modal pickers typically use Search with mode='typeahead'. Shows a dropdown of matching options as the user types; pressing Enter or clicking selects.">
+      <button onClick={() => setOpen(true)}
+        style={{
+          padding: "8px 16px", borderRadius: 6, border: "1px solid #c0c8d6",
+          background: "#fff", color: "#3555a0", fontWeight: 500,
+          fontFamily: "'Red Hat Text', sans-serif", fontSize: 14, cursor: "pointer",
+        }}>
+        Open modal picker
+      </button>
+      {open && (
+        <div onClick={(e) => e.target === e.currentTarget && setOpen(false)}
+          style={{
+            position: "fixed", inset: 0, zIndex: 1000,
+            background: "rgba(0,0,0,0.32)",
+            display: "flex", alignItems: "flex-start", justifyContent: "center",
+            paddingTop: 80,
+          }}>
+          <div style={{
+            width: "min(560px, 100%)", maxHeight: "70vh",
+            background: "#fff", borderRadius: 12,
+            display: "flex", flexDirection: "column",
+          }}>
+            <div style={{ padding: "16px 20px", borderBottom: "1px solid #edf0f9" }}>
+              <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 12 }}>
+                Find a person to invite
+              </h3>
+              <Search size="m" placeholder="Type a name or email"
+                mode="typeahead"
+                showDropdown
+                dropdownContent={
+                  <div>
+                    <SectionHeader>Members</SectionHeader>
+                    <SuggestionRow icon={<Ic.search size={12} color="#6b6b6b" />}
+                      label="Ana Martinez" meta="Active" />
+                    <SuggestionRow icon={<Ic.search size={12} color="#6b6b6b" />}
+                      label="Anand Singh" meta="Active" />
+                    <SectionHeader>Invite by email</SectionHeader>
+                    <SuggestionRow label="ana@example.com"
+                      meta="Send invite" />
+                  </div>
+                } />
+            </div>
+            <button onClick={() => setOpen(false)}
+              style={{ alignSelf: "flex-end", margin: 16, padding: "8px 16px",
+                background: "transparent", border: "none", color: "#6b6b6b",
+                cursor: "pointer", fontSize: 13 }}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </Section>
+  );
+}
+
+// ─── DEMO 6: All Search states matrix ─────────────────────────────────────────
+function StatesMatrixDemo() {
+  return (
+    <Section
+      title="Search states matrix"
+      summary="All states a Search component must support, side by side. Use this to verify visual treatments and accessibility contrast.">
+      {[
+        { state: "idle",            props: { placeholder: "Search…" } },
+        { state: "with-value",      props: { placeholder: "Search…", value: "trial balance", onChange: () => {} } },
+        { state: "loading",         props: { placeholder: "Search…", loading: true } },
+        { state: "disabled",        props: { placeholder: "Search…", disabled: true } },
+        { state: "error",           props: { placeholder: "Search…", error: "Something went wrong", withHelpText: true } },
+      ].map(({ state, props }) => (
+        <div key={state} style={{ marginBottom: 16 }}>
+          <Caption>{state}</Caption>
+          <Search size="m" {...props} />
+        </div>
+      ))}
+    </Section>
+  );
+}
+
+// ─── DEMO 7: Tone matrix ──────────────────────────────────────────────────────
+function ToneMatrixDemo() {
+  return (
+    <Section
+      title="Tone matrix"
+      summary="default (white-on-light) vs inverse (translucent-on-dark). Inverse used only on dark surfaces (TopNav).">
+      <Caption>tone="default" — used everywhere except TopNav</Caption>
+      <Search size="m" tone="default" placeholder="Search…" />
+
+      <div style={{ marginTop: 16, background: "#0f3e80", padding: "16px 20px", borderRadius: 8 }}>
+        <p style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.7)",
+          textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 }}>
+          tone="inverse" — used on the dark TopNav
+        </p>
+        <Search size="m" tone="inverse" placeholder="Search across Amplify…" />
+      </div>
+    </Section>
+  );
+}
+
+// ─── DEMO 8: Size matrix ──────────────────────────────────────────────────────
+function SizeMatrixDemo() {
+  return (
+    <Section
+      title="Size matrix"
+      summary="s (28px row) for sidenav and compact contexts, m (36px) the workhorse default, l (44px) for large form fields or hero placements.">
+      <Caption>size="s" — sidenav, cards, compact widgets</Caption>
+      <Search size="s" placeholder="Filter settings…" />
+
+      <Caption>size="m" — toolbar, form, modal (default)</Caption>
+      <Search size="m" placeholder="Search invoices…" />
+
+      <Caption>size="l" — hero / prominent form field</Caption>
+      <Search size="l" placeholder="Find anything…" />
+    </Section>
+  );
+}
+
+// ─── DEMO 9: Related components (lower-fidelity sketches) ─────────────────────
+function RelatedComponentsDemo() {
+  const Sketch = ({ title, body }) => (
+    <div style={{
+      padding: "16px 20px", marginBottom: 12,
+      background: "#fff", border: "1px dashed #d2d2d2", borderRadius: 8,
+    }}>
+      <p style={{ fontSize: 13, fontWeight: 600, color: "#051428", marginBottom: 4 }}>{title}</p>
+      <p style={{ fontSize: 12, color: "#6b6b6b", marginBottom: 12, lineHeight: "18px" }}>
+        Sketch only. Has its own component spec — see system spec §7.
+      </p>
+      {body}
+    </div>
+  );
+  return (
+    <Section
+      title="Related components (separate specs)"
+      summary="These are NOT Search. They share the input chrome but solve different jobs. Each gets its own component spec when scheduled. Sketches below for awareness only.">
+
+      <Sketch title="Combobox — single-select with typeahead"
+        body={
+          <div style={{ maxWidth: 320, position: "relative" }}>
+            <Pill size="m" tone="default">
+              <Ic.search size={16} color={T.iconDefault} />
+              <span style={{ flex: 1, fontSize: 14, color: "#363636" }}>Status: Open</span>
+              <Ic.chev size={10} color="#6b6b6b" />
+            </Pill>
+          </div>
+        } />
+
+      <Sketch title="MultiSelect — multi-select with chips and add"
+        body={
+          <div style={{ maxWidth: 420, position: "relative" }}>
+            <Pill size="m" tone="default">
+              <FilterChip dimension="Tag" value="Urgent" />
+              <FilterChip dimension="Tag" value="Customer" />
+              <input placeholder="Add tag…"
+                style={{ flex: 1, minWidth: 80, border: "none", outline: "none",
+                  fontFamily: "'Red Hat Text', sans-serif", fontSize: 14, background: "transparent" }} />
+            </Pill>
+          </div>
+        } />
+
+      <Sketch title="CommandPalette — Cmd+K verb-driven palette"
+        body={
+          <div style={{ background: "#fff", border: "1px solid #edf0f9",
+            borderRadius: 12, maxWidth: 480, padding: 6,
+            boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}>
+            <div style={{ padding: 10 }}>
+              <Pill size="m">
+                <Ic.search size={16} color={T.iconDefault} />
+                <span style={{ flex: 1, color: "#6b6b6b", fontSize: 14 }}>Type a command…</span>
+                <span style={{ fontSize: 11, color: "#6b6b6b" }}>Cmd+K</span>
+              </Pill>
+            </div>
+            <SectionHeader>Navigation</SectionHeader>
+            <SuggestionRow icon={<Ic.search size={12} color="#6b6b6b" />}
+              label="Go to Dashboard" kbd="G then D" />
+            <SuggestionRow icon={<Ic.search size={12} color="#6b6b6b" />}
+              label="Go to Reports" kbd="G then R" />
+            <SectionHeader>Actions</SectionHeader>
+            <SuggestionRow icon={<Ic.plus size={12} color="#6b6b6b" />}
+              label="Create new invoice" kbd="N" />
+          </div>
+        } />
+
+      <Sketch title="ColumnFilter — per-column table filter (part of DataTable)"
+        body={
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <span style={{ fontSize: 13, color: "#363636", fontWeight: 600 }}>Status</span>
+            <button style={{
+              width: 24, height: 24, borderRadius: 4,
+              border: "1px solid #d2d2d2", background: "#fff",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              cursor: "pointer", padding: 0,
+            }}>
+              <Ic.filter size={12} color="#363636" />
+            </button>
+            <span style={{ fontSize: 12, color: "#6b6b6b" }}>(opens column-specific popover)</span>
+          </div>
+        } />
+
+      <Sketch title="AdvancedSearch — full-screen filter builder (triggered from filters='advanced')"
+        body={
+          <div style={{ background: "#f6f6f6", borderRadius: 8, padding: 16, fontSize: 13,
+            color: "#4b4b4b", lineHeight: "20px" }}>
+            Full-screen / side-panel UI containing condition rows
+            <code style={{ background: "#fff", padding: "1px 6px", margin: "0 4px", borderRadius: 3 }}>
+              {"{dimension} {operator} {value}"}
+            </code>
+            with AND/OR logic, saved filter sets, Apply/Cancel actions. Triggered from a Search bar
+            with <code>filters="advanced"</code>.
+          </div>
+        } />
+    </Section>
+  );
+}
+
+// ─── DEMO 10: Token reference ─────────────────────────────────────────────────
+function TokenReferenceDemo() {
+  const rows = [
+    ["Pill fill — default", "#ffffff", "fill.static.surface.white"],
+    ["Pill fill — inverse", "rgba(255,255,255,0.16)", "(proposed) fill.action.inverse.translucent.base"],
+    ["Pill border — default idle", "#d2d2d2", "stroke.action.secondaryinverse.base"],
+    ["Pill border — focus", "#3555a0", "stroke.action.primary.focus (or focus token)"],
+    ["Leading icon — default", "#363636", "icon.action.secondary.base"],
+    ["Leading icon — inverse", "rgba(255,255,255,0.85)", "icon.action.secondaryinverse.base"],
+    ["Placeholder text — default", "#6b6b6b", "(proposed) text.contextual.placeholder.base"],
+    ["Placeholder text — inverse", "rgba(255,255,255,0.85)", "(proposed) text.contextual.placeholder.inverse"],
+    ["Value text", "#363636", "text.action.secondary.base"],
+    ["Filter chip fill", "#edf0f9", "fill.static.info.subtle"],
+    ["Filter chip text", "#3555a0", "text.action.primary.base"],
+    ["Section header text", "#6b6b6b", "text.static.secondary.subtle"],
+    ["Section header type", "11/500/16/wide caps", "label.section.s.medium"],
+  ];
+  return (
+    <Section
+      title="Token reference"
+      summary="Quick reference of every token the Search system uses. Items marked (proposed) need to be added in Figma before shipping.">
+      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+        <thead>
+          <tr>
+            <th style={{ textAlign: "left", padding: "8px 12px", borderBottom: "2px solid #edf0f9",
+              fontSize: 11, fontWeight: 700, color: "#6b6b6b", textTransform: "uppercase",
+              letterSpacing: "0.08em" }}>Element</th>
+            <th style={{ textAlign: "left", padding: "8px 12px", borderBottom: "2px solid #edf0f9",
+              fontSize: 11, fontWeight: 700, color: "#6b6b6b", textTransform: "uppercase",
+              letterSpacing: "0.08em" }}>Value</th>
+            <th style={{ textAlign: "left", padding: "8px 12px", borderBottom: "2px solid #edf0f9",
+              fontSize: 11, fontWeight: 700, color: "#6b6b6b", textTransform: "uppercase",
+              letterSpacing: "0.08em" }}>Token</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([el, val, tok], i) => (
+            <tr key={i}>
+              <td style={{ padding: "8px 12px", borderBottom: "1px solid #f6f6f6", color: "#363636" }}>{el}</td>
+              <td style={{ padding: "8px 12px", borderBottom: "1px solid #f6f6f6",
+                fontFamily: "monospace", color: "#363636" }}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  {val.startsWith("#") && <span style={{
+                    width: 14, height: 14, borderRadius: 3, background: val,
+                    border: "1px solid rgba(0,0,0,0.1)", display: "inline-block",
+                  }} />}
+                  {val}
+                </span>
+              </td>
+              <td style={{ padding: "8px 12px", borderBottom: "1px solid #f6f6f6",
+                fontFamily: "monospace", fontSize: 12,
+                color: tok.startsWith("(proposed)") ? "#7a5c10" : "#3555a0" }}>{tok}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </Section>
+  );
+}
+
+// ─── APP ──────────────────────────────────────────────────────────────────────
+function App() {
+  return (
+    <div style={{ padding: 32, maxWidth: 1100, margin: "0 auto",
+      fontFamily: "'Red Hat Text', sans-serif" }}>
+      <h1 style={{ fontSize: 28, fontWeight: 600, color: "#051428", marginBottom: 8 }}>
+        Pathway Search System — Master Demo
+      </h1>
+      <p style={{ fontSize: 14, color: "#4b4b4b", lineHeight: "22px", marginBottom: 32 }}>
+        Demonstrates each Search-related pattern in the Pathway design system. The full architectural
+        spec lives in <code>search-2026-04-28-system-spec.md</code> (decision tree, component map,
+        atomic decomposition, prop tables, accessibility, Figma setup recommendations).
+      </p>
+
+      <OmniSearchDemo />
+      <ToolbarSearchDemo />
+      <SidenavSearchDemo />
+      <FormSearchDemo />
+      <ModalSearchDemo />
+      <StatesMatrixDemo />
+      <ToneMatrixDemo />
+      <SizeMatrixDemo />
+      <RelatedComponentsDemo />
+      <TokenReferenceDemo />
+
+      <div style={{
+        padding: "16px 20px", border: "1px dashed #f5d98a", borderRadius: 8,
+        background: "#fff7e6", color: "#7a5c10", fontSize: 13, lineHeight: "20px",
+        marginTop: 32,
+      }}>
+        <strong style={{ fontWeight: 600 }}>Token gaps flagged:</strong>{" "}
+        <code style={{ fontFamily: "monospace" }}>fill.action.inverse.translucent.*</code>,{" "}
+        <code style={{ fontFamily: "monospace" }}>text.contextual.placeholder.*</code>,{" "}
+        <code style={{ fontFamily: "monospace" }}>fill.contextual.chip.*</code>. These need to be
+        added in Figma BEFORE the Search component is built. Run{" "}
+        <code style={{ fontFamily: "monospace" }}>/pathway:tokens-sync</code> after adding them.
+        Full list and rationale in the system spec §8.
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+<!--
+================================================================================
+TOKEN COVERAGE REPORT — Search system master demo (2026-04-28)
+================================================================================
+
+Scope: this prototype demonstrates every Search-related pattern documented in
+search-2026-04-28-system-spec.md. It uses real tokens where they exist and
+flagged primitives where Pathway needs to add semantic tokens.
+
+── FULLY COVERED ─────────────────────────────────────────────────────────────
+  fill.static.surface.white                  → #fff (Search default pill fill)
+  stroke.action.secondaryinverse.base        → #d2d2d2 (Search default border)
+  text.action.secondary.base                 → #363636 (Search value text)
+  text.action.secondaryinverse.base          → #6b6b6b (Search default placeholder)
+  icon.action.secondary.base                 → #363636 (Leading icon, default tone)
+  text.static.secondary.subtle               → #6b6b6b (Section header)
+  semantic-type.desktop.label.section.s.medium → 11/500/16/wide caps (Section header type)
+  fill.static.info.subtle                    → #edf0f9 (Filter chip fill, prototype use)
+  text.action.primary.base                   → #3555a0 (Filter chip text)
+  primitive-color.brand.300                  → #3555a0 (focus border, advanced link, brand accents)
+
+── MISSING TOKENS (PROTOTYPE ONLY — must add before shipping) ────────────────
+  1. fill.action.inverse.translucent.base    → primitive cool-neutral.0-16
+     Used: Search inverse pill fill, OmniSearch fill, mobile overlay
+  2. fill.action.inverse.translucent.hover   → primitive cool-neutral.0-30
+     Used: Inverse pill hover state
+  3. text.contextual.placeholder.base        → primitive cool-neutral.120 (#6b6b6b)
+     Used: Placeholder text on default tone
+  4. text.contextual.placeholder.inverse     → primitive cool-neutral.0-* (~85% white)
+     Used: Placeholder text on inverse tone
+  5. fill.contextual.chip.base               → TBD (could reuse fill.static.info.subtle)
+     Used: FilterChip fill
+  6. fill.contextual.chip.hover              → TBD
+     Used: FilterChip hover
+  7. text.contextual.chip.base               → TBD (could reuse text.action.primary.base)
+     Used: FilterChip text
+
+── DESIGN-SYSTEM RECOMMENDATIONS ─────────────────────────────────────────────
+  • Add the 7 tokens above in Figma. Items 1-4 are highest priority — needed
+    for OmniSearch and any inverse Search. Items 5-7 unblock filters="chips".
+  • Document each new token with $description (per the SideNav iteration's
+    convention) so AI agents reading the JSON can match purpose to token.
+  • After adding, run /pathway:tokens-sync to propagate.
+  • The atomic decomposition in §4 of the system spec is the recommended Figma
+    build order (atoms → molecules → organisms → templates).
+
+================================================================================
+-->
+</body>
+</html>

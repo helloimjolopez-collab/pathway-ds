@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en" data-pathway-prototype="true">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SideNav — Section Labels (Prototype v3) — Pathway</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+
+  .prototype-banner {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: #fff7e6; border-bottom: 1px solid #f5d98a;
+    color: #7a5c10; font-family: 'Red Hat Text', sans-serif;
+    font-size: 12px; line-height: 16px; padding: 8px 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .prototype-banner strong {
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    font-size: 11px; background: #7a5c10; color: #fff7e6;
+    padding: 2px 6px; border-radius: 3px;
+  }
+
+  @keyframes popoverIn {
+    from { opacity: 0; transform: translateX(-4px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes popoverInCentered {
+    from { opacity: 0; transform: translateX(-4px) translateY(-50%); }
+    to   { opacity: 1; transform: translateX(0)    translateY(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    @keyframes popoverIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes popoverInCentered {
+      from { opacity: 0; transform: translateY(-50%); }
+      to   { opacity: 1; transform: translateY(-50%); }
+    }
+  }
+</style>
+</head>
+<body>
+<div class="prototype-banner">
+  <strong>Prototype v3</strong>
+  <span>Not production. Generated 2026-04-21 by pathway-component-prototype. Lives in <code>components-sandbox/sidenav/</code>.</span>
+</div>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useRef } = React;
+
+// ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
+// Every value resolves to a real entry in tokens/pathway-design-tokens.json
+// at commit 98ee386. See TOKEN COVERAGE REPORT at the bottom.
+const T = {
+  fill: {
+    navBase:    "#fafafa",   // fill.contextual.navitem.base
+    navHover:   "#1111110a", // fill.contextual.navitem.hover
+    navActive:  "#3555a014", // fill.contextual.navitem.active
+    navTrail:   "#11111105", // fill.contextual.navitem.trail
+    infoSubtle: "#edf0f9",   // fill.static.info.subtle — borders, dividers, rail section break
+  },
+  surface: { navLight: "#fafafa" },   // surface.nav.light
+  text: {
+    navBase:       "#363636", // text.contextual.navitem.base
+    navHover:      "#252525", // text.contextual.navitem.hover
+    navActive:     "#051428", // text.contextual.navitem.active
+    sectionLabel:  "#4b4b4b", // text.static.secondary.base
+  },
+  icon: {
+    navBase:       "#4b4b4b", // icon.contextual.navitem.base
+    navHover:      "#363636", // icon.contextual.navitem.hover
+    navActive:     "#3555a0", // icon.contextual.navitem.active
+  },
+  indicator: "#3555a0",       // primitive-color.brand.300
+  radius:    8,
+};
+
+// ─── LAYOUT VALUES ────────────────────────────────────────────────────────────
+const L = {
+  navPadH: 12, navPadV: 14,
+  navW: 250,   navWcol: 72,
+  menuGap: 8,
+  itemH: 48, iconWrap: 24, iconInner: 14,
+  rowPadH: 8, textPad: 6, childIndent: 24,
+  stripeW: 4,
+  colPadL: 12, colPadR: 8, collapseGap: 4,
+  // Section label spacing
+  sectionPadV: 8, sectionPadH: 12,
+  sectionMarginTop: 16, sectionMarginBot: 4,
+  // Rail divider (replaces section label at 72px)
+  railDividerMarginV: 12,
+};
+
+// ─── ICONS (Pathway Figma icons — fill-style, 14×14 viewBox) ──────────────────
+const IC = {
+  apps: ({size=14, color="#4b4b4b"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none"><path fill={color} d="M0.514063 13.4859C0.171354 13.1432 0 12.7313 0 12.25C0 11.7687 0.171354 11.3568 0.514063 11.0141C0.856771 10.6714 1.26875 10.5 1.75 10.5C2.23125 10.5 2.64323 10.6714 2.98594 11.0141C3.32865 11.3568 3.5 11.7687 3.5 12.25C3.5 12.7313 3.32865 13.1432 2.98594 13.4859C2.64323 13.8286 2.23125 14 1.75 14C1.26875 14 0.856771 13.8286 0.514063 13.4859ZM5.76406 13.4859C5.42135 13.1432 5.25 12.7313 5.25 12.25C5.25 11.7687 5.42135 11.3568 5.76406 11.0141C6.10677 10.6714 6.51875 10.5 7 10.5C7.48125 10.5 7.89323 10.6714 8.23594 11.0141C8.57865 11.3568 8.75 11.7687 8.75 12.25C8.75 12.7313 8.57865 13.1432 8.23594 13.4859C7.89323 13.8286 7.48125 14 7 14C6.51875 14 6.10677 13.8286 5.76406 13.4859ZM11.0141 13.4859C10.6714 13.1432 10.5 12.7313 10.5 12.25C10.5 11.7687 10.6714 11.3568 11.0141 11.0141C11.3568 10.6714 11.7687 10.5 12.25 10.5C12.7313 10.5 13.1432 10.6714 13.4859 11.0141C13.8286 11.3568 14 11.7687 14 12.25C14 12.7313 13.8286 13.1432 13.4859 13.4859C13.1432 13.8286 12.7313 14 12.25 14C11.7687 14 11.3568 13.8286 11.0141 13.4859ZM0.514063 8.23594C0.171354 7.89323 0 7.48125 0 7C0 6.51875 0.171354 6.10677 0.514063 5.76406C0.856771 5.42135 1.26875 5.25 1.75 5.25C2.23125 5.25 2.64323 5.42135 2.98594 5.76406C3.32865 6.10677 3.5 6.51875 3.5 7C3.5 7.48125 3.32865 7.89323 2.98594 8.23594C2.64323 8.57865 2.23125 8.75 1.75 8.75C1.26875 8.75 0.856771 8.57865 0.514063 8.23594ZM5.76406 8.23594C5.42135 7.89323 5.25 7.48125 5.25 7C5.25 6.51875 5.42135 6.10677 5.76406 5.76406C6.10677 5.42135 6.51875 5.25 7 5.25C7.48125 5.25 7.89323 5.42135 8.23594 5.76406C8.57865 6.10677 8.75 6.51875 8.75 7C8.75 7.48125 8.57865 7.89323 8.23594 8.23594C7.89323 8.57865 7.48125 8.75 7 8.75C6.51875 8.75 6.10677 8.57865 5.76406 8.23594ZM11.0141 8.23594C10.6714 7.89323 10.5 7.48125 10.5 7C10.5 6.51875 10.6714 6.10677 11.0141 5.76406C11.3568 5.42135 11.7687 5.25 12.25 5.25C12.7313 5.25 13.1432 5.42135 13.4859 5.76406C13.8286 6.10677 14 6.51875 14 7C14 7.48125 13.8286 7.89323 13.4859 8.23594C13.1432 8.57865 12.7313 8.75 12.25 8.75C11.7687 8.75 11.3568 8.57865 11.0141 8.23594ZM0.514063 2.98594C0.171354 2.64323 0 2.23125 0 1.75C0 1.26875 0.171354 0.856771 0.514063 0.514063C0.856771 0.171354 1.26875 0 1.75 0C2.23125 0 2.64323 0.171354 2.98594 0.514063C3.32865 0.856771 3.5 1.26875 3.5 1.75C3.5 2.23125 3.32865 2.64323 2.98594 2.98594C2.64323 3.32865 2.23125 3.5 1.75 3.5C1.26875 3.5 0.856771 3.32865 0.514063 2.98594ZM5.76406 2.98594C5.42135 2.64323 5.25 2.23125 5.25 1.75C5.25 1.26875 5.42135 0.856771 5.76406 0.514063C6.10677 0.171354 6.51875 0 7 0C7.48125 0 7.89323 0.171354 8.23594 0.514063C8.57865 0.856771 8.75 1.26875 8.75 1.75C8.75 2.23125 8.57865 2.64323 8.23594 2.98594C7.89323 3.32865 7.48125 3.5 7 3.5C6.51875 3.5 6.10677 3.32865 5.76406 2.98594ZM11.0141 2.98594C10.6714 2.64323 10.5 2.23125 10.5 1.75C10.5 1.26875 10.6714 0.856771 11.0141 0.514063C11.3568 0.171354 11.7687 0 12.25 0C12.7313 0 13.1432 0.171354 13.4859 0.514063C13.8286 0.856771 14 1.26875 14 1.75C14 2.23125 13.8286 2.64323 13.4859 2.98594C13.1432 3.32865 12.7313 3.5 12.25 3.5C11.7687 3.5 11.3568 3.32865 11.0141 2.98594Z"/></svg>
+  ),
+  add_doc: ({size=14, color="#4b4b4b"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none"><path fill={color} d="M10.15 10.85V12.25C10.15 12.3433 10.185 12.425 10.255 12.495C10.325 12.565 10.4067 12.6 10.5 12.6C10.5933 12.6 10.675 12.565 10.745 12.495C10.815 12.425 10.85 12.3433 10.85 12.25V10.85H12.25C12.3433 10.85 12.425 10.815 12.495 10.745C12.565 10.675 12.6 10.5933 12.6 10.5C12.6 10.4067 12.565 10.325 12.495 10.255C12.425 10.185 12.3433 10.15 12.25 10.15H10.85V8.75C10.85 8.65667 10.815 8.575 10.745 8.505C10.675 8.435 10.5933 8.4 10.5 8.4C10.4067 8.4 10.325 8.435 10.255 8.505C10.185 8.575 10.15 8.65667 10.15 8.75V10.15H8.75C8.65667 10.15 8.575 10.185 8.505 10.255C8.435 10.325 8.4 10.4067 8.4 10.5C8.4 10.5933 8.435 10.675 8.505 10.745C8.575 10.815 8.65667 10.85 8.75 10.85H10.15ZM10.5 14C9.53167 14 8.70625 13.6588 8.02375 12.9763C7.34125 12.2938 7 11.4683 7 10.5C7 9.53167 7.34125 8.70625 8.02375 8.02375C8.70625 7.34125 9.53167 7 10.5 7C11.4683 7 12.2938 7.34125 12.9763 8.02375C13.6588 8.70625 14 9.53167 14 10.5C14 11.4683 13.6588 12.2938 12.9763 12.9763C12.2938 13.6588 11.4683 14 10.5 14ZM3.5 4.2H9.1C9.29833 4.2 9.46458 4.13292 9.59875 3.99875C9.73292 3.86458 9.8 3.69833 9.8 3.5C9.8 3.30167 9.73292 3.13542 9.59875 3.00125C9.46458 2.86708 9.29833 2.8 9.1 2.8H3.5C3.30167 2.8 3.13542 2.86708 3.00125 3.00125C2.86708 3.13542 2.8 3.30167 2.8 3.5C2.8 3.69833 2.86708 3.86458 3.00125 3.99875C3.13542 4.13292 3.30167 4.2 3.5 4.2ZM1.4 12.6C1.015 12.6 0.685417 12.4629 0.41125 12.1888C0.137083 11.9146 0 11.585 0 11.2V1.4C0 1.015 0.137083 0.685417 0.41125 0.41125C0.685417 0.137083 1.015 0 1.4 0H11.2C11.585 0 11.9146 0.137083 12.1888 0.41125C12.4629 0.685417 12.6 1.015 12.6 1.4V5.215C12.6 5.425 12.5125 5.58833 12.3375 5.705C12.1625 5.82167 11.9758 5.845 11.7775 5.775C11.5792 5.71667 11.3721 5.67292 11.1562 5.64375C10.9404 5.61458 10.7217 5.6 10.5 5.6C10.3717 5.6 10.2521 5.60292 10.1412 5.60875C10.0304 5.61458 9.91667 5.62917 9.8 5.6525C9.695 5.62917 9.57833 5.61458 9.45 5.60875C9.32167 5.60292 9.205 5.6 9.1 5.6H3.5C3.30167 5.6 3.13542 5.66708 3.00125 5.80125C2.86708 5.93542 2.8 6.10167 2.8 6.3C2.8 6.49833 2.86708 6.66458 3.00125 6.79875C3.13542 6.93292 3.30167 7 3.5 7H7.0875C6.8775 7.19833 6.68792 7.41417 6.51875 7.6475C6.34958 7.88083 6.20083 8.13167 6.0725 8.4H3.5C3.30167 8.4 3.13542 8.46708 3.00125 8.60125C2.86708 8.73542 2.8 8.90167 2.8 9.1C2.8 9.29833 2.86708 9.46458 3.00125 9.59875C3.13542 9.73292 3.30167 9.8 3.5 9.8H5.6525C5.62917 9.91667 5.61458 10.0304 5.60875 10.1412C5.60292 10.2521 5.6 10.3717 5.6 10.5C5.6 10.7333 5.61167 10.955 5.635 11.165C5.65833 11.375 5.69917 11.5792 5.7575 11.7775C5.81583 11.9758 5.78667 12.1625 5.67 12.3375C5.55333 12.5125 5.39583 12.6 5.1975 12.6H1.4Z"/></svg>
+  ),
+  tune: ({size=14, color="#4b4b4b"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none"><path fill={color} d="M0 11.6667C0 12.0944 0.35 12.4444 0.777778 12.4444H4.66667V10.8889H0.777778C0.35 10.8889 0 11.2389 0 11.6667ZM0 2.33333C0 2.76111 0.35 3.11111 0.777778 3.11111H7.77778V1.55556H0.777778C0.35 1.55556 0 1.90556 0 2.33333ZM7.77778 13.2222V12.4444H13.2222C13.65 12.4444 14 12.0944 14 11.6667C14 11.2389 13.65 10.8889 13.2222 10.8889H7.77778V10.1111C7.77778 9.68333 7.42778 9.33333 7 9.33333C6.57222 9.33333 6.22222 9.68333 6.22222 10.1111V13.2222C6.22222 13.65 6.57222 14 7 14C7.42778 14 7.77778 13.65 7.77778 13.2222ZM3.11111 5.44444V6.22222H0.777778C0.35 6.22222 0 6.57222 0 7C0 7.42778 0.35 7.77778 0.777778 7.77778H3.11111V8.55556C3.11111 8.98333 3.46111 9.33333 3.88889 9.33333C4.31667 9.33333 4.66667 8.98333 4.66667 8.55556V5.44444C4.66667 5.01667 4.31667 4.66667 3.88889 4.66667C3.46111 4.66667 3.11111 5.01667 3.11111 5.44444ZM14 7C14 6.57222 13.65 6.22222 13.2222 6.22222H6.22222V7.77778H13.2222C13.65 7.77778 14 7.42778 14 7ZM10.1111 4.66667C10.5389 4.66667 10.8889 4.31667 10.8889 3.88889V3.11111H13.2222C13.65 3.11111 14 2.76111 14 2.33333C14 1.90556 13.65 1.55556 13.2222 1.55556H10.8889V0.777778C10.8889 0.35 10.5389 0 10.1111 0C9.68333 0 9.33333 0.35 9.33333 0.777778V3.88889C9.33333 4.31667 9.68333 4.66667 10.1111 4.66667Z"/></svg>
+  ),
+  view: ({size=14, color="#4b4b4b"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none"><path fill={color} d="M7 2.56818C4.04545 2.56818 1.52227 4.4059 0.5 6.99999C1.52227 9.59408 4.04545 11.4318 7 11.4318C9.95455 11.4318 12.4777 9.59408 13.5 6.99999C12.4777 4.4059 9.95455 2.56818 7 2.56818ZM7 9.95454C5.36909 9.95454 4.04545 8.6309 4.04545 6.99999C4.04545 5.36909 5.36909 4.04545 7 4.04545C8.63091 4.04545 9.95455 5.36909 9.95455 6.99999C9.95455 8.6309 8.63091 9.95454 7 9.95454ZM7 5.22727C6.01909 5.22727 5.22727 6.01909 5.22727 6.99999C5.22727 7.9809 6.01909 8.77272 7 8.77272C7.98091 8.77272 8.77273 7.9809 8.77273 6.99999C8.77273 6.01909 7.98091 5.22727 7 5.22727Z"/></svg>
+  ),
+  reports: ({size=14, color="#4b4b4b"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none"><path fill={color} d="M3.11111 10.8889H4.66667V5.44444H3.11111V10.8889ZM6.22222 10.8889H7.77778V3.11111H6.22222V10.8889ZM9.33333 10.8889H10.8889V7.77778H9.33333V10.8889ZM1.55556 14C1.12778 14 0.761574 13.8477 0.456944 13.5431C0.152315 13.2384 0 12.8722 0 12.4444V1.55556C0 1.12778 0.152315 0.761574 0.456944 0.456944C0.761574 0.152315 1.12778 0 1.55556 0H12.4444C12.8722 0 13.2384 0.152315 13.5431 0.456944C13.8477 0.761574 14 1.12778 14 1.55556V12.4444C14 12.8722 13.8477 13.2384 13.5431 13.5431C13.2384 13.8477 12.8722 14 12.4444 14H1.55556Z"/></svg>
+  ),
+  table_edit: ({size=14, color="#4b4b4b"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none"><path fill={color} d="M0 8.10526V4.42105H5.89474V8.10526H0ZM0 2.94737V1.47368C0 1.06842 0.144298 0.721491 0.432895 0.432895C0.721491 0.144298 1.06842 0 1.47368 0H11.7895C12.1947 0 12.5417 0.144298 12.8303 0.432895C13.1189 0.721491 13.2632 1.06842 13.2632 1.47368V2.94737H0ZM8.10526 14C7.89649 14 7.72149 13.9294 7.58026 13.7882C7.43904 13.6469 7.36842 13.4719 7.36842 13.2632V12.3421C7.36842 12.1456 7.40833 11.9583 7.48816 11.7803C7.56798 11.6022 7.67544 11.4456 7.81053 11.3105L11.4395 7.68158C11.55 7.57105 11.6728 7.49123 11.8079 7.44211C11.943 7.39298 12.0781 7.36842 12.2132 7.36842C12.3605 7.36842 12.5018 7.39605 12.6368 7.45132C12.7719 7.50658 12.8947 7.58947 13.0053 7.7L13.6868 8.38158C13.7851 8.49211 13.8618 8.61491 13.9171 8.75C13.9724 8.88509 14 9.02018 14 9.15526C14 9.29035 13.9754 9.42851 13.9263 9.56974C13.8772 9.71096 13.7974 9.83684 13.6868 9.94737L10.0579 13.5763C9.92281 13.7114 9.76623 13.8158 9.58816 13.8895C9.41009 13.9632 9.22281 14 9.02632 14H8.10526ZM12.2132 9.87368L12.8947 9.15526L12.2132 8.47368L11.5132 9.17368L12.2132 9.87368ZM1.47368 13.2632C1.06842 13.2632 0.721491 13.1189 0.432895 12.8303C0.144298 12.5417 0 12.1947 0 11.7895V9.57895H5.89474V13.2632H1.47368ZM7.36842 8.10526V4.42105H13.2632V6.11579C12.7965 5.90702 12.2991 5.84561 11.7711 5.93158C11.243 6.01754 10.7825 6.25702 10.3895 6.65L8.93421 8.10526H7.36842Z"/></svg>
+  ),
+  help: ({size=14, color="#4b4b4b"}) => (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none"><path fill={color} d="M7 0.5C3.412 0.5 0.5 3.412 0.5 7C0.5 10.588 3.412 13.5 7 13.5C10.588 13.5 13.5 10.588 13.5 7C13.5 3.412 10.588 0.5 7 0.5ZM7.65 11.55H6.35V10.25H7.65V11.55ZM8.9955 6.5125L8.4105 7.1105C7.9425 7.585 7.65 7.975 7.65 8.95H6.35V8.625C6.35 7.91 6.6425 7.26 7.1105 6.7855L7.9165 5.9665C8.157 5.7325 8.3 5.4075 8.3 5.05C8.3 4.335 7.715 3.75 7 3.75C6.285 3.75 5.7 4.335 5.7 5.05H4.4C4.4 3.6135 5.5635 2.45 7 2.45C8.4365 2.45 9.6 3.6135 9.6 5.05C9.6 5.622 9.366 6.142 8.9955 6.5125Z"/></svg>
+  ),
+  chevDown: ({size=10, color}) => (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none"><path d="M3 5.5L8 10.5L13 5.5" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+  ),
+  chevUp: ({size=10, color}) => (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none"><path d="M3 10.5L8 5.5L13 10.5" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+  ),
+  collapse: ({size=18, color}) => (
+    <svg width={size} height={size} viewBox="0 0 18 18" fill="none"><rect x="0.25" y="0.25" width="17.5" height="17.5" rx="8.75" stroke={color} strokeWidth="0.5"/><path fill={color} d="M10.8231 4.91184C10.5881 4.67685 10.2093 4.67685 9.97427 4.91184L5.98891 8.8972C5.80187 9.08424 5.80187 9.38638 5.98891 9.57342L9.97427 13.5588C10.2093 13.7938 10.5881 13.7938 10.8231 13.5588C11.0581 13.3238 11.0581 12.9449 10.8231 12.7099L7.35094 9.23291L10.8279 5.75591C11.0581 5.52571 11.0581 5.14204 10.8231 4.91184Z"/></svg>
+  ),
+  expand: ({size=18, color}) => (
+    <svg width={size} height={size} viewBox="0 0 18 18" fill="none"><rect x="0.25" y="0.25" width="17.5" height="17.5" rx="8.75" stroke={color} strokeWidth="0.5"/><g transform="scale(-1,1) translate(-18,0)"><path fill={color} d="M10.8231 4.91184C10.5881 4.67685 10.2093 4.67685 9.97427 4.91184L5.98891 8.8972C5.80187 9.08424 5.80187 9.38638 5.98891 9.57342L9.97427 13.5588C10.2093 13.7938 10.5881 13.7938 10.8231 13.5588C11.0581 13.3238 11.0581 12.9449 10.8231 12.7099L7.35094 9.23291L10.8279 5.75591C11.0581 5.52571 11.0581 5.14204 10.8231 4.91184Z"/></g></svg>
+  ),
+};
+
+function IconImg({ name, size=14, color }) {
+  const Ic = IC[name];
+  return Ic ? <Ic size={size} color={color} /> : null;
+}
+
+// ─── NAV DATA ─────────────────────────────────────────────────────────────────
+// NEW: optional `type: "section-label"` items render as a non-interactive
+// section heading above whatever follows. Everything else behaves exactly as
+// today's production SideNav (groupers with icon + right chevron + indented
+// children, destinations with icon, etc.).
+const NAV = [
+  { id: "label_workspace", type: "section-label", label: "Workspace" },
+  { id: "applications", label: "Applications", icon: "apps", children: [
+    { id: "overview",  label: "Overview"  },
+    { id: "installed", label: "Installed" },
+    { id: "scheduled", label: "Scheduled" },
+  ]},
+  { id: "enter",  label: "Enter",  icon: "add_doc" },
+  { id: "manage", label: "Manage", icon: "tune" },
+
+  { id: "label_accounting", type: "section-label", label: "Accounting" },
+  { id: "view", label: "View", icon: "view", children: [
+    { id: "trial_balance",    label: "Trial Balance"    },
+    { id: "balance_sheet",    label: "Balance Sheet"    },
+    { id: "income_statement", label: "Income Statement" },
+  ]},
+  { id: "reports", label: "Reports", icon: "reports" },
+  { id: "modify",  label: "Modify",  icon: "table_edit", children: [
+    { id: "chart_of_accounts", label: "Chart of Accounts" },
+    { id: "journal_entries",   label: "Journal Entries"   },
+  ]},
+
+  { id: "label_support", type: "section-label", label: "Support" },
+  { id: "help", label: "Help", icon: "help" },
+];
+
+// ─── IndicatorStripe ──────────────────────────────────────────────────────────
+function IndicatorStripe({ visible }) {
+  return (
+    <div style={{ width: L.stripeW, alignSelf: "stretch", display: "flex",
+      flexDirection: "column", alignItems: "flex-start",
+      justifyContent: "center", padding: "4px 0", flexShrink: 0 }}>
+      <div style={{ flex: "1 0 0", width: L.stripeW, minHeight: 1,
+        borderRadius: "0 8px 8px 0",
+        backgroundColor: visible ? T.indicator : "transparent",
+        transition: "background-color 0.15s ease" }} />
+    </div>
+  );
+}
+
+// ─── SectionLabel (NEW — the only thing this prototype adds) ──────────────────
+// Non-interactive. All caps, muted, compact. Vanishes in rail and leaves a thin
+// divider in its place so sectioning survives the 72px collapsed state.
+function SectionLabel({ label, isSidebarCollapsed }) {
+  if (isSidebarCollapsed) {
+    return (
+      <div style={{
+        height: 1, width: "100%",
+        backgroundColor: T.fill.infoSubtle,
+        marginTop: L.railDividerMarginV, marginBottom: L.railDividerMarginV,
+      }} aria-hidden="true" />
+    );
+  }
+  return (
+    <div style={{
+      display: "flex", alignItems: "center",
+      paddingTop: L.sectionPadV, paddingBottom: L.sectionPadV,
+      paddingLeft: L.sectionPadH, paddingRight: L.sectionPadH,
+      marginTop: L.sectionMarginTop, marginBottom: L.sectionMarginBot,
+      width: "100%", cursor: "default", userSelect: "none",
+    }}>
+      <span style={{
+        // Typography: semantic-type.desktop.label.dense.base.semibold
+        fontFamily: "'Red Hat Text',sans-serif",
+        fontSize: 12, fontWeight: 600, lineHeight: "18px",
+        letterSpacing: "0.1px",
+        textTransform: "uppercase",
+        color: T.text.sectionLabel,
+        flex: 1, minWidth: 0,
+        whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+      }}>{label}</span>
+    </div>
+  );
+}
+
+// ─── SideNavItem ──────────────────────────────────────────────────────────────
+// UNCHANGED behavior from production SideNav. Only typography change: label is
+// 14pt / 500 / 20 line-height (down from 16pt / 500 / 22).
+function SideNavItem({ item, isActive, isTrail, isExpanded, isSidebarCollapsed,
+  isChild, onClick, onToggle, popoverOpen, anchorRect, onPopoverEnter, onPopoverLeave, activeId }) {
+
+  const [hovered, setHovered] = useState(false);
+  const hasChildren = !!(item.children && item.children.length);
+  const itemRef = useRef(null);
+
+  const isExpandedGrouper = hasChildren && isExpanded && !isSidebarCollapsed;
+  const isCollapsedActiveGrouper = isTrail && (!isExpanded || isSidebarCollapsed);
+  const isCollapsedGrouper = isSidebarCollapsed && hasChildren;
+  const showStripe = isCollapsedActiveGrouper || (isActive && !isCollapsedGrouper);
+
+  const fillBg =
+    (isActive || isCollapsedActiveGrouper) ? T.fill.navActive
+    : isExpandedGrouper                    ? T.fill.navTrail
+    : hovered                              ? T.fill.navHover
+    :                                        T.fill.navBase;
+  const textColor =
+    (isActive || isCollapsedActiveGrouper || isExpandedGrouper) ? T.text.navActive
+    : hovered ? T.text.navHover
+    :           T.text.navBase;
+  const iconColor =
+    (isActive || isCollapsedActiveGrouper) ? T.icon.navActive
+    : hovered                              ? T.icon.navHover
+    :                                        T.icon.navBase;
+
+  const handleClick = () => {
+    if (hasChildren && !isSidebarCollapsed) onToggle(item.id);
+    else onClick(item.id);
+  };
+
+  const ChevComp = isExpanded ? IC.chevUp : IC.chevDown;
+
+  return (
+    <div ref={itemRef} style={{ position: "relative" }}>
+      <div role="button" tabIndex={0} aria-current={isActive ? "page" : undefined}
+        aria-expanded={hasChildren && !isSidebarCollapsed ? isExpanded : undefined}
+        onClick={handleClick} onKeyDown={e => (e.key === "Enter" || e.key === " ") && handleClick()}
+        onMouseEnter={() => {
+          setHovered(true);
+          if (isSidebarCollapsed && onPopoverEnter) {
+            const rect = itemRef.current ? itemRef.current.getBoundingClientRect() : null;
+            onPopoverEnter(item.id, rect);
+          }
+        }}
+        onMouseLeave={() => {
+          setHovered(false);
+          if (isSidebarCollapsed && onPopoverLeave) onPopoverLeave();
+        }}
+        style={{ display: "flex", alignItems: "center", minHeight: L.itemH, width: "100%",
+          borderRadius: T.radius, backgroundColor: fillBg, cursor: "pointer",
+          overflow: "hidden", transition: "background-color 0.15s ease", userSelect: "none" }}>
+        <IndicatorStripe visible={showStripe} />
+        {!isChild && item.icon && (
+          <div style={{ width: L.iconWrap, height: L.iconWrap, display: "flex",
+            alignItems: "center", justifyContent: "center", flexShrink: 0,
+            marginLeft: L.rowPadH }}>
+            <IconImg name={item.icon} size={L.iconInner} color={iconColor} />
+          </div>
+        )}
+        <div style={{ flex: 1, minWidth: 0,
+          paddingLeft:  isChild ? 32 : L.textPad,
+          paddingRight: (!isChild && hasChildren) ? 0 : L.rowPadH,
+          maxWidth: isSidebarCollapsed ? 0 : 200,
+          opacity:  isSidebarCollapsed ? 0 : 1,
+          overflow: "hidden",
+          pointerEvents: isSidebarCollapsed ? "none" : "auto",
+          transition: "max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease" }}>
+          <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500,
+            // v3 change: 14pt / 20 line-height (down from 16 / 22)
+            fontSize: 14, lineHeight: "20px", color: textColor, margin: 0,
+            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+            transition: "color 0.15s ease" }}>
+            {item.label}
+          </p>
+        </div>
+        {!isChild && hasChildren && (
+          <div style={{ width: 40, height: L.iconWrap, display: "flex",
+            alignItems: "center", justifyContent: "center", flexShrink: 0,
+            maxWidth: isSidebarCollapsed ? 0 : 40,
+            opacity:  isSidebarCollapsed ? 0 : 1,
+            overflow: "hidden",
+            transition: "max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease" }}>
+            <ChevComp size={10} color={iconColor} />
+          </div>
+        )}
+      </div>
+
+      {isSidebarCollapsed && popoverOpen && anchorRect && (
+        <div style={{ position: "fixed",
+          left: anchorRect.right, top: anchorRect.top,
+          width: 8, height: anchorRect.height, zIndex: 999 }}
+          onMouseEnter={() => {
+            const rect = itemRef.current ? itemRef.current.getBoundingClientRect() : anchorRect;
+            onPopoverEnter && onPopoverEnter(item.id, rect);
+          }} />
+      )}
+
+      {isSidebarCollapsed && hasChildren && popoverOpen && anchorRect && (
+        <CollapsedPopover item={item} onClick={onClick} anchorRect={anchorRect}
+          activeId={activeId}
+          onMouseEnter={() => {
+            const rect = itemRef.current ? itemRef.current.getBoundingClientRect() : anchorRect;
+            onPopoverEnter && onPopoverEnter(item.id, rect);
+          }}
+          onMouseLeave={onPopoverLeave} />
+      )}
+      {isSidebarCollapsed && !hasChildren && popoverOpen && anchorRect && (
+        <CollapsedTooltip label={item.label} anchorRect={anchorRect}
+          onMouseEnter={() => {
+            const rect = itemRef.current ? itemRef.current.getBoundingClientRect() : anchorRect;
+            onPopoverEnter && onPopoverEnter(item.id, rect);
+          }}
+          onMouseLeave={onPopoverLeave} />
+      )}
+    </div>
+  );
+}
+
+// ─── CollapsedTooltip (unchanged) ─────────────────────────────────────────────
+function CollapsedTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }) {
+  if (!anchorRect) return null;
+  return ReactDOM.createPortal(
+    <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
+      style={{ position: "fixed",
+        left: anchorRect.right + 8,
+        top:  anchorRect.top + anchorRect.height / 2,
+        zIndex: 1000, backgroundColor: "#fff",
+        border: "0.5px solid #f6f6f6", borderRadius: 8,
+        boxShadow: "2px 2px 8px 0px rgba(0,0,0,0.03)",
+        padding: "6px 8px", whiteSpace: "nowrap", pointerEvents: "auto",
+        animation: "popoverInCentered 150ms cubic-bezier(0,0,0.2,1) forwards" }}>
+      <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
+        fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px",
+        color: "#252525" }}>
+        {label}
+      </span>
+    </div>,
+    document.body
+  );
+}
+
+// ─── CollapsedPopover (unchanged) ─────────────────────────────────────────────
+function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMouseLeave, activeId }) {
+  if (!anchorRect) return null;
+  return ReactDOM.createPortal(
+    <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
+      style={{ position: "fixed",
+        left: anchorRect.right + 8, top: anchorRect.top,
+        zIndex: 1000, backgroundColor: "#fff",
+        border: "0.5px solid #ededed", borderRadius: 8,
+        boxShadow: "2px 2px 8px 4px rgba(0,0,0,0.03)",
+        padding: 6, minWidth: 200, pointerEvents: "auto",
+        animation: "popoverIn 150ms cubic-bezier(0,0,0.2,1) forwards" }}>
+      <div style={{ display: "flex", alignItems: "center", minHeight: 40,
+        paddingRight: 12, borderBottom: "0.5px solid #ededed" }}>
+        <div style={{ width: 4, alignSelf: "stretch", borderRadius: "0 8px 8px 0",
+          backgroundColor: "transparent", flexShrink: 0 }} />
+        <span style={{ paddingLeft: 8, fontFamily: "'Red Hat Text',sans-serif",
+          fontWeight: 400, fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px",
+          color: "#6b6b6b", whiteSpace: "nowrap" }}>
+          {item.label}
+        </span>
+      </div>
+      {item.children.map(child => <PopoverRow key={child.id} item={child} onClick={onClick} activeId={activeId} />)}
+    </div>,
+    document.body
+  );
+}
+
+function PopoverRow({ item, onClick, activeId }) {
+  const [h, setH] = useState(false);
+  const isActive = item.id === activeId;
+  const bg    = isActive ? T.fill.navActive : h ? T.fill.navHover : "transparent";
+  const color = isActive ? T.text.navActive : h ? T.text.navHover : T.text.navBase;
+  return (
+    <div onClick={() => onClick(item.id)}
+      onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      style={{ display: "flex", alignItems: "center",
+        minHeight: 40, borderRadius: 8, overflow: "hidden",
+        backgroundColor: bg, cursor: "pointer",
+        transition: "background-color 0.15s ease" }}>
+      <div style={{ width: 4, alignSelf: "stretch", borderRadius: "0 4px 4px 0",
+        backgroundColor: isActive ? T.indicator : "transparent",
+        flexShrink: 0, transition: "background-color 0.15s ease" }} />
+      <span style={{ padding: "0 8px", fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
+        fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px",
+        color, transition: "color 0.15s ease", flex: 1 }}>
+        {item.label}
+      </span>
+    </div>
+  );
+}
+
+// ─── CollapseButton ───────────────────────────────────────────────────────────
+// v3 change: Collapse label dropped to 14pt to match nav items.
+function CollapseButton({ isSidebarCollapsed, onToggle }) {
+  const [h, setH] = useState(false);
+  const colIconColor = h ? T.icon.navHover : T.icon.navBase;
+  return (
+    <div style={{ width: "100%" }}>
+      <div style={{ height: 1, backgroundColor: T.fill.infoSubtle, marginBottom: L.collapseGap }} />
+      <div onClick={onToggle} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+        aria-label={isSidebarCollapsed ? "Expand navigation" : "Collapse navigation"}
+        role="button" tabIndex={0}
+        onKeyDown={e => (e.key === "Enter" || e.key === " ") && onToggle()}
+        style={{ display: "flex", alignItems: "center", minHeight: L.itemH, width: "100%",
+          borderRadius: T.radius, backgroundColor: h ? T.fill.navHover : T.fill.navBase,
+          cursor: "pointer", transition: "background-color 0.15s ease", overflow: "hidden" }}>
+        <div style={{ display: "flex", flex: 1, alignItems: "center",
+          paddingLeft: L.colPadL, paddingRight: L.colPadR, height: "100%" }}>
+          <div style={{ display: "flex", flex: 1, alignItems: "center", minHeight: 24 }}>
+            <div style={{ width: L.iconWrap, height: L.iconWrap, display: "flex",
+              alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <IconImg name={isSidebarCollapsed ? "expand" : "collapse"} size={18} color={colIconColor} />
+            </div>
+            <span style={{ paddingLeft: L.textPad, paddingRight: L.textPad,
+              fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500,
+              fontSize: 14, lineHeight: "20px",
+              color: h ? T.text.navHover : T.text.navBase,
+              transition: "color 0.15s ease, max-width 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.18s ease",
+              maxWidth: isSidebarCollapsed ? 0 : 120,
+              opacity:  isSidebarCollapsed ? 0 : 1,
+              overflow: "hidden", whiteSpace: "nowrap",
+              pointerEvents: isSidebarCollapsed ? "none" : "auto" }}>Collapse</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── SideNav container ────────────────────────────────────────────────────────
+function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange }) {
+  const [expanded, setExpanded] = useState({ view: true });
+  const [popoverId, setPopoverId] = useState(null);
+  const [popoverRect, setPopoverRect] = useState(null);
+  const timerRef = useRef(null);
+
+  // Only real items (not section-labels) can be trail parents.
+  const realItems = NAV.filter(i => i.type !== "section-label");
+  const trailParentId = (() => {
+    const p = realItems.find(item => item.children && item.children.some(c => c.id === activeId));
+    return p ? p.id : null;
+  })();
+
+  const toggleExpand = id => setExpanded(p => ({ ...p, [id]: !p[id] }));
+  const onPopoverEnter = (id, rect) => {
+    clearTimeout(timerRef.current);
+    setPopoverId(id);
+    if (rect) setPopoverRect(rect);
+  };
+  const onPopoverLeave = () => {
+    timerRef.current = setTimeout(() => { setPopoverId(null); setPopoverRect(null); }, 300);
+  };
+
+  return (
+    <nav style={{
+      width: sidebarCollapsed ? L.navWcol : L.navW,
+      height: "100%",
+      backgroundColor: T.surface.navLight,
+      display: "flex", flexDirection: "column",
+      padding: `${L.navPadV}px ${L.navPadH}px`,
+      boxSizing: "border-box", flexShrink: 0,
+      transition: "width 0.36s cubic-bezier(0.4,0,0.2,1)",
+      borderRight: `0.5px solid ${T.fill.infoSubtle}`,
+      overflowY: "auto",
+    }}>
+      <div style={{ display: "flex", flexDirection: "column", flex: 1, gap: L.menuGap }}>
+        {NAV.map(item => {
+          if (item.type === "section-label") {
+            return <SectionLabel key={item.id} label={item.label} isSidebarCollapsed={sidebarCollapsed} />;
+          }
+          const hasChildren = !!(item.children && item.children.length);
+          const isActive   = item.id === activeId;
+          const isTrail    = item.id === trailParentId;
+          const isExpanded = !!expanded[item.id];
+          return (
+            <div key={item.id}>
+              <SideNavItem item={item} isActive={isActive} isTrail={isTrail}
+                isExpanded={isExpanded} isSidebarCollapsed={sidebarCollapsed}
+                isChild={false} onClick={onNavigate} onToggle={toggleExpand}
+                popoverOpen={popoverId === item.id}
+                anchorRect={popoverId === item.id ? popoverRect : null}
+                onPopoverEnter={onPopoverEnter} onPopoverLeave={onPopoverLeave}
+                activeId={activeId} />
+              {hasChildren && isExpanded && !sidebarCollapsed && (
+                <div style={{ display: "flex", flexDirection: "column", gap: L.menuGap, marginTop: 2 }}>
+                  {item.children.map(child => (
+                    <SideNavItem key={child.id} item={child}
+                      isActive={child.id === activeId} isTrail={false}
+                      isExpanded={false} isSidebarCollapsed={false}
+                      isChild={true} onClick={onNavigate} onToggle={() => {}} />
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
+
+        <div style={{ flex: 1 }} />
+        <div style={{ paddingTop: L.collapseGap }}>
+          <CollapseButton isSidebarCollapsed={sidebarCollapsed}
+            onToggle={() => onCollapseChange(!sidebarCollapsed)} />
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+// ─── App ──────────────────────────────────────────────────────────────────────
+function App() {
+  const [activeId, setActiveId] = useState("trial_balance");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  const allItems = (() => {
+    const out = [];
+    const walk = arr => arr.forEach(i => {
+      if (i.type !== "section-label") out.push(i);
+      if (i.children) walk(i.children);
+    });
+    walk(NAV);
+    return out;
+  })();
+  const activeItem = allItems.find(i => i.id === activeId);
+  const activeLabel = activeItem ? activeItem.label : "Nothing selected";
+
+  return (
+    <div style={{ position: "fixed", inset: 0, paddingTop: 33, display: "flex" }}>
+      <SideNav
+        activeId={activeId}
+        onNavigate={setActiveId}
+        sidebarCollapsed={sidebarCollapsed}
+        onCollapseChange={setSidebarCollapsed} />
+
+      <main style={{ flex: 1, overflow: "auto", padding: "40px 56px",
+        fontFamily: "'Red Hat Text',sans-serif", color: "#363636" }}>
+        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+          <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em",
+            textTransform: "uppercase", color: "#6b6b6b", marginBottom: 8 }}>
+            Active destination
+          </p>
+          <h1 style={{ fontSize: 32, fontWeight: 600, lineHeight: "40px",
+            color: "#051428", margin: "0 0 16px" }}>
+            {activeLabel}
+          </h1>
+          <p style={{ fontSize: 14, lineHeight: "22px", color: "#4b4b4b", marginBottom: 32 }}>
+            v3 is additive: today's SideNav is preserved unchanged. One new element
+            type — <strong>SectionLabel</strong> — lets modules opt in to lightweight
+            section headings (WORKSPACE / ACCOUNTING / SUPPORT here). Everything else
+            — groupers with icons, chevrons, indented children, trail states, rail
+            flyouts — is exactly as spec'd today.
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+            <div style={{ padding: "16px 20px", border: "1px solid #edf0f9",
+              borderRadius: 12, background: "#fff" }}>
+              <p style={{ fontSize: 12, fontWeight: 600, color: "#3555a0",
+                textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>
+                Try this
+              </p>
+              <ul style={{ listStyle: "disc", paddingLeft: 18, fontSize: 13,
+                lineHeight: "20px", color: "#4b4b4b" }}>
+                <li>Click <strong>Applications</strong> or <strong>Modify</strong> to expand their children (unchanged grouper behavior)</li>
+                <li>Click <strong>Trial Balance</strong>, <strong>Enter</strong>, or <strong>Help</strong> to navigate</li>
+                <li>Collapse the sidebar (bottom-left arrow) — section labels become thin dividers</li>
+                <li>In the rail, hover a grouper to see the flyout (existing behavior)</li>
+              </ul>
+            </div>
+            <div style={{ padding: "16px 20px", border: "1px solid #edf0f9",
+              borderRadius: 12, background: "#fff" }}>
+              <p style={{ fontSize: 12, fontWeight: 600, color: "#3555a0",
+                textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>
+                What v3 adds vs. current
+              </p>
+              <ul style={{ listStyle: "disc", paddingLeft: 18, fontSize: 13,
+                lineHeight: "20px", color: "#4b4b4b" }}>
+                <li>New <strong>SectionLabel</strong> element: all-caps 12pt, muted, non-interactive</li>
+                <li>SectionLabel → thin divider in rail (preserves sectioning)</li>
+                <li>Nav item text dropped 16pt → <strong>14pt</strong> (denser, more scannable)</li>
+                <li>Everything else unchanged — no new grouper behaviors, no restructured tree</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style={{ padding: "12px 16px", border: "1px dashed #f5d98a",
+            borderRadius: 8, background: "#fff7e6", fontSize: 12, lineHeight: "18px",
+            color: "#7a5c10" }}>
+            <strong style={{ fontWeight: 600 }}>Prototype note:</strong> all tokens
+            resolve to real entries in
+            <code style={{ background: "rgba(122,92,16,0.08)", padding: "1px 4px",
+              borderRadius: 3, margin: "0 4px", fontFamily: "monospace" }}>
+              tokens/pathway-design-tokens.json
+            </code>
+            at commit <code style={{ fontFamily: "monospace" }}>98ee386</code>.
+            See
+            <code style={{ fontFamily: "monospace", margin: "0 4px" }}>
+              sidenav-2026-04-21-grouper-variants-token-recommendations.md
+            </code>
+            for recommended system additions.
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+<!--
+================================================================================
+TOKEN COVERAGE REPORT — v3 (as approved on 2026-04-21)
+================================================================================
+
+Grounding: tokens/pathway-design-tokens.json @ 98ee386
+
+── v3 scope summary ──────────────────────────────────────────────────────────
+
+v3 is additive. Today's SideNav is preserved unchanged except for one
+typography adjustment (nav item label 16pt → 14pt). A new element type,
+SectionLabel, is introduced as an opt-in. No changes to grouper, destination,
+trail, rail-flyout, or indicator-stripe behavior.
+
+── FULLY COVERED ─────────────────────────────────────────────────────────────
+
+All existing SideNav tokens (unchanged):
+  fill.contextual.navitem.{base, hover, active, trail}
+  fill.static.info.subtle
+  text.contextual.navitem.{base, hover, active}
+  icon.contextual.navitem.{base, hover, active}
+  surface.nav.light
+  primitive-color.brand.300 (indicator stripe)
+  Component radius: 8
+
+NEW — SectionLabel:
+  text.static.secondary.base           → #4b4b4b   (label idle color)
+  fill.static.info.subtle              → #edf0f9   (rail divider — reused from
+                                                   component border)
+  primitive-type.family.brand          → Red Hat Text
+  primitive-type.size.12               → 12
+  primitive-type.weight.600            → 600
+  primitive-type.line-height.12pt.single → 18
+  primitive-type.letter-spacing.wide   → 0.1
+  (composed reference: semantic-type.desktop.label.dense.base.semibold)
+  primitive-unit.unit.8                → 8   (label vertical padding)
+  primitive-unit.unit.12               → 12  (label horizontal padding;
+                                              rail divider vertical margin)
+  primitive-unit.unit.16               → 16  (section top margin)
+  primitive-unit.unit.4                → 4   (section bottom margin)
+
+CHANGED — Nav item typography (and CollapseButton label):
+  Was:  primitive-type.size.16 / primitive-type.weight.500 /
+        primitive-type.line-height.16pt.single = 22 / letter-spacing 0.02
+  Now:  primitive-type.size.14 / primitive-type.weight.500 /
+        primitive-type.line-height.14pt.single = 20 / letter-spacing 0.02
+  Composed reference: close to semantic-type.desktop.label.button.s
+  (14 / 500 / 20 / wide) — though we use letterSpacing 0.02 to match the
+  existing SideNav's hand-tuned tracking rather than the wide token.
+
+── MISSING TOKENS ────────────────────────────────────────────────────────────
+
+None.
+
+── SUBOPTIMAL TOKENS ─────────────────────────────────────────────────────────
+
+Same four as v1, plus one new observation. See
+sidenav-2026-04-21-grouper-variants-token-recommendations.md.
+
+  1. text.static.secondary.base for section-label color
+     (would benefit from text.contextual.section-label.*)
+  2. semantic-type.desktop.label.dense.base.semibold for section-label type
+     (would benefit from semantic-type.desktop.section-label.*)
+  3. primitive-type.letter-spacing.wide at 12pt all-caps
+     (would benefit from a mid-tier letter-spacing primitive)
+  4. SectionLabel row height has no atomic token; composed from spacing.
+
+  NEW (v3):
+  5. Nav item label letter-spacing is 0.02px — does not match any existing
+     letter-spacing primitive (compact -0.01, standard 0, wide 0.1). This is
+     pre-existing in production sidenav.html; flagged here for completeness.
+     Suggest either retuning existing nav item tracking to `compact` or
+     `standard`, or adding a `letter-spacing.tight` primitive at 0.02.
+
+── DESIGN-SYSTEM RECOMMENDATIONS ─────────────────────────────────────────────
+
+Same four from v1. v3 adds one minor observation (#5 above) but no new
+recommendations change the core list.
+
+================================================================================
+-->
+</body>
+</html>

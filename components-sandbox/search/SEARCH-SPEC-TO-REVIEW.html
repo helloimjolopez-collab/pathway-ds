@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEARCH-SPEC-TO-REVIEW</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
+  .bar { background: #1b2a4a; color: #fff; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+  .bar h1 { font-size: 14px; font-weight: 600; margin: 0; letter-spacing: 0.03em; }
+  .bar .path { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .copy-btn { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 8px 16px; font-size: 12px; font-weight: 500; cursor: pointer; letter-spacing: 0.02em; }
+  .copy-btn:active { background: rgba(255,255,255,0.22); }
+  pre { margin: 0; padding: 32px 24px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12.5px; line-height: 1.7; white-space: pre-wrap; word-break: break-word; color: #1a1a1a; background: #fff; min-height: 100vh; tab-size: 2; }
+</style>
+</head><body>
+<div class="bar">
+  <div><div class="h1">SEARCH-SPEC-TO-REVIEW.md</div><div class="path">components/search/ · feat/component-search</div></div>
+  <button class="copy-btn" onclick="copyAll()">Copy all</button>
+</div>
+<pre id="content"></pre>
+<script>
+const raw = document.getElementById('content');
+raw.textContent = "# Search 
