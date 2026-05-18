@@ -267,16 +267,19 @@ function ChurchPlaceholderIcon() {
 
 /**
  * Org avatar in the trigger button.
- * — Logo present: renders org logo as object-fit: cover fill.
+ * — Logo present: renders org logo with `object-fit: contain` so the entire
+ *   logo is visible, scaled proportionally to fit the frame (no crop).
  *   "Logo must always scale to fill frame proportionally." (Figma annotation)
- * — No logo: renders church placeholder SVG on fill.action.secondary.base background.
+ * — No logo: church placeholder SVG on fill.action.secondary.base background.
  *   (Figma node 40007243:73405 — NOT initials.)
+ *
+ * Avatar inner padding is 2px (xxxtight) per Figma — NOT 4px.
  */
 function TriggerAvatar({ logoUrl, size, borderColor }) {
   return (
     <div style={{
       width: size, height: size,
-      padding: T.pXxtight,
+      padding: T.pXxxtight, // 2px — Figma Container.Avatar uses xxxtight
       display: "flex", alignItems: "center", justifyContent: "center",
       flexShrink: 0,
     }}>
@@ -287,14 +290,19 @@ function TriggerAvatar({ logoUrl, size, borderColor }) {
         borderRadius: T.radiusSmall,
         overflow: "hidden",
         position: "relative",
-        background: logoUrl ? "transparent" : T.fillAvatarPlaceholder,
+        background: logoUrl ? T.fillAvatarPlaceholder : T.fillAvatarPlaceholder,
       }}>
         {logoUrl ? (
           <img
             src={logoUrl}
             alt=""
             aria-hidden="true"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            style={{
+              position: "absolute", inset: 0,
+              width: "100%", height: "100%",
+              objectFit: "contain",  // scale proportionally to FIT (no crop)
+              display: "block",
+            }}
           />
         ) : (
           <ChurchPlaceholderIcon />
@@ -616,6 +624,34 @@ export function OrgSwitcher({
   const AVATAR_SZ  = isMobile ? 20 : 24;
   const MAX_W      = isMobile ? 108 : 316; // Mobile Container.Main max-width = 108px (Figma node 40006820:14758)
 
+  // ── Typography styles (Figma: Label/Button/S desktop, Label/Button/XS mobile)
+  // Using raw values because tokens.css primitive values are unitless and
+  // cause inline lineHeight/letterSpacing to render as multipliers in Storybook.
+  // Token names kept as comments for traceability.
+  const TYPE_S = {
+    // --semantic-type-desktop-label-button-s-*
+    fontFamily: "'Red Hat Text', sans-serif",
+    fontWeight: 500,
+    fontSize: 14,
+    lineHeight: "20px",
+    letterSpacing: "0.3px",
+    // Render text closer to how Figma renders on macOS
+    WebkitFontSmoothing: "antialiased",
+    MozOsxFontSmoothing: "grayscale",
+    textAlign: "left",
+  };
+  const TYPE_XS = {
+    // --semantic-type-desktop-label-button-xs-*
+    fontFamily: "'Red Hat Text', sans-serif",
+    fontWeight: 500,
+    fontSize: 12,
+    lineHeight: "18px",
+    letterSpacing: "0.3px",
+    WebkitFontSmoothing: "antialiased",
+    MozOsxFontSmoothing: "grayscale",
+    textAlign: "left",
+  };
+
   return (
     <div
       className={className}
@@ -623,14 +659,20 @@ export function OrgSwitcher({
         minHeight: OUTER_MIN,
         minWidth:  OUTER_MIN,
         maxWidth:  MAX_W,
-        padding:   T.pXxtight,
+        // Figma mobile outer wrapper: px-2px py-4px asymmetric. Desktop: 4px all.
+        ...(isMobile
+          ? { paddingLeft: T.pXxxtight, paddingRight: T.pXxxtight, paddingTop: T.pXxtight, paddingBottom: T.pXxtight }
+          : { padding: T.pXxtight }),
         display:   "flex",
         flexDirection: "column",
         alignItems: "flex-start",
+        justifyContent: "center",
         position:  "relative",
       }}
     >
-      {/* ── Inner button ── */}
+      {/* ── Container.Main (inner button) ──
+          Mobile: max-w 108, p:4px (uniform), gap between RowStart and RowEnd
+          Desktop: max-w 300, p:4px, gap-2px between RowStart and RowEnd */}
       <button
         type="button"
         disabled={disabled}
@@ -648,36 +690,35 @@ export function OrgSwitcher({
           height: BTN_H,
           maxHeight: BTN_H,
           minHeight: BTN_H,
+          maxWidth: isMobile ? 108 : 300,
           position: "relative",
           borderRadius: T.radiusMedium,
           border: `${T.borderWidth} solid ${stroke}`,
           background: disabled ? T.fillBase : fill,
           opacity: disabled ? 0.5 : 1,
           cursor: disabled ? "not-allowed" : "pointer",
-          padding: 0,
+          padding: T.pXxtight,             // 4px all sides (Figma Container.Main)
+          gap: T.pXxxtight,                // 2px between RowStart and RowEnd
+          boxSizing: "border-box",
           outline: "none",
           transition: "background 120ms ease, border-color 120ms ease",
-          ...(isMobile ? {
-            paddingLeft: T.pXxtight, paddingRight: T.pXxxtight,
-            paddingTop: T.pXxtight, paddingBottom: T.pXxtight,
-          } : {
-            gap: T.gapXxtight, padding: T.pXxtight,
-          }),
         }}
         onFocus={e  => e.currentTarget.style.outline = `2px solid ${T.iconHover}`}
         onBlur={e   => e.currentTarget.style.outline = "none"}
       >
-        {/* ── Container.RowStart ── */}
+        {/* ── Container.RowStart ──
+            Mobile: gap:2px, h:20px, w:80px (fixed) — Avatar + Label
+            Desktop: gap:4px, h:24px, content-sized — Avatar + OrgLabel */}
         <div style={{
           display: "flex",
           alignItems: "center",
           flexShrink: 0,
           ...(isMobile ? {
-            justifyContent: "center",
-            width:  AVATAR_SZ,
-            height: AVATAR_SZ,
+            gap: T.pXxxtight,    // 2px xxxtight
+            height: 20,
+            width: 80,           // Figma fixed width
           } : {
-            gap: T.gapXxtight,
+            gap: T.gapXxtight,   // 4px xxtight
             height: 24,
           }),
         }}>
@@ -688,50 +729,38 @@ export function OrgSwitcher({
             borderColor={stroke}
           />
 
-          {/* Desktop label — two separate containers per Figma anatomy
-              Container.OrgLabel (max 248px) →
-                Container.OrgName (max 170px, fixed 170px) + Container.CityName.Catholic (max 72px)
-              Annotation: CityName is Catholic orgs only — NOT a suborg name. */}
+          {/* ── Desktop label — Container.OrgLabel
+              max-w-248. Two child containers:
+                Container.OrgName (max-w-170, content-sized — truncates at 170)
+                Container.CityName.Catholic (max-w-72, Catholic only — NOT a suborg) */}
           {!isMobile && (
             <div style={{
               display: "flex", alignItems: "center", height: "100%",
-              maxWidth: 248, flexShrink: 0,
+              maxWidth: 248, flexShrink: 0, minWidth: 0,
             }}>
-              {/* Container.OrgName — max 170px, truncates independently */}
               <div style={{
                 display: "flex", alignItems: "center", height: "100%",
-                width: 170, maxWidth: 170, flexShrink: 0,
+                maxWidth: 170, flexShrink: 1, minWidth: 0,
               }}>
                 <p style={{
-                  flex: "1 0 0",
-                  fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
-                  fontWeight: "var(--semantic-type-desktop-label-button-s-fontweight, 500)",
-                  fontSize: "var(--semantic-type-desktop-label-button-s-fontsize, 14px)",
-                  lineHeight: "var(--semantic-type-desktop-label-button-s-lineheight, 20px)",
-                  letterSpacing: "var(--semantic-type-desktop-label-button-s-letterspacing, 0.3px)",
+                  ...TYPE_S,
                   color: text,
                   whiteSpace: "nowrap",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
-                  minWidth: 1,
                   margin: 0,
+                  maxWidth: 170,
                 }}>
                   {orgName}
                 </p>
               </div>
-              {/* Container.CityName.Catholic — max 72px, Catholic orgs only.
-                  NOT a suborg name. Shows diocese/city name with leading " | ". */}
               {cityName && (
                 <div style={{
                   display: "flex", alignItems: "center", height: "100%",
-                  maxWidth: 72, flexShrink: 0,
+                  maxWidth: 72, flexShrink: 0, minWidth: 0,
                 }}>
                   <p style={{
-                    fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
-                    fontWeight: "var(--semantic-type-desktop-label-button-s-fontweight, 500)",
-                    fontSize: "var(--semantic-type-desktop-label-button-s-fontsize, 14px)",
-                    lineHeight: "var(--semantic-type-desktop-label-button-s-lineheight, 20px)",
-                    letterSpacing: "var(--semantic-type-desktop-label-button-s-letterspacing, 0.3px)",
+                    ...TYPE_S,
                     color: text,
                     whiteSpace: "nowrap",
                     overflow: "hidden",
@@ -745,31 +774,28 @@ export function OrgSwitcher({
               )}
             </div>
           )}
-        </div>
 
-        {/* Mobile label */}
-        {isMobile && (
-          <div style={{
-            display: "flex", alignItems: "center", height: "100%",
-            paddingLeft: T.pXxxtight, paddingRight: T.pXxxtight,
-            flexShrink: 0,
-          }}>
-            <p style={{
-              fontFamily: "var(--semantic-type-desktop-label-button-xs-fontfamily, 'Red Hat Text', sans-serif)",
-              fontWeight: "var(--semantic-type-desktop-label-button-xs-fontweight, 500)",
-              fontSize: "var(--semantic-type-desktop-label-button-xs-fontsize, 12px)",
-              lineHeight: "var(--semantic-type-desktop-label-button-xs-lineheight, 18px)",
-              letterSpacing: "var(--semantic-type-desktop-label-button-xs-letterspacing, 0.3px)",
-              color: text,
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              margin: 0,
+          {/* ── Mobile label — Container.Label
+              flex 1 0 0, max-w-60, min-w 1px, h-full, INSIDE RowStart */}
+          {isMobile && (
+            <div style={{
+              display: "flex", alignItems: "center", height: "100%",
+              flex: "1 0 0", maxWidth: 60, minWidth: 1,
             }}>
-              {mobileText}
-            </p>
-          </div>
-        )}
+              <p style={{
+                ...TYPE_XS,
+                color: text,
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                margin: 0,
+                flex: "1 0 0",
+              }}>
+                {mobileText}
+              </p>
+            </div>
+          )}
+        </div>
 
         {/* ── Container.RowEnd (chevron) ── */}
         <div style={{

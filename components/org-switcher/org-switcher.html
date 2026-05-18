@@ -12,7 +12,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { font-family: "Red Hat Text", sans-serif; background: #f0f2f5; min-height: 100vh; }
+    html, body {
+      font-family: "Red Hat Text", sans-serif;
+      background: #f0f2f5;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
 
     .material-symbols-rounded {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -222,11 +229,27 @@ const DEMO_ORGS = [
 // ── Sub-components ───────────────────────────────────────────────────────────
 
 // Avatar trigger — logo or church placeholder per Figma.
-// Background token when no logo: fill.action.secondary.base = rgba(255,255,255,0.08)
+// Container.Avatar: 2px (xxxtight) padding per Figma — NOT 4px.
+// Avatar inner: bg.fill.action.secondary.base, 1px border, rounded 4px.
+// Logo image: object-fit cover — fills frame proportionally per Figma annotation.
 function TriggerAvatar({ logoUrl, size, borderColor }) {
   return (
-    <div style={{ width:size, height:size, padding:"4px", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-      <div style={{ flex:"1 0 0", height:"100%", border:`1px solid ${borderColor}`, borderRadius:"4px", overflow:"hidden", position:"relative", background: logoUrl ? "transparent" : T.fillAvatarPlaceholder }}>
+    <div style={{
+      width:size, height:size,
+      padding:"2px",   // xxxtight per Figma Container.Avatar
+      display:"flex", alignItems:"center", justifyContent:"center",
+      flexShrink:0,
+      boxSizing:"border-box",
+    }}>
+      <div style={{
+        flex:"1 0 0", height:"100%",
+        border:`1px solid ${borderColor}`,
+        borderRadius:"4px",
+        overflow:"hidden",
+        position:"relative",
+        background: T.fillAvatarPlaceholder,  // shows behind letterbox if logo aspect mismatch
+        boxSizing:"border-box",
+      }}>
         {logoUrl
           ? <img src={logoUrl} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
           : <div style={{ position:"absolute", inset:"4.17% 8.33% 8.33% 8.33%" }}>
@@ -327,12 +350,21 @@ function OrgSwitcher({ orgName="Organisation", cityName="", campusName="", logoU
 
   // Mobile: campus name drives abbreviated label
   const mobileText = mobileLabel(orgName, campusName);
+  // Avatar outer container size per Figma: desktop 24×24, mobile 20×20
   const AVATAR_SZ = mobile ? 20 : 24;
-  // Mobile max-width: 108px — Figma node 40006820:14758
-  const MAX_W = mobile ? 108 : 316;
 
   return (
-    <div style={{ minHeight:48, minWidth:48, maxWidth:MAX_W, padding:"4px", display:"flex", flexDirection:"column", alignItems:"flex-start", position:"relative" }}>
+    // Outer wrapper (touch target) — desktop p:4px, mobile px:2 py:4 asymmetric
+    <div style={{
+      minHeight:48, minWidth:48,
+      maxWidth: mobile ? 108 : 316,
+      ...(mobile ? { paddingLeft:"2px", paddingRight:"2px", paddingTop:"4px", paddingBottom:"4px" } : { padding:"4px" }),
+      display:"flex", flexDirection:"column",
+      alignItems:"flex-start", justifyContent:"center",
+      position:"relative",
+      boxSizing:"border-box",
+    }}>
+      {/* Container.Main (button): p:4px uniform, gap:2px between RowStart and RowEnd */}
       <button type="button" disabled={disabled}
         aria-haspopup="true" aria-expanded={open}
         aria-label={cityName ? `Current organisation: ${orgName}, ${cityName}. Activate to switch.` : `Current organisation: ${orgName}. Activate to switch.`}
@@ -341,41 +373,60 @@ function OrgSwitcher({ orgName="Organisation", cityName="", campusName="", logoU
         onMouseLeave={() => { setHovered(false); setPressed(false); }}
         onMouseDown={() => !disabled && setPressed(true)}
         onMouseUp={() => setPressed(false)}
-        style={{ display:"flex", alignItems:"center", height:36, maxHeight:36, minHeight:36, borderRadius:"8px", border:`1px solid ${stroke}`, background:disabled?T.fillBase:fill, opacity:disabled?0.5:1, cursor:disabled?"not-allowed":"pointer", padding:0, outline:"none", transition:"background 120ms ease, border-color 120ms ease",
-          ...(mobile ? { paddingLeft:"4px", paddingRight:"2px", paddingTop:"4px", paddingBottom:"4px" } : { gap:"4px", padding:"4px" }) }}>
+        style={{
+          display:"flex", alignItems:"center",
+          height:36, maxHeight:36, minHeight:36,
+          maxWidth: mobile ? 108 : 300,
+          borderRadius:"8px",
+          border:`1px solid ${stroke}`,
+          background: disabled ? T.fillBase : fill,
+          opacity: disabled ? 0.5 : 1,
+          cursor: disabled ? "not-allowed" : "pointer",
+          padding:"4px",
+          gap:"2px",
+          boxSizing:"border-box",
+          outline:"none",
+          transition:"background 120ms ease, border-color 120ms ease",
+        }}>
 
-        <div style={{ display:"flex", alignItems:"center", flexShrink:0, ...(mobile ? { justifyContent:"center", width:AVATAR_SZ, height:AVATAR_SZ } : { gap:"4px", height:24 }) }}>
-          {/* Avatar: logo image or church SVG placeholder per Figma */}
+        {/* Container.RowStart
+            Mobile: gap 2px, h 20px, w 80px fixed — contains Avatar + Label
+            Desktop: gap 4px, h 24px, content-sized — contains Avatar + OrgLabel */}
+        <div style={{
+          display:"flex", alignItems:"center", flexShrink:0,
+          ...(mobile
+            ? { gap:"2px", height:20, width:80 }
+            : { gap:"4px", height:24 }),
+        }}>
           <TriggerAvatar logoUrl={logoUrl} size={AVATAR_SZ} borderColor={stroke} />
 
-          {/* Desktop: two separate containers per Figma anatomy
-              Container.OrgName (max 170px) + Container.CityName.Catholic (max 72px, Catholic only) */}
+          {/* Desktop label: Container.OrgLabel (max-w 248)
+              ├── Container.OrgName (max-w 170, content-sized, truncates)
+              └── Container.CityName.Catholic (max-w 72, Catholic orgs only) */}
           {!mobile && (
-            <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:248, flexShrink:0 }}>
-              {/* Container.OrgName — truncates independently at 170px (Label/Button/S tokens) */}
-              <div style={{ display:"flex", alignItems:"center", height:"100%", width:170, maxWidth:170, flexShrink:0 }}>
-                <p style={{ ...T.typeS, flex:"1 0 0", color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", minWidth:1, margin:0 }}>{orgName}</p>
+            <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:248, flexShrink:0, minWidth:0 }}>
+              <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:170, flexShrink:1, minWidth:0 }}>
+                <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:170 }}>{orgName}</p>
               </div>
-              {/* Container.CityName.Catholic — Catholic orgs only, NOT a suborg name (Label/Button/S tokens) */}
               {cityName && (
-                <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:72, flexShrink:0 }}>
+                <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:72, flexShrink:0, minWidth:0 }}>
                   <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", maxWidth:72, margin:0 }}>{` | ${cityName}`}</p>
                 </div>
               )}
             </div>
           )}
+
+          {/* Mobile label: Container.Label inside RowStart, flex 1 0 0, max-w 60 */}
+          {mobile && (
+            <div style={{ display:"flex", alignItems:"center", height:"100%", flex:"1 0 0", maxWidth:60, minWidth:1 }}>
+              <p style={{ ...T.typeXS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, flex:"1 0 0" }}>{mobileText}</p>
+            </div>
+          )}
         </div>
 
-        {/* Mobile abbreviated label (Label/Button/XS tokens) */}
-        {mobile && (
-          <div style={{ display:"flex", alignItems:"center", height:"100%", paddingLeft:"2px", paddingRight:"2px", flexShrink:0 }}>
-            <p style={{ ...T.typeXS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0 }}>{mobileText}</p>
-          </div>
-        )}
-
-        {/* Chevron — 200ms cubic-bezier(0.4,0,0.2,1) */}
+        {/* Container.RowEnd (chevron) — p:2px xxxtight */}
         <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"2px", flexShrink:0 }}>
-          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", width:16, height:16, transform:open?"rotate(180deg)":"none", transition:"transform 200ms cubic-bezier(0.4,0,0.2,1)" }}>
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", width:16, height:16, transform: open ? "rotate(180deg)" : "none", transition:"transform 200ms cubic-bezier(0.4,0,0.2,1)" }}>
             <Icon name="expand_more" size={16} style={{ color:icon }} />
           </div>
         </div>
