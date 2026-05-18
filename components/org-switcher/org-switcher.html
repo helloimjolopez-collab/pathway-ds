@@ -6,27 +6,24 @@
   <title>OrgSwitcher — Pathway DS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "Red Hat Text", sans-serif; padding: 0; background: #1a1f2e; min-height: 100vh; color: #fbfbfb; }
+    html, body { font-family: "Red Hat Text", sans-serif; background: #f0f2f5; min-height: 100vh; }
 
-    /* ── Nav shell (dark surface context) ─────────────────────── */
-    .nav-shell {
-      background: #1e2540;
-      border-bottom: 1px solid rgba(160,181,230,0.12);
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      height: 56px;
-      gap: 12px;
+    .material-symbols-rounded {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1; display: block; user-select: none;
     }
-    .nav-logo { font-weight: 700; font-size: 15px; color: #fbfbfb; letter-spacing: 0.05em; margin-right: auto; }
 
-    /* ── Dark-mode tokens (used by trigger) ───────────────────── */
+    /* ── Dark-mode tokens ───────────────────────────────────────── */
     :root {
-      --semantic-color-dark-mode-fill-action-tertiary-base:         rgba(160,181,230,0.04);
-      --semantic-color-dark-mode-fill-action-primaryinverse-hover:  rgba(10,18,35,0.16);
-      --semantic-color-dark-mode-fill-action-primaryinverse-pressed:rgba(255,255,255,0.08);
+      --semantic-color-dark-mode-fill-action-tertiary-base:          rgba(160,181,230,0.04);
+      --semantic-color-dark-mode-fill-action-primaryinverse-hover:   rgba(10,18,35,0.16);
+      --semantic-color-dark-mode-fill-action-primaryinverse-pressed: rgba(255,255,255,0.08);
       --semantic-color-dark-mode-stroke-action-tertiary-base:        rgba(160,181,230,0.16);
       --semantic-color-dark-mode-stroke-action-tertiary-hover:       rgba(160,181,230,0.20);
       --semantic-color-dark-mode-stroke-action-tertiary-pressed:     rgba(160,181,230,0.30);
@@ -48,337 +45,389 @@
       --semantic-type-desktop-label-button-xs-letterspacing:0.3px;
     }
 
-    /* ── Trigger ──────────────────────────────────────────────── */
-    .pds-org-switcher {
-      min-height: 48px; min-width: 48px;
-      padding: var(--semantic-layout-units-padding-xxtight);
-      display: inline-flex; flex-direction: column; align-items: flex-start;
-      position: relative;
+    /* ── Demo chrome ────────────────────────────────────────────── */
+    .demo-wrap { display: flex; flex-direction: column; min-height: 100vh; }
+    .demo-page { flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 24px; }
+    .demo-section {
+      background: #fff; border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.07); overflow: visible;
     }
-    .pds-org-switcher.is-mobile  { max-width: 114px; }
-    .pds-org-switcher.is-desktop { max-width: 316px; }
-
-    .pds-org-btn {
-      display: flex; align-items: center;
-      height: 36px; max-height: 36px; min-height: 36px;
-      border-radius: var(--semantic-layout-units-cornerradius-medium);
-      border: var(--semantic-layout-units-borderwidth-base) solid var(--semantic-color-dark-mode-stroke-action-tertiary-base);
-      background: var(--semantic-color-dark-mode-fill-action-tertiary-base);
-      color: var(--semantic-color-dark-mode-text-action-mono-base);
-      cursor: pointer;
-      font-family: inherit;
-      transition: background 120ms ease, border-color 120ms ease, color 100ms ease;
-      outline: none;
-      position: relative;
+    .demo-section__label {
+      padding: 10px 16px; font-size: 11px; font-weight: 600;
+      letter-spacing: .07em; text-transform: uppercase; color: #888;
+      border-bottom: 1px solid #f0f0f0;
     }
-    .pds-org-btn.is-desktop { gap: var(--semantic-layout-units-gap-xxtight); padding: var(--semantic-layout-units-padding-xxtight); }
-    .pds-org-btn.is-mobile  { padding: 4px 2px 4px 4px; }
-
-    .pds-org-btn:hover {
-      background: var(--semantic-color-dark-mode-fill-action-primaryinverse-hover);
-      border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-hover);
-      color: var(--semantic-color-dark-mode-text-action-mono-hover);
-    }
-    .pds-org-btn:active, .pds-org-btn.is-pressed {
-      background: var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed);
-      border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-pressed);
-      color: var(--semantic-color-dark-mode-text-action-mono-pressed);
-    }
-    .pds-org-btn:focus-visible {
-      outline: 2px solid var(--semantic-color-dark-mode-icon-action-mono-hover);
-      outline-offset: 2px;
-    }
-    .pds-org-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    /* Row start */
-    .pds-row-start {
-      display: flex; align-items: center; flex-shrink: 0;
-    }
-    .pds-row-start.is-desktop { gap: var(--semantic-layout-units-gap-xxtight); height: 24px; }
-    .pds-row-start.is-mobile  { justify-content: center; width: 20px; height: 20px; }
-
-    /* Avatar */
-    .pds-avatar-wrap {
-      display: flex; align-items: center; justify-content: center;
-      padding: var(--semantic-layout-units-padding-xxtight);
-      flex-shrink: 0; position: relative;
-    }
-    .pds-avatar-wrap.is-desktop { width: 24px; height: 24px; }
-    .pds-avatar-wrap.is-mobile  { width: 100%; height: 100%; aspect-ratio: 1; }
-
-    .pds-avatar {
-      flex: 1 0 0; height: 100%; min-width: 1px;
-      border: 1px solid var(--semantic-color-dark-mode-stroke-action-tertiary-base);
-      border-radius: var(--semantic-layout-units-cornerradius-small);
-      overflow: hidden; position: relative;
-      transition: border-color 120ms ease;
-    }
-    .pds-org-btn:hover   .pds-avatar { border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-hover); }
-    .pds-org-btn:active  .pds-avatar { border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-pressed); }
-
-    .pds-avatar img {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-    }
-    .pds-avatar-placeholder {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(53,85,160,0.25);
-      font-size: 7px; font-weight: 700; color: #fbfbfb; line-height: 1;
-      user-select: none;
-    }
-
-    /* Desktop label */
-    .pds-label-desktop {
-      display: flex; align-items: center; height: 100%;
-      max-width: 248px; padding-right: var(--semantic-layout-units-padding-xxtight);
-      flex-shrink: 0;
-    }
-    .pds-label-desktop p {
-      flex: 1 0 0;
-      font-family: var(--semantic-type-desktop-label-button-s-fontfamily);
-      font-weight: 500; font-size: 14px; line-height: 20px;
-      letter-spacing: var(--semantic-type-desktop-label-button-s-letterspacing);
-      color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      min-width: 1px;
-    }
-
-    /* Mobile label */
-    .pds-label-mobile {
-      display: flex; align-items: center; height: 100%;
-      padding: 0 var(--semantic-layout-units-padding-xxxtight);
-      flex-shrink: 0;
-    }
-    .pds-label-mobile p {
-      font-family: var(--semantic-type-desktop-label-button-xs-fontfamily);
-      font-weight: 500; font-size: 12px; line-height: 18px;
-      letter-spacing: var(--semantic-type-desktop-label-button-xs-letterspacing);
-      color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-
-    /* Row end / chevron */
-    .pds-row-end {
-      display: flex; align-items: center; justify-content: center;
-      padding: var(--semantic-layout-units-padding-xxxtight); flex-shrink: 0;
-    }
-    .pds-icon-trailing {
-      display: flex; align-items: center; justify-content: center;
-      padding: var(--semantic-layout-units-padding-xxxtight);
-      width: 16px; height: 16px; flex-shrink: 0;
-    }
-    .pds-chevron {
-      display: block; width: 100%; height: 100%;
-      transition: transform 150ms ease;
-      fill: var(--semantic-color-dark-mode-icon-action-mono-base);
-    }
-    .pds-org-btn:hover  .pds-chevron { fill: var(--semantic-color-dark-mode-icon-action-mono-hover); }
-    .pds-org-btn:active .pds-chevron { fill: var(--semantic-color-dark-mode-icon-action-mono-pressed); }
-    .pds-org-btn.is-open .pds-chevron { transform: rotate(180deg); }
-
-    /* ── Demo panels ──────────────────────────────────────────── */
-    .demo-section { padding: 32px 24px; }
-    .demo-section + .demo-section { border-top: 1px solid rgba(160,181,230,0.08); }
-    .demo-section h2 { font-size: 11px; font-weight: 600; color: rgba(160,181,230,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
-    .demo-row { display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+    .demo-section__body { padding: 20px 16px; }
 
     /* Abbreviation table */
-    .abbr-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
-    .abbr-table th { text-align: left; padding: 6px 8px; color: rgba(160,181,230,0.5); font-weight: 500; border-bottom: 1px solid rgba(160,181,230,0.12); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
-    .abbr-table td { padding: 7px 8px; border-bottom: 1px solid rgba(160,181,230,0.06); color: rgba(251,251,251,0.8); }
-    .abbr-table td.mobile-col { font-weight: 700; font-family: monospace; color: #fbfbfb; }
+    .abbr-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .abbr-table th {
+      text-align: left; padding: 6px 8px; font-weight: 600;
+      border-bottom: 2px solid #e5e7eb; color: #71717a; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .abbr-table td { padding: 7px 8px; border-bottom: 1px solid #f5f5f5; color: #363636; }
+    .abbr-table td.mono { font-weight: 700; font-family: monospace; color: #363636; }
   </style>
 </head>
 <body>
+<div id="root"></div>
 
-  <!-- Nav shell showing the switcher in context -->
-  <div class="nav-shell">
-    <div class="nav-logo">Pathway</div>
-    <div id="nav-trigger-desktop"></div>
-    <div id="nav-trigger-mobile"></div>
-  </div>
+<script type="text/babel">
+const { useState, useRef, useEffect } = React;
 
-  <!-- Demo sections -->
-  <div class="demo-section">
-    <h2>Trigger states — Desktop</h2>
-    <div class="demo-row" id="demo-states-desktop"></div>
-  </div>
+// ── Tokens ──────────────────────────────────────────────────────────────────
+const T = {
+  fillBase:    "var(--semantic-color-dark-mode-fill-action-tertiary-base,    rgba(160,181,230,0.04))",
+  fillHover:   "var(--semantic-color-dark-mode-fill-action-primaryinverse-hover,   rgba(10,18,35,0.16))",
+  fillPressed: "var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed, rgba(255,255,255,0.08))",
+  strokeBase:    "var(--semantic-color-dark-mode-stroke-action-tertiary-base,    rgba(160,181,230,0.16))",
+  strokeHover:   "var(--semantic-color-dark-mode-stroke-action-tertiary-hover,   rgba(160,181,230,0.20))",
+  strokePressed: "var(--semantic-color-dark-mode-stroke-action-tertiary-pressed, rgba(160,181,230,0.30))",
+  textBase:    "var(--semantic-color-dark-mode-text-action-mono-base,    #fbfbfb)",
+  textHover:   "var(--semantic-color-dark-mode-text-action-mono-hover,   #ffffff)",
+  textPressed: "var(--semantic-color-dark-mode-text-action-mono-pressed, #ffffff)",
+  iconBase:    "var(--semantic-color-dark-mode-icon-action-mono-base,    #fbfbfb)",
+  iconHover:   "var(--semantic-color-dark-mode-icon-action-mono-hover,   #ffffff)",
+  iconPressed: "var(--semantic-color-dark-mode-icon-action-mono-pressed, #ffffff)",
+  radiusMedium: "var(--semantic-layout-units-cornerradius-medium, 8px)",
+  radiusSmall:  "var(--semantic-layout-units-cornerradius-small,  4px)",
+  borderWidth:  "var(--semantic-layout-units-borderwidth-base,    1px)",
+  pXxtight:  "var(--semantic-layout-units-padding-xxtight,  4px)",
+  pXxxtight: "var(--semantic-layout-units-padding-xxxtight, 2px)",
+  gapXxtight:"var(--semantic-layout-units-gap-xxtight,      4px)",
+  panelBg:     "#ffffff",
+  panelShadow: "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
+  panelHeading:  "#252525",
+  panelOrgName:  "#252525",
+  panelCampus:   "#6b6b6b",
+  panelSearch:   "#606060",
+  panelChevron:  "#c0c0c0",
+  searchBg:      "#f4f4f4",
+  searchBorder:  "#e0e0e0",
+  activeOrg:     "#eef2fb",
+  orgHover:      "#f8f8f8",
+  logoBrandBg:   "#2d4889",
+};
 
-  <div class="demo-section">
-    <h2>Trigger states — Mobile</h2>
-    <div class="demo-row" id="demo-states-mobile"></div>
-  </div>
+const USER_COLORS = ["#5b8def","#9c6dd8","#d96c6c","#4caf7d","#e08c2d","#2b9ec3","#c45d9e","#7cb342"];
 
-  <div class="demo-section">
-    <h2>Abbreviation examples (Appendix A)</h2>
-    <table class="abbr-table" id="abbr-table">
-      <thead><tr><th>Org name</th><th>Campus</th><th>Mobile label</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
-
-  <script>
-    // ── Abbreviation utilities ───────────────────────────────────────────────
-    const SKIP = new Set(["the","a","an","of","in","at","for","and","or"]);
-    function abbreviateOrg(name) {
-      if (!name) return "???";
-      const sig = name.trim().split(/\s+/).filter(w => !SKIP.has(w.toLowerCase()));
-      if (!sig.length) return name.slice(0,3).toUpperCase();
-      if (sig.length === 1) return sig[0].slice(0,3).toUpperCase();
-      if (sig.length === 2) return (sig[0][0] + (sig[0][1]||sig[0][0]) + sig[1][0]).toUpperCase();
-      return (sig[0][0]+sig[1][0]+sig[2][0]).toUpperCase();
+// ── Abbreviation utilities ──────────────────────────────────────────────────
+const SKIP_WORDS = new Set(["the","a","an","of","in","at","for","and","or","but"]);
+const COMPOUND_SPLITS = {
+  northpoint:["north","point"], crossroads:["cross","roads"],
+  hillside:["hill","side"], cornerstone:["corner","stone"],
+  newlife:["new","life"],
+};
+function abbreviateOrg(name) {
+  if (!name) return "???";
+  const sig = name.trim().split(/\s+/).filter(w => !SKIP_WORDS.has(w.toLowerCase()));
+  if (!sig.length) return name.slice(0,3).toUpperCase();
+  if (sig.length === 1) return sig[0].slice(0,3).toUpperCase();
+  if (sig.length === 2) {
+    const [w1, w2] = sig;
+    if (COMPOUND_SPLITS[w1.toLowerCase()]) {
+      const [p1,p2] = COMPOUND_SPLITS[w1.toLowerCase()];
+      return (p1[0]+p2[0]+w2[0]).toUpperCase();
     }
-    const DIRS = new Set(["west","east","north","south","central","downtown","northeast","northwest","southeast","southwest"]);
-    const USPS = {georgia:"GA",tennessee:"TN",florida:"FL",texas:"TX",california:"CA","new york":"NY",ohio:"OH",illinois:"IL",pennsylvania:"PA",virginia:"VA"};
-    function abbreviateCampus(name) {
-      if (!name) return "";
-      const lower = name.trim().toLowerCase();
-      if (USPS[lower]) return USPS[lower];
-      const words = name.trim().split(/\s+/);
-      if (words.length === 1) return lower.slice(0,2).toUpperCase();
-      const [a,b] = words.map(w=>w.toLowerCase());
-      const aD=DIRS.has(a), bD=DIRS.has(b);
-      if (aD||bD) { const pl=aD?b:a, di=aD?a:b; return (pl[0]+di[0]).toUpperCase(); }
-      return (a[0]+b[0]).toUpperCase();
-    }
-    function mobileLabel(org, campus) {
-      const o = abbreviateOrg(org), c = campus ? abbreviateCampus(campus) : "";
-      return c ? `${o} | ${c}` : o;
-    }
+    const after = w1.slice(1);
+    const dist = after.match(/[xzq]/i);
+    const sec = dist ? dist[0] : (w1[1]||w1[0]);
+    return (w1[0]+sec+w2[0]).toUpperCase();
+  }
+  return (sig[0][0]+sig[1][0]+sig[2][0]).toUpperCase();
+}
+const DIR_CODES = {west:"WE",east:"EA",north:"NO",south:"SO",central:"CE",downtown:"DT",northeast:"NE",northwest:"NW",southeast:"SE",southwest:"SW"};
+const DIRS = new Set(Object.keys(DIR_CODES));
+const USPS = {alabama:"AL",alaska:"AK",arizona:"AZ",arkansas:"AR",california:"CA",colorado:"CO",connecticut:"CT",delaware:"DE",florida:"FL",georgia:"GA",hawaii:"HI",idaho:"ID",illinois:"IL",indiana:"IN",iowa:"IA",kansas:"KS",kentucky:"KY",louisiana:"LA",maine:"ME",maryland:"MD",massachusetts:"MA",michigan:"MI",minnesota:"MN",mississippi:"MS",missouri:"MO",montana:"MT",nebraska:"NE",nevada:"NV","new hampshire":"NH","new jersey":"NJ","new mexico":"NM","new york":"NY","north carolina":"NC","north dakota":"ND",ohio:"OH",oklahoma:"OK",oregon:"OR",pennsylvania:"PA","rhode island":"RI","south carolina":"SC","south dakota":"SD",tennessee:"TN",texas:"TX",utah:"UT",vermont:"VT",virginia:"VA",washington:"WA","west virginia":"WV",wisconsin:"WI",wyoming:"WY"};
+function abbreviateCampus(name) {
+  if (!name) return "";
+  const lower = name.trim().toLowerCase();
+  if (USPS[lower]) return USPS[lower];
+  const words = name.trim().split(/\s+/);
+  if (words.length === 1) { if (DIR_CODES[lower]) return DIR_CODES[lower]; return lower.slice(0,2).toUpperCase(); }
+  if (words.length === 2) {
+    const [a,b] = words.map(w=>w.toLowerCase());
+    const aD=DIRS.has(a),bD=DIRS.has(b);
+    if (aD||bD) { const pl=aD?b:a,di=aD?a:b; return (pl[0]+di[0]).toUpperCase(); }
+    return (a[0]+b[0]).toUpperCase();
+  }
+  return lower.slice(0,2).toUpperCase();
+}
+function mobileLabel(orgName, campusName) {
+  const o = abbreviateOrg(orgName), c = campusName ? abbreviateCampus(campusName) : "";
+  return c ? `${o} | ${c}` : o;
+}
 
-    // ── Render trigger ───────────────────────────────────────────────────────
-    const CHEVRON_PATH = "M8 10.275a.93.93 0 0 1-.3-.05.72.72 0 0 1-.263-.162L3.637 6.263a.636.636 0 0 1 0-.9.636.636 0 0 1 .9 0L8 8.826l3.463-3.463a.636.636 0 0 1 .9 0 .636.636 0 0 1 0 .9L8.563 10.063a.72.72 0 0 1-.263.162.93.93 0 0 1-.3.05Z";
+// ── Icon ────────────────────────────────────────────────────────────────────
+function Icon({ name, size=20, style }) {
+  return <span className="material-symbols-rounded" aria-hidden="true" style={{ fontSize:size, lineHeight:1, display:"block", userSelect:"none", ...style }}>{name}</span>;
+}
 
-    function buildTrigger({ orgName, campusName = "", logoUrl = "", mobile = false, isOpen = false, disabled = false, id }) {
-      const abbr  = mobileLabel(orgName, campusName);
-      const full  = campusName ? `${orgName}  |  ${campusName}` : orgName;
-      const initials = abbreviateOrg(orgName).slice(0,2);
-      const modeClass = mobile ? "is-mobile" : "is-desktop";
+// ── Demo data ────────────────────────────────────────────────────────────────
+const DEMO_ORGS = [
+  { id:"shc",  name:"Sacred Heart Church-ITD",          campus:"Knoxville",       logoUrl:"https://picsum.photos/seed/shc/48/48",  users:[{color:"#5b8def"},{color:"#9c6dd8"},{color:"#d96c6c"},{color:"#4caf7d"},{color:"#e08c2d"}] },
+  { id:"gcc",  name:"Grace Community Church",           campus:"West",            logoUrl:"",  users:[{color:"#5b8def"},{color:"#9c6dd8"},{color:"#d96c6c"}] },
+  { id:"ncc",  name:"Nashville Christian Church",       campus:"Nashville North", logoUrl:"",  users:[{color:"#4caf7d"},{color:"#e08c2d"},{color:"#2b9ec3"},{color:"#c45d9e"}] },
+  { id:"nkbc", name:"Northern Kentucky Baptist Church", campus:"",                logoUrl:"",  users:[{color:"#5b8def"},{color:"#7cb342"}] },
+  { id:"cp",   name:"Cross Point",                      campus:"Main Campus",     logoUrl:"",  users:[{color:"#9c6dd8"},{color:"#d96c6c"},{color:"#e08c2d"}] },
+];
 
-      const root = document.createElement("div");
-      root.className = `pds-org-switcher ${modeClass}`;
-      if (id) root.id = id;
+// ── Sub-components ───────────────────────────────────────────────────────────
+function TriggerAvatar({ logoUrl, orgName, size, borderColor }) {
+  return (
+    <div style={{ width:size, height:size, padding:"4px", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+      <div style={{ flex:"1 0 0", height:"100%", border:`1px solid ${borderColor}`, borderRadius:"4px", overflow:"hidden", position:"relative" }}>
+        {logoUrl
+          ? <img src={logoUrl} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }} />
+          : <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(53,85,160,0.25)" }}>
+              <span style={{ fontSize:Math.max(7,Math.round((size-8)*0.55)), fontWeight:700, color:"#fbfbfb", lineHeight:1, userSelect:"none", fontFamily:"'Red Hat Text', sans-serif" }}>{abbreviateOrg(orgName).slice(0,2)}</span>
+            </div>
+        }
+      </div>
+    </div>
+  );
+}
 
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = `pds-org-btn ${modeClass}${isOpen ? " is-open" : ""}`;
-      if (disabled) btn.disabled = true;
-      btn.setAttribute("aria-haspopup","true");
-      btn.setAttribute("aria-expanded", String(isOpen));
-      btn.setAttribute("aria-label", `Current organisation: ${orgName}${campusName ? ", "+campusName : ""}. Activate to switch.`);
-
-      // Row start
-      const rs = document.createElement("div");
-      rs.className = `pds-row-start ${modeClass}`;
-
-      const aw = document.createElement("div");
-      aw.className = `pds-avatar-wrap ${modeClass}`;
-      const av = document.createElement("div");
-      av.className = "pds-avatar";
-      if (logoUrl) {
-        const img = document.createElement("img");
-        img.src = logoUrl; img.alt = ""; img.setAttribute("aria-hidden","true");
-        av.appendChild(img);
-      } else {
-        const ph = document.createElement("div");
-        ph.className = "pds-avatar-placeholder";
-        ph.textContent = initials;
-        ph.style.fontSize = mobile ? "6px" : "7px";
-        av.appendChild(ph);
+function PanelOrgLogo({ logoUrl, orgName }) {
+  return (
+    <div style={{ width:48, height:48, borderRadius:8, overflow:"hidden", flexShrink:0, position:"relative", background:T.logoBrandBg }}>
+      {logoUrl
+        ? <img src={logoUrl} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }} />
+        : <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
+            <span style={{ fontSize:11, fontWeight:700, color:"#fff", lineHeight:1, userSelect:"none", fontFamily:"'Red Hat Text', sans-serif" }}>{abbreviateOrg(orgName).slice(0,2)}</span>
+          </div>
       }
-      aw.appendChild(av);
-      rs.appendChild(aw);
+    </div>
+  );
+}
 
-      if (!mobile) {
-        const ld = document.createElement("div");
-        ld.className = "pds-label-desktop";
-        const p = document.createElement("p");
-        p.textContent = full;
-        ld.appendChild(p);
-        rs.appendChild(ld);
-      }
-      btn.appendChild(rs);
+function UserAvatarRow({ users=[] }) {
+  const visible = users.slice(0,8);
+  return (
+    <div style={{ display:"flex", alignItems:"center", flexShrink:0 }}>
+      {visible.map((u,i) => (
+        <div key={i} style={{ width:20, height:20, borderRadius:"50%", border:"1.5px solid white", background:u.color||USER_COLORS[i%USER_COLORS.length], display:"flex", alignItems:"center", justifyContent:"center", marginLeft:i===0?0:-6, overflow:"hidden", position:"relative", zIndex:visible.length-i }}>
+          <Icon name="person" size={12} style={{ color:"white" }} />
+        </div>
+      ))}
+    </div>
+  );
+}
 
-      if (mobile) {
-        const lm = document.createElement("div");
-        lm.className = "pds-label-mobile";
-        const p = document.createElement("p");
-        p.textContent = abbr;
-        lm.appendChild(p);
-        btn.appendChild(lm);
-      }
+function OrgListItem({ org, isActive, onSelect }) {
+  const [hovered, setHovered] = useState(false);
+  const bg = isActive ? T.activeOrg : hovered ? T.orgHover : "transparent";
+  return (
+    <button type="button" onClick={() => onSelect(org.id)}
+      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
+      style={{ display:"flex", alignItems:"center", gap:10, padding:"10px 12px", width:"100%", background:bg, border:"none", cursor:"pointer", fontFamily:"'Red Hat Text', sans-serif", textAlign:"left", transition:"background 150ms cubic-bezier(0.4,0,0.2,1)" }}>
+      <PanelOrgLogo logoUrl={org.logoUrl} orgName={org.name} />
+      <div style={{ flex:1, minWidth:0, display:"flex", flexDirection:"column", gap:2 }}>
+        <div style={{ fontSize:14, fontWeight:500, color:T.panelOrgName, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{org.name}</div>
+        {org.campus && <div style={{ fontSize:12, fontWeight:400, color:T.panelCampus, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{org.campus}</div>}
+      </div>
+      {org.users && org.users.length > 0 && <UserAvatarRow users={org.users} />}
+      <Icon name="chevron_right" size={16} style={{ color:T.panelChevron, flexShrink:0 }} />
+    </button>
+  );
+}
 
-      // Row end / chevron
-      const re = document.createElement("div"); re.className = "pds-row-end";
-      const it = document.createElement("div"); it.className = "pds-icon-trailing";
-      const svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
-      svg.setAttribute("viewBox","0 0 16 16"); svg.setAttribute("fill","none");
-      svg.setAttribute("aria-hidden","true"); svg.classList.add("pds-chevron");
-      const path = document.createElementNS("http://www.w3.org/2000/svg","path");
-      path.setAttribute("d", CHEVRON_PATH);
-      path.setAttribute("fill","inherit");
-      svg.appendChild(path); it.appendChild(svg); re.appendChild(it);
-      btn.appendChild(re);
+function OrgPanel({ orgs=[], activeOrgId, onOrgSelect }) {
+  const [query, setQuery] = useState("");
+  const filtered = orgs.filter(o => !query.trim() || o.name.toLowerCase().includes(query.toLowerCase()) || (o.campus&&o.campus.toLowerCase().includes(query.toLowerCase())));
+  return (
+    <div role="dialog" aria-label="Switch organisation" style={{ position:"absolute", top:"calc(100% + 4px)", left:0, zIndex:300, width:316, background:T.panelBg, borderRadius:"8px", boxShadow:T.panelShadow, overflow:"hidden", animation:"orgPanelIn 200ms cubic-bezier(0,0,0.2,1) both" }}>
+      <style>{`@keyframes orgPanelIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }`}</style>
+      <div style={{ padding:"16px 16px 12px", fontSize:14, fontWeight:600, color:T.panelHeading, fontFamily:"'Red Hat Text', sans-serif" }}>My Organizations</div>
+      <div style={{ padding:"0 12px 12px" }}>
+        <div style={{ display:"flex", alignItems:"center", gap:8, height:36, background:T.searchBg, border:`1px solid ${T.searchBorder}`, borderRadius:9999, padding:"0 12px" }}>
+          <Icon name="search" size={16} style={{ color:T.panelSearch, flexShrink:0 }} />
+          <input type="text" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search" aria-label="Search organisations"
+            style={{ flex:1, border:"none", background:"transparent", outline:"none", fontSize:14, fontWeight:400, color:T.panelHeading, fontFamily:"'Red Hat Text', sans-serif" }} />
+        </div>
+      </div>
+      <div role="listbox" aria-label="Organisations" style={{ maxHeight:320, overflowY:"auto" }}>
+        {filtered.map(org => <OrgListItem key={org.id} org={org} isActive={org.id===activeOrgId} onSelect={onOrgSelect||(() => {})} />)}
+        {filtered.length===0 && <div style={{ padding:"16px 12px", fontSize:13, color:T.panelCampus, fontFamily:"'Red Hat Text', sans-serif", textAlign:"center" }}>No organisations found</div>}
+      </div>
+    </div>
+  );
+}
 
-      // Toggle open state on click
-      btn.addEventListener("click", () => {
-        btn.classList.toggle("is-open");
-        btn.setAttribute("aria-expanded", String(btn.classList.contains("is-open")));
-      });
+function OrgSwitcher({ orgName="Organisation", campusName="", logoUrl, orgs=[], activeOrgId, onOrgSelect, open=false, onClick, disabled=false, mobile=false }) {
+  const [pressed,  setPressed]  = useState(false);
+  const [hovered,  setHovered]  = useState(false);
 
-      root.appendChild(btn);
-      return root;
-    }
+  const isActive = open || pressed;
+  const fill   = isActive ? T.fillPressed  : hovered ? T.fillHover   : T.fillBase;
+  const stroke = isActive ? T.strokePressed: hovered ? T.strokeHover : T.strokeBase;
+  const text   = isActive ? T.textPressed  : hovered ? T.textHover   : T.textBase;
+  const icon   = isActive ? T.iconPressed  : hovered ? T.iconHover   : T.iconBase;
 
-    // ── Demo data ────────────────────────────────────────────────────────────
-    const EXAMPLES = [
-      { orgName: "Grace Community Church",    campusName: "West" },
-      { orgName: "Nashville Christian Church", campusName: "Nashville North" },
-      { orgName: "Northpoint Church",          campusName: "Knoxville" },
-      { orgName: "Elevation",                  campusName: "Main Campus" },
-      { orgName: "Church of the Highlands",    campusName: "North" },
-    ];
+  const desktopLabel = campusName ? `${orgName}  |  ${campusName}` : orgName;
+  const mobileText   = mobileLabel(orgName, campusName);
+  const AVATAR_SZ = mobile ? 20 : 24;
 
-    const ABBR_ROWS = [
-      ["Grace Community Church",    "West"],
-      ["Grace Community Church",    "Georgia"],
-      ["Nashville Christian Church","Nashville North"],
-      ["Nashville Christian Church","Nashville South"],
-      ["Northpoint Church",         ""],
-      ["Northpoint Church",         "Knoxville"],
-      ["Crossroads Church",         "Downtown"],
-      ["Elevation",                 "Main Campus"],
-      ["Church of the Highlands",   "North"],
-      ["Knoxville Sanctuary",       "East"],
-    ];
+  return (
+    <div style={{ minHeight:48, minWidth:48, maxWidth:mobile?114:316, padding:"4px", display:"flex", flexDirection:"column", alignItems:"flex-start", position:"relative" }}>
+      <button type="button" disabled={disabled}
+        aria-haspopup="true" aria-expanded={open}
+        aria-label={campusName ? `Current organisation: ${orgName}, ${campusName}. Activate to switch.` : `Current organisation: ${orgName}. Activate to switch.`}
+        onClick={onClick}
+        onMouseEnter={() => !disabled && setHovered(true)}
+        onMouseLeave={() => { setHovered(false); setPressed(false); }}
+        onMouseDown={() => !disabled && setPressed(true)}
+        onMouseUp={() => setPressed(false)}
+        style={{ display:"flex", alignItems:"center", height:36, maxHeight:36, minHeight:36, borderRadius:"8px", border:`1px solid ${stroke}`, background:disabled?T.fillBase:fill, opacity:disabled?0.5:1, cursor:disabled?"not-allowed":"pointer", padding:0, outline:"none", transition:"background 120ms ease, border-color 120ms ease",
+          ...(mobile ? { paddingLeft:"4px", paddingRight:"2px", paddingTop:"4px", paddingBottom:"4px" } : { gap:"4px", padding:"4px" }) }}>
 
-    // Nav bar: one desktop trigger (interactive)
-    document.getElementById("nav-trigger-desktop").appendChild(
-      buildTrigger({ orgName:"Sacred Heart Church-ITD", campusName:"Knoxville", mobile:false })
-    );
-    // Nav bar: one mobile trigger
-    document.getElementById("nav-trigger-mobile").appendChild(
-      buildTrigger({ orgName:"Sacred Heart Church-ITD", campusName:"Knoxville", mobile:true })
-    );
+        <div style={{ display:"flex", alignItems:"center", flexShrink:0, ...(mobile ? { justifyContent:"center", width:AVATAR_SZ, height:AVATAR_SZ } : { gap:"4px", height:24 }) }}>
+          <TriggerAvatar logoUrl={logoUrl} orgName={orgName} size={AVATAR_SZ} borderColor={stroke} />
+          {!mobile && (
+            <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:248, paddingRight:"4px", flexShrink:0 }}>
+              <p style={{ flex:"1 0 0", fontFamily:"'Red Hat Text', sans-serif", fontWeight:500, fontSize:14, lineHeight:"20px", letterSpacing:"0.3px", color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", minWidth:1, margin:0 }}>{desktopLabel}</p>
+            </div>
+          )}
+        </div>
 
-    // States — desktop
-    const sd = document.getElementById("demo-states-desktop");
-    EXAMPLES.slice(0,3).forEach(ex => sd.appendChild(buildTrigger({ ...ex, mobile:false })));
-    sd.appendChild(buildTrigger({ orgName:"Crossroads Church", campusName:"", mobile:false, disabled:true }));
+        {mobile && (
+          <div style={{ display:"flex", alignItems:"center", height:"100%", paddingLeft:"2px", paddingRight:"2px", flexShrink:0 }}>
+            <p style={{ fontFamily:"'Red Hat Text', sans-serif", fontWeight:500, fontSize:12, lineHeight:"18px", letterSpacing:"0.3px", color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0 }}>{mobileText}</p>
+          </div>
+        )}
 
-    // States — mobile
-    const sm = document.getElementById("demo-states-mobile");
-    EXAMPLES.slice(0,4).forEach(ex => sm.appendChild(buildTrigger({ ...ex, mobile:true })));
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"2px", flexShrink:0 }}>
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", width:16, height:16, transform:open?"rotate(180deg)":"none", transition:"transform 200ms cubic-bezier(0.4,0,0.2,1)" }}>
+            <Icon name="expand_more" size={16} style={{ color:icon }} />
+          </div>
+        </div>
+      </button>
 
-    // Abbreviation table
-    const tbody = document.querySelector("#abbr-table tbody");
-    ABBR_ROWS.forEach(([org, campus]) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${org}</td>
-        <td style="color:rgba(160,181,230,0.5)">${campus || "—"}</td>
-        <td class="mobile-col">${mobileLabel(org, campus)}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  </script>
+      {open && !disabled && <OrgPanel orgs={orgs} activeOrgId={activeOrgId} onOrgSelect={onOrgSelect} />}
+    </div>
+  );
+}
+
+// ── Demo wrapper ─────────────────────────────────────────────────────────────
+function NavShell({ children }) {
+  return (
+    <div style={{ background:"#2d4889", borderBottom:"1px solid rgba(160,181,230,0.12)", padding:"0 20px", display:"flex", alignItems:"center", height:56, gap:12, position:"relative", overflow:"visible" }}>
+      <span style={{ fontWeight:700, fontSize:15, color:"#fbfbfb", letterSpacing:"0.05em" }}>Pathway</span>
+      {children}
+    </div>
+  );
+}
+
+function App() {
+  const [navOpen, setNavOpen] = useState(false);
+  const [navMobOpen, setNavMobOpen] = useState(false);
+  const [panelOpen, setPanelOpen] = useState(false);
+  const [activeOrg, setActiveOrg] = useState("shc");
+  const [abbr_rows] = useState([
+    ["Grace Community Church",    "West"],
+    ["Nashville Christian Church","Nashville North"],
+    ["Northern Kentucky Baptist Church",""],
+    ["Cross Point",               "Main Campus"],
+    ["Sacred Heart Church-ITD",   "Knoxville"],
+    ["Church of the Highlands",   "North"],
+    ["Crossroads Church",         "Downtown"],
+    ["Elevation",                 "Main Campus"],
+  ]);
+
+  const current = DEMO_ORGS.find(o => o.id === activeOrg) || DEMO_ORGS[0];
+
+  const handleOrgSelect = (id) => {
+    setActiveOrg(id);
+    setPanelOpen(false);
+  };
+
+  return (
+    <div className="demo-wrap">
+
+      {/* ── Nav shell — trigger closed ── */}
+      <NavShell>
+        <OrgSwitcher
+          orgName={current.name} campusName={current.campus} logoUrl={current.logoUrl}
+          orgs={DEMO_ORGS} activeOrgId={activeOrg} onOrgSelect={handleOrgSelect}
+          open={navOpen} onClick={() => setNavOpen(o => !o)}
+        />
+        <span style={{ fontSize:11, color:"rgba(251,251,251,0.5)", marginLeft:8 }}>(trigger above — click to toggle panel)</span>
+      </NavShell>
+
+      <div className="demo-page">
+
+        {/* Desktop — trigger closed */}
+        <div className="demo-section">
+          <div className="demo-section__label">Trigger — Desktop, closed</div>
+          <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px" }}>
+            <div style={{ display:"flex", gap:12, flexWrap:"wrap" }}>
+              {DEMO_ORGS.slice(0,3).map(o => (
+                <OrgSwitcher key={o.id} orgName={o.name} campusName={o.campus} logoUrl={o.logoUrl} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop — trigger open with panel */}
+        <div className="demo-section">
+          <div className="demo-section__label">Trigger + Panel — Desktop, open</div>
+          <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px", minHeight:420 }}>
+            <OrgSwitcher
+              orgName={current.name} campusName={current.campus} logoUrl={current.logoUrl}
+              orgs={DEMO_ORGS} activeOrgId={activeOrg} onOrgSelect={handleOrgSelect}
+              open={panelOpen} onClick={() => setPanelOpen(o => !o)}
+            />
+          </div>
+        </div>
+
+        {/* Mobile */}
+        <div className="demo-section">
+          <div className="demo-section__label">Trigger — Mobile, abbreviated</div>
+          <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px" }}>
+            <div style={{ display:"flex", gap:12, flexWrap:"wrap", alignItems:"flex-start", position:"relative" }}>
+              {DEMO_ORGS.slice(0,4).map(o => (
+                <OrgSwitcher key={o.id} orgName={o.name} campusName={o.campus} logoUrl={o.logoUrl} mobile />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Abbreviation showcase */}
+        <div className="demo-section">
+          <div className="demo-section__label">Abbreviation Showcase (Appendix A)</div>
+          <div className="demo-section__body">
+            <table className="abbr-table">
+              <thead>
+                <tr>
+                  <th>Org name</th>
+                  <th>Campus</th>
+                  <th>Mobile label</th>
+                  <th>Org abbr.</th>
+                  <th>Campus abbr.</th>
+                </tr>
+              </thead>
+              <tbody>
+                {abbr_rows.map(([org, campus], i) => (
+                  <tr key={i}>
+                    <td>{org}</td>
+                    <td style={{ color:"#71717a" }}>{campus || "—"}</td>
+                    <td className="mono">{mobileLabel(org, campus)}</td>
+                    <td style={{ fontFamily:"monospace", color:"#71717a" }}>{abbreviateOrg(org)}</td>
+                    <td style={{ fontFamily:"monospace", color:"#71717a" }}>{campus ? abbreviateCampus(campus) : "—"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+</script>
 </body>
 </html>
