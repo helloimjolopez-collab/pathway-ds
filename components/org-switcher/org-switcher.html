@@ -211,11 +211,13 @@ const SACRED_HEART_LOGO = "./assets/sacred-heart-logo.png";
 // These render as small colored chips in the panel row (Figma "Modules").
 const ALL_MODULES = ["people","giving","app-builder","websites","streaming","content","communications","worship","protections","events","accounting"];
 const DEMO_ORGS = [
-  { id:"grace",  name:"Grace Church",                   cityName:"",          logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
-  { id:"city",   name:"City Hope Church",               cityName:"",          logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
-  { id:"nkbc",   name:"Northern Kentucky Baptist Church", cityName:"",        logoUrl: SACRED_HEART_LOGO, modules: ["people","giving","communications","events"] },
-  { id:"cp",     name:"Cross Point",                    cityName:"",          logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
-  { id:"shc",    name:"Sacred Heart Church-ITD",        cityName:"Knoxville", logoUrl: "",                modules: ["people","giving","content","events"] },
+  // Protestant orgs — orgType defaults to "protestant", cityName never rendered
+  { id:"grace",  name:"Grace Church",                     orgType:"protestant", logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
+  { id:"city",   name:"City Hope Church",                 orgType:"protestant", logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
+  { id:"nkbc",   name:"Northern Kentucky Baptist Church", orgType:"protestant", logoUrl: SACRED_HEART_LOGO, modules: ["people","giving","communications","events"] },
+  { id:"cp",     name:"Cross Point",                      orgType:"protestant", logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
+  // Catholic org — cityName IS rendered because orgType==="catholic"
+  { id:"shc",    name:"Sacred Heart Church-ITD",          orgType:"catholic",   cityName:"Knoxville", logoUrl: "", modules: ["people","giving","content","events"] },
 ];
 
 // ── Sub-components ───────────────────────────────────────────────────────────
@@ -353,13 +355,14 @@ function OrgPanel({ orgs=[], activeOrgId, onOrgSelect, mobile=false }) {
   );
 }
 
-// OrgSwitcher component
+// OrgSwitcher component (spec §0)
 // Props:
-//   orgName    — full org name (max 170px on desktop before truncation)
-//   cityName   — city/diocese for Catholic orgs ONLY (max 72px). NOT a suborg name.
-//   campusName — campus name for mobile abbreviation (Appendix A §5)
-//   logoUrl    — org logo URL; omit → church SVG placeholder (never initials)
-function OrgSwitcher({ orgName="Organisation", cityName="", logoUrl, orgs=[], activeOrgId, onOrgSelect, open=false, onClick, disabled=false, mobile=false }) {
+//   orgName  — full org name (desktop max 180px, mobile max 60px, both truncate with ellipsis)
+//   orgType  — "protestant" (default) | "catholic". Gates cityName visibility.
+//   cityName — city/diocese name. RENDERED ONLY when orgType === "catholic" (spec §0.1).
+//              Even if a string is supplied, Protestant orgs render no city container.
+//   logoUrl  — org logo URL; omit → church SVG placeholder (never initials)
+function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName="", logoUrl, orgs=[], activeOrgId, onOrgSelect, open=false, onClick, disabled=false, mobile=false }) {
   const [pressed,  setPressed]  = useState(false);
   const [hovered,  setHovered]  = useState(false);
 
@@ -372,6 +375,9 @@ function OrgSwitcher({ orgName="Organisation", cityName="", logoUrl, orgs=[], ac
   // Mobile shows the FULL orgName truncated by ellipsis at max-width:60.
   // NOT abbreviated. "Grace Community Church" → "Grace Comm…" via CSS truncation.
   const mobileText = orgName;
+  // CityName.Catholic — Catholic orgs ONLY (spec §0.1). Protestant orgs never
+  // render the city container, even if a cityName string is supplied.
+  const showCityName = orgType === "catholic" && Boolean(cityName);
   // Avatar outer container size per Figma: desktop 24×24, mobile 20×20
   const AVATAR_SZ = mobile ? 20 : 24;
 
@@ -389,7 +395,7 @@ function OrgSwitcher({ orgName="Organisation", cityName="", logoUrl, orgs=[], ac
       {/* Container.Main (button): p:4px uniform, gap:2px between RowStart and RowEnd */}
       <button type="button" disabled={disabled}
         aria-haspopup="true" aria-expanded={open}
-        aria-label={cityName ? `Current organisation: ${orgName}, ${cityName}. Activate to switch.` : `Current organisation: ${orgName}. Activate to switch.`}
+        aria-label={showCityName ? `Current organisation: ${orgName}, ${cityName}. Activate to switch.` : `Current organisation: ${orgName}. Activate to switch.`}
         onClick={onClick}
         onMouseEnter={() => !disabled && setHovered(true)}
         onMouseLeave={() => { setHovered(false); setPressed(false); }}
@@ -433,7 +439,8 @@ function OrgSwitcher({ orgName="Organisation", cityName="", logoUrl, orgs=[], ac
               <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:180, flexShrink:1, minWidth:0 }}>
                 <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:180 }}>{orgName}</p>
               </div>
-              {cityName && (
+              {/* CityName.Catholic — gated on orgType==="catholic" (spec §0.1) */}
+              {showCityName && (
                 <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:72, flexShrink:0, minWidth:0 }}>
                   <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", maxWidth:72, margin:0 }}>{` | ${cityName}`}</p>
                 </div>
@@ -491,7 +498,7 @@ function App() {
       {/* ── Nav shell — live interactive trigger ── */}
       <NavShell>
         <OrgSwitcher
-          orgName={current.name} cityName={current.cityName} logoUrl={current.logoUrl}
+          orgName={current.name} orgType={current.orgType} cityName={current.cityName} logoUrl={current.logoUrl}
           orgs={DEMO_ORGS} activeOrgId={activeOrg} onOrgSelect={handleOrgSelect}
           open={navOpen} onClick={() => setNavOpen(o => !o)}
         />
@@ -505,9 +512,9 @@ function App() {
           <div className="demo-section__label">Trigger — Desktop, org has logo on file (default state)</div>
           <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px" }}>
             <div style={{ display:"flex", gap:12, flexWrap:"wrap" }}>
-              {/* Catholic org — logo image + cityName after pipe */}
-              <OrgSwitcher orgName="Sacred Heart Church-ITD" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
-              {/* Protestant orgs — logo image, no cityName */}
+              {/* Catholic org — logo image + cityName after pipe (orgType==="catholic") */}
+              <OrgSwitcher orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
+              {/* Protestant orgs — no cityName ever, even if a string is passed */}
               <OrgSwitcher orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
               <OrgSwitcher orgName="Cross Point" logoUrl={SACRED_HEART_LOGO} />
             </div>
@@ -519,20 +526,20 @@ function App() {
           <div className="demo-section__label">Trigger — Desktop, org has NO logo on file (church placeholder)</div>
           <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px" }}>
             <div style={{ display:"flex", gap:12, flexWrap:"wrap" }}>
-              {/* Same orgs, no logo on file — should fall back to church SVG */}
-              <OrgSwitcher orgName="Sacred Heart Church-ITD" cityName="Knoxville" logoUrl="" />
+              {/* Same orgs, no logo on file — fall back to church SVG */}
+              <OrgSwitcher orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl="" />
               <OrgSwitcher orgName="Grace Community Church" logoUrl="" />
               <OrgSwitcher orgName="Cross Point" logoUrl="" />
             </div>
           </div>
         </div>
 
-        {/* Desktop — trigger open with panel */}
+        {/* Desktop — trigger open with panel (NOTE: panel is OUT OF SCOPE in v1 — placeholder only) */}
         <div className="demo-section">
-          <div className="demo-section__label">Trigger + Panel — Desktop, open</div>
+          <div className="demo-section__label">Trigger + Panel — Desktop, open (⚠ panel is placeholder, out of scope in v1)</div>
           <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px", minHeight:420 }}>
             <OrgSwitcher
-              orgName={current.name} cityName={current.cityName} logoUrl={current.logoUrl}
+              orgName={current.name} orgType={current.orgType} cityName={current.cityName} logoUrl={current.logoUrl}
               orgs={DEMO_ORGS} activeOrgId={activeOrg} onOrgSelect={handleOrgSelect}
               open={panelOpen} onClick={() => setPanelOpen(o => !o)}
             />
@@ -545,7 +552,7 @@ function App() {
           <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px" }}>
             <div style={{ display:"flex", gap:12, flexWrap:"wrap", alignItems:"flex-start", position:"relative" }}>
               {DEMO_ORGS.slice(0,5).map(o => (
-                <OrgSwitcher key={o.id} orgName={o.name} cityName={o.cityName} logoUrl={o.logoUrl} mobile />
+                <OrgSwitcher key={o.id} orgName={o.name} orgType={o.orgType} cityName={o.cityName} logoUrl={o.logoUrl} mobile />
               ))}
             </div>
           </div>

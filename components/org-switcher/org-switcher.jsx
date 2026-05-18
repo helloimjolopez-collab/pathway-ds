@@ -636,18 +636,22 @@ function OrgPanel({ orgs = [], activeOrgId, onOrgSelect, mobile = false }) {
  *   Container.OrgName (max 170px)  ←  orgName
  *   Container.CityName.Catholic (max 72px, Catholic orgs ONLY)  ←  cityName
  *
- * ⚠️  CityName rules (Figma annotation on node 40007477:12205):
- *   - Only shown for Catholic organisations.
- *   - It is the CITY or DIOCESE name, NOT a campus or sub-org name.
- *   - Protestant orgs show only `orgName` — no pipe, no second field.
+ * ⚠️  CityName rules (Figma annotation on node 40007477:12205, spec §0.1):
+ *   - Only EVER shown for Catholic organisations. Never Protestant.
+ *   - It is the CITY or DIOCESE name, NOT a campus, suborg, or region name.
+ *   - Enforced by `orgType === "catholic"` gate — cityName is IGNORED when
+ *     orgType is anything else, regardless of whether a string was supplied.
  *
  * Mobile label (Figma node 40006820:14757 / 40007067:13274):
  *   - Renders the FULL `orgName` truncated by text-overflow:ellipsis at max-width 60px.
  *   - NOT abbreviated. "Grace Community Church" renders as "Grace Comm…".
  *
- * @param {string}   orgName        Full organisation name. Desktop truncates at 170px;
+ * @param {string}   orgName        Full organisation name. Desktop truncates at 180px;
  *                                  mobile truncates at 60px (with ellipsis on both).
- * @param {string}   [cityName]     City/diocese name — Catholic orgs only. Shown after " | " on desktop.
+ * @param {"protestant"|"catholic"} [orgType="protestant"]
+ *                                  Discriminant. Only `"catholic"` enables the
+ *                                  CityName container. Protestant is the safe default.
+ * @param {string}   [cityName]     City/diocese name — ignored unless orgType==="catholic".
  *                                  Max 72px before truncation. NOT a suborg name.
  * @param {string}   [logoUrl]      Org logo URL. Omit → church SVG placeholder (never initials).
  * @param {Array}    [orgs]         Panel org list: [{id, name, campus?, logoUrl?, users?: [{color}]}]
@@ -661,7 +665,8 @@ function OrgPanel({ orgs = [], activeOrgId, onOrgSelect, mobile = false }) {
  */
 export function OrgSwitcher({
   orgName    = "Organisation",
-  cityName   = "",   // Catholic orgs only — city/diocese name shown on desktop
+  orgType    = "protestant",  // "protestant" | "catholic" — gates cityName rendering
+  cityName   = "",            // Only rendered when orgType === "catholic" (spec §0.1)
   logoUrl,
   orgs       = [],
   activeOrgId,
@@ -699,7 +704,11 @@ export function OrgSwitcher({
   // "Grace Comm…" by visual truncation, not initialism.
   const mobileText = orgName;
 
-  const ariaLabel = cityName
+  // CityName visibility — Catholic orgs ONLY (spec §0.1).
+  // Even if a city string is supplied, Protestant orgs render no city container.
+  const showCityName = orgType === "catholic" && Boolean(cityName);
+
+  const ariaLabel = showCityName
     ? `Current organisation: ${orgName}, ${cityName}. Activate to switch.`
     : `Current organisation: ${orgName}. Activate to switch.`;
 
@@ -846,7 +855,10 @@ export function OrgSwitcher({
                   {orgName}
                 </p>
               </div>
-              {cityName && (
+              {/* Container.CityName.Catholic — gated on orgType==="catholic"
+                  (spec §0.1). Protestant orgs render nothing here, even if
+                  cityName is provided. */}
+              {showCityName && (
                 <div style={{
                   display: "flex", alignItems: "center", height: "100%",
                   maxWidth: 72, flexShrink: 0, minWidth: 0,

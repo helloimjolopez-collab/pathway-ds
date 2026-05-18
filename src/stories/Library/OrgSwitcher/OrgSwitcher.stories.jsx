@@ -17,11 +17,13 @@ const SACRED_HEART_LOGO = "/components/org-switcher/assets/sacred-heart-logo.png
 // in org-switcher.jsx). These render as colored 18×18 chips in panel rows.
 const ALL_MODULES = ["people","giving","app-builder","websites","streaming","content","communications","worship","protections","events","accounting"];
 const DEMO_ORGS = [
-  { id: "grace", name: "Grace Church",                    cityName: "",          logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
-  { id: "city",  name: "City Hope Church",                cityName: "",          logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
-  { id: "nkbc",  name: "Northern Kentucky Baptist Church", cityName: "",         logoUrl: SACRED_HEART_LOGO, modules: ["people","giving","communications","events"] },
-  { id: "cp",    name: "Cross Point",                     cityName: "",          logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
-  { id: "shc",   name: "Sacred Heart Church-ITD",         cityName: "Knoxville", logoUrl: "",                modules: ["people","giving","content","events"] },
+  // Protestant orgs — cityName never renders even if supplied (spec §0.1)
+  { id: "grace", name: "Grace Church",                     orgType: "protestant", logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
+  { id: "city",  name: "City Hope Church",                 orgType: "protestant", logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
+  { id: "nkbc",  name: "Northern Kentucky Baptist Church", orgType: "protestant", logoUrl: SACRED_HEART_LOGO, modules: ["people","giving","communications","events"] },
+  { id: "cp",    name: "Cross Point",                      orgType: "protestant", logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
+  // Catholic org — cityName renders because orgType === "catholic"
+  { id: "shc",   name: "Sacred Heart Church-ITD",          orgType: "catholic",   cityName: "Knoxville", logoUrl: "", modules: ["people","giving","content","events"] },
 ];
 
 // Dark nav background wrapper — matches the real shell surface the trigger lives on.
@@ -62,8 +64,9 @@ export default {
     },
   },
   argTypes: {
-    orgName:     { control: "text",    name: "Org name",      description: "Full organisation name. Desktop truncates at 170px; mobile truncates at 60px. Both use text-overflow: ellipsis." },
-    cityName:    { control: "text",    name: "City name",     description: "Catholic orgs ONLY — city/diocese name shown after pipe on desktop (max 72px). NOT a suborg name." },
+    orgName:     { control: "text",    name: "Org name",      description: "Full organisation name. Desktop truncates at 180px; mobile truncates at 60px. Both use text-overflow: ellipsis." },
+    orgType:     { control: { type: "radio" }, options: ["protestant", "catholic"], name: "Org type", description: "Discriminant — only \"catholic\" enables the CityName container. Protestant is the safe default." },
+    cityName:    { control: "text",    name: "City name",     description: "City/diocese name. RENDERED ONLY when orgType === \"catholic\" (spec §0.1). Ignored for Protestant orgs even if supplied. NOT a suborg name." },
     logoUrl:     { control: "text",    name: "Logo URL",      description: "Org logo image URL. Empty → renders church SVG placeholder." },
     activeOrgId: { control: "text",    name: "Active org ID", description: "Which org is highlighted in the panel list" },
     open:        { control: "boolean", name: "Open",          description: "Controlled open state — flips chevron and shows panel" },
@@ -94,6 +97,7 @@ function PlaygroundTemplate({ logoUrl, ...args }) {
 export const Playground = PlaygroundTemplate.bind({});
 Playground.args = {
   orgName:    "Grace Community Church",
+  orgType:    "protestant",
   cityName:   "",
   logoUrl:    SACRED_HEART_LOGO,
   activeOrgId: "grace",
@@ -111,7 +115,7 @@ export const WithLogo = () => (
         Catholic org — logo image + city name (CityName.Catholic)
       </p>
       <DarkShell>
-        <OrgSwitcher orgName="Sacred Heart Church-ITD" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
+        <OrgSwitcher orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
       </DarkShell>
     </div>
     <div>
@@ -134,7 +138,7 @@ export const NoLogo = () => (
         No logo on file → church SVG placeholder on fill.action.secondary.base background
       </p>
       <DarkShell>
-        <OrgSwitcher orgName="Sacred Heart Church-ITD" cityName="Knoxville" />
+        <OrgSwitcher orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" />
       </DarkShell>
     </div>
     <div>
@@ -157,6 +161,7 @@ export const PanelOpen = () => {
     <DarkShell style={{ minHeight: 600, minWidth: 460 }}>
       <OrgSwitcher
         orgName={current.name}
+        orgType={current.orgType}
         cityName={current.cityName}
         logoUrl={current.logoUrl}
         orgs={DEMO_ORGS}
@@ -177,7 +182,7 @@ export const Mobile = () => (
   <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: 8 }}>
     {DEMO_ORGS.map(o => (
       <DarkShell key={o.id}>
-        <OrgSwitcher mobile orgName={o.name} cityName={o.cityName} logoUrl={o.logoUrl || undefined} />
+        <OrgSwitcher mobile orgName={o.name} orgType={o.orgType} cityName={o.cityName} logoUrl={o.logoUrl || undefined} />
       </DarkShell>
     ))}
   </div>

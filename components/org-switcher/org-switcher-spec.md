@@ -1,8 +1,39 @@
 # Org Switcher — Pathway Design System Component Spec
 
 **Status:** `REVIEWED`
+**Version:** `v1`
 
-Complete implementation reference for the Org Switcher component. Covers anatomy, design tokens, states, spacing, interaction patterns, and accessibility. Use alongside the [Figma source](#figma-source) for a pixel-accurate build. See [Appendix A](#appendix-a-abbreviation-guidelines) for the full mobile display abbreviation standard.
+Complete implementation reference for the Org Switcher component. Covers anatomy, design tokens, states, spacing, interaction patterns, and accessibility. Use alongside the [Figma source](#figma-source) for a pixel-accurate build. See [Appendix A](#appendix-a-deprecated--legacy-abbreviation-rules) for legacy/historical abbreviation rules.
+
+---
+
+## 0. Scope of this version (v1)
+
+**This version of the Org Switcher updates only the trigger control in the top nav.**
+
+| Sub-component | Scope in v1 | Notes |
+|---|---|---|
+| **Trigger button (Base/Hover/Pressed × Desktop/Mobile)** | ✅ IN SCOPE | Visual + interaction spec is authoritative. Pixel-accurate against Figma. |
+| **Avatar (logo image / church placeholder)** | ✅ IN SCOPE | Logo: `object-fit: cover` proportional fill. Placeholder: church SVG. |
+| **Container.CityName.Catholic** | ✅ IN SCOPE | Catholic orgs only (see §0.1). |
+| **Open/closed chevron rotation** | ✅ IN SCOPE | 200ms `cubic-bezier(0.4,0,0.2,1)`. |
+| **Drop panel (open state)** | ⚠️ OUT OF SCOPE — placeholder only | The panel implementation in this repo is a working-but-non-canonical placeholder. It is NOT in the design system yet. Do not treat the panel code, dimensions, header copy, search styling, row layout, or module-icon system as authoritative. The panel will be specified in a later version. |
+| Module icons row in panel rows | ⚠️ OUT OF SCOPE | Placeholder. Real Pathway module icon system to come. |
+| Panel header / search / row dimensions | ⚠️ OUT OF SCOPE | Placeholder. |
+
+**Rule:** changes to the trigger in this spec are normative. Changes to the panel placeholder are non-normative — do not modify it from Figma without an explicit design-system pass on the panel itself.
+
+### 0.1 CityName is Catholic-only — never Protestant
+
+`Container.CityName.Catholic` (the second text container after the org name, separated by ` | `) is **only ever shown for Catholic organisations**.
+
+- It carries the **city or diocese** name — never a campus, suborg, region, or other identifier.
+- Protestant organisations render the trigger with `orgName` only. No pipe. No second container. The Catholic city container is not rendered at all (not just hidden) for Protestant orgs.
+- The `showCityName` / `cityName` prop is bound to the org's record-level `orgType: "catholic"` discriminant. The component **must not** render `Container.CityName.Catholic` when `orgType !== "catholic"`, even if a city string is supplied.
+
+> **⚠ Figma annotation (node 40007477:12205):** "Container.CityName.Catholic is only implemented and/or shown for Catholic orgs. CityName does not apply to Protestant orgs. CityName is NOT a suborg name."
+
+---
 
 ---
 
@@ -14,12 +45,10 @@ It is **not** used for module-level navigation (that is SideNav's job), for sett
 
 The component has two distinct display modes driven by viewport:
 
-- **Desktop** (`≥ 768 px`): renders the full organisation name in `Container.OrgName` (max 170px). For **Catholic organisations only**, a second `Container.CityName.Catholic` (max 72px) shows the city or diocese name after a pipe separator: `Sacred Heart Church-ITD  |  Knoxville`. **Protestant orgs show only the org name — no pipe, no second field.** The trigger is a styled button element, not a plain text label.
+- **Desktop** (`≥ 768 px`): renders the full organisation name in `Container.OrgName` (max 180px). For **Catholic organisations only**, a second `Container.CityName.Catholic` (max 72px) shows the city or diocese name after a pipe separator: `Sacred Heart Church-ITD  |  Knoxville`. **Protestant orgs show only the org name — no pipe, no second field.** See §0.1 for the full Catholic-only rule. The trigger is a styled button element, not a plain text label.
 - **Mobile** (`< 768 px`): renders the full `orgName` truncated by CSS `text-overflow: ellipsis` at the `Container.Label` max-width of 60px. **There is no abbreviation** — "Grace Community Church" renders as "Grace Comm…". This is a visual truncation, not an initialism.
 
-> **⚠ Figma annotation (node 40007477:12205):** "Container.CityName.Catholic is only implemented and/or shown for Catholic orgs. CityName does not apply to Protestant orgs. CityName is NOT a suborg name."
-
-The switcher opens a panel (dropdown or bottom sheet depending on viewport) listing all organisations the signed-in user has access to. Selecting a row switches context and closes the panel.
+Clicking the trigger opens the panel. **The panel is out of scope in v1** (placeholder only — see §0).
 
 ### Figma source
 
@@ -35,8 +64,8 @@ The switcher opens a panel (dropdown or bottom sheet depending on viewport) list
 | Trigger colours, typography, spacing tokens | Figma: Org Switcher component | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583) |
 | Primitive or semantic token values | Figma: Variables panel | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) |
 | Org logo / avatar appearance | Figma: Org Switcher → Container.Avatar | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583) |
-| Panel / dropdown surface and layout | Not yet designed — deferred | §17 |
-| Abbreviation rules (mobile display) | This spec | [Appendix A](#appendix-a-abbreviation-guidelines) |
+| Panel / dropdown surface and layout | **Out of scope in v1** — placeholder only | §0 |
+| Mobile display behaviour (truncation, no abbreviation) | This spec | §5.2 |
 | Desktop full-name display format | This spec | §5.1 |
 | Mobile abbreviated display format | This spec | §5.2 + Appendix A |
 | Chevron icon rotation (open/closed) | This spec | §11 |
@@ -201,9 +230,15 @@ When `logoUrl` is absent (or fails to load), the avatar renders the **church/bui
 - `fill="white"` with `fillOpacity="0.7"`
 - **Never use text initials as the placeholder.** Figma explicitly specifies this icon.
 
-### 5.5 Panel
+### 5.5 Panel — ⚠️ OUT OF SCOPE IN v1 (PLACEHOLDER ONLY)
 
-Per Figma "Primary" (node `40007336:10287`). Opens below the trigger at `top: calc(100% + 4px)` and anchors to the trigger's left edge. The panel extends beyond the trigger's right edge when the trigger is narrow.
+> **The drop panel is NOT part of the v1 design system release.**
+>
+> The panel implementation currently in `org-switcher.jsx` / `org-switcher.html` is a working placeholder so the trigger has something to open against. Do **not** treat any of the panel's dimensions, header copy, search styling, row layout, module-icon system, or colour values as authoritative. The panel will get its own design-system pass in a later version.
+>
+> If you are working from this spec to ship code: **only the trigger sub-component (§§ 2–5.4 and 6–15 as they apply to the trigger) is normative.** The §5.5/§5.6 content below is non-normative reference describing the placeholder, not the v1 contract.
+
+Per current Figma placeholder "Primary" (node `40007336:10287`). Opens below the trigger at `top: calc(100% + 4px)` and anchors to the trigger's left edge. The panel extends beyond the trigger's right edge when the trigger is narrow.
 
 **Container dimensions:**
 - Desktop: 414px wide
@@ -477,11 +512,9 @@ Breakpoint values per `docs/design-system-spec.md` §Breakpoints.
 
 | Gap | Priority | Notes |
 |---|---|---|
-| ARIA pattern choice (Disclosure vs Combobox) | HIGH | Combobox required if org list supports search/filter. Decide before accessibility review. |
-| CityName.Catholic — product data mapping | HIGH | The `cityName` prop (Figma: `Container.CityName.Catholic`) is only shown for Catholic orgs. The product database / API must supply this field with a `orgType: "catholic"` discriminant so the UI knows whether to render the city name container. Confirm data model with backend. |
-| Module icon assets | MEDIUM | Current implementation uses Material Symbols with the Figma background colors as approximations. The actual Figma `OrgSwitcherModuleIconsLaunch` SVGs (one per module, with custom Amplify icons) are not yet committed to the repo. Replace placeholders when assets are exported. |
+| **Panel — entire sub-component** | **DEFERRED to next version** | Out of scope in v1. Whole panel design (header, search, row layout, module icons, mobile bottom-sheet vs dropdown, dimensions, ARIA pattern choice, keyboard nav within panel) lands in a later version. Placeholder lives in the repo so the trigger is testable end-to-end. |
+| CityName.Catholic — product data mapping | HIGH | The product database / API must supply `cityName` AND a `orgType: "catholic"` discriminant. Component renders `Container.CityName.Catholic` ONLY when `orgType === "catholic"` (see §0.1). Confirm data model with backend. |
 | Single-org disabled state visual | MEDIUM | Current impl: trigger at 50% opacity, inert. Confirm this matches design intent. |
-| Panel header copy | LOW | "My Organizations" copy to be confirmed with content strategy. |
 
 ---
 
