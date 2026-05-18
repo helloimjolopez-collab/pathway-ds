@@ -201,9 +201,65 @@ When `logoUrl` is absent (or fails to load), the avatar renders the **church/bui
 - `fill="white"` with `fillOpacity="0.7"`
 - **Never use text initials as the placeholder.** Figma explicitly specifies this icon.
 
-### 5.5 Panel variants
+### 5.5 Panel
 
-The panel lists all organisations the user can access, with a search bar and per-row org logo (48×48, same logo/placeholder rules as the trigger avatar, see §5.3/§5.4).
+Per Figma "Primary" (node `40007336:10287`). Opens below the trigger at `top: calc(100% + 4px)` and anchors to the trigger's left edge. The panel extends beyond the trigger's right edge when the trigger is narrow.
+
+**Container dimensions:**
+- Desktop: 414px wide
+- Mobile: 380px wide (fits within phone viewport with side margins)
+- Padding: `pt:18px pb:24px px:18px`
+- Background: `#ffffff`
+- Border radius: 8px
+- Shadow: `0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)`
+- Internal `gap: 12px` between Header, Search, and List
+
+**Header (Breadcrumb — node `40007336:10288`):**
+- "My Organizations" — `Red Hat Text SemiBold 14px / line-height: normal`
+- Color: `#6b6b6b` (text.base.secondary)
+- Container padding: `px:10 py:4`, radius: 4
+
+**Search input (node `40007336:10289`):**
+- Bordered rectangle (NOT pill)
+- Border: `1px solid #b5b5b5` (stroke.input.default)
+- Border radius: 4px
+- Padding: 8px all sides
+- `gap: 4px` between icon and input
+- Search icon: 24×24 Material Symbol `search`
+- Placeholder: "Search" — `Red Hat Text Regular 16px / 24px line-height / color #6b6b6b`
+
+**Org list row (Switcher Items_V4 — node `40007336:10291`):**
+- Height: 78px, full panel inner width (370px desktop)
+- Background: `#ffffff` (active: `#eef2fb`)
+- Border radius: 8px
+- Padding: 16px all sides
+- Layout: `flex items-center gap:16` →
+  - **Logo Name Modules** (`flex: 1 0 0, gap:12`):
+    - **Logo** — 64×46 RECTANGLE, `border-radius: 4`, `background: #0f3e80` (navy). Contains the org's branded logo image (`object-fit: contain, padding: 6px`) or the church placeholder SVG centered.
+    - **Name + Modules column** (`flex-col, gap:6`):
+      - Org name — `Red Hat Text SemiBold 14px / 22px line-height / color #363636`
+      - Modules row — 18×18 colored chips with `-2px` right margin (visually overlap by 2px). 1.5px white border on each chip.
+  - **Chevron right** — `chevron_right` 20×20, color `#979797`
+
+### 5.6 Module icons
+
+Each row displays 18×18 chips representing the Pathway modules the org has access to. Module catalog (from Figma `OrgSwitcherModuleIconsLaunch` variants):
+
+| Module key | Background | Material Symbol |
+|---|---|---|
+| `people` | `#877ec8` | `person` |
+| `giving` | `#4ba8cb` | `volunteer_activism` |
+| `app-builder` | `#6fceb7` | `build` |
+| `websites` | `#2bb6c4` | `language` |
+| `streaming` | `#e07d6e` | `live_tv` |
+| `content` | `#e8b15e` | `article` |
+| `communications` | `#d96c9e` | `chat` |
+| `worship` | `#8b6dd8` | `music_note` |
+| `protections` | `#5b8def` | `shield` |
+| `events` | `#4caf7d` | `event` |
+| `accounting` | `#f8c84f` | `account_balance` |
+
+Each org passes a `modules: string[]` array to the component. Modules render in the order provided.
 
 ---
 
@@ -422,10 +478,9 @@ Breakpoint values per `docs/design-system-spec.md` §Breakpoints.
 | Gap | Priority | Notes |
 |---|---|---|
 | ARIA pattern choice (Disclosure vs Combobox) | HIGH | Combobox required if org list supports search/filter. Decide before accessibility review. |
-| Panel mobile behaviour (dropdown vs bottom sheet) | HIGH | No Figma reference yet. Needs design decision. |
 | CityName.Catholic — product data mapping | HIGH | The `cityName` prop (Figma: `Container.CityName.Catholic`) is only shown for Catholic orgs. The product database / API must supply this field with a `orgType: "catholic"` discriminant so the UI knows whether to render the city name container. Confirm data model with backend. |
+| Module icon assets | MEDIUM | Current implementation uses Material Symbols with the Figma background colors as approximations. The actual Figma `OrgSwitcherModuleIconsLaunch` SVGs (one per module, with custom Amplify icons) are not yet committed to the repo. Replace placeholders when assets are exported. |
 | Single-org disabled state visual | MEDIUM | Current impl: trigger at 50% opacity, inert. Confirm this matches design intent. |
-| Abbreviation collision handling | MEDIUM | Appendix A §4.5 / §5.6 defines resolution rules; product DB must support storing per-org override values. |
 | Panel header copy | LOW | "My Organizations" copy to be confirmed with content strategy. |
 
 ---

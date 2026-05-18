@@ -313,39 +313,42 @@ function TriggerAvatar({ logoUrl, size, borderColor }) {
 }
 
 /**
- * Org logo in the panel list rows: 48×48, border-radius 8px.
- * — Logo present: object-fit: cover fill.
- * — No logo: church placeholder SVG on fill.action.secondary.base background.
+ * Org branding block in the panel list rows.
+ * 64×46 RECTANGLE, rounded-4, dark navy background (#0f3e80) per Figma node
+ * I40007336:10291;10550:89851 (Logo). Contains the org's branded logo image
+ * scaled to fit, or the church placeholder SVG centered when no logo is on file.
  */
-function PanelOrgLogo({ logoUrl }) {
+function PanelOrgBranding({ logoUrl }) {
   return (
     <div style={{
-      width: 48, height: 48,
-      borderRadius: 8,
+      width: 64, height: 46,
+      borderRadius: 4,
       overflow: "hidden",
       flexShrink: 0,
       position: "relative",
-      background: T.fillAvatarPlaceholder,
-      border: `${T.borderWidth} solid rgba(0,0,0,0.08)`,
+      background: "#0f3e80",  // Figma node 10550:89852 "BG" — dark navy
     }}>
       {logoUrl ? (
         <img
           src={logoUrl}
           alt=""
           aria-hidden="true"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          style={{
+            position: "absolute", inset: 0,
+            width: "100%", height: "100%",
+            objectFit: "contain",   // fits the branded mark inside the rectangle
+            display: "block",
+            padding: 6,
+            boxSizing: "border-box",
+          }}
         />
       ) : (
-        <div style={{ position: "absolute", inset: "8.33% 12.5% 12.5% 12.5%" }}>
-          <svg
-            viewBox="0 0 13.3333 14"
-            width="100%" height="100%"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            style={{ display: "block" }}
-          >
-            <path d={CHURCH_ICON_PATH} fill="#606060" fillOpacity="0.7" />
+        <div style={{
+          position: "absolute", inset: 0,
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <svg viewBox="0 0 13.3333 14" width={20} height={20} fill="none" aria-hidden="true">
+            <path d={CHURCH_ICON_PATH} fill="white" fillOpacity="0.85" />
           </svg>
         </div>
       )}
@@ -353,40 +356,73 @@ function PanelOrgLogo({ logoUrl }) {
   );
 }
 
-// Overlapping user avatar row (up to 8 shown).
-function UserAvatarRow({ users = [] }) {
-  const visible = users.slice(0, 8);
+/**
+ * Module icons row — colored 18×18 chips showing which Pathway modules an
+ * org has access to. Per Figma node I40007336:10291;10538:78657 "Modules".
+ * Each icon has a -2px right margin so the chips visually overlap slightly.
+ *
+ * Modules supported (matches Figma OrgSwitcherModuleIconsLaunch variants):
+ *   people, giving, app-builder, websites, streaming, content,
+ *   communications, worship, protections, events, accounting
+ */
+const MODULE_CATALOG = {
+  "people":         { bg: "#877ec8", icon: "person" },
+  "giving":         { bg: "#4ba8cb", icon: "volunteer_activism" },
+  "app-builder":    { bg: "#6fceb7", icon: "build" },
+  "websites":       { bg: "#2bb6c4", icon: "language" },
+  "streaming":      { bg: "#e07d6e", icon: "live_tv" },
+  "content":        { bg: "#e8b15e", icon: "article" },
+  "communications": { bg: "#d96c9e", icon: "chat" },
+  "worship":        { bg: "#8b6dd8", icon: "music_note" },
+  "protections":    { bg: "#5b8def", icon: "shield" },
+  "events":         { bg: "#4caf7d", icon: "event" },
+  "accounting":     { bg: "#f8c84f", icon: "account_balance" },
+};
+
+function ModuleIconsRow({ modules = [] }) {
+  if (!modules.length) return null;
   return (
-    <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-      {visible.map((u, i) => (
-        <div
-          key={i}
-          style={{
-            width: 20, height: 20,
-            borderRadius: "50%",
-            border: "1.5px solid white",
-            background: u.color || USER_COLORS[i % USER_COLORS.length],
-            display: "flex", alignItems: "center", justifyContent: "center",
-            marginLeft: i === 0 ? 0 : -6,
-            overflow: "hidden",
-            position: "relative",
-            zIndex: visible.length - i,
-          }}
-        >
-          <Icon name="person" size={12} style={{ color: "white" }} />
-        </div>
-      ))}
+    <div style={{ display: "flex", alignItems: "flex-start", flexShrink: 0 }}>
+      {modules.map((m, i) => {
+        const def = MODULE_CATALOG[m];
+        if (!def) return null;
+        return (
+          <div
+            key={`${m}-${i}`}
+            title={m.replace(/-/g, " ")}
+            style={{
+              width: 18, height: 18,
+              borderRadius: 9999,
+              background: def.bg,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              marginRight: -2,           // Figma mr-[-2px] — overlap chips
+              flexShrink: 0,
+              overflow: "hidden",
+              border: "1.5px solid #ffffff",
+              boxSizing: "border-box",
+            }}
+          >
+            <Icon name={def.icon} size={10} style={{ color: "#ffffff" }} />
+          </div>
+        );
+      })}
     </div>
   );
 }
 
-// Individual org list item in the panel.
+/**
+ * Individual org list item in the panel (per Figma node 40007336:10291
+ * "Switcher Items_V4"). 78px tall, 370px wide, white background, rounded-8.
+ *
+ * Layout (16px inset from row edges):
+ *   [Logo 64×46] gap-12 [Name + ModuleIcons col] gap-16 [chevron_right]
+ */
 function OrgListItem({ org, isActive, onSelect }) {
   const [hovered, setHovered] = useState(false);
 
   const bg = isActive
     ? T.activeOrg
-    : hovered ? T.orgHover : "transparent";
+    : hovered ? T.orgHover : "#ffffff";
 
   return (
     <button
@@ -395,59 +431,77 @@ function OrgListItem({ org, isActive, onSelect }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        display: "flex", alignItems: "center", gap: 10,
-        padding: "10px 12px",
+        display: "flex", alignItems: "center", gap: 16,
+        padding: 16,
         width: "100%",
+        minHeight: 78,
         background: bg,
         border: "none",
+        borderRadius: 8,
         cursor: "pointer",
-        fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
+        fontFamily: "'Red Hat Text', sans-serif",
         textAlign: "left",
         transition: "background 150ms cubic-bezier(0.4,0,0.2,1)",
+        boxSizing: "border-box",
       }}
     >
-      <PanelOrgLogo logoUrl={org.logoUrl} />
+      {/* "Logo Name Modules" — flex 1 0 0 gap-12 */}
+      <div style={{
+        display: "flex", alignItems: "center", gap: 12,
+        flex: "1 0 0", minWidth: 0,
+      }}>
+        <PanelOrgBranding logoUrl={org.logoUrl} />
 
-      {/* Text column */}
-      <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 2 }}>
+        {/* "Name Modules" — flex-col gap-6 */}
         <div style={{
-          fontSize: 14, fontWeight: 500,
-          color: T.panelOrgName,
-          whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+          flex: "1 0 0", minWidth: 0,
+          display: "flex", flexDirection: "column", gap: 6,
+          justifyContent: "center",
         }}>
-          {org.name}
-        </div>
-        {org.campus && (
-          <div style={{
-            fontSize: 12, fontWeight: 400,
-            color: T.panelCampus,
-            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+          <p style={{
+            // Figma: Red Hat Text SemiBold 14/22 #363636
+            fontFamily: "'Red Hat Text', sans-serif",
+            fontWeight: 600,
+            fontSize: 14,
+            lineHeight: "22px",
+            color: "#363636",
+            margin: 0,
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            WebkitFontSmoothing: "antialiased",
+            MozOsxFontSmoothing: "grayscale",
           }}>
-            {org.campus}
-          </div>
-        )}
+            {org.name}
+          </p>
+          <ModuleIconsRow modules={org.modules || []} />
+        </div>
       </div>
 
-      {/* User avatar row */}
-      {org.users && org.users.length > 0 && (
-        <UserAvatarRow users={org.users} />
-      )}
-
       {/* Chevron */}
-      <Icon name="chevron_right" size={16} style={{ color: T.panelChevron, flexShrink: 0 }} />
+      <Icon name="chevron_right" size={20} style={{ color: "#979797", flexShrink: 0 }} />
     </button>
   );
 }
 
-// The panel that opens below the trigger.
-function OrgPanel({ orgs = [], activeOrgId, onOrgSelect }) {
+/**
+ * The OrgSwitcher panel (Figma "Primary" node 40007336:10287).
+ * 414px wide on desktop, content fills full viewport width on mobile.
+ *
+ * Layout: flex-col gap-12, pt-18 pb-24 px-18, white background, rounded-8.
+ *   Header   ← "My Organizations" breadcrumb-style
+ *   Search   ← bordered rectangle with 24px icon + 16px placeholder
+ *   List     ← Switcher Items_V4 rows (78px tall)
+ */
+function OrgPanel({ orgs = [], activeOrgId, onOrgSelect, mobile = false }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filtered = orgs.filter(org =>
     !searchQuery.trim() ||
-    org.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    (org.campus && org.campus.toLowerCase().includes(searchQuery.toLowerCase()))
+    org.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const PANEL_W = mobile ? 380 : 414;
 
   return (
     <div
@@ -458,12 +512,21 @@ function OrgPanel({ orgs = [], activeOrgId, onOrgSelect }) {
         top: "calc(100% + 4px)",
         left: 0,
         zIndex: 300,
-        width: 316,
-        background: T.panelBg,
-        borderRadius: T.panelRadius,
+        width: PANEL_W,
+        background: "#ffffff",
+        borderRadius: 8,
         boxShadow: T.panelShadow,
         overflow: "hidden",
         animation: "orgPanelIn 200ms cubic-bezier(0,0,0.2,1) both",
+        // Figma Primary: pt:18 pb:24 px:18, gap:12
+        paddingTop: 18,
+        paddingBottom: 24,
+        paddingLeft: 18,
+        paddingRight: 18,
+        display: "flex",
+        flexDirection: "column",
+        gap: 12,
+        boxSizing: "border-box",
       }}
     >
       <style>{`
@@ -473,50 +536,69 @@ function OrgPanel({ orgs = [], activeOrgId, onOrgSelect }) {
         }
       `}</style>
 
-      {/* Header */}
+      {/* Breadcrumb header — Figma node 40007336:10288 */}
       <div style={{
-        padding: "16px 16px 12px",
-        fontSize: 14, fontWeight: 600,
-        color: T.panelHeading,
-        fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
+        display: "flex", alignItems: "center",
+        padding: "4px 10px",
+        borderRadius: 4,
+        flexShrink: 0,
       }}>
-        My Organizations
-      </div>
-
-      {/* Search bar */}
-      <div style={{ padding: "0 12px 12px" }}>
-        <div style={{
-          display: "flex", alignItems: "center", gap: 8,
-          height: 36,
-          background: T.searchBg,
-          border: `1px solid ${T.searchBorder}`,
-          borderRadius: 9999,
-          padding: "0 12px",
+        <p style={{
+          margin: 0,
+          fontFamily: "'Red Hat Text', sans-serif",
+          fontWeight: 600,
+          fontSize: 14,
+          lineHeight: "normal",
+          color: "#6b6b6b",     // text.base.secondary
+          whiteSpace: "nowrap",
+          WebkitFontSmoothing: "antialiased",
+          MozOsxFontSmoothing: "grayscale",
         }}>
-          <Icon name="search" size={16} style={{ color: T.panelSearch, flexShrink: 0 }} />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-            placeholder="Search"
-            aria-label="Search organisations"
-            style={{
-              flex: 1, border: "none", background: "transparent",
-              outline: "none", fontSize: 14, fontWeight: 400,
-              color: T.panelHeading,
-              fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
-            }}
-          />
-        </div>
+          My Organizations
+        </p>
       </div>
 
-      {/* Org list */}
+      {/* Search input — Figma node 40007336:10289 — bordered rectangle */}
+      <div style={{
+        display: "flex", alignItems: "center", gap: 4,
+        padding: 8,
+        border: "1px solid #b5b5b5",     // stroke.input.default
+        borderRadius: 4,
+        background: "#ffffff",
+        flexShrink: 0,
+        overflow: "hidden",
+      }}>
+        <Icon name="search" size={24} style={{ color: "#6b6b6b", flexShrink: 0 }} />
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+          placeholder="Search"
+          aria-label="Search organisations"
+          style={{
+            flex: 1, border: "none", background: "transparent",
+            outline: "none",
+            fontFamily: "'Red Hat Text', sans-serif",
+            fontWeight: 400,
+            fontSize: 16,
+            lineHeight: "24px",
+            color: "#363636",
+            WebkitFontSmoothing: "antialiased",
+            MozOsxFontSmoothing: "grayscale",
+          }}
+        />
+      </div>
+
+      {/* Org list — Switcher Items_V4 rows */}
       <div
         role="listbox"
         aria-label="Organisations"
         style={{
-          maxHeight: 320,
+          flex: "1 0 0",
+          display: "flex", flexDirection: "column", gap: 16,
+          maxHeight: 380,
           overflowY: "auto",
+          minHeight: 0,
         }}
       >
         {filtered.map(org => (
@@ -530,8 +612,8 @@ function OrgPanel({ orgs = [], activeOrgId, onOrgSelect }) {
         {filtered.length === 0 && (
           <div style={{
             padding: "16px 12px",
-            fontSize: 13, color: T.panelCampus,
-            fontFamily: "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
+            fontSize: 14, color: "#6b6b6b",
+            fontFamily: "'Red Hat Text', sans-serif",
             textAlign: "center",
           }}>
             No organisations found
@@ -693,7 +775,7 @@ export function OrgSwitcher({
           height: BTN_H,
           maxHeight: BTN_H,
           minHeight: BTN_H,
-          maxWidth: isMobile ? 108 : 300,
+          maxWidth: isMobile ? 108 : 308,  // Container.Main max-width (Figma 40006817:14391)
           position: "relative",
           borderRadius: T.radiusMedium,
           border: `${T.borderWidth} solid ${stroke}`,
@@ -743,14 +825,14 @@ export function OrgSwitcher({
               display: "flex", alignItems: "center", height: "100%",
               maxWidth: 248, flexShrink: 0, minWidth: 0,
             }}>
-              {/* Container.OrgName: max-w 170 (CONTENT-SIZED, not fixed).
+              {/* Container.OrgName: max-w 180 (CONTENT-SIZED, not fixed).
                   Figma annotation: "Text Truncates if frame going beyond 170pt"
-                  — this is a max-width truncation rule, not a fixed width.
+                  Figma node 40007477:12230 — current Tailwind class max-w-[180px].
                   Short names like "Cross Point" → container shrinks to fit text.
-                  Long names → truncated with ellipsis at 170px. */}
+                  Long names → truncated with ellipsis at 180px. */}
               <div style={{
                 display: "flex", alignItems: "center", height: "100%",
-                maxWidth: 170, flexShrink: 1, minWidth: 0,
+                maxWidth: 180, flexShrink: 1, minWidth: 0,
               }}>
                 <p style={{
                   ...TYPE_S,
@@ -759,7 +841,7 @@ export function OrgSwitcher({
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   margin: 0,
-                  maxWidth: 170,
+                  maxWidth: 180,
                 }}>
                   {orgName}
                 </p>
@@ -832,6 +914,7 @@ export function OrgSwitcher({
           orgs={orgs}
           activeOrgId={activeOrgId}
           onOrgSelect={onOrgSelect}
+          mobile={isMobile}
         />
       )}
     </div>

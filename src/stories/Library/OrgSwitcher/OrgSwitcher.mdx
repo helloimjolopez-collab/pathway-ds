@@ -87,11 +87,15 @@ All colours on the trigger and panel are resolved through semantic tokens.
 
 ## Panel anatomy
 
-The panel (316px wide, `z-index: 300`) contains:
+The panel (414px wide on desktop, 380px on mobile, `z-index: 300`) contains:
 
-1. **Header** — "My Organizations", 14px/600, `#252525`, padding `16px 16px 12px`
-2. **Search bar** — pill shape, `#f4f4f4` background, `#e0e0e0` border, 36px height, Material Symbol `search` icon
-3. **Org list** — scrollable, max 320px. Each row: 48×48 logo → org name + campus → user avatar stack → `chevron_right`
+1. **Header** — "My Organizations" breadcrumb, `Red Hat Text SemiBold 14px / color #6b6b6b`, padding `px:10 py:4` inside a rounded-4 container
+2. **Search bar** — bordered rectangle (not pill), `1px solid #b5b5b5`, `rounded-4`, padding `8px`. 24×24 search icon + 16px Regular `Search` placeholder
+3. **Org list** — scrollable, `gap: 16px` between rows. Each row is 78px tall:
+   - 64×46 RECTANGULAR logo (navy `#0f3e80` background, `rounded-4`, logo image scaled `object-fit: contain`)
+   - Org name (`Red Hat Text SemiBold 14/22 #363636`)
+   - **Module icons row** — small 18×18 colored chips showing which Pathway modules the org subscribes to (people, giving, app-builder, etc.). Chips overlap by 2px with a 1.5px white border each
+   - `chevron_right` icon on the right
 4. **Active org** — highlighted `#eef2fb` background
 5. **Entrance animation** — `orgPanelIn` 200ms `cubic-bezier(0,0,0.2,1)`, `translateY(-6px) → 0`
 6. **Shadow** — `0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)`

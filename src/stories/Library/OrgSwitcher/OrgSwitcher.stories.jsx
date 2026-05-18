@@ -13,16 +13,15 @@ import { OrgSwitcher } from "../../../../components/org-switcher/org-switcher.js
 const SACRED_HEART_LOGO = "/components/org-switcher/assets/sacred-heart-logo.png";
 
 // ── Demo data ─────────────────────────────────────────────────────────────────
-// In production, `logoUrl` is the org's logo from MB's media service.
-// Orgs with a logo on file → image. Orgs without → church placeholder SVG.
+// Each org has a `modules` array of Pathway module keys (see MODULE_CATALOG
+// in org-switcher.jsx). These render as colored 18×18 chips in panel rows.
+const ALL_MODULES = ["people","giving","app-builder","websites","streaming","content","communications","worship","protections","events","accounting"];
 const DEMO_ORGS = [
-  // Catholic org — has logo + cityName (diocese) per Figma annotation
-  { id: "shc",  name: "Sacred Heart Church-ITD",          cityName: "Knoxville", campus: "Knoxville",       logoUrl: SACRED_HEART_LOGO, users: [{color:"#5b8def"},{color:"#9c6dd8"},{color:"#d96c6c"},{color:"#4caf7d"},{color:"#e08c2d"}] },
-  // Protestant orgs — no cityName; mix of logo-on-file vs no-logo
-  { id: "gcc",  name: "Grace Community Church",           cityName: "",          campus: "West",            logoUrl: SACRED_HEART_LOGO, users: [{color:"#5b8def"},{color:"#9c6dd8"},{color:"#d96c6c"}] },
-  { id: "ncc",  name: "Nashville Christian Church",       cityName: "",          campus: "Nashville North", logoUrl: "",                users: [{color:"#4caf7d"},{color:"#e08c2d"},{color:"#2b9ec3"},{color:"#c45d9e"}] },
-  { id: "nkbc", name: "Northern Kentucky Baptist Church", cityName: "",          campus: "",                logoUrl: "",                users: [{color:"#5b8def"},{color:"#7cb342"}] },
-  { id: "cp",   name: "Cross Point",                      cityName: "",          campus: "Main Campus",     logoUrl: SACRED_HEART_LOGO, users: [{color:"#9c6dd8"},{color:"#d96c6c"},{color:"#e08c2d"}] },
+  { id: "grace", name: "Grace Church",                    cityName: "",          logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
+  { id: "city",  name: "City Hope Church",                cityName: "",          logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
+  { id: "nkbc",  name: "Northern Kentucky Baptist Church", cityName: "",         logoUrl: SACRED_HEART_LOGO, modules: ["people","giving","communications","events"] },
+  { id: "cp",    name: "Cross Point",                     cityName: "",          logoUrl: SACRED_HEART_LOGO, modules: ALL_MODULES },
+  { id: "shc",   name: "Sacred Heart Church-ITD",         cityName: "Knoxville", logoUrl: "",                modules: ["people","giving","content","events"] },
 ];
 
 // Dark nav background wrapper — matches the real shell surface the trigger lives on.
@@ -76,7 +75,7 @@ export default {
 // ── Playground ────────────────────────────────────────────────────────────────
 function PlaygroundTemplate({ logoUrl, ...args }) {
   const [open, setOpen] = useState(false);
-  const [activeOrg, setActiveOrg] = useState("shc");
+  const [activeOrg, setActiveOrg] = useState("grace");
   return (
     <DarkShell style={{ minHeight: 80 }}>
       <OrgSwitcher
@@ -94,10 +93,10 @@ function PlaygroundTemplate({ logoUrl, ...args }) {
 
 export const Playground = PlaygroundTemplate.bind({});
 Playground.args = {
-  orgName:    "Sacred Heart Church-ITD",
-  cityName:   "Knoxville",
+  orgName:    "Grace Community Church",
+  cityName:   "",
   logoUrl:    SACRED_HEART_LOGO,
-  activeOrgId: "shc",
+  activeOrgId: "grace",
   open:       false,
   disabled:   false,
   mobile:     false,
@@ -152,10 +151,10 @@ NoLogo.storyName = "No Logo (church placeholder)";
 
 // ── Panel Open ────────────────────────────────────────────────────────────────
 export const PanelOpen = () => {
-  const [activeOrg, setActiveOrg] = useState("shc");
+  const [activeOrg, setActiveOrg] = useState("grace");
   const current = DEMO_ORGS.find(o => o.id === activeOrg) || DEMO_ORGS[0];
   return (
-    <DarkShell style={{ minHeight: 480 }}>
+    <DarkShell style={{ minHeight: 600, minWidth: 460 }}>
       <OrgSwitcher
         orgName={current.name}
         cityName={current.cityName}
