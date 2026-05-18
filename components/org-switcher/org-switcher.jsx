@@ -756,9 +756,9 @@ export function OrgSwitcher({
           }}>
             <p style={{
               fontFamily: "var(--semantic-type-desktop-label-button-xs-fontfamily, 'Red Hat Text', sans-serif)",
-              fontWeight: 500,
-              fontSize: 12,
-              lineHeight: "18px",
+              fontWeight: "var(--semantic-type-desktop-label-button-xs-fontweight, 500)",
+              fontSize: "var(--semantic-type-desktop-label-button-xs-fontsize, 12px)",
+              lineHeight: "var(--semantic-type-desktop-label-button-xs-lineheight, 18px)",
               letterSpacing: "var(--semantic-type-desktop-label-button-xs-letterspacing, 0.3px)",
               color: text,
               whiteSpace: "nowrap",
