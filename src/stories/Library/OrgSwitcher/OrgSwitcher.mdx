@@ -1,23 +1,22 @@
-{/* OrgSwitcher — Pathway Design System
-    Spec: components/org-switcher/org-switcher-spec.md
-    Figma: https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007336-9453
+{/* OrgSwitcher — Pathway Design System (v1)
+    Spec:  components/org-switcher/org-switcher-spec.md
+    Figma: https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583
 */}
 
-import { Canvas, Controls, Meta, Story } from "@storybook/blocks";
+import { Canvas, Controls, Meta } from "@storybook/blocks";
 import * as OrgSwitcherStories from "./OrgSwitcher.stories";
 
 <Meta of={OrgSwitcherStories} />
 
 # Org Switcher
 
-The Org Switcher lets a signed-in user see their active organisation and campus, and switch to a different one. It lives in the global shell (top navigation bar) and is visible at all times in multi-org contexts.
+The Org Switcher is the trigger that sits in the brand-blue top nav and shows the active organisation. Clicking it opens a panel for switching between orgs the user has access to.
 
-**Desktop:** renders the full organisation name (max 170px). For Catholic orgs only, a second container shows the city/diocese name (max 72px) after a pipe.
-**Mobile:** renders the full organisation name truncated by `text-overflow: ellipsis` at `Container.Label` max-width 60px. No abbreviation — "Grace Community Church" displays as "Grace Comm…".
+<p style={{ padding: "10px 14px", background: "#fff7e0", borderLeft: "3px solid #e6a700", borderRadius: 4, margin: "16px 0", fontSize: 13, color: "#5b4500" }}>
+  <strong>v1 scope — trigger only.</strong> This release covers the trigger control. The drop panel exists in the repo as a working placeholder so the trigger can open against something, but it is <strong>not part of the design system yet</strong> and its visual is non-authoritative. The panel will get its own design pass in a later version. See <code>org-switcher-spec.md</code> §0.
+</p>
 
-**Always on the brand-blue surface.** All interactive controls use dark-mode tokens regardless of the app's active color scheme.
-
-**Spec:** `components/org-switcher/org-switcher-spec.md` · **Figma:** [Open node 40007336-9453](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007336-9453)
+**Spec:** [`components/org-switcher/org-switcher-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher-spec.md) · **Figma:** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583)
 
 ---
 
@@ -28,95 +27,106 @@ The Org Switcher lets a signed-in user see their active organisation and campus,
 
 ---
 
-## Panel — open state
+## Desktop variants
 
-When `open={true}`, a panel renders below the trigger at `top: calc(100% + 4px)`. It contains a header, a search bar, and a scrollable list of organisations. The active org is highlighted in blue. Clicking an org fires `onOrgSelect(orgId)`.
+The trigger renders inside the brand-blue top nav. The org name is left-aligned, truncates with ellipsis at 180px, and Catholic organisations get a second city/diocese container after a pipe.
 
-<Canvas of={OrgSwitcherStories.PanelOpen} />
-
----
-
-## With logo (default)
-
-When the org has a logo on file, the avatar renders the image with `object-fit: cover` so it fills the frame proportionally.
-
-<Canvas of={OrgSwitcherStories.WithLogo} />
+<Canvas of={OrgSwitcherStories.DesktopVariants} />
 
 ---
 
-## No logo (church placeholder)
+## Catholic vs Protestant — the CityName rule
 
-When `logoUrl` is omitted or empty, the avatar renders the church/building SVG icon (Figma node `40007243:73426`) on a `fill.action.secondary.base` (`rgba(255,255,255,0.08)`) background. **Never use text initials** — Figma explicitly specifies this icon.
+Per spec §0.1, `Container.CityName.Catholic` is **only ever rendered for Catholic organisations**. Protestant orgs render the org name on its own — no pipe, no second container — even if a `cityName` string is supplied.
 
-<Canvas of={OrgSwitcherStories.NoLogo} />
+The rule is enforced in code by the `orgType` discriminant:
+
+```jsx
+const showCityName = orgType === "catholic" && Boolean(cityName);
+```
+
+<Canvas of={OrgSwitcherStories.CatholicVsProtestant} />
 
 ---
 
-## Mobile layout
+## Truncation
 
-On viewports below 768px (or when `mobile={true}` is forced), the trigger compacts to a 108px max-width pill. The avatar shrinks to 20×20 outer (16×16 inner) and the org name is rendered in `Label/Button/XS` (12px / 500 / 18px lh), truncated by CSS `text-overflow: ellipsis` at `Container.Label` max-width 60px. **No abbreviation** — the full org name is the source string, truncated visually.
+`Container.OrgName` is content-sized with `max-width: 180px`. Short org names ("Cross Point") shrink the container to fit. Long names truncate with ellipsis at 180px.
+
+<Canvas of={OrgSwitcherStories.Truncation} />
+
+---
+
+## Mobile
+
+On viewports below 768px (or when `mobile={true}` is forced), the trigger compacts to a fixed 108px-wide pill. The label container is a fixed 50px wide and the full org name truncates inside it with ellipsis. **No abbreviation.** Typography is `Label/Button/S` (14px) — same as desktop.
 
 <Canvas of={OrgSwitcherStories.Mobile} />
 
 ---
 
-## States
+## Anatomy
 
-<Canvas of={OrgSwitcherStories.States} />
+```
+OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 fixed · min-w/h 48 (touch target)
+└── Container.Main                      h-36, p-4, rounded-8, border 1px
+    ├── Container.RowStart              flex items-center gap-4 · h-24 desktop · h-20 max-w-74 mobile
+    │   ├── Container.Avatar            24×24 desktop · 20×20 mobile · p-2 inner
+    │   │   └── Avatar                  rounded-4, 1px border
+    │   │       ├─ [logo present]       <img object-fit:cover>
+    │   │       └─ [no logo]            church SVG · fill.action.secondary.base bg
+    │   └── Container.OrgLabel          DESKTOP ONLY · max-w-248
+    │       ├── Container.OrgName       max-w-180 · content-sized · truncates with ellipsis
+    │       └── Container.CityName.Catholic   CATHOLIC ORGS ONLY · max-w-72 · "| {cityName}"
+    │   └── Container.Label             MOBILE ONLY · w-50 fixed · truncated org name
+    └── Container.RowEnd                 p-2
+        └── Container.IconTrailing      16×16 · p-2 · expand_more icon · rotates 180° when open
+```
 
 ---
 
 ## Design tokens
 
-All colours on the trigger and panel are resolved through semantic tokens.
+All colours come through dark-mode semantic tokens.
 
-| Token | Resolved | Usage |
-|---|---|---|
-| `semantic-color.dark-mode.fill.action.tertiary.base` | `rgba(160,181,230,0.04)` | Trigger base fill |
-| `semantic-color.dark-mode.stroke.action.tertiary.base` | `rgba(160,181,230,0.16)` | Trigger border base |
-| `semantic-color.dark-mode.stroke.action.tertiary.hover` | `rgba(160,181,230,0.20)` | Trigger border hover |
-| `semantic-color.dark-mode.stroke.action.tertiary.pressed` | `rgba(160,181,230,0.30)` | Trigger border open/pressed |
-| `semantic-color.dark-mode.fill.action.primaryinverse.hover` | `rgba(10,18,35,0.16)` | Trigger hover fill |
-| `semantic-color.dark-mode.fill.action.primaryinverse.pressed` | `rgba(255,255,255,0.08)` | Trigger open/pressed fill |
-| `semantic-color.dark-mode.text.action.mono.base` | `#fbfbfb` | Trigger label + chevron |
-| `semantic-color.light-mode.fill.static.brand.base` | `#2d4889` | Org logo branded bg (no logo) |
+<Canvas of={OrgSwitcherStories.TokensFill} />
 
-> All token values are sourced from `src/tokens/tokens.css`. Never hardcode hex values in component code.
+<Canvas of={OrgSwitcherStories.TokensTypography} />
 
 ---
 
-## Panel anatomy
+## Motion
 
-The panel (414px wide on desktop, 380px on mobile, `z-index: 300`) contains:
-
-1. **Header** — "My Organizations" breadcrumb, `Red Hat Text SemiBold 14px / color #6b6b6b`, padding `px:10 py:4` inside a rounded-4 container
-2. **Search bar** — bordered rectangle (not pill), `1px solid #b5b5b5`, `rounded-4`, padding `8px`. 24×24 search icon + 16px Regular `Search` placeholder
-3. **Org list** — scrollable, `gap: 16px` between rows. Each row is 78px tall:
-   - 64×46 RECTANGULAR logo (navy `#0f3e80` background, `rounded-4`, logo image scaled `object-fit: contain`)
-   - Org name (`Red Hat Text SemiBold 14/22 #363636`)
-   - **Module icons row** — small 18×18 colored chips showing which Pathway modules the org subscribes to (people, giving, app-builder, etc.). Chips overlap by 2px with a 1.5px white border each
-   - `chevron_right` icon on the right
-4. **Active org** — highlighted `#eef2fb` background
-5. **Entrance animation** — `orgPanelIn` 200ms `cubic-bezier(0,0,0.2,1)`, `translateY(-6px) → 0`
-6. **Shadow** — `0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)`
+| Property | Value |
+|---|---|
+| Chevron rotation | `transform 200ms cubic-bezier(0.4,0,0.2,1)` |
+| Hover/pressed transitions | `background 120ms ease, border-color 120ms ease` |
+| Reduced motion | Snap (no easing) when `prefers-reduced-motion: reduce` |
 
 ---
 
 ## Accessibility
 
-- Trigger uses `aria-haspopup="true"`, `aria-expanded`, and an `aria-label` that always announces the full org name.
-- On mobile, the visually-truncated label is separate from the button's `aria-label`, which carries the full org name.
-- Panel uses `role="dialog"` with `aria-label="Switch organisation"`. Org list uses `role="listbox"`.
-- Keyboard: `Enter`/`Space` toggles panel; `Escape` closes (wire up in the parent shell's keydown handler).
-- Focus ring: `2px solid rgba(255,255,255,0.9)` on the trigger button.
-- All interactive controls have 48×48px outer touch targets (WCAG 2.5.5).
-- Chevron rotation: `transform 200ms cubic-bezier(0.4,0,0.2,1)` — follows `prefers-reduced-motion` override if implemented at the shell level.
+- Trigger is a real `<button>` with `aria-haspopup="true"` and `aria-expanded` reflecting the open state
+- `aria-label` always carries the full org name, even when the visible label is truncated
+- For Catholic orgs, the city name is included in the aria-label as well (`"Current organisation: Sacred Heart Church-ITD, Knoxville. Activate to switch."`)
+- Outer touch target is 48×48 (WCAG 2.5.5)
+- Disabled state (single-org users) sets `aria-disabled` via the native `disabled` attribute
+- Reduced motion: chevron rotation drops to instant when `prefers-reduced-motion: reduce` is set at the shell level
+
+---
+
+## Standalone HTML demo
+
+A self-contained React+Babel demo lives at `components/org-switcher/org-switcher.html` for sharing the trigger in isolation:
+
+<Canvas of={OrgSwitcherStories.StandaloneDemo} />
 
 ---
 
 ## Spec & source
 
-- Full spec: [components/org-switcher/org-switcher-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher-spec.md)
-- Component module: [components/org-switcher/org-switcher.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher.jsx)
-- Standalone demo: [components/org-switcher/org-switcher.html](https://helloimjolopez-collab.github.io/pathway-ds/components/org-switcher/org-switcher.html)
-- Figma node: [40007336:9453](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007336-9453)
+- Full spec — [`components/org-switcher/org-switcher-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher-spec.md)
+- React module — [`components/org-switcher/org-switcher.jsx`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher.jsx)
+- Standalone demo — [`components/org-switcher/org-switcher.html`](https://helloimjolopez-collab.github.io/pathway-ds/components/org-switcher/org-switcher.html)
+- Figma — [Org Switcher component](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583)
