@@ -12,7 +12,10 @@ import { OrgSwitcher } from "../../../../components/org-switcher/org-switcher.js
 
 // Sacred Heart Church logo exported from Figma node 40006817:14372.
 // Storybook serves /components/* as static assets (see .storybook/main.js).
-const SACRED_HEART_LOGO = "/components/org-switcher/assets/sacred-heart-logo.png";
+// Relative path (no leading slash) so it works both in dev (root) and on
+// GitHub Pages (/pathway-ds/storybook/). Storybook's staticDirs maps
+// ../components → /components inside the iframe.
+const SACRED_HEART_LOGO = "components/org-switcher/assets/sacred-heart-logo.png";
 
 // ── Demo data ─────────────────────────────────────────────────────────────────
 // CityName.Catholic only renders for orgType === "catholic" (spec §0.1).
@@ -28,9 +31,9 @@ const DEMO_ORGS = [
 // ── Presentation helpers ─────────────────────────────────────────────────────
 
 /**
- * NavBar — recreates the real top-nav shell the trigger lives on. Padded
- * generously left/right, fixed 56px tall, brand-blue background, with optional
- * label text on the right so the trigger doesn't look orphaned mid-shell.
+ * NavBar — a brand-blue strip that recreates the top-nav surface the trigger
+ * lives on. No "Pathway" label or chrome — just the dark surface so the
+ * trigger renders against the colour it was designed against.
  */
 function NavBar({ children, height = 56, padX = 20 }) {
   return (
@@ -39,18 +42,11 @@ function NavBar({ children, height = 56, padX = 20 }) {
       height,
       padding: `0 ${padX}px`,
       borderRadius: 8,
-      display: "flex", alignItems: "center", gap: 16,
+      display: "flex", alignItems: "center",
       position: "relative", overflow: "visible",
       fontFamily: "'Red Hat Text', sans-serif",
       WebkitFontSmoothing: "antialiased",
     }}>
-      <span style={{
-        color: "rgba(251,251,251,0.65)",
-        fontSize: 13, fontWeight: 600, letterSpacing: "0.04em",
-      }}>
-        Pathway
-      </span>
-      <div style={{ width: 1, height: 20, background: "rgba(160,181,230,0.2)" }} />
       {children}
     </div>
   );

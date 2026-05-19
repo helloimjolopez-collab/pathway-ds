@@ -531,10 +531,11 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
 }
 
 // ── Demo wrapper ─────────────────────────────────────────────────────────────
+// Brand-blue top-nav surface, no "Pathway" label — the OrgSwitcher trigger
+// owns the visible content.
 function NavShell({ children }) {
   return (
     <div style={{ background:"#2d4889", borderBottom:"1px solid rgba(160,181,230,0.12)", padding:"0 20px", display:"flex", alignItems:"center", height:56, gap:12, position:"relative", overflow:"visible" }}>
-      <span style={{ fontWeight:700, fontSize:15, color:"#fbfbfb", letterSpacing:"0.05em" }}>Pathway</span>
       {children}
     </div>
   );
@@ -562,7 +563,6 @@ function App() {
           orgs={DEMO_ORGS} activeOrgId={activeOrg} onOrgSelect={handleOrgSelect}
           open={navOpen} onClick={() => setNavOpen(o => !o)}
         />
-        <span style={{ fontSize:11, color:"rgba(251,251,251,0.5)", marginLeft:8 }}>(click to toggle panel)</span>
       </NavShell>
 
       <div className="demo-page">
@@ -606,7 +606,7 @@ function App() {
           </div>
         </div>
 
-        {/* Mobile — full org name truncated with ellipsis at 60px max-width */}
+        {/* Mobile — full org name truncated with ellipsis at 50px max-width */}
         <div className="demo-section">
           <div className="demo-section__label">Trigger — Mobile (full org name truncated, no abbreviation)</div>
           <div className="demo-section__body" style={{ background:"#2d4889", borderRadius:"0 0 10px 10px" }}>
@@ -615,6 +615,162 @@ function App() {
                 <OrgSwitcher key={o.id} orgName={o.name} orgType={o.orgType} cityName={o.cityName} logoUrl={o.logoUrl} mobile />
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* ── ANATOMY ─────────────────────────────────────────────── */}
+        <div className="demo-section">
+          <div className="demo-section__label">Anatomy</div>
+          <div className="demo-section__body">
+            <pre style={{ fontFamily:"ui-monospace, SFMono-Regular, Menlo, monospace", fontSize:12, lineHeight:"1.55", color:"#363636", background:"#fafbfd", padding:"16px 18px", borderRadius:6, border:"1px solid #eef1f6", overflowX:"auto", margin:0 }}>{
+`OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 fixed
+                                       min-w/h 48 (touch target)
+                                       p-4 desktop · px-2 py-4 mobile
+└── Container.Main                      h-36 · p-4 · rounded-8 · 1px border
+    │                                    desktop: gap-2 between RowStart and RowEnd
+    │                                    mobile: NO gap
+    ├── Container.RowStart              flex items-center gap-4
+    │   │                                desktop: h-24 · content-sized
+    │   │                                mobile:  h-20 · max-w-74
+    │   ├── Container.Avatar            p-2 · 24×24 desktop · 20×20 mobile
+    │   │   └── Avatar                  rounded-4 · 1px border
+    │   │       ├─ [logo present]       <img object-fit:cover>
+    │   │       └─ [no logo]            church SVG · bg fill.action.secondary.base
+    │   ├── Container.OrgLabel          DESKTOP ONLY · max-w-248
+    │   │   ├── Container.OrgName       max-w-180 · content-sized · ellipsis
+    │   │   └── Container.CityName.Catholic   CATHOLIC ONLY · max-w-72
+    │   └── Container.Label             MOBILE ONLY · w-50 fixed · truncated
+    └── Container.RowEnd                p-2
+        └── Container.IconTrailing      16×16 · p-2 · expand_more
+                                         rotates 180° when open`
+            }</pre>
+          </div>
+        </div>
+
+        {/* ── TOKEN REFERENCE ─────────────────────────────────────── */}
+        <div className="demo-section">
+          <div className="demo-section__label">Token Reference (dark mode)</div>
+          <div className="demo-section__body" style={{ overflowX:"auto" }}>
+            <table style={{ width:"100%", borderCollapse:"collapse", fontFamily:"'Red Hat Text', sans-serif", minWidth:700 }}>
+              <thead>
+                <tr>
+                  {["Category","Semantic Token","Value","Role"].map(h => (
+                    <th key={h} style={{ textAlign:"left", padding:"8px 12px", background:"#f4f5f8", fontWeight:700, fontSize:11, color:"#8890b0", textTransform:"uppercase", letterSpacing:"0.06em", borderBottom:"2px solid #e4e6f0", whiteSpace:"nowrap" }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  // Fill
+                  { cat:"Fill",   semantic:"fill.action.tertiary.base",         value:"rgba(160,181,230,0.04)", role:"Trigger background — base" },
+                  { cat:"Fill",   semantic:"fill.action.primaryinverse.hover",  value:"rgba(10,18,35,0.16)",    role:"Trigger background — hover" },
+                  { cat:"Fill",   semantic:"fill.action.primaryinverse.pressed",value:"rgba(255,255,255,0.08)", role:"Trigger background — pressed / open" },
+                  { cat:"Fill",   semantic:"fill.action.secondary.base",        value:"rgba(255,255,255,0.08)", role:"Avatar placeholder bg (no logo)" },
+                  // Stroke
+                  { cat:"Stroke", semantic:"stroke.action.tertiary.base",       value:"rgba(160,181,230,0.16)", role:"Trigger + avatar border — base" },
+                  { cat:"Stroke", semantic:"stroke.action.tertiary.hover",      value:"rgba(160,181,230,0.20)", role:"Trigger + avatar border — hover" },
+                  { cat:"Stroke", semantic:"stroke.action.tertiary.pressed",    value:"rgba(160,181,230,0.30)", role:"Trigger + avatar border — pressed / open" },
+                  // Text
+                  { cat:"Text",   semantic:"text.action.mono.base",             value:"#fbfbfb", role:"Label — base" },
+                  { cat:"Text",   semantic:"text.action.mono.hover",            value:"#ffffff", role:"Label — hover" },
+                  { cat:"Text",   semantic:"text.action.mono.pressed",          value:"#ffffff", role:"Label — pressed / open" },
+                  // Icon
+                  { cat:"Icon",   semantic:"icon.action.mono.base",             value:"#fbfbfb", role:"Chevron — base" },
+                  { cat:"Icon",   semantic:"icon.action.mono.hover",            value:"#ffffff", role:"Chevron — hover" },
+                  { cat:"Icon",   semantic:"icon.action.mono.pressed",          value:"#ffffff", role:"Chevron — pressed / open" },
+                  // Geometry
+                  { cat:"Geometry", semantic:"cornerradius.medium",             value:"8px",  role:"Trigger corner radius" },
+                  { cat:"Geometry", semantic:"cornerradius.small",              value:"4px",  role:"Avatar corner radius" },
+                  { cat:"Geometry", semantic:"borderwidth.base",                value:"1px",  role:"Border thickness" },
+                  { cat:"Geometry", semantic:"padding.xxtight",                 value:"4px",  role:"Trigger inner padding (Container.Main)" },
+                  { cat:"Geometry", semantic:"padding.xxxtight",                value:"2px",  role:"Avatar inner padding, RowEnd, IconTrailing" },
+                  { cat:"Geometry", semantic:"gap.xxtight",                     value:"4px",  role:"RowStart gap (Avatar ↔ Label)" },
+                ].map(({ cat, semantic, value, role }) => (
+                  <tr key={semantic + "-" + role}>
+                    <td style={{ padding:"8px 12px", borderBottom:"1px solid #f0f1f4", fontSize:12, color:"#777", whiteSpace:"nowrap", verticalAlign:"top" }}>{cat}</td>
+                    <td style={{ padding:"8px 12px", borderBottom:"1px solid #f0f1f4", fontSize:12, color:"#2d4889", verticalAlign:"top", fontFamily:"monospace" }}>{semantic}</td>
+                    <td style={{ padding:"8px 12px", borderBottom:"1px solid #f0f1f4", fontFamily:"monospace", fontSize:12, color:"#333", verticalAlign:"top", whiteSpace:"nowrap" }}>
+                      <div style={{ display:"flex", alignItems:"center", gap:7 }}>
+                        {value.startsWith("#") && (
+                          <div style={{ width:13, height:13, borderRadius:3, flexShrink:0, backgroundColor:value, border:"1px solid rgba(0,0,0,0.1)" }} />
+                        )}
+                        {value.startsWith("rgba") && (
+                          <div style={{ width:13, height:13, borderRadius:3, flexShrink:0, backgroundColor:"#2d4889", border:"1px solid rgba(0,0,0,0.1)", position:"relative" }}>
+                            <div style={{ position:"absolute", inset:0, backgroundColor:value, borderRadius:3 }} />
+                          </div>
+                        )}
+                        {value}
+                      </div>
+                    </td>
+                    <td style={{ padding:"8px 12px", borderBottom:"1px solid #f0f1f4", fontSize:12, color:"#666", verticalAlign:"top" }}>{role}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* ── TYPOGRAPHY TOKEN ────────────────────────────────────── */}
+        <div className="demo-section">
+          <div className="demo-section__label">Typography Token</div>
+          <div className="demo-section__body" style={{ maxWidth:680 }}>
+            <div style={{ marginBottom:16, display:"flex", alignItems:"baseline", gap:10, flexWrap:"wrap" }}>
+              <span style={{ fontFamily:"monospace", fontSize:13, color:"#2d4889", background:"rgba(160,181,230,0.16)", padding:"3px 10px", borderRadius:4 }}>Label/Button/S</span>
+              <span style={{ fontSize:13, color:"#8890b0" }}>— desktop AND mobile in v1 (was XS on mobile in earlier drafts)</span>
+            </div>
+            {[
+              ["--label/button/s/fontfamily",    "'Red Hat Text', sans-serif"],
+              ["--label/button/s/fontweight",    "500 (Medium)"],
+              ["--label/button/s/fontsize",      "14px"],
+              ["--label/button/s/lineheight",    "20px"],
+              ["--label/button/s/letterspacing", "0.3px"],
+            ].map(([varName, val], i, arr) => (
+              <div key={varName} style={{ display:"flex", alignItems:"baseline", gap:16, padding:"9px 0", borderBottom: i < arr.length-1 ? "1px solid #f6f6f6" : "none", flexWrap:"wrap" }}>
+                <code style={{ fontFamily:"monospace", fontSize:12, color:"#2d4889", flexShrink:0 }}>{varName}</code>
+                <span style={{ fontSize:13, color:"#4b4b4b" }}>{val}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── STATE LOGIC ─────────────────────────────────────────── */}
+        <div className="demo-section">
+          <div className="demo-section__label">State Logic</div>
+          <div className="demo-section__body">
+            <div style={{ minWidth:460 }}>
+              {[
+                { label:"Base",              fill:"rgba(160,181,230,0.04)", stroke:"rgba(160,181,230,0.16)", desc:"Resting — fill.action.tertiary.base + stroke.action.tertiary.base" },
+                { label:"Hover",             fill:"rgba(10,18,35,0.16)",    stroke:"rgba(160,181,230,0.20)", desc:"Cursor over — primaryinverse hover fill, tertiary hover stroke" },
+                { label:"Pressed / Open",    fill:"rgba(255,255,255,0.08)", stroke:"rgba(160,181,230,0.30)", desc:"Mouse-down or panel open — chevron rotates 180°" },
+                { label:"Disabled",          fill:"rgba(160,181,230,0.04)", stroke:"rgba(160,181,230,0.16)", desc:"Single-org users — base styling at 50% opacity, inert" },
+              ].map(({ label, fill, stroke, desc }, idx, arr) => (
+                <div key={label} style={{ display:"flex", alignItems:"center", gap:16, padding:"11px 0", borderBottom: idx < arr.length-1 ? "1px solid #f0f1f4" : "none" }}>
+                  <div style={{ width:96, height:32, borderRadius:8, background:"#2d4889", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                    <div style={{ width:80, height:24, borderRadius:6, backgroundColor:fill, border:`1px solid ${stroke}`, opacity: label === "Disabled" ? 0.5 : 1 }} />
+                  </div>
+                  <div style={{ minWidth:0 }}>
+                    <p style={{ fontWeight:600, fontSize:13, color:"#2a2d3a", margin:"0 0 2px", fontFamily:"'Red Hat Text', sans-serif" }}>{label}</p>
+                    <p style={{ fontSize:12, color:"#666", margin:0, fontFamily:"'Red Hat Text', sans-serif" }}>{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── CONSTRAINTS ─────────────────────────────────────────── */}
+        <div className="demo-section">
+          <div className="demo-section__label">Hard rules (spec §16)</div>
+          <div className="demo-section__body">
+            <ol style={{ margin:0, paddingLeft:22, fontFamily:"'Red Hat Text', sans-serif", fontSize:13, color:"#363636", lineHeight:"1.7" }}>
+              <li><strong>CityName is Catholic-only.</strong> Protestant orgs render no city container, even if a <code style={{ fontFamily:"monospace", color:"#2d4889" }}>cityName</code> string is supplied.</li>
+              <li><strong>No text initials in the placeholder.</strong> Always use the church SVG.</li>
+              <li><strong><code style={{ fontFamily:"monospace", color:"#2d4889" }}>Container.OrgName</code> max-width is 180px</strong> — content-sized, not fixed. Short names shrink to fit; long names truncate with ellipsis.</li>
+              <li><strong>Mobile root is fixed <code style={{ fontFamily:"monospace", color:"#2d4889" }}>width: 108px</code></strong>, label container is fixed 50px.</li>
+              <li><strong>No raw hex or primitive token references</strong> in component code. Every colour resolves through a semantic token.</li>
+              <li><strong>Mobile and desktop use the same <code style={{ fontFamily:"monospace", color:"#2d4889" }}>Label/Button/S</code> (14px)</strong> typography in v1.</li>
+              <li><strong>Panel is placeholder.</strong> Treat panel code as non-normative until a future version specs it.</li>
+            </ol>
           </div>
         </div>
 
