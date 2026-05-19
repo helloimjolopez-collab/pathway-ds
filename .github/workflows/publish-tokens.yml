@@ -1,8 +1,19 @@
 name: Publish pathway-tokens to npm
 
-# Triggered manually from the Actions tab.
+# Triggered manually from the Actions tab, or programmatically by the
+# /pathway:tokens-sync and /pathway:component-pipeline skills.
 # Choose the version bump type — patch for token value changes,
 # minor for new tokens added, major for breaking renames.
+#
+# Flow (refactored 2026-05-19 to work with branch-protected main):
+#   1. Bump version, build tokens + dist
+#   2. Push release branch + open PR (no direct push to main)
+#   3. Publish to npm (version bump lives in the branch's package.json —
+#      npm doesn't need it on main yet)
+#   4. User merges the release PR to bring main in sync
+#
+# This pattern works regardless of branch-protection rules: the PR is the
+# only thing touching main, and the user gates it.
 
 on:
   workflow_dispatch:
@@ -19,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
 
     steps:
       - name: Checkout
@@ -54,18 +66,40 @@ jobs:
       - name: Build dist/
         run: node scripts/build-dist.js
 
-      - name: Commit, tag and push
+      - name: Push release branch + open PR
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
+          BRANCH="release/v${NEW_VERSION}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
           git add package.json src/tokens/
-          git commit -m "chore(release): v${{ env.NEW_VERSION }} [skip ci]"
-          git tag "v${{ env.NEW_VERSION }}"
-          git fetch origin main
-          git rebase origin/main
-          git push origin main --follow-tags
+          git commit -m "chore(release): v${NEW_VERSION} [skip ci]"
+          git push origin "$BRANCH"
+          gh pr create \
+            --title "chore(release): v${NEW_VERSION}" \
+            --body "Automated release commit from \`publish-tokens.yml\`.
+
+          - Bumped \`package.json\` to **v${NEW_VERSION}** (bump: \`${{ github.event.inputs.bump }}\`)
+          - Regenerated \`src/tokens/tokens.css\` and \`src/tokens/tokens.js\`
+          - Published \`@helloimjolopez-pathway/pathway-tokens@${NEW_VERSION}\` to npm (in the next step of this workflow)
+
+          Merge this PR to bring \`main\` in sync with the just-published npm version. No code review needed unless you want to inspect the bump." \
+            --base main \
+            --head "$BRANCH"
 
       - name: Publish to npm
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Tag the release (on the release branch)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Tag the release commit on the branch. The user's merge will
+          # bring this commit (and its tag) onto main. If the merge is a
+          # squash, the user can re-tag the squash commit manually.
+          git tag "v${NEW_VERSION}"
+          git push origin "v${NEW_VERSION}"

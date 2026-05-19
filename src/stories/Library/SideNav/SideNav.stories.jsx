@@ -126,7 +126,7 @@ function IsolatedItem(props) {
 
 // ─── Storybook metadata ─────────────────────────────────────────────────────
 export default {
-  title: "Components/SideNav",
+  title: "Library/SideNav",
   component: SideNav,
   parameters: {
     layout: "padded",
@@ -161,8 +161,14 @@ export default {
 };
 
 // ─── Primary story ──────────────────────────────────────────────────────────
+// key is derived from args so the Shell remounts whenever a control changes,
+// giving the new arg value to useState() as fresh initial state. This is the
+// correct pattern for components with internal state: controls set "starting
+// state", and interactions inside the demo (clicking items, toggling collapse)
+// update local state without fighting Storybook.
 export const Playground = (args) => (
   <Shell
+    key={`${args.activeId}|${args.collapsed}|${args.hideCollapseButton}`}
     initialActiveId={args.activeId}
     collapsed={args.collapsed}
     hideCollapseButton={args.hideCollapseButton}
@@ -248,7 +254,7 @@ export const StateMatrix = () => {
     },
     {
       name: "Trail — collapsed",
-      when: "A grouper whose child is active, but the children are hidden (grouper closed or sidebar at 72 px). Visually identical to Active.",
+      when: "A grouper whose active child is hidden (grouper closed, or sidebar at 72 px rail). Same fill, text, and stripe as Active — chevron still visible pointing down since the group can be opened.",
       item: <IsolatedItem item={sampleGroup} isTrail />,
       tokens: ["Fill/NavItem/Active", "Text/NavItem/Active", "Icon/NavItem/Active", "indicator.stripe visible"],
     },
@@ -279,11 +285,12 @@ export const StateMatrix = () => {
     </div>
   );
 };
+StateMatrix.tags = ["!dev"]; // reference story — shown in MDX docs, not in sidebar
 StateMatrix.parameters = {
   docs: {
     description: {
       story:
-        "Five states. Each card shows the actual rendered item plus the tokens that drive it. Trail-expanded and Trail-collapsed are the two flavours of \"this grouper has something active inside it\" — expanded is muted (chevron still visible), collapsed is indistinguishable from Active.",
+        "Five states. Each card shows the actual rendered item plus the tokens that drive it. Trail-expanded and Trail-collapsed are the two flavours of \"this grouper has something active inside it\" — expanded is muted (chevron rotated up, still visible), collapsed shows the same fill/text/stripe as Active but the chevron points down (the group can still be opened).",
     },
   },
 };
@@ -341,7 +348,7 @@ NavItemExplorer.parameters = {
   docs: {
     description: {
       story:
-        "A single nav item in isolation. Change the state, the label, whether it's a grouper or a child, and watch the tokens repaint. This is the smallest unit you can use to sanity-check a new label's visual weight or an edge-case state.",
+        "A single nav item in isolation. Change the label text, state, grouper flag, or child flag and watch the tokens repaint live. Hover is not a variant here — it's pointer-triggered, so use the Playground story to see hover fill live.",
     },
   },
 };
@@ -383,8 +390,9 @@ function TokenRow({ token, value, hex, role }) {
 export const TokensFill = () => (
   <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
-      Five fill tokens applied to nav items and container surfaces. Hover and Trail both resolve to <code>#11111105</code> (≈4% black) but are kept as distinct tokens — they've diverged before and can again.
-      The border/divider token changed from <code>Fill/Static/Info/Subtle</code> to <code>Stroke/Static/Neutral/Light</code> (<code>#f6f6f6</code>) in the 2026-05-12 Figma update.
+      Five fill tokens applied to nav items and container surfaces.
+      <code>NavItem/Hover</code> and <code>NavItem/Trail</code> currently resolve to the same hex (<code>#11111105</code> ≈ 4% black) but are intentionally kept as separate tokens — they have diverged before and may again.
+      The last column in the row for <code>Stroke/Static/Neutral/Light</code> shows all three places it's used: container right border, section dividers, and popover borders.
     </p>
     <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
       gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4 }}>
@@ -396,6 +404,7 @@ export const TokensFill = () => (
     {FILL_ROWS.map(r => <TokenRow key={r.token} {...r} />)}
   </div>
 );
+TokensFill.tags = ["!dev"];
 TokensFill.parameters = {
   docs: { description: { story: "Fill tokens used by nav items and the container border/divider." } },
 };
@@ -415,12 +424,12 @@ export const TokensText = () => (
     {TEXT_ROWS.map(r => <TokenRow key={r.token} {...r} />)}
   </div>
 );
+TokensText.tags = ["!dev"];
 
 export const TokensIcon = () => (
   <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
-      Four icon tokens. The NavItem/Active token (<code>#2d4889</code>) is also the colour of the indicator stripe.
-      The <code>Icon/Action/Secondary Inverse/Base</code> token (<code>#6b6b6b</code>) is new as of 2026-05-12 — it drives the CollapseButton's action icon (right_panel_open / left_panel_open) and does not change on hover.
+      Four icon tokens. The <code>NavItem/Active</code> token (<code>#2d4889</code>) drives three things simultaneously: the leading icon in active state, the indicator stripe, and the collapsed-trail icon. The <code>Icon/Action/Secondary Inverse/Base</code> token (<code>#6b6b6b</code>) is used exclusively by the NavHeader collapse/expand action icon — it is static and does not change on hover.
     </p>
     <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
       gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4 }}>
@@ -432,6 +441,7 @@ export const TokensIcon = () => (
     {ICON_ROWS.map(r => <TokenRow key={r.token} {...r} />)}
   </div>
 );
+TokensIcon.tags = ["!dev"];
 
 // ─── Typography tokens ──────────────────────────────────────────────────────
 const TYPOGRAPHY_ROWS = [
@@ -448,7 +458,7 @@ const TYPOGRAPHY_ROWS = [
   },
   {
     token: "Label/Section/Small/Semibold",
-    role: "SectionLabel — CollapsedPopover group header",
+    role: "NavSectionLabel (in-nav heading) AND SectionLabel (popover header) — same type style, different components",
     value: "11px / 600 / 16px / 0.6px · uppercase",
     sample: <SectionLabel label="Planning" />,
   },
@@ -493,6 +503,7 @@ export const TokensTypography = () => (
     {TYPOGRAPHY_ROWS.map(r => <TypographyRow key={r.token} {...r} />)}
   </div>
 );
+TokensTypography.tags = ["!dev"];
 TokensTypography.parameters = {
   docs: { description: { story: "Typography tokens applied across all SideNav text elements." } },
 };
@@ -539,6 +550,7 @@ export const TokensSpacing = () => (
     {SPACING_ROWS.map(r => <SpacingRow key={r.name} {...r} />)}
   </div>
 );
+TokensSpacing.tags = ["!dev"];
 TokensSpacing.parameters = {
   docs: { description: { story: "Spacing and layout values used by the SideNav. Most are raw px — spacing tokens are a pending gap." } },
 };
@@ -595,6 +607,7 @@ export const TokensMotion = () => (
     {MOTION_ROWS.map(r => <MotionRow key={r.name} {...r} />)}
   </div>
 );
+TokensMotion.tags = ["!dev"];
 TokensMotion.parameters = {
   docs: { description: { story: "Motion durations for all animated parts of the SideNav. Blue = approved contextual override above system standard." } },
 };
@@ -645,19 +658,63 @@ export const TokensRadius = () => (
     {RADIUS_ROWS.map(r => <RadiusRow key={r.name} {...r} />)}
   </div>
 );
+TokensRadius.tags = ["!dev"];
 TokensRadius.parameters = {
   docs: { description: { story: "Border-radius values for all SideNav surfaces. Everything interactive is Radius/M (8px); the panel itself is flush." } },
 };
 
-// ─── Section Label showcase ─────────────────────────────────────────────────
-export const SectionLabelStory = () => (
-  <div style={{ fontFamily: "'Red Hat Text',sans-serif", display: "flex", flexDirection: "column", gap: 24 }}>
-    <div>
-      <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
-        The <strong>SectionLabel</strong> (Figma node 40006794-5977) is a building block used as the
-        header row inside the CollapsedPopover flyout. It renders the grouper's label in uppercase
-        small-semibold type, separated from the child items by a bottom divider.
-      </p>
+// ─── Two label components — side by side ────────────────────────────────────
+// These are completely different components that share the same type style.
+// SectionLabel     = header inside the CollapsedPopover flyout (rail mode only)
+//                    Figma: node 40006794:5977
+// NavSectionLabel  = in-nav section heading in the EXPANDED sidebar
+//                    Figma: node 40006794:5975 / SideNav.SectionLabel layer
+export const SectionLabels = () => (
+  <div style={{ fontFamily: "'Red Hat Text',sans-serif", display: "grid",
+    gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "start" }}>
+
+    {/* ── NavSectionLabel (in-nav) ─── */}
+    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div>
+        <p style={{ fontSize: 13, fontWeight: 600, color: "#02060d", margin: "0 0 4px" }}>
+          NavSectionLabel
+        </p>
+        <p style={{ fontSize: 12, color: "#8890b0", margin: "0 0 12px" }}>
+          In-nav section heading — visible in the <strong>expanded (240 px)</strong> sidebar only.
+          Replaced by a thin divider in the 72 px rail. Figma: <code>40006794:5975</code>.
+        </p>
+      </div>
+      <div style={{ width: 240, background: T.surface.navLight,
+        border: `0.5px solid ${T.fill.infoSubtle}`, borderRadius: 8, padding: 8 }}>
+        <NavSectionLabel label="Workflows" />
+        {["Enter", "Manage", "View"].map(l => (
+          <div key={l} style={{ display: "flex", alignItems: "center", minHeight: 48,
+            borderRadius: 8, paddingLeft: 8, cursor: "pointer" }}>
+            <div style={{ width: 4, alignSelf: "stretch", flexShrink: 0 }} />
+            <span style={{ paddingLeft: 6, fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500,
+              fontSize: 14, lineHeight: "20px", color: T.text.navBase }}>{l}</span>
+          </div>
+        ))}
+      </div>
+      <div style={{ fontSize: 11, color: "#4b4b4b", lineHeight: "18px" }}>
+        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Text/Static/Secondary/Subtle</code> <span style={{ color: "#888" }}>(#606060)</span><br />
+        <strong>Type style:</strong> Label/Section/Small/Semibold<br />
+        <strong>Container H:</strong> 40px · <strong>Padding:</strong> 4px H / 8px V
+      </div>
+    </div>
+
+    {/* ── SectionLabel (popover header) ─── */}
+    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div>
+        <p style={{ fontSize: 13, fontWeight: 600, color: "#02060d", margin: "0 0 4px" }}>
+          SectionLabel (popover header)
+        </p>
+        <p style={{ fontSize: 12, color: "#8890b0", margin: "0 0 12px" }}>
+          Header row inside the <strong>CollapsedPopover flyout</strong> — only appears when
+          hovering a grouper in the 72 px rail. Has a bottom divider, uses a lighter text
+          colour, and wider left padding. Figma: <code>40006794:5977</code>.
+        </p>
+      </div>
       <div style={{ width: 220, border: "0.5px solid #ededed", borderRadius: 8,
         background: "#fff", boxShadow: "2px 2px 8px 4px rgba(0,0,0,0.03)", padding: 6 }}>
         <div style={{ borderBottom: "0.5px solid #ededed" }}>
@@ -675,32 +732,18 @@ export const SectionLabelStory = () => (
           </div>
         ))}
       </div>
-    </div>
-    <div>
-      <p style={{ fontSize: 12, fontWeight: 600, color: "#4b4b4b",
-        textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 8px" }}>Token reference</p>
-      <div style={{ display: "grid", gridTemplateColumns: "auto auto 1fr", gap: "8px 16px",
-        alignItems: "center", fontSize: 12 }}>
-        <code style={{ fontFamily: "monospace", color: "#2d4889" }}>Text/Static/Secondary/Light</code>
-        <div style={{ width: 24, height: 24, borderRadius: 4, background: T.text.secondary,
-          border: "1px solid rgba(0,0,0,0.07)" }} />
-        <span style={{ color: "#555" }}>#7b7b7b — label colour</span>
-        <code style={{ fontFamily: "monospace", color: "#2d4889" }}>Label/Section/Small/Semibold</code>
-        <span style={{ color: "#8890b0", fontSize: 11 }}>—</span>
-        <span style={{ color: "#555" }}>11px / 600 / 16px / 0.6px letter-spacing / uppercase</span>
-        <code style={{ fontFamily: "monospace", color: "#2d4889" }}>Padding/Tight</code>
-        <span style={{ color: "#8890b0", fontSize: 11 }}>—</span>
-        <span style={{ color: "#555" }}>12px — left padding</span>
-        <code style={{ fontFamily: "monospace", color: "#2d4889" }}>Padding/XTight</code>
-        <span style={{ color: "#8890b0", fontSize: 11 }}>—</span>
-        <span style={{ color: "#555" }}>8px — vertical padding</span>
+      <div style={{ fontSize: 11, color: "#4b4b4b", lineHeight: "18px" }}>
+        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Text/Static/Secondary/Light</code> <span style={{ color: "#888" }}>(#7b7b7b)</span><br />
+        <strong>Type style:</strong> Label/Section/Small/Semibold (same)<br />
+        <strong>Padding:</strong> 12px L (Padding/Tight) · 8px V (Padding/XTight)
       </div>
     </div>
   </div>
 );
-SectionLabelStory.storyName = "SectionLabel";
-SectionLabelStory.parameters = {
-  docs: { description: { story: "The SectionLabel building block (Figma 40006794-5977) — header row for the collapsed flyout popover." } },
+SectionLabels.storyName = "Section Labels (two components)";
+SectionLabels.tags = ["!dev"];
+SectionLabels.parameters = {
+  docs: { description: { story: "Two different components that share the same type style but serve completely different purposes. NavSectionLabel is an in-nav heading (expanded sidebar). SectionLabel is a popover flyout header (collapsed rail, 72 px). Do not confuse them — they have different padding, text colours, and visibility rules." } },
 };
 
 // ─── Trail comparison ───────────────────────────────────────────────────────
@@ -715,28 +758,29 @@ export const TrailComparison = () => {
           Expanded — "View" is trail-expanded
         </p>
         <div style={{ height: 480, border: "1px solid #edf0f9", borderRadius: 8, overflow: "hidden" }}>
-          <SideNav items={NAV_ITEMS} activeId={activeId} onNavigate={() => {}}
+          <SideNav sections={NAV_SECTIONS} activeId={activeId} onNavigate={() => {}}
             collapsed={false} onCollapseChange={() => {}} defaultExpanded={{ view: true }} />
         </div>
       </div>
       <div>
         <p style={{ fontSize: 12, fontWeight: 600, color: "#4b4b4b",
           margin: "0 0 8px", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-          Collapsed — "View" is trail-collapsed (visually identical to Active)
+          Collapsed rail — "View" is trail-collapsed (same fill + stripe as Active, chevron points down)
         </p>
         <div style={{ height: 480, border: "1px solid #edf0f9", borderRadius: 8, overflow: "hidden" }}>
-          <SideNav items={NAV_ITEMS} activeId={activeId} onNavigate={() => {}}
+          <SideNav sections={NAV_SECTIONS} activeId={activeId} onNavigate={() => {}}
             collapsed={true} onCollapseChange={() => {}} defaultExpanded={{ view: true }} />
         </div>
       </div>
     </div>
   );
 };
+TrailComparison.tags = ["!dev"];
 TrailComparison.parameters = {
   docs: {
     description: {
       story:
-        "Same `activeId=\"balance_sheet\"` (child of View) in both panels. Left: the grouper shows trail-expanded (muted fill, active-coloured text, grey icon). Right: the grouper shows trail-collapsed — indistinguishable from a regular Active state.",
+        "Same `activeId=\"balance_sheet\"` (child of View) in both panels. Left: trail-expanded grouper — muted fill, active-coloured text, grey icon, chevron rotated up. Right: trail-collapsed in 72 px rail — same Active fill and stripe, section labels replaced by dividers, no labels shown.",
     },
   },
 };
@@ -759,12 +803,13 @@ export const StandaloneDemo = () => (
     />
   </div>
 );
+StandaloneDemo.tags = ["!dev"];
 StandaloneDemo.parameters = {
   layout: "fullscreen",
   docs: {
     description: {
       story:
-        "The full standalone demo, iframed. Resize the iframe or pop out to a new tab to see responsive behaviour across all three breakpoints.",
+        "The full standalone HTML demo, iframed. Includes the TopNav bar, all three responsive breakpoints, and the spec annotation panel. Open in a new tab and resize the window to test push / overlay / hidden behaviour.",
     },
   },
 };
