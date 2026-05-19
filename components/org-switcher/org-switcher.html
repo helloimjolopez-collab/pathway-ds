@@ -69,7 +69,7 @@
 
     /* ── Demo chrome ────────────────────────────────────────────── */
     .demo-wrap { display: flex; flex-direction: column; min-height: 100vh; }
-    .demo-page { flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 24px; }
+    .demo-page { flex: 1; padding: 24px 32px 48px; display: flex; flex-direction: column; gap: 20px; }
     .demo-section {
       background: #fff; border-radius: 10px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.07); overflow: visible;
@@ -81,9 +81,70 @@
     }
     .demo-section__body { padding: 20px 16px; }
 
+    /* ── Top resource bar (links back to spec / storybook / repo) ── */
+    .resource-bar {
+      display: flex; align-items: center; gap: 14px;
+      padding: 12px 32px;
+      background: #ffffff;
+      border-bottom: 1px solid #e6e8ee;
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+    .resource-bar__title {
+      font-weight: 700; color: #1a2444;
+      letter-spacing: -0.01em;
+      margin-right: 8px;
+    }
+    .resource-bar__version {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #eef2fb;
+      color: #3555a0;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .resource-bar__divider {
+      flex: 1 1 auto;
+    }
+    .resource-bar a {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 10px;
+      color: #3555a0;
+      text-decoration: none;
+      border-radius: 6px;
+      border: 1px solid #d8dce8;
+      background: #ffffff;
+      font-weight: 500;
+      transition: background 120ms ease, border-color 120ms ease;
+    }
+    .resource-bar a:hover {
+      background: #f4f6fb;
+      border-color: #a0b5e6;
+    }
+    .resource-bar a .material-symbols-rounded { font-size: 16px; }
+
   </style>
 </head>
 <body>
+<div class="resource-bar">
+  <span class="resource-bar__title">OrgSwitcher</span>
+  <span class="resource-bar__version">v1 · trigger only</span>
+  <span class="resource-bar__divider"></span>
+  <a href="https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher-spec.md" target="_blank" rel="noopener">
+    <span class="material-symbols-rounded">description</span> Spec
+  </a>
+  <a href="https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-orgswitcher--docs" target="_blank" rel="noopener">
+    <span class="material-symbols-rounded">menu_book</span> Storybook
+  </a>
+  <a href="https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/org-switcher" target="_blank" rel="noopener">
+    <span class="material-symbols-rounded">code</span> Source
+  </a>
+  <a href="https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583" target="_blank" rel="noopener">
+    <span class="material-symbols-rounded">design_services</span> Figma
+  </a>
+</div>
 <div id="root"></div>
 
 <script type="text/babel">
