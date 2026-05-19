@@ -237,7 +237,206 @@ export const Truncation = () => (
 );
 Truncation.storyName = "Truncation — short / medium / long";
 
-// ── 5. Mobile ─────────────────────────────────────────────────────────────────
+// ── 5. Anatomy ───────────────────────────────────────────────────────────────
+// Visual breakdown of the trigger. The trigger is rendered at native pixel
+// sizes (24px avatar, 36px main height, etc.) then wrapped in CSS
+// transform: scale(4) so every container, padding and gap is visible. Each
+// box outlines itself with a coloured dashed line and pins a label.
+// A legend follows the diagram. A "logo at three scales" callout explains
+// why a logo cropped tight at 24×24 looks like nothing — common confusion.
+
+const ANATOMY_PARTS = [
+  { key: "root",         color: "#9b59b6", label: "OrgSwitcher.Root",            spec: "min-w/h 48 (touch target) · p-4 desktop · px-2 py-4 mobile" },
+  { key: "main",         color: "#3498db", label: "Container.Main",              spec: "h-36 · p-4 · rounded-8 · 1px border · gap-2 desktop / no gap mobile" },
+  { key: "rowstart",     color: "#16a085", label: "Container.RowStart",          spec: "flex items-center · gap-4 · h-24 desktop · h-20 max-w-74 mobile" },
+  { key: "avatar",       color: "#e67e22", label: "Container.Avatar",            spec: "24×24 desktop · 20×20 mobile · p-2 (xxxtight)" },
+  { key: "avatarinner",  color: "#e74c3c", label: "Avatar",                      spec: "flex-1 · rounded-4 · 1px border · <img object-fit:cover> or church SVG" },
+  { key: "orglabel",     color: "#27ae60", label: "Container.OrgLabel",          spec: "max-w-248 · DESKTOP ONLY · holds OrgName (+ optional CityName)" },
+  { key: "orgname",      color: "#f1c40f", label: "Container.OrgName",           spec: "max-w-180 · content-sized · ellipsis at 180px · Label/Button/S" },
+  { key: "cityname",     color: "#c0392b", label: "Container.CityName.Catholic", spec: "max-w-72 · Catholic orgs ONLY · NOT a suborg name" },
+  { key: "rowend",       color: "#8e44ad", label: "Container.RowEnd",            spec: "p-2 · wraps the trailing icon container" },
+  { key: "icontrailing", color: "#d35400", label: "Container.IconTrailing",      spec: "16×16 · p-2 · expand_more · rotates 180° when open" },
+];
+
+function AnnotatedBox({ color, label, top, left, scale = 4, children, ...rest }) {
+  return (
+    <div style={{
+      outline: `${1 / scale * 2}px dashed ${color}`,
+      outlineOffset: `${1 / scale}px`,
+      position: "relative",
+      ...rest,
+    }}>
+      {children}
+      <div style={{
+        position: "absolute",
+        top, left,
+        background: color, color: "white",
+        padding: `${2 / scale}px ${4 / scale}px`,
+        fontSize: 10 / scale, lineHeight: 1.2,
+        fontFamily: "'Red Hat Text', sans-serif", fontWeight: 600,
+        whiteSpace: "nowrap", borderRadius: 2 / scale, zIndex: 10,
+        pointerEvents: "none",
+      }}>{label}</div>
+    </div>
+  );
+}
+
+function AnatomyDiagram({ orgName, cityName, scale = 4 }) {
+  const S = scale;
+  return (
+    <div style={{ background: "#2d4889", padding: 56, borderRadius: 12, overflow: "auto" }}>
+      <div style={{
+        transform: `scale(${S})`, transformOrigin: "top left",
+        width: 240 * S, height: 60 * S,
+      }}>
+        <AnnotatedBox color={ANATOMY_PARTS[0].color} label="Root · 238×48 · p-4"
+          top={-12 / S} left={0} scale={S}
+          style={{
+            minHeight: 48, minWidth: 48, width: 238, height: 48,
+            padding: 4, display: "flex", flexDirection: "column",
+            alignItems: "flex-start", justifyContent: "center",
+            position: "relative", boxSizing: "border-box",
+          }}>
+          <AnnotatedBox color={ANATOMY_PARTS[1].color} label="Container.Main · h-36 · p-4 · rounded-8 · gap-2"
+            top={36 + 2 / S} left={0} scale={S}
+            style={{
+              display: "flex", alignItems: "center",
+              height: 36, maxHeight: 36, minHeight: 36,
+              borderRadius: 8, border: "1px solid rgba(160,181,230,0.16)",
+              background: "rgba(160,181,230,0.04)",
+              padding: 4, gap: 2, boxSizing: "border-box",
+            }}>
+            <AnnotatedBox color={ANATOMY_PARTS[2].color} label="RowStart · gap-4 · h-24"
+              top={-10 / S} left={0} scale={S}
+              style={{ display: "flex", alignItems: "center", flexShrink: 0, gap: 4, height: 24 }}>
+              <AnnotatedBox color={ANATOMY_PARTS[3].color} label="Avatar · 24×24 · p-2"
+                top={24 + 2 / S} left={0} scale={S}
+                style={{
+                  width: 24, height: 24, padding: 2,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  flexShrink: 0, boxSizing: "border-box",
+                }}>
+                <AnnotatedBox color={ANATOMY_PARTS[4].color} label="<img>"
+                  top={-10 / S} left={22} scale={S}
+                  style={{
+                    flex: "1 0 0", height: "100%",
+                    border: "1px solid rgba(160,181,230,0.16)",
+                    borderRadius: 4, overflow: "hidden",
+                    position: "relative",
+                    background: "rgba(255,255,255,0.08)",
+                    boxSizing: "border-box",
+                  }}>
+                  <img src={SACRED_HEART_LOGO} alt="" aria-hidden="true" style={{
+                    position: "absolute", inset: 0, width: "100%", height: "100%",
+                    objectFit: "cover", display: "block",
+                  }} />
+                </AnnotatedBox>
+              </AnnotatedBox>
+              <AnnotatedBox color={ANATOMY_PARTS[5].color} label="OrgLabel · max-w-248"
+                top={24 + 2 / S} left={0} scale={S}
+                style={{ display: "flex", alignItems: "center", height: "100%", maxWidth: 248, flexShrink: 0, minWidth: 0 }}>
+                <AnnotatedBox color={ANATOMY_PARTS[6].color} label="OrgName · max-w-180 · 14/500/20/0.3"
+                  top={-10 / S} left={0} scale={S}
+                  style={{ display: "flex", alignItems: "center", height: "100%", maxWidth: 180, flexShrink: 1, minWidth: 0 }}>
+                  <p style={{
+                    fontFamily: "'Red Hat Text', sans-serif",
+                    fontWeight: 500, fontSize: 14, lineHeight: "20px", letterSpacing: "0.3px",
+                    color: "#fbfbfb", margin: 0,
+                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                    maxWidth: 180,
+                  }}>{orgName}</p>
+                </AnnotatedBox>
+                {cityName && (
+                  <AnnotatedBox color={ANATOMY_PARTS[7].color} label="CityName.Catholic · max-w-72 · Catholic ONLY"
+                    top={24 + 2 / S} left={0} scale={S}
+                    style={{ display: "flex", alignItems: "center", height: "100%", maxWidth: 72, flexShrink: 0, minWidth: 0 }}>
+                    <p style={{
+                      fontFamily: "'Red Hat Text', sans-serif",
+                      fontWeight: 500, fontSize: 14, lineHeight: "20px", letterSpacing: "0.3px",
+                      color: "#fbfbfb", margin: 0,
+                      whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                      maxWidth: 72,
+                    }}>{` | ${cityName}`}</p>
+                  </AnnotatedBox>
+                )}
+              </AnnotatedBox>
+            </AnnotatedBox>
+            <AnnotatedBox color={ANATOMY_PARTS[8].color} label="RowEnd · p-2"
+              top={24 + 2 / S} left={0} scale={S}
+              style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: 2, flexShrink: 0 }}>
+              <AnnotatedBox color={ANATOMY_PARTS[9].color} label="IconTrailing · 16×16 · p-2"
+                top={-10 / S} left={20} scale={S}
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  width: 16, height: 16, padding: 2, boxSizing: "border-box",
+                }}>
+                <span className="material-symbols-rounded" aria-hidden="true" style={{
+                  fontSize: 12, lineHeight: 1, color: "#fbfbfb", display: "block",
+                }}>expand_more</span>
+              </AnnotatedBox>
+            </AnnotatedBox>
+          </AnnotatedBox>
+        </AnnotatedBox>
+      </div>
+    </div>
+  );
+}
+
+export const Anatomy = () => (
+  <StoryFrame>
+    <div>
+      <Caption>Protestant org · enlarged 4× · every container outlined and labelled</Caption>
+      <AnatomyDiagram orgName="Grace Community Church" />
+    </div>
+    <div>
+      <Caption>Catholic org · adds CityName.Catholic container after the org name</Caption>
+      <AnatomyDiagram orgName="Sacred Heart Church-ITD" cityName="Knoxville" />
+    </div>
+    <div>
+      <Caption>Legend</Caption>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 10, fontFamily: "'Red Hat Text', sans-serif" }}>
+        {ANATOMY_PARTS.map(p => (
+          <div key={p.key} style={{ display: "flex", gap: 10, padding: "10px 12px", background: "#fff", border: "1px solid #e5e7eb", borderRadius: 6 }}>
+            <div style={{ width: 14, height: 14, marginTop: 3, borderRadius: 3, background: p.color, flexShrink: 0 }} />
+            <div style={{ fontSize: 13, color: "#363636", minWidth: 0 }}>
+              <div style={{ fontWeight: 600 }}>{p.label}</div>
+              <div style={{ color: "#6b6b6b", fontSize: 12, marginTop: 2 }}>{p.spec}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div>
+      <Caption>Logo image at three scales — why the avatar looks like a tight crop</Caption>
+      <div style={{ display: "flex", gap: 24, alignItems: "center", padding: 20, background: "#f5f7fb", borderRadius: 8, fontFamily: "'Red Hat Text', sans-serif" }}>
+        <div style={{ textAlign: "center", fontSize: 12, color: "#6b6b6b" }}>
+          <img src={SACRED_HEART_LOGO} alt="Sacred Heart logo at native size" style={{ width: 140, height: 140, objectFit: "contain", display: "block", border: "1px solid #e5e7eb", borderRadius: 4, marginBottom: 8 }} />
+          <div><strong>Native</strong> · ~140px</div>
+        </div>
+        <div style={{ textAlign: "center", fontSize: 12, color: "#6b6b6b" }}>
+          <div style={{ width: 64, height: 46, borderRadius: 4, background: "#0f3e80", padding: 6, marginBottom: 8, boxSizing: "border-box" }}>
+            <img src={SACRED_HEART_LOGO} alt="" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
+          </div>
+          <div><strong>Panel logo box</strong> · 64×46<br /><code style={{ background: "#eef2fb", padding: "1px 4px", borderRadius: 3, color: "#3555a0", fontSize: 11 }}>object-fit: contain</code></div>
+        </div>
+        <div style={{ textAlign: "center", fontSize: 12, color: "#6b6b6b" }}>
+          <div style={{ width: 24, height: 24, padding: 2, display: "inline-block", marginBottom: 8, boxSizing: "border-box" }}>
+            <div style={{ width: 20, height: 20, border: "1px solid rgba(0,0,0,0.16)", borderRadius: 4, overflow: "hidden", position: "relative", background: "rgba(0,0,0,0.04)" }}>
+              <img src={SACRED_HEART_LOGO} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+            </div>
+          </div>
+          <div><strong>Trigger avatar</strong> · 24×24<br /><code style={{ background: "#eef2fb", padding: "1px 4px", borderRadius: 3, color: "#3555a0", fontSize: 11 }}>object-fit: cover</code></div>
+        </div>
+        <div style={{ flex: 1, fontSize: 13, color: "#363636", lineHeight: 1.55, minWidth: 0 }}>
+          The trigger avatar is <strong>24×24 outer</strong> (≈18×18 visible after padding + border). At that size, even a clear logo collapses to a few coloured pixels. <code style={{ background: "#eef2fb", padding: "1px 4px", borderRadius: 3, color: "#3555a0", fontSize: 12 }}>object-fit: cover</code> shows the centre crop of the source image — not a bug, just the consequence of rendering at 24px. The 64×46 panel box uses <code style={{ background: "#eef2fb", padding: "1px 4px", borderRadius: 3, color: "#3555a0", fontSize: 12 }}>object-fit: contain</code> with 6px padding so the full mark stays visible.
+        </div>
+      </div>
+    </div>
+  </StoryFrame>
+);
+Anatomy.storyName = "Anatomy — labeled at 4× scale";
+
+// ── 6. Mobile ─────────────────────────────────────────────────────────────────
 
 export const Mobile = () => (
   <StoryFrame>

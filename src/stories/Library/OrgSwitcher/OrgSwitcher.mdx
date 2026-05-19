@@ -70,19 +70,25 @@ On viewports below 768px (or when `mobile={true}` is forced), the trigger compac
 
 ## Anatomy
 
+The trigger is rendered below at **4× scale** so every container, padding, and gap is visible. Each box has a coloured outline and a pinned label with its name and dimensions. A legend follows the diagram, plus a "logo at three scales" callout that explains why a logo cropped tight at the 24×24 avatar looks the way it does.
+
+<Canvas of={OrgSwitcherStories.Anatomy} />
+
+### Tree (text reference)
+
 ```
 OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 fixed · min-w/h 48 (touch target)
-└── Container.Main                      h-36, p-4, rounded-8, border 1px
+└── Container.Main                      h-36 · p-4 · rounded-8 · 1px border · gap-2 desktop / no gap mobile
     ├── Container.RowStart              flex items-center gap-4 · h-24 desktop · h-20 max-w-74 mobile
     │   ├── Container.Avatar            24×24 desktop · 20×20 mobile · p-2 inner
-    │   │   └── Avatar                  rounded-4, 1px border
+    │   │   └── Avatar                  rounded-4 · 1px border
     │   │       ├─ [logo present]       <img object-fit:cover>
     │   │       └─ [no logo]            church SVG · fill.action.secondary.base bg
-    │   └── Container.OrgLabel          DESKTOP ONLY · max-w-248
-    │       ├── Container.OrgName       max-w-180 · content-sized · truncates with ellipsis
-    │       └── Container.CityName.Catholic   CATHOLIC ORGS ONLY · max-w-72 · "| {cityName}"
+    │   ├── Container.OrgLabel          DESKTOP ONLY · max-w-248
+    │   │   ├── Container.OrgName       max-w-180 · content-sized · ellipsis at 180px
+    │   │   └── Container.CityName.Catholic   CATHOLIC ORGS ONLY · max-w-72 · "| {cityName}"
     │   └── Container.Label             MOBILE ONLY · w-50 fixed · truncated org name
-    └── Container.RowEnd                 p-2
+    └── Container.RowEnd                p-2
         └── Container.IconTrailing      16×16 · p-2 · expand_more icon · rotates 180° when open
 ```
 
