@@ -24,57 +24,110 @@ See `CLAUDE.md` §1 for the detailed governance rules agents follow.
 
 ## 2. Motion
 
-All motion in Pathway follows these principles unless a component spec explicitly overrides them with a documented rationale.
+Pathway motion follows a small, named scale. Components MUST use one of the documented durations (§2.1) and one of the documented easings (§2.2). Off-scale values are not allowed silently — if a component genuinely needs one, it goes in §2.3 as a contextual override with a one-sentence rationale.
 
-### 2.1 Duration
+This matches the industry-standard pattern for design system motion (Material 3, Carbon, Polaris): motion is a token family equal in weight to colour and typography. A small, well-documented scale beats infinite freedom.
 
-| Category | Duration | Use for |
+### 2.1 Duration tokens
+
+Four canonical durations. Use the named token in component CSS once tokens land (§2.5); until then, components hardcode the millisecond value.
+
+| Token | Value | Use for |
 |---|---|---|
-| `instant` | **150 ms** | Acknowledgements: hover fills, colour transitions, small opacity fades |
-| `short` | **300 ms** | State changes inside a component: expanding / collapsing, popover enter/exit |
-| `medium` | **600 ms** | Cross-component transitions: page content sliding, large layout shifts |
-| `long` | **1 s** | Continuous loops: spinners, skeleton shimmer |
+| `--motion-duration-instant` | **150 ms** | Acknowledgements: hover fills, colour transitions, focus rings, small opacity fades, tiny rotations (chevrons, checkmarks) |
+| `--motion-duration-short` | **300 ms** | State changes inside a component: popovers, dropdowns, accordions, expand/collapse, item enter/exit |
+| `--motion-duration-medium` | **600 ms** | Cross-component transitions: page content sliding, route changes, large layout shifts |
+| `--motion-duration-long` | **1000 ms** | Continuous loops only: spinners, skeleton shimmer, indeterminate progress |
 
-> **Gap:** these values are not yet in `tokens/pathway-design-tokens.json` as formal motion tokens. Components currently hardcode them. Adding a motion token family is tracked as a HIGH-priority gap; once added, components will reference `var(--motion-duration-short)` etc.
+**Off-scale durations require a §2.3 override entry.** If a component uses `200ms` or `340ms` with no override row, that's a bug — either align to the scale or open a spec PR to add the override.
 
-### 2.2 Easing
+### 2.2 Easing tokens
 
-| Curve | Use for |
-|---|---|
-| **`cubic-bezier(0.4, 0, 0.2, 1)`** (standard) | Most transitions — enters AND exits that should feel natural |
-| **`cubic-bezier(0, 0, 0.2, 1)`** (decelerate) | Enters where the element should "glide in" (overlay panels, popovers) |
-| **`cubic-bezier(0.4, 0, 0.6, 1)`** (accelerate) | Exits where the element should "leave with intent" (dismissing overlays) |
-| **`linear`** | Continuous loops only (spinners) — never for bounded transitions |
+Six canonical curves covering every Pathway motion. Use the named token in component CSS once tokens land (§2.5).
 
-Asymmetric enter/exit (different curves per direction) is encouraged for overlays; see SideNav spec §16.6 for the reference pattern.
+| Token | Curve | Use for |
+|---|---|---|
+| `--motion-easing-standard` | `cubic-bezier(0.4, 0, 0.2, 1)` | Most transitions — enters AND exits that should feel natural. Default if unsure. |
+| `--motion-easing-decelerate` | `cubic-bezier(0, 0, 0.2, 1)` | Enters where the element should "glide in" — overlay panels, popovers, dropdowns, anything appearing from outside the viewport or from zero state |
+| `--motion-easing-accelerate` | `cubic-bezier(0.4, 0, 0.6, 1)` | Exits where the element should "leave with intent" — dismissing overlays, scaling down to nothing |
+| `--motion-easing-emphasized` | `cubic-bezier(0.32, 0.72, 0, 1)` | Large physical-scale transitions where standard feels mechanical — full-panel width changes, hero transitions. Use sparingly; only when the element moves significant pixels. |
+| `--motion-easing-accordion` | `cubic-bezier(0.22, 1, 0.36, 1)` | Accordion settle — content reveal/hide, chevron rotation matched to expanding content. Has a soft overshoot quality that "lands" the motion. |
+| `--motion-easing-linear` | `linear` | Continuous loops only (spinners, shimmer). Never for bounded transitions. |
 
-### 2.4 Component contextual motion overrides
+**Asymmetric enter/exit** (different curves per direction) is encouraged for overlays — typically `decelerate` on enter, `accelerate` on exit. See SideNav spec §16.6 for the reference pattern.
 
-Some components require durations outside the standard scale because their physical scale or interaction semantics demand it. These are not exceptions — they are intentional contextual tokens, approved per the spec review process. Each override lives in the component's spec alongside a one-sentence justification.
+**Browser-default keywords are not in this scale.** `ease`, `ease-in`, `ease-out`, `ease-in-out` MUST NOT appear in component CSS. Use the named tokens above: `--motion-easing-decelerate` instead of `ease-out`, `--motion-easing-standard` instead of `ease`.
 
-#### SideNav (approved 2026-05-12)
+### 2.3 Component contextual overrides
 
-| Token | Duration | Standard | Rationale |
-|---|---|---|---|
-| `Motion/SideNav/Panel/Width` | **360ms** | short (300ms) | Full-panel width transition; 300ms reads as abrupt at this physical scale |
-| `Motion/SideNav/Label/Fade` | **180ms** | instant (150ms) | Labels must begin fading before the panel finishes collapsing to avoid a visible text flash |
-| `Motion/SideNav/Overlay/Enter` | **380ms** | short (300ms) | Full-height panel entering viewport; 300ms feels mechanical, 380ms reads as deliberate |
-| `Motion/SideNav/Overlay/Exit` | **300ms** | short (300ms) | Matches standard; exits are snappier than enters by design |
+Some components need values outside §2.1 or §2.2 because their physical scale or interaction semantics demand it. These are not exceptions — they are intentional contextual tokens, approved through the `/pathway:spec-review` process. Each override lives in its component's spec with a one-sentence rationale.
+
+#### SideNav (approved 2026-05-12, revised 2026-05-19)
+
+| Token | Duration | Easing | Standard | Rationale |
+|---|---|---|---|---|
+| `Motion/SideNav/Panel/Width` | **380 ms** | emphasized | short (300 ms) | Full-panel width transition; 300 ms reads as abrupt at this physical scale |
+| `Motion/SideNav/Label/MaxWidth` | **360 ms** | emphasized | short (300 ms) | Label max-width must finish slightly ahead of panel width to prevent text flash |
+| `Motion/SideNav/Accordion/Rows` | **340 ms** | accordion | short (300 ms) | Accordion expand/collapse and matching chevron rotation; 300 ms feels cut short, accordion easing gives the motion a satisfying land |
+| `Motion/SideNav/Overlay/Enter` | **380 ms** | emphasized | short (300 ms) | Full-height panel entering viewport; 300 ms feels mechanical, 380 ms reads as deliberate |
+| `Motion/SideNav/Overlay/Exit` | **300 ms** | standard | short (300 ms) | Exits are snappier than enters by design |
 
 See SideNav spec §8.3 and §16.6 for implementation detail.
 
-> **Gap:** these contextual tokens are not yet in `tokens/pathway-design-tokens.json`. They are documented here as the intent. Once a motion token family is added to Figma, these should be the first contextual entries.
+#### OrgSwitcher (approved 2026-05-19)
 
-### 2.3 Reduced motion
+| Token | Duration | Easing | Standard | Rationale |
+|---|---|---|---|---|
+| `Motion/OrgSwitcher/Panel/Enter` | **200 ms** | decelerate | short (300 ms) | Small dropdown — 300 ms feels mechanical for a panel this size, 150 ms feels rushed |
 
-`@media (prefers-reduced-motion: reduce)` is **mandatory** on every animated component. Under reduced motion:
+See OrgSwitcher spec §Motion.
+
+#### TopNav (approved 2026-05-19)
+
+| Token | Duration | Easing | Standard | Rationale |
+|---|---|---|---|---|
+| `Motion/TopNav/Search/Expand` | **180 ms** | standard | instant (150 ms) | Search affordance must feel responsive; 150 ms gets clipped at the larger physical distance, 300 ms feels laggy |
+
+See TopNav spec §Motion.
+
+### 2.4 Reduced motion
+
+`@media (prefers-reduced-motion: reduce)` is **mandatory** on every animated component. Skipping this rule is a WCAG 2.3.3 failure.
+
+Under reduced motion:
 
 - Transforms (slides, rotations, scales) are suppressed or replaced with opacity fades.
 - Loops (spinners) stop rotating but remain visible as static glyphs — never hide them entirely.
 - Durations shorten to **150 ms linear** maximum.
 - If the component's meaning depends on motion, document an alternative cue (e.g. the spinner's uniform-opacity static glyph).
 
-Skipping this rule is a WCAG 2.3.3 failure.
+Minimum reduced-motion baseline in component CSS:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+Components MAY need additional reduced-motion handling (e.g. replacing a slide with a fade). Document any such fallback in the component spec's Motion section.
+
+### 2.5 Token implementation status
+
+The motion token family does **not yet exist** in `tokens/pathway-design-tokens.json` or in Figma Variables. This is tracked as a HIGH-priority gap (§10).
+
+**Until tokens land:**
+- Components hardcode the millisecond values and cubic-bezier curves from §2.1 and §2.2.
+- Component CSS must reference the values as documented here; ad-hoc deviations are bugs.
+- This spec is the source of truth — the manifest, component specs, and Storybook all reference it.
+
+**When tokens land** (Figma → `sync-tokens.js` → Style Dictionary → `tokens.css`):
+- Components will be updated to use `var(--motion-duration-*)` and `var(--motion-easing-*)`.
+- Contextual overrides in §2.3 will become their own tokens: `Motion/SideNav/Panel/Width`, etc., emitted as `--motion-sidenav-panel-width`.
+- The pipeline skill will catch any remaining hardcoded values.
 
 ---
 
