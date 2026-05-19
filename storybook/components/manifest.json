@@ -15,7 +15,23 @@
       "displayName": "SideNav",
       "description": "Persistent vertical navigation panel. Two levels of depth, expanded/collapsed states, responsive (push/overlay/hidden). Optional NavSectionLabel headings + optional SideNavListSection for contextual link lists.",
       "module": "components/sidenav/sidenav.jsx",
-      "exports": ["SideNav", "SideNavItem", "IndicatorStripe", "NavHeader", "CollapseButton", "SideNavTooltip", "CollapsedPopover", "PopoverRow", "SectionLabel", "NavSectionLabel", "BulletDot", "ListItem", "SideNavListSection", "T", "L"],
+      "exports": [
+        "SideNav",
+        "SideNavItem",
+        "IndicatorStripe",
+        "NavHeader",
+        "CollapseButton",
+        "SideNavTooltip",
+        "CollapsedPopover",
+        "PopoverRow",
+        "SectionLabel",
+        "NavSectionLabel",
+        "BulletDot",
+        "ListItem",
+        "SideNavListSection",
+        "T",
+        "L"
+      ],
       "spec": "components/sidenav/sidenav-spec.md",
       "agentBrief": "components/sidenav/agent-brief.md",
       "demo": "components/sidenav/sidenav.html",
@@ -26,16 +42,56 @@
       },
       "props": {
         "SideNav": {
-          "items": { "type": "Array<NavItem>", "required": false, "description": "Flat navigation tree — use this OR `sections`, not both. Each item: { id, label, icon?, children? }" },
-          "sections": { "type": "Array<{ section: string, items: NavItem[] }>", "required": false, "description": "Sectioned navigation — renders NavSectionLabel headings between groups (or rail dividers in collapsed mode). Use this OR `items`." },
-          "listSection": { "type": "{ label: string, items: Array<{id,label}> }", "required": false, "description": "Optional flat contextual list appended after the main nav (e.g. 'Recent Content'). Hidden in collapsed rail." },
-          "activeId": { "type": "string", "required": true, "description": "ID of the currently active navigation item" },
-          "onNavigate": { "type": "(id: string) => void", "required": true, "description": "Called when user clicks a destination" },
-          "collapsed": { "type": "boolean", "default": false, "description": "72px icon rail (true) vs 240px expanded (false)" },
-          "onCollapseChange": { "type": "(collapsed: boolean) => void", "required": true, "description": "Called when collapse state changes" },
-          "hideCollapseButton": { "type": "boolean", "default": false, "description": "Hides the collapse/expand control (mobile)" },
-          "defaultExpanded": { "type": "Record<string, boolean>", "default": "{}", "description": "Which groupers start expanded" },
-          "className": { "type": "string", "default": "\"\"", "description": "Additional CSS class" }
+          "items": {
+            "type": "Array<NavItem>",
+            "required": false,
+            "description": "Flat navigation tree \u2014 use this OR `sections`, not both. Each item: { id, label, icon?, children? }"
+          },
+          "sections": {
+            "type": "Array<{ section: string, items: NavItem[] }>",
+            "required": false,
+            "description": "Sectioned navigation \u2014 renders NavSectionLabel headings between groups (or rail dividers in collapsed mode). Use this OR `items`."
+          },
+          "listSection": {
+            "type": "{ label: string, items: Array<{id,label}> }",
+            "required": false,
+            "description": "Optional flat contextual list appended after the main nav (e.g. 'Recent Content'). Hidden in collapsed rail."
+          },
+          "activeId": {
+            "type": "string",
+            "required": true,
+            "description": "ID of the currently active navigation item"
+          },
+          "onNavigate": {
+            "type": "(id: string) => void",
+            "required": true,
+            "description": "Called when user clicks a destination"
+          },
+          "collapsed": {
+            "type": "boolean",
+            "default": false,
+            "description": "72px icon rail (true) vs 240px expanded (false)"
+          },
+          "onCollapseChange": {
+            "type": "(collapsed: boolean) => void",
+            "required": true,
+            "description": "Called when collapse state changes"
+          },
+          "hideCollapseButton": {
+            "type": "boolean",
+            "default": false,
+            "description": "Hides the collapse/expand control (mobile)"
+          },
+          "defaultExpanded": {
+            "type": "Record<string, boolean>",
+            "default": "{}",
+            "description": "Which groupers start expanded"
+          },
+          "className": {
+            "type": "string",
+            "default": "\"\"",
+            "description": "Additional CSS class"
+          }
         }
       },
       "motion": {
@@ -64,9 +120,17 @@
     },
     "checkbox": {
       "displayName": "Checkbox",
-      "description": "Multi-select selection control. Three states: unchecked, checked, indeterminate. Supports error, highlight, and secondary indeterminate variants. Two sizes. 44×44px touch target always.",
+      "description": "Multi-select selection control. Three states: unchecked, checked, indeterminate. Supports error, highlight, and secondary indeterminate variants. Two sizes. 44\u00d744px touch target always.",
       "module": "components/checkbox/checkbox.jsx",
-      "exports": ["Checkbox", "IconCheck", "IconDash", "BOX_SIZE", "TARGET_SIZE", "BORDER_WIDTH", "LABEL_GAP"],
+      "exports": [
+        "Checkbox",
+        "IconCheck",
+        "IconDash",
+        "BOX_SIZE",
+        "TARGET_SIZE",
+        "BORDER_WIDTH",
+        "LABEL_GAP"
+      ],
       "spec": "components/checkbox/checkbox-spec.md",
       "agentBrief": "components/checkbox/agent-brief.md",
       "demo": "components/checkbox/checkbox.html",
@@ -77,21 +141,75 @@
       },
       "props": {
         "Checkbox": {
-          "checked":       { "type": "boolean", "default": false, "description": "Whether the checkbox is checked" },
-          "indeterminate": { "type": "boolean", "default": false, "description": "Shows dash icon; overrides checked visually; sets aria-checked=mixed" },
-          "error":         { "type": "boolean", "default": false, "description": "Error / negative styling — fill and border switch to negative token family" },
-          "highlight":     { "type": "boolean", "default": false, "description": "Tinted background on the state-layer at rest — for selectable rows" },
-          "secondary":     { "type": "boolean", "default": false, "description": "Secondary indeterminate variant (muted colour) — use with indeterminate only" },
-          "disabled":      { "type": "boolean", "default": false, "description": "Non-interactive; still accessible to screen readers" },
-          "size":          { "type": "\"default\" | \"s\"", "default": "\"default\"", "description": "Visual size of the control. Touch target is always 44×44px." },
-          "label":         { "type": "string", "description": "Optional visible label text" },
-          "onChange":      { "type": "(checked: boolean) => void", "description": "Called on user interaction with the new checked value" },
-          "id":            { "type": "string", "description": "For label htmlFor association" },
-          "name":          { "type": "string", "description": "Form field name" },
-          "value":         { "type": "string", "description": "Form field value" },
-          "className":     { "type": "string", "default": "\"\"", "description": "Additional CSS class on the root element" },
-          "describedBy":   { "type": "string", "description": "aria-describedby pointing to an error message element (error state)" }
+          "checked": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether the checkbox is checked"
+          },
+          "indeterminate": {
+            "type": "boolean",
+            "default": false,
+            "description": "Shows dash icon; overrides checked visually; sets aria-checked=mixed"
+          },
+          "error": {
+            "type": "boolean",
+            "default": false,
+            "description": "Error / negative styling \u2014 fill and border switch to negative token family"
+          },
+          "highlight": {
+            "type": "boolean",
+            "default": false,
+            "description": "Tinted background on the state-layer at rest \u2014 for selectable rows"
+          },
+          "secondary": {
+            "type": "boolean",
+            "default": false,
+            "description": "Secondary indeterminate variant (muted colour) \u2014 use with indeterminate only"
+          },
+          "disabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Non-interactive; still accessible to screen readers"
+          },
+          "size": {
+            "type": "\"default\" | \"s\"",
+            "default": "\"default\"",
+            "description": "Visual size of the control. Touch target is always 44\u00d744px."
+          },
+          "label": {
+            "type": "string",
+            "description": "Optional visible label text"
+          },
+          "onChange": {
+            "type": "(checked: boolean) => void",
+            "description": "Called on user interaction with the new checked value"
+          },
+          "id": {
+            "type": "string",
+            "description": "For label htmlFor association"
+          },
+          "name": {
+            "type": "string",
+            "description": "Form field name"
+          },
+          "value": {
+            "type": "string",
+            "description": "Form field value"
+          },
+          "className": {
+            "type": "string",
+            "default": "\"\"",
+            "description": "Additional CSS class on the root element"
+          },
+          "describedBy": {
+            "type": "string",
+            "description": "aria-describedby pointing to an error message element (error state)"
+          }
         }
+      },
+      "motion": {
+        "boxFill": "150ms ease-out (background-color)",
+        "boxToggle": "150ms ease-out (background-color + border-color, on check / uncheck)"
       },
       "tokens": {
         "present": [
@@ -138,64 +256,134 @@
         ]
       },
       "gaps": [
-        "8 tokens missing from token file — see spec §5.3. fill.action.secondaryinverse.* affects highlight variant resting state (HIGH priority).",
-        "Secondary Indeterminate use case TBD — confirm with design before shipping.",
-        "Highlight variant resting-state token (fill.action.secondaryinverse.base) missing — fallback in use."
+        "8 tokens missing from token file \u2014 see spec \u00a75.3. fill.action.secondaryinverse.* affects highlight variant resting state (HIGH priority).",
+        "Secondary Indeterminate use case TBD \u2014 confirm with design before shipping.",
+        "Highlight variant resting-state token (fill.action.secondaryinverse.base) missing \u2014 fallback in use."
       ]
     },
     "org-switcher": {
       "displayName": "OrgSwitcher",
-      "description": "Organisation and campus context switcher. Shows full names on desktop; abbreviated initialisations on mobile per Appendix A abbreviation rules. Lives in the global shell (top nav, dark surface). Trigger only — panel not yet designed. Spec status: PENDING HUMAN REVIEW.",
-      "status": "PLACEHOLDER",
+      "description": "Organisation context switcher trigger in the brand-blue top nav. Renders the active org name (truncated with ellipsis at 180px desktop / 50px mobile). For Catholic organisations only, a second container after the org name shows the city or diocese. The trigger opens a drop panel listing accessible orgs.",
+      "status": "REVIEWED",
+      "version": "v1",
+      "v1Scope": "Trigger only. Drop panel is a non-normative placeholder in v1 \u2014 see spec \u00a70.",
       "module": "components/org-switcher/org-switcher.jsx",
-      "exports": ["OrgSwitcher", "abbreviateOrg", "abbreviateCampus", "mobileLabel"],
+      "exports": [
+        "OrgSwitcher"
+      ],
       "spec": "components/org-switcher/org-switcher-spec.md",
-      "agentBrief": "components/org-switcher/agent-brief.md",
       "demo": "components/org-switcher/org-switcher.html",
       "stories": "src/stories/Library/OrgSwitcher/OrgSwitcher.stories.jsx",
+      "docs": "src/stories/Library/OrgSwitcher/OrgSwitcher.mdx",
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
-        "nodeId": "40006819:14583"
+        "nodeId": "40006819:14583",
+        "variants": {
+          "baseDesktop": "40006819:14581",
+          "hoverDesktop": "40006819:14582",
+          "pressedDesktop": "40006933:15754",
+          "openDesktop": "40007336:9453",
+          "baseMobile": "40006820:14757",
+          "hoverMobile": "40006820:14772",
+          "pressedMobile": "40006933:15766",
+          "openMobile": "40007336:17470"
+        }
       },
       "props": {
         "OrgSwitcher": {
-          "orgName":    { "type": "string",   "required": true,  "description": "Full organisation name" },
-          "campusName": { "type": "string",   "default": "\"\"", "description": "Full campus or sub-org name. Omit or pass empty string when no campus." },
-          "logoUrl":    { "type": "string",   "description": "Org logo image URL. Omit to show two-letter initials placeholder." },
-          "open":       { "type": "boolean",  "default": false,  "description": "Whether the downstream panel is open — flips the chevron icon." },
-          "onClick":    { "type": "() => void", "description": "Click handler — use to toggle your panel." },
-          "disabled":   { "type": "boolean",  "default": false,  "description": "True for single-org users — trigger renders but panel does not open." },
-          "mobile":     { "type": "boolean",  "default": false,  "description": "Force mobile abbreviated display regardless of viewport (useful for testing / Storybook)." },
-          "className":  { "type": "string",   "default": "\"\"", "description": "Additional CSS class on the root element." }
+          "orgName": {
+            "type": "string",
+            "required": true,
+            "description": "Full organisation name. Truncates with ellipsis at 180px desktop / 50px mobile."
+          },
+          "orgType": {
+            "type": "\"protestant\" | \"catholic\"",
+            "default": "\"protestant\"",
+            "description": "Discriminant. Catholic orgs render a second container after the org name (CityName.Catholic). Protestant orgs render the org name on its own (no pipe, no second container)."
+          },
+          "cityName": {
+            "type": "string",
+            "default": "\"\"",
+            "description": "City or diocese name. RENDERED ONLY when orgType === \"catholic\" (spec \u00a70.1). Ignored for Protestant orgs even if supplied. NOT a campus/suborg/region name."
+          },
+          "logoUrl": {
+            "type": "string",
+            "description": "Org logo URL. Empty or omitted \u2192 church SVG placeholder (never text initials)."
+          },
+          "open": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controlled open state \u2014 flips the chevron icon 180\u00b0."
+          },
+          "onClick": {
+            "type": "function",
+            "description": "() => void \u2014 fired when the trigger is activated. Caller toggles the open state."
+          },
+          "disabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "True for single-org users. Trigger renders inert at 50% opacity."
+          },
+          "mobile": {
+            "type": "boolean",
+            "default": false,
+            "description": "Force the mobile compact display regardless of viewport."
+          },
+          "orgs": {
+            "type": "array",
+            "description": "(Panel only \u2014 out of scope in v1.) Array of org records for the placeholder panel."
+          },
+          "activeOrgId": {
+            "type": "string",
+            "description": "(Panel only \u2014 out of scope in v1.) Highlights the active org in the panel."
+          },
+          "onOrgSelect": {
+            "type": "function",
+            "description": "(Panel only \u2014 out of scope in v1.) (orgId) => void when a panel row is clicked."
+          },
+          "className": {
+            "type": "string",
+            "description": "Additional CSS class on the root element."
+          }
         }
       },
-      "tokens": [
-        "dark-mode.fill.action.tertiary.base",
-        "dark-mode.fill.action.primaryinverse.hover",
-        "dark-mode.fill.action.primaryinverse.pressed",
-        "dark-mode.stroke.action.tertiary.base",
-        "dark-mode.stroke.action.tertiary.hover",
-        "dark-mode.stroke.action.tertiary.pressed",
-        "dark-mode.text.action.mono.base",
-        "dark-mode.text.action.mono.hover",
-        "dark-mode.text.action.mono.pressed",
-        "dark-mode.icon.action.mono.base",
-        "dark-mode.icon.action.mono.hover",
-        "dark-mode.icon.action.mono.pressed",
-        "layout.units.cornerradius.medium",
-        "layout.units.cornerradius.small",
-        "layout.units.borderwidth.base",
-        "layout.units.padding.xxtight",
-        "layout.units.padding.xxxtight",
-        "layout.units.padding.xtight",
-        "layout.units.gap.xxtight"
-      ],
-      "gaps": [
-        "Panel (dropdown / bottom sheet) not yet designed in Figma — trigger only ships.",
-        "ARIA pattern choice (Disclosure+listbox vs Combobox) deferred until panel is designed.",
-        "logoUrl placeholder tint (rgba(53,85,160,0.25)) is not a semantic token — TBD once brand-avatar token is added to Figma.",
-        "Panel mobile behaviour (dropdown vs bottom sheet) not yet decided."
-      ]
+      "tokens": {
+        "present": [
+          "fill.action.tertiary.base",
+          "fill.action.primaryinverse.hover",
+          "fill.action.primaryinverse.pressed",
+          "fill.action.secondary.base",
+          "stroke.action.tertiary.base",
+          "stroke.action.tertiary.hover",
+          "stroke.action.tertiary.pressed",
+          "text.action.mono.base",
+          "text.action.mono.hover",
+          "text.action.mono.pressed",
+          "icon.action.mono.base",
+          "icon.action.mono.hover",
+          "icon.action.mono.pressed",
+          "cornerradius.medium",
+          "cornerradius.small",
+          "borderwidth.base",
+          "padding.xxtight",
+          "padding.xxxtight",
+          "gap.xxtight",
+          "label.button.s.fontfamily",
+          "label.button.s.fontweight",
+          "label.button.s.fontsize",
+          "label.button.s.lineheight",
+          "label.button.s.letterspacing"
+        ]
+      },
+      "motion": {
+        "chevronRotation": "200ms cubic-bezier(0.4,0,0.2,1) (transform)",
+        "stateTransition": "120ms ease (background, border-color)"
+      },
+      "accessibility": {
+        "ariaPattern": "Disclosure (button with aria-haspopup + aria-expanded)",
+        "touchTarget": "48\u00d748 (WCAG 2.5.5)",
+        "ariaLabel": "Always includes the full org name (and city for Catholic orgs), regardless of visible truncation"
+      }
     },
     "top-nav": {
       "displayName": "TopNav.Global",
@@ -212,15 +400,49 @@
       },
       "props": {
         "TopNav": {
-          "activeModuleId": { "type": "string", "required": true, "description": "ID of the currently active module ('home'|'people'|'giving'|'events'|'comms')" },
-          "activeOrgId":    { "type": "string", "required": true, "description": "ID of the currently active organization" },
-          "orgs":           { "type": "Array<{id,name,campus?,logoUrl?,initials,bg}>", "required": true, "description": "List of organizations the user can switch between" },
-          "user":           { "type": "{name,initials,email,avatarUrl?}", "required": true, "description": "Current user profile for the avatar and menu" },
-          "onModuleSelect": { "type": "(id: string) => void", "description": "Called when user selects a module" },
-          "onOrgSelect":    { "type": "(id: string) => void", "description": "Called when user selects an org" },
-          "onSearchOpen":   { "type": "() => void", "description": "Called when search pill is clicked" },
-          "onSideNavToggle":{ "type": "() => void", "description": "Called when hamburger is clicked (mobile only)" }
+          "activeModuleId": {
+            "type": "string",
+            "required": true,
+            "description": "ID of the currently active module ('home'|'people'|'giving'|'events'|'comms')"
+          },
+          "activeOrgId": {
+            "type": "string",
+            "required": true,
+            "description": "ID of the currently active organization"
+          },
+          "orgs": {
+            "type": "Array<{id,name,campus?,logoUrl?,initials,bg}>",
+            "required": true,
+            "description": "List of organizations the user can switch between"
+          },
+          "user": {
+            "type": "{name,initials,email,avatarUrl?}",
+            "required": true,
+            "description": "Current user profile for the avatar and menu"
+          },
+          "onModuleSelect": {
+            "type": "(id: string) => void",
+            "description": "Called when user selects a module"
+          },
+          "onOrgSelect": {
+            "type": "(id: string) => void",
+            "description": "Called when user selects an org"
+          },
+          "onSearchOpen": {
+            "type": "() => void",
+            "description": "Called when search pill is clicked"
+          },
+          "onSideNavToggle": {
+            "type": "() => void",
+            "description": "Called when hamburger is clicked (mobile only)"
+          }
         }
+      },
+      "motion": {
+        "searchFieldFocus": "180ms ease (min-width expansion on focus)",
+        "iconButtonHover": "120ms ease (background + border-color)",
+        "dropdownEnter": "140ms ease-out \u2014 keyframe tnDropIn",
+        "iconRotation": "180ms ease (transform)"
       },
       "tokens": [
         "light-mode.fill.static.brand.base",
@@ -237,10 +459,10 @@
         "light-mode.text.static.accent.amethyst.contrast"
       ],
       "gaps": [
-        "Active item token in dropdowns: uses raw #eef2fb — no semantic token exists yet (HIGH).",
+        "Active item token in dropdowns: uses raw #eef2fb \u2014 no semantic token exists yet (HIGH).",
         "Notification badge / dot on bell icon not yet designed (HIGH).",
         "Mobile profile tap behavior not specified (HIGH).",
-        "Destructive item (Sign out) uses raw red — no semantic danger token (MEDIUM).",
+        "Destructive item (Sign out) uses raw red \u2014 no semantic danger token (MEDIUM).",
         "TopNav position sticky vs fixed not resolved (MEDIUM).",
         "Logo crop parameters tuned for Sacred Heart logo only (MEDIUM)."
       ]
@@ -249,6 +471,7 @@
       "displayName": "Spinner",
       "description": "Indeterminate activity indicator. 8-spoke sunburst, arbitrary size, semantic-token-only colour via tone + emphasis.",
       "module": null,
+      "moduleNote": "Spinner ships HTML/SVG/CSS only \u2014 no React module today. Inline the SVG from spinner.html, or copy markup from the spec. A .jsx wrapper is on the pipeline backlog.",
       "exports": [],
       "spec": "components/spinner/spinner-spec.md",
       "agentBrief": "components/spinner/agent-brief.md",
@@ -260,10 +483,45 @@
       },
       "props": {
         "Spinner": {
-          "tone": { "type": "string", "options": ["neutral", "brand", "info", "warning", "danger", "negative", "positive", "accent-amethyst", "accent-jade", "accent-seabreeze"], "default": "neutral", "description": "Semantic icon.static tone family" },
-          "emphasis": { "type": "string", "options": ["light", "subtle", "base", "contrast", "bold"], "default": "base", "description": "Emphasis level within the tone" },
-          "size": { "type": "number | string", "default": 24, "description": "Any CSS length (px, em, rem, %)" },
-          "label": { "type": "string", "default": "Loading", "description": "Accessible name announced by screen readers" }
+          "tone": {
+            "type": "string",
+            "options": [
+              "neutral",
+              "brand",
+              "info",
+              "warning",
+              "danger",
+              "negative",
+              "positive",
+              "accent-amethyst",
+              "accent-jade",
+              "accent-seabreeze"
+            ],
+            "default": "neutral",
+            "description": "Semantic icon.static tone family"
+          },
+          "emphasis": {
+            "type": "string",
+            "options": [
+              "light",
+              "subtle",
+              "base",
+              "contrast",
+              "bold"
+            ],
+            "default": "base",
+            "description": "Emphasis level within the tone"
+          },
+          "size": {
+            "type": "number | string",
+            "default": 24,
+            "description": "Any CSS length (px, em, rem, %)"
+          },
+          "label": {
+            "type": "string",
+            "default": "Loading",
+            "description": "Accessible name announced by screen readers"
+          }
         }
       },
       "tokens": [
