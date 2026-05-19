@@ -93,6 +93,10 @@
           "describedBy":   { "type": "string", "description": "aria-describedby pointing to an error message element (error state)" }
         }
       },
+      "motion": {
+        "boxFill":   "150ms ease-out (background-color)",
+        "boxToggle": "150ms ease-out (background-color + border-color, on check / uncheck)"
+      },
       "tokens": {
         "present": [
           "fill.action.primary.base",
@@ -169,6 +173,12 @@
           "className":  { "type": "string",   "default": "\"\"", "description": "Additional CSS class on the root element." }
         }
       },
+      "motion": {
+        "pillButtonBackground": "150ms cubic-bezier(0.4,0,0.2,1)",
+        "panelEnter":           "200ms cubic-bezier(0,0,0.2,1) — keyframe orgPanelIn (opacity 0→1, translateY -6px → 0)",
+        "listItemHover":        "120ms ease (background + border-color)",
+        "caretRotation":        "200ms cubic-bezier(0.4,0,0.2,1) (transform)"
+      },
       "tokens": [
         "dark-mode.fill.action.tertiary.base",
         "dark-mode.fill.action.primaryinverse.hover",
@@ -222,6 +232,12 @@
           "onSideNavToggle":{ "type": "() => void", "description": "Called when hamburger is clicked (mobile only)" }
         }
       },
+      "motion": {
+        "searchFieldFocus": "180ms ease (min-width expansion on focus)",
+        "iconButtonHover":  "120ms ease (background + border-color)",
+        "dropdownEnter":    "140ms ease-out — keyframe tnDropIn",
+        "iconRotation":     "180ms ease (transform)"
+      },
       "tokens": [
         "light-mode.fill.static.brand.base",
         "dark-mode.fill.action.tertiary.base",
@@ -249,6 +265,7 @@
       "displayName": "Spinner",
       "description": "Indeterminate activity indicator. 8-spoke sunburst, arbitrary size, semantic-token-only colour via tone + emphasis.",
       "module": null,
+      "moduleNote": "Spinner ships HTML/SVG/CSS only — no React module today. Inline the SVG from spinner.html, or copy markup from the spec. A .jsx wrapper is on the pipeline backlog.",
       "exports": [],
       "spec": "components/spinner/spinner-spec.md",
       "agentBrief": "components/spinner/agent-brief.md",
