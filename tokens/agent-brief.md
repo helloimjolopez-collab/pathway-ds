@@ -289,3 +289,109 @@ If you find yourself reaching for a colour, size, or motion value that isn't in 
 3. **Check the Figma file directly via MCP.** File key `3sw45aVcngFAmpbP6cfrXP`. The Variables panel is the absolute source of truth.
 
 4. **Ask the user.** Don't invent. If a token is missing, that's a real gap in the design system that the user (or design team) needs to fill in Figma.
+
+---
+
+## Anti-patterns — common mistakes
+
+These are the mistakes AI agents make most often when consuming this design system. Each one looks reasonable in isolation; together they corrode the system.
+
+**❌ Hardcoded hex**
+```jsx
+<button style={{ color: "#2d4889", background: "#ffffff" }}>Save</button>
+```
+**✅ Semantic token**
+```jsx
+<button style={{
+  color: "var(--text-action-primary-base)",
+  background: "var(--fill-static-surface-white)"
+}}>Save</button>
+```
+
+**❌ Primitive token used directly**
+```css
+color: var(--primitive-color-blue-180);
+```
+Primitives are building blocks for *the design system itself*. Components never consume them directly — they consume the semantic token that wraps the primitive. If the primitive is renamed in Figma, your component breaks. If you use the semantic, it doesn't.
+
+**✅ Semantic token**
+```css
+color: var(--text-static-brand-base);
+```
+
+**❌ Invented token name**
+```jsx
+color: "var(--text-primary)"
+color: "var(--color-brand)"
+color: "var(--icon-success)"
+```
+If the name isn't in [`pathway-design-tokens.json`](./pathway-design-tokens.json), it doesn't exist. Don't pattern-match from other design systems you've seen.
+
+**✅ Real token from this system**
+```jsx
+color: "var(--text-static-primary-base)"
+color: "var(--fill-static-brand-base)"
+color: "var(--icon-static-success-base)"
+```
+
+**❌ Arbitrary px size for type**
+```css
+font-size: 15px;
+font-weight: 500;
+line-height: 22px;
+```
+**✅ Type scale entry from the spec**
+```
+Use `Label/Menu/Base/Medium` — that's 14/500/20px/0.3px letter-spacing.
+```
+
+**❌ Inter / system-ui / SF Pro**
+```css
+font-family: Inter, system-ui, -apple-system, sans-serif;
+```
+**✅ Red Hat Text**
+```css
+font-family: "Red Hat Text", sans-serif;
+```
+There is no other font in Pathway. No display font, no monospace font. If you need monospace for code, that's a real DS gap — surface it, don't invent.
+
+**❌ Arbitrary radius**
+```css
+border-radius: 6px;  /* or 4px, or 10px */
+```
+**✅ Radius scale entry**
+```css
+border-radius: 8px;   /* CornerRadius/S — almost anything */
+border-radius: 12px;  /* CornerRadius/M — cards */
+```
+
+**❌ Custom motion timing**
+```css
+transition: all 250ms ease-in-out;
+```
+**✅ Pathway motion**
+```css
+transition: background-color 150ms ease-out;       /* hover/colour */
+transition: transform 300ms cubic-bezier(0.4,0,0.2,1);  /* enter/leave */
+```
+
+**❌ Inventing accessibility patterns**
+```jsx
+<div onClick={save} style={{ cursor: "pointer" }}>Save</div>
+```
+**✅ Real interactive elements**
+```jsx
+<button onClick={save}>Save</button>
+```
+Use real HTML semantics. `<button>` for actions. `<a>` for navigation. `<input>` for inputs. Never `<div role="button">` when a `<button>` will do.
+
+---
+
+## When you've made one of these mistakes
+
+If you catch yourself reaching for any of these anti-patterns, stop. The right move is either:
+
+- Find the real token / type entry / motion value in the spec, or
+- Surface the gap to the user: *"There's no token for `<X>` in Pathway — I'm flagging it as a DS gap rather than inventing a value."*
+
+A flagged gap gets fixed. A silent invention spreads.
