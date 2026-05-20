@@ -6,6 +6,16 @@
 Complete implementation reference for the SideNav component. Covers anatomy, design tokens, states, spacing, interaction patterns, and accessibility. Use alongside the [Figma source](#figma-source) for a pixel-accurate build.
 
 ---
+## Links
+
+| Artefact | URL |
+|---|---|
+| Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=5469-7546 |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-sidenav--docs |
+| HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/sidenav/sidenav.html |
+
+---
+
 
 ## 1. Component Overview
 
@@ -263,6 +273,8 @@ Figma's `SectionLabel` component includes an optional icon slot (`Container.Icon
 ---
 
 ## 2.4 SideNavListSection
+
+> **Partial spec** — This section covers the fundamentals needed to build `SideNavListSection` within the `SideNav` shell. A dedicated standalone spec for `SideNavListSection` and its `ListItem` sub-component (including the full token set, state matrix, and `BulletDot` details) is planned but not yet written.
 
 **Figma:** `SideNav.ListSection` (node `40007332:8034`). A labelled group of flat navigation items — no icons, no children, no expand/collapse. Used for context-specific link lists such as "Recent Content", "Pinned Items", or "Bookmarks".
 
@@ -592,10 +604,38 @@ The NavHeader is the first row inside the SideNav container, above all nav items
 ```
 NavHeader  (48px row + 1px divider below)
 ├── Container.Main  (h-[48px], full width, hover fill)
-│   ├── Expanded (240px): action icon right-aligned in Slot.RowEnd (36×36 wrapper, 12×12 icon)
-│   └── Collapsed (72px): action icon centered (12×12)
+│   ├── Expanded (240px):
+│   │   ├── Slot.RowStart  →  Module.Mark (module identifier)
+│   │   └── Slot.RowEnd    →  Action Icon (right_panel_open, 12×12, #6b6b6b)
+│   └── Collapsed (72px):
+│       └── Action Icon (left_panel_open, 12×12, #6b6b6b, centered)
 └── Divider  (1px, Stroke/Static/Neutral/Light #f6f6f6, py-[2px])
 ```
+
+### 9.0 Module.Mark slot (Slot.RowStart — expanded state only)
+
+In the expanded sidebar (240 px), `Slot.RowStart` is filled by a `Module.Mark` instance. `Module.Mark` identifies the current module by pairing a module-specific SVG icon (16×16) with a short text label.
+
+**Figma component:** `Module.Mark` (node `40006867:34536`)
+
+| Property | Values | Notes |
+|---|---|---|
+| `Module` | `Service Planning`, `Giving` | Variant per module; each team supplies its own |
+| `Size` | `Small` (NavHeader), `Medium`, `Size3` | Always `Small` inside NavHeader |
+| `Show Icon Leading` | `true` / `false` | Shows/hides the 16×16 module icon |
+| `ShowLabel` | `true` / `false` | Shows/hides the module name label |
+
+**Anatomy (Size=Small):**
+```
+Module.Mark  (123×18 px)
+└── Container.RowStart
+    ├── Container.IconLeading (16×16)  →  Module.Icon (SVG, module-specific)
+    └── Container.Label (101×18)       →  Label (module name text)
+```
+
+**In collapsed rail:** `Slot.RowStart` and `Module.Mark` are not rendered. The action icon is centred and there is no module identifier visible in the 72 px rail.
+
+**Implementation note:** `Module.Mark` is an app-layer concern — the design system provides the slot and the component, but which `Module` variant appears is determined by the consuming module team, not by `SideNav` itself.
 
 **Action icons:** `right_panel_open` (when sidebar is expanded — click to collapse) and `left_panel_open` (when sidebar is collapsed — click to expand). Both 12×12 SVG glyphs, fill colour `Icon/Action/Secondary Inverse/Base` (`#6b6b6b`).
 
