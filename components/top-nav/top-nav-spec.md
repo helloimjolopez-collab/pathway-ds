@@ -6,6 +6,16 @@ Complete implementation reference for the TopNav.Global component. Covers anatom
 
 ---
 
+## Links
+
+| Artefact | URL |
+|---|---|
+| Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6508 |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-topnav--docs |
+| HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/top-nav/top-nav.html |
+
+---
+
 ## 1. Component Overview
 
 `TopNav.Global` is the fixed horizontal bar that sits at the very top of every page in Ministry Brands Amplify. It is the only navigation element that persists across all modules and all screen sizes. Its three jobs are: (1) tell the user which module they are in (ModuleSwitcher), (2) tell the user which organization and campus they are operating as (OrgSwitcher), and (3) give quick access to search, notifications, and the user profile.
