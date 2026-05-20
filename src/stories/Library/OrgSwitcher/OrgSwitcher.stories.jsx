@@ -32,8 +32,12 @@ const DEMO_ORGS = [
 
 /**
  * NavBar — a brand-blue strip that recreates the top-nav surface the trigger
- * lives on. No "Pathway" label or chrome — just the dark surface so the
- * trigger renders against the colour it was designed against.
+ * lives on. Uses inline-flex so it sizes to the trigger's actual content
+ * width — without this the strip stretches to fill the entire Storybook
+ * canvas and the trigger looks like a tiny pill lost in a giant empty
+ * blue rectangle. The actual top-nav in product is full-width, but this
+ * is a *demo surface* — its job is to make the trigger legible in context,
+ * not simulate the full nav.
  */
 function NavBar({ children, height = 56, padX = 20 }) {
   return (
@@ -42,7 +46,7 @@ function NavBar({ children, height = 56, padX = 20 }) {
       height,
       padding: `0 ${padX}px`,
       borderRadius: 8,
-      display: "flex", alignItems: "center",
+      display: "inline-flex", alignItems: "center",
       position: "relative", overflow: "visible",
       fontFamily: "'Red Hat Text', sans-serif",
       WebkitFontSmoothing: "antialiased",
