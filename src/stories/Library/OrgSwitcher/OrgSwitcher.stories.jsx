@@ -31,15 +31,15 @@ const DEMO_ORGS = [
 // ── Presentation helpers ─────────────────────────────────────────────────────
 
 /**
- * NavBar — a brand-blue strip that recreates the top-nav surface the trigger
- * lives on. Uses inline-flex so it sizes to the trigger's actual content
- * width — without this the strip stretches to fill the entire Storybook
- * canvas and the trigger looks like a tiny pill lost in a giant empty
- * blue rectangle. The actual top-nav in product is full-width, but this
- * is a *demo surface* — its job is to make the trigger legible in context,
- * not simulate the full nav.
+ * DemoSurface — NOT a component. Just a brand-blue rectangle so the trigger's
+ * dark-mode tokens have a dark surface to render against in the Storybook
+ * canvas (which has a white background by default). There is NO "NavBar" or
+ * "DemoSurface" component in Figma — the OrgSwitcher trigger is meant to
+ * live in the top-nav, but the top-nav itself isn't this trigger's concern.
+ * inline-flex so the surface wraps tightly around the trigger instead of
+ * stretching across the whole Storybook canvas.
  */
-function NavBar({ children, height = 56, padX = 20 }) {
+function DemoSurface({ children, height = 56, padX = 20 }) {
   return (
     <div style={{
       background: "#2d4889",
@@ -127,7 +127,7 @@ function PlaygroundTemplate({ logoUrl, ...args }) {
   const [activeOrg, setActiveOrg] = useState("grace");
   return (
     <StoryFrame>
-      <NavBar>
+      <DemoSurface>
         <OrgSwitcher
           {...args}
           logoUrl={logoUrl || undefined}
@@ -137,7 +137,7 @@ function PlaygroundTemplate({ logoUrl, ...args }) {
           open={open}
           onClick={() => setOpen(o => !o)}
         />
-      </NavBar>
+      </DemoSurface>
     </StoryFrame>
   );
 }
@@ -163,33 +163,33 @@ export const DesktopVariants = () => (
   <StoryFrame>
     <div>
       <Caption>Default · Protestant org</Caption>
-      <NavBar>
+      <DemoSurface>
         <OrgSwitcher orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
-      </NavBar>
+      </DemoSurface>
     </div>
     <div>
       <Caption>Default · Catholic org (with City name)</Caption>
-      <NavBar>
+      <DemoSurface>
         <OrgSwitcher orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
-      </NavBar>
+      </DemoSurface>
     </div>
     <div>
       <Caption>No logo on file · church SVG placeholder</Caption>
-      <NavBar>
+      <DemoSurface>
         <OrgSwitcher orgName="Northern Kentucky Baptist Church" />
-      </NavBar>
+      </DemoSurface>
     </div>
     <div>
       <Caption>Open · chevron rotated, pressed-state styling</Caption>
-      <NavBar>
+      <DemoSurface>
         <OrgSwitcher orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} open onClick={() => {}} orgs={[]} />
-      </NavBar>
+      </DemoSurface>
     </div>
     <div>
       <Caption>Disabled · single-org user</Caption>
-      <NavBar>
+      <DemoSurface>
         <OrgSwitcher orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} disabled />
-      </NavBar>
+      </DemoSurface>
     </div>
   </StoryFrame>
 );
@@ -201,18 +201,18 @@ export const CatholicVsProtestant = () => (
   <StoryFrame>
     <div>
       <Caption>Catholic org · CityName.Catholic container renders</Caption>
-      <NavBar>
+      <DemoSurface>
         <OrgSwitcher orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
-      </NavBar>
+      </DemoSurface>
       <p style={{ margin: "8px 0 0", fontSize: 12, color: "#71717a" }}>
         <code>orgType="catholic" cityName="Knoxville"</code> → shows "Sacred Heart Church-ITD | Knoxville"
       </p>
     </div>
     <div>
       <Caption>Protestant org · CityName never renders (even if supplied)</Caption>
-      <NavBar>
+      <DemoSurface>
         <OrgSwitcher orgName="Grace Community Church" cityName="Atlanta" logoUrl={SACRED_HEART_LOGO} />
-      </NavBar>
+      </DemoSurface>
       <p style={{ margin: "8px 0 0", fontSize: 12, color: "#71717a" }}>
         <code>cityName="Atlanta"</code> is passed but ignored — orgType defaults to "protestant" and the city container is not rendered at all.
       </p>
@@ -227,15 +227,15 @@ export const Truncation = () => (
   <StoryFrame>
     <div>
       <Caption>Short name · container shrinks to fit</Caption>
-      <NavBar><OrgSwitcher orgName="Cross Point" logoUrl={SACRED_HEART_LOGO} /></NavBar>
+      <DemoSurface><OrgSwitcher orgName="Cross Point" logoUrl={SACRED_HEART_LOGO} /></DemoSurface>
     </div>
     <div>
       <Caption>Medium name · fits within 180px</Caption>
-      <NavBar><OrgSwitcher orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} /></NavBar>
+      <DemoSurface><OrgSwitcher orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} /></DemoSurface>
     </div>
     <div>
       <Caption>Long name · truncated by text-overflow ellipsis at 180px</Caption>
-      <NavBar><OrgSwitcher orgName="Northern Kentucky Baptist Church Fellowship Ministries" logoUrl={SACRED_HEART_LOGO} /></NavBar>
+      <DemoSurface><OrgSwitcher orgName="Northern Kentucky Baptist Church Fellowship Ministries" logoUrl={SACRED_HEART_LOGO} /></DemoSurface>
     </div>
   </StoryFrame>
 );
@@ -448,9 +448,9 @@ export const Mobile = () => (
       <Caption>Mobile · 108px fixed, Label/Button/S 14px, truncated at 50px</Caption>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
         {DEMO_ORGS.map(o => (
-          <NavBar key={o.id} height={56} padX={12}>
+          <DemoSurface key={o.id} height={56} padX={12}>
             <OrgSwitcher mobile orgName={o.name} orgType={o.orgType} cityName={o.cityName} logoUrl={o.logoUrl || undefined} />
-          </NavBar>
+          </DemoSurface>
         ))}
       </div>
     </div>
