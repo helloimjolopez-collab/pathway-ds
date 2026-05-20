@@ -36,8 +36,12 @@ const DEMO_ORGS = [
  * canvas (which has a white background by default). There is NO "NavBar" or
  * "DemoSurface" component in Figma — the OrgSwitcher trigger is meant to
  * live in the top-nav, but the top-nav itself isn't this trigger's concern.
- * inline-flex so the surface wraps tightly around the trigger instead of
- * stretching across the whole Storybook canvas.
+ *
+ * Uses `display: flex` (block-level) with `width: fit-content` so:
+ *   - The surface sizes to the trigger's content (not full canvas width)
+ *   - The trigger inside still gets its intrinsic content width (NOT shrunk
+ *     to min-content like inline-flex was doing — "Grace Community Church"
+ *     was being truncated to "Grac..." with inline-flex)
  */
 function DemoSurface({ children, height = 56, padX = 20 }) {
   return (
@@ -46,7 +50,8 @@ function DemoSurface({ children, height = 56, padX = 20 }) {
       height,
       padding: `0 ${padX}px`,
       borderRadius: 8,
-      display: "inline-flex", alignItems: "center",
+      display: "flex", alignItems: "center",
+      width: "fit-content",
       position: "relative", overflow: "visible",
       fontFamily: "'Red Hat Text', sans-serif",
       WebkitFontSmoothing: "antialiased",
