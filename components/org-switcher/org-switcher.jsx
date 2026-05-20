@@ -278,19 +278,29 @@ function ChurchPlaceholderIcon() {
 function TriggerAvatar({ logoUrl, size, borderColor }) {
   return (
     <div style={{
+      // box-sizing: border-box keeps the avatar at its declared {size} × {size}
+      // INCLUDING the 2px padding. Without this, default content-box adds the
+      // padding OUTSIDE and the avatar renders as (size+4)×(size+4), which
+      // overflows the 24px-tall RowStart and pokes above/below the pill.
+      boxSizing: "border-box",
       width: size, height: size,
       padding: T.pXxxtight, // 2px — Figma Container.Avatar uses xxxtight
       display: "flex", alignItems: "center", justifyContent: "center",
       flexShrink: 0,
     }}>
-      {/* Avatar box: border + corner radius from Figma tokens */}
+      {/* Avatar box: border + corner radius from Figma tokens.
+          box-sizing: border-box ensures the 1px border and 100% height fit
+          inside the parent's 20×20 content area cleanly. */}
       <div style={{
+        boxSizing: "border-box",
         flex: "1 0 0", height: "100%",
         border: `${T.borderWidth} solid ${borderColor}`,
         borderRadius: T.radiusSmall,
         overflow: "hidden",
         position: "relative",
-        background: logoUrl ? T.fillAvatarPlaceholder : T.fillAvatarPlaceholder,
+        // Only set placeholder bg when there's no logo — with a logo the image
+        // covers the box and a bg shows as a tinted halo if the image has alpha
+        background: logoUrl ? "transparent" : T.fillAvatarPlaceholder,
       }}>
         {logoUrl ? (
           <img
