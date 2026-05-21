@@ -12,7 +12,7 @@ import * as OrgSwitcherStories from "./OrgSwitcher.stories";
 
 The Org Switcher is the trigger that sits in the brand-blue top nav and shows the active organisation. Clicking it opens a panel for switching between orgs the user has access to.
 
-> **v1 scope — trigger only.** This release covers the trigger control in the top nav. The drop panel exists in the repo as a working placeholder so the trigger has something to open against, but it is **not part of the design system yet** and its visual is non-authoritative. The panel will get its own design pass in a later version. See `org-switcher-spec.md` §0.
+> **v1 scope — trigger only.** This release covers the trigger control in the top nav. The drop panel is **not part of the design system yet** and will get its own design pass in a later version. See `org-switcher-spec.md` §0.
 
 ### Resources
 
@@ -68,13 +68,7 @@ On viewports below 768px (or when `mobile={true}` is forced), the trigger compac
 
 ---
 
-## Anatomy
-
-The trigger is rendered below at **4× scale** so every container, padding, and gap is visible. Each box has a coloured outline and a pinned label with its name and dimensions. A legend follows the diagram, plus a "logo at three scales" callout that explains why a logo cropped tight at the 24×24 avatar looks the way it does.
-
-<Canvas of={OrgSwitcherStories.Anatomy} />
-
-### Tree (text reference)
+## Anatomy (text reference)
 
 ```
 OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 fixed · min-w/h 48 (touch target)
@@ -118,7 +112,7 @@ All colours come through dark-mode semantic tokens.
 
 - Trigger is a real `<button>` with `aria-haspopup="true"` and `aria-expanded` reflecting the open state
 - `aria-label` always carries the full org name, even when the visible label is truncated
-- For Catholic orgs, the city name is included in the aria-label as well (`"Current organisation: Sacred Heart Church-ITD, Knoxville. Activate to switch."`)
+- For Catholic orgs, the city name is included in the aria-label (`"Current organisation: Sacred Heart Church-ITD, Knoxville. Activate to switch."`)
 - Outer touch target is 48×48 (WCAG 2.5.5)
 - Disabled state (single-org users) sets `aria-disabled` via the native `disabled` attribute
 - Reduced motion: chevron rotation drops to instant when `prefers-reduced-motion: reduce` is set at the shell level
