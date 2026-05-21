@@ -72,18 +72,18 @@ Playground.args = {
   logoUrl:  SACRED_HEART_LOGO,
   open:     false,
   disabled: false,
-  mobile:   false,
+  mobile:   false,   // default desktop in Playground so the iframe width doesn't auto-flip to mobile
 };
 
 // ── Desktop variants ─────────────────────────────────────────────────────────
 
 export const DesktopVariants = () => (
   <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-    <OrgSwitcher orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
-    <OrgSwitcher orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
-    <OrgSwitcher orgName="Northern Kentucky Baptist Church" />
-    <OrgSwitcher orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} open onClick={() => {}} />
-    <OrgSwitcher orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} disabled />
+    <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
+    <OrgSwitcher mobile={false} orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
+    <OrgSwitcher mobile={false} orgName="Northern Kentucky Baptist Church" />
+    <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} open onClick={() => {}} />
+    <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} disabled />
   </div>
 );
 DesktopVariants.storyName = "Desktop variants";
@@ -92,8 +92,8 @@ DesktopVariants.storyName = "Desktop variants";
 
 export const CatholicVsProtestant = () => (
   <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-    <OrgSwitcher orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
-    <OrgSwitcher orgName="Grace Community Church" cityName="Atlanta" logoUrl={SACRED_HEART_LOGO} />
+    <OrgSwitcher mobile={false} orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
+    <OrgSwitcher mobile={false} orgName="Grace Community Church" cityName="Atlanta" logoUrl={SACRED_HEART_LOGO} />
   </div>
 );
 CatholicVsProtestant.storyName = "Catholic vs Protestant";
@@ -102,9 +102,9 @@ CatholicVsProtestant.storyName = "Catholic vs Protestant";
 
 export const Truncation = () => (
   <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-    <OrgSwitcher orgName="Cross Point" logoUrl={SACRED_HEART_LOGO} />
-    <OrgSwitcher orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
-    <OrgSwitcher orgName="Northern Kentucky Baptist Church Fellowship Ministries" logoUrl={SACRED_HEART_LOGO} />
+    <OrgSwitcher mobile={false} orgName="Cross Point" logoUrl={SACRED_HEART_LOGO} />
+    <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
+    <OrgSwitcher mobile={false} orgName="Northern Kentucky Baptist Church Fellowship Ministries" logoUrl={SACRED_HEART_LOGO} />
   </div>
 );
 

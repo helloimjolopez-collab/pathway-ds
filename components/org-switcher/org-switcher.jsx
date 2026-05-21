@@ -200,16 +200,19 @@ export function OrgSwitcher({
   open       = false,
   onClick,
   disabled   = false,
-  mobile     = false,
+  mobile,                       // tristate: true=force mobile, false=force desktop, undefined=auto-detect
   className,
 }) {
   const [pressed,  setPressed]  = useState(false);
   const [hovered,  setHovered]  = useState(false);
-  const [isMobile, setIsMobile] = useState(mobile);
+  const [isMobile, setIsMobile] = useState(mobile === true);
 
-  // Viewport detection. Skipped when `mobile` prop is explicitly true.
+  // Viewport detection. When `mobile` is explicitly true or false, that value
+  // wins — useful for Storybook stories where the iframe width is artificial.
+  // When `mobile` is undefined, fall back to (max-width: 767px) media query.
   useEffect(() => {
-    if (mobile) { setIsMobile(true); return; }
+    if (mobile === true)  { setIsMobile(true);  return; }
+    if (mobile === false) { setIsMobile(false); return; }
     const mq = window.matchMedia("(max-width: 767px)");
     setIsMobile(mq.matches);
     const h = e => setIsMobile(e.matches);
@@ -335,11 +338,17 @@ export function OrgSwitcher({
                 </div>
 
                 {/* Container.CityName.Catholic — Catholic orgs ONLY (spec §0.1).
-                    Figma annotation: "Catholic orgs only. NOT a suborg name." */}
+                    Figma annotation: "Catholic orgs only. NOT a suborg name."
+                    The 6px left padding gives the pipe visual breathing room
+                    from the OrgName — Figma renders this gap via the
+                    OrgLabel autolayout, but with overflow:hidden + nowrap on
+                    the inner <p>, leading whitespace inside the <p> is
+                    unreliable across browsers. Use padding instead. */}
                 {showCityName && (
                   <div style={{
                     display: "flex", alignItems: "center", height: "100%",
-                    maxWidth: 72, flexShrink: 0, minWidth: 0,
+                    maxWidth: 78, flexShrink: 0, minWidth: 0,
+                    paddingLeft: 6,
                   }}>
                     <p style={{
                       ...TYPE_S,
@@ -350,7 +359,7 @@ export function OrgSwitcher({
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                     }}>
-                      {` | ${cityName}`}
+                      {`| ${cityName}`}
                     </p>
                   </div>
                 )}
