@@ -7,7 +7,7 @@
 
 ## TL;DR — what this component is, in one paragraph
 
-The OrgSwitcher is the contextual navigation control that lives in the brand-blue top nav of every signed-in, multi-org Ministry Brands product. It always shows the user's active organisation. Clicking it is meant to open a panel that lets the user switch between orgs they have access to. **This spec covers v1, which is the trigger button only.** The dropdown menu / panel that opens below the trigger is **out of scope for v1 and remains as it is today in production until further notice** — a future version will give it its own design pass, spec, and release. The trigger is, however, fully spec'd here: pixel-accurate against Figma, with a clean Catholic-vs-Protestant rule, full state matrix, dark-mode tokens, mobile compact mode, and the church SVG placeholder for orgs that have no logo on file.
+The OrgSwitcher is the contextual navigation control that lives inside the `TopNav` component (see `components/top-nav/`) of every signed-in, multi-org Ministry Brands product. It always shows the user's active organisation. Clicking it is meant to open a panel that lets the user switch between orgs they have access to. **This spec covers v1, which is the trigger button only.** The dropdown menu / panel that opens below the trigger is **out of scope for v1 and remains as it is today in production until further notice** — a future version will give it its own design pass, spec, and release. The trigger is, however, fully spec'd here: pixel-accurate against Figma, with a clean Catholic-vs-Protestant rule, full state matrix, dark-mode tokens, mobile compact mode, and the church SVG placeholder for orgs that have no logo on file.
 
 ## Resources
 
@@ -57,7 +57,7 @@ The dropdown menu / panel that opens beneath the trigger is **out of scope for v
 
 ## 1. Component Overview
 
-`OrgSwitcher` is a contextual navigation control that shows the user's current organisation and lets them switch to another. It lives in the brand-blue top navigation bar and is visible at all times while signed in to a multi-org context.
+`OrgSwitcher` is a contextual navigation control that shows the user's current organisation and lets them switch to another. It renders inside the `TopNav` component and is visible at all times while signed in to a multi-org context. The OrgSwitcher does not own or define the TopNav surface — see `components/top-nav/top-nav-spec.md` for the TopNav's own surface tokens.
 
 It is **not** used for module-level navigation (that is SideNav's job), for settings access, or for user-profile actions. It is not a generic dropdown or select control — it is specifically scoped to org-and-city/diocese switching.
 
@@ -108,6 +108,7 @@ Use this table to find the owner of any decision. Every row points to the single
 | Live HTML demo | This spec § 15 + [`org-switcher.html`](https://helloimjolopez-collab.github.io/pathway-ds/components/org-switcher/org-switcher.html) | §15 |
 | Storybook stories + docs page | This spec § 19 + `src/stories/Library/OrgSwitcher/` | §19 |
 | Manifest entry | `components/manifest.json` | row keyed by `"org-switcher"` |
+| TopNav surface colour / chrome | `TopNav` component spec | `components/top-nav/top-nav-spec.md` — OrgSwitcher does NOT own or define the TopNav background |
 | Known design gaps | This spec | §16 (Figma-side) + §17 (deferred decisions) |
 
 **Rule:** if a decision isn't in the table above, check §16 / §17 (gaps). If it's not there either, it hasn't been specified yet — add it to the spec before implementing.
@@ -449,7 +450,7 @@ There is no roving tabindex — the trigger is a single Tab stop. Once the panel
 |---|---|
 | Visible focus ring on the trigger | ✅ `2px solid rgba(255,255,255,0.9)` on `:focus-visible` |
 | Focus ring uses `:focus-visible` (not `:focus`) to avoid painting on mouse click | ✅ Implemented in `org-switcher.jsx` via `onFocus` handler |
-| Focus ring contrast against brand-blue nav | ✅ White outline on `#2d4889` ≈ 8.8:1 — passes WCAG 1.4.11 (3:1) |
+| Focus ring contrast against TopNav surface | ✅ White outline on the TopNav background (`#2d4889`, owned by TopNav) ≈ 8.8:1 — passes WCAG 1.4.11 (3:1) |
 | Focus visible in pressed / open states | ✅ Outline overlays the pressed-state fill |
 
 > Figma does **not** ship a focused-state variant of the trigger. Focus styling is documented and implemented in this spec / `org-switcher.jsx`, but a Figma variant for the focused state would close the loop. See §16.
@@ -483,11 +484,11 @@ These are approximate strings. Exact wording varies by screen reader and browser
 
 ### 11.6 Colour Contrast
 
-All values below use token resolved values on the standard brand-blue nav surface (`#2d4889`). Verify in production with a tool (e.g. Colour Contrast Analyser).
+All values below use token resolved values on the `TopNav` surface (which resolves to `#2d4889`; that colour is owned and defined by the TopNav component, not by OrgSwitcher). Verify in production with a tool (e.g. Colour Contrast Analyser).
 
 | Surface | Foreground token → hex | Background | Approx. ratio | WCAG AA (4.5:1 text / 3:1 non-text) |
 |---|---|---|---|---|
-| Trigger label, base | `text.action.mono.base` → `#fbfbfb` | `#2d4889` (brand-blue nav) under `rgba(160,181,230,0.04)` fill ≈ `#2d4889` | ≈ 10.4:1 | ✅ Pass |
+| Trigger label, base | `text.action.mono.base` → `#fbfbfb` | TopNav surface (`#2d4889`) under `rgba(160,181,230,0.04)` fill ≈ `#2d4889` | ≈ 10.4:1 | ✅ Pass |
 | Trigger label, hover | `text.action.mono.hover` → `#ffffff` | `#2d4889` under `rgba(10,18,35,0.16)` fill ≈ `#26396f` | ≈ 9.2:1 | ✅ Pass |
 | Trigger label, pressed / open | `text.action.mono.pressed` → `#ffffff` | `#2d4889` under `rgba(255,255,255,0.08)` ≈ `#3a548d` | ≈ 9.7:1 | ✅ Pass |
 | Chevron, base | `icon.action.mono.base` → `#fbfbfb` | (as label, base) | ≈ 10.4:1 | ✅ Pass (non-text 3:1 minimum) |
