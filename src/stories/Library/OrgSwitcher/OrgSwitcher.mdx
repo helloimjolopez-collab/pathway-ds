@@ -1,7 +1,9 @@
 {/* OrgSwitcher — Pathway Design System (v1)
     Spec:  components/org-switcher/org-switcher-spec.md
     Figma: https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583
-*/}
+
+    Visual treatment is lifted from components/org-switcher/org-switcher.html.
+    Storybook mirrors the HTML demo — never independently styles its own chrome. */}
 
 import { Canvas, Controls, Meta } from "@storybook/blocks";
 import * as OrgSwitcherStories from "./OrgSwitcher.stories";
@@ -10,37 +12,53 @@ import * as OrgSwitcherStories from "./OrgSwitcher.stories";
 
 # Org Switcher
 
-The Org Switcher is the trigger that sits in the brand-blue top nav and shows the active organisation. Clicking it opens a panel for switching between orgs the user has access to.
+The Org Switcher is the trigger that renders inside the `TopNav` component (`components/top-nav/`) and shows the active organisation. Clicking it is meant to open a panel for switching between orgs the user has access to.
 
-> **v1 scope — trigger only.** This release covers the trigger control in the top nav. The drop panel is **not part of the design system yet** and will get its own design pass in a later version. See `org-switcher-spec.md` §0.
+> **v1 scope — trigger only.** The dropdown menu / panel is **out of scope for v1 and remains as it is in production until further notice.** See `org-switcher-spec.md` §0.
 
 ### Resources
 
-- 🖼️ **[Live HTML demo](https://helloimjolopez-collab.github.io/pathway-ds/components/org-switcher/org-switcher.html)** — open the standalone React+Babel CDN demo in a new tab
+- 🖼️ **[Live HTML demo](https://helloimjolopez-collab.github.io/pathway-ds/components/org-switcher/org-switcher.html)** — open the standalone React+Babel CDN page in a new tab
 - 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher-spec.md)** — `components/org-switcher/org-switcher-spec.md`
 - 🎨 **[Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583)** — node `40006819:14583`
 - 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher.jsx)** · **[HTML source](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher.html)**
 
 ---
 
-## Playground
+## Try it
 
 <Canvas of={OrgSwitcherStories.Playground} />
 <Controls of={OrgSwitcherStories.Playground} />
 
 ---
 
+## State matrix
+
+All interaction states (Base / Open / Disabled) on desktop and mobile, side-by-side.
+
+<Canvas of={OrgSwitcherStories.StateMatrix} />
+
+---
+
+## Explore the avatar
+
+The avatar has two render modes: logo image (`object-fit: cover`) or church SVG placeholder when no logo is on file.
+
+<Canvas of={OrgSwitcherStories.AvatarExplorer} />
+
+---
+
 ## Desktop variants
 
-The trigger renders inside the brand-blue top nav. The org name is left-aligned, truncates with ellipsis at 180px, and Catholic organisations get a second city/diocese container after a pipe.
+Each section caption mirrors the HTML demo. The TopNav surface colour is owned by the `TopNav` component, not by OrgSwitcher.
 
 <Canvas of={OrgSwitcherStories.DesktopVariants} />
 
 ---
 
-## Catholic vs Protestant — the CityName rule
+## Catholic vs Protestant — spec §0.1
 
-Per spec §0.1, `Container.CityName.Catholic` is **only ever rendered for Catholic organisations**. Protestant orgs render the org name on its own — no pipe, no second container — even if a `cityName` string is supplied.
+Per spec §0.1, `Container.CityName.Catholic` is **only ever rendered for Catholic organisations**. Protestant orgs render the org name alone, no pipe, no second container — even if a `cityName` string is supplied.
 
 The rule is enforced in code by the `orgType` discriminant:
 
@@ -80,7 +98,7 @@ OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 f
     │   │       └─ [no logo]            church SVG · fill.action.secondary.base bg
     │   ├── Container.OrgLabel          DESKTOP ONLY · max-w-248
     │   │   ├── Container.OrgName       max-w-180 · content-sized · ellipsis at 180px
-    │   │   └── Container.CityName.Catholic   CATHOLIC ORGS ONLY · max-w-72 · "| {cityName}"
+    │   │   └── Container.CityName.Catholic   CATHOLIC ORGS ONLY · max-w-78 (incl. 6px padding for pipe spacing)
     │   └── Container.Label             MOBILE ONLY · w-50 fixed · truncated org name
     └── Container.RowEnd                p-2
         └── Container.IconTrailing      16×16 · p-2 · expand_more icon · rotates 180° when open
@@ -90,21 +108,36 @@ OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 f
 
 ## Design tokens
 
-All colours come through dark-mode semantic tokens.
+Every token category the component uses gets its own story below.
 
 <Canvas of={OrgSwitcherStories.TokensFill} />
 
+<Canvas of={OrgSwitcherStories.TokensStroke} />
+
+<Canvas of={OrgSwitcherStories.TokensText} />
+
+<Canvas of={OrgSwitcherStories.TokensIcon} />
+
 <Canvas of={OrgSwitcherStories.TokensTypography} />
+
+<Canvas of={OrgSwitcherStories.TokensSpacing} />
+
+<Canvas of={OrgSwitcherStories.TokensMotion} />
+
+<Canvas of={OrgSwitcherStories.TokensRadius} />
 
 ---
 
-## Motion
+## Responsive behaviour
 
-| Property | Value |
-|---|---|
-| Chevron rotation | `transform 200ms cubic-bezier(0.4,0,0.2,1)` |
-| Hover/pressed transitions | `background 120ms ease, border-color 120ms ease` |
-| Reduced motion | Snap (no easing) when `prefers-reduced-motion: reduce` |
+| Viewport | Trigger label | Container.Main max-width |
+|---|---|---|
+| `≥ 768 px` (desktop) | Full org name (+ city name for Catholic orgs) | 308px |
+| `< 768 px` (mobile) | Full org name truncated by ellipsis at 50px | 102px |
+
+The `mobile` prop is tristate: `true` forces mobile, `false` forces desktop, `undefined` auto-detects via `window.matchMedia('(max-width: 767px)')`.
+
+See spec §12 for the full viewport test matrix.
 
 ---
 
@@ -117,11 +150,13 @@ All colours come through dark-mode semantic tokens.
 - Disabled state (single-org users) sets `aria-disabled` via the native `disabled` attribute
 - Reduced motion: chevron rotation drops to instant when `prefers-reduced-motion: reduce` is set at the shell level
 
+See spec §11 for the full accessibility section including ARIA markup examples, screen reader output strings, and WCAG contrast ratios.
+
 ---
 
 ## Standalone HTML demo
 
-A self-contained React+Babel demo lives at `components/org-switcher/org-switcher.html` for sharing the trigger in isolation:
+A self-contained React+Babel demo lives at `components/org-switcher/org-switcher.html`. It is the **single visual source of truth** for in-context presentation of the trigger — the stories above mirror its `.demo-section` styling.
 
 <Canvas of={OrgSwitcherStories.StandaloneDemo} />
 

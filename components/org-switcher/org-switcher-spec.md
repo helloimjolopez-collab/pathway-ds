@@ -703,17 +703,25 @@ A condensed playbook for an AI agent asked to implement (or re-implement) this c
 
 ## 19. Storybook
 
-Stories at `src/stories/Library/OrgSwitcher/`. Story IDs as deployed:
+Stories at `src/stories/Library/OrgSwitcher/`. Canonical story set, modelled on `src/stories/Library/SideNav/SideNav.stories.jsx`. Every story that renders the component is wrapped in a `DemoCard` whose visual treatment is lifted verbatim from `components/org-switcher/org-switcher.html` — captions, surface colour, and structure mirror the HTML demo 1:1.
 
 | Story | Story ID | What it demonstrates |
 |---|---|---|
 | Playground | `library-orgswitcher--playground` | Full Controls panel — every prop interactive |
-| Desktop variants | `library-orgswitcher--desktop-variants` | Base / Catholic with city / no-logo / open / disabled stacked |
+| State matrix | `library-orgswitcher--state-matrix` | All interaction states (Base / Open / Disabled) on desktop AND mobile |
+| Avatar explorer | `library-orgswitcher--avatar-explorer` | Logo on file vs church SVG placeholder, isolated |
+| Desktop variants | `library-orgswitcher--desktop-variants` | Captions mirror HTML demo: logo on file / no logo / open with placeholder panel |
 | Catholic vs Protestant | `library-orgswitcher--catholic-vs-protestant` | Side-by-side: Catholic shows ` \| Knoxville`; Protestant with `cityName="Atlanta"` shows NO city container (spec §0.1) |
 | Truncation | `library-orgswitcher--truncation` | Short ("Cross Point") / medium ("Grace Community Church") / long (ellipsis at 180px) |
-| Mobile | `library-orgswitcher--mobile` | Three 108px-fixed pills with truncated labels |
-| Tokens — Fill / Stroke / Text | `library-orgswitcher--tokens-fill` | Swatch table of every fill / stroke / text / icon token used by the trigger |
+| Mobile | `library-orgswitcher--mobile` | 108px-fixed pills with truncated labels — logo + no-logo |
+| Tokens — Fill | `library-orgswitcher--tokens-fill` | 4 fill tokens (trigger backgrounds, avatar placeholder) |
+| Tokens — Stroke | `library-orgswitcher--tokens-stroke` | 3 stroke tokens (trigger + avatar borders per state) |
+| Tokens — Text | `library-orgswitcher--tokens-text` | 3 text tokens (label per state) |
+| Tokens — Icon | `library-orgswitcher--tokens-icon` | 3 icon tokens (chevron per state) |
 | Tokens — Typography | `library-orgswitcher--tokens-typography` | Label/Button/S row — 14/500/20/0.3 |
+| Tokens — Spacing | `library-orgswitcher--tokens-spacing` | padding-xxtight, padding-xxxtight, gap-xxtight |
+| Tokens — Motion | `library-orgswitcher--tokens-motion` | Chevron rotation, state transitions, reduced-motion behaviour |
+| Tokens — Radius | `library-orgswitcher--tokens-radius` | cornerradius-medium (trigger), cornerradius-small (avatar) |
 | Standalone HTML demo | `library-orgswitcher--standalone-demo` | Iframe of `components/org-switcher/org-switcher.html` |
 
 MDX docs page: `library-orgswitcher--docs`. Live URL: [storybook?path=/docs/library-orgswitcher--docs](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-orgswitcher--docs).

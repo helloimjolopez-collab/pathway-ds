@@ -498,10 +498,13 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
               <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:180, flexShrink:1, minWidth:0 }}>
                 <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:180 }}>{orgName}</p>
               </div>
-              {/* CityName.Catholic — gated on orgType==="catholic" (spec §0.1) */}
+              {/* CityName.Catholic — gated on orgType==="catholic" (spec §0.1).
+                  paddingLeft:6 gives the pipe visual breathing room from OrgName;
+                  leading whitespace inside <p> with overflow:hidden + nowrap is
+                  unreliable across browsers, so we use container padding instead. */}
               {showCityName && (
-                <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:72, flexShrink:0, minWidth:0 }}>
-                  <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", maxWidth:72, margin:0 }}>{` | ${cityName}`}</p>
+                <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:78, flexShrink:0, minWidth:0, paddingLeft:6 }}>
+                  <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", maxWidth:72, margin:0 }}>{`| ${cityName}`}</p>
                 </div>
               )}
             </div>
