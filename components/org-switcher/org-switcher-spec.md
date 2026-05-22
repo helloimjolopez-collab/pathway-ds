@@ -1,8 +1,8 @@
 # OrgSwitcher: Pathway Design System Component Spec
 
-**Status:** `PENDING HUMAN REVIEW`
+**Status:** `REVIEWED`
 **Version:** `v1` (trigger only — see §0)
-**Last revised:** 2026-05-21
+**Reviewed:** 2026-05-21
 **Previously reviewed:** 2026-05-18 (v1 first pass — required deepening to reach sidenav-spec parity per CLAUDE.md §5)
 
 ## TL;DR — what this component is, in one paragraph
