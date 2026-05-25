@@ -117,6 +117,20 @@ Figma Code Connect is **not** set up. When it is, this section should point at t
 
 ---
 
+## When a component you need doesn't exist
+
+If you need to build something and **no entry exists in [`components/manifest.json`](./components/manifest.json) for it** — a Button, a Modal, a Card, a Table row, whatever — do not invent a new component. Do this instead:
+
+1. **Build it once, in place, with semantic tokens only.** Use the recipe in [`tokens/agent-brief.md`](./tokens/agent-brief.md) under "What if no Pathway component exists". Every colour, radius, spacing, and motion value must come from the documented token families. Never hardcode hex. Never invent token names.
+
+2. **Mark it visibly.** Add a comment in your code: `// [NEW COMPONENT — needs DS owner review]`. In any spec or handoff you produce, flag it under a "**Design system gaps**" section so the human reviewing the work can see what needs to be promoted into the system.
+
+3. **Surface the gap to the human.** Say plainly: "I needed a `<thing>` but no Pathway component exists for it. I've built it ad-hoc with semantic tokens — the design system owner should review whether this should become a real component." This is how gaps get fixed, not how they hide.
+
+**Never invent a new component silently.** A custom button styled with `Fill/Action/Primary/Base` is a visible gap the DS owner can promote into the system. A custom button styled with `#2d4889` is a bug that disappears into the prototype and quietly breaks the system over time.
+
+---
+
 ## How this repo is published
 
 | Channel | URL | What's there |
