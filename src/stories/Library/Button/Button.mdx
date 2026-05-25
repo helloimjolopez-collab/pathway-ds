@@ -1,0 +1,138 @@
+import { Meta, Title, Canvas, Controls } from "@storybook/blocks";
+import * as Stories from "./Button.stories.jsx";
+
+<Meta of={Stories} />
+
+<Title />
+
+The Button is Pathway's primary action trigger. It is the component a user interacts with to commit a change, advance a flow, or execute a command. Every interactive surface that causes something to happen should be a Button — not a styled div, not an anchor with an `onclick`, not a custom element.
+
+Three visual styles express the hierarchy of weight on a page: **Fill** (the strongest signal — use once per primary action), **Outlined** (secondary weight — supporting actions adjacent to a primary), and **Naked** (lowest visual weight — inline links and tertiary actions that shouldn't compete for attention). Four semantic types handle intent: **Primary** (brand blue — the default), **Secondary** (neutral muted), **Tertiary** (lightest), and **Negative** (destructive or error actions — delete, revoke, sign out).
+
+The Button does not carry navigation semantics. It fires an `onClick`. If pressing it navigates the user to a different route, use an anchor or your router's `<Link>` component styled with Button tokens instead — and accept the accessibility implications.
+
+---
+
+## Try it
+
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+
+---
+
+## Anatomy
+
+```
+<button type="button">                    ← outer — touch-target zone (min 48×48px)
+  <span class="pw-button__container">    ← Container.Main — visible surface (bg, border, radius)
+    <span class="material-symbols-outlined  pw-button__icon--leading">  ← optional leading icon
+    <span class="pw-button__label">      ← label text
+    <span class="material-symbols-outlined  pw-button__icon--trailing"> ← optional trailing icon
+  </span>
+</button>
+```
+
+The outer `<button>` carries all interactive semantics (`aria-label`, `aria-busy`, `disabled`, `onClick`) and acts as the WCAG 2.5.5 touch target (min 48 × 48 px). It is transparent — no fill, no border. The visual surface lives entirely in `Container.Main`: background, border, border-radius, focus ring via `box-shadow`, gap, and padding.
+
+This two-layer approach means the visible button surface can be exactly the size dictated by its content while the interactive zone always meets the 48 px minimum. The 6 px gap between the outer and inner elements is the mandatory touch clearance.
+
+---
+
+## States
+
+<Canvas of={Stories.StateMatrix} />
+
+All 3 styles × 4 types × 6 interaction states rendered as live components. The state machine is straightforward: `disabled` and `loading` are terminal (they override all interaction); otherwise, `pressed` > `hovered` > focused > `base` in priority order.
+
+**Loading** deserves special mention: it is not just a visual state — it is a semantic one. When `loading={true}`, all content (label, icons) is replaced by a spinner. `aria-busy="true"` is set on the button. The button is implicitly disabled to prevent double-submission. The spinner inherits its colour from the button's current icon token via `currentColor`, so it always matches the expected icon colour for that style/type combination.
+
+---
+
+## Explore a single unit
+
+<Canvas of={Stories.ElementExplorer} />
+<Controls of={Stories.ElementExplorer} />
+
+---
+
+## Sizes
+
+<Canvas of={Stories.AllSizes} />
+
+Three sizes: **L** (18 px label), **M** (16 px, default), **S** (14 px). All sizes share the same 8 px gap between icon and label and the same 8 px border radius. Padding scales:
+
+| Size | Horizontal padding | Vertical padding |
+|------|-------------------|-----------------|
+| L    | 14 px *(hardcoded — token gap, see §15)* | 12 px *(hardcoded)* |
+| M    | `--semantic-layout-units-contextual-button-padding-medium-horizontal` | `--semantic-layout-units-contextual-button-padding-medium-vertical` |
+| S    | `--semantic-layout-units-contextual-button-padding-small-horizontal`  | `--semantic-layout-units-contextual-button-padding-small-vertical`  |
+
+The touch target (48 × 48 px minimum) applies at all sizes.
+
+---
+
+## Icon variants
+
+<Canvas of={Stories.IconVariants} />
+
+Icons use Material Symbols Outlined, sized to the button's icon slot (`26 px` for L, `24 px` for M, `20 px` for S). The slot wrapper constrains the icon to that square; the icon renders at `18 / 16 / 14 px` respectively.
+
+For **icon-only buttons** (`showText={false}`), `ariaLabel` is mandatory — without it, the button has no accessible name and fails WCAG 4.1.2.
+
+---
+
+## Loading state
+
+<Canvas of={Stories.LoadingState} />
+
+---
+
+## Token mappings
+
+### Fill tokens
+
+<Canvas of={Stories.TokensFill} />
+
+### Text tokens
+
+<Canvas of={Stories.TokensText} />
+
+### Stroke tokens
+
+<Canvas of={Stories.TokensStroke} />
+
+### Icon tokens
+
+<Canvas of={Stories.TokensIcon} />
+
+---
+
+## Responsive behaviour
+
+The Button has no breakpoint-specific layout changes — it is an inline element sized by its content. What changes across breakpoints is the *touch target floor* (always 48 × 48 px, enforced via `min-height`/`min-width`), not the button's visual size. Producers of button-containing layouts should ensure adequate spacing between adjacent buttons at narrow widths.
+
+The standalone demo below loads the self-contained HTML file. Resize the panel to verify touch target behaviour.
+
+<Canvas of={Stories.StandaloneDemo} />
+
+---
+
+## Accessibility
+
+| What | How |
+|---|---|
+| Semantic role | Native `<button type="button">` — no ARIA role override needed |
+| Keyboard activation | `Space` or `Enter` — native button behaviour |
+| Focus ring | `box-shadow: 0 0 0 6px #ffffff, 0 0 0 8px var(--semantic-color-light-mode-stroke-contextual-focusring-base)` on `Container.Main` |
+| Disabled state | `disabled` attribute + `aria-disabled="true"`. Cursor: `not-allowed`. |
+| Loading state | `aria-busy="true"` + `disabled` attribute. Screen reader sees button as busy/disabled. |
+| Icon-only | `ariaLabel` prop required — becomes the button's accessible name |
+| Accessible name source | `aria-label` prop → `text` prop (when `showText={false}`) → visible label |
+
+For system-wide accessibility rules (contrast ratios, focus ring specification, reduced motion), see [`docs/design-system-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/design-system-spec.md).
+
+---
+
+## Full specification
+
+The authoritative spec lives at [`components/button/button-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button-spec.md).
