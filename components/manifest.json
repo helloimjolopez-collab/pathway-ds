@@ -388,7 +388,7 @@
     "top-nav": {
       "displayName": "TopNav.Global",
       "description": "Fixed global navigation bar. Persists across all modules and viewports. Brand-blue surface, dark-mode tokens throughout. Three slots: ModuleSwitcher (left), OrgSwitcher (left), Search + ActionIcons + Profile (right). Spec status: PENDING HUMAN REVIEW.",
-      "status": "PENDING HUMAN REVIEW",
+      "status": "REVIEWED",
       "module": "components/top-nav/top-nav.html",
       "spec": "components/top-nav/top-nav-spec.md",
       "agentBrief": "components/top-nav/agent-brief.md",

@@ -86,7 +86,7 @@ Read [`components/manifest.json`](./components/manifest.json) for the authoritat
 - **`section-label`** — small uppercase heading (used inside SideNav)
 - **`checkbox`**, **`org-switcher`** — see manifest
 
-If you need a component that isn't in the manifest, you can use a generic primitive (button, input) **only if** you ensure the typography (Red Hat Text), surface colours, and radii match Pathway. Better: ask the user whether a component exists that you're missing.
+If you need a component that isn't in the manifest, you can use a generic primitive (button, input) **only if** you apply all Pathway tokens correctly: typography (Red Hat Text, using `Label/Button/*` or the appropriate type token), colours (semantic `Fill/*`, `Text/*`, `Icon/*`, `Stroke/*` tokens — never raw hex, never primitives), spacing (`Padding/*` and `Gap/*` tokens), radii (`CornerRadius/*` tokens), and border widths (`BorderWidth/*` tokens). See [`tokens/agent-brief.md`](./tokens/agent-brief.md) for the full rules. Better: ask the user whether a component exists that you're missing.
 
 ---
 
