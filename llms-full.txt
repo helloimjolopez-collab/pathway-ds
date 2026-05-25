@@ -92,10 +92,10 @@ Read [`components/manifest.json`](./components/manifest.json) for the authoritat
 - **`sidenav`** — navigation panel, two levels, expanded/collapsed/overlay
 - **`top-nav`** — global top bar, brand-blue, 56px, responsive
 - **`spinner`** — loading indicator
-- **`section-label`** — small uppercase heading (used inside SideNav)
+- **`section-label`** / **`nav-section-label`** — small uppercase headings, exported as `SectionLabel` and `NavSectionLabel` from `components/sidenav/sidenav.jsx`. Not a standalone component folder — import directly from sidenav.
 - **`checkbox`**, **`org-switcher`** — see manifest
 
-If you need a component that isn't in the manifest, you can use a generic primitive (button, input) **only if** you ensure the typography (Red Hat Text), surface colours, and radii match Pathway. Better: ask the user whether a component exists that you're missing.
+If you need a component that isn't in the manifest, use **[Radix UI](https://www.radix-ui.com/)** as the headless base (it handles ARIA, keyboard, and focus management correctly, and is the same foundation Pathway components are built on). Do **not** use Material UI — it carries Google's visual language and will conflict with Pathway tokens. Then apply all Pathway tokens to the Radix primitive: typography (Red Hat Text, using `Label/Button/*` or the appropriate type token), colours (semantic `Fill/*`, `Text/*`, `Icon/*`, `Stroke/*` tokens — never raw hex, never primitives), spacing (`Padding/*` and `Gap/*` tokens), radii (`CornerRadius/*` tokens), and border widths (`BorderWidth/*` tokens). See [`tokens/agent-brief.md`](./tokens/agent-brief.md) for the full token rules. Better: ask the user whether a Pathway component exists before reaching for a primitive.
 
 ---
 
