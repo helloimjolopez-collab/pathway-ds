@@ -1588,3 +1588,15 @@ The SideNav component is live in Storybook. Stories are located at `src/stories/
 
 Deployed at: `https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/components-sidenav--docs`
 
+---
+
+## 20. Links
+
+| Artefact | URL |
+|---|---|
+| **Figma — design system master file** | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) |
+| **Figma — SideNav component set** | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003951-2927) |
+| **Live HTML demo** | [Open demo](https://helloimjolopez-collab.github.io/pathway-ds/components/sidenav/sidenav.html) |
+| **Storybook (deployed)** | [Open Storybook](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/components-sidenav--docs) |
+| **GitHub — component source** | [components/sidenav/](https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/sidenav) |
+
