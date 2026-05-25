@@ -65,7 +65,7 @@ Use this table when you need to find or change something. Every row points to th
 
 ```
 SideNav.Container
-└── SideNavMenu   (flex column, gap: 6px between all direct children)
+└── SideNavMenu   (flex column, gap: 0px between direct children — updated 2026-05-12; was 6px)
 │   │
 │   │   ── optional section group ──
 │   ├── NavSectionLabel           ← "MUSIC" / "PEOPLE" / etc. — optional, omit if not needed
@@ -88,7 +88,7 @@ SideNav.Container
     └── Collapse (SideNavItem-like row, no indicator stripe)
 ```
 
-> **Key structural rule:** `NavSectionLabel` and `SideNavListSection` are **flat siblings** of `SideNavItem` inside the `SideNavMenu` flex container. They are never wrappers around items. The parent `gap: 6px` applies uniformly between every direct child — section labels, nav items, and list sections all share the same 6 px rhythm.
+> **Key structural rule:** `NavSectionLabel` and `SideNavListSection` are **flat siblings** of `SideNavItem` inside the `SideNavMenu` flex container. They are never wrappers around items. The parent `gap: 0px` applies between direct children — visual rhythm comes from item padding, not gap.
 
 ### SideNavItem internal structure
 
@@ -552,12 +552,12 @@ The `container.indicator` column is **always present** on every `SideNavItem` (L
 
 ### 8.1 Surface
 - Background: `Surface/Nav/Light` → `#fafafa`
-- Right border: `1px solid` `Fill/Static/Info/Subtle` → `#edf0f9`
+- Right border: `0.5px solid` `Stroke/Static/Neutral/Light` → `#f6f6f6`
 
 ### 8.2 Dimensions & Padding
 ```
-Expanded:  width 240px, padding 14px 12px
-Collapsed: width  72px, padding 14px 12px (same, text hidden)
+Expanded:  width 240px, padding 12px 16px   (V=12px, H=16px — updated 2026-05-12)
+Collapsed: width  72px, padding 12px 16px   (same padding as expanded, text hidden)
 ```
 > No semantic tokens for width or padding: see §4 for gap documentation.
 
@@ -690,12 +690,12 @@ The overflow/scroll behaviour is not annotated in Figma. The nav container is de
 | Property | Value | Token |
 |---|---|---|
 | Width | 72px | None: raw value |
-| Padding | `12px` horizontal, `14px` vertical | None |
+| Padding | `16px` horizontal, `12px` vertical | None *(updated 2026-05-12; was 12px H / 14px V)* |
 | Background | `#fafafa` | `Surface/Nav/Light` |
-| Border-right | `0.5px solid #edf0f9` | `--border-width/xs` + `Fill/Static/Info/Subtle` |
-| Item gap | `8px` | None |
+| Border-right | `0.5px solid #f6f6f6` | `Stroke/Static/Neutral/Light` *(updated 2026-05-12)* |
+| Item gap | `0px` | None *(updated 2026-05-12; was 8px)* |
 
-The 72px breaks down as: 12px left padding + 48px item + 12px right padding. Items are 48×48px squares.
+The 72px breaks down as: 16px left padding + 40px item + 16px right padding. Items are 48px tall × 40px wide in the collapsed rail.
 
 ### 10.2 SideNavItem.Collapsed
 
@@ -1157,7 +1157,7 @@ To implement SideNav from scratch with correct design system alignment, provide:
 The following are gaps in the current Figma documentation that prevent a fully semantic implementation:
 
 ### 16.1 Missing spacing/layout tokens (HIGH priority)
-No named tokens exist for: nav container padding (12px H / 14px V), item gap (8px), stripe width (4px), row padding (8px), child indent (24px), collapse row padding, nav widths (240px expanded / 72px collapsed), or `Container.RowEnd` dimensions. These are raw Tailwind values. **Recommend creating a spacing scale** and referencing it with semantic names like `Spacing/Nav/ContainerPaddingH`.
+No named tokens exist for: nav container padding (16px H / 12px V), item gap (0px), stripe width (4px), row padding (8px), child indent (24px), collapse row padding, nav widths (240px expanded / 72px collapsed), or `Container.RowEnd` dimensions. These are raw Tailwind values. **Recommend creating a spacing scale** and referencing it with semantic names like `Spacing/Nav/ContainerPaddingH`.
 
 ### 16.2 Primitive token names not surfaced (MEDIUM priority)
 `get_variable_defs` (Figma MCP tool) resolves semantic token alias chains to their final hex value but does not expose intermediate primitive token names. The full chain `Semantic → Primitive → Hex` cannot be reconstructed from MCP alone. This blocks documentation of the full token lineage. **Recommend:** either expose primitives in a dedicated Figma frame/page, or use the Figma REST API (`GET /v1/files/:key/variables`) which does return the full alias chain.
@@ -1548,18 +1548,19 @@ Requirements — implement all of these, do not skip any:
 
 5. Collapsed sidebar width: 72px (not 64px). Expanded: 240px.
 
-6. Nav item icons: 16px inside a 24×24 wrapper. CollapseButton icon: 18px.
-   These are two different sizes — do not use 18px for nav item icons.
+6. Nav item icons: 16px inside a 24×24 wrapper. NavHeader/CollapseButton action icon: 12px.
+   These are two different sizes — do not use 16px for the action icon.
 
 Match all spacing, colours, states, and responsive breakpoints from the spec.
 
 Before submitting, verify this checklist — these two are the most commonly skipped:
 
-[ ] CollapseButton is visible at the BOTTOM of the SideNav at all viewports
-    >=768px. Check BOTH states: expanded 240px (shows icon + "Collapse" label)
-    and collapsed 72px rail (shows icon only, no label). It must be absent only
-    on mobile (<768px). If you cannot see a collapse/expand icon at the bottom
-    of the nav in your desktop or tablet preview, it is missing.
+[ ] NavHeader (collapse/expand control) is visible at the TOP of the SideNav at
+    all viewports >=768px. Check BOTH states: expanded 240px (right_panel_open
+    icon right-aligned, 12px) and collapsed 72px rail (left_panel_open icon
+    centered, 12px). It must be absent only on mobile (<768px). If you cannot
+    see a collapse/expand icon at the top of the nav in your desktop or tablet
+    preview, it is missing. Note: NavHeader is at the TOP, not the bottom.
 
 [ ] At 768-1023px viewport the SideNav renders as a 72px icon-only rail in the
     normal page flow by default — it is NOT hidden, and NOT treated as mobile.

@@ -109,13 +109,17 @@
         "fill.contextual.navitem.hover",
         "fill.contextual.navitem.active",
         "fill.contextual.navitem.trail",
-        "fill.static.info.subtle",
+        "stroke.static.neutral.light",
+        "surface.nav.light",
         "text.contextual.navitem.base",
         "text.contextual.navitem.hover",
         "text.contextual.navitem.active",
+        "text.static.secondary.light",
+        "text.static.secondary.subtle",
         "icon.contextual.navitem.base",
         "icon.contextual.navitem.hover",
-        "icon.contextual.navitem.active"
+        "icon.contextual.navitem.active",
+        "icon.action.secondary-inverse.base"
       ]
     },
     "checkbox": {
@@ -536,6 +540,231 @@
         "icon.static.accent-jade.*",
         "icon.static.accent-seabreeze.*"
       ]
+    },
+    "button": {
+      "displayName": "Button",
+      "description": "Primary action trigger. Three styles (Fill / Outlined / Naked), four semantic types (Primary / Secondary / Tertiary / Negative), three sizes (L / M / S). Supports leading icon, trailing icon, icon-only, and loading states. 48×48px touch target always.",
+      "status": "REVIEWED",
+      "version": "v1",
+      "module": "components/button/button.jsx",
+      "exports": [
+        "Button",
+        "ButtonSpinner",
+        "T",
+        "SIZES"
+      ],
+      "spec": "components/button/button-spec.md",
+      "demo": "components/button/button.html",
+      "stories": "src/stories/Library/Button/Button.stories.jsx",
+      "docs": "src/stories/Library/Button/Button.mdx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40003293:93741"
+      },
+      "props": {
+        "Button": {
+          "buttonStyle": {
+            "type": "\"Fill\" | \"Outlined\" | \"Naked\"",
+            "default": "\"Fill\"",
+            "description": "Visual style. Fill = solid surface (highest weight). Outlined = bordered transparent. Naked = no border or fill (lowest weight)."
+          },
+          "size": {
+            "type": "\"L\" | \"M\" | \"S\"",
+            "default": "\"M\"",
+            "description": "L = 18px label, M = 16px label, S = 14px label. Touch target is always 48×48px minimum."
+          },
+          "type": {
+            "type": "\"Primary\" | \"Secondary\" | \"Tertiary\" | \"Negative\"",
+            "default": "\"Primary\"",
+            "description": "Semantic intent. Primary = brand blue. Secondary = neutral muted. Tertiary = lightest. Negative = destructive."
+          },
+          "text": {
+            "type": "string",
+            "default": "\"Button\"",
+            "description": "Visible label text. Also used as accessible name when showText is false."
+          },
+          "leadingIcon": {
+            "type": "string | null",
+            "default": "null",
+            "description": "Material Symbols ligature name (e.g. 'add', 'check'). Rendered when showLeadingIcon is true."
+          },
+          "trailingIcon": {
+            "type": "string | null",
+            "default": "null",
+            "description": "Material Symbols ligature name (e.g. 'arrow_forward'). Rendered when showTrailingIcon is true."
+          },
+          "showLeadingIcon": {
+            "type": "boolean",
+            "default": false,
+            "description": "Show leading icon slot."
+          },
+          "showTrailingIcon": {
+            "type": "boolean",
+            "default": false,
+            "description": "Show trailing icon slot."
+          },
+          "showText": {
+            "type": "boolean",
+            "default": true,
+            "description": "When false: icon-only button. ariaLabel is required when showText is false."
+          },
+          "loading": {
+            "type": "boolean",
+            "default": false,
+            "description": "Replaces content with ButtonSpinner. Sets aria-busy='true'. Implicitly disables the button."
+          },
+          "disabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Prevents interaction. Sets disabled + aria-disabled='true'."
+          },
+          "onClick": {
+            "type": "(e: MouseEvent) => void",
+            "description": "Click / keyboard activation handler. Not called when disabled or loading."
+          },
+          "ariaLabel": {
+            "type": "string",
+            "description": "Overrides accessible name. Required when showText is false (icon-only)."
+          },
+          "className": {
+            "type": "string",
+            "default": "\"\"",
+            "description": "Additional CSS class on the outer <button> element."
+          }
+        }
+      },
+      "motion": {
+        "stateTransition": "150ms ease (background-color, border-color, box-shadow, color)",
+        "spinnerRotation": "750ms linear infinite (pw-btn-spin keyframe)"
+      },
+      "tokens": {
+        "present": [
+          "fill.action.primary.base",
+          "fill.action.primary.hover",
+          "fill.action.primary.pressed",
+          "fill.action.primary.disabled",
+          "fill.action.secondary.base",
+          "fill.action.secondary.hover",
+          "fill.action.secondary.pressed",
+          "fill.action.secondaryinverse.disabled",
+          "fill.action.tertiary.base",
+          "fill.action.tertiary.inverse.base",
+          "fill.action.tertiary.inverse.hover",
+          "fill.action.tertiary.inverse.pressed",
+          "fill.action.tertiary.disabled",
+          "fill.action.negative.base",
+          "fill.action.negative.hover",
+          "fill.action.negative.pressed",
+          "fill.action.negative.disabled",
+          "fill.action.primaryinverse.hover",
+          "fill.action.primaryinverse.pressed",
+          "fill.action.negativeinverse.hover",
+          "fill.action.negativeinverse.pressed",
+          "text.action.primaryinverse.base",
+          "text.action.primaryinverse.hover",
+          "text.action.primaryinverse.pressed",
+          "text.action.primaryinverse.disabled",
+          "text.action.secondary.base",
+          "text.action.secondary.hover",
+          "text.action.secondary.pressed",
+          "text.action.secondary.disabled",
+          "text.action.tertiary.base",
+          "text.action.tertiary.hover",
+          "text.action.tertiary.pressed",
+          "text.action.tertiary.disabled",
+          "text.action.mono.base",
+          "text.action.mono.hover",
+          "text.action.mono.pressed",
+          "text.action.mono.disabled",
+          "text.action.primary.base",
+          "text.action.primary.hover",
+          "text.action.primary.pressed",
+          "text.action.primary.disabled",
+          "text.action.negative.base",
+          "text.action.negative.hover",
+          "text.action.negative.pressed",
+          "text.action.negative.disabled",
+          "icon.action.primaryinverse.base",
+          "icon.action.primaryinverse.hover",
+          "icon.action.primaryinverse.pressed",
+          "icon.action.primaryinverse.disabled",
+          "icon.action.secondary.base",
+          "icon.action.secondary.hover",
+          "icon.action.secondary.pressed",
+          "icon.action.secondary.disabled",
+          "icon.action.tertiary.base",
+          "icon.action.tertiary.hover",
+          "icon.action.tertiary.pressed",
+          "icon.action.tertiary.disabled",
+          "icon.action.mono.base",
+          "icon.action.mono.hover",
+          "icon.action.mono.pressed",
+          "icon.action.mono.disabled",
+          "icon.action.primary.base",
+          "icon.action.primary.hover",
+          "icon.action.primary.pressed",
+          "icon.action.primary.disabled",
+          "icon.action.negative.base",
+          "icon.action.negative.hover",
+          "icon.action.negative.pressed",
+          "icon.action.negative.disabled",
+          "stroke.action.primary.base",
+          "stroke.action.primary.hover",
+          "stroke.action.primary.pressed",
+          "stroke.action.primary.disabled",
+          "stroke.action.secondary.inverse.base",
+          "stroke.action.secondary.inverse.hover",
+          "stroke.action.secondary.inverse.pressed",
+          "stroke.action.secondary.inverse.disabled",
+          "stroke.action.tertiary.base",
+          "stroke.action.tertiary.hover",
+          "stroke.action.tertiary.pressed",
+          "stroke.action.tertiary.disabled",
+          "stroke.action.negative.base",
+          "stroke.action.negative.hover",
+          "stroke.action.negative.pressed",
+          "stroke.action.negative.disabled",
+          "stroke.contextual.focusring.base",
+          "cornerradius.medium",
+          "contextual.button.border-width.base.base",
+          "contextual.button.gap.horizontal",
+          "contextual.button.padding.medium.horizontal",
+          "contextual.button.padding.medium.vertical",
+          "contextual.button.padding.small.horizontal",
+          "contextual.button.padding.small.vertical",
+          "label.button.l.fontfamily",
+          "label.button.l.fontweight",
+          "label.button.l.lineheight",
+          "label.button.l.letterspacing",
+          "label.button.base.fontfamily",
+          "label.button.base.fontweight",
+          "label.button.base.lineheight",
+          "label.button.base.letterspacing",
+          "label.button.s.fontfamily",
+          "label.button.s.fontweight",
+          "label.button.s.lineheight",
+          "label.button.s.letterspacing"
+        ],
+        "missing": [
+          "contextual.button.padding.large.horizontal",
+          "contextual.button.padding.large.vertical",
+          "label.button.l.fontsize",
+          "label.button.base.fontsize",
+          "label.button.s.fontsize"
+        ]
+      },
+      "gaps": [
+        "3 large-button padding tokens missing (contextual.button.padding.large.*) — 14px and 12px hardcoded in SIZES.L (HIGH)",
+        "3 label fontsize tokens missing (label.button.*.fontsize) — 18/16/14px hardcoded (HIGH)",
+        "fill.action.secondaryinverse.disabled naming inconsistency — verify Figma intent (MEDIUM)"
+      ],
+      "accessibility": {
+        "ariaPattern": "Native <button type='button'>",
+        "touchTarget": "48×48px minimum (WCAG 2.5.5)",
+        "focusRing": "6px white halo + 2px brand ring via box-shadow on Container.Main",
+        "loadingState": "aria-busy='true' + disabled attribute",
+        "iconOnly": "ariaLabel prop required when showText=false"
+      }
     }
   }
 }

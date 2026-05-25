@@ -47,6 +47,7 @@ export const L = {
   navW:        240,  // expanded sidebar width (updated from 220px)
   navWcol:     72,   // collapsed rail width
   menuGap:     0,    // gap between SideNavMenu items (updated from 8px — items are flush)
+  menuPadT:    8,    // top padding on SideNavMenu (space below the NavHeader divider)
   menuPadB:    56,   // bottom padding in SideNavMenu (space before collapse button, updated from 24)
   itemH:       48,   // min-height per item (Accessibility/Touch Target/Optimal)
   iconWrap:    24,   // leading icon wrapper (Accessibility/Icon Wrapping/Large)
