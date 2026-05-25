@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Button — Pathway Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+  /* ══════════════════════════════════════════════════════════════════════════
+     PATHWAY TOKENS — inlined for self-contained demo
+     In production these come from src/tokens/tokens.css (Style Dictionary).
+     Only the tokens used by Button are included.
+  ══════════════════════════════════════════════════════════════════════════ */
+  :root {
+    /* ── Primitives ── */
+    --primitive-color-cool-neutral-0:       #fafafa;
+    --primitive-color-cool-neutral-10:      #f5f5f5;
+    --primitive-color-cool-neutral-20:      #f0f0f0;
+    --primitive-color-cool-neutral-30:      #e8e8e8;
+    --primitive-color-cool-neutral-40:      #e0e0e0;
+    --primitive-color-cool-neutral-50:      #d2d2d2;
+    --primitive-color-cool-neutral-60:      #c4c4c4;
+    --primitive-color-cool-neutral-80:      #a6a6a6;
+    --primitive-color-cool-neutral-90:      #979797;
+    --primitive-color-cool-neutral-170:     #313131;
+    --primitive-color-cool-neutral-180:     #252525;
+    --primitive-color-cool-neutral-200:     #1b1b1b;
+    --primitive-color-cool-neutral-0-80:    rgba(250,250,250,.80);
+    --primitive-color-cool-neutral-0-90:    rgba(250,250,250,.90);
+    --primitive-color-cool-neutral-220-4:   rgba(8,8,23,.04);
+
+    --primitive-color-brand-10:  #eef2fb;
+    --primitive-color-brand-20:  #dce5f6;
+    --primitive-color-brand-30:  #e0e7f7;
+    --primitive-color-brand-40:  #c0ceef;
+    --primitive-color-brand-50:  #a0b5e6;
+    --primitive-color-brand-70:  #849cd6;
+    --primitive-color-brand-80:  #718dd0;
+    --primitive-color-brand-200: #4364b6;
+    --primitive-color-brand-300: #3555a0;
+    --primitive-color-brand-400: #273e76;
+    --primitive-color-brand-500: #19284c;
+    --primitive-color-brand-600: #22386b;
+    --primitive-color-brand-700: #1b2d57;
+    --primitive-color-brand-50-20: rgba(160,181,230,.20);
+
+    --primitive-color-red-10:      #faefef;
+    --primitive-color-red-20:      #f5dfdf;
+    --primitive-color-red-30:      #f0cdcd;
+    --primitive-color-red-40:      #e9b7b7;
+    --primitive-color-red-50:      #e29f9f;
+    --primitive-color-red-60:      #d98686;
+    --primitive-color-red-100:     #c84040;
+    --primitive-color-red-110:     #b03a3a;
+    --primitive-color-red-120:     #9d2d2d;
+    --primitive-color-red-130:     #882727;
+    --primitive-color-red-120-50:  rgba(157,45,45,.50);
+
+    --primitive-unit-unit-0-point-75: 0.75px;
+    --primitive-unit-unit-1:          1px;
+    --primitive-unit-unit-1-point-5:  1.5px;
+    --primitive-unit-unit-2:          2px;
+    --primitive-unit-unit-6:          6px;
+    --primitive-unit-unit-8:          8px;
+    --primitive-unit-unit-10:         10px;
+    --primitive-unit-unit-12:         12px;
+
+    --primitive-type-family-brand: "Red Hat Text", sans-serif;
+    --primitive-type-weight-500:   500;
+
+    /* ── Semantic Color — Light Mode ── */
+
+    /* Fill / Action */
+    --semantic-color-light-mode-fill-action-primary-base:            var(--primitive-color-brand-300);
+    --semantic-color-light-mode-fill-action-primary-hover:           var(--primitive-color-brand-200);
+    --semantic-color-light-mode-fill-action-primary-pressed:         var(--primitive-color-brand-400);
+    --semantic-color-light-mode-fill-action-primary-disabled:        var(--primitive-color-brand-40);
+    --semantic-color-light-mode-fill-action-primaryinverse-base:     var(--primitive-color-brand-10);
+    --semantic-color-light-mode-fill-action-primaryinverse-hover:    var(--primitive-color-brand-10);
+    --semantic-color-light-mode-fill-action-primaryinverse-pressed:  var(--primitive-color-brand-30);
+
+    --semantic-color-light-mode-fill-action-secondary-base:          var(--primitive-color-cool-neutral-20);
+    --semantic-color-light-mode-fill-action-secondary-hover:         var(--primitive-color-cool-neutral-30);
+    --semantic-color-light-mode-fill-action-secondary-pressed:       var(--primitive-color-cool-neutral-40);
+    --semantic-color-light-mode-fill-action-secondaryinverse-disabled: var(--primitive-color-cool-neutral-220-4);
+
+    --semantic-color-light-mode-fill-action-tertiary-base:           var(--primitive-color-brand-10);
+    --semantic-color-light-mode-fill-action-tertiary-inverse-base:   var(--primitive-color-brand-10);
+    --semantic-color-light-mode-fill-action-tertiary-inverse-hover:  var(--primitive-color-brand-20);
+    --semantic-color-light-mode-fill-action-tertiary-inverse-pressed: var(--primitive-color-brand-30);
+    --semantic-color-light-mode-fill-action-tertiary-disabled:       var(--primitive-color-brand-50-20);
+
+    --semantic-color-light-mode-fill-action-negative-base:           var(--primitive-color-red-120);
+    --semantic-color-light-mode-fill-action-negative-hover:          var(--primitive-color-red-110);
+    --semantic-color-light-mode-fill-action-negative-pressed:        var(--primitive-color-red-130);
+    --semantic-color-light-mode-fill-action-negative-disabled:       var(--primitive-color-red-120-50);
+    --semantic-color-light-mode-fill-action-negativeinverse-hover:   var(--primitive-color-red-10);
+    --semantic-color-light-mode-fill-action-negativeinverse-pressed: var(--primitive-color-red-20);
+
+    /* Text / Action */
+    --semantic-color-light-mode-text-action-primaryinverse-base:     var(--primitive-color-cool-neutral-0);
+    --semantic-color-light-mode-text-action-primaryinverse-hover:    var(--primitive-color-cool-neutral-0);
+    --semantic-color-light-mode-text-action-primaryinverse-pressed:  var(--primitive-color-brand-10);
+    --semantic-color-light-mode-text-action-primaryinverse-disabled: var(--primitive-color-cool-neutral-0-90);
+
+    --semantic-color-light-mode-text-action-primary-base:            var(--primitive-color-brand-500);
+    --semantic-color-light-mode-text-action-primary-hover:           var(--primitive-color-brand-600);
+    --semantic-color-light-mode-text-action-primary-pressed:         var(--primitive-color-brand-700);
+    --semantic-color-light-mode-text-action-primary-disabled:        var(--primitive-color-brand-50);
+
+    --semantic-color-light-mode-text-action-secondary-base:          var(--primitive-color-cool-neutral-170);
+    --semantic-color-light-mode-text-action-secondary-hover:         var(--primitive-color-cool-neutral-180);
+    --semantic-color-light-mode-text-action-secondary-pressed:       var(--primitive-color-cool-neutral-200);
+    --semantic-color-light-mode-text-action-secondary-disabled:      var(--primitive-color-cool-neutral-90);
+
+    --semantic-color-light-mode-text-action-tertiary-base:           var(--primitive-color-brand-500);
+    --semantic-color-light-mode-text-action-tertiary-hover:          var(--primitive-color-brand-600);
+    --semantic-color-light-mode-text-action-tertiary-pressed:        var(--primitive-color-brand-700);
+    --semantic-color-light-mode-text-action-tertiary-disabled:       var(--primitive-color-brand-50);
+
+    --semantic-color-light-mode-text-action-mono-base:               var(--primitive-color-cool-neutral-10);
+    --semantic-color-light-mode-text-action-mono-hover:              var(--primitive-color-cool-neutral-0);
+    --semantic-color-light-mode-text-action-mono-pressed:            var(--primitive-color-cool-neutral-0);
+    --semantic-color-light-mode-text-action-mono-disabled:           var(--primitive-color-cool-neutral-0-80);
+
+    --semantic-color-light-mode-text-action-negative-base:           var(--primitive-color-red-100);
+    --semantic-color-light-mode-text-action-negative-hover:          var(--primitive-color-red-110);
+    --semantic-color-light-mode-text-action-negative-pressed:        var(--primitive-color-red-130);
+    --semantic-color-light-mode-text-action-negative-disabled:       var(--primitive-color-red-40);
+
+    /* Icon / Action */
+    --semantic-color-light-mode-icon-action-primaryinverse-base:     var(--primitive-color-cool-neutral-0);
+    --semantic-color-light-mode-icon-action-primaryinverse-hover:    var(--primitive-color-cool-neutral-0);
+    --semantic-color-light-mode-icon-action-primaryinverse-pressed:  var(--primitive-color-brand-10);
+    --semantic-color-light-mode-icon-action-primaryinverse-disabled: var(--primitive-color-cool-neutral-0-90);
+
+    --semantic-color-light-mode-icon-action-primary-base:            var(--primitive-color-brand-300);
+    --semantic-color-light-mode-icon-action-primary-hover:           var(--primitive-color-brand-400);
+    --semantic-color-light-mode-icon-action-primary-pressed:         var(--primitive-color-brand-700);
+    --semantic-color-light-mode-icon-action-primary-disabled:        var(--primitive-color-brand-50);
+
+    --semantic-color-light-mode-icon-action-secondary-base:          var(--primitive-color-cool-neutral-170);
+    --semantic-color-light-mode-icon-action-secondary-hover:         var(--primitive-color-cool-neutral-180);
+    --semantic-color-light-mode-icon-action-secondary-pressed:       var(--primitive-color-cool-neutral-200);
+    --semantic-color-light-mode-icon-action-secondary-disabled:      var(--primitive-color-cool-neutral-90);
+
+    --semantic-color-light-mode-icon-action-tertiary-base:           var(--primitive-color-brand-300);
+    --semantic-color-light-mode-icon-action-tertiary-hover:          var(--primitive-color-brand-400);
+    --semantic-color-light-mode-icon-action-tertiary-pressed:        var(--primitive-color-brand-700);
+    --semantic-color-light-mode-icon-action-tertiary-disabled:       var(--primitive-color-brand-50);
+
+    --semantic-color-light-mode-icon-action-mono-base:               var(--primitive-color-cool-neutral-10);
+    --semantic-color-light-mode-icon-action-mono-hover:              var(--primitive-color-cool-neutral-0);
+    --semantic-color-light-mode-icon-action-mono-pressed:            var(--primitive-color-cool-neutral-0);
+    --semantic-color-light-mode-icon-action-mono-disabled:           var(--primitive-color-cool-neutral-0-80);
+
+    --semantic-color-light-mode-icon-action-negative-base:           var(--primitive-color-red-100);
+    --semantic-color-light-mode-icon-action-negative-hover:          var(--primitive-color-red-110);
+    --semantic-color-light-mode-icon-action-negative-pressed:        var(--primitive-color-red-130);
+    --semantic-color-light-mode-icon-action-negative-disabled:       var(--primitive-color-red-40);
+
+    /* Stroke / Action */
+    --semantic-color-light-mode-stroke-action-primary-base:                var(--primitive-color-brand-80);
+    --semantic-color-light-mode-stroke-action-primary-hover:               var(--primitive-color-brand-40);
+    --semantic-color-light-mode-stroke-action-primary-pressed:             var(--primitive-color-brand-70);
+    --semantic-color-light-mode-stroke-action-primary-disabled:            var(--primitive-color-brand-30);
+
+    --semantic-color-light-mode-stroke-action-secondary-inverse-base:      var(--primitive-color-cool-neutral-50);
+    --semantic-color-light-mode-stroke-action-secondary-inverse-hover:     var(--primitive-color-cool-neutral-60);
+    --semantic-color-light-mode-stroke-action-secondary-inverse-pressed:   var(--primitive-color-cool-neutral-80);
+    --semantic-color-light-mode-stroke-action-secondary-inverse-disabled:  var(--primitive-color-cool-neutral-40);
+
+    --semantic-color-light-mode-stroke-action-tertiary-base:               var(--primitive-color-brand-40);
+    --semantic-color-light-mode-stroke-action-tertiary-hover:              var(--primitive-color-brand-30);
+    --semantic-color-light-mode-stroke-action-tertiary-pressed:            var(--primitive-color-brand-50);
+    --semantic-color-light-mode-stroke-action-tertiary-disabled:           var(--primitive-color-brand-10);
+
+    --semantic-color-light-mode-stroke-action-negative-base:               var(--primitive-color-red-50);
+    --semantic-color-light-mode-stroke-action-negative-hover:              var(--primitive-color-red-40);
+    --semantic-color-light-mode-stroke-action-negative-pressed:            var(--primitive-color-red-60);
+    --semantic-color-light-mode-stroke-action-negative-disabled:           var(--primitive-color-red-30);
+
+    /* Focus ring */
+    --semantic-color-light-mode-stroke-contextual-focusring-base:          var(--primitive-color-brand-70);
+
+    /* ── Semantic Layout Units ── */
+    --semantic-layout-units-cornerradius-medium:                            var(--primitive-unit-unit-8);
+    --semantic-layout-units-borderwidth-medium:                             var(--primitive-unit-unit-1-point-5);
+    --semantic-layout-units-contextual-button-border-width-base-base:       var(--semantic-layout-units-borderwidth-medium);
+    --semantic-layout-units-contextual-button-gap-horizontal:               var(--primitive-unit-unit-8);
+    --semantic-layout-units-contextual-button-padding-medium-horizontal:    var(--primitive-unit-unit-12);
+    --semantic-layout-units-contextual-button-padding-medium-vertical:      var(--primitive-unit-unit-10);
+    --semantic-layout-units-contextual-button-padding-small-horizontal:     var(--primitive-unit-unit-8);
+    --semantic-layout-units-contextual-button-padding-small-vertical:       var(--primitive-unit-unit-6);
+    --semantic-layout-units-contextual-focused-element-borderwidth-borderwidth: var(--primitive-unit-unit-2);
+    --semantic-layout-units-contextual-focused-element-cornerradius-cornerradius: 12px;
+
+    /* ── Semantic Type ── */
+    --semantic-type-desktop-label-button-l-fontfamily:    var(--primitive-type-family-brand);
+    --semantic-type-desktop-label-button-l-fontweight:    var(--primitive-type-weight-500);
+    --semantic-type-desktop-label-button-l-lineheight:    24px;
+    --semantic-type-desktop-label-button-l-letterspacing: 0.3px;
+    --semantic-type-desktop-label-button-base-fontfamily:    var(--primitive-type-family-brand);
+    --semantic-type-desktop-label-button-base-fontweight:    var(--primitive-type-weight-500);
+    --semantic-type-desktop-label-button-base-lineheight:    22px;
+    --semantic-type-desktop-label-button-base-letterspacing: 0.3px;
+    --semantic-type-desktop-label-button-s-fontfamily:    var(--primitive-type-family-brand);
+    --semantic-type-desktop-label-button-s-fontweight:    var(--primitive-type-weight-500);
+    --semantic-type-desktop-label-button-s-lineheight:    20px;
+    --semantic-type-desktop-label-button-s-letterspacing: 0.3px;
+  }
+
+  /* ── Spinner animation ── */
+  @keyframes pw-btn-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pw-btn-spinner { animation: none !important; }
+  }
+
+  /* ── Material Symbols config ── */
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 20;
+    font-size: inherit;
+    line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  }
+
+  /* ── Demo chrome (not part of component) ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Red Hat Text", sans-serif; background: #f7f8fc; color: #02060d; }
+  .demo-shell  { max-width: 1100px; margin: 0 auto; padding: 48px 32px 80px; }
+  .demo-title  { font-size: 22px; font-weight: 600; line-height: 28px; margin-bottom: 4px; }
+  .demo-sub    { font-size: 13px; color: #7880a0; margin-bottom: 40px; }
+  .demo-section { background: #fff; border: 1px solid #edf0f9; border-radius: 12px;
+                  padding: 24px 28px; margin-bottom: 20px; }
+  .demo-section-label { font-size: 10px; font-weight: 700; color: #7880a0;
+                        text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
+  .demo-row    { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .demo-row:last-child { margin-bottom: 0; }
+  .demo-row-label { font-size: 11px; color: #a0a8c0; width: 72px; flex-shrink: 0; }
+  .demo-dark   { background: #1b2544; }
+</style>
+</head>
+<body>
+<div class="demo-shell">
+  <div id="root"></div>
+</div>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+// ─── TOKENS (same constants as button.jsx, inlined for CDN compatibility) ────
+const SC = (p) => `var(--semantic-color-light-mode-${p})`;
+const SL = (p) => `var(--semantic-layout-units-${p})`;
+const ST = (p) => `var(--semantic-type-desktop-${p})`;
+
+const FILL = {
+  Fill: {
+    Primary:   { base: SC("fill-action-primary-base"),              hover: SC("fill-action-primary-hover"),              pressed: SC("fill-action-primary-pressed"),              disabled: SC("fill-action-primary-disabled") },
+    Secondary: { base: SC("fill-action-secondary-base"),            hover: SC("fill-action-secondary-hover"),            pressed: SC("fill-action-secondary-pressed"),            disabled: SC("fill-action-secondaryinverse-disabled") },
+    Tertiary:  { base: SC("fill-action-tertiary-base"),             hover: SC("fill-action-tertiary-inverse-hover"),     pressed: SC("fill-action-tertiary-inverse-pressed"),     disabled: SC("fill-action-tertiary-disabled") },
+    Negative:  { base: SC("fill-action-negative-base"),             hover: SC("fill-action-negative-hover"),             pressed: SC("fill-action-negative-pressed"),             disabled: SC("fill-action-negative-disabled") },
+  },
+  Outlined: {
+    Primary:   { base: "transparent",                               hover: SC("fill-action-primaryinverse-hover"),       pressed: SC("fill-action-primaryinverse-pressed"),       disabled: "transparent" },
+    Secondary: { base: "transparent",                               hover: SC("fill-action-secondary-hover"),            pressed: SC("fill-action-secondary-pressed"),            disabled: "transparent" },
+    Tertiary:  { base: SC("fill-action-tertiary-inverse-base"),     hover: SC("fill-action-tertiary-inverse-hover"),     pressed: SC("fill-action-tertiary-inverse-pressed"),     disabled: "transparent" },
+    Negative:  { base: "transparent",                               hover: SC("fill-action-negativeinverse-hover"),      pressed: SC("fill-action-negativeinverse-pressed"),      disabled: "transparent" },
+  },
+  Naked: {
+    Primary:   { base: "transparent",                               hover: SC("fill-action-primaryinverse-hover"),       pressed: SC("fill-action-primaryinverse-pressed"),       disabled: "transparent" },
+    Secondary: { base: "transparent",                               hover: SC("fill-action-secondary-hover"),            pressed: SC("fill-action-secondary-pressed"),            disabled: "transparent" },
+    Tertiary:  { base: "transparent",                               hover: SC("fill-action-tertiary-inverse-hover"),     pressed: SC("fill-action-tertiary-inverse-pressed"),     disabled: "transparent" },
+    Negative:  { base: "transparent",                               hover: SC("fill-action-negativeinverse-hover"),      pressed: SC("fill-action-negativeinverse-pressed"),      disabled: "transparent" },
+  },
+};
+const TEXT = {
+  Fill: {
+    Primary:   { base: SC("text-action-primaryinverse-base"), hover: SC("text-action-primaryinverse-hover"), pressed: SC("text-action-primaryinverse-pressed"), disabled: SC("text-action-primaryinverse-disabled") },
+    Secondary: { base: SC("text-action-secondary-base"),      hover: SC("text-action-secondary-hover"),      pressed: SC("text-action-secondary-pressed"),      disabled: SC("text-action-secondary-disabled") },
+    Tertiary:  { base: SC("text-action-tertiary-base"),       hover: SC("text-action-tertiary-hover"),       pressed: SC("text-action-tertiary-pressed"),       disabled: SC("text-action-tertiary-disabled") },
+    Negative:  { base: SC("text-action-mono-base"),           hover: SC("text-action-mono-hover"),           pressed: SC("text-action-mono-pressed"),           disabled: SC("text-action-mono-disabled") },
+  },
+  Outlined: {
+    Primary:   { base: SC("text-action-primary-base"),   hover: SC("text-action-primary-hover"),   pressed: SC("text-action-primary-pressed"),   disabled: SC("text-action-primary-disabled") },
+    Secondary: { base: SC("text-action-secondary-base"), hover: SC("text-action-secondary-hover"), pressed: SC("text-action-secondary-pressed"), disabled: SC("text-action-secondary-disabled") },
+    Tertiary:  { base: SC("text-action-tertiary-base"),  hover: SC("text-action-tertiary-hover"),  pressed: SC("text-action-tertiary-pressed"),  disabled: SC("text-action-tertiary-disabled") },
+    Negative:  { base: SC("text-action-negative-base"),  hover: SC("text-action-negative-hover"),  pressed: SC("text-action-negative-pressed"),  disabled: SC("text-action-negative-disabled") },
+  },
+};
+TEXT.Naked = TEXT.Outlined;
+
+const ICON_T = {
+  Fill: {
+    Primary:   { base: SC("icon-action-primaryinverse-base"), hover: SC("icon-action-primaryinverse-hover"), pressed: SC("icon-action-primaryinverse-pressed"), disabled: SC("icon-action-primaryinverse-disabled") },
+    Secondary: { base: SC("icon-action-secondary-base"),      hover: SC("icon-action-secondary-hover"),      pressed: SC("icon-action-secondary-pressed"),      disabled: SC("icon-action-secondary-disabled") },
+    Tertiary:  { base: SC("icon-action-tertiary-base"),       hover: SC("icon-action-tertiary-hover"),       pressed: SC("icon-action-tertiary-pressed"),       disabled: SC("icon-action-tertiary-disabled") },
+    Negative:  { base: SC("icon-action-mono-base"),           hover: SC("icon-action-mono-hover"),           pressed: SC("icon-action-mono-pressed"),           disabled: SC("icon-action-mono-disabled") },
+  },
+  Outlined: {
+    Primary:   { base: SC("icon-action-primary-base"),   hover: SC("icon-action-primary-hover"),   pressed: SC("icon-action-primary-pressed"),   disabled: SC("icon-action-primary-disabled") },
+    Secondary: { base: SC("icon-action-secondary-base"), hover: SC("icon-action-secondary-hover"), pressed: SC("icon-action-secondary-pressed"), disabled: SC("icon-action-secondary-disabled") },
+    Tertiary:  { base: SC("icon-action-tertiary-base"),  hover: SC("icon-action-tertiary-hover"),  pressed: SC("icon-action-tertiary-pressed"),  disabled: SC("icon-action-tertiary-disabled") },
+    Negative:  { base: SC("icon-action-negative-base"),  hover: SC("icon-action-negative-hover"),  pressed: SC("icon-action-negative-pressed"),  disabled: SC("icon-action-negative-disabled") },
+  },
+};
+ICON_T.Naked = ICON_T.Outlined;
+
+const STROKE = {
+  Primary:   { base: SC("stroke-action-primary-base"),                 hover: SC("stroke-action-primary-hover"),                 pressed: SC("stroke-action-primary-pressed"),                 disabled: SC("stroke-action-primary-disabled") },
+  Secondary: { base: SC("stroke-action-secondary-inverse-base"),       hover: SC("stroke-action-secondary-inverse-hover"),       pressed: SC("stroke-action-secondary-inverse-pressed"),       disabled: SC("stroke-action-secondary-inverse-disabled") },
+  Tertiary:  { base: SC("stroke-action-tertiary-base"),                hover: SC("stroke-action-tertiary-hover"),                pressed: SC("stroke-action-tertiary-pressed"),                disabled: SC("stroke-action-tertiary-disabled") },
+  Negative:  { base: SC("stroke-action-negative-base"),                hover: SC("stroke-action-negative-hover"),                pressed: SC("stroke-action-negative-pressed"),                disabled: SC("stroke-action-negative-disabled") },
+};
+
+const FOCUS_RING = `0 0 0 6px #ffffff, 0 0 0 8px ${SC("stroke-contextual-focusring-base")}`;
+
+const SIZES = {
+  L: { padH: "14px", padV: "12px", iconWrap: 26, iconInner: 18, fontSize: 18, fontFamily: ST("label-button-l-fontfamily"),    fontWeight: ST("label-button-l-fontweight"),    lineHeight: ST("label-button-l-lineheight"),    letterSpacing: ST("label-button-l-letterspacing") },
+  M: { padH: SL("contextual-button-padding-medium-horizontal"), padV: SL("contextual-button-padding-medium-vertical"), iconWrap: 24, iconInner: 16, fontSize: 16, fontFamily: ST("label-button-base-fontfamily"), fontWeight: ST("label-button-base-fontweight"), lineHeight: ST("label-button-base-lineheight"), letterSpacing: ST("label-button-base-letterspacing") },
+  S: { padH: SL("contextual-button-padding-small-horizontal"),  padV: SL("contextual-button-padding-small-vertical"),  iconWrap: 20, iconInner: 14, fontSize: 14, fontFamily: ST("label-button-s-fontfamily"),    fontWeight: ST("label-button-s-fontweight"),    lineHeight: ST("label-button-s-lineheight"),    letterSpacing: ST("label-button-s-letterspacing") },
+};
+
+const T = {
+  radius: SL("cornerradius-medium"),
+  border: SL("contextual-button-border-width-base-base"),
+  gap:    SL("contextual-button-gap-horizontal"),
+  touch:  { pad: 6, min: 48 },
+  focusShadow: FOCUS_RING,
+};
+
+// ─── SPINNER ──────────────────────────────────────────────────────────────────
+const SPOKES = [
+  { d: "M6 1V3",             o: 1.00 },
+  { d: "M8.1 3.9L9.55 2.45", o: 0.87 },
+  { d: "M9 6H11",            o: 0.75 },
+  { d: "M8.1 8.1L9.55 9.55", o: 0.62 },
+  { d: "M6 9V11",            o: 0.50 },
+  { d: "M2.45 9.55L3.9 8.1", o: 0.37 },
+  { d: "M1 6H3",             o: 0.25 },
+  { d: "M2.45 2.45L3.9 3.9", o: 0.12 },
+];
+function BtnSpinner({ size = 20 }) {
+  return (
+    <svg className="pw-btn-spinner" width={size} height={size} viewBox="0 0 12 12" aria-hidden="true"
+      style={{ animation: "pw-btn-spin .75s linear infinite", flexShrink: 0, display: "block" }}>
+      {SPOKES.map((s, i) => (
+        <path key={i} d={s.d} stroke="currentColor" strokeWidth="1" strokeLinecap="round" fill="none" opacity={s.o} />
+      ))}
+    </svg>
+  );
+}
+
+// ─── BUTTON COMPONENT ─────────────────────────────────────────────────────────
+function Button({ buttonStyle = "Fill", size = "M", type = "Primary", text = "Button",
+                  leadingIcon = null, trailingIcon = null,
+                  showLeadingIcon = false, showTrailingIcon = false, showText = true,
+                  loading = false, disabled = false, onClick, ariaLabel, className = "" }) {
+  const [hovered, setHovered] = useState(false);
+  const [pressed, setPressed] = useState(false);
+  const [focused, setFocused] = useState(false);
+
+  const isDisabled = disabled || loading;
+  const stateKey   = isDisabled ? "disabled" : pressed ? "pressed" : hovered ? "hover" : "base";
+
+  const fillT  = FILL[buttonStyle]?.[type]  || FILL.Fill.Primary;
+  const textT  = TEXT[buttonStyle]?.[type]  || TEXT.Fill.Primary;
+  const iconT  = ICON_T[buttonStyle]?.[type] || ICON_T.Fill.Primary;
+  const strokeT = STROKE[type] || STROKE.Primary;
+  const sz     = SIZES[size] || SIZES.M;
+
+  const bgColor    = fillT[stateKey];
+  const textColor  = textT[stateKey];
+  const iconColor  = iconT[stateKey];
+  const strokeColor = strokeT[stateKey];
+  const hasStroke  = buttonStyle === "Outlined";
+
+  const outerS = {
+    display: "inline-flex", alignItems: "center", justifyContent: "center",
+    padding: T.touch.pad, minHeight: T.touch.min, minWidth: T.touch.min,
+    background: "transparent", border: "none", borderRadius: T.radius,
+    cursor: isDisabled ? "not-allowed" : "pointer", outline: "none",
+  };
+  const innerS = {
+    display: "inline-flex", alignItems: "center", justifyContent: "center",
+    paddingLeft: sz.padH, paddingRight: sz.padH,
+    paddingTop: sz.padV, paddingBottom: sz.padV,
+    borderRadius: T.radius,
+    backgroundColor: bgColor,
+    border: hasStroke ? `${T.border} solid ${strokeColor}` : "none",
+    gap: T.gap, flex: "1 0 0", minWidth: 0, color: iconColor,
+    boxShadow: focused && !isDisabled ? T.focusShadow : "none",
+    transition: "background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, color 150ms ease",
+  };
+  const labelS = {
+    fontFamily: sz.fontFamily, fontWeight: sz.fontWeight, fontSize: sz.fontSize,
+    lineHeight: sz.lineHeight, letterSpacing: sz.letterSpacing,
+    color: textColor, whiteSpace: "nowrap", userSelect: "none",
+    transition: "color 150ms ease",
+  };
+  const iconWrapS = {
+    display: "inline-flex", alignItems: "center", justifyContent: "center",
+    width: sz.iconWrap, height: sz.iconWrap, flexShrink: 0,
+    fontSize: sz.iconInner, color: iconColor, transition: "color 150ms ease",
+  };
+
+  return (
+    <button type="button" onClick={!isDisabled ? onClick : undefined}
+      disabled={isDisabled} aria-label={ariaLabel || (showText ? undefined : text)}
+      aria-busy={loading || undefined}
+      onMouseEnter={() => !isDisabled && setHovered(true)}
+      onMouseLeave={() => { setHovered(false); setPressed(false); }}
+      onMouseDown={() => !isDisabled && setPressed(true)}
+      onMouseUp={() => setPressed(false)}
+      onFocus={() => setFocused(true)}
+      onBlur={() => { setFocused(false); setPressed(false); }}
+      className={className} style={outerS}>
+      <span style={innerS}>
+        {loading ? (
+          <BtnSpinner size={Math.round(sz.iconInner * 1.2)} />
+        ) : (
+          <>
+            {showLeadingIcon && (
+              <span className="material-symbols-outlined" style={iconWrapS} aria-hidden="true">
+                {leadingIcon || "add"}
+              </span>
+            )}
+            {showText && <span style={labelS}>{text}</span>}
+            {showTrailingIcon && (
+              <span className="material-symbols-outlined" style={iconWrapS} aria-hidden="true">
+                {trailingIcon || "arrow_forward"}
+              </span>
+            )}
+          </>
+        )}
+      </span>
+    </button>
+  );
+}
+
+// ─── DEMO APP ─────────────────────────────────────────────────────────────────
+const TYPES = ["Primary", "Secondary", "Tertiary", "Negative"];
+const STYLES = ["Fill", "Outlined", "Naked"];
+const SIZES_LIST = ["L", "M", "S"];
+
+function DemoRow({ label, children }) {
+  return (
+    <div className="demo-row">
+      <span className="demo-row-label">{label}</span>
+      {children}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div className="demo-shell">
+      <h1 className="demo-title">Button</h1>
+      <p className="demo-sub">Pathway Design System · Figma node 40003293:93741 · All states interactive</p>
+
+      {STYLES.map(style => (
+        <div key={style} className="demo-section">
+          <div className="demo-section-label">{style}</div>
+          {TYPES.map(type => (
+            <DemoRow key={type} label={type}>
+              {/* Default */}
+              <Button buttonStyle={style} type={type} size="M" text="Button" />
+              {/* With leading icon */}
+              <Button buttonStyle={style} type={type} size="M" text="Button" showLeadingIcon leadingIcon="add" />
+              {/* Trailing icon only */}
+              <Button buttonStyle={style} type={type} size="M" text="Button" showTrailingIcon trailingIcon="arrow_forward" />
+              {/* Disabled */}
+              <Button buttonStyle={style} type={type} size="M" text="Disabled" disabled />
+              {/* Loading */}
+              <Button buttonStyle={style} type={type} size="M" loading />
+            </DemoRow>
+          ))}
+          <div style={{ borderTop: "1px solid #edf0f9", margin: "16px 0 16px" }} />
+          {/* Size comparison */}
+          <DemoRow label="Sizes">
+            {SIZES_LIST.map(sz => (
+              <Button key={sz} buttonStyle={style} type="Primary" size={sz} text={sz} />
+            ))}
+          </DemoRow>
+        </div>
+      ))}
+
+      {/* Icon-only buttons */}
+      <div className="demo-section">
+        <div className="demo-section-label">Icon-only (touch target demonstrated)</div>
+        <DemoRow label="Icon only">
+          {TYPES.map(type => (
+            <Button key={type} buttonStyle="Fill" type={type} size="M"
+              showLeadingIcon leadingIcon="add" showText={false}
+              ariaLabel={`Add (${type})`} />
+          ))}
+        </DemoRow>
+        <DemoRow label="Naked icon">
+          {TYPES.map(type => (
+            <Button key={type} buttonStyle="Naked" type={type} size="M"
+              showLeadingIcon leadingIcon="more_vert" showText={false}
+              ariaLabel={`More options (${type})`} />
+          ))}
+        </DemoRow>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
