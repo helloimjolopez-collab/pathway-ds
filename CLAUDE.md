@@ -287,3 +287,15 @@ If the user says *"just do it, don't ask me"* for a specific action, proceed wit
 - Amending a commit that's already on `origin/main`.
 - Using `rm -rf` on anything not clearly scratch.
 - Re-enabling dark-mode token imports without explicit user authorization (see §2.1).
+
+## 13. PRs are always merged immediately — this is a solo repo
+
+This repository has no team reviewers. A PR that is not merged is identical to nothing happening. **A PR is not "done." Merged to `main` is done.**
+
+### Rules that apply in every session, no exceptions:
+
+1. **Never open a PR and stop.** After `gh pr create`, always run `gh pr merge --merge --delete-branch` in the same session, immediately.
+2. **Never present a Storybook link as reflecting changes** until those changes are on `main` and CI has been triggered. If you give a Storybook URL, say explicitly whether CI has fired yet or not.
+3. **Bug fixes and doc-only changes** (no new component, no API change): push directly to `main` — no branch, no PR. One commit, one push.
+4. **New components or breaking changes**: cut a branch, open a PR, then immediately merge it in the same operation. The branch exists only as a PR audit trail, not as a review gate.
+5. If you ever find yourself in a state where a branch exists, a PR is open, but `main` has not been updated — **merge it before doing anything else in that session.** Check `git branch` and `gh pr list` at session start if context is unclear.
