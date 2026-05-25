@@ -48,7 +48,8 @@ function slugify(str) {
   return str
     .trim()
     .toLowerCase()
-    .replace(/[^a-z0-9/_.-]+/gi, "-")
+    .replace(/_/g, "-")               // normalise underscores → hyphens before anything else
+    .replace(/[^a-z0-9/.-]+/g, "-")  // replace remaining non-kebab chars (note: _ no longer allowed)
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
 }
