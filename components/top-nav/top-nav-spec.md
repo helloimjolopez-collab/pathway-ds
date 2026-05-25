@@ -1,6 +1,6 @@
 # TopNav.Global — Pathway Design System Component Spec
 
-**Status:** `PENDING HUMAN REVIEW`
+**Status:** `REVIEWED`
 
 Complete implementation reference for the TopNav.Global component. Covers anatomy, design tokens, states, spacing, interaction patterns, org logo rules, and accessibility. Use alongside the [Figma source](#figma-source) for a pixel-accurate build.
 
@@ -249,7 +249,7 @@ States apply to the interactive inner controls (ModuleSwitcher.Inner, OrgSwitche
 2. OrgSwitcher shows expanded state while its panel is open. Same chevron rotation.
 3. Only one dropdown/panel can be open at a time. Opening one closes any other.
 4. Pressing Escape closes the active open panel and returns focus to its trigger.
-5. Search pill does not have an expanded state. Clicking it triggers the application-level search overlay (out of scope for this spec).
+5. Search pill has a collapsed and an expanded state. Clicking the collapsed pill expands it to an inline 320px search input. Pressing Escape collapses it. See §7.3 for the full expanded-state spec.
 6. Profile trigger expands the profile menu. Same token rules as other controls.
 
 ---
@@ -307,17 +307,11 @@ This section defines the authoritative rules for how org logos are displayed thr
 
 The org logo is a raster image (PNG or JPEG) served from the organization's profile in the data layer. The `<img>` tag receives the URL as its `src`.
 
-In the nav bar trigger, the logo is rendered oversize and cropped to the 20×20 container. Figma specifies the crop offset explicitly:
-- `width: 196.31%`, `height: 228.29%`
-- `left: -47.05%`, `top: -63.31%`
-- `position: absolute` within the 20×20 container
+The logo scales to fill its container proportionally. This matches the Figma design annotation: **"Logo must always scale to fill frame proportionally."**
 
-These percentages are derived from the Figma layout of the Sacred Heart Church logo in the reference design. They center-crop the logo to its most visually significant area. If a different org logo crops poorly, the correct fix is to adjust the crop parameters for that org's logo source — not to change the container dimensions.
+Implementation: `object-fit: cover; width: 100%; height: 100%; display: block;` on the `<img>` tag. The container uses `overflow: hidden` and the appropriate `border-radius`.
 
-> IMPLEMENTATION RULE: Org logo crop
-> The logo image in the nav bar trigger is positioned absolutely at width 196.31%, height 228.29%, left -47.05%, top -63.31%. This is a Figma-defined value from the reference design. Do not change it to `object-fit: cover` with default centering — the explicit offset centers the crop on the visually significant portion of the logo.
-
-In the org panel, logos are displayed at 32×32 with `object-fit: cover` (or equivalent). For SVG logos (Fellowship, Grace), a colored brand-background container holds the white-text SVG at 80% width.
+This applies at all sizes: 20×20 in the nav bar trigger, 32×32 in the org panel.
 
 ##### Logo fallback: when an org has no logo
 
@@ -362,17 +356,37 @@ The nav bar fallback uses a semi-transparent brand fill so the underlying nav-ba
 
 When `logoUrl` is `null` or `undefined`, omit the `<img>` entirely and render only `.tn-org__avatar-fallback`.
 
-### 7.3 TopNavSearch (Collapsed state)
+### 7.3 TopNavSearch
 
-TopNavSearch renders in **Collapsed** state inside the top nav. It is a circular pill button, not a full search input.
+TopNavSearch has two states: **Collapsed** (default) and **Expanded** (triggered by clicking the pill).
+
+#### Collapsed state
+
+A circular pill button sits in the RowEnd slot.
 
 - Outer container: 48×48px (touch target)
 - Pill: 32×32px, `border-radius: 9999px`
 - Background: `dark-mode.fill.action.primaryinverse.base` (`rgba(160,181,230,0.08)`)
 - Border: `0.75px solid #fbfbfb` (the `dark-mode.icon.action.mono.base` resolved value)
-- Icon: search SVG, viewBox `0 0 11.7167 11.7167`, fill #fbfbfb, rendered at ~12×12px inside the 32×32 pill
+- Icon: search SVG, fill #fbfbfb, 16px
 
-Clicking the search pill opens an application-level search overlay. The overlay is out of scope for this spec.
+#### Expanded state
+
+Clicking the collapsed pill replaces it with an inline search input (320px wide). The expanded pill overlays the right side of the nav bar.
+
+**Focused-empty** (just opened, no text entered):
+- Container: white fill (`fill.static.neutral.light`), 1px solid `#6e8bd4` (`stroke.action.primary.pressed`), `border-radius: 9999px`, 36px height, 320px width, `padding: 0 8px`
+- Leading icon: search, 24px container, color `#606060` (`text.static.secondary.subtle`)
+- Placeholder text: "Search…", 14px/400, color `#606060`
+- **No trailing clear button** (none in Figma for this state)
+
+**with-value** (text entered):
+- Same container styling as focused-empty
+- Input text color: `#202020` (`text.static.secondary.bold`)
+- Trailing `cancel` (circled X) icon button: 24px container, color `#606060` — visible only when query is non-empty
+- Clicking the clear button clears the input and refocuses — it does **not** collapse the pill
+
+**Collapse:** Pressing Escape collapses back to the pill and clears the query.
 
 ### 7.4 ActionIcon buttons
 
@@ -574,11 +588,11 @@ All panels (ModuleSwitcher dropdown, OrgSwitcher panel, Profile menu) share a si
 }
 ```
 
-Duration: 140ms. Timing function: `ease-out`. This is the system-standard dropdown entrance. Reduced-motion: omit the translateY; keep the opacity fade (140ms).
+Duration: 200ms. Timing function: `cubic-bezier(0,0,0.2,1)` (standard decelerate). This is a contextual override between the system `instant` (150ms) and `short` (300ms) tiers, chosen for small panel-drop animations where 300ms feels heavy. Reduced-motion: omit the translateY; keep the opacity fade (200ms).
 
 ### 12.2 Chevron rotation
 
-ModuleSwitcher and OrgSwitcher chevrons rotate 180° when their panel is open. Transition: `transform 180ms ease`. Reduced-motion: no rotation; leave chevron at 0°.
+ModuleSwitcher and OrgSwitcher chevrons rotate 180° when their panel is open. Transition: `transform 200ms cubic-bezier(0.4,0,0.2,1)` (standard ease-in-out). Reduced-motion: no rotation; leave chevron at 0°.
 
 ### 12.3 Single-open constraint
 
@@ -763,8 +777,6 @@ These are the Pathway system breakpoints from `docs/design-system-spec.md` §5.2
 | Notification badge / dot on bell icon | HIGH | Bell icons exist in the nav but the notification indicator dot/badge is not designed. Required for the notification system. |
 | TopNav position: sticky vs fixed | MEDIUM | Not resolved in Figma. Sticky breaks in some scroll contexts. Fixed requires `padding-top` on the page body equal to nav height. Decision deferred to engineering. |
 | OrgSwitcher max-width on tablet | LOW | Desktop max-width is 316px. Tablet constraint not specified in Figma. |
-| Logo crop parameters for non-reference logos | MEDIUM | The explicit crop values (196.31%, etc.) are tuned for the Sacred Heart Church-ITD logo. Other logos may need per-org crop configuration. |
-| Search expanded state | LOW | TopNavSearch in expanded state (full search input) is not yet designed for this nav context. |
 | Mobile profile tap | HIGH | Tapping the profile avatar on mobile should do something. Not specified. |
 | Tablet OrgSwitcher label truncation point | LOW | No max-width specified for tablet. |
 
