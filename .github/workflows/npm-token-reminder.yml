@@ -1,0 +1,116 @@
+name: npm token expiry reminder
+
+# Runs every Monday at 9am UTC.
+# If the token expires within 7 days, opens a GitHub issue with exact renewal steps.
+# Closes any existing reminder issue automatically once the token is renewed.
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read expiry metadata
+        id: meta
+        run: |
+          EXPIRES_AT=$(jq -r '.expiresAt' .github/npm-token-meta.json)
+          REMINDER_DAYS=$(jq -r '.renewalReminderDays' .github/npm-token-meta.json)
+          TODAY=$(date -u +%Y-%m-%d)
+          EXPIRE_TS=$(date -d "$EXPIRES_AT" +%s)
+          TODAY_TS=$(date -d "$TODAY" +%s)
+          DAYS_LEFT=$(( (EXPIRE_TS - TODAY_TS) / 86400 ))
+          echo "expires_at=$EXPIRES_AT"     >> $GITHUB_OUTPUT
+          echo "days_left=$DAYS_LEFT"       >> $GITHUB_OUTPUT
+          echo "reminder_days=$REMINDER_DAYS" >> $GITHUB_OUTPUT
+          echo "Token expires $EXPIRES_AT — $DAYS_LEFT days left (reminder threshold: $REMINDER_DAYS days)"
+
+      - name: Ensure reminder label exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create "npm-token-renewal" \
+            --repo helloimjolopez-collab/pathway-ds \
+            --color "e11d48" \
+            --description "npm publish token needs renewal" 2>/dev/null || true
+
+      - name: Open reminder issue (if expiring soon and not already open)
+        if: ${{ fromJson(steps.meta.outputs.days_left) <= fromJson(steps.meta.outputs.reminder_days) }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DAYS_LEFT="${{ steps.meta.outputs.days_left }}"
+          EXPIRES_AT="${{ steps.meta.outputs.expires_at }}"
+
+          EXISTING=$(gh issue list \
+            --repo helloimjolopez-collab/pathway-ds \
+            --label "npm-token-renewal" \
+            --state open \
+            --json number \
+            --jq 'length')
+
+          if [ "$EXISTING" -eq 0 ]; then
+            USED_IN=$(jq -r '.usedIn[] | "- **\(.secretName)** in `\(.repo)` — \(.description)"' .github/npm-token-meta.json)
+
+            gh issue create \
+              --repo helloimjolopez-collab/pathway-ds \
+              --title "🔑 npm token expires in ${DAYS_LEFT} day(s) — renewal needed by ${EXPIRES_AT}" \
+              --label "npm-token-renewal" \
+              --body "## npm token renewal needed
+
+The npm publish token expires on **\`${EXPIRES_AT}\`** — **${DAYS_LEFT} day(s)** from today.
+
+If not renewed, \`publish-tokens.yml\` will silently fail with a 404 error.
+
+---
+
+### How to renew (2 minutes)
+
+1. Go to [npmjs.com → Access Tokens → Generate New Token](https://www.npmjs.com/settings/helloimjolopez_pathway/tokens/granular-access-tokens/new)
+2. Fill in:
+   - **Token name**: \`pathway-ds-publish\`
+   - **Bypass 2FA**: ✅ checked
+   - **Packages and scopes → Permissions**: Read and write
+   - **Expiration**: 90 days
+3. Copy the token (starts with \`npm_...\`)
+4. Tell Claude: \`here is my new npm token: npm_xxx\`
+
+Claude will read \`.github/npm-token-meta.json\`, update every location below, update the expiry date, commit, and push — one step.
+
+---
+
+### Locations this token is used
+
+${USED_IN}
+
+---
+
+*This issue was opened automatically by \`.github/workflows/npm-token-reminder.yml\`.*
+*It will close itself once the token is renewed and the expiry date in \`npm-token-meta.json\` is updated.*"
+          else
+            echo "Reminder issue already open — skipping."
+          fi
+
+      - name: Close stale reminder issues (token is fine)
+        if: ${{ fromJson(steps.meta.outputs.days_left) > fromJson(steps.meta.outputs.reminder_days) }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue list \
+            --repo helloimjolopez-collab/pathway-ds \
+            --label "npm-token-renewal" \
+            --state open \
+            --json number \
+            --jq '.[].number' | \
+          xargs -r -I{} gh issue close {} \
+            --repo helloimjolopez-collab/pathway-ds \
+            --comment "Token has been renewed (expiry updated in \`npm-token-meta.json\`). Closing." \
+            2>/dev/null || true

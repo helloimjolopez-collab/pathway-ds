@@ -1,0 +1,13 @@
+{
+  "expiresAt": "2026-08-24",
+  "renewalReminderDays": 7,
+  "usedIn": [
+    {
+      "type": "github-actions-secret",
+      "repo": "helloimjolopez-collab/pathway-ds",
+      "secretName": "NPM_TOKEN",
+      "description": "Publishes @helloimjolopez-pathway/pathway-tokens to npm via publish-tokens.yml"
+    }
+  ],
+  "_instructions": "When renewing: tell Claude 'here is my new npm token: npm_xxx'. It will read this file, update every entry in usedIn[], update expiresAt, commit, and push. To add a new location, append an entry to usedIn[]."
+}
