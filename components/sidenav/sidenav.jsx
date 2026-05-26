@@ -42,11 +42,12 @@ export const T = {
 
 // ─── LAYOUT VALUES (no semantic tokens in Figma — raw values) ─────────────────
 export const L = {
-  navPadH:     16,   // horizontal padding on SideNav.Container (updated from 12)
-  navPadV:     12,   // vertical padding on SideNav.Container (updated from 14)
+  navPadH:     16,   // horizontal padding on expanded SideNav.Container — Padding/Base
+  navColPadH:  12,   // horizontal padding on collapsed SideNav.Container — Padding/Medium
+  navPadTop:   8,    // top padding on SideNav.Container — Padding/Tight
   navW:        240,  // expanded sidebar width (updated from 220px)
   navWcol:     72,   // collapsed rail width
-  menuGap:     0,    // gap between SideNavMenu items (updated from 8px — items are flush)
+  menuGap:     6,    // gap between SideNavMenu items — Gap/XTight (corrected 2026-05-26; was 0)
   menuPadT:    8,    // top padding on SideNavMenu (space below the NavHeader divider)
   menuPadB:    56,   // bottom padding in SideNavMenu (space before collapse button, updated from 24)
   itemH:       48,   // min-height per item (Accessibility/Touch Target/Optimal)
@@ -582,7 +583,10 @@ export function SideNav({
       height: "100%",
       backgroundColor: T.surface.navLight,
       display: "flex", flexDirection: "column",
-      padding: `${L.navPadV}px ${L.navPadH}px`,
+      paddingTop: L.navPadTop,
+      paddingBottom: 0,
+      paddingLeft:  collapsed ? L.navColPadH : L.navPadH,
+      paddingRight: collapsed ? L.navColPadH : L.navPadH,
       boxSizing: "border-box", flexShrink: 0,
       // Smooth-spring curve — soft personality, no overshoot.
       transition: "width 380ms cubic-bezier(0.32, 0.72, 0, 1)",

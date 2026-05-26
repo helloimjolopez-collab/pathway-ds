@@ -19,7 +19,7 @@ The component supports two layout states: **expanded** (240px wide, icons and la
 
 ### Figma source
 - **File:** [Pathway Design System Master File MB 2.0](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/)
-- **SideNav component:** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003951-2927)
+- **SideNav component:** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1374)
 
 ---
 
@@ -29,7 +29,7 @@ Use this table when you need to find or change something. Every row points to th
 
 | To change… | Owner | Where |
 |---|---|---|
-| SideNav item colours, typography, spacing tokens | Figma: SideNav component | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003951-2927) |
+| SideNav item colours, typography, spacing tokens | Figma: SideNav component | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1374) |
 | Primitive or semantic token values (colours, radii, shadows) | Figma: Variables panel | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) |
 | Popover visual design (surface, border, shadow, typography) | Figma: PopoverMenu component | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40005913-152988) |
 | Popover animation (duration, easing, reduced-motion) | Figma: PopoverMenu component page | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40005913-152988) |
@@ -65,7 +65,7 @@ Use this table when you need to find or change something. Every row points to th
 
 ```
 SideNav.Container
-└── SideNavMenu   (flex column, gap: 0px between direct children — updated 2026-05-12; was 6px)
+└── SideNavMenu   (flex column, gap: 6px between direct children — Gap/XTight)
 │   │
 │   │   ── optional section group ──
 │   ├── NavSectionLabel           ← "MUSIC" / "PEOPLE" / etc. — optional, omit if not needed
@@ -88,7 +88,7 @@ SideNav.Container
     └── Collapse (SideNavItem-like row, no indicator stripe)
 ```
 
-> **Key structural rule:** `NavSectionLabel` and `SideNavListSection` are **flat siblings** of `SideNavItem` inside the `SideNavMenu` flex container. They are never wrappers around items. The parent `gap: 0px` applies between direct children — visual rhythm comes from item padding, not gap.
+> **Key structural rule:** `NavSectionLabel` and `SideNavListSection` are **flat siblings** of `SideNavItem` inside the `SideNavMenu` flex container. They are never wrappers around items. The parent `gap: 6px` (Gap/XTight) applies between direct children.
 
 ### SideNavItem internal structure
 
@@ -446,11 +446,12 @@ All `SideNavItem` labels at all levels use **the same** text style. There is no 
 
 | Value | Figma class | px | Semantic token |
 |---|---|---|---|
-| Nav container horizontal padding ★ | `px-[16px]` | **16** | **None** *(was 12px)* |
-| Nav container vertical padding ★ | `py-[12px]` | **12** | **None** *(was 14px)* |
-| SideNav expanded width ★ |: | **240** | **None** *(was 240px)* |
-| SideNav collapsed width |: | 72 | **None**: breaks down as 16px left padding + 40px item + 16px right padding |
-| Gap between nav items ★ | `gap-[0px]` | **0** | **None** *(was 8px — items are now flush; visual rhythm comes from item padding)* |
+| Nav container horizontal padding (expanded) | `px-[16px]` | **16** | `Padding/Base` |
+| Nav container horizontal padding (collapsed) | `px-[12px]` | **12** | `Padding/Medium` |
+| Nav container top padding | `pt-[8px]` | **8** | `Padding/Tight` |
+| SideNav expanded width |: | **240** | **None** |
+| SideNav collapsed width |: | 72 | **None**: breaks down as 12px left padding + 48px item + 12px right padding (Padding/Medium) |
+| Gap between nav items | `gap-[6px]` | **6** | `Gap/XTight` |
 | SideNavMenu bottom spacer ★ | `pb-[56px]` | **56** | **None** *(was 24px)* |
 | `Container.rowStart` horizontal padding | `px-[8px]` | 8 | **None** |
 | `text.label` horizontal padding | `px-[6px]` | 6 | **None** |
@@ -556,10 +557,10 @@ The `container.indicator` column is **always present** on every `SideNavItem` (L
 
 ### 8.2 Dimensions & Padding
 ```
-Expanded:  width 240px, padding 12px 16px   (V=12px, H=16px — updated 2026-05-12)
-Collapsed: width  72px, padding 12px 16px   (same padding as expanded, text hidden)
+Expanded:  width 240px, padding-top: 8px (Padding/Tight), padding-horizontal: 16px (Padding/Base), padding-bottom: 0px
+Collapsed: width  72px, padding-top: 8px (Padding/Tight), padding-horizontal: 12px (Padding/Medium), padding-bottom: 0px
 ```
-> No semantic tokens for width or padding: see §4 for gap documentation.
+> Bottom space (56px) is provided by the SideNavMenu flex spacer (`minHeight: L.menuPadB`), not container padding. See §4.
 
 ### 8.3 Transition
 ```
@@ -690,12 +691,12 @@ The overflow/scroll behaviour is not annotated in Figma. The nav container is de
 | Property | Value | Token |
 |---|---|---|
 | Width | 72px | None: raw value |
-| Padding | `16px` horizontal, `12px` vertical | None *(updated 2026-05-12; was 12px H / 14px V)* |
+| Padding | `12px` horizontal (`Padding/Medium`), `8px` top (`Padding/Tight`), `0` bottom | None |
 | Background | `#fafafa` | `Surface/Nav/Light` |
-| Border-right | `0.5px solid #f6f6f6` | `Stroke/Static/Neutral/Light` *(updated 2026-05-12)* |
-| Item gap | `0px` | None *(updated 2026-05-12; was 8px)* |
+| Border-right | `0.5px solid #f6f6f6` | `Stroke/Static/Neutral/Light` |
+| Item gap | `6px` | `Gap/XTight` |
 
-The 72px breaks down as: 16px left padding + 40px item + 16px right padding. Items are 48px tall × 40px wide in the collapsed rail.
+The 72px breaks down as: 12px left padding + 48px item + 12px right padding. Items are 44px tall × 48px wide in the collapsed rail.
 
 ### 10.2 SideNavItem.Collapsed
 
@@ -1157,7 +1158,7 @@ To implement SideNav from scratch with correct design system alignment, provide:
 The following are gaps in the current Figma documentation that prevent a fully semantic implementation:
 
 ### 16.1 Missing spacing/layout tokens (HIGH priority)
-No named tokens exist for: nav container padding (16px H / 12px V), item gap (0px), stripe width (4px), row padding (8px), child indent (24px), collapse row padding, nav widths (240px expanded / 72px collapsed), or `Container.RowEnd` dimensions. These are raw Tailwind values. **Recommend creating a spacing scale** and referencing it with semantic names like `Spacing/Nav/ContainerPaddingH`.
+Most spacing values now map to existing semantic tokens: `Padding/Base` (16px expanded H), `Padding/Medium` (12px collapsed H), `Padding/Tight` (8px container top / menu top), `Gap/XTight` (6px item gap), `Padding/XXWide` (56px bottom spacer). Remaining raw values with no token: stripe width (4px), row padding (8px), child indent (24px), collapse row padding, nav widths (240px / 72px), `Container.RowEnd` dimensions. **Recommend creating tokens** for these with semantic names like `Spacing/Nav/StripeWidth`.
 
 ### 16.2 Primitive token names not surfaced (MEDIUM priority)
 `get_variable_defs` (Figma MCP tool) resolves semantic token alias chains to their final hex value but does not expose intermediate primitive token names. The full chain `Semantic → Primitive → Hex` cannot be reconstructed from MCP alone. This blocks documentation of the full token lineage. **Recommend:** either expose primitives in a dedicated Figma frame/page, or use the Figma REST API (`GET /v1/files/:key/variables`) which does return the full alias chain.
@@ -1596,7 +1597,7 @@ Deployed at: `https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path
 | Artefact | URL |
 |---|---|
 | **Figma — design system master file** | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) |
-| **Figma — SideNav component set** | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003951-2927) |
+| **Figma — SideNav component set** | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1374) |
 | **Live HTML demo** | [Open demo](https://helloimjolopez-collab.github.io/pathway-ds/components/sidenav/sidenav.html) |
 | **Storybook (deployed)** | [Open Storybook](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/components-sidenav--docs) |
 | **GitHub — component source** | [components/sidenav/](https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/sidenav) |
