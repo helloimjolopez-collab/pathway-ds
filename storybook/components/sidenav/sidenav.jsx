@@ -52,7 +52,7 @@ export const L = {
   menuPadB:    56,   // bottom padding in SideNavMenu (space before collapse button, updated from 24)
   itemH:       48,   // min-height per item (Accessibility/Touch Target/Optimal)
   iconWrap:    24,   // leading icon wrapper (Accessibility/Icon Wrapping/Large)
-  iconInner:   16,   // icon glyph size inside wrapper
+  iconInner:   14,   // icon glyph size — demo SVGs are 14×14 viewBox; production Material Symbols icons should be 16px
   rowPadH:     8,    // horizontal padding in Container.rowStart
   textPad:     6,    // label text padding
   childIndent: 24,   // level-1 left indent inside rowStart 8px
