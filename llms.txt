@@ -19,6 +19,10 @@
 
 ## Other documented components
 
+- [components/button/agent-brief.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/agent-brief.md): Concise paste-ready Button contract — read this before writing any action trigger.
+- [components/button/button-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button-spec.md): Full Button spec (anatomy, variants, tokens, states, accessibility).
+- [components/button/button.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button.jsx): React module. Exports: `Button`, `STYLES`, `TYPES`, `SIZES`, `FILL`, `TEXT`, `ICON`, `STROKE`.
+- [components/button/button.html](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button.html): Self-contained React+Babel runnable demo.
 - [components/spinner/spinner-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/spinner/spinner-spec.md): Loading indicator spec.
 - [components/checkbox/](https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/checkbox): Checkbox component (see manifest for details).
 - [components/org-switcher/](https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/org-switcher): Org switcher component (see manifest for details).
