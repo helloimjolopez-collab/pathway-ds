@@ -5,6 +5,15 @@ import * as Stories from "./SideNav.stories.jsx";
 
 <Title />
 
+### Resources
+
+- 🖼️ **[Live HTML demo](https://helloimjolopez-collab.github.io/pathway-ds/components/sidenav/sidenav.html)** — open the standalone React+Babel CDN page in a new tab
+- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav-spec.md)** — `components/sidenav/sidenav-spec.md`
+- 🎨 **[Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1374)** — node `40004059:1374`
+- 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav.jsx)** · **[HTML source](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav.html)**
+
+---
+
 A persistent vertical navigation panel for Ministry Brands Amplify. Every module gets its own `SideNav` instance — it renders the primary navigation tree and, at all times, communicates where the user is in it. This is module-level navigation, not global app navigation and not action buttons.
 
 SideNav supports **two levels of depth** (Level 0 parents, Level 1 child-destinations), **two sidebar widths** (240 px expanded, 72 px collapsed), and **three responsive modes** (push on desktop, overlay on tablet, hidden-overlay on mobile).
@@ -27,7 +36,7 @@ The SideNav is made up of a container, a stack of items, and a collapse control 
 
 ```
 SideNav.Container                       240 px expanded · 72 px collapsed
-└── SideNavMenu                         flex column · gap 0 px (items are flush)
+└── SideNavMenu                         flex column · gap 6 px · Gap/XTight
 │   ├── SideNavItem · Level 0           48 px min-height
 │   │   [indicator 4 px][leading icon 24×24][label flex][row-end 40×24 · groupers only]
 │   ├── SideNavItem · Level 0 (grouper expanded)
@@ -35,7 +44,7 @@ SideNav.Container                       240 px expanded · 72 px collapsed
 │   │   └── SideNavItem · Level 1
 │   └── SideNavItem · Level 0
 └── Collapse_Expand_Nav_Container
-    ├── Divider                         1 px · Fill/Static/Info/Subtle
+    ├── Divider                         1 px · Stroke/Static/Neutral/Light
     └── CollapseButton                  item-like row, no indicator stripe
 ```
 

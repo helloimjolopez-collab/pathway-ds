@@ -510,12 +510,13 @@ TokensTypography.parameters = {
 
 // ─── Spacing tokens ─────────────────────────────────────────────────────────
 const SPACING_ROWS = [
-  { name: "Nav container padding H",  value: "16px",  token: "— (no token)",  role: "px-[16px] on SideNav.Container (updated from 12px, 2026-05-12)" },
-  { name: "Nav container padding V",  value: "12px",  token: "— (no token)",  role: "py-[12px] on SideNav.Container (updated from 14px, 2026-05-12)" },
+  { name: "Nav container padding H (expanded)",  value: "16px",  token: "Padding/Base",    role: "px-[16px] on SideNav.Container when expanded" },
+  { name: "Nav container padding H (collapsed)", value: "12px",  token: "Padding/Medium",  role: "px-[12px] on SideNav.Container when collapsed (72 px rail)" },
+  { name: "Nav container top padding",           value: "8px",   token: "Padding/Tight",   role: "pt-[8px] on SideNav.Container — same expanded and collapsed" },
   { name: "Item min-height",          value: "48px",  token: "Accessibility/Touch Target/Optimal", role: "WCAG 2.5.5 minimum — enforced on every item" },
   { name: "Icon wrapper size",        value: "24px",  token: "Accessibility/Icon Wrapping/Large",  role: "Container.LeadingIcon" },
-  { name: "Leading-icon glyph",       value: "16px",  token: "— (no token)",  role: "Icon.Leading inside wrapper" },
-  { name: "SideNavMenu item gap",     value: "0px",   token: "— (no token)",  role: "gap-[0px] on SideNavMenu (updated from 8px — items flush, spacing from padding)" },
+  { name: "Leading-icon glyph",       value: "14px",  token: "— (no token)",  role: "Icon.Leading inside wrapper — demo SVGs are 14×14 viewBox; production Material Symbols should be 16px" },
+  { name: "SideNavMenu item gap",     value: "6px",   token: "Gap/XTight",    role: "gap-[6px] on SideNavMenu — corrected 2026-05-26; was 0px" },
   { name: "Bottom spacer (menuPadB)", value: "56px",  token: "— (no token)",  role: "Space before CollapseButton (updated from 24px, 2026-05-12)" },
   { name: "Row horizontal padding",   value: "8px",   token: "— (no token)",  role: "Container.rowStart px-[8px]" },
   { name: "Label text padding",       value: "6px",   token: "— (no token)",  role: "text.label px-[6px]" },
