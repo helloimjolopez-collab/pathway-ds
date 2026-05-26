@@ -21,12 +21,12 @@ if (typeof document !== "undefined") {
     style.id = "pds-topnav-fonts";
     style.textContent = `
       @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap');
-      @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+      @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
       @keyframes tnDropIn {
         from { opacity: 0; transform: translateY(-4px) scale(0.99); }
         to   { opacity: 1; transform: translateY(0) scale(1); }
       }
-      .material-symbols-outlined {
+      .material-symbols-rounded {
         font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
         line-height: 1; display: block; user-select: none;
       }
@@ -135,7 +135,7 @@ function OrgAvatarPlaceholder() {
 // Only for icons that ARE Material Symbols in Figma. Custom icons use the SVG components above.
 function Icon({ name, size = 20, color }) {
   return (
-    <span className="material-symbols-outlined" aria-hidden="true"
+    <span className="material-symbols-rounded" aria-hidden="true"
       style={{ fontSize: size, color: color || "inherit" }}>
       {name}
     </span>

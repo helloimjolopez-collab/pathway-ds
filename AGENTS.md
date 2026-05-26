@@ -86,6 +86,8 @@ Read [`components/manifest.json`](./components/manifest.json) for the authoritat
 - **`section-label`** / **`nav-section-label`** — small uppercase headings, exported as `SectionLabel` and `NavSectionLabel` from `components/sidenav/sidenav.jsx`. Not a standalone component folder — import directly from sidenav.
 - **`checkbox`**, **`org-switcher`** — see manifest
 
+**Every icon in this system uses Material Symbols Rounded.** CSS class: `material-symbols-rounded`. Google Fonts URL: `https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`. Never Outlined, never Sharp, never a custom SVG for any icon that exists in the Material Symbols Rounded library. This rule applies to every component, demo, story, spec, prototype, and agent brief.
+
 If you need a component that isn't in the manifest, use **[Radix UI](https://www.radix-ui.com/)** as the headless base (it handles ARIA, keyboard, and focus management correctly, and is the same foundation Pathway components are built on). Do **not** use Material UI — it carries Google's visual language and will conflict with Pathway tokens. Then apply all Pathway tokens to the Radix primitive: typography (Red Hat Text, using `Label/Button/*` or the appropriate type token), colours (semantic `Fill/*`, `Text/*`, `Icon/*`, `Stroke/*` tokens — never raw hex, never primitives), spacing (`Padding/*` and `Gap/*` tokens), radii (`CornerRadius/*` tokens), and border widths (`BorderWidth/*` tokens). See [`tokens/agent-brief.md`](./tokens/agent-brief.md) for the full token rules. Better: ask the user whether a Pathway component exists before reaching for a primitive.
 
 ---

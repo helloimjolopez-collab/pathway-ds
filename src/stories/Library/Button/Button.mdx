@@ -25,9 +25,9 @@ The Button does not carry navigation semantics. It fires an `onClick`. If pressi
 ```
 <button type="button">                    ← outer — touch-target zone (min 48×48px)
   <span class="pw-button__container">    ← Container.Main — visible surface (bg, border, radius)
-    <span class="material-symbols-outlined  pw-button__icon--leading">  ← optional leading icon
+    <span class="material-symbols-rounded  pw-button__icon--leading">  ← optional leading icon
     <span class="pw-button__label">      ← label text
-    <span class="material-symbols-outlined  pw-button__icon--trailing"> ← optional trailing icon
+    <span class="material-symbols-rounded  pw-button__icon--trailing"> ← optional trailing icon
   </span>
 </button>
 ```
@@ -75,7 +75,7 @@ The touch target (48 × 48 px minimum) applies at all sizes.
 
 <Canvas of={Stories.IconVariants} />
 
-Icons use Material Symbols Outlined, sized to the button's icon slot (`26 px` for L, `24 px` for M, `20 px` for S). The slot wrapper constrains the icon to that square; the icon renders at `18 / 16 / 14 px` respectively.
+Icons use Material Symbols Rounded, sized to the button's icon slot (`26 px` for L, `24 px` for M, `20 px` for S). The slot wrapper constrains the icon to that square; the icon renders at `18 / 16 / 14 px` respectively.
 
 For **icon-only buttons** (`showText={false}`), `ariaLabel` is mandatory — without it, the button has no accessible name and fails WCAG 4.1.2.
 

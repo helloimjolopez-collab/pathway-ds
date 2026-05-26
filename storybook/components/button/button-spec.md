@@ -61,9 +61,9 @@ The Button is **not** a navigation element. It does not route users to a new URL
 <button type="button"                    ← outer — touch-target zone
   disabled? aria-disabled aria-busy aria-label>
   <span class="pw-button__container">   ← Container.Main — visible surface
-    <span class="material-symbols-outlined  pw-button__icon--leading">  ← LeadingIcon slot (optional)
+    <span class="material-symbols-rounded  pw-button__icon--leading">  ← LeadingIcon slot (optional)
     <span class="pw-button__label">      ← Label
-    <span class="material-symbols-outlined  pw-button__icon--trailing"> ← TrailingIcon slot (optional)
+    <span class="material-symbols-rounded  pw-button__icon--trailing"> ← TrailingIcon slot (optional)
   </span>
 </button>
 ```
@@ -252,7 +252,7 @@ Transition duration: `150ms ease` on `background-color`, `border-color`, `box-sh
 | M | 24 × 24 px | 16 px |
 | S | 20 × 20 px | 14 px |
 
-Icons are always **Material Symbols Outlined**. The slot wrapper constrains the icon; the font-size controls the glyph size. Icon colour comes from the current icon token (identical to text colour within the same type).
+Icons are always **Material Symbols Rounded**. The slot wrapper constrains the icon; the font-size controls the glyph size. Icon colour comes from the current icon token (identical to text colour within the same type).
 
 ### Icon-only buttons
 
@@ -494,7 +494,7 @@ button.jsx exports:
 Build the Pathway Button using:
 - components/button/button.jsx as the exact implementation reference
 - tokens from src/tokens/tokens.css (never invent or hardcode colours)
-- Material Symbols Outlined for all icons
+- Material Symbols Rounded for all icons
 - Outer <button> as touch target (min 48×48, 6px padding)
 - Inner Container.Main span for all visual styling
 - focus ring via box-shadow on Container.Main

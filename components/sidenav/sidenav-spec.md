@@ -797,7 +797,7 @@ This is a CSS architectural constraint, not a Figma design concern. No Figma ann
 
 ### Demo SideNav icon mapping (current reference implementation)
 
-The reference demo (`sidenav.html`) uses a church management context with three sections. All icons are **Material Symbols Outlined** (Google Fonts CDN).
+The reference demo (`sidenav.html`) uses a church management context with three sections. All icons are **Material Symbols Rounded** (Google Fonts CDN).
 
 #### MUSIC section
 
@@ -1314,7 +1314,7 @@ The global top navigation is a separate component not owned by this spec. The Pa
 - SideNav overlay sits at z-index 100 (same layer — overlay panels appear inside the body area, not above the top nav)
 - Dropdown menus from the top nav sit at z-index 200
 
-**Icons:** All TopNav icons use **Material Symbols Outlined** (Google Fonts CDN, FILL 0, wght 300). Exception: the Amplify Home module icon and the church org logo are branded image assets (Figma CDN URLs, expire ~7 days — replace with stable CDN in production).
+**Icons:** All TopNav icons use **Material Symbols Rounded** (Google Fonts CDN, FILL 0, wght 300). Exception: the Amplify Home module icon and the church org logo are branded image assets (Figma CDN URLs, expire ~7 days — replace with stable CDN in production).
 
 **SideNav integration at breakpoints:**
 

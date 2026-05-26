@@ -125,7 +125,7 @@ const NAV_SECTIONS = [
 ];
 ```
 
-Icons are **Material Symbols Outlined** in the demo. Replace with whatever icon system the prototype uses, but keep the **16 px inside 24 px wrapper** rule.
+Icons are **Material Symbols Rounded** in the demo. Replace with whatever icon system the prototype uses, but keep the **16 px inside 24 px wrapper** rule.
 
 ---
 

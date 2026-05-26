@@ -16,7 +16,7 @@ Read this **first**. The full spec is at [top-nav-spec.md](./top-nav-spec.md).
 - **Height: 56 px** (54 px on tablet per Figma; unified to 56 px in implementation)
 - **Background: `Fill/Static/Brand/Base` → `#2d4889`** (brand blue, NOT dark navy)
 - **Position: `fixed; top: 0; left: 0; right: 0; z-index: 100`**
-- All icons are **Material Symbols Outlined** (Google Fonts CDN). Branded assets (Amplify Home icon, org logo) are SVGs/images.
+- All icons are **Material Symbols Rounded** (Google Fonts CDN). Branded assets (Amplify Home icon, org logo) are SVGs/images.
 - Three breakpoint variants: Desktop (1440px), Tablet (768px), Mobile (393px) — see §3 in the full spec.
 
 Working code: [top-nav.html](./top-nav.html). Module: [top-nav.jsx](./top-nav.jsx). Full spec: [top-nav-spec.md](./top-nav-spec.md).
@@ -41,7 +41,7 @@ Working code: [top-nav.html](./top-nav.html). Module: [top-nav.jsx](./top-nav.js
 
 7. **Search is a 32×32 circle, not a search field.** `cornerradius/full: 64px`. Click expands a dropdown/modal — the bar stays narrow at all times.
 
-8. **All Material Symbols Outlined, no exceptions.** Specifically: `menu`, `expand_more`, `search`, `notifications`, `more_vert`. Use Google Fonts CDN: `https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`.
+8. **All Material Symbols Rounded, no exceptions.** Specifically: `menu`, `expand_more`, `search`, `notifications`, `more_vert`. Use Google Fonts CDN: `https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`.
 
 ---
 
@@ -98,7 +98,7 @@ If the real `top-nav.jsx` module isn't available, copy the implementation block 
 - [ ] Desktop has TWO notification bells; tablet/mobile has one `more_vert`
 - [ ] Profile is amethyst (`#dcd9ef` bg, `#221e3f` text), 32×32 circle, initials only
 - [ ] Mobile (<768px): hamburger appears on the left, hidden at ≥768px
-- [ ] All icons are Material Symbols Outlined from Google Fonts CDN
+- [ ] All icons are Material Symbols Rounded from Google Fonts CDN
 - [ ] SideNav is shipped alongside (use `components/sidenav/`)
 
 ---

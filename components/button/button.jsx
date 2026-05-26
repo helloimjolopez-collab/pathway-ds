@@ -345,7 +345,7 @@ export function Button({
             {showLeadingIcon && (
               <span
                 style={iconWrapStyle}
-                className="material-symbols-outlined pw-button__icon pw-button__icon--leading"
+                className="material-symbols-rounded pw-button__icon pw-button__icon--leading"
                 aria-hidden="true"
               >
                 {leadingIcon || "add"}
@@ -359,7 +359,7 @@ export function Button({
             {showTrailingIcon && (
               <span
                 style={iconWrapStyle}
-                className="material-symbols-outlined pw-button__icon pw-button__icon--trailing"
+                className="material-symbols-rounded pw-button__icon pw-button__icon--trailing"
                 aria-hidden="true"
               >
                 {trailingIcon || "arrow_forward"}

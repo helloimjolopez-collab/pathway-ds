@@ -279,7 +279,20 @@ Any agent working on a Pathway task must preserve these gates. If you're composi
 
 If the user says *"just do it, don't ask me"* for a specific action, proceed with that action — their explicit permission replaces the gate. But the next gate still applies unless they've scoped the permission broadly ("do the whole thing, don't ask me").
 
-## 12. Things that are always wrong
+## 12. Iconography — Material Symbols Rounded, always
+
+**Every icon in Pathway uses Material Symbols Rounded.** This is non-negotiable and applies to every component, every demo, every story, every spec, every agent-brief, every prototype built from this system.
+
+- **Font family:** `Material Symbols Rounded` (not Outlined, not Sharp)
+- **CSS class:** `material-symbols-rounded`
+- **Google Fonts CDN URL:** `https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`
+- **font-family in CSS:** `'Material Symbols Rounded'`
+
+If you see `material-symbols-outlined` or `Material Symbols Outlined` anywhere in this repo, it is a bug. Replace it.
+
+Never use Outlined, Sharp, or any other Material Symbols variant. Never use custom SVGs for standard UI icons — if it's in the Material Symbols Rounded library, use the ligature. If it's a branded asset (org logo, Amplify Home icon), use an image or inline SVG.
+
+## 13. Things that are always wrong
 
 - Committing `node_modules/`, `storybook-static/`, `.env`, `.claude/`, or `.DS_Store` (all in `.gitignore`).
 - Hand-editing derived files (`pathway-design-tokens.json`, `src/tokens/tokens.css`, `src/tokens/tokens.js`, `components/sidenav/sidenav-figmamake.html`).

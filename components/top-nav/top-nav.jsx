@@ -132,7 +132,7 @@ export function OrgAvatarPlaceholder() {
 function Icon({ name, size = 20, style: extraStyle }) {
   return (
     <span
-      className="material-symbols-outlined"
+      className="material-symbols-rounded"
       style={{
         fontSize: size, lineHeight: 1, display: "block",
         userSelect: "none",

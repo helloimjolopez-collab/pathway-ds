@@ -35,7 +35,7 @@ Working code: [org-switcher.html](./org-switcher.html). Module: [org-switcher.js
 
 4. **Bordered pill, not a button.** Border is `stroke/action/tertiary/base` (semi-transparent white on the brand-blue TopNav background). Radius `cornerradius/medium: 8px`.
 
-5. **Chevron is `expand_more` from Material Symbols Outlined.** Same icon family as the rest of the TopNav. 20px size, white.
+5. **Chevron is `expand_more` from Material Symbols Rounded.** Same icon family as the rest of the TopNav. 20px size, white.
 
 6. **Click opens a dropdown panel** with searchable org list + campus list. Don't substitute a modal, full page, or inline switcher. The dropdown is anchored to the OrgSwitcher pill.
 
@@ -55,7 +55,7 @@ Working code: [org-switcher.html](./org-switcher.html). Module: [org-switcher.js
 20×20 px image, no border, rendered inline within the pill
 
 /* Chevron */
-expand_more · Material Symbols Outlined · 20px · white
+expand_more · Material Symbols Rounded · 20px · white
 
 /* Dropdown panel (when open) */
 --fill-static-surface-white:     #ffffff
