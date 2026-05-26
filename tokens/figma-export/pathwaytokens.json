@@ -3581,7 +3581,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.500}"
+                  "$value": "{Brand.400}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -3590,7 +3590,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.600}"
+                  "$value": "{Brand.500}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -3599,7 +3599,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.700}"
+                  "$value": "{Brand.600}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -3657,7 +3657,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.170}"
+                  "$value": "{Warm Neutral.950}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -3666,7 +3666,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.180}"
+                  "$value": "{Warm Neutral.960}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -3675,7 +3675,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.200}"
+                  "$value": "{Warm Neutral.970}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -3684,7 +3684,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.90}"
+                  "$value": "{Warm Neutral.500}"
                 }
               },
               "SecondaryInverse": {
@@ -4351,7 +4351,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.400}"
+                  "$value": "{Brand.100}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -4360,7 +4360,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.200}"
+                  "$value": "{Brand.90}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -4369,7 +4369,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.500}"
+                  "$value": "{Brand.300}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -4407,7 +4407,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.30}"
+                  "$value": "{Brand.20}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -4465,7 +4465,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Warm Neutral.250}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -4474,7 +4474,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.220 @ 2%}"
+                  "$value": "{Warm Neutral.200}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -4483,7 +4483,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
+                  "$value": "{Warm Neutral.300}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -5623,7 +5623,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.700}"
+                  "$value": "{Brand.600}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -5681,7 +5681,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.170}"
+                  "$value": "{Warm Neutral.950}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -5690,7 +5690,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.180}"
+                  "$value": "{Warm Neutral.960}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -5699,7 +5699,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.200}"
+                  "$value": "{Warm Neutral.970}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -5708,7 +5708,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.90}"
+                  "$value": "{Warm Neutral.500}"
                 }
               },
               "Secondary Inverse": {
@@ -5728,7 +5728,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.130}"
+                  "$value": "{Cool Neutral.140}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -6700,7 +6700,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.80}"
+                  "$value": "{Brand.100}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -6709,7 +6709,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.40}"
+                  "$value": "{Brand.60}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -6776,7 +6776,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.80}"
+                  "$value": "{Warm Neutral.750}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -6785,7 +6785,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.100}"
+                  "$value": "{Warm Neutral.400}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -6794,7 +6794,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.110}"
+                  "$value": "{Warm Neutral.750}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -6803,7 +6803,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.40}"
+                  "$value": "{Warm Neutral.100}"
                 }
               },
               "Secondary Inverse": {
@@ -12523,6 +12523,26 @@
                 }
               },
               "Padding": {
+                "Large": {
+                  "Vertical": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.12}"
+                  },
+                  "Horizontal": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.14}"
+                  }
+                },
                 "Medium": {
                   "Vertical": {
                     "$scopes": [
@@ -12573,7 +12593,7 @@
                     "$type": "float",
                     "$libraryName": "",
                     "$collectionName": "Semantic: Layout & Units",
-                    "$value": "{BorderWidth.Thin}"
+                    "$value": "{BorderWidth.XThin}"
                   }
                 },
                 "Base": {
@@ -12584,7 +12604,7 @@
                     "$type": "float",
                     "$libraryName": "",
                     "$collectionName": "Semantic: Layout & Units",
-                    "$value": "{BorderWidth.Medium}"
+                    "$value": "{BorderWidth.Thin}"
                   }
                 },
                 "Thick": {
@@ -12595,8 +12615,19 @@
                     "$type": "float",
                     "$libraryName": "",
                     "$collectionName": "Semantic: Layout & Units",
-                    "$value": "{BorderWidth.Thick}"
+                    "$value": "{BorderWidth.Base}"
                   }
+                }
+              },
+              "Radius": {
+                "Radius": {
+                  "$scopes": [
+                    "ALL_SCOPES"
+                  ],
+                  "$type": "float",
+                  "$libraryName": "",
+                  "$collectionName": "Primitive: Unit",
+                  "$value": "{Unit.8}"
                 }
               }
             },
@@ -12937,7 +12968,7 @@
           },
           "Accessibility": {
             "Touch Target": {
-              "Optimal": {
+              "AAA": {
                 "Height": {
                   "$scopes": [
                     "ALL_SCOPES"
@@ -12957,7 +12988,7 @@
                   "$value": "{Unit.48}"
                 }
               },
-              "Mobile Minimum": {
+              "AA": {
                 "Height": {
                   "$scopes": [
                     "ALL_SCOPES"
@@ -12977,7 +13008,7 @@
                   "$value": "{Unit.44}"
                 }
               },
-              "Desktop Minimum": {
+              "Desktop Only": {
                 "Height": {
                   "$scopes": [
                     "ALL_SCOPES"

@@ -182,15 +182,15 @@ Border width: `--semantic-layout-units-contextual-button-border-width-base-base`
 
 | Property | Token | Value |
 |---|---|---|
-| Border radius | `--semantic-layout-units-cornerradius-medium` | 8 px |
+| Border radius | `--semantic-layout-units-contextual-button-radius-radius` | 8 px |
 | Gap (icon ↔ label) | `--semantic-layout-units-contextual-button-gap-horizontal` | 8 px |
-| Border width (Outlined) | `--semantic-layout-units-contextual-button-border-width-base-base` | 1.5 px |
-| Padding M horizontal | `--semantic-layout-units-contextual-button-padding-medium-horizontal` | — |
-| Padding M vertical | `--semantic-layout-units-contextual-button-padding-medium-vertical` | — |
-| Padding S horizontal | `--semantic-layout-units-contextual-button-padding-small-horizontal` | — |
-| Padding S vertical | `--semantic-layout-units-contextual-button-padding-small-vertical` | — |
-| Padding L horizontal | *hardcoded 14 px* — see §15 | missing |
-| Padding L vertical | *hardcoded 12 px* — see §15 | missing |
+| Border width (Outlined) | `--semantic-layout-units-contextual-button-border-width-base-base` | 0.75 px |
+| Padding L horizontal | `--semantic-layout-units-contextual-button-padding-large-horizontal` | 14 px |
+| Padding L vertical | `--semantic-layout-units-contextual-button-padding-large-vertical` | 12 px |
+| Padding M horizontal | `--semantic-layout-units-contextual-button-padding-medium-horizontal` | 12 px |
+| Padding M vertical | `--semantic-layout-units-contextual-button-padding-medium-vertical` | 10 px |
+| Padding S horizontal | `--semantic-layout-units-contextual-button-padding-small-horizontal` | 8 px |
+| Padding S vertical | `--semantic-layout-units-contextual-button-padding-small-vertical` | 6 px |
 
 ### 5.6 Focus ring
 
@@ -207,13 +207,13 @@ The inner halo (6 px white) provides contrast against any button surface colour.
 
 ### 5.7 Typography tokens
 
-Typography tokens are per-size. Note that **no `fontsize` CSS variable exists** for button labels — font size is hardcoded.
+Typography tokens are per-size.
 
-| Size | Font family | Font weight | Line height | Letter spacing | Font size (hardcoded) |
+| Size | Font size | Font family | Font weight | Line height | Letter spacing |
 |---|---|---|---|---|---|
-| L | `--semantic-type-desktop-label-button-l-fontfamily` | `--semantic-type-desktop-label-button-l-fontweight` | `--semantic-type-desktop-label-button-l-lineheight` | `--semantic-type-desktop-label-button-l-letterspacing` | 18 px |
-| M | `--semantic-type-desktop-label-button-base-fontfamily` | `--semantic-type-desktop-label-button-base-fontweight` | `--semantic-type-desktop-label-button-base-lineheight` | `--semantic-type-desktop-label-button-base-letterspacing` | 16 px |
-| S | `--semantic-type-desktop-label-button-s-fontfamily` | `--semantic-type-desktop-label-button-s-fontweight` | `--semantic-type-desktop-label-button-s-lineheight` | `--semantic-type-desktop-label-button-s-letterspacing` | 14 px |
+| L | `--semantic-type-desktop-label-button-l-fontsize` | `--semantic-type-desktop-label-button-l-fontfamily` | `--semantic-type-desktop-label-button-l-fontweight` | `--semantic-type-desktop-label-button-l-lineheight` | `--semantic-type-desktop-label-button-l-letterspacing` |
+| M | `--semantic-type-desktop-label-button-base-fontsize` | `--semantic-type-desktop-label-button-base-fontfamily` | `--semantic-type-desktop-label-button-base-fontweight` | `--semantic-type-desktop-label-button-base-lineheight` | `--semantic-type-desktop-label-button-base-letterspacing` |
+| S | `--semantic-type-desktop-label-button-s-fontsize` | `--semantic-type-desktop-label-button-s-fontfamily` | `--semantic-type-desktop-label-button-s-fontweight` | `--semantic-type-desktop-label-button-s-lineheight` | `--semantic-type-desktop-label-button-s-letterspacing` |
 
 ---
 
@@ -417,8 +417,8 @@ Spinner animation stops under `prefers-reduced-motion: reduce`. Colour transitio
 When regenerating this component, confirm:
 
 - [ ] All FILL/TEXT/ICON/STROKE token tables are present and match §5
-- [ ] SIZES table has `padH`/`padV` as numbers for L (not CSS var strings) — see §15
-- [ ] Font sizes (18/16/14) are hardcoded — no CSS var exists — see §15
+- [ ] SIZES table uses `SL("contextual-button-padding-large-*")` for L padH/padV
+- [ ] SIZES table uses `ST("label-button-l-fontsize")` etc. for all font sizes
 - [ ] `ButtonSpinner` uses `stroke: currentColor` and `@keyframes pw-btn-spin 0.75s linear`
 - [ ] Outer `<button>` has `padding: 6px`, `min-height: 48`, `min-width: 48`
 - [ ] `aria-hidden="true"` on Container.Main span (decorative — accessible name is on the button)
@@ -432,21 +432,22 @@ When regenerating this component, confirm:
 
 ## §15 Token gaps
 
-These gaps should be addressed in Figma before the next token sync.
+All previously-flagged HIGH gaps are resolved as of the 2026-05-26 token sync.
 
-### HIGH priority
+### RESOLVED (2026-05-26)
 
-| Gap | Current workaround | Token name needed |
-|---|---|---|
-| Button large padding — horizontal (14 px) | Hardcoded `14` in SIZES.L | `semantic.layout.units.contextual.button.padding.large.horizontal` |
-| Button large padding — vertical (12 px) | Hardcoded `12` in SIZES.L | `semantic.layout.units.contextual.button.padding.large.vertical` |
-| Button label font size — all sizes | Hardcoded `18 / 16 / 14` | `semantic.type.desktop.label.button.l.fontsize`, `.base.fontsize`, `.s.fontsize` |
+| Token | Status |
+|---|---|
+| `--semantic-layout-units-contextual-button-padding-large-horizontal` | ✓ Added to Figma & synced |
+| `--semantic-layout-units-contextual-button-padding-large-vertical` | ✓ Added to Figma & synced |
+| `--semantic-layout-units-contextual-button-radius-radius` | ✓ Added to Figma & synced |
+| `--semantic-type-desktop-label-button-l-fontsize` | ✓ Exists in token file |
+| `--semantic-type-desktop-label-button-base-fontsize` | ✓ Exists in token file |
+| `--semantic-type-desktop-label-button-s-fontsize` | ✓ Exists in token file |
+| Secondary fill tokens now use `fill.action.secondaryinverse.*` (warm neutral) | ✓ Fixed |
+| Secondary stroke tokens now use `stroke.action.secondary.*` (warm neutral) | ✓ Fixed |
 
-### MEDIUM priority
-
-| Gap | Current workaround | Notes |
-|---|---|---|
-| `fill.action.secondaryinverse.disabled` token references Secondary/disabled fill | Token name has inconsistency (`secondaryinverse` vs `secondary`) | Check if Figma intent was `fill.action.secondary.disabled` |
+No open gaps.
 
 ---
 
@@ -482,9 +483,8 @@ button.jsx exports:
 
 ### Common pitfalls
 
-1. **SIZES.L padH/padV are numbers, not CSS var strings.** The component handles both by checking `typeof sz.padH === "number"`. Do not convert to CSS vars until the tokens exist.
-2. **No `fontsize` CSS variable exists.** Font sizes must be hardcoded. If you see `--semantic-type-desktop-label-button-l-fontsize` fail in the browser, this is the reason.
-3. **Spinner inherits colour via `currentColor`.** The container's `color` property is set to `iconColor`. Do not set a separate `color` on the spinner.
+1. **All SIZES values are now CSS var strings.** `padH`, `padV`, and `fontSize` all use `SL()` or `ST()` helpers. Do not use numeric values.
+2. **Spinner inherits colour via `currentColor`.** The container's `color` property is set to `iconColor`. Do not set a separate `color` on the spinner.
 4. **`aria-hidden` on Container.Main.** The inner span is decorative; all semantics live on the outer `<button>`.
 5. **Style=Naked/Tertiary has a non-transparent base fill.** `fill.action.tertiary.inverse.base` is a subtle tinted colour, not transparent. All other Naked types are `transparent` at base.
 

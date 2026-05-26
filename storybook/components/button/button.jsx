@@ -25,19 +25,19 @@ const ST = (p) => `var(--semantic-type-desktop-${p})`;
 const FILL = {
   Fill: {
     Primary:   { base: SC("fill-action-primary-base"),              hover: SC("fill-action-primary-hover"),              pressed: SC("fill-action-primary-pressed"),              disabled: SC("fill-action-primary-disabled")              },
-    Secondary: { base: SC("fill-action-secondary-base"),            hover: SC("fill-action-secondary-hover"),            pressed: SC("fill-action-secondary-pressed"),            disabled: SC("fill-action-secondaryinverse-disabled")     },
+    Secondary: { base: SC("fill-action-secondaryinverse-base"),     hover: SC("fill-action-secondaryinverse-hover"),     pressed: SC("fill-action-secondaryinverse-pressed"),     disabled: SC("fill-action-secondaryinverse-disabled")     },
     Tertiary:  { base: SC("fill-action-tertiary-base"),             hover: SC("fill-action-tertiary-inverse-hover"),     pressed: SC("fill-action-tertiary-inverse-pressed"),     disabled: SC("fill-action-tertiary-disabled")             },
     Negative:  { base: SC("fill-action-negative-base"),             hover: SC("fill-action-negative-hover"),             pressed: SC("fill-action-negative-pressed"),             disabled: SC("fill-action-negative-disabled")             },
   },
   Outlined: {
     Primary:   { base: "transparent",                               hover: SC("fill-action-primaryinverse-hover"),       pressed: SC("fill-action-primaryinverse-pressed"),       disabled: "transparent"                                   },
-    Secondary: { base: "transparent",                               hover: SC("fill-action-secondary-hover"),            pressed: SC("fill-action-secondary-pressed"),            disabled: "transparent"                                   },
+    Secondary: { base: "transparent",                               hover: SC("fill-action-secondaryinverse-hover"),     pressed: SC("fill-action-secondaryinverse-pressed"),     disabled: "transparent"                                   },
     Tertiary:  { base: SC("fill-action-tertiary-inverse-base"),     hover: SC("fill-action-tertiary-inverse-hover"),     pressed: SC("fill-action-tertiary-inverse-pressed"),     disabled: "transparent"                                   },
     Negative:  { base: "transparent",                               hover: SC("fill-action-negativeinverse-hover"),      pressed: SC("fill-action-negativeinverse-pressed"),      disabled: "transparent"                                   },
   },
   Naked: {
     Primary:   { base: "transparent",                               hover: SC("fill-action-primaryinverse-hover"),       pressed: SC("fill-action-primaryinverse-pressed"),       disabled: "transparent"                                   },
-    Secondary: { base: "transparent",                               hover: SC("fill-action-secondary-hover"),            pressed: SC("fill-action-secondary-pressed"),            disabled: "transparent"                                   },
+    Secondary: { base: "transparent",                               hover: SC("fill-action-secondaryinverse-hover"),     pressed: SC("fill-action-secondaryinverse-pressed"),     disabled: "transparent"                                   },
     Tertiary:  { base: "transparent",                               hover: SC("fill-action-tertiary-inverse-hover"),     pressed: SC("fill-action-tertiary-inverse-pressed"),     disabled: "transparent"                                   },
     Negative:  { base: "transparent",                               hover: SC("fill-action-negativeinverse-hover"),      pressed: SC("fill-action-negativeinverse-pressed"),      disabled: "transparent"                                   },
   },
@@ -81,7 +81,7 @@ ICON.Naked = ICON.Outlined;
 // ─── STROKE TOKENS (Outlined only) ────────────────────────────────────────────
 const STROKE = {
   Primary:   { base: SC("stroke-action-primary-base"),                 hover: SC("stroke-action-primary-hover"),                 pressed: SC("stroke-action-primary-pressed"),                 disabled: SC("stroke-action-primary-disabled")                 },
-  Secondary: { base: SC("stroke-action-secondary-inverse-base"),       hover: SC("stroke-action-secondary-inverse-hover"),       pressed: SC("stroke-action-secondary-inverse-pressed"),       disabled: SC("stroke-action-secondary-inverse-disabled")       },
+  Secondary: { base: SC("stroke-action-secondary-base"),               hover: SC("stroke-action-secondary-hover"),               pressed: SC("stroke-action-secondary-pressed"),               disabled: SC("stroke-action-secondary-disabled")               },
   Tertiary:  { base: SC("stroke-action-tertiary-base"),                hover: SC("stroke-action-tertiary-hover"),                pressed: SC("stroke-action-tertiary-pressed"),                disabled: SC("stroke-action-tertiary-disabled")                },
   Negative:  { base: SC("stroke-action-negative-base"),                hover: SC("stroke-action-negative-hover"),                pressed: SC("stroke-action-negative-pressed"),                disabled: SC("stroke-action-negative-disabled")                },
 };
@@ -90,7 +90,7 @@ const STROKE = {
 // Touch target: 48×48 minimum with 6px outer padding (WCAG 2.5.5 target size).
 // Focus ring: 6px white halo + 2px brand ring (box-shadow on Container.Main).
 export const T = {
-  radius:      SL("cornerradius-medium"),                                   // 8px
+  radius:      SL("contextual-button-radius-radius"),                        // 8px
   border:      SL("contextual-button-border-width-base-base"),              // 1.5px
   gap:         SL("contextual-button-gap-horizontal"),                      // 8px
   touch:       { pad: 6, min: 48 },
@@ -98,41 +98,38 @@ export const T = {
 };
 
 // ─── SIZE TABLE ────────────────────────────────────────────────────────────────
-// padH / padV for Size L are hardcoded: no semantic button-large-padding tokens
-// exist yet in the token file. Figma source: "New group/Horizontal" (14px) and
-// "Contextual/Vertical" (12px). Flagged as HIGH gap in spec §15.
 export const SIZES = {
   L: {
-    padH:       14,                                          // no CSS var — see §15
-    padV:       12,                                          // no CSS var — see §15
-    iconWrap:   26,
-    iconInner:  18,
-    fontSize:   18,                                          // no CSS var — see §15
-    fontFamily: ST("label-button-l-fontfamily"),
-    fontWeight: ST("label-button-l-fontweight"),
-    lineHeight: ST("label-button-l-lineheight"),
+    padH:          SL("contextual-button-padding-large-horizontal"),
+    padV:          SL("contextual-button-padding-large-vertical"),
+    iconWrap:      26,
+    iconInner:     18,
+    fontSize:      ST("label-button-l-fontsize"),
+    fontFamily:    ST("label-button-l-fontfamily"),
+    fontWeight:    ST("label-button-l-fontweight"),
+    lineHeight:    ST("label-button-l-lineheight"),
     letterSpacing: ST("label-button-l-letterspacing"),
   },
   M: {
-    padH:       SL("contextual-button-padding-medium-horizontal"),
-    padV:       SL("contextual-button-padding-medium-vertical"),
-    iconWrap:   24,
-    iconInner:  16,
-    fontSize:   16,                                          // no CSS var — see §15
-    fontFamily: ST("label-button-base-fontfamily"),
-    fontWeight: ST("label-button-base-fontweight"),
-    lineHeight: ST("label-button-base-lineheight"),
+    padH:          SL("contextual-button-padding-medium-horizontal"),
+    padV:          SL("contextual-button-padding-medium-vertical"),
+    iconWrap:      24,
+    iconInner:     16,
+    fontSize:      ST("label-button-base-fontsize"),
+    fontFamily:    ST("label-button-base-fontfamily"),
+    fontWeight:    ST("label-button-base-fontweight"),
+    lineHeight:    ST("label-button-base-lineheight"),
     letterSpacing: ST("label-button-base-letterspacing"),
   },
   S: {
-    padH:       SL("contextual-button-padding-small-horizontal"),
-    padV:       SL("contextual-button-padding-small-vertical"),
-    iconWrap:   20,
-    iconInner:  14,
-    fontSize:   14,                                          // no CSS var — see §15
-    fontFamily: ST("label-button-s-fontfamily"),
-    fontWeight: ST("label-button-s-fontweight"),
-    lineHeight: ST("label-button-s-lineheight"),
+    padH:          SL("contextual-button-padding-small-horizontal"),
+    padV:          SL("contextual-button-padding-small-vertical"),
+    iconWrap:      20,
+    iconInner:     14,
+    fontSize:      ST("label-button-s-fontsize"),
+    fontFamily:    ST("label-button-s-fontfamily"),
+    fontWeight:    ST("label-button-s-fontweight"),
+    lineHeight:    ST("label-button-s-lineheight"),
     letterSpacing: ST("label-button-s-letterspacing"),
   },
 };
@@ -259,10 +256,10 @@ export function Button({
     display:          "inline-flex",
     alignItems:       "center",
     justifyContent:   "center",
-    paddingLeft:      typeof sz.padH === "number" ? `${sz.padH}px` : sz.padH,
-    paddingRight:     typeof sz.padH === "number" ? `${sz.padH}px` : sz.padH,
-    paddingTop:       typeof sz.padV === "number" ? `${sz.padV}px` : sz.padV,
-    paddingBottom:    typeof sz.padV === "number" ? `${sz.padV}px` : sz.padV,
+    paddingLeft:      sz.padH,
+    paddingRight:     sz.padH,
+    paddingTop:       sz.padV,
+    paddingBottom:    sz.padV,
     borderRadius:     T.radius,
     backgroundColor:  bgColor,
     border:           hasStroke ? `${T.border} solid ${strokeColor}` : "none",

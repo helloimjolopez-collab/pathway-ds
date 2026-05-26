@@ -4029,7 +4029,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-primary-base": {
-    "value": "#2d4889",
+    "value": "#345499",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4041,7 +4041,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-primary-hover": {
-    "value": "#22386b",
+    "value": "#2d4889",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4053,7 +4053,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-primary-pressed": {
-    "value": "#1b2d57",
+    "value": "#22386b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4125,7 +4125,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-secondary-base": {
-    "value": "#313131",
+    "value": "#292724",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4137,7 +4137,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-secondary-hover": {
-    "value": "#252525",
+    "value": "#1f1d1b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4149,7 +4149,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-secondary-pressed": {
-    "value": "#1b1b1b",
+    "value": "#171614",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4161,7 +4161,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-text-action-secondary-disabled": {
-    "value": "#979797",
+    "value": "#c2bdb5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4989,7 +4989,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-primary-base": {
-    "value": "#345499",
+    "value": "#4b6ec3",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5001,7 +5001,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-primary-hover": {
-    "value": "#4364b6",
+    "value": "#5475c6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5013,7 +5013,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-primary-pressed": {
-    "value": "#2d4889",
+    "value": "#3a5aaa",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5061,7 +5061,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-primaryinverse-pressed": {
-    "value": "#e0e7f7",
+    "value": "#e9eef9",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5133,7 +5133,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-secondaryinverse-base": {
-    "value": "#fbfbfb",
+    "value": "#f3f0ec",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5145,7 +5145,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-secondaryinverse-hover": {
-    "value": "#11111105",
+    "value": "#f7f5f3",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5157,7 +5157,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-secondaryinverse-pressed": {
-    "value": "#f6f6f6",
+    "value": "#eeebe6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6597,7 +6597,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-primary-pressed": {
-    "value": "#1b2d57",
+    "value": "#22386b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6669,7 +6669,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-secondary-base": {
-    "value": "#313131",
+    "value": "#292724",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6681,7 +6681,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-secondary-hover": {
-    "value": "#252525",
+    "value": "#1f1d1b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6693,7 +6693,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-secondary-pressed": {
-    "value": "#1b1b1b",
+    "value": "#171614",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6705,7 +6705,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-secondary-disabled": {
-    "value": "#979797",
+    "value": "#c2bdb5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6729,7 +6729,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-icon-action-secondary-inverse-hover": {
-    "value": "#606060",
+    "value": "#545454",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7953,7 +7953,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-primary-base": {
-    "value": "#5d7cca",
+    "value": "#4b6ec3",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7965,7 +7965,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-primary-hover": {
-    "value": "#c0ceef",
+    "value": "#86a0dd",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8049,7 +8049,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-secondary-base": {
-    "value": "#a6a6a6",
+    "value": "#87827b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8061,7 +8061,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-secondary-hover": {
-    "value": "#8b8b8b",
+    "value": "#d4cfc8",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8073,7 +8073,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-secondary-pressed": {
-    "value": "#7b7b7b",
+    "value": "#87827b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8085,7 +8085,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-secondary-disabled": {
-    "value": "#e1e1e1",
+    "value": "#fbfaf8",
     "type": "color",
     "path": [
       "semantic-color",
@@ -15155,6 +15155,30 @@ const tokens = {
       "horizontal"
     ]
   },
+  "semantic-layout-units-contextual-button-padding-large-vertical": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "button",
+      "padding",
+      "large",
+      "vertical"
+    ]
+  },
+  "semantic-layout-units-contextual-button-padding-large-horizontal": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "button",
+      "padding",
+      "large",
+      "horizontal"
+    ]
+  },
   "semantic-layout-units-contextual-button-padding-medium-vertical": {
     "value": 10,
     "type": "number",
@@ -15204,7 +15228,7 @@ const tokens = {
     ]
   },
   "semantic-layout-units-contextual-button-border-width-thin-thin": {
-    "value": 0.75,
+    "value": 0.5,
     "type": "number",
     "path": [
       "semantic-layout-units",
@@ -15216,7 +15240,7 @@ const tokens = {
     ]
   },
   "semantic-layout-units-contextual-button-border-width-base-base": {
-    "value": 1.5,
+    "value": 0.75,
     "type": "number",
     "path": [
       "semantic-layout-units",
@@ -15228,7 +15252,7 @@ const tokens = {
     ]
   },
   "semantic-layout-units-contextual-button-border-width-thick-thick": {
-    "value": 2,
+    "value": 1,
     "type": "number",
     "path": [
       "semantic-layout-units",
@@ -15237,6 +15261,17 @@ const tokens = {
       "border-width",
       "thick",
       "thick"
+    ]
+  },
+  "semantic-layout-units-contextual-button-radius-radius": {
+    "value": 8,
+    "type": "number",
+    "path": [
+      "semantic-layout-units",
+      "contextual",
+      "button",
+      "radius",
+      "radius"
     ]
   },
   "semantic-layout-units-contextual-navitem-large-padding-vertical": {
@@ -15579,69 +15614,69 @@ const tokens = {
       "cornerradius"
     ]
   },
-  "semantic-layout-units-accessibility-touch-target-optimal-height": {
+  "semantic-layout-units-accessibility-touch-target-aaa-height": {
     "value": 48,
     "type": "number",
     "path": [
       "semantic-layout-units",
       "accessibility",
       "touch-target",
-      "optimal",
+      "aaa",
       "height"
     ]
   },
-  "semantic-layout-units-accessibility-touch-target-optimal-width": {
+  "semantic-layout-units-accessibility-touch-target-aaa-width": {
     "value": 48,
     "type": "number",
     "path": [
       "semantic-layout-units",
       "accessibility",
       "touch-target",
-      "optimal",
+      "aaa",
       "width"
     ]
   },
-  "semantic-layout-units-accessibility-touch-target-mobile-minimum-height": {
+  "semantic-layout-units-accessibility-touch-target-aa-height": {
     "value": 44,
     "type": "number",
     "path": [
       "semantic-layout-units",
       "accessibility",
       "touch-target",
-      "mobile-minimum",
+      "aa",
       "height"
     ]
   },
-  "semantic-layout-units-accessibility-touch-target-mobile-minimum-width": {
+  "semantic-layout-units-accessibility-touch-target-aa-width": {
     "value": 44,
     "type": "number",
     "path": [
       "semantic-layout-units",
       "accessibility",
       "touch-target",
-      "mobile-minimum",
+      "aa",
       "width"
     ]
   },
-  "semantic-layout-units-accessibility-touch-target-desktop-minimum-height": {
+  "semantic-layout-units-accessibility-touch-target-desktop-only-height": {
     "value": 36,
     "type": "number",
     "path": [
       "semantic-layout-units",
       "accessibility",
       "touch-target",
-      "desktop-minimum",
+      "desktop-only",
       "height"
     ]
   },
-  "semantic-layout-units-accessibility-touch-target-desktop-minimum-width": {
+  "semantic-layout-units-accessibility-touch-target-desktop-only-width": {
     "value": 36,
     "type": "number",
     "path": [
       "semantic-layout-units",
       "accessibility",
       "touch-target",
-      "desktop-minimum",
+      "desktop-only",
       "width"
     ]
   },
