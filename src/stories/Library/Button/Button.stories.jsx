@@ -1,8 +1,10 @@
 /**
  * Button — Storybook stories
  *
- * Playground · StateMatrix · ElementExplorer · TokensFill · TokensText
- * · TokensStroke · TokensIcon · StandaloneDemo
+ * Playground · StateMatrix · ElementExplorer · AllSizes · IconVariants · LoadingState
+ * · TokensFill · TokensText · TokensStroke · TokensIcon
+ * · TokensTypography · TokensSpacing · TokensMotion · TokensRadius
+ * · StandaloneDemo
  *
  * Authoritative spec: components/button/button-spec.md
  * Figma: https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003293-93741
@@ -540,6 +542,311 @@ TokensIcon.parameters = {
       story:
         "Icon and spinner colour tokens. The spinner inherits via `currentColor` from the " +
         "container's `color` property, which is always set to the current icon token.",
+    },
+  },
+};
+
+// ─── TokensTypography ────────────────────────────────────────────────────────
+
+const TYPOGRAPHY_ROWS = [
+  {
+    size: "L",
+    tokenBase: "--semantic-type-desktop-label-button-l",
+    fontSize: "18px",
+    lineHeight: "24px",
+    fontWeight: "500",
+    letterSpacing: "0.3px",
+    role: "Size L button label",
+  },
+  {
+    size: "M (base)",
+    tokenBase: "--semantic-type-desktop-label-button-base",
+    fontSize: "16px",
+    lineHeight: "22px",
+    fontWeight: "500",
+    letterSpacing: "0.3px",
+    role: "Size M button label (default)",
+  },
+  {
+    size: "S",
+    tokenBase: "--semantic-type-desktop-label-button-s",
+    fontSize: "14px",
+    lineHeight: "20px",
+    fontWeight: "500",
+    letterSpacing: "0.3px",
+    role: "Size S button label",
+  },
+];
+
+function TypographyRow({ size, tokenBase, fontSize, lineHeight, fontWeight, letterSpacing, role }) {
+  return (
+    <div style={{
+      display: "grid", gridTemplateColumns: "80px 280px 160px 1fr",
+      gap: 16, alignItems: "center", padding: "12px 0",
+      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text', sans-serif",
+    }}>
+      <span style={{ fontSize: 12, fontWeight: 600, color: "#313131" }}>{size}</span>
+      <div>
+        <code style={{ fontSize: 11, color: "#2d4889", fontFamily: "monospace", display: "block" }}>
+          {tokenBase}-fontsize
+        </code>
+        <code style={{ fontSize: 11, color: "#8890b0", fontFamily: "monospace", display: "block", marginTop: 2 }}>
+          {tokenBase}-lineheight · -fontweight · -letterspacing
+        </code>
+      </div>
+      <div style={{
+        padding: "6px 12px",
+        background: "#f5f7fb",
+        border: "1px solid #edf0f9",
+        borderRadius: 6,
+      }}>
+        <span style={{
+          fontFamily: "'Red Hat Text', sans-serif",
+          fontWeight: 500,
+          fontSize,
+          lineHeight,
+          letterSpacing,
+          color: "#02060d",
+        }}>
+          Save changes
+        </span>
+      </div>
+      <code style={{ fontSize: 11, color: "#555", fontFamily: "monospace" }}>
+        {fontSize} / {fontWeight} / {lineHeight} / {letterSpacing}
+      </code>
+    </div>
+  );
+}
+
+export const TokensTypography = () => (
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif" }}>
+    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
+      Three label type styles — one per size. All use Red Hat Text at weight 500 with{" "}
+      <code style={{ fontSize: 12 }}>letter-spacing: 0.3px</code>. Only the font-size and
+      line-height scale.
+    </p>
+    <div style={{
+      display: "grid", gridTemplateColumns: "80px 280px 160px 1fr",
+      gap: 16, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4,
+    }}>
+      {["Size", "Token", "Sample", "Values"].map(h => (
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+          textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
+      ))}
+    </div>
+    {TYPOGRAPHY_ROWS.map(r => <TypographyRow key={r.size} {...r} />)}
+  </div>
+);
+TokensTypography.tags = ["!dev"];
+TokensTypography.parameters = {
+  docs: {
+    description: {
+      story:
+        "Label typography tokens — one set per size (L / M / S). All three share the same " +
+        "font-family, weight, and letter-spacing. Only font-size and line-height differ.",
+    },
+  },
+};
+
+// ─── TokensSpacing ────────────────────────────────────────────────────────────
+
+const SPACING_ROWS = [
+  { name: "Padding — L horizontal", value: "14px", token: "--semantic-layout-units-contextual-button-padding-large-horizontal",  role: "Left + right padding inside Container.Main for size L" },
+  { name: "Padding — L vertical",   value: "12px", token: "--semantic-layout-units-contextual-button-padding-large-vertical",    role: "Top + bottom padding inside Container.Main for size L" },
+  { name: "Padding — M horizontal", value: "12px", token: "--semantic-layout-units-contextual-button-padding-medium-horizontal", role: "Left + right padding inside Container.Main for size M (default)" },
+  { name: "Padding — M vertical",   value: "10px", token: "--semantic-layout-units-contextual-button-padding-medium-vertical",   role: "Top + bottom padding inside Container.Main for size M" },
+  { name: "Padding — S horizontal", value: "8px",  token: "--semantic-layout-units-contextual-button-padding-small-horizontal",  role: "Left + right padding inside Container.Main for size S" },
+  { name: "Padding — S vertical",   value: "6px",  token: "--semantic-layout-units-contextual-button-padding-small-vertical",    role: "Top + bottom padding inside Container.Main for size S" },
+  { name: "Icon–label gap",         value: "8px",  token: "--semantic-layout-units-contextual-button-gap-horizontal",            role: "Gap between leading/trailing icon and label text" },
+  { name: "Border width (Outlined)",value: "0.75px",token: "--semantic-layout-units-contextual-button-border-width-base-base",   role: "Outlined style border thickness" },
+  { name: "Touch-target padding",   value: "6px",  token: "— (hardcoded)",  role: "Transparent outer padding on <button> — ensures 48×48px minimum touch target (WCAG 2.5.5)" },
+  { name: "Touch target min-size",  value: "48px", token: "— (hardcoded)",  role: "Minimum interactive area enforced by outer <button> min-height + min-width" },
+];
+
+function SpacingRow({ name, value, token, role }) {
+  const noToken = token.startsWith("—");
+  return (
+    <div style={{
+      display: "grid", gridTemplateColumns: "200px 60px 360px 1fr",
+      gap: 12, alignItems: "center", padding: "8px 0",
+      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text', sans-serif",
+    }}>
+      <span style={{ fontSize: 12, color: "#313131" }}>{name}</span>
+      <code style={{ fontSize: 12, fontWeight: 600, color: "#2d4889", fontFamily: "monospace" }}>{value}</code>
+      <code style={{ fontSize: 11, color: noToken ? "#bbb" : "#2d4889", fontFamily: "monospace" }}>{token}</code>
+      <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>
+    </div>
+  );
+}
+
+export const TokensSpacing = () => (
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif" }}>
+    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
+      Padding, gap, border-width, and touch-target values. Grey token names have no
+      design token yet — they are hardcoded in the component.
+    </p>
+    <div style={{
+      display: "grid", gridTemplateColumns: "200px 60px 360px 1fr",
+      gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4,
+    }}>
+      {["Property", "Value", "Token", "Role"].map(h => (
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+          textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
+      ))}
+    </div>
+    {SPACING_ROWS.map(r => <SpacingRow key={r.name} {...r} />)}
+  </div>
+);
+TokensSpacing.tags = ["!dev"];
+TokensSpacing.parameters = {
+  docs: {
+    description: {
+      story:
+        "Padding scales across L / M / S sizes, plus the icon–label gap, border width, and touch-target " +
+        "floor. Grey entries have no token yet — they are hardcoded constants in button.jsx.",
+    },
+  },
+};
+
+// ─── TokensMotion ─────────────────────────────────────────────────────────────
+
+const MOTION_ROWS = [
+  {
+    name: "State transition",
+    duration: "150ms",
+    curve: "ease",
+    token: "— (standard)",
+    properties: "background-color · border-color · box-shadow · color",
+    rationale: "Hover, pressed, focused fill and colour changes — instant-class per the system standard",
+  },
+  {
+    name: "Spinner rotation",
+    duration: "750ms",
+    curve: "linear infinite",
+    token: "— (hardcoded)",
+    properties: "transform: rotate (pw-btn-spin keyframe)",
+    rationale: "Loading indicator rotation — continuous loop, not tied to interaction",
+  },
+];
+
+function MotionRow({ name, duration, curve, token, properties, rationale }) {
+  const hasToken = !token.startsWith("—");
+  return (
+    <div style={{
+      display: "grid", gridTemplateColumns: "160px 80px 200px 220px 1fr",
+      gap: 12, alignItems: "center", padding: "10px 0",
+      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text', sans-serif",
+    }}>
+      <span style={{ fontSize: 12, color: "#313131", fontWeight: 500 }}>{name}</span>
+      <code style={{ fontSize: 12, fontWeight: 600, color: "#2d4889", fontFamily: "monospace" }}>{duration}</code>
+      <code style={{ fontSize: 11, color: hasToken ? "#2d4889" : "#bbb", fontFamily: "monospace" }}>{token}</code>
+      <code style={{ fontSize: 11, color: "#555", fontFamily: "monospace" }}>{curve}</code>
+      <span style={{ fontSize: 11, color: "#8890b0" }}>{rationale}</span>
+    </div>
+  );
+}
+
+export const TokensMotion = () => (
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif" }}>
+    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
+      Button motion is intentionally minimal. State transitions (hover, pressed, focus ring)
+      use the system-standard 150 ms / ease — fast enough to feel instant. The spinner
+      rotation is a continuous loop and not part of the interaction model.
+      All motion is suppressed under{" "}
+      <code style={{ fontSize: 12 }}>prefers-reduced-motion: reduce</code>.
+    </p>
+    <div style={{
+      display: "grid", gridTemplateColumns: "160px 80px 200px 220px 1fr",
+      gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4,
+    }}>
+      {["Property", "Duration", "Token", "Curve", "Rationale"].map(h => (
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+          textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
+      ))}
+    </div>
+    {MOTION_ROWS.map(r => <MotionRow key={r.name} {...r} />)}
+  </div>
+);
+TokensMotion.tags = ["!dev"];
+TokensMotion.parameters = {
+  docs: {
+    description: {
+      story:
+        "Motion values for the Button. Both are hardcoded — no motion token family exists in the " +
+        "Pathway token file yet. State transitions follow the system-standard 150ms / ease.",
+    },
+  },
+};
+
+// ─── TokensRadius ─────────────────────────────────────────────────────────────
+
+const RADIUS_ROWS = [
+  {
+    name: "Container.Main",
+    value: "8px",
+    token: "--semantic-layout-units-contextual-button-radius-radius",
+    role: "Visible button surface — all sizes, all styles",
+  },
+  {
+    name: "Outer <button>",
+    value: "0px",
+    token: "— (no token)",
+    role: "Touch-target wrapper has no radius — it is transparent and never visually borders",
+  },
+];
+
+function RadiusRow({ name, value, token, role }) {
+  const noToken = token.startsWith("—");
+  const r = parseInt(value) || 0;
+  return (
+    <div style={{
+      display: "grid", gridTemplateColumns: "180px 80px 380px 1fr",
+      gap: 12, alignItems: "center", padding: "10px 0",
+      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text', sans-serif",
+    }}>
+      <span style={{ fontSize: 12, color: "#313131" }}>{name}</span>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <div style={{
+          width: 32, height: 32,
+          border: "1.5px solid #2d4889",
+          borderRadius: r,
+          background: "rgba(160,181,230,0.12)",
+        }} />
+        <code style={{ fontSize: 12, fontWeight: 600, color: "#2d4889", fontFamily: "monospace" }}>{value}</code>
+      </div>
+      <code style={{ fontSize: 11, color: noToken ? "#bbb" : "#2d4889", fontFamily: "monospace" }}>{token}</code>
+      <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>
+    </div>
+  );
+}
+
+export const TokensRadius = () => (
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif" }}>
+    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
+      The Button uses a single radius value (8px / Radius/M) on the visible{" "}
+      <code style={{ fontSize: 12 }}>Container.Main</code>. The outer{" "}
+      <code style={{ fontSize: 12 }}>&lt;button&gt;</code> touch-target wrapper is transparent
+      and has no radius.
+    </p>
+    <div style={{
+      display: "grid", gridTemplateColumns: "180px 80px 380px 1fr",
+      gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4,
+    }}>
+      {["Element", "Value", "Token", "Role"].map(h => (
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+          textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
+      ))}
+    </div>
+    {RADIUS_ROWS.map(r => <RadiusRow key={r.name} {...r} />)}
+  </div>
+);
+TokensRadius.tags = ["!dev"];
+TokensRadius.parameters = {
+  docs: {
+    description: {
+      story:
+        "Border-radius values for the Button. Container.Main uses Radius/M (8px) at all sizes " +
+        "and styles. The outer touch-target wrapper is transparent and has no radius.",
     },
   },
 };
