@@ -54,22 +54,38 @@ StyleDictionary.registerTransformGroup({
   ],
 });
 
-// Register a custom format for ES module export
-StyleDictionary.registerFormat({
-  name: "javascript/esm",
+// ─── Flat ESM format ──────────────────────────────────────────────────────────
+// SD5 ships a built-in "javascript/esm" format that produces a deeply-nested
+// DTCG token tree.  Registering under the same name on the class is silently
+// overwritten by the instance constructor's built-in format table.
+//
+// Workaround: use a unique name "pathway/javascript/esm-flat" and register it
+// on the *instance* (after hasInitialized) so it cannot be overwritten.
+//
+// Output shape — flat key → { value, type, path }:
+//   { "semantic-color-light-mode-fill-action-primary-base": { value: "#4b6ec3", ... } }
+//
+// Consumers (src/stories/components/*.js) iterate Object.entries(tokens) and
+// access token.value / token.path — they require this flat structure.
+
+const FLAT_ESM_FORMAT = {
+  name: "pathway/javascript/esm-flat",
   format: ({ dictionary }) => {
     const tokens = {};
     dictionary.allTokens.forEach((token) => {
       const cssName = token.path.join("-");
+      // In SD5 DTCG mode, token.value is undefined in the js platform —
+      // token.$value holds the resolved value (aliases already expanded by SD
+      // when outputReferences: false).
       tokens[cssName] = {
-        value: token.$value ?? token.value,
+        value: token.$value,
         type: token.$type ?? token.type ?? "unknown",
         path: token.path,
       };
     });
     return `const tokens = ${JSON.stringify(tokens, null, 2)};\n\nexport default tokens;\n`;
   },
-});
+};
 
 const config = {
   source: ["tokens/pathway-design-tokens.json"],
@@ -94,7 +110,7 @@ const config = {
       files: [
         {
           destination: "tokens.js",
-          format: "javascript/esm",
+          format: "pathway/javascript/esm-flat",
           options: {
             outputReferences: false,
           },
@@ -105,5 +121,11 @@ const config = {
 };
 
 const sd = new StyleDictionary(config);
+await sd.hasInitialized;
+
+// Register on the instance — runs after built-in formats load, so it cannot
+// be overwritten by the constructor's format table.
+sd.registerFormat(FLAT_ESM_FORMAT);
+
 await sd.buildAllPlatforms();
 console.log("Style Dictionary build complete.");
