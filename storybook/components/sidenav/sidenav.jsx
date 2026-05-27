@@ -560,6 +560,7 @@ export function SideNav({
             transition: "grid-template-rows 340ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
             <div style={{
               overflow: "hidden",
+              display: "flex", flexDirection: "column", gap: L.menuGap,
               opacity: isExp ? 1 : 0,
               transition: isExp
                 ? "opacity 240ms ease 60ms"
