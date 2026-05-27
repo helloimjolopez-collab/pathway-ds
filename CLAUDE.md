@@ -300,6 +300,7 @@ Never use Outlined, Sharp, or any other Material Symbols variant. Never use cust
 - Amending a commit that's already on `origin/main`.
 - Using `rm -rf` on anything not clearly scratch.
 - Re-enabling dark-mode token imports without explicit user authorization (see §2.1).
+- **Regenerating `src/tokens/tokens.js` with any command other than `node style-dictionary.config.js`.** This is the only command whose output `resolve-tokens.js` and every Storybook story are built to consume. Any other tool — the SD CLI, `@tokens-studio/sd-transforms` directly, any other script — may produce a structurally different output that silently breaks every color, fill, text, and icon lookup across the entire system.
 
 ## 13. PRs are always merged immediately — this is a solo repo
 
