@@ -125,25 +125,50 @@ For **icon-only buttons** (`showText={false}`), `ariaLabel` is mandatory — wit
 
 ## Responsive behaviour
 
-The Button has no breakpoint-specific layout changes — it is an inline element sized by its content. What changes across breakpoints is the *touch target floor* (always 48 × 48 px, enforced via `min-height`/`min-width`), not the button's visual size. Producers of button-containing layouts should ensure adequate spacing between adjacent buttons at narrow widths.
-
-The standalone demo below loads the self-contained HTML file. Resize the panel to verify touch target behaviour.
-
-<Canvas of={Stories.StandaloneDemo} />
+The Button has no breakpoint-specific layout changes — it is an inline element sized by its content. The touch target floor (48 × 48 px minimum, enforced via `min-height`/`min-width` on the outer `<button>`) applies at all viewport sizes. Producers of button-containing layouts should ensure adequate spacing between adjacent buttons at narrow widths.
 
 ---
 
 ## Accessibility
 
-| What | How |
-|---|---|
-| Semantic role | Native `<button type="button">` — no ARIA role override needed |
-| Keyboard activation | `Space` or `Enter` — native button behaviour |
-| Focus ring | `box-shadow: 0 0 0 6px #ffffff, 0 0 0 8px var(--semantic-color-light-mode-stroke-contextual-focusring-base)` on `Container.Main` |
-| Disabled state | `disabled` attribute + `aria-disabled="true"`. Cursor: `not-allowed`. |
-| Loading state | `aria-busy="true"` + `disabled` attribute. Screen reader sees button as busy/disabled. |
-| Icon-only | `ariaLabel` prop required — becomes the button's accessible name |
-| Accessible name source | `aria-label` prop → `text` prop (when `showText={false}`) → visible label |
+<table>
+  <thead>
+    <tr>
+      <th style={{width:"200px"}}>What</th>
+      <th>How</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Semantic role</td>
+      <td>Native <code>{'<button type="button">'}</code> — no ARIA role override needed</td>
+    </tr>
+    <tr>
+      <td>Keyboard activation</td>
+      <td><code>Space</code> or <code>Enter</code> — native button behaviour</td>
+    </tr>
+    <tr>
+      <td>Focus ring</td>
+      <td><code>{'box-shadow: 0 0 0 6px #ffffff, 0 0 0 9px var(--semantic-color-light-mode-stroke-contextual-focusring-base)'}</code> on <code>Container.Main</code>. Only appears on keyboard focus — mouse clicks do not trigger it.</td>
+    </tr>
+    <tr>
+      <td>Disabled state</td>
+      <td><code>disabled</code> attribute + <code>{'aria-disabled="true"'}</code>. Cursor: <code>not-allowed</code>.</td>
+    </tr>
+    <tr>
+      <td>Loading state</td>
+      <td><code>{'aria-busy="true"'}</code> + <code>disabled</code> attribute. Screen reader sees button as busy/disabled.</td>
+    </tr>
+    <tr>
+      <td>Icon-only</td>
+      <td><code>ariaLabel</code> prop required — becomes the button's accessible name. Without it the button fails WCAG 4.1.2.</td>
+    </tr>
+    <tr>
+      <td>Accessible name source</td>
+      <td><code>aria-label</code> prop → <code>text</code> prop (when <code>{'showText={false}'}</code>) → visible label</td>
+    </tr>
+  </tbody>
+</table>
 
 For system-wide accessibility rules (contrast ratios, focus ring specification, reduced motion), see [`docs/design-system-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/design-system-spec.md).
 
@@ -151,4 +176,4 @@ For system-wide accessibility rules (contrast ratios, focus ring specification, 
 
 ## Full specification
 
-The authoritative spec lives at [`components/button/button-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button-spec.md).
+The authoritative spec is on GitHub: [components/button/button-spec.md →](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button-spec.md)

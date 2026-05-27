@@ -88,13 +88,14 @@ const STROKE = {
 
 // ─── LAYOUT & FOCUS TOKENS ────────────────────────────────────────────────────
 // Touch target: 48×48 minimum with 6px outer padding (WCAG 2.5.5 target size).
-// Focus ring: 6px white halo + 2px brand ring (box-shadow on Container.Main).
+// Focus ring: 6px white halo + 9px brand ring (box-shadow on Container.Main).
+// Figma spec: DROP_SHADOW spread:9 color:#a0b5e6 + spread:6 color:#ffffff
 export const T = {
   radius:      SL("contextual-button-radius-radius"),                        // 8px
-  border:      SL("contextual-button-border-width-base-base"),              // 1.5px
+  border:      SL("contextual-button-border-width-base-base"),              // 0.75px
   gap:         SL("contextual-button-gap-horizontal"),                      // 8px
   touch:       { pad: 6, min: 48 },
-  focusShadow: `0 0 0 6px #ffffff, 0 0 0 8px ${SC("stroke-contextual-focusring-base")}`,
+  focusShadow: `0 0 0 6px #ffffff, 0 0 0 9px ${SC("stroke-contextual-focusring-base")}`,
 };
 
 // ─── SIZE TABLE ────────────────────────────────────────────────────────────────
@@ -197,13 +198,16 @@ export function ButtonSpinner({ size = 20 }) {
  *   size         — "L" | "M" | "S"                 (default: "M")
  *   type         — "Primary" | "Secondary" | "Tertiary" | "Negative"  (default: "Primary")
  *   text         — button label                     (default: "Button")
- *   leadingIcon  — React node (Material Symbol span or custom) | null
- *   trailingIcon — React node | null
+ *   leadingIcon  — Material Symbols ligature string or React node | null
+ *   trailingIcon — Material Symbols ligature string or React node | null
  *   showLeadingIcon  — bool (default: false)
  *   showTrailingIcon — bool (default: false)
  *   showText     — bool (default: true)
  *   loading      — bool — replaces content with spinner, sets aria-busy
  *   disabled     — bool — prevents interaction, sets aria-disabled
+ *   forceState   — "hover"|"pressed"|"focused"|"disabled"|"loading"|null
+ *                  Visual-only override for Storybook StateMatrix. Does not
+ *                  affect real interaction in production.
  *   onClick      — (e) => void
  *   ariaLabel    — overrides accessible name (required when showText=false)
  *   className    — extra CSS class on the outer <button>
@@ -220,6 +224,7 @@ export function Button({
   showText    = true,
   loading     = false,
   disabled    = false,
+  forceState  = null,
   onClick,
   ariaLabel,
   className   = "",
@@ -230,13 +235,27 @@ export function Button({
 
   useEffect(() => { ensureSpinKeyframe(); }, []);
 
-  const isDisabled = disabled || loading;
+  // forceState drives visual simulation in Storybook; real props win in production
+  const forceLoading  = forceState === "loading";
+  const forceDisabled = forceState === "disabled";
+  const isDisabled    = disabled || loading || forceDisabled || forceLoading;
 
-  // Resolve interaction state → token lookup key
-  const stateKey = isDisabled ? "disabled"
-    : pressed  ? "pressed"
-    : hovered  ? "hover"
-    : "base";
+  // Resolve the token-lookup key: forceState overrides live interaction when set
+  const stateKey = (() => {
+    if (forceState && !disabled && !loading) {
+      if (forceDisabled || forceLoading) return "disabled";
+      if (forceState === "focused")       return "base";   // focused = base bg + ring
+      if (forceState === "hover")         return "hover";
+      if (forceState === "pressed")       return "pressed";
+    }
+    return isDisabled ? "disabled"
+      : pressed  ? "pressed"
+      : hovered  ? "hover"
+      : "base";
+  })();
+
+  // Show focus ring only on keyboard navigation (not mouse click) or when forced
+  const showFocusRing = !isDisabled && (forceState === "focused" || focused);
 
   const fillTokens   = FILL[buttonStyle]?.[type]  || FILL.Fill.Primary;
   const textTokens   = TEXT[buttonStyle]?.[type]  || TEXT.Fill.Primary;
@@ -264,8 +283,8 @@ export function Button({
     backgroundColor:  bgColor,
     border:           hasStroke ? `${T.border} solid ${strokeColor}` : "none",
     gap:              T.gap,
-    boxShadow:        focused && !isDisabled ? T.focusShadow : "none",
-    transition:       "background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, color 150ms ease",
+    boxShadow:        showFocusRing ? T.focusShadow : "none",
+    transition:       "background-color 100ms ease-out, border-color 100ms ease-out, box-shadow 100ms ease-out, color 100ms ease-out",
     color:            iconColor,  // propagated to icons via currentColor
   };
 
@@ -278,21 +297,25 @@ export function Button({
     fontSize:      sz.fontSize,
     color:         textColor,
     whiteSpace:    "nowrap",
-    transition:    "color 150ms ease",
+    transition:    "color 100ms ease-out",
     userSelect:    "none",
   };
 
-  // Icon slot wrapper
+  // Icon slot wrapper — iconWrap = outer slot size, iconInner = rendered glyph size.
+  // fontVariationSettings overrides the global opsz:24 from preview-head.html —
+  // all button icon sizes (14–18px) sit below the minimum opsz axis value (20),
+  // so opsz:20 is the correct optical size for the tightest stroke rendering.
   const iconWrapStyle = {
-    display:        "inline-flex",
-    alignItems:     "center",
-    justifyContent: "center",
-    width:          sz.iconWrap,
-    height:         sz.iconWrap,
-    flexShrink:     0,
-    fontSize:       sz.iconInner,
-    color:          iconColor,
-    transition:     "color 150ms ease",
+    display:              "inline-flex",
+    alignItems:           "center",
+    justifyContent:       "center",
+    width:                sz.iconWrap,
+    height:               sz.iconWrap,
+    flexShrink:           0,
+    fontSize:             sz.iconInner,
+    color:                iconColor,
+    transition:           "color 100ms ease-out",
+    fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20",
   };
 
   // Outer button element — handles the touch-target zone
@@ -318,13 +341,17 @@ export function Button({
       onClick={!isDisabled ? onClick : undefined}
       disabled={isDisabled}
       aria-label={ariaLabel || (showText ? undefined : text)}
-      aria-busy={loading || undefined}
+      aria-busy={(loading || forceLoading) || undefined}
       aria-disabled={isDisabled || undefined}
       onMouseEnter={() => !isDisabled && setHovered(true)}
       onMouseLeave={() => { setHovered(false); setPressed(false); }}
       onMouseDown={() => !isDisabled && setPressed(true)}
       onMouseUp={() => setPressed(false)}
-      onFocus={() => setFocused(true)}
+      onFocus={(e) => {
+        // Only show focus ring when navigating via keyboard (focus-visible heuristic).
+        // Mouse clicks focus the button but should not trigger the focus ring.
+        if (e.target.matches?.(':focus-visible')) setFocused(true);
+      }}
       onBlur={() => { setFocused(false); setPressed(false); }}
       onKeyDown={(e) => { if ((e.key === " " || e.key === "Enter") && !isDisabled) setPressed(true); }}
       onKeyUp={() => setPressed(false)}
@@ -332,7 +359,7 @@ export function Button({
       style={outerStyle}
     >
       <span style={containerStyle} aria-hidden="true" className="pw-button__container">
-        {loading ? (
+        {(loading || forceLoading) ? (
           // Loading state — spinner only, no label or icons
           <ButtonSpinner size={sz.iconInner * 1.2} />
         ) : (

@@ -187,11 +187,13 @@ Playground.parameters = {
 // ─── StateMatrix ──────────────────────────────────────────────────────────────
 
 export const StateMatrix = () => {
+  // forceState drives visual-only state simulation — no real interaction needed.
+  // "disabled" and "loading" use their real props so aria-* attributes are correct.
   const combos = [
     { label: "Default",  props: {} },
-    { label: "Hover",    props: { _simHover: true } },
-    { label: "Pressed",  props: { _simPress: true } },
-    { label: "Focused",  props: { _simFocus: true } },
+    { label: "Hover",    props: { forceState: "hover" } },
+    { label: "Pressed",  props: { forceState: "pressed" } },
+    { label: "Focused",  props: { forceState: "focused" } },
     { label: "Disabled", props: { disabled: true } },
     { label: "Loading",  props: { loading: true } },
   ];
@@ -212,8 +214,7 @@ export const StateMatrix = () => {
                       type={type}
                       size="M"
                       text={label}
-                      disabled={extra.disabled}
-                      loading={extra.loading}
+                      {...extra}
                     />
                     <span style={{ fontSize: 10, color: "#b0b6cc" }}>{label}</span>
                   </div>
