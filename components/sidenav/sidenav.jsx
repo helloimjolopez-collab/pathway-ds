@@ -557,7 +557,8 @@ export function SideNav({
           <div style={{
             display: "grid",
             gridTemplateRows: isExp ? "1fr" : "0fr",
-            transition: "grid-template-rows 340ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
+            marginTop: isExp ? L.menuGap : 0,
+            transition: "grid-template-rows 340ms cubic-bezier(0.22, 1, 0.36, 1), margin-top 340ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
             <div style={{
               overflow: "hidden",
               display: "flex", flexDirection: "column", gap: L.menuGap,
