@@ -703,26 +703,30 @@ A condensed playbook for an AI agent asked to implement (or re-implement) this c
 
 ## 19. Storybook
 
-Stories at `src/stories/Library/OrgSwitcher/`. Canonical story set, modelled on `src/stories/Library/SideNav/SideNav.stories.jsx`. Every story that renders the component is wrapped in a `DemoCard` whose visual treatment is lifted verbatim from `components/org-switcher/org-switcher.html` — captions, surface colour, and structure mirror the HTML demo 1:1.
+Stories at `src/stories/Library/OrgSwitcher/`. Canonical structure mirrors `src/stories/Library/SideNav/SideNav.stories.jsx`: only a handful of interactive stories appear in the left sidebar, and all reference/documentation stories use `tags: ["!dev"]` to hide from the sidebar while remaining embeddable in the Docs MDX page via `<Canvas of={Stories.X} />`.
+
+### Sidebar entries (4 total — matches SideNav's pattern)
 
 | Story | Story ID | What it demonstrates |
 |---|---|---|
+| Docs | `library-orgswitcher--docs` | The MDX docs page — contains the spec content, all tokens, accessibility, responsive behaviour |
 | Playground | `library-orgswitcher--playground` | Full Controls panel — every prop interactive |
-| State matrix | `library-orgswitcher--state-matrix` | All interaction states (Base / Open / Disabled) on desktop AND mobile |
-| Avatar explorer | `library-orgswitcher--avatar-explorer` | Logo on file vs church SVG placeholder, isolated |
-| Desktop variants | `library-orgswitcher--desktop-variants` | Captions mirror HTML demo: logo on file / no logo / open with placeholder panel |
-| Catholic vs Protestant | `library-orgswitcher--catholic-vs-protestant` | Side-by-side: Catholic shows ` \| Knoxville`; Protestant with `cityName="Atlanta"` shows NO city container (spec §0.1) |
-| Truncation | `library-orgswitcher--truncation` | Short ("Cross Point") / medium ("Grace Community Church") / long (ellipsis at 180px) |
 | Mobile | `library-orgswitcher--mobile` | 108px-fixed pills with truncated labels — logo + no-logo |
-| Tokens — Fill | `library-orgswitcher--tokens-fill` | 4 fill tokens (trigger backgrounds, avatar placeholder) |
-| Tokens — Stroke | `library-orgswitcher--tokens-stroke` | 3 stroke tokens (trigger + avatar borders per state) |
-| Tokens — Text | `library-orgswitcher--tokens-text` | 3 text tokens (label per state) |
-| Tokens — Icon | `library-orgswitcher--tokens-icon` | 3 icon tokens (chevron per state) |
-| Tokens — Typography | `library-orgswitcher--tokens-typography` | Label/Button/S row — 14/500/20/0.3 |
-| Tokens — Spacing | `library-orgswitcher--tokens-spacing` | padding-xxtight, padding-xxxtight, gap-xxtight |
-| Tokens — Motion | `library-orgswitcher--tokens-motion` | Chevron rotation, state transitions, reduced-motion behaviour |
-| Tokens — Radius | `library-orgswitcher--tokens-radius` | cornerradius-medium (trigger), cornerradius-small (avatar) |
-| Standalone HTML demo | `library-orgswitcher--standalone-demo` | Iframe of `components/org-switcher/org-switcher.html` |
+| Avatar Explorer | `library-orgswitcher--avatar-explorer` | Logo on file vs church SVG placeholder, isolated |
+
+### Hidden stories — referenced from the Docs MDX page only (`tags: ["!dev"]`)
+
+These exist as exports so the Docs MDX page can embed them with `<Canvas of={Stories.X} />`, but they do not clutter the sidebar.
+
+- `StateMatrix` — all interaction states on desktop + mobile
+- `DesktopVariants` — captions mirror HTML demo: logo on file / no logo / open
+- `CatholicVsProtestant` — Catholic shows `| Knoxville`; Protestant with `cityName="Atlanta"` shows NO city container (spec §0.1)
+- `Truncation` — short / medium / long
+- `TokensFill`, `TokensStroke`, `TokensText`, `TokensIcon`, `TokensTypography`, `TokensSpacing`, `TokensMotion`, `TokensRadius` — one per token category used by the component
+
+### Standalone HTML demo — not a story
+
+The standalone HTML demo (`components/org-switcher/org-switcher.html`) is **NOT** exported as a story. It lives only as a link in the Resources table at the top of the Docs MDX page (and in the Resources table at the top of this spec). Embedding it as a story added noise to the sidebar with no value.
 
 MDX docs page: `library-orgswitcher--docs`. Live URL: [storybook?path=/docs/library-orgswitcher--docs](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-orgswitcher--docs).
 

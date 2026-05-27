@@ -149,6 +149,7 @@ export const StateMatrix = () => (
   </StoryStack>
 );
 StateMatrix.storyName = "State matrix (all states)";
+StateMatrix.tags = ["!dev"]; // reference story — shown in MDX docs, hidden from sidebar
 
 // ── 3. Avatar Explorer ──────────────────────────────────────────────────────
 
@@ -162,7 +163,7 @@ export const AvatarExplorer = () => (
     </DemoCard>
   </StoryStack>
 );
-AvatarExplorer.storyName = "Avatar — logo vs church placeholder";
+AvatarExplorer.storyName = "Avatar Explorer";
 
 // ── 4. Desktop variants (captions mirror the HTML demo) ─────────────────────
 
@@ -184,6 +185,7 @@ export const DesktopVariants = () => (
   </StoryStack>
 );
 DesktopVariants.storyName = "Desktop variants";
+DesktopVariants.tags = ["!dev"];
 
 // ── 5. Catholic vs Protestant — spec §0.1 ──────────────────────────────────
 
@@ -198,6 +200,7 @@ export const CatholicVsProtestant = () => (
   </StoryStack>
 );
 CatholicVsProtestant.storyName = "Catholic vs Protestant rule (§0.1)";
+CatholicVsProtestant.tags = ["!dev"];
 
 // ── 6. Truncation ───────────────────────────────────────────────────────────
 
@@ -214,6 +217,7 @@ export const Truncation = () => (
     </DemoCard>
   </StoryStack>
 );
+Truncation.tags = ["!dev"];
 
 // ── 7. Mobile ───────────────────────────────────────────────────────────────
 
@@ -228,7 +232,7 @@ export const Mobile = () => (
     </DemoCard>
   </StoryStack>
 );
-Mobile.storyName = "Mobile (108px fixed)";
+Mobile.storyName = "Mobile";
 
 // ── Token swatch + row helpers ──────────────────────────────────────────────
 
@@ -281,6 +285,7 @@ export const TokensFill = () => (
   ]} />
 );
 TokensFill.storyName = "Tokens — Fill";
+TokensFill.tags = ["!dev"];
 
 // ── 9. Tokens — Stroke ──────────────────────────────────────────────────────
 
@@ -292,6 +297,7 @@ export const TokensStroke = () => (
   ]} />
 );
 TokensStroke.storyName = "Tokens — Stroke";
+TokensStroke.tags = ["!dev"];
 
 // ── 10. Tokens — Text ───────────────────────────────────────────────────────
 
@@ -303,6 +309,7 @@ export const TokensText = () => (
   ]} />
 );
 TokensText.storyName = "Tokens — Text";
+TokensText.tags = ["!dev"];
 
 // ── 11. Tokens — Icon ───────────────────────────────────────────────────────
 
@@ -314,6 +321,7 @@ export const TokensIcon = () => (
   ]} />
 );
 TokensIcon.storyName = "Tokens — Icon";
+TokensIcon.tags = ["!dev"];
 
 // ── 12. Tokens — Typography ─────────────────────────────────────────────────
 
@@ -339,6 +347,7 @@ export const TokensTypography = () => (
   </div>
 );
 TokensTypography.storyName = "Tokens — Typography";
+TokensTypography.tags = ["!dev"];
 
 // ── 13. Tokens — Spacing ────────────────────────────────────────────────────
 
@@ -374,6 +383,7 @@ export const TokensSpacing = () => (
   </div>
 );
 TokensSpacing.storyName = "Tokens — Spacing";
+TokensSpacing.tags = ["!dev"];
 
 // ── 14. Tokens — Motion ─────────────────────────────────────────────────────
 
@@ -412,6 +422,7 @@ export const TokensMotion = () => (
   </div>
 );
 TokensMotion.storyName = "Tokens — Motion";
+TokensMotion.tags = ["!dev"];
 
 // ── 15. Tokens — Radius ─────────────────────────────────────────────────────
 
@@ -442,15 +453,9 @@ export const TokensRadius = () => (
   </div>
 );
 TokensRadius.storyName = "Tokens — Radius";
+TokensRadius.tags = ["!dev"];
 
-// ── 16. Standalone HTML demo ────────────────────────────────────────────────
-
-export const StandaloneDemo = () => (
-  <iframe
-    src="/components/org-switcher/org-switcher.html"
-    style={{ width: "100%", height: 680, border: "none", borderRadius: 8 }}
-    title="OrgSwitcher standalone demo"
-  />
-);
-StandaloneDemo.storyName = "Standalone HTML demo";
-StandaloneDemo.parameters = { layout: "fullscreen" };
+// Note: the standalone HTML demo is not a story — it lives at
+// components/org-switcher/org-switcher.html and is linked from the Resources
+// section at the top of the Docs MDX page. Embedding it as a story added
+// noise to the sidebar with no value.
