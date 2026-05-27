@@ -264,8 +264,6 @@ export function Button({
     backgroundColor:  bgColor,
     border:           hasStroke ? `${T.border} solid ${strokeColor}` : "none",
     gap:              T.gap,
-    flex:             "1 0 0",
-    minWidth:         0,
     boxShadow:        focused && !isDisabled ? T.focusShadow : "none",
     transition:       "background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, color 150ms ease",
     color:            iconColor,  // propagated to icons via currentColor
