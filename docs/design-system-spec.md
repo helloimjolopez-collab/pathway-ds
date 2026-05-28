@@ -231,23 +231,81 @@ Pathway uses **400 (Regular)**, **500 (Medium)**, **600 (SemiBold)**. Italics an
 
 ---
 
-## 7. Naming
+## 7. Iconography
 
-### 7.1 File & folder names
+### 7.0 Library — Material Symbols Rounded
+
+**Every icon in Pathway uses Material Symbols Rounded.** No other icon library, icon set, or custom SVG is permitted for standard UI icons. This applies to every component, every HTML demo, every Storybook story, every spec illustration, and every prototype.
+
+**Source of truth for available icons:**
+- **GitHub repo:** `https://github.com/google/material-design-icons`
+- **Interactive browser (set Style = Rounded):** `https://fonts.google.com/icons`
+
+The folder name in the repo (e.g. `arrow_forward`, `check`, `close`) is the ligature string used in markup. Always verify the icon name against this repo before shipping.
+
+### 7.1 Usage
+
+```html
+<!-- Correct — Rounded variant, ligature text content -->
+<span class="material-symbols-rounded">arrow_forward</span>
+
+<!-- Wrong — never use Outlined or Sharp -->
+<span class="material-symbols-outlined">arrow_forward</span>
+```
+
+| Property | Value |
+|---|---|
+| Font family | `Material Symbols Rounded` |
+| CSS class | `material-symbols-rounded` |
+| Google Fonts CDN | `https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200` |
+| font-family in CSS | `'Material Symbols Rounded'` |
+| Default variation settings | `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20` |
+
+`opsz` (optical size) should match the rendered icon size: use `opsz: 20` for 14–20 px icons, `opsz: 24` for 21–28 px icons. Mismatched `opsz` causes slightly wrong stroke weight.
+
+### 7.2 Sizes
+
+| Button/component size | Icon slot size | Rendered icon | opsz |
+|---|---|---|---|
+| L | 26 × 26 px | 18 px | 20 |
+| M | 24 × 24 px | 16 px | 20 |
+| S | 20 × 20 px | 14 px | 20 |
+
+The slot wrapper (`<span>` with explicit width/height) constrains the icon to the slot square. The icon renders at the smaller px value via `font-size`. This ensures consistent hit-area and optical balance across sizes.
+
+### 7.3 What is not allowed
+
+- `material-symbols-outlined` or `Material Symbols Outlined` — if this class appears anywhere, it is a bug
+- `material-symbols-sharp` or any Sharp variant
+- Custom SVG files for any icon that exists in the Material Symbols Rounded library
+- Icon font classes from Font Awesome, Heroicons, Phosphor, or any other icon library
+- Emoji as icons
+
+Branded assets that do not exist as Material Symbols (org logos, product-specific glyphs) must be delivered as `<img>` or inline SVG — never as an icon font.
+
+### 7.4 CLAUDE.md cross-reference
+
+See `CLAUDE.md §12` for the full iconography rules that agents must follow during code generation. The rules here and in `CLAUDE.md §12` are identical; `CLAUDE.md §12` is the agent-facing enforcement copy.
+
+---
+
+## 8. Naming
+
+### 8.1 File & folder names
 
 Lowercase kebab-case for component folders and files: `components/sidenav/sidenav.jsx`, never `SideNav.jsx` or `side_nav.jsx`. Storybook story folders use PascalCase (`src/stories/Library/SideNav/`) to avoid macOS APFS case-insensitivity collisions — see `CLAUDE.md` §4.
 
-### 7.2 Token names
+### 8.2 Token names
 
 Lowercase with dots in JSON (`semantic-color.light-mode.icon.static.neutral.base`); style-dictionary emits hyphens for CSS (`--semantic-color-light-mode-icon-static-neutral-base`). Components consume the CSS variable form.
 
-### 7.3 Component prop names
+### 8.3 Component prop names
 
 Camel-case: `activeId`, `onNavigate`, `hideCollapseButton`. Boolean props that represent visibility or state use verb-ish names (`isOpen`, `hideX`) — not ambiguous ones (`open`, `hidden`).
 
 ---
 
-## 8. Documentation
+## 9. Documentation
 
 Every component ships with:
 
@@ -262,13 +320,13 @@ Skipping any of the six is grounds for the pipeline skill to refuse to proceed.
 
 ---
 
-## 9. Human review
+## 10. Human review
 
-**Every skill in the Pathway pipeline requires explicit human review at every gate.** See `CLAUDE.md` §12. No skill auto-promotes a spec from `PENDING HUMAN REVIEW` to `REVIEWED`; no skill commits without user confirmation; no skill pushes without user confirmation. Claude can draft and recommend — humans decide.
+**Every skill in the Pathway pipeline requires explicit human review at every gate.** See `CLAUDE.md` §11. No skill auto-promotes a spec from `PENDING HUMAN REVIEW` to `REVIEWED`; no skill commits without user confirmation; no skill pushes without user confirmation. Claude can draft and recommend — humans decide.
 
 ---
 
-## 10. Gaps & deferred decisions
+## 11. Gaps & deferred decisions
 
 | Gap | Priority | Notes |
 |---|---|---|

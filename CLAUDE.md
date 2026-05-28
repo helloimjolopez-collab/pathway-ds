@@ -281,16 +281,30 @@ If the user says *"just do it, don't ask me"* for a specific action, proceed wit
 
 ## 12. Iconography — Material Symbols Rounded, always
 
-**Every icon in Pathway uses Material Symbols Rounded.** This is non-negotiable and applies to every component, every demo, every story, every spec, every agent-brief, every prototype built from this system.
+**Every icon in Pathway uses Material Symbols Rounded.** This is non-negotiable and applies to every component, every demo, every story, every spec, every agent-brief, and every prototype built from this system.
+
+### Source of truth for available icons
+
+**GitHub repo:** `https://github.com/google/material-design-icons`
+
+This is the canonical source for every icon name, ligature string, and preview. To find or verify an icon:
+- Browse by category at `https://github.com/google/material-design-icons/tree/master/symbols/web`
+- Each icon folder contains the Rounded variant (and others — always use Rounded)
+- The folder name is the ligature string you put inside the `<span>` (e.g. folder `arrow_forward` → `<span class="material-symbols-rounded">arrow_forward</span>`)
+- Google's interactive search at `https://fonts.google.com/icons` lets you filter by style (set Style = Rounded) and copy the ligature name directly
+
+### Usage in code
 
 - **Font family:** `Material Symbols Rounded` (not Outlined, not Sharp)
 - **CSS class:** `material-symbols-rounded`
+- **Markup:** `<span class="material-symbols-rounded">icon_name</span>`
 - **Google Fonts CDN URL:** `https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`
 - **font-family in CSS:** `'Material Symbols Rounded'`
+- **Font variation settings:** `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20` for sizes 14–20 px; use `opsz` to match the rendered size
 
-If you see `material-symbols-outlined` or `Material Symbols Outlined` anywhere in this repo, it is a bug. Replace it.
+If you see `material-symbols-outlined`, `material-symbols-sharp`, or `Material Symbols Outlined` anywhere in this repo, it is a bug. Replace it with the Rounded variant.
 
-Never use Outlined, Sharp, or any other Material Symbols variant. Never use custom SVGs for standard UI icons — if it's in the Material Symbols Rounded library, use the ligature. If it's a branded asset (org logo, Amplify Home icon), use an image or inline SVG.
+Never use Outlined, Sharp, or any other Material Symbols variant. Never use custom SVGs for standard UI icons — if it's in the Material Symbols Rounded library, use the ligature. If it's a branded asset (org logo, Amplify Home icon), use an `<img>` or inline SVG instead.
 
 ## 13. Things that are always wrong
 
