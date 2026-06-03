@@ -12,9 +12,11 @@ import * as OrgSwitcherStories from "./OrgSwitcher.stories";
 
 # Org Switcher
 
-The Org Switcher is the trigger that renders inside the `TopNav` component (`components/top-nav/`) and shows the active organisation. Clicking it is meant to open a panel for switching between orgs the user has access to.
+The Org Switcher is the trigger that renders inside the `TopNav` component (`components/top-nav/`) and shows the active organisation. It displays the org name only — no logo or avatar is shown by default. Clicking it opens a panel for switching between orgs the user has access to.
 
 > **v1 scope — trigger only.** The dropdown menu / panel is **out of scope for v1 and remains as it is in production until further notice.** See `org-switcher-spec.md` §0.
+
+> **Logo display** — The org logo avatar is optional. By default (`logoUrl` absent) the trigger shows org name only. Pass `logoUrl` to render the logo image inside a 24×24 avatar frame. The church SVG placeholder is no longer shown — if there is no logo, there is no avatar.
 
 ### Resources
 
@@ -40,9 +42,9 @@ All interaction states (Base / Open / Disabled) on desktop and mobile, side-by-s
 
 ---
 
-## Explore the avatar
+## Logo variant (optional)
 
-The avatar has two render modes: logo image (`object-fit: cover`) or church SVG placeholder when no logo is on file.
+By default the trigger shows org name only. When a `logoUrl` is provided, a 24×24 avatar renders with the org logo.
 
 <Canvas of={OrgSwitcherStories.AvatarExplorer} />
 
@@ -92,10 +94,8 @@ On viewports below 768px (or when `mobile={true}` is forced), the trigger compac
 OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 fixed · min-w/h 48 (touch target)
 └── Container.Main                      h-36 · p-4 · rounded-8 · 1px border · gap-2 desktop / no gap mobile
     ├── Container.RowStart              flex items-center gap-4 · h-24 desktop · h-20 max-w-74 mobile
-    │   ├── Container.Avatar            24×24 desktop · 20×20 mobile · p-2 inner
-    │   │   └── Avatar                  rounded-4 · 1px border
-    │   │       ├─ [logo present]       <img object-fit:cover>
-    │   │       └─ [no logo]            church SVG · fill.action.secondary.base bg
+    │   ├── [Container.Avatar]          OPTIONAL — only rendered when logoUrl is provided
+    │   │   └── Avatar                  24×24 desktop · rounded-4 · 1px border · logo <img object-fit:cover>
     │   ├── Container.OrgLabel          DESKTOP ONLY · max-w-248
     │   │   ├── Container.OrgName       max-w-180 · content-sized · ellipsis at 180px
     │   │   └── Container.CityName.Catholic   CATHOLIC ORGS ONLY · max-w-78 (incl. 6px padding for pipe spacing)

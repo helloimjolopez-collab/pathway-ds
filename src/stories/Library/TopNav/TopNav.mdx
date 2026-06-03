@@ -14,7 +14,9 @@ The fixed horizontal bar that sits at the top of every page in Ministry Brands A
 
 **Always on the brand-blue surface.** All interactive controls use dark-mode tokens regardless of the app's active color scheme.
 
-**Spec:** `components/top-nav/top-nav-spec.md` · **Figma:** [Open node 40007067-6508](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6508)
+**OrgSwitcher in the nav bar** shows org name only by default — no logo or avatar. Pass `logoUrl` on the `org` prop if a logo should display. The church placeholder icon is no longer used.
+
+**Spec:** `components/top-nav/top-nav-spec.md` · **Figma:** [Open node 40007067-6508](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6508) · **[Live demo](https://helloimjolopez-collab.github.io/pathway-ds/components/top-nav/top-nav.html)**
 
 ---
 
@@ -33,9 +35,9 @@ On viewports below 768px: hamburger added, module label hidden, org label abbrev
 
 ---
 
-## Org logo fallback
+## Org name only (default)
 
-When no logo URL is provided, the avatar shows the org's two-letter initials. Derived by taking the first letter of the first two significant words (skipping articles and prepositions).
+The OrgSwitcher trigger shows org name and chevron only — no logo or avatar by default.
 
 <Canvas of={TopNavStories.OrgNoLogo} />
 

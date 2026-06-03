@@ -45,12 +45,12 @@
           "items": {
             "type": "Array<NavItem>",
             "required": false,
-            "description": "Flat navigation tree \u2014 use this OR `sections`, not both. Each item: { id, label, icon?, children? }"
+            "description": "Flat navigation tree — use this OR `sections`, not both. Each item: { id, label, icon?, children? }"
           },
           "sections": {
             "type": "Array<{ section: string, items: NavItem[] }>",
             "required": false,
-            "description": "Sectioned navigation \u2014 renders NavSectionLabel headings between groups (or rail dividers in collapsed mode). Use this OR `items`."
+            "description": "Sectioned navigation — renders NavSectionLabel headings between groups (or rail dividers in collapsed mode). Use this OR `items`."
           },
           "listSection": {
             "type": "{ label: string, items: Array<{id,label}> }",
@@ -124,7 +124,7 @@
     },
     "checkbox": {
       "displayName": "Checkbox",
-      "description": "Multi-select selection control. Three states: unchecked, checked, indeterminate. Supports error, highlight, and secondary indeterminate variants. Two sizes. 44\u00d744px touch target always.",
+      "description": "Multi-select selection control. Three states: unchecked, checked, indeterminate. Supports error, highlight, and secondary indeterminate variants. Two sizes. 44×44px touch target always.",
       "module": "components/checkbox/checkbox.jsx",
       "exports": [
         "Checkbox",
@@ -158,17 +158,17 @@
           "error": {
             "type": "boolean",
             "default": false,
-            "description": "Error / negative styling \u2014 fill and border switch to negative token family"
+            "description": "Error / negative styling — fill and border switch to negative token family"
           },
           "highlight": {
             "type": "boolean",
             "default": false,
-            "description": "Tinted background on the state-layer at rest \u2014 for selectable rows"
+            "description": "Tinted background on the state-layer at rest — for selectable rows"
           },
           "secondary": {
             "type": "boolean",
             "default": false,
-            "description": "Secondary indeterminate variant (muted colour) \u2014 use with indeterminate only"
+            "description": "Secondary indeterminate variant (muted colour) — use with indeterminate only"
           },
           "disabled": {
             "type": "boolean",
@@ -178,7 +178,7 @@
           "size": {
             "type": "\"default\" | \"s\"",
             "default": "\"default\"",
-            "description": "Visual size of the control. Touch target is always 44\u00d744px."
+            "description": "Visual size of the control. Touch target is always 44×44px."
           },
           "label": {
             "type": "string",
@@ -260,9 +260,9 @@
         ]
       },
       "gaps": [
-        "8 tokens missing from token file \u2014 see spec \u00a75.3. fill.action.secondaryinverse.* affects highlight variant resting state (HIGH priority).",
-        "Secondary Indeterminate use case TBD \u2014 confirm with design before shipping.",
-        "Highlight variant resting-state token (fill.action.secondaryinverse.base) missing \u2014 fallback in use."
+        "8 tokens missing from token file — see spec §5.3. fill.action.secondaryinverse.* affects highlight variant resting state (HIGH priority).",
+        "Secondary Indeterminate use case TBD — confirm with design before shipping.",
+        "Highlight variant resting-state token (fill.action.secondaryinverse.base) missing — fallback in use."
       ]
     },
     "org-switcher": {
@@ -270,7 +270,7 @@
       "description": "Organisation context switcher trigger in the brand-blue top nav. Renders the active org name (truncated with ellipsis at 180px desktop / 50px mobile). For Catholic organisations only, a second container after the org name shows the city or diocese. The trigger opens a drop panel listing accessible orgs.",
       "status": "REVIEWED",
       "version": "v1",
-      "v1Scope": "Trigger only. Drop panel is a non-normative placeholder in v1 \u2014 see spec \u00a70.",
+      "v1Scope": "Trigger only. Drop panel is a non-normative placeholder in v1 — see spec §0.",
       "module": "components/org-switcher/org-switcher.jsx",
       "exports": [
         "OrgSwitcher"
@@ -308,20 +308,20 @@
           "cityName": {
             "type": "string",
             "default": "\"\"",
-            "description": "City or diocese name. RENDERED ONLY when orgType === \"catholic\" (spec \u00a70.1). Ignored for Protestant orgs even if supplied. NOT a campus/suborg/region name."
+            "description": "City or diocese name. RENDERED ONLY when orgType === \"catholic\" (spec §0.1). Ignored for Protestant orgs even if supplied. NOT a campus/suborg/region name."
           },
           "logoUrl": {
             "type": "string",
-            "description": "Org logo URL. Empty or omitted \u2192 church SVG placeholder (never text initials)."
+            "description": "Org logo URL. Empty or omitted → church SVG placeholder (never text initials)."
           },
           "open": {
             "type": "boolean",
             "default": false,
-            "description": "Controlled open state \u2014 flips the chevron icon 180\u00b0."
+            "description": "Controlled open state — flips the chevron icon 180°."
           },
           "onClick": {
             "type": "function",
-            "description": "() => void \u2014 fired when the trigger is activated. Caller toggles the open state."
+            "description": "() => void — fired when the trigger is activated. Caller toggles the open state."
           },
           "disabled": {
             "type": "boolean",
@@ -335,15 +335,15 @@
           },
           "orgs": {
             "type": "array",
-            "description": "(Panel only \u2014 out of scope in v1.) Array of org records for the placeholder panel."
+            "description": "(Panel only — out of scope in v1.) Array of org records for the placeholder panel."
           },
           "activeOrgId": {
             "type": "string",
-            "description": "(Panel only \u2014 out of scope in v1.) Highlights the active org in the panel."
+            "description": "(Panel only — out of scope in v1.) Highlights the active org in the panel."
           },
           "onOrgSelect": {
             "type": "function",
-            "description": "(Panel only \u2014 out of scope in v1.) (orgId) => void when a panel row is clicked."
+            "description": "(Panel only — out of scope in v1.) (orgId) => void when a panel row is clicked."
           },
           "className": {
             "type": "string",
@@ -381,22 +381,21 @@
       },
       "motion": {
         "pillButtonBackground": "150ms cubic-bezier(0.4,0,0.2,1)",
-        "panelEnter": "200ms cubic-bezier(0,0,0.2,1) \u2014 keyframe orgPanelIn (opacity 0\u21921, translateY -6px \u2192 0)",
+        "panelEnter": "200ms cubic-bezier(0,0,0.2,1) — keyframe orgPanelIn (opacity 0→1, translateY -6px → 0)",
         "listItemHover": "120ms ease (background + border-color)",
         "caretRotation": "200ms cubic-bezier(0.4,0,0.2,1) (transform)"
       },
       "accessibility": {
         "ariaPattern": "Disclosure (button with aria-haspopup + aria-expanded)",
-        "touchTarget": "48\u00d748 (WCAG 2.5.5)",
+        "touchTarget": "48×48 (WCAG 2.5.5)",
         "ariaLabel": "Always includes the full org name (and city for Catholic orgs), regardless of visible truncation"
       },
       "gaps": [
-        "Panel (dropdown / bottom sheet) not yet designed in Figma \u2014 trigger only ships.",
+        "Panel (dropdown / bottom sheet) not yet designed in Figma — trigger only ships.",
         "ARIA pattern choice (Disclosure+listbox vs Combobox) deferred until panel is designed.",
-        "logoUrl placeholder tint (rgba(53,85,160,0.25)) is not a semantic token \u2014 TBD once brand-avatar token is added to Figma.",
+        "logoUrl placeholder tint (rgba(53,85,160,0.25)) is not a semantic token — TBD once brand-avatar token is added to Figma.",
         "Panel mobile behaviour (dropdown vs bottom sheet) not yet decided."
-      ],
-      "agentBrief": "components/org-switcher/agent-brief.md"
+      ]
     },
     "top-nav": {
       "displayName": "TopNav.Global",
@@ -454,7 +453,7 @@
       "motion": {
         "searchFieldFocus": "180ms ease (min-width expansion on focus)",
         "iconButtonHover": "120ms ease (background + border-color)",
-        "dropdownEnter": "140ms ease-out \u2014 keyframe tnDropIn",
+        "dropdownEnter": "140ms ease-out — keyframe tnDropIn",
         "iconRotation": "180ms ease (transform)"
       },
       "tokens": [
@@ -472,10 +471,10 @@
         "light-mode.text.static.accent.amethyst.contrast"
       ],
       "gaps": [
-        "Active item token in dropdowns: uses raw #eef2fb \u2014 no semantic token exists yet (HIGH).",
+        "Active item token in dropdowns: uses raw #eef2fb — no semantic token exists yet (HIGH).",
         "Notification badge / dot on bell icon not yet designed (HIGH).",
         "Mobile profile tap behavior not specified (HIGH).",
-        "Destructive item (Sign out) uses raw red \u2014 no semantic danger token (MEDIUM).",
+        "Destructive item (Sign out) uses raw red — no semantic danger token (MEDIUM).",
         "TopNav position sticky vs fixed not resolved (MEDIUM).",
         "Logo crop parameters tuned for Sacred Heart logo only (MEDIUM)."
       ]
@@ -484,7 +483,7 @@
       "displayName": "Spinner",
       "description": "Indeterminate activity indicator. 8-spoke sunburst, arbitrary size, semantic-token-only colour via tone + emphasis.",
       "module": null,
-      "moduleNote": "Spinner ships HTML/SVG/CSS only \u2014 no React module today. Inline the SVG from spinner.html, or copy markup from the spec. A .jsx wrapper is on the pipeline backlog.",
+      "moduleNote": "Spinner ships HTML/SVG/CSS only — no React module today. Inline the SVG from spinner.html, or copy markup from the spec. A .jsx wrapper is on the pipeline backlog.",
       "exports": [],
       "spec": "components/spinner/spinner-spec.md",
       "agentBrief": "components/spinner/agent-brief.md",
@@ -552,7 +551,7 @@
     },
     "button": {
       "displayName": "Button",
-      "description": "Primary action trigger. Three styles (Fill / Outlined / Naked), four semantic types (Primary / Secondary / Tertiary / Negative), three sizes (L / M / S). Supports leading icon, trailing icon, icon-only, and loading states. 48\u00d748px touch target always.",
+      "description": "Primary action trigger. Three styles (Fill / Outlined / Naked), four semantic types (Primary / Secondary / Tertiary / Negative), three sizes (L / M / S). Supports leading icon, trailing icon, icon-only, and loading states. 48×48px touch target always.",
       "status": "REVIEWED",
       "version": "v1",
       "module": "components/button/button.jsx",
@@ -580,7 +579,7 @@
           "size": {
             "type": "\"L\" | \"M\" | \"S\"",
             "default": "\"M\"",
-            "description": "L = 18px label, M = 16px label, S = 14px label. Touch target is always 48\u00d748px minimum."
+            "description": "L = 18px label, M = 16px label, S = 14px label. Touch target is always 48×48px minimum."
           },
           "type": {
             "type": "\"Primary\" | \"Secondary\" | \"Tertiary\" | \"Negative\"",
@@ -764,12 +763,11 @@
       "gaps": [],
       "accessibility": {
         "ariaPattern": "Native <button type='button'>",
-        "touchTarget": "48\u00d748px minimum (WCAG 2.5.5)",
+        "touchTarget": "48×48px minimum (WCAG 2.5.5)",
         "focusRing": "6px white halo + 2px brand ring via box-shadow on Container.Main",
         "loadingState": "aria-busy='true' + disabled attribute",
         "iconOnly": "ariaLabel prop required when showText=false"
-      },
-      "agentBrief": "components/button/agent-brief.md"
+      }
     }
   }
 }
