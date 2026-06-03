@@ -570,7 +570,7 @@ export default {
   argTypes: {
     orgName:       { control: "text",    name: "Org name",           description: "Full organisation name" },
     campusName:    { control: "text",    name: "Campus name",        description: "Campus or sub-org name (empty string = no campus)" },
-    logoUrl:       { control: "text",    name: "Logo URL",           description: "Org logo image URL. Omit to see initials fallback." },
+    logoUrl:       { control: "text",    name: "Logo URL",           description: "Org logo image URL. Omit (default) to show org name only — no avatar or placeholder." },
     userName:      { control: "text",    name: "User name",          description: "Displayed in profile menu header" },
     userInitials:  { control: "text",    name: "User initials",      description: "Two-letter initials for profile avatar" },
     userEmail:     { control: "text",    name: "User email",         description: "Email shown in profile menu" },
@@ -624,7 +624,7 @@ export const Tablet = {
 export const OrgNoLogo = {
   args: { ...Playground.args, logoUrl: "" },
   parameters: {
-    docs: { description: { story: "Org has no logo on file: avatar shows the custom Figma church SVG icon on a Fill/Action/Secondary/Base background (rgba 255,255,255,0.08). Source: Figma node 40007243:73405." } },
+    docs: { description: { story: "Default state — no logo. The OrgSwitcher trigger shows org name and chevron only. No avatar frame, no church placeholder. Pass `logoUrl` to render an org logo." } },
   },
 };
 
