@@ -126,7 +126,7 @@ Playground.args = {
   orgName:  "Grace Community Church",
   orgType:  "protestant",
   cityName: "",
-  logoUrl:  SACRED_HEART_LOGO,
+  logoUrl:  "",           // No logo by default — org name only (Figma: showOrgAvatar = false)
   open:     false,
   disabled: false,
   mobile:   false,
@@ -136,15 +136,15 @@ Playground.args = {
 
 export const StateMatrix = () => (
   <StoryStack>
-    <DemoCard caption="STATE MATRIX — DESKTOP, ALL INTERACTION STATES">
-      <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
-      <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} open onClick={() => {}} />
-      <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} disabled />
+    <DemoCard caption="STATE MATRIX — DESKTOP, ALL INTERACTION STATES (ORG NAME ONLY)">
+      <OrgSwitcher mobile={false} orgName="Grace Community Church" />
+      <OrgSwitcher mobile={false} orgName="Grace Community Church" open onClick={() => {}} />
+      <OrgSwitcher mobile={false} orgName="Grace Community Church" disabled />
     </DemoCard>
-    <DemoCard caption="STATE MATRIX — MOBILE, ALL INTERACTION STATES">
-      <OrgSwitcher mobile orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
-      <OrgSwitcher mobile orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} open onClick={() => {}} />
-      <OrgSwitcher mobile orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} disabled />
+    <DemoCard caption="STATE MATRIX — MOBILE, ALL INTERACTION STATES (ORG NAME ONLY)">
+      <OrgSwitcher mobile orgName="Grace Community Church" />
+      <OrgSwitcher mobile orgName="Grace Community Church" open onClick={() => {}} />
+      <OrgSwitcher mobile orgName="Grace Community Church" disabled />
     </DemoCard>
   </StoryStack>
 );
@@ -155,32 +155,32 @@ StateMatrix.tags = ["!dev"]; // reference story — shown in MDX docs, hidden fr
 
 export const AvatarExplorer = () => (
   <StoryStack>
-    <DemoCard caption="AVATAR — LOGO ON FILE (object-fit: cover)">
-      <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
-    </DemoCard>
-    <DemoCard caption="AVATAR — NO LOGO (CHURCH SVG PLACEHOLDER)">
+    <DemoCard caption="DEFAULT — ORG NAME ONLY (NO LOGO, NO PLACEHOLDER)">
+      <OrgSwitcher mobile={false} orgName="Grace Community Church" />
       <OrgSwitcher mobile={false} orgName="Northern Kentucky Baptist Church" />
+    </DemoCard>
+    <DemoCard caption="OPTIONAL — WITH LOGO (pass logoUrl to render the avatar)">
+      <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
     </DemoCard>
   </StoryStack>
 );
-AvatarExplorer.storyName = "Avatar Explorer";
+AvatarExplorer.storyName = "Logo variant (optional)";
 
 // ── 4. Desktop variants (captions mirror the HTML demo) ─────────────────────
 
 export const DesktopVariants = () => (
   <StoryStack>
-    <DemoCard caption="TRIGGER — DESKTOP, ORG HAS LOGO ON FILE (DEFAULT STATE)">
-      <OrgSwitcher mobile={false} orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
-      <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
-      <OrgSwitcher mobile={false} orgName="Cross Point" logoUrl={SACRED_HEART_LOGO} />
-    </DemoCard>
-    <DemoCard caption="TRIGGER — DESKTOP, ORG HAS NO LOGO ON FILE (CHURCH PLACEHOLDER)">
+    <DemoCard caption="TRIGGER — DESKTOP, DEFAULT (ORG NAME ONLY, NO LOGO)">
       <OrgSwitcher mobile={false} orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" />
       <OrgSwitcher mobile={false} orgName="Grace Community Church" />
       <OrgSwitcher mobile={false} orgName="Cross Point" />
     </DemoCard>
-    <DemoCard caption="TRIGGER + PANEL — DESKTOP, OPEN (⚠ PANEL IS PLACEHOLDER, OUT OF SCOPE IN V1)">
-      <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} open onClick={() => {}} />
+    <DemoCard caption="TRIGGER — DESKTOP, OPEN (⚠ PANEL IS PLACEHOLDER, OUT OF SCOPE IN V1)">
+      <OrgSwitcher mobile={false} orgName="Grace Community Church" open onClick={() => {}} />
+    </DemoCard>
+    <DemoCard caption="TRIGGER — DESKTOP, WITH OPTIONAL LOGO (pass logoUrl)">
+      <OrgSwitcher mobile={false} orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
+      <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
     </DemoCard>
   </StoryStack>
 );
@@ -223,11 +223,9 @@ Truncation.tags = ["!dev"];
 
 export const Mobile = () => (
   <StoryStack>
-    <DemoCard caption="TRIGGER — MOBILE, ORG HAS LOGO ON FILE (108px FIXED PILL)">
-      <OrgSwitcher mobile orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
-      <OrgSwitcher mobile orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
-    </DemoCard>
-    <DemoCard caption="TRIGGER — MOBILE, NO LOGO (CHURCH PLACEHOLDER)">
+    <DemoCard caption="TRIGGER — MOBILE, DEFAULT (ORG NAME ONLY, 108px FIXED PILL)">
+      <OrgSwitcher mobile orgName="Grace Community Church" />
+      <OrgSwitcher mobile orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" />
       <OrgSwitcher mobile orgName="Northern Kentucky Baptist Church" />
     </DemoCard>
   </StoryStack>

@@ -185,7 +185,9 @@ const TYPE_S = {
 //               for the CityName container (spec §0.1). Even if a cityName
 //               string is supplied, Protestant orgs render no city container.
 //   cityName  — city/diocese name. Catholic orgs only.
-//   logoUrl   — org logo image URL. Empty / missing → church SVG placeholder.
+//   logoUrl   — org logo image URL. When provided the logo avatar renders.
+//               When absent no avatar is shown — org name only (Figma default:
+//               showOrgAvatar = false). The church placeholder is NOT shown.
 //   open      — controlled open state. Flips the chevron rotation and applies
 //               pressed-state styling. The caller renders any panel above.
 //   onClick   — () => void — fired when the trigger is activated.
@@ -307,7 +309,10 @@ export function OrgSwitcher({
               ? { height: 20, maxWidth: 74 }
               : { height: "100%" }),
           }}>
-            <TriggerAvatar logoUrl={logoUrl} size={AVATAR_SZ} borderColor={stroke} />
+            {/* Avatar only rendered when a logo URL is explicitly provided.
+                The church placeholder is no longer shown by default — per Figma
+                the OrgSwitcher shows org name only (showOrgAvatar = false). */}
+            {logoUrl && <TriggerAvatar logoUrl={logoUrl} size={AVATAR_SZ} borderColor={stroke} />}
 
             {/* Container.OrgLabel — DESKTOP ONLY (annotation: truncates at 248pt) */}
             {!isMobile && (

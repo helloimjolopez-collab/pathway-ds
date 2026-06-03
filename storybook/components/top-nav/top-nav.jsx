@@ -372,31 +372,30 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           transition: "background 150ms cubic-bezier(0.4,0,0.2,1), border-color 150ms cubic-bezier(0.4,0,0.2,1)",
         }}
       >
-        {/* Avatar container */}
+        {/* RowStart — org name label only. No avatar or logo displayed in the
+            nav trigger per Figma (showOrgAvatar = false by default).
+            If org.logoUrl is provided it is still used in the org panel below. */}
         <div style={{ display: "flex", alignItems: "center", gap: 4,
           height: 20, padding: "0 2px" }}>
-          <div style={{ width: L.orgAvatarSm, height: L.orgAvatarSm, padding: 2,
-            display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-            {/* Inner 20×20 avatar frame */}
-            <div style={{
-              width: L.orgAvatarNav, height: L.orgAvatarNav, borderRadius: L.radiusSm,
-              border: `1px solid ${T.orgStroke}`,
-              // With logo: transparent bg; no logo: Fill/Action/Secondary/Base per Figma
-              background: hasLogo ? "transparent" : T.noLogoBg,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              overflow: "hidden", position: "relative", flexShrink: 0,
-            }}>
-              {hasLogo
-                ? <img
-                    src={org.logoUrl} alt=""
-                    onError={() => setImgFailed(true)}
-                    style={{ width: "100%", height: "100%", objectFit: "cover",
-                      display: "block" }}
-                  />
-                : <OrgAvatarPlaceholder />
-              }
+          {/* Logo avatar — only rendered when a URL is explicitly provided */}
+          {hasLogo && (
+            <div style={{ width: L.orgAvatarSm, height: L.orgAvatarSm, padding: 2,
+              display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <div style={{
+                width: L.orgAvatarNav, height: L.orgAvatarNav, borderRadius: L.radiusSm,
+                border: `1px solid ${T.orgStroke}`,
+                background: "transparent",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                overflow: "hidden", position: "relative", flexShrink: 0,
+              }}>
+                <img
+                  src={org.logoUrl} alt=""
+                  onError={() => setImgFailed(true)}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
             </div>
-          </div>
+          )}
           {/* Label */}
           <span
             aria-hidden={mobile ? "true" : undefined}
@@ -491,7 +490,9 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
  *   modules          — Array<{id, label, icon}>  (default: DEFAULT_MODULES)
  *   activeModuleId   — string
  *   org              — { id, name, campus?, initials, logoUrl?, bg? }
- *                      logoUrl absent or undefined → shows church placeholder icon
+ *                      logoUrl absent or undefined → nav trigger shows org name only
+ *                      (no avatar/placeholder). logoUrl, when provided, renders the logo
+ *                      in the nav trigger AND in the org-panel dropdown.
  *   user             — { name, initials, email, avatarUrl? }
  *   breakpoint       — "desktop" | "tablet" | "mobile"
  *   onModuleSelect   — (id: string) => void
