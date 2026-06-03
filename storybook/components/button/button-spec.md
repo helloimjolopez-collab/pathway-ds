@@ -28,8 +28,32 @@ The Button is **not** a navigation element. It does not route users to a new URL
 | Artefact | URL |
 |---|---|
 | Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003293-93741 |
-| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/components-button--docs |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-button--docs |
 | HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/button/button.html |
+
+---
+
+## Section index
+
+| Section | Jump |
+|---|---|
+| §1 Purpose | [↓](#1-purpose) |
+| §2 Governance | [↓](#2-governance) |
+| §3 Anatomy | [↓](#3-anatomy) |
+| §4 Variant system | [↓](#4-variant-system) |
+| §5 Token mappings | [↓](#5-token-mappings) |
+| §6 Interaction states | [↓](#6-interaction-states) |
+| §7 Icon slots | [↓](#7-icon-slots) |
+| §8 Loading state | [↓](#8-loading-state) |
+| §9 Touch target | [↓](#9-touch-target) |
+| §10 Motion | [↓](#10-motion) |
+| §11 Usage rules | [↓](#11-usage-rules) |
+| §12 Responsive behaviour | [↓](#12-responsive-behaviour) |
+| §13 Accessibility | [↓](#13-accessibility) |
+| §14 Implementation checklist | [↓](#14-implementation-checklist-for-pipeline) |
+| §15 Token gaps | [↓](#15-token-gaps) |
+| §16 Responsiveness | [↓](#16-responsiveness) |
+| §17 AI agent implementation guide | [↓](#17-ai-agent-implementation-guide) |
 
 ---
 

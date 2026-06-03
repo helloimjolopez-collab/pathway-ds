@@ -6,6 +6,42 @@ Complete implementation reference for the TopNav.Global component. Covers anatom
 
 ---
 
+## Links
+
+| Artefact | URL |
+|---|---|
+| Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6508 |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-topnav--docs |
+| HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/top-nav/top-nav.html |
+
+---
+
+## Section index
+
+| Section | Jump |
+|---|---|
+| §1 Component overview | [↓](#1-component-overview) |
+| §1.1 Governance | [↓](#11-governance-where-things-live) |
+| §2 Component anatomy | [↓](#2-component-anatomy) |
+| §3 Design tokens | [↓](#3-design-tokens) |
+| §4 Layout and spacing | [↓](#4-layout-and-spacing) |
+| §5 Item / variant structure | [↓](#5-item--variant-structure) |
+| §6 State matrix | [↓](#6-state-matrix) |
+| §7 Sub-components | [↓](#7-sub-components) |
+| §8 Container / surface | [↓](#8-container--surface) |
+| §9 Interaction and behaviour | [↓](#9-interaction-and-behaviour) |
+| §10 Mobile / responsive behaviour | [↓](#10-mobile--responsive-behaviour) |
+| §11 Iconography | [↓](#11-iconography) |
+| §12 Interaction patterns | [↓](#12-interaction-patterns) |
+| §13 Accessibility | [↓](#13-accessibility) |
+| §14 Motion | [↓](#14-motion) |
+| §15 Responsiveness | [↓](#15-responsiveness) |
+| §16 What to pass Claude | [↓](#16-what-to-pass-claude-to-implement-this-component) |
+| §17 Gaps and deferred decisions | [↓](#17-gaps-and-deferred-decisions) |
+| §18 Storybook | [↓](#18-storybook) |
+
+---
+
 ## 1. Component Overview
 
 `TopNav.Global` is the fixed horizontal bar that sits at the very top of every page in Ministry Brands Amplify. It is the only navigation element that persists across all modules and all screen sizes. Its three jobs are: (1) tell the user which module they are in (ModuleSwitcher), (2) tell the user which organization and campus they are operating as (OrgSwitcher), and (3) give quick access to search, notifications, and the user profile.

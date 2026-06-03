@@ -6,6 +6,35 @@ Complete implementation reference for the Spinner component. Covers anatomy, the
 
 ---
 
+## Links
+
+| Artefact | URL |
+|---|---|
+| Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006622-50003 |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-spinner--docs |
+| HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/spinner/spinner.html |
+
+---
+
+## Section index
+
+| Section | Jump |
+|---|---|
+| §1 Component overview | [↓](#1-component-overview) |
+| §1.1 Governance | [↓](#11-governance-where-things-live) |
+| §2 Variant system | [↓](#2-variant-system) |
+| §3 When to use / when not to use | [↓](#3-when-to-use--when-not-to-use) |
+| §4 Size contract | [↓](#4-size-contract) |
+| §5 Component anatomy | [↓](#5-component-anatomy) |
+| §6 Motion spec | [↓](#6-motion-spec) |
+| §7 Token mappings | [↓](#7-token-mappings) |
+| §8 Accessibility | [↓](#8-accessibility) |
+| §9 HTML usage examples | [↓](#9-html-usage-examples) |
+| §10 Constraints | [↓](#10-constraints) |
+| §11 Gaps and deferred decisions | [↓](#11-gaps-and-deferred-decisions) |
+
+---
+
 ## 1. Component Overview
 
 `Spinner` is an indeterminate progress indicator. It signals that a task is underway and that the user should wait, but it carries **no information about how long the task will take** and **no information about how close it is to finishing**. It is the right choice when the wait is short and the duration is unknown; it is the wrong choice for long, measurable operations (see §3 Decision Tree).

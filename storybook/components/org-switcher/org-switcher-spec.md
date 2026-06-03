@@ -9,23 +9,33 @@
 
 The OrgSwitcher is the contextual navigation control that lives inside the `TopNav` component (see `components/top-nav/`) of every signed-in, multi-org Ministry Brands product. It always shows the user's active organisation. Clicking it is meant to open a panel that lets the user switch between orgs they have access to. **This spec covers v1, which is the trigger button only.** The dropdown menu / panel that opens below the trigger is **out of scope for v1 and remains as it is today in production until further notice** — a future version will give it its own design pass, spec, and release. The trigger is, however, fully spec'd here: pixel-accurate against Figma, with a clean Catholic-vs-Protestant rule, full state matrix, dark-mode tokens, mobile compact mode, and the church SVG placeholder for orgs that have no logo on file.
 
-## Resources
+## Links
 
-Every artefact you might need is linked here. If something isn't in this table or the §1.1 governance table, it hasn't been specified.
+| Artefact | URL |
+|---|---|
+| Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583 |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-orgswitcher--docs |
+| HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/org-switcher/org-switcher.html |
+| React module | https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher.jsx |
+| Design tokens (CSS) | https://github.com/helloimjolopez-collab/pathway-ds/blob/main/src/tokens/tokens.css |
+| Design system spec | https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/design-system-spec.md |
 
-| Resource | Link | Notes |
-|---|---|---|
-| 🖼️ **Live HTML demo** | [helloimjolopez-collab.github.io/pathway-ds/components/org-switcher/org-switcher.html](https://helloimjolopez-collab.github.io/pathway-ds/components/org-switcher/org-switcher.html) | Self-contained React+Babel CDN page with all desktop and mobile trigger states. |
-| 📘 **Storybook docs** | [`Library/OrgSwitcher`](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-orgswitcher--docs) | Playground + Controls, all stories, token tables. |
-| 🎨 **Figma source** | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006819-14583) | Node `40006819:14583`. The 8 variant nodes are listed in `org-switcher.jsx`. |
-| 💻 **React module** | [`components/org-switcher/org-switcher.jsx`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher.jsx) | The trigger component. Source of truth for implementation. |
-| 🌐 **Standalone HTML source** | [`components/org-switcher/org-switcher.html`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher.html) | The page that powers the live HTML demo. |
-| 🎨 **Design tokens (DTCG JSON)** | [`tokens/pathway-design-tokens.json`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/tokens/pathway-design-tokens.json) | Generated from Figma export. Source for every token referenced in §3. |
-| 🎨 **Design tokens (CSS variables)** | [`src/tokens/tokens.css`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/src/tokens/tokens.css) | Style-Dictionary output. Consume these CSS vars in component code. |
-| 📦 **npm package** | [`@helloimjolopez-pathway/pathway-tokens`](https://www.npmjs.com/package/@helloimjolopez-pathway/pathway-tokens) | The tokens shipped to consumer apps. `npm install` → import the CSS and JS bundles. |
-| 📄 **Design-system spec** | [`docs/design-system-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/design-system-spec.md) | System-wide rules for motion, accessibility, breakpoints, typography. Every component spec inherits from this. |
-| 📄 **Component manifest** | [`components/manifest.json`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/manifest.json) | Machine-readable registry of every Pathway component. The OrgSwitcher row mirrors this spec's metadata. |
-| 📄 **Sidenav reference spec** | [`components/sidenav/sidenav-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav-spec.md) | Canonical spec structure that this document mirrors (per CLAUDE.md §5). |
+---
+
+## Section index
+
+| Section | Jump |
+|---|---|
+| §0 Scope of this version | [↓](#0-scope-of-this-version-v1) |
+| §1 Component overview | [↓](#1-component-overview) |
+| §1.1 Governance | [↓](#11-governance-where-things-live) |
+| §2 Component anatomy | [↓](#2-component-anatomy) |
+| §3 Design tokens | [↓](#3-design-tokens) |
+| §4 Layout and spacing | [↓](#4-layout--spacing) |
+| §5 Item variants | [↓](#5-item-variants) |
+| §6 State matrix | [↓](#6-state-matrix) |
+| §7 Sub-components | [↓](#7-sub-components) |
+| §8 Iconography | [↓](#8-iconography) |
 
 ---
 

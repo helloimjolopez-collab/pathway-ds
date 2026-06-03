@@ -6,6 +6,37 @@ Complete implementation reference for the Checkbox component. Covers anatomy, de
 
 ---
 
+## Links
+
+| Artefact | URL |
+|---|---|
+| Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40002324-54532 |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-checkbox--docs |
+| HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/checkbox/checkbox.html |
+
+---
+
+## Section index
+
+| Section | Jump |
+|---|---|
+| §1 Component overview | [↓](#1-component-overview) |
+| §1.1 Governance | [↓](#11-governance) |
+| §2 Anatomy | [↓](#2-anatomy) |
+| §3 Variant system | [↓](#3-variant-system) |
+| §4 States | [↓](#4-states) |
+| §5 Token mappings | [↓](#5-token-mappings) |
+| §6 Visual design | [↓](#6-visual-design) |
+| §7 Highlight variant | [↓](#7-highlight-variant) |
+| §8 Secondary indeterminate variant | [↓](#8-secondary-indeterminate-variant) |
+| §9 Accessibility | [↓](#9-accessibility) |
+| §10 Motion | [↓](#10-motion) |
+| §11 Constraints | [↓](#11-constraints) |
+| §12 Usage examples | [↓](#12-usage-examples) |
+| §13 Gaps | [↓](#13-gaps) |
+
+---
+
 ## 1. Component Overview
 
 `Checkbox` is a selection-control component used for **multi-select scenarios** — when the user can pick zero or more independent options from a set. It is NOT used for single-select (use Radio), nor for binary on/off mode switches (use Toggle unless the setting is part of a form submission, in which case Checkbox is correct).

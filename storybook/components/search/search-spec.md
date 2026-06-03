@@ -4,6 +4,44 @@
 
 Complete implementation reference for the Search Input and TopNavSearch components. Covers anatomy, design tokens, states, spacing, interaction patterns, and accessibility for both the base search bar and its top-navigation wrapper. Use alongside the [Figma source](#figma-source) for a pixel-accurate build.
 
+---
+
+## Links
+
+| Artefact | URL |
+|---|---|
+| Figma (SearchInput) | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006978-23158 |
+| Figma (TopNavSearch) | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007095-4048 |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-search--docs (pending) |
+| HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/search/search.html |
+
+---
+
+## Section index
+
+| Section | Jump |
+|---|---|
+| §1 Component overview | [↓](#1-component-overview) |
+| §1.1 Governance | [↓](#11-governance-where-things-live) |
+| §2 Component anatomy | [↓](#2-component-anatomy) |
+| §3 Design tokens | [↓](#3-design-tokens) |
+| §4 Layout and spacing | [↓](#4-layout-and-spacing) |
+| §5 Variant structure | [↓](#5-variant-structure) |
+| §6 State matrix | [↓](#6-state-matrix) |
+| §7 Sub-components | [↓](#7-sub-components-and-decorations) |
+| §8 Container and surface | [↓](#8-container-and-surface) |
+| §9 Interaction and behaviour | [↓](#9-interaction-and-behaviour) |
+| §10 Collapsed state | [↓](#10-collapsed-state-topnavsearch) |
+| §11 Iconography | [↓](#11-iconography) |
+| §12 Interaction patterns | [↓](#12-interaction-patterns) |
+| §13 Accessibility | [↓](#13-accessibility) |
+| §14 Motion | [↓](#14-motion) |
+| §15 Responsiveness | [↓](#15-responsiveness) |
+| §16 What to pass to implement | [↓](#16-what-to-pass-to-implement-this-component) |
+| §17 Gaps and deferred decisions | [↓](#17-gaps-and-deferred-decisions) |
+
+---
+
 ## Authorship
 
 Design (Jo Lopez) owns and signs off on: Status, Purpose, Variants, States, Token reference, Figma setup, Accessibility intent, Usage rules.
