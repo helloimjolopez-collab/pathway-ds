@@ -263,6 +263,8 @@ The folder name in the repo (e.g. `arrow_forward`, `check`, `close`) is the liga
 
 `opsz` (optical size) should match the rendered icon size: use `opsz: 20` for 14–20 px icons, `opsz: 24` for 21–28 px icons. Mismatched `opsz` causes slightly wrong stroke weight.
 
+**`FILL` is per-component, not system-wide.** FILL=0 = outlined (hollow); FILL=1 = filled (solid). Always read the FILL value from the Figma component — do not assume a default. When writing a component spec or generating code, check the Figma design context to confirm which variant is used and document it explicitly in the component's iconography section.
+
 ### 7.2 Sizes
 
 | Button/component size | Icon slot size | Rendered icon | opsz |

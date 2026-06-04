@@ -300,7 +300,7 @@ This is the canonical source for every icon name, ligature string, and preview. 
 - **Markup:** `<span class="material-symbols-rounded">icon_name</span>`
 - **Google Fonts CDN URL:** `https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`
 - **font-family in CSS:** `'Material Symbols Rounded'`
-- **Font variation settings:** `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20` for sizes 14–20 px; use `opsz` to match the rendered size
+- **Font variation settings:** `'wght' 400, 'GRAD' 0, 'opsz' 20` — use these for every icon. **The `FILL` axis must be read from Figma per component — never assumed.** FILL=0 means outlined (hollow); FILL=1 means filled (solid). Figma is the source of truth: check how the icons look in the component's Figma node via `get_design_context` and match that fill in code. Document the correct FILL value in the component spec's iconography section.
 
 If you see `material-symbols-outlined`, `material-symbols-sharp`, or `Material Symbols Outlined` anywhere in this repo, it is a bug. Replace it with the Rounded variant.
 
