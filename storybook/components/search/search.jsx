@@ -434,14 +434,17 @@ export function TopNavSearch({
     <div
       className={className}
       style={{
-        display: "flex",
+        display: "inline-flex",   // shrinks to content — does not stretch to fill a flex parent
         alignItems: "center",
         justifyContent: "center",
         minHeight: L.touchTarget,
         minWidth: L.touchTarget,
+        // Width is explicit so the collapsed state never expands beyond 48px
+        width: expanded ? L.expandedWidth + L.containerPad * 2 : L.touchTarget,
         overflow: "hidden",
         padding: L.containerPad,
         position: "relative",
+        transition: "width 350ms cubic-bezier(0.34,1.56,0.64,1)",
       }}
     >
       {/* Collapsed button — 48×48 icon button on dark nav surface */}

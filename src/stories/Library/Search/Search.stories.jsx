@@ -35,6 +35,60 @@ function LightCard({ caption, children }) {
   );
 }
 
+/**
+ * NavBar — simulates the right end of TopNav.Global so TopNavSearch
+ * is shown in its real context rather than floating in a coloured box.
+ *
+ * Left slot: placeholder text representing module + org switcher area.
+ * Right slot: the TopNavSearch being demoed.
+ */
+function NavBar({ children, label }) {
+  return (
+    <div style={{ background: "#fff", borderRadius: 10,
+      boxShadow: "0 1px 3px rgba(0,0,0,0.07)", overflow: "hidden",
+      fontFamily: "'Red Hat Text', sans-serif" }}>
+      {label && (
+        <div style={{ padding: "10px 16px", fontSize: 11, fontWeight: 600,
+          letterSpacing: ".07em", textTransform: "uppercase", color: "#888",
+          borderBottom: "1px solid #f0f0f0" }}>{label}</div>
+      )}
+      {/* Simulated TopNav bar — full width, 56px tall, brand blue */}
+      <div style={{
+        background: TOPNAV_BG,
+        height: 56,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingLeft: 16,
+        paddingRight: 8,
+        gap: 8,
+      }}>
+        {/* Left: placeholder representing ModuleSwitcher + OrgSwitcher */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 4,
+          color: "rgba(251,251,251,0.35)",
+          fontSize: 13,
+          fontFamily: "'Red Hat Text', sans-serif",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          flex: 1,
+        }}>
+          <span style={{ fontSize: 11, letterSpacing: ".04em", textTransform: "uppercase" }}>
+            ModuleSwitcher · OrgSwitcher
+          </span>
+        </div>
+        {/* Right: TopNavSearch slot */}
+        <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function NavCard({ caption, children }) {
   return (
     <div style={{ background: "#fff", borderRadius: 10,
@@ -154,21 +208,60 @@ export const TopNavSearchStory = () => {
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState("");
   return (
-    <NavCard caption="TOPNAVSEARCH — CLICK ICON TO EXPAND · ESC OR SEARCH ICON TO COLLAPSE">
-      <TopNavSearch
-        expanded={expanded}
-        onExpandChange={setExpanded}
-        searchProps={{
-          value,
-          onChange: setValue,
-          onClear: () => setValue(""),
-          onSearch: (v) => { console.log("search:", v); },
-        }}
-      />
-    </NavCard>
+    <Stack gap={24}>
+      {/* Collapsed state */}
+      <NavBar label="TOPNAVSEARCH IN CONTEXT — COLLAPSED (click the search icon to expand)">
+        <TopNavSearch
+          expanded={expanded}
+          onExpandChange={setExpanded}
+          searchProps={{
+            value,
+            onChange: setValue,
+            onClear: () => setValue(""),
+            onSearch: (v) => { console.log("search:", v); setExpanded(false); },
+          }}
+        />
+      </NavBar>
+
+      {/* Expanded state preview */}
+      <NavBar label="TOPNAVSEARCH — EXPANDED STATE (the bar the user sees after tapping the icon)">
+        <TopNavSearch
+          expanded={true}
+          onExpandChange={() => {}}
+          searchProps={{
+            value: "",
+            placeholder: "Search...",
+            onChange: () => {},
+            onClear: () => {},
+            onSearch: () => {},
+          }}
+        />
+      </NavBar>
+
+      {/* Behaviour notes */}
+      <div style={{
+        background: "#fff", borderRadius: 8, padding: "16px 20px",
+        fontFamily: "'Red Hat Text', sans-serif", fontSize: 13, color: "#484848",
+        lineHeight: 1.6, border: "1px solid #e5e7eb",
+      }}>
+        <strong style={{ color: "#252525" }}>How it works</strong>
+        <ul style={{ margin: "8px 0 0", paddingLeft: 20 }}>
+          <li>Collapsed: renders a 48×48 icon button on the dark nav surface</li>
+          <li>Tap / click the icon: bar springs open to 320px with a spring animation (350ms, cubic-bezier overshoot)</li>
+          <li>Press <strong>Escape</strong> or click the search icon inside the bar: collapses, focus returns to the icon button</li>
+          <li>Input value persists across collapse/expand cycles</li>
+          <li>The bar is a full <code>SearchInput</code> — all states (hover, focus, with-value, clear) apply inside the expanded bar</li>
+        </ul>
+        <p style={{ margin: "12px 0 0" }}>
+          Component: <code>TopNavSearch</code> from <code>components/search/search.jsx</code> —
+          a nav-specific wrapper around <code>SearchInput</code>.
+          Spec: <a href="https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/search/search-spec.md" style={{ color: "#3555a0" }}>search-spec.md</a>
+        </p>
+      </div>
+    </Stack>
   );
 };
-TopNavSearchStory.storyName = "TopNavSearch (collapsed + expanded)";
+TopNavSearchStory.storyName = "TopNavSearch — nav bar search (collapsed + expanded)";
 
 // ── Token helpers ─────────────────────────────────────────────────────────────
 
@@ -340,14 +433,6 @@ export const TokensMotion = () => (
 TokensMotion.storyName = "Tokens — Motion";
 TokensMotion.tags = ["!dev"];
 
-// ── 10. Standalone demo ───────────────────────────────────────────────────────
-
-export const StandaloneDemo = () => (
-  <iframe
-    src="/components/search/search.html"
-    title="Search standalone demo"
-    style={{ width: "100%", height: 600, border: "none", borderRadius: 8 }}
-  />
-);
-StandaloneDemo.storyName = "Standalone demo";
-StandaloneDemo.parameters = { layout: "fullscreen" };
+// Note: StandaloneDemo intentionally removed — the iframe path does not work
+// on GitHub Pages. Open the HTML demo directly:
+// https://helloimjolopez-collab.github.io/pathway-ds/components/search/search.html

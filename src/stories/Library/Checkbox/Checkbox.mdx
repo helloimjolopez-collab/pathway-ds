@@ -23,13 +23,18 @@ Toggle the controls above: `checked`, `indeterminate`, `error`, `highlight`, `di
 
 ## When to use — decision tree
 
-| Scenario | Use |
-|---|---|
-| User picks one or more from a set | **Checkbox** ✓ |
-| User picks exactly one from a set | Radio |
-| Binary on/off with immediate effect | Toggle |
-| Card/tile selection | Choice Tile |
-| Mutually exclusive options | Radio — never Checkbox |
+<table>
+  <thead>
+    <tr><th>Scenario</th><th>Use</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>User picks one or more from a set</td><td><strong>Checkbox ✓</strong></td></tr>
+    <tr><td>User picks exactly one from a set</td><td>Radio</td></tr>
+    <tr><td>Binary on/off with immediate effect</td><td>Toggle</td></tr>
+    <tr><td>Card/tile selection</td><td>Choice Tile</td></tr>
+    <tr><td>Mutually exclusive options</td><td>Radio — never Checkbox</td></tr>
+  </tbody>
+</table>
 
 ---
 
@@ -107,12 +112,17 @@ Two visual sizes, one touch target. The `s` size reduces the visible box to 16px
 
 The Checkbox uses a **native `<input type="checkbox">`** under the hood — no custom role needed.
 
-| State | `aria-checked` | Native prop |
-|---|---|---|
-| Unchecked | *(implicit false)* | `checked={false}` |
-| Checked | *(implicit true)* | `checked={true}` |
-| Indeterminate | `mixed` | `.indeterminate = true` via ref |
-| Disabled | — | `disabled` attribute |
+<table>
+  <thead>
+    <tr><th>State</th><th><code>aria-checked</code></th><th>Native prop</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Unchecked</td><td>(implicit false)</td><td><code>checked={"{false}"}</code></td></tr>
+    <tr><td>Checked</td><td>(implicit true)</td><td><code>checked={"{true}"}</code></td></tr>
+    <tr><td>Indeterminate</td><td><code>mixed</code></td><td><code>.indeterminate = true</code> via ref</td></tr>
+    <tr><td>Disabled</td><td>—</td><td><code>disabled</code> attribute</td></tr>
+  </tbody>
+</table>
 
 **Keyboard:** `Space` toggles. `Tab` / `Shift+Tab` moves focus. Arrow keys are not used — each checkbox is independently focusable (Radio uses arrows instead).
 

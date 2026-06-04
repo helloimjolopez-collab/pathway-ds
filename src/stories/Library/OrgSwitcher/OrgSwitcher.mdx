@@ -130,10 +130,15 @@ Every token category the component uses gets its own story below.
 
 ## Responsive behaviour
 
-| Viewport | Trigger label | Container.Main max-width |
-|---|---|---|
-| `≥ 768 px` (desktop) | Full org name (+ city name for Catholic orgs) | 308px |
-| `< 768 px` (mobile) | Full org name truncated by ellipsis at 50px | 102px |
+<table>
+  <thead>
+    <tr><th>Viewport</th><th>Trigger label</th><th>Container.Main max-width</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>≥ 768 px (desktop)</td><td>Full org name (+ city name for Catholic orgs)</td><td>308px</td></tr>
+    <tr><td>{"< 768 px"} (mobile)</td><td>Full org name truncated by ellipsis at 50px</td><td>102px</td></tr>
+  </tbody>
+</table>
 
 The `mobile` prop is tristate: `true` forces mobile, `false` forces desktop, `undefined` auto-detects via `window.matchMedia('(max-width: 767px)')`.
 

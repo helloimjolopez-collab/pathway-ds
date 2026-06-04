@@ -10,13 +10,54 @@ import * as TopNavStories from "./TopNav.stories";
 
 # TopNav.Global
 
-The fixed horizontal bar that sits at the top of every page in Ministry Brands Amplify. It persists across all modules and all screen sizes. Three responsibilities: show which module the user is in (ModuleSwitcher), show which organization and campus they are operating as (OrgSwitcher), and provide quick access to search, notifications, and the user profile.
+The fixed horizontal bar that sits at the top of every page in Ministry Brands Amplify. It persists across all modules and all screen sizes. Three responsibilities: show which module the user is in (ModuleSwitcher), show which organization the user is operating as (OrgSwitcher), and give quick access to search, notifications, and the user profile.
 
 **Always on the brand-blue surface.** All interactive controls use dark-mode tokens regardless of the app's active color scheme.
 
-**OrgSwitcher in the nav bar** shows org name only by default — no logo or avatar. Pass `logoUrl` on the `org` prop if a logo should display. The church placeholder icon is no longer used.
-
 **Spec:** `components/top-nav/top-nav-spec.md` · **Figma:** [Open node 40007067-6508](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6508) · **[Live demo](https://helloimjolopez-collab.github.io/pathway-ds/components/top-nav/top-nav.html)**
+
+---
+
+## Nested components
+
+TopNav.Global composes several Pathway components. Each has its own spec and Storybook page:
+
+<table>
+  <thead>
+    <tr>
+      <th style={{width:"180px"}}>Component</th>
+      <th>Role inside TopNav</th>
+      <th>Spec / Stories</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>OrgSwitcher</strong></td>
+      <td>Trigger button showing the active org name. Clicking opens the org-switching panel (v1: panel is out of scope).</td>
+      <td><a href="?path=/docs/library-orgswitcher--docs">Library/OrgSwitcher</a> · <code>components/org-switcher/org-switcher-spec.md</code></td>
+    </tr>
+    <tr>
+      <td><strong>TopNavSearch</strong></td>
+      <td>Collapsed 48×48 icon button that springs open into the full SearchInput bar. Part of the <code>Search</code> component family.</td>
+      <td><a href="?path=/docs/library-search--docs">Library/Search</a> · <code>components/search/search-spec.md</code></td>
+    </tr>
+    <tr>
+      <td><strong>ModuleSwitcher</strong></td>
+      <td>Module navigation — shows active module icon + label, opens module list.</td>
+      <td>Defined inline in <code>components/top-nav/top-nav.jsx</code></td>
+    </tr>
+    <tr>
+      <td><strong>TopNavProfile</strong></td>
+      <td>User avatar trigger — opens profile menu.</td>
+      <td>Defined inline in <code>components/top-nav/top-nav.jsx</code></td>
+    </tr>
+    <tr>
+      <td><strong>TopNavActions</strong></td>
+      <td>Bell/notification icons. Desktop shows two bells; tablet/mobile collapses to a more_vert button.</td>
+      <td>Defined inline in <code>components/top-nav/top-nav.jsx</code></td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -37,7 +78,7 @@ On viewports below 768px: hamburger added, module label hidden, org label abbrev
 
 ## Org name only (default)
 
-The OrgSwitcher trigger shows org name and chevron only — no logo or avatar by default.
+The OrgSwitcher trigger shows org name and chevron only — no logo or avatar by default. Pass `logoUrl` on the `org` prop if a logo should display.
 
 <Canvas of={TopNavStories.OrgNoLogo} />
 
@@ -73,49 +114,36 @@ When the org has no campus, the pipe separator is omitted from the label.
 
 All colors on the nav bar surface are resolved through dark-mode semantic tokens.
 
-| Token | Resolved | Usage |
-|---|---|---|
-| `semantic-color.light-mode.fill.static.brand.base` | `#2d4889` | Nav bar background |
-| `semantic-color.dark-mode.fill.action.tertiary.base` | `rgba(160,181,230,0.04)` | OrgSwitcher base fill |
-| `semantic-color.dark-mode.stroke.action.tertiary.base` | `rgba(160,181,230,0.16)` | OrgSwitcher border |
-| `semantic-color.dark-mode.fill.action.primaryinverse.base` | `rgba(160,181,230,0.08)` | Search pill fill |
-| `semantic-color.dark-mode.fill.action.primaryinverse.hover` | `rgba(10,18,35,0.16)` | All controls hover |
-| `semantic-color.dark-mode.fill.action.primaryinverse.pressed` | `rgba(255,255,255,0.08)` | All controls pressed |
-| `semantic-color.dark-mode.text.action.mono.base` | `#fbfbfb` | All text + icons on nav bar |
-| `semantic-color.light-mode.fill.static.accent.amethyst.base` | `#dcd9ef` | Profile avatar background |
-| `semantic-color.light-mode.text.static.accent.amethyst.contrast` | `#221e3f` | Profile avatar initials |
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Resolved</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>fill.static.brand.base</code></td><td><code>#2d4889</code></td><td>Nav bar background</td></tr>
+    <tr><td><code>fill.action.tertiary.base</code> (dark)</td><td><code>rgba(160,181,230,0.04)</code></td><td>OrgSwitcher base fill</td></tr>
+    <tr><td><code>stroke.action.tertiary.base</code> (dark)</td><td><code>rgba(160,181,230,0.16)</code></td><td>OrgSwitcher border</td></tr>
+    <tr><td><code>fill.action.primaryinverse.base</code> (dark)</td><td><code>rgba(160,181,230,0.08)</code></td><td>Search icon pill fill (collapsed)</td></tr>
+    <tr><td><code>fill.action.primaryinverse.hover</code> (dark)</td><td><code>rgba(10,18,35,0.16)</code></td><td>All controls hover fill</td></tr>
+    <tr><td><code>fill.action.primaryinverse.pressed</code> (dark)</td><td><code>rgba(255,255,255,0.08)</code></td><td>All controls pressed fill</td></tr>
+    <tr><td><code>text.action.mono.base</code> (dark)</td><td><code>#fbfbfb</code></td><td>All text and icons on the nav bar</td></tr>
+    <tr><td><code>fill.static.accent.amethyst.base</code></td><td><code>#dcd9ef</code></td><td>Profile avatar background</td></tr>
+    <tr><td><code>text.static.accent-amethyst.contrast</code></td><td><code>#221e3f</code></td><td>Profile avatar initials</td></tr>
+  </tbody>
+</table>
 
 > All token values are sourced from `src/tokens/tokens.css`. Never hardcode these hex values in component code.
-
----
-
-## Org logo rules
-
-### When a logo is present
-
-The org logo image is rendered inside a `20×20px` container with `border-radius: 4px`. The image is positioned absolutely at `width: 196.31%, height: 228.29%, left: -47.05%, top: -63.31%` — a Figma-defined crop offset that centers the visual focus of the logo.
-
-In the org panel, logos render at `32×32px` with `border-radius: 4px`.
-
-### When no logo is available
-
-The avatar shows two-letter initials derived from the org name:
-
-- Three or more significant words: first letter of each of the first three words.
-- Two significant words: first letter of each word, then repeat the last (e.g. `FC` + `C` = `FCC`).
-- One significant word: first three letters of that word.
-- Articles (the, a, an), prepositions (of, in, at, for), and conjunctions (and, or) are skipped.
-
-Never show a broken image or empty box. Implement with `onerror` on the `<img>` tag.
 
 ---
 
 ## Accessibility
 
 - All interactive controls have 48×48px touch targets (WCAG 2.5.5).
-- ModuleSwitcher and OrgSwitcher use the Disclosure (Show/Hide) ARIA pattern.
-- `aria-expanded` is set on every trigger button.
-- On mobile, the OrgSwitcher `<button>` carries `aria-label` with the full unabbreviated org name even though the visual label is abbreviated.
+- ModuleSwitcher and OrgSwitcher use the Disclosure (Show/Hide) ARIA pattern with `aria-expanded` on every trigger.
+- On mobile, the OrgSwitcher button carries `aria-label` with the full unabbreviated org name even though the visual label is abbreviated.
 - Escape closes any open panel and returns focus to its trigger.
 - Focus ring: `2px solid rgba(160,181,230,0.7)` at `outline-offset: 2px`.
 
@@ -123,4 +151,4 @@ Never show a broken image or empty box. Implement with `onerror` on the `<img>` 
 
 ## Full standalone demo
 
-<Canvas of={TopNavStories.StandaloneDemo} />
+**[Open live demo →](https://helloimjolopez-collab.github.io/pathway-ds/components/top-nav/top-nav.html)**
