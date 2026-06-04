@@ -1,0 +1,121 @@
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as SearchStories from "./Search.stories";
+
+<Meta of={SearchStories} />
+
+# Search
+
+The Search family gives every Pathway surface a consistent search affordance. **SearchInput** is a pill-shaped input bar that lives in toolbars, drawers, modals, and command bars. **TopNavSearch** wraps it inside the top navigation bar — a 48×48 collapsed icon button that springs open into the full bar when tapped.
+
+Search is a controlled component: your app owns the value. The bar owns its visual states (hover, focus, with-value, error, disabled) and the clear/filter interactions.
+
+> **v1 scope — search bar only.** The Open state (results dropdown) is intentionally deferred. The existing production dropdown is unchanged. If you need a dropdown today, use [Radix UI `Combobox`](https://www.radix-ui.com/primitives/docs/components/combobox) or `Command` with Pathway semantic tokens applied.
+
+---
+
+## Try it
+
+<Canvas of={SearchStories.Playground} />
+<Controls of={SearchStories.Playground} />
+
+---
+
+## Anatomy
+
+```
+SearchInput.TouchTarget              48px height, 100% width — full touch zone
+└── SearchInput.Inner (pill)         36px min-height, 64px radius, flex row
+    ├── Container.LeadingIcon        24×24px icon button (search ligature)
+    ├── Container.Label              flex 1 — the actual <input>
+    └── Container.TrailingSlot       flex row, shrink 0
+        ├── [CancelBtn]              24×24px — shown only when value.length > 0
+        └── [FilterWrap]             border-left divider (showFilter=true only)
+            └── FilterBtn            24×24px icon button (filter_alt ligature)
+                [Badge dot]          6×6px — shown when filterBadge=true
+
+TopNavSearch
+├── CollapsedBtn                     48×48px on dark nav surface
+└── ExpandedBar                      320px wide SearchInput, width-animated in
+```
+
+The two-layer structure (48px touch target + 36px visual pill) ensures WCAG 2.5.5 touch compliance at every size without inflating the visual footprint.
+
+---
+
+## States
+
+<Canvas of={SearchStories.StateMatrix} />
+
+All seven states rendered live. The bar border drives state communication — idle is near-invisible (`stroke.static.neutral.light`), hover and active states use progressively stronger brand strokes. Filter-active keeps the bar interactive (the input stays editable — filters are never an excuse to disable typing).
+
+---
+
+## TopNavSearch
+
+<Canvas of={SearchStories.TopNavSearchStory} />
+
+Click the icon to expand. Press Escape or click the search icon inside the bar to collapse. Focus returns to the collapsed button after collapsing. The expand animation uses a deliberate spring overshoot (`cubic-bezier(0.34,1.56,0.64,1)`) — this is spec-locked.
+
+---
+
+## Design tokens
+
+### Fill
+
+<Canvas of={SearchStories.TokensFill} />
+
+### Stroke
+
+<Canvas of={SearchStories.TokensStroke} />
+
+### Text
+
+<Canvas of={SearchStories.TokensText} />
+
+### Icon
+
+<Canvas of={SearchStories.TokensIcon} />
+
+### Spacing
+
+<Canvas of={SearchStories.TokensSpacing} />
+
+### Motion
+
+<Canvas of={SearchStories.TokensMotion} />
+
+---
+
+## Responsive behaviour
+
+| Viewport | Component | Behaviour |
+|---|---|---|
+| Desktop (≥1024px) | SearchInput | 320px fixed or 100% in container |
+| Desktop (≥1024px) | TopNavSearch | Collapses to icon, expands to 336px inline |
+| Tablet / Mobile | TopNavSearch | Same collapse/expand; bar may overlay nav content — caller manages layout |
+| Any | Touch target | Always 48px minimum height (WCAG 2.5.5) |
+
+<Canvas of={SearchStories.StandaloneDemo} />
+
+---
+
+## Accessibility
+
+| What | How |
+|---|---|
+| Semantic role | `role="search"` on the pill container, `type="search"` on the `<input>` |
+| Search icon button | `aria-label="Search"` (or `"Collapse search"` inside TopNavSearch) |
+| Clear button | `aria-label="Clear search"`, only present when value is non-empty |
+| Filter button | `aria-label="Open filters"` / `"Open filters (filters active)"` |
+| Badge dot | `aria-hidden="true"` — decorative, state conveyed via `aria-label` change |
+| TopNavSearch | `aria-expanded` on the collapsed button; Escape collapses |
+| Touch targets | 48×48px outer (WCAG 2.5.5 AAA), 24×24px icon buttons (44×44px effective via bar height) |
+| Focus ring | `:focus-visible` outline, 2px solid, 2px offset, 12px radius |
+
+For system-wide contrast ratios, focus ring spec, and reduced motion rules see [`docs/design-system-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/design-system-spec.md).
+
+---
+
+## Full specification
+
+The authoritative spec is at [`components/search/search-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/search/search-spec.md).
