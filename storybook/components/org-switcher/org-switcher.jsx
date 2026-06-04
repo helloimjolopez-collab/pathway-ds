@@ -286,13 +286,23 @@ export function OrgSwitcher({
           background: disabled ? T.fillBase : fill,
           opacity: disabled ? 0.5 : 1,
           cursor: disabled ? "not-allowed" : "pointer",
-          padding: T.pXxtight,
+          // Figma: Container.Main — pl-12px pr-6px py-4px (Padding/Medium, XTight, XXTight)
+          paddingLeft:   12,
+          paddingRight:  6,
+          paddingTop:    T.pXxtight,
+          paddingBottom: T.pXxtight,
           // Desktop: 2px gap between RowStart and RowEnd. Mobile: no gap.
           ...(isMobile ? {} : { gap: T.pXxxtight }),
           outline: "none",
           transition: "background 120ms ease, border-color 120ms ease",
         }}
-        onFocus={e => (e.currentTarget.style.outline = `2px solid ${T.iconHover}`)}
+        onFocus={e => {
+          // Only show focus ring on keyboard navigation, not on mouse click
+          if (e.target.matches?.(':focus-visible')) {
+            e.currentTarget.style.outline = `2px solid ${T.iconHover}`;
+            e.currentTarget.style.outlineOffset = "2px";
+          }
+        }}
         onBlur={e => (e.currentTarget.style.outline = "none")}
       >
         {/* Intermediate wrapper around RowStart — `flex flex-row items-center

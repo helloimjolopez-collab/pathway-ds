@@ -483,16 +483,9 @@ function TopNav({
             aria-label={`Switch organisation — ${currentOrg.name}${currentOrg.campus ? ", "+currentOrg.campus : ""}`}
             onClick={() => toggle("org")}
           >
+            {/* Nav trigger: org name only — no logo or avatar (Figma: showOrgAvatar=false default).
+                Logo renders in the panel dropdown only (initials-based, below). */}
             <div className="tn-org__avatar-row">
-              <div className="tn-org__avatar-pad">
-                {/* Avatar: with logo shows image; no logo shows church SVG placeholder */}
-                <div className={`tn-org__avatar${hasLogo ? "" : " no-logo"}`}>
-                  {hasLogo
-                    ? <img src={logoUrl} alt="" onError={() => setImgFailed(true)} />
-                    : <OrgAvatarPlaceholder />
-                  }
-                </div>
-              </div>
               <span className="tn-org__label">{displayLabel}</span>
               {isMobile && (
                 <span style={{ position:"absolute", left:-9999, width:1, height:1, overflow:"hidden" }}>
@@ -662,7 +655,7 @@ function App() {
         </div>
 
         <div className="demo-section">
-          <div className="demo-section__label">Org avatar — no logo on file (church SVG placeholder per Figma node 40007243:73405)</div>
+          <div className="demo-section__label">Default — org name only (no logo in nav trigger)</div>
           <TopNav breakpoint="desktop" orgName="Cornerstone Community" campusName="Main Campus" logoUrl="" />
         </div>
 

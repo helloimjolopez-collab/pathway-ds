@@ -192,10 +192,10 @@ DesktopVariants.tags = ["!dev"];
 export const CatholicVsProtestant = () => (
   <StoryStack>
     <DemoCard caption="CATHOLIC ORG — CityName.Catholic CONTAINER RENDERS">
-      <OrgSwitcher mobile={false} orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
+      <OrgSwitcher mobile={false} orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" />
     </DemoCard>
     <DemoCard caption='PROTESTANT ORG — CityName NEVER RENDERS (cityName="Atlanta" IS IGNORED)'>
-      <OrgSwitcher mobile={false} orgName="Grace Community Church" cityName="Atlanta" logoUrl={SACRED_HEART_LOGO} />
+      <OrgSwitcher mobile={false} orgName="Grace Community Church" cityName="Atlanta" />
     </DemoCard>
   </StoryStack>
 );
@@ -207,13 +207,13 @@ CatholicVsProtestant.tags = ["!dev"];
 export const Truncation = () => (
   <StoryStack>
     <DemoCard caption="TRUNCATION — SHORT (CONTAINER SHRINKS TO FIT)">
-      <OrgSwitcher mobile={false} orgName="Cross Point" logoUrl={SACRED_HEART_LOGO} />
+      <OrgSwitcher mobile={false} orgName="Cross Point" />
     </DemoCard>
     <DemoCard caption="TRUNCATION — MEDIUM (FITS WITHIN 180px)">
-      <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
+      <OrgSwitcher mobile={false} orgName="Grace Community Church" />
     </DemoCard>
     <DemoCard caption="TRUNCATION — LONG (ELLIPSIS AT 180px)">
-      <OrgSwitcher mobile={false} orgName="Northern Kentucky Baptist Church Fellowship Ministries" logoUrl={SACRED_HEART_LOGO} />
+      <OrgSwitcher mobile={false} orgName="Northern Kentucky Baptist Church Fellowship Ministries" />
     </DemoCard>
   </StoryStack>
 );
