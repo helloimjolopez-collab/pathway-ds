@@ -329,13 +329,26 @@ The collapsed button is hidden (opacity 0, pointer-events none) while the bar is
 
 ## 11. Iconography
 
-| Icon | Shape | Size in bar | Size in collapsed btn |
-|---|---|---|---|
-| Search (magnifying glass) | Material Icons style, filled | 16×16px | 20×20px |
-| Clear (filled circle-X) | Material Icons style, filled | 16×16px | — |
-| Filter (funnel) | Material Icons style, filled | 16×16px | — |
+All icons use **Material Symbols Rounded** — rendered in code as font characters, not as SVG paths.
 
-All icons rendered as inline SVG. `aria-hidden="true"` on all icon SVGs — labels are carried by the parent button.
+| Icon | Figma layer name | Material Symbols ligature | Size in bar | Size in collapsed btn |
+|---|---|---|---|---|
+| Search (magnifying glass) | `search` | `search` | 16×16px | 20×20px |
+| Clear (circle-X) | `cancel` | `cancel` | 16×16px | — |
+| Filter (funnel) | `filter_alt` | `filter_alt` | 16×16px | — |
+
+**Convention:** The Figma layer name IS the ligature string. When reading this component via `get_design_context`, the icon frame's `data-name` attribute gives the exact ligature to use in code. No SVG paths. No guessing.
+
+**In code:**
+```html
+<span class="material-symbols-rounded">search</span>
+<span class="material-symbols-rounded">cancel</span>
+<span class="material-symbols-rounded">filter_alt</span>
+```
+
+Font variation settings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20` (matches the 14–20px rendered size).
+
+`aria-hidden="true"` on all icon spans — labels are carried by the parent button.
 
 ---
 
