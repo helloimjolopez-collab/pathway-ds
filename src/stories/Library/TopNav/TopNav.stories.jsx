@@ -380,18 +380,17 @@ function TopNavStory({
             onClick={() => toggle("org")}
           >
             <div style={{ display:"flex", alignItems:"center", gap:4, height:20, padding:"0 2px" }}>
-              <div style={{ width:24, height:24, padding:2, display:"flex",
-                alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-                {/* Avatar: with logo = image; no logo = church SVG placeholder (Figma 40007243:73405) */}
-                <div style={S.orgAvatar(logoUrl && !imgFailed)}>
-                  {logoUrl && !imgFailed
-                    ? <img src={logoUrl} alt="" onError={() => setImgFailed(true)}
-                        style={{ position:"absolute", width:"196.31%", height:"228.29%",
-                          left:"-47.05%", top:"-63.31%" }} />
-                    : <OrgAvatarPlaceholder />
-                  }
+              {/* Avatar: only rendered when a logo URL is provided — no placeholder (matches top-nav.jsx) */}
+              {logoUrl && !imgFailed && (
+                <div style={{ width:24, height:24, padding:2, display:"flex",
+                  alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                  <div style={S.orgAvatar(true)}>
+                    <img src={logoUrl} alt="" onError={() => setImgFailed(true)}
+                      style={{ position:"absolute", width:"196.31%", height:"228.29%",
+                        left:"-47.05%", top:"-63.31%" }} />
+                  </div>
                 </div>
-              </div>
+              )}
               {/* Label/Button/XS on mobile (12px/500), Label/Button/S on desktop/tablet (14px/500) */}
               <span aria-hidden={isMobile ? "true" : undefined}
                 style={{ fontSize: isMobile ? 12 : 14,
@@ -608,52 +607,84 @@ export const Playground = {
 
 export const Mobile = {
   args: { ...Playground.args, mobile: true },
+  // Shown at 393px to match real mobile viewport (iPhone 14 / most Android)
+  render: (args) => (
+    <div style={{ width: 393, margin: "0 auto", overflow: "hidden" }}>
+      <TopNavStory {...args} />
+    </div>
+  ),
   parameters: {
-    viewport: { defaultViewport: "mobile1" },
-    docs: { description: { story: 'Mobile layout (393px): hamburger visible, org label abbreviated per §10.2 AP rules ("SHC | KV" for Knoxville), action area shows more_vert, profile initials use 11px/600.' } },
+    layout: "padded",
+    docs: {
+      description: {
+        story: [
+          "**Mobile layout — 393px viewport.** The bar is constrained to real mobile width here so it matches what users actually see.",
+          "",
+          "Changes at this breakpoint:",
+          "- **Hamburger button** appears on the far left — tapping it opens/closes the **SideNav**. Without it the module side navigation is inaccessible on mobile.",
+          "- Module label hidden (icon + chevron only)",
+          "- Org label abbreviated to initials per AP rules (e.g. `SHC | KV`)",
+          "- Notification bells replaced by a single `more_vert` button",
+          "- Profile avatar uses 11px/600 initials (smaller scale)",
+        ].join("\n"),
+      },
+    },
   },
+  tags: ["!dev"],
 };
 
 export const Tablet = {
   args: { ...Playground.args, tablet: true },
+  render: (args) => (
+    <div style={{ width: 768, margin: "0 auto", overflow: "hidden" }}>
+      <TopNavStory {...args} />
+    </div>
+  ),
   parameters: {
-    docs: { description: { story: "Tablet layout (768px): module switcher shows icon + chevron only (no label), action area shows more_vert instead of two bells." } },
+    layout: "padded",
+    docs: { description: { story: "**Tablet layout — 768px viewport.** Module switcher shows icon + chevron only (no label). Action area collapses to `more_vert`. OrgSwitcher shows full name." } },
   },
+  tags: ["!dev"],
 };
 
 export const OrgNoLogo = {
   args: { ...Playground.args, logoUrl: "" },
   parameters: {
-    docs: { description: { story: "Default state — no logo. The OrgSwitcher trigger shows org name and chevron only. No avatar frame, no church placeholder. Pass `logoUrl` to render an org logo." } },
+    docs: { description: { story: "**Default state** — OrgSwitcher shows org name + chevron only. No logo, no avatar. This is the Figma default (`showOrgAvatar = false`). Pass `logoUrl` to show a logo." } },
   },
+  tags: ["!dev"],
 };
 
 export const OrgPanelOpen = {
   args: { ...Playground.args, showOrgs: true },
   parameters: {
-    docs: { description: { story: "Org switcher panel open. Lists all organisations. Active org highlighted with fill.action.primaryinverse token." } },
+    docs: { description: { story: "Org switcher panel open. Active org is highlighted." } },
   },
+  tags: ["!dev"],
 };
 
 export const ModuleDropdownOpen = {
   args: { ...Playground.args, showModule: true },
   parameters: {
-    docs: { description: { story: "Module dropdown open. Amplify Home is active (highlighted). Material Symbol icons for each module." } },
+    docs: { description: { story: "Module dropdown open. Amplify Home is active." } },
   },
+  tags: ["!dev"],
 };
 
 export const ProfileMenuOpen = {
   args: { ...Playground.args, showProfile: true },
   parameters: {
-    docs: { description: { story: "Profile menu open: name, email, Profile settings, Settings, and the destructive Sign out item." } },
+    docs: { description: { story: "Profile menu open: name, email, Profile settings, Settings, Sign out." } },
   },
+  tags: ["!dev"],
 };
 
 export const SingleOrg = {
   args: { ...Playground.args, orgName: "Cornerstone Church", campusName: "" },
   parameters: {
-    docs: { description: { story: "Single-org user: no campus means the pipe separator is omitted entirely from the OrgSwitcher label." } },
+    docs: { description: { story: "Single-org user — no campus means the pipe separator is omitted from the OrgSwitcher label." } },
   },
+  tags: ["!dev"],
 };
 
 // ─── TOKEN SHOWCASE STORIES ───────────────────────────────────────────────────
@@ -714,6 +745,7 @@ function TokenTable({ title, rows }) {
 }
 
 export const TokensFill = {
+  tags: ["!dev"],
   render: () => (
     <TokenTable title="Fill tokens" rows={[
       <TokenRow key="brand"   varName="--semantic-color-light-mode-fill-static-brand-base"         fallback="#2d4889"               label="Nav bar background" />,
@@ -728,6 +760,7 @@ export const TokensFill = {
 };
 
 export const TokensStroke = {
+  tags: ["!dev"],
   render: () => (
     <TokenTable title="Stroke tokens" rows={[
       <TokenRow key="orgborder"   varName="--semantic-color-dark-mode-stroke-action-tertiary-base"  fallback="rgba(160,181,230,0.16)" label="OrgSwitcher border" type="stroke" />,
@@ -739,6 +772,7 @@ export const TokensStroke = {
 };
 
 export const TokensText = {
+  tags: ["!dev"],
   render: () => (
     <TokenTable title="Text tokens" rows={[
       <TokenRow key="mono"  varName="--semantic-color-dark-mode-text-action-mono-base"               fallback="#fbfbfb" label="All text on nav bar" type="text" />,
@@ -749,6 +783,7 @@ export const TokensText = {
 };
 
 export const TokensIcon = {
+  tags: ["!dev"],
   render: () => (
     <TokenTable title="Icon tokens" rows={[
       <TokenRow key="icomono" varName="--semantic-color-dark-mode-icon-action-mono-base" fallback="#fbfbfb" label="All icons on nav bar surface" type="icon" />,
@@ -758,6 +793,7 @@ export const TokensIcon = {
 };
 
 export const TokensTypography = {
+  tags: ["!dev"],
   render: () => (
     <div style={{ padding: 24, fontFamily: "'Red Hat Text', sans-serif" }}>
       <h3 style={{ fontSize:14, fontWeight:600, color:"#252525", marginBottom:16 }}>Typography tokens</h3>
@@ -780,6 +816,7 @@ export const TokensTypography = {
 };
 
 export const TokensRadius = {
+  tags: ["!dev"],
   render: () => (
     <div style={{ padding:24, fontFamily:"'Red Hat Text', sans-serif" }}>
       <h3 style={{ fontSize:14, fontWeight:600, color:"#252525", marginBottom:16 }}>Corner radius tokens</h3>
