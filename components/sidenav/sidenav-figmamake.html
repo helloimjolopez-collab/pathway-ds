@@ -1340,15 +1340,12 @@ const WRN = () => (
 //   Church logo: Figma CDN — TN_CHURCH_LOGO
 //   Home module icon: Figma CDN — TN_HOME_ICON
 
-// Figma CDN image assets — fetched 2026-05-13, expire ~7 days.
-// Replace with stable CDN URLs or static assets for production.
-const TN_CHURCH_LOGO = "https://www.figma.com/api/mcp/asset/714eb3ad-68c5-493f-9f43-331035e3a667";
-const TN_HOME_ICON   = "https://www.figma.com/api/mcp/asset/8d4d4c0a-7e52-474f-9e99-97a5f26501b1";
+// Home module icon — Amplify Home branded SVG (from top-nav.jsx HOME_ICON_PATH)
+// This is a custom Figma asset, NOT a Material Symbol. Do not replace with a font icon.
+const HOME_ICON_PATH = "M16.5811 38.6244V32.8265C16.5811 31.3486 17.7937 30.1359 19.2716 30.1359H24.7095C25.4295 30.1359 26.1116 30.4202 26.6232 30.9128C27.1347 31.4054 27.4189 32.0875 27.4189 32.8075V38.6054C27.4189 39.2307 27.6653 39.8181 28.1011 40.2538C28.5368 40.6896 29.1242 40.9359 29.7495 40.9359H33.4632C35.1874 40.9359 36.8547 40.2538 38.0863 39.0412C39.3179 37.8286 40 36.1802 40 34.4559V17.9717C40 16.5696 39.3747 15.2623 38.2947 14.3717L25.6568 4.34858C23.4589 2.58647 20.3137 2.64331 18.1726 4.48121L5.83789 14.3528C4.72 15.2244 4.03789 16.5317 4 17.9528V34.437C4 38.037 6.93684 40.9549 10.5368 40.9359H14.1747C15.4632 40.9359 16.5053 39.9128 16.5242 38.6244H16.5811Z";
 
-// OrgSwitcher — church logo image + org name + chevron
-// Figma: Container.Main has border (stroke/action/tertiary/base) + fill (fill/action/tertiary/base)
-// Avatar: 20×20 square, border-radius 4px, church logo image
-// Label: "Sacred Heart Church-ITD | Knoxville" (14px medium, truncated per breakpoint)
+// OrgSwitcher — org name + chevron (no logo — matches current design system default)
+// Figma: showOrgAvatar = false by default. The trigger shows org name and chevron only.
 function TnOrgSwitcher({ open, onToggle }) {
   return (
     <div className="tn-org">
@@ -1356,7 +1353,6 @@ function TnOrgSwitcher({ open, onToggle }) {
         aria-haspopup="true" aria-expanded={open}
         aria-label="Sacred Heart Church-ITD, Knoxville — org switcher"
         onClick={onToggle}>
-        <img className="tn-org-logo" src={TN_CHURCH_LOGO} alt="" aria-hidden="true" />
         <span className="tn-org-label">Sacred Heart Church-ITD | Knoxville</span>
         <span className="tn-chev" aria-hidden="true">expand_more</span>
       </button>
@@ -1413,7 +1409,11 @@ function TopNav({ onSideNavToggle }) {
           <button className="tn-mod-btn" aria-label="Amplify Home — switch module"
             aria-haspopup="menu">
             <span className="tn-mod-icon">
-              <img src={TN_HOME_ICON} alt="" aria-hidden="true" />
+              <svg viewBox="0 0 44 44" width="22" height="22" fill="none"
+                   xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                   style={{display:"block",flexShrink:0}}>
+                <path d={HOME_ICON_PATH} fill="white" />
+              </svg>
             </span>
             <span className="tn-chev" aria-hidden="true">expand_more</span>
           </button>
