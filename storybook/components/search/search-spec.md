@@ -540,6 +540,7 @@ Applies to TopNavSearch expand/collapse only.
 | Disabled state border/bg tokens | HIGH | Uses primitive tokens `--primitive-color-cool-neutral-30` and `-10` as fallbacks. Must be replaced with semantic equivalents when added to the token file. |
 | TopNavSearch dark-surface icon tokens | MEDIUM | Icon fill `rgba(251,251,251,0.9)` and placeholder colour `rgba(255,255,255,0.45)` are raw values. No dark-mode semantic tokens exist for these yet. |
 | Badge dot border width | MEDIUM | The dot's white ring uses 1.5px border. `borderwidth.base` = 1px. 1.5px has no semantic token — raw value for now. |
+| Icon pill hover/pressed fill | MEDIUM | `fill.action.secondaryinverse.hover` resolves to `warm-neutral-200` (#f7f5f3) — a visible warm cream on white surfaces. Intended behavior is a subtle transparent overlay. Using `rgba(0,0,0,0.06)` and `rgba(0,0,0,0.10)` as fallbacks until a correct semantic token exists. |
 
 ---
 

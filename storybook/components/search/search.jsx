@@ -29,8 +29,12 @@ export const T = {
   // Bar fills
   barBg:           "var(--semantic-color-light-mode-fill-static-neutral-light, #ffffff)",
   filterActiveFill:"var(--semantic-color-light-mode-fill-action-tertiary-base, #eef2fb)",
-  iconPillHover:   "var(--semantic-color-light-mode-fill-action-secondaryinverse-hover, rgba(17,17,17,0.02))",
-  iconPillPressed: "var(--semantic-color-light-mode-fill-action-secondaryinverse-pressed, #f6f6f6)",
+  // Icon pill hover/pressed: no semantic token resolves to the correct subtle overlay
+  // on a white surface. fill.action.secondaryinverse.hover = warm-neutral-200 (#f7f5f3)
+  // which creates a visible warm cream box — wrong. Using direct rgba values as a
+  // token gap (see search-spec.md §17).
+  iconPillHover:   "rgba(0,0,0,0.06)",
+  iconPillPressed: "rgba(0,0,0,0.10)",
   badgeFill:       "var(--semantic-color-light-mode-fill-action-primary-base, #3555a0)",
   collapsedBtnFill:"var(--semantic-color-light-mode-fill-action-primaryinverse-base, rgba(160,181,230,0.08))",
   disabledBg:      "var(--primitive-color-cool-neutral-10, #fbfbfb)",      // token gap §17

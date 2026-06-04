@@ -155,31 +155,33 @@ export default {
 };
 
 // ── 1. Playground ─────────────────────────────────────────────────────────────
+// CSF3 render function — required for Storybook 7 args to propagate correctly
+// when the story also manages local React state (value).
 
-function PlaygroundTemplate(args) {
-  const [value, setValue] = useState("");
-  return (
-    <LightCard caption="PLAYGROUND — SEARCHINPUT + ALL CONTROLS">
-      <SearchInput
-        {...args}
-        value={value}
-        onChange={setValue}
-        onClear={() => setValue("")}
-        onSearch={(v) => console.log("search:", v)}
-        onFilterClick={() => console.log("filter click")}
-      />
-    </LightCard>
-  );
-}
-
-export const Playground = PlaygroundTemplate.bind({});
-Playground.args = {
-  placeholder: "Search...",
-  showFilter:  false,
-  filterActive: false,
-  filterBadge: false,
-  disabled:    false,
-  error:       false,
+export const Playground = {
+  args: {
+    placeholder:  "Search...",
+    showFilter:   false,
+    filterActive: false,
+    filterBadge:  false,
+    disabled:     false,
+    error:        false,
+  },
+  render: (args) => {
+    const [value, setValue] = useState("");
+    return (
+      <LightCard caption="PLAYGROUND — SEARCHINPUT + ALL CONTROLS">
+        <SearchInput
+          {...args}
+          value={value}
+          onChange={setValue}
+          onClear={() => setValue("")}
+          onSearch={(v) => console.log("search:", v)}
+          onFilterClick={() => console.log("filter click")}
+        />
+      </LightCard>
+    );
+  },
 };
 
 // ── 2. State matrix ───────────────────────────────────────────────────────────
