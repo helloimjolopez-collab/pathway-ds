@@ -40,6 +40,17 @@
 - [docs/storybook-authoring.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/storybook-authoring.md): How Storybook docs are structured.
 - [docs/component-pipeline.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/component-pipeline.md): How components flow from Figma to GitHub to Storybook.
 
+## Icon system
+
+Every icon in Pathway uses **Material Symbols Rounded** — a Google variable font. Rules:
+
+- CSS class: `material-symbols-rounded`. Never `material-symbols-outlined` or `material-symbols-sharp`.
+- Icon name = the Figma layer's `data-name` attribute (e.g. `search`, `filter_alt`, `expand_more`). Read it from `get_design_context` — never guess from a description.
+- `FILL` axis is **per-component**: FILL=0 = outlined, FILL=1 = filled. Check the Figma component to determine which. Each component spec documents its FILL value.
+- Markup: `<span class="material-symbols-rounded">icon_name</span>`
+- Variation settings: `font-variation-settings: 'FILL' <0or1>, 'wght' 400, 'GRAD' 0, 'opsz' 20`
+- Full rule: [AGENTS.md icon section](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/AGENTS.md)
+
 ## Optional
 
 - [CLAUDE.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/CLAUDE.md): Instructions for agents modifying this repo (not consuming it). Read AGENTS.md instead if you are building a prototype.
