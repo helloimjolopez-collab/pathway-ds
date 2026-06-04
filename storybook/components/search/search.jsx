@@ -286,7 +286,8 @@ export function SearchInput({
         <input
           ref={inputRef}
           id={id}
-          type="search"
+          type="text"
+          role="searchbox"
           value={value}
           placeholder={placeholder}
           disabled={isDisabled}
