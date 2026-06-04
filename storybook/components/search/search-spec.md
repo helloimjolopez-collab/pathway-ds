@@ -1,6 +1,6 @@
 # Search — Pathway Design System Component Spec
 
-**Status:** `PENDING HUMAN REVIEW`
+**Status:** `REVIEWED`
 
 Complete implementation reference for the Search Input and TopNavSearch components. Covers anatomy, design tokens, states, spacing, interaction patterns, and accessibility for both the base search bar and its top-navigation wrapper. Use alongside the [Figma source](#figma-source) for a pixel-accurate build.
 
@@ -14,13 +14,25 @@ Neither party signs off on the other's section.
 
 ## 1. Component Overview
 
+### v1 scope — search bar only
+
+**This release covers the search bar trigger and its states. The results dropdown / open panel is explicitly out of scope for v1 and is deferred.** The existing production dropdown remains unchanged. A future version will give the open panel its own design pass, spec, and release.
+
+| Sub-component | v1 scope | Notes |
+|---|---|---|
+| **SearchInput** — the bar itself | IN SCOPE | All states: idle, hover, focused, with-value, filter-active, disabled, error |
+| **TopNavSearch** — collapsed + expanded | IN SCOPE | Collapsed icon button + spring-expand animation |
+| **Open state / results dropdown** | OUT OF SCOPE | Production dropdown unchanged. Agents building products should use [Radix UI `Combobox`](https://www.radix-ui.com/primitives/docs/components/combobox) or `Command` with Pathway tokens applied for any dropdown they need to build. |
+
+---
+
 The **Search** family consists of two components:
 
 1. **SearchInput** — the base search bar. A pill-shaped input with a leading search icon, a free-text field, optional trailing clear button, and optional trailing filter button. Lives on light surfaces in page bodies, drawers, and command bars. Standalone or composed into TopNavSearch.
 
-2. **TopNavSearch** — a wrapper that hosts SearchInput inside the top navigation bar. The component has three modes: **Collapsed** (a 48x48 icon button on the dark nav surface), **Expanded** (the full search bar slides in with a spring animation), and **Open** (expanded plus a results dropdown below — spec TBD). The search icon inside the bar doubles as the collapse trigger.
+2. **TopNavSearch** — a wrapper that hosts SearchInput inside the top navigation bar. The component has two shipped modes: **Collapsed** (a 48×48 icon button on the dark nav surface) and **Expanded** (the full search bar slides in with a spring animation). The search icon inside the bar doubles as the collapse trigger. The Open mode (expanded plus results dropdown) is deferred — see v1 scope above.
 
-The filter button is an affordance that navigates the user to a separate filter page or panel. It is NOT a dropdown toggle. When the user returns from the filter page with filters applied, the bar enters a **filter-active** state: blue border, highlighted funnel pill, dot badge on the funnel, input still fully active.
+The filter button is an affordance that navigates the user to a separate filter page or panel. It is NOT a dropdown toggle. When the user returns from the filter page with filters applied, the bar enters a **filter-active** state: highlighted funnel pill, dot badge on the funnel, input still fully active.
 
 **Not used for:**
 - Inline filtering of a visible list (use a filter bar or chip group instead)
@@ -49,7 +61,7 @@ The filter button is an affordance that navigates the user to a separate filter 
 | Prop names, types, default values | Engineering | §5 of this spec |
 | ARIA implementation detail | Engineering | §13 of this spec |
 | When to show filter-active state | Product | §9 of this spec |
-| Open state (dropdown) design | Design | TBD — see §17 |
+| Open state (dropdown) design | Design | Deferred — production dropdown unchanged, future v2 pass. See §17. |
 
 ---
 
@@ -496,7 +508,7 @@ Applies to TopNavSearch expand/collapse only.
 |---|---|---|
 | ≥ 1024px (desktop) | SearchInput standalone | 320px fixed width or 100% in container |
 | ≥ 1024px (desktop) | TopNavSearch | Collapsed by default. Expands to 336px (320px bar + 8px container padding × 2) inline in the nav. |
-| < 1024px (tablet/mobile) | TopNavSearch | Same collapsed/expanded behaviour. Expanded bar may overlay nav items — caller is responsible for layout. Full spec TBD (see §17). |
+| < 1024px (tablet/mobile) | TopNavSearch | Same collapsed/expanded behaviour. Expanded bar may overlay nav items — caller is responsible for layout. Detailed mobile spec deferred to v2 (see §17). |
 | Any | SearchInput height | Always 48px touch target, 36px visual pill. Never shrinks. |
 
 ---
@@ -507,23 +519,27 @@ Applies to TopNavSearch expand/collapse only.
 2. The HTML demo: `components/search/search.html` — the production reference. Every state, every interaction is live and inspectable.
 3. Figma nodes: 40006978-23158 (base), 40007351-13533 (filter-active), 40007095-4048 (TopNavSearch).
 4. Token file: `src/tokens/tokens.css` — all semantic CSS variables, already resolved.
-5. Icon SVG paths: inline SVGs in the HTML demo are the authoritative geometry.
+5. Icon ligature names: `search`, `cancel`, `filter_alt` — all Material Symbols Rounded, rendered as font characters.
 
 ---
 
 ## 17. Gaps and deferred decisions
 
+### Intentional deferrals (v1 scope decision)
+
 | Gap | Priority | Notes |
 |---|---|---|
-| TopNavSearch collapsed button border token | HIGH | `rgba(251,251,251,0.14)` has no semantic token. Needs a dark-mode equivalent token from design. |
-| Disabled state border/bg tokens | HIGH | Currently using `--primitive-color-cool-neutral-30` (#ededed) and `--primitive-color-cool-neutral-10` (#fbfbfb) — primitive tokens, not semantic. Must be replaced when semantic equivalents are added. |
-| Open state (search with dropdown) | HIGH | Figma node 40007095-4048 indicates an open state with a dropdown. Dropdown design not yet spec'd. This spec covers Collapsed and Expanded only. |
-| Mobile TopNavSearch layout | MEDIUM | Behaviour when expanded bar overlaps nav content on narrow viewports is not specified. Product + design decision needed. |
-| Filter-active static state in Figma | MEDIUM | Figma node 40007351-13533 shows the filter-selected treatment on the standalone bar. A dedicated filter-active state frame for TopNavSearch has not been confirmed. |
-| Badge dot semantic token | MEDIUM | The dot uses `fill.action.primary.base` which is correct; the white border uses `fill.static.neutral.light` which is also correct but the 1.5px border width has no semantic token (`borderwidth.base` = 1px; 1.5px is raw). |
-| TopNavSearch dark-surface icon tokens | MEDIUM | Icon fill `rgba(251,251,251,0.9)` and placeholder `rgba(255,255,255,0.45)` are raw values. No dark-mode semantic tokens for these exist yet. |
-| Storybook story | LOW | Not yet created. Pipeline will generate once spec is REVIEWED. |
-| `<input type="search">` vs `type="text"` | LOW | Using `type="search"` triggers browser-native clear buttons on some platforms. Engineering to decide whether to use `type="search"` with native clear hidden, or `type="text"` with custom clear. |
+| Open state / results dropdown | DEFERRED | Production dropdown is unchanged and remains as-is. Future v2 pass will design, spec, and release the panel. Figma shows a placeholder only. Agents building products: use [Radix UI `Combobox`](https://www.radix-ui.com/primitives/docs/components/combobox) or `Command` primitive with Pathway semantic tokens applied. |
+| Mobile TopNavSearch layout | DEFERRED | Behaviour when the expanded bar overlaps nav content on narrow viewports is not specified for v1. Product + design decision for a future pass. |
+
+### Token gaps (action needed in Figma before next sync)
+
+| Gap | Priority | Notes |
+|---|---|---|
+| TopNavSearch collapsed button border token | HIGH | `rgba(251,251,251,0.14)` has no semantic token. Needs a dark-mode stroke token from design. |
+| Disabled state border/bg tokens | HIGH | Uses primitive tokens `--primitive-color-cool-neutral-30` and `-10` as fallbacks. Must be replaced with semantic equivalents when added to the token file. |
+| TopNavSearch dark-surface icon tokens | MEDIUM | Icon fill `rgba(251,251,251,0.9)` and placeholder colour `rgba(255,255,255,0.45)` are raw values. No dark-mode semantic tokens exist for these yet. |
+| Badge dot border width | MEDIUM | The dot's white ring uses 1.5px border. `borderwidth.base` = 1px. 1.5px has no semantic token — raw value for now. |
 
 ---
 
