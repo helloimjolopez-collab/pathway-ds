@@ -110,10 +110,10 @@ Disabled background uses primitive fallback pending token addition: `--primitive
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `stroke.action.secondaryinverse.base` | `--semantic-color-light-mode-stroke-action-secondary-inverse-base` | #d2d2d2 | Default border (0.75px) |
-| `stroke.action.secondaryinverse.hover` | `--semantic-color-light-mode-stroke-action-secondary-inverse-hover` | #c4c4c4 | Hover border (1px) |
-| `stroke.action.primaryinverse.pressed` | `--semantic-color-light-mode-stroke-action-primary-inverse-pressed` | #a0b5e6 | Focused / with-value / filter-active border (1px) |
-| `stroke.action.primaryinverse.base` | `--semantic-color-light-mode-stroke-action-primary-inverse-base` | #c0ceef | Cancel–filter divider (0.75px) |
+| `stroke.static.neutral.light` | `--semantic-color-light-mode-stroke-static-neutral-light` | #f6f6f6 | Default border (0.75px) |
+| `stroke.action.primary.hover` | `--semantic-color-light-mode-stroke-action-primary-hover` | #86a0dd | Hover border (1px) |
+| `stroke.action.primary.pressed` | `--semantic-color-light-mode-stroke-action-primary-pressed` | #6e8bd4 | Focused / with-value / filter-active border (1px) |
+| `stroke.action.secondary-inverse.base` | `--semantic-color-light-mode-stroke-action-secondary-inverse-base` | #d2d2d2 | Cancel–filter divider (0.75px) |
 | `stroke.action.negative.base` | `--semantic-color-light-mode-stroke-action-negative-base` | #b03a3a | Error state border (1px) |
 
 Disabled border uses primitive fallback: `--primitive-color-cool-neutral-30` (#ededed). See §17.
@@ -178,7 +178,7 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 | TopNavSearch container padding | Wraps the collapsed btn / expanded bar | 4 | `layout.units.padding.xxtight` |
 
 > IMPLEMENTATION RULE: The filter divider is a left border on the filter-wrap element, not a separate element.
-> `.search__filter-wrap` carries `border-left: 0.75px solid <stroke.action.primaryinverse.base>` and `padding-left: 4px`. The cancel button before it has no border. Do not separate the divider into its own DOM element.
+> `.search__filter-wrap` carries `border-left: 0.75px solid <stroke.action.secondary-inverse.base>` and `padding-left: 4px`. The cancel button before it has no border. Do not separate the divider into its own DOM element.
 
 ---
 
@@ -229,11 +229,11 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 | State | Bar border | Bar bg | Icon colour | Text colour | Filter pip bg |
 |---|---|---|---|---|---|
-| **Idle** | `stroke.action.secondaryinverse.base` 0.75px | `fill.static.neutral.light` | `icon.action.secondaryinverse.base` | placeholder: `text.static.secondary.subtle` | — |
-| **Hover** | `stroke.action.secondaryinverse.hover` 1px | `fill.static.neutral.light` | `icon.action.secondaryinverse.hover` | (same) | — |
-| **Focused** | `stroke.action.primaryinverse.pressed` 1px | `fill.static.neutral.light` | (same as hover) | (same) | — |
-| **With-value** | `stroke.action.primaryinverse.pressed` 1px | `fill.static.neutral.light` | (base) | `text.static.secondary.bold` | — |
-| **Filter-active** | `stroke.action.primaryinverse.pressed` 1px | `fill.static.neutral.light` | (base) | (placeholder or bold) | `fill.action.tertiary.base` |
+| **Idle** | `stroke.static.neutral.light` 0.75px | `fill.static.neutral.light` | `icon.action.secondaryinverse.base` | placeholder: `text.static.secondary.subtle` | — |
+| **Hover** | `stroke.action.primary.hover` 1px | `fill.static.neutral.light` | `icon.action.secondaryinverse.hover` | (same) | — |
+| **Focused** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.light` | (same as hover) | (same) | — |
+| **With-value** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.light` | (base) | `text.static.secondary.bold` | — |
+| **Filter-active** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.light` | (base) | (placeholder or bold) | `fill.action.tertiary.base` |
 | **Disabled** | primitive fallback 1px | primitive fallback | `icon.action.secondary.disabled` | (38% opacity) | — |
 | **Error** | `stroke.action.negative.base` 1px | `fill.static.neutral.light` | `icon.action.negative.base` | (placeholder) | — |
 
@@ -264,7 +264,7 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 ### Filter wrap and divider
 
-- `.search__filter-wrap` carries the left-border divider. Token: `stroke.action.primaryinverse.base` (#c0ceef), 0.75px, 4px padding-left.
+- `.search__filter-wrap` carries the left-border divider. Token: `stroke.action.secondary-inverse.base` (#d2d2d2), 0.75px, 4px padding-left.
 - The funnel icon button (`aria-label="Open filters"` or `aria-label="Open filters (filters active)"`) is inside.
 - A 6×6px dot badge sits `position: absolute; top: 1px; right: 1px` relative to the badge-wrap. Fill: `fill.action.primary.base`. Border: 1.5px solid `fill.static.neutral.light` (white ring). Visible only when `filterBadge = true`.
 
@@ -515,7 +515,7 @@ Applies to TopNavSearch expand/collapse only.
 
 | Gap | Priority | Notes |
 |---|---|---|
-| TopNavSearch collapsed button border token | HIGH | `rgba(251,251,251,0.14)` has no semantic token. Needs `stroke.action.primaryinverse.base` dark-mode equivalent or a new token from design. |
+| TopNavSearch collapsed button border token | HIGH | `rgba(251,251,251,0.14)` has no semantic token. Needs a dark-mode equivalent token from design. |
 | Disabled state border/bg tokens | HIGH | Currently using `--primitive-color-cool-neutral-30` (#ededed) and `--primitive-color-cool-neutral-10` (#fbfbfb) — primitive tokens, not semantic. Must be replaced when semantic equivalents are added. |
 | Open state (search with dropdown) | HIGH | Figma node 40007095-4048 indicates an open state with a dropdown. Dropdown design not yet spec'd. This spec covers Collapsed and Expanded only. |
 | Mobile TopNavSearch layout | MEDIUM | Behaviour when expanded bar overlaps nav content on narrow viewports is not specified. Product + design decision needed. |
