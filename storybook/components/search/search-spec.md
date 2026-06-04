@@ -358,7 +358,7 @@ All icons use **Material Symbols Rounded** — rendered in code as font characte
 <span class="material-symbols-rounded">filter_alt</span>
 ```
 
-Font variation settings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20` (matches the 14–20px rendered size).
+Font variation settings: `'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20` — Figma uses the filled Rounded variant (FILL=1). This is specific to the search bar; other components may use FILL=0.
 
 `aria-hidden="true"` on all icon spans — labels are carried by the parent button.
 

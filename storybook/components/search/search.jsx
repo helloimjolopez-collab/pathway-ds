@@ -102,7 +102,9 @@ function Icon({ name, size = L.iconSize, color, style: extra }) {
         display: "block",
         userSelect: "none",
         color,
-        fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20",
+        // FILL=1 matches the filled Rounded variant in Figma.
+        // Figma is the source of truth — icons in the search bar use filled style.
+        fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20",
         ...extra,
       }}
     >
