@@ -182,7 +182,7 @@
               <IconPillButton iconName="search" iconColor={iconColor}
                 label={searchIconAriaLabel} onClick={() => onSearch?.(value)} />
             </div>
-            <input type="search" ref={inputRef} value={value} placeholder={placeholder}
+            <input type="text" role="searchbox" ref={inputRef} value={value} placeholder={placeholder}
               disabled={isDisabled} autoComplete="off" aria-label="Search"
               onChange={(e) => onChange?.(e.target.value)}
               onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
