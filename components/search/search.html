@@ -145,6 +145,7 @@
       disabled = false, error = false,
       onSearch, onFilterClick, onChange, onClear,
       searchIconAriaLabel = "Search",
+      onSearchIconClick,   // when set, overrides icon button onClick (used by TopNavSearch to collapse)
     }) {
       const [hovered, setHovered] = useState(false);
       const [focused, setFocused] = useState(false);
@@ -180,7 +181,8 @@
             ...getBorder() }}>
             <div style={{display:"flex", alignItems:"center", flexShrink:0}}>
               <IconPillButton iconName="search" iconColor={iconColor}
-                label={searchIconAriaLabel} onClick={() => onSearch?.(value)} />
+                label={searchIconAriaLabel}
+                onClick={onSearchIconClick ? onSearchIconClick : () => onSearch?.(value)} />
             </div>
             <input type="text" role="searchbox" ref={inputRef} value={value} placeholder={placeholder}
               disabled={isDisabled} autoComplete="off" aria-label="Search"
@@ -252,7 +254,10 @@
           </button>
           {expanded && (
             <div style={{width:320}}>
-              <SearchInput {...searchProps} searchIconAriaLabel="Collapse search" />
+              <SearchInput {...searchProps}
+                searchIconAriaLabel="Collapse search"
+                onSearchIconClick={collapse}
+              />
             </div>
           )}
         </div>

@@ -189,6 +189,9 @@ function IconPillButton({ iconName, iconSize = L.iconSize, iconColor, label, onC
  *   id             — for label association
  *   searchIconAriaLabel — override the search icon button label (used by TopNavSearch
  *                         to make it "Collapse search")
+ *   onSearchIconClick  — when provided, REPLACES the default onSearch behaviour of the
+ *                         leading search icon button. TopNavSearch passes `collapse` here
+ *                         so tapping the icon inside the expanded bar collapses it.
  */
 export function SearchInput({
   value = "",
@@ -205,6 +208,7 @@ export function SearchInput({
   className = "",
   id,
   searchIconAriaLabel = "Search",
+  onSearchIconClick,                 // when set, overrides the icon button's onClick
 }) {
   const [hovered, setHovered]   = useState(false);
   const [focused, setFocused]   = useState(false);
@@ -284,7 +288,7 @@ export function SearchInput({
             iconName="search"
             iconColor={iconColor}
             label={searchIconAriaLabel}
-            onClick={() => onSearch?.(value)}
+            onClick={onSearchIconClick ? onSearchIconClick : () => onSearch?.(value)}
           />
         </div>
 
@@ -511,6 +515,7 @@ export function TopNavSearch({
           <SearchInput
             {...searchProps}
             searchIconAriaLabel="Collapse search"
+            onSearchIconClick={collapse}
             onSearch={(v) => {
               searchProps.onSearch?.(v);
             }}

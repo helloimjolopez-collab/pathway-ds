@@ -192,10 +192,19 @@ export function TopNavSearch({ onSearchOpen }) {
           border: "1px solid #6e8bd4",
           borderRadius: 9999, width: 320,
         }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center",
-            width: 24, height: 24, flexShrink: 0 }}>
-            <Icon name="search" size={16} style={{ color: "#606060" }} />
-          </div>
+          {/* Search icon — tapping collapses the bar (per spec §10, TopNavSearch interaction) */}
+          <button
+            onClick={close}
+            aria-label="Collapse search"
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: 24, height: 24, flexShrink: 0,
+              background: "transparent", border: "none", cursor: "pointer",
+              borderRadius: "50%", padding: 0,
+            }}
+          >
+            <Icon name="search" size={16} fill={1} style={{ color: "#606060" }} />
+          </button>
           <input
             ref={inputRef}
             value={query}

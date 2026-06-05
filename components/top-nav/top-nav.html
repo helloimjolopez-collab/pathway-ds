@@ -530,10 +530,13 @@ function TopNav({
         <div className="tn-search">
           {searchOpen ? (
             <div className="tn-search__expanded">
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center",
-                width: 24, height: 24, flexShrink: 0 }}>
+              {/* Search icon — clicking collapses the bar (spec §10, TopNavSearch interaction) */}
+              <button onClick={closeSearch} aria-label="Collapse search"
+                style={{ display:"flex", alignItems:"center", justifyContent:"center",
+                  width:24, height:24, flexShrink:0, background:"transparent",
+                  border:"none", cursor:"pointer", borderRadius:"50%", padding:0 }}>
                 <Icon name="search" size={16} style={{ color: "#606060" }} />
-              </div>
+              </button>
               <input
                 ref={searchInputRef}
                 className="tn-search__input"

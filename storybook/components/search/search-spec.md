@@ -207,7 +207,8 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 | `filterBadge` | `boolean` | `false` | Shows the dot badge on the funnel (typically tied to filterActive) |
 | `disabled` | `boolean` | `false` | Disables the component |
 | `error` | `boolean` | `false` | Error visual state |
-| `onSearch` | `(value: string) => void` | — | Called on Enter or search icon click |
+| `onSearch` | `(value: string) => void` | — | Called on Enter or search icon click (standalone use) |
+| `onSearchIconClick` | `() => void` | — | When provided, overrides the search icon button's onClick. TopNavSearch passes `collapse` here so tapping the icon inside the expanded bar collapses it instead of firing a search. |
 | `onFilterClick` | `() => void` | — | Called when filter button tapped |
 | `onChange` | `(value: string) => void` | — | Called on every keystroke |
 | `onClear` | `() => void` | — | Called when clear (X) button tapped |

@@ -102,6 +102,42 @@ If you need a component that isn't in the manifest, use **[Radix UI](https://www
 
 ---
 
+## Implementation anti-patterns — things that will break and why
+
+These are mistakes real agents (including Claude Code) have made when implementing Pathway components. Read these before writing any code.
+
+### 1. Reimplementing a component instead of importing it
+
+**Wrong:** Writing fresh CSS for a TopNav or SideNav from scratch when building a composite (e.g. NavShell).
+**Right:** Import from the `.jsx` module. The `.jsx` is the validated implementation. Fresh CSS will miss rail alignment, transition curves, state edge cases, and more.
+
+> If you need a standalone HTML demo that can't import `.jsx`, read the `.jsx` source file first and copy every dimension, gap, transition value, and color verbatim. Do not derive values from Figma component tree structure — always cross-check with the actual `x`, `y`, `width`, `height` pixel measurements in the Figma metadata.
+
+### 2. Reading an HTML demo as the authoritative source
+
+HTML demo files (`*.html`) may lag behind the spec. They are working references, not canonical truth. The canonical sources are: **spec** → `.jsx` module → Figma. When a `.html` demo and the spec disagree, the spec wins.
+
+**Specific risk:** The spec may have a "Migration note" section. The old behaviour described in that note may still appear in older HTML demos. Always search for "Migration note" in the component spec before writing any code.
+
+### 3. Deriving layout from Figma tree structure, not measurements
+
+**Wrong:** Reading that `Slot.RowStart` contains `ModuleSwitcher` then `OrgSwitcher` and assuming gap=0 because they share a flex container.
+**Right:** Read the `x`, `y`, `width`, `height` from `get_metadata`. The gap = `OrgSwitcher.x - (ModuleSwitcher.x + ModuleSwitcher.width)`. Always use coordinate arithmetic for gaps, not assumptions.
+
+### 4. Not wiring up interactive state that the spec describes
+
+If a spec section says "tapping the search icon collapses the bar" — there must be an `onClick` on that icon that calls `collapse()`. Aria labels that say "Collapse search" are NOT sufficient. The interactive behaviour must be in the `onClick` handler, not just the label.
+
+Always check: for every interactive element, is there a handler that matches what the spec says will happen?
+
+### 5. Ignoring the `overflow: hidden` on parent containers
+
+Active indicator stripes, tooltips, and dropdown panels often need to escape their parent container. If the parent has `overflow: hidden`, any absolutely-positioned child at a negative coordinate will be clipped. Either:
+- Use `position: fixed` with `getBoundingClientRect()` for portals
+- Or adjust the indicator position to stay inside the visible area
+
+---
+
 ## What to do when you're uncertain
 
 - **Look first at the manifest.** It's machine-readable and exhaustive.
