@@ -174,7 +174,7 @@
       transition: width 380ms cubic-bezier(0.32,0.72,0,1);
       overflow: hidden;
     }
-    .shell__sidenav.expanded  { width: 240px; }
+    .shell__sidenav.expanded  { width: 220px; }
     .shell__sidenav.collapsed { width: 72px; }
     .shell__sidenav.hidden    { width: 0; }
 
@@ -191,7 +191,7 @@
       overflow-y: auto; overflow-x: hidden;
       transition: margin-left 380ms cubic-bezier(0.32,0.72,0,1);
     }
-    .shell__main.expanded  { margin-left: 240px; }
+    .shell__main.expanded  { margin-left: 220px; }
     .shell__main.collapsed { margin-left: 72px; }
     .shell__main.full      { margin-left: 0; }
 
@@ -939,7 +939,7 @@
 
     // ════════════════════════════════════════════════════════════════════════════
     // SIDE NAV
-    // States: expanded (240px), collapsed (72px rail), hidden (mobile overlay)
+    // States: expanded (220px — Figma reference node 40005913-173455), collapsed (72px rail), hidden (mobile overlay)
     // Collapse button: bottom of SideNav — toggles expanded/collapsed on desktop
     // ════════════════════════════════════════════════════════════════════════════
     function SideNav({ config, expanded, onToggleExpand }) {
