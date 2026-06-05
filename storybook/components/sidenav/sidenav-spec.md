@@ -791,10 +791,15 @@ This is a CSS architectural constraint, not a Figma design concern. No Figma ann
 
 ## 11. Iconography
 
-- All leading icons are **fill-style** (solid/filled, not outline)
+- **Library: Material Symbols Rounded** — the only icon library permitted in SideNav. Never use Outlined, Sharp, or any other variant. CSS class: `material-symbols-rounded`.
+- **FILL=1 always** — all SideNav icons use the filled (solid) variant. This is a hard rule, not a per-state toggle. `fontVariationSettings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20'`.
+- **Icon name = Figma layer name** — when reading the component via `get_design_context`, the icon frame's `data-name` attribute is the exact Material Symbols ligature string.
 - Icons live at `16×16pt` inside a `24×24pt` `Container.LeadingIcon` wrapper
 - Icon source: [design system iconography page](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40002909-32275)
 - **Figma CDN asset URLs cannot be used directly in browsers**: they require auth headers that only the Figma MCP server provides. Implementations must either use the design system icon component library or embed SVG assets at build time.
+
+> IMPLEMENTATION RULE: SideNav icons are always FILL=1.
+> `font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20` on every `.material-symbols-rounded` span inside a SideNav item. Never FILL=0. Never a per-state toggle between filled and outlined.
 
 ### Demo SideNav icon mapping (current reference implementation)
 

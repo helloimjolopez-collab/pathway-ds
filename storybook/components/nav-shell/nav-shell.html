@@ -598,6 +598,14 @@
        - TopNav shows hamburger
        - Module icon only (no label, no chevron)
        - Org label max 70px */
+    /* ── Tablet toolbar: search shrinks, filter chips wrap to second row ──────── */
+    @media (max-width: 1023px) and (min-width: 768px) {
+      .toolbar__leading { flex-wrap: wrap; gap: 8px; }
+      .toolbar__search  { max-width: 100%; width: 100%; flex: 0 0 100%; }
+      .filter-chips     { flex: 0 0 100%; }
+    }
+
+    /* ── Mobile: single column, full padding collapse ────────────────────────── */
     @media (max-width: 767px) {
       .shell__main { margin-left: 0 !important; }
       .topnav__hamburger { display: flex !important; }
@@ -606,8 +614,9 @@
       .topnav__avatar { font-size: 11px !important; }
       .screen { padding: 8px 16px 32px; }
       .card-grid { grid-template-columns: 1fr; }
-      .toolbar__leading { flex-wrap: wrap; }
-      .toolbar__search { max-width: 100%; }
+      .toolbar__leading { flex-wrap: wrap; gap: 8px; }
+      .toolbar__search  { max-width: 100%; width: 100%; }
+      .filter-chips     { flex-wrap: wrap; }
     }
 
     .topnav__tablet-more { display: none; }
