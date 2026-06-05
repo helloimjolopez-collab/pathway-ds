@@ -8,6 +8,17 @@
 - [components/manifest.json](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/manifest.json): Machine-readable registry of every component (props, exports, file paths, Figma node IDs, tokens used).
 - [Storybook](https://helloimjolopez-collab.github.io/pathway-ds/storybook/): Live visual reference with token tables and interactive playgrounds.
 
+## Implementation artifacts
+
+To implement any Pathway component correctly, use these — not HTML demos:
+
+- `.jsx` module: the React component to import (e.g. `components/sidenav/sidenav.jsx`)
+- `src/tokens/tokens.css`: all token CSS variables — import this
+- `NAME-spec.md`: rules, props, states, token names
+- `NAME/agent-brief.md`: compact paste-friendly summary for AI agents
+
+HTML demos (`*.html`) are visual previews for designers. Do not copy implementation from them.
+
 ## Navigation shell (always use these — do not reinvent)
 
 - [components/sidenav/agent-brief.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/agent-brief.md): Concise paste-ready SideNav contract.

@@ -108,20 +108,18 @@ These are mistakes real agents (including Claude Code) have made when implementi
 
 ### 1. Reimplementing a component instead of importing it
 
-**Wrong:** Writing fresh CSS for a TopNav or SideNav from scratch when building a composite (e.g. NavShell).
-**Right:** Import from the `.jsx` module. The `.jsx` is the validated implementation. Fresh CSS will miss rail alignment, transition curves, state edge cases, and more.
+**Wrong:** Writing fresh CSS for a TopNav or SideNav from scratch when building a composite.
+**Right:** Import from the `.jsx` module. Read the `agent-brief.md` for the import path.
 
-**For composite components — use the Storybook story, not the HTML demo.** The Storybook story for a composite component (`src/stories/Library/NavShell/NavShell.stories.jsx`) imports directly from `.jsx` modules. Any change to TopNav or SideNav is immediately reflected there. When an agent reads a Storybook story that imports from `.jsx`, it sees real validated behavior — not a reimplementation that can drift. **The Storybook story is the canonical reference for composite components.**
+Fresh CSS will miss rail alignment, transition curves, hover tokens, and state logic that the `.jsx` has already solved. One wrong token and everything is off.
 
-**For standalone HTML demos:** HTML demos use React+Babel CDN and cannot import `.jsx` from relative paths. When writing or updating a composite HTML demo, read every nested component's `.jsx` source file first and copy every dimension, gap, transition value, and color verbatim. Never derive layout values from Figma component tree structure — always cross-check with the actual `x`, `y`, `width`, `height` pixel measurements in the Figma metadata.
+**HTML demos are visual previews — not code to copy from.** See "What are the implementation artifacts?" above.
 
-**Hierarchy of truth:** Storybook story (imports .jsx, cannot drift) → `.jsx` module (validated) → `.html` demo (may lag). When these conflict, the higher source wins.
+### 2. Reading any file other than .jsx + spec + tokens.css as the implementation reference
 
-### 2. Reading an HTML demo as the authoritative source
+The implementation artifacts are: `.jsx` module + `src/tokens/tokens.css` + `NAME-spec.md`. Everything else (HTML demos, Storybook stories, Figma screenshots) is a visual reference. When any of these conflict with the `.jsx`, the `.jsx` wins.
 
-HTML demo files (`*.html`) may lag behind the spec. They are working references, not canonical truth. The canonical sources are: **spec** → `.jsx` module → Figma. When a `.html` demo and the spec disagree, the spec wins.
-
-**Specific risk:** The spec may have a "Migration note" section. The old behaviour described in that note may still appear in older HTML demos. Always search for "Migration note" in the component spec before writing any code.
+**Specific risk:** The spec may have a "Migration note" section flagging that an old behaviour has changed. Search the spec for "Migration note" before writing any code.
 
 ### 3. Deriving layout from Figma tree structure, not measurements
 
@@ -153,17 +151,42 @@ Do not guess values from your training data. Do not ask the user "what colour sh
 
 ---
 
+## What are the implementation artifacts?
+
+HTML demos (`*.html`) are **visual previews for designers** — open them in a browser to see how a component looks and behaves in context. They are not implementation references. Do not copy code from them.
+
+**For implementing a component (whether you are a developer, Claude, Lovable, Figma Make, or any other agent):**
+
+| What you need | Where to find it |
+|---|---|
+| The component itself (React) | `components/NAME/NAME.jsx` — import from this |
+| Token CSS variables | `src/tokens/tokens.css` — import or link this |
+| Rules, states, props | `components/NAME/NAME-spec.md` |
+| Quick copy-paste reference | `components/NAME/agent-brief.md` |
+| Visual verification | Storybook: https://helloimjolopez-collab.github.io/pathway-ds/storybook/ |
+
+**Storybook is for visual verification.** HTML demos are for designer preview. Neither is the implementation artifact. The implementation artifacts are the `.jsx` module + `tokens.css` + spec.
+
+---
+
 ## A note on Figma Make
 
-Figma Make lives inside Figma and does not auto-discover this repo the way Cursor / Codex / Aider do. To use the Pathway design system in Figma Make:
+Figma Make lives inside Figma. To implement Pathway components accurately in Figma Make:
 
-- For visual reference, use the components in the [Figma library](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) directly — they exist as proper Figma instances.
-- For code reference, paste the relevant component's self-contained HTML demo file into the Figma Make prompt:
-  - **SideNav**: paste [`components/sidenav/sidenav-figmamake.html`](./components/sidenav/sidenav-figmamake.html) (the docs-stripped variant, auto-synced from `sidenav.html`)
-  - **TopNav**: paste [`components/top-nav/top-nav.html`](./components/top-nav/top-nav.html) (already clean — no docs panel)
-  - **Spinner / Checkbox / OrgSwitcher**: paste the component's `<name>.html` directly — none of them have a docs panel that needs stripping
+1. **Paste the `agent-brief.md`** for the component you need — it contains the import contract, token names, props, and key rules in a compact paste-friendly format.
+2. **Reference the Figma components** directly in the [Pathway Figma file](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) — they exist as proper Figma instances with variables bound.
+3. **Do not paste the `.html` demo source** — HTML demos are visual previews, not implementation references.
 
-Pair that with the relevant `agent-brief.md` for the contract rules, and Figma Make will produce output that matches the design system.
+| Component | Agent brief |
+|---|---|
+| SideNav | [`components/sidenav/agent-brief.md`](./components/sidenav/agent-brief.md) |
+| TopNav | [`components/top-nav/agent-brief.md`](./components/top-nav/agent-brief.md) |
+| OrgSwitcher | [`components/org-switcher/agent-brief.md`](./components/org-switcher/agent-brief.md) |
+| Search | [`components/search/agent-brief.md`](./components/search/agent-brief.md) |
+| NavShell | [`components/nav-shell/agent-brief.md`](./components/nav-shell/agent-brief.md) |
+| Button | [`components/button/agent-brief.md`](./components/button/agent-brief.md) |
+| Spinner | [`components/spinner/agent-brief.md`](./components/spinner/agent-brief.md) |
+| Checkbox | [`components/checkbox/agent-brief.md`](./components/checkbox/agent-brief.md) |
 
 Figma Code Connect is **not** set up. When it is, this section should point at the Code Connect mapping instead.
 
