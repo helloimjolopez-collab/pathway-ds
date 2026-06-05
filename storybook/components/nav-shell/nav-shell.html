@@ -49,7 +49,7 @@
       color: rgba(251,251,251,0.9); flex-shrink: 0;
       transition: background 120ms ease;
     }
-    .topnav__hamburger:hover { background: rgba(160,181,230,0.16); }
+    .topnav__hamburger:hover { background: rgba(10,18,35,0.16); }
 
     /* Module switcher */
     .topnav__module {
@@ -58,7 +58,7 @@
       background: transparent; border: none; cursor: pointer;
       color: rgba(251,251,251,0.9); transition: background 120ms ease;
     }
-    .topnav__module:hover { background: rgba(160,181,230,0.16); }
+    .topnav__module:hover { background: rgba(10,18,35,0.16); }
     .topnav__module-icon {
       width: 26px; height: 26px; display: flex; align-items: center;
       justify-content: center; flex-shrink: 0;
@@ -84,7 +84,7 @@
       transition: background 120ms ease, border-color 120ms ease;
     }
     .topnav__org-btn:hover {
-      background: rgba(160,181,230,0.16);
+      background: rgba(10,18,35,0.16);
       border-color: rgba(160,181,230,0.20);
     }
     .topnav__org-btn.open {
@@ -108,7 +108,7 @@
       cursor: pointer; padding: 8px;
       color: rgba(251,251,251,0.9); transition: background 120ms ease;
     }
-    .topnav__search-btn:hover { background: rgba(160,181,230,0.16); }
+    .topnav__search-btn:hover { background: rgba(10,18,35,0.16); }
     .topnav__action-btn {
       display: flex; align-items: center; justify-content: center;
       width: 48px; height: 48px; border-radius: 8px;
@@ -176,6 +176,12 @@
     }
     .shell__sidenav.expanded  { width: 220px; }
     .shell__sidenav.collapsed { width: 72px; }
+    /* Desktop collapsed rail — mirrors the tablet media query but via JS state */
+    .shell__sidenav.collapsed .nav-item__label  { opacity: 0 !important; width: 0 !important; min-width: 0 !important; }
+    .shell__sidenav.collapsed .nav-section-label { opacity: 0 !important; height: 0 !important; min-height: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
+    .shell__sidenav.collapsed .nav-header__logo  { opacity: 0 !important; width: 0 !important; }
+    .shell__sidenav.collapsed .nav-item { justify-content: center !important; padding: 0 !important; margin: 0 0 2px !important; gap: 0 !important; border-radius: 0 !important; }
+    .shell__sidenav.collapsed .nav-item.active .nav-item__indicator { left: 0 !important; }
     .shell__sidenav.hidden    { width: 0; }
 
     /* Overlay (mobile) */
@@ -793,7 +799,7 @@
 
     const SECTION_DATA = [
       {
-        id: "overview", heading: "Overview", action: "View all",
+        id: "overview", heading: "Overview",
         cards: SAMPLE_CARDS.slice(0, 3),
       },
       {
@@ -1167,15 +1173,7 @@
                 </div>
               </div>
 
-              <div className="toolbar__trailing">
-                <button className="btn btn--naked">
-                  <Icon name="sort" size={16} />
-                  Sort
-                </button>
-                <button className="btn btn--naked">
-                  <Icon name="view_module" size={16} />
-                </button>
-              </div>
+              {/* Trailing slot intentionally empty — matches Figma Container.TrailingSlot (no content) */}
             </div>
           </div>
 
@@ -1190,13 +1188,7 @@
                   padding-vertical: 6px */}
               <div className="section-heading">
                 <span className="section-heading__label">{section.heading}</span>
-                {section.action && (
-                  <button className="section-heading__action btn btn--naked"
-                    style={{ padding: "2px 6px" }}>
-                    {section.action}
-                    <Icon name="chevron_right" size={14} />
-                  </button>
-                )}
+                {/* SectionHeading trailing slot: empty per Figma */}
               </div>
 
               {/* Card grid
