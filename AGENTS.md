@@ -111,7 +111,11 @@ These are mistakes real agents (including Claude Code) have made when implementi
 **Wrong:** Writing fresh CSS for a TopNav or SideNav from scratch when building a composite (e.g. NavShell).
 **Right:** Import from the `.jsx` module. The `.jsx` is the validated implementation. Fresh CSS will miss rail alignment, transition curves, state edge cases, and more.
 
-> If you need a standalone HTML demo that can't import `.jsx`, read the `.jsx` source file first and copy every dimension, gap, transition value, and color verbatim. Do not derive values from Figma component tree structure — always cross-check with the actual `x`, `y`, `width`, `height` pixel measurements in the Figma metadata.
+**For composite components — use the Storybook story, not the HTML demo.** The Storybook story for a composite component (`src/stories/Library/NavShell/NavShell.stories.jsx`) imports directly from `.jsx` modules. Any change to TopNav or SideNav is immediately reflected there. When an agent reads a Storybook story that imports from `.jsx`, it sees real validated behavior — not a reimplementation that can drift. **The Storybook story is the canonical reference for composite components.**
+
+**For standalone HTML demos:** HTML demos use React+Babel CDN and cannot import `.jsx` from relative paths. When writing or updating a composite HTML demo, read every nested component's `.jsx` source file first and copy every dimension, gap, transition value, and color verbatim. Never derive layout values from Figma component tree structure — always cross-check with the actual `x`, `y`, `width`, `height` pixel measurements in the Figma metadata.
+
+**Hierarchy of truth:** Storybook story (imports .jsx, cannot drift) → `.jsx` module (validated) → `.html` demo (may lag). When these conflict, the higher source wins.
 
 ### 2. Reading an HTML demo as the authoritative source
 
