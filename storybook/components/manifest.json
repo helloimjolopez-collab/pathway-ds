@@ -888,6 +888,20 @@
           "icon.action.secondary.disabled",
           "icon.action.negative.base"
         ]
+      },
+      "agentBrief": "components/search/agent-brief.md"
+    },
+    "nav-shell": {
+      "displayName": "NavShell",
+      "description": "Application shell \u2014 TopNav + SideNav + content area. The outermost layout wrapping every Amplify page. Compose from top-nav.jsx and sidenav.jsx \u2014 do not reimplement.",
+      "module": "components/nav-shell/nav-shell-spec.md",
+      "spec": "components/nav-shell/nav-shell-spec.md",
+      "agentBrief": "components/nav-shell/agent-brief.md",
+      "stories": "src/stories/Library/NavShell/NavShell.stories.jsx",
+      "demo": "components/nav-shell/nav-shell.html",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40006538:43236"
       }
     }
   }
