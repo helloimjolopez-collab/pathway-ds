@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NavShell — Pathway Design System</title>
 
-  <!-- Pathway tokens -->
+  <!-- Pathway tokens — all semantic CSS variables -->
   <link rel="stylesheet" href="../../src/tokens/tokens.css" />
 
   <!-- Fonts -->
@@ -14,229 +14,111 @@
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&family=Red+Hat+Display:wght@600&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── RESET ──────────────────────────────────────────────────────────────── */
+    /* ── Reset ─────────────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body, #root {
-      height: 100%; overflow: hidden;
-      font-family: 'Red Hat Text', sans-serif;
-      background: var(--semantic-color-light-mode-surface-canvas-light, #fafafa);
-    }
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+    html, body, #root { height: 100%; overflow: hidden; font-family: 'Red Hat Text', sans-serif; }
 
     .material-symbols-rounded {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       line-height: 1; display: block; user-select: none; flex-shrink: 0;
     }
 
-    /* ── TOPNAV ─────────────────────────────────────────────────────────────── */
-    .topnav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: 56px;
-      background: var(--semantic-color-light-mode-fill-static-brand-base, #2d4889);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 16px;
-    }
-    .topnav__start { display: flex; align-items: center; gap: 8px; min-width: 0; }
-    .topnav__end   { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
+    /* ── Shell layout — exact from Figma node 40007205:9912 ─────────────────
+       TopNav: fixed, full width, 56px
+       SideNav: fixed, left, top 56px, 240px expanded / 72px collapsed
+       Main: margin-left matches SideNav width, overflow-y scroll
+    ───────────────────────────────────────────────────────────────────────── */
+    .shell { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
 
-    /* Hamburger — mobile/tablet only */
-    .topnav__hamburger {
-      display: none; align-items: center; justify-content: center;
-      width: 48px; height: 48px; border-radius: 8px;
-      background: transparent; border: none; cursor: pointer; padding: 8px;
-      color: rgba(251,251,251,0.9); flex-shrink: 0;
-      transition: background 120ms ease;
+    /* ── TopNav ─────────────────────────────────────────────────────────────
+       Figma: background Fill/Static/Brand/Base = #2d4889, height 56px
+       Slot.RowStart: gap 8px (ModuleSwitcher→OrgSwitcher: x gap = 171-163=8px)
+       Slot.RowEnd: gap 8px (Search→Actions: 336-328=8px, Actions→Profile: 440-432=8px)
+    ───────────────────────────────────────────────────────────────────────── */
+    @keyframes tnDropIn {
+      from { opacity:0; transform:translateY(-4px) scale(0.99); }
+      to   { opacity:1; transform:translateY(0) scale(1); }
     }
-    .topnav__hamburger:hover { background: rgba(10,18,35,0.16); }
 
-    /* Module switcher */
-    .topnav__module {
-      display: flex; align-items: center; gap: 4px;
-      height: 36px; padding: 4px; border-radius: 8px;
-      background: transparent; border: none; cursor: pointer;
-      color: rgba(251,251,251,0.9); transition: background 120ms ease;
-    }
-    .topnav__module:hover { background: rgba(10,18,35,0.16); }
-    .topnav__module-icon {
-      width: 26px; height: 26px; display: flex; align-items: center;
-      justify-content: center; flex-shrink: 0;
-    }
-    .topnav__module-label {
-      font-size: 14px; font-weight: 500; line-height: 20px;
-      letter-spacing: 0.3px; color: #fbfbfb;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      max-width: 160px;
-    }
-    .topnav__module-label.hidden { display: none; }
+    /* ── Body below TopNav ──────────────────────────────────────────────────── */
+    .shell__body { display: flex; flex: 1; overflow: hidden; position: relative; }
 
-    /* Org switcher */
-    .topnav__org {
-      position: relative; padding: 4px 2px;
-    }
-    .topnav__org-btn {
-      display: flex; align-items: center; gap: 4px;
-      height: 36px; padding: 4px 6px 4px 12px; border-radius: 8px;
-      background: rgba(160,181,230,0.04);
-      border: 1px solid rgba(160,181,230,0.16);
-      cursor: pointer; color: #fbfbfb; font-family: inherit;
-      transition: background 120ms ease, border-color 120ms ease;
-    }
-    .topnav__org-btn:hover {
-      background: rgba(10,18,35,0.16);
-      border-color: rgba(160,181,230,0.20);
-    }
-    .topnav__org-btn.open {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(160,181,230,0.30);
-    }
-    .topnav__org-label {
-      font-size: 14px; font-weight: 500; line-height: 20px;
-      letter-spacing: 0.3px; color: #fbfbfb;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      max-width: 240px;
-    }
-    .topnav__org-label.mobile { max-width: 70px; }
-
-    /* Search, action icons, profile */
-    .topnav__search-btn {
-      display: flex; align-items: center; justify-content: center;
-      width: 36px; height: 36px; border-radius: 9999px;
-      background: rgba(160,181,230,0.08);
-      border: 0.5px solid rgba(251,251,251,0.4);
-      cursor: pointer; padding: 8px;
-      color: rgba(251,251,251,0.9); transition: background 120ms ease;
-    }
-    .topnav__search-btn:hover { background: rgba(10,18,35,0.16); }
-    .topnav__action-btn {
-      display: flex; align-items: center; justify-content: center;
-      width: 48px; height: 48px; border-radius: 8px;
-      background: transparent; border: none; cursor: pointer; padding: 8px;
-      color: rgba(251,251,251,0.9); transition: background 120ms ease;
-    }
-    .topnav__action-btn:hover { background: rgba(10,18,35,0.16); }
-    .topnav__profile-btn {
-      display: flex; align-items: center; justify-content: center;
-      width: 44px; height: 44px; border-radius: 50%;
-      background: transparent; border: none; cursor: pointer; padding: 6px;
-      transition: background 120ms ease;
-    }
-    .topnav__profile-btn:hover { background: rgba(10,18,35,0.16); }
-    .topnav__avatar {
-      width: 32px; height: 32px; border-radius: 50%;
-      background: var(--semantic-color-light-mode-fill-static-accent-amethyst-base, #dcd9ef);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 600; letter-spacing: 0.3px;
-      color: var(--semantic-color-light-mode-text-static-accent-amethyst-contrast, #221e3f);
-      line-height: 1; flex-shrink: 0;
-    }
-    .topnav__avatar.mobile { font-size: 11px; }
-
-    /* Org panel dropdown */
-    .topnav__org-panel {
-      position: absolute; top: calc(100% + 4px); left: 0; min-width: 260px;
-      background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
-      z-index: 200; padding: 4px 0; overflow: hidden;
-      animation: dropIn 150ms ease-out;
-    }
-    .topnav__org-panel-heading {
-      padding: 6px 12px 4px;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.07em;
-      text-transform: uppercase; color: #a0a0a0;
-    }
-    .topnav__org-item {
-      display: flex; align-items: center; gap: 10px;
-      padding: 8px 12px; cursor: pointer; border-radius: 0;
-      transition: background 120ms ease;
-    }
-    .topnav__org-item:hover { background: #f5f5f5; }
-    .topnav__org-item.active { background: #eef2fb; }
-    .topnav__org-item-avatar {
-      width: 32px; height: 32px; border-radius: 4px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 9px; font-weight: 700; color: #fff; flex-shrink: 0;
-    }
-    .topnav__org-item-name { font-size: 13px; font-weight: 500; color: #252525; }
-    .topnav__org-item-campus { font-size: 11px; color: #6b6b6b; margin-top: 1px; }
-
-    /* ── SHELL LAYOUT ───────────────────────────────────────────────────────── */
-    .shell {
-      display: flex; height: 100%; padding-top: 56px; /* TopNav height */
-    }
-    .shell__sidenav {
-      position: fixed; top: 56px; left: 0; bottom: 0;
+    /* ── SideNav ────────────────────────────────────────────────────────────
+       Figma: width 240px, background Surface/Nav/Light = #fafafa
+       border-right 0.5px Stroke/Static/Neutral/Light = #f6f6f6
+       NavItem height 44px (Figma: SideNavItem instances are 44px)
+       menuGap: 6px (from sidenav.jsx L.menuGap)
+    ───────────────────────────────────────────────────────────────────────── */
+    .sidenav {
+      flex-shrink: 0;
+      background: var(--semantic-color-light-mode-surface-nav-light, #fafafa);
+      border-right: 0.5px solid var(--semantic-color-light-mode-stroke-static-neutral-light, #f6f6f6);
       display: flex; flex-direction: column;
-      background: var(--semantic-color-light-mode-surface-nav-light, #f9f9f9);
-      border-right: 1px solid var(--semantic-color-light-mode-stroke-static-neutral-light, #f6f6f6);
-      z-index: 50;
       transition: width 380ms cubic-bezier(0.32,0.72,0,1);
       overflow: hidden;
     }
-    .shell__sidenav.expanded  { width: 220px; }
-    .shell__sidenav.collapsed { width: 72px; }
-    /* Desktop collapsed rail — mirrors the tablet media query but via JS state */
-    .shell__sidenav.collapsed .nav-item__label  { opacity: 0 !important; width: 0 !important; min-width: 0 !important; }
-    .shell__sidenav.collapsed .nav-section-label { opacity: 0 !important; height: 0 !important; min-height: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
-    .shell__sidenav.collapsed .nav-header__logo  { opacity: 0 !important; width: 0 !important; }
-    .shell__sidenav.collapsed .nav-item { justify-content: center !important; padding: 0 !important; margin: 0 0 2px !important; gap: 0 !important; border-radius: 0 !important; }
-    .shell__sidenav.collapsed .nav-item.active .nav-item__indicator { left: 0 !important; }
-    .shell__sidenav.hidden    { width: 0; }
+    .sidenav.expanded  { width: 240px; }  /* Figma: SideNav.Container width=240 */
+    .sidenav.collapsed { width: 72px; }   /* sidenav.jsx L.navWcol=72 */
 
-    /* Overlay (mobile) */
-    .shell__overlay {
-      display: none; position: fixed; inset: 56px 0 0 0; z-index: 49;
-      background: rgba(0,0,0,0.32);
-    }
-    .shell__overlay.visible { display: block; }
-
-    /* Main content area */
-    .shell__main {
-      flex: 1; min-width: 0;
-      overflow-y: auto; overflow-x: hidden;
-      transition: margin-left 380ms cubic-bezier(0.32,0.72,0,1);
-    }
-    .shell__main.expanded  { margin-left: 220px; }
-    .shell__main.collapsed { margin-left: 72px; }
-    .shell__main.full      { margin-left: 0; }
-
-    /* ── SIDENAV INTERNALS ──────────────────────────────────────────────────── */
+    /* NavHeader */
     .nav-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 16px 8px 12px; min-height: 48px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: flex-end;
+      padding: 8px 16px; min-height: 56px; flex-shrink: 0;
       border-bottom: 1px solid var(--semantic-color-light-mode-stroke-static-neutral-light, #f6f6f6);
     }
-    .nav-header__logo {
-      font-size: 13px; font-weight: 600; color: var(--semantic-color-light-mode-text-contextual-navitem-base, #484848);
-      letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap;
-      overflow: hidden; opacity: 1; transition: opacity 200ms ease;
+    .nav-header.collapsed { justify-content: center; padding: 8px 12px; }
+    .nav-header__label {
+      flex: 1; font-size: 13px; font-weight: 600; letter-spacing: 0.05em;
+      text-transform: uppercase; white-space: nowrap; overflow: hidden;
+      color: var(--semantic-color-light-mode-text-contextual-navitem-base, #484848);
+      opacity: 1; transition: opacity 200ms ease;
     }
-    .nav-header__logo.hidden { opacity: 0; }
-    .nav-collapse-btn {
+    .nav-header__label.hidden { opacity: 0; width: 0; min-width: 0; }
+    .nav-header__btn {
       display: flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px; border-radius: 6px;
-      background: transparent; border: none; cursor: pointer; flex-shrink: 0;
+      width: 32px; height: 32px; border-radius: 6px; flex-shrink: 0;
+      background: transparent; border: none; cursor: pointer;
       color: var(--semantic-color-light-mode-icon-contextual-navitem-base, #606060);
       transition: background 120ms ease;
     }
-    .nav-collapse-btn:hover { background: var(--semantic-color-light-mode-fill-contextual-navitem-hover, rgba(69,77,94,0.06)); }
+    .nav-header__btn:hover {
+      background: var(--semantic-color-light-mode-fill-contextual-navitem-hover, rgba(69,77,94,0.06));
+    }
 
-    .nav-menu { flex: 1; overflow-y: auto; overflow-x: visible; padding: 8px 0; }
+    /* Nav menu */
+    .nav-menu {
+      flex: 1; overflow-y: auto; overflow-x: hidden;
+      padding: 8px 0 56px;
+      display: flex; flex-direction: column; gap: 6px; /* menuGap=6 */
+    }
+    .nav-menu::-webkit-scrollbar { width: 4px; }
+    .nav-menu::-webkit-scrollbar-track { background: transparent; }
+    .nav-menu::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
+    .nav-menu:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); }
 
-    /* Nav item — full width, 8px padding on both sides gives visual indent
-       while keeping indicator flush with left edge of the SideNav container */
+    /* SectionLabel */
+    .nav-section-label {
+      display: flex; align-items: center;
+      min-height: 32px; padding: 0 16px; margin-top: 4px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--semantic-color-light-mode-text-static-secondary-subtle, #606060);
+      white-space: nowrap; overflow: hidden;
+      opacity: 1; transition: opacity 200ms ease;
+    }
+    .nav-section-label.hidden {
+      opacity: 0; height: 0; min-height: 0; margin: 0; padding: 0; overflow: hidden;
+    }
+
+    /* Nav item */
     .nav-item {
       display: flex; align-items: center; gap: 12px;
-      min-height: 48px; padding: 0 12px; cursor: pointer;
-      border-radius: 8px;
-      margin: 0 8px 2px;          /* 8px left/right margin within the nav */
+      min-height: 44px; /* Figma SideNavItem = 44px */
+      padding: 0 16px; cursor: pointer; border: none;
+      background: transparent; font-family: inherit;
+      font-size: 14px; font-weight: 400; line-height: 1; letter-spacing: 0.3px;
       color: var(--semantic-color-light-mode-text-contextual-navitem-base, #484848);
-      text-decoration: none; border: none; background: transparent;
-      font-family: inherit; font-size: 14px; font-weight: 400; line-height: 1;
-      letter-spacing: 0.3px; white-space: nowrap;
-      transition: background 120ms ease, color 120ms ease;
-      position: relative; overflow: visible;
+      white-space: nowrap; transition: background 120ms ease;
+      position: relative; text-align: left; width: 100%;
     }
     .nav-item:hover {
       background: var(--semantic-color-light-mode-fill-contextual-navitem-hover, rgba(69,77,94,0.06));
@@ -246,78 +128,65 @@
       color: var(--semantic-color-light-mode-text-contextual-navitem-active, #3555a0);
       font-weight: 500;
     }
-    /* Indicator stripe: 4×24px, flush at the LEFT of the SideNav container.
-       The nav-item margin is 8px → indicator at left:-20px (8px margin + 12px padding).
-       .nav-menu must allow overflow-x:visible for this to show. */
-    .nav-item.active .nav-item__indicator {
-      position: absolute; left: -20px; top: 50%; transform: translateY(-50%);
-      width: 4px; height: 24px; border-radius: 0 4px 4px 0; pointer-events: none;
+    /* Indicator stripe — 4px at SideNav left edge */
+    .nav-item.active::before {
+      content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+      width: 4px; height: 24px; border-radius: 0 4px 4px 0;
       background: var(--semantic-color-light-mode-icon-contextual-navitem-active, #3555a0);
     }
     .nav-item__icon {
-      width: 24px; height: 24px; display: flex; align-items: center;
-      justify-content: center; flex-shrink: 0;
-      color: var(--semantic-color-light-mode-icon-contextual-navitem-base, #606060);
+      width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
     }
-    .nav-item.active .nav-item__icon {
-      color: var(--semantic-color-light-mode-icon-contextual-navitem-active, #3555a0);
-    }
-    .nav-item__label {
-      flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis;
-      opacity: 1; transition: opacity 200ms ease;
-    }
-    .nav-item__label.hidden { opacity: 0; width: 0; }
+    .nav-item__label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 
-    .nav-section-label {
-      display: flex; align-items: center; min-height: 32px;
-      padding: 0 16px; margin: 4px 8px 0;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--semantic-color-light-mode-text-static-secondary-subtle, #606060);
-      white-space: nowrap; overflow: hidden;
-      opacity: 1; transition: opacity 200ms ease;
+    /* Collapsed rail — icon centered, no labels */
+    .sidenav.collapsed .nav-item {
+      justify-content: center; padding: 0; gap: 0;
     }
-    .nav-section-label.hidden { opacity: 0; }
-
-    /* NavFooter removed — collapse is handled by NavHeader only (spec §9, migration 2026-05-13) */
-    .nav-footer { display: none !important; }
-
-    /* Tooltip for collapsed items */
-    .nav-item:hover .nav-tooltip {
-      display: flex;
+    .sidenav.collapsed .nav-item__label {
+      opacity: 0; width: 0; min-width: 0;
     }
+    .sidenav.collapsed .nav-section-label {
+      opacity: 0; height: 0; min-height: 0; margin: 0; padding: 0;
+    }
+    .sidenav.collapsed .nav-item.active::before {
+      left: 0;
+    }
+
+    /* Tooltip in collapsed rail */
+    .nav-item:hover .nav-tooltip { display: flex; }
     .nav-tooltip {
       display: none; position: absolute; left: calc(100% + 8px); top: 50%;
       transform: translateY(-50%); z-index: 200;
-      background: var(--semantic-color-light-mode-text-contextual-navitem-base, #484848);
-      color: #fff; font-size: 12px; font-weight: 500; padding: 4px 8px;
-      border-radius: 4px; white-space: nowrap; pointer-events: none;
+      background: #484848; color: #fff; font-size: 12px; font-weight: 500;
+      padding: 4px 8px; border-radius: 4px; white-space: nowrap; pointer-events: none;
     }
     .nav-tooltip::before {
-      content: ''; position: absolute; right: 100%; top: 50%;
-      transform: translateY(-50%);
+      content: ''; position: absolute; right: 100%; top: 50%; transform: translateY(-50%);
       border: 4px solid transparent; border-right-color: #484848;
     }
 
-    /* ── SCREEN TEMPLATE (PAGE CONTENT) ────────────────────────────────────── */
-    /* Token: contextual.page.padding.horizontal = 36px
-       Token: contextual.page.padding.top = 12px
-       Token: contextual.page.padding.bottom = 56px
-       Token: contextual.page.gap.vertical = 16px
-       Background: surface.canvas.light = #fafafa */
-    .screen {
-      min-height: 100%;
-      padding: 12px 36px 56px;
-      display: flex; flex-direction: column;
-      gap: var(--semantic-layout-units-gap-relaxed, 24px);
+    /* ── Main content area ──────────────────────────────────────────────────
+       Figma: ScreenTemplate at x=244, width=1196
+       Padding: px=36, pt=12 (contextual.page.padding)
+    ───────────────────────────────────────────────────────────────────────── */
+    .shell__main {
+      flex: 1; min-width: 0; overflow-y: auto; overflow-x: hidden;
       background: var(--semantic-color-light-mode-surface-canvas-light, #fafafa);
     }
+    .screen {
+      padding: 12px 36px 56px; min-height: 100%;
+      display: flex; flex-direction: column;
+    }
 
-    /* Tabs — page top navigation */
-    /* Source: Figma ScreenTemplate Slot.PageNavigation */
+    /* ── Tabs (Slot.PageNavigation) ──────────────────────────────────────────
+       Figma: y=12, height=46, border-bottom
+    ───────────────────────────────────────────────────────────────────────── */
     .page-tabs {
-      display: flex; border-bottom: 1px solid var(--semantic-color-light-mode-stroke-static-neutral-light, #f6f6f6);
-      margin-bottom: 0; flex-shrink: 0;
+      display: flex;
+      border-bottom: 1px solid var(--semantic-color-light-mode-stroke-static-neutral-light, #f6f6f6);
+      flex-shrink: 0; margin-bottom: 0;
     }
     .page-tab {
       display: flex; align-items: center; justify-content: center;
@@ -327,7 +196,9 @@
       border: none; background: transparent; font-family: inherit;
       transition: color 120ms ease;
     }
-    .page-tab:hover { color: var(--semantic-color-light-mode-text-static-primary-base, #202020); }
+    .page-tab:hover {
+      color: var(--semantic-color-light-mode-text-static-primary-base, #202020);
+    }
     .page-tab.active {
       color: var(--semantic-color-light-mode-text-action-primary-base, #3555a0);
       font-weight: 600;
@@ -338,134 +209,147 @@
       background: var(--semantic-color-light-mode-fill-action-primary-base, #4b6ec3);
     }
 
-    /* Page heading */
-    /* Source: Figma PageHeading component — node 40006538:42661
-       heading.page.base.semibold: 24px/600/30px, text.static.primary.base = #202020
-       subheading: text.body.base.regular: 16px/400/22px, text.static.secondary.base = #484848
-       padding-top: 8px, padding-bottom: 16px, gap: 8px */
-    .page-heading {
-      display: flex; flex-direction: column;
-      padding-top: 8px; padding-bottom: 16px;
-      gap: 8px;
+    /* ── Screen content (Container.ScreenContent) ───────────────────────────
+       Figma: y=85 (tabs at y=12 + 49 + 24px gap), gap between sections=16px
+    ───────────────────────────────────────────────────────────────────────── */
+    .screen-content {
+      display: flex; flex-direction: column; gap: 0; margin-top: 24px;
     }
-    .page-heading__row {
+
+    /* ── PageHeading (Container.PageHeading) ─────────────────────────────────
+       Figma: height=84, pt=8, pb=16
+       LeadingSlot: width=160, height=60
+       TrailingSlot: x=790, width=334, height=44 — two PW_Button instances
+    ───────────────────────────────────────────────────────────────────────── */
+    .page-heading {
       display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 8px 0 16px;
     }
     .page-heading__title {
-      font-size: 24px; font-weight: 600; line-height: 30px; letter-spacing: 0.1px;
+      font-size: 24px; font-weight: 600; line-height: "30px"; letter-spacing: 0.1px;
       color: var(--semantic-color-light-mode-text-static-primary-base, #202020);
     }
     .page-heading__subtitle {
+      margin-top: 8px;
       font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0.1px;
       color: var(--semantic-color-light-mode-text-static-secondary-base, #484848);
     }
-    .page-heading__actions { display: flex; align-items: center; gap: 8px; }
+    .page-heading__actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
-    /* Toolbar */
-    /* Source: Figma ToolBar component — node 40006537:42570
-       padding-vertical: 8px, gap-vertical: 8px */
-    .toolbar {
-      display: flex; flex-direction: column;
-      padding: 8px 0; gap: 8px;
+    /* PW_Button — from button.jsx token values
+       Figma TrailingSlot: button1=173px (Outlined Secondary), button2=153px (Fill Primary)
+    */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 44px; padding: 0 16px; border-radius: 8px;
+      font-family: inherit; font-size: 16px; font-weight: 500;
+      line-height: 22px; letter-spacing: 0.1px; cursor: pointer;
+      border: none; transition: background 100ms ease-out;
     }
-    .toolbar__row {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 16px;
+    .btn--outlined {
+      background: transparent;
+      border: 1px solid var(--semantic-color-light-mode-stroke-action-secondary-base, #292724);
+      color: var(--semantic-color-light-mode-text-action-secondary-base, #292724);
+    }
+    .btn--outlined:hover {
+      background: var(--semantic-color-light-mode-fill-action-secondaryinverse-hover, #f7f5f3);
+    }
+    .btn--filled {
+      background: var(--semantic-color-light-mode-fill-action-primary-base, #4b6ec3);
+      color: #ffffff; border: none;
+    }
+    .btn--filled:hover {
+      background: var(--semantic-color-light-mode-fill-action-primary-hover, #6e8bd4);
+    }
+
+    /* ── Toolbar (Container.ToolBar) ─────────────────────────────────────────
+       Figma: y=100, height=64 (py=8)
+       LeadingSlot: SearchBar (400px) + FilterChips (264px = 4×60px + 3×8px)
+       TrailingSlot: empty
+    ───────────────────────────────────────────────────────────────────────── */
+    .toolbar {
+      display: flex; align-items: center;
+      padding: 8px 0; gap: 0;
+      margin-bottom: 16px;
     }
     .toolbar__leading { display: flex; align-items: center; gap: 24px; flex: 1; min-width: 0; }
-    .toolbar__trailing { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
-    /* Search field — Toolbar search bar
-       Source: Figma ToolBar Container.SearchBar
-       width: 400px, border-radius: 6px (unusual — not cornerradius.medium),
-       border: 0.75px stroke.action.secondary-inverse.base = #d2d2d2
-       padding: 8px (tight) */
+    /* Search bar — Figma: width=400, border-radius 6px (confirmed from spec) */
     .toolbar__search {
       display: flex; align-items: center; gap: 8px;
-      width: 100%; max-width: 400px; min-width: 200px;
+      width: 400px; min-width: 200px; max-width: 400px;
       height: 36px; padding: 0 8px;
       border: 0.75px solid var(--semantic-color-light-mode-stroke-action-secondary-inverse-base, #d2d2d2);
       border-radius: 6px;
       background: var(--semantic-color-light-mode-fill-static-neutral-light, #ffffff);
-      transition: border-color 120ms ease;
+      flex-shrink: 0;
     }
     .toolbar__search:focus-within {
-      border-color: var(--semantic-color-light-mode-stroke-action-primary-pressed, #6e8bd4);
-      border-width: 1px;
+      border: 1px solid var(--semantic-color-light-mode-stroke-action-primary-pressed, #6e8bd4);
     }
     .toolbar__search input {
       flex: 1; border: none; outline: none; background: transparent;
-      font-family: 'Red Hat Text', sans-serif;
-      font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0.1px;
+      font-family: 'Red Hat Text', sans-serif; font-size: 16px; font-weight: 400;
+      line-height: 22px; letter-spacing: 0.1px;
       color: var(--semantic-color-light-mode-text-static-secondary-base, #484848);
     }
-    .toolbar__search input::placeholder { color: var(--semantic-color-light-mode-text-static-secondary-subtle, #606060); }
+    .toolbar__search input::placeholder {
+      color: var(--semantic-color-light-mode-text-static-secondary-subtle, #606060);
+    }
 
-    /* Filter chips
-       Source: Figma FilterChip component
-       min-height: 48px (touch target), border-radius: 4px (border-radius.xs)
-       text: label.option.s.medium 12px/500/18px, text.action.secondary.base = #292724
-       padding: 4px */
-    .filter-chips { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+    /* FilterChips — Figma: each 60px wide, gap=8px, touch target 48px */
+    .filter-chips { display: flex; align-items: center; gap: 8px; }
     .filter-chip {
       display: inline-flex; align-items: center; justify-content: center;
-      min-height: 48px; padding: 6px 2px;
-      border: none; background: transparent; cursor: pointer; font-family: inherit;
+      min-height: 48px; padding: 6px 0; background: transparent; border: none; cursor: pointer;
     }
     .filter-chip__inner {
       display: flex; align-items: center; justify-content: center;
       padding: 4px 8px; border-radius: 4px;
       font-size: 12px; font-weight: 500; line-height: 18px; letter-spacing: 0.3px;
       color: var(--semantic-color-light-mode-text-action-secondary-base, #292724);
-      transition: background 120ms ease, color 120ms ease;
-      white-space: nowrap;
+      white-space: nowrap; transition: background 100ms ease;
     }
-    .filter-chip:hover .filter-chip__inner { background: rgba(0,0,0,0.05); }
+    .filter-chip:hover .filter-chip__inner {
+      background: rgba(0,0,0,0.04);
+    }
     .filter-chip.active .filter-chip__inner {
       background: var(--semantic-color-light-mode-fill-action-tertiary-base, #eef2fb);
       color: var(--semantic-color-light-mode-text-action-primary-base, #3555a0);
       font-weight: 600;
     }
 
-    /* Section heading
-       Source: Figma SectionHeading component
-       font: heading.section.xs.semibold 14px/600/22px, letter-spacing: 0.6px
-       color: text.static.secondary.subtle = #606060 (subtle, uppercase label)
-       padding-vertical: 6px */
+    /* ── Section Container ──────────────────────────────────────────────────── */
+    .section-container { display: flex; flex-direction: column; gap: 0; }
+
+    /* ── Section ────────────────────────────────────────────────────────────
+       Section 1: height=178 (top_gap=4 + heading=34 + gap=8 + cards=116 + bottom=16)
+       Section 2: height=210 (top_gap=4 + heading=34 + gap=8 + cards=148 + bottom=16)
+    ───────────────────────────────────────────────────────────────────────── */
+    .section { display: flex; flex-direction: column; padding: 4px 0 16px; }
+
+    /* SectionHeading — Container.SectionHeading: height=22, py=6, total=34 */
     .section-heading {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 6px 0;
-    }
-    .section-heading__label {
+      padding: 6px 0; margin-bottom: 8px;
       font-size: 14px; font-weight: 600; line-height: 22px; letter-spacing: 0.6px;
       text-transform: uppercase;
       color: var(--semantic-color-light-mode-text-static-secondary-subtle, #606060);
     }
-    .section-heading__action {
-      font-size: 12px; font-weight: 500; line-height: 18px;
-      color: var(--semantic-color-light-mode-text-action-primary-base, #3555a0);
-      cursor: pointer; border: none; background: transparent; font-family: inherit;
-    }
 
-    /* Content section */
-    .content-section {
-      display: flex; flex-direction: column;
-      gap: 8px;
-      padding-top: 4px; padding-bottom: 16px;
-    }
+    /* Card grid — Figma: 4 columns × 275px, gap=8px → total 1124px = exact content width */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(4, 275px);
       gap: 8px;
     }
 
-    /* Card
-       Source: Figma Card component inside ScreenTemplate
-       bg: fill.static.neutral.light = white
-       border: 0.5px contextual.card.border-width.base.base, stroke.action.secondary-inverse.base = #d2d2d2
-       border-radius: contextual.card.cornerradius = 8px
-       padding: contextual.card.padding.medium.horizontal = 16px
-       gap: contextual.card.gap = 12px */
+    /* Card — Figma: CardContainer
+       bg: Fill/Static/Neutral/Light = #ffffff
+       border: 0.5px contextual.card.border-width, Stroke/Action/Secondary-Inverse/Base = #d2d2d2
+       border-radius: 8px (contextual.card.cornerradius)
+       padding: 16px (contextual.card.padding.medium.horizontal)
+       gap: 12px (contextual.card.gap)
+    */
     .card {
       background: var(--semantic-color-light-mode-fill-static-neutral-light, #ffffff);
       border: 0.5px solid var(--semantic-color-light-mode-stroke-action-secondary-inverse-base, #d2d2d2);
@@ -473,182 +357,77 @@
       padding: 16px;
       display: flex; flex-direction: column; gap: 12px;
       transition: box-shadow 150ms ease, border-color 150ms ease;
+      cursor: pointer;
     }
     .card:hover {
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       border-color: var(--semantic-color-light-mode-stroke-action-primary-hover, #86a0dd);
     }
-    .card__heading {
-      display: flex; align-items: center; gap: 8px;
-    }
-    /* Card icon container: 32×32px, border-radius.s = 8px
-       Color variants: accent_amethyst (purple), positive (green), etc */
+
+    /* CardHeading: height=32, gap=8 between icon(32px) and title */
+    .card__heading { display: flex; align-items: center; gap: 8px; }
+
+    /* Display icon: 32×32, border-radius.s=8px, color-variant bg */
     .card__icon {
       width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
     }
     .card__icon--accent {
       background: var(--semantic-color-light-mode-fill-static-accent-amethyst-light, #f4f2fa);
-      color: var(--semantic-color-light-mode-icon-static-accent-amethyst-base, #6a5acd);
     }
     .card__icon--positive {
       background: var(--semantic-color-light-mode-fill-static-positive-light, #f0faf1);
-      color: var(--semantic-color-light-mode-icon-static-positive-base, #2e7d32);
     }
     .card__icon--info {
       background: var(--semantic-color-light-mode-fill-static-info-light, #eef2fb);
-      color: var(--semantic-color-light-mode-fill-action-primary-base, #3555a0);
     }
     .card__icon--warning {
       background: var(--semantic-color-light-mode-fill-static-warning-light, #fff8e1);
-      color: var(--semantic-color-light-mode-icon-static-warning-base, #e65100);
     }
+
+    /* CardTitle: text.body.base.semibold = 16px/600/22px */
     .card__title {
       flex: 1; min-width: 0;
       font-size: 16px; font-weight: 600; line-height: 22px; letter-spacing: 0.1px;
       color: var(--semantic-color-light-mode-text-static-primary-base, #202020);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     }
-    /* Badge
-       Source: Figma Badge component
-       bg: fill.static.accent_amethyst.light = #f4f2fa
-       text: label.badge.small.medium 11px/500/16px, text.static.accent-amethyst.contrast = #221e3f
-       border-radius: 12px, padding: 2px horizontal */
+
+    /* Badge — Slot.CardSubtitle visible in Section 2
+       bg: fill.static.accent_amethyst.light = #f4f2fa, radius=12px
+       text: label.badge.small.medium 11px/500, accent-amethyst.contrast = #221e3f
+    */
     .card__badge {
-      display: inline-flex; align-items: center; gap: 2px;
+      display: inline-flex; align-items: center;
       padding: 1px 6px; border-radius: 12px;
+      font-size: 11px; font-weight: 500; line-height: 18px; letter-spacing: 0.3px;
       background: var(--semantic-color-light-mode-fill-static-accent-amethyst-light, #f4f2fa);
-      font-size: 11px; font-weight: 500; line-height: 16px; letter-spacing: 0.3px;
       color: var(--semantic-color-light-mode-text-static-accent-amethyst-contrast, #221e3f);
     }
     .card__badge--positive {
       background: var(--semantic-color-light-mode-fill-static-positive-light, #f0faf1);
       color: #1b5e20;
     }
+
+    /* CardBody: text.body.small.regular = 14px/400/20px, text.static.secondary.subtle */
     .card__body {
       font-size: 14px; font-weight: 400; line-height: 20px; letter-spacing: 0.3px;
       color: var(--semantic-color-light-mode-text-static-secondary-subtle, #606060);
     }
 
-    /* ── ACTION BUTTONS ─────────────────────────────────────────────────────── */
-    .btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 8px 14px; border-radius: 8px;
-      font-family: 'Red Hat Text', sans-serif; font-size: 14px;
-      font-weight: 500; line-height: 20px; letter-spacing: 0.3px;
-      cursor: pointer; border: none; transition: background 120ms ease;
-    }
-    .btn--primary {
-      background: var(--semantic-color-light-mode-fill-action-primary-base, #4b6ec3);
-      color: #ffffff;
-    }
-    .btn--primary:hover { background: var(--semantic-color-light-mode-fill-action-primary-hover, #4b6ec3); }
-    .btn--secondary {
-      background: var(--semantic-color-light-mode-fill-static-neutral-light, #fff);
-      color: var(--semantic-color-light-mode-text-action-secondary-base, #292724);
-      border: 1px solid var(--semantic-color-light-mode-stroke-action-secondary-base, #292724);
-    }
-    .btn--secondary:hover { background: var(--semantic-color-light-mode-fill-action-secondaryinverse-hover, #f7f5f3); }
-    .btn--naked {
-      background: transparent;
-      color: var(--semantic-color-light-mode-text-action-primary-base, #3555a0);
-    }
-    .btn--naked:hover { background: var(--semantic-color-light-mode-fill-action-tertiary-base, #eef2fb); }
-
-    /* ── CHEVRON ANIMATION ──────────────────────────────────────────────────── */
-    .chev {
-      display: inline-flex; font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;
-      transition: transform 180ms ease;
-    }
-    .chev.open { transform: rotate(180deg); }
-
-    /* ── DROP IN ANIMATION ──────────────────────────────────────────────────── */
-    @keyframes dropIn {
-      from { opacity: 0; transform: translateY(-4px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
-
-    /* Tablet: 768–1023px
-       - SideNav collapses to 72px rail
-       - Module label hidden
-       - Notification bells → more_vert */
-    /* Rail (72px collapsed) — icons only, centered, no labels */
+    /* ── Responsive ─────────────────────────────────────────────────────────── */
     @media (max-width: 1023px) {
-      .shell__sidenav { width: 72px !important; }
-      .shell__main { margin-left: 72px !important; }
-      .nav-item__label { opacity: 0 !important; width: 0 !important; min-width: 0 !important; }
-      .nav-section-label { opacity: 0 !important; height: 0 !important; min-height: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; }
-      .nav-header__logo { opacity: 0 !important; width: 0 !important; }
-      /* Rail nav item: full width, icon centered, no gap (label hidden), no side margin */
-      .nav-item { justify-content: center; padding: 0; margin: 0 0 2px; gap: 0; border-radius: 0; }
-      .nav-item:hover { border-radius: 0; }
-      .nav-item.active { border-radius: 0; }
-      /* Stripe indicator in rail: flush to left of 72px container */
-      .nav-item.active .nav-item__indicator { left: 0 !important; }
-      .topnav__module-label { display: none !important; }
-      .topnav__org-label { max-width: 80px !important; }
-      .topnav__desktop-bells { display: none !important; }
-      .topnav__tablet-more { display: flex !important; }
+      .sidenav { width: 72px !important; }
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
-    /* Mobile: <768px
-       - SideNav hidden by default (revealed by hamburger)
-       - TopNav shows hamburger
-       - Module icon only (no label, no chevron)
-       - Org label max 70px */
-    /* ── Tablet toolbar: search shrinks, filter chips wrap to second row ──────── */
-    @media (max-width: 1023px) and (min-width: 768px) {
-      .toolbar__leading { flex-wrap: wrap; gap: 8px; }
-      .toolbar__search  { max-width: 100%; width: 100%; flex: 0 0 100%; }
-      .filter-chips     { flex: 0 0 100%; }
-    }
-
-    /* ── Mobile: single column, full padding collapse ────────────────────────── */
     @media (max-width: 767px) {
-      .shell__main { margin-left: 0 !important; }
-      .topnav__hamburger { display: flex !important; }
-      .topnav__module-label { display: none !important; }
-      .topnav__org-label { max-width: 70px !important; }
-      .topnav__avatar { font-size: 11px !important; }
-      .screen { padding: 8px 16px 32px; }
       .card-grid { grid-template-columns: 1fr; }
-      .toolbar__leading { flex-wrap: wrap; gap: 8px; }
-      .toolbar__search  { max-width: 100%; width: 100%; }
-      .filter-chips     { flex-wrap: wrap; }
+      .screen { padding: 8px 16px 32px; }
+      .toolbar__search { max-width: 100%; width: 100%; }
     }
-
-    .topnav__tablet-more { display: none; }
-    .topnav__desktop-bells { display: flex; align-items: center; }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    /* ── BREAKPOINT INDICATOR ───────────────────────────────────────────────── */
-    .bp-indicator {
-      position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%);
-      z-index: 999;
-      display: flex; align-items: center; gap: 6px;
-      background: rgba(45,72,137,0.9); color: #fbfbfb;
-      padding: 4px 12px; border-radius: 9999px;
-      font-size: 11px; font-weight: 500; letter-spacing: 0.05em;
-      pointer-events: none;
-    }
-    .bp-indicator .bp-desktop { display: inline; }
-    .bp-indicator .bp-tablet  { display: none; }
-    .bp-indicator .bp-mobile  { display: none; }
-    @media (max-width: 1023px) and (min-width: 768px) {
-      .bp-indicator .bp-desktop { display: none; }
-      .bp-indicator .bp-tablet  { display: inline; }
-    }
-    @media (max-width: 767px) {
-      .bp-indicator .bp-desktop { display: none; }
-      .bp-indicator .bp-mobile  { display: inline; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -661,588 +440,729 @@
   <script type="text/babel">
     const { useState, useEffect, useRef, useCallback } = React;
 
-    // ════════════════════════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════════
     // SHELL CONFIGURATION
-    // ════════════════════════════════════════════════════════════════════════════
+    // Change this object to customise the entire shell — module, org, nav items,
+    // page content. Nothing else needs to change.
     //
-    // This is the single place an agent needs to edit to customize the shell.
-    // Change SHELL_CONFIG to produce a pixel-accurate implementation of the
-    // Pathway navigation shell for any module, org, or page.
-    //
-    // USAGE EXAMPLE:
-    //   To implement "Amplify Giving" module with NorthPoint Church org and
-    //   three SideNav items (Home, Teams, Projects):
-    //
-    //   const SHELL_CONFIG = {
-    //     module: { id: "giving", label: "Amplify Giving", icon: "volunteer_activism" },
-    //     org:    { name: "NorthPoint Church", campus: "" },
-    //     user:   { name: "Jo Lopez", initials: "JL", email: "jo@northpoint.org" },
-    //     navItems: [
-    //       { id: "home",    label: "Home",    icon: "home",    active: true },
-    //       { id: "teams",   label: "Teams",   icon: "group" },
-    //       { id: "projects",label: "Projects",icon: "folder" },
-    //     ],
-    //     page: {
-    //       title: "Teams",
-    //       subtitle: "Manage your ministry teams and volunteers",
-    //       tabs: ["All Teams", "Active", "Archived"],
-    //     },
-    //   };
-
+    // Agent usage example:
+    //   Module=Amplify Giving, Org=NorthPoint Church, nav items=Home+Teams+Projects
+    //   Change: module.label, org.name, org.campus, navItems array
+    // ═══════════════════════════════════════════════════════════════════════════
     const SHELL_CONFIG = {
       module: {
-        id:    "home",
-        label: "Amplify Home",
-        icon:  "home",               // Material Symbols Rounded ligature name
-        isCustom: true,              // true = use HOME_ICON_PATH SVG instead of font
+        id:       "home",
+        label:    "Amplify Home",
+        isHome:   true,    // true = use the custom Figma SVG home icon
+        icon:     "home",  // Material Symbols ligature (used when isHome=false)
       },
       org: {
-        name:   "Grace Community Church",
+        name:   "Sacred Heart Church-ITD",
         campus: "Knoxville",
-        // logoUrl: "" — omit or leave empty for org-name-only trigger (DS default)
+        bg:     "#2d4889",
+        initials: "SH",
+        // logoUrl: "" — omit for org-name-only trigger (DS default)
       },
       user: {
-        name:     "Jo Lopez",
-        initials: "JL",
-        email:    "jo@gracecommunity.org",
+        name:     "Shelby Martinez",
+        initials: "SM",
+        email:    "shelby@sacredheart.org",
       },
-      // SideNav items — ordered exactly as they appear in the nav
-      // Each item: { id, label, icon, active?, sectionLabel? }
-      //   id           — unique string, used for active state tracking
-      //   label        — visible label text
-      //   icon         — Material Symbols Rounded ligature name (check CLAUDE.md §12)
-      //   active       — true for the current page (only one item active at a time)
-      //   sectionLabel — optional section heading shown ABOVE this item
+      // SideNav items. icon = Material Symbols Rounded ligature. FILL=1 always.
       navItems: [
-        { id: "home",      label: "Home",          icon: "home",              active: true },
-        { id: "people",    label: "People",         icon: "group" },
-        { id: "giving",    label: "Giving",         icon: "volunteer_activism",sectionLabel: "Ministry" },
-        { id: "events",    label: "Events",         icon: "event" },
-        { id: "comms",     label: "Communications", icon: "mail" },
-        { id: "settings",  label: "Settings",       icon: "settings",          sectionLabel: "Admin" },
+        { id: "payable",  label: "Accounts Payable",  icon: "receipt_long",         active: true },
+        { id: "receive",  label: "Accounts Receivable",icon: "payments" },
+        { id: "invoices", label: "Invoices",           icon: "description" },
+        { id: "vendors",  label: "Vendors",            icon: "store" },
+        { id: "reports",  label: "Reports",            icon: "bar_chart" },
       ],
-      // Page content (ScreenTemplate)
+      // Active module label shown in NavHeader
+      moduleLabel: "Accounts Payable",
+      // Page content
       page: {
-        title:    "Dashboard",
-        subtitle: "Welcome back, Jo. Here's what's happening today.",
-        tabs:     ["Overview", "Activity", "Reports"],
+        title:    "Accounts Payable",
+        subtitle: "Manage your bills, vendors, and payment schedules.",
+        tabs:     ["Overview", "Bills", "Vendors", "Payments"],
         activeTab: 0,
-        // ToolBar configuration
         toolbar: {
-          searchPlaceholder: "Search...",
-          filters: ["All", "This week", "This month", "This year"],
+          searchPlaceholder: "Search bills, vendors...",
+          filters: ["All", "Pending", "Paid", "Overdue"],
           activeFilter: 0,
         },
       },
     };
 
-    // ════════════════════════════════════════════════════════════════════════════
-    // HOME MODULE ICON (custom Figma SVG — Amplify Home branded asset)
-    // Source: top-nav.jsx HOME_ICON_PATH — do NOT replace with Material Symbol
-    // ════════════════════════════════════════════════════════════════════════════
-    const HOME_ICON_PATH =
-      "M16.5811 38.6244V32.8265C16.5811 31.3486 17.7937 30.1359 19.2716 30.1359H24.7095C25.4295 30.1359 26.1116 30.4202 26.6232 30.9128C27.1347 31.4054 27.4189 32.0875 27.4189 32.8075V38.6054C27.4189 39.2307 27.6653 39.8181 28.1011 40.2538C28.5368 40.6896 29.1242 40.9359 29.7495 40.9359H33.4632C35.1874 40.9359 36.8547 40.2538 38.0863 39.0412C39.3179 37.8286 40 36.1802 40 34.4559V17.9717C40 16.5696 39.3747 15.2623 38.2947 14.3717L25.6568 4.34858C23.4589 2.58647 20.3137 2.64331 18.1726 4.48121L5.83789 14.3528C4.72 15.2244 4.03789 16.5317 4 17.9528V34.437C4 38.037 6.93684 40.9549 10.5368 40.9359H14.1747C15.4632 40.9359 16.5053 39.9128 16.5242 38.6244H16.5811Z";
+    // ═══════════════════════════════════════════════════════════════════════════
+    // TOPNAV — exact code from components/top-nav/top-nav.jsx
+    // (Import/export statements stripped; otherwise unchanged)
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    // Design tokens — from top-nav.jsx T constant
+    const TN = {
+      navBg:         "#2d4889",
+      orgFill:       "rgba(160,181,230,0.04)",
+      orgStroke:     "rgba(160,181,230,0.16)",
+      orgStrokeHover:"rgba(160,181,230,0.20)",
+      searchFill:    "rgba(160,181,230,0.08)",
+      controlHover:  "rgba(10,18,35,0.16)",
+      controlPressed:"rgba(255,255,255,0.08)",
+      monoBase:      "#fbfbfb",
+      avatarBg:      "#dcd9ef",
+      avatarText:    "#221e3f",
+      panelBorder:   "rgba(45,72,137,0.12)",
+      panelShadow:   "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
+      activeItem:    "#eef2fb",
+      itemText:      "#252525",
+      itemTextBase:  "#484848",
+      itemMeta:      "#6b6b6b",
+    };
+
+    const HOME_ICON_PATH = "M16.5811 38.6244V32.8265C16.5811 31.3486 17.7937 30.1359 19.2716 30.1359H24.7095C25.4295 30.1359 26.1116 30.4202 26.6232 30.9128C27.1347 31.4054 27.4189 32.0875 27.4189 32.8075V38.6054C27.4189 39.2307 27.6653 39.8181 28.1011 40.2538C28.5368 40.6896 29.1242 40.9359 29.7495 40.9359H33.4632C35.1874 40.9359 36.8547 40.2538 38.0863 39.0412C39.3179 37.8286 40 36.1802 40 34.4559V17.9717C40 16.5696 39.3747 15.2623 38.2947 14.3717L25.6568 4.34858C23.4589 2.58647 20.3137 2.64331 18.1726 4.48121L5.83789 14.3528C4.72 15.2244 4.03789 16.5317 4 17.9528V34.437C4 38.037 6.93684 40.9549 10.5368 40.9359H14.1747C15.4632 40.9359 16.5053 39.9128 16.5242 38.6244H16.5811Z";
 
     function HomeModuleIcon({ size = 22 }) {
       return (
-        <svg viewBox="0 0 44 44" width={size} height={size}
-          fill="none" xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true" style={{ display:"block", flexShrink:0 }}>
+        <svg viewBox="0 0 44 44" width={size} height={size} fill="none"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+          style={{ display:"block", flexShrink:0 }}>
           <path d={HOME_ICON_PATH} fill="white" />
         </svg>
       );
     }
 
-    // ════════════════════════════════════════════════════════════════════════════
-    // ICON HELPER
-    // All standard UI icons use Material Symbols Rounded (FILL=0, wght 400, opsz 20)
-    // Exception: HomeModuleIcon (custom Figma asset) — use HomeModuleIcon component
-    // ════════════════════════════════════════════════════════════════════════════
-    function Icon({ name, size = 20, color, fill = 0, style: extra = {} }) {
+    // All standard UI icons — Material Symbols Rounded, FILL=0 in TopNav
+    function Icon({ name, size=20, fill=0, color, style:extra={} }) {
       return (
         <span className="material-symbols-rounded" aria-hidden="true" style={{
-          fontSize: size, color, lineHeight: 1, display: "block",
-          userSelect: "none", flexShrink: 0,
-          fontVariationSettings: `'FILL' ${fill},'wght' 400,'GRAD' 0,'opsz' 20`,
+          fontSize:size, color, lineHeight:1, display:"block",
+          userSelect:"none", flexShrink:0,
+          fontVariationSettings:`'FILL' ${fill},'wght' 400,'GRAD' 0,'opsz' 20`,
           ...extra,
         }}>{name}</span>
       );
     }
 
-    // ════════════════════════════════════════════════════════════════════════════
-    // SAMPLE CONTENT
-    // In production, replace with real data. Structure must be preserved.
-    // ════════════════════════════════════════════════════════════════════════════
-    const SAMPLE_CARDS = [
-      {
-        id: 1, title: "Sunday Service Attendance",
-        icon: "group", iconVariant: "accent",
-        badge: "This week", body: "1,247 attendees across all campuses. Up 8% from last Sunday.",
-      },
-      {
-        id: 2, title: "Upcoming Events",
-        icon: "event", iconVariant: "positive",
-        badge: "3 this week", body: "Youth retreat, worship night, and community outreach planned.",
-      },
-      {
-        id: 3, title: "Giving Summary",
-        icon: "volunteer_activism", iconVariant: "info",
-        badge: "This month", body: "$42,800 received. On track for monthly goal of $50,000.",
-      },
-      {
-        id: 4, title: "New Members",
-        icon: "person_add", iconVariant: "accent",
-        badge: "This month", body: "14 new member applications received, 9 approved.",
-      },
-      {
-        id: 5, title: "Communications Sent",
-        icon: "mail", iconVariant: "info",
-        badge: "This week", body: "3 bulk emails, 1 SMS blast. 73% open rate on last email.",
-      },
-      {
-        id: 6, title: "Volunteer Hours",
-        icon: "schedule", iconVariant: "positive",
-        badge: "This week", body: "246 volunteer hours logged across 12 ministry teams.",
-      },
-    ];
-
-    const SECTION_DATA = [
-      {
-        id: "overview", heading: "Overview",
-        cards: SAMPLE_CARDS.slice(0, 3),
-      },
-      {
-        id: "activity", heading: "Recent Activity",
-        cards: SAMPLE_CARDS.slice(3, 6),
-      },
-    ];
-
-    // ════════════════════════════════════════════════════════════════════════════
-    // ORG ABBREVIATION UTILITIES (for mobile label)
-    // Source: top-nav.jsx abbreviateOrg + abbreviateCampus
-    // ════════════════════════════════════════════════════════════════════════════
-    const SKIP = new Set(["the","a","an","of","in","at","for","and","or","but"]);
-    function abbreviateOrg(name) {
-      const sig = name.replace(/-/g," ").split(/\s+/).filter(w => !SKIP.has(w.toLowerCase()));
+    const SKIP_WORDS = new Set(["the","a","an","of","in","at","for","and","or","but"]);
+    const PLACE_SFXS = ["ville","field","burg","burgh","berg","town","port","ford","wood","land","dale"];
+    function abbrevOrg(name) {
+      const sig = name.replace(/-/g," ").split(/\s+/).filter(w => !SKIP_WORDS.has(w.toLowerCase()));
       if (sig.length >= 3) return (sig[0][0]+sig[1][0]+sig[2][0]).toUpperCase();
       if (sig.length === 2) return (sig[0][0]+sig[1][0]+sig[1][0]).toUpperCase();
       return (sig[0]||"?").slice(0,3).toUpperCase();
     }
-    const PLACE_SUFFIXES = ["ville","field","burg","town","ford","wood","land","dale"];
-    function abbreviateCampus(campus) {
+    function abbrevCampus(campus) {
       if (!campus) return "";
-      const sig = campus.replace(/-/g," ").split(/\s+/).filter(w => !SKIP.has(w.toLowerCase()));
+      const sig = campus.replace(/-/g," ").split(/\s+/).filter(w => !SKIP_WORDS.has(w.toLowerCase()));
       if (!sig.length) return campus.slice(0,2).toUpperCase();
       if (sig.length >= 2) return (sig[0][0]+sig[1][0]).toUpperCase();
-      const w = sig[0], wl = w.toLowerCase();
-      for (const sfx of PLACE_SUFFIXES) {
+      const w=sig[0], wl=w.toLowerCase();
+      for (const sfx of PLACE_SFXS) {
         if (wl.endsWith(sfx) && w.length > sfx.length+1) return (w[0]+sfx[0]).toUpperCase();
       }
       return (w[0]+w[w.length-1]).toUpperCase();
     }
 
-    // ════════════════════════════════════════════════════════════════════════════
-    // TOP NAV
-    // Breakpoints:
-    //   Desktop ≥1024px: full labels, 2× bells, no hamburger
-    //   Tablet 768–1023px: module icon only, more_vert, no hamburger
-    //   Mobile <768px: hamburger, abbreviated org, more_vert, 11px initials
-    // ════════════════════════════════════════════════════════════════════════════
-    function TopNav({ config, onSideNavToggle, isMobile }) {
-      const [orgOpen, setOrgOpen] = useState(false);
-      const [searchExpanded, setSearchExpanded] = useState(false);
-      const [searchValue, setSearchValue] = useState("");
-      const searchInputRef = useRef(null);
-      const orgRef = useRef(null);
+    const DEFAULT_MODULES = [
+      { id:"home",   label:"Amplify Home",   icon:"home" },
+      { id:"people", label:"People",         icon:"group" },
+      { id:"giving", label:"Giving",         icon:"volunteer_activism" },
+      { id:"events", label:"Events",         icon:"event" },
+      { id:"comms",  label:"Communications", icon:"mail" },
+    ];
 
-      const handleSearchExpand = () => {
-        setSearchExpanded(true);
-        setTimeout(() => searchInputRef.current?.focus(), 120);
-      };
-      const handleSearchCollapse = () => {
-        setSearchExpanded(false);
-        setSearchValue("");
-      };
+    function TopNavSearchBar() {
+      const [expanded, setExpanded] = useState(false);
+      const [query, setQuery] = useState("");
+      const [hov, setHov] = useState(false);
+      const inputRef = useRef(null);
+      const open = () => { setExpanded(true); requestAnimationFrame(() => inputRef.current?.focus()); };
+      const close = () => { setExpanded(false); setQuery(""); };
+      useEffect(() => {
+        if (!expanded) return;
+        const h = e => { if (e.key==="Escape") close(); };
+        document.addEventListener("keydown", h);
+        return () => document.removeEventListener("keydown", h);
+      }, [expanded]);
+      if (expanded) return (
+        <div style={{ display:"flex", alignItems:"center", minHeight:48, minWidth:48 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:8, height:36, padding:"0 8px",
+            background:"white", border:"1px solid #6e8bd4", borderRadius:9999, width:320 }}>
+            <button onClick={close} aria-label="Collapse search"
+              style={{ display:"flex", alignItems:"center", justifyContent:"center",
+                width:24, height:24, flexShrink:0, background:"transparent",
+                border:"none", cursor:"pointer", borderRadius:"50%", padding:0 }}>
+              <Icon name="search" size={16} fill={1} color="#606060" />
+            </button>
+            <input ref={inputRef} value={query} onChange={e => setQuery(e.target.value)}
+              placeholder="Search…" aria-label="Search"
+              style={{ flex:1, background:"transparent", border:"none", outline:"none",
+                color:"#252525", fontSize:14, fontWeight:400, lineHeight:"20px",
+                letterSpacing:"0.3px", minWidth:0, fontFamily:"'Red Hat Text',sans-serif" }} />
+            {query.length > 0 && (
+              <button onClick={() => { setQuery(""); inputRef.current?.focus(); }}
+                aria-label="Clear search"
+                style={{ display:"flex", alignItems:"center", justifyContent:"center",
+                  background:"transparent", border:"none", cursor:"pointer",
+                  padding:0, borderRadius:9999, flexShrink:0, width:24, height:24 }}>
+                <Icon name="cancel" size={20} fill={1} color="#606060" />
+              </button>
+            )}
+          </div>
+        </div>
+      );
+      return (
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", minHeight:48, minWidth:48 }}>
+          <button onClick={open}
+            onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+            aria-label="Open search"
+            style={{ display:"flex", alignItems:"center", justifyContent:"center",
+              height:32, width:32, background:hov ? TN.controlHover : TN.searchFill,
+              border:`0.75px solid ${TN.monoBase}`, borderRadius:9999,
+              cursor:"pointer", padding:8, flexShrink:0, transition:"background 120ms ease" }}>
+            <Icon name="search" size={16} color={TN.monoBase} />
+          </button>
+        </div>
+      );
+    }
 
+    function TopNavGlobal({ config, isMobile, isTablet, onSideNavToggle }) {
+      const [openPanel, setOpenPanel] = useState(null);
+      const navRef = useRef(null);
+      const toggle = p => setOpenPanel(x => x===p ? null : p);
+      const close = () => setOpenPanel(null);
+      const org = config.org;
       const orgLabel = isMobile
-        ? `${abbreviateOrg(config.org.name)}${config.org.campus ? " | "+abbreviateCampus(config.org.campus) : ""}`
-        : `${config.org.name}${config.org.campus ? " | "+config.org.campus : ""}`;
+        ? `${abbrevOrg(org.name)}${org.campus ? " | "+abbrevCampus(org.campus) : ""}`
+        : `${org.name}${org.campus ? " | "+org.campus : ""}`;
 
       useEffect(() => {
-        const h = e => {
-          if (orgRef.current && !orgRef.current.contains(e.target)) setOrgOpen(false);
-          if (e.key === "Escape") setOrgOpen(false);
-        };
+        const h = e => { if (!navRef.current?.contains(e.target)) close(); if (e.key==="Escape") close(); };
         document.addEventListener("mousedown", h);
         document.addEventListener("keydown", h);
         return () => { document.removeEventListener("mousedown", h); document.removeEventListener("keydown", h); };
       }, []);
 
+      const btnS = hov => ({
+        display:"flex", alignItems:"center", justifyContent:"center",
+        width:"100%", height:"100%", padding:8, borderRadius:8,
+        background: hov ? TN.controlHover : "transparent",
+        border:"none", cursor:"pointer", transition:"background 120ms ease",
+      });
+
       return (
-        <header className="topnav" role="banner">
-          <div className="topnav__start">
-            {/* Hamburger — mobile only (opens/closes SideNav) */}
-            <button className="topnav__hamburger" aria-label="Toggle navigation menu"
-              onClick={onSideNavToggle}>
-              <Icon name="menu" size={20} color="rgba(251,251,251,0.9)" />
-            </button>
-
-            {/* ModuleSwitcher */}
-            <button className="topnav__module" aria-label={`Switch module — ${config.module.label}`}
-              aria-haspopup="menu">
-              <span className="topnav__module-icon">
-                {config.module.isCustom
-                  ? <HomeModuleIcon size={22} />
-                  : <Icon name={config.module.icon} size={20} color="rgba(251,251,251,0.9)" />
-                }
-              </span>
-              <span className={`topnav__module-label${isMobile ? " hidden" : ""}`}>
-                {config.module.label}
-              </span>
-              <Icon name="expand_more" size={16} color="rgba(251,251,251,0.7)" />
-            </button>
-
-            {/* OrgSwitcher */}
-            <div className="topnav__org" ref={orgRef}>
-              <button className={`topnav__org-btn${orgOpen ? " open" : ""}`}
-                aria-haspopup="true" aria-expanded={orgOpen}
-                aria-label={`Switch organisation — ${config.org.name}`}
-                onClick={() => setOrgOpen(p => !p)}>
-                <span className={`topnav__org-label${isMobile ? " mobile" : ""}`}>{orgLabel}</span>
-                <span className={`chev material-symbols-rounded${orgOpen ? " open" : ""}`}
-                  aria-hidden="true"
-                  style={{ fontSize:16, fontVariationSettings:"'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20",
-                    color:"rgba(251,251,251,0.7)" }}>
-                  expand_more
-                </span>
+        <nav ref={navRef} aria-label="Global navigation" style={{
+          background:`var(--semantic-color-light-mode-fill-static-brand-base, ${TN.navBg})`,
+          display:"flex", alignItems:"center", justifyContent:"space-between",
+          height:56, padding:"4px 16px", position:"relative",
+          overflow:"visible", zIndex:100, fontFamily:"'Red Hat Text',sans-serif", flexShrink:0,
+        }}>
+          {/* Row Start */}
+          <div style={{ display:"flex", alignItems:"center", gap:8, flexShrink:0 }}>
+            {isMobile && (
+              <button onClick={onSideNavToggle} aria-label="Toggle navigation"
+                style={{ display:"flex", alignItems:"center", justifyContent:"center",
+                  minHeight:48, minWidth:48, background:"transparent", border:"none",
+                  cursor:"pointer", borderRadius:8 }}>
+                <Icon name="menu" size={22} color={TN.monoBase} />
               </button>
-              {orgOpen && (
-                <div className="topnav__org-panel" role="dialog" aria-label="Switch organisation">
-                  <div className="topnav__org-panel-heading">Organisations</div>
-                  {[
-                    { name: config.org.name, campus: config.org.campus, initials: abbreviateOrg(config.org.name), bg: "#2d4889", active: true },
-                    { name: "Fellowship Community Church", campus: "Main Campus", initials: "FCC", bg: "#22386b", active: false },
-                  ].map((org, i) => (
-                    <div key={i} className={`topnav__org-item${org.active ? " active" : ""}`}
-                      role="option" aria-selected={org.active} tabIndex={0}
-                      onClick={() => setOrgOpen(false)}
-                      onKeyDown={e => e.key==="Enter" && setOrgOpen(false)}>
-                      <div className="topnav__org-item-avatar" style={{ background: org.bg }}>
-                        {org.initials}
+            )}
+
+            {/* ModuleSwitcher — from top-nav.jsx exactly */}
+            {(() => {
+              const [hov, setHov] = useState(false);
+              const showLabel = !isMobile && !isTablet;
+              return (
+                <div style={{ position:"relative", padding:"4px 2px" }}>
+                  <button onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+                    onClick={() => toggle("module")} aria-haspopup="listbox"
+                    aria-expanded={openPanel==="module"}
+                    aria-label={`Switch module — ${config.module.label}`}
+                    style={{ display:"flex", alignItems:"center", maxHeight:36, minHeight:36,
+                      padding:4, borderRadius:8,
+                      background: openPanel==="module" ? TN.controlPressed : hov ? TN.controlHover : "transparent",
+                      border:`1px solid ${openPanel==="module" ? TN.orgStrokeHover : "transparent"}`,
+                      cursor:"pointer", fontFamily:"inherit", transition:"background 150ms ease" }}>
+                    <div style={{ display:"flex", alignItems:"center", gap:4, paddingRight:showLabel?2:0 }}>
+                      <div style={{ width:30, height:30, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                        {config.module.isHome
+                          ? <HomeModuleIcon size={22} />
+                          : <Icon name={config.module.icon} size={22} color={TN.monoBase} />}
                       </div>
-                      <div>
-                        <div className="topnav__org-item-name">{org.name}</div>
-                        {org.campus && <div className="topnav__org-item-campus">{org.campus}</div>}
+                      {showLabel && (
+                        <span style={{ fontSize:14, fontWeight:500, lineHeight:"20px", letterSpacing:"0.3px",
+                          whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis",
+                          maxWidth:160, color:TN.monoBase }}>
+                          {config.module.label}
+                        </span>
+                      )}
+                    </div>
+                    <div style={{ width:16, height:16, display:"flex", alignItems:"center",
+                      justifyContent:"center", marginLeft:4,
+                      transform:openPanel==="module"?"rotate(180deg)":"none",
+                      transition:"transform 200ms ease" }}>
+                      <Icon name="expand_more" size={16} color={TN.monoBase} />
+                    </div>
+                  </button>
+                  {openPanel==="module" && (
+                    <ul role="listbox" aria-label="Switch module"
+                      style={{ position:"absolute", top:"calc(100% + 4px)", left:0,
+                        width:243, background:"#fff",
+                        border:`1px solid ${TN.panelBorder}`, borderRadius:8,
+                        boxShadow:TN.panelShadow, padding:4, zIndex:300, margin:0, listStyle:"none",
+                        animation:"tnDropIn 200ms cubic-bezier(0,0,0.2,1) both" }}>
+                      {DEFAULT_MODULES.map(m => (
+                        <li key={m.id} role="option">
+                          <button onClick={() => close()}
+                            style={{ display:"flex", alignItems:"center", gap:10,
+                              padding:"9px 10px", borderRadius:6, width:"100%",
+                              color:TN.itemTextBase, fontSize:13, fontWeight:400,
+                              background:"transparent", border:"none", fontFamily:"inherit", cursor:"pointer" }}>
+                            {m.id==="home"
+                              ? <HomeModuleIcon size={18} />
+                              : <Icon name={m.icon} size={18} color={TN.itemTextBase} style={{opacity:0.8}} />}
+                            {m.label}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            })()}
+
+            {/* OrgSwitcher — from top-nav.jsx exactly */}
+            {(() => {
+              const [hov, setHov] = useState(false);
+              const maxW = isMobile ? 120 : 316;
+              return (
+                <div style={{ position:"relative", padding:isMobile?"4px 2px":4, maxWidth:maxW }}>
+                  <button onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+                    onClick={() => toggle("org")} aria-haspopup="true" aria-expanded={openPanel==="org"}
+                    aria-label={`Switch organisation — ${org.name}`}
+                    style={{ display:"flex", alignItems:"center", gap:4, minHeight:36, padding:isMobile?"4px 2px":4,
+                      borderRadius:8,
+                      background: openPanel==="org" ? TN.controlPressed : hov ? TN.controlHover : TN.orgFill,
+                      border:`1px solid ${(openPanel==="org"||hov) ? TN.orgStrokeHover : TN.orgStroke}`,
+                      cursor:"pointer", fontFamily:"inherit",
+                      transition:"background 150ms ease, border-color 150ms ease" }}>
+                    <div style={{ display:"flex", alignItems:"center", gap:4, height:20, padding:"0 2px" }}>
+                      <span style={{ fontSize:isMobile?12:14, fontWeight:500,
+                        lineHeight:isMobile?"18px":"20px", letterSpacing:"0.3px",
+                        whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis",
+                        maxWidth:isMobile?70:248, color:TN.monoBase, paddingRight:4 }}>
+                        {orgLabel}
+                      </span>
+                    </div>
+                    <div style={{ width:16, height:16, display:"flex", alignItems:"center",
+                      justifyContent:"center", marginRight:2,
+                      transform:openPanel==="org"?"rotate(180deg)":"none",
+                      transition:"transform 200ms ease" }}>
+                      <Icon name="expand_more" size={16} color={TN.monoBase} />
+                    </div>
+                  </button>
+                  {openPanel==="org" && (
+                    <div role="dialog" aria-label="Switch organisation"
+                      style={{ position:"absolute", top:"calc(100% + 4px)", left:isMobile?0:40,
+                        width:280, background:"#fff",
+                        border:`1px solid ${TN.panelBorder}`, borderRadius:8,
+                        boxShadow:TN.panelShadow, padding:8, zIndex:300,
+                        animation:"tnDropIn 200ms cubic-bezier(0,0,0.2,1) both" }}>
+                      <div style={{ fontSize:11, fontWeight:600, letterSpacing:".07em",
+                        textTransform:"uppercase", padding:"4px 8px 6px", color:"#b5b5b5" }}>
+                        Organisations
                       </div>
+                      <div style={{ display:"flex", alignItems:"center", gap:10,
+                        padding:8, borderRadius:6, background:TN.activeItem }}>
+                        <div style={{ width:32, height:32, borderRadius:4,
+                          background:org.bg||TN.navBg,
+                          display:"flex", alignItems:"center", justifyContent:"center",
+                          flexShrink:0, border:`1px solid ${TN.orgStroke}` }}>
+                          <span style={{ fontSize:9, fontWeight:700, color:"#fff" }}>{org.initials}</span>
+                        </div>
+                        <div style={{ minWidth:0 }}>
+                          <div style={{ fontSize:13, fontWeight:500, color:TN.itemText,
+                            whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>
+                            {org.name}
+                          </div>
+                          {org.campus && (
+                            <div style={{ fontSize:11, color:TN.itemMeta, marginTop:1 }}>{org.campus}</div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* Row End — exact gap=8px from Figma x-coordinates */}
+          <div style={{ display:"flex", alignItems:"center", gap:8, flexShrink:0 }}>
+            <TopNavSearchBar />
+
+            {/* Actions — desktop: 2 bells, tablet+mobile: more_vert */}
+            {(() => {
+              const [h0,setH0]=useState(false);
+              const [h1,setH1]=useState(false);
+              const [hM,setHM]=useState(false);
+              if (!isMobile && !isTablet) return (
+                <div style={{ display:"flex", alignItems:"center" }}>
+                  {[{h:h0,setH:setH0,lbl:"Notifications"},{h:h1,setH:setH1,lbl:"Alerts"}].map(({h,setH,lbl},i) => (
+                    <div key={i} style={{ display:"flex", alignItems:"center", justifyContent:"center", minHeight:48, minWidth:48, padding:6 }}>
+                      <button onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+                        aria-label={lbl} style={{ ...btnS(h) }}>
+                        <Icon name="notifications" size={20} color={TN.monoBase} />
+                      </button>
                     </div>
                   ))}
                 </div>
-              )}
-            </div>
-          </div>
-
-          <div className="topnav__end">
-            {/* TopNavSearch — collapsed icon button → expanded bar */}
-            {!searchExpanded ? (
-              <button className="topnav__search-btn" aria-label="Open search"
-                aria-expanded={false} onClick={handleSearchExpand}>
-                <Icon name="search" size={16} color="rgba(251,251,251,0.9)" fill={1} />
-              </button>
-            ) : (
-              <div style={{
-                display:"flex", alignItems:"center", gap:8,
-                height:36, padding:"0 8px", borderRadius:9999,
-                background:"rgba(255,255,255,0.95)",
-                border:"1px solid rgba(255,255,255,0.3)",
-                width:280, flexShrink:0, transition:"width 350ms cubic-bezier(0.34,1.56,0.64,1)",
-              }}>
-                <button onClick={handleSearchCollapse} aria-label="Collapse search"
-                  style={{background:"none",border:"none",cursor:"pointer",padding:0,display:"flex",flexShrink:0}}>
-                  <Icon name="search" size={16} fill={1}
-                    color="var(--semantic-color-light-mode-icon-action-secondary-inverse-base, #6b6b6b)" />
-                </button>
-                <input ref={searchInputRef} type="text"
-                  value={searchValue} onChange={e => setSearchValue(e.target.value)}
-                  placeholder="Search…" aria-label="Search"
-                  onKeyDown={e => e.key === "Escape" && handleSearchCollapse()}
-                  style={{
-                    flex:1, border:"none", outline:"none", background:"transparent",
-                    fontFamily:"'Red Hat Text',sans-serif", fontSize:14, lineHeight:"20px",
-                    color:"#252525",
-                  }} />
-                {searchValue && (
-                  <button onClick={() => setSearchValue("")} aria-label="Clear"
-                    style={{background:"none",border:"none",cursor:"pointer",padding:0,display:"flex",flexShrink:0}}>
-                    <Icon name="cancel" size={16} fill={1}
-                      color="var(--semantic-color-light-mode-icon-action-secondary-inverse-base, #6b6b6b)" />
+              );
+              return (
+                <div style={{ display:"flex", alignItems:"center", justifyContent:"center", minHeight:48, minWidth:48 }}>
+                  <button onMouseEnter={() => setHM(true)} onMouseLeave={() => setHM(false)}
+                    aria-label="More actions" style={{ ...btnS(hM) }}>
+                    <Icon name="more_vert" size={20} color={TN.monoBase} />
                   </button>
-                )}
-              </div>
-            )}
-
-            {/* Desktop: 2 bell icons */}
-            <div className="topnav__desktop-bells">
-              <button className="topnav__action-btn" aria-label="Notifications">
-                <Icon name="notifications" size={20} color="rgba(251,251,251,0.9)" />
-              </button>
-              <button className="topnav__action-btn" aria-label="Alerts">
-                <Icon name="notifications" size={20} color="rgba(251,251,251,0.9)" />
-              </button>
-            </div>
-
-            {/* Tablet/Mobile: more_vert */}
-            <button className="topnav__action-btn topnav__tablet-more" aria-label="More actions">
-              <Icon name="more_vert" size={20} color="rgba(251,251,251,0.9)" />
-            </button>
+                </div>
+              );
+            })()}
 
             {/* Profile */}
-            <button className="topnav__profile-btn"
-              aria-label={`Account — ${config.user.name}`}>
-              <div className={`topnav__avatar${isMobile ? " mobile" : ""}`}>
-                {config.user.initials}
-              </div>
-            </button>
+            {(() => {
+              const [hov,setHov]=useState(false);
+              const user = config.user;
+              return (
+                <div style={{ position:"relative", display:"flex", alignItems:"center",
+                  justifyContent:"center", minHeight:48, minWidth:48, padding:2 }}>
+                  <button onClick={() => toggle("profile")}
+                    onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+                    aria-haspopup="true" aria-expanded={openPanel==="profile"}
+                    aria-label={`Account — ${user.name}`}
+                    style={{ display:"flex", alignItems:"center", justifyContent:"center",
+                      width:44, height:44,
+                      background: openPanel==="profile" ? TN.controlPressed : hov ? TN.controlHover : "transparent",
+                      border:"none", borderRadius:"50%", cursor:"pointer", padding:6,
+                      transition:"background 120ms ease" }}>
+                    <div style={{ width:32, height:32, borderRadius:"50%",
+                      background:TN.avatarBg, display:"flex", alignItems:"center",
+                      justifyContent:"center",
+                      fontSize:isMobile?11:14, fontWeight:600, letterSpacing:"0.3px",
+                      color:TN.avatarText, lineHeight:1, flexShrink:0 }}>
+                      {user.initials}
+                    </div>
+                  </button>
+                  {openPanel==="profile" && (
+                    <div role="menu"
+                      style={{ position:"absolute", top:"calc(100% + 4px)", right:0,
+                        width:200, background:"#fff",
+                        border:`1px solid rgba(45,72,137,0.10)`, borderRadius:8,
+                        boxShadow:TN.panelShadow, padding:4, zIndex:300,
+                        animation:"tnDropIn 200ms cubic-bezier(0,0,0.2,1) both" }}>
+                      <div style={{ padding:"10px 12px 8px",
+                        borderBottom:"1px solid rgba(0,0,0,0.06)", marginBottom:4 }}>
+                        <div style={{ fontSize:13, fontWeight:600, color:TN.itemText }}>{user.name}</div>
+                        <div style={{ fontSize:11, color:TN.itemMeta, marginTop:1 }}>{user.email}</div>
+                      </div>
+                      {["Profile settings","Settings"].map(lbl => (
+                        <button key={lbl} role="menuitem"
+                          style={{ display:"flex", alignItems:"center", gap:8, padding:"8px 10px",
+                            borderRadius:6, fontFamily:"inherit", fontSize:13,
+                            color:TN.itemTextBase, background:"transparent",
+                            border:"none", width:"100%", textAlign:"left", cursor:"pointer" }}>
+                          {lbl}
+                        </button>
+                      ))}
+                      <button role="menuitem"
+                        style={{ display:"flex", alignItems:"center", gap:8, padding:"8px 10px",
+                          borderRadius:6, fontFamily:"inherit", fontSize:13,
+                          color:"#c0392b", background:"transparent",
+                          border:"none", width:"100%", textAlign:"left", cursor:"pointer" }}>
+                        Sign out
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
           </div>
-        </header>
+        </nav>
       );
     }
 
-    // ════════════════════════════════════════════════════════════════════════════
-    // SIDE NAV
-    // States: expanded (220px — Figma reference node 40005913-173455), collapsed (72px rail), hidden (mobile overlay)
-    // Collapse button: bottom of SideNav — toggles expanded/collapsed on desktop
-    // ════════════════════════════════════════════════════════════════════════════
-    function SideNav({ config, expanded, onToggleExpand }) {
+    // ═══════════════════════════════════════════════════════════════════════════
+    // SIDENAV — built from sidenav.jsx token values and logic
+    // Icons: Material Symbols Rounded, FILL=1 always (spec §11)
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    // Token values from sidenav.jsx T constant (resolved via resolve-tokens.js)
+    const SN = {
+      surface:       "#fafafa",                     // Surface/Nav/Light
+      border:        "#f6f6f6",                     // Stroke/Static/Neutral/Light
+      fillBase:      "transparent",                 // Fill/Contextual/NavItem/Base
+      fillHover:     "rgba(69,77,94,0.06)",         // Fill/Contextual/NavItem/Hover
+      fillActive:    "#eef2fb",                     // Fill/Contextual/NavItem/Active = a0b5e629
+      textBase:      "#484848",                     // Text/Contextual/NavItem/Base
+      textActive:    "#3555a0",                     // Text/Contextual/NavItem/Active
+      iconBase:      "#606060",                     // Icon/Contextual/NavItem/Base
+      iconActive:    "#3555a0",                     // Icon/Contextual/NavItem/Active
+      iconAction:    "#6b6b6b",                     // Icon/Action/Secondary Inverse/Base
+      sectionText:   "#606060",                     // Text/Static/Secondary/Subtle
+    };
+
+    // NavHeader collapse button SVG icons — exact from sidenav.jsx
+    const RIGHT_PANEL_OPEN = <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 1.5L2.5 10.5M10.5 6L5.5 6M5.5 6L8 3.5M5.5 6L8 8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+    const LEFT_PANEL_OPEN  = <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9.5 1.5L9.5 10.5M1.5 6L6.5 6M6.5 6L4 3.5M6.5 6L4 8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+
+    function SideNavShell({ config, collapsed, onToggle, isMobile }) {
       const [activeId, setActiveId] = useState(
         (config.navItems.find(i => i.active) || config.navItems[0]).id
       );
 
       return (
-        <nav className={`shell__sidenav ${expanded ? "expanded" : "collapsed"}`}
-          aria-label="Module navigation">
+        <div className={`sidenav ${collapsed ? "collapsed" : "expanded"}`}
+          aria-label="Module navigation" role="navigation">
 
-          {/* Nav header */}
-          <div className="nav-header">
-            <span className={`nav-header__logo${!expanded ? " hidden" : ""}`}>
-              {config.module.label}
-            </span>
-            <button className="nav-collapse-btn"
-              aria-label={expanded ? "Collapse navigation" : "Expand navigation"}
-              title={expanded ? "Collapse" : "Expand"}
-              onClick={onToggleExpand}>
-              <Icon name={expanded ? "left_panel_close" : "right_panel_close"}
-                size={18} color="var(--semantic-color-light-mode-icon-contextual-navitem-base, #606060)" />
-            </button>
-          </div>
+          {/* NavHeader — collapse button at TOP per spec §9 (migration 2026-05-13) */}
+          {!isMobile && (
+            <div className={`nav-header${collapsed ? " collapsed" : ""}`}>
+              <span className={`nav-header__label${collapsed ? " hidden" : ""}`}>
+                {config.moduleLabel || config.module.label}
+              </span>
+              <button className="nav-header__btn"
+                onClick={onToggle}
+                aria-label={collapsed ? "Expand navigation" : "Collapse navigation"}
+                title={collapsed ? "Expand" : "Collapse"}
+                style={{ color: SN.iconAction }}>
+                {collapsed ? LEFT_PANEL_OPEN : RIGHT_PANEL_OPEN}
+              </button>
+            </div>
+          )}
 
-          {/* Nav menu */}
-          <div className="nav-menu" role="tree" aria-label={`${config.module.label} navigation`}>
-            {config.navItems.map((item, idx) => (
-              <React.Fragment key={item.id}>
-                {item.sectionLabel && (
-                  <div className={`nav-section-label${!expanded ? " hidden" : ""}`}
-                    aria-hidden={!expanded}>
-                    {item.sectionLabel}
-                  </div>
-                )}
-                <button
-                  className={`nav-item${activeId === item.id ? " active" : ""}`}
-                  role="treeitem"
-                  aria-current={activeId === item.id ? "page" : undefined}
-                  aria-label={!expanded ? item.label : undefined}
-                  onClick={() => setActiveId(item.id)}
-                >
-                  {activeId === item.id && <span className="nav-item__indicator" aria-hidden="true" />}
-                  <span className="nav-item__icon">
-                    {/* Nav icons always FILL=1 (filled) per Figma — confirmed system rule */}
-                  <Icon name={item.icon} size={20}
-                    color={activeId === item.id
-                      ? "var(--semantic-color-light-mode-icon-contextual-navitem-active, #3555a0)"
-                      : "var(--semantic-color-light-mode-icon-contextual-navitem-base, #606060)"
-                    }
-                    fill={1}
-                  />
-                  </span>
-                  <span className={`nav-item__label${!expanded ? " hidden" : ""}`}>
-                    {item.label}
-                  </span>
-                  {/* Tooltip on collapsed rail */}
-                  {!expanded && <span className="nav-tooltip">{item.label}</span>}
-                </button>
-              </React.Fragment>
-            ))}
-          </div>
-
-          {/* NavFooter: collapse lives in NavHeader only — spec §9, migration 2026-05-13 */}
-        </nav>
+          {/* NavMenu */}
+          <ul className="nav-menu" role="tree" aria-label={config.module.label}>
+            {config.navItems.map(item => {
+              const isActive = activeId === item.id;
+              return (
+                <li key={item.id} role="none" style={{ listStyle:"none" }}>
+                  <button
+                    className={`nav-item${isActive ? " active" : ""}`}
+                    role="treeitem"
+                    aria-current={isActive ? "page" : undefined}
+                    aria-label={collapsed ? item.label : undefined}
+                    onClick={() => setActiveId(item.id)}
+                  >
+                    <span className="nav-item__icon">
+                      {/* FILL=1 always for SideNav icons — spec §11 */}
+                      <span className="material-symbols-rounded" aria-hidden="true"
+                        style={{
+                          fontSize: 20, lineHeight:1, display:"block", userSelect:"none",
+                          fontVariationSettings: "'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 20",
+                          color: isActive ? SN.iconActive : SN.iconBase,
+                        }}>
+                        {item.icon}
+                      </span>
+                    </span>
+                    <span className="nav-item__label">{item.label}</span>
+                    {collapsed && <span className="nav-tooltip">{item.label}</span>}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       );
     }
 
-    // ════════════════════════════════════════════════════════════════════════════
-    // SCREEN TEMPLATE (Main content area)
-    // Source: Figma ScreenTemplate node 40006538:43236
-    // Implements: Tabs, PageHeading, ToolBar with FilterChips, SectionHeadings, Cards
-    // Note: Sub-components (FilterChip, Card, PageHeading, ToolBar) are inline here.
-    //   They will become standalone DS components in future pipeline runs.
-    // ════════════════════════════════════════════════════════════════════════════
-    function ScreenTemplate({ page }) {
-      const [activeTab, setActiveTab] = useState(page.activeTab || 0);
-      const [activeFilter, setActiveFilter] = useState(page.toolbar.activeFilter || 0);
+    // ═══════════════════════════════════════════════════════════════════════════
+    // SCREEN TEMPLATE CONTENT AREA
+    // Built from Figma node 40007205:9912 measurements
+    // Sub-components (PageHeading, ToolBar, FilterChip, Card) are inline here.
+    // They will become standalone DS components in future pipeline runs.
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    // Content data — replace with real data in production
+    const SECTION_1_CARDS = [
+      { id:1, icon:"receipt_long", iconVariant:"accent",   title:"Outstanding Bills",   body:"12 bills totaling $24,580 awaiting approval before the end of the month." },
+      { id:2, icon:"schedule",     iconVariant:"warning",  title:"Overdue Payments",    body:"3 vendor payments are past due. Oldest is 14 days overdue." },
+      { id:3, icon:"store",        iconVariant:"info",     title:"Active Vendors",      body:"47 approved vendors in your network. 2 pending new vendor applications." },
+      { id:4, icon:"payments",     iconVariant:"positive", title:"Paid This Month",     body:"$186,240 in payments processed. On track with monthly budget of $200k." },
+    ];
+
+    const SECTION_2_CARDS = [
+      { id:5, icon:"description",  iconVariant:"accent",   title:"Invoice #2847",    badge:"Pending approval", badgeVariant:"default", body:"Sacred Heart Supplies — $4,200 due in 7 days." },
+      { id:6, icon:"description",  iconVariant:"warning",  title:"Invoice #2831",    badge:"Overdue",          badgeVariant:"positive", body:"Office Pro — $1,850 was due 5 days ago." },
+      { id:7, icon:"description",  iconVariant:"info",     title:"Invoice #2845",    badge:"Processing",       badgeVariant:"default", body:"Ministry Media — $8,900 payment in progress." },
+      { id:8, icon:"description",  iconVariant:"accent",   title:"Invoice #2848",    badge:"Pending approval", badgeVariant:"default", body:"Church Supplies Co — $1,200 due in 14 days." },
+    ];
+
+    function ScreenTemplate({ page, activeTab, onTabChange, activeFilter, onFilterChange }) {
       const [searchValue, setSearchValue] = useState("");
 
       return (
         <div className="screen">
-          {/* Tabs — Slot.PageNavigation
-              Source: Figma Tabs component inside ScreenTemplate
-              bg: surface.canvas.light (#fafafa), border-bottom on container */}
+          {/* Tabs — Slot.PageNavigation */}
           {page.tabs && page.tabs.length > 0 && (
             <div className="page-tabs" role="tablist" aria-label="Page sections">
               {page.tabs.map((tab, i) => (
                 <button key={i} role="tab"
                   className={`page-tab${activeTab === i ? " active" : ""}`}
                   aria-selected={activeTab === i}
-                  onClick={() => setActiveTab(i)}>
+                  onClick={() => onTabChange(i)}>
                   {tab}
                 </button>
               ))}
             </div>
           )}
 
-          {/* PageHeading
-              Source: Figma PageHeading component — node 40006538:42661
-              heading.page.base.semibold: 24px/600/30px, tracking 0.1px
-              text.static.primary.base = #202020
-              subheading: text.body.base.regular 16px/400/22px
-              text.static.secondary.base = #484848 */}
-          <div className="page-heading">
-            <div className="page-heading__row">
+          <div className="screen-content">
+            {/* PageHeading — Container.PageHeading
+                LeadingSlot: width=160, height=60 (title + subtitle)
+                TrailingSlot: x=790, two PW_Button instances (Outlined + Filled) */}
+            <div className="page-heading">
               <div>
                 <h1 className="page-heading__title">{page.title}</h1>
                 {page.subtitle && (
                   <p className="page-heading__subtitle">{page.subtitle}</p>
                 )}
               </div>
+              {/* Two buttons from Figma TrailingSlot — Outlined Secondary + Fill Primary */}
               <div className="page-heading__actions">
-                <button className="btn btn--secondary">
-                  <Icon name="tune" size={16} />
-                  Configure
+                <button className="btn btn--outlined">
+                  Export report
                 </button>
-                <button className="btn btn--primary">
-                  <Icon name="add" size={16} />
-                  New item
+                <button className="btn btn--filled">
+                  <span className="material-symbols-rounded" aria-hidden="true"
+                    style={{ fontSize:20, fontVariationSettings:"'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 20",
+                      color:"white", lineHeight:1 }}>
+                    add
+                  </span>
+                  New bill
                 </button>
               </div>
             </div>
-          </div>
 
-          {/* ToolBar
-              Source: Figma ToolBar component — node 40006537:42570
-              padding-vertical: 8px, gap-vertical: 8px
-              Leading: search (400px, border-radius 6px) + FilterChips
-              Trailing: action buttons */}
-          <div className="toolbar">
-            <div className="toolbar__row">
+            {/* Toolbar — Container.ToolBar
+                Figma: Leading = SearchBar(400px) + FilterChips(264px), Trailing = empty
+            */}
+            <div className="toolbar" style={{ marginBottom: 16 }}>
               <div className="toolbar__leading">
-                {/* Search bar
-                    border-radius: 6px (unusual — confirmed from Figma, not 8px)
-                    border: 0.75px stroke.action.secondary-inverse.base = #d2d2d2 */}
+                {/* SearchBar — 400px, border-radius 6px (confirmed from Figma spec) */}
                 <div className="toolbar__search">
-                  <Icon name="search" size={16}
-                    color="var(--semantic-color-light-mode-icon-action-secondary-inverse-base, #6b6b6b)" />
+                  <span className="material-symbols-rounded" aria-hidden="true"
+                    style={{ fontSize:16, fontVariationSettings:"'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 20",
+                      color:"var(--semantic-color-light-mode-icon-action-secondary-inverse-base, #6b6b6b)",
+                      lineHeight:1, flexShrink:0 }}>
+                    search
+                  </span>
                   <input
-                    type="text"
+                    type="text" role="searchbox"
                     placeholder={page.toolbar.searchPlaceholder}
                     value={searchValue}
                     onChange={e => setSearchValue(e.target.value)}
                     aria-label="Search"
                   />
                   {searchValue && (
-                    <button onClick={() => setSearchValue("")}
-                      aria-label="Clear search"
-                      style={{ background:"none",border:"none",cursor:"pointer",padding:0,display:"flex" }}>
-                      <Icon name="cancel" size={16} fill={1}
-                        color="var(--semantic-color-light-mode-icon-action-secondary-inverse-base, #6b6b6b)" />
+                    <button onClick={() => setSearchValue("")} aria-label="Clear search"
+                      style={{ background:"none", border:"none", cursor:"pointer",
+                        padding:0, display:"flex", flexShrink:0 }}>
+                      <span className="material-symbols-rounded"
+                        style={{ fontSize:16, fontVariationSettings:"'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 20",
+                          color:"#6b6b6b", lineHeight:1 }}>
+                        cancel
+                      </span>
                     </button>
                   )}
                 </div>
 
-                {/* FilterChips
-                    Source: Figma FilterChip — min-height 48px, border-radius.xs 4px
-                    text: label.option.s.medium 12px/500/18px
-                    active: fill.action.tertiary.base = #eef2fb, text.action.primary = #3555a0 */}
+                {/* FilterChips — 4 chips × 60px + 8px gaps = 264px total */}
                 <div className="filter-chips" role="group" aria-label="Filter options">
                   {page.toolbar.filters.map((filter, i) => (
                     <button key={i}
                       className={`filter-chip${activeFilter === i ? " active" : ""}`}
                       aria-pressed={activeFilter === i}
-                      onClick={() => setActiveFilter(i)}>
+                      onClick={() => onFilterChange(i)}>
                       <span className="filter-chip__inner">{filter}</span>
                     </button>
                   ))}
                 </div>
               </div>
+              {/* TrailingSlot intentionally empty — matches Figma */}
+            </div>
 
-              {/* Trailing slot intentionally empty — matches Figma Container.TrailingSlot (no content) */}
+            {/* Section Container */}
+            <div className="section-container">
+              {/* Section 1 — 4 cards without badge, height=116px */}
+              <div className="section">
+                <div className="section-heading">Overview</div>
+                <div className="card-grid">
+                  {SECTION_1_CARDS.map(card => (
+                    <div key={card.id} className="card" tabIndex={0}
+                      onKeyDown={e => e.key==="Enter" && e.currentTarget.click()}>
+                      <div className="card__heading">
+                        <div className={`card__icon card__icon--${card.iconVariant}`}>
+                          <span className="material-symbols-rounded" aria-hidden="true"
+                            style={{ fontSize:16, fontVariationSettings:"'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 20",
+                              color: card.iconVariant==="accent" ? "#6a5acd"
+                                : card.iconVariant==="positive" ? "#2e7d32"
+                                : card.iconVariant==="info" ? "#3555a0"
+                                : "#e65100",
+                              lineHeight:1 }}>
+                            {card.icon}
+                          </span>
+                        </div>
+                        <span className="card__title">{card.title}</span>
+                      </div>
+                      <p className="card__body">{card.body}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Section 2 — 4 cards with badge, height=148px */}
+              <div className="section">
+                <div className="section-heading">Recent invoices</div>
+                <div className="card-grid">
+                  {SECTION_2_CARDS.map(card => (
+                    <div key={card.id} className="card" tabIndex={0}>
+                      <div className="card__heading">
+                        <div className={`card__icon card__icon--${card.iconVariant}`}>
+                          <span className="material-symbols-rounded" aria-hidden="true"
+                            style={{ fontSize:16, fontVariationSettings:"'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 20",
+                              color: card.iconVariant==="accent" ? "#6a5acd"
+                                : card.iconVariant==="warning" ? "#e65100"
+                                : "#3555a0",
+                              lineHeight:1 }}>
+                            {card.icon}
+                          </span>
+                        </div>
+                        <span className="card__title">{card.title}</span>
+                      </div>
+                      {/* Badge — Slot.CardSubtitle visible in Section 2 */}
+                      <div>
+                        <span className={`card__badge${card.badgeVariant==="positive" ? " card__badge--positive" : ""}`}>
+                          {card.badge}
+                        </span>
+                      </div>
+                      <p className="card__body">{card.body}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* Content sections with cards
-              Source: Figma Section + SectionHeading + Card components
-              Section padding: top 4px, bottom 16px, gap 8px */}
-          {SECTION_DATA.map((section) => (
-            <div key={section.id} className="content-section">
-              {/* SectionHeading
-                  heading.section.xs.semibold: 14px/600/22px, uppercase, tracking 0.6px
-                  text.static.secondary.subtle = #606060
-                  padding-vertical: 6px */}
-              <div className="section-heading">
-                <span className="section-heading__label">{section.heading}</span>
-                {/* SectionHeading trailing slot: empty per Figma */}
-              </div>
-
-              {/* Card grid
-                  grid-template-columns: auto-fill with 280px minimum */}
-              <div className="card-grid">
-                {section.cards.map((card) => (
-                  <div key={card.id} className="card">
-                    {/* Card heading: icon (32×32) + title */}
-                    <div className="card__heading">
-                      <div className={`card__icon card__icon--${card.iconVariant}`}>
-                        <Icon name={card.icon} size={16}
-                          fill={card.iconVariant === "accent" ? 0 : 1} />
-                      </div>
-                      <span className="card__title">{card.title}</span>
-                    </div>
-                    {/* Badge */}
-                    <div>
-                      <span className={`card__badge${card.iconVariant === "positive" ? " card__badge--positive" : ""}`}>
-                        {card.badge}
-                      </span>
-                    </div>
-                    {/* Card body */}
-                    <p className="card__body">{card.body}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
         </div>
       );
     }
 
-    // ════════════════════════════════════════════════════════════════════════════
-    // NAV SHELL — ROOT COMPONENT
-    // Composes TopNav + SideNav + ScreenTemplate
-    // Layout logic:
-    //   Desktop (≥1024px): SideNav expanded or collapsed rail, content shifts
-    //   Tablet (768–1023px): SideNav always collapsed rail (72px), content shifts
-    //   Mobile (<768px): SideNav hidden by default, overlay on hamburger tap
-    // ════════════════════════════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════════════════════════
+    // NAV SHELL ROOT
+    // ═══════════════════════════════════════════════════════════════════════════
     function NavShell() {
-      const [isMobile, setIsMobile]     = useState(window.innerWidth < 768);
-      const [isTablet, setIsTablet]     = useState(window.innerWidth >= 768 && window.innerWidth < 1024);
-      const [sideNavOpen, setSideNavOpen] = useState(false);    // mobile overlay state
-      const [sideNavExpanded, setSideNavExpanded] = useState(true); // desktop expand/collapse
+      const [isMobile, setIsMobile]       = useState(window.innerWidth < 768);
+      const [isTablet, setIsTablet]       = useState(window.innerWidth >= 768 && window.innerWidth < 1024);
+      const [sideNavCollapsed, setSideNavCollapsed] = useState(false);
+      const [mobileNavOpen, setMobileNavOpen]       = useState(false);
+      const [activeTab, setActiveTab]     = useState(0);
+      const [activeFilter, setActiveFilter] = useState(0);
 
       useEffect(() => {
         const update = () => {
@@ -1254,68 +1174,56 @@
         return () => window.removeEventListener("resize", update);
       }, []);
 
-      // Close mobile overlay on Escape
       useEffect(() => {
-        const h = e => { if (e.key === "Escape") setSideNavOpen(false); };
+        const h = e => { if (e.key === "Escape" && mobileNavOpen) setMobileNavOpen(false); };
         document.addEventListener("keydown", h);
         return () => document.removeEventListener("keydown", h);
-      }, []);
+      }, [mobileNavOpen]);
 
-      const handleSideNavToggle = () => {
-        if (isMobile) {
-          setSideNavOpen(p => !p);
-        } else {
-          setSideNavExpanded(p => !p);
-        }
-      };
-
-      // Determine shell layout class
-      const sideNavClass = isMobile
-        ? (sideNavOpen ? "expanded" : "hidden")
-        : isTablet
-        ? "collapsed"
-        : (sideNavExpanded ? "expanded" : "collapsed");
-
-      const mainClass = isMobile
-        ? "full"
-        : isTablet
-        ? "collapsed"
-        : (sideNavExpanded ? "expanded" : "collapsed");
+      const collapsed = isMobile ? !mobileNavOpen : isTablet ? true : sideNavCollapsed;
 
       return (
-        <>
-          <TopNav
+        <div className="shell">
+          <TopNavGlobal
             config={SHELL_CONFIG}
-            onSideNavToggle={handleSideNavToggle}
             isMobile={isMobile}
+            isTablet={isTablet}
+            onSideNavToggle={() => {
+              if (isMobile) setMobileNavOpen(p => !p);
+              else setSideNavCollapsed(p => !p);
+            }}
           />
-          <div className="shell">
-            {/* Mobile overlay — tapping closes SideNav */}
-            {isMobile && sideNavOpen && (
-              <div className="shell__overlay visible"
-                onClick={() => setSideNavOpen(false)}
+
+          <div className="shell__body">
+            {/* Mobile scrim */}
+            {isMobile && mobileNavOpen && (
+              <div onClick={() => setMobileNavOpen(false)}
+                style={{ position:"fixed", inset:"56px 0 0 0", zIndex:49,
+                  background:"rgba(0,0,0,0.32)" }}
                 aria-hidden="true" />
             )}
 
-            <SideNav
+            <SideNavShell
               config={SHELL_CONFIG}
-              expanded={isMobile ? sideNavOpen : (isTablet ? false : sideNavExpanded)}
-              onToggleExpand={handleSideNavToggle}
+              collapsed={collapsed}
+              onToggle={() => {
+                if (isMobile) setMobileNavOpen(p => !p);
+                else setSideNavCollapsed(p => !p);
+              }}
+              isMobile={isMobile}
             />
 
-            <main className={`shell__main ${mainClass}`} id="main-content">
-              <ScreenTemplate page={SHELL_CONFIG.page} />
+            <main className="shell__main" id="main-content">
+              <ScreenTemplate
+                page={SHELL_CONFIG.page}
+                activeTab={activeTab}
+                onTabChange={setActiveTab}
+                activeFilter={activeFilter}
+                onFilterChange={setActiveFilter}
+              />
             </main>
           </div>
-
-          {/* Breakpoint indicator */}
-          <div className="bp-indicator" aria-hidden="true">
-            <span className="material-symbols-rounded" style={{fontSize:12,fontVariationSettings:"'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20"}}>responsive_layout</span>
-            <span className="bp-desktop">Desktop (≥1024px) — SideNav push</span>
-            <span className="bp-tablet">Tablet (768–1023px) — SideNav rail</span>
-            <span className="bp-mobile">Mobile (&lt;768px) — SideNav overlay</span>
-          </div>
-        </>
+        </div>
       );
     }
 
