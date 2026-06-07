@@ -80,7 +80,13 @@ Pathway is a professional, accessible, and calm design system for ministry and c
 ## Typography
 
 **Font families:** Red Hat Text (UI, body, labels) · Red Hat Display (headings H1–H3 only)
-**Both loaded from Google Fonts.**
+**Both loaded from Google Fonts CDN.** 
+
+> **For Claude Design or any design tool that needs font files:** download and upload these two font families:
+> - Red Hat Text: https://fonts.google.com/specimen/Red+Hat+Text (click Download family)
+> - Red Hat Display: https://fonts.google.com/specimen/Red+Hat+Display (click Download family)
+> 
+> Both are SIL Open Font License — free for all use.
 
 ### Type scale
 

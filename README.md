@@ -24,7 +24,7 @@ import tokenJson from "@helloimjolopez-pathway/pathway-tokens/json";
 Without a bundler — link the CSS directly:
 
 ```html
-<link rel="stylesheet" href="https://helloimjolopez-collab.github.io/pathway-ds/storybook/tokens.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/tokens.css" />
 ```
 
 Once loaded, use the custom properties anywhere:
@@ -90,3 +90,21 @@ Three workflows in `.github/workflows/`:
 3. **`deploy-storybook.yml`** — fires when `tokens/`, `src/`, `.storybook/`, `components/`, `docs/`, or `style-dictionary.config.js` changes. Rebuilds Style Dictionary + Storybook and commits the built site to `/storybook/` on `main`. GitHub Pages serves that folder.
 
 Source of truth is always the repo on `main`; Storybook is a downstream artifact.
+
+## Typography (brand fonts)
+
+Pathway uses **Red Hat Text** (all UI text) and **Red Hat Display** (headings H1–H3 only). Both are open-source Google Fonts.
+
+**Load via CDN (web/prototypes):**
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@600&family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
+```
+
+**Download font files (for Claude Design, Figma, or offline tools):**
+- Red Hat Text: https://fonts.google.com/specimen/Red+Hat+Text → click **Download family**
+- Red Hat Display: https://fonts.google.com/specimen/Red+Hat+Display → click **Download family**
+
+Licensed under the [SIL Open Font License](https://scripts.sil.org/OFL). Free for any use.
