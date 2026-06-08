@@ -136,7 +136,7 @@ function Icon({ name, size = 20, style: extraStyle }) {
       style={{
         fontSize: size, lineHeight: 1, display: "block",
         userSelect: "none",
-        fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24",
+        fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20",
         ...extraStyle,
       }}
       aria-hidden="true"
@@ -251,7 +251,7 @@ export function TopNavSearch({ onSearchOpen }) {
           background: hov ? T.controlHover : T.searchFill,
           border: `0.75px solid ${T.monoBase}`,
           borderRadius: 9999, cursor: "pointer", padding: 8, flexShrink: 0,
-          transition: "background 120ms ease",
+          transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
         }}
       >
         <Icon name="search" size={16} style={{ color: T.monoBase }} />
@@ -271,7 +271,7 @@ export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore 
     width: "100%", height: "100%", padding: 8, borderRadius: L.radius,
     background: hov ? T.controlHover : "transparent",
     border: "none", cursor: "pointer",
-    transition: "background 120ms ease",
+    transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
   });
 
   if (breakpoint === "desktop") {
@@ -326,7 +326,7 @@ export function TopNavProfile({ user, open, onToggle, mobile = false }) {
           width: 44, height: 44,
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
           border: "none", borderRadius: "50%", cursor: "pointer", padding: 6,
-          transition: "background 120ms ease",
+          transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
         }}
       >
         <div style={{
@@ -378,7 +378,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           background: open ? T.controlPressed : hov ? T.controlHover : T.orgFill,
           border: `1px solid ${open || hov ? T.orgStrokeHover : T.orgStroke}`,
           cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
-          transition: "background 150ms cubic-bezier(0.4,0,0.2,1), border-color 150ms cubic-bezier(0.4,0,0.2,1)",
+          transition: "background 200ms cubic-bezier(0.4,0,0.15,1), border-color 200ms cubic-bezier(0.4,0,0.15,1)",
         }}
       >
         {/* RowStart — org name label only. No avatar or logo displayed in the
@@ -427,7 +427,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           display: "flex", alignItems: "center", justifyContent: "center",
           width: 16, height: 16, marginRight: 2,
           transform: open ? "rotate(180deg)" : "none",
-          transition: "transform 200ms cubic-bezier(0.4,0,0.2,1)",
+          transition: "transform 260ms cubic-bezier(0.34,1.08,0.64,1)",
         }}>
           <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
         </div>
@@ -455,7 +455,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
           border: `1px solid ${open ? T.orgStrokeHover : "transparent"}`,
           cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
-          transition: "background 150ms cubic-bezier(0.4,0,0.2,1), border-color 150ms cubic-bezier(0.4,0,0.2,1)",
+          transition: "background 200ms cubic-bezier(0.4,0,0.15,1), border-color 200ms cubic-bezier(0.4,0,0.15,1)",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 4,
@@ -482,7 +482,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           width: 16, height: 16, display: "flex", alignItems: "center",
           justifyContent: "center", marginLeft: 4,
           transform: open ? "rotate(180deg)" : "none",
-          transition: "transform 200ms cubic-bezier(0.4,0,0.2,1)",
+          transition: "transform 260ms cubic-bezier(0.34,1.08,0.64,1)",
         }}>
           <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
         </div>
@@ -605,7 +605,7 @@ export function TopNav({
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
               margin: 0, listStyle: "none",
-              animation: "tnDropIn 200ms cubic-bezier(0,0,0.2,1) both",
+              animation: "tnDropIn 280ms cubic-bezier(0.16,1.1,0.3,1) both",
             }}
           >
             {modules.map(m => (
@@ -651,7 +651,7 @@ export function TopNav({
               width: 280, background: "#fff",
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 8, zIndex: 300,
-              animation: "tnDropIn 200ms cubic-bezier(0,0,0.2,1) both",
+              animation: "tnDropIn 280ms cubic-bezier(0.16,1.1,0.3,1) both",
             }}
           >
             <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: ".07em",
@@ -707,7 +707,7 @@ export function TopNav({
               width: 200, background: "#fff",
               border: `1px solid rgba(45,72,137,0.10)`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
-              animation: "tnDropIn 200ms cubic-bezier(0,0,0.2,1) both",
+              animation: "tnDropIn 280ms cubic-bezier(0.16,1.1,0.3,1) both",
             }}
           >
             <div style={{ padding: "10px 12px 8px",

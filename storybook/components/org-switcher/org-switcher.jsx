@@ -294,7 +294,7 @@ export function OrgSwitcher({
           // Desktop: 2px gap between RowStart and RowEnd. Mobile: no gap.
           ...(isMobile ? {} : { gap: T.pXxxtight }),
           outline: "none",
-          transition: "background 120ms ease, border-color 120ms ease",
+          transition: "background 160ms cubic-bezier(0.4,0,0.2,1), border-color 160ms cubic-bezier(0.4,0,0.2,1)",
         }}
         onFocus={e => {
           // Only show focus ring on keyboard navigation, not on mouse click
@@ -418,7 +418,7 @@ export function OrgSwitcher({
             width: 16, height: 16,
             padding: T.pXxxtight,
             transform: open ? "rotate(180deg)" : "none",
-            transition: "transform 200ms cubic-bezier(0.4,0,0.2,1)",
+            transition: "transform 260ms cubic-bezier(0.34,1.08,0.64,1)",
           }}>
             <Icon name="expand_more" size={12} style={{ color: icon }} />
           </div>

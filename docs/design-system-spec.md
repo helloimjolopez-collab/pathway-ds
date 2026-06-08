@@ -34,10 +34,10 @@ Four canonical durations. Use the named token in component CSS once tokens land 
 
 | Token | Value | Use for |
 |---|---|---|
-| `--motion-duration-instant` | **150 ms** | Acknowledgements: hover fills, colour transitions, focus rings, small opacity fades, tiny rotations (chevrons, checkmarks) |
-| `--motion-duration-short` | **300 ms** | State changes inside a component: popovers, dropdowns, accordions, expand/collapse, item enter/exit |
-| `--motion-duration-medium` | **600 ms** | Cross-component transitions: page content sliding, route changes, large layout shifts |
-| `--motion-duration-long` | **1000 ms** | Continuous loops only: spinners, skeleton shimmer, indeterminate progress |
+| `--motion-duration-instant` | **200 ms** | Hover fills, colour transitions, focus rings, small opacity fades — smoother micro-interactions |
+| `--motion-duration-short` | **380 ms** | State changes inside a component: popovers, dropdowns, accordions, expand/collapse, item enter/exit |
+| `--motion-duration-medium` | **680 ms** | Cross-component transitions: page content sliding, route changes, large layout shifts |
+| `--motion-duration-long` | **1100 ms** | Continuous loops only: spinners, skeleton shimmer, indeterminate progress |
 
 **Off-scale durations require a §2.3 override entry.** If a component uses `200ms` or `340ms` with no override row, that's a bug — either align to the scale or open a spec PR to add the override.
 
@@ -47,11 +47,12 @@ Six canonical curves covering every Pathway motion. Use the named token in compo
 
 | Token | Curve | Use for |
 |---|---|---|
-| `--motion-easing-standard` | `cubic-bezier(0.4, 0, 0.2, 1)` | Most transitions — enters AND exits that should feel natural. Default if unsure. |
-| `--motion-easing-decelerate` | `cubic-bezier(0, 0, 0.2, 1)` | Enters where the element should "glide in" — overlay panels, popovers, dropdowns, anything appearing from outside the viewport or from zero state |
-| `--motion-easing-accelerate` | `cubic-bezier(0.4, 0, 0.6, 1)` | Exits where the element should "leave with intent" — dismissing overlays, scaling down to nothing |
-| `--motion-easing-emphasized` | `cubic-bezier(0.32, 0.72, 0, 1)` | Large physical-scale transitions where standard feels mechanical — full-panel width changes, hero transitions. Use sparingly; only when the element moves significant pixels. |
-| `--motion-easing-accordion` | `cubic-bezier(0.22, 1, 0.36, 1)` | Accordion settle — content reveal/hide, chevron rotation matched to expanding content. Has a soft overshoot quality that "lands" the motion. |
+| `--motion-easing-standard` | `cubic-bezier(0.4, 0, 0.15, 1)` | Most transitions — enters AND exits. Slightly more pronounced ease-out than before for a smoother landing. |
+| `--motion-easing-spring` | `cubic-bezier(0.34, 1.08, 0.64, 1)` | **Signature Pathway curve.** Interactive element entrances: dropdowns, chevron rotations, panel opens. A gentle, barely perceptible overshoot that gives Pathway its slightly-alive quality. |
+| `--motion-easing-decelerate` | `cubic-bezier(0, 0, 0.15, 1)` | Enters where the element should glide in smoothly — overlay panels, popovers, anything appearing from outside. Softer than before. |
+| `--motion-easing-accelerate` | `cubic-bezier(0.4, 0, 0.8, 0)` | Exits where the element leaves cleanly — dismissing overlays, scaling down. |
+| `--motion-easing-emphasized` | `cubic-bezier(0.32, 0.72, 0, 1)` | Large physical-scale transitions: full-panel width changes, SideNav width. |
+| `--motion-easing-accordion` | `cubic-bezier(0.22, 1.12, 0.36, 1)` | Accordion settle — content reveal/hide, chevron rotation. Slightly more spring than before (y2=1.12 vs 1.0) for that barely-bouncy landing. |
 | `--motion-easing-linear` | `linear` | Continuous loops only (spinners, shimmer). Never for bounded transitions. |
 
 **Asymmetric enter/exit** (different curves per direction) is encouraged for overlays — typically `decelerate` on enter, `accelerate` on exit. See SideNav spec §16.6 for the reference pattern.
@@ -66,11 +67,11 @@ Some components need values outside §2.1 or §2.2 because their physical scale 
 
 | Token | Duration | Easing | Standard | Rationale |
 |---|---|---|---|---|
-| `Motion/SideNav/Panel/Width` | **380 ms** | emphasized | short (300 ms) | Full-panel width transition; 300 ms reads as abrupt at this physical scale |
-| `Motion/SideNav/Label/MaxWidth` | **360 ms** | emphasized | short (300 ms) | Label max-width must finish slightly ahead of panel width to prevent text flash |
-| `Motion/SideNav/Accordion/Rows` | **340 ms** | accordion | short (300 ms) | Accordion expand/collapse and matching chevron rotation; 300 ms feels cut short, accordion easing gives the motion a satisfying land |
-| `Motion/SideNav/Overlay/Enter` | **380 ms** | emphasized | short (300 ms) | Full-height panel entering viewport; 300 ms feels mechanical, 380 ms reads as deliberate |
-| `Motion/SideNav/Overlay/Exit` | **300 ms** | standard | short (300 ms) | Exits are snappier than enters by design |
+| `Motion/SideNav/Panel/Width` | **460 ms** | emphasized | short (380 ms) | Full-panel width transition; 300 ms reads as abrupt at this physical scale |
+| `Motion/SideNav/Label/MaxWidth` | **440 ms** | emphasized | short (380 ms) | Label max-width must finish slightly ahead of panel width to prevent text flash |
+| `Motion/SideNav/Accordion/Rows` | **420 ms** | accordion (spring) | short (380 ms) | Accordion expand/collapse and matching chevron rotation; 300 ms feels cut short, accordion easing gives the motion a satisfying land |
+| `Motion/SideNav/Overlay/Enter` | **460 ms** | emphasized | short (380 ms) | Full-height panel entering viewport; 300 ms feels mechanical, 380 ms reads as deliberate |
+| `Motion/SideNav/Overlay/Exit` | **380 ms** | standard | short (380 ms) | Exits are snappier than enters by design |
 
 See SideNav spec §8.3 and §16.6 for implementation detail.
 
@@ -78,7 +79,7 @@ See SideNav spec §8.3 and §16.6 for implementation detail.
 
 | Token | Duration | Easing | Standard | Rationale |
 |---|---|---|---|---|
-| `Motion/OrgSwitcher/Panel/Enter` | **200 ms** | decelerate | short (300 ms) | Small dropdown — 300 ms feels mechanical for a panel this size, 150 ms feels rushed |
+| `Motion/OrgSwitcher/Panel/Enter` | **280 ms** | spring | short (380 ms) | Small dropdown — 300 ms feels mechanical for a panel this size, 150 ms feels rushed |
 
 See OrgSwitcher spec §Motion.
 
@@ -86,7 +87,7 @@ See OrgSwitcher spec §Motion.
 
 | Token | Duration | Easing | Standard | Rationale |
 |---|---|---|---|---|
-| `Motion/TopNav/Search/Expand` | **180 ms** | standard | instant (150 ms) | Search affordance must feel responsive; 150 ms gets clipped at the larger physical distance, 300 ms feels laggy |
+| `Motion/TopNav/Search/Expand` | **240 ms** | spring | instant (200 ms) | Search affordance must feel responsive; 150 ms gets clipped at the larger physical distance, 300 ms feels laggy |
 
 See TopNav spec §Motion.
 

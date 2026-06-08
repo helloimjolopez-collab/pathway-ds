@@ -158,7 +158,7 @@ function IconPillButton({ iconName, iconSize = L.iconSize, iconColor, label, onC
           borderRadius: L.barRadius,
           padding: L.iconPillPad,
           background: pressed ? T.iconPillPressed : hov ? T.iconPillHover : "transparent",
-          transition: "background 100ms ease-out",
+          transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
         }}
       >
         <Icon name={iconName} size={iconSize} color={iconColor} />
@@ -278,7 +278,7 @@ export function SearchInput({
           overflow: "hidden",
           paddingLeft: L.barPadH,
           paddingRight: L.barPadH,
-          transition: "border-color 100ms ease-out, background 100ms ease-out",
+          transition: "border-color 160ms cubic-bezier(0.4,0,0.2,1), background 160ms cubic-bezier(0.4,0,0.2,1)",
           ...getBorderStyle(),
         }}
       >
@@ -358,7 +358,7 @@ export function SearchInput({
                   cursor: "pointer",
                   padding: 0,
                   flexShrink: 0,
-                  transition: "background 100ms ease-out",
+                  transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
                 }}
               >
                 <div
@@ -454,7 +454,7 @@ export function TopNavSearch({
         overflow: "hidden",
         padding: L.containerPad,
         position: "relative",
-        transition: "width 350ms cubic-bezier(0.34,1.56,0.64,1)",
+        transition: "width 420ms cubic-bezier(0.34,1.2,0.64,1)",
       }}
     >
       {/* Collapsed button — 48×48 icon button on dark nav surface */}
@@ -478,7 +478,7 @@ export function TopNavSearch({
           cursor: "pointer",
           padding: 8,
           flexShrink: 0,
-          transition: "background 100ms ease-out",
+          transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
         }}
       >
         {/* Inner pill */}
@@ -493,7 +493,7 @@ export function TopNavSearch({
             background: T.collapsedBtnFill,
             border: `0.5px solid ${T.collapsedBtnBorder}`,
             padding: 8,
-            transition: "background 100ms ease-out",
+            transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
           }}
         >
           <Icon
