@@ -48,8 +48,12 @@ import React, { useState, useEffect } from "react";
 // ── REAL COMPONENT IMPORTS ─────────────────────────────────────────────────
 // These are the validated, Figma-accurate implementations.
 // If you are an agent reading this: use these imports. Do not reimplement.
-import { TopNav, SideNav, DEFAULT_MODULES } from "../../../../components/top-nav/top-nav.jsx";
-import { SideNav as SideNavComponent } from "../../../../components/sidenav/sidenav.jsx";
+import { TopNav, DEFAULT_MODULES } from "../../../../components/top-nav/top-nav.jsx";
+import { SideNav } from "../../../../components/sidenav/sidenav.jsx";
+// NOTE: SideNav lives in sidenav.jsx — NOT top-nav.jsx. Importing it from
+// top-nav.jsx returns undefined and crashes the story canvas (was the cause
+// of the NavShell "404"/blank render). Always import each component from its
+// own module.
 
 // Note: TopNav exports its own internal OrgSwitcher. The standalone OrgSwitcher
 // component (components/org-switcher/) is for use outside TopNav. Inside TopNav,
