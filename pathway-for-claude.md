@@ -12,6 +12,44 @@ Tokens CSS: https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/m
 
 ---
 
+## ⛔ STOP — paste this `<head>` block FIRST, before any component
+
+Pathway icons are a **ligature web font** (Material Symbols Rounded), not SVGs.
+Every icon in every component is `<span class="material-symbols-rounded">name</span>`.
+**If you do not load the font, those spans render as literal text** (you'll see the
+word `search` instead of a magnifying glass) — and you must **never** substitute your
+own SVG paths or emoji to "fix" it. The only correct fix is loading the font below.
+
+```html
+<head>
+  <!-- 1. Pathway design tokens (every color/size/space variable) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/tokens.css" />
+
+  <!-- 2. Material Symbols Rounded — REQUIRED or all icons become plain text -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
+
+  <!-- 3. Red Hat type family -->
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&family=Red+Hat+Display:wght@600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Base icon class — every icon span needs this class */
+    .material-symbols-rounded {
+      font-variation-settings: 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      /* FILL is per-component: SideNav items + search = 'FILL' 1; TopNav controls = 'FILL' 0.
+         Set it per-icon, e.g. style="font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20" */
+    }
+  </style>
+</head>
+```
+
+**Icon rules (non-negotiable):**
+- Use `material-symbols-rounded` — never `-outlined`, never `-sharp`.
+- Icon name = the Material Symbols ligature (e.g. `search`, `filter_alt`, `expand_more`). Browse names at https://fonts.google.com/icons (set Style = Rounded).
+- **Never** replace an icon with a custom SVG, inline path, line drawing, or text label. If a glyph looks wrong, the font isn't loaded — fix the `<link>`, don't draw your own.
+- Branded assets (org logo, the Amplify Home icon) are the *only* exception — those use `<img>`/inline SVG.
+
+---
+
 ## How to load Pathway tokens in any prototype
 
 ```html
