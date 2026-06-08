@@ -48,7 +48,7 @@ Six canonical curves covering every Pathway motion. Use the named token in compo
 | Token | Curve | Use for |
 |---|---|---|
 | `--motion-easing-standard` | `cubic-bezier(0.4, 0, 0.2, 1)` | Most transitions — enters AND exits. Smooth, no overshoot. Default for colour, fill, opacity, focus rings. |
-| `--motion-easing-spring` | `cubic-bezier(0.34, 1.04, 0.64, 1)` | **Signature Pathway curve.** Interactive element entrances: dropdowns, chevron rotations, panel opens. A whisper of overshoot (y2=1.04) — easeful, only *ever so slightly* alive. Softened 2026-06-08 from 1.08, which read as too bouncy. |
+| `--motion-easing-spring` | `cubic-bezier(0.34, 1.04, 0.64, 1)` | **Signature Pathway curve.** Interactive element entrances: dropdown/popover panel opens. A whisper of overshoot (y2=1.04) — easeful, only *ever so slightly* alive. Softened 2026-06-08 from 1.08, which read as too bouncy. **Not for chevrons** — see chevron rule below. |
 | `--motion-easing-decelerate` | `cubic-bezier(0, 0, 0.2, 1)` | Enters where the element should glide in smoothly — overlay panels, popovers, anything appearing from outside. Pure ease-out, no bounce. |
 | `--motion-easing-accelerate` | `cubic-bezier(0.4, 0, 1, 1)` | Exits where the element leaves cleanly — dismissing overlays, scaling down. |
 | `--motion-easing-emphasized` | `cubic-bezier(0.32, 0.72, 0, 1)` | Large physical-scale transitions: full-panel width changes, SideNav width. Smooth glide, no overshoot. |
@@ -56,6 +56,8 @@ Six canonical curves covering every Pathway motion. Use the named token in compo
 | `--motion-easing-linear` | `linear` | Continuous loops only (spinners, shimmer). Never for bounded transitions. |
 
 **Bounce policy (2026-06-08):** Pathway motion is *easeful first, barely-bouncy second*. Overshoot (y2 > 1) is reserved for `spring` (1.04) and `accordion` (1.03) only, and never exceeds ~1.04. Anything that needs to feel substantial uses `emphasized`/`decelerate` (smooth, no overshoot) at a slightly longer duration — not a stronger bounce. A control-point y2 ≥ 1.08 anywhere in component CSS is now a bug.
+
+**Chevron / disclosure-arrow rotation rule (2026-06-08):** Rotating chevrons (dropdowns, selects/inputs, org-switcher, module-switcher, accordion grouper triggers, anywhere a caret flips on open/close) use **`standard`** easing at **300 ms** — `transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1)`. No overshoot: a chevron that springs reads as an abrupt snap at small rotation distances. No `ease`/`ease-in-out` browser keywords, and nothing shorter than 300 ms (180–260 ms feels clipped and abrupt). The one exception is a chevron whose rotation is *visually coupled* to an accordion's height animation — it may match that animation's `accordion` duration/easing so the two finish together.
 
 **Asymmetric enter/exit** (different curves per direction) is encouraged for overlays — typically `decelerate` on enter, `accelerate` on exit. See SideNav spec §16.6 for the reference pattern.
 

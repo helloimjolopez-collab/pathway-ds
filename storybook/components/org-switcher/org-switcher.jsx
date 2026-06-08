@@ -418,7 +418,7 @@ export function OrgSwitcher({
             width: 16, height: 16,
             padding: T.pXxxtight,
             transform: open ? "rotate(180deg)" : "none",
-            transition: "transform 260ms cubic-bezier(0.34, 1.04, 0.64, 1)",
+            transition: "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)",
           }}>
             <Icon name="expand_more" size={12} style={{ color: icon }} />
           </div>

@@ -329,7 +329,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           display: "flex", alignItems: "center", justifyContent: "center",
           width: 16, height: 16, marginRight: 2,
           transform: open ? "rotate(180deg)" : "none",
-          transition: "transform 260ms cubic-bezier(0.34, 1.04, 0.64, 1)",
+          transition: "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)",
         }}>
           <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
         </div>
@@ -384,7 +384,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           width: 16, height: 16, display: "flex", alignItems: "center",
           justifyContent: "center", marginLeft: 4,
           transform: open ? "rotate(180deg)" : "none",
-          transition: "transform 260ms cubic-bezier(0.34, 1.04, 0.64, 1)",
+          transition: "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)",
         }}>
           <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
         </div>
