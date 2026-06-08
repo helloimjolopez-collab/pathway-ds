@@ -35,7 +35,7 @@ export const T = {
 
 // ─── LAYOUT VALUES ─────────────────────────────────────────────────────────────
 export const L = {
-  deskPadH: 16, deskPadV: 4, deskH: 56,
+  deskPadH: 16, deskPadV: 6, deskH: 56,  // deskPadV 4→6 (Figma py-6px / Padding-XTight, updated 2026-06-08)
   tabPadH:  12, tabH: 54,
   mobPadH:  8,  mobH: 56,
   deskOrgMax: 316, mobOrgMax: 120,
@@ -374,7 +374,9 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
         aria-label={`Switch organisation — ${org.name}${org.campus ? ", "+org.campus : ""}`}
         style={{
           display: "flex", alignItems: "center", gap: 4,
-          minHeight: 36, padding: mobile ? "4px 2px" : 4, borderRadius: L.radius,
+          minHeight: 36,
+          // Figma OrgSwitcher Container.Main: pl-12 pr-6 py-4 (updated 2026-06-08 from uniform 4px)
+          padding: mobile ? "4px 2px" : "4px 6px 4px 12px", borderRadius: L.radius,
           background: open ? T.controlPressed : hov ? T.controlHover : T.orgFill,
           border: `1px solid ${open || hov ? T.orgStrokeHover : T.orgStroke}`,
           cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
