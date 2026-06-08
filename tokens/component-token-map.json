@@ -1,0 +1,122 @@
+{
+  "_meta": {
+    "description": "Machine-readable map: which CSS variable does each component element use. Eliminates guesswork for AI tools and design kit generators.",
+    "cssVariablesIn": "src/tokens/tokens.css",
+    "lastUpdated": "2026-06-08",
+    "note": "fontsize values are unitless numbers — wrap with calc(var(...) * 1px) in CSS or hardcode px in JS"
+  },
+  "topnav": {
+    "_figma": "40007067-6508",
+    "container.background": "--semantic-color-light-mode-fill-static-brand-base",
+    "container.height": "56px",
+    "all-controls.text+icon": "--semantic-color-light-mode-text-action-mono-base",
+    "all-controls.hover-fill": "rgba(10,18,35,0.16)",
+    "all-controls.pressed-fill": "rgba(255,255,255,0.08)",
+    "orgswitcher.resting-fill": "--semantic-color-light-mode-fill-action-tertiary-base",
+    "orgswitcher.border": "--semantic-color-light-mode-stroke-action-tertiary-base",
+    "search.pill-fill": "rgba(160,181,230,0.08)",
+    "profile.avatar-bg": "--semantic-color-light-mode-fill-static-accent-amethyst-base",
+    "profile.avatar-text": "--semantic-color-light-mode-text-static-accent-amethyst-contrast",
+    "label.font-family": "--semantic-type-desktop-label-button-s-fontfamily",
+    "label.font-size": "--semantic-type-desktop-label-button-s-fontsize (=14)",
+    "label.font-weight": "--semantic-type-desktop-label-button-s-fontweight",
+    "_warning": "OrgSwitcher = text + chevron ONLY. No avatar, no logo, no icon."
+  },
+  "sidenav": {
+    "_figma": "40003951-2927",
+    "container.background": "--semantic-color-light-mode-surface-nav-light",
+    "container.border-right": "--semantic-color-light-mode-stroke-static-neutral-light",
+    "item.resting-fill": "transparent",
+    "item.hover-fill": "--semantic-color-light-mode-fill-contextual-navitem-hover",
+    "item.active-fill": "--semantic-color-light-mode-fill-contextual-navitem-active",
+    "item.resting-text": "--semantic-color-light-mode-text-contextual-navitem-base",
+    "item.active-text": "--semantic-color-light-mode-text-contextual-navitem-active",
+    "item.resting-icon": "--semantic-color-light-mode-icon-contextual-navitem-base",
+    "item.active-icon": "--semantic-color-light-mode-icon-contextual-navitem-active",
+    "item.active-stripe": "--semantic-color-light-mode-icon-contextual-navitem-active",
+    "item.font-size": "--semantic-type-desktop-label-menu-base-regular-fontsize (=14)",
+    "item.font-weight.resting": "400",
+    "item.font-weight.active": "500",
+    "section-label.text": "--semantic-color-light-mode-text-static-secondary-subtle",
+    "_icon-rule": "ALL nav icons use Material Symbols Rounded FILL=1 (filled)"
+  },
+  "button": {
+    "_figma": "40003293-93741",
+    "fill.primary.base": "--semantic-color-light-mode-fill-action-primary-base",
+    "fill.primary.hover": "--semantic-color-light-mode-fill-action-primary-hover",
+    "fill.secondary.base": "--semantic-color-light-mode-fill-action-secondary-base",
+    "fill.negative.base": "--semantic-color-light-mode-fill-action-negative-base",
+    "text.primary-filled": "--semantic-color-light-mode-text-action-mono-base",
+    "text.secondary-outlined": "--semantic-color-light-mode-text-action-secondary-base",
+    "border.outlined": "--semantic-color-light-mode-stroke-action-secondary-base",
+    "label.font-size.M": "--semantic-type-desktop-label-button-base-fontsize (=16)",
+    "label.font-size.S": "--semantic-type-desktop-label-button-s-fontsize (=14)",
+    "label.font-weight": "--semantic-type-desktop-label-button-base-fontweight (=500)"
+  },
+  "card": {
+    "_note": "Not yet standalone — inline in nav-shell",
+    "container.background": "--semantic-color-light-mode-fill-static-neutral-light",
+    "container.border": "--semantic-color-light-mode-stroke-action-secondary-inverse-base",
+    "container.border-width": "0.5px",
+    "container.border-radius": "8px",
+    "title.text": "--semantic-color-light-mode-text-static-primary-base",
+    "title.font-size": "--semantic-type-desktop-text-body-base-semibold-fontsize (=16)",
+    "title.font-weight": "--semantic-type-desktop-text-body-base-semibold-fontweight (=600)",
+    "body.text": "--semantic-color-light-mode-text-static-secondary-subtle",
+    "body.font-size": "--semantic-type-desktop-text-body-small-regular-fontsize (=14)",
+    "icon-container.accent-bg": "--semantic-color-light-mode-fill-static-accent-amethyst-light",
+    "icon-container.positive-bg": "--semantic-color-light-mode-fill-static-positive-light",
+    "icon-container.info-bg": "--semantic-color-light-mode-fill-static-info-light",
+    "icon-container.warning-bg": "--semantic-color-light-mode-fill-static-warning-light"
+  },
+  "badge": {
+    "container.background": "--semantic-color-light-mode-fill-static-accent-amethyst-light",
+    "container.border-radius": "12px",
+    "text.color": "--semantic-color-light-mode-text-static-accent-amethyst-contrast",
+    "text.font-size": "--semantic-type-desktop-label-badge-small-medium-fontsize (=11)",
+    "text.font-weight": "--semantic-type-desktop-label-badge-small-medium-fontweight (=500)"
+  },
+  "orgswitcher": {
+    "_figma": "40006819-14583",
+    "_warning": "TRIGGER TEXT ONLY. No avatar, no logo, no icon by default.",
+    "container.fill.resting": "--semantic-color-dark-mode-fill-action-tertiary-base",
+    "container.border.resting": "--semantic-color-dark-mode-stroke-action-tertiary-base",
+    "label.text": "--semantic-color-dark-mode-text-action-mono-base",
+    "label.font-size": "--semantic-type-desktop-label-button-s-fontsize (=14)"
+  },
+  "search": {
+    "_figma": "40006978-23158",
+    "bar.background": "--semantic-color-light-mode-fill-static-neutral-light",
+    "bar.border.idle": "--semantic-color-light-mode-stroke-static-neutral-light",
+    "bar.border.hover": "--semantic-color-light-mode-stroke-action-primary-hover",
+    "bar.border.focused": "--semantic-color-light-mode-stroke-action-primary-pressed",
+    "bar.border-radius": "9999px (pill)",
+    "bar.toolbar-input-border-radius": "6px (NOT standard 8px — confirmed Figma)",
+    "input.placeholder": "--semantic-color-light-mode-text-static-secondary-subtle",
+    "input.value": "--semantic-color-light-mode-text-static-secondary-bold",
+    "icon.idle": "--semantic-color-light-mode-icon-action-secondary-inverse-base",
+    "icon.fill-setting": "FILL=1",
+    "filter-chip.active-bg": "--semantic-color-light-mode-fill-action-tertiary-base",
+    "filter-chip.active-text": "--semantic-color-light-mode-text-action-primary-base"
+  },
+  "page-heading": {
+    "_note": "Not yet standalone",
+    "title.text": "--semantic-color-light-mode-text-static-primary-base",
+    "title.font-size": "--semantic-type-desktop-heading-page-base-semibold-fontsize (=24)",
+    "title.font-weight": "--semantic-type-desktop-heading-page-base-semibold-fontweight (=600)",
+    "subtitle.text": "--semantic-color-light-mode-text-static-secondary-base",
+    "subtitle.font-size": "--semantic-type-desktop-text-body-base-regular-fontsize (=16)"
+  },
+  "section-heading": {
+    "_note": "Not yet standalone",
+    "label.text": "--semantic-color-light-mode-text-static-secondary-subtle",
+    "label.font-size": "--semantic-type-desktop-heading-section-xs-semibold-fontsize (=14)",
+    "label.font-weight": "600",
+    "label.letter-spacing": "--semantic-type-desktop-heading-section-xs-semibold-letterspacing (=0.6px)"
+  },
+  "_known-gaps": {
+    "font-size-unitless": "All --semantic-type-*-fontsize tokens resolve to unitless numbers (e.g. 14, not 14px). Wrap: calc(var(--semantic-type-...-fontsize) * 1px) in CSS, or hardcode px in JS.",
+    "no-display-font-token": "Red Hat Display is NOT tokenized. --primitive-type-family-brand = Red Hat Text everywhere. Add --primitive-type-family-display: Red Hat Display in Figma variables and re-export to fix large headings.",
+    "needs-figma-action": "To fix both gaps: open Figma Variables, add family-display = Red Hat Display, update display heading tokens to use it, re-export via Variables Import Export plugin."
+  }
+}

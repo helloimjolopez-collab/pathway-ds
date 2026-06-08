@@ -5,3 +5,5 @@ dist/
 .DS_Store
 .claude/
 
+tokens/figma-export/sync.log
+Library/Application Support/pathway-token-sync.sh

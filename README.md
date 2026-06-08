@@ -108,3 +108,14 @@ Pathway uses **Red Hat Text** (all UI text) and **Red Hat Display** (headings H1
 - Red Hat Display: https://fonts.google.com/specimen/Red+Hat+Display → click **Download family**
 
 Licensed under the [SIL Open Font License](https://scripts.sil.org/OFL). Free for any use.
+
+## Component-to-token map
+
+`tokens/component-token-map.json` maps every component element to its CSS variable. Use this file to answer "which token does X use?" without reading specs.
+
+## Known token gaps
+
+| Gap | Fix needed |
+|---|---|
+| Font-size tokens are unitless numbers | Use `calc(var(--...-fontsize) * 1px)` in CSS |
+| No `Red Hat Display` token | Add `family-display: Red Hat Display` in Figma Variables, re-export |
