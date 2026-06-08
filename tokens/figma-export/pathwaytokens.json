@@ -3733,7 +3733,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.500}"
+                  "$value": "{Brand.400}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -3742,7 +3742,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.600}"
+                  "$value": "{Brand.500}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -3751,7 +3751,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.700}"
+                  "$value": "{Brand.600}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -4351,7 +4351,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.100}"
+                  "$value": "{Brand.300}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -4369,7 +4369,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.300}"
+                  "$value": "{Brand.400}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -4503,7 +4503,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.10}"
+                  "$value": "{Brand.100}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -4512,7 +4512,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.20}"
+                  "$value": "{Brand.80}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -4521,7 +4521,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.30}"
+                  "$value": "{Brand.200}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -5270,7 +5270,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Orange.0}"
+                  "$value": "{Orange.10}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -5317,7 +5317,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.0}"
+                  "$value": "{Red.10}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -5326,7 +5326,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.10}"
+                  "$value": "{Red.20}"
                 },
                 "Base": {
                   "$scopes": [
@@ -5335,7 +5335,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.20}"
+                  "$value": "{Red.30}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -5795,7 +5795,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.500}"
+                  "$value": "{Brand.400}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -5804,7 +5804,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.600}"
+                  "$value": "{Brand.500}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -5813,7 +5813,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.700}"
+                  "$value": "{Brand.600}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -6242,7 +6242,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.90}"
+                  "$value": "{Brand.100}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -6271,7 +6271,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Saffron.40}"
+                  "$value": "{Saffron.60}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -6280,7 +6280,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Saffron.50}"
+                  "$value": "{Saffron.80}"
                 },
                 "Base": {
                   "$scopes": [
@@ -6289,7 +6289,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Saffron.80}"
+                  "$value": "{Saffron.100}"
                 },
                 "Contrast": {
                   "$scopes": [
@@ -6298,7 +6298,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Saffron.90}"
+                  "$value": "{Saffron.130}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -6307,7 +6307,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Saffron.100}"
+                  "$value": "{Saffron.140}"
                 }
               },
               "Danger": {
@@ -6486,7 +6486,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.90}"
+                  "$value": "{Amethyst.100}"
                 },
                 "Bold": {
                   "$scopes": [
@@ -6495,7 +6495,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Amethyst.120}"
+                  "$value": "{Amethyst.130}"
                 }
               },
               "Accent_Jade": {
@@ -6700,7 +6700,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.100}"
+                  "$value": "{Brand.300}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -6709,7 +6709,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.60}"
+                  "$value": "{Brand.100}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -6718,7 +6718,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.70}"
+                  "$value": "{Brand.400}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -14612,7 +14612,7 @@
                     "$type": "float",
                     "$libraryName": "",
                     "$collectionName": "Primitive: Type",
-                    "$value": "{Line Height.16pt.Single}"
+                    "$value": "{Line Height.14pt.Single}"
                   },
                   "LetterSpacing": {
                     "$scopes": [
@@ -14675,7 +14675,7 @@
                     "$type": "float",
                     "$libraryName": "",
                     "$collectionName": "Primitive: Type",
-                    "$value": "{Line Height.16pt.Single}"
+                    "$value": "{Line Height.14pt.Single}"
                   },
                   "LetterSpacing": {
                     "$scopes": [
@@ -14738,7 +14738,198 @@
                     "$type": "float",
                     "$libraryName": "",
                     "$collectionName": "Primitive: Type",
-                    "$value": "{Line Height.16pt.Single}"
+                    "$value": "{Line Height.14pt.Single}"
+                  },
+                  "LetterSpacing": {
+                    "$scopes": [
+                      "TEXT_CONTENT",
+                      "WIDTH_HEIGHT",
+                      "GAP",
+                      "FONT_WEIGHT",
+                      "FONT_SIZE",
+                      "LINE_HEIGHT",
+                      "LETTER_SPACING",
+                      "PARAGRAPH_SPACING",
+                      "PARAGRAPH_INDENT"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Letter Spacing.ExtraWide}"
+                  }
+                }
+              },
+              "XXS": {
+                "Medium": {
+                  "FontFamily": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "string",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Family.Brand}"
+                  },
+                  "FontSize": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Size.12}"
+                  },
+                  "FontWeight": {
+                    "$scopes": [
+                      "TEXT_CONTENT",
+                      "WIDTH_HEIGHT",
+                      "GAP",
+                      "FONT_WEIGHT",
+                      "FONT_SIZE",
+                      "LINE_HEIGHT",
+                      "LETTER_SPACING",
+                      "PARAGRAPH_SPACING",
+                      "PARAGRAPH_INDENT"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Weight.500}"
+                  },
+                  "LineHeight": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Line Height.12pt.Single}"
+                  },
+                  "LetterSpacing": {
+                    "$scopes": [
+                      "TEXT_CONTENT",
+                      "WIDTH_HEIGHT",
+                      "GAP",
+                      "FONT_WEIGHT",
+                      "FONT_SIZE",
+                      "LINE_HEIGHT",
+                      "LETTER_SPACING",
+                      "PARAGRAPH_SPACING",
+                      "PARAGRAPH_INDENT"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Letter Spacing.ExtraWide}"
+                  }
+                },
+                "Semibold": {
+                  "FontFamily": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "string",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Family.Brand}"
+                  },
+                  "FontSize": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Size.12}"
+                  },
+                  "FontWeight": {
+                    "$scopes": [
+                      "TEXT_CONTENT",
+                      "WIDTH_HEIGHT",
+                      "GAP",
+                      "FONT_WEIGHT",
+                      "FONT_SIZE",
+                      "LINE_HEIGHT",
+                      "LETTER_SPACING",
+                      "PARAGRAPH_SPACING",
+                      "PARAGRAPH_INDENT"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Weight.600}"
+                  },
+                  "LineHeight": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Line Height.12pt.Single}"
+                  },
+                  "LetterSpacing": {
+                    "$scopes": [
+                      "TEXT_CONTENT",
+                      "WIDTH_HEIGHT",
+                      "GAP",
+                      "FONT_WEIGHT",
+                      "FONT_SIZE",
+                      "LINE_HEIGHT",
+                      "LETTER_SPACING",
+                      "PARAGRAPH_SPACING",
+                      "PARAGRAPH_INDENT"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Letter Spacing.ExtraWide}"
+                  }
+                },
+                "Bold": {
+                  "FontFamily": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "string",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Family.Brand}"
+                  },
+                  "FontSize": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Size.12}"
+                  },
+                  "FontWeight": {
+                    "$scopes": [
+                      "TEXT_CONTENT",
+                      "WIDTH_HEIGHT",
+                      "GAP",
+                      "FONT_WEIGHT",
+                      "FONT_SIZE",
+                      "LINE_HEIGHT",
+                      "LETTER_SPACING",
+                      "PARAGRAPH_SPACING",
+                      "PARAGRAPH_INDENT"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Weight.700}"
+                  },
+                  "LineHeight": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Line Height.12pt.Single}"
                   },
                   "LetterSpacing": {
                     "$scopes": [
@@ -21853,6 +22044,197 @@
                     "$libraryName": "",
                     "$collectionName": "Primitive: Type",
                     "$value": "{Line Height.14pt.Single}"
+                  },
+                  "LetterSpacing": {
+                    "$scopes": [
+                      "TEXT_CONTENT",
+                      "WIDTH_HEIGHT",
+                      "GAP",
+                      "FONT_WEIGHT",
+                      "FONT_SIZE",
+                      "LINE_HEIGHT",
+                      "LETTER_SPACING",
+                      "PARAGRAPH_SPACING",
+                      "PARAGRAPH_INDENT"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Letter Spacing.Standard}"
+                  }
+                }
+              },
+              "XXS": {
+                "Medium": {
+                  "FontFamily": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "string",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Family.Brand}"
+                  },
+                  "FontSize": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Size.11}"
+                  },
+                  "FontWeight": {
+                    "$scopes": [
+                      "TEXT_CONTENT",
+                      "WIDTH_HEIGHT",
+                      "GAP",
+                      "FONT_WEIGHT",
+                      "FONT_SIZE",
+                      "LINE_HEIGHT",
+                      "LETTER_SPACING",
+                      "PARAGRAPH_SPACING",
+                      "PARAGRAPH_INDENT"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Weight.600}"
+                  },
+                  "LineHeight": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Line Height.12pt.Single}"
+                  },
+                  "LetterSpacing": {
+                    "$scopes": [
+                      "TEXT_CONTENT",
+                      "WIDTH_HEIGHT",
+                      "GAP",
+                      "FONT_WEIGHT",
+                      "FONT_SIZE",
+                      "LINE_HEIGHT",
+                      "LETTER_SPACING",
+                      "PARAGRAPH_SPACING",
+                      "PARAGRAPH_INDENT"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Letter Spacing.Standard}"
+                  }
+                },
+                "Semibold": {
+                  "FontFamily": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "string",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Family.Brand}"
+                  },
+                  "FontSize": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Size.11}"
+                  },
+                  "FontWeight": {
+                    "$scopes": [
+                      "TEXT_CONTENT",
+                      "WIDTH_HEIGHT",
+                      "GAP",
+                      "FONT_WEIGHT",
+                      "FONT_SIZE",
+                      "LINE_HEIGHT",
+                      "LETTER_SPACING",
+                      "PARAGRAPH_SPACING",
+                      "PARAGRAPH_INDENT"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Weight.600}"
+                  },
+                  "LineHeight": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Line Height.12pt.Single}"
+                  },
+                  "LetterSpacing": {
+                    "$scopes": [
+                      "TEXT_CONTENT",
+                      "WIDTH_HEIGHT",
+                      "GAP",
+                      "FONT_WEIGHT",
+                      "FONT_SIZE",
+                      "LINE_HEIGHT",
+                      "LETTER_SPACING",
+                      "PARAGRAPH_SPACING",
+                      "PARAGRAPH_INDENT"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Letter Spacing.Standard}"
+                  }
+                },
+                "Bold": {
+                  "FontFamily": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "string",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Family.Brand}"
+                  },
+                  "FontSize": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Size.11}"
+                  },
+                  "FontWeight": {
+                    "$scopes": [
+                      "TEXT_CONTENT",
+                      "WIDTH_HEIGHT",
+                      "GAP",
+                      "FONT_WEIGHT",
+                      "FONT_SIZE",
+                      "LINE_HEIGHT",
+                      "LETTER_SPACING",
+                      "PARAGRAPH_SPACING",
+                      "PARAGRAPH_INDENT"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Weight.700}"
+                  },
+                  "LineHeight": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Type",
+                    "$value": "{Line Height.12pt.Single}"
                   },
                   "LetterSpacing": {
                     "$scopes": [
