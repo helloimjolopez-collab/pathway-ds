@@ -50,9 +50,9 @@ export const L = {
   menuGap:     6,    // gap between SideNavMenu items — Gap/XTight (corrected 2026-05-26; was 0)
   menuPadT:    8,    // top padding on SideNavMenu (space below the NavHeader divider)
   menuPadB:    56,   // bottom padding in SideNavMenu (space before collapse button, updated from 24)
-  itemH:       48,   // min-height per item (Accessibility/Touch Target/Optimal)
+  itemH:       44,   // min-height per item (Accessibility/Touch Target/AA — Figma 40005281:10058, updated 2026-06-08 from 48)
   iconWrap:    24,   // leading icon wrapper (Accessibility/Icon Wrapping/Large)
-  iconInner:   14,   // icon glyph size — demo SVGs are 14×14 viewBox; production Material Symbols icons should be 16px
+  iconInner:   16,   // icon glyph size — Material Symbols Rounded at 16px (updated 2026-06-08 from 14)
   rowPadH:     8,    // horizontal padding in Container.rowStart
   textPad:     6,    // label text padding
   childIndent: 24,   // level-1 left indent inside rowStart 8px

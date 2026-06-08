@@ -289,7 +289,7 @@ SideNavListSection
 
 | Property | Token | Resolved value |
 |---|---|---|
-| Min-height | `Accessibility/Touch Target/Optimal/Size` | `48px` |
+| Min-height | `Accessibility/Touch Target/AA/Size` | `44px` (updated 2026-06-08 from 48) |
 | Border radius | `Component/NavItem/Large/Radius/Radius` | `8px` |
 | Fill (base) | `Fill/Contextual/NavItem/Base` | `#fafafa` (transparent) |
 | Fill (hover) | `Fill/Contextual/NavItem/Hover` | `rgba(17,17,17,0.02)` |
@@ -393,7 +393,7 @@ ListItems follow the exact same `Base / Hover / Active` state matrix as `SideNav
 | Semantic Token | Primitive | Resolved Value | Usage |
 |---|---|---|---|
 | `Component/NavItem/Large/Radius/Radius` | `Border/S` | `8px` | Item `border-radius` |
-| `Accessibility/Touch Target/Optimal/Size` |: | `48px` | Item `min-height` |
+| `Accessibility/Touch Target/AA/Size` |: | `44px` | Item `min-height` (updated 2026-06-08 from 48) |
 | `Accessibility/Icon Wrapping/Large/Size` |: | `24×24px` | `Container.LeadingIcon` dimensions |
 
 ### 3.6 Typography
@@ -791,7 +791,10 @@ This is a CSS architectural constraint, not a Figma design concern. No Figma ann
 
 ## 11. Iconography
 
+> **Migration note (2026-06-08):** Nav-item icon size increased from 14px to **16px** (Material Symbols Rounded). Nav-item min-height changed from 48px (Touch Target Optimal) to **44px** (Touch Target AA) to match the current Figma rail. Rail-state padding follows Figma node `40005281:10058`. HTML demos predating this date may still show 14px/48px — the `.jsx` (`L.iconInner: 16`, `L.itemH: 44`) and this spec are authoritative.
+
 - **Library: Material Symbols Rounded** — the only icon library permitted in SideNav. Never use Outlined, Sharp, or any other variant. CSS class: `material-symbols-rounded`.
+- **Icon size: 16px** inside a 24×24 wrapper (updated 2026-06-08 from 14px).
 - **FILL=1 always** — all SideNav icons use the filled (solid) variant. This is a hard rule, not a per-state toggle. `fontVariationSettings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20'`.
 - **Icon name = Figma layer name** — when reading the component via `get_design_context`, the icon frame's `data-name` attribute is the exact Material Symbols ligature string.
 - Icons live at `16×16pt` inside a `24×24pt` `Container.LeadingIcon` wrapper
@@ -963,7 +966,7 @@ Do not use `role="menu"` / `role="menuitem"`: that is for application context-me
 
 | Token | Value | Source |
 |---|---|---|
-| `Accessibility/Touch Target/Optimal/Size` | `48px` | Figma ✅ |
+| `Accessibility/Touch Target/AA/Size` | `44px` | Figma ✅ |
 | `Accessibility/Icon Wrapping/Large/Size` | `24×24px` | Figma ✅ |
 
 Both values come from named Figma tokens. `min-height: 48px` on every `SideNavItem` satisfies WCAG 2.5.5 Target Size.
