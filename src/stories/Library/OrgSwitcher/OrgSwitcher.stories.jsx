@@ -399,7 +399,7 @@ export const TokensMotion = () => (
       <tbody>
         <tr style={{ borderBottom: "1px solid #f5f5f5" }}>
           <td style={{ padding: 8 }}>Chevron rotation (open ↔ closed)</td>
-          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12 }}>transform 200ms cubic-bezier(0.4,0,0.2,1)</td>
+          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12 }}>transform 300ms cubic-bezier(0.4,0,0.2,1)</td>
           <td style={{ padding: 8 }}>Same easing tier as other Pathway "expand" controls</td>
         </tr>
         <tr style={{ borderBottom: "1px solid #f5f5f5" }}>

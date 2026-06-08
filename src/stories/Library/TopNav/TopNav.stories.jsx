@@ -338,7 +338,7 @@ function TopNavStory({
             <div style={{ width:16, height:16, display:"flex", alignItems:"center",
               justifyContent:"center", marginLeft:4,
               transform: openPanel === "module" ? "rotate(180deg)" : "none",
-              transition:"transform 180ms ease" }}>
+              transition:"transform 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
               <Icon name="expand_more" size={16} color={T.mono} />
             </div>
           </button>
@@ -410,7 +410,7 @@ function TopNavStory({
             <div style={{ width:16, height:16, display:"flex", alignItems:"center",
               justifyContent:"center", marginRight:2,
               transform: openPanel === "org" ? "rotate(180deg)" : "none",
-              transition:"transform 180ms ease" }}>
+              transition:"transform 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
               <Icon name="expand_more" size={16} color={T.mono} />
             </div>
           </button>
