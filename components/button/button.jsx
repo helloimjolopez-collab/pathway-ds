@@ -26,13 +26,13 @@ const FILL = {
   Fill: {
     Primary:   { base: SC("fill-action-primary-base"),              hover: SC("fill-action-primary-hover"),              pressed: SC("fill-action-primary-pressed"),              disabled: SC("fill-action-primary-disabled")              },
     Secondary: { base: SC("fill-action-secondaryinverse-base"),     hover: SC("fill-action-secondaryinverse-hover"),     pressed: SC("fill-action-secondaryinverse-pressed"),     disabled: SC("fill-action-secondaryinverse-disabled")     },
-    Tertiary:  { base: SC("fill-action-tertiary-base"),             hover: SC("fill-action-tertiary-inverse-hover"),     pressed: SC("fill-action-tertiary-inverse-pressed"),     disabled: SC("fill-action-tertiary-disabled")             },
+    Tertiary:  { base: SC("fill-action-tertiary-base"),             hover: SC("fill-action-tertiary-hover"),             pressed: SC("fill-action-tertiary-pressed"),             disabled: SC("fill-action-tertiary-disabled")             },
     Negative:  { base: SC("fill-action-negative-base"),             hover: SC("fill-action-negative-hover"),             pressed: SC("fill-action-negative-pressed"),             disabled: SC("fill-action-negative-disabled")             },
   },
   Outlined: {
     Primary:   { base: "transparent",                               hover: SC("fill-action-primaryinverse-hover"),       pressed: SC("fill-action-primaryinverse-pressed"),       disabled: "transparent"                                   },
     Secondary: { base: "transparent",                               hover: SC("fill-action-secondaryinverse-hover"),     pressed: SC("fill-action-secondaryinverse-pressed"),     disabled: "transparent"                                   },
-    Tertiary:  { base: SC("fill-action-tertiary-inverse-base"),     hover: SC("fill-action-tertiary-inverse-hover"),     pressed: SC("fill-action-tertiary-inverse-pressed"),     disabled: "transparent"                                   },
+    Tertiary:  { base: "transparent",                               hover: SC("fill-action-tertiary-inverse-hover"),     pressed: SC("fill-action-tertiary-inverse-pressed"),     disabled: "transparent"                                   },
     Negative:  { base: "transparent",                               hover: SC("fill-action-negativeinverse-hover"),      pressed: SC("fill-action-negativeinverse-pressed"),      disabled: "transparent"                                   },
   },
   Naked: {

@@ -13,7 +13,7 @@ import { Checkbox } from "../../../../components/checkbox/checkbox.jsx";
 
 // ─── Storybook metadata ──────────────────────────────────────────────────────
 export default {
-  title: "Components/Checkbox",
+  title: "Library/Checkbox",
   component: Checkbox,
   argTypes: {
     checked:       { control: "boolean" },
@@ -51,8 +51,8 @@ function Controlled(args) {
 
 // ─── Stories ─────────────────────────────────────────────────────────────────
 
-export const Default = Controlled.bind({});
-Default.args = {
+export const Playground = Controlled.bind({});
+Playground.args = {
   label: "Include background checks",
   checked: false,
   indeterminate: false,
@@ -62,7 +62,7 @@ Default.args = {
   disabled: false,
   size: "default",
 };
-Default.parameters = {
+Playground.parameters = {
   docs: {
     description: {
       story:

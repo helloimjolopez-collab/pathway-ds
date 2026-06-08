@@ -47,13 +47,15 @@ Six canonical curves covering every Pathway motion. Use the named token in compo
 
 | Token | Curve | Use for |
 |---|---|---|
-| `--motion-easing-standard` | `cubic-bezier(0.4, 0, 0.15, 1)` | Most transitions — enters AND exits. Slightly more pronounced ease-out than before for a smoother landing. |
-| `--motion-easing-spring` | `cubic-bezier(0.34, 1.08, 0.64, 1)` | **Signature Pathway curve.** Interactive element entrances: dropdowns, chevron rotations, panel opens. A gentle, barely perceptible overshoot that gives Pathway its slightly-alive quality. |
-| `--motion-easing-decelerate` | `cubic-bezier(0, 0, 0.15, 1)` | Enters where the element should glide in smoothly — overlay panels, popovers, anything appearing from outside. Softer than before. |
-| `--motion-easing-accelerate` | `cubic-bezier(0.4, 0, 0.8, 0)` | Exits where the element leaves cleanly — dismissing overlays, scaling down. |
-| `--motion-easing-emphasized` | `cubic-bezier(0.32, 0.72, 0, 1)` | Large physical-scale transitions: full-panel width changes, SideNav width. |
-| `--motion-easing-accordion` | `cubic-bezier(0.22, 1.12, 0.36, 1)` | Accordion settle — content reveal/hide, chevron rotation. Slightly more spring than before (y2=1.12 vs 1.0) for that barely-bouncy landing. |
+| `--motion-easing-standard` | `cubic-bezier(0.4, 0, 0.2, 1)` | Most transitions — enters AND exits. Smooth, no overshoot. Default for colour, fill, opacity, focus rings. |
+| `--motion-easing-spring` | `cubic-bezier(0.34, 1.04, 0.64, 1)` | **Signature Pathway curve.** Interactive element entrances: dropdowns, chevron rotations, panel opens. A whisper of overshoot (y2=1.04) — easeful, only *ever so slightly* alive. Softened 2026-06-08 from 1.08, which read as too bouncy. |
+| `--motion-easing-decelerate` | `cubic-bezier(0, 0, 0.2, 1)` | Enters where the element should glide in smoothly — overlay panels, popovers, anything appearing from outside. Pure ease-out, no bounce. |
+| `--motion-easing-accelerate` | `cubic-bezier(0.4, 0, 1, 1)` | Exits where the element leaves cleanly — dismissing overlays, scaling down. |
+| `--motion-easing-emphasized` | `cubic-bezier(0.32, 0.72, 0, 1)` | Large physical-scale transitions: full-panel width changes, SideNav width. Smooth glide, no overshoot. |
+| `--motion-easing-accordion` | `cubic-bezier(0.33, 1.03, 0.68, 1)` | Accordion settle — content reveal/hide, chevron rotation. The gentlest overshoot in the system (y2=1.03). Softened 2026-06-08 from 0.22,1.12,0.36,1, which was visibly bouncy. |
 | `--motion-easing-linear` | `linear` | Continuous loops only (spinners, shimmer). Never for bounded transitions. |
+
+**Bounce policy (2026-06-08):** Pathway motion is *easeful first, barely-bouncy second*. Overshoot (y2 > 1) is reserved for `spring` (1.04) and `accordion` (1.03) only, and never exceeds ~1.04. Anything that needs to feel substantial uses `emphasized`/`decelerate` (smooth, no overshoot) at a slightly longer duration — not a stronger bounce. A control-point y2 ≥ 1.08 anywhere in component CSS is now a bug.
 
 **Asymmetric enter/exit** (different curves per direction) is encouraged for overlays — typically `decelerate` on enter, `accelerate` on exit. See SideNav spec §16.6 for the reference pattern.
 
@@ -87,7 +89,7 @@ See OrgSwitcher spec §Motion.
 
 | Token | Duration | Easing | Standard | Rationale |
 |---|---|---|---|---|
-| `Motion/TopNav/Search/Expand` | **240 ms** | spring | instant (200 ms) | Search affordance must feel responsive; 150 ms gets clipped at the larger physical distance, 300 ms feels laggy |
+| `Motion/TopNav/Search/Expand` | **380 ms** | spring (softened) | short (380 ms) | Width expand from icon to 320px bar. Revised 2026-06-08: was 420 ms with an off-scale `0.34,1.2,0.64,1` curve that read as abrupt and bouncy. Now `short` duration + softened `spring` (y2=1.04) for an easeful glide with only a whisper of settle. |
 
 See TopNav spec §Motion.
 

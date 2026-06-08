@@ -63,7 +63,7 @@ function Grid({ children }) {
 
 // ─── Storybook metadata ─────────────────────────────────────────────────────
 export default {
-  title: "Components/Spinner",
+  title: "Library/Spinner",
   component: Spinner,
   argTypes: {
     tone: { control: { type: "select" }, options: TONES },
@@ -84,8 +84,8 @@ export default {
 };
 
 // ─── Stories ─────────────────────────────────────────────────────────────────
-export const Default = (args) => <Spinner {...args} />;
-Default.args = { size: 32, tone: "neutral", emphasis: "base", label: "Loading" };
+export const Playground = (args) => <Spinner {...args} />;
+Playground.args = { size: 32, tone: "neutral", emphasis: "base", label: "Loading" };
 
 export const FluidSizes = () => (
   <Grid>

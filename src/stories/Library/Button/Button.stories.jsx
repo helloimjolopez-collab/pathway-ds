@@ -80,7 +80,7 @@ function TokenRow({ name, value, description }) {
 // ─── Storybook metadata ───────────────────────────────────────────────────────
 
 export default {
-  title: "Components/Button",
+  title: "Library/Button",
   component: Button,
   parameters: {
     docs: {

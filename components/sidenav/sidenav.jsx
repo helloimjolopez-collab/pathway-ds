@@ -172,7 +172,7 @@ export function SideNavItem({
             transition: "max-width 440ms cubic-bezier(0.32, 0.72, 0, 1), opacity 240ms cubic-bezier(0.4,0,0.2,1)" }}>
             {/* Chevron rotation matches accordion timing — 340ms easeOutQuart */}
             <div style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform 420ms cubic-bezier(0.22, 1.12, 0.36, 1)" }}>
+              transition: "transform 420ms cubic-bezier(0.33, 1.03, 0.68, 1)" }}>
               {chevronDown ? chevronDown({ size: 10, color: iconColor }) : <ChevDown size={10} color={iconColor} />}
             </div>
           </div>
@@ -225,7 +225,7 @@ export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }
         border: "0.5px solid #f6f6f6", borderRadius: 8,
         boxShadow: "2px 2px 8px 0px rgba(0,0,0,0.03)",
         padding: "6px 8px", whiteSpace: "nowrap", pointerEvents: "auto",
-        animation: "popoverInCentered 220ms cubic-bezier(0.16,1.1,0.3,1) forwards" }}>
+        animation: "popoverInCentered 220ms cubic-bezier(0.16, 1.03, 0.3, 1) forwards" }}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
         fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px", color: "#202020" }}>
         {label}
@@ -264,7 +264,7 @@ export function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMo
         border: "0.5px solid #ededed", borderRadius: 8,
         boxShadow: "2px 2px 8px 4px rgba(0,0,0,0.03)",
         padding: 6, minWidth: 200, pointerEvents: "auto",
-        animation: "popoverIn 220ms cubic-bezier(0.16,1.1,0.3,1) forwards" }}>
+        animation: "popoverIn 220ms cubic-bezier(0.16, 1.03, 0.3, 1) forwards" }}>
       {/* Section label — Figma component 40006794-5977 */}
       <div style={{ borderBottom: "0.5px solid #ededed" }}>
         <SectionLabel label={item.label} />
@@ -558,7 +558,7 @@ export function SideNav({
             display: "grid",
             gridTemplateRows: isExp ? "1fr" : "0fr",
             marginTop: isExp ? L.menuGap : 0,
-            transition: "grid-template-rows 420ms cubic-bezier(0.22, 1.12, 0.36, 1), margin-top 420ms cubic-bezier(0.22, 1.12, 0.36, 1)" }}>
+            transition: "grid-template-rows 420ms cubic-bezier(0.33, 1.03, 0.68, 1), margin-top 420ms cubic-bezier(0.33, 1.03, 0.68, 1)" }}>
             <div style={{
               overflow: "hidden",
               display: "flex", flexDirection: "column", gap: L.menuGap,
@@ -616,7 +616,7 @@ export function SideNav({
             {/* Expanded: NavSectionLabel; fades to 0 height as rail collapses */}
             <div style={{ opacity: collapsed ? 0 : 1,
               maxHeight: collapsed ? 0 : 40, overflow: "hidden",
-              transition: "opacity 260ms cubic-bezier(0.4,0,0.2,1), max-height 380ms cubic-bezier(0.34,1.08,0.64,1)",
+              transition: "opacity 260ms cubic-bezier(0.4,0,0.2,1), max-height 380ms cubic-bezier(0.34, 1.04, 0.64, 1)",
               flexShrink: 0 }}>
               <NavSectionLabel label={section} />
             </div>
@@ -624,7 +624,7 @@ export function SideNav({
             {sIdx > 0 && (
               <div style={{ opacity: collapsed ? 1 : 0,
                 maxHeight: collapsed ? 5 : 0, overflow: "hidden",
-                transition: "opacity 260ms cubic-bezier(0.4,0,0.2,1), max-height 380ms cubic-bezier(0.34,1.08,0.64,1)",
+                transition: "opacity 260ms cubic-bezier(0.4,0,0.2,1), max-height 380ms cubic-bezier(0.34, 1.04, 0.64, 1)",
                 padding: "2px 0", flexShrink: 0 }}>
                 <div style={{ height: 1, backgroundColor: T.fill.infoSubtle }} />
               </div>
@@ -640,7 +640,7 @@ export function SideNav({
         {listSection && (
           <div style={{ opacity: collapsed ? 0 : 1,
             maxHeight: collapsed ? 0 : 400, overflow: "hidden",
-            transition: "opacity 260ms cubic-bezier(0.4,0,0.2,1), max-height 380ms cubic-bezier(0.34,1.08,0.64,1)" }}>
+            transition: "opacity 260ms cubic-bezier(0.4,0,0.2,1), max-height 380ms cubic-bezier(0.34, 1.04, 0.64, 1)" }}>
             <SideNavListSection label={listSection.label} items={listSection.items}
               activeId={activeId} onNavigate={onNavigate} />
           </div>

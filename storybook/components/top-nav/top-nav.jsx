@@ -280,7 +280,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           background: open ? T.controlPressed : hov ? T.controlHover : T.orgFill,
           border: `1px solid ${open || hov ? T.orgStrokeHover : T.orgStroke}`,
           cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
-          transition: "background 200ms cubic-bezier(0.4,0,0.15,1), border-color 200ms cubic-bezier(0.4,0,0.15,1)",
+          transition: "background 200ms cubic-bezier(0.4, 0, 0.2, 1), border-color 200ms cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
         {/* RowStart — org name label only. No avatar or logo displayed in the
@@ -329,7 +329,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           display: "flex", alignItems: "center", justifyContent: "center",
           width: 16, height: 16, marginRight: 2,
           transform: open ? "rotate(180deg)" : "none",
-          transition: "transform 260ms cubic-bezier(0.34,1.08,0.64,1)",
+          transition: "transform 260ms cubic-bezier(0.34, 1.04, 0.64, 1)",
         }}>
           <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
         </div>
@@ -357,7 +357,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
           border: `1px solid ${open ? T.orgStrokeHover : "transparent"}`,
           cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
-          transition: "background 200ms cubic-bezier(0.4,0,0.15,1), border-color 200ms cubic-bezier(0.4,0,0.15,1)",
+          transition: "background 200ms cubic-bezier(0.4, 0, 0.2, 1), border-color 200ms cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 4,
@@ -384,7 +384,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           width: 16, height: 16, display: "flex", alignItems: "center",
           justifyContent: "center", marginLeft: 4,
           transform: open ? "rotate(180deg)" : "none",
-          transition: "transform 260ms cubic-bezier(0.34,1.08,0.64,1)",
+          transition: "transform 260ms cubic-bezier(0.34, 1.04, 0.64, 1)",
         }}>
           <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
         </div>
@@ -507,7 +507,7 @@ export function TopNav({
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
               margin: 0, listStyle: "none",
-              animation: "tnDropIn 280ms cubic-bezier(0.16,1.1,0.3,1) both",
+              animation: "tnDropIn 280ms cubic-bezier(0.16, 1.03, 0.3, 1) both",
             }}
           >
             {modules.map(m => (
@@ -553,7 +553,7 @@ export function TopNav({
               width: 280, background: "#fff",
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 8, zIndex: 300,
-              animation: "tnDropIn 280ms cubic-bezier(0.16,1.1,0.3,1) both",
+              animation: "tnDropIn 280ms cubic-bezier(0.16, 1.03, 0.3, 1) both",
             }}
           >
             <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: ".07em",
@@ -609,7 +609,7 @@ export function TopNav({
               width: 200, background: "#fff",
               border: `1px solid rgba(45,72,137,0.10)`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
-              animation: "tnDropIn 280ms cubic-bezier(0.16,1.1,0.3,1) both",
+              animation: "tnDropIn 280ms cubic-bezier(0.16, 1.03, 0.3, 1) both",
             }}
           >
             <div style={{ padding: "10px 12px 8px",

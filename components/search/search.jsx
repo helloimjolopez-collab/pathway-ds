@@ -503,7 +503,7 @@ export function TopNavSearch({
         overflow: "hidden",
         padding: L.containerPad,
         position: "relative",
-        transition: "width 420ms cubic-bezier(0.34,1.2,0.64,1)",
+        transition: "width 380ms cubic-bezier(0.34, 1.04, 0.64, 1)",
       }}
     >
       {/* Collapsed button — icon button on the dark nav surface (dark-mode tokens) */}
