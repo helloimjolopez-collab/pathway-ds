@@ -11,6 +11,11 @@
 
 import React, { useState, useEffect, useRef } from "react";
 
+// TopNav.Search is the canonical nested search control. Import it — never
+// reimplement it here. (See CLAUDE.md §10.1 "import, don't reinvent": the prior
+// in-file duplicate drifted to hardcoded hex and the wrong token mode.)
+import { TopNavSearch } from "../search/search.jsx";
+
 // ─── DESIGN TOKENS (dark-mode surface — all controls on brand-blue bg) ─────────
 // Values sourced from get_variable_defs on Figma node 40007067:6508.
 export const T = {
@@ -154,111 +159,6 @@ export const DEFAULT_MODULES = [
   { id: "events", label: "Events",         icon: "event" },
   { id: "comms",  label: "Communications", icon: "mail" },
 ];
-
-// ─── TopNavSearch ──────────────────────────────────────────────────────────────
-/**
- * Search control. Collapsed: pill button. Expanded: inline text input.
- * Manages its own expand/collapse state; calls onSearchOpen when expanding.
- */
-export function TopNavSearch({ onSearchOpen }) {
-  const [expanded, setExpanded]   = useState(false);
-  const [query, setQuery]         = useState("");
-  const [hov, setHov]             = useState(false);
-  const inputRef                  = useRef(null);
-
-  const open = () => {
-    setExpanded(true);
-    onSearchOpen?.();
-    // Defer focus so the input is in the DOM first
-    requestAnimationFrame(() => inputRef.current?.focus());
-  };
-  const close = () => { setExpanded(false); setQuery(""); };
-
-  useEffect(() => {
-    if (!expanded) return;
-    const h = (e) => { if (e.key === "Escape") close(); };
-    document.addEventListener("keydown", h);
-    return () => document.removeEventListener("keydown", h);
-  }, [expanded]);
-
-  if (expanded) {
-    return (
-      <div style={{ display: "flex", alignItems: "center",
-        minHeight: L.touchTarget, minWidth: L.touchTarget }}>
-        <div style={{
-          display: "flex", alignItems: "center", gap: 8,
-          height: 36, padding: "0 8px",
-          background: "white",
-          border: "1px solid #6e8bd4",
-          borderRadius: 9999, width: 320,
-        }}>
-          {/* Search icon — tapping collapses the bar (per spec §10, TopNavSearch interaction) */}
-          <button
-            onClick={close}
-            aria-label="Collapse search"
-            style={{
-              display: "flex", alignItems: "center", justifyContent: "center",
-              width: 24, height: 24, flexShrink: 0,
-              background: "transparent", border: "none", cursor: "pointer",
-              borderRadius: "50%", padding: 0,
-            }}
-          >
-            <Icon name="search" size={16} fill={1} style={{ color: "#606060" }} />
-          </button>
-          <input
-            ref={inputRef}
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-            placeholder="Search…"
-            aria-label="Search"
-            style={{
-              flex: 1, background: "transparent", border: "none", outline: "none",
-              color: "#252525", fontSize: 14, fontWeight: 400, lineHeight: "20px",
-              letterSpacing: "0.3px", minWidth: 0,
-              fontFamily: "'Red Hat Text', sans-serif",
-            }}
-          />
-          {query.length > 0 && (
-            <button
-              onClick={() => { setQuery(""); inputRef.current?.focus(); }}
-              aria-label="Clear search"
-              style={{
-                display: "flex", alignItems: "center", justifyContent: "center",
-                background: "transparent", border: "none", cursor: "pointer",
-                padding: 0, borderRadius: 9999, flexShrink: 0,
-                width: 24, height: 24,
-              }}
-            >
-              <Icon name="cancel" size={20} style={{ color: "#606060" }} />
-            </button>
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "center",
-      minHeight: L.touchTarget, minWidth: L.touchTarget }}>
-      <button
-        onClick={open}
-        onMouseEnter={() => setHov(true)}
-        onMouseLeave={() => setHov(false)}
-        aria-label="Open search"
-        style={{
-          display: "flex", alignItems: "center", justifyContent: "center",
-          height: L.searchPill, width: L.searchPill,
-          background: hov ? T.controlHover : T.searchFill,
-          border: `0.75px solid ${T.monoBase}`,
-          borderRadius: 9999, cursor: "pointer", padding: 8, flexShrink: 0,
-          transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
-        }}
-      >
-        <Icon name="search" size={16} style={{ color: T.monoBase }} />
-      </button>
-    </div>
-  );
-}
 
 // ─── TopNavActions ─────────────────────────────────────────────────────────────
 export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore }) {
@@ -739,5 +639,10 @@ export function TopNav({
     </nav>
   );
 }
+
+// Canonical compound name: TopNav.Search (the nested search control). The bare
+// `TopNavSearch` export is kept for backward-compatible named imports.
+TopNav.Search = TopNavSearch;
+export { TopNavSearch };
 
 export default TopNav;

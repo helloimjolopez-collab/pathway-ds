@@ -57,9 +57,14 @@ export const T = {
   iconDisabled:"var(--semantic-color-light-mode-icon-action-secondary-disabled, #979797)",
   iconError:   "var(--semantic-color-light-mode-icon-action-negative-base, #b03a3a)",
 
-  // TopNavSearch surface (dark nav, no semantic dark-mode tokens yet — §17)
-  navIconFill:        "rgba(251,251,251,0.9)",
-  collapsedBtnBorder: "rgba(251,251,251,0.14)",
+  // TopNav.Search collapsed control — sits on the dark brand-blue nav surface, so it
+  // resolves through the DARK-MODE token set (per Figma node 40007095-4048). The
+  // expanded bar itself stays white (light-mode SearchInput) — only the collapsed
+  // icon button + its icon use the inverse/mono dark-mode tokens.
+  navIconFill:        "var(--semantic-color-dark-mode-icon-action-mono-base, #fbfbfb)",
+  collapsedBtnFill:   "var(--semantic-color-dark-mode-fill-action-primaryinverse-base, rgba(160,181,230,0.08))",
+  collapsedBtnHover:  "var(--semantic-color-dark-mode-fill-action-primaryinverse-hover, rgba(10,18,35,0.16))",
+  collapsedBtnBorder: "var(--semantic-color-dark-mode-stroke-action-primary-inverse-base, rgba(160,181,230,0.5))",
   badgeBorderColor:   "var(--semantic-color-light-mode-fill-static-neutral-light, #ffffff)",
 };
 
@@ -209,10 +214,12 @@ export function SearchInput({
   id,
   searchIconAriaLabel = "Search",
   onSearchIconClick,                 // when set, overrides the icon button's onClick
+  inputRef: externalInputRef,        // optional external ref (TopNav.Search uses this to focus on expand)
 }) {
   const [hovered, setHovered]   = useState(false);
   const [focused, setFocused]   = useState(false);
-  const inputRef                = useRef(null);
+  const internalInputRef        = useRef(null);
+  const inputRef                = externalInputRef || internalInputRef;
 
   // Derived state
   const hasValue   = value.length > 0;
@@ -405,34 +412,76 @@ export function SearchInput({
 //   TOP NAV SEARCH
 // ═══════════════════════════════════════════════════════════════════════════════
 /**
- * TopNavSearch — nav bar wrapper for SearchInput.
+ * TopNavSearch — the nested search control for TopNav.Global.
+ *
+ * Canonical display name: **TopNav.Search** (exposed as `TopNav.Search` compound
+ * member in top-nav.jsx; the bare identifier here is `TopNavSearch` because JS
+ * identifiers can't contain a dot — same convention as TopNav.Global).
+ *
+ * Sits on the dark brand-blue nav surface. The COLLAPSED icon button resolves
+ * through the DARK-MODE token set (inverse fill + mono icon). The EXPANDED bar is
+ * the standard white SearchInput (light-mode), exactly as Figma node 40007095-4048
+ * shows. Tapping the search icon inside the expanded bar collapses it; the typed
+ * query PERSISTS across collapse/expand (never cleared on collapse).
+ *
+ * Works controlled OR uncontrolled:
+ *   - Controlled expand:  pass `expanded` + `onExpandChange`.
+ *   - Uncontrolled (default): manages its own expanded state — just drop it in.
+ *   - Controlled value:   pass `searchProps.value` + `searchProps.onChange`.
+ *   - Uncontrolled value (default): manages its own query string internally so it
+ *     persists across collapse/expand without the parent wiring any state.
  *
  * Props:
- *   expanded       — controlled expanded state
- *   onExpandChange — (expanded: boolean) => void
- *   searchProps    — all SearchInput props forwarded
+ *   expanded       — (optional) controlled expanded state
+ *   onExpandChange — (optional) (expanded: boolean) => void
+ *   searchProps    — all SearchInput props forwarded (value, onChange, showFilter,
+ *                    filterActive, filterBadge, onFilterClick, onSearch, ...)
+ *   onSearchOpen   — (optional) fired when the bar expands (analytics / focus hook)
  *   className      — additional class on root element
  */
 export function TopNavSearch({
-  expanded = false,
+  expanded: expandedProp,
   onExpandChange,
   searchProps = {},
+  onSearchOpen,
   className = "",
 }) {
   const collapsedBtnRef = useRef(null);
+  const inputRef        = useRef(null);
   const [hov, setHov]   = useState(false);
 
+  // Expanded state: controlled if `expandedProp` provided, else internal.
+  const isExpandedControlled = expandedProp !== undefined;
+  const [expandedState, setExpandedState] = useState(false);
+  const expanded = isExpandedControlled ? expandedProp : expandedState;
+
+  // Query value: controlled if searchProps.value provided, else internal so the
+  // text PERSISTS across collapse/expand (interaction spec requirement).
+  const isValueControlled = searchProps.value !== undefined;
+  const [queryState, setQueryState] = useState("");
+  const query = isValueControlled ? searchProps.value : queryState;
+
+  const setQuery = (v) => {
+    if (!isValueControlled) setQueryState(v);
+    searchProps.onChange?.(v);
+  };
+
   const expand = () => {
+    if (!isExpandedControlled) setExpandedState(true);
     onExpandChange?.(true);
+    onSearchOpen?.();
+    // Defer focus until the input is in the DOM.
+    requestAnimationFrame(() => inputRef.current?.focus());
   };
 
   const collapse = () => {
+    if (!isExpandedControlled) setExpandedState(false);
     onExpandChange?.(false);
-    // Return focus to collapsed button after state update
+    // NB: query is intentionally NOT cleared — it persists across collapse/expand.
     setTimeout(() => collapsedBtnRef.current?.focus(), 0);
   };
 
-  // Escape key collapses the bar
+  // Escape key collapses the bar.
   useEffect(() => {
     if (!expanded) return;
     const handler = (e) => { if (e.key === "Escape") collapse(); };
@@ -457,7 +506,7 @@ export function TopNavSearch({
         transition: "width 420ms cubic-bezier(0.34,1.2,0.64,1)",
       }}
     >
-      {/* Collapsed button — 48×48 icon button on dark nav surface */}
+      {/* Collapsed button — icon button on the dark nav surface (dark-mode tokens) */}
       <button
         ref={collapsedBtnRef}
         type="button"
@@ -478,10 +527,9 @@ export function TopNavSearch({
           cursor: "pointer",
           padding: 8,
           flexShrink: 0,
-          transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
         }}
       >
-        {/* Inner pill */}
+        {/* Inner pill — dark-mode inverse fill, hover deepens to primaryinverse hover */}
         <div
           style={{
             display: "flex",
@@ -490,7 +538,7 @@ export function TopNavSearch({
             width: "100%",
             height: 32,
             borderRadius: L.barRadius,
-            background: T.collapsedBtnFill,
+            background: hov ? T.collapsedBtnHover : T.collapsedBtnFill,
             border: `0.5px solid ${T.collapsedBtnBorder}`,
             padding: 8,
             transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
@@ -504,21 +552,17 @@ export function TopNavSearch({
         </div>
       </button>
 
-      {/* Expanded bar — slides in when expanded */}
+      {/* Expanded bar — white SearchInput (light-mode), slides in when expanded */}
       {expanded && (
-        <div
-          aria-hidden={false}
-          style={{
-            width: L.expandedWidth,
-          }}
-        >
+        <div aria-hidden={false} style={{ width: L.expandedWidth }}>
           <SearchInput
             {...searchProps}
+            value={query}
+            onChange={setQuery}
+            inputRef={inputRef}
             searchIconAriaLabel="Collapse search"
             onSearchIconClick={collapse}
-            onSearch={(v) => {
-              searchProps.onSearch?.(v);
-            }}
+            onSearch={(v) => searchProps.onSearch?.(v)}
           />
         </div>
       )}
