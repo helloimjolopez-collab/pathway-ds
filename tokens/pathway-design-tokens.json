@@ -2220,7 +2220,7 @@
             },
             "hover": {
               "$type": "color",
-              "$value": "{primitive-color.brand.90}"
+              "$value": "{primitive-color.brand.200}"
             },
             "pressed": {
               "$type": "color",
@@ -2542,35 +2542,31 @@
           "neutral": {
             "light": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.0}"
+              "$value": "{primitive-color.warm-neutral.0}"
             },
             "subtle": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.10}"
+              "$value": "{primitive-color.warm-neutral.100}"
             },
             "base": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.20}"
-            },
-            "opacity-80": {
-              "$type": "color",
-              "$value": "{primitive-color.cool-neutral.0-80}"
+              "$value": "{primitive-color.warm-neutral.200}"
             },
             "opacity-70": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.0-70}"
+              "$value": "{primitive-color.warm-neutral.200-70}"
             },
             "opacity-30": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.0-30}"
+              "$value": "{primitive-color.warm-neutral.200-30}"
             },
             "opacity-16": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.0-16}"
+              "$value": "{primitive-color.warm-neutral.200-16}"
             },
             "opacity-8": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.0-8}"
+              "$value": "{primitive-color.warm-neutral.200-8}"
             }
           },
           "brand": {
@@ -3510,15 +3506,15 @@
           "negative": {
             "base": {
               "$type": "color",
-              "$value": "{primitive-color.red.50}"
+              "$value": "{primitive-color.red.90}"
             },
             "hover": {
               "$type": "color",
-              "$value": "{primitive-color.red.40}"
+              "$value": "{primitive-color.red.80}"
             },
             "pressed": {
               "$type": "color",
-              "$value": "{primitive-color.red.60}"
+              "$value": "{primitive-color.red.100}"
             },
             "disabled": {
               "$type": "color",
@@ -4609,10 +4605,6 @@
             "base": {
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.200}"
-            },
-            "opacity-80": {
-              "$type": "color",
-              "$value": "{primitive-color.cool-neutral.220-70}"
             },
             "opacity-70": {
               "$type": "color",
