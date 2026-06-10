@@ -4360,7 +4360,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.90}"
+                  "$value": "{Brand.200}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -5037,7 +5037,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Warm Neutral.0}"
                 },
                 "Subtle": {
                   "$scopes": [
@@ -5046,7 +5046,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Warm Neutral.100}"
                 },
                 "Base": {
                   "$scopes": [
@@ -5055,16 +5055,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.20}"
-                },
-                "Opacity 80": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0 @ 80%}"
+                  "$value": "{Warm Neutral.200}"
                 },
                 "Opacity 70": {
                   "$scopes": [
@@ -5073,7 +5064,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0 @ 70%}"
+                  "$value": "{Warm Neutral.200 @ 70%}"
                 },
                 "Opacity 30": {
                   "$scopes": [
@@ -5082,7 +5073,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0 @ 30%}"
+                  "$value": "{Warm Neutral.200 @ 30%}"
                 },
                 "Opacity 16": {
                   "$scopes": [
@@ -5091,7 +5082,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0 @ 16%}"
+                  "$value": "{Warm Neutral.200 @ 16%}"
                 },
                 "Opacity 8": {
                   "$scopes": [
@@ -5100,7 +5091,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.0 @ 8%}"
+                  "$value": "{Warm Neutral.200 @ 8%}"
                 }
               },
               "Brand": {
@@ -7080,7 +7071,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.50}"
+                  "$value": "{Red.90}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -7089,7 +7080,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.40}"
+                  "$value": "{Red.80}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -7098,7 +7089,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Red.60}"
+                  "$value": "{Red.100}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -9374,15 +9365,6 @@
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
                   "$value": "{Cool Neutral.200}"
-                },
-                "Opacity 80": {
-                  "$scopes": [
-                    "ALL_SCOPES"
-                  ],
-                  "$type": "color",
-                  "$libraryName": "",
-                  "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.220 @ 70%}"
                 },
                 "Opacity 70": {
                   "$scopes": [
