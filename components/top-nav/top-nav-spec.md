@@ -4,6 +4,15 @@
 
 Complete implementation reference for the TopNav.Global component. Covers anatomy, design tokens, states, spacing, interaction patterns, org logo rules, and accessibility. Use alongside the [Figma source](#figma-source) for a pixel-accurate build.
 
+## Links
+
+| Artefact | URL |
+|---|---|
+| Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6508 |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-topnav--docs |
+| HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/top-nav/top-nav.html |
+| GitHub source | https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/top-nav |
+
 ---
 
 ## 1. Component Overview
