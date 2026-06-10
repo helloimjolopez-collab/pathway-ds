@@ -4,6 +4,18 @@
 
 Complete implementation reference for the Search Input and TopNavSearch components. Covers anatomy, design tokens, states, spacing, interaction patterns, and accessibility for both the base search bar and its top-navigation wrapper. Use alongside the [Figma source](#figma-source) for a pixel-accurate build.
 
+## Links
+
+| Artefact | URL |
+|---|---|
+| Figma — SearchInput | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006978-23158 |
+| Figma — TopNav.Search | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007095-4048 |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-search--docs |
+| HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/search/search.html |
+| GitHub source | https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/search |
+
+---
+
 ## Authorship
 
 Design (Jo Lopez) owns and signs off on: Status, Purpose, Variants, States, Token reference, Figma setup, Accessibility intent, Usage rules.

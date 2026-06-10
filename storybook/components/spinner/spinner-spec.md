@@ -4,6 +4,15 @@
 
 Complete implementation reference for the Spinner component. Covers anatomy, the variant system, design tokens, motion, accessibility, usage guidance, and constraints. Use alongside the [Figma source](#figma-source) for a pixel-accurate build.
 
+## Links
+
+| Artefact | URL |
+|---|---|
+| Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006622-50003 |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-spinner--docs |
+| HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/spinner/spinner.html |
+| GitHub source | https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/spinner |
+
 ---
 
 ## 1. Component Overview

@@ -4,6 +4,15 @@
 
 Complete implementation reference for the Checkbox component. Covers anatomy, design tokens, states, variant system, accessibility, and known gaps.
 
+## Links
+
+| Artefact | URL |
+|---|---|
+| Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40002324-54532 |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-checkbox--docs |
+| HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/checkbox/checkbox.html |
+| GitHub source | https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/checkbox |
+
 ---
 
 ## 1. Component Overview
