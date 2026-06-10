@@ -16,26 +16,37 @@ import React, { useState, useEffect, useRef } from "react";
 // in-file duplicate drifted to hardcoded hex and the wrong token mode.)
 import { TopNavSearch } from "../search/search.jsx";
 
-// ─── DESIGN TOKENS (dark-mode surface — all controls on brand-blue bg) ─────────
-// Values sourced from get_variable_defs on Figma node 40007067:6508.
+// ─── DESIGN TOKENS ─────────────────────────────────────────────────────────────
+// Bound to live semantic CSS variables (CLAUDE.md §6). The TopNav bar is a dark
+// brand-blue surface, so every CONTROL on it resolves through the DARK-MODE token
+// set (tertiary / primaryinverse / mono). The brand bg, the accent avatar, and the
+// white dropdown panels use the LIGHT-MODE set. Each var() carries the previously
+// hand-copied hex as a fallback, so rendering is unchanged if a var is unavailable;
+// values were verified against get_variable_defs on Figma node 40007067:5284.
+const SCD = (p, fb) => `var(--semantic-color-dark-mode-${p}, ${fb})`;   // dark-surface controls
+const SCL = (p, fb) => `var(--semantic-color-light-mode-${p}, ${fb})`;  // brand bg / avatar / panels
 export const T = {
-  navBg:          "#2d4889",                    // Fill/Static/Brand/Base
-  orgFill:        "rgba(160,181,230,0.04)",      // Fill/Action/Tertiary/Base
-  orgStroke:      "rgba(160,181,230,0.16)",      // Stroke/Action/Tertiary/Base
-  orgStrokeHover: "rgba(160,181,230,0.20)",
-  searchFill:     "rgba(160,181,230,0.08)",      // Fill/Action/PrimaryInverse/Base
-  controlHover:   "rgba(10,18,35,0.16)",         // Fill/Action/PrimaryInverse/Hover
-  controlPressed: "rgba(255,255,255,0.08)",      // pressed / active toggle
-  noLogoBg:       "rgba(255,255,255,0.08)",      // Fill/Action/Secondary/Base (no-logo avatar)
-  monoBase:       "#fbfbfb",                    // Text/Action/Mono/Base = Icon/Action/Mono/Base
-  avatarBg:       "#dcd9ef",                    // Fill/Static/Accent_Amethyst/Base
-  avatarText:     "#221e3f",                    // Text/Static/Accent-Amethyst/Contrast
+  navBg:          SCL("fill-static-brand-base", "#2d4889"),
+  orgFill:        SCD("fill-action-tertiary-base", "rgba(160,181,230,0.04)"),
+  orgStroke:      SCD("stroke-action-tertiary-base", "rgba(160,181,230,0.16)"),
+  orgStrokeHover: SCD("stroke-action-tertiary-hover", "rgba(160,181,230,0.20)"),
+  searchFill:     SCD("fill-action-primaryinverse-base", "rgba(160,181,230,0.08)"),
+  controlHover:   SCD("fill-action-primaryinverse-hover", "rgba(10,18,35,0.16)"),
+  controlPressed: SCD("fill-action-primaryinverse-pressed", "rgba(255,255,255,0.08)"),
+  noLogoBg:       SCD("fill-action-secondaryinverse-base", "rgba(255,255,255,0.08)"),
+  monoBase:       SCD("icon-action-mono-base", "#fbfbfb"),
+  avatarBg:       SCL("fill-static-accent-amethyst-base", "#dcd9ef"),
+  avatarText:     SCL("text-static-accent-amethyst-contrast", "#221e3f"),
+  // White dropdown-menu surface — tracks fill-static-neutral-light (now warm-neutral-0).
+  panelBg:        SCL("fill-static-neutral-light", "#ffffff"),
+  activeItem:     SCL("fill-action-tertiary-base", "#eef2fb"),
+  itemText:       SCL("text-static-secondary-bold", "#252525"),
+  itemTextBase:   SCL("text-static-secondary-base", "#484848"),
+  itemMeta:       SCL("text-static-secondary-subtle", "#6b6b6b"),
+  signOut:        SCL("text-action-negative-base", "#c0392b"),
+  // Token gaps (no semantic token exists yet — flagged P2 in the pipeline report):
   panelBorder:    "rgba(45,72,137,0.12)",
   panelShadow:    "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
-  activeItem:     "#eef2fb",
-  itemText:       "#252525",
-  itemTextBase:   "#484848",
-  itemMeta:       "#6b6b6b",
 };
 
 // ─── LAYOUT VALUES ─────────────────────────────────────────────────────────────
@@ -503,7 +514,7 @@ export function TopNav({
           <ul role="listbox" aria-label="Switch module"
             style={{
               position: "absolute", top: "calc(100% + 4px)", left: padH,
-              width: 243, background: "#fff",
+              width: 243, background: T.panelBg,
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
               margin: 0, listStyle: "none",
@@ -550,7 +561,7 @@ export function TopNav({
             style={{
               position: "absolute", top: "calc(100% + 4px)",
               left: isMobile ? padH : padH + 40,
-              width: 280, background: "#fff",
+              width: 280, background: T.panelBg,
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 8, zIndex: 300,
               animation: "tnDropIn 280ms cubic-bezier(0.16, 1.03, 0.3, 1) both",
@@ -606,7 +617,7 @@ export function TopNav({
           <div role="menu"
             style={{
               position: "absolute", top: "calc(100% + 4px)", right: padH,
-              width: 200, background: "#fff",
+              width: 200, background: T.panelBg,
               border: `1px solid rgba(45,72,137,0.10)`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
               animation: "tnDropIn 280ms cubic-bezier(0.16, 1.03, 0.3, 1) both",
@@ -629,7 +640,7 @@ export function TopNav({
             <button role="menuitem"
               style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 10px",
                 borderRadius: 6, fontFamily: "inherit", fontSize: 13,
-                color: "#c0392b", background: "transparent",
+                color: T.signOut, background: "transparent",
                 border: "none", width: "100%", textAlign: "left", cursor: "pointer" }}>
               Sign out
             </button>
