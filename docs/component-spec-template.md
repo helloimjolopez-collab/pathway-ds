@@ -26,6 +26,21 @@
 
 Complete implementation reference for the {Component} component. Covers anatomy, design tokens, states, spacing, interaction patterns, and accessibility. Use alongside the [Figma source](#figma-source) for a pixel-accurate build.
 
+## Links
+<!--
+  CANONICAL STRUCTURE — the Links section is ALWAYS here, at the very top of the
+  spec (immediately after the overview), never as a trailing section. Readers and
+  agents must reach Figma / Storybook / demo / source without scrolling a long spec.
+  Fill every row. Storybook docs slug = library-{name-without-hyphens}--docs.
+-->
+
+| Artefact | URL |
+|---|---|
+| Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id={nodeId} |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-{name}--docs |
+| HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/{name}/{name}.html |
+| GitHub source | https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/{name} |
+
 ---
 
 ## 1. Component Overview

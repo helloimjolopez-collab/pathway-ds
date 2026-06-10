@@ -166,6 +166,7 @@ When the user says *"I changed the spinner in Figma, update GitHub"* or *"pull t
 
 Every `<name>-spec.md` must follow the structure of `components/sidenav/sidenav-spec.md`. At minimum it has:
 
+0. **Links** (CANONICAL — always at the very top, immediately after the one-paragraph overview, **never** as a trailing section). A `## Links` table with Figma node, Storybook (`?path=/docs/library-<name>--docs`), HTML demo, and GitHub source. A reader or agent must reach every artefact without scrolling. `org-switcher` uses an equivalent top `## Resources` table — either heading is acceptable as long as it is at the top. This rule is baked into `docs/component-spec-template.md`; copy it from there.
 1. **Component Overview** — what it is, what it isn't, decision boundaries
 2. **Governance table** — "where things live" mapping (Figma nodes, this spec, token files)
 3. **Anatomy** — DOM structure, key elements
