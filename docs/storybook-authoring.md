@@ -14,6 +14,19 @@ import * as Stories from "./<Name>.stories.jsx";
 
 <Title />
 
+### Resources
+
+- 🖼️ **[Live HTML demo](https://helloimjolopez-collab.github.io/pathway-ds/components/<name>/<name>.html)**
+- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/<name>/<name>-spec.md)**
+- 🎨 **[Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=<nodeId>)** — node `<nodeId>`
+- 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/<name>/<name>.jsx)**
+
+{/* 0. RESOURCES / LINKS BLOCK — ALWAYS the first thing after <Title />, before prose.
+       Links live at the TOP, never buried at the bottom of a long page. A reader (or
+       agent) must reach the Figma node, spec, demo, and source without scrolling. */}
+
+---
+
 {/* 1. Two-to-four paragraphs of prose: what this is, when to use it,
        what it's NOT. Same register as the spec overview. */}
 
@@ -96,6 +109,7 @@ The authoritative spec lives at [`components/<name>/<name>-spec.md`](...).
 
 ## Hard rules
 
+0. **Resources/links block at the very top.** A `### Resources` list (HTML demo, spec, Figma node, React module) goes immediately after `<Title />`, before any prose — never at the bottom of the page. The reader must reach the artefacts without scrolling. The same applies to `*-spec.md`: a `## Links` section sits near the top, right after the overview, not as a trailing numbered section.
 1. **Playground at the top, never the bottom.** Readers see the component before the reference material.
 2. **Controls anchored to visible demos.** Use `<Controls of={Stories.SomeStory} />` — never let `<Controls />` float disconnected from its target.
 3. **State matrices are rendered components.** A table of strings like "NavItem/Hover → #1111110a" is not enough. Render the actual item in each state. Show the tokens beneath it as inline code chips, not as another table cell.
