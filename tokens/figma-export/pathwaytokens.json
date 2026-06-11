@@ -6767,7 +6767,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Warm Neutral.750}"
+                  "$value": "{Warm Neutral.600}"
                 },
                 "Hover": {
                   "$scopes": [
@@ -6776,7 +6776,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Warm Neutral.400}"
+                  "$value": "{Warm Neutral.700}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -6814,7 +6814,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Cool Neutral.60}"
+                  "$value": "{Cool Neutral.70}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -12546,6 +12546,26 @@
                   }
                 },
                 "Small": {
+                  "Vertical": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.6}"
+                  },
+                  "Horizontal": {
+                    "$scopes": [
+                      "ALL_SCOPES"
+                    ],
+                    "$type": "float",
+                    "$libraryName": "",
+                    "$collectionName": "Primitive: Unit",
+                    "$value": "{Unit.8}"
+                  }
+                },
+                "XSmall": {
                   "Vertical": {
                     "$scopes": [
                       "ALL_SCOPES"

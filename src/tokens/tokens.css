@@ -779,12 +779,12 @@
   --semantic-color-light-mode-stroke-action-primary-inverse-hover: var(--primitive-color-brand-30);
   --semantic-color-light-mode-stroke-action-primary-inverse-pressed: var(--primitive-color-brand-50);
   --semantic-color-light-mode-stroke-action-primary-inverse-disabled: var(--primitive-color-brand-30);
-  --semantic-color-light-mode-stroke-action-secondary-base: var(--primitive-color-warm-neutral-750);
-  --semantic-color-light-mode-stroke-action-secondary-hover: var(--primitive-color-warm-neutral-400);
+  --semantic-color-light-mode-stroke-action-secondary-base: var(--primitive-color-warm-neutral-600);
+  --semantic-color-light-mode-stroke-action-secondary-hover: var(--primitive-color-warm-neutral-700);
   --semantic-color-light-mode-stroke-action-secondary-pressed: var(--primitive-color-warm-neutral-750);
   --semantic-color-light-mode-stroke-action-secondary-disabled: var(--primitive-color-warm-neutral-100);
   --semantic-color-light-mode-stroke-action-secondary-inverse-base: var(--primitive-color-cool-neutral-50);
-  --semantic-color-light-mode-stroke-action-secondary-inverse-hover: var(--primitive-color-cool-neutral-60);
+  --semantic-color-light-mode-stroke-action-secondary-inverse-hover: var(--primitive-color-cool-neutral-70);
   --semantic-color-light-mode-stroke-action-secondary-inverse-pressed: var(--primitive-color-cool-neutral-80);
   --semantic-color-light-mode-stroke-action-secondary-inverse-disabled: var(--primitive-color-cool-neutral-40);
   --semantic-color-light-mode-stroke-action-tertiary-base: var(--primitive-color-brand-40);
@@ -1386,6 +1386,8 @@
   --semantic-layout-units-contextual-button-padding-medium-horizontal: var(--primitive-unit-unit-12);
   --semantic-layout-units-contextual-button-padding-small-vertical: var(--primitive-unit-unit-6);
   --semantic-layout-units-contextual-button-padding-small-horizontal: var(--primitive-unit-unit-8);
+  --semantic-layout-units-contextual-button-padding-xsmall-vertical: var(--primitive-unit-unit-6);
+  --semantic-layout-units-contextual-button-padding-xsmall-horizontal: var(--primitive-unit-unit-8);
   --semantic-layout-units-contextual-button-radius-radius: var(--primitive-unit-unit-8);
   --semantic-layout-units-contextual-navitem-large-padding-vertical: var(--primitive-unit-unit-12);
   --semantic-layout-units-contextual-navitem-large-padding-horizontal: var(--primitive-unit-unit-14);

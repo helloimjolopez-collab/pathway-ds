@@ -3362,11 +3362,11 @@
           "secondary": {
             "base": {
               "$type": "color",
-              "$value": "{primitive-color.warm-neutral.750}"
+              "$value": "{primitive-color.warm-neutral.600}"
             },
             "hover": {
               "$type": "color",
-              "$value": "{primitive-color.warm-neutral.400}"
+              "$value": "{primitive-color.warm-neutral.700}"
             },
             "pressed": {
               "$type": "color",
@@ -3384,7 +3384,7 @@
             },
             "hover": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.60}"
+              "$value": "{primitive-color.cool-neutral.70}"
             },
             "pressed": {
               "$type": "color",
@@ -6116,6 +6116,16 @@
             }
           },
           "small": {
+            "vertical": {
+              "$type": "number",
+              "$value": "{primitive-unit.unit.6}"
+            },
+            "horizontal": {
+              "$type": "number",
+              "$value": "{primitive-unit.unit.8}"
+            }
+          },
+          "xsmall": {
             "vertical": {
               "$type": "number",
               "$value": "{primitive-unit.unit.6}"
