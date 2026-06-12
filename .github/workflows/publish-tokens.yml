@@ -5,15 +5,15 @@ name: Publish pathway-tokens to npm
 # Choose the version bump type — patch for token value changes,
 # minor for new tokens added, major for breaking renames.
 #
-# Flow (refactored 2026-05-19 to work with branch-protected main):
-#   1. Bump version, build tokens + dist
-#   2. Push release branch + open PR (no direct push to main)
-#   3. Publish to npm (version bump lives in the branch's package.json —
-#      npm doesn't need it on main yet)
-#   4. User merges the release PR to bring main in sync
-#
-# This pattern works regardless of branch-protection rules: the PR is the
-# only thing touching main, and the user gates it.
+# Flow (refactored 2026-06-12 to fix version drift):
+#   1. Read the HIGHEST version actually published to npm (NOT package.json,
+#      which used to drift, and NOT the `latest` dist-tag, which can lag).
+#   2. Bump from that real high-water mark → guarantees versions only go up.
+#   3. Build tokens + dist, publish to npm.
+#   4. Commit the bumped package.json + tokens straight back to main with
+#      [skip ci] so main always reflects the published version. No release PR
+#      (the old release-PR step left orphaned PRs that never got merged, which
+#      is what caused the drift in the first place).
 
 on:
   workflow_dispatch:
@@ -30,7 +30,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
 
     steps:
       - name: Checkout
@@ -48,10 +47,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Bump version in package.json
+      - name: Determine next version (from npm's highest published version)
         run: |
           BUMP="${{ github.event.inputs.bump }}"
-          CURRENT=$(jq -r '.version' package.json)
+          PKG="@helloimjolopez-pathway/pathway-tokens"
+          # Highest version ever published — robust even if package.json on main is
+          # stale or the `latest` dist-tag lags behind. This is the fix for the
+          # 2026-06 version drift (latest regressed to 4.1.0 below an existing 5.0.0).
+          CURRENT=$(npm view "$PKG" versions --json | node -e "const a=JSON.parse(require('fs').readFileSync(0));const v=Array.isArray(a)?a:[a];v.sort((x,y)=>{const A=x.split('.').map(Number),B=y.split('.').map(Number);return A[0]-B[0]||A[1]-B[1]||A[2]-B[2]});console.log(v[v.length-1])")
           IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
           if [ "$BUMP" = "major" ]; then NEW="$((MAJOR+1)).0.0"
           elif [ "$BUMP" = "minor" ]; then NEW="${MAJOR}.$((MINOR+1)).0"
@@ -59,6 +62,7 @@ jobs:
           fi
           jq --arg v "$NEW" '.version = $v' package.json > tmp.json && mv tmp.json package.json
           echo "NEW_VERSION=$NEW" >> $GITHUB_ENV
+          echo "Bumping from npm high-water mark $CURRENT → $NEW (bump: $BUMP)"
 
       - name: Build tokens (Style Dictionary)
         run: node style-dictionary.config.js
@@ -66,40 +70,20 @@ jobs:
       - name: Build dist/
         run: node scripts/build-dist.js
 
-      - name: Push release branch + open PR
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          BRANCH="release/v${NEW_VERSION}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b "$BRANCH"
-          git add package.json src/tokens/
-          git commit -m "chore(release): v${NEW_VERSION} [skip ci]"
-          git push origin "$BRANCH"
-          gh pr create \
-            --title "chore(release): v${NEW_VERSION}" \
-            --body "Automated release commit from \`publish-tokens.yml\`.
-
-          - Bumped \`package.json\` to **v${NEW_VERSION}** (bump: \`${{ github.event.inputs.bump }}\`)
-          - Regenerated \`src/tokens/tokens.css\` and \`src/tokens/tokens.js\`
-          - Published \`@helloimjolopez-pathway/pathway-tokens@${NEW_VERSION}\` to npm (in the next step of this workflow)
-
-          Merge this PR to bring \`main\` in sync with the just-published npm version. No code review needed unless you want to inspect the bump." \
-            --base main \
-            --head "$BRANCH"
-
       - name: Publish to npm
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Tag the release (on the release branch)
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Commit version bump back to main
         run: |
-          # Tag the release commit on the branch. The user's merge will
-          # bring this commit (and its tag) onto main. If the merge is a
-          # squash, the user can re-tag the squash commit manually.
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json src/tokens/
+          git commit -m "chore(release): v${NEW_VERSION} [skip ci]" || echo "nothing to commit"
+          git push origin HEAD:main
+
+      - name: Tag the release
+        run: |
           git tag "v${NEW_VERSION}"
           git push origin "v${NEW_VERSION}"
