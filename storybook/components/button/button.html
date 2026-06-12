@@ -91,6 +91,7 @@
     --primitive-type-family-brand: "Red Hat Text", sans-serif;
     --primitive-type-weight-500:   500;
     --primitive-type-size-14: 14px;
+    --primitive-type-size-12: 12px;
     --primitive-type-size-16: 16px;
     --primitive-type-size-18: 18px;
 
@@ -227,6 +228,8 @@
     --semantic-layout-units-contextual-button-padding-medium-vertical:      var(--primitive-unit-unit-10);
     --semantic-layout-units-contextual-button-padding-small-horizontal:     var(--primitive-unit-unit-8);
     --semantic-layout-units-contextual-button-padding-small-vertical:       var(--primitive-unit-unit-6);
+    --semantic-layout-units-contextual-button-padding-xsmall-horizontal:    var(--primitive-unit-unit-8);
+    --semantic-layout-units-contextual-button-padding-xsmall-vertical:      var(--primitive-unit-unit-6);
     --semantic-layout-units-contextual-button-radius-radius:                var(--primitive-unit-unit-8);
     --semantic-layout-units-contextual-focused-element-borderwidth-borderwidth: var(--primitive-unit-unit-2);
     --semantic-layout-units-contextual-focused-element-cornerradius-cornerradius: 12px;
@@ -247,6 +250,11 @@
     --semantic-type-desktop-label-button-s-fontweight:    var(--primitive-type-weight-500);
     --semantic-type-desktop-label-button-s-lineheight:    20px;
     --semantic-type-desktop-label-button-s-letterspacing: 0.3px;
+    --semantic-type-desktop-label-button-xs-fontsize:      var(--primitive-type-size-12);
+    --semantic-type-desktop-label-button-xs-fontfamily:    var(--primitive-type-family-brand);
+    --semantic-type-desktop-label-button-xs-fontweight:    var(--primitive-type-weight-500);
+    --semantic-type-desktop-label-button-xs-lineheight:    18px;
+    --semantic-type-desktop-label-button-xs-letterspacing: 0.3px;
   }
 
   /* ── Spinner animation ── */
@@ -365,6 +373,7 @@ const SIZES = {
   L: { padH: SL("contextual-button-padding-large-horizontal"),  padV: SL("contextual-button-padding-large-vertical"),  iconWrap: 26, iconInner: 18, fontSize: ST("label-button-l-fontsize"),    fontFamily: ST("label-button-l-fontfamily"),    fontWeight: ST("label-button-l-fontweight"),    lineHeight: ST("label-button-l-lineheight"),    letterSpacing: ST("label-button-l-letterspacing") },
   M: { padH: SL("contextual-button-padding-medium-horizontal"), padV: SL("contextual-button-padding-medium-vertical"), iconWrap: 24, iconInner: 16, fontSize: ST("label-button-base-fontsize"), fontFamily: ST("label-button-base-fontfamily"), fontWeight: ST("label-button-base-fontweight"), lineHeight: ST("label-button-base-lineheight"), letterSpacing: ST("label-button-base-letterspacing") },
   S: { padH: SL("contextual-button-padding-small-horizontal"),  padV: SL("contextual-button-padding-small-vertical"),  iconWrap: 20, iconInner: 14, fontSize: ST("label-button-s-fontsize"),    fontFamily: ST("label-button-s-fontfamily"),    fontWeight: ST("label-button-s-fontweight"),    lineHeight: ST("label-button-s-lineheight"),    letterSpacing: ST("label-button-s-letterspacing") },
+  XS:{ padH: SL("contextual-button-padding-xsmall-horizontal"), padV: SL("contextual-button-padding-xsmall-vertical"), iconWrap: 16, iconInner: 12, fontSize: ST("label-button-xs-fontsize"),   fontFamily: ST("label-button-xs-fontfamily"),   fontWeight: ST("label-button-xs-fontweight"),   lineHeight: ST("label-button-xs-lineheight"),   letterSpacing: ST("label-button-xs-letterspacing") },
 };
 
 const T = {
@@ -487,7 +496,7 @@ function Button({ buttonStyle = "Fill", size = "M", type = "Primary", text = "Bu
 // ─── DEMO APP ─────────────────────────────────────────────────────────────────
 const TYPES = ["Primary", "Secondary", "Tertiary", "Negative"];
 const STYLES = ["Fill", "Outlined", "Naked"];
-const SIZES_LIST = ["L", "M", "S"];
+const SIZES_LIST = ["L", "M", "S", "XS"];
 
 function DemoRow({ label, children }) {
   return (

@@ -191,6 +191,8 @@ Border width: `--semantic-layout-units-contextual-button-border-width-base-base`
 | Padding M vertical | `--semantic-layout-units-contextual-button-padding-medium-vertical` | 10 px |
 | Padding S horizontal | `--semantic-layout-units-contextual-button-padding-small-horizontal` | 8 px |
 | Padding S vertical | `--semantic-layout-units-contextual-button-padding-small-vertical` | 6 px |
+| Padding XS horizontal | `--semantic-layout-units-contextual-button-padding-xsmall-horizontal` | 8 px |
+| Padding XS vertical | `--semantic-layout-units-contextual-button-padding-xsmall-vertical` | 6 px |
 
 ### 5.6 Focus ring
 
@@ -447,7 +449,20 @@ All previously-flagged HIGH gaps are resolved as of the 2026-05-26 token sync.
 | Secondary fill tokens now use `fill.action.secondaryinverse.*` (warm neutral) | ✓ Fixed |
 | Secondary stroke tokens now use `stroke.action.secondary.*` (warm neutral) | ✓ Fixed |
 
-No open gaps.
+### RESOLVED (2026-06-11 — XS size)
+
+| Token | Status |
+|---|---|
+| `--semantic-layout-units-contextual-button-padding-xsmall-horizontal` (8 px) | ✓ Added to Figma & synced |
+| `--semantic-layout-units-contextual-button-padding-xsmall-vertical` (6 px) | ✓ Added to Figma & synced |
+| `--semantic-type-desktop-label-button-xs-*` (12 px / 18 lh / 500) | ✓ Exists in token file |
+
+### OPEN — Figma-side (do not block the repo; for the designer)
+
+| Item | Detail | Action |
+|---|---|---|
+| No XS Tertiary variant | Figma defines XS for Primary / Secondary / Negative only (Fill / Outlined / Naked). The code renders `size="XS" type="Tertiary"` with XS dims + Tertiary colours, but Figma has no canonical reference for it. | Decide whether XS should support Tertiary; add the variant in Figma, or document XS+Tertiary as unsupported. |
+| Malformed variant name | Node `40008225:24444` is named `Style=PW_Button, Size=Naked, Type=XS, State=Primary` — properties scrambled. By grid position it is `Style=Naked, Size=XS, Type=Primary, State=Focused`. | Rename the variant in Figma so the property axes are correct. |
 
 ---
 
