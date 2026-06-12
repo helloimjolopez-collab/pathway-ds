@@ -133,6 +133,20 @@ export const SIZES = {
     lineHeight:    ST("label-button-s-lineheight"),
     letterSpacing: ST("label-button-s-letterspacing"),
   },
+  // XS — added 2026-06-11 (Figma node 40007881:21300). 44×44 touch target preserved;
+  // padding 8/6, label-button-xs (12/18/500). Figma defines XS for Primary/Secondary/
+  // Negative across Fill/Outlined/Naked — NOT Tertiary (see spec §Gaps).
+  XS: {
+    padH:          SL("contextual-button-padding-xsmall-horizontal"),
+    padV:          SL("contextual-button-padding-xsmall-vertical"),
+    iconWrap:      16,
+    iconInner:     12,
+    fontSize:      ST("label-button-xs-fontsize"),
+    fontFamily:    ST("label-button-xs-fontfamily"),
+    fontWeight:    ST("label-button-xs-fontweight"),
+    lineHeight:    ST("label-button-xs-lineheight"),
+    letterSpacing: ST("label-button-xs-letterspacing"),
+  },
 };
 
 // ─── SPINNER SPOKE DATA (from Pathway Spinner component) ───────────────────────
@@ -195,7 +209,7 @@ export function ButtonSpinner({ size = 20 }) {
 /**
  * Props:
  *   buttonStyle  — "Fill" | "Outlined" | "Naked"   (default: "Fill")
- *   size         — "L" | "M" | "S"                 (default: "M")
+ *   size         — "L" | "M" | "S" | "XS"           (default: "M")
  *   type         — "Primary" | "Secondary" | "Tertiary" | "Negative"  (default: "Primary")
  *   text         — button label                     (default: "Button")
  *   leadingIcon  — Material Symbols ligature string or React node | null
