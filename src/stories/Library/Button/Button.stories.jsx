@@ -16,7 +16,7 @@ import { Button, ButtonSpinner, T, SIZES } from "../../../../components/button/b
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const STYLES   = ["Fill", "Outlined", "Naked"];
-const SIZES_OPT = ["L", "M", "S"];
+const SIZES_OPT = ["L", "M", "S", "XS"];
 const TYPES    = ["Primary", "Secondary", "Tertiary", "Negative"];
 const STATES   = ["base", "hover", "pressed", "focused", "disabled", "loading"];
 
@@ -87,7 +87,7 @@ export default {
       description: {
         component:
           "Pathway's primary action trigger. Three styles (Fill / Outlined / Naked), " +
-          "four semantic types (Primary / Secondary / Tertiary / Negative), three sizes (L / M / S). " +
+          "four semantic types (Primary / Secondary / Tertiary / Negative), four sizes (L / M / S / XS). " +
           "Supports leading icon, trailing icon, icon-only, and loading states. " +
           "Figma node `40003293:93741` (PW_Button).",
       },
@@ -273,7 +273,7 @@ export const AllSizes = () => (
         <div key={sz} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <Button buttonStyle="Fill" type="Primary" size={sz} text={`Size ${sz}`} />
           <span style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 11, color: "#8890b0" }}>
-            {sz === "L" ? "18px" : sz === "M" ? "16px" : "14px"} label
+            {sz === "L" ? "18px" : sz === "M" ? "16px" : sz === "S" ? "14px" : "12px"} label
           </span>
         </div>
       ))}
@@ -289,7 +289,7 @@ export const AllSizes = () => (
 AllSizes.parameters = {
   docs: {
     description: {
-      story: "Three sizes available across all styles and types.",
+      story: "Four sizes (L / M / S / XS) available. XS is defined in Figma for Primary / Secondary / Negative; Tertiary has no XS variant.",
     },
   },
 };

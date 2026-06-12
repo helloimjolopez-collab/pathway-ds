@@ -551,7 +551,7 @@
     },
     "button": {
       "displayName": "Button",
-      "description": "Primary action trigger. Three styles (Fill / Outlined / Naked), four semantic types (Primary / Secondary / Tertiary / Negative), three sizes (L / M / S). Supports leading icon, trailing icon, icon-only, and loading states. 48\u00d748px touch target always.",
+      "description": "Primary action trigger. Three styles (Fill / Outlined / Naked), four semantic types (Primary / Secondary / Tertiary / Negative), four sizes (L / M / S / XS). Supports leading icon, trailing icon, icon-only, and loading states. 48\u00d748px touch target always.",
       "status": "REVIEWED",
       "version": "v1",
       "module": "components/button/button.jsx",
@@ -577,9 +577,9 @@
             "description": "Visual style. Fill = solid surface (highest weight). Outlined = bordered transparent. Naked = no border or fill (lowest weight)."
           },
           "size": {
-            "type": "\"L\" | \"M\" | \"S\"",
+            "type": "\"L\" | \"M\" | \"S\" | \"XS\"",
             "default": "\"M\"",
-            "description": "L = 18px label, M = 16px label, S = 14px label. Touch target is always 48\u00d748px minimum."
+            "description": "L = 18px label, M = 16px label, S = 14px label, XS = 12px label (8/6 padding, 16px icon wrap). Touch target is always 48\u00d748px minimum. XS is defined in Figma for Primary/Secondary/Negative only (not Tertiary)."
           },
           "type": {
             "type": "\"Primary\" | \"Secondary\" | \"Tertiary\" | \"Negative\"",
@@ -742,6 +742,8 @@
           "contextual.button.padding.medium.vertical",
           "contextual.button.padding.small.horizontal",
           "contextual.button.padding.small.vertical",
+          "contextual.button.padding.xsmall.horizontal",
+          "contextual.button.padding.xsmall.vertical",
           "label.button.l.fontsize",
           "label.button.l.fontfamily",
           "label.button.l.fontweight",
@@ -756,7 +758,12 @@
           "label.button.s.fontfamily",
           "label.button.s.fontweight",
           "label.button.s.lineheight",
-          "label.button.s.letterspacing"
+          "label.button.s.letterspacing",
+          "label.button.xs.fontsize",
+          "label.button.xs.fontfamily",
+          "label.button.xs.fontweight",
+          "label.button.xs.lineheight",
+          "label.button.xs.letterspacing"
         ],
         "missing": []
       },
