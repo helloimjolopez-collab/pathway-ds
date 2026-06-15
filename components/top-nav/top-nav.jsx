@@ -377,8 +377,8 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           <div style={{ width: 30, height: 30, display: "flex", alignItems: "center",
             justifyContent: "center", flexShrink: 0 }}>
             {active.id === "home"
-              ? <HomeModuleIcon size={22} />
-              : <Icon name={active.icon} size={22} style={{ color: T.monoBase }} />
+              ? <HomeModuleIcon size={24} />
+              : <Icon name={active.icon} size={24} style={{ color: T.monoBase }} />
             }
           </div>
           {/* Label — desktop only */}
@@ -390,14 +390,14 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
             </span>
           )}
         </div>
-        {/* Chevron */}
+        {/* Chevron — 12px glyph in a 16px box, gap 2 from the label group (Figma: Container.RowEnd) */}
         <div style={{
           width: 16, height: 16, display: "flex", alignItems: "center",
-          justifyContent: "center", marginLeft: 4,
+          justifyContent: "center", marginLeft: 2,
           transform: open ? "rotate(180deg)" : "none",
           transition: "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)",
         }}>
-          <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
+          <Icon name="expand_more" size={12} style={{ color: T.monoBase }} />
         </div>
       </button>
     </div>
