@@ -75,15 +75,28 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      # Best-effort housekeeping: npm publish above is the critical step. main can
+      # advance between checkout and push (deploy-storybook commits often), so this
+      # rebases-and-retries and is NON-FATAL — a failed push here must not fail the
+      # run or skip the tag. Version correctness does not depend on it (the next run
+      # bumps from npm's high-water mark regardless of main's package.json).
       - name: Commit version bump back to main
+        continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add package.json src/tokens/
-          git commit -m "chore(release): v${NEW_VERSION} [skip ci]" || echo "nothing to commit"
-          git push origin HEAD:main
+          git commit -m "chore(release): v${NEW_VERSION} [skip ci]" || { echo "nothing to commit"; exit 0; }
+          for i in 1 2 3; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then echo "pushed"; break; fi
+            echo "push attempt $i failed (main advanced); rebasing and retrying"
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
 
       - name: Tag the release
+        if: always()
         run: |
-          git tag "v${NEW_VERSION}"
-          git push origin "v${NEW_VERSION}"
+          git tag "v${NEW_VERSION}" || echo "tag exists"
+          git push origin "v${NEW_VERSION}" || echo "tag push failed (non-fatal)"
