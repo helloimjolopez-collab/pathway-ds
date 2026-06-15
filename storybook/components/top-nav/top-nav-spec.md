@@ -267,20 +267,42 @@ States apply to the interactive inner controls (ModuleSwitcher.Inner, OrgSwitche
 
 ### 7.1 ModuleSwitcher
 
-The ModuleSwitcher trigger shows the currently active module. On click, it opens a dropdown listing all available modules. The active module is highlighted.
+The ModuleSwitcher (app switcher) trigger shows the currently active module. In its interactive variant, clicking it opens a dropdown listing all available modules.
 
 **Trigger anatomy:**
-- Icon (30×30 wrap, SVG fills inner space, from module's icon set)
-- Label text (desktop/tablet only): 14px / 500 / max-w 160px / ellipsis
-- Chevron (16×16, expand_more SVG, rotates on open)
+- Module icon: **24px** glyph in a 30×30 wrap (custom SVG for Home; Material Symbol for other modules)
+- Label text (desktop/tablet only): 14px / 500 / max-w 160px / ellipsis (`label-button-s`)
+- Chevron: **12px** `expand_more` glyph in a 16×16 box, rotates 180° on open — **interactive variant only**
 
-**Dropdown:**
+#### Properties
+
+| Prop | Type | Default | Figma property | Description |
+|---|---|---|---|---|
+| `variant` | `"interactive" \| "static"` | `"interactive"` | **Show trailing icon** (Yes/No) | Whether the module switcher is a control or a static label. Exposed on `TopNav` as `moduleSwitcherVariant`, forwarded to the ModuleSwitcher. The OrgSwitcher has no such property. |
+
+- **`interactive`** — chevron + hover + pressed + button semantics (`aria-haspopup`, focusable); opens the app-switcher dropdown.
+- **`static`** — current-module **label only**: no chevron, no hover, no pressed, not a button.
+
+#### Usage by context
+
+| Context | Config | Why |
+|---|---|---|
+| **Amplify Dashboard** | `moduleSwitcherVariant="static"` | The dashboard is the home surface — there is nowhere to switch *to* from it, so the module switcher only indicates the current location and carries no affordance. |
+| **All other modules** | `"interactive"` (default) | Switching between modules is the primary navigation job. |
+
+> **IMPLEMENTATION RULE:** `static` is one concept, not merely a hidden chevron. It removes the chevron **and** the hover state **and** the pressed state **and** the button role/focusability together. Never ship a static module switcher that still highlights on hover or is keyboard-focusable as a control.
+
+> **SCOPE:** Applies to the **ModuleSwitcher only**. The OrgSwitcher (§7.2) is always interactive and is unaffected.
+
+**Dropdown (interactive only):**
 - Width: 243px
 - Items: icon (18×18, 70% opacity base / 100% active) + label (13px/400 base, 13px/500 active)
 - Active item background: `#eef2fb` (light brand tint — token gap, see §17)
 - Hover item background: `#eef2fb`
 - Border-radius: 8px outer panel, 6px per item
 - Animation: tnDropIn (see §14)
+
+> **Note:** The full open "App Switcher Dropdown" shown in Figma (15 modules, colored icons, divider, "Explore" control) is a future redesign and is **not yet in the repo/Storybook** — the dropdown documented here is the current shipped list.
 
 ### 7.2 OrgSwitcher
 

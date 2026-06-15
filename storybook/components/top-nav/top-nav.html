@@ -83,13 +83,17 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 }
 .tn-mod__btn:hover              { background: var(--semantic-color-dark-mode-fill-action-primaryinverse-hover, rgba(10,18,35,0.16)); border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-hover, rgba(160,181,230,0.20)); }
 .tn-mod__btn[aria-expanded="true"] { background: var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed, rgba(255,255,255,0.08)); border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-pressed, rgba(160,181,230,0.30)); }
+/* Static (Amplify Dashboard): label only — no chevron, no hover, no pressed, not a control */
+.tn-mod__static { display: flex; align-items: center; height: 36px; padding: 4px;
+  border-radius: 8px; background: transparent; border: 1px solid transparent;
+  color: #fbfbfb; font-family: inherit; cursor: default; }
 .tn-mod__icon-wrap { width: 30px; height: 30px; display: flex; align-items: center;
   justify-content: center; flex-shrink: 0; }
 .tn-mod__label { font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: 0.3px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   max-width: 160px; color: #fbfbfb; padding: 0 2px; }
 .tn-mod__chev { width: 16px; height: 16px; display: flex; align-items: center;
-  justify-content: center; margin-left: 4px; transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1); }
+  justify-content: center; margin-left: 2px; transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1); }
 .tn-mod__btn[aria-expanded="true"] .tn-mod__chev { transform: rotate(180deg); }
 
 /* ── Org Switcher ─────────────────────────────────────────────────────────────── */
@@ -358,6 +362,7 @@ function TopNav({
   userEmail    = "jo@sacredheart.org",
   activeModule = "home",
   breakpoint   = "desktop",      // "desktop" | "tablet" | "mobile"
+  moduleSwitcherVariant = "interactive", // "interactive" | "static" (Amplify Dashboard)
   initOpen     = null,           // pre-open for demo snapshots
 }) {
   const [open, setOpen]             = useState(initOpen);
@@ -428,8 +433,21 @@ function TopNav({
           </div>
         )}
 
-        {/* ModuleSwitcher */}
+        {/* ModuleSwitcher — `static` (Amplify Dashboard) = label only: no chevron, no hover/pressed, not a control */}
         <div className="tn-mod">
+          {moduleSwitcherVariant === "static" ? (
+            <div className="tn-mod__static" aria-label={`Current module — ${activeModData.label}`}>
+              <div className="tn-mod__icon-wrap">
+                {activeModData.id === "home"
+                  ? <HomeModuleIcon size={24} />
+                  : <Icon name={activeModData.icon} size={24} />
+                }
+              </div>
+              {isDesktop && (
+                <span className="tn-mod__label">{activeModData.label}</span>
+              )}
+            </div>
+          ) : (
           <button
             className="tn-mod__btn"
             aria-haspopup="listbox"
@@ -452,6 +470,7 @@ function TopNav({
               <Icon name="expand_more" size={12} />
             </div>
           </button>
+          )}
 
           {open === "module" && (
             <ul className="tn-dropdown" role="listbox" aria-label="Switch module">
@@ -645,6 +664,11 @@ function App() {
         <div className="demo-section">
           <div className="demo-section__label">Desktop — 1440×56px — full label, two bells, home SVG icon</div>
           <TopNav breakpoint="desktop" />
+        </div>
+
+        <div className="demo-section">
+          <div className="demo-section__label">Amplify Dashboard — module switcher STATIC: no chevron, no hover/pressed, not a control</div>
+          <TopNav breakpoint="desktop" moduleSwitcherVariant="static" />
         </div>
 
         <div className="demo-section">

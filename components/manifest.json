@@ -417,6 +417,11 @@
             "required": true,
             "description": "ID of the currently active module ('home'|'people'|'giving'|'events'|'comms')"
           },
+          "moduleSwitcherVariant": {
+            "type": "\"interactive\" | \"static\"",
+            "default": "\"interactive\"",
+            "description": "ModuleSwitcher (app switcher) behavior. 'interactive' = chevron + hover/pressed, opens the app switcher. 'static' = Amplify Dashboard ONLY: current-module label with no chevron, no hover/pressed, not a control (nowhere to switch to from the dashboard). Maps to Figma 'Show trailing icon'. OrgSwitcher is unaffected."
+          },
           "activeOrgId": {
             "type": "string",
             "required": true,

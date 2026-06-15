@@ -350,11 +350,68 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
 }
 
 // ─── ModuleSwitcher ────────────────────────────────────────────────────────────
-export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint = "desktop" }) {
+/**
+ * ModuleSwitcher (app switcher).
+ *
+ *   variant — "interactive" (default) | "static"
+ *     "interactive": switch-module control — chevron + hover + pressed + button
+ *       semantics + aria-haspopup. Used in every module.
+ *     "static": non-interactive current-module label — NO chevron, NO hover,
+ *       NO pressed, NOT a button. Used on the Amplify Dashboard, where the module
+ *       switcher only indicates the current location (there is nowhere to switch
+ *       to from the dashboard). Maps to Figma's "Show trailing icon = No".
+ *       See top-nav-spec.md §ModuleSwitcher properties + usage-by-context.
+ */
+export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint = "desktop", variant = "interactive" }) {
   const [hov, setHov]   = useState(false);
   const active          = modules.find(m => m.id === activeId) || modules[0];
   const showLabel       = breakpoint === "desktop";
+  const isStatic        = variant === "static";
 
+  // Icon + label — identical in both variants.
+  const inner = (
+    <div style={{ display: "flex", alignItems: "center", gap: 4,
+      paddingRight: showLabel && !isStatic ? 2 : 0 }}>
+      {/* Module icon — custom SVG for home; Material Symbol for all others */}
+      <div style={{ width: 30, height: 30, display: "flex", alignItems: "center",
+        justifyContent: "center", flexShrink: 0 }}>
+        {active.id === "home"
+          ? <HomeModuleIcon size={24} />
+          : <Icon name={active.icon} size={24} style={{ color: T.monoBase }} />
+        }
+      </div>
+      {/* Label — desktop only */}
+      {showLabel && (
+        <span style={{ fontSize: 14, fontWeight: 500, lineHeight: "20px",
+          letterSpacing: "0.3px", whiteSpace: "nowrap", overflow: "hidden",
+          textOverflow: "ellipsis", maxWidth: 160, color: T.monoBase }}>
+          {active.label}
+        </span>
+      )}
+    </div>
+  );
+
+  // STATIC — Amplify Dashboard: current-module label, not a control.
+  // No chevron, no hover/pressed, no button role/affordance.
+  if (isStatic) {
+    return (
+      <div style={{ position: "relative", padding: "4px 2px" }}>
+        <div
+          aria-label={`Current module — ${active.label}`}
+          style={{
+            display: "flex", alignItems: "center",
+            maxHeight: L.modInnerH, minHeight: L.modInnerH, padding: 4, borderRadius: L.radius,
+            background: "transparent", border: "1px solid transparent",
+            color: T.monoBase, fontFamily: "inherit", cursor: "default",
+          }}
+        >
+          {inner}
+        </div>
+      </div>
+    );
+  }
+
+  // INTERACTIVE (default) — switch-module control.
   return (
     <div style={{ position: "relative", padding: "4px 2px" }}>
       <button
@@ -371,25 +428,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           transition: "background 200ms cubic-bezier(0.4, 0, 0.2, 1), border-color 200ms cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 4,
-          paddingRight: showLabel ? 2 : 0 }}>
-          {/* Module icon — custom SVG for home; Material Symbol for all others */}
-          <div style={{ width: 30, height: 30, display: "flex", alignItems: "center",
-            justifyContent: "center", flexShrink: 0 }}>
-            {active.id === "home"
-              ? <HomeModuleIcon size={24} />
-              : <Icon name={active.icon} size={24} style={{ color: T.monoBase }} />
-            }
-          </div>
-          {/* Label — desktop only */}
-          {showLabel && (
-            <span style={{ fontSize: 14, fontWeight: 500, lineHeight: "20px",
-              letterSpacing: "0.3px", whiteSpace: "nowrap", overflow: "hidden",
-              textOverflow: "ellipsis", maxWidth: 160, color: T.monoBase }}>
-              {active.label}
-            </span>
-          )}
-        </div>
+        {inner}
         {/* Chevron — 12px glyph in a 16px box, gap 2 from the label group (Figma: Container.RowEnd) */}
         <div style={{
           width: 16, height: 16, display: "flex", alignItems: "center",
@@ -431,6 +470,7 @@ export function TopNav({
   org             = { id: "shc", name: "Sacred Heart Church-ITD", campus: "Knoxville", initials: "SH" },
   user            = { name: "Jo Lopez", initials: "JL", email: "jo@sacredheart.org" },
   breakpoint      = "desktop",
+  moduleSwitcherVariant = "interactive",   // "interactive" | "static" (Amplify Dashboard)
   onModuleSelect,
   onOrgSelect,
   onSearchOpen,
@@ -507,10 +547,11 @@ export function TopNav({
           open={openPanel === "module"}
           onToggle={() => toggle("module")}
           breakpoint={breakpoint}
+          variant={moduleSwitcherVariant}
         />
 
-        {/* Module dropdown */}
-        {openPanel === "module" && (
+        {/* Module dropdown — never opens in static mode (non-interactive) */}
+        {openPanel === "module" && moduleSwitcherVariant !== "static" && (
           <ul role="listbox" aria-label="Switch module"
             style={{
               position: "absolute", top: "calc(100% + 4px)", left: padH,

@@ -241,6 +241,7 @@ function TopNavStory({
   showOrgs     = false,
   showModule   = false,
   showProfile  = false,
+  moduleSwitcherVariant = "interactive",
   onAction,
 }) {
   const [openPanel, setOpenPanel] = useState(
@@ -310,38 +311,55 @@ function TopNavStory({
           </div>
         )}
 
-        {/* ModuleSwitcher */}
+        {/* ModuleSwitcher — `static` (Amplify Dashboard) drops chevron + hover/pressed + button semantics */}
         <div style={{ position:"relative", padding:"4px 2px" }}>
-          <button
-            style={S.modBtn(openPanel === "module", hovMod)}
-            onMouseEnter={() => setHovMod(true)} onMouseLeave={() => setHovMod(false)}
-            aria-haspopup="listbox" aria-expanded={openPanel === "module"}
-            aria-label={`Switch module — ${activeModData.label}`}
-            onClick={() => toggle("module")}
-          >
-            <div style={{ display:"flex", alignItems:"center", gap:4, paddingRight: isDesktop ? 2 : 0 }}>
-              <div style={{ width:30, height:30, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-                {/* Home module = custom Figma SVG; others = Material Symbol */}
-                {activeModData.id === "home"
-                  ? <HomeModuleIcon size={24} />
-                  : <Icon name={activeModData.icon} size={24} color={T.mono} />
-                }
+          {(() => {
+            const isStatic = moduleSwitcherVariant === "static";
+            const inner = (
+              <div style={{ display:"flex", alignItems:"center", gap:4, paddingRight: (isDesktop && !isStatic) ? 2 : 0 }}>
+                <div style={{ width:30, height:30, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                  {activeModData.id === "home"
+                    ? <HomeModuleIcon size={24} />
+                    : <Icon name={activeModData.icon} size={24} color={T.mono} />
+                  }
+                </div>
+                {isDesktop && (
+                  <span style={{ fontSize:14, fontWeight:500, lineHeight:"20px", letterSpacing:"0.3px",
+                    whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis",
+                    maxWidth:160, color: T.mono }}>
+                    {activeModData.label}
+                  </span>
+                )}
               </div>
-              {isDesktop && (
-                <span style={{ fontSize:14, fontWeight:500, lineHeight:"20px", letterSpacing:"0.3px",
-                  whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis",
-                  maxWidth:160, color: T.mono }}>
-                  {activeModData.label}
-                </span>
-              )}
-            </div>
-            <div style={{ width:16, height:16, display:"flex", alignItems:"center",
-              justifyContent:"center", marginLeft:2,
-              transform: openPanel === "module" ? "rotate(180deg)" : "none",
-              transition:"transform 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
-              <Icon name="expand_more" size={12} color={T.mono} />
-            </div>
-          </button>
+            );
+            if (isStatic) {
+              return (
+                <div aria-label={`Current module — ${activeModData.label}`}
+                  style={{ display:"flex", alignItems:"center", minHeight:36, maxHeight:36, padding:4,
+                    borderRadius:8, background:"transparent", border:"1px solid transparent",
+                    color:T.mono, cursor:"default" }}>
+                  {inner}
+                </div>
+              );
+            }
+            return (
+              <button
+                style={S.modBtn(openPanel === "module", hovMod)}
+                onMouseEnter={() => setHovMod(true)} onMouseLeave={() => setHovMod(false)}
+                aria-haspopup="listbox" aria-expanded={openPanel === "module"}
+                aria-label={`Switch module — ${activeModData.label}`}
+                onClick={() => toggle("module")}
+              >
+                {inner}
+                <div style={{ width:16, height:16, display:"flex", alignItems:"center",
+                  justifyContent:"center", marginLeft:2,
+                  transform: openPanel === "module" ? "rotate(180deg)" : "none",
+                  transition:"transform 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
+                  <Icon name="expand_more" size={12} color={T.mono} />
+                </div>
+              </button>
+            );
+          })()}
 
           {openPanel === "module" && (
             <ul style={S.dropdown} role="listbox" aria-label="Switch module">
@@ -580,6 +598,11 @@ export default {
     showOrgs:      { control: "boolean", name: "Org panel open",     description: "Pre-open the org switcher panel" },
     showModule:    { control: "boolean", name: "Module dropdown open" },
     showProfile:   { control: "boolean", name: "Profile menu open" },
+    moduleSwitcherVariant: {
+      control: { type: "select" }, options: ["interactive", "static"],
+      name: "Module switcher variant",
+      description: "interactive (default) = chevron + hover/pressed, opens the app switcher. static = Amplify Dashboard ONLY: current-module label with NO chevron, NO hover/pressed, not a control (the dashboard has nowhere to switch to). Maps to Figma's 'Show trailing icon' property.",
+    },
   },
 };
 
@@ -599,9 +622,32 @@ export const Playground = {
     showOrgs: false,
     showModule: false,
     showProfile: false,
+    moduleSwitcherVariant: "interactive",
   },
   parameters: {
     docs: { description: { story: "Full interactive desktop TopNav. Use the Controls panel to explore all props." } },
+  },
+};
+
+const _capStyle = { padding: "10px 16px 6px", fontFamily: "'Red Hat Text',sans-serif", fontSize: 12,
+  fontWeight: 600, color: "#8890b0", textTransform: "uppercase", letterSpacing: "0.06em" };
+
+export const ModuleSwitcherVariants = {
+  name: "ModuleSwitcher — interactive vs static",
+  render: () => (
+    <div>
+      <div style={_capStyle}>Interactive (default) — every module</div>
+      <TopNavStory {...Playground.args} moduleSwitcherVariant="interactive" />
+      <div style={{ ..._capStyle, paddingTop: 28 }}>Static — Amplify Dashboard only (no chevron, no hover/pressed, not a control)</div>
+      <TopNavStory {...Playground.args} moduleSwitcherVariant="static" />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: "**ModuleSwitcher `variant` property.** `interactive` (default) is the switch-module control — chevron + hover/pressed, opens the app switcher. `static` is used **only on the Amplify Dashboard**, where the module switcher merely indicates the current location: no chevron, no hover/pressed, and it is not a button (there is nowhere to switch *to* from the dashboard). Maps to Figma's \"Show trailing icon\" property. The OrgSwitcher is unaffected. See `top-nav-spec.md` §ModuleSwitcher properties + usage-by-context.",
+      },
+    },
   },
 };
 
