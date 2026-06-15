@@ -353,20 +353,20 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
 /**
  * ModuleSwitcher (app switcher).
  *
- *   variant — "interactive" (default) | "static"
+ *   type — "interactive" (default) | "static"   (Figma variant property "Type")
  *     "interactive": switch-module control — chevron + hover + pressed + button
  *       semantics + aria-haspopup. Used in every module.
  *     "static": non-interactive current-module label — NO chevron, NO hover,
  *       NO pressed, NOT a button. Used on the Amplify Dashboard, where the module
  *       switcher only indicates the current location (there is nowhere to switch
- *       to from the dashboard). Maps to Figma's "Show trailing icon = No".
+ *       to from the dashboard).
  *       See top-nav-spec.md §ModuleSwitcher properties + usage-by-context.
  */
-export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint = "desktop", variant = "interactive" }) {
+export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint = "desktop", type = "interactive" }) {
   const [hov, setHov]   = useState(false);
   const active          = modules.find(m => m.id === activeId) || modules[0];
   const showLabel       = breakpoint === "desktop";
-  const isStatic        = variant === "static";
+  const isStatic        = type === "static";
 
   // Icon + label — identical in both variants.
   const inner = (
@@ -470,7 +470,8 @@ export function TopNav({
   org             = { id: "shc", name: "Sacred Heart Church-ITD", campus: "Knoxville", initials: "SH" },
   user            = { name: "Jo Lopez", initials: "JL", email: "jo@sacredheart.org" },
   breakpoint      = "desktop",
-  moduleSwitcherVariant = "interactive",   // "interactive" | "static" (Amplify Dashboard)
+  moduleSwitcherType = "interactive",   // "interactive" | "static" (Amplify Dashboard) — Figma "Type"
+  initialOpenPanel = null,              // "module" | "org" | "profile" | null — seeds the open panel (demo/snapshot use)
   onModuleSelect,
   onOrgSelect,
   onSearchOpen,
@@ -479,7 +480,7 @@ export function TopNav({
   onMore,
   className = "",
 }) {
-  const [openPanel, setOpenPanel]       = useState(null); // "module"|"org"|"profile"|null
+  const [openPanel, setOpenPanel]       = useState(initialOpenPanel); // "module"|"org"|"profile"|null
   const [currentModuleId, setModuleId]  = useState(activeModuleId);
   const navRef                          = useRef(null);
 
@@ -547,11 +548,11 @@ export function TopNav({
           open={openPanel === "module"}
           onToggle={() => toggle("module")}
           breakpoint={breakpoint}
-          variant={moduleSwitcherVariant}
+          type={moduleSwitcherType}
         />
 
         {/* Module dropdown — never opens in static mode (non-interactive) */}
-        {openPanel === "module" && moduleSwitcherVariant !== "static" && (
+        {openPanel === "module" && moduleSwitcherType !== "static" && (
           <ul role="listbox" aria-label="Switch module"
             style={{
               position: "absolute", top: "calc(100% + 4px)", left: padH,
