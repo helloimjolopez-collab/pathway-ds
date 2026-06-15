@@ -362,7 +362,7 @@ function TopNav({
   userEmail    = "jo@sacredheart.org",
   activeModule = "home",
   breakpoint   = "desktop",      // "desktop" | "tablet" | "mobile"
-  moduleSwitcherVariant = "interactive", // "interactive" | "static" (Amplify Dashboard)
+  moduleSwitcherType = "interactive", // "interactive" | "static" (Amplify Dashboard)
   initOpen     = null,           // pre-open for demo snapshots
 }) {
   const [open, setOpen]             = useState(initOpen);
@@ -435,7 +435,7 @@ function TopNav({
 
         {/* ModuleSwitcher — `static` (Amplify Dashboard) = label only: no chevron, no hover/pressed, not a control */}
         <div className="tn-mod">
-          {moduleSwitcherVariant === "static" ? (
+          {moduleSwitcherType === "static" ? (
             <div className="tn-mod__static" aria-label={`Current module — ${activeModData.label}`}>
               <div className="tn-mod__icon-wrap">
                 {activeModData.id === "home"
@@ -668,7 +668,7 @@ function App() {
 
         <div className="demo-section">
           <div className="demo-section__label">Amplify Dashboard — module switcher STATIC: no chevron, no hover/pressed, not a control</div>
-          <TopNav breakpoint="desktop" moduleSwitcherVariant="static" />
+          <TopNav breakpoint="desktop" moduleSwitcherType="static" />
         </div>
 
         <div className="demo-section">

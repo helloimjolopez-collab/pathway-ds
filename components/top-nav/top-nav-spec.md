@@ -278,7 +278,7 @@ The ModuleSwitcher (app switcher) trigger shows the currently active module. In 
 
 | Prop | Type | Default | Figma property | Description |
 |---|---|---|---|---|
-| `variant` | `"interactive" \| "static"` | `"interactive"` | **Show trailing icon** (Yes/No) | Whether the module switcher is a control or a static label. Exposed on `TopNav` as `moduleSwitcherVariant`, forwarded to the ModuleSwitcher. The OrgSwitcher has no such property. |
+| `type` | `"interactive" \| "static"` | `"interactive"` | **Type** (static \| interactive) | Whether the module switcher is a control or a static label. Exposed on `TopNav` as `moduleSwitcherType`, forwarded to the ModuleSwitcher. The OrgSwitcher has no such property. |
 
 - **`interactive`** — chevron + hover + pressed + button semantics (`aria-haspopup`, focusable); opens the app-switcher dropdown.
 - **`static`** — current-module **label only**: no chevron, no hover, no pressed, not a button.
@@ -287,7 +287,7 @@ The ModuleSwitcher (app switcher) trigger shows the currently active module. In 
 
 | Context | Config | Why |
 |---|---|---|
-| **Amplify Dashboard** | `moduleSwitcherVariant="static"` | The dashboard is the home surface — there is nowhere to switch *to* from it, so the module switcher only indicates the current location and carries no affordance. |
+| **Amplify Dashboard** | `moduleSwitcherType="static"` | The dashboard is the home surface — there is nowhere to switch *to* from it, so the module switcher only indicates the current location and carries no affordance. |
 | **All other modules** | `"interactive"` (default) | Switching between modules is the primary navigation job. |
 
 > **IMPLEMENTATION RULE:** `static` is one concept, not merely a hidden chevron. It removes the chevron **and** the hover state **and** the pressed state **and** the button role/focusability together. Never ship a static module switcher that still highlights on hover or is keyboard-focusable as a control.
