@@ -440,8 +440,8 @@ function TopNav({
             <div className="tn-mod__icon-wrap">
               {/* Home module = custom Figma SVG; others = Material Symbol */}
               {activeModData.id === "home"
-                ? <HomeModuleIcon size={22} />
-                : <Icon name={activeModData.icon} size={22} />
+                ? <HomeModuleIcon size={24} />
+                : <Icon name={activeModData.icon} size={24} />
               }
             </div>
             {/* Label: desktop only */}
@@ -449,7 +449,7 @@ function TopNav({
               <span className="tn-mod__label">{activeModData.label}</span>
             )}
             <div className="tn-mod__chev">
-              <Icon name="expand_more" size={16} />
+              <Icon name="expand_more" size={12} />
             </div>
           </button>
 

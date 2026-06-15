@@ -323,8 +323,8 @@ function TopNavStory({
               <div style={{ width:30, height:30, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
                 {/* Home module = custom Figma SVG; others = Material Symbol */}
                 {activeModData.id === "home"
-                  ? <HomeModuleIcon size={22} />
-                  : <Icon name={activeModData.icon} size={22} color={T.mono} />
+                  ? <HomeModuleIcon size={24} />
+                  : <Icon name={activeModData.icon} size={24} color={T.mono} />
                 }
               </div>
               {isDesktop && (
@@ -336,10 +336,10 @@ function TopNavStory({
               )}
             </div>
             <div style={{ width:16, height:16, display:"flex", alignItems:"center",
-              justifyContent:"center", marginLeft:4,
+              justifyContent:"center", marginLeft:2,
               transform: openPanel === "module" ? "rotate(180deg)" : "none",
               transition:"transform 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
-              <Icon name="expand_more" size={16} color={T.mono} />
+              <Icon name="expand_more" size={12} color={T.mono} />
             </div>
           </button>
 
