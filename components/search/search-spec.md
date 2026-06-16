@@ -103,13 +103,27 @@ The `CancelBtn` and `FilterWrap` are conditional — see variant rules in §5.
 ### TopNavSearch
 
 ```
-TopNavSearch.Container               overflow clip, padding 4px, flex row align center
-├── TopNavSearch.CollapsedBtn        48×48px, border-radius 12px — visible when collapsed
-│   └── SearchInput.IconPill         36×36px inner, 64px radius
+TopNavSearch.Container               position relative, FIXED 48×48 footprint (never
+│                                     changes — the expanded bar is absolutely positioned)
+├── TopNavSearch.CollapsedBtn        48×48px touch target, border-radius 12px (transparent)
+│   └── TopNavSearch.Circle          32×32px, border-radius 50% — a PERFECT CIRCLE (not a
+│       │                            pill/rounded-square). Fixed square so the radius always
+│       │                            yields a circle regardless of flex context.
 │       └── <svg> search             20×20px
-└── TopNavSearch.ExpandedBar         width animates 0 → 336px on expand
+└── TopNavSearch.ExpandedBar         position ABSOLUTE, right:0 — anchored to the collapsed
+    │                                control's right edge, so it grows LEFTWARD and NEVER
+    │                                pushes the elements to its right. 320px wide.
     └── SearchInput                  320px wide, all standard slots
         (search icon inside = collapse trigger)
+
+> **IMPLEMENTATION RULE (collapsed shape):** The collapsed control is a perfect circle —
+> a fixed 32×32 box with `border-radius: 50%`. Do NOT size it with `width: 100%` + a fixed
+> height (that yields a rounded rectangle in a flex row).
+>
+> **IMPLEMENTATION RULE (expand direction):** The expanded bar is absolutely positioned and
+> right-anchored. Expanding must NEVER change the nav layout or push sibling elements (search
+> icon, notifications, profile) — it overlays the nav space to its left. The container's
+> in-flow footprint stays 48×48 whether collapsed or expanded.
 ```
 
 ---
