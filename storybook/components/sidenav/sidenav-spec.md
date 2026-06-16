@@ -446,6 +446,21 @@ All `SideNavItem` labels at all levels use **the same** text style. There is no 
 
 > **No font-size variation** between Level 0 and Level 1 items. The visual hierarchy of child items is achieved solely through the `pl-[24px]` left-indent and the absence of a leading icon: not via smaller text.
 
+### Label truncation & overflow tooltip (PLANNED — not yet implemented)
+
+The expanded SideNav is a **fixed 240px** wide. Item labels (especially Level 1 children) can exceed the available width and must **truncate with an ellipsis** (`white-space: nowrap; overflow: hidden; text-overflow: ellipsis`) — they never wrap to a second line and never widen the rail.
+
+**Requirement:** when (and only when) a label is actually truncated, hovering or keyboard-focusing the item shows a **tooltip with the full label**. Spec:
+
+- **Trigger condition:** truncation only — detect at runtime via `scrollWidth > clientWidth` on the label element. Do NOT show a tooltip for labels that fit.
+- **Trigger events:** pointer hover **and** keyboard focus (so keyboard users get it too).
+- **Content:** the complete, untruncated label text.
+- **Visual:** reuse the Pathway **Tooltip** component (Figma node `5929:18392`) — same surface, radius, type, and motion. Do not invent a bespoke tooltip.
+- **Accessibility:** the full label must also be available to assistive tech (e.g. `aria-label`/`title` on the truncated item), not only visually.
+- **Distinct from §10.3:** that tooltip is for the **collapsed 72px rail** (icon-only items, always shown on hover). This one is for the **expanded 240px** rail, shown **only** when a label overflows.
+
+> **Build order (decided 2026-06-15):** implement in the repo / Storybook / HTML demo first (truncation-triggered tooltips are interaction behavior Figma cannot fully express); the tooltip's *visual* comes from the existing Tooltip component. Reconcile Figma afterward with a documentation frame showing a long-name item + tooltip. **Figma TODO:** add that doc frame and confirm the long-label item uses the Tooltip component style.
+
 ---
 
 ## 4. Layout & Spacing
