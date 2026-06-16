@@ -14,7 +14,7 @@ import React, { useState, useEffect, useRef } from "react";
 // TopNav.Search is the canonical nested search control. Import it — never
 // reimplement it here. (See CLAUDE.md §10.1 "import, don't reinvent": the prior
 // in-file duplicate drifted to hardcoded hex and the wrong token mode.)
-import { TopNavSearch } from "../search/search.jsx";
+import { TopNavSearch, SearchInput } from "../search/search.jsx";
 
 // ─── DESIGN TOKENS ─────────────────────────────────────────────────────────────
 // Bound to live semantic CSS variables (CLAUDE.md §6). The TopNav bar is a dark
@@ -482,6 +482,8 @@ export function TopNav({
 }) {
   const [openPanel, setOpenPanel]       = useState(initialOpenPanel); // "module"|"org"|"profile"|null
   const [currentModuleId, setModuleId]  = useState(activeModuleId);
+  const [searchExpanded, setSearchExpanded] = useState(false);
+  const [searchQuery, setSearchQuery]       = useState("");  // shared so the value persists across the collapsed icon ↔ takeover
   const navRef                          = useRef(null);
 
   const isMobile  = breakpoint === "mobile";
@@ -643,7 +645,13 @@ export function TopNav({
       {/* ── Slot.RowEnd ── */}
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
 
-        <TopNavSearch onSearchOpen={onSearchOpen} />
+        <TopNavSearch
+          expanded={searchExpanded}
+          onExpandChange={setSearchExpanded}
+          breakpoint={breakpoint}
+          onSearchOpen={onSearchOpen}
+          searchProps={{ value: searchQuery, onChange: setSearchQuery, onClear: () => setSearchQuery("") }}
+        />
 
         <TopNavActions breakpoint={breakpoint} onNotifications={onNotifications} onMore={onMore} />
 
@@ -689,6 +697,32 @@ export function TopNav({
           </div>
         )}
       </div>
+
+      {/* Full-width search takeover — non-desktop only. The expanded search fills the
+          whole bar (covering the left cluster) instead of overlaying a 320px bar, which
+          would collide on narrow widths. The search icon inside collapses it. */}
+      {searchExpanded && breakpoint !== "desktop" && (
+        <div
+          style={{
+            position: "absolute", inset: 0, zIndex: 200,
+            background: `var(--semantic-color-light-mode-fill-static-brand-base, ${T.navBg})`,
+            display: "flex", alignItems: "center",
+            padding: `0 ${padH}px`,
+          }}
+        >
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <SearchInput
+              value={searchQuery}
+              onChange={setSearchQuery}
+              onClear={() => setSearchQuery("")}
+              inputRef={(el) => el && el.focus()}
+              placeholder="Search…"
+              searchIconAriaLabel="Close search"
+              onSearchIconClick={() => setSearchExpanded(false)}
+            />
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

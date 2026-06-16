@@ -124,6 +124,16 @@ TopNavSearch.Container               position relative, FIXED 48×48 footprint (
 > right-anchored. Expanding must NEVER change the nav layout or push sibling elements (search
 > icon, notifications, profile) — it overlays the nav space to its left. The container's
 > in-flow footprint stays 48×48 whether collapsed or expanded.
+>
+> **RESPONSIVE — collision / full-width takeover:** On **desktop** the expanded bar is the
+> 320px right-anchored overlay (above). On **non-desktop** breakpoints — where a 320px overlay
+> would collide with the left cluster (ModuleSwitcher + OrgSwitcher) — the search instead
+> **takes over full-width**: the SearchInput fills the entire nav bar (covering the left
+> cluster) on the brand-blue surface, with the search icon as the collapse trigger. This is
+> orchestrated by **TopNav** (the `<nav>` is the positioning context); `TopNavSearch` suppresses
+> its own inline 320px bar via the `breakpoint` prop and TopNav renders the takeover overlay.
+> The query value is shared (lifted to TopNav) so it persists between the collapsed icon and
+> the takeover.
 ```
 
 ---
