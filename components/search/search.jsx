@@ -452,6 +452,7 @@ export function TopNavSearch({
   onExpandChange,
   searchProps = {},
   onSearchOpen,
+  breakpoint = "desktop",   // on non-desktop, TopNav renders a full-width takeover instead of the 320px bar
   className = "",
 }) {
   const collapsedBtnRef = useRef(null);
@@ -524,7 +525,9 @@ export function TopNavSearch({
         onMouseEnter={() => setHov(true)}
         onMouseLeave={() => setHov(false)}
         style={{
-          display: expanded ? "none" : "flex",
+          // On desktop the icon hides when expanded (the inline bar replaces it). On
+          // narrow, the collapsed icon stays — TopNav's full-width takeover overlays it.
+          display: (expanded && breakpoint === "desktop") ? "none" : "flex",
           alignItems: "center",
           justifyContent: "center",
           width: L.touchTarget,
@@ -560,8 +563,9 @@ export function TopNavSearch({
       </button>
 
       {/* Expanded bar — absolutely positioned, RIGHT-anchored so it grows LEFTWARD and
-          NEVER pushes the elements to its right. It overlays the nav space to its left. */}
-      {expanded && (
+          NEVER pushes the elements to its right. It overlays the nav space to its left.
+          Desktop only: on narrow widths TopNav renders a full-width takeover instead. */}
+      {expanded && breakpoint === "desktop" && (
         <div
           aria-hidden={false}
           style={{
