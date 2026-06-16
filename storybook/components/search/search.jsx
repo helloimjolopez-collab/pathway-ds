@@ -439,6 +439,14 @@ export function SearchInput({
  *   onSearchOpen   — (optional) fired when the bar expands (analytics / focus hook)
  *   className      — additional class on root element
  */
+// One-time keyframe for the expanded bar's leftward slide-in (self-contained).
+if (typeof document !== "undefined" && !document.getElementById("pds-topnavsearch-anim")) {
+  const s = document.createElement("style");
+  s.id = "pds-topnavsearch-anim";
+  s.textContent = "@keyframes pwSearchExpand{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}";
+  document.head.appendChild(s);
+}
+
 export function TopNavSearch({
   expanded: expandedProp,
   onExpandChange,
@@ -493,20 +501,20 @@ export function TopNavSearch({
     <div
       className={className}
       style={{
-        display: "inline-flex",   // shrinks to content — does not stretch to fill a flex parent
+        position: "relative",
+        display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: L.touchTarget,
+        // Footprint is ALWAYS the 48px collapsed slot — the expanded bar is absolutely
+        // positioned, so expanding never changes layout / never pushes sibling elements.
+        width: L.touchTarget,
+        height: L.touchTarget,
         minWidth: L.touchTarget,
-        // Width is explicit so the collapsed state never expands beyond 48px
-        width: expanded ? L.expandedWidth + L.containerPad * 2 : L.touchTarget,
-        overflow: "hidden",
-        padding: L.containerPad,
-        position: "relative",
-        transition: "width 380ms cubic-bezier(0.34, 1.04, 0.64, 1)",
+        flexShrink: 0,
       }}
     >
-      {/* Collapsed button — icon button on the dark nav surface (dark-mode tokens) */}
+      {/* Collapsed control — perfect 32×32 circle inside the 48px touch target
+          (Figma node 40006967:20917 — Container.Icon h32 w32 rounded-full). */}
       <button
         ref={collapsedBtnRef}
         type="button"
@@ -525,22 +533,21 @@ export function TopNavSearch({
           background: "transparent",
           border: "none",
           cursor: "pointer",
-          padding: 8,
+          padding: 0,
           flexShrink: 0,
         }}
       >
-        {/* Inner pill — dark-mode inverse fill, hover deepens to primaryinverse hover */}
+        {/* Fixed 32×32 square + border-radius 50% = always a perfect circle, regardless of flex context */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: "100%",
+            width: 32,
             height: 32,
-            borderRadius: L.barRadius,
+            borderRadius: "50%",
             background: hov ? T.collapsedBtnHover : T.collapsedBtnFill,
             border: `0.5px solid ${T.collapsedBtnBorder}`,
-            padding: 8,
             transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
           }}
         >
@@ -552,9 +559,23 @@ export function TopNavSearch({
         </div>
       </button>
 
-      {/* Expanded bar — white SearchInput (light-mode), slides in when expanded */}
+      {/* Expanded bar — absolutely positioned, RIGHT-anchored so it grows LEFTWARD and
+          NEVER pushes the elements to its right. It overlays the nav space to its left. */}
       {expanded && (
-        <div aria-hidden={false} style={{ width: L.expandedWidth }}>
+        <div
+          aria-hidden={false}
+          style={{
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            right: 0,
+            width: L.expandedWidth,
+            display: "flex",
+            alignItems: "center",
+            zIndex: 50,
+            animation: "pwSearchExpand 320ms cubic-bezier(0.34, 1.04, 0.64, 1) both",
+          }}
+        >
           <SearchInput
             {...searchProps}
             value={query}
