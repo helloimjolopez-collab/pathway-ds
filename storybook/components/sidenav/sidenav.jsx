@@ -486,6 +486,22 @@ export function SideNavListSection({ label, items, activeId, onNavigate }) {
   );
 }
 
+// Hover-reveal scrollbar for the nav's scroll container. Scrollbars can't be set via
+// inline React styles, so inject one scoped <style> (guarded). Scoped to
+// .pds-sidenav-scroll so it never touches any other scrollbar on the page.
+if (typeof document !== "undefined" && !document.getElementById("pds-sidenav-scrollbar")) {
+  const s = document.createElement("style");
+  s.id = "pds-sidenav-scrollbar";
+  s.textContent =
+    ".pds-sidenav-scroll::-webkit-scrollbar{width:4px}" +
+    ".pds-sidenav-scroll::-webkit-scrollbar-track{background:transparent}" +
+    ".pds-sidenav-scroll::-webkit-scrollbar-thumb{background:transparent;border-radius:4px;transition:background .2s}" +
+    ".pds-sidenav-scroll:hover::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.18)}" +
+    ".pds-sidenav-scroll{scrollbar-width:thin;scrollbar-color:transparent transparent}" +
+    ".pds-sidenav-scroll:hover{scrollbar-color:rgba(0,0,0,0.18) transparent}";
+  document.head.appendChild(s);
+}
+
 export function SideNav({
   items,
   sections,
@@ -593,20 +609,22 @@ export function SideNav({
       // Smooth-spring curve — soft personality, no overshoot.
       transition: "width 460ms cubic-bezier(0.32, 0.72, 0, 1)",
       borderRight: `0.5px solid ${T.fill.infoSubtle}`,
-      overflowY: "auto",
+      overflow: "hidden",   // the inner menu scrolls; the nav itself does not
     }}>
-      {/* NavHeader — TOP of nav (moved from bottom 2026-05-13). Hidden on
-          mobile (<768px) where the TopNav hamburger is the sole toggle. */}
+      {/* NavHeader — TOP of nav, PINNED (flexShrink:0) so it stays visible while the
+          item list scrolls beneath it. Hidden on mobile (<768px). */}
       {!hideCollapseButton && (
-        <NavHeader isSidebarCollapsed={collapsed}
-          onToggle={() => onCollapseChange && onCollapseChange(!collapsed)} />
+        <div style={{ flexShrink: 0 }}>
+          <NavHeader isSidebarCollapsed={collapsed}
+            onToggle={() => onCollapseChange && onCollapseChange(!collapsed)} />
+        </div>
       )}
 
-      {/* SideNavMenu — flex column, 6px gap between direct children
-          (sections, list section). Items inside a section have their own 6px
-          gap; an item + its expanded children share one wrapper so gap applies
-          only between distinct items. */}
-      <div style={{ display: "flex", flexDirection: "column", flex: 1, gap: L.menuGap,
+      {/* SideNavMenu — the ONLY scroll container. flex:1 + minHeight:0 lets it shrink
+          below its content height so it scrolls (the pinned header never moves). 6px gap
+          between direct children; hover-reveal scrollbar via .pds-sidenav-scroll. */}
+      <div className="pds-sidenav-scroll" style={{ display: "flex", flexDirection: "column",
+        flex: 1, minHeight: 0, overflowY: "auto", gap: L.menuGap,
         paddingTop: L.menuPadT || 8 }}>
 
         {/* Sectioned render — when `sections` prop is provided */}
