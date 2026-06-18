@@ -1,6 +1,6 @@
 {
   "name": "@helloimjolopez-pathway/pathway-tokens",
-  "version": "5.1.6",
+  "version": "5.1.7",
   "description": "Pathway Design System tokens — CSS custom properties, JS export, and DTCG JSON",
   "license": "UNLICENSED",
   "type": "module",
