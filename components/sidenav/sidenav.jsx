@@ -10,6 +10,7 @@
  */
 
 import React, { useState, useRef } from "react";
+import { Scrollable } from "../scrollbar/scrollbar.jsx";
 import ReactDOM from "react-dom";
 import { t } from "../../tokens/resolve-tokens.js";
 
@@ -486,22 +487,6 @@ export function SideNavListSection({ label, items, activeId, onNavigate }) {
   );
 }
 
-// Hover-reveal scrollbar for the nav's scroll container. Scrollbars can't be set via
-// inline React styles, so inject one scoped <style> (guarded). Scoped to
-// .pds-sidenav-scroll so it never touches any other scrollbar on the page.
-if (typeof document !== "undefined" && !document.getElementById("pds-sidenav-scrollbar")) {
-  const s = document.createElement("style");
-  s.id = "pds-sidenav-scrollbar";
-  s.textContent =
-    ".pds-sidenav-scroll::-webkit-scrollbar{width:4px}" +
-    ".pds-sidenav-scroll::-webkit-scrollbar-track{background:transparent}" +
-    ".pds-sidenav-scroll::-webkit-scrollbar-thumb{background:transparent;border-radius:4px;transition:background .2s}" +
-    ".pds-sidenav-scroll:hover::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.18)}" +
-    ".pds-sidenav-scroll{scrollbar-width:thin;scrollbar-color:transparent transparent}" +
-    ".pds-sidenav-scroll:hover{scrollbar-color:rgba(0,0,0,0.18) transparent}";
-  document.head.appendChild(s);
-}
-
 export function SideNav({
   items,
   sections,
@@ -620,12 +605,15 @@ export function SideNav({
         </div>
       )}
 
-      {/* SideNavMenu — the ONLY scroll container. flex:1 + minHeight:0 lets it shrink
-          below its content height so it scrolls (the pinned header never moves). 6px gap
-          between direct children; hover-reveal scrollbar via .pds-sidenav-scroll. */}
-      <div className="pds-sidenav-scroll" style={{ display: "flex", flexDirection: "column",
-        flex: 1, minHeight: 0, overflowY: "auto", gap: L.menuGap,
-        paddingTop: L.menuPadT || 8 }}>
+      {/* SideNavMenu — the ONLY scroll region, wrapped in <Scrollable> so the custom
+          overlay scrollbar (identical on every OS, never affects layout/padding) handles
+          overflow. flex:1 + minHeight:0 lets it shrink below content height; the pinned
+          header above never moves. Applies in BOTH expanded (240px) and collapsed (72px) states. */}
+      <Scrollable
+        style={{ flex: 1, minHeight: 0 }}
+        viewStyle={{ display: "flex", flexDirection: "column", gap: L.menuGap,
+          paddingTop: L.menuPadT || 8 }}
+      >
 
         {/* Sectioned render — when `sections` prop is provided */}
         {sections && sections.map(({ section, items: secItems }, sIdx) => (
@@ -666,7 +654,7 @@ export function SideNav({
 
         {/* Bottom spacer — fills remaining height */}
         <div style={{ flex: 1, minHeight: L.menuPadB }} />
-      </div>
+      </Scrollable>
     </nav>
   );
 }

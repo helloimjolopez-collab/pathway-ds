@@ -660,11 +660,9 @@ The nav container uses `overflow-y: auto`. When the nav item list grows long eno
 - The scrollbar (4 px) overlaps the right edge of the 72 px container but does not affect icon centering — icons are centred within their 48 × 48 px hit area with 12 px padding each side.
 - The NavHeader (expand icon in this state) is also sticky at the top and always visible.
 
-### Custom scrollbar implementation
+### Scrollbar implementation
 
-The scrollbar thumb is **transparent at rest** and only becomes visible when the user hovers over a scrollable area. This keeps the nav visually clean when the user is not actively scrolling.
-
-Apply these CSS rules **scoped to the nav's scroll container** (class `pds-sidenav-scroll`) — not globally:
+**The SideNav menu is wrapped in the system `<Scrollable>` overlay scrollbar** (`components/scrollbar/scrollbar.jsx` — see `docs/scrollbar-spec.md`). The native scrollbar is hidden and a slim **semitransparent** thumb is drawn instead: identical on macOS/Windows/iOS/Android, **overlay** (never takes layout width or shifts the 240px / 72px sizing), revealed on hover/scroll. It applies in BOTH the expanded (240px) and collapsed (72px rail) states. This supersedes the earlier per-element `::-webkit-scrollbar` CSS; the rules below are kept only as background reference:
 
 ```css
 /* Webkit (Chrome, Safari, Edge) */

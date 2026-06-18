@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pathway — Scrollable (overlay scrollbar)</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #f4f5f7; font-family: 'Red Hat Text', sans-serif; color: #252525; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 40px 24px 80px; }
+  .title { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .sub   { font-size: 13px; color: #7880a0; margin-bottom: 32px; }
+  .label { font-size: 10px; font-weight: 700; color: #7880a0; letter-spacing: .08em;
+           text-transform: uppercase; margin: 0 0 8px; }
+  .row { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+  .frame { width: 320px; height: 300px; border: 1px solid #e4e4e4; border-radius: 12px;
+           overflow: hidden; background: #fff; }
+  .item { padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+  /* The one rule the overlay scrollbar relies on — hide the native bar on the scroll view. */
+  .pds-scrollable__view { scrollbar-width: none; -ms-overflow-style: none; }
+  .pds-scrollable__view::-webkit-scrollbar { width: 0; height: 0; display: none; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+const { useRef, useState, useEffect, useCallback } = React;
+
+const SCROLL = { thumbWidth:6, thumbRadius:6, thumbMin:28, gutter:2,
+  thumbRest:"rgba(10,18,35,0.22)", thumbHover:"rgba(10,18,35,0.38)", fadeMs:240, idleHideMs:900 };
+
+function Scrollable({ children, style = {}, viewStyle = {} }) {
+  const viewRef = useRef(null), dragRef = useRef(null), idleRef = useRef(null);
+  const [thumb, setThumb] = useState({ h:0, top:0, show:false });
+  const [active, setActive] = useState(false);
+  const [hot, setHot] = useState(false);
+  const recompute = useCallback(() => {
+    const el = viewRef.current; if (!el) return;
+    const { scrollHeight, clientHeight, scrollTop } = el;
+    if (scrollHeight <= clientHeight + 1) { setThumb(t => t.show ? {...t, show:false} : t); return; }
+    const h = Math.max(SCROLL.thumbMin, (clientHeight/scrollHeight)*clientHeight);
+    const top = (scrollTop/(scrollHeight-clientHeight))*(clientHeight-h);
+    setThumb({ h, top, show:true });
+  }, []);
+  useEffect(() => {
+    recompute();
+    const el = viewRef.current; if (!el) return;
+    const ro = new ResizeObserver(recompute); ro.observe(el);
+    Array.from(el.children).forEach(c => ro.observe(c));
+    return () => ro.disconnect();
+  }, [children, recompute]);
+  const wake = () => { setActive(true); clearTimeout(idleRef.current);
+    idleRef.current = setTimeout(() => { if (!dragRef.current) setActive(false); }, SCROLL.idleHideMs); };
+  const onThumbDown = (e) => {
+    e.preventDefault(); const el = viewRef.current; if (!el) return;
+    dragRef.current = { y:e.clientY, top:el.scrollTop }; setHot(true); setActive(true);
+    const move = (ev) => { const { scrollHeight, clientHeight } = el;
+      const h = Math.max(SCROLL.thumbMin, (clientHeight/scrollHeight)*clientHeight);
+      const ratio = (scrollHeight-clientHeight)/(clientHeight-h);
+      el.scrollTop = dragRef.current.top + (ev.clientY - dragRef.current.y)*ratio; };
+    const up = () => { dragRef.current = null; setHot(false);
+      document.removeEventListener("mousemove", move); document.removeEventListener("mouseup", up); wake(); };
+    document.addEventListener("mousemove", move); document.addEventListener("mouseup", up);
+  };
+  return (
+    <div className="pds-scrollable" style={{ position:"relative", minHeight:0, ...style }}
+      onMouseEnter={() => setActive(true)} onMouseLeave={() => { if (!dragRef.current) setActive(false); }}>
+      <div ref={viewRef} className="pds-scrollable__view" onScroll={() => { recompute(); wake(); }}
+        style={{ height:"100%", overflowY:"auto", overflowX:"hidden", ...viewStyle }}>
+        {children}
+      </div>
+      {thumb.show && (
+        <div aria-hidden="true" onMouseDown={onThumbDown}
+          onMouseEnter={() => setHot(true)} onMouseLeave={() => setHot(false)}
+          style={{ position:"absolute", top:thumb.top, right:SCROLL.gutter, width:SCROLL.thumbWidth,
+            height:thumb.h, borderRadius:SCROLL.thumbRadius, background: hot?SCROLL.thumbHover:SCROLL.thumbRest,
+            opacity: active?1:0, transition:`opacity ${SCROLL.fadeMs}ms ease, background ${SCROLL.fadeMs}ms ease`,
+            pointerEvents: active?"auto":"none", zIndex:5 }} />
+      )}
+    </div>
+  );
+}
+
+const Rows = ({ n }) => Array.from({ length:n }, (_, i) =>
+  <div className="item" key={i}>Row {i+1} — scroll to see the overlay thumb</div>);
+
+function App() {
+  return (
+    <div className="wrap">
+      <div className="title">Scrollable — overlay scrollbar</div>
+      <div className="sub">Hidden native bar + custom semitransparent thumb. Identical on macOS, Windows, iOS, Android. Overlay — never takes layout width.</div>
+      <div className="row">
+        <div>
+          <p className="label">Overflowing (hover / scroll to reveal)</p>
+          <div className="frame"><Scrollable style={{ height:"100%" }}><Rows n={40} /></Scrollable></div>
+        </div>
+        <div>
+          <p className="label">Not overflowing — same padding, no shift</p>
+          <div className="frame"><Scrollable style={{ height:"100%" }}><Rows n={4} /></Scrollable></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
