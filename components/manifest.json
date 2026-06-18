@@ -122,6 +122,25 @@
         "icon.action.secondary-inverse.base"
       ]
     },
+    "scrollbar": {
+      "displayName": "Scrollable",
+      "description": "System-wide overlay scrollbar. Hides the native OS scrollbar and renders one slim semitransparent thumb so scrolling is identical on macOS/Windows/iOS/Android and never takes layout space or shifts padding. Wrap any internal scroll region in <Scrollable>. First consumer: SideNav.",
+      "module": "components/scrollbar/scrollbar.jsx",
+      "exports": ["Scrollable", "SCROLL"],
+      "spec": "docs/scrollbar-spec.md",
+      "demo": "components/scrollbar/scrollbar.html",
+      "stories": "src/stories/Library/Scrollbar/Scrollbar.stories.jsx",
+      "props": {
+        "Scrollable": {
+          "children": { "type": "node", "description": "Scrollable content" },
+          "style": { "type": "object", "description": "Wrapper style (positioning context). Use flex:1; minHeight:0 in a flex column." },
+          "viewStyle": { "type": "object", "description": "Inner scroll-view style (content flex layout, gap, padding)." },
+          "className": { "type": "string", "description": "Extra class on the wrapper" },
+          "viewClassName": { "type": "string", "description": "Extra class on the inner scroll view" }
+        }
+      },
+      "tokens": []
+    },
     "checkbox": {
       "displayName": "Checkbox",
       "description": "Multi-select selection control. Three states: unchecked, checked, indeterminate. Supports error, highlight, and secondary indeterminate variants. Two sizes. 44\u00d744px touch target always.",

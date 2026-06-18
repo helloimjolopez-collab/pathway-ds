@@ -30,6 +30,8 @@ export const ALL_ITEM_IDS = [
   "reports",
   "modify", "chart_of_accounts", "journal_entries",
   "help",
+  "giving", "events", "groups", "communications", "check_in",
+  "forms", "resources", "settings", "integrations", "billing",
 ];
 
 // ─── NAV data (matching sidenav.html, Figma node 40004790:47259) ─────────────
@@ -71,6 +73,20 @@ export const NAV_SECTIONS = [
   { section: "Tools", items: [
     NAV_ITEMS[5], // Modify
     NAV_ITEMS[6], // Help
+  ]},
+  // Extra items so the list overflows — demonstrates the overlay scrollbar in BOTH the
+  // expanded (240px) and collapsed (72px rail) states. Icons reused from the set above.
+  { section: "Modules", items: [
+    { id: "giving",         label: "Giving",         icon: Icons.reports },
+    { id: "events",         label: "Events",         icon: Icons.view },
+    { id: "groups",         label: "Groups",         icon: Icons.apps },
+    { id: "communications", label: "Communications", icon: Icons.add_doc },
+    { id: "check_in",       label: "Check-In",       icon: Icons.tune },
+    { id: "forms",          label: "Forms",          icon: Icons.table_edit },
+    { id: "resources",      label: "Resources",      icon: Icons.reports },
+    { id: "settings",       label: "Settings",       icon: Icons.tune },
+    { id: "integrations",   label: "Integrations",   icon: Icons.apps },
+    { id: "billing",        label: "Billing",        icon: Icons.reports },
   ]},
 ];
 
