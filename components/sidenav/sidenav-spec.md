@@ -651,8 +651,8 @@ The nav container uses `overflow-y: auto`. When the nav item list grows long eno
 
 - A vertical scrollbar appears inside the 240 px nav container.
 - All nav items (including any `SideNavListSection` groups) remain accessible by scrolling.
-- The **NavHeader (CollapseButton) is positioned at the top of the nav**, not the bottom. It is fully visible at all scroll positions and does not scroll with the item list. Implementation: `position: sticky; top: 0; z-index: 2` within the flex column.
-- The scrollable item list sits below the NavHeader in a `flex: 1; overflow-y: auto` inner container.
+- The **NavHeader (CollapseButton) is positioned at the top of the nav**, not the bottom. It is fully visible at all scroll positions and does not scroll with the item list. Implementation: the NavHeader is a flex child with `flex-shrink: 0` placed OUTSIDE the scroll container; the item list is a separate `flex: 1; min-height: 0; overflow-y: auto` container — so the header is structurally pinned and never scrolls (no `sticky` needed).
+- The scrollable item list sits below the NavHeader in a `flex: 1; min-height: 0; overflow-y: auto` inner container (`min-height: 0` lets the flex child shrink below content height so it can scroll).
 
 ### Collapsed sidebar
 
@@ -664,27 +664,27 @@ The nav container uses `overflow-y: auto`. When the nav item list grows long eno
 
 The scrollbar thumb is **transparent at rest** and only becomes visible when the user hovers over a scrollable area. This keeps the nav visually clean when the user is not actively scrolling.
 
-Apply these CSS rules globally (they cascade to all scrollable elements in the nav):
+Apply these CSS rules **scoped to the nav's scroll container** (class `pds-sidenav-scroll`) — not globally:
 
 ```css
 /* Webkit (Chrome, Safari, Edge) */
-::-webkit-scrollbar        { width: 4px; }
-::-webkit-scrollbar-track  { background: transparent; }
-::-webkit-scrollbar-thumb  {
+.pds-sidenav-scroll::-webkit-scrollbar        { width: 4px; }
+.pds-sidenav-scroll::-webkit-scrollbar-track  { background: transparent; }
+.pds-sidenav-scroll::-webkit-scrollbar-thumb  {
   background: transparent;       /* hidden at rest */
   border-radius: 4px;
   transition: background 0.2s;
 }
-*:hover::-webkit-scrollbar-thumb {
+.pds-sidenav-scroll:hover::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,0.18);  /* visible on hover */
 }
 
 /* Firefox */
-* {
+.pds-sidenav-scroll {
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;   /* hidden at rest */
 }
-*:hover {
+.pds-sidenav-scroll:hover {
   scrollbar-color: rgba(0,0,0,0.18) transparent; /* visible on hover */
 }
 ```
