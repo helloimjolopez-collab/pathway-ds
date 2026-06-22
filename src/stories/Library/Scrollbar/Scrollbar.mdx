@@ -70,20 +70,22 @@ The thumb is positioned `2px` from the **right edge of the `<Scrollable>` wrappe
 
 ## Tokens & constants
 
-No semantic token maps to a scrollbar thumb, so these are documented implementation constants, exported as `SCROLL` from `scrollbar.jsx`:
+Every colour and unit resolves through a Pathway token (exported as `SCROLL` from `scrollbar.jsx`) — no hardcoded hex/px. Units use the px-valued `--primitive-unit-unit-*` tokens; colour uses the `brand-900` primitive at low alpha (see gap note).
 
-| Constant | Value | Meaning |
-|---|---|---|
-| `thumbWidth` | 6 px | thumb thickness |
-| `thumbRadius` | 6 px | fully rounded |
-| `thumbMin` | 28 px | minimum thumb length |
-| `gutter` | 2 px | inset from the right edge |
-| `thumbRest` | `rgba(10,18,35,0.10)` | resting tint (barely there) |
-| `thumbHover` | `rgba(10,18,35,0.18)` | hover / drag tint |
-| `thumbBlur` | `blur(8px) saturate(180%)` | backdrop-filter — refracts content beneath (liquid glass) |
-| `thumbEdge` | `inset 0 0 0 0.5px rgba(255,255,255,0.35)` | hairline glass edge |
-| `fadeMs` | 240 ms | reveal / hide + colour transition |
-| `idleHideMs` | 900 ms | hide delay after scrolling stops |
+| Constant | Token | Resolved | Meaning |
+|---|---|---|---|
+| `thumbWidth` | `--primitive-unit-unit-6` | 6 px | thumb thickness |
+| `thumbRadius` | `--primitive-unit-unit-6` | 6 px | fully rounded |
+| `thumbMin` | `--primitive-unit-unit-28` | 28 px | min length (numeric in JS) |
+| `gutter` | `--primitive-unit-unit-2` | 2 px | inset from the right edge |
+| `thumbRest` | `--primitive-color-brand-900-8` | `rgba(10,18,35,0.08)` | resting tint |
+| `thumbHover` | `--primitive-color-brand-900-16` | `rgba(10,18,35,0.16)` | hover / drag tint |
+| `thumbEdge` | `--primitive-color-warm-neutral-0` @ 35% | white, 35% | hairline glass edge (`color-mix`) |
+| `thumbBlur` | — (effect) | `blur(8px) saturate(180%)` | backdrop-filter (liquid glass) |
+| `fadeMs` | — | 240 ms | reveal / hide transition |
+| `idleHideMs` | — | 900 ms | hide delay after scrolling stops |
+
+> **Token gap:** no *semantic* token exists for a translucent scrollbar thumb (the only neutral-translucent semantic, `scrim`, is `#111` at 30%+ — too opaque). The thumb uses the `brand-900` primitive at low alpha as a documented fallback. Recommended: add a faint neutral-overlay semantic token in Figma, then re-bind after a tokens-sync.
 
 ---
 

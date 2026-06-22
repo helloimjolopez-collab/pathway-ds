@@ -23,20 +23,24 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 
 // ─── TOKENS ──────────────────────────────────────────────────────────────────
+// All colour + unit values resolve through Pathway tokens (tokens.css), never hardcoded
+// hex/px. There is no SEMANTIC token for a scrollbar thumb yet, so the colour uses the
+// `brand-900` primitive at low alpha as a documented fallback (same pattern the Search spec
+// uses for its disabled state) — flagged as a token gap in scrollbar-spec.md §tokens. Units
+// use the `--primitive-unit-unit-*` tokens (already px-valued).
 export const SCROLL = {
-  thumbWidth: 6,                       // px — slim
-  thumbRadius: 6,                      // fully rounded ends
-  thumbMin: 28,                        // px — minimum thumb length
-  gutter: 2,                           // px — inset from the right edge
-  // Liquid-glass thumb: barely-there tint + a backdrop blur so it REFRACTS the content
-  // behind it rather than sitting opaquely on top. No token maps to a scrollbar thumb, so
-  // these are documented implementation constants (see scrollbar-spec.md §tokens).
-  thumbRest:   "rgba(10, 18, 35, 0.10)",
-  thumbHover:  "rgba(10, 18, 35, 0.18)",
-  thumbBlur:   "blur(8px) saturate(180%)",                  // the "glass" — refracts content beneath
-  thumbEdge:   "inset 0 0 0 0.5px rgba(255,255,255,0.35)",  // hairline highlight = glass edge
+  thumbWidth:  "var(--primitive-unit-unit-6)",   // 6px — slim
+  thumbRadius: "var(--primitive-unit-unit-6)",   // fully rounded on a 6px-wide pill
+  thumbMin:    28,                                // = --primitive-unit-unit-28; numeric (used in JS layout math)
+  gutter:      "var(--primitive-unit-unit-2)",   // 2px — inset from the right edge
+  // Liquid-glass thumb: barely-there tint + a backdrop blur so it REFRACTS the content beneath.
+  thumbRest:   "var(--primitive-color-brand-900-8)",   // rgba(10,18,35,0.08) — rest
+  thumbHover:  "var(--primitive-color-brand-900-16)",  // rgba(10,18,35,0.16) — hover/drag
+  thumbBlur:   "blur(8px) saturate(180%)",             // the "glass" — refracts content beneath
+  // Hairline glass edge: white token at 35% via color-mix (no white-alpha token exists).
+  thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--primitive-color-warm-neutral-0) 35%, transparent)",
   fadeMs: 240,
-  idleHideMs: 900,                     // hide the thumb this long after scrolling stops
+  idleHideMs: 900,                                // hide the thumb this long after scrolling stops
 };
 
 // Hide the native scrollbar once, globally, on the opt-in class only. Scrollbars cannot be

@@ -5,7 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pathway — Scrollable (overlay scrollbar)</title>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Proven CDN setup (matches sidenav.html): cdnjs React 18 + babel-standalone 7.23.2.
+     The unpkg @babel/standalone "latest" build does not reliably auto-run text/babel here. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <style>
+  /* Only the design tokens this component consumes (mirrors src/tokens/tokens.css).
+     The scrollbar thumb colour/units resolve through these vars — no hardcoded hex/px. */
+  :root {
+    --primitive-color-brand-900-8:  rgba(10, 18, 35, 0.08);  /* thumb — rest */
+    --primitive-color-brand-900-16: rgba(10, 18, 35, 0.16);  /* thumb — hover/drag */
+    --primitive-color-warm-neutral-0: #fefefd;               /* white — glass edge highlight */
+    --primitive-unit-unit-2:  2px;   /* gutter */
+    --primitive-unit-unit-6:  6px;   /* thumb width + radius */
+    --primitive-unit-unit-28: 28px;  /* thumb min length */
+  }
   body { margin: 0; background: #f4f5f7; font-family: 'Red Hat Text', sans-serif; color: #252525; }
   .wrap { max-width: 920px; margin: 0 auto; padding: 40px 24px 80px; }
   .title { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
@@ -23,16 +38,22 @@
 </head>
 <body>
 <div id="root"></div>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script type="text/babel">
+<script type="text/babel" data-presets="react">
 const { useRef, useState, useEffect, useCallback } = React;
 
-const SCROLL = { thumbWidth:6, thumbRadius:6, thumbMin:28, gutter:2,
-  thumbRest:"rgba(10,18,35,0.10)", thumbHover:"rgba(10,18,35,0.18)",
-  thumbBlur:"blur(8px) saturate(180%)", thumbEdge:"inset 0 0 0 0.5px rgba(255,255,255,0.35)",
-  fadeMs:240, idleHideMs:900 };
+// Tokens (resolve through the CSS variables above). thumbMin is consumed in JS layout
+// math so it stays a number; it equals --primitive-unit-unit-28 (28px).
+const SCROLL = {
+  thumbWidth:  "var(--primitive-unit-unit-6)",
+  thumbRadius: "var(--primitive-unit-unit-6)",
+  gutter:      "var(--primitive-unit-unit-2)",
+  thumbMin:    28,
+  thumbRest:   "var(--primitive-color-brand-900-8)",
+  thumbHover:  "var(--primitive-color-brand-900-16)",
+  thumbBlur:   "blur(8px) saturate(180%)",
+  thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--primitive-color-warm-neutral-0) 35%, transparent)",
+  fadeMs: 240, idleHideMs: 900,
+};
 
 function Scrollable({ children, style = {}, viewStyle = {} }) {
   const viewRef = useRef(null), dragRef = useRef(null), idleRef = useRef(null);
@@ -94,7 +115,7 @@ function App() {
   return (
     <div className="wrap">
       <div className="title">Scrollable — overlay scrollbar</div>
-      <div className="sub">Hidden native bar + custom semitransparent thumb. Identical on macOS, Windows, iOS, Android. Overlay — never takes layout width.</div>
+      <div className="sub">Hidden native bar + liquid-glass thumb (tokenised colour + units). Identical on macOS, Windows, iOS, Android. Overlay — never takes layout width.</div>
       <div className="row">
         <div>
           <p className="label">Overflowing (hover / scroll to reveal)</p>
