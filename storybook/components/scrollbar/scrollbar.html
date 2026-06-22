@@ -14,12 +14,13 @@
   /* Only the design tokens this component consumes (mirrors src/tokens/tokens.css).
      The scrollbar thumb colour/units resolve through these vars — no hardcoded hex/px. */
   :root {
-    --primitive-color-brand-900-8:  rgba(10, 18, 35, 0.08);  /* thumb — rest */
-    --primitive-color-brand-900-16: rgba(10, 18, 35, 0.16);  /* thumb — hover/drag */
-    --primitive-color-warm-neutral-0: #fefefd;               /* white — glass edge highlight */
-    --primitive-unit-unit-2:  2px;   /* gutter */
-    --primitive-unit-unit-6:  6px;   /* thumb width + radius */
-    --primitive-unit-unit-28: 28px;  /* thumb min length */
+    /* Semantic tokens this component consumes (mirrors src/tokens/tokens.css). */
+    --semantic-color-light-mode-fill-static-neutral-opacity-16: rgba(212, 207, 200, 0.16); /* thumb — rest */
+    --semantic-color-light-mode-fill-static-neutral-opacity-30: rgba(212, 207, 200, 0.30); /* thumb — hover/drag */
+    --semantic-color-light-mode-fill-static-neutral-light: #fefefd;                        /* white — glass edge */
+    --semantic-layout-units-padding-xtight:   6px;   /* thumb width */
+    --semantic-layout-units-padding-xxxtight: 2px;   /* gutter */
+    --semantic-layout-units-cornerradius-full: 64px; /* fully-rounded pill */
   }
   body { margin: 0; background: #f4f5f7; font-family: 'Red Hat Text', sans-serif; color: #252525; }
   .wrap { max-width: 920px; margin: 0 auto; padding: 40px 24px 80px; }
@@ -44,14 +45,14 @@ const { useRef, useState, useEffect, useCallback } = React;
 // Tokens (resolve through the CSS variables above). thumbMin is consumed in JS layout
 // math so it stays a number; it equals --primitive-unit-unit-28 (28px).
 const SCROLL = {
-  thumbWidth:  "var(--primitive-unit-unit-6)",
-  thumbRadius: "var(--primitive-unit-unit-6)",
-  gutter:      "var(--primitive-unit-unit-2)",
+  thumbWidth:  "var(--semantic-layout-units-padding-xtight)",
+  thumbRadius: "var(--semantic-layout-units-cornerradius-full)",
+  gutter:      "var(--semantic-layout-units-padding-xxxtight)",
   thumbMin:    28,
-  thumbRest:   "var(--primitive-color-brand-900-8)",
-  thumbHover:  "var(--primitive-color-brand-900-16)",
+  thumbRest:   "var(--semantic-color-light-mode-fill-static-neutral-opacity-16)",
+  thumbHover:  "var(--semantic-color-light-mode-fill-static-neutral-opacity-30)",
   thumbBlur:   "blur(8px) saturate(180%)",
-  thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--primitive-color-warm-neutral-0) 35%, transparent)",
+  thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-light-mode-fill-static-neutral-light) 35%, transparent)",
   fadeMs: 240, idleHideMs: 900,
 };
 
