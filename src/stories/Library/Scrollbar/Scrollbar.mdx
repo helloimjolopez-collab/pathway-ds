@@ -78,8 +78,10 @@ No semantic token maps to a scrollbar thumb, so these are documented implementat
 | `thumbRadius` | 6 px | fully rounded |
 | `thumbMin` | 28 px | minimum thumb length |
 | `gutter` | 2 px | inset from the right edge |
-| `thumbRest` | `rgba(10,18,35,0.22)` | resting colour |
-| `thumbHover` | `rgba(10,18,35,0.38)` | hover / drag colour |
+| `thumbRest` | `rgba(10,18,35,0.10)` | resting tint (barely there) |
+| `thumbHover` | `rgba(10,18,35,0.18)` | hover / drag tint |
+| `thumbBlur` | `blur(8px) saturate(180%)` | backdrop-filter — refracts content beneath (liquid glass) |
+| `thumbEdge` | `inset 0 0 0 0.5px rgba(255,255,255,0.35)` | hairline glass edge |
 | `fadeMs` | 240 ms | reveal / hide + colour transition |
 | `idleHideMs` | 900 ms | hide delay after scrolling stops |
 

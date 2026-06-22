@@ -30,7 +30,7 @@ So Pathway **hides the native scrollbar entirely** and draws its own thumb. That
 
 - **Overlay, never layout-affecting.** The thumb is absolutely positioned over the content's right edge. It takes **zero** layout width — it never pushes content, changes padding, or resizes the container, in any state or at any breakpoint.
 - **Always hugs the right edge.** The thumb sits `gutter` (2 px) from the right edge of the `<Scrollable>` wrapper, in every state and at every breakpoint, on any scroll surface — not only the SideNav. For it to land on the *visible* edge, the wrapper must reach that edge (see §4 implementation rules).
-- **Semitransparent + quiet.** Thumb is `rgba(10,18,35,0.22)` at rest, `rgba(10,18,35,0.38)` while hovered/dragged. No track, no arrows, no corner boxes — just a rounded pill.
+- **Liquid glass.** The thumb is barely tinted (`rgba(10,18,35,0.10)` at rest, `rgba(10,18,35,0.18)` while hovered/dragged) and carries a `backdrop-filter: blur(8px) saturate(180%)` so it **refracts** the content beneath it rather than sitting opaquely on top, plus a `0.5px` white inner highlight for the glass edge. No track, no arrows, no corner boxes — just a rounded glass pill.
 - **Reveal on activity.** Hidden (opacity 0) when idle; fades in (240 ms) on hover or while scrolling; fades out ~900 ms after scrolling stops. On touch devices it appears while scrolling.
 - **Draggable** with the pointer; also responds to wheel, keyboard, and touch scroll on the underlying content (the content scrolls natively — only the *visual* bar is custom).
 - **Auto-sizing.** Thumb length = viewport/content ratio (min 28 px); recomputes on content and container resize (`ResizeObserver`).
@@ -45,8 +45,10 @@ No semantic token maps to a scrollbar thumb, so these are documented implementat
 | `thumbRadius` | 6 px | fully rounded |
 | `thumbMin` | 28 px | minimum thumb length |
 | `gutter` | 2 px | inset from the right edge |
-| `thumbRest` | `rgba(10,18,35,0.22)` | resting colour (semitransparent) |
-| `thumbHover` | `rgba(10,18,35,0.38)` | hover/drag colour |
+| `thumbRest` | `rgba(10,18,35,0.10)` | resting tint (barely there) |
+| `thumbHover` | `rgba(10,18,35,0.18)` | hover/drag tint |
+| `thumbBlur` | `blur(8px) saturate(180%)` | backdrop-filter — the "glass" that refracts content beneath |
+| `thumbEdge` | `inset 0 0 0 0.5px rgba(255,255,255,0.35)` | hairline highlight = glass edge |
 | `fadeMs` | 240 ms | reveal/hide + colour transition |
 | `idleHideMs` | 900 ms | hide delay after scrolling stops |
 

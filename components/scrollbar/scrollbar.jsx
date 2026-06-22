@@ -28,10 +28,13 @@ export const SCROLL = {
   thumbRadius: 6,                      // fully rounded ends
   thumbMin: 28,                        // px — minimum thumb length
   gutter: 2,                           // px — inset from the right edge
-  // Semitransparent neutral; no token maps to a scrollbar thumb, so this is a documented
-  // implementation constant (see scrollbar-spec.md §tokens).
-  thumbRest:   "rgba(10, 18, 35, 0.22)",
-  thumbHover:  "rgba(10, 18, 35, 0.38)",
+  // Liquid-glass thumb: barely-there tint + a backdrop blur so it REFRACTS the content
+  // behind it rather than sitting opaquely on top. No token maps to a scrollbar thumb, so
+  // these are documented implementation constants (see scrollbar-spec.md §tokens).
+  thumbRest:   "rgba(10, 18, 35, 0.10)",
+  thumbHover:  "rgba(10, 18, 35, 0.18)",
+  thumbBlur:   "blur(8px) saturate(180%)",                  // the "glass" — refracts content beneath
+  thumbEdge:   "inset 0 0 0 0.5px rgba(255,255,255,0.35)",  // hairline highlight = glass edge
   fadeMs: 240,
   idleHideMs: 900,                     // hide the thumb this long after scrolling stops
 };
@@ -137,6 +140,9 @@ export function Scrollable({ children, className = "", style = {}, viewClassName
             height: thumb.h,
             borderRadius: SCROLL.thumbRadius,
             background: hot ? SCROLL.thumbHover : SCROLL.thumbRest,
+            backdropFilter: SCROLL.thumbBlur,            // liquid glass — refracts content behind
+            WebkitBackdropFilter: SCROLL.thumbBlur,
+            boxShadow: SCROLL.thumbEdge,                 // hairline glass edge
             opacity: active ? 1 : 0,
             transition: `opacity ${SCROLL.fadeMs}ms ease, background ${SCROLL.fadeMs}ms ease`,
             pointerEvents: active ? "auto" : "none",
