@@ -610,9 +610,17 @@ export function SideNav({
           overflow. flex:1 + minHeight:0 lets it shrink below content height; the pinned
           header above never moves. Applies in BOTH expanded (240px) and collapsed (72px) states. */}
       <Scrollable
-        style={{ flex: 1, minHeight: 0 }}
+        style={{ flex: 1, minHeight: 0,
+          // Bleed the scroll region out to the nav's TRUE right edge so the overlay thumb
+          // hugs the edge in BOTH states (the nav's border-box paddingRight would otherwise
+          // inset the thumb by 16px expanded / 12px on the 72px rail — badly off on the rail).
+          marginRight: collapsed ? -L.navColPadH : -L.navPadH }}
         viewStyle={{ display: "flex", flexDirection: "column", gap: L.menuGap,
-          paddingTop: L.menuPadT || 8 }}
+          paddingTop: L.menuPadT || 8,
+          // Re-add the content's right inset INSIDE the scroll view so items keep their
+          // position; only the thumb moves to the edge. (Spec rule: padding on viewStyle,
+          // never on the wrapper — keeps the thumb flush on any scroll surface.)
+          paddingRight: collapsed ? L.navColPadH : L.navPadH }}
       >
 
         {/* Sectioned render — when `sections` prop is provided */}

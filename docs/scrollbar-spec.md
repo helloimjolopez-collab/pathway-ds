@@ -29,6 +29,7 @@ So Pathway **hides the native scrollbar entirely** and draws its own thumb. That
 ## 2. Behaviour
 
 - **Overlay, never layout-affecting.** The thumb is absolutely positioned over the content's right edge. It takes **zero** layout width — it never pushes content, changes padding, or resizes the container, in any state or at any breakpoint.
+- **Always hugs the right edge.** The thumb sits `gutter` (2 px) from the right edge of the `<Scrollable>` wrapper, in every state and at every breakpoint, on any scroll surface — not only the SideNav. For it to land on the *visible* edge, the wrapper must reach that edge (see §4 implementation rules).
 - **Semitransparent + quiet.** Thumb is `rgba(10,18,35,0.22)` at rest, `rgba(10,18,35,0.38)` while hovered/dragged. No track, no arrows, no corner boxes — just a rounded pill.
 - **Reveal on activity.** Hidden (opacity 0) when idle; fades in (240 ms) on hover or while scrolling; fades out ~900 ms after scrolling stops. On touch devices it appears while scrolling.
 - **Draggable** with the pointer; also responds to wheel, keyboard, and touch scroll on the underlying content (the content scrolls natively — only the *visual* bar is custom).
@@ -70,7 +71,18 @@ import { Scrollable } from "components/scrollbar/scrollbar.jsx";
 **Implementation rules**
 - The component injects one global `<style id="pds-scrollable-base">` that hides the native scrollbar on `.pds-scrollable__view` (scrollbars can't be hidden via inline styles). Scoped to that class — it never touches other scrollbars.
 - The wrapper must be allowed to size to its container (`minHeight:0` in a flex column) so the inner view can overflow and scroll.
-- Put content padding on `viewStyle` (inside the scroll view), not on the wrapper, so the thumb sits at the true content edge.
+- **Put content padding on `viewStyle` (inside the scroll view), never on an outer wrapper**, so the thumb sits at the true edge. If a consumer wraps `<Scrollable>` in a padded container, the thumb floats inward by that padding. The SideNav rail hit exactly this: the nav's 12 px `border-box` right padding pushed the thumb ~14 px in on the 72 px rail. The fix is to bleed the scroll region out to the real edge and re-add the inset inside the view:
+  ```jsx
+  <Scrollable
+    style={{ flex: 1, minHeight: 0, marginRight: -pad }}   // bleed to the true right edge
+    viewStyle={{ paddingRight: pad }}                       // keep content inset inside the view
+  >
+  ```
+  The thumb then hugs the edge while the content keeps its padding — in both expanded and collapsed states.
+
+### Figma
+
+**None — by design.** The scrollbar has no Figma node and never will. It exists *because* native scrollbars cannot be made consistent across platforms; its job is entirely runtime (hide the OS bar, draw an overlay thumb, fade on activity, hug the edge), with no variants or design properties to bind. Its source of truth is this spec plus `components/scrollbar/scrollbar.jsx`. The token-reconciliation flow in `CLAUDE.md §3.4` (which keys off a per-component Figma node) does not apply to this component.
 
 ## 5. Accessibility
 

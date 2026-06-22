@@ -1,0 +1,112 @@
+import { Meta, Title, Canvas, Controls } from "@storybook/blocks";
+import * as Stories from "./Scrollbar.stories.jsx";
+
+<Meta of={Stories} />
+
+<Title />
+
+### Resources
+
+- 🖼️ **[Live HTML demo](https://helloimjolopez-collab.github.io/pathway-ds/components/scrollbar/scrollbar.html)** — standalone React+Babel page
+- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/scrollbar-spec.md)** — `docs/scrollbar-spec.md` (system-wide)
+- 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/scrollbar/scrollbar.jsx)** · **[HTML source](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/scrollbar/scrollbar.html)**
+- 🎨 **Figma** — none. This is a code-only behavioural primitive; a cross-platform overlay scrollbar cannot be expressed as a Figma design (see *Why no Figma node* below).
+
+One overlay scrollbar for the whole design system. Wrap any internal scroll region in `<Scrollable>` and it hides the native OS scrollbar and draws a single slim, semitransparent thumb — so scrolling looks and behaves **identically on macOS, Windows, iOS, and Android**, hugs the right edge, and never takes layout width or shifts padding.
+
+Use it for **every** internal scroll surface in Pathway — the SideNav menu, dropdown and popover panels, dialogs, long lists. Don't fall back to a raw `overflow-y: auto` with native scrollbars: that bar is chunky and space-taking on Windows, thin-overlay on macOS, and unstylable on mobile — three different looks, and on Windows it shifts your content.
+
+---
+
+## Try it
+
+<Canvas of={Stories.Playground} />
+
+<Controls of={Stories.Playground} />
+
+Hover the frame (or scroll it). The slim semitransparent thumb fades in, overlaying the content's right edge, and fades out ~900 ms after you stop. It takes **zero** layout width.
+
+---
+
+## It never shifts layout
+
+<Canvas of={Stories.NoLayoutShift} />
+
+Both frames are exactly the same width and their text starts at the same x. The overlay thumb adds **no** width, so an overflowing list and a non-overflowing one have identical padding and alignment. A native Windows scrollbar would shift the left frame inward by ~15 px; this one doesn't move anything.
+
+---
+
+## Anatomy
+
+```
+div.pds-scrollable                      position: relative   (the positioning context)
+├── div.pds-scrollable__view            overflow-y: auto; native bar hidden
+│   └── {children}                      your tall content (put content padding HERE, via viewStyle)
+└── div[aria-hidden="true"]             the custom thumb — position: absolute; right: 2px
+                                        width 6px · radius 6px · semitransparent · overlay only
+```
+
+The native scrollbar is hidden once, globally, by a single injected rule (`<style id="pds-scrollable-base">`) scoped to `.pds-scrollable__view` — scrollbars can't be hidden via inline React styles, so this is the one stylesheet the component relies on. The underlying content still scrolls natively (wheel, keyboard, touch, drag); only the *visible* bar is ours.
+
+---
+
+## The thumb always hugs the right edge
+
+The thumb is positioned `2px` from the **right edge of the `<Scrollable>` wrapper** — in every state, at every breakpoint, on any consumer. For it to land on the *visible* edge of your scroll surface, the wrapper must reach that edge.
+
+> **IMPLEMENTATION RULE: content padding goes on `viewStyle`, never on the wrapper.**
+> Put right-edge padding *inside* the scroll view (`viewStyle`), not on an outer padded container. If a consumer wraps `<Scrollable>` in a container with right padding, the thumb floats inward by that amount. The SideNav rail showed this: the nav's 12px `border-box` padding pushed the thumb ~14px in on the 72px rail. Fix = bleed the scroll region to the true edge (`marginRight: -pad`) and re-add the inset inside `viewStyle` (`paddingRight: pad`). The thumb then hugs the edge in both the expanded and collapsed states.
+
+---
+
+## Behaviour
+
+- **Overlay, never layout-affecting.** Absolutely positioned over the content's right edge. Zero layout width — never pushes content, changes padding, or resizes the container.
+- **Reveal on activity.** Hidden (opacity 0) when idle; fades in (240 ms) on hover or while scrolling; fades out ~900 ms after scrolling stops. On touch it appears while scrolling.
+- **Draggable**, and the underlying content also responds to wheel / keyboard / touch as normal.
+- **Auto-sizing.** Thumb length = viewport ÷ content ratio (min 28 px); recomputes on content and container resize via `ResizeObserver`.
+
+---
+
+## Tokens & constants
+
+No semantic token maps to a scrollbar thumb, so these are documented implementation constants, exported as `SCROLL` from `scrollbar.jsx`:
+
+| Constant | Value | Meaning |
+|---|---|---|
+| `thumbWidth` | 6 px | thumb thickness |
+| `thumbRadius` | 6 px | fully rounded |
+| `thumbMin` | 28 px | minimum thumb length |
+| `gutter` | 2 px | inset from the right edge |
+| `thumbRest` | `rgba(10,18,35,0.22)` | resting colour |
+| `thumbHover` | `rgba(10,18,35,0.38)` | hover / drag colour |
+| `fadeMs` | 240 ms | reveal / hide + colour transition |
+| `idleHideMs` | 900 ms | hide delay after scrolling stops |
+
+---
+
+## Accessibility
+
+The underlying content scrolls natively, so keyboard scrolling, focus order, and screen-reader behaviour are unchanged. The thumb is decorative (`aria-hidden="true"`) — a visual affordance, not the scroll mechanism. Reduced-motion users still get the bar; only the fade is cosmetic.
+
+---
+
+## Constraints
+
+1. **Never use a raw native scrollbar for an internal scroll region.** Use `<Scrollable>`. Native bars differ per OS and shift content on Windows.
+2. **Content padding belongs on `viewStyle`, never on the wrapper** — see the implementation rule above, or the thumb floats off the edge.
+3. **The wrapper must be allowed to size to its container** (`minHeight: 0` inside a flex column) so the inner view can overflow and scroll.
+4. **The thumb is decorative.** Never make it the only scroll mechanism; native scrolling always works underneath.
+5. **Constants are the contract.** `thumbWidth`, `gutter`, colours, and timings are shared across the system — don't override them per-component.
+
+---
+
+## Why no Figma node
+
+Every other Pathway component has a Figma source of truth. The scrollbar deliberately doesn't. It exists *because* native scrollbars can't be made consistent across platforms — its entire job is runtime behaviour (hide the OS bar, draw an overlay thumb, fade on activity, hug the edge). None of that is a static visual a Figma frame can hold, and there are no variants or design properties to bind. So this component's source of truth is the spec + the `.jsx`, and the token-reconciliation flow that keys off a Figma node simply doesn't apply here.
+
+---
+
+## Full specification
+
+The authoritative spec lives at [`docs/scrollbar-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/scrollbar-spec.md).
