@@ -30,7 +30,9 @@
 const { useRef, useState, useEffect, useCallback } = React;
 
 const SCROLL = { thumbWidth:6, thumbRadius:6, thumbMin:28, gutter:2,
-  thumbRest:"rgba(10,18,35,0.22)", thumbHover:"rgba(10,18,35,0.38)", fadeMs:240, idleHideMs:900 };
+  thumbRest:"rgba(10,18,35,0.10)", thumbHover:"rgba(10,18,35,0.18)",
+  thumbBlur:"blur(8px) saturate(180%)", thumbEdge:"inset 0 0 0 0.5px rgba(255,255,255,0.35)",
+  fadeMs:240, idleHideMs:900 };
 
 function Scrollable({ children, style = {}, viewStyle = {} }) {
   const viewRef = useRef(null), dragRef = useRef(null), idleRef = useRef(null);
@@ -77,6 +79,7 @@ function Scrollable({ children, style = {}, viewStyle = {} }) {
           onMouseEnter={() => setHot(true)} onMouseLeave={() => setHot(false)}
           style={{ position:"absolute", top:thumb.top, right:SCROLL.gutter, width:SCROLL.thumbWidth,
             height:thumb.h, borderRadius:SCROLL.thumbRadius, background: hot?SCROLL.thumbHover:SCROLL.thumbRest,
+            backdropFilter:SCROLL.thumbBlur, WebkitBackdropFilter:SCROLL.thumbBlur, boxShadow:SCROLL.thumbEdge,
             opacity: active?1:0, transition:`opacity ${SCROLL.fadeMs}ms ease, background ${SCROLL.fadeMs}ms ease`,
             pointerEvents: active?"auto":"none", zIndex:5 }} />
       )}
