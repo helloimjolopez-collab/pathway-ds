@@ -23,22 +23,20 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 
 // ─── TOKENS ──────────────────────────────────────────────────────────────────
-// All colour + unit values resolve through Pathway tokens (tokens.css), never hardcoded
-// hex/px. There is no SEMANTIC token for a scrollbar thumb yet, so the colour uses the
-// `brand-900` primitive at low alpha as a documented fallback (same pattern the Search spec
-// uses for its disabled state) — flagged as a token gap in scrollbar-spec.md §tokens. Units
-// use the `--primitive-unit-unit-*` tokens (already px-valued).
+// Every colour + unit resolves through a SEMANTIC Pathway token (tokens.css) — no primitives,
+// no hardcoded hex/px. Thumb colour uses the fill.static.neutral translucent-overlay semantics;
+// geometry uses the semantic layout-unit tokens.
 export const SCROLL = {
-  thumbWidth:  "var(--primitive-unit-unit-6)",   // 6px — slim
-  thumbRadius: "var(--primitive-unit-unit-6)",   // fully rounded on a 6px-wide pill
-  thumbMin:    28,                                // = --primitive-unit-unit-28; numeric (used in JS layout math)
-  gutter:      "var(--primitive-unit-unit-2)",   // 2px — inset from the right edge
-  // Liquid-glass thumb: barely-there tint + a backdrop blur so it REFRACTS the content beneath.
-  thumbRest:   "var(--primitive-color-brand-900-8)",   // rgba(10,18,35,0.08) — rest
-  thumbHover:  "var(--primitive-color-brand-900-16)",  // rgba(10,18,35,0.16) — hover/drag
-  thumbBlur:   "blur(8px) saturate(180%)",             // the "glass" — refracts content beneath
-  // Hairline glass edge: white token at 35% via color-mix (no white-alpha token exists).
-  thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--primitive-color-warm-neutral-0) 35%, transparent)",
+  thumbWidth:  "var(--semantic-layout-units-padding-xtight)",     // 6px
+  thumbRadius: "var(--semantic-layout-units-cornerradius-full)",  // fully-rounded pill
+  thumbMin:    28,                                                // px — numeric (JS layout math; no semantic step between 24 and 36)
+  gutter:      "var(--semantic-layout-units-padding-xxxtight)",   // 2px — inset from the right edge
+  // Liquid-glass thumb: translucent neutral overlay + backdrop blur that refracts content beneath.
+  thumbRest:   "var(--semantic-color-light-mode-fill-static-neutral-opacity-16)",
+  thumbHover:  "var(--semantic-color-light-mode-fill-static-neutral-opacity-30)",
+  thumbBlur:   "blur(8px) saturate(180%)",
+  // Hairline glass edge: semantic white at 35% via color-mix.
+  thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-light-mode-fill-static-neutral-light) 35%, transparent)",
   fadeMs: 240,
   idleHideMs: 900,                                // hide the thumb this long after scrolling stops
 };

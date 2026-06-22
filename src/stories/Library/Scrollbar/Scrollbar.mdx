@@ -70,22 +70,22 @@ The thumb is positioned `2px` from the **right edge of the `<Scrollable>` wrappe
 
 ## Tokens & constants
 
-Every colour and unit resolves through a Pathway token (exported as `SCROLL` from `scrollbar.jsx`) — no hardcoded hex/px. Units use the px-valued `--primitive-unit-unit-*` tokens; colour uses the `brand-900` primitive at low alpha (see gap note).
+Every colour and unit resolves through a **semantic** Pathway token (exported as `SCROLL` from `scrollbar.jsx`) — no primitives, no hardcoded hex/px. Colour uses the `fill.static.neutral` overlay semantics; geometry uses the semantic `layout-units` tokens.
 
-| Constant | Token | Resolved | Meaning |
+| Constant | Semantic token | Resolved | Meaning |
 |---|---|---|---|
-| `thumbWidth` | `--primitive-unit-unit-6` | 6 px | thumb thickness |
-| `thumbRadius` | `--primitive-unit-unit-6` | 6 px | fully rounded |
-| `thumbMin` | `--primitive-unit-unit-28` | 28 px | min length (numeric in JS) |
-| `gutter` | `--primitive-unit-unit-2` | 2 px | inset from the right edge |
-| `thumbRest` | `--primitive-color-brand-900-8` | `rgba(10,18,35,0.08)` | resting tint |
-| `thumbHover` | `--primitive-color-brand-900-16` | `rgba(10,18,35,0.16)` | hover / drag tint |
-| `thumbEdge` | `--primitive-color-warm-neutral-0` @ 35% | white, 35% | hairline glass edge (`color-mix`) |
+| `thumbWidth` | `--semantic-layout-units-padding-xtight` | 6 px | thumb thickness |
+| `thumbRadius` | `--semantic-layout-units-cornerradius-full` | pill | fully rounded |
+| `thumbMin` | — | 28 px | min length (numeric in JS) |
+| `gutter` | `--semantic-layout-units-padding-xxxtight` | 2 px | inset from the right edge |
+| `thumbRest` | `--semantic-color-light-mode-fill-static-neutral-opacity-16` | `rgba(212,207,200,0.16)` | resting overlay |
+| `thumbHover` | `--semantic-color-light-mode-fill-static-neutral-opacity-30` | `rgba(212,207,200,0.30)` | hover / drag overlay |
+| `thumbEdge` | `--semantic-color-light-mode-fill-static-neutral-light` @ 35% | white, 35% | hairline glass edge (`color-mix`) |
 | `thumbBlur` | — (effect) | `blur(8px) saturate(180%)` | backdrop-filter (liquid glass) |
 | `fadeMs` | — | 240 ms | reveal / hide transition |
 | `idleHideMs` | — | 900 ms | hide delay after scrolling stops |
 
-> **Token gap:** no *semantic* token exists for a translucent scrollbar thumb (the only neutral-translucent semantic, `scrim`, is `#111` at 30%+ — too opaque). The thumb uses the `brand-900` primitive at low alpha as a documented fallback. Recommended: add a faint neutral-overlay semantic token in Figma, then re-bind after a tokens-sync.
+> **Note:** the thumb is intentionally subtle on light surfaces — `fill.static.neutral` is a light warm neutral, so the thumb reads as a faint frosted sliver defined by its backdrop blur and white edge. In a dark-mode build the same semantic resolves to a translucent dark, keeping the thumb visible per mode with no component change.
 
 ---
 

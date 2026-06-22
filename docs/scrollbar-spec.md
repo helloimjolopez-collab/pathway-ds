@@ -37,22 +37,22 @@ So Pathway **hides the native scrollbar entirely** and draws its own thumb. That
 
 ## 3. Tokens & constants
 
-Every colour and unit resolves through a Pathway token (in `SCROLL`, exported from `scrollbar.jsx`) — never a hardcoded hex or px. Units use the px-valued `--primitive-unit-unit-*` tokens; colour uses the `brand-900` primitive at low alpha (see the gap note below).
+Every colour and unit resolves through a **semantic** Pathway token (in `SCROLL`, exported from `scrollbar.jsx`) — no primitives, no hardcoded hex/px. Colour uses the `fill.static.neutral` translucent-overlay semantics; geometry uses the semantic `layout-units` tokens.
 
-| Constant | Token | Resolved | Meaning |
+| Constant | Semantic token | Resolved | Meaning |
 |---|---|---|---|
-| `thumbWidth` | `--primitive-unit-unit-6` | 6 px | thumb thickness |
-| `thumbRadius` | `--primitive-unit-unit-6` | 6 px | fully rounded on a 6px pill |
-| `thumbMin` | `--primitive-unit-unit-28` | 28 px | minimum thumb length (numeric in JS — used in layout math) |
-| `gutter` | `--primitive-unit-unit-2` | 2 px | inset from the right edge |
-| `thumbRest` | `--primitive-color-brand-900-8` | `rgba(10,18,35,0.08)` | resting tint (barely there) |
-| `thumbHover` | `--primitive-color-brand-900-16` | `rgba(10,18,35,0.16)` | hover/drag tint |
-| `thumbEdge` | `--primitive-color-warm-neutral-0` @ 35% (via `color-mix`) | white, 35% | hairline glass edge |
+| `thumbWidth` | `--semantic-layout-units-padding-xtight` | 6 px | thumb thickness |
+| `thumbRadius` | `--semantic-layout-units-cornerradius-full` | pill | fully rounded |
+| `thumbMin` | — | 28 px | minimum thumb length (numeric in JS layout math; no semantic step between `gap-relaxed` 24 and `gap-wide` 36) |
+| `gutter` | `--semantic-layout-units-padding-xxxtight` | 2 px | inset from the right edge |
+| `thumbRest` | `--semantic-color-light-mode-fill-static-neutral-opacity-16` | `rgba(212,207,200,0.16)` | resting overlay |
+| `thumbHover` | `--semantic-color-light-mode-fill-static-neutral-opacity-30` | `rgba(212,207,200,0.30)` | hover/drag overlay |
+| `thumbEdge` | `--semantic-color-light-mode-fill-static-neutral-light` @ 35% (via `color-mix`) | white, 35% | hairline glass edge |
 | `thumbBlur` | — (effect, not a colour) | `blur(8px) saturate(180%)` | backdrop-filter — the "glass" that refracts content beneath |
 | `fadeMs` | — | 240 ms | reveal/hide + colour transition |
 | `idleHideMs` | — | 900 ms | hide delay after scrolling stops |
 
-> **TOKEN GAP (flagged for Figma):** there is **no semantic token** for a translucent scrollbar thumb. The only neutral-translucent semantic family is `scrim` (`cool-neutral-220` at 30/50/70%), which is far too opaque for a glass thumb. So the thumb colour uses the `brand-900` **primitive** at low alpha as a documented fallback (the same pattern the Search spec uses for its disabled state). **Recommended fix:** add a faint neutral-overlay semantic token in the Figma variable collection (e.g. `scrim/faint` or `fill/static/overlay-control`) at ~8%/16% alpha, then re-bind these here after a tokens-sync.
+> **Note:** the thumb is intentionally subtle on light surfaces — `fill.static.neutral` is a light warm neutral, so on white/`#fafafa` the thumb reads as a faint frosted sliver defined mostly by its backdrop blur and white edge highlight. In a dark-mode build the same semantic resolves to a translucent dark (`cool-neutral-220`), so the thumb stays appropriately visible per mode without any component change.
 
 ## 4. API
 
