@@ -6852,7 +6852,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.30}"
+                  "$value": "{Brand.50}"
                 },
                 "Pressed": {
                   "$scopes": [
@@ -6861,7 +6861,7 @@
                   "$type": "color",
                   "$libraryName": "",
                   "$collectionName": "Primitive: Color",
-                  "$value": "{Brand.50}"
+                  "$value": "{Brand.60}"
                 },
                 "Disabled": {
                   "$scopes": [
@@ -7807,6 +7807,44 @@
               }
             }
           },
+          "Scrim": {
+            "Faint": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive: Color",
+              "$value": "{Cool Neutral.220 @ 16%}"
+            },
+            "Light": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive: Color",
+              "$value": "{Cool Neutral.220 @ 30%}"
+            },
+            "Subtle": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive: Color",
+              "$value": "{Cool Neutral.220 @ 50%}"
+            },
+            "Base": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive: Color",
+              "$value": "{Cool Neutral.220 @ 70%}"
+            }
+          },
           "Surface": {
             "Nav": {
               "Base": {
@@ -7847,35 +7885,6 @@
                 "$collectionName": "Primitive: Color",
                 "$value": "{Brand.0}"
               }
-            }
-          },
-          "Scrim": {
-            "Light": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.220 @ 30%}"
-            },
-            "Subtle": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.220 @ 50%}"
-            },
-            "Base": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.220 @ 70%}"
             }
           }
         },
@@ -12116,6 +12125,44 @@
               }
             }
           },
+          "Scrim": {
+            "Faint": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive: Color",
+              "$value": "{Cool Neutral.0 @ 16%}"
+            },
+            "Light": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive: Color",
+              "$value": "{Cool Neutral.0 @ 30%}"
+            },
+            "Subtle": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive: Color",
+              "$value": "{Cool Neutral.0 @ 70%}"
+            },
+            "Base": {
+              "$scopes": [
+                "ALL_SCOPES"
+              ],
+              "$type": "color",
+              "$libraryName": "",
+              "$collectionName": "Primitive: Color",
+              "$value": "{Cool Neutral.0 @ 80%}"
+            }
+          },
           "Surface": {
             "Nav": {
               "Base": {
@@ -12156,35 +12203,6 @@
                 "$collectionName": "Primitive: Color",
                 "$value": "{Brand.0}"
               }
-            }
-          },
-          "Scrim": {
-            "Light": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.220 @ 30%}"
-            },
-            "Subtle": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.220 @ 50%}"
-            },
-            "Base": {
-              "$scopes": [
-                "ALL_SCOPES"
-              ],
-              "$type": "color",
-              "$libraryName": "",
-              "$collectionName": "Primitive: Color",
-              "$value": "{Cool Neutral.220 @ 70%}"
             }
           }
         }

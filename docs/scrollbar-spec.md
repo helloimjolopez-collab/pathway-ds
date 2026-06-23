@@ -45,14 +45,14 @@ Every colour and unit resolves through a **semantic** Pathway token (in `SCROLL`
 | `thumbRadius` | `--semantic-layout-units-cornerradius-full` | pill | fully rounded |
 | `thumbMin` | — | 28 px | minimum thumb length (numeric in JS layout math; no semantic step between `gap-relaxed` 24 and `gap-wide` 36) |
 | `gutter` | `--semantic-layout-units-padding-xxxtight` | 2 px | inset from the right edge |
-| `thumbRest` | `--semantic-color-light-mode-fill-static-neutral-opacity-16` | `rgba(212,207,200,0.16)` | resting overlay |
-| `thumbHover` | `--semantic-color-light-mode-fill-static-neutral-opacity-30` | `rgba(212,207,200,0.30)` | hover/drag overlay |
+| `thumbRest` | `--semantic-color-light-mode-scrim-faint` | `rgba(17,17,17,0.16)` | resting overlay (black 16%) |
+| `thumbHover` | `--semantic-color-light-mode-scrim-light` | `rgba(17,17,17,0.30)` | hover/drag overlay (black 30%) |
 | `thumbEdge` | `--semantic-color-light-mode-fill-static-neutral-light` @ 35% (via `color-mix`) | white, 35% | hairline glass edge |
 | `thumbBlur` | — (effect, not a colour) | `blur(8px) saturate(180%)` | backdrop-filter — the "glass" that refracts content beneath |
 | `fadeMs` | — | 240 ms | reveal/hide + colour transition |
 | `idleHideMs` | — | 900 ms | hide delay after scrolling stops |
 
-> **Note:** the thumb is intentionally subtle on light surfaces — `fill.static.neutral` is a light warm neutral, so on white/`#fafafa` the thumb reads as a faint frosted sliver defined mostly by its backdrop blur and white edge highlight. In a dark-mode build the same semantic resolves to a translucent dark (`cool-neutral-220`), so the thumb stays appropriately visible per mode without any component change.
+> **Note:** the thumb uses the `scrim` overlay family, which is **mode-aware**: in light mode `scrim/faint` resolves to black 16% (a faint dark sliver on light surfaces); in dark mode it resolves to white 16%, so the thumb stays visible against dark surfaces with no component change. Hover steps up to `scrim/light` (30%). `scrim/faint` was added specifically for faint overlay controls (it sits below the existing `light`/`subtle`/`base` scrim steps).
 
 ## 4. API
 

@@ -78,14 +78,14 @@ Every colour and unit resolves through a **semantic** Pathway token (exported as
 | `thumbRadius` | `--semantic-layout-units-cornerradius-full` | pill | fully rounded |
 | `thumbMin` | — | 28 px | min length (numeric in JS) |
 | `gutter` | `--semantic-layout-units-padding-xxxtight` | 2 px | inset from the right edge |
-| `thumbRest` | `--semantic-color-light-mode-fill-static-neutral-opacity-16` | `rgba(212,207,200,0.16)` | resting overlay |
-| `thumbHover` | `--semantic-color-light-mode-fill-static-neutral-opacity-30` | `rgba(212,207,200,0.30)` | hover / drag overlay |
+| `thumbRest` | `--semantic-color-light-mode-scrim-faint` | `rgba(17,17,17,0.16)` | resting overlay (black 16%) |
+| `thumbHover` | `--semantic-color-light-mode-scrim-light` | `rgba(17,17,17,0.30)` | hover / drag overlay (black 30%) |
 | `thumbEdge` | `--semantic-color-light-mode-fill-static-neutral-light` @ 35% | white, 35% | hairline glass edge (`color-mix`) |
 | `thumbBlur` | — (effect) | `blur(8px) saturate(180%)` | backdrop-filter (liquid glass) |
 | `fadeMs` | — | 240 ms | reveal / hide transition |
 | `idleHideMs` | — | 900 ms | hide delay after scrolling stops |
 
-> **Note:** the thumb is intentionally subtle on light surfaces — `fill.static.neutral` is a light warm neutral, so the thumb reads as a faint frosted sliver defined by its backdrop blur and white edge. In a dark-mode build the same semantic resolves to a translucent dark, keeping the thumb visible per mode with no component change.
+> **Note:** the thumb uses the **mode-aware** `scrim` overlay family — `scrim/faint` is black 16% in light mode (a faint dark sliver) and white 16% in dark mode, so it stays visible against either surface with no component change. Hover steps up to `scrim/light` (30%). `scrim/faint` was added for faint overlay controls, below the existing light/subtle/base scrim steps.
 
 ---
 

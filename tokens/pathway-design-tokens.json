@@ -3402,11 +3402,11 @@
             },
             "hover": {
               "$type": "color",
-              "$value": "{primitive-color.brand.30}"
+              "$value": "{primitive-color.brand.50}"
             },
             "pressed": {
               "$type": "color",
-              "$value": "{primitive-color.brand.50}"
+              "$value": "{primitive-color.brand.60}"
             },
             "disabled": {
               "$type": "color",
@@ -3857,6 +3857,24 @@
           }
         }
       },
+      "scrim": {
+        "faint": {
+          "$type": "color",
+          "$value": "{primitive-color.cool-neutral.220-16}"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "{primitive-color.cool-neutral.220-30}"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{primitive-color.cool-neutral.220-50}"
+        },
+        "base": {
+          "$type": "color",
+          "$value": "{primitive-color.cool-neutral.220-70}"
+        }
+      },
       "surface": {
         "nav": {
           "base": {
@@ -3877,20 +3895,6 @@
             "$type": "color",
             "$value": "{primitive-color.brand.0}"
           }
-        }
-      },
-      "scrim": {
-        "light": {
-          "$type": "color",
-          "$value": "{primitive-color.cool-neutral.220-30}"
-        },
-        "subtle": {
-          "$type": "color",
-          "$value": "{primitive-color.cool-neutral.220-50}"
-        },
-        "base": {
-          "$type": "color",
-          "$value": "{primitive-color.cool-neutral.220-70}"
         }
       }
     },
@@ -5911,6 +5915,24 @@
           }
         }
       },
+      "scrim": {
+        "faint": {
+          "$type": "color",
+          "$value": "{primitive-color.cool-neutral.0-16}"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "{primitive-color.cool-neutral.0-30}"
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": "{primitive-color.cool-neutral.0-70}"
+        },
+        "base": {
+          "$type": "color",
+          "$value": "{primitive-color.cool-neutral.0-80}"
+        }
+      },
       "surface": {
         "nav": {
           "base": {
@@ -5931,20 +5953,6 @@
             "$type": "color",
             "$value": "{primitive-color.brand.0}"
           }
-        }
-      },
-      "scrim": {
-        "light": {
-          "$type": "color",
-          "$value": "{primitive-color.cool-neutral.220-30}"
-        },
-        "subtle": {
-          "$type": "color",
-          "$value": "{primitive-color.cool-neutral.220-50}"
-        },
-        "base": {
-          "$type": "color",
-          "$value": "{primitive-color.cool-neutral.220-70}"
         }
       }
     }

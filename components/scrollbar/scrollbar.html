@@ -15,9 +15,9 @@
      The scrollbar thumb colour/units resolve through these vars — no hardcoded hex/px. */
   :root {
     /* Semantic tokens this component consumes (mirrors src/tokens/tokens.css). */
-    --semantic-color-light-mode-fill-static-neutral-opacity-16: rgba(212, 207, 200, 0.16); /* thumb — rest */
-    --semantic-color-light-mode-fill-static-neutral-opacity-30: rgba(212, 207, 200, 0.30); /* thumb — hover/drag */
-    --semantic-color-light-mode-fill-static-neutral-light: #fefefd;                        /* white — glass edge */
+    --semantic-color-light-mode-scrim-faint: rgba(17, 17, 17, 0.16); /* thumb — rest */
+    --semantic-color-light-mode-scrim-light: rgba(17, 17, 17, 0.30);  /* thumb — hover/drag */
+    --semantic-color-light-mode-fill-static-neutral-light: #fefefd;   /* white — glass edge */
     --semantic-layout-units-padding-xtight:   6px;   /* thumb width */
     --semantic-layout-units-padding-xxxtight: 2px;   /* gutter */
     --semantic-layout-units-cornerradius-full: 64px; /* fully-rounded pill */
@@ -49,8 +49,8 @@ const SCROLL = {
   thumbRadius: "var(--semantic-layout-units-cornerradius-full)",
   gutter:      "var(--semantic-layout-units-padding-xxxtight)",
   thumbMin:    28,
-  thumbRest:   "var(--semantic-color-light-mode-fill-static-neutral-opacity-16)",
-  thumbHover:  "var(--semantic-color-light-mode-fill-static-neutral-opacity-30)",
+  thumbRest:   "var(--semantic-color-light-mode-scrim-faint)",
+  thumbHover:  "var(--semantic-color-light-mode-scrim-light)",
   thumbBlur:   "blur(8px) saturate(180%)",
   thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-light-mode-fill-static-neutral-light) 35%, transparent)",
   fadeMs: 240, idleHideMs: 900,

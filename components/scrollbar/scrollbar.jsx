@@ -32,8 +32,8 @@ export const SCROLL = {
   thumbMin:    28,                                                // px — numeric (JS layout math; no semantic step between 24 and 36)
   gutter:      "var(--semantic-layout-units-padding-xxxtight)",   // 2px — inset from the right edge
   // Liquid-glass thumb: translucent neutral overlay + backdrop blur that refracts content beneath.
-  thumbRest:   "var(--semantic-color-light-mode-fill-static-neutral-opacity-16)",
-  thumbHover:  "var(--semantic-color-light-mode-fill-static-neutral-opacity-30)",
+  thumbRest:   "var(--semantic-color-light-mode-scrim-faint)",   // black 16% — faint overlay (rest)
+  thumbHover:  "var(--semantic-color-light-mode-scrim-light)",   // black 30% — hover/drag
   thumbBlur:   "blur(8px) saturate(180%)",
   // Hairline glass edge: semantic white at 35% via color-mix.
   thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-light-mode-fill-static-neutral-light) 35%, transparent)",
