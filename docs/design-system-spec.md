@@ -122,17 +122,13 @@ Components MAY need additional reduced-motion handling (e.g. replacing a slide w
 
 ### 2.5 Token implementation status
 
-The motion token family does **not yet exist** in `tokens/pathway-design-tokens.json` or in Figma Variables. This is tracked as a HIGH-priority gap (§10).
+Motion tokens are **live** in `src/tokens/tokens.css` and in the npm package (`dist/tokens.css`). They are sourced from `tokens/motion-tokens.json` — a hand-authored file that is never overwritten by Figma syncs.
 
-**Until tokens land:**
-- Components hardcode the millisecond values and cubic-bezier curves from §2.1 and §2.2.
-- Component CSS must reference the values as documented here; ad-hoc deviations are bugs.
-- This spec is the source of truth — the manifest, component specs, and Storybook all reference it.
+**Components must now use `var(--motion-duration-*)` and `var(--motion-easing-*)` instead of hardcoded values.** Hardcoded millisecond values or cubic-bezier strings in component CSS are now a bug unless they are documented contextual overrides in §2.3.
 
-**When tokens land** (Figma → `sync-tokens.js` → Style Dictionary → `tokens.css`):
-- Components will be updated to use `var(--motion-duration-*)` and `var(--motion-easing-*)`.
-- Contextual overrides in §2.3 will become their own tokens: `Motion/SideNav/Panel/Width`, etc., emitted as `--motion-sidenav-panel-width`.
-- The pipeline skill will catch any remaining hardcoded values.
+**Figma Variables:** Motion tokens cannot be defined in Figma Variables (Figma does not support duration or cubicBezier types). `tokens/motion-tokens.json` is the permanent source of truth for motion token values. If a motion value needs to change, edit that file and run `npm run build-tokens`.
+
+**Contextual overrides** (§2.3): component-specific durations and easings live in each component's spec. They are not yet emitted as separate CSS variables — components that need them still hardcode the override value with a comment referencing the spec.
 
 ---
 

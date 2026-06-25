@@ -23,13 +23,14 @@
   },
   "scripts": {
     "sync-tokens": "node scripts/sync-tokens.js",
+    "sync-motion-tokens": "node scripts/sync-motion-tokens.js",
     "push-tokens": "node scripts/push-tokens.js",
     "sync-and-push": "node scripts/sync-tokens.js && node scripts/push-tokens.js",
     "audit-tokens": "node scripts/audit-tokens.js",
     "fix-tokens": "node scripts/fix-tokens.js",
     "fix-tokens-preview": "node scripts/fix-tokens.js --dry-run",
-    "build-tokens": "node style-dictionary.config.js",
-    "build-dist": "node style-dictionary.config.js && node scripts/build-dist.js",
+    "build-tokens": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js",
+    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/build-dist.js",
     "storybook": "node style-dictionary.config.js && storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

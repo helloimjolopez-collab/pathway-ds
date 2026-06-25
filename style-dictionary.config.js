@@ -72,7 +72,7 @@ StyleDictionary.registerFormat({
 });
 
 const config = {
-  source: ["tokens/pathway-design-tokens.json"],
+  source: ["tokens/pathway-design-tokens.json", "tokens/motion-tokens.json"],
   preprocessors: ["tokens-studio"],
   platforms: {
     css: {

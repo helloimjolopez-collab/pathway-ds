@@ -69110,4 +69110,263 @@ export default {
       },
     },
   },
+  motion: {
+    duration: {
+      instant: {
+        key: "{motion.duration.instant}",
+        $type: "duration",
+        $value: "200ms",
+        $description:
+          "Hover fills, colour transitions, focus rings, small opacity fades — smoother micro-interactions",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "duration",
+          $value: "200ms",
+          $description:
+            "Hover fills, colour transitions, focus rings, small opacity fades — smoother micro-interactions",
+          key: "{motion.duration.instant}",
+        },
+        name: "MotionDurationInstant",
+        attributes: {
+          category: "motion",
+          type: "duration",
+          item: "instant",
+        },
+        path: ["motion", "duration", "instant"],
+      },
+      short: {
+        key: "{motion.duration.short}",
+        $type: "duration",
+        $value: "380ms",
+        $description:
+          "State changes inside a component: popovers, dropdowns, accordions, expand/collapse, item enter/exit",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "duration",
+          $value: "380ms",
+          $description:
+            "State changes inside a component: popovers, dropdowns, accordions, expand/collapse, item enter/exit",
+          key: "{motion.duration.short}",
+        },
+        name: "MotionDurationShort",
+        attributes: {
+          category: "motion",
+          type: "duration",
+          item: "short",
+        },
+        path: ["motion", "duration", "short"],
+      },
+      medium: {
+        key: "{motion.duration.medium}",
+        $type: "duration",
+        $value: "680ms",
+        $description:
+          "Cross-component transitions: page content sliding, route changes, large layout shifts",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "duration",
+          $value: "680ms",
+          $description:
+            "Cross-component transitions: page content sliding, route changes, large layout shifts",
+          key: "{motion.duration.medium}",
+        },
+        name: "MotionDurationMedium",
+        attributes: {
+          category: "motion",
+          type: "duration",
+          item: "medium",
+        },
+        path: ["motion", "duration", "medium"],
+      },
+      long: {
+        key: "{motion.duration.long}",
+        $type: "duration",
+        $value: "1100ms",
+        $description:
+          "Continuous loops only: spinners, skeleton shimmer, indeterminate progress",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "duration",
+          $value: "1100ms",
+          $description:
+            "Continuous loops only: spinners, skeleton shimmer, indeterminate progress",
+          key: "{motion.duration.long}",
+        },
+        name: "MotionDurationLong",
+        attributes: {
+          category: "motion",
+          type: "duration",
+          item: "long",
+        },
+        path: ["motion", "duration", "long"],
+      },
+    },
+    easing: {
+      standard: {
+        key: "{motion.easing.standard}",
+        $type: "cubicBezier",
+        $value: [0.4, 0, 0.2, 1],
+        $description:
+          "Most transitions — enters AND exits. Smooth, no overshoot. Default for colour, fill, opacity, focus rings.",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "cubicBezier",
+          $value: [0.4, 0, 0.2, 1],
+          $description:
+            "Most transitions — enters AND exits. Smooth, no overshoot. Default for colour, fill, opacity, focus rings.",
+          key: "{motion.easing.standard}",
+        },
+        name: "MotionEasingStandard",
+        attributes: {
+          category: "motion",
+          type: "easing",
+          item: "standard",
+        },
+        path: ["motion", "easing", "standard"],
+      },
+      spring: {
+        key: "{motion.easing.spring}",
+        $type: "cubicBezier",
+        $value: [0.34, 1.04, 0.64, 1],
+        $description:
+          "Signature Pathway curve. Interactive element entrances: dropdown/popover panel opens. A whisper of overshoot (y2=1.04) — easeful, only *ever so slightly* alive. Softened 2026-06-08 from 1.08, which read as too bouncy. Not for chevrons — see chevron rule below.",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "cubicBezier",
+          $value: [0.34, 1.04, 0.64, 1],
+          $description:
+            "Signature Pathway curve. Interactive element entrances: dropdown/popover panel opens. A whisper of overshoot (y2=1.04) — easeful, only *ever so slightly* alive. Softened 2026-06-08 from 1.08, which read as too bouncy. Not for chevrons — see chevron rule below.",
+          key: "{motion.easing.spring}",
+        },
+        name: "MotionEasingSpring",
+        attributes: {
+          category: "motion",
+          type: "easing",
+          item: "spring",
+        },
+        path: ["motion", "easing", "spring"],
+      },
+      decelerate: {
+        key: "{motion.easing.decelerate}",
+        $type: "cubicBezier",
+        $value: [0, 0, 0.2, 1],
+        $description:
+          "Enters where the element should glide in smoothly — overlay panels, popovers, anything appearing from outside. Pure ease-out, no bounce.",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "cubicBezier",
+          $value: [0, 0, 0.2, 1],
+          $description:
+            "Enters where the element should glide in smoothly — overlay panels, popovers, anything appearing from outside. Pure ease-out, no bounce.",
+          key: "{motion.easing.decelerate}",
+        },
+        name: "MotionEasingDecelerate",
+        attributes: {
+          category: "motion",
+          type: "easing",
+          item: "decelerate",
+        },
+        path: ["motion", "easing", "decelerate"],
+      },
+      accelerate: {
+        key: "{motion.easing.accelerate}",
+        $type: "cubicBezier",
+        $value: [0.4, 0, 1, 1],
+        $description:
+          "Exits where the element leaves cleanly — dismissing overlays, scaling down.",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "cubicBezier",
+          $value: [0.4, 0, 1, 1],
+          $description:
+            "Exits where the element leaves cleanly — dismissing overlays, scaling down.",
+          key: "{motion.easing.accelerate}",
+        },
+        name: "MotionEasingAccelerate",
+        attributes: {
+          category: "motion",
+          type: "easing",
+          item: "accelerate",
+        },
+        path: ["motion", "easing", "accelerate"],
+      },
+      emphasized: {
+        key: "{motion.easing.emphasized}",
+        $type: "cubicBezier",
+        $value: [0.32, 0.72, 0, 1],
+        $description:
+          "Large physical-scale transitions: full-panel width changes, SideNav width. Smooth glide, no overshoot.",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "cubicBezier",
+          $value: [0.32, 0.72, 0, 1],
+          $description:
+            "Large physical-scale transitions: full-panel width changes, SideNav width. Smooth glide, no overshoot.",
+          key: "{motion.easing.emphasized}",
+        },
+        name: "MotionEasingEmphasized",
+        attributes: {
+          category: "motion",
+          type: "easing",
+          item: "emphasized",
+        },
+        path: ["motion", "easing", "emphasized"],
+      },
+      accordion: {
+        key: "{motion.easing.accordion}",
+        $type: "cubicBezier",
+        $value: [0.33, 1.03, 0.68, 1],
+        $description:
+          "Accordion settle — content reveal/hide, chevron rotation. The gentlest overshoot in the system (y2=1.03). Softened 2026-06-08 from 0.22,1.12,0.36,1, which was visibly bouncy.",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "cubicBezier",
+          $value: [0.33, 1.03, 0.68, 1],
+          $description:
+            "Accordion settle — content reveal/hide, chevron rotation. The gentlest overshoot in the system (y2=1.03). Softened 2026-06-08 from 0.22,1.12,0.36,1, which was visibly bouncy.",
+          key: "{motion.easing.accordion}",
+        },
+        name: "MotionEasingAccordion",
+        attributes: {
+          category: "motion",
+          type: "easing",
+          item: "accordion",
+        },
+        path: ["motion", "easing", "accordion"],
+      },
+      linear: {
+        key: "{motion.easing.linear}",
+        $type: "cubicBezier",
+        $value: [0, 0, 1, 1],
+        $description:
+          "Continuous loops only (spinners, shimmer). Never for bounded transitions.",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "cubicBezier",
+          $value: [0, 0, 1, 1],
+          $description:
+            "Continuous loops only (spinners, shimmer). Never for bounded transitions.",
+          key: "{motion.easing.linear}",
+        },
+        name: "MotionEasingLinear",
+        attributes: {
+          category: "motion",
+          type: "easing",
+          item: "linear",
+        },
+        path: ["motion", "easing", "linear"],
+      },
+    },
+  },
 };

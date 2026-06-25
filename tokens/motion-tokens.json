@@ -1,0 +1,98 @@
+{
+  "motion": {
+    "duration": {
+      "instant": {
+        "$type": "duration",
+        "$value": "200ms",
+        "$description": "Hover fills, colour transitions, focus rings, small opacity fades — smoother micro-interactions"
+      },
+      "short": {
+        "$type": "duration",
+        "$value": "380ms",
+        "$description": "State changes inside a component: popovers, dropdowns, accordions, expand/collapse, item enter/exit"
+      },
+      "medium": {
+        "$type": "duration",
+        "$value": "680ms",
+        "$description": "Cross-component transitions: page content sliding, route changes, large layout shifts"
+      },
+      "long": {
+        "$type": "duration",
+        "$value": "1100ms",
+        "$description": "Continuous loops only: spinners, skeleton shimmer, indeterminate progress"
+      }
+    },
+    "easing": {
+      "standard": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.4,
+          0,
+          0.2,
+          1
+        ],
+        "$description": "Most transitions — enters AND exits. Smooth, no overshoot. Default for colour, fill, opacity, focus rings."
+      },
+      "spring": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.34,
+          1.04,
+          0.64,
+          1
+        ],
+        "$description": "Signature Pathway curve. Interactive element entrances: dropdown/popover panel opens. A whisper of overshoot (y2=1.04) — easeful, only *ever so slightly* alive. Softened 2026-06-08 from 1.08, which read as too bouncy. Not for chevrons — see chevron rule below."
+      },
+      "decelerate": {
+        "$type": "cubicBezier",
+        "$value": [
+          0,
+          0,
+          0.2,
+          1
+        ],
+        "$description": "Enters where the element should glide in smoothly — overlay panels, popovers, anything appearing from outside. Pure ease-out, no bounce."
+      },
+      "accelerate": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.4,
+          0,
+          1,
+          1
+        ],
+        "$description": "Exits where the element leaves cleanly — dismissing overlays, scaling down."
+      },
+      "emphasized": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.32,
+          0.72,
+          0,
+          1
+        ],
+        "$description": "Large physical-scale transitions: full-panel width changes, SideNav width. Smooth glide, no overshoot."
+      },
+      "accordion": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.33,
+          1.03,
+          0.68,
+          1
+        ],
+        "$description": "Accordion settle — content reveal/hide, chevron rotation. The gentlest overshoot in the system (y2=1.03). Softened 2026-06-08 from 0.22,1.12,0.36,1, which was visibly bouncy."
+      },
+      "linear": {
+        "$type": "cubicBezier",
+        "$value": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "$description": "Continuous loops only (spinners, shimmer). Never for bounded transitions."
+      }
+    }
+  }
+}

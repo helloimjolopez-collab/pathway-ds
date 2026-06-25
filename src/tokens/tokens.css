@@ -432,6 +432,17 @@
   --primitive-unit-unit-0-point-5: 0.5px;
   --primitive-unit-unit-0-point-75: 0.75px;
   --primitive-unit-unit-1-point-5: 1.5px;
+  --motion-duration-instant: 200ms; /** Hover fills, colour transitions, focus rings, small opacity fades — smoother micro-interactions */
+  --motion-duration-short: 380ms; /** State changes inside a component: popovers, dropdowns, accordions, expand/collapse, item enter/exit */
+  --motion-duration-medium: 680ms; /** Cross-component transitions: page content sliding, route changes, large layout shifts */
+  --motion-duration-long: 1100ms; /** Continuous loops only: spinners, skeleton shimmer, indeterminate progress */
+  --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1); /** Most transitions — enters AND exits. Smooth, no overshoot. Default for colour, fill, opacity, focus rings. */
+  --motion-easing-spring: cubic-bezier(0.34, 1.04, 0.64, 1); /** Signature Pathway curve. Interactive element entrances: dropdown/popover panel opens. A whisper of overshoot (y2=1.04) — easeful, only *ever so slightly* alive. Softened 2026-06-08 from 1.08, which read as too bouncy. Not for chevrons — see chevron rule below. */
+  --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1); /** Enters where the element should glide in smoothly — overlay panels, popovers, anything appearing from outside. Pure ease-out, no bounce. */
+  --motion-easing-accelerate: cubic-bezier(0.4, 0, 1, 1); /** Exits where the element leaves cleanly — dismissing overlays, scaling down. */
+  --motion-easing-emphasized: cubic-bezier(0.32, 0.72, 0, 1); /** Large physical-scale transitions: full-panel width changes, SideNav width. Smooth glide, no overshoot. */
+  --motion-easing-accordion: cubic-bezier(0.33, 1.03, 0.68, 1); /** Accordion settle — content reveal/hide, chevron rotation. The gentlest overshoot in the system (y2=1.03). Softened 2026-06-08 from 0.22,1.12,0.36,1, which was visibly bouncy. */
+  --motion-easing-linear: cubic-bezier(0, 0, 1, 1); /** Continuous loops only (spinners, shimmer). Never for bounded transitions. */
   --primitive-type-size-10: var(--primitive-unit-unit-10);
   --primitive-type-size-11: var(--primitive-unit-unit-11);
   --primitive-type-size-12: var(--primitive-unit-unit-12);

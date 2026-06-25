@@ -9,6 +9,7 @@ Different layers of this system have different sources of truth. Keep them strai
 | What | Source of truth | Flow |
 |---|---|---|
 | **Design tokens** (primitives, semantics, modes) | **Figma** → exported to `tokens/figma-export/pathwaytokens.json` | Automatic. CI runs `sync-tokens.js` → `style-dictionary` → Storybook. |
+| **Motion tokens** (durations, easings) | **`docs/design-system-spec.md` §2** | `scripts/sync-motion-tokens.js` reads §2.1 and §2.2 tables → writes `tokens/motion-tokens.json` → Style Dictionary emits `--motion-*` CSS variables. Run as part of `build-tokens`. |
 | **Component implementations** (HTML demos, specs, stories) | **GitHub** (the files in this repo) | Manual. Designer changes a component in Figma → user asks agent to pull → agent uses Figma MCP tools to fetch the updated node → agent edits the component's files in this repo. |
 | **Component visual design** (variants, frames, anatomy, variables-bound properties) | **Figma** | Same manual flow as above. Figma is the design artifact; this repo carries the implementation. |
 
@@ -23,19 +24,20 @@ Different layers of this system have different sources of truth. Keep them strai
 The pipeline, in order:
 
 ```
-Figma (source of truth for tokens)
-  │
-  │  Designer exports via "Variables Import Export" plugin
-  ▼
-tokens/figma-export/pathwaytokens.json          ← committed as-is
-  │
-  │  scripts/sync-tokens.js  (GitHub Action: sync-tokens.yml on push to figma-export/)
-  ▼
-tokens/pathway-design-tokens.json               ← DTCG-format derived file
-  │
-  │  node style-dictionary.config.js  (called by deploy-storybook.yml)
-  ▼
-src/tokens/tokens.css, src/tokens/tokens.js     ← consumed by Storybook + components
+Figma (source of truth for primitives/semantics)       docs/design-system-spec.md §2 (source of truth for motion)
+  │                                                       │
+  │  Designer exports via "Variables Import Export"       │  scripts/sync-motion-tokens.js
+  ▼                                                       ▼
+tokens/figma-export/pathwaytokens.json          tokens/motion-tokens.json   ← both are derived, never hand-edit
+  │                                                       │
+  │  scripts/sync-tokens.js                               │
+  ▼                                                       │
+tokens/pathway-design-tokens.json                        │
+  │                                                       │
+  └──────────────────────────┬────────────────────────────┘
+                             │  node style-dictionary.config.js
+                             ▼
+              src/tokens/tokens.css, src/tokens/tokens.js  ← consumed by Storybook + components
 ```
 
 Rules:
@@ -43,6 +45,7 @@ Rules:
 - **The Figma export is authoritative.** If the user deletes a variable in Figma, the sync removes it from every derived file. If the user adds a variable, the sync adds it. **Never tell the user to fix broken aliases in Figma as a precondition to running the sync** — if a semantic token points at a deleted primitive, `sync-tokens.js` drops that token silently (with a warning in the CI log) and the build continues.
 - **One-time data migrations are a separate class of work.** When Figma renames or restructures a primitive group (e.g. the historical `Indigo → Brand` rename), a one-off script or `sed` may be needed to rewrite stale references in already-imported data so the tree resolves. Those are ad-hoc jobs, requested explicitly by the user, run once, committed, and done. **Never** bake a one-time rewrite into the recurring sync, audit, or `/update-tokens` routines — a repeating rewrite masks real broken state once the migration is complete and makes future orphans invisible.
 - **`pathway-design-tokens.json` is derived.** Do not hand-edit it. Changes made to it will be wiped by the next Figma sync.
+- **`tokens/motion-tokens.json` is derived.** Do not hand-edit it. `scripts/sync-motion-tokens.js` regenerates it from `docs/design-system-spec.md` §2 on every build. To change a motion value, edit the spec — the JSON updates automatically.
 - **`src/tokens/tokens.css` is derived.** Do not hand-edit it. Style Dictionary regenerates it on every build.
 - If a broken alias matters (e.g. a component visibly breaks because its token disappeared), the fix goes **in Figma**, not in the repo.
 
