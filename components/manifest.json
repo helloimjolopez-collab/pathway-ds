@@ -127,7 +127,8 @@
       "description": "System-wide overlay scrollbar. Hides the native OS scrollbar and renders one slim semitransparent thumb so scrolling is identical on macOS/Windows/iOS/Android and never takes layout space or shifts padding. Wrap any internal scroll region in <Scrollable>. First consumer: SideNav.",
       "module": "components/scrollbar/scrollbar.jsx",
       "exports": ["Scrollable", "SCROLL"],
-      "spec": "docs/scrollbar-spec.md",
+      "spec": "components/scrollbar/scrollbar-spec.md",
+      "systemWideDoc": "docs/scrollbar-spec.md",
       "demo": "components/scrollbar/scrollbar.html",
       "stories": "src/stories/Library/Scrollbar/Scrollbar.stories.jsx",
       "props": {
