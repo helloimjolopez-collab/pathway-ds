@@ -1,65 +1,69 @@
 /**
  * Scrollable — Pathway Design System
  *
- * A reusable overlay-scrollbar wrapper. Hides the native OS scrollbar entirely and
- * renders one custom, semitransparent thumb so scrolling looks and behaves IDENTICALLY
- * on macOS, Windows, iOS, and Android (native scrollbars can't be made consistent — this
- * sidesteps them).
+ * A reusable overlay-scrollbar wrapper. Hides the native OS scrollbar entirely and renders
+ * one custom liquid-glass thumb so scrolling looks and behaves IDENTICALLY on macOS, Windows,
+ * iOS, and Android (native scrollbars can't be made consistent — this sidesteps them).
  *
- * Why a custom overlay (not just `::-webkit-scrollbar` CSS):
- *   - Windows Chromium renders a chunky, space-TAKING bar with corner boxes; CSS can thin
- *     it but not make it overlay. This thumb is absolutely positioned, so it NEVER takes
- *     layout width or shifts the content's padding — on any OS, any breakpoint.
- *   - Firefox only exposes `scrollbar-width`/`scrollbar-color` (no px control). Hidden here.
- *   - Mobile overlay bars auto-show on touch and aren't stylable. Hidden; our thumb shows
- *     while scrolling instead.
+ * Behaviour (see components/scrollbar/scrollbar-spec.md):
+ *   - Thumb height is PROPORTIONAL to content: (viewport / total) × track, floored at 28px.
+ *   - Reveal: appears while scrolling, fades ~900ms after; also appears when the MOUSE is near
+ *     the right-edge bar (so it can be grabbed). It does NOT appear from hovering the panel.
+ *   - Drag: MOUSE only, via a wider invisible grab strip (the 6px thumb alone is hard to hit).
+ *   - Touch: passive — the bar just shows position; you scroll by swiping content. The grab
+ *     strip is disabled on touch devices via a `(hover: none)` rule.
+ *   - Keyboard / a11y: the content scrolls natively (arrows, PageUp/Down, Home/End, Space); the
+ *     thumb is decorative (`aria-hidden`) and never the only scroll mechanism.
  *
  * Usage:
  *   <Scrollable style={{ flex: 1, minHeight: 0 }}>…tall content…</Scrollable>
- *
- * Spec: docs/scrollbar-spec.md  (system-wide — applies to every scroll surface in Pathway)
  */
 
 import React, { useRef, useState, useEffect, useCallback } from "react";
 
 // ─── TOKENS ──────────────────────────────────────────────────────────────────
 // Every colour + unit resolves through a SEMANTIC Pathway token (tokens.css) — no primitives,
-// no hardcoded hex/px. Thumb colour uses the fill.static.neutral translucent-overlay semantics;
-// geometry uses the semantic layout-unit tokens.
+// no hardcoded hex/px. Motion uses the --motion-* tokens (durations/easings from design-system-spec §2).
 export const SCROLL = {
-  thumbWidth:  "var(--semantic-layout-units-padding-xtight)",     // 6px
+  thumbWidth:  "var(--semantic-layout-units-padding-xtight)",     // 6px — visible thumb thickness
   thumbRadius: "var(--semantic-layout-units-cornerradius-full)",  // fully-rounded pill
-  thumbMin:    28,                                                // px — numeric (JS layout math; no semantic step between 24 and 36)
+  thumbMin:    28,                                                // px — min thumb length (grab-target floor); JS layout math
   gutter:      "var(--semantic-layout-units-padding-xxxtight)",   // 2px — inset from the right edge
-  // Liquid-glass thumb: translucent neutral overlay + backdrop blur that refracts content beneath.
-  thumbRest:   "var(--semantic-color-light-mode-scrim-faint)",   // black 16% — faint overlay (rest)
-  thumbHover:  "var(--semantic-color-light-mode-scrim-light)",   // black 30% — hover/drag
+  grabZone:    16,                                                // px — invisible mouse grab strip (wider than the 6px thumb so it's catchable)
+  thumbRest:   "var(--semantic-color-light-mode-scrim-faint)",    // black 16% — faint overlay (rest)
+  thumbHover:  "var(--semantic-color-light-mode-scrim-light)",    // black 30% — hover/drag
   thumbBlur:   "blur(8px) saturate(180%)",
   // Hairline glass edge: semantic white at 35% via color-mix.
   thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-light-mode-fill-static-neutral-light) 35%, transparent)",
-  fadeMs: 240,
-  idleHideMs: 900,                                // hide the thumb this long after scrolling stops
+  // Asymmetric fade, motion-token driven: snappy appear (decelerate glide-in), graceful fade-out.
+  fadeIn:      "opacity var(--motion-duration-instant) var(--motion-easing-decelerate), background var(--motion-duration-instant) var(--motion-easing-standard)",
+  fadeOut:     "opacity var(--motion-duration-short) var(--motion-easing-standard)",
+  idleHideMs:  500,                                               // hide the thumb this long after scrolling stops / mouse leaves the bar
 };
 
-// Hide the native scrollbar once, globally, on the opt-in class only. Scrollbars cannot be
-// removed via inline React styles — this is the single injected rule the component relies on.
+// Injected once: hide the native bar on the opt-in class, and disable the mouse grab strip on
+// touch devices so finger-swipes scroll the content underneath (the thumb stays a passive indicator).
 if (typeof document !== "undefined" && !document.getElementById("pds-scrollable-base")) {
   const s = document.createElement("style");
   s.id = "pds-scrollable-base";
   s.textContent =
     ".pds-scrollable__view{scrollbar-width:none;-ms-overflow-style:none}" +
-    ".pds-scrollable__view::-webkit-scrollbar{width:0;height:0;display:none}";
+    ".pds-scrollable__view::-webkit-scrollbar{width:0;height:0;display:none}" +
+    "@media (hover: none){.pds-scrollable__grab{pointer-events:none!important}}";
   document.head.appendChild(s);
 }
 
 export function Scrollable({ children, className = "", style = {}, viewClassName = "", viewStyle = {} }) {
-  const viewRef   = useRef(null);
-  const dragRef   = useRef(null);
-  const idleRef   = useRef(null);
+  const viewRef = useRef(null);
+  const dragRef = useRef(null);
+  const idleRef = useRef(null);
+  const nearRef = useRef(false);                    // mouse currently near the right-edge bar
   const [thumb, setThumb] = useState({ h: 0, top: 0, show: false });
-  const [active, setActive] = useState(false);   // hover OR recently scrolling
-  const [hot, setHot]       = useState(false);    // pointer over / dragging the thumb
+  const [active, setActive] = useState(false);       // thumb visible (scrolling, near-bar, or dragging)
+  const [hot, setHot]       = useState(false);       // mouse over / dragging the grab strip
 
+  // Thumb height is PROPORTIONAL to content; floored at thumbMin. Position maps the floored
+  // thumb across the full track so it still reaches top and bottom exactly.
   const recompute = useCallback(() => {
     const el = viewRef.current;
     if (!el) return;
@@ -70,7 +74,6 @@ export function Scrollable({ children, className = "", style = {}, viewClassName
     setThumb({ h, top, show: true });
   }, []);
 
-  // Recompute on mount, content change, and any size change.
   useEffect(() => {
     recompute();
     const el = viewRef.current;
@@ -81,20 +84,34 @@ export function Scrollable({ children, className = "", style = {}, viewClassName
     return () => ro.disconnect();
   }, [children, recompute]);
 
-  const wake = () => {
-    setActive(true);
+  const scheduleHide = () => {
     clearTimeout(idleRef.current);
-    idleRef.current = setTimeout(() => { if (!dragRef.current) setActive(false); }, SCROLL.idleHideMs);
+    idleRef.current = setTimeout(() => {
+      if (!dragRef.current && !nearRef.current) setActive(false);
+    }, SCROLL.idleHideMs);
   };
-
+  const wake = () => { setActive(true); scheduleHide(); };          // reveal while scrolling
   const onScroll = () => { recompute(); wake(); };
 
-  const onThumbDown = (e) => {
+  // Edge-proximity reveal (mouse): show the bar when the cursor is within grabZone of the right
+  // edge, so it can be grabbed — but NOT from hovering the rest of the panel.
+  const onMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    if (rect.right - e.clientX <= SCROLL.grabZone) {
+      nearRef.current = true; setActive(true); clearTimeout(idleRef.current);
+    } else if (nearRef.current) {
+      nearRef.current = false; scheduleHide();
+    }
+  };
+  const onMouseLeave = () => { nearRef.current = false; if (!dragRef.current) scheduleHide(); };
+
+  // Drag (mouse only). The grab strip carries this; the visual thumb is decorative.
+  const onGrabDown = (e) => {
     e.preventDefault();
     const el = viewRef.current;
     if (!el) return;
     dragRef.current = { startY: e.clientY, startTop: el.scrollTop };
-    setHot(true); setActive(true);
+    setHot(true); setActive(true); clearTimeout(idleRef.current);
     const onMove = (ev) => {
       const { scrollHeight, clientHeight } = el;
       const h = Math.max(SCROLL.thumbMin, (clientHeight / scrollHeight) * clientHeight);
@@ -102,8 +119,7 @@ export function Scrollable({ children, className = "", style = {}, viewClassName
       el.scrollTop = dragRef.current.startTop + (ev.clientY - dragRef.current.startY) * ratio;
     };
     const onUp = () => {
-      dragRef.current = null;
-      setHot(false);
+      dragRef.current = null; setHot(false);
       document.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseup", onUp);
       wake();
@@ -112,12 +128,14 @@ export function Scrollable({ children, className = "", style = {}, viewClassName
     document.addEventListener("mouseup", onUp);
   };
 
+  const barTop = thumb.top, barH = thumb.h;
+
   return (
     <div
       className={`pds-scrollable ${className}`}
       style={{ position: "relative", minHeight: 0, ...style }}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => { if (!dragRef.current) setActive(false); }}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
     >
       <div
         ref={viewRef}
@@ -129,29 +147,35 @@ export function Scrollable({ children, className = "", style = {}, viewClassName
       </div>
 
       {thumb.show && (
-        <div
-          aria-hidden="true"
-          onMouseDown={onThumbDown}
-          onMouseEnter={() => setHot(true)}
-          onMouseLeave={() => setHot(false)}
-          style={{
-            position: "absolute",
-            top: thumb.top,
-            right: SCROLL.gutter,
-            width: SCROLL.thumbWidth,
-            height: thumb.h,
-            borderRadius: SCROLL.thumbRadius,
-            background: hot ? SCROLL.thumbHover : SCROLL.thumbRest,
-            backdropFilter: SCROLL.thumbBlur,            // liquid glass — refracts content behind
-            WebkitBackdropFilter: SCROLL.thumbBlur,
-            boxShadow: SCROLL.thumbEdge,                 // hairline glass edge
-            opacity: active ? 1 : 0,
-            transition: `opacity ${SCROLL.fadeMs}ms ease, background ${SCROLL.fadeMs}ms ease`,
-            pointerEvents: active ? "auto" : "none",
-            zIndex: 5,
-            // Never affects layout — pure overlay.
-          }}
-        />
+        <>
+          {/* Visual thumb — decorative, never intercepts pointer events. */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute", top: barTop, right: SCROLL.gutter,
+              width: SCROLL.thumbWidth, height: barH, borderRadius: SCROLL.thumbRadius,
+              background: hot ? SCROLL.thumbHover : SCROLL.thumbRest,
+              backdropFilter: SCROLL.thumbBlur, WebkitBackdropFilter: SCROLL.thumbBlur,
+              boxShadow: SCROLL.thumbEdge,
+              opacity: active ? 1 : 0, transition: active ? SCROLL.fadeIn : SCROLL.fadeOut,
+              pointerEvents: "none", zIndex: 5,
+            }}
+          />
+          {/* Invisible mouse grab strip — wider than the thumb so it's catchable; disabled on
+              touch via the (hover:none) rule so finger-swipes scroll the content beneath. */}
+          <div
+            aria-hidden="true"
+            className="pds-scrollable__grab"
+            onMouseDown={onGrabDown}
+            onMouseEnter={() => setHot(true)}
+            onMouseLeave={() => setHot(false)}
+            style={{
+              position: "absolute", top: barTop, right: 0,
+              width: SCROLL.grabZone, height: barH,
+              pointerEvents: active ? "auto" : "none", zIndex: 6, background: "transparent",
+            }}
+          />
+        </>
       )}
     </div>
   );
