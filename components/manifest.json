@@ -36,6 +36,7 @@
       "agentBrief": "components/sidenav/agent-brief.md",
       "demo": "components/sidenav/sidenav.html",
       "stories": "src/stories/Library/SideNav/SideNav.stories.jsx",
+      "uses": ["scrollbar"],
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
         "nodeId": "40003951:2927"

@@ -11,12 +11,15 @@ import * as Stories from "./SideNav.stories.jsx";
 - 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav-spec.md)** — `components/sidenav/sidenav-spec.md`
 - 🎨 **[Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1374)** — node `40004059:1374`
 - 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav.jsx)** · **[HTML source](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav.html)**
+- 🧩 **Built with — [Scrollbar component](?path=/docs/library-scrollbar--docs)** — the menu's overflow uses the system `<Scrollable>` overlay scrollbar ([spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/scrollbar/scrollbar-spec.md)), never a native bar
 
 ---
 
 A persistent vertical navigation panel for Ministry Brands Amplify. Every module gets its own `SideNav` instance — it renders the primary navigation tree and, at all times, communicates where the user is in it. This is module-level navigation, not global app navigation and not action buttons.
 
 SideNav supports **two levels of depth** (Level 0 parents, Level 1 child-destinations), **two sidebar widths** (240 px expanded, 72 px collapsed), and **three responsive modes** (push on desktop, overlay on tablet, hidden-overlay on mobile).
+
+When the menu is taller than the panel, it scrolls via the system **[Scrollbar component](?path=/docs/library-scrollbar--docs)** (`<Scrollable>`) — the native bar is hidden and a slim overlay thumb is drawn, so scrolling looks identical on every OS and never shifts the 240 px / 72 px rail. SideNav nests it rather than rolling its own scrollbar.
 
 ---
 
