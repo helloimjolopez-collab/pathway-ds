@@ -14,6 +14,7 @@ Complete implementation reference for the SideNav component. Covers anatomy, des
 | **Live HTML demo** | [Open demo](https://helloimjolopez-collab.github.io/pathway-ds/components/sidenav/sidenav.html) |
 | **Storybook (deployed)** | [Open Storybook](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-sidenav--docs) |
 | **GitHub — component source** | [components/sidenav/](https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/sidenav) |
+| **Nested component — Scrollbar** | The menu's scroll uses the system `<Scrollable>` overlay scrollbar — [spec](../scrollbar/scrollbar-spec.md) · [Storybook](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-scrollbar--docs) |
 
 ---
 
@@ -26,6 +27,8 @@ It is **not** global app navigation or top-level product navigation. Each module
 It supports two levels of depth: Level 0 (parent) and Level 1 (child). Level 1 items are always leaf destinations: they never group or expand further. This is a hard constraint enforced at the data layer, not just a design convention.
 
 The component supports two layout states: **expanded** (240px wide, icons and labels visible) and **collapsed** (72px wide, icons only).
+
+**Composition / nested components:** the menu's overflow scroll is handled by the system **[Scrollbar component](../scrollbar/scrollbar-spec.md) (`<Scrollable>`)** — SideNav nests it rather than implementing its own scrollbar (see §9.1).
 
 ### Figma source
 - **File:** [Pathway Design System Master File MB 2.0](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/)
@@ -53,7 +56,8 @@ Use this table when you need to find or change something. Every row points to th
 | Active / hover / trail state colours | This spec | §5–6 |
 | ARIA pattern and keyboard behaviour | This spec | §13 |
 | Screen reader output | This spec | §13.5 |
-| Scroll and overflow behaviour | This spec | §9.1 |
+| Scroll/overflow structure (pinned header, edge-bleed) | This spec | §9.1 |
+| Scrollbar thumb itself (appearance, tokens, motion, a11y) | Scrollbar component | [scrollbar-spec.md](../scrollbar/scrollbar-spec.md) |
 | NavSectionLabel anatomy, tokens, collapsed rail → divider behaviour, icon slot, usage rules | This spec | §2.3 |
 | SideNavListSection anatomy, tokens, ListItem spec, visibility rules | This spec | §2.4 |
 | Grouper accordion expand/collapse animation, multi-open behaviour, DOM strategy | This spec | §12.1 |
@@ -645,49 +649,16 @@ The 1 px divider below the NavHeader is always rendered when the NavHeader is re
 
 ## 9.1 Overflow and scroll behaviour
 
-The nav container uses `overflow-y: auto`. When the nav item list grows long enough to exceed the available height, a scrollbar appears inside the nav container. The nav occupies the full height between the fixed TopNav bar and the bottom of the viewport.
+The SideNav menu is the only scroll region, and it is wrapped in the **system [Scrollbar component](../scrollbar/scrollbar-spec.md) (`<Scrollable>`)** — **not** a native, generic, or per-element scrollbar. SideNav *consumes* the Scrollbar component the same way it would any nested component; behaviour, tokens, motion, and accessibility for the bar itself are owned by the [Scrollbar spec](../scrollbar/scrollbar-spec.md) ([Storybook](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-scrollbar--docs)).
 
-### Expanded sidebar
+**Structure — same in both states:**
+- The **NavHeader is pinned** at the top: a `flex-shrink: 0` child placed **outside** the scroll region, so it never scrolls.
+- The **menu** below it is the `<Scrollable>` region (`flex: 1; min-height: 0`). It is **bled to the nav's true right edge** (`margin-right: -padH`) with the content inset re-added inside the scroll view (`padding-right: padH`), so the overlay thumb hugs the edge in BOTH the 240 px expanded and 72 px collapsed rail. All nav items (including `SideNavListSection`) remain reachable by scrolling.
 
-- A vertical scrollbar appears inside the 240 px nav container.
-- All nav items (including any `SideNavListSection` groups) remain accessible by scrolling.
-- The **NavHeader (CollapseButton) is positioned at the top of the nav**, not the bottom. It is fully visible at all scroll positions and does not scroll with the item list. Implementation: the NavHeader is a flex child with `flex-shrink: 0` placed OUTSIDE the scroll container; the item list is a separate `flex: 1; min-height: 0; overflow-y: auto` container — so the header is structurally pinned and never scrolls (no `sticky` needed).
-- The scrollable item list sits below the NavHeader in a `flex: 1; min-height: 0; overflow-y: auto` inner container (`min-height: 0` lets the flex child shrink below content height so it can scroll).
+**Thumb:** the native bar is hidden; a slim liquid-glass thumb is drawn as an **overlay** — `scrim/faint` at rest → `scrim/light` on hover/drag (semantic tokens), backdrop-blurred, identical on macOS/Windows/iOS/Android, **zero layout width** (never shifts the 240 px / 72 px sizing), revealed on hover/scroll, fading when idle.
 
-### Collapsed sidebar
-
-- Same `overflow-y: auto` behaviour on the item list. A 4 px scrollbar appears when overflow occurs.
-- The scrollbar (4 px) overlaps the right edge of the 72 px container but does not affect icon centering — icons are centred within their 48 × 48 px hit area with 12 px padding each side.
-- The NavHeader (expand icon in this state) is also sticky at the top and always visible.
-
-### Scrollbar implementation
-
-**The SideNav menu is wrapped in the system `<Scrollable>` overlay scrollbar** (`components/scrollbar/scrollbar.jsx` — see `docs/scrollbar-spec.md`). The native scrollbar is hidden and a slim **semitransparent** thumb is drawn instead: identical on macOS/Windows/iOS/Android, **overlay** (never takes layout width or shifts the 240px / 72px sizing), revealed on hover/scroll. It applies in BOTH the expanded (240px) and collapsed (72px rail) states. This supersedes the earlier per-element `::-webkit-scrollbar` CSS; the rules below are kept only as background reference:
-
-```css
-/* Webkit (Chrome, Safari, Edge) */
-.pds-sidenav-scroll::-webkit-scrollbar        { width: 4px; }
-.pds-sidenav-scroll::-webkit-scrollbar-track  { background: transparent; }
-.pds-sidenav-scroll::-webkit-scrollbar-thumb  {
-  background: transparent;       /* hidden at rest */
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-.pds-sidenav-scroll:hover::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.18);  /* visible on hover */
-}
-
-/* Firefox */
-.pds-sidenav-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;   /* hidden at rest */
-}
-.pds-sidenav-scroll:hover {
-  scrollbar-color: rgba(0,0,0,0.18) transparent; /* visible on hover */
-}
-```
-
-> **Note:** The `:hover` selector on `*` targets the scrollable container itself, not the scrollbar track. In Webkit, `::-webkit-scrollbar-thumb` cannot transition smoothly on its own — the `background: transparent` → `rgba(...)` swap happens instantly on hover, which is acceptable behaviour.
+> **IMPLEMENTATION RULE: SideNav must use `<Scrollable>` for menu overflow — never a raw `overflow-y: auto` native bar.**
+> This applies to the repo `.jsx`, the standalone `sidenav.html` demo, and Storybook (which renders the `.jsx`). The pre-2026-06 per-element `::-webkit-scrollbar` CSS has been removed and is fully superseded by the Scrollbar component. For the thumb's full spec, see [components/scrollbar/scrollbar-spec.md](../scrollbar/scrollbar-spec.md).
 
 The 4 px scrollbar is intentionally narrow so it does not visually intrude on item layout. `rgba(0,0,0,0.18)` is a documented implementation constant — no token maps directly to scrollbar thumb opacity.
 
