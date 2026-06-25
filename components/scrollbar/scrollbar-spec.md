@@ -111,11 +111,12 @@ The thumb has runtime states only (no design-time variants). All are driven by u
 | State | When | Thumb |
 |---|---|---|
 | **Hidden** | idle, or content fits (no overflow) | `opacity: 0`, `pointer-events: none` |
-| **Revealed (rest)** | on hover of the region, or while scrolling | fades in (240 ms) at `scrim/faint` |
-| **Hot (hover/drag)** | pointer over the thumb, or dragging it | colour steps up to `scrim/light` |
-| **Fading out** | ~900 ms after scrolling stops (and not dragging) | fades back to hidden |
+| **Revealed** | **while scrolling**, or when the **mouse is within ~16 px of the right edge** (so it can be grabbed) | fades in at `scrim/faint` |
+| **Hot** | mouse over the grab strip, or dragging | colour steps up to `scrim/light` |
+| **Fading out** | ~900 ms after scrolling stops / the mouse leaves the bar (and not dragging) | fades to hidden |
 
-> **IMPLEMENTATION RULE: the thumb never appears when there's nothing to scroll.** If `scrollHeight ≤ clientHeight`, the thumb is not rendered at all.
+> **IMPLEMENTATION RULE: reveal is scroll + edge-proximity, NOT panel hover.** Hovering the body of the panel does **not** show the thumb — it appears while you scroll, and when the cursor approaches the right-edge bar. (This is the standard overlay-scrollbar behaviour and fixes the earlier "shows on any hover" bug.)
+> **IMPLEMENTATION RULE: the thumb never appears when there's nothing to scroll.** If `scrollHeight ≤ clientHeight`, it is not rendered at all.
 
 ---
 
@@ -129,12 +130,14 @@ Every colour and unit resolves through a **semantic** Pathway token (in `SCROLL`
 | `thumbRadius` | `--semantic-layout-units-cornerradius-full` | pill | fully rounded ends |
 | `thumbMin` | — *(numeric)* | 28 px | minimum thumb length, used in JS layout math (no semantic step exists between `gap-relaxed` 24 and `gap-wide` 36) |
 | `gutter` | `--semantic-layout-units-padding-xxxtight` | 2 px | inset from the right edge |
+| `grabZone` | — *(numeric)* | 16 px | invisible **mouse** grab strip width — the 6px thumb alone is too thin to catch; also the edge-proximity reveal distance |
 | `thumbRest` | `--semantic-color-light-mode-scrim-faint` | `rgba(17,17,17,0.16)` | resting overlay (black 16%) |
 | `thumbHover` | `--semantic-color-light-mode-scrim-light` | `rgba(17,17,17,0.30)` | hover / drag overlay (black 30%) |
 | `thumbEdge` | `--semantic-color-light-mode-fill-static-neutral-light` @ 35% (via `color-mix`) | white, 35% | hairline glass edge highlight |
 | `thumbBlur` | — *(effect, not a colour)* | `blur(8px) saturate(180%)` | backdrop-filter — the "glass" that refracts content beneath |
-| `fadeMs` | — | 240 ms | reveal / hide + colour transition |
-| `idleHideMs` | — | 900 ms | hide delay after scrolling stops |
+| `fadeIn` | `--motion-duration-instant` + `--motion-easing-decelerate` | 200 ms glide-in | appear transition — snappy, responsive |
+| `fadeOut` | `--motion-duration-short` + `--motion-easing-standard` | 380 ms | disappear transition — graceful, clearly a fade (not an abrupt cut) |
+| `idleHideMs` | — *(numeric)* | 500 ms | hide delay after scrolling stops / mouse leaves the bar (a timeout, not a transition) |
 
 > **Mode-aware:** `scrim/faint` resolves to **black 16%** in light mode (a faint dark sliver on light surfaces) and **white 16%** in dark mode, so the thumb stays visible against either surface with no component change. `scrim/faint` was added specifically for faint overlay controls — it sits below the existing `light`/`subtle`/`base` scrim steps.
 
@@ -146,10 +149,22 @@ Every colour and unit resolves through a **semantic** Pathway token (in `SCROLL`
 |---|---|---|---|
 | Thumb width | thumb thickness | 6 | `layout.units.padding.xtight` |
 | Gutter | inset from the wrapper's right edge | 2 | `layout.units.padding.xxxtight` |
+| Grab strip width | invisible mouse-drag target around the thumb | 16 | none (JS constant) |
 | Min thumb length | shortest the thumb shrinks to | 28 | none (JS constant) |
 | Thumb radius | fully-rounded pill | — | `layout.units.cornerradius.full` |
 
-Thumb length is computed: `max(thumbMin, (clientHeight / scrollHeight) × clientHeight)`, recomputed on content and container resize via `ResizeObserver`.
+### 7.1 Sizing / proportionality
+
+The thumb's **height represents the visible fraction of the content** — the standard scrollbar proportionality. The track is the full visible height of the scroll region (`clientHeight`):
+
+```
+thumbHeight = max(28px, (clientHeight / scrollHeight) × clientHeight)
+                         └── visible ÷ total ──┘   └─ track ─┘
+```
+
+- **More content → shorter thumb; barely overflowing → near-full-height thumb.** Content 2× the viewport → thumb ≈ half the track; 5× → ≈ a fifth.
+- **28 px floor:** on very long lists the proportional height would shrink to an ungrabbable sliver, so it's clamped to 28 px. When clamped, the **position** mapping compensates so the thumb still travels exactly top-to-bottom: `top = (scrollTop / (scrollHeight − clientHeight)) × (clientHeight − thumbHeight)`.
+- **Recomputed** on content change and container resize (`ResizeObserver`) — collapsing the SideNav rail, adding nav items, or resizing the window all re-fit the thumb.
 
 ---
 
@@ -192,14 +207,17 @@ Thumb length is computed: `max(thumbMin, (clientHeight / scrollHeight) × client
 
 ## 11. Motion
 
-| Property | Value | Why |
-|---|---|---|
-| Reveal / hide | `opacity` 0 ↔ 1 over **240 ms** ease | fades in on hover or while scrolling; quiet, not abrupt |
-| Colour transition | `background` over **240 ms** ease | rest → hover/drag colour step |
-| Idle hide delay | **900 ms** after scrolling stops | keeps the thumb briefly so the user can grab it, then gets out of the way |
-| Reduced motion | fade may be removed; visibility logic unchanged | `prefers-reduced-motion: reduce` |
+All motion resolves through `--motion-*` tokens (durations/easings from `design-system-spec.md §2`) — no hardcoded ms/curves. The fade is **asymmetric**: snappy in, graceful out.
 
-No spring, no entrance animation on mount — the thumb only animates opacity/colour.
+| Property | Token | Value | Why |
+|---|---|---|---|
+| Fade **in** (appear) | `--motion-duration-instant` + `--motion-easing-decelerate` | 200 ms, ease-out glide | responsive — the bar is there the moment you scroll |
+| Fade **out** (disappear) | `--motion-duration-short` + `--motion-easing-standard` | 380 ms, smooth | a clearly visible graceful fade, never an abrupt cut |
+| Colour (rest ↔ hover) | `--motion-duration-instant` + `--motion-easing-standard` | 200 ms | rest → hover/drag colour step |
+| Idle hide delay | — *(timeout)* | 500 ms | short pause after you stop scrolling / leave the bar, then it fades |
+| Reduced motion | — | fade removed; visibility logic unchanged | `prefers-reduced-motion: reduce` |
+
+Opacity fades use the **standard / decelerate** easings (per the design-system-spec rule that opacity uses `standard`), not the spring curve — overshoot on opacity would clamp and read oddly.
 
 ---
 
