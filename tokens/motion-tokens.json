@@ -1,22 +1,42 @@
 {
   "motion": {
     "duration": {
-      "instant": {
+      "1": {
+        "$type": "duration",
+        "$value": "100ms",
+        "$description": "Instant tap feedback, tiny opacity flickers"
+      },
+      "2": {
+        "$type": "duration",
+        "$value": "150ms",
+        "$description": "Hover fills, small opacity fades, colour transitions — the most common micro-interaction timing"
+      },
+      "3": {
         "$type": "duration",
         "$value": "200ms",
-        "$description": "Hover fills, colour transitions, focus rings, small opacity fades — smoother micro-interactions"
+        "$description": "Micro-interactions needing slightly more presence; small reveals, focus rings"
       },
-      "short": {
+      "4": {
+        "$type": "duration",
+        "$value": "300ms",
+        "$description": "Chevron / disclosure rotation, dropdown & popover content, in-component state"
+      },
+      "5": {
         "$type": "duration",
         "$value": "380ms",
-        "$description": "State changes inside a component: popovers, dropdowns, accordions, expand/collapse, item enter/exit"
+        "$description": "Panel state changes: accordions, expand/collapse, item enter/exit"
       },
-      "medium": {
+      "6": {
+        "$type": "duration",
+        "$value": "460ms",
+        "$description": "Large physical-scale moves (e.g. SideNav width expand/collapse)"
+      },
+      "7": {
         "$type": "duration",
         "$value": "680ms",
-        "$description": "Cross-component transitions: page content sliding, route changes, large layout shifts"
+        "$description": "Cross-component transitions: page content sliding, large layout shifts"
       },
-      "long": {
+      "8": {
         "$type": "duration",
         "$value": "1100ms",
         "$description": "Continuous loops only: spinners, skeleton shimmer, indeterminate progress"

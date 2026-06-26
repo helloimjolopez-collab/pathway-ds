@@ -30,16 +30,20 @@ This matches the industry-standard pattern for design system motion (Material 3,
 
 ### 2.1 Duration tokens
 
-Four canonical durations. Use the named token in component CSS once tokens land (§2.5); until then, components hardcode the millisecond value.
+An ordered, numbered duration ladder, `--motion-duration-1` … `--motion-duration-8`. Components MUST use one of these tokens in CSS — never a hardcoded millisecond value. The ladder was derived from real component usage, so migrating onto it **preserves existing motion**: every prior hardcoded value lands on the nearest step (within ~30 ms, below the threshold of conscious perception for transition timing). The numbered scheme avoids semantic-name ordering conflicts and extends cleanly.
 
 | Token | Value | Use for |
 |---|---|---|
-| `--motion-duration-instant` | **200 ms** | Hover fills, colour transitions, focus rings, small opacity fades — smoother micro-interactions |
-| `--motion-duration-short` | **380 ms** | State changes inside a component: popovers, dropdowns, accordions, expand/collapse, item enter/exit |
-| `--motion-duration-medium` | **680 ms** | Cross-component transitions: page content sliding, route changes, large layout shifts |
-| `--motion-duration-long` | **1100 ms** | Continuous loops only: spinners, skeleton shimmer, indeterminate progress |
+| `--motion-duration-1` | **100 ms** | Instant tap feedback, tiny opacity flickers |
+| `--motion-duration-2` | **150 ms** | Hover fills, small opacity fades, colour transitions — the most common micro-interaction timing |
+| `--motion-duration-3` | **200 ms** | Micro-interactions needing slightly more presence; small reveals, focus rings |
+| `--motion-duration-4` | **300 ms** | Chevron / disclosure rotation, dropdown & popover content, in-component state |
+| `--motion-duration-5` | **380 ms** | Panel state changes: accordions, expand/collapse, item enter/exit |
+| `--motion-duration-6` | **460 ms** | Large physical-scale moves (e.g. SideNav width expand/collapse) |
+| `--motion-duration-7` | **680 ms** | Cross-component transitions: page content sliding, large layout shifts |
+| `--motion-duration-8` | **1100 ms** | Continuous loops only: spinners, skeleton shimmer, indeterminate progress |
 
-**Off-scale durations require a §2.3 override entry.** If a component uses `200ms` or `340ms` with no override row, that's a bug — either align to the scale or open a spec PR to add the override.
+**Off-scale durations require a §2.3 override entry.** If a component uses a value that isn't one of the eight steps and has no override row, that's a bug — align to the nearest step or open a spec PR to add the override. (Migration mapping: the former named steps are `instant`→`--motion-duration-3`, `short`→`--motion-duration-5`, `medium`→`--motion-duration-7`, `long`→`--motion-duration-8`.)
 
 ### 2.2 Easing tokens
 

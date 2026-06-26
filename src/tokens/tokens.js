@@ -69112,77 +69112,167 @@ export default {
   },
   motion: {
     duration: {
-      instant: {
-        key: "{motion.duration.instant}",
+      1: {
+        key: "{motion.duration.1}",
+        $type: "duration",
+        $value: "100ms",
+        $description: "Instant tap feedback, tiny opacity flickers",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "duration",
+          $value: "100ms",
+          $description: "Instant tap feedback, tiny opacity flickers",
+          key: "{motion.duration.1}",
+        },
+        name: "MotionDuration1",
+        attributes: {
+          category: "motion",
+          type: "duration",
+          item: "1",
+        },
+        path: ["motion", "duration", "1"],
+      },
+      2: {
+        key: "{motion.duration.2}",
+        $type: "duration",
+        $value: "150ms",
+        $description:
+          "Hover fills, small opacity fades, colour transitions — the most common micro-interaction timing",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "duration",
+          $value: "150ms",
+          $description:
+            "Hover fills, small opacity fades, colour transitions — the most common micro-interaction timing",
+          key: "{motion.duration.2}",
+        },
+        name: "MotionDuration2",
+        attributes: {
+          category: "motion",
+          type: "duration",
+          item: "2",
+        },
+        path: ["motion", "duration", "2"],
+      },
+      3: {
+        key: "{motion.duration.3}",
         $type: "duration",
         $value: "200ms",
         $description:
-          "Hover fills, colour transitions, focus rings, small opacity fades — smoother micro-interactions",
+          "Micro-interactions needing slightly more presence; small reveals, focus rings",
         filePath: "tokens/motion-tokens.json",
         isSource: true,
         original: {
           $type: "duration",
           $value: "200ms",
           $description:
-            "Hover fills, colour transitions, focus rings, small opacity fades — smoother micro-interactions",
-          key: "{motion.duration.instant}",
+            "Micro-interactions needing slightly more presence; small reveals, focus rings",
+          key: "{motion.duration.3}",
         },
-        name: "MotionDurationInstant",
+        name: "MotionDuration3",
         attributes: {
           category: "motion",
           type: "duration",
-          item: "instant",
+          item: "3",
         },
-        path: ["motion", "duration", "instant"],
+        path: ["motion", "duration", "3"],
       },
-      short: {
-        key: "{motion.duration.short}",
+      4: {
+        key: "{motion.duration.4}",
+        $type: "duration",
+        $value: "300ms",
+        $description:
+          "Chevron / disclosure rotation, dropdown & popover content, in-component state",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "duration",
+          $value: "300ms",
+          $description:
+            "Chevron / disclosure rotation, dropdown & popover content, in-component state",
+          key: "{motion.duration.4}",
+        },
+        name: "MotionDuration4",
+        attributes: {
+          category: "motion",
+          type: "duration",
+          item: "4",
+        },
+        path: ["motion", "duration", "4"],
+      },
+      5: {
+        key: "{motion.duration.5}",
         $type: "duration",
         $value: "380ms",
         $description:
-          "State changes inside a component: popovers, dropdowns, accordions, expand/collapse, item enter/exit",
+          "Panel state changes: accordions, expand/collapse, item enter/exit",
         filePath: "tokens/motion-tokens.json",
         isSource: true,
         original: {
           $type: "duration",
           $value: "380ms",
           $description:
-            "State changes inside a component: popovers, dropdowns, accordions, expand/collapse, item enter/exit",
-          key: "{motion.duration.short}",
+            "Panel state changes: accordions, expand/collapse, item enter/exit",
+          key: "{motion.duration.5}",
         },
-        name: "MotionDurationShort",
+        name: "MotionDuration5",
         attributes: {
           category: "motion",
           type: "duration",
-          item: "short",
+          item: "5",
         },
-        path: ["motion", "duration", "short"],
+        path: ["motion", "duration", "5"],
       },
-      medium: {
-        key: "{motion.duration.medium}",
+      6: {
+        key: "{motion.duration.6}",
+        $type: "duration",
+        $value: "460ms",
+        $description:
+          "Large physical-scale moves (e.g. SideNav width expand/collapse)",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "duration",
+          $value: "460ms",
+          $description:
+            "Large physical-scale moves (e.g. SideNav width expand/collapse)",
+          key: "{motion.duration.6}",
+        },
+        name: "MotionDuration6",
+        attributes: {
+          category: "motion",
+          type: "duration",
+          item: "6",
+        },
+        path: ["motion", "duration", "6"],
+      },
+      7: {
+        key: "{motion.duration.7}",
         $type: "duration",
         $value: "680ms",
         $description:
-          "Cross-component transitions: page content sliding, route changes, large layout shifts",
+          "Cross-component transitions: page content sliding, large layout shifts",
         filePath: "tokens/motion-tokens.json",
         isSource: true,
         original: {
           $type: "duration",
           $value: "680ms",
           $description:
-            "Cross-component transitions: page content sliding, route changes, large layout shifts",
-          key: "{motion.duration.medium}",
+            "Cross-component transitions: page content sliding, large layout shifts",
+          key: "{motion.duration.7}",
         },
-        name: "MotionDurationMedium",
+        name: "MotionDuration7",
         attributes: {
           category: "motion",
           type: "duration",
-          item: "medium",
+          item: "7",
         },
-        path: ["motion", "duration", "medium"],
+        path: ["motion", "duration", "7"],
       },
-      long: {
-        key: "{motion.duration.long}",
+      8: {
+        key: "{motion.duration.8}",
         $type: "duration",
         $value: "1100ms",
         $description:
@@ -69194,15 +69284,15 @@ export default {
           $value: "1100ms",
           $description:
             "Continuous loops only: spinners, skeleton shimmer, indeterminate progress",
-          key: "{motion.duration.long}",
+          key: "{motion.duration.8}",
         },
-        name: "MotionDurationLong",
+        name: "MotionDuration8",
         attributes: {
           category: "motion",
           type: "duration",
-          item: "long",
+          item: "8",
         },
-        path: ["motion", "duration", "long"],
+        path: ["motion", "duration", "8"],
       },
     },
     easing: {

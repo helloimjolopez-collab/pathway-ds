@@ -135,8 +135,8 @@ Every colour and unit resolves through a **semantic** Pathway token (in `SCROLL`
 | `thumbHover` | `--semantic-color-light-mode-scrim-light` | `rgba(17,17,17,0.30)` | hover / drag overlay (black 30%) |
 | `thumbEdge` | `--semantic-color-light-mode-fill-static-neutral-light` @ 35% (via `color-mix`) | white, 35% | hairline glass edge highlight |
 | `thumbBlur` | — *(effect, not a colour)* | `blur(8px) saturate(180%)` | backdrop-filter — the "glass" that refracts content beneath |
-| `fadeIn` | `--motion-duration-instant` + `--motion-easing-decelerate` | 200 ms glide-in | appear transition — snappy, responsive |
-| `fadeOut` | `--motion-duration-short` + `--motion-easing-standard` | 380 ms | disappear transition — graceful, clearly a fade (not an abrupt cut) |
+| `fadeIn` | `--motion-duration-3` + `--motion-easing-decelerate` | 200 ms glide-in | appear transition — snappy, responsive |
+| `fadeOut` | `--motion-duration-5` + `--motion-easing-standard` | 380 ms | disappear transition — graceful, clearly a fade (not an abrupt cut) |
 | `idleHideMs` | — *(numeric)* | 500 ms | hide delay after scrolling stops / mouse leaves the bar (a timeout, not a transition) |
 
 > **Mode-aware:** `scrim/faint` resolves to **black 16%** in light mode (a faint dark sliver on light surfaces) and **white 16%** in dark mode, so the thumb stays visible against either surface with no component change. `scrim/faint` was added specifically for faint overlay controls — it sits below the existing `light`/`subtle`/`base` scrim steps.
@@ -211,9 +211,9 @@ All motion resolves through `--motion-*` tokens (durations/easings from `design-
 
 | Property | Token | Value | Why |
 |---|---|---|---|
-| Fade **in** (appear) | `--motion-duration-instant` + `--motion-easing-decelerate` | 200 ms, ease-out glide | responsive — the bar is there the moment you scroll |
-| Fade **out** (disappear) | `--motion-duration-short` + `--motion-easing-standard` | 380 ms, smooth | a clearly visible graceful fade, never an abrupt cut |
-| Colour (rest ↔ hover) | `--motion-duration-instant` + `--motion-easing-standard` | 200 ms | rest → hover/drag colour step |
+| Fade **in** (appear) | `--motion-duration-3` + `--motion-easing-decelerate` | 200 ms, ease-out glide | responsive — the bar is there the moment you scroll |
+| Fade **out** (disappear) | `--motion-duration-5` + `--motion-easing-standard` | 380 ms, smooth | a clearly visible graceful fade, never an abrupt cut |
+| Colour (rest ↔ hover) | `--motion-duration-3` + `--motion-easing-standard` | 200 ms | rest → hover/drag colour step |
 | Idle hide delay | — *(timeout)* | 500 ms | short pause after you stop scrolling / leave the bar, then it fades |
 | Reduced motion | — | fade removed; visibility logic unchanged | `prefers-reduced-motion: reduce` |
 
