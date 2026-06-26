@@ -112,9 +112,11 @@ Consumers never see the primitive or the hex. The spinner wrapper sets `color: v
   to   { transform: rotate(360deg); }
 }
 .pds-spinner__svg {
-  animation: spin 1s linear infinite;
+  animation: spin var(--motion-duration-loop) var(--motion-easing-linear) infinite;
 }
 ```
+
+`--motion-duration-loop` resolves to **1000 ms** (the continuous-loop family in design-system-spec §2.1), paired with `--motion-easing-linear`. Not a hardcoded value.
 
 One keyframe. 1 second. Linear. Infinite. No easing, no pauses, no entrance animation. The spinner is shown at full opacity as soon as the consumer mounts it and runs until they unmount it. The duration and timing are **the contract** — implementations must not change them without a spec amendment.
 
@@ -151,7 +153,7 @@ The spinner doesn't set `aria-busy` itself. That attribute belongs on the region
 Hard rules:
 
 1. **No size variants.** Size is a continuous CSS length, never a prop enum.
-2. **No motion variants.** All styles run at `1s linear infinite`. No `speed`, no `paused`, no "slow" preset.
+2. **No motion variants.** All styles run at `--motion-duration-loop` + `--motion-easing-linear`, infinite. No `speed`, no `paused`, no "slow" preset.
 3. **The `style` prop is the variant selector**, not a CSS attribute. Only `style="progress-activity"` exists today.
 4. **No pause-on-hover.** The spinner is the affordance that communicates "still working" — pausing it suggests the task is paused.
 5. **No entrance animation.** Full opacity on mount; the consumer controls timing by choosing when to mount.

@@ -321,9 +321,9 @@ All button state transitions share one motion pairing: **`--motion-duration-2` (
 | Border colour | `--motion-duration-2` + `--motion-easing-standard` | 150 ms, standard |
 | Text / icon colour | `--motion-duration-2` + `--motion-easing-standard` | 150 ms, standard |
 | Box shadow (focus ring) | `--motion-duration-2` + `--motion-easing-standard` | 150 ms, standard |
-| Spinner rotation *(continuous loop)* | 750 ms, linear — see note | 750 ms |
+| Spinner rotation *(continuous loop)* | `--motion-duration-loop-fast` + `--motion-easing-linear` | 750 ms, linear |
 
-> **Spinner loop:** the in-button spinner rotates at **750 ms linear** (tighter than the standalone Spinner's 1 s). Continuous-loop *speeds* are not yet on the duration scale (the scale covers transition timing; `--motion-duration-8` = 1100 ms is the documented "loops" step but real spinners run faster). Tracked as a system motion gap — keep 750 ms until a loop-speed token is decided. `prefers-reduced-motion: reduce` stops the spinner; colour transitions are not suppressed (not vestibular triggers).
+> **Spinner loop:** the in-button spinner rotates at **`--motion-duration-loop-fast`** (750 ms — tighter than the standalone Spinner's `--motion-duration-loop` 1000 ms; faster reads as more responsive feedback for an in-progress action). Loop periods are their own motion family (see design-system-spec §2.1), distinct from the one-shot transition ladder, always paired with `--motion-easing-linear`. `prefers-reduced-motion: reduce` stops the spinner; colour transitions are not suppressed (not vestibular triggers).
 
 ---
 

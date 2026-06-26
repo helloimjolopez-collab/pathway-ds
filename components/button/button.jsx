@@ -185,7 +185,7 @@ export function ButtonSpinner({ size = 20 }) {
       viewBox="0 0 12 12"
       aria-hidden="true"
       style={{
-        animation: "pw-btn-spin 0.75s linear infinite",
+        animation: "pw-btn-spin var(--motion-duration-loop-fast) var(--motion-easing-linear) infinite",
         flexShrink: 0,
         display: "block",
       }}

@@ -41,9 +41,16 @@ An ordered, numbered duration ladder, `--motion-duration-1` … `--motion-durati
 | `--motion-duration-5` | **380 ms** | Panel state changes: accordions, expand/collapse, item enter/exit |
 | `--motion-duration-6` | **460 ms** | Large physical-scale moves (e.g. SideNav width expand/collapse) |
 | `--motion-duration-7` | **680 ms** | Cross-component transitions: page content sliding, large layout shifts |
-| `--motion-duration-8` | **1100 ms** | Continuous loops only: spinners, skeleton shimmer, indeterminate progress |
+| `--motion-duration-8` | **1100 ms** | Slowest transition step: very large layout shifts, deliberate full-screen moves |
 
 **Off-scale durations require a §2.3 override entry.** If a component uses a value that isn't one of the eight steps and has no override row, that's a bug — align to the nearest step or open a spec PR to add the override. (Migration mapping: the former named steps are `instant`→`--motion-duration-3`, `short`→`--motion-duration-5`, `medium`→`--motion-duration-7`, `long`→`--motion-duration-8`.)
+
+**Loop durations (continuous animations).** The numbered ladder above is for *one-shot transitions*. A spinner/shimmer is a continuous **loop** — a cycle *period*, a different motion concept — so loops use their own family, always paired with `--motion-easing-linear`:
+
+| Token | Value | Use for |
+|---|---|---|
+| `--motion-duration-loop` | **1000 ms** | Standard continuous-loop period (standalone Spinner, skeleton shimmer) |
+| `--motion-duration-loop-fast` | **750 ms** | Tighter loop for embedded/inline contexts (in-button spinner — faster reads as more responsive feedback) |
 
 ### 2.2 Easing tokens
 

@@ -206,7 +206,7 @@ All eight spokes share these stroke attributes (authored in Figma): `stroke: cur
 
 ### 5.1 Why the SVG rotates (not the spokes individually)
 
-The `animation: spin 1s linear infinite` declaration is applied to the `<svg>` element, not to each `<path>`. This keeps every spoke's coordinates static in the 12×12 space and means the SVG element is the single transform origin. Rotating each spoke individually would require setting transform-box and origin per path, and risks sub-pixel drift at small sizes — as well as multiplying the number of composited layers the browser has to keep.
+The `animation: spin var(--motion-duration-loop) var(--motion-easing-linear) infinite` declaration is applied to the `<svg>` element, not to each `<path>`. This keeps every spoke's coordinates static in the 12×12 space and means the SVG element is the single transform origin. Rotating each spoke individually would require setting transform-box and origin per path, and risks sub-pixel drift at small sizes — as well as multiplying the number of composited layers the browser has to keep.
 
 ### 5.2 Why the opacity ladder
 
@@ -239,18 +239,18 @@ Spinner motion is intentionally **boring**: one keyframe, one duration, one timi
 
 ```css
 .pds-spinner__svg {
-  animation: spin 1s linear infinite;
+  animation: spin var(--motion-duration-loop) var(--motion-easing-linear) infinite;
 }
 ```
 
-The exact declaration `animation: spin 1s linear infinite` is the contract. Implementations must not change the duration, timing function, or iteration count without a spec amendment.
+The declaration uses the loop-duration family from design-system-spec §2.1 — `--motion-duration-loop` (1000 ms) + `--motion-easing-linear`, not hardcoded values. Implementations must not change the duration, timing function, or iteration count without a spec amendment.
 
 ### 6.3 Properties
 
 | Property | Value | Why |
 |---|---|---|
-| Duration | `1s` | Matches the Material Symbols convention the Pathway icon family derives from. Fast enough to read as "active", slow enough not to strobe. |
-| Timing function | `linear` | A spinner is a continuous loop, not a bounded motion. Any ease would create perceivable acceleration/deceleration at every wrap and read as a UI glitch. |
+| Duration | `--motion-duration-loop` (1000 ms) | Matches the Material Symbols convention the Pathway icon family derives from. Fast enough to read as "active", slow enough not to strobe. The standard continuous-loop period (the in-button spinner uses `--motion-duration-loop-fast` 750 ms for tighter feedback). |
+| Timing function | `--motion-easing-linear` | A spinner is a continuous loop, not a bounded motion. Any ease would create perceivable acceleration/deceleration at every wrap and read as a UI glitch. |
 | Iteration count | `infinite` | The spinner runs until the consumer unmounts it. Spinners do not stop on their own. |
 | Direction | `normal` (clockwise) | Matches the Figma source. Reversing direction is not a supported variant. |
 | Delay | `0s` | No fade-in. The spinner is shown at full opacity as soon as it mounts; the consumer controls when to mount it. |

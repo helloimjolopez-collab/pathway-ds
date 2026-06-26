@@ -69276,14 +69276,14 @@ export default {
         $type: "duration",
         $value: "1100ms",
         $description:
-          "Continuous loops only: spinners, skeleton shimmer, indeterminate progress",
+          "Slowest transition step: very large layout shifts, deliberate full-screen moves",
         filePath: "tokens/motion-tokens.json",
         isSource: true,
         original: {
           $type: "duration",
           $value: "1100ms",
           $description:
-            "Continuous loops only: spinners, skeleton shimmer, indeterminate progress",
+            "Slowest transition step: very large layout shifts, deliberate full-screen moves",
           key: "{motion.duration.8}",
         },
         name: "MotionDuration8",
@@ -69293,6 +69293,52 @@ export default {
           item: "8",
         },
         path: ["motion", "duration", "8"],
+      },
+      loop: {
+        key: "{motion.duration.loop}",
+        $type: "duration",
+        $value: "1000ms",
+        $description:
+          "Standard continuous-loop period (standalone Spinner, skeleton shimmer)",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "duration",
+          $value: "1000ms",
+          $description:
+            "Standard continuous-loop period (standalone Spinner, skeleton shimmer)",
+          key: "{motion.duration.loop}",
+        },
+        name: "MotionDurationLoop",
+        attributes: {
+          category: "motion",
+          type: "duration",
+          item: "loop",
+        },
+        path: ["motion", "duration", "loop"],
+      },
+      "loop-fast": {
+        key: "{motion.duration.loop-fast}",
+        $type: "duration",
+        $value: "750ms",
+        $description:
+          "Tighter loop for embedded/inline contexts (in-button spinner — faster reads as more responsive feedback)",
+        filePath: "tokens/motion-tokens.json",
+        isSource: true,
+        original: {
+          $type: "duration",
+          $value: "750ms",
+          $description:
+            "Tighter loop for embedded/inline contexts (in-button spinner — faster reads as more responsive feedback)",
+          key: "{motion.duration.loop-fast}",
+        },
+        name: "MotionDurationLoopFast",
+        attributes: {
+          category: "motion",
+          type: "duration",
+          item: "loop-fast",
+        },
+        path: ["motion", "duration", "loop-fast"],
       },
     },
     easing: {
