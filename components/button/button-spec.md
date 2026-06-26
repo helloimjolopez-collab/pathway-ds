@@ -240,7 +240,7 @@ loading → disabled → pressed → hovered → focused → base
 | disabled | `disabled={true}` | Disabled tokens, `cursor: not-allowed`, no interaction |
 | loading | `loading={true}` | Spinner replaces all content, implicit disabled |
 
-Transition duration: `150ms ease` on `background-color`, `border-color`, `box-shadow`, `color`.
+Transition: `--motion-duration-2` + `--motion-easing-standard` (150 ms, `cubic-bezier(0.4,0,0.2,1)`) on `background-color`, `border-color`, `box-shadow`, `color`. See §10.
 
 ---
 
@@ -313,15 +313,17 @@ This ensures a 48 × 48 px touch target for every button size (including Size S 
 
 ## §10 Motion
 
-| Property | Duration | Easing |
-|---|---|---|
-| Background colour | 150 ms | ease |
-| Border colour | 150 ms | ease |
-| Text / icon colour | 150 ms | ease |
-| Box shadow (focus ring) | 150 ms | ease |
-| Spinner rotation | 750 ms | linear |
+All button state transitions share one motion pairing: **`--motion-duration-2` (150 ms) + `--motion-easing-standard`** — no hardcoded values.
 
-`prefers-reduced-motion: reduce` — spinner animation stops. Colour transitions are not suppressed (they are not vestibular triggers).
+| Property | Token | Resolved |
+|---|---|---|
+| Background colour | `--motion-duration-2` + `--motion-easing-standard` | 150 ms, `cubic-bezier(0.4,0,0.2,1)` |
+| Border colour | `--motion-duration-2` + `--motion-easing-standard` | 150 ms, standard |
+| Text / icon colour | `--motion-duration-2` + `--motion-easing-standard` | 150 ms, standard |
+| Box shadow (focus ring) | `--motion-duration-2` + `--motion-easing-standard` | 150 ms, standard |
+| Spinner rotation *(continuous loop)* | 750 ms, linear — see note | 750 ms |
+
+> **Spinner loop:** the in-button spinner rotates at **750 ms linear** (tighter than the standalone Spinner's 1 s). Continuous-loop *speeds* are not yet on the duration scale (the scale covers transition timing; `--motion-duration-8` = 1100 ms is the documented "loops" step but real spinners run faster). Tracked as a system motion gap — keep 750 ms until a loop-speed token is decided. `prefers-reduced-motion: reduce` stops the spinner; colour transitions are not suppressed (not vestibular triggers).
 
 ---
 
