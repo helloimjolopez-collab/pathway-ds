@@ -1114,33 +1114,25 @@ The only things that genuinely need to be **done in Figma** (because they are de
 
 ## 14. Motion
 
-All SideNav motion follows `docs/design-system-spec.md` §2 with the contextual overrides documented in §2.4 of that file. The full implementation detail lives in two sections of this spec:
+All SideNav motion resolves through the **`--motion-*` tokens** (`docs/design-system-spec.md` §2) — no hardcoded ms/curves in `sidenav.jsx`. This table reflects the tokens the implementation actually uses (it supersedes the older named-step references):
 
-- **§8.3** — Sidebar width transition (380ms smooth-spring) + label/chevron max-width (360ms same curve) + opacity (200ms ease)
-- **§12.1** — Grouper accordion (340ms easeOutQuart) + children opacity fade-in (240ms / 60ms delay) + chevron rotation (340ms same curve)
-- **§17.6** — Overlay enter (380ms) and exit (300ms) transitions, scrim fade, reduced-motion rules
+### Summary — token per motion
 
-### Summary of durations
+| Element | Duration token | Easing token |
+|---|---|---|
+| Hover fills, colour transitions | `--motion-duration-3` (200ms) | `--motion-easing-standard` |
+| Popover/tooltip enter (`popoverIn`) | `--motion-duration-3` | `--motion-easing-spring` |
+| Grouper accordion expand/collapse (grid-rows) | `--motion-duration-5` (380ms) | `--motion-easing-accordion` |
+| Chevron rotation (matches accordion) | `--motion-duration-5` | `--motion-easing-accordion` |
+| Grouper child opacity fade-in | `--motion-duration-4` (300ms), 70ms delay | `--motion-easing-standard` |
+| Grouper child opacity fade-out | `--motion-duration-3` | `--motion-easing-standard` |
+| NavSectionLabel opacity fade | `--motion-duration-4` | `--motion-easing-standard` |
+| NavSectionLabel / Divider max-height | `--motion-duration-5` | `--motion-easing-spring` |
+| Sidebar width expand/collapse | `--motion-duration-6` (460ms) | `--motion-easing-emphasized` |
+| Label/chevron max-width (rail header) | `--motion-duration-6` | `--motion-easing-emphasized` |
+| Label/chevron opacity fade | `--motion-duration-3` | `--motion-easing-standard` |
 
-| Element | Duration | Overarching category | Override? |
-|---|---|---|---|
-| Hover fills, colour transitions | 150ms | `instant` | No |
-| Popover enter (SideNavTooltip, flyout) | 150ms | `instant` | No |
-| Grouper accordion expand/collapse | 340ms · easeOutQuart | `short` | No — see §12.1 |
-| Grouper child opacity fade-in | 240ms / 60ms delay | `instant`–`short` | No — see §12.1 |
-| Grouper child opacity fade-out | 160ms | `instant` | No — see §12.1 |
-| Chevron rotation (matches accordion) | 340ms · easeOutQuart | `short` | No |
-| NavSectionLabel fade / Divider crossfade | 220–300ms | `short` | No — see §2.3 |
-| Sidebar width expand/collapse | 380ms · smooth-spring | between `short`/`medium` | Yes — see §8.3 (updated 2026-05-13: smoother, no overshoot) |
-| Label/chevron max-width | 360ms · smooth-spring | `short` | Yes — see §8.3 |
-| Label/chevron opacity fade | 200ms ease | between `instant`/`short` | Yes — see §8.3 |
-| Overlay panel enter (transform) | 380ms | above `short` | Yes — see §17.6 |
-| Overlay panel exit (transform) | 300ms | `short` | No |
-| Overlay panel opacity | 220–300ms | `short` | No |
-| Scrim fade | 280ms | `short` | No |
-| Reduced motion (all transforms) | 150ms linear | `instant` | No |
-
-All easing curves follow the overarching spec exactly: `cubic-bezier(0.4,0,0.2,1)` standard, `cubic-bezier(0,0,0.2,1)` decelerate (enters), `cubic-bezier(0.4,0,0.6,1)` accelerate (exits).
+> The earlier hardcoded values (e.g. sidebar width "380ms", accordion "340ms easeOutQuart") were drift; the running implementation used 460ms / 420ms, which now snap to `--motion-duration-6` / `--motion-duration-5`. The off-scale `easeOutQuart` (`0.22,1,0.36,1`) maps to `--motion-easing-accordion` (content reveal/hide, the spec's semantic for accordions). Overlay panel enter/exit + scrim live in §17.6 / nav-shell and are migrated with that component.
 
 ---
 
