@@ -298,7 +298,7 @@ export function Button({
     border:           hasStroke ? `${T.border} solid ${strokeColor}` : "none",
     gap:              T.gap,
     boxShadow:        showFocusRing ? T.focusShadow : "none",
-    transition:       "background-color 160ms cubic-bezier(0.4,0,0.2,1), border-color 160ms cubic-bezier(0.4,0,0.2,1), box-shadow 160ms cubic-bezier(0.4,0,0.2,1), color 160ms cubic-bezier(0.4,0,0.2,1)",
+    transition:       "background-color var(--motion-duration-2) var(--motion-easing-standard), border-color var(--motion-duration-2) var(--motion-easing-standard), box-shadow var(--motion-duration-2) var(--motion-easing-standard), color var(--motion-duration-2) var(--motion-easing-standard)",
     color:            iconColor,  // propagated to icons via currentColor
   };
 
@@ -311,7 +311,7 @@ export function Button({
     fontSize:      sz.fontSize,
     color:         textColor,
     whiteSpace:    "nowrap",
-    transition:    "color 160ms cubic-bezier(0.4,0,0.2,1)",
+    transition:    "color var(--motion-duration-2) var(--motion-easing-standard)",
     userSelect:    "none",
   };
 
@@ -328,7 +328,7 @@ export function Button({
     flexShrink:           0,
     fontSize:             sz.iconInner,
     color:                iconColor,
-    transition:           "color 160ms cubic-bezier(0.4,0,0.2,1)",
+    transition:           "color var(--motion-duration-2) var(--motion-easing-standard)",
     fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20",
   };
 
