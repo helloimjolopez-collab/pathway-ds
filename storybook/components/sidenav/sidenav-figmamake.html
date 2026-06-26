@@ -26,10 +26,16 @@
     --semantic-layout-units-padding-xtight:   6px;
     --semantic-layout-units-padding-xxxtight: 2px;
     --semantic-layout-units-cornerradius-full: 64px;
+    --motion-duration-instant: 200ms;
+    --motion-duration-short: 380ms;
+    --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
   }
   /* Hide the native bar on the Scrollable view (the overlay thumb replaces it). */
   .pds-scrollable__view { scrollbar-width: none; -ms-overflow-style: none; }
   .pds-scrollable__view::-webkit-scrollbar { width: 0; height: 0; display: none; }
+  /* Touch: disable the mouse grab strip so finger-swipes scroll the content (passive bar). */
+  @media (hover: none) { .pds-scrollable__grab { pointer-events: none !important; } }
 
   /* ── OPEN IN CHROME BUTTON ─────────────────────────────────────────────── */
   #open-in-chrome {
@@ -389,14 +395,17 @@ const SCROLL = {
   thumbRadius: "var(--semantic-layout-units-cornerradius-full)",
   gutter:      "var(--semantic-layout-units-padding-xxxtight)",
   thumbMin:    28,
+  grabZone:    16,
   thumbRest:   "var(--semantic-color-light-mode-scrim-faint)",
   thumbHover:  "var(--semantic-color-light-mode-scrim-light)",
   thumbBlur:   "blur(8px) saturate(180%)",
   thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-light-mode-fill-static-neutral-light) 35%, transparent)",
-  fadeMs: 240, idleHideMs: 900,
+  fadeIn:      "opacity var(--motion-duration-instant) var(--motion-easing-decelerate), background var(--motion-duration-instant) var(--motion-easing-standard)",
+  fadeOut:     "opacity var(--motion-duration-short) var(--motion-easing-standard)",
+  idleHideMs:  500,
 };
 function Scrollable({ children, style={}, viewStyle={} }) {
-  const viewRef = useRef(null), dragRef = useRef(null), idleRef = useRef(null);
+  const viewRef = useRef(null), dragRef = useRef(null), idleRef = useRef(null), nearRef = useRef(false);
   const [thumb, setThumb] = useState({ h:0, top:0, show:false });
   const [active, setActive] = useState(false);
   const [hot, setHot] = useState(false);
@@ -415,11 +424,16 @@ function Scrollable({ children, style={}, viewStyle={} }) {
     Array.from(el.children).forEach(c => ro.observe(c));
     return () => ro.disconnect();
   }, [children, recompute]);
-  const wake = () => { setActive(true); clearTimeout(idleRef.current);
-    idleRef.current = setTimeout(() => { if (!dragRef.current) setActive(false); }, SCROLL.idleHideMs); };
-  const onThumbDown = (e) => {
+  const scheduleHide = () => { clearTimeout(idleRef.current);
+    idleRef.current = setTimeout(() => { if (!dragRef.current && !nearRef.current) setActive(false); }, SCROLL.idleHideMs); };
+  const wake = () => { setActive(true); scheduleHide(); };
+  const onMouseMove = (e) => { const r = e.currentTarget.getBoundingClientRect();
+    if (r.right - e.clientX <= SCROLL.grabZone) { nearRef.current = true; setActive(true); clearTimeout(idleRef.current); }
+    else if (nearRef.current) { nearRef.current = false; scheduleHide(); } };
+  const onLeave = () => { nearRef.current = false; if (!dragRef.current) scheduleHide(); };
+  const onGrabDown = (e) => {
     e.preventDefault(); const el = viewRef.current; if (!el) return;
-    dragRef.current = { y:e.clientY, top:el.scrollTop }; setHot(true); setActive(true);
+    dragRef.current = { y:e.clientY, top:el.scrollTop }; setHot(true); setActive(true); clearTimeout(idleRef.current);
     const move = (ev) => { const { scrollHeight, clientHeight } = el;
       const h = Math.max(SCROLL.thumbMin, (clientHeight/scrollHeight)*clientHeight);
       const ratio = (scrollHeight-clientHeight)/(clientHeight-h);
@@ -430,20 +444,22 @@ function Scrollable({ children, style={}, viewStyle={} }) {
   };
   return (
     <div className="pds-scrollable" style={{ position:"relative", minHeight:0, ...style }}
-      onMouseEnter={() => setActive(true)} onMouseLeave={() => { if (!dragRef.current) setActive(false); }}>
+      onMouseMove={onMouseMove} onMouseLeave={onLeave}>
       <div ref={viewRef} className="pds-scrollable__view" onScroll={() => { recompute(); wake(); }}
         style={{ height:"100%", overflowY:"auto", overflowX:"hidden", ...viewStyle }}>
         {children}
       </div>
-      {thumb.show && (
-        <div aria-hidden="true" onMouseDown={onThumbDown}
+      {thumb.show && (<>
+        <div aria-hidden="true" style={{ position:"absolute", top:thumb.top, right:SCROLL.gutter,
+          width:SCROLL.thumbWidth, height:thumb.h, borderRadius:SCROLL.thumbRadius,
+          background: hot?SCROLL.thumbHover:SCROLL.thumbRest, backdropFilter:SCROLL.thumbBlur,
+          WebkitBackdropFilter:SCROLL.thumbBlur, boxShadow:SCROLL.thumbEdge,
+          opacity: active?1:0, transition: active?SCROLL.fadeIn:SCROLL.fadeOut, pointerEvents:"none", zIndex:5 }} />
+        <div aria-hidden="true" className="pds-scrollable__grab" onMouseDown={onGrabDown}
           onMouseEnter={() => setHot(true)} onMouseLeave={() => setHot(false)}
-          style={{ position:"absolute", top:thumb.top, right:SCROLL.gutter, width:SCROLL.thumbWidth,
-            height:thumb.h, borderRadius:SCROLL.thumbRadius, background: hot?SCROLL.thumbHover:SCROLL.thumbRest,
-            backdropFilter:SCROLL.thumbBlur, WebkitBackdropFilter:SCROLL.thumbBlur, boxShadow:SCROLL.thumbEdge,
-            opacity: active?1:0, transition:`opacity ${SCROLL.fadeMs}ms ease, background ${SCROLL.fadeMs}ms ease`,
-            pointerEvents: active?"auto":"none", zIndex:5 }} />
-      )}
+          style={{ position:"absolute", top:thumb.top, right:0, width:SCROLL.grabZone, height:thumb.h,
+            pointerEvents: active?"auto":"none", zIndex:6, background:"transparent" }} />
+      </>)}
     </div>
   );
 }
