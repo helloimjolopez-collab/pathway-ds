@@ -17,6 +17,9 @@
      Every variable name below matches the auto-generated name exactly.
   ══════════════════════════════════════════════════════════════════════════ */
   :root {
+    /* Motion (continuous-loop family — mirrors src/tokens/tokens.css §2) */
+    --motion-duration-loop: 1000ms;
+    --motion-easing-linear: cubic-bezier(0, 0, 1, 1);
     /* Primitives used by icon.static.* — lifted verbatim from tokens.css      */
     --primitive-color-cool-neutral-110: #7b7b7b;
     --primitive-color-cool-neutral-130: #606060;
@@ -231,7 +234,7 @@
     width: 100%;
     height: 100%;
     display: block;
-    animation: spin 1s linear infinite;
+    animation: spin var(--motion-duration-loop) var(--motion-easing-linear) infinite;
     overflow: visible;
   }
   .pds-spinner__spoke {

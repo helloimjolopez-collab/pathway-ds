@@ -19,7 +19,9 @@
   :root {
     /* ── Motion (mirrors src/tokens/tokens.css §2) ── */
     --motion-duration-2: 150ms;
+    --motion-duration-loop-fast: 750ms;
     --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --motion-easing-linear: cubic-bezier(0, 0, 1, 1);
     /* ── Primitives ── */
     --primitive-color-cool-neutral-0:       #ffffff;
     --primitive-color-cool-neutral-10:      #fbfbfb;
@@ -401,7 +403,7 @@ const SPOKES = [
 function BtnSpinner({ size = 20 }) {
   return (
     <svg className="pw-btn-spinner" width={size} height={size} viewBox="0 0 12 12" aria-hidden="true"
-      style={{ animation: "pw-btn-spin .75s linear infinite", flexShrink: 0, display: "block" }}>
+      style={{ animation: "pw-btn-spin var(--motion-duration-loop-fast) var(--motion-easing-linear) infinite", flexShrink: 0, display: "block" }}>
       {SPOKES.map((s, i) => (
         <path key={i} d={s.d} stroke="currentColor" strokeWidth="1" strokeLinecap="round" fill="none" opacity={s.o} />
       ))}
