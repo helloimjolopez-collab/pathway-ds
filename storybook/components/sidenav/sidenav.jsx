@@ -72,7 +72,7 @@ export function IndicatorStripe({ visible }) {
       <div style={{ flex: "1 0 0", width: L.stripeW, minHeight: 1,
         borderRadius: "0 8px 8px 0",
         backgroundColor: visible ? T.indicator : "transparent",
-        transition: "background-color 0.2s cubic-bezier(0.4,0,0.2,1)" }} />
+        transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)" }} />
     </div>
   );
 }
@@ -131,7 +131,7 @@ export function SideNavItem({
         }}
         style={{ display: "flex", alignItems: "center", minHeight: L.itemH, width: "100%",
           borderRadius: T.radius, backgroundColor: fillBg, cursor: "pointer",
-          overflow: "hidden", transition: "background-color 0.2s cubic-bezier(0.4,0,0.2,1)", userSelect: "none" }}>
+          overflow: "hidden", transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)", userSelect: "none" }}>
 
         <IndicatorStripe visible={showStripe} />
 
@@ -154,11 +154,11 @@ export function SideNavItem({
           opacity: isSidebarCollapsed ? 0 : 1,
           overflow: "hidden",
           pointerEvents: isSidebarCollapsed ? "none" : "auto",
-          transition: "max-width 440ms cubic-bezier(0.32, 0.72, 0, 1), opacity 240ms cubic-bezier(0.4,0,0.2,1)" }}>
+          transition: "max-width var(--motion-duration-6) var(--motion-easing-emphasized), opacity var(--motion-duration-3) var(--motion-easing-standard)" }}>
           <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500,
             fontSize: 14, lineHeight: "20px", letterSpacing: "0.3px", color: textColor, margin: 0,
             whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-            transition: "color 0.2s cubic-bezier(0.4,0,0.2,1)" }}>
+            transition: "color var(--motion-duration-3) var(--motion-easing-standard)" }}>
             {item.label}
           </p>
         </div>
@@ -170,10 +170,10 @@ export function SideNavItem({
             maxWidth: isSidebarCollapsed ? 0 : 40,
             opacity: isSidebarCollapsed ? 0 : 1,
             overflow: "hidden",
-            transition: "max-width 440ms cubic-bezier(0.32, 0.72, 0, 1), opacity 240ms cubic-bezier(0.4,0,0.2,1)" }}>
-            {/* Chevron rotation matches accordion timing — 340ms easeOutQuart */}
+            transition: "max-width var(--motion-duration-6) var(--motion-easing-emphasized), opacity var(--motion-duration-3) var(--motion-easing-standard)" }}>
+            {/* Chevron rotation matches accordion timing — --motion-duration-5 + --motion-easing-accordion */}
             <div style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform 420ms cubic-bezier(0.33, 1.03, 0.68, 1)" }}>
+              transition: "transform var(--motion-duration-5) var(--motion-easing-accordion)" }}>
               {chevronDown ? chevronDown({ size: 10, color: iconColor }) : <ChevDown size={10} color={iconColor} />}
             </div>
           </div>
@@ -226,7 +226,7 @@ export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }
         border: "0.5px solid #f6f6f6", borderRadius: 8,
         boxShadow: "2px 2px 8px 0px rgba(0,0,0,0.03)",
         padding: "6px 8px", whiteSpace: "nowrap", pointerEvents: "auto",
-        animation: "popoverInCentered 220ms cubic-bezier(0.16, 1.03, 0.3, 1) forwards" }}>
+        animation: "popoverInCentered var(--motion-duration-3) var(--motion-easing-spring) forwards" }}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
         fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px", color: "#202020" }}>
         {label}
@@ -265,7 +265,7 @@ export function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMo
         border: "0.5px solid #ededed", borderRadius: 8,
         boxShadow: "2px 2px 8px 4px rgba(0,0,0,0.03)",
         padding: 6, minWidth: 200, pointerEvents: "auto",
-        animation: "popoverIn 220ms cubic-bezier(0.16, 1.03, 0.3, 1) forwards" }}>
+        animation: "popoverIn var(--motion-duration-3) var(--motion-easing-spring) forwards" }}>
       {/* Section label — Figma component 40006794-5977 */}
       <div style={{ borderBottom: "0.5px solid #ededed" }}>
         <SectionLabel label={item.label} />
@@ -289,13 +289,13 @@ export function PopoverRow({ item, onClick, activeId }) {
       onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
       style={{ display: "flex", alignItems: "center", minHeight: 40, borderRadius: 8,
         overflow: "hidden", backgroundColor: bg, cursor: "pointer",
-        transition: "background-color 0.2s cubic-bezier(0.4,0,0.2,1)" }}>
+        transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)" }}>
       <div style={{ width: 4, alignSelf: "stretch", borderRadius: "0 4px 4px 0",
         backgroundColor: isActive ? T.indicator : "transparent",
-        flexShrink: 0, transition: "background-color 0.2s cubic-bezier(0.4,0,0.2,1)" }} />
+        flexShrink: 0, transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)" }} />
       <span style={{ padding: "0 8px", fontFamily: "'Red Hat Text',sans-serif",
         fontWeight: 400, fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px",
-        color, transition: "color 0.2s cubic-bezier(0.4,0,0.2,1)", flex: 1 }}>
+        color, transition: "color var(--motion-duration-3) var(--motion-easing-standard)", flex: 1 }}>
         {item.label}
       </span>
     </div>
@@ -319,7 +319,7 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
         onKeyDown={e => (e.key === "Enter" || e.key === " ") && onToggle()}
         style={{ display: "flex", alignItems: "center", minHeight: L.itemH, width: "100%",
           borderRadius: T.radius, backgroundColor: h ? T.fill.navHover : T.fill.navBase,
-          cursor: "pointer", transition: "background-color 0.2s cubic-bezier(0.4,0,0.2,1)", overflow: "hidden" }}>
+          cursor: "pointer", transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)", overflow: "hidden" }}>
 
         {/* Slot.RowStart — 4px stripe column (structural, always present) */}
         <div style={{ width: L.stripeW, alignSelf: "stretch", flexShrink: 0 }} />
@@ -329,11 +329,11 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
           maxWidth: isSidebarCollapsed ? 0 : 200,
           opacity: isSidebarCollapsed ? 0 : 1,
           overflow: "hidden",
-          transition: "max-width 0.42s cubic-bezier(0.4,0,0.15,1), opacity 0.22s cubic-bezier(0.4,0,0.2,1)",
+          transition: "max-width var(--motion-duration-5) var(--motion-easing-standard), opacity var(--motion-duration-3) var(--motion-easing-standard)",
           pointerEvents: isSidebarCollapsed ? "none" : "auto" }}>
           <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500, fontSize: 14,
             lineHeight: "20px", letterSpacing: "0.3px", color: labelColor,
-            transition: "color 0.2s cubic-bezier(0.4,0,0.2,1)", whiteSpace: "nowrap" }}>
+            transition: "color var(--motion-duration-3) var(--motion-easing-standard)", whiteSpace: "nowrap" }}>
             Collapse
           </span>
         </div>
@@ -379,7 +379,7 @@ export function NavHeader({ isSidebarCollapsed, onToggle, collapseIcon, expandIc
         style={{ display: "flex", alignItems: "center", height: L.itemH, width: "100%",
           borderRadius: T.radius, cursor: "pointer",
           backgroundColor: h ? T.fill.navHover : "transparent",
-          transition: "background-color 0.2s cubic-bezier(0.4,0,0.2,1)" }}>
+          transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)" }}>
         {isSidebarCollapsed ? (
           /* Collapsed: centered action icon */
           <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -448,7 +448,7 @@ export function ListItem({ item, isActive, onClick }) {
       onKeyDown={e => (e.key === "Enter" || e.key === " ") && onClick && onClick(item.id)}
       style={{ display: "flex", alignItems: "center", minHeight: L.itemH, width: "100%",
         borderRadius: T.radius, backgroundColor: bg, cursor: "pointer",
-        overflow: "hidden", transition: "background-color 0.2s cubic-bezier(0.4,0,0.2,1)",
+        overflow: "hidden", transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)",
         userSelect: "none" }}>
       <IndicatorStripe visible={isActive} />
       <div style={{ width: L.iconWrap, height: L.iconWrap, display: "flex",
@@ -460,7 +460,7 @@ export function ListItem({ item, isActive, onClick }) {
         <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
           fontSize: 12, lineHeight: "18px", letterSpacing: "0.6px", color,
           margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-          transition: "color 0.2s cubic-bezier(0.4,0,0.2,1)" }}>
+          transition: "color var(--motion-duration-3) var(--motion-easing-standard)" }}>
           {item.label}
         </p>
       </div>
@@ -552,21 +552,21 @@ export function SideNav({
           onPopoverEnter={onPopoverEnter} onPopoverLeave={onPopoverLeave}
           activeId={activeId} />
         {/* Level 1 children — animated accordion. grid-template-rows 0fr→1fr at
-            340ms easeOutQuart, with inner wrapper opacity fade 240ms (60ms delay
-            on expand, no delay on collapse for snappier exit). */}
+            --motion-duration-5 + --motion-easing-accordion, with inner wrapper opacity
+            fade --motion-duration-4 (70ms delay on expand, no delay on collapse). */}
         {hasChildren && !collapsed && (
           <div style={{
             display: "grid",
             gridTemplateRows: isExp ? "1fr" : "0fr",
             marginTop: isExp ? L.menuGap : 0,
-            transition: "grid-template-rows 420ms cubic-bezier(0.33, 1.03, 0.68, 1), margin-top 420ms cubic-bezier(0.33, 1.03, 0.68, 1)" }}>
+            transition: "grid-template-rows var(--motion-duration-5) var(--motion-easing-accordion), margin-top var(--motion-duration-5) var(--motion-easing-accordion)" }}>
             <div style={{
               overflow: "hidden",
               display: "flex", flexDirection: "column", gap: L.menuGap,
               opacity: isExp ? 1 : 0,
               transition: isExp
-                ? "opacity 300ms cubic-bezier(0.4,0,0.2,1) 70ms"
-                : "opacity 200ms cubic-bezier(0.4,0,0.2,1)" }}>
+                ? "opacity var(--motion-duration-4) var(--motion-easing-standard) 70ms"
+                : "opacity var(--motion-duration-3) var(--motion-easing-standard)" }}>
               {item.children.map(child => (
                 <SideNavItem key={child.id} item={child}
                   isActive={child.id === activeId} isTrail={false}
@@ -592,7 +592,7 @@ export function SideNav({
       paddingRight: collapsed ? L.navColPadH : L.navPadH,
       boxSizing: "border-box", flexShrink: 0,
       // Smooth-spring curve — soft personality, no overshoot.
-      transition: "width 460ms cubic-bezier(0.32, 0.72, 0, 1)",
+      transition: "width var(--motion-duration-6) var(--motion-easing-emphasized)",
       borderRight: `0.5px solid ${T.fill.infoSubtle}`,
       overflow: "hidden",   // the inner menu scrolls; the nav itself does not
     }}>
@@ -630,7 +630,7 @@ export function SideNav({
             {/* Expanded: NavSectionLabel; fades to 0 height as rail collapses */}
             <div style={{ opacity: collapsed ? 0 : 1,
               maxHeight: collapsed ? 0 : 40, overflow: "hidden",
-              transition: "opacity 260ms cubic-bezier(0.4,0,0.2,1), max-height 380ms cubic-bezier(0.34, 1.04, 0.64, 1)",
+              transition: "opacity var(--motion-duration-4) var(--motion-easing-standard), max-height var(--motion-duration-5) var(--motion-easing-spring)",
               flexShrink: 0 }}>
               <NavSectionLabel label={section} />
             </div>
@@ -638,7 +638,7 @@ export function SideNav({
             {sIdx > 0 && (
               <div style={{ opacity: collapsed ? 1 : 0,
                 maxHeight: collapsed ? 5 : 0, overflow: "hidden",
-                transition: "opacity 260ms cubic-bezier(0.4,0,0.2,1), max-height 380ms cubic-bezier(0.34, 1.04, 0.64, 1)",
+                transition: "opacity var(--motion-duration-4) var(--motion-easing-standard), max-height var(--motion-duration-5) var(--motion-easing-spring)",
                 padding: "2px 0", flexShrink: 0 }}>
                 <div style={{ height: 1, backgroundColor: T.fill.infoSubtle }} />
               </div>
@@ -654,7 +654,7 @@ export function SideNav({
         {listSection && (
           <div style={{ opacity: collapsed ? 0 : 1,
             maxHeight: collapsed ? 0 : 400, overflow: "hidden",
-            transition: "opacity 260ms cubic-bezier(0.4,0,0.2,1), max-height 380ms cubic-bezier(0.34, 1.04, 0.64, 1)" }}>
+            transition: "opacity var(--motion-duration-4) var(--motion-easing-standard), max-height var(--motion-duration-5) var(--motion-easing-spring)" }}>
             <SideNavListSection label={listSection.label} items={listSection.items}
               activeId={activeId} onNavigate={onNavigate} />
           </div>
