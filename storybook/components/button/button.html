@@ -17,6 +17,9 @@
      Only the tokens used by Button are included.
   ══════════════════════════════════════════════════════════════════════════ */
   :root {
+    /* ── Motion (mirrors src/tokens/tokens.css §2) ── */
+    --motion-duration-2: 150ms;
+    --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
     /* ── Primitives ── */
     --primitive-color-cool-neutral-0:       #ffffff;
     --primitive-color-cool-neutral-10:      #fbfbfb;
@@ -445,18 +448,18 @@ function Button({ buttonStyle = "Fill", size = "M", type = "Primary", text = "Bu
     border: hasStroke ? `${T.border} solid ${strokeColor}` : "none",
     gap: T.gap, flex: "1 0 0", minWidth: 0, color: iconColor,
     boxShadow: focused && !isDisabled ? T.focusShadow : "none",
-    transition: "background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, color 150ms ease",
+    transition: "background-color var(--motion-duration-2) var(--motion-easing-standard), border-color var(--motion-duration-2) var(--motion-easing-standard), box-shadow var(--motion-duration-2) var(--motion-easing-standard), color var(--motion-duration-2) var(--motion-easing-standard)",
   };
   const labelS = {
     fontFamily: sz.fontFamily, fontWeight: sz.fontWeight, fontSize: sz.fontSize,
     lineHeight: sz.lineHeight, letterSpacing: sz.letterSpacing,
     color: textColor, whiteSpace: "nowrap", userSelect: "none",
-    transition: "color 150ms ease",
+    transition: "color var(--motion-duration-2) var(--motion-easing-standard)",
   };
   const iconWrapS = {
     display: "inline-flex", alignItems: "center", justifyContent: "center",
     width: sz.iconWrap, height: sz.iconWrap, flexShrink: 0,
-    fontSize: sz.iconInner, color: iconColor, transition: "color 150ms ease",
+    fontSize: sz.iconInner, color: iconColor, transition: "color var(--motion-duration-2) var(--motion-easing-standard)",
   };
 
   return (
