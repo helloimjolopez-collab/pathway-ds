@@ -439,7 +439,9 @@
   --motion-duration-5: 380ms; /** Panel state changes: accordions, expand/collapse, item enter/exit */
   --motion-duration-6: 460ms; /** Large physical-scale moves (e.g. SideNav width expand/collapse) */
   --motion-duration-7: 680ms; /** Cross-component transitions: page content sliding, large layout shifts */
-  --motion-duration-8: 1100ms; /** Continuous loops only: spinners, skeleton shimmer, indeterminate progress */
+  --motion-duration-8: 1100ms; /** Slowest transition step: very large layout shifts, deliberate full-screen moves */
+  --motion-duration-loop: 1000ms; /** Standard continuous-loop period (standalone Spinner, skeleton shimmer) */
+  --motion-duration-loop-fast: 750ms; /** Tighter loop for embedded/inline contexts (in-button spinner — faster reads as more responsive feedback) */
   --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1); /** Most transitions — enters AND exits. Smooth, no overshoot. Default for colour, fill, opacity, focus rings. */
   --motion-easing-spring: cubic-bezier(0.34, 1.04, 0.64, 1); /** Signature Pathway curve. Interactive element entrances: dropdown/popover panel opens. A whisper of overshoot (y2=1.04) — easeful, only *ever so slightly* alive. Softened 2026-06-08 from 1.08, which read as too bouncy. Not for chevrons — see chevron rule below. */
   --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1); /** Enters where the element should glide in smoothly — overlay panels, popovers, anything appearing from outside. Pure ease-out, no bounce. */

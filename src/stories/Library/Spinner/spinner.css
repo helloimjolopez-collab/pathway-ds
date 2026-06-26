@@ -83,7 +83,7 @@
 .pds-spinner__svg {
   width: 100%; height: 100%;
   display: block;
-  animation: pds-spin 1s linear infinite;
+  animation: pds-spin var(--motion-duration-loop) var(--motion-easing-linear) infinite;
   overflow: visible;
 }
 .pds-spinner__spoke {

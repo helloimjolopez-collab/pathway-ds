@@ -39,7 +39,17 @@
       "8": {
         "$type": "duration",
         "$value": "1100ms",
-        "$description": "Continuous loops only: spinners, skeleton shimmer, indeterminate progress"
+        "$description": "Slowest transition step: very large layout shifts, deliberate full-screen moves"
+      },
+      "loop": {
+        "$type": "duration",
+        "$value": "1000ms",
+        "$description": "Standard continuous-loop period (standalone Spinner, skeleton shimmer)"
+      },
+      "loop-fast": {
+        "$type": "duration",
+        "$value": "750ms",
+        "$description": "Tighter loop for embedded/inline contexts (in-button spinner — faster reads as more responsive feedback)"
       }
     },
     "easing": {
