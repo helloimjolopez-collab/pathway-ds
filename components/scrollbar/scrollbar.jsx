@@ -35,9 +35,9 @@ export const SCROLL = {
   thumbBlur:   "blur(8px) saturate(180%)",
   // Hairline glass edge: semantic white at 35% via color-mix.
   thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-light-mode-fill-static-neutral-light) 35%, transparent)",
-  // Asymmetric fade, motion-token driven: snappy appear (decelerate glide-in), graceful fade-out.
-  fadeIn:      "opacity var(--motion-duration-instant) var(--motion-easing-decelerate), background var(--motion-duration-instant) var(--motion-easing-standard)",
-  fadeOut:     "opacity var(--motion-duration-short) var(--motion-easing-standard)",
+  // Asymmetric fade, motion-token driven: snappy appear (200ms decelerate glide-in), graceful fade-out (380ms).
+  fadeIn:      "opacity var(--motion-duration-3) var(--motion-easing-decelerate), background var(--motion-duration-3) var(--motion-easing-standard)",
+  fadeOut:     "opacity var(--motion-duration-5) var(--motion-easing-standard)",
   idleHideMs:  500,                                               // hide the thumb this long after scrolling stops / mouse leaves the bar
 };
 
