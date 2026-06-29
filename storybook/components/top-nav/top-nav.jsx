@@ -182,7 +182,7 @@ export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore 
     width: "100%", height: "100%", padding: 8, borderRadius: L.radius,
     background: hov ? T.controlHover : "transparent",
     border: "none", cursor: "pointer",
-    transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
+    transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
   });
 
   if (breakpoint === "desktop") {
@@ -237,7 +237,7 @@ export function TopNavProfile({ user, open, onToggle, mobile = false }) {
           width: 44, height: 44,
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
           border: "none", borderRadius: "50%", cursor: "pointer", padding: 6,
-          transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
+          transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
         }}
       >
         <div style={{
@@ -291,7 +291,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           background: open ? T.controlPressed : hov ? T.controlHover : T.orgFill,
           border: `1px solid ${open || hov ? T.orgStrokeHover : T.orgStroke}`,
           cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
-          transition: "background 200ms cubic-bezier(0.4, 0, 0.2, 1), border-color 200ms cubic-bezier(0.4, 0, 0.2, 1)",
+          transition: "background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard)",
         }}
       >
         {/* RowStart — org name label only. No avatar or logo displayed in the
@@ -340,7 +340,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           display: "flex", alignItems: "center", justifyContent: "center",
           width: 16, height: 16, marginRight: 2,
           transform: open ? "rotate(180deg)" : "none",
-          transition: "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+          transition: "transform var(--motion-duration-4) var(--motion-easing-standard)",
         }}>
           <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
         </div>
@@ -425,7 +425,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
           border: `1px solid ${open ? T.orgStrokeHover : "transparent"}`,
           cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
-          transition: "background 200ms cubic-bezier(0.4, 0, 0.2, 1), border-color 200ms cubic-bezier(0.4, 0, 0.2, 1)",
+          transition: "background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard)",
         }}
       >
         {inner}
@@ -434,7 +434,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           width: 16, height: 16, display: "flex", alignItems: "center",
           justifyContent: "center", marginLeft: 2,
           transform: open ? "rotate(180deg)" : "none",
-          transition: "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+          transition: "transform var(--motion-duration-4) var(--motion-easing-standard)",
         }}>
           <Icon name="expand_more" size={12} style={{ color: T.monoBase }} />
         </div>
@@ -562,7 +562,7 @@ export function TopNav({
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
               margin: 0, listStyle: "none",
-              animation: "tnDropIn 280ms cubic-bezier(0.16, 1.03, 0.3, 1) both",
+              animation: "tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both",
             }}
           >
             {modules.map(m => (
@@ -608,7 +608,7 @@ export function TopNav({
               width: 280, background: T.panelBg,
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 8, zIndex: 300,
-              animation: "tnDropIn 280ms cubic-bezier(0.16, 1.03, 0.3, 1) both",
+              animation: "tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both",
             }}
           >
             <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: ".07em",
@@ -670,7 +670,7 @@ export function TopNav({
               width: 200, background: T.panelBg,
               border: `1px solid rgba(45,72,137,0.10)`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
-              animation: "tnDropIn 280ms cubic-bezier(0.16, 1.03, 0.3, 1) both",
+              animation: "tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both",
             }}
           >
             <div style={{ padding: "10px 12px 8px",

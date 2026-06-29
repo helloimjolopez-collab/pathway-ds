@@ -40,7 +40,7 @@ The dropdown menu / panel that opens beneath the trigger is **out of scope for v
 | **Trigger button** (Base / Hover / Pressed / Open × Desktop / Mobile — 8 variants total) | ✅ IN SCOPE | Visual + interaction spec is normative. Pixel-accurate against Figma. |
 | **Avatar** (logo image / church placeholder) | ✅ IN SCOPE | Logo: `object-fit: cover` proportional fill. Placeholder: church SVG. |
 | **Container.CityName.Catholic** | ✅ IN SCOPE | Catholic orgs only (see §0.1). |
-| **Chevron rotation** (open ↔ closed) | ✅ IN SCOPE | 200ms `cubic-bezier(0.4,0,0.2,1)`. |
+| **Chevron rotation** (open ↔ closed) | ✅ IN SCOPE | `--motion-duration-4` + `--motion-easing-standard`. |
 | **Dropdown menu / panel** (open state) | ⚠️ **OUT OF SCOPE** in v1. **Remains as it is in production until further notice.** | A working placeholder lives in the repo so the trigger has something to open against, but it is **non-normative** and **will be replaced** when the panel gets its own design pass. Do not treat any of its visuals or interactions as authoritative. |
 
 ### 0.1 CityName is Catholic-only — never Protestant
@@ -162,7 +162,7 @@ OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 f
 - **Frame:** 16×16, 2px inner padding → 12×12 effective icon area
 - **Icon:** Material Symbols Rounded `expand_more`
 - **Colour:** `icon.action.mono.*` per state
-- **Rotation:** 0° closed, 180° open (`transform 200ms cubic-bezier(0.4,0,0.2,1)`)
+- **Rotation:** 0° closed, 180° open (`transform --motion-duration-4 --motion-easing-standard`)
 
 ---
 
@@ -306,7 +306,7 @@ The avatar border uses the same stroke token as the outer button border per stat
 1. The trigger shows **Open** state as long as the panel is mounted and visible.
 2. **Disabled** applies when the user belongs to exactly one organisation; the trigger renders inert but does not open a panel.
 3. Chevron rotates 180° on open; rotation animates per §9.
-4. State transitions on fill / border are `120ms ease` (instant under `prefers-reduced-motion`).
+4. State transitions on fill / border are `--motion-duration-2` + `--motion-easing-standard` (instant under `prefers-reduced-motion`).
 
 ---
 
@@ -332,10 +332,12 @@ See §2.1, §2.2, §2.3 for full anatomy. Brief summary:
 
 ## 9. Motion
 
-| Property | Value | Notes |
+All motion resolves through `--motion-*` tokens — no hardcoded ms/curves.
+
+| Property | Token | Notes |
 |---|---|---|
-| Chevron rotation | `transform 200ms cubic-bezier(0.4,0,0.2,1)` | Same easing tier as other Pathway "expand" controls |
-| State transition (fill + border) | `120ms ease` | Snappy enough for hover, no perceptible lag |
+| Chevron rotation | `transform --motion-duration-4 --motion-easing-standard` | The system chevron rule (300 ms standard, design-system-spec §2.2) |
+| State transition (fill + border) | `--motion-duration-2` + `--motion-easing-standard` | Snappy enough for hover, no perceptible lag |
 | Reduced motion | All transforms and transitions removed | Honour `prefers-reduced-motion: reduce` at the shell level |
 
 See `docs/design-system-spec.md` §Motion for the system-wide motion ladder.
