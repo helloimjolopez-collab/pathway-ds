@@ -254,7 +254,7 @@ States apply to the interactive inner controls (ModuleSwitcher.Inner, OrgSwitche
 
 ### State logic rules
 
-1. ModuleSwitcher shows expanded state (`aria-expanded="true"`) while its dropdown is open. Chevron rotates 180° at 180ms ease.
+1. ModuleSwitcher shows expanded state (`aria-expanded="true"`) while its dropdown is open. Chevron rotates 180° (`--motion-duration-4` + `--motion-easing-standard`).
 2. OrgSwitcher shows expanded state while its panel is open. Same chevron rotation.
 3. Only one dropdown/panel can be open at a time. Opening one closes any other.
 4. Pressing Escape closes the active open panel and returns focus to its trigger.
@@ -619,11 +619,11 @@ All panels (ModuleSwitcher dropdown, OrgSwitcher panel, Profile menu) share a si
 }
 ```
 
-Duration: 200ms. Timing function: `cubic-bezier(0,0,0.2,1)` (standard decelerate). This is a contextual override between the system `instant` (150ms) and `short` (300ms) tiers, chosen for small panel-drop animations where 300ms feels heavy. Reduced-motion: omit the translateY; keep the opacity fade (200ms).
+Motion: **`--motion-duration-4` + `--motion-easing-spring`** (300 ms, a whisper of overshoot for the panel-drop). Reduced-motion: omit the translateY; keep the opacity fade.
 
 ### 12.2 Chevron rotation
 
-ModuleSwitcher and OrgSwitcher chevrons rotate 180° when their panel is open. Transition: `transform 200ms cubic-bezier(0.4,0,0.2,1)` (standard ease-in-out). Reduced-motion: no rotation; leave chevron at 0°.
+ModuleSwitcher and OrgSwitcher chevrons rotate 180° when their panel is open. Transition: **`transform --motion-duration-4 --motion-easing-standard`** (300 ms — the system chevron rule, see design-system-spec §2.2). Reduced-motion: no rotation; leave chevron at 0°.
 
 ### 12.3 Single-open constraint
 
@@ -764,13 +764,15 @@ Reduced-motion: focus styles are not animated; no change needed.
 
 ## 14. Motion
 
-| Property | Value | Reduced-motion |
-|---|---|---|
-| Panel entrance (opacity + translateY) | 140ms ease-out | Fade only (no translateY), same duration |
-| Chevron rotation | 180ms ease | No rotation |
-| Control fill/border transitions | 120ms ease | No change (hover feedback is not motion) |
+All motion resolves through `--motion-*` tokens (design-system-spec §2) — no hardcoded ms/curves. Values below reflect the implementation.
 
-Motion is consistent with `docs/design-system-spec.md` §Motion. No deviation.
+| Property | Token | Reduced-motion |
+|---|---|---|
+| Panel entrance (`tnDropIn`, opacity + translateY) | `--motion-duration-4` + `--motion-easing-spring` | Fade only (no translateY) |
+| Chevron rotation | `--motion-duration-4` + `--motion-easing-standard` | No rotation |
+| Control fill/border transitions | `--motion-duration-2` / `-3` + `--motion-easing-standard` | No change (hover feedback is not motion) |
+
+Motion is consistent with `docs/design-system-spec.md` §2. No deviation.
 
 ---
 

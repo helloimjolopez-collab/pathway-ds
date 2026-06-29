@@ -411,13 +411,11 @@ export const TokensMotion = () => (
       </thead>
       <tbody>
         {[
-          ["Expand duration", "350ms", "Deliberate but not slow"],
-          ["Collapse duration", "300ms", "Slightly faster — exits are quicker than entrances"],
-          ["Expand easing", "cubic-bezier(0.34,1.56,0.64,1)", "Spring overshoot — spec-locked, do not change"],
-          ["Collapse easing", "ease-in", "No spring on close — retreats cleanly"],
+          ["Expand", "--motion-duration-4 + --motion-easing-spring", "300ms, whisper of overshoot — the bar springs open"],
+          ["Collapse", "--motion-duration-4 + --motion-easing-accelerate", "Same duration, clean accelerating exit"],
           ["Animated property", "width (0 → 336px) + opacity (0 → 1)", "Width drives layout shift; opacity fades content in"],
-          ["Focus delay", "120ms after expand starts", "Avoids input flashing into existence before animation starts"],
-          ["Reduced motion", "opacity fade only, 150ms ease, width instant", "prefers-reduced-motion: reduce"],
+          ["Focus delay", "120ms after expand starts (timer)", "Avoids input flashing in before animation starts"],
+          ["Reduced motion", "opacity fade only, width instant", "prefers-reduced-motion: reduce"],
         ].map(([prop, val, note]) => (
           <tr key={prop} style={{ borderBottom: "1px solid #f5f5f5" }}>
             <td style={{ padding: 8 }}>{prop}</td>

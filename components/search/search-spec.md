@@ -524,18 +524,18 @@ Reduced motion: TopNavSearch expand/collapse removes the spring animation and us
 
 Applies to TopNavSearch expand/collapse only.
 
-| Property | Value | Why |
-|---|---|---|
-| Expand duration | 350ms | Feels deliberate without being slow |
-| Collapse duration | 300ms | Slightly faster — closing is less consequential |
-| Expand easing | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Spring overshoot — the bar bounces slightly past full width before settling. Signals a physical, snappy UI. |
-| Collapse easing | `ease-in` | No spring on close — the bar retreats cleanly. |
-| Animated property | `width` (0 → 336px) + `opacity` (0 → 1) | Width drives the layout shift. Opacity fades in content so it doesn't appear to cut on. |
-| Focus delay | 120ms after expand starts | Enough time for the animation to start before focus moves, so the input doesn't appear to flash. |
-| Reduced motion | Replace spring transition with `opacity` fade only, 150ms `ease`. `width` changes instantly. | `prefers-reduced-motion: reduce` via media query. |
+Applies to TopNavSearch expand/collapse only. All motion resolves through `--motion-*` tokens — no hardcoded ms/curves.
 
-> IMPLEMENTATION RULE: The spring overshoot is intentional and spec-locked.
-> The cubic-bezier `(0.34, 1.56, 0.64, 1)` produces a visible overshoot (the bar grows slightly past 336px before settling). This is a deliberate design decision. Do not replace it with a linear or ease-in-out curve.
+| Property | Token | Why |
+|---|---|---|
+| Expand | `--motion-duration-4` + `--motion-easing-spring` | 300 ms with a whisper of overshoot — the bar springs open (the `pwSearchExpand` keyframe). |
+| Collapse | `--motion-duration-4` + `--motion-easing-accelerate` | Same duration, clean accelerating exit — closing retreats cleanly. |
+| Animated property | `width` (0 → 336px) + `opacity` (0 → 1) | Width drives the layout shift. Opacity fades content in so it doesn't cut on. |
+| Focus delay | 120 ms after expand starts (timer, not a transition) | Enough time for the animation to start before focus moves, so the input doesn't flash. |
+| Reduced motion | opacity fade only; `width` changes instantly | `prefers-reduced-motion: reduce` via media query. |
+
+> **IMPLEMENTATION RULE: the expand uses `--motion-easing-spring`, not a strong bounce.**
+> Earlier this was a spec-locked `cubic-bezier(0.34, 1.56, 0.64, 1)` (a large overshoot past 336px). That violates the system bounce policy (overshoot capped at ~1.04; y2 ≥ 1.08 is a bug — design-system-spec §2.2). It is now the system `--motion-easing-spring` (1.04): a barely-there overshoot, easeful not bouncy. Do not reintroduce a strong-overshoot curve.
 
 ---
 
