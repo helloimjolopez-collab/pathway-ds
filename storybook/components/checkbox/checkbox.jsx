@@ -272,7 +272,7 @@ export function Checkbox({
           height:           TARGET_SIZE,
           borderRadius:     V.radiusFull,
           backgroundColor:  stateLayerBg,
-          transition:       "background-color 200ms cubic-bezier(0.4,0,0.2,1)",
+          transition:       "background-color var(--motion-duration-3) var(--motion-easing-standard)",
           boxShadow:        focusShadow,
           flexShrink:       0,
         }}
@@ -315,7 +315,7 @@ export function Checkbox({
             border:          `${BORDER_WIDTH}px solid ${borderColor}`,
             backgroundColor: boxFill,
             boxSizing:       "border-box",
-            transition:      "background-color 150ms ease-out, border-color 150ms ease-out",
+            transition:      "background-color var(--motion-duration-2) var(--motion-easing-decelerate), border-color var(--motion-duration-2) var(--motion-easing-decelerate)",
             flexShrink:      0,
           }}
         >
