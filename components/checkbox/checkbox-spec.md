@@ -272,7 +272,7 @@ Standard focused state: browser default outline or design system focus ring — 
 
 ## 10. Motion
 
-No animation on the checkbox itself. The checkmark/dash appears immediately on state change (no transition). State-layer background uses CSS `transition: background-color 150ms ease-out`.
+No animation on the checkmark itself — it appears immediately on state change. Transitions use `--motion-*` tokens: the state-layer background fades with `--motion-duration-3` + `--motion-easing-standard`; the box fill/border with `--motion-duration-2` + `--motion-easing-decelerate`.
 
 Reduced motion: no change needed (no animation to remove).
 
