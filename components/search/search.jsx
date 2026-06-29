@@ -163,7 +163,7 @@ function IconPillButton({ iconName, iconSize = L.iconSize, iconColor, label, onC
           borderRadius: L.barRadius,
           padding: L.iconPillPad,
           background: pressed ? T.iconPillPressed : hov ? T.iconPillHover : "transparent",
-          transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
+          transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
         }}
       >
         <Icon name={iconName} size={iconSize} color={iconColor} />
@@ -285,7 +285,7 @@ export function SearchInput({
           overflow: "hidden",
           paddingLeft: L.barPadH,
           paddingRight: L.barPadH,
-          transition: "border-color 160ms cubic-bezier(0.4,0,0.2,1), background 160ms cubic-bezier(0.4,0,0.2,1)",
+          transition: "border-color var(--motion-duration-2) var(--motion-easing-standard), background var(--motion-duration-2) var(--motion-easing-standard)",
           ...getBorderStyle(),
         }}
       >
@@ -365,7 +365,7 @@ export function SearchInput({
                   cursor: "pointer",
                   padding: 0,
                   flexShrink: 0,
-                  transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
+                  transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
                 }}
               >
                 <div
@@ -551,7 +551,7 @@ export function TopNavSearch({
             borderRadius: "50%",
             background: hov ? T.collapsedBtnHover : T.collapsedBtnFill,
             border: `0.5px solid ${T.collapsedBtnBorder}`,
-            transition: "background 160ms cubic-bezier(0.4,0,0.2,1)",
+            transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
           }}
         >
           <Icon
@@ -577,7 +577,7 @@ export function TopNavSearch({
             display: "flex",
             alignItems: "center",
             zIndex: 50,
-            animation: "pwSearchExpand 320ms cubic-bezier(0.34, 1.04, 0.64, 1) both",
+            animation: "pwSearchExpand var(--motion-duration-4) var(--motion-easing-spring) both",
           }}
         >
           <SearchInput

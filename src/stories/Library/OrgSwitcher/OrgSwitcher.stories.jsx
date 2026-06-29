@@ -399,12 +399,12 @@ export const TokensMotion = () => (
       <tbody>
         <tr style={{ borderBottom: "1px solid #f5f5f5" }}>
           <td style={{ padding: 8 }}>Chevron rotation (open ↔ closed)</td>
-          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12 }}>transform 300ms cubic-bezier(0.4,0,0.2,1)</td>
-          <td style={{ padding: 8 }}>Same easing tier as other Pathway "expand" controls</td>
+          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12 }}>transform --motion-duration-4 --motion-easing-standard</td>
+          <td style={{ padding: 8 }}>System chevron rule (300ms standard)</td>
         </tr>
         <tr style={{ borderBottom: "1px solid #f5f5f5" }}>
           <td style={{ padding: 8 }}>State transition (fill + border)</td>
-          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12 }}>120ms ease</td>
+          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12 }}>--motion-duration-2 --motion-easing-standard</td>
           <td style={{ padding: 8 }}>Snappy enough for hover</td>
         </tr>
         <tr>
