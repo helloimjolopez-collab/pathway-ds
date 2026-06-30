@@ -32,7 +32,7 @@ TopNav:    position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 56p
 
 SideNav:   position: fixed; top: 56px; left: 0; bottom: 0; z-index: 50;
            width: 220px (expanded) | 72px (collapsed rail) | 0 (mobile hidden)
-           transition: width 380ms cubic-bezier(0.32,0.72,0,1)
+           transition: width var(--motion-duration-6) var(--motion-easing-emphasized)
 
 Main:      margin-left: [SideNav width]; padding-top: 56px;
            overflow-y: auto;

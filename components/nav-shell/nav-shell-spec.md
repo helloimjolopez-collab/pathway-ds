@@ -292,9 +292,9 @@ Card icon color variants (32×32 container):
 ### SideNav collapse (desktop)
 
 - Clicking the NavHeader collapse button or NavFooter toggle button collapses/expands the SideNav.
-- Width transitions with `380ms cubic-bezier(0.32,0.72,0,1)` (same easing as SideNav component).
+- Width transitions with `--motion-duration-6` · `--motion-easing-emphasized` (same as the SideNav component).
 - The Shell.Main margin-left matches the SideNav width and transitions simultaneously.
-- Labels and section headings fade via `opacity` transition (200ms ease), not `display: none`.
+- Labels and section headings fade via `opacity` transition (`--motion-duration-3` · `--motion-easing-standard`), not `display: none`.
 
 ### Mobile hamburger
 
@@ -487,13 +487,13 @@ Apply all Pathway semantic tokens. Do not hardcode colours. Follow nav-shell-spe
 
 | Element | Property | Duration | Easing |
 |---|---|---|---|
-| SideNav expand/collapse | `width` | 380ms | `cubic-bezier(0.32,0.72,0,1)` (accordion) |
-| Shell.Main margin-left | `margin-left` | 380ms | same |
-| Nav item labels | `opacity` | 200ms | `ease` |
-| Nav section labels | `opacity` | 200ms | `ease` |
-| TopNavSearch expand | `width` + opacity | 350ms | `cubic-bezier(0.34,1.56,0.64,1)` (spring) |
-| OrgSwitcher panel | drop-in fade | 150ms | `ease-out` |
-| Card hover | `box-shadow` + `border-color` | 150ms | `ease` |
+| SideNav expand/collapse | `width` | `--motion-duration-6` | `--motion-easing-emphasized` |
+| Shell.Main margin-left | `margin-left` | `--motion-duration-6` | `--motion-easing-emphasized` |
+| Nav item labels | `opacity` | `--motion-duration-3` | `--motion-easing-standard` |
+| Nav section labels | `opacity` | `--motion-duration-4` | `--motion-easing-standard` |
+| TopNavSearch expand | `width` + opacity | `--motion-duration-4` | `--motion-easing-spring` |
+| OrgSwitcher panel | drop-in fade | `--motion-duration-3` | `--motion-easing-decelerate` |
+| Card hover | `box-shadow` + `border-color` | `--motion-duration-2` | `--motion-easing-standard` |
 
 All transitions registered as contextual overrides per `docs/design-system-spec.md §2.3`.
 

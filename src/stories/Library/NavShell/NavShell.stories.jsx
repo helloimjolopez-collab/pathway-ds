@@ -115,7 +115,7 @@ const MAIN_STYLE = (marginLeft) => ({
   overflowY: "auto",
   overflowX: "hidden",
   marginLeft,
-  transition: "margin-left 380ms cubic-bezier(0.32,0.72,0,1)",
+  transition: "margin-left var(--motion-duration-6) var(--motion-easing-emphasized)",
   padding: "12px 36px 56px",
   background: "var(--semantic-color-light-mode-surface-canvas-light, #fafafa)",
 });
@@ -226,7 +226,7 @@ function NavShellRender({
           <div style={{
             position: "fixed", top: 56, left: 0, bottom: 0,
             width: sideNavWidth, zIndex: 50, flexShrink: 0,
-            transition: "width 380ms cubic-bezier(0.32,0.72,0,1)",
+            transition: "width var(--motion-duration-6) var(--motion-easing-emphasized)",
             overflow: "hidden",
           }}>
             <SideNav

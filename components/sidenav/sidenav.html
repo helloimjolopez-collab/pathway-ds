@@ -15,11 +15,31 @@
   html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; transition: background .2s; }
+  ::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; transition: background var(--motion-duration-3); }
   *:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); }
 
   /* Semantic tokens consumed by the <Scrollable> overlay scrollbar (mirrors src/tokens/tokens.css). */
   :root {
+    /* Motion tokens (mirrors src/tokens/tokens.css §motion). Inlined so the standalone demo
+       resolves the same --motion-* variables the shipped component consumes. */
+    --motion-duration-1: 100ms;
+    --motion-duration-2: 150ms;
+    --motion-duration-3: 200ms;
+    --motion-duration-4: 300ms;
+    --motion-duration-5: 380ms;
+    --motion-duration-6: 460ms;
+    --motion-duration-7: 680ms;
+    --motion-duration-8: 1100ms;
+    --motion-duration-loop: 1000ms;
+    --motion-duration-loop-fast: 750ms;
+    --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --motion-easing-spring: cubic-bezier(0.34, 1.04, 0.64, 1);
+    --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+    --motion-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+    --motion-easing-emphasized: cubic-bezier(0.32, 0.72, 0, 1);
+    --motion-easing-accordion: cubic-bezier(0.33, 1.03, 0.68, 1);
+    --motion-easing-linear: cubic-bezier(0, 0, 1, 1);
+
     --semantic-color-light-mode-scrim-faint: rgba(17, 17, 17, 0.16); /* thumb rest */
     --semantic-color-light-mode-scrim-light: rgba(17, 17, 17, 0.30);  /* thumb hover/drag */
     --semantic-color-light-mode-fill-static-neutral-light: #fefefd;   /* glass edge */
@@ -46,7 +66,7 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
     font-family: 'Red Hat Text', sans-serif; font-size: 12px; font-weight: 500;
     color: #2d4889; cursor: pointer; text-decoration: none;
-    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    transition: box-shadow var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard);
   }
   #open-in-chrome:hover {
     box-shadow: 0 4px 16px rgba(0,0,0,0.14); border-color: #a0b5e6;
@@ -150,7 +170,7 @@
     color: var(--tn-icon-mono);
     user-select: none;
     font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
-    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform var(--motion-duration-4) var(--motion-easing-standard);
   }
   button[aria-expanded="true"] .tn-chev { transform: rotate(180deg); }
 
@@ -161,7 +181,7 @@
     gap: 2px;
     border: none; border-radius: var(--tn-radius-md, 8px);
     background: transparent; cursor: pointer;
-    transition: background 120ms ease;
+    transition: background var(--motion-duration-3) var(--motion-easing-standard);
   }
   .tn-mod-btn:hover { background: var(--tn-fill-hover); }
   .tn-mod-btn:active, .tn-mod-btn[aria-expanded="true"] { background: var(--tn-fill-pressed); }
@@ -181,7 +201,7 @@
     border: 1px solid var(--ptn-brand-50-16);
     border-radius: var(--tn-radius-md, 8px);
     color: var(--tn-text-mono); cursor: pointer; font-family: inherit;
-    transition: background 120ms ease, border-color 120ms ease;
+    transition: background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard);
   }
   .tn-org-btn:hover { background: var(--tn-fill-hover); border-color: var(--tn-stroke-hover); }
   .tn-org-btn:active, .tn-org-btn[aria-expanded="true"] { background: var(--tn-fill-pressed); border-color: var(--tn-stroke-pressed); }
@@ -202,7 +222,7 @@
     position: absolute; top: calc(100% + 8px); left: 0; min-width: 240px;
     background: #1e2d52; border: 1px solid rgba(160,181,230,0.14); border-radius: 10px;
     padding: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.30);
-    z-index: 200; animation: tnDropdownIn 150ms ease-out both;
+    z-index: 200; animation: tnDropdownIn var(--motion-duration-2) var(--motion-easing-decelerate) both;
     color: rgba(160,181,230,0.7); font-size: 12px; line-height: 1.5;
   }
   .tn-org-panel strong { color: rgba(160,181,230,0.9); font-weight: 600; }
@@ -212,7 +232,7 @@
     display: flex; align-items: center; justify-content: center;
     width: 48px; height: 48px; padding: 8px;
     border: none; background: transparent; cursor: pointer;
-    border-radius: 12px; transition: background 120ms ease;
+    border-radius: 12px; transition: background var(--motion-duration-3) var(--motion-easing-standard);
   }
   .tn-search-btn:hover { background: var(--tn-fill-hover); }
   .tn-search-btn:focus-visible { outline: 2px solid rgba(160,181,230,0.7); outline-offset: 2px; border-radius: 12px; }
@@ -231,7 +251,7 @@
     width: 48px; height: 48px; padding: 6px;
     border: none; background: transparent; color: var(--tn-icon-mono);
     cursor: pointer; border-radius: var(--tn-radius-md, 8px);
-    transition: background 120ms ease;
+    transition: background var(--motion-duration-3) var(--motion-easing-standard);
   }
   .tn-action-btn:hover { background: var(--tn-fill-hover); }
   .tn-action-btn:focus-visible { outline: 2px solid rgba(160,181,230,0.7); outline-offset: 2px; }
@@ -250,7 +270,7 @@
     display: flex; align-items: center; justify-content: center;
     width: 48px; height: 48px; padding: 2px;
     border: none; background: transparent; cursor: pointer;
-    border-radius: 50%; transition: background 120ms ease;
+    border-radius: 50%; transition: background var(--motion-duration-3) var(--motion-easing-standard);
   }
   .tn-profile-btn:hover { background: var(--tn-fill-hover); }
   .tn-profile-btn:focus-visible { outline: 2px solid rgba(160,181,230,0.7); outline-offset: 2px; border-radius: 50%; }
@@ -285,8 +305,8 @@
      fires on ENTER. This lets enter decelerate (glides in) and exit ease-in-out
      (leaves cleanly without the sharp reverse-curve snap of a shared transition).
 
-     Enter: transform 380ms decelerate + opacity 300ms decelerate.
-     Exit:  transform 300ms ease-in-out + opacity 220ms ease-in-out.           */
+     Enter: transform --motion-duration-5 + opacity --motion-duration-4, both decelerate.
+     Exit:  transform --motion-duration-4 + opacity --motion-duration-3, both accelerate. */
   .overlay-panel {
     position: fixed; left: 0; bottom: 0; z-index: 100;
     /* top:64 / width:overlayNavW(240) set via inline style (see App render)   */
@@ -295,18 +315,19 @@
     pointer-events: none;           /* non-visible panel must not eat clicks    */
     /* EXIT transition — fires when .overlay-panel--open class is removed       */
     transition:
-      transform 280ms cubic-bezier(0.4, 0, 0.6, 1),
-      opacity   200ms cubic-bezier(0.4, 0, 0.6, 1);
+      transform var(--motion-duration-4) var(--motion-easing-accelerate),
+      opacity   var(--motion-duration-3) var(--motion-easing-accelerate);
     will-change: transform;
   }
   .overlay-panel--open {
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
-    /* ENTER transition — spring easing gives a lively, physical slide-in feel  */
+    /* ENTER transition — decelerate (no overshoot): a large full-height panel
+       glides into rest. See spec §17.6 (motion override, decelerate by design). */
     transition:
-      transform 460ms cubic-bezier(0.16, 1, 0.3, 1),
-      opacity   320ms cubic-bezier(0, 0, 0.2, 1);
+      transform var(--motion-duration-5) var(--motion-easing-decelerate),
+      opacity   var(--motion-duration-4) var(--motion-easing-decelerate);
   }
 
   /* Scrim — all overlay breakpoints (<1024px, both tablet AND mobile).
@@ -319,7 +340,7 @@
     background: rgba(0,0,0,0.32); z-index: 99;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity var(--motion-duration-4) var(--motion-easing-standard);
   }
   .overlay-scrim--visible {
     opacity: 1;
@@ -331,9 +352,9 @@
     .overlay-panel,
     .overlay-panel--open {
       transform: none !important;
-      transition: opacity 150ms linear;
+      transition: opacity var(--motion-duration-2) var(--motion-easing-linear);
     }
-    .overlay-scrim { transition: opacity 150ms linear; }
+    .overlay-scrim { transition: opacity var(--motion-duration-2) var(--motion-easing-linear); }
   }
 </style>
 </head>
@@ -673,7 +694,7 @@ function IndicatorStripe({ visible }) {
       <div style={{ flex:"1 0 0", width:L.stripeW, minHeight:1,
         borderRadius:"0 8px 8px 0",
         backgroundColor: visible ? T.indicator : "transparent",
-        transition:"background-color 0.15s ease" }}/>
+        transition:"background-color var(--motion-duration-3) var(--motion-easing-standard)" }}/>
     </div>
   );
 }
@@ -758,7 +779,7 @@ function SideNavItem({ item, isActive, isTrail, isExpanded, isSidebarCollapsed,
         }}
         style={{ display:"flex", alignItems:"center", minHeight:L.itemH, width:"100%",
           borderRadius:T.radius, backgroundColor:fillBg, cursor:"pointer",
-          overflow:"hidden", transition:"background-color 0.15s ease",
+          overflow:"hidden", transition:"background-color var(--motion-duration-3) var(--motion-easing-standard)",
           userSelect:"none" }}>
 
         {/* container.indicator — 4px structural column, always present */}
@@ -788,11 +809,11 @@ function SideNavItem({ item, isActive, isTrail, isExpanded, isSidebarCollapsed,
           opacity:  isSidebarCollapsed ? 0 : 1,
           overflow: "hidden",
           pointerEvents: isSidebarCollapsed ? "none" : "auto",
-          transition:"max-width 360ms cubic-bezier(0.32, 0.72, 0, 1), opacity 200ms ease" }}>
+          transition:"max-width var(--motion-duration-6) var(--motion-easing-emphasized), opacity var(--motion-duration-3) var(--motion-easing-standard)" }}>
           <p style={{ fontFamily:"'Red Hat Text',sans-serif", fontWeight:500,
             fontSize:14, lineHeight:"20px", letterSpacing:"0.3px", color:textColor, margin:0,
             whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis",
-            transition:"color 0.15s ease" }}>
+            transition:"color var(--motion-duration-3) var(--motion-easing-standard)" }}>
             {item.label}
           </p>
         </div>
@@ -806,11 +827,11 @@ function SideNavItem({ item, isActive, isTrail, isExpanded, isSidebarCollapsed,
             maxWidth: isSidebarCollapsed ? 0 : 40,
             opacity:  isSidebarCollapsed ? 0 : 1,
             overflow: "hidden",
-            transition:"max-width 360ms cubic-bezier(0.32, 0.72, 0, 1), opacity 200ms ease" }}>
+            transition:"max-width var(--motion-duration-6) var(--motion-easing-emphasized), opacity var(--motion-duration-3) var(--motion-easing-standard)" }}>
             {/* Rotate chevron — easeOutQuart so it lands with the accordion panel.
                 Keeps a hint of spring character without overshooting past the item below. */}
             <div style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-              transition:"transform 340ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
+              transition:"transform var(--motion-duration-5) var(--motion-easing-accordion)" }}>
               <IC.chevDown size={10} color={iconColor} />
             </div>
           </div>
@@ -879,7 +900,7 @@ function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }) {
         pointerEvents:"auto",
         /* popoverInCentered bakes translateY(-50%) into both keyframes so the     */
         /* forwards fill never clobbers the vertical centering transform.          */
-        animation:"popoverInCentered 260ms cubic-bezier(0.16, 1, 0.3, 1) forwards" }}>
+        animation:"popoverInCentered var(--motion-duration-3) var(--motion-easing-spring) forwards" }}>
       <span style={{ fontFamily:"'Red Hat Text',sans-serif", fontWeight:400,
         fontSize:14, lineHeight:"20px", letterSpacing:"0.02px",
         color:"#202020" }}>
@@ -961,7 +982,7 @@ function ListItem({ item, isActive, onClick }) {
       onKeyDown={e => (e.key==="Enter"||e.key===" ") && onClick && onClick(item.id)}
       style={{ display:"flex", alignItems:"center", height:L.itemH, width:"100%",
         borderRadius:T.radius, backgroundColor:bg, cursor:"pointer",
-        overflow:"hidden", transition:"background-color 0.15s ease",
+        overflow:"hidden", transition:"background-color var(--motion-duration-3) var(--motion-easing-standard)",
         userSelect:"none" }}>
       {/* 4px indicator stripe (same structural column as SideNavItem) */}
       <IndicatorStripe visible={isActive} />
@@ -976,7 +997,7 @@ function ListItem({ item, isActive, onClick }) {
         <p style={{ fontFamily:"'Red Hat Text',sans-serif", fontWeight:400,
           fontSize:12, lineHeight:"18px", letterSpacing:"0.6px", color,
           margin:0, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis",
-          transition:"color 0.15s ease" }}>
+          transition:"color var(--motion-duration-3) var(--motion-easing-standard)" }}>
           {item.label}
         </p>
       </div>
@@ -1027,7 +1048,7 @@ function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMouseLeav
         padding:6,
         minWidth:200,
         pointerEvents:"auto",
-        animation:"popoverIn 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards" }}>
+        animation:"popoverIn var(--motion-duration-3) var(--motion-easing-spring) forwards" }}>
 
       {/* SectionLabel — Figma component 40006794-5977 */}
       <div style={{ borderBottom:"0.5px solid #ededed" }}>
@@ -1055,14 +1076,14 @@ function PopoverRow({ item, onClick, activeId }) {
       style={{ display:"flex", alignItems:"center",
         minHeight:40, borderRadius:8, overflow:"hidden",
         backgroundColor: bg, cursor:"pointer",
-        transition:"background-color 0.15s ease" }}>
+        transition:"background-color var(--motion-duration-3) var(--motion-easing-standard)" }}>
       {/* 4px indicator stripe — matches SideNavItem stripe */}
       <div style={{ width:4, alignSelf:"stretch", borderRadius:"0 4px 4px 0",
         backgroundColor: isActive ? T.indicator : "transparent",
-        flexShrink:0, transition:"background-color 0.15s ease" }} />
+        flexShrink:0, transition:"background-color var(--motion-duration-3) var(--motion-easing-standard)" }} />
       <span style={{ padding:"0 8px", fontFamily:"'Red Hat Text',sans-serif", fontWeight:400,
         fontSize:14, lineHeight:"20px", letterSpacing:"0.02px",
-        color, transition:"color 0.15s ease", flex:1 }}>
+        color, transition:"color var(--motion-duration-3) var(--motion-easing-standard)", flex:1 }}>
         {item.label}
       </span>
     </div>
@@ -1094,7 +1115,7 @@ function NavHeader({ isSidebarCollapsed, onToggle }) {
         style={{ display:"flex", alignItems:"center", height:L.itemH, width:"100%",
           borderRadius:T.radius, cursor:"pointer",
           backgroundColor: h ? T.fill.navHover : "transparent",
-          transition:"background-color 0.15s ease" }}>
+          transition:"background-color var(--motion-duration-3) var(--motion-easing-standard)" }}>
 
         {isSidebarCollapsed ? (
           /* Collapsed: centered action icon */
@@ -1186,7 +1207,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
       // Padding: pt-[8px] pb-[12px], px responsive (updated 2026-05-13)
       padding:`${L.navPadV}px ${padH}px ${L.navPadVb}px`,
       boxSizing:"border-box", flexShrink:0,
-      transition:"width 380ms cubic-bezier(0.32, 0.72, 0, 1)",
+      transition:"width var(--motion-duration-6) var(--motion-easing-emphasized)",
       borderRight:`0.5px solid ${T.fill.infoSubtle}`,
       overflow:"hidden",   // the inner menu scrolls via <Scrollable>; the nav itself does not
     }}>
@@ -1221,7 +1242,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
             {/* Expanded: NavSectionLabel (40px, fades out as rail collapses) */}
             <div style={{ opacity: sidebarCollapsed ? 0 : 1,
               maxHeight: sidebarCollapsed ? 0 : 40, overflow:"hidden",
-              transition:"opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+              transition:"opacity var(--motion-duration-4) var(--motion-easing-standard), max-height var(--motion-duration-5) var(--motion-easing-spring)",
               flexShrink: 0 }}>
               <NavSectionLabel label={section} />
             </div>
@@ -1229,7 +1250,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
             {sIdx > 0 && (
               <div style={{ opacity: sidebarCollapsed ? 1 : 0,
                 maxHeight: sidebarCollapsed ? 5 : 0, overflow:"hidden",
-                transition:"opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+                transition:"opacity var(--motion-duration-4) var(--motion-easing-standard), max-height var(--motion-duration-5) var(--motion-easing-spring)",
                 padding:"2px 0", flexShrink: 0 }}>
                 <div style={{ height:1, backgroundColor:T.fill.infoSubtle }} />
               </div>
@@ -1262,13 +1283,13 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
                     <div style={{
                       display: "grid",
                       gridTemplateRows: isExpanded ? "1fr" : "0fr",
-                      transition: "grid-template-rows 340ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
+                      transition: "grid-template-rows var(--motion-duration-5) var(--motion-easing-accordion)" }}>
                       <div style={{
                         overflow:"hidden",
                         opacity: isExpanded ? 1 : 0,
                         transition: isExpanded
-                          ? "opacity 240ms ease 60ms"
-                          : "opacity 160ms ease" }}>
+                          ? "opacity var(--motion-duration-4) var(--motion-easing-standard) 70ms"
+                          : "opacity var(--motion-duration-3) var(--motion-easing-standard)" }}>
                         {item.children.map(child => (
                           <SideNavItem key={child.id} item={child}
                             isActive={child.id === activeId} isTrail={false}
@@ -1287,7 +1308,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
         {/* SideNavListSection — "Recent Content" demo, fades with nav expand/collapse */}
         <div style={{ opacity: sidebarCollapsed ? 0 : 1,
           maxHeight: sidebarCollapsed ? 0 : 400, overflow:"hidden",
-          transition:"opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
+          transition:"opacity var(--motion-duration-4) var(--motion-easing-standard), max-height var(--motion-duration-5) var(--motion-easing-spring)" }}>
           <SideNavListSection
             label="Recent Content"
             items={LIST_SECTION_ITEMS}
@@ -1387,21 +1408,21 @@ const TOKEN_ROWS = [
   { cat:"⚠ Spacing (no token)", semantic:"CollapseButton icon size",      prim:"—",    value:"12×12",                role:"NavHeader right_panel_open / left_panel_open SVGs" },
 
   // ── Motion (durations + easing) ────────────────────────────────────────────
-  { cat:"Motion",  semantic:"Hover / colour transitions",     prim:"—",        value:"150ms",                role:"Item fill/text/icon hover transitions (instant category)" },
-  { cat:"Motion",  semantic:"Grouper accordion expand",        prim:"—",        value:"340ms · easeOutQuart", role:"grid-template-rows 0fr→1fr · cubic-bezier(0.22, 1, 0.36, 1)" },
-  { cat:"Motion",  semantic:"Children opacity fade-in",        prim:"—",        value:"240ms / 60ms delay",   role:"Inner child wrapper opacity 0→1 (when expanding)" },
-  { cat:"Motion",  semantic:"Children opacity fade-out",       prim:"—",        value:"160ms",                role:"Inner child wrapper opacity 1→0 (when collapsing — snappier exit)" },
-  { cat:"Motion",  semantic:"Chevron rotation",                prim:"—",        value:"340ms · easeOutQuart", role:"Grouper chevron 0°→180° · matches accordion timing" },
-  { cat:"Motion",  semantic:"Sidebar width transition",        prim:"Motion/SideNav/Panel/Width", value:"380ms · smooth-spring", role:"240px ↔ 72px · cubic-bezier(0.32, 0.72, 0, 1) — soft personality, no overshoot" },
-  { cat:"Motion",  semantic:"Label / chevron max-width",       prim:"Motion/SideNav/Label/Fade",  value:"360ms · smooth-spring", role:"Item label + grouper chevron width collapse · cubic-bezier(0.32, 0.72, 0, 1)" },
-  { cat:"Motion",  semantic:"Label / chevron opacity",          prim:"—",        value:"200ms ease",           role:"Opacity fade alongside max-width — slightly faster so labels land before width finishes" },
-  { cat:"Motion",  semantic:"NavSectionLabel ↔ Divider",       prim:"—",        value:"220ms opacity / 300ms max-height", role:"Crossfade between section label (expanded) and rail divider (collapsed)" },
-  { cat:"Motion",  semantic:"Popover / Tooltip enter",         prim:"—",        value:"150ms",                role:"CollapsedPopover + SideNavTooltip fade-in (instant category)" },
-  { cat:"Motion",  semantic:"Hover-safe popover close delay",  prim:"—",        value:"300ms",                role:"Timer after mouse leaves both item and popover (WCAG 2.5.1)" },
-  { cat:"Motion",  semantic:"Overlay panel enter",             prim:"Motion/SideNav/Overlay/Enter", value:"380ms · decelerate", role:"<1024px overlay slide-in · cubic-bezier(0, 0, 0.2, 1)" },
-  { cat:"Motion",  semantic:"Overlay panel exit",              prim:"Motion/SideNav/Overlay/Exit",  value:"300ms · accelerate", role:"<1024px overlay slide-out · cubic-bezier(0.4, 0, 0.6, 1)" },
-  { cat:"Motion",  semantic:"Scrim fade",                      prim:"—",        value:"280ms · standard",     role:"Backdrop opacity 0↔1 behind overlay" },
-  { cat:"Motion",  semantic:"Reduced motion (all transforms)", prim:"—",        value:"150ms linear",         role:"prefers-reduced-motion: reduce — transforms suppressed, opacity-only" },
+  { cat:"Motion",  semantic:"Hover / colour transitions",     prim:"--motion-duration-3 · standard",        value:"200ms · standard",          role:"Item fill/text/icon hover transitions" },
+  { cat:"Motion",  semantic:"Grouper accordion expand",        prim:"--motion-duration-5 · accordion",       value:"380ms · accordion",         role:"grid-template-rows 0fr→1fr (matches sidenav.jsx)" },
+  { cat:"Motion",  semantic:"Children opacity fade-in",        prim:"--motion-duration-4 (+ 70ms delay)",    value:"300ms / 70ms delay · standard", role:"Inner child wrapper opacity 0→1 (when expanding)" },
+  { cat:"Motion",  semantic:"Children opacity fade-out",       prim:"--motion-duration-3 · standard",        value:"200ms · standard",          role:"Inner child wrapper opacity 1→0 (when collapsing — snappier exit)" },
+  { cat:"Motion",  semantic:"Chevron rotation",                prim:"--motion-duration-5 · accordion",       value:"380ms · accordion",         role:"Grouper chevron 0°→180° · matches accordion timing" },
+  { cat:"Motion",  semantic:"Sidebar width transition",        prim:"--motion-duration-6 · emphasized",      value:"460ms · emphasized",        role:"240px ↔ 72px — soft personality, no overshoot" },
+  { cat:"Motion",  semantic:"Label / chevron max-width",       prim:"--motion-duration-6 · emphasized",      value:"460ms · emphasized",        role:"Item label + grouper chevron width collapse" },
+  { cat:"Motion",  semantic:"Label / chevron opacity",          prim:"--motion-duration-3 · standard",        value:"200ms · standard",          role:"Opacity fade alongside max-width — slightly faster so labels land before width finishes" },
+  { cat:"Motion",  semantic:"NavSectionLabel ↔ Divider",       prim:"--motion-duration-4 / -5 · standard/spring", value:"300ms opacity / 380ms max-height", role:"Crossfade between section label (expanded) and rail divider (collapsed)" },
+  { cat:"Motion",  semantic:"Popover / Tooltip enter",         prim:"--motion-duration-3 · spring",          value:"200ms · spring",            role:"CollapsedPopover + SideNavTooltip fade-in" },
+  { cat:"Motion",  semantic:"Hover-safe popover close delay",  prim:"— (JS timer)",                          value:"300ms",                     role:"Timer after mouse leaves both item and popover (WCAG 2.5.1)" },
+  { cat:"Motion",  semantic:"Overlay panel enter",             prim:"--motion-duration-5 / -4 · decelerate", value:"380ms transform / 300ms opacity", role:"<1024px overlay slide-in (no overshoot — spec §17.6)" },
+  { cat:"Motion",  semantic:"Overlay panel exit",              prim:"--motion-duration-4 / -3 · accelerate", value:"300ms / 200ms · accelerate", role:"<1024px overlay slide-out" },
+  { cat:"Motion",  semantic:"Scrim fade",                      prim:"--motion-duration-4 · standard",        value:"300ms · standard",          role:"Backdrop opacity 0↔1 behind overlay" },
+  { cat:"Motion",  semantic:"Reduced motion (all transforms)", prim:"--motion-duration-2 · linear",          value:"150ms · linear",            role:"prefers-reduced-motion: reduce — transforms suppressed, opacity-only" },
 
   // ── Confirmed accessibility tokens ─────────────────────────────────────────
   { cat:"✓ Access.", semantic:"Accessibility/Touch Target/Optimal", prim:"—", value:"48px",                 role:"SideNavItem + ListItem min-height" },

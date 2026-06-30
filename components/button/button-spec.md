@@ -283,7 +283,7 @@ Spinner size: `iconInner × 1.2` (M = 19.2 px, rounded to `~20 px`).
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
-animation: pw-btn-spin 0.75s linear infinite;
+animation: pw-btn-spin var(--motion-duration-loop-fast) var(--motion-easing-linear) infinite;
 
 @media (prefers-reduced-motion: reduce) {
   .pw-btn-spinner { animation: none !important; }
@@ -423,7 +423,7 @@ When regenerating this component, confirm:
 - [ ] All FILL/TEXT/ICON/STROKE token tables are present and match §5
 - [ ] SIZES table uses `SL("contextual-button-padding-large-*")` for L padH/padV
 - [ ] SIZES table uses `ST("label-button-l-fontsize")` etc. for all font sizes
-- [ ] `ButtonSpinner` uses `stroke: currentColor` and `@keyframes pw-btn-spin 0.75s linear`
+- [ ] `ButtonSpinner` uses `stroke: currentColor` and `@keyframes pw-btn-spin var(--motion-duration-loop-fast) var(--motion-easing-linear)`
 - [ ] Outer `<button>` has `padding: 6px`, `min-height: 48`, `min-width: 48`
 - [ ] `aria-hidden="true"` on Container.Main span (decorative — accessible name is on the button)
 - [ ] `ariaLabel` takes precedence; fallback to `text` when `showText=false`
@@ -516,5 +516,5 @@ Build the Pathway Button using:
 - Inner Container.Main span for all visual styling
 - focus ring via box-shadow on Container.Main
 - Loading state: spinner only, aria-busy=true, implicit disabled
-- All transitions 150ms ease
+- All transitions --motion-duration-2 · --motion-easing-standard (spinner loop: --motion-duration-loop-fast · --motion-easing-linear)
 ```
