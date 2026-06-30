@@ -29,7 +29,7 @@ Working code: [spinner.html](./spinner.html). Full spec: [spinner-spec.md](./spi
 
 2. **The geometry is fixed.** Don't reinvent the sunburst — it's an 8-spoke rotating SVG with specific path data. Copy from [spinner.html](./spinner.html).
 
-3. **Animation: smooth continuous rotation, no easing.** `animation: rotate 0.8s linear infinite` is the canonical value. Don't ease in/out — it must feel mechanical and constant or it looks like it's stopping.
+3. **Animation: smooth continuous rotation, no easing.** `animation: rotate var(--motion-duration-loop) var(--motion-easing-linear) infinite` is the canonical value. Don't ease in/out — it must feel mechanical and constant or it looks like it's stopping.
 
 4. **Respect `prefers-reduced-motion: reduce`.** Replace the rotation with a static dot pulse or simply a static icon. Never strip the wait signal entirely.
 
@@ -61,7 +61,7 @@ Accessibility/Icon Wrapping/Large:    24px
 
 ### Motion
 ```
-animation:  rotate 0.8s linear infinite
+animation:  rotate var(--motion-duration-loop) var(--motion-easing-linear) infinite
 @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 ```
 

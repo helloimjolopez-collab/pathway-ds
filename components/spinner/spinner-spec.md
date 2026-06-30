@@ -362,9 +362,9 @@ No sizing tokens exist or are needed. The size input is a CSS length chosen by t
 
 ### 7.3 Motion
 
-No motion tokens currently exist in the Pathway token file. The spinner's motion values (`1s`, `linear`) are hard-coded in the component CSS.
+The spinner loop is token-driven: `--motion-duration-loop` (1000ms) paired with `--motion-easing-linear` (continuous rotation, no easing). The in-button spinner uses the tighter `--motion-duration-loop-fast` (750ms).
 
-> **⚠ Gap (MEDIUM priority):** The token file (`tokens/pathway-design-tokens.json`) does not contain any `duration`, `easing`, or `motion` tokens. The sidenav spec (§8.3, §16.6) has the same problem. Until a motion token scale exists, every component spec has to hard-code its own durations. **Recommend** creating a `motion` token category with at least `duration/instant` (`150ms`), `duration/short` (`300ms`), `duration/medium` (`600ms`), `duration/long` (`1s`, used here), `easing/linear`, and `easing/standard` (`cubic-bezier(0.4, 0, 0.2, 1)`).
+> **✓ Resolved:** A motion token scale now exists. `docs/design-system-spec.md` §2 is the source of truth; `scripts/sync-motion-tokens.js` emits the `--motion-*` CSS variables (an 8-step duration ladder, a dedicated loop-duration family, and seven easings). Every component — including this spinner — now references those tokens rather than hard-coding durations or cubic-bezier curves.
 
 ### 7.2 Sizing
 
@@ -374,9 +374,9 @@ No sizing tokens exist or are needed. The size input is a CSS length chosen by t
 
 ### 7.3 Motion
 
-No motion tokens currently exist in the Pathway token file. The spinner's motion values (`1s`, `linear`) are hard-coded in the component CSS.
+The spinner loop is token-driven: `--motion-duration-loop` (1000ms) paired with `--motion-easing-linear` (continuous rotation, no easing). The in-button spinner uses the tighter `--motion-duration-loop-fast` (750ms).
 
-> **⚠ Gap (MEDIUM priority):** The token file (`tokens/pathway-design-tokens.json`) does not contain any `duration`, `easing`, or `motion` tokens. The sidenav spec (§8.3, §16.6) has the same problem — its durations and cubic-bezier curves are raw values. Until a motion token scale exists, every component spec has to hard-code its own durations. **Recommend** creating a `motion` token category with at least `duration/instant` (`150ms`), `duration/short` (`300ms`), `duration/medium` (`600ms`), `duration/long` (`1s`, used here), and `easing/linear`, `easing/standard` (`cubic-bezier(0.4, 0, 0.2, 1)`).
+> **✓ Resolved:** A motion token scale now exists (see §7.3 above). The sidenav, button, and every other component now reference `--motion-*` tokens rather than hard-coding durations and cubic-bezier curves.
 
 ---
 

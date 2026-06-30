@@ -12,6 +12,28 @@
 <!-- Real Pathway token file — colours resolved from here, never inlined -->
 <link rel="stylesheet" href="../../src/tokens/tokens.css">
 <style>
+  :root {
+    /* Motion tokens (mirrors src/tokens/tokens.css §motion). Inlined so the standalone demo
+       resolves the same --motion-* variables the shipped component consumes. */
+    --motion-duration-1: 100ms;
+    --motion-duration-2: 150ms;
+    --motion-duration-3: 200ms;
+    --motion-duration-4: 300ms;
+    --motion-duration-5: 380ms;
+    --motion-duration-6: 460ms;
+    --motion-duration-7: 680ms;
+    --motion-duration-8: 1100ms;
+    --motion-duration-loop: 1000ms;
+    --motion-duration-loop-fast: 750ms;
+    --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --motion-easing-spring: cubic-bezier(0.34, 1.04, 0.64, 1);
+    --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+    --motion-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+    --motion-easing-emphasized: cubic-bezier(0.32, 0.72, 0, 1);
+    --motion-easing-accordion: cubic-bezier(0.33, 1.03, 0.68, 1);
+    --motion-easing-linear: cubic-bezier(0, 0, 1, 1);
+  }
+
 /*
   TopNav.Global — Pathway Design System
   Figma: https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6508
@@ -38,7 +60,7 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 .demo-toolbar__label { color: #666; font-size: 11px; font-weight: 600;
   letter-spacing: .07em; text-transform: uppercase; margin-right: 4px; }
 .demo-toolbar__btn { padding: 5px 14px; border-radius: 6px; border: none; cursor: pointer;
-  font-size: 12px; font-weight: 500; font-family: inherit; transition: background 120ms ease; }
+  font-size: 12px; font-weight: 500; font-family: inherit; transition: background var(--motion-duration-2) var(--motion-easing-standard); }
 .demo-toolbar__btn--active   { background: #2d4889; color: #fff; }
 .demo-toolbar__btn--inactive { background: rgba(255,255,255,0.06); color: #aaa; }
 .demo-page  { flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 24px; }
@@ -67,7 +89,7 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 .tn-iconbtn__inner {
   display: flex; align-items: center; justify-content: center;
   padding: 8px; border-radius: 8px; background: transparent;
-  border: none; cursor: pointer; color: #fbfbfb; transition: background 120ms ease;
+  border: none; cursor: pointer; color: #fbfbfb; transition: background var(--motion-duration-2) var(--motion-easing-standard);
 }
 .tn-iconbtn__inner:hover  { background: var(--semantic-color-dark-mode-fill-action-primaryinverse-hover, rgba(10,18,35,0.16)); }
 .tn-iconbtn__inner:active { background: var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed, rgba(255,255,255,0.08)); }
@@ -79,7 +101,7 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
   height: 36px; padding: 4px; border-radius: 8px;
   background: transparent; border: 1px solid transparent;
   cursor: pointer; color: #fbfbfb; font-family: inherit;
-  transition: background 120ms ease, border-color 120ms ease;
+  transition: background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard);
 }
 .tn-mod__btn:hover              { background: var(--semantic-color-dark-mode-fill-action-primaryinverse-hover, rgba(10,18,35,0.16)); border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-hover, rgba(160,181,230,0.20)); }
 .tn-mod__btn[aria-expanded="true"] { background: var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed, rgba(255,255,255,0.08)); border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-pressed, rgba(160,181,230,0.30)); }
@@ -93,7 +115,7 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   max-width: 160px; color: #fbfbfb; padding: 0 2px; }
 .tn-mod__chev { width: 16px; height: 16px; display: flex; align-items: center;
-  justify-content: center; margin-left: 2px; transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1); }
+  justify-content: center; margin-left: 2px; transition: transform var(--motion-duration-4) var(--motion-easing-standard); }
 .tn-mod__btn[aria-expanded="true"] .tn-mod__chev { transform: rotate(180deg); }
 
 /* ── Org Switcher ─────────────────────────────────────────────────────────────── */
@@ -105,7 +127,7 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
   background: var(--semantic-color-dark-mode-fill-action-tertiary-base, rgba(160,181,230,0.04));
   border: 1px solid var(--semantic-color-dark-mode-stroke-action-tertiary-base, rgba(160,181,230,0.16));
   cursor: pointer; color: #fbfbfb; font-family: inherit;
-  transition: background 120ms ease, border-color 120ms ease;
+  transition: background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard);
 }
 .tn-org.is-mobile .tn-org__btn { padding: 4px 2px; }
 .tn-org__btn:hover              { background: var(--semantic-color-dark-mode-fill-action-primaryinverse-hover, rgba(10,18,35,0.16)); border-color: var(--semantic-color-dark-mode-stroke-action-tertiary-hover, rgba(160,181,230,0.20)); }
@@ -144,7 +166,7 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 /* Mobile label: Label/Button/XS 12px/500 (Figma) */
 .tn-org.is-mobile .tn-org__label { font-size: 12px; line-height: 18px; max-width: 70px; }
 .tn-org__chev { width: 16px; height: 16px; display: flex; align-items: center;
-  justify-content: center; margin-right: 2px; transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1); }
+  justify-content: center; margin-right: 2px; transition: transform var(--motion-duration-4) var(--motion-easing-standard); }
 .tn-org__btn[aria-expanded="true"] .tn-org__chev { transform: rotate(180deg); }
 
 /* ── Search pill ─────────────────────────────────────────────────────────────── */
@@ -156,7 +178,7 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
   background: var(--semantic-color-dark-mode-fill-action-primaryinverse-base, rgba(160,181,230,0.08));
   border: 0.75px solid #fbfbfb;
   border-radius: 9999px; cursor: pointer; flex-shrink: 0;
-  color: #fbfbfb; transition: background 120ms ease;
+  color: #fbfbfb; transition: background var(--motion-duration-2) var(--motion-easing-standard);
 }
 .tn-search__pill:hover  { background: var(--semantic-color-dark-mode-fill-action-primaryinverse-hover, rgba(10,18,35,0.16)); }
 .tn-search__pill:active { background: var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed, rgba(255,255,255,0.08)); }
@@ -188,7 +210,7 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
   min-height: 48px; min-width: 48px; padding: 2px; }
 .tn-profile__btn { display: flex; align-items: center; justify-content: center;
   width: 44px; height: 44px; background: transparent; border: none;
-  border-radius: 50%; cursor: pointer; padding: 6px; transition: background 120ms ease; }
+  border-radius: 50%; cursor: pointer; padding: 6px; transition: background var(--motion-duration-2) var(--motion-easing-standard); }
 .tn-profile__btn:hover              { background: var(--semantic-color-dark-mode-fill-action-primaryinverse-hover, rgba(10,18,35,0.16)); }
 .tn-profile__btn[aria-expanded="true"] { background: var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed, rgba(255,255,255,0.08)); }
 /* Desktop/Tablet: Text/Body/Small/Semibold 14px/600 */
@@ -206,7 +228,7 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 .tn-dropdown, .tn-panel, .tn-profile-menu {
   position: absolute; background: #fff; border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06);
-  z-index: 300; animation: tnDropIn 140ms ease-out both;
+  z-index: 300; animation: tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both;
 }
 .tn-dropdown    { top: calc(100% + 4px); left: 0; width: 243px;
   border: 1px solid rgba(45,72,137,0.12); padding: 4px; list-style: none; margin: 0; }
