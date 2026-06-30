@@ -96,14 +96,14 @@
         }
       },
       "motion": {
-        "sidebarWidth": "380ms cubic-bezier(0.32, 0.72, 0, 1)",
-        "labelChevronMaxWidth": "360ms cubic-bezier(0.32, 0.72, 0, 1)",
-        "labelChevronOpacity": "200ms ease",
-        "grouperAccordion": "340ms cubic-bezier(0.22, 1, 0.36, 1)",
-        "grouperChildrenFadeIn": "240ms ease 60ms",
-        "grouperChildrenFadeOut": "160ms ease",
-        "chevronRotation": "340ms cubic-bezier(0.22, 1, 0.36, 1)",
-        "hoverTransitions": "150ms ease"
+        "sidebarWidth": "--motion-duration-6 / --motion-easing-emphasized",
+        "labelChevronMaxWidth": "--motion-duration-6 / --motion-easing-emphasized",
+        "labelChevronOpacity": "--motion-duration-3 / --motion-easing-standard",
+        "grouperAccordion": "--motion-duration-5 / --motion-easing-accordion",
+        "grouperChildrenFadeIn": "--motion-duration-4 / --motion-easing-standard (70ms delay)",
+        "grouperChildrenFadeOut": "--motion-duration-3 / --motion-easing-standard",
+        "chevronRotation": "--motion-duration-5 / --motion-easing-accordion",
+        "hoverTransitions": "--motion-duration-3 / --motion-easing-standard"
       },
       "tokens": [
         "fill.contextual.navitem.base",
@@ -233,8 +233,8 @@
         }
       },
       "motion": {
-        "boxFill": "150ms ease-out (background-color)",
-        "boxToggle": "150ms ease-out (background-color + border-color, on check / uncheck)"
+        "boxFill": "--motion-duration-2 / --motion-easing-decelerate (background-color)",
+        "boxToggle": "--motion-duration-2 / --motion-easing-decelerate (background-color + border-color, on check / uncheck)"
       },
       "tokens": {
         "present": [
@@ -401,10 +401,10 @@
         ]
       },
       "motion": {
-        "pillButtonBackground": "150ms cubic-bezier(0.4,0,0.2,1)",
-        "panelEnter": "200ms cubic-bezier(0,0,0.2,1) \u2014 keyframe orgPanelIn (opacity 0\u21921, translateY -6px \u2192 0)",
-        "listItemHover": "120ms ease (background + border-color)",
-        "caretRotation": "200ms cubic-bezier(0.4,0,0.2,1) (transform)"
+        "pillButtonBackground": "--motion-duration-2 / --motion-easing-standard",
+        "panelEnter": "--motion-duration-3 / --motion-easing-decelerate \u2014 keyframe orgPanelIn (opacity 0\u21921, translateY -6px \u2192 0)",
+        "listItemHover": "--motion-duration-2 / --motion-easing-standard (background + border-color)",
+        "caretRotation": "--motion-duration-4 / --motion-easing-standard (transform)"
       },
       "accessibility": {
         "ariaPattern": "Disclosure (button with aria-haspopup + aria-expanded)",
@@ -477,10 +477,10 @@
         }
       },
       "motion": {
-        "searchFieldFocus": "180ms ease (min-width expansion on focus)",
-        "iconButtonHover": "120ms ease (background + border-color)",
-        "dropdownEnter": "140ms ease-out \u2014 keyframe tnDropIn",
-        "iconRotation": "180ms ease (transform)"
+        "searchFieldFocus": "--motion-duration-3 / --motion-easing-standard (min-width expansion on focus)",
+        "iconButtonHover": "--motion-duration-2 / --motion-easing-standard (background + border-color)",
+        "dropdownEnter": "--motion-duration-4 / --motion-easing-spring \u2014 keyframe tnDropIn",
+        "iconRotation": "--motion-duration-4 / --motion-easing-standard (transform)"
       },
       "tokens": [
         "light-mode.fill.static.brand.base",
@@ -668,8 +668,8 @@
         }
       },
       "motion": {
-        "stateTransition": "150ms ease (background-color, border-color, box-shadow, color)",
-        "spinnerRotation": "750ms linear infinite (pw-btn-spin keyframe)"
+        "stateTransition": "--motion-duration-2 / --motion-easing-standard (background-color, border-color, box-shadow, color)",
+        "spinnerRotation": "--motion-duration-loop-fast / --motion-easing-linear, infinite (pw-btn-spin keyframe)"
       },
       "tokens": {
         "present": [

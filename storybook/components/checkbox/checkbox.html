@@ -16,6 +16,11 @@
      All variable names match the Style Dictionary output exactly.
   ══════════════════════════════════════════════════════════════════════════ */
   :root {
+    /* Motion tokens (mirrors src/tokens/tokens.css §motion) ----------------- */
+    --motion-duration-2: 150ms;
+    --motion-duration-3: 200ms;
+    --motion-easing-standard:   cubic-bezier(0.4, 0, 0.2, 1);
+    --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
     /* Primitives ------------------------------------------------------------ */
     --primitive-color-brand-0:   #fafafa;
     --primitive-color-brand-10:  #edf0f9;
@@ -348,7 +353,7 @@ function Checkbox({
           width: TARGET_SIZE, height: TARGET_SIZE,
           borderRadius: V.radiusFull,
           backgroundColor: stateLayerBg,
-          transition: "background-color 150ms ease-out",
+          transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)",
           boxShadow: focusShadow,
           flexShrink: 0,
         }}
@@ -378,7 +383,7 @@ function Checkbox({
             border: `${BORDER_W}px solid ${borderColor}`,
             backgroundColor: boxFill,
             boxSizing: "border-box",
-            transition: "background-color 150ms ease-out, border-color 150ms ease-out",
+            transition: "background-color var(--motion-duration-2) var(--motion-easing-decelerate), border-color var(--motion-duration-2) var(--motion-easing-decelerate)",
             flexShrink: 0,
           }}
         >

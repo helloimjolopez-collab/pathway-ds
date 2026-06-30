@@ -28,6 +28,26 @@
 
     /* ── Dark-mode tokens ───────────────────────────────────────── */
     :root {
+    /* Motion tokens (mirrors src/tokens/tokens.css §motion). Inlined so the standalone demo
+       resolves the same --motion-* variables the shipped component consumes. */
+    --motion-duration-1: 100ms;
+    --motion-duration-2: 150ms;
+    --motion-duration-3: 200ms;
+    --motion-duration-4: 300ms;
+    --motion-duration-5: 380ms;
+    --motion-duration-6: 460ms;
+    --motion-duration-7: 680ms;
+    --motion-duration-8: 1100ms;
+    --motion-duration-loop: 1000ms;
+    --motion-duration-loop-fast: 750ms;
+    --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --motion-easing-spring: cubic-bezier(0.34, 1.04, 0.64, 1);
+    --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+    --motion-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+    --motion-easing-emphasized: cubic-bezier(0.32, 0.72, 0, 1);
+    --motion-easing-accordion: cubic-bezier(0.33, 1.03, 0.68, 1);
+    --motion-easing-linear: cubic-bezier(0, 0, 1, 1);
+
       --semantic-color-dark-mode-fill-action-tertiary-base:          rgba(160,181,230,0.04);
       --semantic-color-dark-mode-fill-action-primaryinverse-hover:   rgba(10,18,35,0.16);
       --semantic-color-dark-mode-fill-action-primaryinverse-pressed: rgba(255,255,255,0.08);
@@ -117,7 +137,7 @@
       border: 1px solid #d8dce8;
       background: #ffffff;
       font-weight: 500;
-      transition: background 120ms ease, border-color 120ms ease;
+      transition: background var(--motion-duration-2) var(--motion-easing-standard), border-color var(--motion-duration-2) var(--motion-easing-standard);
     }
     .resource-bar a:hover {
       background: #f4f6fb;
@@ -374,7 +394,7 @@ function OrgListItem({ org, isActive, onSelect }) {
   return (
     <button type="button" onClick={() => onSelect(org.id)}
       onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
-      style={{ display:"flex", alignItems:"center", gap:16, padding:16, width:"100%", minHeight:78, background:bg, border:"none", borderRadius:8, cursor:"pointer", fontFamily:"'Red Hat Text', sans-serif", textAlign:"left", transition:"background 150ms cubic-bezier(0.4,0,0.2,1)", boxSizing:"border-box" }}>
+      style={{ display:"flex", alignItems:"center", gap:16, padding:16, width:"100%", minHeight:78, background:bg, border:"none", borderRadius:8, cursor:"pointer", fontFamily:"'Red Hat Text', sans-serif", textAlign:"left", transition:"background var(--motion-duration-2) var(--motion-easing-standard)", boxSizing:"border-box" }}>
       <div style={{ display:"flex", alignItems:"center", gap:12, flex:"1 0 0", minWidth:0 }}>
         <PanelOrgBranding logoUrl={org.logoUrl} />
         <div style={{ flex:"1 0 0", minWidth:0, display:"flex", flexDirection:"column", gap:6, justifyContent:"center" }}>
@@ -392,7 +412,7 @@ function OrgPanel({ orgs=[], activeOrgId, onOrgSelect, mobile=false }) {
   const [query, setQuery] = useState("");
   const filtered = orgs.filter(o => !query.trim() || o.name.toLowerCase().includes(query.toLowerCase()));
   return (
-    <div role="dialog" aria-label="Switch organisation" style={{ position:"absolute", top:"calc(100% + 4px)", left:0, zIndex:300, width: mobile ? 380 : 414, background:"#ffffff", borderRadius:8, boxShadow:T.panelShadow, overflow:"hidden", animation:"orgPanelIn 200ms cubic-bezier(0,0,0.2,1) both", paddingTop:18, paddingBottom:24, paddingLeft:18, paddingRight:18, display:"flex", flexDirection:"column", gap:12, boxSizing:"border-box" }}>
+    <div role="dialog" aria-label="Switch organisation" style={{ position:"absolute", top:"calc(100% + 4px)", left:0, zIndex:300, width: mobile ? 380 : 414, background:"#ffffff", borderRadius:8, boxShadow:T.panelShadow, overflow:"hidden", animation:"orgPanelIn var(--motion-duration-3) var(--motion-easing-decelerate) both", paddingTop:18, paddingBottom:24, paddingLeft:18, paddingRight:18, display:"flex", flexDirection:"column", gap:12, boxSizing:"border-box" }}>
       <style>{`@keyframes orgPanelIn { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }`}</style>
 
       {/* Breadcrumb header — "My Organizations" */}
@@ -477,7 +497,7 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
           ...(mobile ? {} : { gap:"2px" }),
           boxSizing:"border-box",
           outline:"none",
-          transition:"background 120ms ease, border-color 120ms ease",
+          transition:"background var(--motion-duration-2) var(--motion-easing-standard), border-color var(--motion-duration-2) var(--motion-easing-standard)",
         }}>
 
         {/* Container.RowStart
@@ -522,7 +542,7 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
         {/* Container.RowEnd: p:2px around Container.IconTrailing */}
         <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"2px", flexShrink:0 }}>
           {/* Container.IconTrailing: size 16×16 with 2px inner padding → 12×12 icon */}
-          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", width:16, height:16, padding:"2px", boxSizing:"border-box", transform: open ? "rotate(180deg)" : "none", transition:"transform 300ms cubic-bezier(0.4,0,0.2,1)" }}>
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"center", width:16, height:16, padding:"2px", boxSizing:"border-box", transform: open ? "rotate(180deg)" : "none", transition:"transform var(--motion-duration-4) var(--motion-easing-standard)" }}>
             <Icon name="expand_more" size={12} style={{ color:icon }} />
           </div>
         </div>

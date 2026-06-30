@@ -220,7 +220,7 @@ NAV_SECTIONS.map(({ section, items }, sIdx) => (
       opacity: sidebarCollapsed ? 0 : 1,
       maxHeight: sidebarCollapsed ? 0 : 40,
       overflow: 'hidden',
-      transition: 'opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+      transition: 'opacity var(--motion-duration-4) var(--motion-easing-standard), max-height var(--motion-duration-5) var(--motion-easing-spring)',
     }}>
       <NavSectionLabel label={section} />
     </div>
@@ -232,7 +232,7 @@ NAV_SECTIONS.map(({ section, items }, sIdx) => (
         opacity: sidebarCollapsed ? 1 : 0,
         maxHeight: sidebarCollapsed ? 5 : 0,
         overflow: 'hidden',
-        transition: 'opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: 'opacity var(--motion-duration-4) var(--motion-easing-standard), max-height var(--motion-duration-5) var(--motion-easing-spring)',
         padding: '2px 0',
       }}>
         <div style={{ height: 1, backgroundColor: '#f6f6f6' }} />
@@ -248,7 +248,7 @@ NAV_SECTIONS.map(({ section, items }, sIdx) => (
         <SideNavItem item={item} /* ...props unchanged... */ />
         {item.children && !sidebarCollapsed && (
           <div style={{ display: 'grid', gridTemplateRows: isExpanded ? '1fr' : '0fr',
-            transition: 'grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1)' }}>
+            transition: 'grid-template-rows var(--motion-duration-5) var(--motion-easing-accordion)' }}>
             <div style={{ overflow: 'hidden' }}>
               {item.children.map(child => <SideNavItem key={child.id} item={child} /* ... */ />)}
             </div>
@@ -333,7 +333,7 @@ The bullet dot sits inside a `24×24` `Container.LeadingIcon` wrapper (same dime
   opacity: sidebarCollapsed ? 0 : 1,
   maxHeight: sidebarCollapsed ? 0 : 400,
   overflow: 'hidden',
-  transition: 'opacity 220ms ease, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)'
+  transition: 'opacity var(--motion-duration-4) var(--motion-easing-standard), max-height var(--motion-duration-5) var(--motion-easing-spring)'
 }}>
   <SideNavListSection
     label="Recent Content"
@@ -593,23 +593,23 @@ Collapsed: width  72px, padding-top: 8px (Padding/Tight), padding-horizontal: 12
 
 ### 8.3 Transition
 ```
-width: transition 380ms cubic-bezier(0.32, 0.72, 0, 1)
+width: transition var(--motion-duration-6) var(--motion-easing-emphasized)
 ```
 
 **Label and chevron fade:** Item labels, chevrons, and the CollapseButton "Collapse" text are always present in the DOM. They fade out/in using `max-width` + `opacity` transitions so text does not pop-in at full opacity inside the still-narrow container during an expand animation.
 
 | Element | Collapsed value | Expanded value | Transition |
 |---|---|---|---|
-| Label `max-width` | `0` | `200px` | `360ms cubic-bezier(0.32, 0.72, 0, 1)` |
-| Label `opacity` | `0` | `1` | `200ms ease` |
-| Chevron `max-width` | `0` | `40px` | `360ms cubic-bezier(0.32, 0.72, 0, 1)` |
-| Chevron `opacity` | `0` | `1` | `200ms ease` |
-| CollapseButton label `max-width` | `0` | `120px` | `360ms cubic-bezier(0.32, 0.72, 0, 1)` |
-| CollapseButton label `opacity` | `0` | `1` | `200ms ease` |
+| Label `max-width` | `0` | `200px` | `--motion-duration-6` · emphasized |
+| Label `opacity` | `0` | `1` | `--motion-duration-3` · standard |
+| Chevron `max-width` | `0` | `40px` | `--motion-duration-6` · emphasized |
+| Chevron `opacity` | `0` | `1` | `--motion-duration-3` · standard |
+| CollapseButton label `max-width` | `0` | `120px` | `--motion-duration-6` · emphasized |
+| CollapseButton label `opacity` | `0` | `1` | `--motion-duration-3` · standard |
 
-> **Motion override — intentional (updated 2026-05-13):** The sidebar width transition uses `380ms` with `cubic-bezier(0.32, 0.72, 0, 1)` — a smooth-spring curve with a soft, characterful ease but **no overshoot**. Previously the implementation used a strongly bouncy `cubic-bezier(0.34, 1.56, 0.64, 1)` at 500 ms, which felt overly springy for a structural panel. The new curve preserves a hint of warmth and personality without the visible bounce. The label/chevron motion matches: 360 ms max-width with the same curve, 200 ms ease opacity. Opacity is slightly shorter than width so labels finish fading before the panel finishes collapsing, avoiding a flash of fully-visible text inside an already-narrow container. Registered as contextual motion tokens `Motion/SideNav/Panel/Width` (380ms) and `Motion/SideNav/Label/Fade` (360ms width / 200ms opacity) in the overarching spec §2.4.
+> **Motion override — intentional:** The sidebar width transition uses `--motion-duration-6` with `--motion-easing-emphasized` — a smooth glide with a soft, characterful ease but **no overshoot**. (An earlier implementation used a strongly bouncy spring at 500 ms, which felt overly springy for a structural panel; `--motion-easing-emphasized` preserves a hint of warmth and personality without the visible bounce.) The label/chevron `max-width` matches the width move (`--motion-duration-6` · emphasized); its opacity rides `--motion-duration-3` · standard — slightly shorter, so labels finish fading before the panel finishes collapsing, avoiding a flash of fully-visible text inside an already-narrow container.
 
-> **Why `cubic-bezier(0.32, 0.72, 0, 1)` and not the standard `cubic-bezier(0.4, 0, 0.2, 1)`:** The standard Material curve is correct but reads as clinical at the scale of a 240→72 px panel. The smooth-spring curve borrows Apple's HIG easing language — strong initial acceleration that decelerates smoothly into rest — giving the motion warmth and presence without the literal physical bounce of an overshoot. It is the same family of curve used for the grouper accordion (`cubic-bezier(0.22, 1, 0.36, 1)`), keeping the two motions feeling coherent.
+> **Why `--motion-easing-emphasized` and not the standard `--motion-easing-standard`:** The standard Material curve is correct but reads as clinical at the scale of a 240→72 px panel. `--motion-easing-emphasized` borrows Apple's HIG easing language — strong initial acceleration that decelerates smoothly into rest — giving the motion warmth and presence without the literal physical bounce of an overshoot. The grouper accordion uses the closely related `--motion-easing-accordion` (the gentlest overshoot in the system), keeping the two motions feeling coherent.
 
 ---
 
@@ -845,7 +845,7 @@ The reference demo (`sidenav.html`) uses a church management context with three 
 
 When the sidebar is in the 240px expanded state, clicking a Level 0 Grouper toggles its Level 1 children between visible and hidden using an **animated accordion**.
 
-**Single-open accordion (updated 2026-05-13):** Only one grouper is open at a time. Opening a grouper automatically closes any other previously expanded grouper. This keeps the nav compact and the active context obvious. The collapse animation on the previously-open grouper runs in parallel with the expand on the newly-opened one — both use the same 340 ms easeOutQuart curve.
+**Single-open accordion (updated 2026-05-13):** Only one grouper is open at a time. Opening a grouper automatically closes any other previously expanded grouper. This keeps the nav compact and the active context obvious. The collapse animation on the previously-open grouper runs in parallel with the expand on the newly-opened one — both use the same `--motion-duration-5` + `--motion-easing-accordion`.
 
 ```js
 // Reference implementation (matches sidenav.html and sidenav.jsx)
@@ -864,20 +864,20 @@ The chevron lives in `Container.RowEnd` (40×24px), which is only present on gro
 
 **Expand/collapse animation:**
 
-The Level 1 child list uses CSS Grid `grid-template-rows` to animate between zero height (collapsed) and natural height (expanded). This avoids JavaScript height calculations and supports dynamic content length. The inner wrapper additionally fades opacity 0 → 1 (with a 60 ms delay behind the height grow) so children emerge gracefully rather than clipping into existence.
+The Level 1 child list uses CSS Grid `grid-template-rows` to animate between zero height (collapsed) and natural height (expanded). This avoids JavaScript height calculations and supports dynamic content length. The inner wrapper additionally fades opacity 0 → 1 (with a 70ms delay behind the height grow) so children emerge gracefully rather than clipping into existence.
 
 ```jsx
 <div style={{
   display: 'grid',
   gridTemplateRows: isExpanded ? '1fr' : '0fr',
-  transition: 'grid-template-rows 340ms cubic-bezier(0.22, 1, 0.36, 1)'
+  transition: 'grid-template-rows var(--motion-duration-5) var(--motion-easing-accordion)'
 }}>
   <div style={{
     overflow: 'hidden',
     opacity: isExpanded ? 1 : 0,
     transition: isExpanded
-      ? 'opacity 240ms ease 60ms'   // fade in slightly behind the grow
-      : 'opacity 160ms ease'         // exit faster (no delay)
+      ? 'opacity var(--motion-duration-4) var(--motion-easing-standard) 70ms'   // fade in slightly behind the grow
+      : 'opacity var(--motion-duration-3) var(--motion-easing-standard)'         // exit faster (no delay)
   }}>
     {item.children.map(child => <SideNavItem ... />)}
   </div>
@@ -887,16 +887,16 @@ The Level 1 child list uses CSS Grid `grid-template-rows` to animate between zer
 | Property | Value |
 |---|---|
 | Animation type | CSS `grid-template-rows: 0fr → 1fr` + opacity fade |
-| Height duration | `340ms` |
-| Height easing | `cubic-bezier(0.22, 1, 0.36, 1)` — easeOutQuart, smooth decelerate without spring |
-| Children opacity (expand) | `0 → 1`, `240ms ease`, `60ms delay` |
-| Children opacity (collapse) | `1 → 0`, `160ms ease`, no delay (snappier exit) |
-| Chevron rotation | `340ms cubic-bezier(0.22, 1, 0.36, 1)` — matches accordion timing so chevron + panel land together |
+| Height duration | `--motion-duration-5` (380ms) |
+| Height easing | `--motion-easing-accordion` — the gentlest overshoot in the system, smooth settle without a visible bounce |
+| Children opacity (expand) | `0 → 1`, `--motion-duration-4` · standard, `70ms` delay |
+| Children opacity (collapse) | `1 → 0`, `--motion-duration-3` · standard, no delay (snappier exit) |
+| Chevron rotation | `--motion-duration-5` · accordion — matches accordion timing so chevron + panel land together |
 | Inner wrapper | `overflow: hidden` — required for the clip to work |
 
-> **Why easeOutQuart and not the standard `cubic-bezier(0.4, 0, 0.2, 1)`:** The standard curve is fine for short hover transitions but feels mechanical on a panel that grows several rows tall. `cubic-bezier(0.22, 1, 0.36, 1)` is "easeOutQuart" — it starts fast and decelerates strongly into the resting position, which reads as a polished, considered motion at the larger scale of an accordion. It does not overshoot (no bounce), so items below the grouper do not jiggle.
+> **Why `--motion-easing-accordion` and not the standard `--motion-easing-standard`:** The standard curve is fine for short hover transitions but feels mechanical on a panel that grows several rows tall. `--motion-easing-accordion` starts fast and decelerates strongly into the resting position, which reads as a polished, considered motion at the larger scale of an accordion. Its overshoot is the gentlest in the system, so items below the grouper do not visibly jiggle.
 
-> **Why matching chevron timing:** Previously the chevron used a 420 ms spring while the accordion used 300 ms standard ease, so the chevron landed ~120 ms after the panel finished opening. Matching both to 340 ms with the same curve makes the two motions feel like a single coherent action.
+> **Why matching chevron timing:** Earlier the chevron and accordion ran on different timings, so the chevron landed after the panel finished opening. Matching both to `--motion-duration-5` + `--motion-easing-accordion` makes the two motions feel like a single coherent action.
 
 > **Why grid-template-rows:** `max-height` transitions require a hard ceiling value and produce uneven timing (slow at the start when the element is short, fast at the end). `grid-template-rows: 0fr → 1fr` produces perfectly even timing because the fraction unit is relative to the natural content height, regardless of how many children are present.
 
@@ -1336,9 +1336,9 @@ Pair this with a `state` property: `expanded` / `collapsed` / `hidden` to repres
 
 The overlay panel (`.overlay-panel`) uses CSS transitions rather than one-shot keyframe animations. The overlay container always remains in the DOM when `!isDesktop`, and `.overlay-panel--open` class is toggled to drive both the enter and exit transitions. This is intentional: keyframe animations only play on insertion; a CSS transition reverses smoothly when the class is removed, giving a proper exit without instant-removal flash.
 
-The overlay uses **asymmetric enter/exit transitions**: the enter curve is slower and more eased (300–380ms, deceleration) to feel intentional; the exit is snappier (220–300ms, acceleration) to stay out of the user's way. This is achieved by placing the exit `transition` on the base class and the enter `transition` on the `--open` modifier: CSS always uses the destination state's transition property.
+The overlay uses **asymmetric enter/exit transitions**: the enter is slower and decelerated (`--motion-duration-5` transform / `--motion-duration-4` opacity, `--motion-easing-decelerate`) to feel intentional; the exit is snappier and accelerated (`--motion-duration-4` / `--motion-duration-3`, `--motion-easing-accelerate`) to stay out of the user's way. This is achieved by placing the exit `transition` on the base class and the enter `transition` on the `--open` modifier: CSS always uses the destination state's transition property.
 
-> **Motion override — intentional (approved 2026-05-12):** The overlay enter transform uses `380ms`, which exceeds the overarching spec's `short` duration (300ms). This is intentional for a full-height panel entering the viewport: a `short` 300ms enter feels abrupt and mechanical at this physical scale, while 380ms reads as deliberate and purposeful. The exit at 300ms matches `short` exactly — exits should be snappier than enters to stay out of the user's way. These values are registered as contextual motion tokens `Motion/SideNav/Overlay/Enter` (380ms) and `Motion/SideNav/Overlay/Exit` (300ms) in the overarching spec §2.4.
+> **Motion override — intentional:** The overlay enter transform uses `--motion-duration-5` (380ms), one step above the `--motion-duration-4` used for most in-component transitions. This is deliberate for a full-height panel entering the viewport: a 300ms enter feels abrupt at this physical scale, while 380ms reads as purposeful. The enter is **decelerated, not springy** — at the scale of a full-height panel, overshoot would feel unstable; `--motion-easing-decelerate` glides it cleanly into rest. The exit drops to `--motion-duration-4` and accelerates out — exits should be snappier than enters to stay out of the user's way.
 
 **Enter (`.overlay-panel--open` added):**
 
@@ -1346,9 +1346,9 @@ The overlay uses **asymmetric enter/exit transitions**: the enter curve is slowe
 |---|---|
 | Transform | `translateX(-110%)` → `translateX(0)`: 110% hides any shadow bleed |
 | Opacity | `0` → `1` |
-| Transform duration | `380ms` |
-| Opacity duration | `300ms` |
-| Easing | `cubic-bezier(0, 0, 0.2, 1)` (deceleration: eases into resting position) |
+| Transform duration | `--motion-duration-5` (380ms) |
+| Opacity duration | `--motion-duration-4` (300ms) |
+| Easing | `--motion-easing-decelerate` (eases into resting position, no overshoot) |
 
 **Exit (`.overlay-panel--open` removed):**
 
@@ -1356,13 +1356,13 @@ The overlay uses **asymmetric enter/exit transitions**: the enter curve is slowe
 |---|---|
 | Transform | `translateX(0)` → `translateX(-110%)` |
 | Opacity | `1` → `0` |
-| Transform duration | `300ms` |
-| Opacity duration | `220ms` |
-| Easing | `cubic-bezier(0.4, 0, 0.6, 1)` (acceleration: exits with intent) |
+| Transform duration | `--motion-duration-4` (300ms) |
+| Opacity duration | `--motion-duration-3` (200ms) |
+| Easing | `--motion-easing-accelerate` (exits with intent) |
 
-**Scrim (`.overlay-scrim`):** Opacity `0` → `1` on show, `1` → `0` on dismiss. `280ms`, `cubic-bezier(0.4,0,0.2,1)`. `pointer-events: none` when invisible (no click-through).
+**Scrim (`.overlay-scrim`):** Opacity `0` → `1` on show, `1` → `0` on dismiss. `--motion-duration-4` · `--motion-easing-standard`. `pointer-events: none` when invisible (no click-through).
 
-**Reduced motion (`prefers-reduced-motion: reduce`):** Transform is suppressed (`transform: none !important`). Only opacity fades remain, shortened to `150ms linear`.
+**Reduced motion (`prefers-reduced-motion: reduce`):** Transform is suppressed (`transform: none !important`). Only opacity fades remain, shortened to `--motion-duration-2` · `--motion-easing-linear`.
 
 ```css
 .overlay-panel {
@@ -1372,28 +1372,28 @@ The overlay uses **asymmetric enter/exit transitions**: the enter curve is slowe
   will-change: transform;
   /* EXIT transition: fires when .overlay-panel--open class is removed */
   transition:
-    transform 300ms cubic-bezier(0.4, 0, 0.6, 1),
-    opacity   220ms cubic-bezier(0.4, 0, 0.6, 1);
+    transform var(--motion-duration-4) var(--motion-easing-accelerate),
+    opacity   var(--motion-duration-3) var(--motion-easing-accelerate);
 }
 .overlay-panel--open {
   transform: translateX(0); opacity: 1; pointer-events: auto;
   /* ENTER transition: fires when .overlay-panel--open class is added */
   transition:
-    transform 380ms cubic-bezier(0, 0, 0.2, 1),
-    opacity   300ms cubic-bezier(0, 0, 0.2, 1);
+    transform var(--motion-duration-5) var(--motion-easing-decelerate),
+    opacity   var(--motion-duration-4) var(--motion-easing-decelerate);
 }
 
 .overlay-scrim {
   position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,0.32); z-index: 99;
   opacity: 0; pointer-events: none;
-  transition: opacity 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--motion-duration-4) var(--motion-easing-standard);
 }
 .overlay-scrim--visible { opacity: 1; pointer-events: auto; }
 
 @media (prefers-reduced-motion: reduce) {
-  .overlay-panel, .overlay-panel--open { transform: none !important; transition: opacity 150ms linear; }
-  .overlay-scrim { transition: opacity 150ms linear; }
+  .overlay-panel, .overlay-panel--open { transform: none !important; transition: opacity var(--motion-duration-2) var(--motion-easing-linear); }
+  .overlay-scrim { transition: opacity var(--motion-duration-2) var(--motion-easing-linear); }
 }
 ```
 
@@ -1410,7 +1410,7 @@ A semi-transparent scrim is shown behind the SideNav whenever it is in expanded-
 | Colour | `rgba(0, 0, 0, 0.32)` | 32% black: standard modal-overlay opacity |
 | Position | `position: fixed; top: 56px; left: 0; right: 0; bottom: 0` | Sits below TopNav.Global (56 px tall) |
 | Z-index | `99` | Behind SideNav overlay (`z-index: 100`), above page content |
-| Enter animation | Opacity `0` → `1`, `280ms`, `cubic-bezier(0.4,0,0.2,1)` | Synchronised with nav slide-in |
+| Enter animation | Opacity `0` → `1`, `--motion-duration-4` · `--motion-easing-standard` | Synchronised with nav slide-in |
 | Exit animation | Opacity `1` → `0`, same duration and easing | CSS transition reversal: scrim stays in DOM |
 
 **Breakpoint rules:**

@@ -14,6 +14,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&family=Red+Hat+Display:wght@600&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
 
   <style>
+  :root {
+    /* Motion tokens (mirrors src/tokens/tokens.css §motion). Inlined so the standalone demo
+       resolves the same --motion-* variables the shipped component consumes. */
+    --motion-duration-1: 100ms;
+    --motion-duration-2: 150ms;
+    --motion-duration-3: 200ms;
+    --motion-duration-4: 300ms;
+    --motion-duration-5: 380ms;
+    --motion-duration-6: 460ms;
+    --motion-duration-7: 680ms;
+    --motion-duration-8: 1100ms;
+    --motion-duration-loop: 1000ms;
+    --motion-duration-loop-fast: 750ms;
+    --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --motion-easing-spring: cubic-bezier(0.34, 1.04, 0.64, 1);
+    --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+    --motion-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+    --motion-easing-emphasized: cubic-bezier(0.32, 0.72, 0, 1);
+    --motion-easing-accordion: cubic-bezier(0.33, 1.03, 0.68, 1);
+    --motion-easing-linear: cubic-bezier(0, 0, 1, 1);
+  }
+
     /* ── Reset ─────────────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body, #root { height: 100%; overflow: hidden; font-family: 'Red Hat Text', sans-serif; }
@@ -54,7 +76,7 @@
       background: var(--semantic-color-light-mode-surface-nav-light, #fafafa);
       border-right: 0.5px solid var(--semantic-color-light-mode-stroke-static-neutral-light, #f6f6f6);
       display: flex; flex-direction: column;
-      transition: width 380ms cubic-bezier(0.32,0.72,0,1);
+      transition: width var(--motion-duration-6) var(--motion-easing-emphasized);
       overflow: hidden;
     }
     .sidenav.expanded  { width: 240px; }  /* Figma: SideNav.Container width=240 */
@@ -71,7 +93,7 @@
       flex: 1; font-size: 13px; font-weight: 600; letter-spacing: 0.05em;
       text-transform: uppercase; white-space: nowrap; overflow: hidden;
       color: var(--semantic-color-light-mode-text-contextual-navitem-base, #484848);
-      opacity: 1; transition: opacity 200ms ease;
+      opacity: 1; transition: opacity var(--motion-duration-3) var(--motion-easing-standard);
     }
     .nav-header__label.hidden { opacity: 0; width: 0; min-width: 0; }
     .nav-header__btn {
@@ -79,7 +101,7 @@
       width: 32px; height: 32px; border-radius: 6px; flex-shrink: 0;
       background: transparent; border: none; cursor: pointer;
       color: var(--semantic-color-light-mode-icon-contextual-navitem-base, #606060);
-      transition: background 120ms ease;
+      transition: background var(--motion-duration-2) var(--motion-easing-standard);
     }
     .nav-header__btn:hover {
       background: var(--semantic-color-light-mode-fill-contextual-navitem-hover, rgba(69,77,94,0.06));
@@ -103,7 +125,7 @@
       font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
       color: var(--semantic-color-light-mode-text-static-secondary-subtle, #606060);
       white-space: nowrap; overflow: hidden;
-      opacity: 1; transition: opacity 200ms ease;
+      opacity: 1; transition: opacity var(--motion-duration-3) var(--motion-easing-standard);
     }
     .nav-section-label.hidden {
       opacity: 0; height: 0; min-height: 0; margin: 0; padding: 0; overflow: hidden;
@@ -117,7 +139,7 @@
       background: transparent; font-family: inherit;
       font-size: 14px; font-weight: 400; line-height: 1; letter-spacing: 0.3px;
       color: var(--semantic-color-light-mode-text-contextual-navitem-base, #484848);
-      white-space: nowrap; transition: background 120ms ease;
+      white-space: nowrap; transition: background var(--motion-duration-2) var(--motion-easing-standard);
       position: relative; text-align: left; width: 100%;
     }
     .nav-item:hover {
@@ -194,7 +216,7 @@
       font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: 0.3px;
       color: var(--semantic-color-light-mode-text-static-secondary-subtle, #606060);
       border: none; background: transparent; font-family: inherit;
-      transition: color 120ms ease;
+      transition: color var(--motion-duration-3) var(--motion-easing-standard);
     }
     .page-tab:hover {
       color: var(--semantic-color-light-mode-text-static-primary-base, #202020);
@@ -244,7 +266,7 @@
       height: 44px; padding: 0 16px; border-radius: 8px;
       font-family: inherit; font-size: 16px; font-weight: 500;
       line-height: 22px; letter-spacing: 0.1px; cursor: pointer;
-      border: none; transition: background 100ms ease-out;
+      border: none; transition: background var(--motion-duration-2) var(--motion-easing-standard);
     }
     .btn--outlined {
       background: transparent;
@@ -308,7 +330,7 @@
       padding: 4px 8px; border-radius: 4px;
       font-size: 12px; font-weight: 500; line-height: 18px; letter-spacing: 0.3px;
       color: var(--semantic-color-light-mode-text-action-secondary-base, #292724);
-      white-space: nowrap; transition: background 100ms ease;
+      white-space: nowrap; transition: background var(--motion-duration-2) var(--motion-easing-standard);
     }
     .filter-chip:hover .filter-chip__inner {
       background: rgba(0,0,0,0.04);
@@ -356,7 +378,7 @@
       border-radius: 8px;
       padding: 16px;
       display: flex; flex-direction: column; gap: 12px;
-      transition: box-shadow 150ms ease, border-color 150ms ease;
+      transition: box-shadow var(--motion-duration-2) var(--motion-easing-standard), border-color var(--motion-duration-2) var(--motion-easing-standard);
       cursor: pointer;
     }
     .card:hover {
@@ -617,7 +639,7 @@
             style={{ display:"flex", alignItems:"center", justifyContent:"center",
               height:32, width:32, background:hov ? TN.controlHover : TN.searchFill,
               border:`0.75px solid ${TN.monoBase}`, borderRadius:9999,
-              cursor:"pointer", padding:8, flexShrink:0, transition:"background 120ms ease" }}>
+              cursor:"pointer", padding:8, flexShrink:0, transition:"background var(--motion-duration-2) var(--motion-easing-standard)" }}>
             <Icon name="search" size={16} color={TN.monoBase} />
           </button>
         </div>
@@ -645,7 +667,7 @@
         display:"flex", alignItems:"center", justifyContent:"center",
         width:"100%", height:"100%", padding:8, borderRadius:8,
         background: hov ? TN.controlHover : "transparent",
-        border:"none", cursor:"pointer", transition:"background 120ms ease",
+        border:"none", cursor:"pointer", transition:"background var(--motion-duration-2) var(--motion-easing-standard)",
       });
 
       return (
@@ -680,7 +702,7 @@
                       padding:4, borderRadius:8,
                       background: openPanel==="module" ? TN.controlPressed : hov ? TN.controlHover : "transparent",
                       border:`1px solid ${openPanel==="module" ? TN.orgStrokeHover : "transparent"}`,
-                      cursor:"pointer", fontFamily:"inherit", transition:"background 150ms ease" }}>
+                      cursor:"pointer", fontFamily:"inherit", transition:"background var(--motion-duration-2) var(--motion-easing-standard)" }}>
                     <div style={{ display:"flex", alignItems:"center", gap:4, paddingRight:showLabel?2:0 }}>
                       <div style={{ width:30, height:30, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
                         {config.module.isHome
@@ -698,7 +720,7 @@
                     <div style={{ width:16, height:16, display:"flex", alignItems:"center",
                       justifyContent:"center", marginLeft:4,
                       transform:openPanel==="module"?"rotate(180deg)":"none",
-                      transition:"transform 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
+                      transition:"transform var(--motion-duration-4) var(--motion-easing-standard)" }}>
                       <Icon name="expand_more" size={16} color={TN.monoBase} />
                     </div>
                   </button>
@@ -708,7 +730,7 @@
                         width:243, background:"#fff",
                         border:`1px solid ${TN.panelBorder}`, borderRadius:8,
                         boxShadow:TN.panelShadow, padding:4, zIndex:300, margin:0, listStyle:"none",
-                        animation:"tnDropIn 200ms cubic-bezier(0,0,0.2,1) both" }}>
+                        animation:"tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both" }}>
                       {DEFAULT_MODULES.map(m => (
                         <li key={m.id} role="option">
                           <button onClick={() => close()}
@@ -743,7 +765,7 @@
                       background: openPanel==="org" ? TN.controlPressed : hov ? TN.controlHover : TN.orgFill,
                       border:`1px solid ${(openPanel==="org"||hov) ? TN.orgStrokeHover : TN.orgStroke}`,
                       cursor:"pointer", fontFamily:"inherit",
-                      transition:"background 150ms ease, border-color 150ms ease" }}>
+                      transition:"background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard)" }}>
                     <div style={{ display:"flex", alignItems:"center", gap:4, height:20, padding:"0 2px" }}>
                       <span style={{ fontSize:isMobile?12:14, fontWeight:500,
                         lineHeight:isMobile?"18px":"20px", letterSpacing:"0.3px",
@@ -755,7 +777,7 @@
                     <div style={{ width:16, height:16, display:"flex", alignItems:"center",
                       justifyContent:"center", marginRight:2,
                       transform:openPanel==="org"?"rotate(180deg)":"none",
-                      transition:"transform 300ms cubic-bezier(0.4, 0, 0.2, 1)" }}>
+                      transition:"transform var(--motion-duration-4) var(--motion-easing-standard)" }}>
                       <Icon name="expand_more" size={16} color={TN.monoBase} />
                     </div>
                   </button>
@@ -765,7 +787,7 @@
                         width:280, background:"#fff",
                         border:`1px solid ${TN.panelBorder}`, borderRadius:8,
                         boxShadow:TN.panelShadow, padding:8, zIndex:300,
-                        animation:"tnDropIn 200ms cubic-bezier(0,0,0.2,1) both" }}>
+                        animation:"tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both" }}>
                       <div style={{ fontSize:11, fontWeight:600, letterSpacing:".07em",
                         textTransform:"uppercase", padding:"4px 8px 6px", color:"#b5b5b5" }}>
                         Organisations
@@ -841,7 +863,7 @@
                       width:44, height:44,
                       background: openPanel==="profile" ? TN.controlPressed : hov ? TN.controlHover : "transparent",
                       border:"none", borderRadius:"50%", cursor:"pointer", padding:6,
-                      transition:"background 120ms ease" }}>
+                      transition:"background var(--motion-duration-2) var(--motion-easing-standard)" }}>
                     <div style={{ width:32, height:32, borderRadius:"50%",
                       background:TN.avatarBg, display:"flex", alignItems:"center",
                       justifyContent:"center",
@@ -856,7 +878,7 @@
                         width:200, background:"#fff",
                         border:`1px solid rgba(45,72,137,0.10)`, borderRadius:8,
                         boxShadow:TN.panelShadow, padding:4, zIndex:300,
-                        animation:"tnDropIn 200ms cubic-bezier(0,0,0.2,1) both" }}>
+                        animation:"tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both" }}>
                       <div style={{ padding:"10px 12px 8px",
                         borderBottom:"1px solid rgba(0,0,0,0.06)", marginBottom:4 }}>
                         <div style={{ fontSize:13, fontWeight:600, color:TN.itemText }}>{user.name}</div>
