@@ -313,6 +313,12 @@ If you see `material-symbols-outlined`, `material-symbols-sharp`, or `Material S
 
 Never use Outlined, Sharp, or any other Material Symbols variant. Never use custom SVGs for standard UI icons — if it's in the Material Symbols Rounded library, use the ligature. If it's a branded asset (org logo, Amplify Home icon), use an `<img>` or inline SVG instead.
 
+### Sizing — by the frame, never the vector
+
+Figma nests three boxes: `Container.LeadingIcon` (e.g. 24×24, the wrapper) → `Icon.Leading` frame (e.g. 16×16, the em-box) → the visible vector inside (e.g. ~12×12, inset by the grid's built-in ~2px padding). **The icon size you implement is the *frame* (16), never the vector (~12).** Setting `font-size: 16px` reproduces the padding automatically → the visible glyph lands at ~12px, matching Figma. Setting it to the vector's ~12 ships an icon that is too small. See `docs/design-system-spec.md` §7.2 for the full model and the per-size table (L=18 / M=16 / S=14 inside 26 / 24 / 20 wrappers).
+
+For **non-font (SVG) implementations** (partner teams on older frameworks): keep the un-cropped Material Symbols SVG on its full grid (`viewBox="0 0 24 24"` or `0 -960 960 960` — never trim to content), render it at the same frame size (`width/height: 16px` for M), bake in Rounded / wght 400 / opsz 20 / correct FILL at export, and centre it in the same wrapper. Handing a team the cropped ~12px vector is a bug — it ships too small and breaks cross-icon consistency.
+
 ## 13. Things that are always wrong
 
 - Committing `node_modules/`, `storybook-static/`, `.env`, `.claude/`, or `.DS_Store` (all in `.gitignore`).

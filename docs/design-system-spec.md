@@ -279,13 +279,42 @@ The folder name in the repo (e.g. `arrow_forward`, `check`, `close`) is the liga
 
 ### 7.2 Sizes
 
-| Button/component size | Icon slot size | Rendered icon | opsz |
+| Component size | Icon slot (wrapper) | **Icon size** | opsz |
 |---|---|---|---|
-| L | 26 × 26 px | 18 px | 20 |
-| M | 24 × 24 px | 16 px | 20 |
-| S | 20 × 20 px | 14 px | 20 |
+| L | 26 × 26 px | **18 px** | 20 |
+| M | 24 × 24 px | **16 px** | 20 |
+| S | 20 × 20 px | **14 px** | 20 |
 
-The slot wrapper (`<span>` with explicit width/height) constrains the icon to the slot square. The icon renders at the smaller px value via `font-size`. This ensures consistent hit-area and optical balance across sizes.
+The slot wrapper (`<span>` / frame with explicit width/height) is the layout box and hit-area padding. The **icon size** is the number you set on the icon itself. E.g. the SideNav leading icon is a `16 px` icon inside a `24 × 24` wrapper (M).
+
+#### The em-box model — read this before choosing a size
+
+There are **three** boxes in the Figma icon, and only one of them is the size you implement:
+
+| Figma layer | What it is | What you set in code |
+|---|---|---|
+| `Container.LeadingIcon` (e.g. 24 × 24) | the icon **slot / wrapper** — layout padding around the icon | the wrapper's width/height (24) |
+| `Icon.Leading` frame (e.g. 16 × 16) | the icon's **em-box / design grid** — the sizing contract | **the icon size (16)** ✅ |
+| the vector inside (e.g. ~12 × 12) | the **visible glyph**, inset by the grid's built-in ~2 px padding | **nothing — this is an output, never an input** |
+
+> **GOLDEN RULE — size icons by the *frame*, never the *vector*.** The `Icon.Leading` frame size (16) is the number you implement, whether as a font `font-size` or an SVG `width`/`height`. Material Symbols are drawn to fill ~12 of a 16-unit grid; that ~2 px of padding is built into the glyph (it normalises wide and tall icons to one consistent box). Measuring the visible vector (~12) and implementing *that* re-applies the padding at a smaller scale and ships an icon that is too small. **The visible ~12 px is a consequence of asking for 16, not a size you request.**
+
+#### 7.2.1 Icon-font implementations (Material Symbols web font — the default)
+
+Set **`font-size` = the icon-frame size** from the table (16 px for M). The font's metrics reproduce the ~2 px padding automatically, so the visible glyph lands at ~12 px, centred in the 24 wrapper — a pixel match to Figma. Set `opsz` to track the rendered px (see §7.1). Never set `font-size` to the vector size.
+
+#### 7.2.2 SVG implementations (teams on frameworks without the icon font)
+
+Some teams cannot load the variable font and must ship exported SVGs. They match the font **only if they keep the design grid** — the trap is exporting the *cropped* vector.
+
+1. **Export/keep the SVG on its full Material Symbols grid** — the downloaded SVG (from `fonts.google.com/icons` or the GitHub repo) already carries the padded grid, typically `viewBox="0 -960 960 960"` or `0 0 24 24`. **Do not crop, trim, or "fit to content."** The padding in the viewBox is the same padding the font's em-box carries.
+2. **Render the SVG at the icon-frame size from the table** — the *same* number as `font-size`: `width="16" height="16"` for a SideNav leading icon (M). The viewBox stays the full grid; only the rendered size is 16. This produces the same ~12 px visible mark, centred identically in the 24 wrapper.
+3. **Bake the axes in at export** — an SVG is a static snapshot, so pick **Rounded, weight 400, grade 0, optical size 20**, and the **correct `FILL`** for that component (read it from Figma — see §7.1) *before* downloading. You cannot change weight/fill on the SVG afterwards.
+4. **Wrap it in the same slot** — center the SVG in the same 24 × 24 (M) wrapper the font version uses, so layout, padding, and hit-area are identical.
+
+> **Do NOT hand an SVG team the trimmed 12 × 12 vector and tell them "use 12."** Two failures: (a) it ships too small once re-centred with its own bearing, and (b) each icon's cropped bounding box differs, so a set sized to a single "12" renders at inconsistent visual weights and widths. Always give them the **padded grid + the frame size (16)** — identical to what the font uses.
+
+**One-line answer for a partner team:** *"Use the un-cropped Material Symbols SVG (keep its `0 0 24 24` / `0 -960 960 960` viewBox), render it at `width/height: 16px` (18 for L, 14 for S), Rounded / wght 400 / opsz 20 / FILL per the component, centred in a 24×24 wrapper."*
 
 ### 7.3 What is not allowed
 
