@@ -1,0 +1,97 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Foundations/Iconography" />
+
+# Iconography
+
+Every Pathway icon is **Material Symbols Rounded** (never Outlined or Sharp). The rules below are the Storybook mirror of `docs/design-system-spec.md` §7 — that spec is the source of truth.
+
+---
+
+## Sizing — the one rule that trips everyone up
+
+> **Size icons by the _frame_, never the _vector_.**
+
+In Figma an icon is three nested boxes, and only the middle one is the size you implement:
+
+| Figma layer | What it is | What you set in code |
+|---|---|---|
+| `Container.LeadingIcon` (e.g. 24×24) | the **slot / wrapper** — layout padding around the icon | the wrapper's width/height (24) |
+| `Icon.Leading` frame (e.g. 16×16) | the icon's **em-box / design grid** — the sizing contract | **the icon size (16)** ✅ |
+| the vector inside (~12×12) | the **visible glyph**, inset by ~2px of built-in grid padding | **nothing — this is an output, never an input** |
+
+Material Symbols are drawn to fill ~12 of a 16-unit grid; that ~2px of padding is baked into every glyph so wide and tall icons normalise to one consistent box. When you ask for `16`, the font reproduces that padding and the visible mark lands at ~12px — a pixel match to Figma. If you instead measure the **visible vector (~12)** and implement _that_, the padding is re-applied at a smaller scale and the icon ships too small.
+
+<div style={{ display: "flex", gap: 32, alignItems: "flex-end", flexWrap: "wrap", margin: "24px 0", padding: 24, border: "1px solid #ededed", borderRadius: 12, background: "#fafafa" }}>
+  <div style={{ textAlign: "center" }}>
+    <div style={{ width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center", outline: "1px dashed #b9c4e0", margin: "0 auto 8px" }}>
+      <span className="material-symbols-rounded" style={{ fontSize: 16, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20", color: "#2d4889" }}>search</span>
+    </div>
+    <div style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 12, fontWeight: 600, color: "#202020" }}>✅ font-size: 16px</div>
+    <div style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 11, color: "#606060" }}>= the 16 frame · 24 wrapper</div>
+  </div>
+  <div style={{ textAlign: "center" }}>
+    <div style={{ width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center", outline: "1px dashed #e0b9b9", margin: "0 auto 8px" }}>
+      <span className="material-symbols-rounded" style={{ fontSize: 12, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20", color: "#b03a3a" }}>search</span>
+    </div>
+    <div style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 12, fontWeight: 600, color: "#202020" }}>❌ font-size: 12px</div>
+    <div style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 11, color: "#606060" }}>= the vector — too small</div>
+  </div>
+</div>
+
+### Size table
+
+| Component size | Icon slot (wrapper) | **Icon size** | opsz |
+|---|---|---|---|
+| L | 26 × 26 px | **18 px** | 20 |
+| M | 24 × 24 px | **16 px** | 20 |
+| S | 20 × 20 px | **14 px** | 20 |
+
+The SideNav leading icon is **M** — a 16px icon in a 24×24 wrapper.
+
+---
+
+## Icon-font implementations (the default)
+
+Set **`font-size` = the icon-frame size** (16px for M). The font reproduces the ~2px padding automatically. Set `opsz` to track the rendered px (`opsz: 20` for 14–20px icons). Read `FILL` from the component's Figma node — never assume it.
+
+```jsx
+// M size — 16px icon inside a 24×24 wrapper
+<span
+  className="material-symbols-rounded"
+  style={{
+    fontSize: 16,
+    fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20",
+  }}
+>
+  search
+</span>
+```
+
+---
+
+## SVG implementations (teams without the icon font)
+
+Some teams can't load the variable font and must ship exported SVGs. They match the font **only if they keep the design grid** — the trap is exporting the cropped vector.
+
+1. **Keep the un-cropped Material Symbols SVG** on its full grid — the download carries `viewBox="0 0 24 24"` or `0 -960 960 960`. **Do not trim / "fit to content."** That viewBox padding is the same padding the font's em-box carries.
+2. **Render at the frame size** — the _same_ number as `font-size`: `width="16" height="16"` for M (18 for L, 14 for S). Only the rendered size is 16; the viewBox stays the full grid.
+3. **Bake the axes in at export** — Rounded, weight 400, grade 0, optical size 20, and the **correct `FILL`** for that component. An SVG is a static snapshot; you can't change these later.
+4. **Centre it in the same wrapper** — the same 24×24 slot the font version uses.
+
+> **Do NOT hand a team the trimmed ~12×12 vector and say "use 12."** It ships too small once re-centred, and every icon's cropped bounding box differs — so a set sized to a single "12" renders at inconsistent weights and widths. The padded grid is what normalises them, exactly like the font's em-box.
+
+**Paste-ready answer for a partner team:**
+
+> Use the un-cropped Material Symbols SVG (keep its `0 0 24 24` / `0 -960 960 960` viewBox), render it at `width/height: 16px` (18 for L, 14 for S), Rounded / wght 400 / opsz 20 / FILL per the component, centred in a 24×24 wrapper.
+
+---
+
+## What's not allowed
+
+- `material-symbols-outlined` / `material-symbols-sharp` — Rounded only
+- Custom SVGs for icons that exist in Material Symbols Rounded
+- Font Awesome, Heroicons, Phosphor, emoji-as-icons
+- Sizing to the visible vector (~12) instead of the frame (16)
+
+Branded assets that aren't in Material Symbols (org logos, product glyphs) ship as `<img>` or inline SVG.
