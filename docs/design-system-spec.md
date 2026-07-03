@@ -203,11 +203,21 @@ Pathway is light-mode only right now. Dark-mode tokens are exported from Figma b
 
 ## 5. Spacing & layout
 
-### 5.1 Spacing scale
+### 5.1 Spacing & layout scale
 
-> **Gap:** Pathway does not yet have a named spacing scale. Current components use raw px values (`padding: 12px`, `gap: 8px`) cited in their specs' §4 tables. Adding a spacing-token family is a MEDIUM-priority gap; see each component spec for specific raw values.
+Pathway has a semantic **layout-units** token family, generated from Figma alongside colour and emitted as `--semantic-layout-units-*` CSS variables. These resolve down to a primitive `--primitive-unit-unit-<n>` scale. Components should consume these tokens rather than raw px — never hard-code a spacing value that exists as a token.
 
-When a spacing scale is added, values must be: **2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48, 64**. Components will migrate to the semantic names at that point.
+| Family | CSS prefix | Steps |
+|---|---|---|
+| Padding | `--semantic-layout-units-padding-*` | `xxxtight → xxtight → xtight → tight → base → medium → relaxed → wide → xwide → xxwide → ginormous → collosal` |
+| Gap | `--semantic-layout-units-gap-*` | `xxxtight → xxtight → xtight → tight → base → medium → relaxed → wide` |
+| Corner radius | `--semantic-layout-units-cornerradius-*` | `xsmall → small → medium → large → full` |
+| Border width | `--semantic-layout-units-borderwidth-*` | `xthin → thin → base → medium → thick → xthick → xxthick` |
+| Touch target | `--semantic-layout-units-accessibility-touch-*` | min / optimal hit-area sizes |
+
+> **Migration note:** the scale exists in the token pipeline, but several components still inline the px value while citing the token *name* in a comment (e.g. SideNav's `navPadH: 16 // Padding/Base`). Migrating those to `var(--semantic-layout-units-…)` is a low-priority cleanup; the values already match.
+
+See `tokens/pathway-design-tokens.json` for exact resolved values.
 
 ### 5.2 Breakpoints
 
@@ -219,6 +229,33 @@ When a spacing scale is added, values must be: **2, 4, 6, 8, 12, 16, 20, 24, 32,
 | Desktop | **≥ 1440 px** | Default design canvas |
 
 Components describe responsive behaviour in their §15 (Responsiveness) section against these breakpoints. A component that needs a different breakpoint must document why.
+
+### 5.3 Contextual layout tokens
+
+Beyond the generic scale, Figma ships **contextual** layout-units families that pre-compose padding / gap / radius / border-width for specific surfaces, so a component doesn't re-derive them. Emitted as `--semantic-layout-units-contextual-<context>-*`:
+
+| Context | CSS prefix | Covers |
+|---|---|---|
+| Card | `--semantic-layout-units-contextual-card-*` | padding (small/medium), gap, corner radius, border-width (base/thick) |
+| Button | `--semantic-layout-units-contextual-button-*` | button padding, gap, radius |
+| Nav item | `--semantic-layout-units-contextual-navitem-*` | nav-item padding / gap |
+| Page | `--semantic-layout-units-contextual-page-*` | page margins / gutters |
+| Section | `--semantic-layout-units-contextual-section-*` | section spacing |
+| Toolbar | `--semantic-layout-units-contextual-toolbar-*` | toolbar dimensions |
+| Focused element | `--semantic-layout-units-contextual-focused-*` | focus-ring geometry |
+
+**Card family (resolved):**
+
+| Token | Resolves to |
+|---|---|
+| `--semantic-layout-units-contextual-card-cornerradius-cornerradius` | `unit-8` (8px) |
+| `--semantic-layout-units-contextual-card-gap-gap` | `unit-12` (12px) |
+| `--semantic-layout-units-contextual-card-padding-small-*` | `unit-14` (14px) |
+| `--semantic-layout-units-contextual-card-padding-medium-*` | `unit-16` (16px) |
+| `--semantic-layout-units-contextual-card-border-width-base-base` | `borderwidth-xthin` |
+| `--semantic-layout-units-contextual-card-border-width-thick-thick` | `borderwidth-thin` |
+
+> **Card is layout-only — there is no contextual *colour* for cards.** The only `contextual` colour families are `navitem` and `focusring`. A card's **background** comes from a `surface/*` or `fill/static/*` token, its **border** from a `stroke/static/*` token; only its geometry (padding, gap, radius, border-width) comes from the `contextual/card` layout family. Do not reach for a `fill/contextual/card` token — it does not exist.
 
 ---
 
