@@ -1582,5 +1582,5 @@ The SideNav component is live in Storybook. Stories are located at `src/stories/
 | `TrailComparison` | Expanded vs. collapsed trail states side-by-side |
 | `StandaloneDemo` | Full responsive HTML demo iframed (includes TopNav, responsive breakpoints) |
 
-Deployed at: `https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/components-sidenav--docs`
+Deployed at: `https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-sidenav--docs`
 
