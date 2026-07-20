@@ -59,6 +59,23 @@ The thumb is positioned `2px` from the **right edge of the `<Scrollable>` wrappe
 
 ---
 
+## Edge controls: floating handles vs. sticky/pinned elements
+
+<Canvas of={Stories.EdgeControls} />
+
+A consumer sometimes puts a control right where the thumb lives — a collapse/expand handle, a pinned action button. Which rule applies depends on what kind of control it is:
+
+- **Floating** (a collapse handle, a resize sash) sits *on top of* the scroll surface, the same layer the thumb occupies — it belongs **above the thumb in z-index**, and the thumb passes behind it exactly the way scrolled content already does.
+- **Sticky/pinned** (a header row, a pinned button) reserves real layout space — it's a flex sibling, not an overlay. It belongs **outside `<Scrollable>` entirely**, so the track's height matches only the region that actually scrolls.
+
+**Left panel — recommended.** The handle lives inside a `flexShrink: 0` header **outside** `<Scrollable>`, exactly like Pathway's own SideNav (its `NavHeader` is pinned the same way — see [sidenav-spec.md §9](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav-spec.md)). The track starts below the header, so there's no overlap and the handle can never scroll out of view.
+
+**Right panel — ad hoc, not recommended.** No header exists to hold the handle, so it floats directly over the panel's true edge. The whole panel *is* the scroll region — scroll to the top and the thumb travels behind the handle. This ships in one production module today, which is why it's documented here rather than removed, but it's not the pattern to build new work on. Migrate that module to the pinned-header pattern (left) when it's next touched.
+
+Whichever pattern a consumer uses, **never clip or shorten the track to dodge a control** — the track's length is how a user reads how much is scrollable, and a notch cut into it reads as broken, not tidy. The overlap on the right only looks bad when it's permanent: the thumb already fades after scrolling stops, and if the floating handle also reveals on hover rather than staying visible at full opacity forever, the two are rarely on screen together.
+
+---
+
 ## Behaviour
 
 - **Overlay, never layout-affecting.** Absolutely positioned over the content's right edge. Zero layout width — never pushes content, changes padding, or resizes the container.

@@ -41,4 +41,8 @@ Any component with an internal scroll region uses `<Scrollable>` — never a raw
 | Dropdown / popover panels, dialogs, long lists, sheets | should adopt as they're built/updated |
 | Any future component with an internal scroll region | required |
 
+### Edge controls (collapse handles, pinned buttons)
+
+If a consumer places a control right where the thumb lives — a floating collapse/expand handle, a pinned action button — the rule is: **floating controls sit above the thumb (it passes behind them); sticky/pinned controls sit outside `<Scrollable>` entirely.** Never clip the track to dodge either. See the canonical spec **§8.1** for the z-order contract and the two consumer patterns (pinned-header recommended vs. an ad hoc floating-handle-only pattern that ships in one production module today).
+
 > For everything else — anatomy, props, the semantic-token table (`scrim/faint` rest, `scrim/light` hover), the edge-hug implementation rule, accessibility, responsiveness, motion — see the **[canonical component spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/scrollbar/scrollbar-spec.md)**.
