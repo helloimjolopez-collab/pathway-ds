@@ -57,15 +57,17 @@ const T = {
   strokeHover:   "var(--semantic-color-dark-mode-stroke-action-tertiary-hover,   rgba(160,181,230,0.20))",
   strokePressed: "var(--semantic-color-dark-mode-stroke-action-tertiary-pressed, rgba(160,181,230,0.30))",
 
-  // Text
-  textBase:    "var(--semantic-color-dark-mode-text-action-mono-base,    #fbfbfb)",
-  textHover:   "var(--semantic-color-dark-mode-text-action-mono-hover,   #ffffff)",
-  textPressed: "var(--semantic-color-dark-mode-text-action-mono-pressed, #ffffff)",
+  // Text — org name. Reconciled to Figma (Text/Static/Primary/Base, node
+  // 40006819:14581). Static token — no per-state variants; the interactive
+  // feedback is carried by the fill/stroke, not the text colour.
+  textBase:    "var(--semantic-color-dark-mode-text-static-primary-base, #eceaf3)",
+  textHover:   "var(--semantic-color-dark-mode-text-static-primary-base, #eceaf3)",
+  textPressed: "var(--semantic-color-dark-mode-text-static-primary-base, #eceaf3)",
 
-  // Chevron icon
-  iconBase:    "var(--semantic-color-dark-mode-icon-action-mono-base,    #fbfbfb)",
-  iconHover:   "var(--semantic-color-dark-mode-icon-action-mono-hover,   #ffffff)",
-  iconPressed: "var(--semantic-color-dark-mode-icon-action-mono-pressed, #ffffff)",
+  // Chevron icon — reconciled to Figma (Icon/Static/Neutral/Base = white 80%).
+  iconBase:    "var(--semantic-color-dark-mode-icon-static-neutral-base, rgba(255,255,255,0.8))",
+  iconHover:   "var(--semantic-color-dark-mode-icon-static-neutral-base, rgba(255,255,255,0.8))",
+  iconPressed: "var(--semantic-color-dark-mode-icon-static-neutral-base, rgba(255,255,255,0.8))",
 
   // Geometry
   radiusMedium: "var(--semantic-layout-units-cornerradius-medium, 8px)",

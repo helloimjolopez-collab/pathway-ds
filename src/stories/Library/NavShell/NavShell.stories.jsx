@@ -50,6 +50,10 @@ import React, { useState, useEffect } from "react";
 // If you are an agent reading this: use these imports. Do not reimplement.
 import { TopNav, DEFAULT_MODULES } from "../../../../components/top-nav/top-nav.jsx";
 import { SideNav } from "../../../../components/sidenav/sidenav.jsx";
+// Canonical SideNav demo data — the SAME sections (real icons, groupers,
+// children) the SideNav's own stories use. NavShell must render the real
+// SideNav, not a hand-rolled flat list, so it imports this directly.
+import { NAV_SECTIONS } from "../SideNav/sidenavDemoData.jsx";
 // NOTE: SideNav lives in sidenav.jsx - NOT top-nav.jsx. Importing it from
 // top-nav.jsx returns undefined and crashes the story canvas (was the cause
 // of the NavShell "404"/blank render). Always import each component from its
@@ -230,14 +234,9 @@ function NavShellRender({
             overflow: "hidden",
           }}>
             <SideNav
-              items={[
-                { id: "home",    label: "Home",          icon: "home",              active: true },
-                { id: "people",  label: "People",         icon: "group" },
-                { id: "giving",  label: "Giving",         icon: "volunteer_activism" },
-                { id: "events",  label: "Events",         icon: "event" },
-                { id: "comms",   label: "Communications", icon: "mail" },
-                { id: "settings",label: "Settings",       icon: "settings" },
-              ]}
+              sections={NAV_SECTIONS}
+              activeId={NAV_SECTIONS[0]?.items?.[0]?.id}
+              onNavigate={() => {}}
               collapsed={isTablet || sideNavCollapsed}
               onCollapseChange={!isTablet ? setSideNavCollapsed : undefined}
               hideCollapseButton={isMobile}

@@ -35,6 +35,10 @@ export const T = {
   controlPressed: SCD("fill-action-primaryinverse-pressed", "rgba(255,255,255,0.08)"),
   noLogoBg:       SCD("fill-action-secondaryinverse-base", "rgba(255,255,255,0.08)"),
   monoBase:       SCD("icon-action-mono-base", "#fbfbfb"),
+  // OrgSwitcher trigger (reconciled to Figma node 40006819:14581, 2026-08-06):
+  // org name uses Text/Static/Primary/Base, chevron uses Icon/Static/Neutral/Base.
+  orgText:        SCD("text-static-primary-base", "#eceaf3"),
+  orgChevron:     SCD("icon-static-neutral-base", "rgba(255,255,255,0.8)"),
   avatarBg:       SCL("fill-static-accent-amethyst-base", "#dcd9ef"),
   avatarText:     SCL("text-static-accent-amethyst-contrast", "#221e3f"),
   // White dropdown-menu surface — tracks fill-static-neutral-light (now warm-neutral-0).
@@ -324,7 +328,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
             style={{
               ...labelStyle,
               whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-              maxWidth: mobile ? 70 : 248, color: T.monoBase, paddingRight: 4,
+              maxWidth: mobile ? 70 : 248, color: T.orgText, paddingRight: 4,
             }}
           >
             {label}
@@ -342,7 +346,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           transform: open ? "rotate(180deg)" : "none",
           transition: "transform var(--motion-duration-4) var(--motion-easing-standard)",
         }}>
-          <Icon name="expand_more" size={16} style={{ color: T.monoBase }} />
+          <Icon name="expand_more" size={16} style={{ color: T.orgChevron }} />
         </div>
       </button>
     </div>
