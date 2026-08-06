@@ -485,14 +485,6 @@ export function TopNav({
   const [searchExpanded, setSearchExpanded] = useState(false);
   const [searchQuery, setSearchQuery]       = useState("");  // shared so the value persists across the collapsed icon ↔ takeover
   const navRef                          = useRef(null);
-  const leftRef                         = useRef(null);   // Slot.RowStart (module + org switcher)
-  const rightControlsRef                = useRef(null);   // Actions + Profile (everything on the right EXCEPT search)
-  // Container-aware search: on desktop the search expands inline to 320px, but only
-  // when the bar has room for it alongside the left cluster + right controls. When it
-  // wouldn't fit (narrow desktop, long org name) we fall back to the full-width
-  // takeover — the same overlay used on tablet/mobile — so it never collides. See
-  // top-nav-spec §Search overlap.
-  const [fitsInline, setFitsInline]     = useState(true);
 
   const isMobile  = breakpoint === "mobile";
   const isTablet  = breakpoint === "tablet";
@@ -514,35 +506,16 @@ export function TopNav({
     return () => document.removeEventListener("keydown", h);
   }, []);
 
-  // Measure whether the 320px inline search fits. Only relevant on desktop; the
-  // other breakpoints always take over. Recomputes on any bar resize.
-  useEffect(() => {
-    if (breakpoint !== "desktop") { setFitsInline(false); return; }
-    const SEARCH_INLINE_W = 340;  // expanded SearchInput (320) + container pad + gap buffer
-    const compute = () => {
-      const nav = navRef.current, left = leftRef.current, ctrls = rightControlsRef.current;
-      if (!nav || !left || !ctrls) return;
-      const avail  = nav.clientWidth - 2 * padH;
-      const needed = left.offsetWidth + ctrls.offsetWidth + SEARCH_INLINE_W + 24; // 24 = inter-cluster gaps
-      setFitsInline(needed <= avail);
-    };
-    compute();
-    const ro = new ResizeObserver(compute);
-    if (navRef.current) ro.observe(navRef.current);
-    if (leftRef.current) ro.observe(leftRef.current);
-    window.addEventListener("resize", compute);
-    return () => { ro.disconnect(); window.removeEventListener("resize", compute); };
-  }, [breakpoint, padH, org, modules, currentModuleId]);
-
   const handleModuleSelect = (id) => {
     setModuleId(id);
     close();
     onModuleSelect?.(id);
   };
 
-  // Inline expand only on desktop when there's room; otherwise the takeover overlay.
-  const inlineExpanded = searchExpanded && breakpoint === "desktop" && fitsInline;
-  const useTakeover    = searchExpanded && !inlineExpanded;
+  // Search always takes over the whole bar when open (all breakpoints), until
+  // it is closed. There is no inline-expand state — opening search overlays the
+  // entire TopNav so it can never collide with the OrgSwitcher or other controls.
+  const useTakeover = searchExpanded;
 
   return (
     <nav
@@ -558,7 +531,7 @@ export function TopNav({
       }}
     >
       {/* ── Slot.RowStart ── */}
-      <div ref={leftRef} style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
 
         {/* Hamburger — mobile only */}
         {isMobile && (
@@ -677,26 +650,25 @@ export function TopNav({
       {/* ── Slot.RowEnd ── */}
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
 
+        {/* Collapsed search pill. Opening it triggers the full-bar takeover
+            overlay below (never an inline expand), so it cannot overlap the
+            OrgSwitcher. */}
         <TopNavSearch
-          expanded={inlineExpanded}
+          expanded={false}
           onExpandChange={setSearchExpanded}
           breakpoint={breakpoint}
           onSearchOpen={onSearchOpen}
           searchProps={{ value: searchQuery, onChange: setSearchQuery, onClear: () => setSearchQuery("") }}
         />
 
-        {/* Actions + Profile — measured (rightControlsRef) so the inline-search fit
-            calculation knows how much room the right side needs beyond the search. */}
-        <div ref={rightControlsRef} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <TopNavActions breakpoint={breakpoint} onNotifications={onNotifications} onMore={onMore} />
+        <TopNavActions breakpoint={breakpoint} onNotifications={onNotifications} onMore={onMore} />
 
-          <TopNavProfile
-            user={user}
-            open={openPanel === "profile"}
-            onToggle={() => toggle("profile")}
-            mobile={isMobile}
-          />
-        </div>
+        <TopNavProfile
+          user={user}
+          open={openPanel === "profile"}
+          onToggle={() => toggle("profile")}
+          mobile={isMobile}
+        />
 
         {/* Profile menu */}
         {openPanel === "profile" && (
@@ -734,11 +706,10 @@ export function TopNav({
         )}
       </div>
 
-      {/* Full-width search takeover. Used on tablet/mobile always, and on desktop
-          whenever the inline 320px search wouldn't fit alongside the left cluster +
-          right controls (narrow desktop, long org name). The expanded search fills the
-          whole bar instead of overlaying a 320px bar that would collide. The search
-          icon inside collapses it. */}
+      {/* Full-width search takeover — shown whenever search is open, on every
+          breakpoint. The expanded search fills the entire bar (absolute inset:0,
+          above everything) so it can never collide with the OrgSwitcher or other
+          controls. The leading search icon inside collapses it. */}
       {useTakeover && (
         <div
           style={{

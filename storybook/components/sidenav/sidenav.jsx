@@ -142,6 +142,12 @@ export function SideNavItem({
             marginLeft: L.rowPadH, color: iconColor }}>
             {typeof item.icon === "function"
               ? item.icon({ size: L.iconInner, color: iconColor })
+              : typeof item.icon === "string"
+              ? <span className="material-symbols-rounded" aria-hidden="true"
+                  style={{ fontSize: L.iconInner, lineHeight: 1, color: iconColor,
+                    fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}>
+                  {item.icon}
+                </span>
               : React.cloneElement(item.icon, { style: { color: iconColor } })}
           </div>
         )}
