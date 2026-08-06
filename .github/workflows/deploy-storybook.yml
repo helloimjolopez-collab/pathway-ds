@@ -1,23 +1,14 @@
-name: Deploy Storybook to GitHub Pages
+name: Deploy Storybook to GitHub Pages (legacy — retired)
 
-# Builds Storybook and commits the output into the /storybook/ folder
-# on the main branch. This keeps existing pages (SideNav demos, docs, specs)
-# untouched while adding Storybook at /storybook/.
+# RETIRED 2026-08-06. Pages now deploys via .github/workflows/deploy-pages.yml
+# (GitHub Actions Pages), which builds Storybook fresh and deploys a clean
+# artifact. This legacy workflow committed the built /storybook/ into main for
+# the old build-from-branch Pages source; that path was intermittently failing
+# ("Page build failed") and bloated main with 14MB of build output per push.
+# Kept as manual-only in case a committed /storybook/ is ever needed again.
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "tokens/pathway-design-tokens.json"
-      - "src/**"
-      - ".storybook/**"
-      - "components/**"
-      - "docs/**"
-      - "style-dictionary.config.js"
-      - "package.json"
-  workflow_run:
-    workflows: ["Sync design tokens from Figma export"]
-    types: [completed]
+  workflow_dispatch:
   workflow_dispatch: # Allow manual trigger
 
 # Only one deploy at a time. If a newer commit triggers a deploy while

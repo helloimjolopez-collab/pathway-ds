@@ -1,0 +1,56 @@
+name: Deploy Storybook to Pages (Actions)
+
+# Reliable replacement for the legacy build-from-branch Pages build, which was
+# intermittently failing ("Page build failed") because Pages tried to Jekyll-
+# process the whole repo. This builds Storybook fresh and deploys a clean,
+# curated _site artifact via the official Pages actions — no Jekyll, no flake.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - name: Build tokens
+        run: node style-dictionary.config.js
+      - name: Build Storybook
+        run: npx storybook build -o _site/storybook
+      - name: Assemble site (component demos + root helpers)
+        run: |
+          cp -r components _site/components
+          touch _site/.nojekyll
+          for f in llms.txt llms-full.txt AGENTS.md; do
+            [ -f "$f" ] && cp "$f" _site/ || true
+          done
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
