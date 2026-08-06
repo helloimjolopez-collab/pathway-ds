@@ -396,12 +396,6 @@ function TopNav({
   const [searchQuery, setSearchQ]   = useState("");
   const searchInputRef              = useRef(null);
   const navRef                      = useRef(null);
-  const leftRef                     = useRef(null);   // ROW START (module + org)
-  const rightControlsRef            = useRef(null);   // Actions + Profile (right side, minus search)
-  // Container-aware search: expand inline only when the 320px bar fits alongside the
-  // left cluster + right controls; otherwise fall back to a full-width takeover so it
-  // never collides with the org switcher. Mirrors top-nav.jsx.
-  const [fitsInline, setFitsInline] = useState(true);
 
   const isMobile  = breakpoint === "mobile";
   const isTablet  = breakpoint === "tablet";
@@ -437,26 +431,6 @@ function TopNav({
     return () => document.removeEventListener("keydown", h);
   }, []);
 
-  // Measure whether the 320px inline search fits (desktop only; other breakpoints
-  // always take over). Recomputes on any bar resize.
-  useEffect(() => {
-    if (breakpoint !== "desktop") { setFitsInline(false); return; }
-    const SEARCH_INLINE_W = 340;  // expanded 320 + pad + gap buffer
-    const compute = () => {
-      const nav = navRef.current, left = leftRef.current, ctrls = rightControlsRef.current;
-      if (!nav || !left || !ctrls) return;
-      const avail  = nav.clientWidth - 32;  // desktop padding 16*2
-      const needed = left.offsetWidth + ctrls.offsetWidth + SEARCH_INLINE_W + 24;
-      setFitsInline(needed <= avail);
-    };
-    compute();
-    const ro = new ResizeObserver(compute);
-    if (navRef.current) ro.observe(navRef.current);
-    if (leftRef.current) ro.observe(leftRef.current);
-    window.addEventListener("resize", compute);
-    return () => { ro.disconnect(); window.removeEventListener("resize", compute); };
-  }, [breakpoint, currentOrg, moduleId]);
-
   const activeModData = MODULES.find(m => m.id === moduleId) || MODULES[0];
   const hasLogo       = !!logoUrl && !imgFailed;
   const displayLabel  = isMobile
@@ -466,15 +440,14 @@ function TopNav({
   const navClass = ["topnav", isTablet && "is-tablet", isMobile && "is-mobile"]
     .filter(Boolean).join(" ");
 
-  // Inline expand only when desktop AND it fits; otherwise the full-width takeover.
-  const inlineExpanded = searchOpen && isDesktop && fitsInline;
-  const useTakeover    = searchOpen && !inlineExpanded;
+  // Search always takes over the whole bar when open (all breakpoints), until closed.
+  const useTakeover = searchOpen;
 
   return (
     <nav className={navClass} aria-label="Global navigation" ref={navRef}>
 
       {/* ── ROW START ── */}
-      <div className="topnav__start" ref={leftRef}>
+      <div className="topnav__start">
 
         {/* Hamburger — mobile only */}
         {isMobile && (
@@ -597,43 +570,13 @@ function TopNav({
       {/* ── ROW END ── */}
       <div className="topnav__end">
 
-        {/* Search — collapsed pill → inline expanded input (desktop, when it fits) */}
+        {/* Search — collapsed pill. Opening it triggers the full-bar takeover
+            overlay below (never an inline expand), so it can't overlap anything. */}
         <div className="tn-search">
-          {inlineExpanded ? (
-            <div className="tn-search__expanded">
-              {/* Search icon — clicking collapses the bar (spec §10, TopNavSearch interaction) */}
-              <button onClick={closeSearch} aria-label="Collapse search"
-                style={{ display:"flex", alignItems:"center", justifyContent:"center",
-                  width:24, height:24, flexShrink:0, background:"transparent",
-                  border:"none", cursor:"pointer", borderRadius:"50%", padding:0 }}>
-                <Icon name="search" size={16} style={{ color: "#606060" }} />
-              </button>
-              <input
-                ref={searchInputRef}
-                className="tn-search__input"
-                value={searchQuery}
-                onChange={e => setSearchQ(e.target.value)}
-                placeholder="Search…"
-                aria-label="Search"
-              />
-              {searchQuery.length > 0 && (
-                <button className="tn-search__close"
-                  onClick={() => { setSearchQ(""); searchInputRef.current?.focus(); }}
-                  aria-label="Clear search">
-                  <Icon name="cancel" size={20} style={{ color: "#606060" }} />
-                </button>
-              )}
-            </div>
-          ) : (
-            <button className="tn-search__pill" aria-label="Open search" onClick={openSearch}>
-              <Icon name="search" size={16} style={{ color: "#fbfbfb" }} />
-            </button>
-          )}
+          <button className="tn-search__pill" aria-label="Open search" onClick={openSearch}>
+            <Icon name="search" size={16} style={{ color: "#fbfbfb" }} />
+          </button>
         </div>
-
-        {/* Actions + Profile — measured (rightControlsRef) so the fit calc knows how
-            much room the right side needs beyond the search. */}
-        <div ref={rightControlsRef} style={{ display: "flex", alignItems: "center", gap: 8 }}>
 
         {/* Action icons
             Desktop → two notification bells
@@ -688,12 +631,10 @@ function TopNav({
           )}
         </div>
 
-        </div>{/* /rightControls */}
-
       </div>
 
-      {/* Full-width search takeover — tablet/mobile always, and desktop when the inline
-          320px search wouldn't fit alongside the left cluster + right controls. */}
+      {/* Full-width search takeover — shown whenever search is open, on every
+          breakpoint, so it can never overlap the OrgSwitcher or other controls. */}
       {useTakeover && (
         <div style={{ position:"absolute", inset:0, zIndex:200,
           background:"var(--semantic-color-light-mode-fill-static-brand-base, #2d4889)",

@@ -1,3 +1,5 @@
+import remarkGfm from "remark-gfm";
+
 /** @type {import('@storybook/react-webpack5').StorybookConfig} */
 const config = {
   stories: [
@@ -6,7 +8,19 @@ const config = {
   ],
   addons: [
     "@storybook/addon-webpack5-compiler-babel",
-    "@storybook/addon-docs",
+    {
+      // remark-gfm enables GitHub-flavoured markdown in MDX — notably tables.
+      // Without it, every `| … |` table renders as raw pipes (Welcome,
+      // Iconography, Scrollbar docs).
+      name: "@storybook/addon-docs",
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            remarkPlugins: [remarkGfm],
+          },
+        },
+      },
+    },
     "@storybook/addon-a11y",
   ],
   framework: {

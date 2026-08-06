@@ -403,10 +403,10 @@ A circular pill button sits in the RowEnd slot.
 
 #### Expanded state
 
-Clicking the collapsed pill expands the search. **How** it expands is container-aware (see "Responsive expansion" below): inline on a roomy desktop bar, or a full-width takeover when there isn't room.
+Clicking the collapsed pill opens the search as a **full-width takeover** of the entire TopNav (see "Search takeover" below). It stays open until the user closes it (leading search icon or Escape).
 
 **Focused-empty** (just opened, no text entered):
-- Container: white fill (`fill.static.neutral.light`), 1px solid `#6e8bd4` (`stroke.action.primary.pressed`), `border-radius: 9999px`, 36px height, 320px width, `padding: 0 8px`
+- Container: white fill (`fill.static.neutral.light`), 1px solid `#6e8bd4` (`stroke.action.primary.pressed`), `border-radius: 9999px`, 36px height, fills the bar width, `padding: 0 8px`
 - Leading icon: search, 24px container, color `#606060` (`text.static.secondary.subtle`)
 - Placeholder text: "Search…", 14px/400, color `#606060`
 - **No trailing clear button** (none in Figma for this state)
@@ -419,16 +419,13 @@ Clicking the collapsed pill expands the search. **How** it expands is container-
 
 **Collapse:** Pressing Escape collapses back to the pill and clears the query.
 
-#### Responsive expansion (overlap avoidance)
+#### Search takeover (overlap avoidance)
 
-The expanded 320px input must never collide with the OrgSwitcher on the left. The TopNav is **container-aware**:
+Opening the search **always takes over the whole TopNav**, on every breakpoint. The expanded search renders as an absolute overlay (`inset: 0`, `z-index` above the bar) that fills the entire bar and covers the left cluster (ModuleSwitcher + OrgSwitcher) and the right controls. The leading search icon (or Escape) collapses it back to the pill.
 
-- **Inline (desktop, room available):** the pill expands in place to a 320px input in the RowEnd slot. Used only when the measured bar width fits the left cluster (ModuleSwitcher + OrgSwitcher) **plus** the right controls (actions + profile) **plus** the 320px search. This is the roomy-desktop case.
-- **Full-width takeover (tablet, mobile, and narrow desktop):** the expanded search fills the entire bar as an absolute overlay (`inset: 0`, above the bar), covering the left cluster. The leading search icon inside collapses it. This is the same overlay used on tablet/mobile, now also used on desktop whenever the inline 320px wouldn't fit — e.g. a narrow window or a long org name.
+This is deliberately unconditional: the search never expands *inline* alongside the other controls, so it can never collide with the OrgSwitcher regardless of window width or org-name length. The typed query persists across collapse/expand.
 
-The decision is made by measuring actual widths (a `ResizeObserver` on the bar + a `window.resize` listener), not by the discrete `breakpoint` prop alone — so it stays correct at every width and re-evaluates live as the window resizes or the org name changes. The typed query persists across the inline ↔ takeover switch and across collapse/expand.
-
-> IMPLEMENTATION RULE: never render the inline 320px search when it would overflow the bar. If `leftCluster + rightControls + 320 + gaps > availableBarWidth`, use the full-width takeover instead.
+> IMPLEMENTATION RULE: the collapsed pill's `expanded` state is never rendered inline. Opening search sets a single `searchOpen` flag that renders the full-bar takeover overlay; closing it clears the flag.
 
 ### 7.4 ActionIcon buttons
 

@@ -54,9 +54,14 @@ StyleDictionary.registerTransformGroup({
   ],
 });
 
-// Register a custom format for ES module export
+// Register a custom format for ES module export.
+// NOTE: the name must NOT be "javascript/esm" — Style Dictionary v4 ships a
+// built-in format of that name that emits the full NESTED token tree, which
+// silently shadows this custom format and breaks every consumer that expects
+// the flat { name: { value, type, path } } shape (resolve-tokens, all token
+// stories). Keep this name unique. See CLAUDE.md §13.
 StyleDictionary.registerFormat({
-  name: "javascript/esm",
+  name: "pathway/js-flat",
   format: ({ dictionary }) => {
     const tokens = {};
     dictionary.allTokens.forEach((token) => {
@@ -94,7 +99,7 @@ const config = {
       files: [
         {
           destination: "tokens.js",
-          format: "javascript/esm",
+          format: "pathway/js-flat",
           options: {
             outputReferences: false,
           },
