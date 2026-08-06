@@ -631,7 +631,7 @@ export function TopNav({
                 display: "flex", alignItems: "center", justifyContent: "center",
                 flexShrink: 0, overflow: "hidden",
                 border: `1px solid ${T.orgStroke}` }}>
-                {hasLogo
+                {org.logoUrl
                   ? <img src={org.logoUrl} alt="" style={{ width: "100%", height: "100%",
                       objectFit: "cover", display: "block" }} />
                   : <span style={{ fontSize: 9, fontWeight: 700, color: "#fff" }}>{org.initials}</span>
