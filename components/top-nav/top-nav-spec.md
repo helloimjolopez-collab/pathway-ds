@@ -403,7 +403,7 @@ A circular pill button sits in the RowEnd slot.
 
 #### Expanded state
 
-Clicking the collapsed pill replaces it with an inline search input (320px wide). The expanded pill overlays the right side of the nav bar.
+Clicking the collapsed pill expands the search. **How** it expands is container-aware (see "Responsive expansion" below): inline on a roomy desktop bar, or a full-width takeover when there isn't room.
 
 **Focused-empty** (just opened, no text entered):
 - Container: white fill (`fill.static.neutral.light`), 1px solid `#6e8bd4` (`stroke.action.primary.pressed`), `border-radius: 9999px`, 36px height, 320px width, `padding: 0 8px`
@@ -418,6 +418,17 @@ Clicking the collapsed pill replaces it with an inline search input (320px wide)
 - Clicking the clear button clears the input and refocuses — it does **not** collapse the pill
 
 **Collapse:** Pressing Escape collapses back to the pill and clears the query.
+
+#### Responsive expansion (overlap avoidance)
+
+The expanded 320px input must never collide with the OrgSwitcher on the left. The TopNav is **container-aware**:
+
+- **Inline (desktop, room available):** the pill expands in place to a 320px input in the RowEnd slot. Used only when the measured bar width fits the left cluster (ModuleSwitcher + OrgSwitcher) **plus** the right controls (actions + profile) **plus** the 320px search. This is the roomy-desktop case.
+- **Full-width takeover (tablet, mobile, and narrow desktop):** the expanded search fills the entire bar as an absolute overlay (`inset: 0`, above the bar), covering the left cluster. The leading search icon inside collapses it. This is the same overlay used on tablet/mobile, now also used on desktop whenever the inline 320px wouldn't fit — e.g. a narrow window or a long org name.
+
+The decision is made by measuring actual widths (a `ResizeObserver` on the bar + a `window.resize` listener), not by the discrete `breakpoint` prop alone — so it stays correct at every width and re-evaluates live as the window resizes or the org name changes. The typed query persists across the inline ↔ takeover switch and across collapse/expand.
+
+> IMPLEMENTATION RULE: never render the inline 320px search when it would overflow the bar. If `leftCluster + rightControls + 320 + gaps > availableBarWidth`, use the full-width takeover instead.
 
 ### 7.4 ActionIcon buttons
 
