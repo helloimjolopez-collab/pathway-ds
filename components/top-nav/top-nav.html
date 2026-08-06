@@ -657,6 +657,13 @@ function TopNav({
               </button>
             )}
           </div>
+          {/* Explicit close — obvious way out of the takeover */}
+          <button onClick={closeSearch} aria-label="Close search"
+            style={{ display:"flex", alignItems:"center", justifyContent:"center",
+              width:44, height:44, flexShrink:0, marginLeft:8, background:"transparent",
+              border:"none", cursor:"pointer", borderRadius:8, color:"#fbfbfb" }}>
+            <Icon name="close" size={24} style={{ color:"#fbfbfb" }} />
+          </button>
         </div>
       )}
     </nav>

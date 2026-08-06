@@ -505,7 +505,7 @@ export function TopNav({
   }, []);
 
   useEffect(() => {
-    const h = (e) => { if (e.key === "Escape") close(); };
+    const h = (e) => { if (e.key === "Escape") { close(); setSearchExpanded(false); } };
     document.addEventListener("keydown", h);
     return () => document.removeEventListener("keydown", h);
   }, []);
@@ -711,15 +711,15 @@ export function TopNav({
       </div>
 
       {/* Full-width search takeover — shown whenever search is open, on every
-          breakpoint. The expanded search fills the entire bar (absolute inset:0,
-          above everything) so it can never collide with the OrgSwitcher or other
-          controls. The leading search icon inside collapses it. */}
+          breakpoint. Fills the entire bar (absolute inset:0) so it can never
+          collide with the OrgSwitcher. Closed via the trailing ✕ button, the
+          leading search icon, or Escape. */}
       {useTakeover && (
         <div
           style={{
             position: "absolute", inset: 0, zIndex: 200,
             background: `var(--semantic-color-light-mode-fill-static-brand-base, ${T.navBg})`,
-            display: "flex", alignItems: "center",
+            display: "flex", alignItems: "center", gap: 8,
             padding: `0 ${padH}px`,
           }}
         >
@@ -734,6 +734,20 @@ export function TopNav({
               onSearchIconClick={() => setSearchExpanded(false)}
             />
           </div>
+          {/* Explicit close — obvious way out of the takeover */}
+          <button
+            type="button"
+            aria-label="Close search"
+            onClick={() => setSearchExpanded(false)}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: 44, height: 44, flexShrink: 0,
+              background: "transparent", border: "none", cursor: "pointer",
+              borderRadius: L.radius, color: T.monoBase,
+            }}
+          >
+            <Icon name="close" size={24} style={{ color: T.monoBase }} />
+          </button>
         </div>
       )}
     </nav>

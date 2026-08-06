@@ -417,7 +417,7 @@ Clicking the collapsed pill opens the search as a **full-width takeover** of the
 - Trailing `cancel` (circled X) icon button: 24px container, color `#606060` — visible only when query is non-empty
 - Clicking the clear button clears the input and refocuses — it does **not** collapse the pill
 
-**Collapse:** Pressing Escape collapses back to the pill and clears the query.
+**Collapse:** Three ways out of the takeover — the trailing **✕ close button**, the leading search icon, or pressing **Escape**. All collapse back to the pill. (Escape also closes any open dropdown panel.)
 
 #### Search takeover (overlap avoidance)
 
