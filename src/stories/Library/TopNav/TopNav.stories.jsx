@@ -1,5 +1,5 @@
 /**
- * TopNav.Global — Storybook stories
+ * TopNav.Global - Storybook stories
  *
  * Figma node: 40007067:6508  File: 3sw45aVcngFAmpbP6cfrXP
  * Spec: components/top-nav/top-nav-spec.md
@@ -36,7 +36,7 @@ if (typeof document !== "undefined") {
   }
 }
 
-// ─── Icon helper — Google Material Symbols ────────────────────────────────────
+// ─── Icon helper - Google Material Symbols ────────────────────────────────────
 // Only for icons that ARE Material Symbols in Figma. Custom icons use the SVG components above.
 function Icon({ name, size = 20, color }) {
   return (
@@ -47,7 +47,7 @@ function Icon({ name, size = 20, color }) {
   );
 }
 
-// ─── TopNavStory — thin adapter that renders the REAL <TopNav> ─────────────────
+// ─── TopNavStory - thin adapter that renders the REAL <TopNav> ─────────────────
 // Stories MUST render the real component (CLAUDE.md §10 / storybook-authoring.md),
 // never a reimplementation. This only maps the flat Controls args onto TopNav's props.
 function TopNavStory({
@@ -87,7 +87,7 @@ export default {
   argTypes: {
     orgName:       { control: "text",    name: "Org name",           description: "Full organisation name" },
     campusName:    { control: "text",    name: "Campus name",        description: "Campus or sub-org name (empty string = no campus)" },
-    logoUrl:       { control: "text",    name: "Logo URL",           description: "Org logo image URL. Omit (default) to show org name only — no avatar or placeholder." },
+    logoUrl:       { control: "text",    name: "Logo URL",           description: "Org logo image URL. Omit (default) to show org name only - no avatar or placeholder." },
     userName:      { control: "text",    name: "User name",          description: "Displayed in profile menu header" },
     userInitials:  { control: "text",    name: "User initials",      description: "Two-letter initials for profile avatar" },
     userEmail:     { control: "text",    name: "User email",         description: "Email shown in profile menu" },
@@ -133,19 +133,19 @@ const _capStyle = { padding: "10px 16px 6px", fontFamily: "'Red Hat Text',sans-s
   fontWeight: 600, color: "#8890b0", textTransform: "uppercase", letterSpacing: "0.06em" };
 
 export const ModuleSwitcherVariants = {
-  name: "ModuleSwitcher — interactive vs static",
+  name: "ModuleSwitcher - interactive vs static",
   render: () => (
     <div>
-      <div style={_capStyle}>Interactive (default) — every module</div>
+      <div style={_capStyle}>Interactive (default) - every module</div>
       <TopNavStory {...Playground.args} moduleSwitcherType="interactive" />
-      <div style={{ ..._capStyle, paddingTop: 28 }}>Static — Amplify Dashboard only (no chevron, no hover/pressed, not a control)</div>
+      <div style={{ ..._capStyle, paddingTop: 28 }}>Static - Amplify Dashboard only (no chevron, no hover/pressed, not a control)</div>
       <TopNavStory {...Playground.args} moduleSwitcherType="static" />
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: "**ModuleSwitcher `type` property (the Figma Type variant property).** `interactive` (default) is the switch-module control — chevron + hover/pressed, opens the app switcher. `static` is used **only on the Amplify Dashboard**, where the module switcher merely indicates the current location: no chevron, no hover/pressed, and it is not a button (there is nowhere to switch *to* from the dashboard). Maps to the Figma Type variant property. The OrgSwitcher is unaffected. See `top-nav-spec.md` §ModuleSwitcher properties + usage-by-context.",
+        story: "**ModuleSwitcher `type` property (the Figma Type variant property).** `interactive` (default) is the switch-module control - chevron + hover/pressed, opens the app switcher. `static` is used **only on the Amplify Dashboard**, where the module switcher merely indicates the current location: no chevron, no hover/pressed, and it is not a button (there is nowhere to switch *to* from the dashboard). Maps to the Figma Type variant property. The OrgSwitcher is unaffected. See `top-nav-spec.md` §ModuleSwitcher properties + usage-by-context.",
       },
     },
   },
@@ -164,10 +164,10 @@ export const Mobile = {
     docs: {
       description: {
         story: [
-          "**Mobile layout — 393px viewport.** The bar is constrained to real mobile width here so it matches what users actually see.",
+          "**Mobile layout - 393px viewport.** The bar is constrained to real mobile width here so it matches what users actually see.",
           "",
           "Changes at this breakpoint:",
-          "- **Hamburger button** appears on the far left — tapping it opens/closes the **SideNav**. Without it the module side navigation is inaccessible on mobile.",
+          "- **Hamburger button** appears on the far left - tapping it opens/closes the **SideNav**. Without it the module side navigation is inaccessible on mobile.",
           "- Module label hidden (icon + chevron only)",
           "- Org label abbreviated to initials per AP rules (e.g. `SHC | KV`)",
           "- Notification bells replaced by a single `more_vert` button",
@@ -188,7 +188,7 @@ export const Tablet = {
   ),
   parameters: {
     layout: "padded",
-    docs: { description: { story: "**Tablet layout — 768px viewport.** Module switcher shows icon + chevron only (no label). Action area collapses to `more_vert`. OrgSwitcher shows full name." } },
+    docs: { description: { story: "**Tablet layout - 768px viewport.** Module switcher shows icon + chevron only (no label). Action area collapses to `more_vert`. OrgSwitcher shows full name." } },
   },
   tags: ["!dev"],
 };
@@ -196,7 +196,7 @@ export const Tablet = {
 export const OrgNoLogo = {
   args: { ...Playground.args, logoUrl: "" },
   parameters: {
-    docs: { description: { story: "**Default state** — OrgSwitcher shows org name + chevron only. No logo, no avatar. This is the Figma default (`showOrgAvatar = false`). Pass `logoUrl` to show a logo." } },
+    docs: { description: { story: "**Default state** - OrgSwitcher shows org name + chevron only. No logo, no avatar. This is the Figma default (`showOrgAvatar = false`). Pass `logoUrl` to show a logo." } },
   },
   tags: ["!dev"],
 };
@@ -228,7 +228,7 @@ export const ProfileMenuOpen = {
 export const SingleOrg = {
   args: { ...Playground.args, orgName: "Cornerstone Church", campusName: "" },
   parameters: {
-    docs: { description: { story: "Single-org user — no campus means the pipe separator is omitted from the OrgSwitcher label." } },
+    docs: { description: { story: "Single-org user - no campus means the pipe separator is omitted from the OrgSwitcher label." } },
   },
   tags: ["!dev"],
 };
@@ -325,7 +325,7 @@ export const TokensText = {
       <TokenRow key="avtxt" varName="--semantic-color-light-mode-text-static-accent-amethyst-contrast" fallback="#221e3f" label="Profile avatar initials" type="text" />,
     ]} />
   ),
-  parameters: { docs: { description: { story: "Text tokens. Both are on the nav bar surface — mono/base for all labels, amethyst/contrast for avatar initials." } } },
+  parameters: { docs: { description: { story: "Text tokens. Both are on the nav bar surface - mono/base for all labels, amethyst/contrast for avatar initials." } } },
 };
 
 export const TokensIcon = {
@@ -344,9 +344,9 @@ export const TokensTypography = {
     <div style={{ padding: 24, fontFamily: "'Red Hat Text', sans-serif" }}>
       <h3 style={{ fontSize:14, fontWeight:600, color:"#252525", marginBottom:16 }}>Typography tokens</h3>
       {[
-        { label: "Label/Button/S — module + org labels (desktop/tablet)", style: { fontSize:14, fontWeight:500, lineHeight:"20px", letterSpacing:"0.3px" }, example: "Amplify Home  |  Sacred Heart Church-ITD | Knoxville" },
-        { label: "Label/Button/XS — org label mobile", style: { fontSize:12, fontWeight:500, lineHeight:"18px", letterSpacing:"0.3px" }, example: "SHC | KV" },
-        { label: "Text/Supporting/Small/Semibold — profile initials mobile", style: { fontSize:11, fontWeight:600 }, example: "JL" },
+        { label: "Label/Button/S - module + org labels (desktop/tablet)", style: { fontSize:14, fontWeight:500, lineHeight:"20px", letterSpacing:"0.3px" }, example: "Amplify Home  |  Sacred Heart Church-ITD | Knoxville" },
+        { label: "Label/Button/XS - org label mobile", style: { fontSize:12, fontWeight:500, lineHeight:"18px", letterSpacing:"0.3px" }, example: "SHC | KV" },
+        { label: "Text/Supporting/Small/Semibold - profile initials mobile", style: { fontSize:11, fontWeight:600 }, example: "JL" },
       ].map(({ label, style, example }) => (
         <div key={label} style={{ marginBottom:20, padding:"12px 16px", background:"#f8f8f8", borderRadius:8 }}>
           <div style={{ fontSize:11, fontWeight:600, letterSpacing:".07em", textTransform:"uppercase", color:"#888", marginBottom:8 }}>{label}</div>
@@ -376,7 +376,7 @@ export const TokensRadius = {
             borderRadius: value === "9999px" ? 9999 : value === "8px" ? 8 : 4,
             flexShrink:0 }} />
           <div>
-            <div style={{ fontFamily:"monospace", fontSize:12, color:"#484848" }}>{token} — {value}</div>
+            <div style={{ fontFamily:"monospace", fontSize:12, color:"#484848" }}>{token} - {value}</div>
             <div style={{ fontSize:12, color:"#888", marginTop:2 }}>{label}</div>
           </div>
         </div>
@@ -386,7 +386,7 @@ export const TokensRadius = {
   parameters: { docs: { description: { story: "Corner radius tokens. Three values: Medium (8px) for interactive controls, Small (4px) for org avatars, Full (9999px) for the search pill." } } },
 };
 
-// StandaloneDemo — full iframe of the HTML demo file
+// StandaloneDemo - full iframe of the HTML demo file
 export const StandaloneDemo = {
   render: () => (
     <iframe

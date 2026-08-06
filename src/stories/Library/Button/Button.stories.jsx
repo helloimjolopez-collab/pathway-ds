@@ -1,5 +1,5 @@
 /**
- * Button — Storybook stories
+ * Button - Storybook stories
  *
  * Playground · StateMatrix · ElementExplorer · AllSizes · IconVariants · LoadingState
  * · TokensFill · TokensText · TokensStroke · TokensIcon
@@ -49,7 +49,7 @@ function SectionLabel({ children }) {
 }
 
 function TokenRow({ name, value, description }) {
-  const [hex, setHex] = useState("—");
+  const [hex, setHex] = useState("-");
 
   React.useEffect(() => {
     if (typeof window === "undefined") return;
@@ -99,7 +99,7 @@ export default {
       name: "Style",
       control: { type: "select" },
       options: STYLES,
-      description: "Fill — solid surface. Outlined — bordered transparent. Naked — no border or fill.",
+      description: "Fill - solid surface. Outlined - bordered transparent. Naked - no border or fill.",
     },
     size: {
       name: "Size",
@@ -181,13 +181,13 @@ Playground.args = {
   ariaLabel: "",
 };
 Playground.parameters = {
-  docs: { description: { story: "Full-featured sandbox — toggle any prop." } },
+  docs: { description: { story: "Full-featured sandbox - toggle any prop." } },
 };
 
 // ─── StateMatrix ──────────────────────────────────────────────────────────────
 
 export const StateMatrix = () => {
-  // forceState drives visual-only state simulation — no real interaction needed.
+  // forceState drives visual-only state simulation - no real interaction needed.
   // "disabled" and "loading" use their real props so aria-* attributes are correct.
   const combos = [
     { label: "Default",  props: {} },
@@ -232,7 +232,7 @@ StateMatrix.parameters = {
     description: {
       story:
         "All 3 styles × 4 types × 6 interaction states (default / hover / pressed / focused / " +
-        "disabled / loading). Every cell is a live component — not a screenshot.",
+        "disabled / loading). Every cell is a live component - not a screenshot.",
     },
   },
 };
@@ -267,7 +267,7 @@ ElementExplorer.parameters = {
 
 export const AllSizes = () => (
   <Col>
-    <SectionLabel>Sizes — Fill / Primary</SectionLabel>
+    <SectionLabel>Sizes - Fill / Primary</SectionLabel>
     <Row>
       {SIZES_OPT.map(sz => (
         <div key={sz} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
@@ -278,7 +278,7 @@ export const AllSizes = () => (
         </div>
       ))}
     </Row>
-    <SectionLabel>Sizes — Outlined / Primary</SectionLabel>
+    <SectionLabel>Sizes - Outlined / Primary</SectionLabel>
     <Row>
       {SIZES_OPT.map(sz => (
         <Button key={sz} buttonStyle="Outlined" type="Primary" size={sz} text={`Size ${sz}`} />
@@ -320,7 +320,7 @@ export const IconVariants = () => (
           ariaLabel={icon.replace(/_/g, " ")} />
       ))}
     </Row>
-    <SectionLabel>Icon only — all types / Outlined</SectionLabel>
+    <SectionLabel>Icon only - all types / Outlined</SectionLabel>
     <Row>
       {TYPES.map(type => (
         <Button key={type} buttonStyle="Outlined" type={type} size="M"
@@ -343,25 +343,25 @@ IconVariants.parameters = {
 
 export const LoadingState = () => (
   <Col>
-    <SectionLabel>Loading — all types</SectionLabel>
+    <SectionLabel>Loading - all types</SectionLabel>
     <Row>
       {TYPES.map(type => (
         <Button key={type} buttonStyle="Fill" type={type} size="M" text={type} loading />
       ))}
     </Row>
-    <SectionLabel>Loading — Outlined</SectionLabel>
+    <SectionLabel>Loading - Outlined</SectionLabel>
     <Row>
       {TYPES.map(type => (
         <Button key={type} buttonStyle="Outlined" type={type} size="M" text={type} loading />
       ))}
     </Row>
-    <SectionLabel>Loading — Naked</SectionLabel>
+    <SectionLabel>Loading - Naked</SectionLabel>
     <Row>
       {TYPES.map(type => (
         <Button key={type} buttonStyle="Naked" type={type} size="M" text={type} loading />
       ))}
     </Row>
-    <SectionLabel>Loading — all sizes</SectionLabel>
+    <SectionLabel>Loading - all sizes</SectionLabel>
     <Row>
       {SIZES_OPT.map(sz => (
         <Button key={sz} buttonStyle="Fill" type="Primary" size={sz} text="Saving…" loading />
@@ -374,7 +374,7 @@ LoadingState.parameters = {
     description: {
       story:
         "The loading state replaces all content (label, icons) with an inline spinner. " +
-        "The button is implicitly disabled while loading — `aria-busy='true'` is set. " +
+        "The button is implicitly disabled while loading - `aria-busy='true'` is set. " +
         "The spinner colour inherits from the button's current icon token via `currentColor`.",
     },
   },
@@ -386,7 +386,7 @@ export const TokensFill = () => (
   <div>
     {TYPES.map(type => (
       <div key={type}>
-        <SectionLabel>Fill — {type}</SectionLabel>
+        <SectionLabel>Fill - {type}</SectionLabel>
         {[
           { suffix: "base",     description: `${type} / Fill / resting background` },
           { suffix: "hover",    description: `${type} / Fill / pointer over` },
@@ -399,7 +399,7 @@ export const TokensFill = () => (
             description={description}
           />
         ))}
-        <SectionLabel>Outlined / Naked — {type} hover fill</SectionLabel>
+        <SectionLabel>Outlined / Naked - {type} hover fill</SectionLabel>
         <TokenRow
           name={`var(--semantic-color-light-mode-fill-action-${type.toLowerCase()}inverse-hover)`}
           description={`${type} / hover overlay on transparent surface`}
@@ -424,7 +424,7 @@ export const TokensText = () => (
   <div>
     {TYPES.map(type => (
       <div key={type}>
-        <SectionLabel>Text — Fill / {type}</SectionLabel>
+        <SectionLabel>Text - Fill / {type}</SectionLabel>
         {["base", "hover", "pressed", "disabled"].map(suffix => {
           const isMono = type === "Negative";
           const isFillPrimary = type === "Primary";
@@ -441,7 +441,7 @@ export const TokensText = () => (
             />
           );
         })}
-        <SectionLabel>Text — Outlined & Naked / {type}</SectionLabel>
+        <SectionLabel>Text - Outlined & Naked / {type}</SectionLabel>
         {["base", "hover", "pressed", "disabled"].map(suffix => (
           <TokenRow
             key={suffix}
@@ -469,7 +469,7 @@ export const TokensStroke = () => (
   <div>
     {TYPES.map(type => (
       <div key={type}>
-        <SectionLabel>Stroke (Outlined only) — {type}</SectionLabel>
+        <SectionLabel>Stroke (Outlined only) - {type}</SectionLabel>
         {["base", "hover", "pressed", "disabled"].map(suffix => {
           const tokenName = type === "Secondary"
             ? `stroke-action-secondary-inverse-${suffix}`
@@ -508,7 +508,7 @@ export const TokensIcon = () => (
   <div>
     {TYPES.map(type => (
       <div key={type}>
-        <SectionLabel>Icon — Fill / {type}</SectionLabel>
+        <SectionLabel>Icon - Fill / {type}</SectionLabel>
         {["base", "hover", "pressed", "disabled"].map(suffix => {
           const isMono = type === "Negative";
           const isFillPrimary = type === "Primary";
@@ -525,7 +525,7 @@ export const TokensIcon = () => (
             />
           );
         })}
-        <SectionLabel>Icon — Outlined & Naked / {type}</SectionLabel>
+        <SectionLabel>Icon - Outlined & Naked / {type}</SectionLabel>
         {["base", "hover", "pressed", "disabled"].map(suffix => (
           <TokenRow
             key={suffix}
@@ -622,7 +622,7 @@ function TypographyRow({ size, tokenBase, fontSize, lineHeight, fontWeight, lett
 export const TokensTypography = () => (
   <div style={{ fontFamily: "'Red Hat Text', sans-serif" }}>
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
-      Three label type styles — one per size. All use Red Hat Text at weight 500 with{" "}
+      Three label type styles - one per size. All use Red Hat Text at weight 500 with{" "}
       <code style={{ fontSize: 12 }}>letter-spacing: 0.3px</code>. Only the font-size and
       line-height scale.
     </p>
@@ -643,7 +643,7 @@ TokensTypography.parameters = {
   docs: {
     description: {
       story:
-        "Label typography tokens — one set per size (L / M / S). All three share the same " +
+        "Label typography tokens - one set per size (L / M / S). All three share the same " +
         "font-family, weight, and letter-spacing. Only font-size and line-height differ.",
     },
   },
@@ -652,20 +652,20 @@ TokensTypography.parameters = {
 // ─── TokensSpacing ────────────────────────────────────────────────────────────
 
 const SPACING_ROWS = [
-  { name: "Padding — L horizontal", value: "14px", token: "--semantic-layout-units-contextual-button-padding-large-horizontal",  role: "Left + right padding inside Container.Main for size L" },
-  { name: "Padding — L vertical",   value: "12px", token: "--semantic-layout-units-contextual-button-padding-large-vertical",    role: "Top + bottom padding inside Container.Main for size L" },
-  { name: "Padding — M horizontal", value: "12px", token: "--semantic-layout-units-contextual-button-padding-medium-horizontal", role: "Left + right padding inside Container.Main for size M (default)" },
-  { name: "Padding — M vertical",   value: "10px", token: "--semantic-layout-units-contextual-button-padding-medium-vertical",   role: "Top + bottom padding inside Container.Main for size M" },
-  { name: "Padding — S horizontal", value: "8px",  token: "--semantic-layout-units-contextual-button-padding-small-horizontal",  role: "Left + right padding inside Container.Main for size S" },
-  { name: "Padding — S vertical",   value: "6px",  token: "--semantic-layout-units-contextual-button-padding-small-vertical",    role: "Top + bottom padding inside Container.Main for size S" },
+  { name: "Padding - L horizontal", value: "14px", token: "--semantic-layout-units-contextual-button-padding-large-horizontal",  role: "Left + right padding inside Container.Main for size L" },
+  { name: "Padding - L vertical",   value: "12px", token: "--semantic-layout-units-contextual-button-padding-large-vertical",    role: "Top + bottom padding inside Container.Main for size L" },
+  { name: "Padding - M horizontal", value: "12px", token: "--semantic-layout-units-contextual-button-padding-medium-horizontal", role: "Left + right padding inside Container.Main for size M (default)" },
+  { name: "Padding - M vertical",   value: "10px", token: "--semantic-layout-units-contextual-button-padding-medium-vertical",   role: "Top + bottom padding inside Container.Main for size M" },
+  { name: "Padding - S horizontal", value: "8px",  token: "--semantic-layout-units-contextual-button-padding-small-horizontal",  role: "Left + right padding inside Container.Main for size S" },
+  { name: "Padding - S vertical",   value: "6px",  token: "--semantic-layout-units-contextual-button-padding-small-vertical",    role: "Top + bottom padding inside Container.Main for size S" },
   { name: "Icon–label gap",         value: "8px",  token: "--semantic-layout-units-contextual-button-gap-horizontal",            role: "Gap between leading/trailing icon and label text" },
   { name: "Border width (Outlined)",value: "0.75px",token: "--semantic-layout-units-contextual-button-border-width-base-base",   role: "Outlined style border thickness" },
-  { name: "Touch-target padding",   value: "6px",  token: "— (hardcoded)",  role: "Transparent outer padding on <button> — ensures 48×48px minimum touch target (WCAG 2.5.5)" },
-  { name: "Touch target min-size",  value: "48px", token: "— (hardcoded)",  role: "Minimum interactive area enforced by outer <button> min-height + min-width" },
+  { name: "Touch-target padding",   value: "6px",  token: "- (hardcoded)",  role: "Transparent outer padding on <button> - ensures 48×48px minimum touch target (WCAG 2.5.5)" },
+  { name: "Touch target min-size",  value: "48px", token: "- (hardcoded)",  role: "Minimum interactive area enforced by outer <button> min-height + min-width" },
 ];
 
 function SpacingRow({ name, value, token, role }) {
-  const noToken = token.startsWith("—");
+  const noToken = token.startsWith("-");
   return (
     <div style={{
       display: "grid", gridTemplateColumns: "200px 60px 360px 1fr",
@@ -684,7 +684,7 @@ export const TokensSpacing = () => (
   <div style={{ fontFamily: "'Red Hat Text', sans-serif" }}>
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
       Padding, gap, border-width, and touch-target values. Grey token names have no
-      design token yet — they are hardcoded in the component.
+      design token yet - they are hardcoded in the component.
     </p>
     <div style={{
       display: "grid", gridTemplateColumns: "200px 60px 360px 1fr",
@@ -704,7 +704,7 @@ TokensSpacing.parameters = {
     description: {
       story:
         "Padding scales across L / M / S sizes, plus the icon–label gap, border width, and touch-target " +
-        "floor. Grey entries have no token yet — they are hardcoded constants in button.jsx.",
+        "floor. Grey entries have no token yet - they are hardcoded constants in button.jsx.",
     },
   },
 };
@@ -716,22 +716,22 @@ const MOTION_ROWS = [
     name: "State transition",
     duration: "150ms",
     curve: "ease",
-    token: "— (standard)",
+    token: "- (standard)",
     properties: "background-color · border-color · box-shadow · color",
-    rationale: "Hover, pressed, focused fill and colour changes — instant-class per the system standard",
+    rationale: "Hover, pressed, focused fill and colour changes - instant-class per the system standard",
   },
   {
     name: "Spinner rotation",
     duration: "750ms",
     curve: "linear infinite",
-    token: "— (hardcoded)",
+    token: "- (hardcoded)",
     properties: "transform: rotate (pw-btn-spin keyframe)",
-    rationale: "Loading indicator rotation — continuous loop, not tied to interaction",
+    rationale: "Loading indicator rotation - continuous loop, not tied to interaction",
   },
 ];
 
 function MotionRow({ name, duration, curve, token, properties, rationale }) {
-  const hasToken = !token.startsWith("—");
+  const hasToken = !token.startsWith("-");
   return (
     <div style={{
       display: "grid", gridTemplateColumns: "160px 80px 200px 220px 1fr",
@@ -751,7 +751,7 @@ export const TokensMotion = () => (
   <div style={{ fontFamily: "'Red Hat Text', sans-serif" }}>
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
       Button motion is intentionally minimal. State transitions (hover, pressed, focus ring)
-      use the system-standard 150 ms / ease — fast enough to feel instant. The spinner
+      use the system-standard 150 ms / ease - fast enough to feel instant. The spinner
       rotation is a continuous loop and not part of the interaction model.
       All motion is suppressed under{" "}
       <code style={{ fontSize: 12 }}>prefers-reduced-motion: reduce</code>.
@@ -773,7 +773,7 @@ TokensMotion.parameters = {
   docs: {
     description: {
       story:
-        "Motion values for the Button. Both are hardcoded — no motion token family exists in the " +
+        "Motion values for the Button. Both are hardcoded - no motion token family exists in the " +
         "Pathway token file yet. State transitions follow the system-standard 150ms / ease.",
     },
   },
@@ -786,18 +786,18 @@ const RADIUS_ROWS = [
     name: "Container.Main",
     value: "8px",
     token: "--semantic-layout-units-contextual-button-radius-radius",
-    role: "Visible button surface — all sizes, all styles",
+    role: "Visible button surface - all sizes, all styles",
   },
   {
     name: "Outer <button>",
     value: "0px",
-    token: "— (no token)",
-    role: "Touch-target wrapper has no radius — it is transparent and never visually borders",
+    token: "- (no token)",
+    role: "Touch-target wrapper has no radius - it is transparent and never visually borders",
   },
 ];
 
 function RadiusRow({ name, value, token, role }) {
-  const noToken = token.startsWith("—");
+  const noToken = token.startsWith("-");
   const r = parseInt(value) || 0;
   return (
     <div style={{

@@ -1,4 +1,4 @@
-// Spinner — Storybook stories (React framework)
+// Spinner - Storybook stories (React framework)
 //
 // The Spinner component is simple enough to define inline here. The
 // authoritative spec lives at components/spinner/spinner-spec.md.
@@ -141,7 +141,7 @@ export const ReducedMotion = () => (
   <div>
     <p style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 13, color: "#8890b0", margin: "0 0 12px" }}>
       With your OS set to reduce motion, the rotation stops and the opacity ladder
-      flattens to a uniform 0.6 — a neutral "in progress" glyph instead of a paused head-and-tail.
+      flattens to a uniform 0.6 - a neutral "in progress" glyph instead of a paused head-and-tail.
     </p>
     <Grid>
       <Cell label="tone=neutral"><Spinner size={48} tone="neutral" /></Cell>

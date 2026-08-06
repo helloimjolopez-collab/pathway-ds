@@ -1,4 +1,4 @@
-/* ─── Pathway Design System — Spinner component CSS ──────────────────────────
+/* ─── Pathway Design System - Spinner component CSS ──────────────────────────
    Component styles only; semantic tokens come from src/tokens/tokens.css which
    is imported globally by .storybook/preview.js.
    See components/spinner/spinner-spec.md for the authoritative spec. */
@@ -19,7 +19,7 @@
   line-height: 0;
 }
 
-/* Tone × emphasis binding — ONLY icon.static.* tokens. No raw hex, no primitives. */
+/* Tone × emphasis binding - ONLY icon.static.* tokens. No raw hex, no primitives. */
 .pds-spinner[data-tone="neutral"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-icon-static-neutral-light); }
 .pds-spinner[data-tone="neutral"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-icon-static-neutral-subtle); }
 .pds-spinner[data-tone="neutral"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-icon-static-neutral-base); }

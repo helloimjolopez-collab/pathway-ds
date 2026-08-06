@@ -1,5 +1,5 @@
 /**
- * OrgSwitcher — Storybook stories (v1, trigger only)
+ * OrgSwitcher - Storybook stories (v1, trigger only)
  *
  * Spec:      components/org-switcher/org-switcher-spec.md
  * HTML demo: components/org-switcher/org-switcher.html
@@ -7,7 +7,7 @@
  *
  * Visual treatment principle: the HTML demo at components/org-switcher/org-switcher.html
  * is the single visual source of truth for in-context presentation of the trigger. The
- * DemoCard helper below replicates that file's `.demo-section` CSS exactly — uppercase
+ * DemoCard helper below replicates that file's `.demo-section` CSS exactly - uppercase
  * grey caption header + dark TopNav-surface body. Storybook NEVER independently styles
  * its own demo wrapper.
  *
@@ -89,7 +89,7 @@ export default {
     docs: {
       description: {
         component:
-          "**v1 — trigger only.** The OrgSwitcher trigger renders inside the `TopNav` component (`components/top-nav/`) and shows the active organisation. Catholic orgs render a second container (city/diocese) after the org name per spec §0.1; Protestant orgs render the org name on its own. Mobile compacts the trigger to a fixed 108px and truncates the org name inside a 50px label container. " +
+          "**v1 - trigger only.** The OrgSwitcher trigger renders inside the `TopNav` component (`components/top-nav/`) and shows the active organisation. Catholic orgs render a second container (city/diocese) after the org name per spec §0.1; Protestant orgs render the org name on its own. Mobile compacts the trigger to a fixed 108px and truncates the org name inside a 50px label container. " +
           "The dropdown menu / panel is **out of scope for v1 and remains as it is in production until further notice.**",
       },
     },
@@ -100,7 +100,7 @@ export default {
     cityName: { control: "text",                                              name: "City name",  description: "Catholic orgs only. Ignored when orgType is \"protestant\"." },
     logoUrl:  { control: "text",                                              name: "Logo URL",   description: "Empty → church SVG placeholder." },
     open:     { control: "boolean",                                            name: "Open",       description: "Controlled. Flips chevron and applies pressed styling." },
-    disabled: { control: "boolean",                                            name: "Disabled",   description: "Inert at 50% opacity — single-org users." },
+    disabled: { control: "boolean",                                            name: "Disabled",   description: "Inert at 50% opacity - single-org users." },
     mobile:   { control: { type: "radio" }, options: [false, true, undefined], name: "Mobile",     description: "Tristate: true forces mobile, false forces desktop, undefined auto-detects via matchMedia." },
   },
 };
@@ -110,7 +110,7 @@ export default {
 function PlaygroundTemplate(args) {
   const [open, setOpen] = useState(args.open || false);
   return (
-    <DemoCard caption="PLAYGROUND — TRIGGER + ALL CONTROLS">
+    <DemoCard caption="PLAYGROUND - TRIGGER + ALL CONTROLS">
       <OrgSwitcher
         {...args}
         logoUrl={args.logoUrl || undefined}
@@ -126,7 +126,7 @@ Playground.args = {
   orgName:  "Grace Community Church",
   orgType:  "protestant",
   cityName: "",
-  logoUrl:  "",           // No logo by default — org name only (Figma: showOrgAvatar = false)
+  logoUrl:  "",           // No logo by default - org name only (Figma: showOrgAvatar = false)
   open:     false,
   disabled: false,
   mobile:   false,
@@ -136,12 +136,12 @@ Playground.args = {
 
 export const StateMatrix = () => (
   <StoryStack>
-    <DemoCard caption="STATE MATRIX — DESKTOP, ALL INTERACTION STATES (ORG NAME ONLY)">
+    <DemoCard caption="STATE MATRIX - DESKTOP, ALL INTERACTION STATES (ORG NAME ONLY)">
       <OrgSwitcher mobile={false} orgName="Grace Community Church" />
       <OrgSwitcher mobile={false} orgName="Grace Community Church" open onClick={() => {}} />
       <OrgSwitcher mobile={false} orgName="Grace Community Church" disabled />
     </DemoCard>
-    <DemoCard caption="STATE MATRIX — MOBILE, ALL INTERACTION STATES (ORG NAME ONLY)">
+    <DemoCard caption="STATE MATRIX - MOBILE, ALL INTERACTION STATES (ORG NAME ONLY)">
       <OrgSwitcher mobile orgName="Grace Community Church" />
       <OrgSwitcher mobile orgName="Grace Community Church" open onClick={() => {}} />
       <OrgSwitcher mobile orgName="Grace Community Church" disabled />
@@ -149,17 +149,17 @@ export const StateMatrix = () => (
   </StoryStack>
 );
 StateMatrix.storyName = "State matrix (all states)";
-StateMatrix.tags = ["!dev"]; // reference story — shown in MDX docs, hidden from sidebar
+StateMatrix.tags = ["!dev"]; // reference story - shown in MDX docs, hidden from sidebar
 
 // ── 3. Avatar Explorer ──────────────────────────────────────────────────────
 
 export const AvatarExplorer = () => (
   <StoryStack>
-    <DemoCard caption="DEFAULT — ORG NAME ONLY (NO LOGO, NO PLACEHOLDER)">
+    <DemoCard caption="DEFAULT - ORG NAME ONLY (NO LOGO, NO PLACEHOLDER)">
       <OrgSwitcher mobile={false} orgName="Grace Community Church" />
       <OrgSwitcher mobile={false} orgName="Northern Kentucky Baptist Church" />
     </DemoCard>
-    <DemoCard caption="OPTIONAL — WITH LOGO (pass logoUrl to render the avatar)">
+    <DemoCard caption="OPTIONAL - WITH LOGO (pass logoUrl to render the avatar)">
       <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
     </DemoCard>
   </StoryStack>
@@ -170,15 +170,15 @@ AvatarExplorer.storyName = "Logo variant (optional)";
 
 export const DesktopVariants = () => (
   <StoryStack>
-    <DemoCard caption="TRIGGER — DESKTOP, DEFAULT (ORG NAME ONLY, NO LOGO)">
+    <DemoCard caption="TRIGGER - DESKTOP, DEFAULT (ORG NAME ONLY, NO LOGO)">
       <OrgSwitcher mobile={false} orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" />
       <OrgSwitcher mobile={false} orgName="Grace Community Church" />
       <OrgSwitcher mobile={false} orgName="Cross Point" />
     </DemoCard>
-    <DemoCard caption="TRIGGER — DESKTOP, OPEN (⚠ PANEL IS PLACEHOLDER, OUT OF SCOPE IN V1)">
+    <DemoCard caption="TRIGGER - DESKTOP, OPEN (⚠ PANEL IS PLACEHOLDER, OUT OF SCOPE IN V1)">
       <OrgSwitcher mobile={false} orgName="Grace Community Church" open onClick={() => {}} />
     </DemoCard>
-    <DemoCard caption="TRIGGER — DESKTOP, WITH OPTIONAL LOGO (pass logoUrl)">
+    <DemoCard caption="TRIGGER - DESKTOP, WITH OPTIONAL LOGO (pass logoUrl)">
       <OrgSwitcher mobile={false} orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" logoUrl={SACRED_HEART_LOGO} />
       <OrgSwitcher mobile={false} orgName="Grace Community Church" logoUrl={SACRED_HEART_LOGO} />
     </DemoCard>
@@ -187,14 +187,14 @@ export const DesktopVariants = () => (
 DesktopVariants.storyName = "Desktop variants";
 DesktopVariants.tags = ["!dev"];
 
-// ── 5. Catholic vs Protestant — spec §0.1 ──────────────────────────────────
+// ── 5. Catholic vs Protestant - spec §0.1 ──────────────────────────────────
 
 export const CatholicVsProtestant = () => (
   <StoryStack>
-    <DemoCard caption="CATHOLIC ORG — CityName.Catholic CONTAINER RENDERS">
+    <DemoCard caption="CATHOLIC ORG - CityName.Catholic CONTAINER RENDERS">
       <OrgSwitcher mobile={false} orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" />
     </DemoCard>
-    <DemoCard caption='PROTESTANT ORG — CityName NEVER RENDERS (cityName="Atlanta" IS IGNORED)'>
+    <DemoCard caption='PROTESTANT ORG - CityName NEVER RENDERS (cityName="Atlanta" IS IGNORED)'>
       <OrgSwitcher mobile={false} orgName="Grace Community Church" cityName="Atlanta" />
     </DemoCard>
   </StoryStack>
@@ -206,13 +206,13 @@ CatholicVsProtestant.tags = ["!dev"];
 
 export const Truncation = () => (
   <StoryStack>
-    <DemoCard caption="TRUNCATION — SHORT (CONTAINER SHRINKS TO FIT)">
+    <DemoCard caption="TRUNCATION - SHORT (CONTAINER SHRINKS TO FIT)">
       <OrgSwitcher mobile={false} orgName="Cross Point" />
     </DemoCard>
-    <DemoCard caption="TRUNCATION — MEDIUM (FITS WITHIN 180px)">
+    <DemoCard caption="TRUNCATION - MEDIUM (FITS WITHIN 180px)">
       <OrgSwitcher mobile={false} orgName="Grace Community Church" />
     </DemoCard>
-    <DemoCard caption="TRUNCATION — LONG (ELLIPSIS AT 180px)">
+    <DemoCard caption="TRUNCATION - LONG (ELLIPSIS AT 180px)">
       <OrgSwitcher mobile={false} orgName="Northern Kentucky Baptist Church Fellowship Ministries" />
     </DemoCard>
   </StoryStack>
@@ -223,7 +223,7 @@ Truncation.tags = ["!dev"];
 
 export const Mobile = () => (
   <StoryStack>
-    <DemoCard caption="TRIGGER — MOBILE, DEFAULT (ORG NAME ONLY, 108px FIXED PILL)">
+    <DemoCard caption="TRIGGER - MOBILE, DEFAULT (ORG NAME ONLY, 108px FIXED PILL)">
       <OrgSwitcher mobile orgName="Grace Community Church" />
       <OrgSwitcher mobile orgName="Sacred Heart Church-ITD" orgType="catholic" cityName="Knoxville" />
       <OrgSwitcher mobile orgName="Northern Kentucky Baptist Church" />
@@ -272,56 +272,56 @@ function TokenTable({ title, rows, noteEmpty }) {
   );
 }
 
-// ── 8. Tokens — Fill ────────────────────────────────────────────────────────
+// ── 8. Tokens - Fill ────────────────────────────────────────────────────────
 
 export const TokensFill = () => (
   <TokenTable title="Fill tokens (dark mode)" rows={[
-    { token: "fill.action.tertiary.base",          hex: "rgba(160,181,230,0.04)", usage: "Trigger background — base" },
-    { token: "fill.action.primaryinverse.hover",   hex: "rgba(10,18,35,0.16)",    usage: "Trigger background — hover" },
-    { token: "fill.action.primaryinverse.pressed", hex: "rgba(255,255,255,0.08)", usage: "Trigger background — pressed / open" },
+    { token: "fill.action.tertiary.base",          hex: "rgba(160,181,230,0.04)", usage: "Trigger background - base" },
+    { token: "fill.action.primaryinverse.hover",   hex: "rgba(10,18,35,0.16)",    usage: "Trigger background - hover" },
+    { token: "fill.action.primaryinverse.pressed", hex: "rgba(255,255,255,0.08)", usage: "Trigger background - pressed / open" },
     { token: "fill.action.secondary.base",         hex: "rgba(255,255,255,0.08)", usage: "Avatar placeholder background (no logo)" },
   ]} />
 );
-TokensFill.storyName = "Tokens — Fill";
+TokensFill.storyName = "Tokens - Fill";
 TokensFill.tags = ["!dev"];
 
-// ── 9. Tokens — Stroke ──────────────────────────────────────────────────────
+// ── 9. Tokens - Stroke ──────────────────────────────────────────────────────
 
 export const TokensStroke = () => (
   <TokenTable title="Stroke tokens (dark mode)" rows={[
-    { token: "stroke.action.tertiary.base",    hex: "rgba(160,181,230,0.16)", usage: "Trigger + avatar border — base" },
-    { token: "stroke.action.tertiary.hover",   hex: "rgba(160,181,230,0.20)", usage: "Trigger + avatar border — hover" },
-    { token: "stroke.action.tertiary.pressed", hex: "rgba(160,181,230,0.30)", usage: "Trigger + avatar border — pressed / open" },
+    { token: "stroke.action.tertiary.base",    hex: "rgba(160,181,230,0.16)", usage: "Trigger + avatar border - base" },
+    { token: "stroke.action.tertiary.hover",   hex: "rgba(160,181,230,0.20)", usage: "Trigger + avatar border - hover" },
+    { token: "stroke.action.tertiary.pressed", hex: "rgba(160,181,230,0.30)", usage: "Trigger + avatar border - pressed / open" },
   ]} />
 );
-TokensStroke.storyName = "Tokens — Stroke";
+TokensStroke.storyName = "Tokens - Stroke";
 TokensStroke.tags = ["!dev"];
 
-// ── 10. Tokens — Text ───────────────────────────────────────────────────────
+// ── 10. Tokens - Text ───────────────────────────────────────────────────────
 
 export const TokensText = () => (
   <TokenTable title="Text tokens (dark mode)" rows={[
-    { token: "text.action.mono.base",    hex: "#fbfbfb", usage: "Trigger label — base" },
-    { token: "text.action.mono.hover",   hex: "#ffffff", usage: "Trigger label — hover" },
-    { token: "text.action.mono.pressed", hex: "#ffffff", usage: "Trigger label — pressed / open" },
+    { token: "text.action.mono.base",    hex: "#fbfbfb", usage: "Trigger label - base" },
+    { token: "text.action.mono.hover",   hex: "#ffffff", usage: "Trigger label - hover" },
+    { token: "text.action.mono.pressed", hex: "#ffffff", usage: "Trigger label - pressed / open" },
   ]} />
 );
-TokensText.storyName = "Tokens — Text";
+TokensText.storyName = "Tokens - Text";
 TokensText.tags = ["!dev"];
 
-// ── 11. Tokens — Icon ───────────────────────────────────────────────────────
+// ── 11. Tokens - Icon ───────────────────────────────────────────────────────
 
 export const TokensIcon = () => (
   <TokenTable title="Icon tokens (dark mode)" rows={[
-    { token: "icon.action.mono.base",    hex: "#fbfbfb", usage: "Chevron — base" },
-    { token: "icon.action.mono.hover",   hex: "#ffffff", usage: "Chevron — hover" },
-    { token: "icon.action.mono.pressed", hex: "#ffffff", usage: "Chevron — pressed / open" },
+    { token: "icon.action.mono.base",    hex: "#fbfbfb", usage: "Chevron - base" },
+    { token: "icon.action.mono.hover",   hex: "#ffffff", usage: "Chevron - hover" },
+    { token: "icon.action.mono.pressed", hex: "#ffffff", usage: "Chevron - pressed / open" },
   ]} />
 );
-TokensIcon.storyName = "Tokens — Icon";
+TokensIcon.storyName = "Tokens - Icon";
 TokensIcon.tags = ["!dev"];
 
-// ── 12. Tokens — Typography ─────────────────────────────────────────────────
+// ── 12. Tokens - Typography ─────────────────────────────────────────────────
 
 export const TokensTypography = () => (
   <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff", borderRadius: 8 }}>
@@ -336,7 +336,7 @@ export const TokensTypography = () => (
       </thead>
       <tbody>
         <tr>
-          <td style={{ padding: 8 }}>Trigger label — desktop AND mobile (both viewports use the same scale in v1)</td>
+          <td style={{ padding: 8 }}>Trigger label - desktop AND mobile (both viewports use the same scale in v1)</td>
           <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#3555a0" }}>--semantic-type-desktop-label-button-s-</td>
           <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12 }}>14 / 500 / 20 / 0.3</td>
         </tr>
@@ -344,10 +344,10 @@ export const TokensTypography = () => (
     </table>
   </div>
 );
-TokensTypography.storyName = "Tokens — Typography";
+TokensTypography.storyName = "Tokens - Typography";
 TokensTypography.tags = ["!dev"];
 
-// ── 13. Tokens — Spacing ────────────────────────────────────────────────────
+// ── 13. Tokens - Spacing ────────────────────────────────────────────────────
 
 export const TokensSpacing = () => (
   <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff", borderRadius: 8 }}>
@@ -380,10 +380,10 @@ export const TokensSpacing = () => (
     </table>
   </div>
 );
-TokensSpacing.storyName = "Tokens — Spacing";
+TokensSpacing.storyName = "Tokens - Spacing";
 TokensSpacing.tags = ["!dev"];
 
-// ── 14. Tokens — Motion ─────────────────────────────────────────────────────
+// ── 14. Tokens - Motion ─────────────────────────────────────────────────────
 
 export const TokensMotion = () => (
   <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff", borderRadius: 8 }}>
@@ -415,14 +415,14 @@ export const TokensMotion = () => (
       </tbody>
     </table>
     <p style={{ margin: "12px 0 0", fontSize: 12, color: "#71717a" }}>
-      No motion tokens are defined as semantic variables for this component yet — the values above live inline in <code>org-switcher.jsx</code>. See spec §9.
+      No motion tokens are defined as semantic variables for this component yet - the values above live inline in <code>org-switcher.jsx</code>. See spec §9.
     </p>
   </div>
 );
-TokensMotion.storyName = "Tokens — Motion";
+TokensMotion.storyName = "Tokens - Motion";
 TokensMotion.tags = ["!dev"];
 
-// ── 15. Tokens — Radius ─────────────────────────────────────────────────────
+// ── 15. Tokens - Radius ─────────────────────────────────────────────────────
 
 export const TokensRadius = () => (
   <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff", borderRadius: 8 }}>
@@ -450,10 +450,10 @@ export const TokensRadius = () => (
     </table>
   </div>
 );
-TokensRadius.storyName = "Tokens — Radius";
+TokensRadius.storyName = "Tokens - Radius";
 TokensRadius.tags = ["!dev"];
 
-// Note: the standalone HTML demo is not a story — it lives at
+// Note: the standalone HTML demo is not a story - it lives at
 // components/org-switcher/org-switcher.html and is linked from the Resources
 // section at the top of the Docs MDX page. Embedding it as a story added
 // noise to the sidebar with no value.

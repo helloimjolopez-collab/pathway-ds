@@ -7,17 +7,17 @@ import * as Stories from "./Button.stories.jsx";
 
 ### Resources
 
-- 🖼️ **[Live HTML demo](https://helloimjolopez-collab.github.io/pathway-ds/components/button/button.html)** — standalone React+Babel page
-- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button-spec.md)** — `components/button/button-spec.md`
-- 🎨 **[Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003293-93741)** — node `40003293:93741`
+- 🖼️ **[Live HTML demo](https://helloimjolopez-collab.github.io/pathway-ds/components/button/button.html)** - standalone React+Babel page
+- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button-spec.md)** - `components/button/button-spec.md`
+- 🎨 **[Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003293-93741)** - node `40003293:93741`
 - 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button.jsx)** · **[HTML source](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button.html)**
 
 
-The Button is Pathway's primary action trigger. It is the component a user interacts with to commit a change, advance a flow, or execute a command. Every interactive surface that causes something to happen should be a Button — not a styled div, not an anchor with an `onclick`, not a custom element.
+The Button is Pathway's primary action trigger. It is the component a user interacts with to commit a change, advance a flow, or execute a command. Every interactive surface that causes something to happen should be a Button - not a styled div, not an anchor with an `onclick`, not a custom element.
 
-Three visual styles express the hierarchy of weight on a page: **Fill** (the strongest signal — use once per primary action), **Outlined** (secondary weight — supporting actions adjacent to a primary), and **Naked** (lowest visual weight — inline links and tertiary actions that shouldn't compete for attention). Four semantic types handle intent: **Primary** (brand blue — the default), **Secondary** (neutral muted), **Tertiary** (lightest), and **Negative** (destructive or error actions — delete, revoke, sign out).
+Three visual styles express the hierarchy of weight on a page: **Fill** (the strongest signal - use once per primary action), **Outlined** (secondary weight - supporting actions adjacent to a primary), and **Naked** (lowest visual weight - inline links and tertiary actions that shouldn't compete for attention). Four semantic types handle intent: **Primary** (brand blue - the default), **Secondary** (neutral muted), **Tertiary** (lightest), and **Negative** (destructive or error actions - delete, revoke, sign out).
 
-The Button does not carry navigation semantics. It fires an `onClick`. If pressing it navigates the user to a different route, use an anchor or your router's `<Link>` component styled with Button tokens instead — and accept the accessibility implications.
+The Button does not carry navigation semantics. It fires an `onClick`. If pressing it navigates the user to a different route, use an anchor or your router's `<Link>` component styled with Button tokens instead - and accept the accessibility implications.
 
 ---
 
@@ -31,8 +31,8 @@ The Button does not carry navigation semantics. It fires an `onClick`. If pressi
 ## Anatomy
 
 ```
-<button type="button">                    ← outer — touch-target zone (min 48×48px)
-  <span class="pw-button__container">    ← Container.Main — visible surface (bg, border, radius)
+<button type="button">                    ← outer - touch-target zone (min 48×48px)
+  <span class="pw-button__container">    ← Container.Main - visible surface (bg, border, radius)
     <span class="material-symbols-rounded  pw-button__icon--leading">  ← optional leading icon
     <span class="pw-button__label">      ← label text
     <span class="material-symbols-rounded  pw-button__icon--trailing"> ← optional trailing icon
@@ -40,7 +40,7 @@ The Button does not carry navigation semantics. It fires an `onClick`. If pressi
 </button>
 ```
 
-The outer `<button>` carries all interactive semantics (`aria-label`, `aria-busy`, `disabled`, `onClick`) and acts as the WCAG 2.5.5 touch target (min 48 × 48 px). It is transparent — no fill, no border. The visual surface lives entirely in `Container.Main`: background, border, border-radius, focus ring via `box-shadow`, gap, and padding.
+The outer `<button>` carries all interactive semantics (`aria-label`, `aria-busy`, `disabled`, `onClick`) and acts as the WCAG 2.5.5 touch target (min 48 × 48 px). It is transparent - no fill, no border. The visual surface lives entirely in `Container.Main`: background, border, border-radius, focus ring via `box-shadow`, gap, and padding.
 
 This two-layer approach means the visible button surface can be exactly the size dictated by its content while the interactive zone always meets the 48 px minimum. The 6 px gap between the outer and inner elements is the mandatory touch clearance.
 
@@ -52,7 +52,7 @@ This two-layer approach means the visible button surface can be exactly the size
 
 All 3 styles × 4 types × 6 interaction states rendered as live components. The state machine is straightforward: `disabled` and `loading` are terminal (they override all interaction); otherwise, `pressed` > `hovered` > focused > `base` in priority order.
 
-**Loading** deserves special mention: it is not just a visual state — it is a semantic one. When `loading={true}`, all content (label, icons) is replaced by a spinner. `aria-busy="true"` is set on the button. The button is implicitly disabled to prevent double-submission. The spinner inherits its colour from the button's current icon token via `currentColor`, so it always matches the expected icon colour for that style/type combination.
+**Loading** deserves special mention: it is not just a visual state - it is a semantic one. When `loading={true}`, all content (label, icons) is replaced by a spinner. `aria-busy="true"` is set on the button. The button is implicitly disabled to prevent double-submission. The spinner inherits its colour from the button's current icon token via `currentColor`, so it always matches the expected icon colour for that style/type combination.
 
 ---
 
@@ -81,7 +81,7 @@ Four sizes: **L** (18 px label), **M** (16 px, default), **S** (14 px), **XS** (
   </tbody>
 </table>
 
-XS uses a 12 px label (`label.button.xs`) and a 16 px icon wrap. It is defined in Figma for **Primary / Secondary / Negative** across Fill / Outlined / Naked — there is **no XS Tertiary** variant. The touch target (48 × 48 px minimum) applies at all sizes, XS included.
+XS uses a 12 px label (`label.button.xs`) and a 16 px icon wrap. It is defined in Figma for **Primary / Secondary / Negative** across Fill / Outlined / Naked - there is **no XS Tertiary** variant. The touch target (48 × 48 px minimum) applies at all sizes, XS included.
 
 ---
 
@@ -91,7 +91,7 @@ XS uses a 12 px label (`label.button.xs`) and a 16 px icon wrap. It is defined i
 
 Icons use Material Symbols Rounded, sized to the button's icon slot (`26 px` for L, `24 px` for M, `20 px` for S). The slot wrapper constrains the icon to that square; the icon renders at `18 / 16 / 14 px` respectively.
 
-For **icon-only buttons** (`showText={false}`), `ariaLabel` is mandatory — without it, the button has no accessible name and fails WCAG 4.1.2.
+For **icon-only buttons** (`showText={false}`), `ariaLabel` is mandatory - without it, the button has no accessible name and fails WCAG 4.1.2.
 
 ---
 
@@ -139,7 +139,7 @@ For **icon-only buttons** (`showText={false}`), `ariaLabel` is mandatory — wit
 
 ## Responsive behaviour
 
-The Button has no breakpoint-specific layout changes — it is an inline element sized by its content. The touch target floor (48 × 48 px minimum, enforced via `min-height`/`min-width` on the outer `<button>`) applies at all viewport sizes. Producers of button-containing layouts should ensure adequate spacing between adjacent buttons at narrow widths.
+The Button has no breakpoint-specific layout changes - it is an inline element sized by its content. The touch target floor (48 × 48 px minimum, enforced via `min-height`/`min-width` on the outer `<button>`) applies at all viewport sizes. Producers of button-containing layouts should ensure adequate spacing between adjacent buttons at narrow widths.
 
 ---
 
@@ -155,15 +155,15 @@ The Button has no breakpoint-specific layout changes — it is an inline element
   <tbody>
     <tr>
       <td>Semantic role</td>
-      <td>Native <code>{'<button type="button">'}</code> — no ARIA role override needed</td>
+      <td>Native <code>{'<button type="button">'}</code> - no ARIA role override needed</td>
     </tr>
     <tr>
       <td>Keyboard activation</td>
-      <td><code>Space</code> or <code>Enter</code> — native button behaviour</td>
+      <td><code>Space</code> or <code>Enter</code> - native button behaviour</td>
     </tr>
     <tr>
       <td>Focus ring</td>
-      <td><code>{'box-shadow: 0 0 0 6px #ffffff, 0 0 0 9px var(--semantic-color-light-mode-stroke-contextual-focusring-base)'}</code> on <code>Container.Main</code>. Only appears on keyboard focus — mouse clicks do not trigger it.</td>
+      <td><code>{'box-shadow: 0 0 0 6px #ffffff, 0 0 0 9px var(--semantic-color-light-mode-stroke-contextual-focusring-base)'}</code> on <code>Container.Main</code>. Only appears on keyboard focus - mouse clicks do not trigger it.</td>
     </tr>
     <tr>
       <td>Disabled state</td>
@@ -175,7 +175,7 @@ The Button has no breakpoint-specific layout changes — it is an inline element
     </tr>
     <tr>
       <td>Icon-only</td>
-      <td><code>ariaLabel</code> prop required — becomes the button's accessible name. Without it the button fails WCAG 4.1.2.</td>
+      <td><code>ariaLabel</code> prop required - becomes the button's accessible name. Without it the button fails WCAG 4.1.2.</td>
     </tr>
     <tr>
       <td>Accessible name source</td>

@@ -1,17 +1,17 @@
 /**
- * NavShell — Storybook stories
+ * NavShell - Storybook stories
  *
  * ══════════════════════════════════════════════════════════════════════
  * WHY THIS FILE EXISTS AND WHY IT IMPORTS FROM .jsx
  * ══════════════════════════════════════════════════════════════════════
  *
- * The NavShell is a composite component — it composes TopNav, SideNav,
+ * The NavShell is a composite component - it composes TopNav, SideNav,
  * and a content area. For composite components, the Storybook story is
  * the CANONICAL demo, not the HTML file. Here's why:
  *
  * - The Storybook story imports TopNav from top-nav.jsx and SideNav from
  *   sidenav.jsx. Any change to either component is immediately reflected
- *   here — no manual sync needed.
+ *   here - no manual sync needed.
  *
  * - The nav-shell.html demo is a SECONDARY artifact. It reimplements
  *   TopNav and SideNav CSS inline, which means it can drift. Treat it as
@@ -20,7 +20,7 @@
  * - When an agent (Figma Make, Claude, Cursor, etc.) reads this story, it
  *   sees the real validated implementations of TopNav and SideNav being
  *   composed together. It cannot copy wrong token values or wrong hover
- *   states because there are none — it's reading the actual components.
+ *   states because there are none - it's reading the actual components.
  *
  * ══════════════════════════════════════════════════════════════════════
  * HOW TO CUSTOMISE THE SHELL (for agents reading this)
@@ -50,7 +50,7 @@ import React, { useState, useEffect } from "react";
 // If you are an agent reading this: use these imports. Do not reimplement.
 import { TopNav, DEFAULT_MODULES } from "../../../../components/top-nav/top-nav.jsx";
 import { SideNav } from "../../../../components/sidenav/sidenav.jsx";
-// NOTE: SideNav lives in sidenav.jsx — NOT top-nav.jsx. Importing it from
+// NOTE: SideNav lives in sidenav.jsx - NOT top-nav.jsx. Importing it from
 // top-nav.jsx returns undefined and crashes the story canvas (was the cause
 // of the NavShell "404"/blank render). Always import each component from its
 // own module.
@@ -68,7 +68,7 @@ export default {
         component:
           "**The application shell.** Every page in Amplify lives inside NavShell. " +
           "It composes TopNav + SideNav + a scrollable content area. " +
-          "This story imports TopNav and SideNav from their .jsx modules — " +
+          "This story imports TopNav and SideNav from their .jsx modules - " +
           "it cannot drift from the validated implementations. " +
           "Customise via the args below (module, org, nav items, page content). " +
           "Spec: `components/nav-shell/nav-shell-spec.md`.",
@@ -92,7 +92,7 @@ export default {
 };
 
 // ── SHELL WRAPPER CSS ──────────────────────────────────────────────────────
-// Positioning only — colours, tokens, and interactions come from TopNav/SideNav
+// Positioning only - colours, tokens, and interactions come from TopNav/SideNav
 const SHELL_STYLE = {
   display: "flex",
   height: "100vh",
@@ -123,7 +123,7 @@ const MAIN_STYLE = (marginLeft) => ({
 // ── MINIMAL SCREEN TEMPLATE (page content placeholder) ────────────────────
 // A stripped-down content area. The real ScreenTemplate sub-components
 // (PageHeading, ToolBar, FilterChip, Card) are future standalone DS components.
-// This shows the layout only — replace with real content in production.
+// This shows the layout only - replace with real content in production.
 function ScreenContent({ title, subtitle }) {
   return (
     <div>
@@ -148,7 +148,7 @@ function ScreenContent({ title, subtitle }) {
         color: "var(--semantic-color-light-mode-text-static-secondary-subtle, #606060)",
         fontSize: 13, lineHeight: "20px",
       }}>
-        Page content area — replace with real ScreenTemplate content.
+        Page content area - replace with real ScreenTemplate content.
         See <code>components/nav-shell/nav-shell-spec.md §7</code> for the full layout spec.
       </div>
     </div>
@@ -195,7 +195,7 @@ function NavShellRender({
 
   return (
     <div style={SHELL_STYLE}>
-      {/* TopNav — importing the validated component directly */}
+      {/* TopNav - importing the validated component directly */}
       <TopNav
         modules={modules}
         activeModuleId="home"
@@ -221,7 +221,7 @@ function NavShellRender({
           />
         )}
 
-        {/* SideNav — importing the validated component directly */}
+        {/* SideNav - importing the validated component directly */}
         {(sideNavWidth > 0 || !isMobile) && (
           <div style={{
             position: "fixed", top: 56, left: 0, bottom: 0,
@@ -326,7 +326,7 @@ export const CustomModule = {
     docs: {
       description: {
         story:
-          "Example of a different module configuration — Amplify Giving for NorthPoint Church. " +
+          "Example of a different module configuration - Amplify Giving for NorthPoint Church. " +
           "Change the args to see any module in context instantly.",
       },
     },

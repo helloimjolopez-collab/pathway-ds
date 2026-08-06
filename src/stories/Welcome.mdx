@@ -4,32 +4,40 @@ import { Meta } from "@storybook/blocks";
 
 # Pathway Design System
 
-The component library for **Ministry Brands Amplify** — a church-management product.
+Welcome! Pathway is the shared component library and token system behind Ministry Brands Amplify. Everything on this site is live and interactive, so you can open any component, flip its controls, and see exactly what ships in the product.
 
-Use the left sidebar to explore:
+## Quick links
 
-- **Tokens / Primitives** — raw colour palettes, type scales, units
-- **Tokens / Semantics** — light-mode + dark-mode tokens, layout values, typography sets
-- **Library** — interactive component playgrounds: SideNav, TopNav, Checkbox, OrgSwitcher, Spinner
+| Resource | Open it |
+|---|---|
+| 📦 GitHub repository | [github.com/helloimjolopez-collab/pathway-ds](https://github.com/helloimjolopez-collab/pathway-ds) |
+| 🎨 Figma (Pathway master file) | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) |
+| 🖥️ Full app shell demo (TopNav + SideNav + page) | [Open the NavShell](?path=/story/library-navshell--desktop) |
+| 🔤 Iconography sizing rules | [Foundations / Iconography](?path=/docs/foundations-iconography--docs) |
 
-Each component has a docs page with anatomy, design tokens, state matrix, accessibility notes, and a live Playground with controls.
+## What's inside
 
----
+Use the left sidebar to explore three areas:
 
-### Building with an AI agent?
+- **Tokens / Primitives**: the raw building blocks, colour palettes, type scales, and units.
+- **Tokens / Semantics**: light and dark mode tokens, layout values, and typography sets.
+- **Library**: interactive playgrounds for every component, including SideNav, TopNav, Search, OrgSwitcher, Checkbox, Button, Spinner, and the full NavShell app frame.
 
-AI agent instructions and the machine-readable component contract live in the repo, not here.
-Point your agent at:
+Every component has its own docs page with anatomy, the design tokens it uses, a state matrix, accessibility notes, and a live Playground you can drive with controls.
 
-- `AGENTS.md` — top-level agent guide (industry-standard filename, auto-discovered by Cursor, Codex, Aider, etc.)
-- `llms.txt` / `llms-full.txt` — Jeremy Howard standard for AI-readable site/repo manifests
-- `components/manifest.json` — machine-readable component registry
-- `components/<name>/agent-brief.md` — per-component concise brief
+## Start here
 
-Repo: [github.com/helloimjolopez-collab/pathway-ds](https://github.com/helloimjolopez-collab/pathway-ds)
+New to Pathway? The [NavShell demo](?path=/story/library-navshell--desktop) is the best first stop. It assembles the TopNav, SideNav, and page area into the complete app frame, so you can see how the pieces fit together before diving into any single component.
 
----
+## Building with an AI agent?
 
-### Contributing to this system?
+The agent instructions and the machine-readable component contract live in the repo, not here. Point your agent at:
 
-See `CLAUDE.md` and `docs/` in the repo for contributor rules, the component pipeline, and how tokens flow from Figma.
+- `AGENTS.md`: the top-level agent guide (auto-discovered by Cursor, Codex, Aider, and friends).
+- `llms.txt` / `llms-full.txt`: AI-readable manifests of the site and repo.
+- `components/manifest.json`: the machine-readable component registry.
+- `components/<name>/agent-brief.md`: a short brief for each component.
+
+## Contributing?
+
+See `CLAUDE.md` and the `docs/` folder in the repo for the contributor rules, the component pipeline, and how tokens flow from Figma into code.

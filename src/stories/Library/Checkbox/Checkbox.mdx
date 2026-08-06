@@ -7,13 +7,13 @@ import * as Stories from "./Checkbox.stories.jsx";
 
 ### Resources
 
-- 🖼️ **[Live HTML demo](https://helloimjolopez-collab.github.io/pathway-ds/components/checkbox/checkbox.html)** — standalone React+Babel page
-- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/checkbox/checkbox-spec.md)** — `components/checkbox/checkbox-spec.md`
-- 🎨 **[Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40002324-54532)** — node `40002324:54532`
+- 🖼️ **[Live HTML demo](https://helloimjolopez-collab.github.io/pathway-ds/components/checkbox/checkbox.html)** - standalone React+Babel page
+- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/checkbox/checkbox-spec.md)** - `components/checkbox/checkbox-spec.md`
+- 🎨 **[Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40002324-54532)** - node `40002324:54532`
 - 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/checkbox/checkbox.jsx)** · **[HTML source](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/checkbox/checkbox.html)**
 
 
-A selection control for **multi-select scenarios** — when the user can pick zero or more independent options from a set. Three visual states: unchecked, checked, and indeterminate (partial).
+A selection control for **multi-select scenarios** - when the user can pick zero or more independent options from a set. Three visual states: unchecked, checked, and indeterminate (partial).
 
 Use Checkbox for independent options that can all be on at the same time, "Select all" patterns with an indeterminate parent, form fields submitted on Save/Submit, and "Agree to terms" before submission.
 
@@ -29,7 +29,7 @@ Toggle the controls above: `checked`, `indeterminate`, `error`, `highlight`, `di
 
 ---
 
-## When to use — decision tree
+## When to use - decision tree
 
 <table>
   <thead>
@@ -40,7 +40,7 @@ Toggle the controls above: `checked`, `indeterminate`, `error`, `highlight`, `di
     <tr><td>User picks exactly one from a set</td><td>Radio</td></tr>
     <tr><td>Binary on/off with immediate effect</td><td>Toggle</td></tr>
     <tr><td>Card/tile selection</td><td>Choice Tile</td></tr>
-    <tr><td>Mutually exclusive options</td><td>Radio — never Checkbox</td></tr>
+    <tr><td>Mutually exclusive options</td><td>Radio - never Checkbox</td></tr>
   </tbody>
 </table>
 
@@ -49,12 +49,12 @@ Toggle the controls above: `checked`, `indeterminate`, `error`, `highlight`, `di
 ## Anatomy
 
 ```
-label.pds-checkbox   (root — inline-flex, cursor: pointer)
-├── span             (44×44px state-layer — hover/focus/pressed ring)
-│   ├── input        (visually hidden — semantics + keyboard)
-│   └── span         (18×18px visual box — 1.5px border, 4px radius)
-│       └── svg      (checkmark or dash icon — visible when checked/indeterminate)
-└── span             (optional label text — Red Hat Text 400 14px/20px)
+label.pds-checkbox   (root - inline-flex, cursor: pointer)
+├── span             (44×44px state-layer - hover/focus/pressed ring)
+│   ├── input        (visually hidden - semantics + keyboard)
+│   └── span         (18×18px visual box - 1.5px border, 4px radius)
+│       └── svg      (checkmark or dash icon - visible when checked/indeterminate)
+└── span             (optional label text - Red Hat Text 400 14px/20px)
 ```
 
 The touch target is always **44×44px** regardless of the `size` prop (WCAG 2.5.5).
@@ -75,7 +75,7 @@ Every type × state combination from the Figma component matrix, all live:
 
 The indeterminate state (`aria-checked="mixed"`) signals "some but not all" children are selected. Set `indeterminate={someSelected && !allSelected}` on the parent; pass `checked={allSelected}`. Toggling the parent sets all children to the same state. Screen readers announce this as "partially checked."
 
-**Never set both `checked` and `indeterminate` to `true`** — `indeterminate` takes visual precedence and sets `aria-checked="mixed"` regardless of `checked`.
+**Never set both `checked` and `indeterminate` to `true`** - `indeterminate` takes visual precedence and sets `aria-checked="mixed"` regardless of `checked`.
 
 ---
 
@@ -102,7 +102,7 @@ The `error` prop switches fills and borders to the `fill/stroke.action.negative.
 
 <Canvas of={Stories.HighlightVariant} />
 
-`highlight` adds a tinted background on the state-layer at rest. Use when the checkbox lives inside a selectable row or card — the tint visually associates the control with the interactive surface.
+`highlight` adds a tinted background on the state-layer at rest. Use when the checkbox lives inside a selectable row or card - the tint visually associates the control with the interactive surface.
 
 > **Token gap:** The resting background (`fill.action.secondaryinverse.base`) is missing from the token file. A fallback (`fill.action.secondary.base`) is in use. This will be resolved when the token is added to Figma variables and re-synced. See `checkbox-spec.md §5.3`.
 
@@ -112,13 +112,13 @@ The `error` prop switches fills and borders to the `fill/stroke.action.negative.
 
 <Canvas of={Stories.Sizes} />
 
-Two visual sizes, one touch target. The `s` size reduces the visible box to 16px — use it in dense list contexts. The 44×44px touch target is unchanged.
+Two visual sizes, one touch target. The `s` size reduces the visible box to 16px - use it in dense list contexts. The 44×44px touch target is unchanged.
 
 ---
 
 ## Accessibility
 
-The Checkbox uses a **native `<input type="checkbox">`** under the hood — no custom role needed.
+The Checkbox uses a **native `<input type="checkbox">`** under the hood - no custom role needed.
 
 <table>
   <thead>
@@ -128,11 +128,11 @@ The Checkbox uses a **native `<input type="checkbox">`** under the hood — no c
     <tr><td>Unchecked</td><td>(implicit false)</td><td><code>checked={"{false}"}</code></td></tr>
     <tr><td>Checked</td><td>(implicit true)</td><td><code>checked={"{true}"}</code></td></tr>
     <tr><td>Indeterminate</td><td><code>mixed</code></td><td><code>.indeterminate = true</code> via ref</td></tr>
-    <tr><td>Disabled</td><td>—</td><td><code>disabled</code> attribute</td></tr>
+    <tr><td>Disabled</td><td>-</td><td><code>disabled</code> attribute</td></tr>
   </tbody>
 </table>
 
-**Keyboard:** `Space` toggles. `Tab` / `Shift+Tab` moves focus. Arrow keys are not used — each checkbox is independently focusable (Radio uses arrows instead).
+**Keyboard:** `Space` toggles. `Tab` / `Shift+Tab` moves focus. Arrow keys are not used - each checkbox is independently focusable (Radio uses arrows instead).
 
 **Focus ring:** Visible on the 44×44px state-layer. Error variant adds `box-shadow: 0 0 0 3px rgba(170, 54, 54, 0.1)`.
 
@@ -152,14 +152,14 @@ The Checkbox uses a **native `<input type="checkbox">`** under the hood — no c
 ## Constraints
 
 1. **No raw hex.** Every colour is a semantic token CSS variable.
-2. **`indeterminate` uses `aria-checked="mixed"`** — not `false`, not `true`.
+2. **`indeterminate` uses `aria-checked="mixed"`** - not `false`, not `true`.
 3. **Touch target is always 44×44px.** Do not reduce for `size="s"`.
 4. **Error state requires an associated error message** via `aria-describedby` in production.
-5. **Disabled checkboxes remain accessible** — do not `aria-hidden` them.
+5. **Disabled checkboxes remain accessible** - do not `aria-hidden` them.
 6. **`secondary` indeterminate** should not appear without a parent "Select all" context.
 
 ---
 
 ## Full specification
 
-[`components/checkbox/checkbox-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/checkbox/checkbox-spec.md) — anatomy, all token tables, accessibility, gaps, and governance.
+[`components/checkbox/checkbox-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/checkbox/checkbox-spec.md) - anatomy, all token tables, accessibility, gaps, and governance.

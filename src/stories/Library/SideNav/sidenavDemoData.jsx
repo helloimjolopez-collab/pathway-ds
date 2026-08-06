@@ -1,5 +1,5 @@
 /**
- * Demo data for SideNav stories — NOT part of the component.
+ * Demo data for SideNav stories - NOT part of the component.
  * Icons are inlined as React SVG components (matching sidenav.html IC object).
  * In production, use @pathway/icons or your icon library.
  */
@@ -35,7 +35,7 @@ export const ALL_ITEM_IDS = [
 ];
 
 // ─── NAV data (matching sidenav.html, Figma node 40004790:47259) ─────────────
-// Flat items — used by stories that want a single ungrouped list.
+// Flat items - used by stories that want a single ungrouped list.
 export const NAV_ITEMS = [
   { id: "applications", label: "Applications", icon: Icons.apps, children: [
     { id: "overview",  label: "Overview" },
@@ -57,7 +57,7 @@ export const NAV_ITEMS = [
   { id: "help",    label: "Help",    icon: Icons.help },
 ];
 
-// Sectioned items — same items, grouped into OVERVIEW / WORKFLOWS / TOOLS.
+// Sectioned items - same items, grouped into OVERVIEW / WORKFLOWS / TOOLS.
 // Pass this to <SideNav sections={NAV_SECTIONS} /> to render with NavSectionLabel
 // headings (expanded) or rail dividers (collapsed).
 export const NAV_SECTIONS = [
@@ -74,7 +74,7 @@ export const NAV_SECTIONS = [
     NAV_ITEMS[5], // Modify
     NAV_ITEMS[6], // Help
   ]},
-  // Extra items so the list overflows — demonstrates the overlay scrollbar in BOTH the
+  // Extra items so the list overflows - demonstrates the overlay scrollbar in BOTH the
   // expanded (240px) and collapsed (72px rail) states. Icons reused from the set above.
   { section: "Modules", items: [
     { id: "giving",         label: "Giving",         icon: Icons.reports },

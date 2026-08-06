@@ -1,5 +1,5 @@
 /**
- * Scrollable (overlay scrollbar) — Storybook stories
+ * Scrollable (overlay scrollbar) - Storybook stories
  * Spec: docs/scrollbar-spec.md
  */
 import React from "react";
@@ -19,7 +19,7 @@ const Rows = ({ n = 40 }) => (
         padding: "10px 16px", fontFamily: "'Red Hat Text', sans-serif", fontSize: 14,
         color: "#252525", borderBottom: "1px solid #f0f0f0", whiteSpace: "nowrap",
       }}>
-        Row {i + 1} — scroll to see the overlay thumb
+        Row {i + 1} - scroll to see the overlay thumb
       </div>
     ))}
   </>
@@ -38,7 +38,7 @@ export default {
   parameters: {
     layout: "padded",
     docs: { description: { component:
-      "One overlay scrollbar for the whole system. Hides the native OS scrollbar and draws a slim, semitransparent thumb so scrolling looks IDENTICAL on macOS, Windows, iOS, and Android — and never takes layout space or shifts padding. Hover or scroll the frame to reveal the thumb. See docs/scrollbar-spec.md." } },
+      "One overlay scrollbar for the whole system. Hides the native OS scrollbar and draws a slim, semitransparent thumb so scrolling looks IDENTICAL on macOS, Windows, iOS, and Android - and never takes layout space or shifts padding. Hover or scroll the frame to reveal the thumb. See docs/scrollbar-spec.md." } },
   },
 };
 
@@ -48,7 +48,7 @@ export const Playground = {
       <Scrollable style={{ height: "100%" }}><Rows n={40} /></Scrollable>
     </Frame>
   ),
-  parameters: { docs: { description: { story: "Hover the frame (or scroll) — the slim semitransparent thumb fades in, overlaying the content's right edge. It takes no layout width." } } },
+  parameters: { docs: { description: { story: "Hover the frame (or scroll) - the slim semitransparent thumb fades in, overlaying the content's right edge. It takes no layout width." } } },
 };
 
 export const NoLayoutShift = {
@@ -64,5 +64,5 @@ export const NoLayoutShift = {
       </div>
     </div>
   ),
-  parameters: { docs: { description: { story: "Both frames are exactly 320px wide and their content lines start at the same x — the overlay scrollbar adds **zero** width, so an overflowing list and a non-overflowing one have identical padding/alignment (unlike a native Windows scrollbar, which would shift the left one)." } } },
+  parameters: { docs: { description: { story: "Both frames are exactly 320px wide and their content lines start at the same x - the overlay scrollbar adds **zero** width, so an overflowing list and a non-overflowing one have identical padding/alignment (unlike a native Windows scrollbar, which would shift the left one)." } } },
 };

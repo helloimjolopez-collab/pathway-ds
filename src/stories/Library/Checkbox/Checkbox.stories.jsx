@@ -1,5 +1,5 @@
 /**
- * Checkbox — Storybook stories
+ * Checkbox - Storybook stories
  *
  * Imports the shared React component from components/checkbox/checkbox.jsx.
  * Source of truth for all Checkbox rendering is that module.
@@ -140,7 +140,7 @@ StateMatrix.parameters = {
     description: {
       story:
         "Every type × state combination from the Figma component matrix. " +
-        "Each row is live — click to toggle. Disabled examples are static.",
+        "Each row is live - click to toggle. Disabled examples are static.",
     },
   },
 };
@@ -188,7 +188,7 @@ SelectAllPattern.parameters = {
     description: {
       story:
         "The canonical Select All pattern. The parent checkbox is `indeterminate` " +
-        "when some — but not all — children are checked. Toggling the parent " +
+        "when some - but not all - children are checked. Toggling the parent " +
         "sets all children to the same state.",
     },
   },
@@ -246,9 +246,9 @@ ErrorWithMessage.parameters = {
 
 export const HighlightVariant = () => {
   const [rows, setRows] = useState([
-    { id: "r1", label: "Staff meeting — Thursday 9am",   checked: true  },
-    { id: "r2", label: "Volunteer orientation — Friday", checked: false },
-    { id: "r3", label: "Board prep call — Monday",       checked: true  },
+    { id: "r1", label: "Staff meeting - Thursday 9am",   checked: true  },
+    { id: "r2", label: "Volunteer orientation - Friday", checked: false },
+    { id: "r3", label: "Board prep call - Monday",       checked: true  },
   ]);
 
   const toggle = (id) =>
@@ -282,7 +282,7 @@ HighlightVariant.parameters = {
     description: {
       story:
         "`highlight` adds a tinted background on the state-layer at rest. " +
-        "Use when the checkbox lives inside a selectable list row — the tint " +
+        "Use when the checkbox lives inside a selectable list row - the tint " +
         "visually ties the control to the interactive surface. " +
         "Note: the resting-state token `fill.action.secondaryinverse.base` is currently " +
         "missing from the token file; a fallback is in use (see spec §5.3).",
@@ -295,11 +295,11 @@ HighlightVariant.parameters = {
 export const Sizes = () => (
   <div style={{ display: "flex", gap: 32, alignItems: "center", fontFamily: "'Red Hat Text',sans-serif" }}>
     <div>
-      <p style={{ fontSize: 11, fontWeight: 600, color: "#aaa", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 12 }}>Default — 18px</p>
+      <p style={{ fontSize: 11, fontWeight: 600, color: "#aaa", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 12 }}>Default - 18px</p>
       <Checkbox label="Default size" checked onChange={() => {}} id="sz1" />
     </div>
     <div>
-      <p style={{ fontSize: 11, fontWeight: 600, color: "#aaa", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 12 }}>Small — 16px</p>
+      <p style={{ fontSize: 11, fontWeight: 600, color: "#aaa", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 12 }}>Small - 16px</p>
       <Checkbox label="Small size" size="s" checked onChange={() => {}} id="sz2" />
     </div>
   </div>
@@ -308,7 +308,7 @@ Sizes.parameters = {
   docs: {
     description: {
       story:
-        "Two visual sizes. Both use a 44×44px touch target — only the visible " +
+        "Two visual sizes. Both use a 44×44px touch target - only the visible " +
         "box shrinks. The `s` size is appropriate in dense list contexts.",
     },
   },
