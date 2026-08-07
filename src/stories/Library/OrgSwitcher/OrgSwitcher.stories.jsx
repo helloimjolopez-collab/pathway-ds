@@ -17,7 +17,7 @@
  *   · TokensTypography · TokensSpacing · TokensMotion · TokensRadius · StandaloneDemo
  */
 import React, { useState } from "react";
-import { OrgSwitcher } from "../../../../components/org-switcher/org-switcher.jsx";
+import { OrgSwitcher, OrgSwitcherPanel, DEMO_ORGS } from "../../../../components/org-switcher/org-switcher.jsx";
 
 // Logo asset served by Storybook's staticDirs (.storybook/main.js).
 const SACRED_HEART_LOGO = "components/org-switcher/assets/sacred-heart-logo.png";
@@ -452,6 +452,30 @@ export const TokensRadius = () => (
 );
 TokensRadius.storyName = "Tokens - Radius";
 TokensRadius.tags = ["!dev"];
+
+// ── Open panel (dropdown) ─────────────────────────────────────────────────────
+// The "Open" state from Figma (node 40007336:9453): My Organizations header,
+// search, and a scrollable org list (logo + name + module-colour cluster +
+// chevron). Rebuilt with Red Hat Text + Material Symbols + light-mode tokens
+// (the Figma node bound dark-mode tokens onto a white surface — corrected).
+export const OpenPanel = () => {
+  const [q, setQ] = useState("");
+  return (
+    <div style={{ padding: 24, background: "#eef1f7", minHeight: 520 }}>
+      <OrgSwitcherPanel
+        orgs={DEMO_ORGS}
+        activeOrgId="grace"
+        query={q}
+        onQueryChange={setQ}
+        onSelect={() => {}}
+      />
+    </div>
+  );
+};
+OpenPanel.storyName = "Open panel (dropdown)";
+OpenPanel.parameters = {
+  docs: { description: { story: "The OrgSwitcher dropdown shown when the trigger is open. Rendered by `OrgSwitcherPanel`; TopNav composes the trigger + this panel." } },
+};
 
 // Note: the standalone HTML demo is not a story - it lives at
 // components/org-switcher/org-switcher.html and is linked from the Resources

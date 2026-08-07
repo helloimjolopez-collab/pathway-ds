@@ -430,4 +430,166 @@ export function OrgSwitcher({
   );
 }
 
+// ═══════════════════════════════════════════════════════════════════════════════
+//   ORG SWITCHER PANEL  (the "Open" state — dropdown, Figma node 40007336:9453)
+// ═══════════════════════════════════════════════════════════════════════════════
+// Implemented from the Figma Open/Desktop variant. Two deliberate deviations from
+// the raw Figma export, both Figma-side artifacts:
+//   1. Font is Red Hat Text (the DS font, CLAUDE.md §6) — Figma reported
+//      "Google Sans Flex", which is not a Pathway font.
+//   2. Panel text/border/icon use LIGHT-mode tokens — the Figma node bound
+//      DARK-mode tokens onto a white surface (e.g. a search border of
+//      rgba(255,255,255,0.16) that is invisible on white). Corrected for contrast.
+// Icons are Material Symbols Rounded (Figma used Font Awesome for the chevron).
+
+// Ministry Brands module colours (Figma "Module Colors/*"). Not yet tokenised —
+// flagged as a token gap in org-switcher-spec §Gaps.
+export const ORG_MODULES = [
+  { key: "people",         color: "#877EC8", icon: "group" },
+  { key: "giving",         color: "#4BA8CB", icon: "volunteer_activism" },
+  { key: "mobile-app",     color: "#6FCEB7", icon: "smartphone" },
+  { key: "website",        color: "#4B6EC3", icon: "language" },
+  { key: "streaming",      color: "#FF894A", icon: "live_tv" },
+  { key: "content",        color: "#1E99AE", icon: "description" },
+  { key: "communications", color: "#1FA79B", icon: "mail" },
+  { key: "protections",    color: "#E97272", icon: "shield" },
+  { key: "events",         color: "#7996FC", icon: "event" },
+  { key: "accounting",     color: "#F8C84F", icon: "account_balance" },
+];
+
+// Demo organisations for the panel (mirrors the orgs shown in the Figma Open state).
+export const DEMO_ORGS = [
+  { id: "grace",       name: "Grace Church",                       initials: "GC" },
+  { id: "cityhope",    name: "City Hope Church",                   initials: "CH" },
+  { id: "nkbc",        name: "Northern Kentucky Baptist Church",   initials: "NK" },
+  { id: "crosspoint",  name: "Cross Point",                        initials: "CP" },
+  { id: "cornerstone", name: "Cornerstone",                        initials: "CO" },
+  { id: "elevate",     name: "Elevate Life Church",                initials: "EL" },
+  { id: "crossbridge", name: "Crossbridge",                        initials: "CB" },
+];
+
+const PANEL_T = {
+  bg:        "var(--semantic-color-light-mode-fill-static-neutral-light, #ffffff)",
+  header:    "var(--semantic-color-light-mode-text-static-secondary-subtle, #606060)",
+  border:    "var(--semantic-color-light-mode-stroke-static-neutral-light, #ededed)",
+  name:      "var(--semantic-color-light-mode-text-static-secondary-bold, #202020)",
+  icon:      "var(--semantic-color-light-mode-icon-static-neutral-base, #949494)",
+  logoBg:    "var(--semantic-color-light-mode-fill-static-brand-base, #2d4889)",
+  rowActive: "var(--semantic-color-light-mode-fill-action-tertiary-base, #eef2fb)",
+};
+
+function ModuleCluster() {
+  return (
+    <div style={{ display: "flex", alignItems: "center" }} aria-hidden="true">
+      {ORG_MODULES.map((m) => (
+        <span key={m.key} style={{
+          width: 18, height: 18, borderRadius: "50%", background: m.color,
+          marginRight: -4, border: "1.5px solid #fff", flexShrink: 0,
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <Icon name={m.icon} size={11} style={{ color: "#fff" }} />
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function OrgRow({ org, active, onSelect }) {
+  const [hov, setHov] = useState(false);
+  return (
+    <button
+      type="button"
+      onClick={() => onSelect && onSelect(org)}
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      aria-current={active ? "true" : undefined}
+      style={{
+        display: "flex", alignItems: "center", gap: 12, width: "100%", textAlign: "left",
+        padding: "8px 8px", border: "none", cursor: "pointer", borderRadius: 8,
+        fontFamily: "inherit",
+        background: active || hov ? PANEL_T.rowActive : "transparent",
+        transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
+      }}
+    >
+      {/* Logo tile — org initials on brand fill (falls back from a logo image) */}
+      <div style={{
+        width: 44, height: 44, borderRadius: 6, flexShrink: 0, background: PANEL_T.logoBg,
+        display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
+      }}>
+        {org.logoUrl
+          ? <img src={org.logoUrl} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+          : <span style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>{org.initials}</span>}
+      </div>
+      {/* Name + module cluster */}
+      <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+        <div style={{
+          fontSize: 14, fontWeight: 600, lineHeight: "18px", color: PANEL_T.name,
+          whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+        }}>{org.name}</div>
+        <ModuleCluster />
+      </div>
+      {/* Trailing chevron */}
+      <Icon name="chevron_right" size={20} style={{ color: PANEL_T.icon, flexShrink: 0 }} />
+    </button>
+  );
+}
+
+/**
+ * OrgSwitcherPanel — the dropdown shown when the OrgSwitcher trigger is open.
+ * Caller positions it (e.g. absolutely under the trigger). Trigger-only
+ * OrgSwitcher stays separate; compose the two per the Figma Open variant.
+ *
+ * Props:
+ *   orgs         — [{ id, name, initials, logoUrl? }]  (default DEMO_ORGS)
+ *   activeOrgId  — id of the current org (highlighted row)
+ *   query        — controlled search string
+ *   onQueryChange, onSearch, onSelect — callbacks
+ *   style        — extra styles on the panel (positioning)
+ */
+export function OrgSwitcherPanel({
+  orgs = DEMO_ORGS, activeOrgId, query = "", onQueryChange, onSearch, onSelect, style,
+}) {
+  return (
+    <div
+      role="dialog"
+      aria-label="Switch organisation"
+      style={{
+        width: 360, boxSizing: "border-box", background: PANEL_T.bg,
+        borderRadius: 8, boxShadow: "0 8px 16px rgba(0,0,0,0.1)",
+        padding: "18px 18px 24px", display: "flex", flexDirection: "column", gap: 12,
+        fontFamily: "'Red Hat Text', sans-serif", ...style,
+      }}
+    >
+      <div style={{ padding: "4px 10px", fontSize: 14, fontWeight: 600, lineHeight: "20px", color: PANEL_T.header }}>
+        My Organizations
+      </div>
+      {/* Search */}
+      <div style={{
+        display: "flex", alignItems: "center", gap: 8, padding: 8, borderRadius: 8,
+        border: `1px solid ${PANEL_T.border}`,
+      }}>
+        <Icon name="search" size={20} style={{ color: PANEL_T.icon }} />
+        <input
+          type="text"
+          value={query}
+          placeholder="Search"
+          aria-label="Search organisations"
+          onChange={(e) => onQueryChange && onQueryChange(e.target.value)}
+          onKeyDown={(e) => { if (e.key === "Enter" && onSearch) onSearch(query); }}
+          style={{
+            flex: 1, minWidth: 0, border: "none", outline: "none", background: "transparent",
+            fontFamily: "inherit", fontSize: 14, lineHeight: "20px", color: PANEL_T.name,
+          }}
+        />
+      </div>
+      {/* Org list */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 2, maxHeight: 320, overflowY: "auto", overflowX: "hidden" }}>
+        {orgs.map((o) => (
+          <OrgRow key={o.id} org={o} active={o.id === activeOrgId} onSelect={onSelect} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default OrgSwitcher;

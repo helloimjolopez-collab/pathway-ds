@@ -15,6 +15,9 @@ import React, { useState, useEffect, useRef } from "react";
 // reimplement it here. (See CLAUDE.md §10.1 "import, don't reinvent": the prior
 // in-file duplicate drifted to hardcoded hex and the wrong token mode.)
 import { TopNavSearch, SearchInput } from "../search/search.jsx";
+// The OrgSwitcher "Open" dropdown lives in the org-switcher component (Figma
+// node 40007336:9453). TopNav renders it when the org trigger is open.
+import { OrgSwitcherPanel, DEMO_ORGS } from "../org-switcher/org-switcher.jsx";
 
 // ─── DESIGN TOKENS ─────────────────────────────────────────────────────────────
 // Bound to live semantic CSS variables (CLAUDE.md §6). The TopNav bar is a dark
@@ -472,6 +475,7 @@ export function TopNav({
   modules         = DEFAULT_MODULES,
   activeModuleId  = "home",
   org             = { id: "shc", name: "Sacred Heart Church-ITD", campus: "Knoxville", initials: "SH" },
+  orgs            = DEMO_ORGS,   // list shown in the OrgSwitcher "Open" dropdown panel
   user            = { name: "Jo Lopez", initials: "JL", email: "jo@sacredheart.org" },
   breakpoint      = "desktop",
   moduleSwitcherType = "interactive",   // "interactive" | "static" (Amplify Dashboard) — Figma "Type"
@@ -608,45 +612,18 @@ export function TopNav({
           mobile={isMobile}
         />
 
-        {/* Org panel (placeholder — full design pending §17) */}
+        {/* Org panel — the real OrgSwitcher "Open" dropdown (Figma 40007336:9453) */}
         {openPanel === "org" && (
-          <div role="dialog" aria-label="Switch organisation"
-            style={{
-              position: "absolute", top: "calc(100% + 4px)",
-              left: isMobile ? padH : padH + 40,
-              width: 280, background: T.panelBg,
-              border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
-              boxShadow: T.panelShadow, padding: 8, zIndex: 300,
-              animation: "tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both",
-            }}
-          >
-            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: ".07em",
-              textTransform: "uppercase", padding: "4px 8px 6px", color: "#b5b5b5" }}>
-              Organisations
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10,
-              padding: 8, borderRadius: 6, background: T.activeItem }}>
-              <div style={{ width: L.orgAvatarPanel, height: L.orgAvatarPanel,
-                borderRadius: L.radiusSm, background: org.bg || T.navBg,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                flexShrink: 0, overflow: "hidden",
-                border: `1px solid ${T.orgStroke}` }}>
-                {org.logoUrl
-                  ? <img src={org.logoUrl} alt="" style={{ width: "100%", height: "100%",
-                      objectFit: "cover", display: "block" }} />
-                  : <span style={{ fontSize: 9, fontWeight: 700, color: "#fff" }}>{org.initials}</span>
-                }
-              </div>
-              <div style={{ minWidth: 0 }}>
-                <div style={{ fontSize: 13, fontWeight: 500, color: T.itemText,
-                  whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                  {org.name}
-                </div>
-                {org.campus && (
-                  <div style={{ fontSize: 11, color: T.itemMeta, marginTop: 1 }}>{org.campus}</div>
-                )}
-              </div>
-            </div>
+          <div style={{
+            position: "absolute", top: "calc(100% + 4px)",
+            left: isMobile ? padH : padH + 40, zIndex: 300,
+            animation: "tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both",
+          }}>
+            <OrgSwitcherPanel
+              orgs={orgs}
+              activeOrgId={org.id}
+              onSelect={(o) => { close(); onOrgSelect?.(o); }}
+            />
           </div>
         )}
       </div>
