@@ -1,8 +1,21 @@
 # OrgSwitcher: Pathway Design System Component Spec
 
-**Status:** `REVIEWED`
-**Version:** `v1` (trigger only — see §0)
+**Status:** `REVIEWED` (trigger) · Open panel implemented 2026-08-06, panel spec section PENDING REVIEW
+**Version:** `v1` trigger + `v2` Open panel (see §0)
 **Reviewed:** 2026-05-21
+
+> **Update 2026-08-06 — the Open dropdown panel is now implemented.** Built from
+> Figma node `40007336:9453` as `OrgSwitcherPanel` (exported from
+> `org-switcher.jsx`): "My Organizations" header, search field, and a scrollable
+> org list (brand logo tile + org name + Ministry Brands module-colour cluster +
+> chevron). TopNav renders it in place of the old placeholder (new `orgs` prop).
+> Deviations from the raw Figma export, both Figma-side artifacts: Red Hat Text
+> (Figma reported "Google Sans Flex") and light-mode tokens (Figma bound
+> dark-mode tokens onto the white panel → invisible borders). Module colours are
+> hardcoded brand values (**token gap** — not yet in the token system). The
+> "out of scope in v1" language below is retained for history; a full panel spec
+> section (keyboard nav, ARIA, mobile, per-org module data) still needs a
+> `spec-review` pass.
 **Previously reviewed:** 2026-05-18 (v1 first pass — required deepening to reach sidenav-spec parity per CLAUDE.md §5)
 
 ## TL;DR — what this component is, in one paragraph
