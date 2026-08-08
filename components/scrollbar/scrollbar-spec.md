@@ -187,6 +187,34 @@ thumbHeight = max(28px, (clientHeight / scrollHeight) × clientHeight)
 > ```
 > The thumb then hugs the edge while the content keeps its padding — in both expanded and collapsed states.
 
+### 8.1 Edge controls: floating handles vs. sticky/pinned elements
+
+A consumer sometimes puts a control right where the thumb lives — a floating collapse/expand handle straddling the panel's edge, or a button pinned to the top/bottom of the panel. The rule depends on which of those two things the control is:
+
+> **IMPLEMENTATION RULE: floating controls sit above the thumb; sticky controls sit outside the scroll region.**
+> A **floating** control (a collapse handle, a resize sash) is positioned *on top of* the scroll surface — it doesn't reserve space, it overlaps. It belongs in the **same layer as the thumb, above it in z-index**, and the thumb passes behind it exactly the way scrolled content already does. A **sticky/pinned** control (a header row, a pinned "New item" button) *does* reserve space — it's a layout sibling, not an overlay. It belongs **outside `<Scrollable>` entirely** (a `flexShrink: 0` sibling in the same flex column), so the track's height matches only the region that actually scrolls and never reaches the control at all.
+
+**Never solve this by clipping or shortening the track.** The track's length communicates how much content is scrollable; carving out a notch for a control breaks that signal and looks worse than the overlap it was meant to avoid.
+
+**Make the overlap transient, not permanent.** The thumb already reveals only on scroll + edge-proximity and fades after `idleHideMs` (§6); if the floating control also reveals on panel hover rather than staying permanently visible, the two are almost never on screen at the same time. The overlap only reads as broken when both are drawn at full opacity forever.
+
+**Z-order contract**, back to front:
+
+```
+scroll content  →  overlay scrollbar thumb  →  floating edge controls  →  popovers/tooltips
+```
+
+Everything to the right of an item in that chain wins pointer events where they overlap, and each layer's transient reveal (thumb, hover-revealed handle) keeps actual simultaneous overlap rare.
+
+**Two consumer patterns, by example — a SideNav-style panel with a collapse/expand handle:**
+
+| Pattern | Structure | Result |
+|---|---|---|
+| **Recommended — pinned header** | The handle lives inside a `flexShrink: 0` header row **outside** `<Scrollable>` (exactly what Pathway's own [SideNav does](../sidenav/sidenav-spec.md) — see its §9, "the NavHeader is pinned at the top... a `flex-shrink: 0` child placed outside the scroll region"). | The track starts below the header. The handle can never overlap the thumb and can never scroll out of view. |
+| **Ad hoc — floating handle, no header** | The handle floats directly over the scroll region's edge with nothing pinned above it — there is no header row to carve the handle's zone out of the track. | The scroll region *is* the whole panel, so the track runs the full height and the thumb travels behind the handle when scrolled to the top. Documented in Storybook (`EdgeControls` story, `NoPinnedHeader` panel) because it exists in shipped modules today — **it is not the pattern to reach for in new work.** Reach for the pinned-header pattern instead; migrate this panel to it when the module is next touched. |
+
+Both patterns use the exact same `<Scrollable>` — the difference is entirely in what the *consumer* puts outside vs. inside it. Nothing in `scrollbar.jsx` changes between them.
+
 ---
 
 ## 9. Iconography
@@ -267,6 +295,7 @@ Hard rules:
 5. **`SCROLL` constants are the contract** — width, gutter, colours, and timings are shared system-wide; don't override them per consumer.
 6. **Colour resolves through semantic tokens only** — no primitives, no raw hex (§6).
 7. **Vertical only** in v1 — no horizontal custom thumb yet (see §15).
+8. **Floating edge controls sit above the thumb; never clip the track to dodge one** (§8.1). A control that reserves layout space (a header, a pinned action row) belongs **outside** `<Scrollable>`, not floating over it.
 
 ---
 
@@ -277,13 +306,14 @@ Hard rules:
 | Horizontal scrollbar | LOW | v1 is vertical-only (`overflow-x: hidden` on the view). A horizontal thumb would be a future addition with the same token/behaviour model. |
 | `backdrop-filter` fallback | LOW | Browsers without `backdrop-filter` show the flat tint only (no refraction) — graceful, still visible. No action needed. |
 | Contrast in dark mode | LOW | `scrim/faint` resolves to white 16% in dark mode; visually verified on the brand-navy nav surface; revisit if a much lighter dark surface is introduced. |
+| Ad hoc floating-handle panels in production | MEDIUM | At least one shipped module uses a floating collapse handle with no pinned header (§8.1's "ad hoc" pattern), so the thumb travels behind the handle at the top of scroll. Documented, not fixed here — migrate to the pinned-header pattern (matching SideNav) when that module is next touched. |
 
 ---
 
 ## 16. Storybook
 
 - **Docs page:** [Library/Scrollbar](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-scrollbar--docs) — `src/stories/Library/Scrollbar/Scrollbar.mdx`.
-- **Stories:** `Scrollbar.stories.jsx` — `Playground` and `NoLayoutShift` (an overflowing vs non-overflowing comparison proving the thumb adds zero width).
+- **Stories:** `Scrollbar.stories.jsx` — `Playground`, `NoLayoutShift` (an overflowing vs non-overflowing comparison proving the thumb adds zero width), and `EdgeControls` (§8.1 — the recommended pinned-header pattern next to the ad hoc floating-handle-only pattern, so the difference is visible side by side).
 
 ---
 
@@ -291,4 +321,5 @@ Hard rules:
 
 | Version | Date | Author | Change |
 |---|---|---|---|
+| 1.1 | 2026-07-20 | Jo Lopez + Claude | Added §8.1 "Edge controls: floating handles vs. sticky/pinned elements" — the z-order contract (content → thumb → floating controls → popovers), the never-clip-the-track rule, and the two consumer patterns (pinned-header recommended vs. ad hoc floating-handle-only, documented because it ships in a production module today). Added Constraints rule 8 and a Gaps row for the ad hoc pattern. New `EdgeControls` story + MDX section. |
 | 1.0 | 2026-06-23 | Jo Lopez + Claude | Canonical component spec authored in `components/scrollbar/` (was previously only the system-wide `docs/scrollbar-spec.md`). Documents the code-only / no-Figma model, semantic-token bindings (`scrim/faint` rest, `scrim/light` hover), liquid-glass thumb, edge-hug rule, accessibility, responsiveness, motion. |
