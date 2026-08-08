@@ -28,7 +28,7 @@ The Button is **not** a navigation element. It does not route users to a new URL
 | Artefact | URL |
 |---|---|
 | Figma | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003293-93741 |
-| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/components-button--docs |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-button--docs |
 | HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/button/button.html |
 
 ---

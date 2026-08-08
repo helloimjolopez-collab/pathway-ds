@@ -159,7 +159,7 @@ Paste [`sidenav-figmamake.html`](./sidenav-figmamake.html) into the Figma Make p
 - **Full spec with every detail:** [sidenav-spec.md](./sidenav-spec.md) — 1,500+ lines, organised by section, governance table at the top tells you which decisions live where.
 - **Runnable reference:** [sidenav.html](./sidenav.html) — open it in a browser, resize the window to see all breakpoints, copy any pattern that works.
 - **React module to import:** [sidenav.jsx](./sidenav.jsx) — named exports, self-contained, drop-in for any React project.
-- **Live Storybook:** https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/components-sidenav--docs
+- **Live Storybook:** https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-sidenav--docs
 - **Figma source:** [SideNav in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003951-2927)
 
 If anything in this brief disagrees with the full spec, **the full spec wins**. This brief is a condensed pointer, not the source of truth.
