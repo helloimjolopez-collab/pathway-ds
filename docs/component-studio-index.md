@@ -51,9 +51,9 @@ Pathway component demos are standalone HTML files. No npm, no build step. React 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: var(--semantic-typography-font-family-base, system-ui, sans-serif);
-      background: var(--semantic-color-surface-page, #ffffff);
-      color: var(--semantic-color-text-primary, #111111);
+      font-family: var(--semantic-type-desktop-text-supporting-base-regular-fontfamily, system-ui, sans-serif);
+      background: var(--semantic-color-light-mode-surface-canvas-base);
+      color: var(--semantic-color-light-mode-text-static-primary-base);
       padding: 2rem;
     }
   </style>
@@ -70,9 +70,9 @@ Pathway component demos are standalone HTML files. No npm, no build step. React 
 
     const styles = `
       .my-component {
-        background: var(--semantic-color-surface-default);
-        border-radius: var(--semantic-radius-md);
-        padding: var(--semantic-spacing-4);
+        background: var(--semantic-color-light-mode-surface-canvas-light);
+        border-radius: var(--semantic-layout-units-cornerradius-medium);
+        padding: var(--semantic-layout-units-contextual-card-padding-medium-vertical) var(--semantic-layout-units-contextual-card-padding-medium-horizontal);
       }
     `;
 
@@ -152,10 +152,10 @@ Use only Pathway CSS variables. Never hardcode a value that exists as a token.
 ```css
 /* Correct */
 .dialog-content {
-  background: var(--semantic-color-surface-elevated);
-  border-radius: var(--semantic-radius-lg);
-  padding: var(--semantic-spacing-6);
-  box-shadow: var(--semantic-shadow-dialog);
+  background: var(--semantic-color-light-mode-surface-canvas-light);
+  border-radius: var(--semantic-layout-units-cornerradius-large);
+  padding: var(--semantic-layout-units-contextual-card-padding-medium-vertical) var(--semantic-layout-units-contextual-card-padding-medium-horizontal);
+  /* No semantic shadow token exists — log raw box-shadow as design debt in §15 */
 }
 
 /* Wrong — never hardcode */
@@ -166,6 +166,13 @@ Use only Pathway CSS variables. Never hardcode a value that exists as a token.
 }
 ```
 
+**Token naming patterns to know:**
+- Colors: `--semantic-color-light-mode-{text|fill|icon|stroke|surface}-{role}-{variant}`
+- Corner radius: `--semantic-layout-units-cornerradius-{xsmall|small|medium|large|full}`
+- Spacing: component-contextual — `--semantic-layout-units-contextual-{component}-padding-{size}-{direction}`
+- Typography: `--semantic-type-{desktop|mobile}-{heading|text-*}-{scale}-{weight}-{property}` — always look up the exact name in `tokens.css`, never guess
+- No shadow tokens exist — raw `box-shadow` values must be logged as design debt in §15
+
 Do not use Tailwind classes — they do not work in this environment.
 
 ---
@@ -175,21 +182,21 @@ Do not use Tailwind classes — they do not work in this environment.
 Radix primitives expose `data-state` attributes (`open`/`closed`, `checked`/`unchecked`, `active`/`inactive`) for animation. Motion tokens are live in `src/tokens/tokens.css` — use them directly. For the full motion scale and rules see `docs/design-system-spec.md` §2.
 
 ```css
-/* Overlay fade (Dialog, Drawer) */
-.overlay[data-state="open"]  { animation: fade-in  var(--motion-duration-instant) var(--motion-easing-standard); }
-.overlay[data-state="closed"] { animation: fade-out var(--motion-duration-instant) var(--motion-easing-standard); }
+/* Overlay fade (Dialog, Drawer) — 150ms, standard easing */
+.overlay[data-state="open"]  { animation: fade-in  var(--motion-duration-2) var(--motion-easing-standard); }
+.overlay[data-state="closed"] { animation: fade-out var(--motion-duration-2) var(--motion-easing-standard); }
 
-/* Panel/content scale (Dialog, Popover) */
-.content[data-state="open"]  { animation: scale-in  var(--motion-duration-short) var(--motion-easing-spring); }
-.content[data-state="closed"] { animation: scale-out var(--motion-duration-instant) var(--motion-easing-accelerate); }
+/* Panel/content scale (Dialog, Popover) — 200ms in, 150ms out */
+.content[data-state="open"]  { animation: scale-in  var(--motion-duration-3) var(--motion-easing-spring); }
+.content[data-state="closed"] { animation: scale-out var(--motion-duration-2) var(--motion-easing-accelerate); }
 
-/* Dropdown/select panel */
-.dropdown[data-state="open"]  { animation: slide-in  var(--motion-duration-short) var(--motion-easing-spring); }
-.dropdown[data-state="closed"] { animation: slide-out var(--motion-duration-instant) var(--motion-easing-accelerate); }
+/* Dropdown/select panel — 300ms, spring enter */
+.dropdown[data-state="open"]  { animation: slide-in  var(--motion-duration-4) var(--motion-easing-spring); }
+.dropdown[data-state="closed"] { animation: slide-out var(--motion-duration-2) var(--motion-easing-accelerate); }
 
-/* Accordion */
-.accordion-content[data-state="open"]  { animation: accordion-open  var(--motion-duration-short) var(--motion-easing-accordion); }
-.accordion-content[data-state="closed"] { animation: accordion-close var(--motion-duration-short) var(--motion-easing-accordion); }
+/* Accordion — 380ms, accordion easing both directions */
+.accordion-content[data-state="open"]  { animation: accordion-open  var(--motion-duration-5) var(--motion-easing-accordion); }
+.accordion-content[data-state="closed"] { animation: accordion-close var(--motion-duration-5) var(--motion-easing-accordion); }
 
 @keyframes fade-in       { from { opacity: 0; }                        to { opacity: 1; } }
 @keyframes fade-out      { from { opacity: 1; }                        to { opacity: 0; } }
@@ -231,7 +238,7 @@ Icons use Material Symbols loaded from Google Fonts. The icon renders as a text 
 .material-symbols-outlined {
   font-size: 20px;
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
-  color: var(--semantic-color-icon-default);
+  color: var(--semantic-color-light-mode-icon-action-secondary-base);
   line-height: 1;
   user-select: none;
 }
