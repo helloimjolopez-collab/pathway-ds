@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TopNavActions — overflow ellipsis + open menu (studio demo)</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+  body { margin:0; background:#f0f4ff; font-family:'Red Hat Text',sans-serif; color:#252525; }
+  .wrap { max-width:1100px; margin:0 auto; padding:32px 24px 120px; }
+  h1 { font-size:20px; font-weight:600; margin:0 0 4px; }
+  .sub { font-size:13px; color:#7880a0; margin:0 0 24px; }
+  .controls { display:flex; gap:24px; flex-wrap:wrap; margin-bottom:20px; }
+  .ctl { font-size:12px; }
+  .ctl b { display:block; text-transform:uppercase; letter-spacing:.06em; color:#8890b0; font-size:10px; font-weight:700; margin-bottom:6px; }
+  .seg { display:inline-flex; border:1px solid #d8dc:e8; border:1px solid #d8dce8; border-radius:8px; overflow:hidden; }
+  .seg button { border:none; background:#fff; padding:7px 14px; font:inherit; font-size:13px; cursor:pointer; color:#252525; }
+  .seg button[aria-pressed="true"] { background:#2d4889; color:#fff; }
+  .note { font-size:12px; color:#7880a0; margin-top:8px; }
+  .material-symbols-rounded { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20; }
+  .stage { border-radius:12px; overflow:visible; box-shadow:0 1px 0 rgba(0,0,0,0.04); }
+  @keyframes pop { from { opacity:0; transform:translateY(-6px) scale(0.98); } to { opacity:1; transform:translateY(0) scale(1); } }
+  @media (prefers-reduced-motion: reduce) { .pds-menu { animation:none !important; } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { useState, useRef, useEffect } = React;
+
+// Resolved Pathway tokens (mirror components/top-nav/top-nav.jsx T + L).
+const T = {
+  navBg:"#2d4889", monoBase:"#fbfbfb", controlHover:"rgba(10,18,35,0.16)", controlPressed:"rgba(255,255,255,0.08)",
+  searchFill:"rgba(160,181,230,0.08)", avatarBg:"#dcd9ef", avatarText:"#221e3f",
+  panelBg:"#ffffff", panelBorder:"rgba(45,72,137,0.12)", panelShadow:"0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
+  activeItem:"#eef2fb", itemText:"#252525", itemTextBase:"#484848",
+};
+const L = { touchTarget:48, radius:8, avatar:32, searchPill:32 };
+
+const Icon = ({ name, size=20, color }) =>
+  <span className="material-symbols-rounded" style={{ fontSize:size, color, lineHeight:1 }} aria-hidden="true">{name}</span>;
+
+// All the right-side ACTION icons a module might expose (search + profile are NOT here).
+const ALL_ACTIONS = [
+  { id:"notifications", icon:"notifications", label:"Notifications" },
+  { id:"alerts",        icon:"campaign",      label:"Alerts" },
+  { id:"tasks",         icon:"checklist",     label:"Tasks" },
+  { id:"help",          icon:"help",          label:"Help" },
+];
+
+// Collapse rule: desktop = all inline; tablet = ellipsis if >3; mobile = ellipsis if >1.
+function shouldCollapse(bp, count) {
+  if (bp === "desktop") return false;
+  if (bp === "tablet")  return count > 3;
+  return count > 1; // mobile
+}
+
+function NavIconButton({ name, label, onClick, refEl }) {
+  const [hov, setHov] = useState(false);
+  return (
+    <div style={{ display:"flex", alignItems:"center", justifyContent:"center", minWidth:L.touchTarget, minHeight:L.touchTarget, padding:6 }}>
+      <button ref={refEl} onClick={onClick} aria-label={label}
+        onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
+        style={{ width:"100%", height:"100%", display:"flex", alignItems:"center", justifyContent:"center",
+          padding:8, borderRadius:L.radius, border:"none", cursor:"pointer",
+          background: hov ? T.controlHover : "transparent", transition:"background 160ms cubic-bezier(0.4,0,0.2,1)" }}>
+        <Icon name={name} color={T.monoBase} />
+      </button>
+    </div>
+  );
+}
+
+function OverflowMenu({ actions, onClose, anchorRef }) {
+  const menuRef = useRef(null);
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const items = menuRef.current.querySelectorAll('[role="menuitem"]');
+    items[active] && items[active].focus();
+  }, [active]);
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") { e.preventDefault(); onClose(true); }
+      else if (e.key === "ArrowDown") { e.preventDefault(); setActive(a => (a+1) % actions.length); }
+      else if (e.key === "ArrowUp")   { e.preventDefault(); setActive(a => (a-1+actions.length) % actions.length); }
+    };
+    const onClick = (e) => {
+      if (!menuRef.current.contains(e.target) && !anchorRef.current.contains(e.target)) onClose(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onClick);
+    return () => { document.removeEventListener("keydown", onKey); document.removeEventListener("mousedown", onClick); };
+  }, [actions.length]);
+  return (
+    <React.Fragment>
+      {/* Invisible full-screen tap-catcher — reliable outside-tap dismissal on touch, no visible scrim. */}
+      <div onClick={()=>onClose(false)} style={{ position:"fixed", inset:0, zIndex:299, background:"transparent" }} />
+      <div ref={menuRef} className="pds-menu" role="menu" aria-label="More actions"
+        style={{ position:"absolute", top:"calc(100% + 4px)", right:4, minWidth:240, zIndex:300,
+          background:T.panelBg, border:`1px solid ${T.panelBorder}`, borderRadius:12, boxShadow:T.panelShadow,
+          padding:8, animation:"pop 160ms cubic-bezier(0.34,1.2,0.64,1)" }}>
+        {actions.map((a, i) => <MenuItem key={a.id} action={a} focused={i===active}
+          onHover={()=>setActive(i)} onSelect={()=>onClose(true)} />)}
+      </div>
+    </React.Fragment>
+  );
+}
+
+function MenuItem({ action, focused, onHover, onSelect }) {
+  const [hov, setHov] = useState(false);
+  const on = hov || focused;
+  return (
+    <button role="menuitem" tabIndex={-1} onClick={onSelect}
+      onMouseEnter={()=>{ setHov(true); onHover(); }} onMouseLeave={()=>setHov(false)}
+      style={{ display:"flex", alignItems:"center", gap:14, width:"100%", height:48, padding:"0 14px",
+        border:"none", borderRadius:8, cursor:"pointer", background: on ? T.activeItem : "transparent",
+        font:"inherit", textAlign:"left", color:T.itemText, transition:"background 120ms ease" }}>
+      <Icon name={action.icon} size={22} color={T.itemTextBase} />
+      <span style={{ fontSize:15, fontWeight:500 }}>{action.label}</span>
+    </button>
+  );
+}
+
+function TopNavActions({ breakpoint, count }) {
+  const [open, setOpen] = useState(false);
+  const ellipsisRef = useRef(null);
+  const actions = ALL_ACTIONS.slice(0, count);
+  const collapsed = shouldCollapse(breakpoint, count);
+  const close = (returnFocus) => { setOpen(false); if (returnFocus && ellipsisRef.current) ellipsisRef.current.focus(); };
+  if (!collapsed) {
+    return <div style={{ display:"flex", alignItems:"center" }}>
+      {actions.map(a => <NavIconButton key={a.id} name={a.icon} label={a.label} onClick={()=>{}} />)}
+    </div>;
+  }
+  return (
+    <div style={{ position:"relative", display:"flex", alignItems:"center" }}>
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", minWidth:L.touchTarget, minHeight:L.touchTarget, padding:6 }}>
+        <button ref={ellipsisRef} aria-label="More actions" aria-haspopup="menu" aria-expanded={open}
+          onClick={()=>setOpen(o=>!o)}
+          style={{ width:"100%", height:"100%", display:"flex", alignItems:"center", justifyContent:"center",
+            padding:8, borderRadius:L.radius, border:"none", cursor:"pointer",
+            background: open ? T.controlPressed : "transparent", transition:"background 160ms ease" }}>
+          <Icon name="more_vert" color={T.monoBase} />
+        </button>
+      </div>
+      {open && <OverflowMenu actions={actions} onClose={close} anchorRef={ellipsisRef} />}
+    </div>
+  );
+}
+
+function NavBar({ breakpoint, count }) {
+  const pad = breakpoint === "desktop" ? 16 : breakpoint === "tablet" ? 12 : 8;
+  return (
+    <div className="stage" style={{ background:T.navBg, height:56, display:"flex", alignItems:"center",
+      justifyContent:"flex-end", padding:`0 ${pad}px`, gap:2, color:T.monoBase }}>
+      {/* left side stand-in */}
+      <div style={{ marginRight:"auto", fontSize:13, opacity:0.5, paddingLeft:8 }}>… module · org …</div>
+      {/* search (its own pattern — never collapses into the ellipsis) */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", minWidth:L.touchTarget, minHeight:L.touchTarget, padding:6 }}>
+        <div style={{ width:L.searchPill, height:L.searchPill, borderRadius:"50%", background:T.searchFill,
+          display:"flex", alignItems:"center", justifyContent:"center", border:"1.5px solid rgba(251,251,251,0.14)" }}>
+          <Icon name="search" color={T.monoBase} />
+        </div>
+      </div>
+      {/* the flexing action group */}
+      <TopNavActions breakpoint={breakpoint} count={count} />
+      {/* profile (always visible — never collapses) */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", minWidth:L.touchTarget, minHeight:L.touchTarget, padding:2 }}>
+        <div style={{ width:L.avatar, height:L.avatar, borderRadius:"50%", background:T.avatarBg, color:T.avatarText,
+          display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, fontWeight:600 }}>JL</div>
+      </div>
+    </div>
+  );
+}
+
+function Seg({ label, value, options, onChange }) {
+  return <div className="ctl"><b>{label}</b>
+    <div className="seg">{options.map(o =>
+      <button key={o.v} aria-pressed={value===o.v} onClick={()=>onChange(o.v)}>{o.l}</button>)}</div></div>;
+}
+
+function App() {
+  const [bp, setBp] = useState("mobile");
+  const [count, setCount] = useState(4);
+  const collapsed = shouldCollapse(bp, count);
+  return (
+    <div className="wrap">
+      <h1>TopNavActions — overflow ellipsis + open menu</h1>
+      <p className="sub">Only the action icons collapse. Search keeps its own pattern; profile is always visible. Rule: desktop = all inline · tablet = ellipsis if &gt;3 · mobile = ellipsis if &gt;1.</p>
+      <div className="controls">
+        <Seg label="Breakpoint" value={bp} onChange={setBp}
+          options={[{v:"desktop",l:"Desktop ≥1024"},{v:"tablet",l:"Tablet 768–1023"},{v:"mobile",l:"Mobile <768"}]} />
+        <Seg label="Action icons" value={count} onChange={setCount}
+          options={[{v:1,l:"1"},{v:2,l:"2"},{v:4,l:"4"}]} />
+      </div>
+      <NavBar breakpoint={bp} count={count} />
+      <p className="note">{collapsed
+        ? "→ Collapsed: the action icons are behind the ellipsis. Click ⋮ to open the menu."
+        : "→ Inline: all action icons show directly (no ellipsis at this breakpoint/count)."}</p>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
