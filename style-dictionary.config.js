@@ -193,6 +193,53 @@ StyleDictionary.registerFormat({
   },
 });
 
+// ─── mode as selector, not as a name segment ──────────────────────────────────
+// The Figma export nests each mode as a path segment, so name/kebab folds it
+// into the property name: --semantic-color-light-mode-fill-action-primary-base.
+// That doubles every semantic colour token into two unrelated names and makes
+// real theme switching impossible — a consumer has to pick a mode by name at
+// author time. `mode` appears in 904 property names today.
+//
+// This transform drops the mode segment so both modes share ONE name, and the
+// per-mode files below scope them with a selector instead.
+const MODE_SEGMENTS = /^(light-mode|dark-mode|midnight-mode)$/i;
+
+StyleDictionary.registerTransform({
+  name: "name/pathway-modeless",
+  type: "name",
+  transform: (token) =>
+    token.path
+      .filter((s) => !MODE_SEGMENTS.test(String(s)))
+      .join("-")
+      .toLowerCase(),
+});
+
+// Same as css-with-px, but names have the mode stripped. Kept as a separate
+// group so the existing tokens.css output is untouched.
+StyleDictionary.registerTransformGroup({
+  name: "css-modeless",
+  transforms: [
+    "attribute/cti",
+    "name/pathway-modeless",
+    "time/seconds",
+    "html/icon",
+    "size/rem",
+    "color/css",
+    "asset/url",
+    "fontFamily/css",
+    "cubicBezier/css",
+    "strokeStyle/css/shorthand",
+    "border/css/shorthand",
+    "typography/css/shorthand",
+    "transition/css/shorthand",
+    "shadow/css/shorthand",
+    "number/px",
+  ],
+});
+
+const isSemanticColor = (t) => String(t.path[0]).toLowerCase() === "semantic-color";
+const inMode = (t, re) => re.test(String(t.path[1]));
+
 const config = {
   source: ["tokens/pathway-design-tokens.json", "tokens/motion-tokens.json"],
   preprocessors: ["tokens-studio"],
@@ -211,6 +258,35 @@ const config = {
         {
           destination: "type-classes.css",
           format: "pathway/type-classes",
+        },
+      ],
+    },
+    // Theme files: one name per token, resolved by selector.
+    // Additive — tokens.css still carries the old mode-in-name properties, so
+    // both name sets are live and nothing downstream breaks yet.
+    //
+    // EXPECTED WARNING: "filtered out token references were found" on
+    // themes/light.css. These files are filtered to semantic-color only, so the
+    // primitives they reference are not in the same file — they live in
+    // tokens.css, which consumers load alongside. Verified: all 199 referenced
+    // primitives resolve, 0 unresolved. Do not "fix" this by setting
+    // outputReferences: false; that inlines hex and breaks the primitive
+    // cascade, so retuning a primitive would no longer reach the themes.
+    cssThemes: {
+      transformGroup: "css-modeless",
+      buildPath: "src/tokens/",
+      files: [
+        {
+          destination: "themes/light.css",
+          format: "css/variables",
+          filter: (t) => isSemanticColor(t) && inMode(t, /light/i),
+          options: { selector: ":root", outputReferences: true },
+        },
+        {
+          destination: "themes/dark.css",
+          format: "css/variables",
+          filter: (t) => isSemanticColor(t) && inMode(t, /dark|midnight/i),
+          options: { selector: '[data-theme="dark"]', outputReferences: true },
         },
       ],
     },
