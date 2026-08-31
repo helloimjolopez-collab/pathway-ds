@@ -301,7 +301,7 @@ Verified against `tokens/pathway-design-tokens.json` → `semantic.light-mode.co
 | `brand` | `icon.static.brand.*` | `brand.300` | `#3555a0` |
 | `info` | `icon.static.info.*` | `brand.90` | `#5e7dc9` |
 | `warning` | `icon.static.warning.*` | `saffron.80` | `#d3aa43` |
-| `danger` | `icon.static.danger.*` | `orange.80` | `#e2601c` |
+| `danger` | `icon.static.alert.*` | `orange.80` | `#e2601c` |
 | `negative` | `icon.static.negative.*` | `red.100` | `#c84040` |
 | `positive` | `icon.static.positive.*` | `green.70` | `#558f5c` |
 | `accent-amethyst` | `icon.static.accent-amethyst.*` | `amethyst.80` | `#736baa` |
@@ -310,7 +310,9 @@ Verified against `tokens/pathway-design-tokens.json` → `semantic.light-mode.co
 
 > **Note on "accent":** there is no single `accent` tone in the token file; accent is split into three families (`accent-amethyst`, `accent-jade`, `accent-seabreeze`), each of which is a distinct semantic tone. The spinner exposes all three.
 
-> **Note on warning and danger:** both exist in the token file. `danger` (orange) and `negative` (red) are distinct tokens; `warning` (saffron/yellow) is yet a third. If you are prompting the user to stop and look, use `warning`; if something is failing but recoverable, use `danger`; if something has already failed, use `negative`. The spinner accepts all three for completeness — most product uses will only ever need `neutral` or `brand`.
+> **Note on the status tones:** the token library defines exactly four status intents, each bound to one primitive family — `negative` (red), `alert` (orange), `warning` (saffron), `positive` (green). Use `warning` to prompt the user to stop and look, `alert` when something is failing but recoverable, and `negative` when something has already failed. The spinner accepts all of them for completeness; most product uses will only ever need `neutral` or `brand`.
+>
+> **Naming mismatch, 2026-08-31:** the spinner's `tone="danger"` value predates the token rename and now points at the `icon.static.alert.*` family. The prop value is deliberately unchanged, because renaming it is a breaking API change rather than a token reconciliation (see CLAUDE.md §3.3). Tracked in §11 Gaps.
 
 #### 7.1.2 Allowed `emphasis` values
 
@@ -590,6 +592,8 @@ Hard rules. Breaking any of these breaks the component's contract.
 
 | Gap | Priority | Notes |
 |---|---|---|
+| `tone="danger"` no longer matches its token family | MEDIUM | The token library renamed the orange status intent from `danger` to `alert` on 2026-08-31, so `tone="danger"` now resolves to `icon.static.alert.*`. Renaming the prop value is a breaking API change, excluded from token reconciliation by CLAUDE.md §3.3, so it needs an explicit decision. Affects `spinner.html`, `Spinner.stories.jsx` (tone enum), `Spinner.mdx` (prose), `agent-brief.md`. |
+| `spinner.html` redeclares semantic tokens from primitives | MEDIUM | Lines ~98–102 define `--semantic-color-light-mode-icon-static-*` locally as `var(--primitive-color-orange-*)` rather than consuming `tokens.css`. That is a §6 violation and it means the demo does not track token changes. It also masked the `danger` rename, since the demo defines its own copies. |
 | No `motion` tokens in `pathway-design-tokens.json` | MEDIUM | Duration (`1s`) and easing (`linear`) are hard-coded. Recommend adding a motion token category (see §7.3). Blocks cross-component consistency, not this component's ship. |
 | No `icon.static.*` inverse track | MEDIUM | Spinners sitting on dark/brand-filled surfaces (primary buttons, brand banners) have no matching semantic token — the closest is `neutral.light` (`#7b7b7b`). Recommend adding an inverse track or a dedicated `icon.static.on-brand.*` family. See §9.3. |
 | No dark-mode runtime switch | MEDIUM | The token file emits `dark-mode` variables but no theme-switching mechanism exists yet. Spinner binds `light-mode` only. Revisit when the broader DS picks a theme-switching strategy (`[data-theme="dark"]`, `prefers-color-scheme`, …). |
