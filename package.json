@@ -1,7 +1,7 @@
 {
   "name": "@helloimjolopez-pathway/pathway-tokens",
   "version": "5.4.0",
-  "description": "Pathway Design System tokens — CSS custom properties, JS export, and DTCG JSON",
+  "description": "Pathway Design System tokens \u2014 CSS custom properties, JS export, and DTCG JSON",
   "license": "UNLICENSED",
   "type": "module",
   "engines": {
@@ -30,9 +30,11 @@
     "fix-tokens": "node scripts/fix-tokens.js",
     "fix-tokens-preview": "node scripts/fix-tokens.js --dry-run",
     "build-tokens": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js",
-    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/build-dist.js",
+    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/sync-demo-tokens.js --check && node scripts/build-dist.js",
     "storybook": "node style-dictionary.config.js && storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "sync-demo-tokens": "node scripts/sync-demo-tokens.js",
+    "check-demo-tokens": "node scripts/sync-demo-tokens.js --check"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.29.2",
