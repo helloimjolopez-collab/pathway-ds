@@ -259,6 +259,17 @@ const config = {
           destination: "type-classes.css",
           format: "pathway/type-classes",
         },
+        {
+          // Primitives on their own. NOT "private" in the sense of removed —
+          // every semantic token resolves THROUGH these at runtime, so this file
+          // must still be loaded or all 452 colours break. Private means: not
+          // documented for consumers, not in the typed union, and flagged by
+          // lint if referenced directly from product code (CLAUDE.md §6).
+          destination: "primitives.css",
+          format: "css/variables",
+          filter: (t) => String(t.path[0]).toLowerCase().startsWith("primitive"),
+          options: { outputReferences: false },
+        },
       ],
     },
     // Theme files: one name per token, resolved by selector.
