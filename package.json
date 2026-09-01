@@ -30,11 +30,10 @@
     "fix-tokens": "node scripts/fix-tokens.js",
     "fix-tokens-preview": "node scripts/fix-tokens.js --dry-run",
     "build-tokens": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js",
-    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/sync-demo-tokens.js --check && node scripts/build-dist.js",
+    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/check-demo-tokens.js && node scripts/build-dist.js",
     "storybook": "node style-dictionary.config.js && storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "sync-demo-tokens": "node scripts/sync-demo-tokens.js",
-    "check-demo-tokens": "node scripts/sync-demo-tokens.js --check"
+    "check-demo-tokens": "node scripts/check-demo-tokens.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.29.2",

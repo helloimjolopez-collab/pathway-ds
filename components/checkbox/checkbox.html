@@ -8,89 +8,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <!-- Pathway tokens: the real built CSS. Never inline a hand-copied subset -->
+  <link rel="stylesheet" href="../../src/tokens/tokens.css" />
 <style>
-  /* ══════════════════════════════════════════════════════════════════════════
-     PATHWAY TOKENS — inlined subset
-     In a real integration these come from src/tokens/tokens.css.
-     Only the primitives + semantics used by Checkbox are included here.
-     All variable names match the Style Dictionary output exactly.
-  ══════════════════════════════════════════════════════════════════════════ */
-  :root {
-    /* Motion tokens (mirrors src/tokens/tokens.css §motion) ----------------- */
-    --motion-duration-2: 150ms;
-    --motion-duration-3: 200ms;
-    --motion-easing-standard:   cubic-bezier(0.4, 0, 0.2, 1);
-    --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
-    /* Primitives ------------------------------------------------------------ */
-    --primitive-color-brand-0:   #fafafa;
-    --primitive-color-brand-10:  #edf0f9;
-    --primitive-color-brand-20:  #e4e9f6;
-    --primitive-color-brand-30:  #d5ddf1;
-    --primitive-color-brand-50:  #abbbe3;
-    --primitive-color-brand-90:  #5e7dc9;
-    --primitive-color-brand-200: #3d61b7;
-    --primitive-color-brand-300: #3555a0;
-    --primitive-color-brand-400: #273e76;
-
-    --primitive-color-cool-neutral-20:  #f6f6f6;
-    --primitive-color-cool-neutral-30:  #ededed;
-    --primitive-color-cool-neutral-60:  #c4c4c4;
-    --primitive-color-cool-neutral-150: #4b4b4b;
-    --primitive-color-cool-neutral-160: #3b3b3b;
-    --primitive-color-cool-neutral-170: #363636;
-    --primitive-color-cool-neutral-180: #252525;
-
-    --primitive-color-red-30:  #fdf7f7;
-    --primitive-color-red-40:  #fcf4f4;
-    --primitive-color-red-50:  #f9ecec;
-    --primitive-color-red-60:  #f4d9d9;
-    --primitive-color-red-70:  #e7b4b4;
-    --primitive-color-red-110: #aa3636;
-    --primitive-color-red-120: #9d2d2d;
-    --primitive-color-red-130: #862727;
-
-    --primitive-unit-unit-4: 4;
-
-    /* Semantic — fill.action ----------------------------------------------- */
-    --semantic-color-light-mode-fill-action-primary-base:     var(--primitive-color-brand-300);
-    --semantic-color-light-mode-fill-action-primary-hover:    var(--primitive-color-brand-200);
-    --semantic-color-light-mode-fill-action-primary-pressed:  var(--primitive-color-brand-400);
-    --semantic-color-light-mode-fill-action-primary-disabled: var(--primitive-color-brand-40);
-
-    --semantic-color-light-mode-fill-action-primaryinverse-hover:   var(--primitive-color-brand-10);
-    --semantic-color-light-mode-fill-action-primaryinverse-pressed: var(--primitive-color-brand-20);
-
-    --semantic-color-light-mode-fill-action-secondary-base:  var(--primitive-color-cool-neutral-20);
-    --semantic-color-light-mode-fill-action-secondary-hover: var(--primitive-color-cool-neutral-30);
-
-    --semantic-color-light-mode-fill-action-negative-base:     var(--primitive-color-red-120);
-    --semantic-color-light-mode-fill-action-negative-hover:    var(--primitive-color-red-110);
-    --semantic-color-light-mode-fill-action-negative-pressed:  var(--primitive-color-red-130);
-    --semantic-color-light-mode-fill-action-negative-disabled: var(--primitive-color-red-120-50);
-
-    --semantic-color-light-mode-fill-action-negativeinverse-hover: var(--primitive-color-red-10);
-
-    /* Semantic — stroke.action --------------------------------------------- */
-    --semantic-color-light-mode-stroke-action-secondary-base:     var(--primitive-color-warm-neutral-600);
-    --semantic-color-light-mode-stroke-action-secondary-hover:    var(--primitive-color-warm-neutral-700);
-    --semantic-color-light-mode-stroke-action-secondary-pressed:  var(--primitive-color-warm-neutral-750);
-    --semantic-color-light-mode-stroke-action-secondary-disabled: var(--primitive-color-warm-neutral-100);
-
-    --semantic-color-light-mode-stroke-action-negative-base:     var(--primitive-color-red-90);
-    --semantic-color-light-mode-stroke-action-negative-hover:    var(--primitive-color-red-80);
-    --semantic-color-light-mode-stroke-action-negative-pressed:  var(--primitive-color-red-100);
-    --semantic-color-light-mode-stroke-action-negative-disabled: var(--primitive-color-red-30);
-
-    /* Semantic — icon.action ----------------------------------------------- */
-    --semantic-color-light-mode-icon-action-primaryinverse-base:  var(--primitive-color-cool-neutral-0);
-    --semantic-color-light-mode-icon-action-negativeinverse-base: var(--primitive-color-red-40);
-
-    /* Semantic — text.static ----------------------------------------------- */
-    --semantic-color-light-mode-text-static-secondary-base: var(--primitive-color-cool-neutral-150);
-
-    /* Semantic — layout ---------------------------------------------------- */
-    --semantic-layout-units-cornerradius-small: var(--primitive-unit-unit-4);
-  }
 
   /* ── Demo page chrome ─────────────────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -182,11 +102,6 @@
 <script type="text/babel">
 const { useState, useRef, useEffect } = React;
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   CHECKBOX COMPONENT
-   Inlined from components/checkbox/checkbox.jsx
-   Source of truth: checkbox.jsx — keep in sync.
-═══════════════════════════════════════════════════════════════════════════ */
 
 const V = {
   fillCheckedBase:     "var(--semantic-color-light-mode-fill-action-primary-base)",

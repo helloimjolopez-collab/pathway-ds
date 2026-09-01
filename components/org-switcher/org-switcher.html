@@ -10,6 +10,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <!-- Pathway tokens: the real built CSS. Never inline a hand-copied subset -->
+  <link rel="stylesheet" href="../../src/tokens/tokens.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -28,63 +30,15 @@
 
     /* ── Dark-mode tokens ───────────────────────────────────────── */
     :root {
-    /* Motion tokens (mirrors src/tokens/tokens.css §motion). Inlined so the standalone demo
-       resolves the same --motion-* variables the shipped component consumes. */
-    --motion-duration-1: 100ms;
-    --motion-duration-2: 150ms;
-    --motion-duration-3: 200ms;
-    --motion-duration-4: 300ms;
-    --motion-duration-5: 380ms;
-    --motion-duration-6: 460ms;
-    --motion-duration-7: 680ms;
-    --motion-duration-8: 1100ms;
-    --motion-duration-loop: 1000ms;
-    --motion-duration-loop-fast: 750ms;
-    --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
-    --motion-easing-spring: cubic-bezier(0.34, 1.04, 0.64, 1);
-    --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
-    --motion-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
-    --motion-easing-emphasized: cubic-bezier(0.32, 0.72, 0, 1);
-    --motion-easing-accordion: cubic-bezier(0.33, 1.03, 0.68, 1);
-    --motion-easing-linear: cubic-bezier(0, 0, 1, 1);
 
-      --semantic-color-dark-mode-fill-action-tertiary-base:          rgba(160,181,230,0.04);
-      --semantic-color-dark-mode-fill-action-primaryinverse-hover:   rgba(10,18,35,0.16);
-      --semantic-color-dark-mode-fill-action-primaryinverse-pressed: rgba(255,255,255,0.08);
-      --semantic-color-dark-mode-stroke-action-tertiary-base:        rgba(160,181,230,0.16);
-      --semantic-color-dark-mode-stroke-action-tertiary-hover:       rgba(160,181,230,0.20);
-      --semantic-color-dark-mode-stroke-action-tertiary-pressed:     rgba(160,181,230,0.30);
-      --semantic-color-dark-mode-text-action-mono-base:    #fbfbfb;
-      --semantic-color-dark-mode-text-action-mono-hover:   #ffffff;
-      --semantic-color-dark-mode-text-action-mono-pressed: #ffffff;
-      --semantic-color-dark-mode-icon-action-mono-base:    #fbfbfb;
-      --semantic-color-dark-mode-icon-action-mono-hover:   #ffffff;
-      --semantic-color-dark-mode-icon-action-mono-pressed: #ffffff;
 
       /* Avatar placeholder fill (no-logo state) */
-      --semantic-color-dark-mode-fill-action-secondary-base: rgba(255,255,255,0.08);
 
       /* Geometry tokens */
-      --semantic-layout-units-cornerradius-medium: 8px;
-      --semantic-layout-units-cornerradius-small:  4px;
-      --semantic-layout-units-borderwidth-base:    1px;
-      --semantic-layout-units-padding-xxtight:  4px;
-      --semantic-layout-units-padding-xxxtight: 2px;
-      --semantic-layout-units-gap-xxtight:      4px;
 
       /* Typography tokens — desktop trigger label (Label/Button/S) — Figma node 40006820:14750 */
-      --semantic-type-desktop-label-button-s-fontfamily:    "Red Hat Text", sans-serif;
-      --semantic-type-desktop-label-button-s-fontweight:    500;
-      --semantic-type-desktop-label-button-s-fontsize:      14px;
-      --semantic-type-desktop-label-button-s-lineheight:    20px;
-      --semantic-type-desktop-label-button-s-letterspacing: 0.3px;
 
       /* Typography tokens — mobile abbreviated label (Label/Button/XS) — Figma node 40007067:13274 */
-      --semantic-type-desktop-label-button-xs-fontfamily:    "Red Hat Text", sans-serif;
-      --semantic-type-desktop-label-button-xs-fontweight:    500;
-      --semantic-type-desktop-label-button-xs-fontsize:      12px;
-      --semantic-type-desktop-label-button-xs-lineheight:    18px;
-      --semantic-type-desktop-label-button-xs-letterspacing: 0.3px;
     }
 
     /* ── Demo chrome ────────────────────────────────────────────── */

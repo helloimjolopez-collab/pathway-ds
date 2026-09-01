@@ -8,128 +8,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <!-- Pathway tokens: the real built CSS. Never inline a hand-copied subset -->
+  <link rel="stylesheet" href="../../src/tokens/tokens.css" />
 <style>
-  /* ══════════════════════════════════════════════════════════════════════════
-     PATHWAY TOKENS — inlined subset
-     This demo file is self-contained; in a real integration these variables
-     come from src/tokens/tokens.css (built by style-dictionary).
-     Only the primitives and semantic tokens used by the spinner are included.
-     Every variable name below matches the auto-generated name exactly.
-  ══════════════════════════════════════════════════════════════════════════ */
   :root {
-    /* Motion (continuous-loop family — mirrors src/tokens/tokens.css §2) */
-    --motion-duration-loop: 1000ms;
-    --motion-easing-linear: cubic-bezier(0, 0, 1, 1);
-    /* Primitives used by icon.static.* — lifted verbatim from tokens.css      */
-    --primitive-color-cool-neutral-110: #7b7b7b;
-    --primitive-color-cool-neutral-130: #606060;
-    --primitive-color-cool-neutral-150: #4b4b4b;
-    --primitive-color-cool-neutral-190: #202020;
-    --primitive-color-cool-neutral-210: #161616;
-    --primitive-color-brand-70:  #849cd6;
-    --primitive-color-brand-80:  #718dd0;
-    --primitive-color-brand-90:  #5e7dc9;
-    --primitive-color-brand-300: #3555a0;
-    --primitive-color-brand-400: #273e76;
-    --primitive-color-brand-500: #19284c;
-    --primitive-color-red-80:  #de8c8c;
-    --primitive-color-red-90:  #d36666;
-    --primitive-color-red-100: #c84040;
-    --primitive-color-red-130: #862727;
-    --primitive-color-red-150: #621c1c;
-    --primitive-color-orange-50:  #eeac8b;
-    --primitive-color-orange-60:  #e99065;
-    --primitive-color-orange-80:  #e2601c;
-    --primitive-color-orange-100: #ac4915;
-    --primitive-color-orange-110: #913d12;
-    --primitive-color-green-50:  #afe0b5;
-    --primitive-color-green-60:  #7acc83;
-    --primitive-color-green-70:  #558f5c;
-    --primitive-color-green-90:  #446048;
-    --primitive-color-green-100: #29312a;
-    --primitive-color-saffron-40:  #fce9b9;
-    --primitive-color-saffron-50:  #fbde95;
-    --primitive-color-saffron-80:  #d3aa43;
-    --primitive-color-saffron-90:  #ae8c37;
-    --primitive-color-saffron-100: #85630d;
-    --primitive-color-amethyst-50:  #b7b2de;
-    --primitive-color-amethyst-60:  #9f98d3;
-    --primitive-color-amethyst-80:  #736baa;
-    --primitive-color-amethyst-90:  #5f588c;
-    --primitive-color-amethyst-100: #353341;
-    --primitive-color-jade-40:  #a5dcd7;
-    --primitive-color-jade-60:  #4cb9af;
-    --primitive-color-jade-80:  #1a8e84;
-    --primitive-color-jade-110: #17514c;
-    --primitive-color-jade-120: #213b39;
-    --primitive-color-seabreeze-40:  #b7dcea;
-    --primitive-color-seabreeze-50:  #93cbe0;
-    --primitive-color-seabreeze-60:  #4ba8cb;
-    --primitive-color-seabreeze-90:  #35768e;
-    --primitive-color-seabreeze-100: #2a3b41;
 
     /* Semantic icon.static.* — the ONLY colour tokens the spinner is permitted
        to resolve against. Each variable aliases a primitive above; the spinner
        never reads a primitive directly and never accepts a raw hex.           */
-    --semantic-color-light-mode-icon-static-neutral-light:    var(--primitive-color-cool-neutral-110);
-    --semantic-color-light-mode-icon-static-neutral-subtle:   var(--primitive-color-cool-neutral-130);
-    --semantic-color-light-mode-icon-static-neutral-base:     var(--primitive-color-cool-neutral-150);
-    --semantic-color-light-mode-icon-static-neutral-contrast: var(--primitive-color-cool-neutral-190);
-    --semantic-color-light-mode-icon-static-neutral-bold:     var(--primitive-color-cool-neutral-210);
 
-    --semantic-color-light-mode-icon-static-brand-light:    var(--primitive-color-brand-80);
-    --semantic-color-light-mode-icon-static-brand-subtle:   var(--primitive-color-brand-90);
-    --semantic-color-light-mode-icon-static-brand-base:     var(--primitive-color-brand-300);
-    --semantic-color-light-mode-icon-static-brand-contrast: var(--primitive-color-brand-400);
-    --semantic-color-light-mode-icon-static-brand-bold:     var(--primitive-color-brand-500);
 
-    --semantic-color-light-mode-icon-static-info-light:    var(--primitive-color-brand-70);
-    --semantic-color-light-mode-icon-static-info-subtle:   var(--primitive-color-brand-80);
-    --semantic-color-light-mode-icon-static-info-base:     var(--primitive-color-brand-100);
-    --semantic-color-light-mode-icon-static-info-contrast: var(--primitive-color-brand-400);
-    --semantic-color-light-mode-icon-static-info-bold:     var(--primitive-color-brand-500);
-
-    --semantic-color-light-mode-icon-static-warning-light:    var(--primitive-color-saffron-60);
-    --semantic-color-light-mode-icon-static-warning-subtle:   var(--primitive-color-saffron-80);
-    --semantic-color-light-mode-icon-static-warning-base:     var(--primitive-color-saffron-100);
-    --semantic-color-light-mode-icon-static-warning-contrast: var(--primitive-color-saffron-130);
-    --semantic-color-light-mode-icon-static-warning-bold:     var(--primitive-color-saffron-140);
-
-    --semantic-color-light-mode-icon-static-danger-light:    var(--primitive-color-orange-50);
-    --semantic-color-light-mode-icon-static-danger-subtle:   var(--primitive-color-orange-60);
-    --semantic-color-light-mode-icon-static-danger-base:     var(--primitive-color-orange-80);
-    --semantic-color-light-mode-icon-static-danger-contrast: var(--primitive-color-orange-100);
-    --semantic-color-light-mode-icon-static-danger-bold:     var(--primitive-color-orange-110);
-
-    --semantic-color-light-mode-icon-static-negative-light:    var(--primitive-color-red-70);
-    --semantic-color-light-mode-icon-static-negative-subtle:   var(--primitive-color-red-80);
-    --semantic-color-light-mode-icon-static-negative-base:     var(--primitive-color-red-100);
-    --semantic-color-light-mode-icon-static-negative-contrast: var(--primitive-color-red-120);
-    --semantic-color-light-mode-icon-static-negative-bold:     var(--primitive-color-red-130);
-
-    --semantic-color-light-mode-icon-static-positive-light:    var(--primitive-color-green-50);
-    --semantic-color-light-mode-icon-static-positive-subtle:   var(--primitive-color-green-60);
-    --semantic-color-light-mode-icon-static-positive-base:     var(--primitive-color-green-70);
-    --semantic-color-light-mode-icon-static-positive-contrast: var(--primitive-color-green-90);
-    --semantic-color-light-mode-icon-static-positive-bold:     var(--primitive-color-green-100);
-
-    --semantic-color-light-mode-icon-static-accent-amethyst-light:    var(--primitive-color-amethyst-50);
-    --semantic-color-light-mode-icon-static-accent-amethyst-subtle:   var(--primitive-color-amethyst-70);
-    --semantic-color-light-mode-icon-static-accent-amethyst-base:     var(--primitive-color-amethyst-80);
-    --semantic-color-light-mode-icon-static-accent-amethyst-contrast: var(--primitive-color-amethyst-100);
-    --semantic-color-light-mode-icon-static-accent-amethyst-bold:     var(--primitive-color-amethyst-130);
-
-    --semantic-color-light-mode-icon-static-accent-jade-light:    var(--primitive-color-jade-40);
-    --semantic-color-light-mode-icon-static-accent-jade-subtle:   var(--primitive-color-jade-60);
-    --semantic-color-light-mode-icon-static-accent-jade-base:     var(--primitive-color-jade-90);
-    --semantic-color-light-mode-icon-static-accent-jade-contrast: var(--primitive-color-jade-110);
-    --semantic-color-light-mode-icon-static-accent-jade-bold:     var(--primitive-color-jade-130);
-
-    --semantic-color-light-mode-icon-static-accent-seabreeze-light:    var(--primitive-color-seabreeze-50);
-    --semantic-color-light-mode-icon-static-accent-seabreeze-subtle:   var(--primitive-color-seabreeze-60);
-    --semantic-color-light-mode-icon-static-accent-seabreeze-base:     var(--primitive-color-seabreeze-90);
-    --semantic-color-light-mode-icon-static-accent-seabreeze-contrast: var(--primitive-color-seabreeze-110);
-    --semantic-color-light-mode-icon-static-accent-seabreeze-bold:     var(--primitive-color-seabreeze-130);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -295,7 +183,6 @@ const { useState } = React;
 // segment from the inner ring (~1) to the outer ring (~3). The staggered
 // opacity ladder (1.00 → 0.12) breaks the 8-fold rotational symmetry so
 // that rotating the whole SVG produces a visible "head + fading trail".
-// Coordinates are lifted verbatim from the Figma export; do not round.
 const SPINNER_SPOKES = [
   { d: "M6 1V3",             opacity: 1.00 },  // 12 o'clock — leading head
   { d: "M8.1 3.9L9.55 2.45", opacity: 0.87 },  //  1:30
