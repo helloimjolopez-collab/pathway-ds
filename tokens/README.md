@@ -46,15 +46,20 @@ Semantic tokens alias a primitive and give it a _purpose_. The name tells you th
     var(--primitive-color-brand-100)
 ```
 
-**Naming pattern:** `--semantic-color-[mode]-[role]-[context]-[element]-[state]`
+**Naming pattern:** `--semantic-color-[role]-[context]-[element]-[state]`
 
 | Segment | Example values |
 |---------|---------------|
-| `mode` | `light-mode`, `dark-mode` |
 | `role` | `fill`, `icon`, `text`, `stroke`, `surface` |
 | `context` | `static`, `action`, `contextual` |
-| `element` | `navitem`, `brand`, `neutral`, `destructive`… |
-| `state` | `base`, `hover`, `active`, `disabled`, `default` |
+| `element` | `navitem`, `brand`, `neutral`, `negative`, `warning`, `alert`, `positive`… |
+| `state` | `base`, `hover`, `pressed`, `disabled` |
+
+**There is no `mode` segment in the names you should be writing.** The mode used to be
+baked in (`--semantic-color-light-mode-…`), which gave every colour two unrelated names
+and made runtime theming impossible. It is now resolved by CSS selector instead. The old
+form is still emitted in `tokens.css` so existing code keeps working, but do not write
+new code against it.
 
 Not every token uses all five segments — the path is as long as it needs to be to be unambiguous.
 
@@ -132,16 +137,48 @@ If you're writing a component and reaching for a primitive, pause — there's al
 
 ---
 
-## Light and dark mode
+## Light Mode and Midnight Mode
 
-Semantic tokens exist in two mode variants:
+The dark theme is called **Midnight Mode**. One token name carries both values, and the
+active theme is chosen by a selector:
 
 ```css
---semantic-color-light-mode-fill-contextual-navitem-base: ...
---semantic-color-dark-mode-fill-contextual-navitem-base:  ...
+/* themes/light.css */
+:root {
+  --semantic-color-fill-contextual-navitem-base: var(--primitive-color-brand-0);
+}
+
+/* themes/midnight.css */
+[data-theme="midnight"], [data-theme="dark"] {
+  --semantic-color-fill-contextual-navitem-base: var(--primitive-color-brand-900);
+}
 ```
 
-Both are emitted into `src/tokens/tokens.css`. Your layout layer decides which to activate — typically by scoping a `[data-theme="dark"]` attribute on a parent element that swaps the dark-mode vars in.
+Load both files. Set `data-theme="midnight"` on `<html>` to switch the whole page, or on
+any element to switch just that subtree — which is how you get a dark bar inside an
+otherwise light page.
+
+`[data-theme="dark"]` is accepted as an alias so you do not need to know our brand
+vocabulary to theme.
+
+---
+
+## Typography: apply one class, not five properties
+
+A type style is a composite of five properties. Consume it as a class:
+
+```css
+/* correct */
+.my-heading { /* nothing needed */ }
+```
+```html
+<h2 class="pw-type-heading-page-base-bold">Title</h2>
+```
+
+There are 111 classes in `type-classes.css`, one per text style, and a mobile media query
+carries only the properties that actually change. Do not hand-assemble a type style from
+`--semantic-type-desktop-…-fontsize` and its four siblings; those exist only for legacy
+consumers.
 
 ---
 
@@ -152,8 +189,8 @@ For readable lookups in component demos and scripts, use the resolver utility:
 ```js
 import { t } from "../../tokens/resolve-tokens.js";
 
-const fill = t("Fill/Contextual/NavItem/Base");          // light mode
-const dark = t("Fill/Contextual/NavItem/Base", "dark");  // dark mode
+const fill = t("Fill/Contextual/NavItem/Base");              // Light Mode
+const night = t("Fill/Contextual/NavItem/Base", "midnight");  // Midnight Mode
 ```
 
 `t()` converts the Figma display-path format (`"Fill/Contextual/NavItem/Base"`) into the resolved CSS variable value. It handles both modes and caches lookups.

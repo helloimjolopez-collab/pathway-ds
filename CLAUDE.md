@@ -8,7 +8,7 @@ Different layers of this system have different sources of truth. Keep them strai
 
 | What | Source of truth | Flow |
 |---|---|---|
-| **Design tokens** (primitives, semantics, modes) | **Figma** → exported to `tokens/figma-export/pathwaytokens.json` | Automatic. CI runs `sync-tokens.js` → `style-dictionary` → Storybook. |
+| **Design tokens** (primitives, semantics, modes) | **Figma** → exported to `tokens/figma-export/pathwaytokens.json` | `sync-tokens.yml` fires on push to that path, then `style-dictionary` → Storybook. The export itself is currently a manual designer step, so **check the file's date before trusting it** — see §2. |
 | **Motion tokens** (durations, easings) | **`docs/design-system-spec.md` §2** | `scripts/sync-motion-tokens.js` reads §2.1 and §2.2 tables → writes `tokens/motion-tokens.json` → Style Dictionary emits `--motion-*` CSS variables. Run as part of `build-tokens`. |
 | **Component implementations** (HTML demos, specs, stories) | **GitHub** (the files in this repo) | Manual. Designer changes a component in Figma → user asks agent to pull → agent uses Figma MCP tools to fetch the updated node → agent edits the component's files in this repo. |
 | **Component visual design** (variants, frames, anatomy, variables-bound properties) | **Figma** | Same manual flow as above. Figma is the design artifact; this repo carries the implementation. |
@@ -37,8 +37,38 @@ tokens/pathway-design-tokens.json                        │
   └──────────────────────────┬────────────────────────────┘
                              │  node style-dictionary.config.js
                              ▼
-              src/tokens/tokens.css, src/tokens/tokens.js  ← consumed by Storybook + components
+        src/tokens/tokens.css          all tokens, mode baked into the name (legacy)
+        src/tokens/type-classes.css    111 composite type styles as CSS classes
+        src/tokens/themes/light.css    452 semantic colours under :root
+        src/tokens/themes/midnight.css the same 452 names under [data-theme]
+        src/tokens/tokens.js           flat JS map, consumed by resolve-tokens + stories
 ```
+
+**The manual export step is being replaced.** There is no Figma REST access on this
+plan, so the replacement reads variables through the Figma MCP server (Plugin API)
+from an agent session rather than a cron job. Until that lands, `tokens/figma-export/
+pathwaytokens.json` is only as fresh as the last manual export — check its date
+before trusting any count derived from the CSS.
+
+### 2.0 The four CSS outputs, and which one to consume
+
+| File | Contains | Consume it? |
+|---|---|---|
+| `themes/light.css` + `themes/midnight.css` | 452 semantic colour names, one name per token, mode resolved by selector | **Yes.** This is the colour contract |
+| `type-classes.css` | 111 `.pw-type-*` classes, one per text style, with a mobile media query | **Yes.** Apply one class, not five properties |
+| `tokens.css` | Everything, with the mode baked into each name (`--semantic-color-light-mode-…`) | Legacy. Still emitted so nothing breaks; being retired |
+| `tokens.js` | Flat JS map | Only via `resolve-tokens.js` |
+
+Both colour name sets are live at once on purpose, so consumers can migrate at
+their own pace. Migrating off `tokens.css` is a `-light-mode` string deletion for
+literal references, plus manual work in the four files that build token names by
+string interpolation (`components/button/button.jsx`, `components/button/button.html`,
+`components/top-nav/top-nav.jsx`, `src/stories/Library/Button/Button.stories.jsx`).
+
+**`top-nav.jsx` needs care.** It currently reaches for `--semantic-color-dark-mode-…`
+by name to style its dark bar while the page is in light mode. Under selector-based
+theming that name resolves to one value only, so the dark region needs a
+`[data-theme="midnight"]` wrapper instead.
 
 Rules:
 
@@ -50,12 +80,23 @@ Rules:
 - **`src/tokens/tokens.css` is derived.** Do not hand-edit it. Style Dictionary regenerates it on every build.
 - If a broken alias matters (e.g. a component visibly breaks because its token disappeared), the fix goes **in Figma**, not in the repo.
 
-### 2.1 Dark mode — ENABLED (2026-05-05)
+### 2.1 Midnight Mode — ENABLED (2026-05-05, renamed 2026-08-28)
 
-**Dark-mode tokens are now imported from the Figma export.** The `EXCLUDED_MODE_SLUGS` set in `sync-tokens.js` is empty — all modes come through, including dark.
+**The dark mode is called Midnight Mode.** That is the Pathway name in the Figma
+Variables panel and in `themes/midnight.css`. Do not call it "dark mode" in any
+document, spec, or token name. The one exception is the CSS selector, which emits
+both `[data-theme="midnight"]` and `[data-theme="dark"]`, because a consumer on
+another team should not have to learn our brand vocabulary to switch themes.
 
-- Light-mode and dark-mode tokens both land in `tokens/pathway-design-tokens.json` and are emitted as CSS variables in `src/tokens/tokens.css`.
-- If the user asks to re-disable dark mode, add `"dark-mode"` and `"dark"` back to `EXCLUDED_MODE_SLUGS` in `sync-tokens.js`.
+- The `EXCLUDED_MODE_SLUGS` set in `sync-tokens.js` is empty, so all modes come through.
+- Light Mode and Midnight Mode tokens both land in `tokens/pathway-design-tokens.json`.
+  They are emitted twice: with the mode in the name in `tokens.css` (legacy), and with
+  one shared name per token across `themes/light.css` and `themes/midnight.css`.
+- The mode-stripping is done by the `name/pathway-modeless` transform. Its
+  `MODE_SEGMENTS` regex matches `light-mode`, `dark-mode` and `midnight-mode`, so it
+  keeps working across the rename and against the NewCo branch.
+- If the user asks to re-disable Midnight Mode, add `"midnight-mode"`, `"dark-mode"`
+  and `"dark"` to `EXCLUDED_MODE_SLUGS` in `sync-tokens.js`.
 
 ## 3. Component reconciliation after token changes
 
@@ -204,7 +245,17 @@ Before writing any colour into a component, grep `tokens/pathway-design-tokens.j
 ## 7. Naming, casing, and slugs
 
 - Token names in `pathway-design-tokens.json` are always lowercase with dots (`semantic-color.light-mode.icon.static.neutral.base`). `sync-tokens.js` slugifies the Figma export to this form automatically. Do not override.
-- CSS custom properties derived by Style Dictionary replace dots with hyphens (`--semantic-color-light-mode-icon-static-neutral-base`). Consume these exactly as emitted.
+- CSS custom properties derived by Style Dictionary replace dots with hyphens. There are
+  now two naming forms and you must know which file you are reading:
+  - **Preferred**, from `themes/light.css` and `themes/midnight.css`: the mode is NOT in
+    the name, e.g. `--semantic-color-icon-static-neutral-base`. One name, two values,
+    resolved by selector.
+  - **Legacy**, from `tokens.css`: the mode IS in the name, e.g.
+    `--semantic-color-light-mode-icon-static-neutral-base`. Still emitted so existing
+    consumers keep working. Do not write new code against this form.
+  - Type is consumed as a class from `type-classes.css`, e.g. `.pw-type-label-menu-base-medium`,
+    never as five separate custom properties.
+  Consume names exactly as emitted by whichever file you are using; never hand-assemble one.
 - Component class names use BEM-lite kebab (`.pds-spinner__svg`). Never PascalCase or camelCase in CSS selectors.
 - File names: lowercase kebab (see §4).
 - Git commit messages: imperative mood, first line under 72 chars, body explains *why* not *what*.
@@ -257,11 +308,10 @@ The component pipeline is broken into four skills so different audiences can use
 | `/pathway:component-pipeline` | DS owner | `--mode=create` or `--mode=update`. Composes the three skills above → generates `.jsx` + `.html` + stories + MDX + manifest → commits + pushes | ✅ writes + pushes |
 | `/pathway:tokens-sync` | DS owner | Syncs Figma token export, rebuilds Style Dictionary + Storybook, commits + pushes | ✅ writes + pushes |
 
-All five skills ship in the [`JoLopez-Product-Plugins`](https://github.com/helloimjolopez-collab/JoLopez-Product-Plugins) plugin (Claude Code). To install:
-```
-/plugin marketplace add helloimjolopez-collab/JoLopez-Product-Plugins
-/plugin install pathway@jolopez-product-plugins
-```
+The Pathway skills are **installed in Claude**, not stored in this repo or in any local
+folder. Do not go looking for `SKILL.md` files on disk to determine what a skill does or
+which copy is authoritative — several stale copies exist in unrelated folders and they
+have caused wrong conclusions before. Invoke the skill, or go through skill-creator.
 
 Token sync (`update-tokens`) is separate — it runs on token changes, independent of component work.
 

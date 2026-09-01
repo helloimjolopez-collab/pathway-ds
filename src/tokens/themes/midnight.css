@@ -2,7 +2,7 @@
  * Do not edit directly, this file was auto-generated.
  */
 
-[data-theme="dark"] {
+[data-theme="midnight"], [data-theme="dark"] {
   --semantic-color-text-action-primary-base: var(--primitive-color-brand-20);
   --semantic-color-text-action-primary-hover: var(--primitive-color-brand-10);
   --semantic-color-text-action-primary-pressed: var(--primitive-color-brand-10);

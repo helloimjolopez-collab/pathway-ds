@@ -283,10 +283,17 @@ const config = {
           options: { selector: ":root", outputReferences: true },
         },
         {
-          destination: "themes/dark.css",
+          // Figma calls this mode "Midnight Mode", so the file is named for it.
+          // Both selectors are emitted: "midnight" is the Pathway name, "dark"
+          // is what every CSS framework and prefers-color-scheme uses, and a
+          // consumer should not have to know our brand vocabulary to theme.
+          destination: "themes/midnight.css",
           format: "css/variables",
           filter: (t) => isSemanticColor(t) && inMode(t, /dark|midnight/i),
-          options: { selector: '[data-theme="dark"]', outputReferences: true },
+          options: {
+            selector: '[data-theme="midnight"], [data-theme="dark"]',
+            outputReferences: true,
+          },
         },
       ],
     },
