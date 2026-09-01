@@ -9,6 +9,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <!-- Pathway tokens: the real built CSS. Never inline a hand-copied subset -->
+  <link rel="stylesheet" href="../../src/tokens/tokens.css" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   /* Surface/Canvas = #fafafa (same hex as Surface/Nav/Light — see token table) */
@@ -18,38 +20,8 @@
   ::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; transition: background var(--motion-duration-3); }
   *:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); }
 
-  /* Semantic tokens consumed by the <Scrollable> overlay scrollbar (mirrors src/tokens/tokens.css). */
   :root {
-    /* Motion tokens (mirrors src/tokens/tokens.css §motion). Inlined so the standalone demo
-       resolves the same --motion-* variables the shipped component consumes. */
-    --motion-duration-1: 100ms;
-    --motion-duration-2: 150ms;
-    --motion-duration-3: 200ms;
-    --motion-duration-4: 300ms;
-    --motion-duration-5: 380ms;
-    --motion-duration-6: 460ms;
-    --motion-duration-7: 680ms;
-    --motion-duration-8: 1100ms;
-    --motion-duration-loop: 1000ms;
-    --motion-duration-loop-fast: 750ms;
-    --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
-    --motion-easing-spring: cubic-bezier(0.34, 1.04, 0.64, 1);
-    --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
-    --motion-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
-    --motion-easing-emphasized: cubic-bezier(0.32, 0.72, 0, 1);
-    --motion-easing-accordion: cubic-bezier(0.33, 1.03, 0.68, 1);
-    --motion-easing-linear: cubic-bezier(0, 0, 1, 1);
 
-    --semantic-color-light-mode-scrim-faint: rgba(17, 17, 17, 0.16); /* thumb rest */
-    --semantic-color-light-mode-scrim-light: rgba(17, 17, 17, 0.30);  /* thumb hover/drag */
-    --semantic-color-light-mode-fill-static-neutral-light: #fefefd;   /* glass edge */
-    --semantic-layout-units-padding-xtight:   6px;
-    --semantic-layout-units-padding-xxxtight: 2px;
-    --semantic-layout-units-cornerradius-full: 64px;
-    --motion-duration-3: 200ms;
-    --motion-duration-5: 380ms;
-    --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
-    --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
   }
   /* Hide the native bar on the Scrollable view (the overlay thumb replaces it). */
   .pds-scrollable__view { scrollbar-width: none; -ms-overflow-style: none; }
@@ -408,7 +380,6 @@
 const { useState, useRef, useEffect, useCallback } = React;
 
 // ─── Scrollable (system overlay scrollbar) ──────────────────────────────────────
-// Inlined from components/scrollbar/scrollbar.jsx so this standalone demo uses the
 // SAME overlay scrollbar component as the repo — not a native/generic bar. Spec:
 // components/scrollbar/scrollbar-spec.md. Colour/units resolve through semantic tokens.
 const SCROLL = {
