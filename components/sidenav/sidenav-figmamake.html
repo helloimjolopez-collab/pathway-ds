@@ -457,33 +457,51 @@ function Scrollable({ children, style={}, viewStyle={} }) {
 }
 
 // ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
+// Mirrors components/sidenav/sidenav.jsx exactly. Keep the two in step — the .jsx
+// is the source of truth per CLAUDE.md §10.1.
+//
+// These are var() references, not resolved hex. The previous version called
+// t("Fill/Contextual/NavItem/Base"), which baked a light-mode hex at load time so
+// Midnight Mode could never work, and which silently returned the token id as a
+// bogus colour whenever a name had been renamed in Figma. Referencing the custom
+// property lets the cascade resolve it, so [data-theme="midnight"] just works.
+const c = (name) => `var(--semantic-color-${name})`;
+const u = (name, fallback) => `var(--semantic-layout-units-${name}, ${fallback}px)`;
+
 const T = {
   fill: {
-    navBase:    t("Fill/Contextual/NavItem/Base"),
-    navHover:   t("Fill/Contextual/NavItem/Hover"),
-    navActive:  t("Fill/Contextual/NavItem/Active"),
-    navTrail:   t("Fill/Contextual/NavItem/Trail"),   // same resolved value as Hover — kept distinct
-    infoSubtle: t("Stroke/Static/Neutral/Light"),      // divider + nav border-right
+    // Rest paints nothing — the Figma token was deleted so resting is genuinely bare.
+    navBase:    "transparent",
+    navHover:   c("fill-contextual-navitem-hover"),
+    navActive:  c("fill-contextual-navitem-pressed"),
+    navTrail:   c("fill-contextual-navitem-trail"),
+    infoSubtle: c("stroke-static-neutral-subtle"),   // divider + nav border-right
   },
   surface: {
-    navLight: t("Surface/Nav/Light"),
-    canvas:   t("Surface/Canvas/Light"),
+    navLight: c("surface-sheet"),
+    canvas:   c("surface-canvas"),
   },
+  // Label, icon and chevron share ONE token per state. A nav item is a single
+  // interactive surface, so its foreground must not split across two ramps.
   text: {
-    navBase:         t("Text/Contextual/NavItem/Base"),
-    navHover:        t("Text/Contextual/NavItem/Hover"),
-    navActive:       t("Text/Contextual/NavItem/Active"),  // also used for trail states
-    secondary:       t("Text/Static/Secondary/Light"),
-    secondarySubtle: t("Text/Static/Secondary/Subtle"),    // PopoverMenu.SectionLabel
+    navBase:         c("foreground-action-secondary-rest"),
+    navHover:        c("foreground-action-secondary-hover"),
+    navActive:       c("foreground-action-secondary-pressed"),
+    navDisabled:     c("foreground-action-secondary-disabled"),
+    secondary:       c("foreground-static-neutral-subtle"),
+    secondarySubtle: c("foreground-static-neutral-subtle"),  // PopoverMenu.SectionLabel
   },
   icon: {
-    navBase:         t("Icon/Contextual/NavItem/Base"),    // also trail-expanded icon
-    navHover:        t("Icon/Contextual/NavItem/Hover"),
-    navActive:       t("Icon/Contextual/NavItem/Active"),  // icon + indicator.stripe
-    actionSecondary: t("Icon/Action/Secondary Inverse/Base"), // CollapseButton action icon
+    navBase:         c("foreground-action-secondary-rest"),
+    navHover:        c("foreground-action-secondary-hover"),
+    navActive:       c("foreground-action-secondary-pressed"),
+    navDisabled:     c("foreground-action-secondary-disabled"),
+    actionSecondary: c("foreground-action-secondary-inverse-rest"), // CollapseButton
   },
-  indicator: t("Icon/Contextual/NavItem/Active"),
-  radius:    8,  // Component/NavItem/Large/Radius/Radius → 8px
+  // The stripe takes the loud brand blue from the Action tier rather than owning
+  // a token of its own.
+  indicator: c("fill-action-primary-pressed"),
+  radius:    u("cornerradius-medium", 8),
 };
 
 // ─── LAYOUT VALUES (from Figma — no semantic token names found for these) ─────
