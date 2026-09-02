@@ -1,0 +1,14 @@
+{
+  "codeConnect": {
+    "include": [
+      "components/**/*.figma.ts"
+    ],
+    "exclude": [
+      "node_modules/**",
+      "storybook/**",
+      "storybook-static/**",
+      "dist/**",
+      "src/stories/**"
+    ]
+  }
+}

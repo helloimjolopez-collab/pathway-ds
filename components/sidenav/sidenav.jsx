@@ -12,55 +12,102 @@
 import React, { useState, useRef } from "react";
 import { Scrollable } from "../scrollbar/scrollbar.jsx";
 import ReactDOM from "react-dom";
-import { t } from "../../tokens/resolve-tokens.js";
 
-// ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
+/*
+ * ─── DESIGN TOKENS ───────────────────────────────────────────────────────────
+ *
+ * Every value below is a `var()` reference to a real custom property, never a
+ * resolved hex. This is deliberate and it is a behavioural fix, not a style
+ * preference:
+ *
+ * This module previously called `t("Fill/Contextual/NavItem/Base")`, which reads
+ * src/tokens/tokens.js and returns a LIGHT-MODE HEX at module load. That baked
+ * one theme into the bundle, so Midnight Mode could not work at all in the coded
+ * component no matter what the consumer did. `t()` also returns the token id
+ * unchanged when it cannot resolve a name, which emits invalid CSS that the
+ * browser silently drops — so a renamed token failed as a colour that quietly
+ * reverted to inherited, with no error anywhere.
+ *
+ * Referencing the custom property instead means the cascade resolves the value,
+ * so `[data-theme="midnight"]` just works, and a missing token is visible in
+ * devtools as an unresolved var rather than disappearing.
+ *
+ * WHAT THE CONSUMER MUST LOAD (see sidenav-spec.md §Consuming):
+ *   themes/light.css + themes/midnight.css  → every --semantic-color-* below
+ *   tokens.css                              → every --semantic-layout-units-* below
+ *   type-classes.css                        → .pw-type-label-menu-base-medium
+ *
+ * Token names verified against the Figma Variables panel on 2026-09-02.
+ */
+const c = (name) => `var(--semantic-color-${name})`;
+const u = (name, fallback) => `var(--semantic-layout-units-${name}, ${fallback}px)`;
+
+// Negate a length that may be either a number or a var() reference. Used for the
+// scroll-region edge bleed, where `-value` on a string would give NaN.
+const neg = (value) =>
+  typeof value === "number" ? -value : `calc(-1 * ${value})`;
+
 export const T = {
   fill: {
-    navBase:    t("Fill/Contextual/NavItem/Base"),
-    navHover:   t("Fill/Contextual/NavItem/Hover"),
-    navActive:  t("Fill/Contextual/NavItem/Active"),
-    navTrail:   t("Fill/Contextual/NavItem/Trail"),   // same resolved value as Hover — kept distinct
-    infoSubtle: t("Stroke/Static/Neutral/Light"),      // container right border
+    // Rest has NO fill. The Figma token was deleted so that resting genuinely
+    // paints nothing rather than painting the sheet colour over the sheet.
+    navBase:    "transparent",
+    navHover:   c("fill-contextual-navitem-hover"),
+    navActive:  c("fill-contextual-navitem-pressed"),
+    navTrail:   c("fill-contextual-navitem-trail"),
+    infoSubtle: c("stroke-static-neutral-subtle"),   // container right border
   },
-  surface: { navLight: t("Surface/Nav/Light") },
+  surface: { navLight: c("surface-sheet") },
+  // Label, icon and chevron all resolve to the SAME token per state. A nav item
+  // is one interactive surface, so its foreground must not split across two
+  // ramps that can drift apart.
   text: {
-    navBase:         t("Text/Contextual/NavItem/Base"),
-    navHover:        t("Text/Contextual/NavItem/Hover"),
-    navActive:       t("Text/Contextual/NavItem/Active"),
-    secondary:       t("Text/Static/Secondary/Light"),   // PopoverMenu.SectionLabel
-    secondarySubtle: t("Text/Static/Secondary/Subtle"),  // NavSectionLabel
+    navBase:         c("foreground-action-secondary-rest"),
+    navHover:        c("foreground-action-secondary-hover"),
+    navActive:       c("foreground-action-secondary-pressed"),
+    navDisabled:     c("foreground-action-secondary-disabled"),
+    secondary:       c("foreground-static-neutral-subtle"),   // PopoverMenu.SectionLabel
+    secondarySubtle: c("foreground-static-neutral-subtle"),   // NavSectionLabel
   },
   icon: {
-    navBase:         t("Icon/Contextual/NavItem/Base"),
-    navHover:        t("Icon/Contextual/NavItem/Hover"),
-    navActive:       t("Icon/Contextual/NavItem/Active"),  // also indicator stripe
-    actionSecondary: t("Icon/Action/Secondary Inverse/Base"), // CollapseButton icon
+    navBase:         c("foreground-action-secondary-rest"),
+    navHover:        c("foreground-action-secondary-hover"),
+    navActive:       c("foreground-action-secondary-pressed"),
+    navDisabled:     c("foreground-action-secondary-disabled"),
+    actionSecondary: c("foreground-action-secondary-inverse-rest"), // CollapseButton
   },
-  indicator: t("Icon/Contextual/NavItem/Active"),
-  radius:    8,  // Radius/M
+  // The active-item stripe takes the loud brand blue straight from the Action
+  // tier rather than owning a token of its own.
+  indicator: c("fill-action-primary-pressed"),
+  radius:    u("cornerradius-medium", 8),
 };
 
-// ─── LAYOUT VALUES (no semantic tokens in Figma — raw values) ─────────────────
+/*
+ * ─── LAYOUT ──────────────────────────────────────────────────────────────────
+ * Values that exist as semantic tokens reference them, with the Figma value as
+ * the var() fallback so the component still lays out correctly if a consumer
+ * loads only the colour themes. Values with no token in Figma stay numeric and
+ * say so.
+ */
 export const L = {
-  navPadH:     16,   // horizontal padding on expanded SideNav.Container — Padding/Base
-  navColPadH:  12,   // horizontal padding on collapsed SideNav.Container — Padding/Medium
-  navPadTop:   8,    // top padding on SideNav.Container — Padding/Tight
-  navW:        240,  // expanded sidebar width (updated from 220px)
-  navWcol:     72,   // collapsed rail width
-  menuGap:     6,    // gap between SideNavMenu items — Gap/XTight (corrected 2026-05-26; was 0)
-  menuPadT:    8,    // top padding on SideNavMenu (space below the NavHeader divider)
-  menuPadB:    56,   // bottom padding in SideNavMenu (space before collapse button, updated from 24)
-  itemH:       44,   // min-height per item (Accessibility/Touch Target/AA — Figma 40005281:10058, updated 2026-06-08 from 48)
-  iconWrap:    24,   // leading icon wrapper (Accessibility/Icon Wrapping/Large)
-  iconInner:   16,   // icon glyph size — Material Symbols Rounded at 16px (updated 2026-06-08 from 14)
-  rowPadH:     8,    // horizontal padding in Container.rowStart
-  textPad:     6,    // label text padding
-  childIndent: 24,   // level-1 left indent inside rowStart 8px
-  stripeW:     4,    // indicator stripe width
-  colPadL:     12,   // collapse button left padding (Padding/Tight)
-  colPadR:     8,    // collapse button right padding (Padding/XTight)
-  collapseGap: 4,    // gap above collapse button divider
+  navPadH:     u("padding-base", 16),
+  navColPadH:  u("padding-medium", 12),
+  navPadTop:   u("padding-tight", 8),
+  navW:        240,  // no token in Figma — expanded sidebar width
+  navWcol:     72,   // no token in Figma — collapsed rail width
+  menuGap:     u("gap-xtight", 6),
+  menuPadT:    u("padding-tight", 8),
+  menuPadB:    u("padding-xxwide", 56),
+  itemH:       u("accessibility-touch-target-aa-height", 44),
+  iconWrap:    24,   // no token in Figma — leading icon wrapper
+  iconInner:   16,   // Material Symbols Rounded frame size, per design-system-spec §7.2
+  rowPadH:     u("padding-tight", 8),
+  textPad:     u("padding-xtight", 6),
+  childIndent: 24,   // no token in Figma — level-1 left indent
+  stripeW:     4,    // no token in Figma — indicator stripe width
+  colPadL:     u("padding-medium", 12),
+  colPadR:     u("padding-tight", 8),
+  collapseGap: u("padding-xxtight", 4),
 };
 
 // ─── IndicatorStripe ──────────────────────────────────────────────────────────
@@ -93,32 +140,42 @@ export function SideNavItem({
   const isCollapsedGrouper = isSidebarCollapsed && hasChildren;
   const showStripe = isCollapsedActiveGrouper || (isActive && !isCollapsedGrouper);
 
+  // A disabled item takes no fill and no hover, so it cannot look interactive.
+  const isDisabled = !!item.disabled;
+
   const fillBg =
-    (isActive || isCollapsedActiveGrouper) ? T.fill.navActive
+    isDisabled                             ? T.fill.navBase
+    : (isActive || isCollapsedActiveGrouper) ? T.fill.navActive
     : isExpandedGrouper                    ? T.fill.navTrail
     : hovered                              ? T.fill.navHover
     :                                        T.fill.navBase;
   const textColor =
-    (isActive || isCollapsedActiveGrouper || isExpandedGrouper) ? T.text.navActive
+    isDisabled ? T.text.navDisabled
+    : (isActive || isCollapsedActiveGrouper || isExpandedGrouper) ? T.text.navActive
     : hovered ? T.text.navHover
     :           T.text.navBase;
   const iconColor =
-    (isActive || isCollapsedActiveGrouper) ? T.icon.navActive
+    isDisabled ? T.icon.navDisabled
+    : (isActive || isCollapsedActiveGrouper) ? T.icon.navActive
     : hovered                              ? T.icon.navHover
     :                                        T.icon.navBase;
 
   const handleClick = () => {
+    if (isDisabled) return;
     if (hasChildren && !isSidebarCollapsed) onToggle(item.id);
     else onClick(item.id);
   };
 
   return (
     <div ref={itemRef} style={{ position: "relative" }}>
-      <div role="button" tabIndex={0} aria-current={isActive ? "page" : undefined}
+      <div role="button" tabIndex={isDisabled ? -1 : 0}
+        aria-current={isActive ? "page" : undefined}
+        aria-disabled={isDisabled ? true : undefined}
         aria-expanded={hasChildren && !isSidebarCollapsed ? isExpanded : undefined}
         onClick={handleClick}
-        onKeyDown={e => (e.key === "Enter" || e.key === " ") && handleClick()}
+        onKeyDown={e => !isDisabled && (e.key === "Enter" || e.key === " ") && handleClick()}
         onMouseEnter={() => {
+          if (isDisabled) return;
           setHovered(true);
           if (isSidebarCollapsed && onPopoverEnter) {
             const rect = itemRef.current ? itemRef.current.getBoundingClientRect() : null;
@@ -126,11 +183,13 @@ export function SideNavItem({
           }
         }}
         onMouseLeave={() => {
+          if (isDisabled) return;
           setHovered(false);
           if (isSidebarCollapsed && onPopoverLeave) onPopoverLeave();
         }}
         style={{ display: "flex", alignItems: "center", minHeight: L.itemH, width: "100%",
-          borderRadius: T.radius, backgroundColor: fillBg, cursor: "pointer",
+          borderRadius: T.radius, backgroundColor: fillBg,
+          cursor: isDisabled ? "not-allowed" : "pointer",
           overflow: "hidden", transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)", userSelect: "none" }}>
 
         <IndicatorStripe visible={showStripe} />
@@ -620,9 +679,11 @@ export function SideNav({
           // Bleed the scroll region out to the nav's TRUE right edge so the overlay thumb
           // hugs the edge in BOTH states (the nav's border-box paddingRight would otherwise
           // inset the thumb by 16px expanded / 12px on the 72px rail — badly off on the rail).
-          marginRight: collapsed ? -L.navColPadH : -L.navPadH }}
+          // negated through calc() because these are var() references, and negating
+          // a string would produce NaN
+          marginRight: neg(collapsed ? L.navColPadH : L.navPadH) }}
         viewStyle={{ display: "flex", flexDirection: "column", gap: L.menuGap,
-          paddingTop: L.menuPadT || 8,
+          paddingTop: L.menuPadT,
           // Re-add the content's right inset INSIDE the scroll view so items keep their
           // position; only the thumb moves to the edge. (Spec rule: padding on viewStyle,
           // never on the wrapper — keeps the thumb flush on any scroll surface.)
