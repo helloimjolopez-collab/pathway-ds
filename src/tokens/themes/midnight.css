@@ -74,9 +74,6 @@
   --semantic-color-fill-action-accent-lagoon-dim-pressed: var(--primitive-color-lagoon-700);
   --semantic-color-fill-action-disabled: var(--primitive-color-warm-neutral-25-8);
   --semantic-color-fill-action-mono-rest: var(--primitive-color-cool-neutral-0);
-  --semantic-color-fill-action-field-rest: var(--primitive-color-brand-700);
-  --semantic-color-fill-action-field-hover: var(--primitive-color-brand-600);
-  --semantic-color-fill-action-field-pressed: var(--primitive-color-brand-550);
   --semantic-color-fill-action-selection-hover: var(--primitive-color-warm-neutral-25-8);
   --semantic-color-fill-action-selection-selected: var(--primitive-color-brand-100-16);
   --semantic-color-fill-action-selection-trail: var(--primitive-color-warm-neutral-25-16);

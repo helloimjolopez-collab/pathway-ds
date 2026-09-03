@@ -449,69 +449,6 @@ const tokens = {
       "900"
     ]
   },
-  "primitive-color-amethyst-500-4": {
-    "value": "#5951a00a",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "amethyst",
-      "500-4"
-    ]
-  },
-  "primitive-color-amethyst-500-8": {
-    "value": "#5951a014",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "amethyst",
-      "500-8"
-    ]
-  },
-  "primitive-color-amethyst-500-16": {
-    "value": "#5951a029",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "amethyst",
-      "500-16"
-    ]
-  },
-  "primitive-color-amethyst-500-24": {
-    "value": "#5951a03d",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "amethyst",
-      "500-24"
-    ]
-  },
-  "primitive-color-amethyst-500-36": {
-    "value": "#5951a05c",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "amethyst",
-      "500-36"
-    ]
-  },
-  "primitive-color-amethyst-500-50": {
-    "value": "#5951a080",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "amethyst",
-      "500-50"
-    ]
-  },
-  "primitive-color-amethyst-500-70": {
-    "value": "#5951a0b3",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "amethyst",
-      "500-70"
-    ]
-  },
   "primitive-color-green-0": {
     "value": "#f8fcf9",
     "type": "color",
@@ -645,69 +582,6 @@ const tokens = {
       "primitive-color",
       "green",
       "900"
-    ]
-  },
-  "primitive-color-green-500-4": {
-    "value": "#2a793e0a",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "green",
-      "500-4"
-    ]
-  },
-  "primitive-color-green-500-8": {
-    "value": "#2a793e14",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "green",
-      "500-8"
-    ]
-  },
-  "primitive-color-green-500-16": {
-    "value": "#2a793e29",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "green",
-      "500-16"
-    ]
-  },
-  "primitive-color-green-500-24": {
-    "value": "#2a793e3d",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "green",
-      "500-24"
-    ]
-  },
-  "primitive-color-green-500-36": {
-    "value": "#2a793e5c",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "green",
-      "500-36"
-    ]
-  },
-  "primitive-color-green-500-50": {
-    "value": "#2a793e80",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "green",
-      "500-50"
-    ]
-  },
-  "primitive-color-green-500-70": {
-    "value": "#2a793eb3",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "green",
-      "500-70"
     ]
   },
   "primitive-color-orange-0": {
@@ -852,69 +726,6 @@ const tokens = {
       "primitive-color",
       "orange",
       "900"
-    ]
-  },
-  "primitive-color-orange-300-4": {
-    "value": "#f566180a",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "orange",
-      "300-4"
-    ]
-  },
-  "primitive-color-orange-300-8": {
-    "value": "#f5661814",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "orange",
-      "300-8"
-    ]
-  },
-  "primitive-color-orange-300-16": {
-    "value": "#f5661829",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "orange",
-      "300-16"
-    ]
-  },
-  "primitive-color-orange-300-24": {
-    "value": "#f566183d",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "orange",
-      "300-24"
-    ]
-  },
-  "primitive-color-orange-300-36": {
-    "value": "#f566185c",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "orange",
-      "300-36"
-    ]
-  },
-  "primitive-color-orange-300-50": {
-    "value": "#f5661880",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "orange",
-      "300-50"
-    ]
-  },
-  "primitive-color-orange-300-70": {
-    "value": "#f56618b3",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "orange",
-      "300-70"
     ]
   },
   "primitive-color-red-0": {
@@ -1068,69 +879,6 @@ const tokens = {
       "primitive-color",
       "red",
       "900"
-    ]
-  },
-  "primitive-color-red-500-4": {
-    "value": "#9d2d2d0a",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "red",
-      "500-4"
-    ]
-  },
-  "primitive-color-red-500-8": {
-    "value": "#9d2d2d14",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "red",
-      "500-8"
-    ]
-  },
-  "primitive-color-red-500-16": {
-    "value": "#9d2d2d29",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "red",
-      "500-16"
-    ]
-  },
-  "primitive-color-red-500-24": {
-    "value": "#9d2d2d3d",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "red",
-      "500-24"
-    ]
-  },
-  "primitive-color-red-500-36": {
-    "value": "#9d2d2d5c",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "red",
-      "500-36"
-    ]
-  },
-  "primitive-color-red-500-50": {
-    "value": "#9d2d2d80",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "red",
-      "500-50"
-    ]
-  },
-  "primitive-color-red-500-70": {
-    "value": "#9d2d2db3",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "red",
-      "500-70"
     ]
   },
   "primitive-color-brand-0": {
@@ -1367,69 +1115,6 @@ const tokens = {
       "100-70"
     ]
   },
-  "primitive-color-brand-800-4": {
-    "value": "#0a12230a",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "brand",
-      "800-4"
-    ]
-  },
-  "primitive-color-brand-800-8": {
-    "value": "#0a122314",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "brand",
-      "800-8"
-    ]
-  },
-  "primitive-color-brand-800-16": {
-    "value": "#0a122329",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "brand",
-      "800-16"
-    ]
-  },
-  "primitive-color-brand-800-24": {
-    "value": "#0a12233d",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "brand",
-      "800-24"
-    ]
-  },
-  "primitive-color-brand-800-36": {
-    "value": "#0a12235c",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "brand",
-      "800-36"
-    ]
-  },
-  "primitive-color-brand-800-50": {
-    "value": "#0a122380",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "brand",
-      "800-50"
-    ]
-  },
-  "primitive-color-brand-800-70": {
-    "value": "#0a1223b3",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "brand",
-      "800-70"
-    ]
-  },
   "primitive-color-seabreeze-0": {
     "value": "#f6fbfd",
     "type": "color",
@@ -1572,69 +1257,6 @@ const tokens = {
       "primitive-color",
       "seabreeze",
       "900"
-    ]
-  },
-  "primitive-color-seabreeze-400-4": {
-    "value": "#3597bb0a",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "seabreeze",
-      "400-4"
-    ]
-  },
-  "primitive-color-seabreeze-400-8": {
-    "value": "#3597bb14",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "seabreeze",
-      "400-8"
-    ]
-  },
-  "primitive-color-seabreeze-400-16": {
-    "value": "#3597bb29",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "seabreeze",
-      "400-16"
-    ]
-  },
-  "primitive-color-seabreeze-400-24": {
-    "value": "#3597bb3d",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "seabreeze",
-      "400-24"
-    ]
-  },
-  "primitive-color-seabreeze-400-36": {
-    "value": "#3597bb5c",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "seabreeze",
-      "400-36"
-    ]
-  },
-  "primitive-color-seabreeze-400-50": {
-    "value": "#3597bb80",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "seabreeze",
-      "400-50"
-    ]
-  },
-  "primitive-color-seabreeze-400-70": {
-    "value": "#3597bbb3",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "seabreeze",
-      "400-70"
     ]
   },
   "primitive-color-jade-0": {
@@ -1781,69 +1403,6 @@ const tokens = {
       "900"
     ]
   },
-  "primitive-color-jade-300-4": {
-    "value": "#2bab920a",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "jade",
-      "300-4"
-    ]
-  },
-  "primitive-color-jade-300-8": {
-    "value": "#2bab9214",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "jade",
-      "300-8"
-    ]
-  },
-  "primitive-color-jade-300-16": {
-    "value": "#2bab9229",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "jade",
-      "300-16"
-    ]
-  },
-  "primitive-color-jade-300-24": {
-    "value": "#2bab923d",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "jade",
-      "300-24"
-    ]
-  },
-  "primitive-color-jade-300-36": {
-    "value": "#2bab925c",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "jade",
-      "300-36"
-    ]
-  },
-  "primitive-color-jade-300-50": {
-    "value": "#2bab9280",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "jade",
-      "300-50"
-    ]
-  },
-  "primitive-color-jade-300-70": {
-    "value": "#2bab92b3",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "jade",
-      "300-70"
-    ]
-  },
   "primitive-color-saffron-0": {
     "value": "#fefdfb",
     "type": "color",
@@ -1959,69 +1518,6 @@ const tokens = {
       "primitive-color",
       "saffron",
       "900"
-    ]
-  },
-  "primitive-color-saffron-300-4": {
-    "value": "#f0a1190a",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "saffron",
-      "300-4"
-    ]
-  },
-  "primitive-color-saffron-300-8": {
-    "value": "#f0a11914",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "saffron",
-      "300-8"
-    ]
-  },
-  "primitive-color-saffron-300-16": {
-    "value": "#f0a11929",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "saffron",
-      "300-16"
-    ]
-  },
-  "primitive-color-saffron-300-24": {
-    "value": "#f0a1193d",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "saffron",
-      "300-24"
-    ]
-  },
-  "primitive-color-saffron-300-36": {
-    "value": "#f0a1195c",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "saffron",
-      "300-36"
-    ]
-  },
-  "primitive-color-saffron-300-50": {
-    "value": "#f0a11980",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "saffron",
-      "300-50"
-    ]
-  },
-  "primitive-color-saffron-300-70": {
-    "value": "#f0a119b3",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "saffron",
-      "300-70"
     ]
   },
   "primitive-color-warm-neutral-0": {
@@ -2447,69 +1943,6 @@ const tokens = {
       "900"
     ]
   },
-  "primitive-color-mauve-350-4": {
-    "value": "#b83d8f0a",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "mauve",
-      "350-4"
-    ]
-  },
-  "primitive-color-mauve-350-8": {
-    "value": "#b83d8f14",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "mauve",
-      "350-8"
-    ]
-  },
-  "primitive-color-mauve-350-16": {
-    "value": "#b83d8f29",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "mauve",
-      "350-16"
-    ]
-  },
-  "primitive-color-mauve-350-24": {
-    "value": "#b83d8f3d",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "mauve",
-      "350-24"
-    ]
-  },
-  "primitive-color-mauve-350-36": {
-    "value": "#b83d8f5c",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "mauve",
-      "350-36"
-    ]
-  },
-  "primitive-color-mauve-350-50": {
-    "value": "#b83d8f80",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "mauve",
-      "350-50"
-    ]
-  },
-  "primitive-color-mauve-350-70": {
-    "value": "#b83d8fb3",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "mauve",
-      "350-70"
-    ]
-  },
   "primitive-color-lagoon-0": {
     "value": "#f8fbfc",
     "type": "color",
@@ -2652,69 +2085,6 @@ const tokens = {
       "primitive-color",
       "lagoon",
       "900"
-    ]
-  },
-  "primitive-color-lagoon-400-4": {
-    "value": "#23a4b80a",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "lagoon",
-      "400-4"
-    ]
-  },
-  "primitive-color-lagoon-400-8": {
-    "value": "#23a4b814",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "lagoon",
-      "400-8"
-    ]
-  },
-  "primitive-color-lagoon-400-16": {
-    "value": "#23a4b829",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "lagoon",
-      "400-16"
-    ]
-  },
-  "primitive-color-lagoon-400-24": {
-    "value": "#23a4b83d",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "lagoon",
-      "400-24"
-    ]
-  },
-  "primitive-color-lagoon-400-36": {
-    "value": "#23a4b85c",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "lagoon",
-      "400-36"
-    ]
-  },
-  "primitive-color-lagoon-400-50": {
-    "value": "#23a4b880",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "lagoon",
-      "400-50"
-    ]
-  },
-  "primitive-color-lagoon-400-70": {
-    "value": "#23a4b8b3",
-    "type": "color",
-    "path": [
-      "primitive-color",
-      "lagoon",
-      "400-70"
     ]
   },
   "semantic-color-light-mode-fill-action-primary-rest": {
@@ -3626,42 +2996,6 @@ const tokens = {
       "action",
       "mono",
       "rest"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-field-rest": {
-    "value": "#fefefd",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "field",
-      "rest"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-field-hover": {
-    "value": "#f9f7f5",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "field",
-      "hover"
-    ]
-  },
-  "semantic-color-light-mode-fill-action-field-pressed": {
-    "value": "#f3f0ec",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "action",
-      "field",
-      "pressed"
     ]
   },
   "semantic-color-light-mode-fill-action-selection-hover": {
@@ -7843,42 +7177,6 @@ const tokens = {
       "action",
       "mono",
       "rest"
-    ]
-  },
-  "semantic-color-midnight-mode-fill-action-field-rest": {
-    "value": "#152343",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "midnight-mode",
-      "fill",
-      "action",
-      "field",
-      "rest"
-    ]
-  },
-  "semantic-color-midnight-mode-fill-action-field-hover": {
-    "value": "#22386b",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "midnight-mode",
-      "fill",
-      "action",
-      "field",
-      "hover"
-    ]
-  },
-  "semantic-color-midnight-mode-fill-action-field-pressed": {
-    "value": "#2d4889",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "midnight-mode",
-      "fill",
-      "action",
-      "field",
-      "pressed"
     ]
   },
   "semantic-color-midnight-mode-fill-action-selection-hover": {
