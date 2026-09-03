@@ -18,6 +18,114 @@ Complete implementation reference for the SideNav component. Covers anatomy, des
 
 ---
 
+## 0. Consuming this component
+
+### Install
+
+```bash
+npm install @helloimjolopez-pathway/pathway-tokens
+```
+
+React 18+ is a peer dependency. It is marked optional so a team consuming only the tokens
+does not have to install React.
+
+### Import the component and its stylesheets
+
+```jsx
+import { SideNav } from "@helloimjolopez-pathway/pathway-tokens/sidenav";
+
+// Colour. Load BOTH — one name per token, resolved by selector, so switching
+// theme is a data attribute rather than a rebuild.
+import "@helloimjolopez-pathway/pathway-tokens/themes/light.css";
+import "@helloimjolopez-pathway/pathway-tokens/themes/midnight.css";
+
+// Layout and units (--semantic-layout-units-*), plus the legacy names.
+import "@helloimjolopez-pathway/pathway-tokens/css";
+
+// The type classes. Apply one class, never five separate properties.
+import "@helloimjolopez-pathway/pathway-tokens/type-classes.css";
+```
+
+**All four stylesheets are required.** The component references custom properties across
+all of them and does not inline fallback colours. Layout has `var()` fallbacks so it will
+still lay out without `css`, but colour will not resolve without the themes.
+
+### Switch to Midnight Mode
+
+```html
+<div data-theme="midnight">
+  <SideNav … />
+</div>
+```
+
+The selector matches both `[data-theme="midnight"]` and `[data-theme="dark"]`, so a
+consuming team does not have to adopt Pathway's vocabulary to switch themes.
+
+### Minimal usage
+
+```jsx
+<SideNav
+  activeId={activeId}
+  onNavigate={setActiveId}
+  items={[
+    { id: "overview",  label: "Overview",  icon: "dashboard" },
+    { id: "donations", label: "Donations", icon: "volunteer_activism",
+      children: [
+        { id: "batches", label: "Batches" },
+        { id: "pledges", label: "Pledges" },
+      ] },
+    { id: "archive",   label: "Archive",   icon: "inventory_2", disabled: true },
+  ]}
+/>
+```
+
+`icon` is a Material Symbols Rounded ligature string, or a render function
+`({ size, color }) => ReactNode` for a branded asset. See §11.
+
+### Fonts
+
+Two font families must be available in the host app. Neither is bundled:
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+```
+
+### Figma Code Connect
+
+Seven Figma nodes are mapped to the real React exports, so selecting the side nav in Dev
+Mode shows Pathway code rather than Figma's generated markup.
+
+| File | Figma node | Maps to |
+|---|---|---|
+| `sidenav-container.figma.ts` | `40004059-1375` | `SideNav` |
+| `sidenav-item.figma.ts` | `40003954-284` | `SideNavItem` |
+| `sidenav-item-collapsed.figma.ts` | `40005607-25240` | `SideNavItem` (sidebar collapsed) |
+| `sidenav-item-list.figma.ts` | `40007332-6995` | `SideNavListSection` |
+| `sidenav-list-section.figma.ts` | `40007332-8034` | `SideNavListSection` |
+| `sidenav-section-label.figma.ts` | `40006794-5975` | `SectionLabel` |
+| `sidenav-indicator-stripe.figma.ts` | `40004035-27057` | `IndicatorStripe` |
+
+```bash
+npm run figma:parse     # validate the mappings locally, no network
+npm run figma:publish   # upload to Figma — needs FIGMA_ACCESS_TOKEN
+```
+
+`figma:publish` requires a Figma personal access token with Code Connect write scope, set
+as `FIGMA_ACCESS_TOKEN`. Create it in Figma under Settings → Security → Personal access
+tokens. Do not put it in the git remote URL or any tracked file —
+`npm run check-secrets` fails the build on either, and it exists because
+`figma connect migrate` once read the remote URL and wrote a live token into all seven
+generated files.
+
+**Templates are Code Connect v2.** The v1 React parser was removed in CLI v2, so these are
+template files rather than `figma.connect()` calls. Regenerate with
+`npx figma connect migrate` if the mapping source ever moves back to `.figma.jsx`, then
+rename off the generator's `sidenav_1..6` output — it does not follow this repo's
+kebab-case rule.
+
+---
+
 ## 1. Component Overview
 
 `SideNav.Local` is a persistent vertical panel used across all modules in Ministry Brands Amplify: a church management product. It renders the primary navigation tree for a given module and communicates the user's current location within that tree at all times.
@@ -352,63 +460,97 @@ ListItems follow the exact same `Base / Hover / Active` state matrix as `SideNav
 
 ## 3. Design Tokens
 
+> **Reconciled against the Figma Variables panel on 2026-09-02.** The previous version
+> of this section named tokens from a tier structure that no longer exists (`Text/` and
+> `Icon/` were merged into `Foreground/`, and `NavItem/Base` was deleted). The component
+> resolved those names through `t()`, which returns the token id unchanged on a miss, so
+> nine of them had been emitting invalid CSS and rendering as inherited fallback colours.
+> See §16 for what that cost.
+
+**How the component consumes these.** Colour is referenced as a `var()` on the mode-less
+custom property from `themes/light.css` / `themes/midnight.css`, never as a resolved hex
+and never through a JS lookup. That is what makes Midnight Mode work: one name, two
+values, resolved by selector. Layout references `--semantic-layout-units-*` with the Figma
+value as a `var()` fallback, so the component still lays out correctly if a consumer loads
+only the colour themes.
+
+Resolved hexes are deliberately **not** listed below. Every previous version of this table
+drifted from the build, and a wrong hex in a spec reads as a design decision. Run
+`npm run build-tokens` and read `src/tokens/themes/light.css` for current values.
+
 ### 3.1 Surface
 
-| Semantic Token | Primitive | Resolved Value | Usage |
-|---|---|---|---|
-| `Surface/Nav/Light` |: | `#fafafa` | SideNav container background |
-| `Surface/Canvas/Light` | `Brand/10` | `#fafafa` | Page/viewport background |
+| Semantic token | CSS custom property | Usage |
+|---|---|---|
+| `Surface/Sheet` | `--semantic-color-surface-sheet` | SideNav container background |
+| `Surface/Canvas` | `--semantic-color-surface-canvas` | Page/viewport background behind the rail |
 
-> **Note:** Both tokens resolve to the same hex (`#fafafa`). They are semantically distinct: `Surface/Nav/Light` is the nav panel's own background; `Surface/Canvas/Light` is the page/app canvas behind it. Do not merge them. Confirmed in Figma variable library: `Surface/Canvas/Light → Brand/10 → #fafafa`.
+> `Surface/Nav/Light` and `Surface/Canvas/Light` no longer exist. The surface model is now
+> `Surface/Canvas`, `Surface/Sheet`, `Elevation/Raised`, `Elevation/Overlay` — four tokens,
+> no per-component surfaces.
 
 ### 3.2 Fill (NavItem states)
 
-| Semantic Token | Primitive | Resolved Value | Used In |
-|---|---|---|---|
-| `Fill/Contextual/NavItem/Base` |: | `#fafafa` | Resting item fill |
-| `Fill/Contextual/NavItem/Hover` |: | `#11111105` *(≈ rgba 17,17,17 / 2%)* | Hover fill |
-| `Fill/Contextual/NavItem/Active` |: | `#a0b5e629` *(≈ rgba 160,181,230 / 16%)* | Active destination + collapsed-trail grouper |
-| `Fill/Contextual/NavItem/Trail` |: | `#11111105` *(≈ rgba 17,17,17 / 2%)* | Expanded grouper fill: **distinct token from Hover** |
-| `Stroke/Static/Neutral/Light` |: | `#f6f6f6` | Divider (`h-[1px]`) + nav container `border-right` + popover border |
+| Semantic token | CSS custom property | Used in |
+|---|---|---|
+| *(none)* | `transparent` | Resting item — paints **nothing** |
+| `Fill/Contextual/NavItem/Hover` | `--semantic-color-fill-contextual-navitem-hover` | Hover fill |
+| `Fill/Contextual/NavItem/Pressed` | `--semantic-color-fill-contextual-navitem-pressed` | Active destination + collapsed-trail grouper |
+| `Fill/Contextual/NavItem/Trail` | `--semantic-color-fill-contextual-navitem-trail` | Expanded grouper (open ancestor) |
+| `Fill/Action/Primary/Pressed` | `--semantic-color-fill-action-primary-pressed` | `indicator.stripe` |
+| `Stroke/Static/Neutral/Subtle` | `--semantic-color-stroke-static-neutral-subtle` | Divider, nav `border-right`, popover border |
 
-> **2026-05-12 update:** Previously `Fill/Static/Info/Subtle` (`#edf0f9`). Now `Stroke/Static/Neutral/Light` (`#f6f6f6`) — lighter, less saturated. All three uses updated together.
+**Rest has no token on purpose.** `Fill/Contextual/NavItem/Base` was deleted because it
+painted the sheet colour over the sheet — a no-op that still had to be maintained, and that
+broke the moment the rail sat on any other ground.
 
-> **Note:** `Fill/Contextual/NavItem/Trail` and `Fill/Contextual/NavItem/Hover` currently resolve to the **same hex** (`#11111105` ≈ 4% black). They are kept as separate tokens so they can diverge independently in future. Do not merge them.
+**The three states are ordered by prominence, and the ordering matters.** Hover is the
+lightest touch, Trail is stronger so an expanded parent stays readable at rest, and Pressed
+is distinguished by **hue rather than weight** — it is the brand blue, so it does not have
+to out-darken hover to read as selected. An earlier configuration had hover at +47/255 and
+pressed at +14/255 against the sheet, which made hovering look stronger than selecting.
 
-> **⚠ Gap:** Primitive token names are not surfaced by `get_variable_defs`: the tool resolves alias chains to final hex only. The full `Semantic → Primitive → Hex` chain requires the Figma REST API or a dedicated token documentation frame.
+**Light mode uses opaque warm steps, Midnight uses white alphas.** This asymmetry is
+deliberate. The Warm Neutral ramp peaks at 14/255 warmth and carries only 4/255 at its dark
+end, so any low-alpha warm tint composites to neutral grey — measured at 0.3/255 of warmth
+at 8%. Only an opaque step delivers visible warmth. The rail always sits on `Surface/Sheet`,
+so an opaque fill is safe here; it would be wrong for a general-purpose overlay.
 
-### 3.3 Text (NavItem states)
+### 3.3 Foreground (label, icon and chevron)
 
-| Semantic Token | Primitive | Resolved Value | Used In |
-|---|---|---|---|
-| `Text/Contextual/NavItem/Base` |: | `#313131` | Label default |
-| `Text/Contextual/NavItem/Hover` |: | `#252525` | Label hover |
-| `Text/Contextual/NavItem/Active` |: | `#1b2d57` | Active destination **and** all trail states |
+**All three share one token per state.** A nav item is a single interactive surface, so its
+label, leading icon and chevron must not resolve through separate ramps that can drift apart.
 
-> Trail text color = `Text/Contextual/NavItem/Active`. This applies to both **expanded** trail (grouper showing children) and **collapsed** trail (grouper with hidden active child). Do not use `Text/Contextual/NavItem/Base` for trail.
+| Semantic token | CSS custom property | State |
+|---|---|---|
+| `Foreground/Action/Secondary/Rest` | `--semantic-color-foreground-action-secondary-rest` | Default |
+| `Foreground/Action/Secondary/Hover` | `--semantic-color-foreground-action-secondary-hover` | Hover |
+| `Foreground/Action/Secondary/Pressed` | `--semantic-color-foreground-action-secondary-pressed` | Active destination and all trail states |
+| `Foreground/Action/Secondary/Disabled` | `--semantic-color-foreground-action-secondary-disabled` | Disabled |
+| `Foreground/Action/Secondary Inverse/Rest` | `--semantic-color-foreground-action-secondary-inverse-rest` | CollapseButton icon |
+| `Foreground/Static/Neutral/Subtle` | `--semantic-color-foreground-static-neutral-subtle` | `NavSectionLabel`, `PopoverMenu.SectionLabel` |
 
-### 3.4 Icon (NavItem states)
+> The `Text/` and `Icon/` tiers were merged into `Foreground/` because they were two names
+> for one layer. There is no `Foreground/Contextual/NavItem/*` group — the nav item uses the
+> Action tier like any other interactive element, which is what gives it a real Disabled state.
 
-| Semantic Token | Primitive | Resolved Value | Used In |
-|---|---|---|---|
-| `Icon/Contextual/NavItem/Base` |: | `#484848` | Icon default + expanded-trail icon |
-| `Icon/Contextual/NavItem/Hover` |: | `#313131` | Icon hover |
-| `Icon/Contextual/NavItem/Active` |: | `#2d4889` | Active icon + collapsed-trail icon + `indicator.stripe` color |
-| `Icon/Action/Secondary Inverse/Base` |: | `#6b6b6b` | CollapseButton action icon (right_panel_open / left_panel_open) |
+### 3.4 Geometry
 
-> `Icon/Contextual/NavItem/Active` (`#2d4889`) is used for **three things simultaneously**: the leading icon, the indicator stripe, and the collapsed-trail icon. They share the same token.
+| Semantic token | CSS custom property | Usage |
+|---|---|---|
+| `CornerRadius/Medium` | `--semantic-layout-units-cornerradius-medium` | Item `border-radius` |
+| `Accessibility/Touch Target/AA/Height` | `--semantic-layout-units-accessibility-touch-target-aa-height` | Item `min-height` |
+| `Padding/Base` | `--semantic-layout-units-padding-base` | Expanded container horizontal padding |
+| `Padding/Medium` | `--semantic-layout-units-padding-medium` | Collapsed rail horizontal padding |
+| `Padding/Tight` | `--semantic-layout-units-padding-tight` | Container top padding, row horizontal padding |
+| `Padding/XTight` | `--semantic-layout-units-padding-xtight` | Label text padding |
+| `Padding/XXTight` | `--semantic-layout-units-padding-xxtight` | Gap above the collapse-button divider |
+| `Padding/XXWide` | `--semantic-layout-units-padding-xxwide` | Bottom padding in the menu scroll region |
+| `Gap/XTight` | `--semantic-layout-units-gap-xtight` | Gap between menu items |
 
-> Expanded trail icon = `Icon/Contextual/NavItem/Base` (`#484848`). Do not use active blue for expanded trail icons.
-
-> **2026-05-12 update:** `Icon/Action/Secondary Inverse/Base` (`#6b6b6b`) added for the CollapseButton's new Slot.RowEnd action icon. This is a separate token from the nav item icons — it does not change on hover.
-
-### 3.5 Geometry
-
-| Semantic Token | Primitive | Resolved Value | Usage |
-|---|---|---|---|
-| `Component/NavItem/Large/Radius/Radius` | `Border/S` | `8px` | Item `border-radius` |
-| `Accessibility/Touch Target/AA/Size` |: | `44px` | Item `min-height` (updated 2026-06-08 from 48) |
-| `Accessibility/Icon Wrapping/Large/Size` |: | `24×24px` | `Container.LeadingIcon` dimensions |
+**Still without tokens in Figma**, so these stay numeric in `L` and are commented as such:
+expanded width (240), collapsed rail width (72), leading-icon wrapper (24), icon frame (16),
+level-1 child indent (24), indicator stripe width (4).
 
 ### 3.6 Typography
 

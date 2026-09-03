@@ -8,7 +8,7 @@ Different layers of this system have different sources of truth. Keep them strai
 
 | What | Source of truth | Flow |
 |---|---|---|
-| **Design tokens** (primitives, semantics, modes) | **Figma** → exported to `tokens/figma-export/pathwaytokens.json` | `sync-tokens.yml` fires on push to that path, then `style-dictionary` → Storybook. The export itself is currently a manual designer step, so **check the file's date before trusting it** — see §2. |
+| **Design tokens** (primitives, semantics, modes) | **Figma** → read via MCP into `tokens/figma-export/pathwaytokens.json` | An agent session pages the Variables panel through the Figma MCP server, `assemble-figma-export.js` rebuilds the plugin-export shape, then `sync-tokens.js` → `style-dictionary` → Storybook. See §2 and `docs/token-pipeline.md`. |
 | **Motion tokens** (durations, easings) | **`docs/design-system-spec.md` §2** | `scripts/sync-motion-tokens.js` reads §2.1 and §2.2 tables → writes `tokens/motion-tokens.json` → Style Dictionary emits `--motion-*` CSS variables. Run as part of `build-tokens`. |
 | **Component implementations** (HTML demos, specs, stories) | **GitHub** (the files in this repo) | Manual. Designer changes a component in Figma → user asks agent to pull → agent uses Figma MCP tools to fetch the updated node → agent edits the component's files in this repo. |
 | **Component visual design** (variants, frames, anatomy, variables-bound properties) | **Figma** | Same manual flow as above. Figma is the design artifact; this repo carries the implementation. |
@@ -44,11 +44,23 @@ tokens/pathway-design-tokens.json                        │
         src/tokens/tokens.js           flat JS map, consumed by resolve-tokens + stories
 ```
 
-**The manual export step is being replaced.** There is no Figma REST access on this
-plan, so the replacement reads variables through the Figma MCP server (Plugin API)
-from an agent session rather than a cron job. Until that lands, `tokens/figma-export/
-pathwaytokens.json` is only as fresh as the last manual export — check its date
-before trusting any count derived from the CSS.
+**The manual export step is gone (replaced 2026-09-02).** There is no Figma REST
+access on this plan, so the panel is read through the Figma MCP server (Plugin API)
+from an agent session. It cannot be a cron job: the MCP is interactively
+authenticated and absent in headless runs.
+
+**The read must be paged, and the guard must not be bypassed.** MCP responses cap
+at roughly 20KB against ~2,300 variable-mode rows, so a single read truncates
+silently at about 350 rows. That is the dangerous failure — a truncated page
+yields a token file that looks plausible, is missing hundreds of tokens, and
+builds successfully. So: the first page declares the expected row total, pages
+land in `.figma-dump/*.tsv`, and `scripts/assemble-figma-export.js` **refuses to
+run on a count mismatch**, naming the offset to resume from. Never work around
+that error by editing the declared total.
+
+Full architecture, the contract-versus-internal split, and the publishing flow
+are documented in **`docs/token-pipeline.md`**. Read that before changing the
+pipeline.
 
 ### 2.0 The four CSS outputs, and which one to consume
 

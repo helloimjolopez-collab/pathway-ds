@@ -49,6 +49,8 @@
     "storybook": "node style-dictionary.config.js && storybook dev -p 6006",
     "build-storybook": "storybook build",
     "check-demo-tokens": "node scripts/check-demo-tokens.js",
+    "assemble-export": "node scripts/assemble-figma-export.js",
+    "sync-from-figma": "node scripts/assemble-figma-export.js .figma-dump && node scripts/sync-tokens.js && npm run build-dist",
     "figma:parse": "figma connect parse",
     "figma:publish": "figma connect publish",
     "figma:unpublish": "figma connect unpublish",

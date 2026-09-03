@@ -7,3 +7,7 @@ dist/
 
 tokens/figma-export/sync.log
 Library/Application Support/pathway-token-sync.sh
+
+# Paged Figma reads land here during a token sync; the assembled
+# pathwaytokens.json is what gets committed, not the intermediate pages.
+.figma-dump/

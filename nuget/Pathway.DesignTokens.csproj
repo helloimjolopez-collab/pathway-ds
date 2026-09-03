@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Pathway design tokens, packaged for .NET consumers.
+
+    WHY A PROJECT AND NOT A .nuspec
+    A content-only package can be built either way, but `dotnet pack` on a
+    SDK-style project works natively on Linux CI, while packing a bare .nuspec
+    needs the Windows NuGet CLI under mono. Same output, one less moving part.
+
+    WHY NO C#
+    There is no code here. The package ships the same generated CSS and JSON the
+    npm package ships, so a Blazor or Razor app renders identical token values to
+    a React app rather than a hand-copied fork that drifts.
+
+    PACKAGE ID IS A PLACEHOLDER
+    Pathway.DesignTokens stands in until the org account name is settled. The id
+    appears in the URL consumers reference (_content/<id>/…), so renaming it later
+    is a breaking change for them — change it before the first publish, not after.
+
+    VERSION
+    Passed in by .github/workflows/publish-nuget.yml, read from package.json, so
+    the NuGet and npm versions cannot diverge.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- No compiled output: this is an asset package. -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <NoWarn>NU5128</NoWarn>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+    <PackageId>Pathway.DesignTokens</PackageId>
+    <Version>0.0.0-local</Version>
+    <Title>Pathway Design Tokens</Title>
+    <Authors>Ministry Brands</Authors>
+    <Company>Ministry Brands</Company>
+    <Description>Design tokens for the Pathway design system: semantic colour with Light and Midnight modes, layout and unit tokens, and composite type styles as CSS classes. Generated from the Figma Variables panel, so these are the same values the design source carries and the same values the npm package ships.</Description>
+    <PackageTags>design-tokens;design-system;css;pathway;blazor;razor;theming</PackageTags>
+    <Copyright>Ministry Brands</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/helloimjolopez-collab/pathway-ds</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!--
+    ASP.NET serves staticwebassets at _content/Pathway.DesignTokens/<path>, which
+    is how a Blazor host page references these. The same files are also packed as
+    contentFiles so non-Blazor project types can copy them into wwwroot.
+  -->
+  <ItemGroup>
+    <None Include="..\dist\themes\light.css"    Pack="true" PackagePath="staticwebassets\themes\light.css" />
+    <None Include="..\dist\themes\midnight.css" Pack="true" PackagePath="staticwebassets\themes\midnight.css" />
+    <None Include="..\dist\type-classes.css"    Pack="true" PackagePath="staticwebassets\type-classes.css" />
+    <None Include="..\dist\primitives.css"      Pack="true" PackagePath="staticwebassets\primitives.css" />
+    <None Include="..\dist\tokens.css"          Pack="true" PackagePath="staticwebassets\tokens.css" />
+    <None Include="..\dist\tokens.json"         Pack="true" PackagePath="staticwebassets\tokens.json" />
+
+    <None Include="..\dist\themes\light.css"    Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\themes\light.css" />
+    <None Include="..\dist\themes\midnight.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\themes\midnight.css" />
+    <None Include="..\dist\type-classes.css"    Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\type-classes.css" />
+    <None Include="..\dist\tokens.json"         Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\tokens.json" />
+  </ItemGroup>
+
+</Project>

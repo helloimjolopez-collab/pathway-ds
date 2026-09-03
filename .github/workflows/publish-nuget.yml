@@ -1,0 +1,116 @@
+name: Publish Pathway.DesignTokens to NuGet
+
+# Publishes the SAME generated token output the npm package ships, so a Blazor
+# or Razor consumer gets byte-identical CSS to a React consumer.
+#
+# Version comes from package.json, which the npm publish workflow already bumps
+# from npm's high-water mark. Reading it here rather than bumping independently
+# is what keeps the two registries in lockstep — two workflows each owning their
+# own counter is how versions drift apart.
+#
+# Run this AFTER "Publish pathway-tokens to npm" so package.json already carries
+# the new version. Triggered manually, or automatically when that workflow
+# finishes successfully on main.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Pack only, do not push to NuGet"
+        required: false
+        default: false
+        type: boolean
+  workflow_run:
+    workflows: ["Publish pathway-tokens to npm"]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  publish:
+    # On the workflow_run trigger, only proceed if the npm publish actually succeeded.
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build tokens and dist/
+        run: |
+          node scripts/sync-motion-tokens.js
+          node style-dictionary.config.js
+          node scripts/build-dist.js
+
+      - name: Verify the files the package claims to ship actually exist
+        # A .nuspec with a missing <file src> fails late and confusingly, so check
+        # up front and name the missing file.
+        run: |
+          MISSING=0
+          for f in dist/themes/light.css dist/themes/midnight.css dist/type-classes.css \
+                   dist/primitives.css dist/tokens.css dist/tokens.json; do
+            if [ ! -s "$f" ]; then echo "MISSING or empty: $f"; MISSING=1; fi
+          done
+          if [ "$MISSING" = "1" ]; then
+            echo "Refusing to pack an incomplete token package."
+            exit 1
+          fi
+          echo "All six token artefacts present."
+
+      - name: Read version from package.json
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if [ -z "$VERSION" ]; then echo "no version in package.json"; exit 1; fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Packing Pathway.DesignTokens $VERSION (matching pathway-tokens@$VERSION)"
+
+      - name: Pack
+        run: |
+          dotnet pack nuget/Pathway.DesignTokens.csproj \
+            -c Release \
+            -p:Version="$VERSION" \
+            -o artifacts
+
+      - name: Show what is in the package
+        run: |
+          PKG=$(ls artifacts/*.nupkg | head -1)
+          echo "Package: $PKG"
+          unzip -l "$PKG"
+
+      - name: Push to NuGet
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.dry_run == false }}
+        run: |
+          if [ -z "${{ secrets.NUGET_API_KEY }}" ]; then
+            echo "NUGET_API_KEY is not set — add it in Settings > Secrets > Actions."
+            echo "Skipping the push; the packed .nupkg is still attached as an artifact."
+            exit 0
+          fi
+          dotnet nuget push artifacts/*.nupkg \
+            --api-key "${{ secrets.NUGET_API_KEY }}" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
+      - name: Upload the package as a build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Pathway.DesignTokens-${{ env.VERSION }}
+          path: artifacts/*.nupkg
