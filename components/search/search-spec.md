@@ -144,27 +144,27 @@ TopNavSearch.Container               position relative, FIXED 48×48 footprint (
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `fill.static.neutral.light` | `--semantic-color-light-mode-fill-static-neutral-light` | #ffffff | Bar background (all states except disabled) |
-| `fill.action.tertiary.base` | `--semantic-color-light-mode-fill-action-tertiary-base` | #eef2fb | Filter pill background when filter-active |
-| `fill.action.secondaryinverse.hover` | `--semantic-color-light-mode-fill-action-secondaryinverse-hover` | rgba(17,17,17,0.02) | Icon pill hover state |
-| `fill.action.secondaryinverse.pressed` | `--semantic-color-light-mode-fill-action-secondaryinverse-pressed` | #f6f6f6 | Icon pill pressed state |
-| `fill.action.primary.base` | `--semantic-color-light-mode-fill-action-primary-base` | #3555a0 | Badge dot fill |
-| `fill.action.primaryinverse.base` | `--semantic-color-light-mode-fill-action-primaryinverse-base` | rgba(160,181,230,0.08) | TopNavSearch collapsed button background (dark surface) |
-| `fill.static.info.light` | `--semantic-color-light-mode-fill-static-info-light` | #f0f4ff | Page/demo surface |
+| `fill.static.neutral.light` | `--semantic-color-light-mode-fill-static-neutral-faint` | #ffffff | Bar background (all states except disabled) |
+| `fill.action.tertiary.base` | `--semantic-color-light-mode-fill-action-primary-dim-rest` | #eef2fb | Filter pill background when filter-active |
+| `fill.action.secondaryinverse.hover` | `--semantic-color-light-mode-fill-action-secondary-hover` | rgba(17,17,17,0.02) | Icon pill hover state |
+| `fill.action.secondaryinverse.pressed` | `--semantic-color-light-mode-fill-action-secondary-pressed` | #f6f6f6 | Icon pill pressed state |
+| `fill.action.primary.base` | `--semantic-color-light-mode-fill-action-primary-rest` | #3555a0 | Badge dot fill |
+| `fill.action.primaryinverse.base` | `--semantic-color-light-mode-fill-action-primary-dim-rest` | rgba(160,181,230,0.08) | TopNavSearch collapsed button background (dark surface) |
+| `fill.static.info.light` | `--semantic-color-light-mode-fill-static-brand-light` | #f0f4ff | Page/demo surface |
 
-Disabled background uses primitive fallback pending token addition: `--primitive-color-cool-neutral-10` (#fbfbfb). See §17.
+Disabled background: `Fill/Action/Disabled` (`--semantic-color-fill-action-disabled`). Resolved 2026-09-03 — the restructure added one shared Disabled per family, so the primitive fallback is gone.
 
 ### 3.2 Stroke
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `stroke.static.neutral.light` | `--semantic-color-light-mode-stroke-static-neutral-light` | #f6f6f6 | Default border (0.75px) |
+| `stroke.static.neutral.light` | `--semantic-color-light-mode-stroke-static-neutral-faint` | #f6f6f6 | Default border (0.75px) |
 | `stroke.action.primary.hover` | `--semantic-color-light-mode-stroke-action-primary-hover` | #86a0dd | Hover border (1px) |
 | `stroke.action.primary.pressed` | `--semantic-color-light-mode-stroke-action-primary-pressed` | #6e8bd4 | Focused / with-value / filter-active border (1px) |
-| `stroke.action.secondary-inverse.base` | `--semantic-color-light-mode-stroke-action-secondary-inverse-base` | #d2d2d2 | Cancel–filter divider (0.75px) |
-| `stroke.action.negative.base` | `--semantic-color-light-mode-stroke-action-negative-base` | #b03a3a | Error state border (1px) |
+| `stroke.action.secondary-inverse.base` | `--semantic-color-light-mode-stroke-action-secondary-rest` | #d2d2d2 | Cancel–filter divider (0.75px) |
+| `stroke.action.negative.base` | `--semantic-color-light-mode-stroke-action-status-negative-rest` | #b03a3a | Error state border (1px) |
 
-Disabled border uses primitive fallback: `--primitive-color-cool-neutral-30` (#ededed). See §17.
+Disabled border: `Stroke/Action/Disabled` (`--semantic-color-stroke-action-disabled`). Resolved 2026-09-03, same as the background.
 
 TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` — no semantic token exists yet. See §17.
 
@@ -172,17 +172,17 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `text.static.secondary.subtle` | `--semantic-color-light-mode-text-static-secondary-subtle` | #606060 | Placeholder text |
-| `text.static.secondary.bold` | `--semantic-color-light-mode-text-static-secondary-bold` | #202020 | Input value text |
+| `text.static.secondary.subtle` | `--semantic-color-light-mode-foreground-static-neutral-subtle` | #606060 | Placeholder text |
+| `text.static.secondary.bold` | `--semantic-color-light-mode-foreground-static-neutral-bold` | #202020 | Input value text |
 
 ### 3.4 Icon
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `icon.action.secondaryinverse.base` | `--semantic-color-light-mode-icon-action-secondary-inverse-base` | #6b6b6b | Search + cancel + filter icon — idle |
-| `icon.action.secondaryinverse.hover` | `--semantic-color-light-mode-icon-action-secondary-inverse-hover` | #545454 | All icons — hover |
-| `icon.action.secondary.disabled` | `--semantic-color-light-mode-icon-action-secondary-disabled` | #979797 | All icons — disabled |
-| `icon.action.negative.base` | `--semantic-color-light-mode-icon-action-negative-base` | #b03a3a | Search icon — error state |
+| `icon.action.secondaryinverse.base` | `--semantic-color-light-mode-foreground-action-secondary-rest` | #6b6b6b | Search + cancel + filter icon — idle |
+| `icon.action.secondaryinverse.hover` | `--semantic-color-light-mode-foreground-action-secondary-hover` | #545454 | All icons — hover |
+| `icon.action.secondary.disabled` | `--semantic-color-light-mode-foreground-action-disabled` | #979797 | All icons — disabled |
+| `icon.action.negative.base` | `--semantic-color-light-mode-foreground-action-status-negative-rest` | #b03a3a | Search icon — error state |
 
 ### 3.5 Geometry
 
@@ -574,7 +574,7 @@ Applies to TopNavSearch expand/collapse only. All motion resolves through `--mot
 | Gap | Priority | Notes |
 |---|---|---|
 | TopNavSearch collapsed button border token | HIGH | `rgba(251,251,251,0.14)` has no semantic token. Needs a dark-mode stroke token from design. |
-| Disabled state border/bg tokens | HIGH | Uses primitive tokens `--primitive-color-cool-neutral-30` and `-10` as fallbacks. Must be replaced with semantic equivalents when added to the token file. |
+| ~~Disabled state border/bg tokens~~ | RESOLVED 2026-09-03 | Now `Fill/Action/Disabled` and `Stroke/Action/Disabled`. The restructure collapsed every per-intent disabled state onto one shared Disabled per family, which is what this gap was waiting for. |
 | TopNavSearch dark-surface icon tokens | MEDIUM | Icon fill `rgba(251,251,251,0.9)` and placeholder colour `rgba(255,255,255,0.45)` are raw values. No dark-mode semantic tokens exist for these yet. |
 | Badge dot border width | MEDIUM | The dot's white ring uses 1.5px border. `borderwidth.base` = 1px. 1.5px has no semantic token — raw value for now. |
 | Icon pill hover/pressed fill | MEDIUM | `fill.action.secondaryinverse.hover` resolves to `warm-neutral-200` (#f7f5f3) — a visible warm cream on white surfaces. Intended behavior is a subtle transparent overlay. Using `rgba(0,0,0,0.06)` and `rgba(0,0,0,0.10)` as fallbacks until a correct semantic token exists. |

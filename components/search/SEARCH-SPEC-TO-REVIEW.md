@@ -361,23 +361,23 @@ Every CSS variable this component uses. Source: `src/tokens/tokens.css`.
 --primitive-color-red-100:          #b03a3a;   /* error border + icon */
 
 /* ── Semantic tokens — colour ────────────────────────────── */
---semantic-color-light-mode-fill-static-neutral-light:      var(--primitive-color-cool-neutral-0);    /* #ffffff — bar bg */
---semantic-color-light-mode-fill-action-tertiary-base:      var(--primitive-color-brand-10);          /* #eef2fb — filter pill active */
---semantic-color-light-mode-fill-action-secondaryinverse-hover:    var(--primitive-color-cool-neutral-220-2); /* rgba(17,17,17,0.02) — icon hover */
---semantic-color-light-mode-fill-action-secondaryinverse-pressed:  var(--primitive-color-cool-neutral-20);    /* #f6f6f6 — icon pressed */
---semantic-color-light-mode-fill-action-primary-base:       var(--primitive-color-brand-400);         /* #345499 — badge dot */
---semantic-color-light-mode-fill-action-primaryinverse-base: var(--primitive-color-brand-0);          /* rgba(160,181,230,0.08) — topnav collapsed btn bg */
---semantic-color-light-mode-stroke-action-secondary-inverse-base:  var(--primitive-color-cool-neutral-50);  /* #d2d2d2 — idle border */
---semantic-color-light-mode-stroke-action-secondary-inverse-hover: var(--primitive-color-cool-neutral-60);  /* #c4c4c4 — hover border */
---semantic-color-light-mode-stroke-action-primary-inverse-pressed: var(--primitive-color-brand-50);   /* #a0b5e6 — focused/filter-active border */
---semantic-color-light-mode-stroke-action-primary-inverse-base:    var(--primitive-color-brand-40);   /* #c0ceef — cancel-filter divider */
---semantic-color-light-mode-stroke-action-negative-base:    var(--primitive-color-red-100);           /* #b03a3a — error border */
---semantic-color-light-mode-text-static-secondary-subtle:   var(--primitive-color-cool-neutral-130);  /* #606060 — placeholder */
---semantic-color-light-mode-text-static-secondary-bold:     var(--primitive-color-cool-neutral-190);  /* #202020 — input value */
---semantic-color-light-mode-icon-action-secondary-inverse-base:  var(--primitive-color-cool-neutral-120); /* #6b6b6b — idle icon */
---semantic-color-light-mode-icon-action-secondary-inverse-hover: var(--primitive-color-cool-neutral-130); /* #606060 — hover icon */
---semantic-color-light-mode-icon-action-secondary-disabled:  var(--primitive-color-cool-neutral-90);  /* #979797 — disabled icon */
---semantic-color-light-mode-icon-action-negative-base:       var(--primitive-color-red-100);          /* #b03a3a — error icon */
+--semantic-color-light-mode-fill-static-neutral-faint:      var(--primitive-color-cool-neutral-0);    /* #ffffff — bar bg */
+--semantic-color-light-mode-fill-action-primary-dim-rest:      var(--primitive-color-brand-10);          /* #eef2fb — filter pill active */
+--semantic-color-light-mode-fill-action-secondary-hover:    var(--primitive-color-cool-neutral-220-2); /* rgba(17,17,17,0.02) — icon hover */
+--semantic-color-light-mode-fill-action-secondary-pressed:  var(--primitive-color-cool-neutral-20);    /* #f6f6f6 — icon pressed */
+--semantic-color-light-mode-fill-action-primary-rest:       var(--primitive-color-brand-400);         /* #345499 — badge dot */
+--semantic-color-light-mode-fill-action-primary-dim-rest: var(--primitive-color-brand-0);          /* rgba(160,181,230,0.08) — topnav collapsed btn bg */
+--semantic-color-light-mode-stroke-action-secondary-rest:  var(--primitive-color-cool-neutral-50);  /* #d2d2d2 — idle border */
+--semantic-color-light-mode-stroke-action-secondary-hover: var(--primitive-color-cool-neutral-60);  /* #c4c4c4 — hover border */
+--semantic-color-light-mode-stroke-action-primary-pressed: var(--primitive-color-brand-50);   /* #a0b5e6 — focused/filter-active border */
+--semantic-color-light-mode-stroke-action-primary-rest:    var(--primitive-color-brand-40);   /* #c0ceef — cancel-filter divider */
+--semantic-color-light-mode-stroke-action-status-negative-rest:    var(--primitive-color-red-100);           /* #b03a3a — error border */
+--semantic-color-light-mode-foreground-static-neutral-subtle:   var(--primitive-color-cool-neutral-130);  /* #606060 — placeholder */
+--semantic-color-light-mode-foreground-static-neutral-bold:     var(--primitive-color-cool-neutral-190);  /* #202020 — input value */
+--semantic-color-light-mode-foreground-action-secondary-rest:  var(--primitive-color-cool-neutral-120); /* #6b6b6b — idle icon */
+--semantic-color-light-mode-foreground-action-secondary-hover: var(--primitive-color-cool-neutral-130); /* #606060 — hover icon */
+--semantic-color-light-mode-foreground-action-disabled:  var(--primitive-color-cool-neutral-90);  /* #979797 — disabled icon */
+--semantic-color-light-mode-foreground-action-status-negative-rest:       var(--primitive-color-red-100);          /* #b03a3a — error icon */
 
 /* ── Unit tokens (all unitless — multiply by 1px in CSS) ─── */
 --primitive-unit-unit-0-point-75: 0.75;   /* 0.75px border */

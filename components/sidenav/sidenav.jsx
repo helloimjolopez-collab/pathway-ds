@@ -52,9 +52,9 @@ export const T = {
     // Rest has NO fill. The Figma token was deleted so that resting genuinely
     // paints nothing rather than painting the sheet colour over the sheet.
     navBase:    "transparent",
-    navHover:   c("fill-contextual-navitem-hover"),
-    navActive:  c("fill-contextual-navitem-pressed"),
-    navTrail:   c("fill-contextual-navitem-trail"),
+    navHover:   c("fill-action-selection-hover"),
+    navActive:  c("fill-action-selection-selected"),
+    navTrail:   c("fill-action-selection-trail"),
     infoSubtle: c("stroke-static-neutral-subtle"),   // container right border
   },
   surface: { navLight: c("surface-sheet") },
@@ -65,7 +65,7 @@ export const T = {
     navBase:         c("foreground-action-secondary-rest"),
     navHover:        c("foreground-action-secondary-hover"),
     navActive:       c("foreground-action-secondary-pressed"),
-    navDisabled:     c("foreground-action-secondary-disabled"),
+    navDisabled:     c("foreground-action-disabled"),
     secondary:       c("foreground-static-neutral-subtle"),   // PopoverMenu.SectionLabel
     secondarySubtle: c("foreground-static-neutral-subtle"),   // NavSectionLabel
   },
@@ -73,8 +73,8 @@ export const T = {
     navBase:         c("foreground-action-secondary-rest"),
     navHover:        c("foreground-action-secondary-hover"),
     navActive:       c("foreground-action-secondary-pressed"),
-    navDisabled:     c("foreground-action-secondary-disabled"),
-    actionSecondary: c("foreground-action-secondary-inverse-rest"), // CollapseButton
+    navDisabled:     c("foreground-action-disabled"),
+    actionSecondary: c("foreground-action-secondary-rest"), // CollapseButton
   },
   // The active-item stripe takes the loud brand blue straight from the Action
   // tier rather than owning a token of its own.

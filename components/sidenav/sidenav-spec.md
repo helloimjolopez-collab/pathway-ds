@@ -494,9 +494,9 @@ drifted from the build, and a wrong hex in a spec reads as a design decision. Ru
 | Semantic token | CSS custom property | Used in |
 |---|---|---|
 | *(none)* | `transparent` | Resting item — paints **nothing** |
-| `Fill/Contextual/NavItem/Hover` | `--semantic-color-fill-contextual-navitem-hover` | Hover fill |
-| `Fill/Contextual/NavItem/Pressed` | `--semantic-color-fill-contextual-navitem-pressed` | Active destination + collapsed-trail grouper |
-| `Fill/Contextual/NavItem/Trail` | `--semantic-color-fill-contextual-navitem-trail` | Expanded grouper (open ancestor) |
+| `Fill/Contextual/NavItem/Hover` | `--semantic-color-fill-action-selection-hover` | Hover fill |
+| `Fill/Contextual/NavItem/Pressed` | `--semantic-color-fill-action-selection-selected` | Active destination + collapsed-trail grouper |
+| `Fill/Contextual/NavItem/Trail` | `--semantic-color-fill-action-selection-trail` | Expanded grouper (open ancestor) |
 | `Fill/Action/Primary/Pressed` | `--semantic-color-fill-action-primary-pressed` | `indicator.stripe` |
 | `Stroke/Static/Neutral/Subtle` | `--semantic-color-stroke-static-neutral-subtle` | Divider, nav `border-right`, popover border |
 
@@ -526,8 +526,8 @@ label, leading icon and chevron must not resolve through separate ramps that can
 | `Foreground/Action/Secondary/Rest` | `--semantic-color-foreground-action-secondary-rest` | Default |
 | `Foreground/Action/Secondary/Hover` | `--semantic-color-foreground-action-secondary-hover` | Hover |
 | `Foreground/Action/Secondary/Pressed` | `--semantic-color-foreground-action-secondary-pressed` | Active destination and all trail states |
-| `Foreground/Action/Secondary/Disabled` | `--semantic-color-foreground-action-secondary-disabled` | Disabled |
-| `Foreground/Action/Secondary Inverse/Rest` | `--semantic-color-foreground-action-secondary-inverse-rest` | CollapseButton icon |
+| `Foreground/Action/Secondary/Disabled` | `--semantic-color-foreground-action-disabled` | Disabled |
+| `Foreground/Action/Secondary Inverse/Rest` | `--semantic-color-foreground-action-secondary-rest` | CollapseButton icon |
 | `Foreground/Static/Neutral/Subtle` | `--semantic-color-foreground-static-neutral-subtle` | `NavSectionLabel`, `PopoverMenu.SectionLabel` |
 
 > The `Text/` and `Icon/` tiers were merged into `Foreground/` because they were two names

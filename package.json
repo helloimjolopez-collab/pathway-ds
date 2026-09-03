@@ -1,7 +1,7 @@
 {
   "name": "@helloimjolopez-pathway/pathway-tokens",
-  "version": "5.4.0",
-  "description": "Pathway Design System tokens — CSS custom properties, JS export, and DTCG JSON",
+  "version": "6.0.0",
+  "description": "Pathway Design System tokens \u2014 CSS custom properties, JS export, and DTCG JSON",
   "license": "UNLICENSED",
   "type": "module",
   "engines": {
@@ -22,15 +22,21 @@
     "./type-classes.css": "./dist/type-classes.css",
     "./themes/light.css": "./dist/themes/light.css",
     "./themes/midnight.css": "./dist/themes/midnight.css",
-    "./sidenav": "./components/sidenav/sidenav.jsx"
+    "./sidenav": "./components/sidenav/sidenav.jsx",
+    "./layout.css": "./dist/layout.css",
+    "./layout-contextual.css": "./dist/layout-contextual.css"
   },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
   },
   "peerDependenciesMeta": {
-    "react": { "optional": true },
-    "react-dom": { "optional": true }
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public",

@@ -153,7 +153,7 @@ Minimum **48 × 48 px** on every interactive element (WCAG 2.5.5). Bound to the 
 
 Every focusable element must have a **visible focus ring** that is not `outline: none` without a replacement. Use `:focus-visible` (not `:focus`) to avoid painting on mouse click.
 
-System default: `outline: 2px solid var(--semantic-color-light-mode-icon-action-primary-base); outline-offset: 2px;` (resolves to `#3555a0` / 2 px / 2 px offset in light mode).
+System default: `outline: 2px solid var(--semantic-color-light-mode-foreground-action-primary-rest); outline-offset: 2px;` (resolves to `#3555a0` / 2 px / 2 px offset in light mode).
 
 ### 3.3 Contrast
 
@@ -377,7 +377,7 @@ Lowercase kebab-case for component folders and files: `components/sidenav/sidena
 
 ### 8.2 Token names
 
-Lowercase with dots in JSON (`semantic-color.light-mode.icon.static.neutral.base`); style-dictionary emits hyphens for CSS (`--semantic-color-light-mode-icon-static-neutral-base`). Components consume the CSS variable form.
+Lowercase with dots in JSON (`semantic-color.light-mode.icon.static.neutral.base`); style-dictionary emits hyphens for CSS (`--semantic-color-light-mode-foreground-static-neutral-medium`). Components consume the CSS variable form.
 
 ### 8.3 Component prop names
 

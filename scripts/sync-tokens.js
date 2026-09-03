@@ -85,6 +85,21 @@ function processExport(data) {
 
   const tokens = {};
 
+  // A multi-mode collection nests its tokens under a mode segment (see the
+  // fullPath build below). A cross-collection alias written by Figma carries no
+  // mode, so "{BorderWidth.Thin}" into a 3-mode collection resolves to nothing
+  // and the token gets pruned. Registering each collection's modes up front lets
+  // formatValue qualify those aliases. This only started mattering when
+  // Semantic: Layout & Units gained Desktop/Tablet/Mobile modes; while it had a
+  // single mode there was no segment to insert.
+  const collectionModeSlugs = new Map();
+  for (const entry of data) {
+    for (const [collectionName, collectionData] of Object.entries(entry)) {
+      const names = Object.keys(collectionData.modes ?? {});
+      if (names.length > 1) collectionModeSlugs.set(slugify(collectionName), names.map(slugify));
+    }
+  }
+
   for (const entry of data) {
     // Each entry has one key: the collection name
     for (const [collectionName, collectionData] of Object.entries(entry)) {
@@ -120,7 +135,7 @@ function processExport(data) {
             ? [collSlug, modeSlug, ...path]
             : [collSlug, ...path];
           setNestedValue(tokens, fullPath, leaf);
-        });
+        }, { sourceModeSlug: modeSlug, collectionModeSlugs });
       }
     }
   }
@@ -132,7 +147,7 @@ function processExport(data) {
  * Recursively walk the token tree. When we find a leaf (has $type and $value),
  * call the callback with the path and the DTCG token object.
  */
-function processTokenGroup(obj, pathSoFar, callback) {
+function processTokenGroup(obj, pathSoFar, callback, aliasCtx) {
   for (const [key, val] of Object.entries(obj)) {
     if (key.startsWith("$")) continue; // skip metadata keys at group level
 
@@ -148,7 +163,7 @@ function processTokenGroup(obj, pathSoFar, callback) {
 
       const tokenLeaf = {
         $type: dtcgType,
-        $value: formatValue(val.$value, dtcgType, val.$collectionName),
+        $value: formatValue(val.$value, dtcgType, val.$collectionName, aliasCtx),
       };
 
       if (val.$description) {
@@ -158,7 +173,7 @@ function processTokenGroup(obj, pathSoFar, callback) {
       callback(currentPath, tokenLeaf);
     } else if (val && typeof val === "object" && !Array.isArray(val)) {
       // Nested group — recurse
-      processTokenGroup(val, currentPath, callback);
+      processTokenGroup(val, currentPath, callback, aliasCtx);
     }
   }
 }
@@ -170,15 +185,28 @@ function processTokenGroup(obj, pathSoFar, callback) {
  * - Color hex strings are lowercased.
  * - Everything else is passed through as-is.
  */
-function formatValue(raw, dtcgType, collectionName) {
+function formatValue(raw, dtcgType, collectionName, aliasCtx) {
   // Alias reference: "{Something.something}"
   if (typeof raw === "string" && /^\{.+\}$/.test(raw)) {
     const inner = raw.slice(1, -1);
+    const tail = inner.split(".").map(slugify).join(".");
     if (collectionName) {
+      const targetSlug = slugify(collectionName);
+      // A multi-mode target nests under a mode segment that Figma's alias omits.
+      // Prefer the mode the SOURCE token is in, so a Desktop contextual token
+      // points at the Desktop semantic value; fall back to the target's first
+      // mode when the two collections do not share mode names.
+      const targetModes = aliasCtx?.collectionModeSlugs?.get(targetSlug);
+      if (targetModes && targetModes.length) {
+        const mode = targetModes.includes(aliasCtx.sourceModeSlug)
+          ? aliasCtx.sourceModeSlug
+          : targetModes[0];
+        return `{${targetSlug}.${mode}.${tail}}`;
+      }
       // Prefix with collection slug so the reference is fully qualified
-      return `{${slugify(collectionName)}.${inner.split(".").map(slugify).join(".")}}`;
+      return `{${targetSlug}.${tail}}`;
     }
-    return `{${inner.split(".").map(slugify).join(".")}}`;
+    return `{${tail}}`;
   }
 
   // Color hex string

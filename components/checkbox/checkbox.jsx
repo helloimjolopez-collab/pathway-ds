@@ -19,57 +19,57 @@ import React, { useRef, useEffect, useState } from "react";
 // Fallbacks are used where noted and will be updated once Figma is re-synced.
 const V = {
   // Box fill — standard checked / indeterminate
-  fillCheckedBase:     "var(--semantic-color-light-mode-fill-action-primary-base)",
+  fillCheckedBase:     "var(--semantic-color-light-mode-fill-action-primary-rest)",
   fillCheckedHover:    "var(--semantic-color-light-mode-fill-action-primary-hover)",
   fillCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primary-hover)",
   fillCheckedPressed:  "var(--semantic-color-light-mode-fill-action-primary-pressed)",
-  fillCheckedDisabled: "var(--semantic-color-light-mode-fill-action-primary-disabled)",
+  fillCheckedDisabled: "var(--semantic-color-light-mode-fill-action-disabled)",
 
   // Box border — standard unchecked
-  borderBase:     "var(--semantic-color-light-mode-stroke-action-secondary-base)",
+  borderBase:     "var(--semantic-color-light-mode-stroke-action-secondary-rest)",
   borderHover:    "var(--semantic-color-light-mode-stroke-action-secondary-hover)",
   borderFocused:  "var(--semantic-color-light-mode-stroke-action-secondary-hover)",
   borderPressed:  "var(--semantic-color-light-mode-stroke-action-secondary-pressed)",
-  borderDisabled: "var(--semantic-color-light-mode-stroke-action-secondary-disabled)",
+  borderDisabled: "var(--semantic-color-light-mode-stroke-action-disabled)",
 
   // Checkmark / dash icon — standard
-  iconPrimary: "var(--semantic-color-light-mode-icon-action-primaryinverse-base)",
+  iconPrimary: "var(--semantic-color-light-mode-foreground-action-primary-rest)",
 
   // Checkmark / dash icon — error
-  iconError: "var(--semantic-color-light-mode-icon-action-negativeinverse-base)",
+  iconError: "var(--semantic-color-light-mode-foreground-action-status-negative-rest)",
 
   // State-layer — unchecked hover / focused
   stateLayerUncheckedHover: "var(--semantic-color-light-mode-fill-action-secondary-hover)",
 
   // State-layer — checked hover / focused / pressed
-  stateLayerCheckedHover:    "var(--semantic-color-light-mode-fill-action-primaryinverse-hover)",
-  stateLayerCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primaryinverse-hover)",
-  stateLayerCheckedPressed:  "var(--semantic-color-light-mode-fill-action-primaryinverse-pressed)",
+  stateLayerCheckedHover:    "var(--semantic-color-light-mode-fill-action-primary-dim-hover)",
+  stateLayerCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primary-dim-hover)",
+  stateLayerCheckedPressed:  "var(--semantic-color-light-mode-fill-action-primary-dim-pressed)",
 
   // Box fill — error checked / indeterminate
-  fillErrorBase:     "var(--semantic-color-light-mode-fill-action-negative-base)",
-  fillErrorHover:    "var(--semantic-color-light-mode-fill-action-negative-hover)",
-  fillErrorFocused:  "var(--semantic-color-light-mode-fill-action-negative-hover)",
-  fillErrorPressed:  "var(--semantic-color-light-mode-fill-action-negative-pressed)",
-  fillErrorDisabled: "var(--semantic-color-light-mode-fill-action-negative-disabled)",
+  fillErrorBase:     "var(--semantic-color-light-mode-fill-action-status-negative-rest)",
+  fillErrorHover:    "var(--semantic-color-light-mode-fill-action-status-negative-hover)",
+  fillErrorFocused:  "var(--semantic-color-light-mode-fill-action-status-negative-hover)",
+  fillErrorPressed:  "var(--semantic-color-light-mode-fill-action-status-negative-pressed)",
+  fillErrorDisabled: "var(--semantic-color-light-mode-fill-action-disabled)",
 
   // Box border — error unchecked
-  borderErrorBase:     "var(--semantic-color-light-mode-stroke-action-negative-base)",
-  borderErrorHover:    "var(--semantic-color-light-mode-stroke-action-negative-hover)",
-  borderErrorFocused:  "var(--semantic-color-light-mode-stroke-action-negative-hover)",
-  borderErrorPressed:  "var(--semantic-color-light-mode-stroke-action-negative-pressed)",
-  borderErrorDisabled: "var(--semantic-color-light-mode-stroke-action-negative-disabled)",
+  borderErrorBase:     "var(--semantic-color-light-mode-stroke-action-status-negative-rest)",
+  borderErrorHover:    "var(--semantic-color-light-mode-stroke-action-status-negative-hover)",
+  borderErrorFocused:  "var(--semantic-color-light-mode-stroke-action-status-negative-hover)",
+  borderErrorPressed:  "var(--semantic-color-light-mode-stroke-action-status-negative-pressed)",
+  borderErrorDisabled: "var(--semantic-color-light-mode-stroke-action-disabled)",
 
   // State-layer — error hover (both unchecked and checked)
-  stateLayerErrorHover: "var(--semantic-color-light-mode-fill-action-negativeinverse-hover)",
+  stateLayerErrorHover: "var(--semantic-color-light-mode-fill-action-status-negative-dim-hover)",
 
   // Highlight resting state — FALLBACK
   // fill.action.secondaryinverse.base is missing from token file (§5.3 HIGH).
   // Using fill.action.secondary.base as the closest available value.
-  highlightResting: "var(--semantic-color-light-mode-fill-action-secondary-base)",
+  highlightResting: "var(--semantic-color-light-mode-fill-action-secondary-rest)",
 
   // Label text
-  labelColor: "var(--semantic-color-light-mode-text-static-secondary-base)",
+  labelColor: "var(--semantic-color-light-mode-foreground-static-neutral-medium)",
 
   // Geometry
   // cornerradius.small = 4px — matches the 4px box radius in the Figma spec.
@@ -335,7 +335,7 @@ export function Checkbox({
             lineHeight: "20px",
             fontWeight: 400,
             color:      disabled
-              ? "var(--semantic-color-light-mode-text-static-secondary-base)"
+              ? "var(--semantic-color-light-mode-foreground-static-neutral-medium)"
               : V.labelColor,
           }}
         >

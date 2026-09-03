@@ -486,7 +486,7 @@ export const TokensStroke = () => (
     ))}
     <SectionLabel>Focus ring</SectionLabel>
     <TokenRow
-      name="var(--semantic-color-light-mode-stroke-contextual-focusring-base)"
+      name="var(--semantic-color-light-mode-stroke-focusring-base)"
       description="Outer ring of the 6px white + 2px brand focus halo"
     />
   </div>

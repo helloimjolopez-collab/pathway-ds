@@ -294,12 +294,12 @@ export const TokensFill = {
   tags: ["!dev"],
   render: () => (
     <TokenTable title="Fill tokens" rows={[
-      <TokenRow key="brand"   varName="--semantic-color-light-mode-fill-static-brand-base"         fallback="#2d4889"               label="Nav bar background" />,
-      <TokenRow key="org"     varName="--semantic-color-dark-mode-fill-action-tertiary-base"        fallback="rgba(160,181,230,0.04)" label="OrgSwitcher resting fill" />,
-      <TokenRow key="search"  varName="--semantic-color-dark-mode-fill-action-primaryinverse-base"  fallback="rgba(160,181,230,0.08)" label="Search pill fill" />,
-      <TokenRow key="hover"   varName="--semantic-color-dark-mode-fill-action-primaryinverse-hover" fallback="rgba(10,18,35,0.16)"    label="All controls hover" />,
-      <TokenRow key="pressed" varName="--semantic-color-dark-mode-fill-action-primaryinverse-pressed" fallback="rgba(255,255,255,0.08)" label="All controls pressed / open" />,
-      <TokenRow key="avbg"   varName="--semantic-color-light-mode-fill-static-accent-amethyst-base" fallback="#dcd9ef"               label="Profile avatar background" />,
+      <TokenRow key="brand"   varName="--semantic-color-light-mode-fill-static-brand-medium"         fallback="#2d4889"               label="Nav bar background" />,
+      <TokenRow key="org"     varName="--semantic-color-midnight-mode-fill-action-primary-dim-rest"        fallback="rgba(160,181,230,0.04)" label="OrgSwitcher resting fill" />,
+      <TokenRow key="search"  varName="--semantic-color-midnight-mode-fill-action-primary-dim-rest"  fallback="rgba(160,181,230,0.08)" label="Search pill fill" />,
+      <TokenRow key="hover"   varName="--semantic-color-midnight-mode-fill-action-primary-dim-hover" fallback="rgba(10,18,35,0.16)"    label="All controls hover" />,
+      <TokenRow key="pressed" varName="--semantic-color-midnight-mode-fill-action-primary-dim-pressed" fallback="rgba(255,255,255,0.08)" label="All controls pressed / open" />,
+      <TokenRow key="avbg"   varName="--semantic-color-light-mode-fill-static-accent-amethyst-medium" fallback="#dcd9ef"               label="Profile avatar background" />,
     ]} />
   ),
   parameters: { docs: { description: { story: "All fill tokens used by TopNav.Global. Applied on the brand-blue surface via dark-mode token family." } } },
@@ -309,9 +309,9 @@ export const TokensStroke = {
   tags: ["!dev"],
   render: () => (
     <TokenTable title="Stroke tokens" rows={[
-      <TokenRow key="orgborder"   varName="--semantic-color-dark-mode-stroke-action-tertiary-base"  fallback="rgba(160,181,230,0.16)" label="OrgSwitcher border" type="stroke" />,
-      <TokenRow key="orghover"    varName="--semantic-color-dark-mode-stroke-action-tertiary-hover" fallback="rgba(160,181,230,0.20)" label="OrgSwitcher hover border" type="stroke" />,
-      <TokenRow key="searchbdr"   varName="--semantic-color-dark-mode-icon-action-mono-base"        fallback="#fbfbfb"                label="Search pill border (0.75px)" type="stroke" />,
+      <TokenRow key="orgborder"   varName="--semantic-color-midnight-mode-stroke-action-primary-rest"  fallback="rgba(160,181,230,0.16)" label="OrgSwitcher border" type="stroke" />,
+      <TokenRow key="orghover"    varName="--semantic-color-midnight-mode-stroke-action-primary-hover" fallback="rgba(160,181,230,0.20)" label="OrgSwitcher hover border" type="stroke" />,
+      <TokenRow key="searchbdr"   varName="--semantic-color-midnight-mode-foreground-action-mono-rest"        fallback="#fbfbfb"                label="Search pill border (0.75px)" type="stroke" />,
     ]} />
   ),
   parameters: { docs: { description: { story: "Stroke tokens. OrgSwitcher uses tertiary stroke family; search pill uses mono base at 0.75px." } } },
@@ -321,8 +321,8 @@ export const TokensText = {
   tags: ["!dev"],
   render: () => (
     <TokenTable title="Text tokens" rows={[
-      <TokenRow key="mono"  varName="--semantic-color-dark-mode-text-action-mono-base"               fallback="#fbfbfb" label="All text on nav bar" type="text" />,
-      <TokenRow key="avtxt" varName="--semantic-color-light-mode-text-static-accent-amethyst-contrast" fallback="#221e3f" label="Profile avatar initials" type="text" />,
+      <TokenRow key="mono"  varName="--semantic-color-midnight-mode-foreground-action-mono-rest"               fallback="#fbfbfb" label="All text on nav bar" type="text" />,
+      <TokenRow key="avtxt" varName="--semantic-color-light-mode-foreground-static-accent-amethyst-contrast" fallback="#221e3f" label="Profile avatar initials" type="text" />,
     ]} />
   ),
   parameters: { docs: { description: { story: "Text tokens. Both are on the nav bar surface - mono/base for all labels, amethyst/contrast for avatar initials." } } },
@@ -332,7 +332,7 @@ export const TokensIcon = {
   tags: ["!dev"],
   render: () => (
     <TokenTable title="Icon tokens" rows={[
-      <TokenRow key="icomono" varName="--semantic-color-dark-mode-icon-action-mono-base" fallback="#fbfbfb" label="All icons on nav bar surface" type="icon" />,
+      <TokenRow key="icomono" varName="--semantic-color-midnight-mode-foreground-action-mono-rest" fallback="#fbfbfb" label="All icons on nav bar surface" type="icon" />,
     ]} />
   ),
   parameters: { docs: { description: { story: "Icon tokens. All Material Symbol icons on the brand-blue surface use Icon/Action/Mono/Base." } } },

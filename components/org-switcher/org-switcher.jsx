@@ -45,29 +45,29 @@ const CHURCH_ICON_PATH =
 // keep the file readable on its own.
 const T = {
   // Container fills
-  fillBase:    "var(--semantic-color-dark-mode-fill-action-tertiary-base,    rgba(160,181,230,0.04))",
-  fillHover:   "var(--semantic-color-dark-mode-fill-action-primaryinverse-hover,   rgba(10,18,35,0.16))",
-  fillPressed: "var(--semantic-color-dark-mode-fill-action-primaryinverse-pressed, rgba(255,255,255,0.08))",
+  fillBase:    "var(--semantic-color-midnight-mode-fill-action-primary-dim-rest,    rgba(160,181,230,0.04))",
+  fillHover:   "var(--semantic-color-midnight-mode-fill-action-primary-dim-hover,   rgba(10,18,35,0.16))",
+  fillPressed: "var(--semantic-color-midnight-mode-fill-action-primary-dim-pressed, rgba(255,255,255,0.08))",
 
   // Avatar placeholder background (when no logo on file)
-  fillAvatarPlaceholder: "var(--semantic-color-dark-mode-fill-action-secondary-base, rgba(255,255,255,0.08))",
+  fillAvatarPlaceholder: "var(--semantic-color-midnight-mode-fill-action-secondary-rest, rgba(255,255,255,0.08))",
 
   // Borders
-  strokeBase:    "var(--semantic-color-dark-mode-stroke-action-tertiary-base,    rgba(160,181,230,0.16))",
-  strokeHover:   "var(--semantic-color-dark-mode-stroke-action-tertiary-hover,   rgba(160,181,230,0.20))",
-  strokePressed: "var(--semantic-color-dark-mode-stroke-action-tertiary-pressed, rgba(160,181,230,0.30))",
+  strokeBase:    "var(--semantic-color-midnight-mode-stroke-action-primary-rest,    rgba(160,181,230,0.16))",
+  strokeHover:   "var(--semantic-color-midnight-mode-stroke-action-primary-hover,   rgba(160,181,230,0.20))",
+  strokePressed: "var(--semantic-color-midnight-mode-stroke-action-primary-pressed, rgba(160,181,230,0.30))",
 
   // Text — org name. Reconciled to Figma (Text/Static/Primary/Base, node
   // 40006819:14581). Static token — no per-state variants; the interactive
   // feedback is carried by the fill/stroke, not the text colour.
-  textBase:    "var(--semantic-color-dark-mode-text-static-primary-base, #eceaf3)",
-  textHover:   "var(--semantic-color-dark-mode-text-static-primary-base, #eceaf3)",
-  textPressed: "var(--semantic-color-dark-mode-text-static-primary-base, #eceaf3)",
+  textBase:    "var(--semantic-color-midnight-mode-foreground-static-neutral-bold, #eceaf3)",
+  textHover:   "var(--semantic-color-midnight-mode-foreground-static-neutral-bold, #eceaf3)",
+  textPressed: "var(--semantic-color-midnight-mode-foreground-static-neutral-bold, #eceaf3)",
 
   // Chevron icon — reconciled to Figma (Icon/Static/Neutral/Base = white 80%).
-  iconBase:    "var(--semantic-color-dark-mode-icon-static-neutral-base, rgba(255,255,255,0.8))",
-  iconHover:   "var(--semantic-color-dark-mode-icon-static-neutral-base, rgba(255,255,255,0.8))",
-  iconPressed: "var(--semantic-color-dark-mode-icon-static-neutral-base, rgba(255,255,255,0.8))",
+  iconBase:    "var(--semantic-color-midnight-mode-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
+  iconHover:   "var(--semantic-color-midnight-mode-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
+  iconPressed: "var(--semantic-color-midnight-mode-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
 
   // Geometry
   radiusMedium: "var(--semantic-layout-units-cornerradius-medium, 8px)",
@@ -469,13 +469,13 @@ export const DEMO_ORGS = [
 ];
 
 const PANEL_T = {
-  bg:        "var(--semantic-color-light-mode-fill-static-neutral-light, #ffffff)",
-  header:    "var(--semantic-color-light-mode-text-static-secondary-subtle, #606060)",
-  border:    "var(--semantic-color-light-mode-stroke-static-neutral-light, #ededed)",
-  name:      "var(--semantic-color-light-mode-text-static-secondary-bold, #202020)",
-  icon:      "var(--semantic-color-light-mode-icon-static-neutral-base, #949494)",
-  logoBg:    "var(--semantic-color-light-mode-fill-static-brand-base, #2d4889)",
-  rowActive: "var(--semantic-color-light-mode-fill-action-tertiary-base, #eef2fb)",
+  bg:        "var(--semantic-color-light-mode-fill-static-neutral-faint, #ffffff)",
+  header:    "var(--semantic-color-light-mode-foreground-static-neutral-subtle, #606060)",
+  border:    "var(--semantic-color-light-mode-stroke-static-neutral-faint, #ededed)",
+  name:      "var(--semantic-color-light-mode-foreground-static-neutral-bold, #202020)",
+  icon:      "var(--semantic-color-light-mode-foreground-static-neutral-medium, #949494)",
+  logoBg:    "var(--semantic-color-light-mode-fill-static-brand-medium, #2d4889)",
+  rowActive: "var(--semantic-color-light-mode-fill-action-primary-dim-rest, #eef2fb)",
 };
 
 function ModuleCluster() {

@@ -80,7 +80,7 @@ All values via CSS custom properties from `src/tokens/tokens.css`.
 ### Focus ring
 ```
 box-shadow: 0 0 0 6px #ffffff,
-            0 0 0 8px var(--semantic-color-light-mode-stroke-contextual-focusring-base)
+            0 0 0 8px var(--semantic-color-light-mode-stroke-focusring-base)
 ```
 
 ---

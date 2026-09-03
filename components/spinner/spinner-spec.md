@@ -337,9 +337,9 @@ Examples:
 
 | `tone` | `emphasis` | CSS variable | Token path |
 |---|---|---|---|
-| `neutral` | `base` *(defaults)* | `--semantic-color-light-mode-icon-static-neutral-base` | `icon.static.neutral.base` |
-| `brand` | `bold` | `--semantic-color-light-mode-icon-static-brand-bold` | `icon.static.brand.bold` |
-| `accent-jade` | `light` | `--semantic-color-light-mode-icon-static-accent-jade-light` | `icon.static.accent-jade.light` |
+| `neutral` | `base` *(defaults)* | `--semantic-color-light-mode-foreground-static-neutral-medium` | `icon.static.neutral.base` |
+| `brand` | `bold` | `--semantic-color-light-mode-foreground-static-brand-bold` | `icon.static.brand.bold` |
+| `accent-jade` | `light` | `--semantic-color-light-mode-foreground-static-accent-jade-faint` | `icon.static.accent-jade.light` |
 
 The Figma source node authors the spinner at `icon.static.neutral.base` (`#4b4b4b`). That is the correct default for a generic, context-free spinner.
 

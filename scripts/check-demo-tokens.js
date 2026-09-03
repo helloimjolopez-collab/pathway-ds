@@ -64,17 +64,9 @@ import { join, basename } from "node:path";
  * entirely — that one is a component fix, not a sync fix.
  */
 const PENDING_SYNC = new Set([
-  "semantic-color-surface-sheet",
-  "semantic-color-surface-canvas",
-  "semantic-color-fill-contextual-navitem-hover",
-  "semantic-color-fill-contextual-navitem-pressed",
-  "semantic-color-fill-contextual-navitem-trail",
-  "semantic-color-foreground-action-secondary-rest",
-  "semantic-color-foreground-action-secondary-hover",
-  "semantic-color-foreground-action-secondary-pressed",
-  "semantic-color-foreground-action-secondary-disabled",
-  "semantic-color-foreground-action-secondary-inverse-rest",
-  "semantic-color-foreground-static-neutral-subtle",
+  // Emptied 2026-09-03 by the post-restructure sync. Anything that fails now is
+  // a real component error, not a pending sync. Do not refill this without a date
+  // and a reason.
 ]);
 
 const TOKENS_CSS = "src/tokens/tokens.css";
@@ -124,6 +116,11 @@ const CSS_SOURCES = [
   "src/tokens/themes/light.css",
   "src/tokens/themes/midnight.css",
   "src/tokens/primitives.css",
+  // Layout and spacing moved out of tokens.css on 2026-09-03 when
+  // Semantic: Layout & Units gained breakpoint modes. The modeless names live
+  // here now, with the breakpoint resolved by media query.
+  "src/tokens/layout.css",
+  "src/tokens/layout-contextual.css",
 ];
 
 const defined = new Set();
@@ -185,8 +182,17 @@ for (const file of demos) {
 
   // Rule 4: t("A/B/C") must resolve. resolve-tokens returns the id unchanged on a
   // miss, so an unresolvable name ships as a silent wrong colour.
+  //
+  // Comments are stripped first. A component that has MIGRATED off a token often
+  // explains the history in a comment ("this previously called t(...)"), and
+  // flagging that as a live call is a false positive that pushes the author to
+  // delete the explanation to get a green build.
+  const code = src
+    .replace(/\/\*[\s\S]*?\*\//g, "")   // block comments
+    .replace(/^\s*\/\/.*$/gm, "")        // whole-line // comments
+    .replace(/(^|[^:])\/\/[^\n"'`]*$/gm, "$1");  // trailing // comments
   const tCalls = new Set();
-  for (const m of src.matchAll(T_CALL)) tCalls.add(m[1]);
+  for (const m of code.matchAll(T_CALL)) tCalls.add(m[1]);
   const deadTokens = [...tCalls]
     .filter((id) => {
       const suffixes = candidateSuffixes(id);

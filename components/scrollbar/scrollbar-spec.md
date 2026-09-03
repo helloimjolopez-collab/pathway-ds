@@ -133,7 +133,7 @@ Every colour and unit resolves through a **semantic** Pathway token (in `SCROLL`
 | `grabZone` | — *(numeric)* | 16 px | invisible **mouse** grab strip width — the 6px thumb alone is too thin to catch; also the edge-proximity reveal distance |
 | `thumbRest` | `--semantic-color-light-mode-scrim-faint` | `rgba(17,17,17,0.16)` | resting overlay (black 16%) |
 | `thumbHover` | `--semantic-color-light-mode-scrim-light` | `rgba(17,17,17,0.30)` | hover / drag overlay (black 30%) |
-| `thumbEdge` | `--semantic-color-light-mode-fill-static-neutral-light` @ 35% (via `color-mix`) | white, 35% | hairline glass edge highlight |
+| `thumbEdge` | `--semantic-color-light-mode-fill-static-neutral-faint` @ 35% (via `color-mix`) | white, 35% | hairline glass edge highlight |
 | `thumbBlur` | — *(effect, not a colour)* | `blur(8px) saturate(180%)` | backdrop-filter — the "glass" that refracts content beneath |
 | `fadeIn` | `--motion-duration-3` + `--motion-easing-decelerate` | 200 ms glide-in | appear transition — snappy, responsive |
 | `fadeOut` | `--motion-duration-5` + `--motion-easing-standard` | 380 ms | disappear transition — graceful, clearly a fade (not an abrupt cut) |

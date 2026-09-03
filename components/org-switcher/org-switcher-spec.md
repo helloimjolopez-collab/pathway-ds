@@ -187,34 +187,34 @@ All tokens confirmed from Figma node `40006819:14583`. This component uses **dar
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `fill.action.tertiary.base` | `--semantic-color-dark-mode-fill-action-tertiary-base` | `rgba(160,181,230,0.04)` | Trigger background — base |
-| `fill.action.primaryinverse.hover` | `--semantic-color-dark-mode-fill-action-primaryinverse-hover` | `rgba(10,18,35,0.16)` | Trigger background — hover |
-| `fill.action.primaryinverse.pressed` | `--semantic-color-dark-mode-fill-action-primaryinverse-pressed` | `rgba(255,255,255,0.08)` | Trigger background — pressed / open |
-| `fill.action.secondary.base` | `--semantic-color-dark-mode-fill-action-secondary-base` | `rgba(255,255,255,0.08)` | Avatar placeholder background (no logo) |
+| `fill.action.tertiary.base` | `--semantic-color-midnight-mode-fill-action-primary-dim-rest` | `rgba(160,181,230,0.04)` | Trigger background — base |
+| `fill.action.primaryinverse.hover` | `--semantic-color-midnight-mode-fill-action-primary-dim-hover` | `rgba(10,18,35,0.16)` | Trigger background — hover |
+| `fill.action.primaryinverse.pressed` | `--semantic-color-midnight-mode-fill-action-primary-dim-pressed` | `rgba(255,255,255,0.08)` | Trigger background — pressed / open |
+| `fill.action.secondary.base` | `--semantic-color-midnight-mode-fill-action-secondary-rest` | `rgba(255,255,255,0.08)` | Avatar placeholder background (no logo) |
 
 ### 3.2 Stroke
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `stroke.action.tertiary.base` | `--semantic-color-dark-mode-stroke-action-tertiary-base` | `rgba(160,181,230,0.16)` | Trigger + avatar border — base |
-| `stroke.action.tertiary.hover` | `--semantic-color-dark-mode-stroke-action-tertiary-hover` | `rgba(160,181,230,0.20)` | Trigger + avatar border — hover |
-| `stroke.action.tertiary.pressed` | `--semantic-color-dark-mode-stroke-action-tertiary-pressed` | `rgba(160,181,230,0.30)` | Trigger + avatar border — pressed / open |
+| `stroke.action.tertiary.base` | `--semantic-color-midnight-mode-stroke-action-primary-rest` | `rgba(160,181,230,0.16)` | Trigger + avatar border — base |
+| `stroke.action.tertiary.hover` | `--semantic-color-midnight-mode-stroke-action-primary-hover` | `rgba(160,181,230,0.20)` | Trigger + avatar border — hover |
+| `stroke.action.tertiary.pressed` | `--semantic-color-midnight-mode-stroke-action-primary-pressed` | `rgba(160,181,230,0.30)` | Trigger + avatar border — pressed / open |
 
 ### 3.3 Text
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `text.action.mono.base` | `--semantic-color-dark-mode-text-action-mono-base` | `#fbfbfb` | Label text — base |
-| `text.action.mono.hover` | `--semantic-color-dark-mode-text-action-mono-hover` | `#ffffff` | Label text — hover |
-| `text.action.mono.pressed` | `--semantic-color-dark-mode-text-action-mono-pressed` | `#ffffff` | Label text — pressed / open |
+| `text.action.mono.base` | `--semantic-color-midnight-mode-foreground-action-mono-rest` | `#fbfbfb` | Label text — base |
+| `text.action.mono.hover` | `--semantic-color-midnight-mode-foreground-action-mono-rest` | `#ffffff` | Label text — hover |
+| `text.action.mono.pressed` | `--semantic-color-midnight-mode-foreground-action-mono-rest` | `#ffffff` | Label text — pressed / open |
 
 ### 3.4 Icon
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `icon.action.mono.base` | `--semantic-color-dark-mode-icon-action-mono-base` | `#fbfbfb` | Chevron — base |
-| `icon.action.mono.hover` | `--semantic-color-dark-mode-icon-action-mono-hover` | `#ffffff` | Chevron — hover |
-| `icon.action.mono.pressed` | `--semantic-color-dark-mode-icon-action-mono-pressed` | `#ffffff` | Chevron — pressed / open |
+| `icon.action.mono.base` | `--semantic-color-midnight-mode-foreground-action-mono-rest` | `#fbfbfb` | Chevron — base |
+| `icon.action.mono.hover` | `--semantic-color-midnight-mode-foreground-action-mono-rest` | `#ffffff` | Chevron — hover |
+| `icon.action.mono.pressed` | `--semantic-color-midnight-mode-foreground-action-mono-rest` | `#ffffff` | Chevron — pressed / open |
 
 ### 3.5 Geometry
 

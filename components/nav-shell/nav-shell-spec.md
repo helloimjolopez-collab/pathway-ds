@@ -98,41 +98,41 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `fill.static.brand.base` | `--semantic-color-light-mode-fill-static-brand-base` | #2d4889 | Nav bar background |
+| `fill.static.brand.base` | `--semantic-color-light-mode-fill-static-brand-medium` | #2d4889 | Nav bar background |
 | `fill.action.tertiary.base` (dark) | dark-mode | rgba(160,181,230,0.04) | OrgSwitcher resting fill |
 | `stroke.action.tertiary.base` (dark) | dark-mode | rgba(160,181,230,0.16) | OrgSwitcher border |
 | `fill.action.primaryinverse.hover` (dark) | dark-mode | rgba(10,18,35,0.16) | All nav controls hover |
 | `text.action.mono.base` (dark) | dark-mode | #fbfbfb | All text + icons on nav |
-| `fill.static.accent.amethyst.base` | `--semantic-color-light-mode-fill-static-accent-amethyst-base` | #dcd9ef | Profile avatar bg |
-| `text.static.accent-amethyst.contrast` | `--semantic-color-light-mode-text-static-accent-amethyst-contrast` | #221e3f | Profile avatar initials |
+| `fill.static.accent.amethyst.base` | `--semantic-color-light-mode-fill-static-accent-amethyst-medium` | #dcd9ef | Profile avatar bg |
+| `text.static.accent-amethyst.contrast` | `--semantic-color-light-mode-foreground-static-accent-amethyst-contrast` | #221e3f | Profile avatar initials |
 
 ### SideNav surface (light mode)
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `surface.nav.light` | `--semantic-color-light-mode-surface-nav-light` | #f9f9f9 | SideNav background |
-| `stroke.static.neutral.light` | `--semantic-color-light-mode-stroke-static-neutral-light` | #f6f6f6 | Right border + section separators |
-| `fill.contextual.navitem.hover` | `--semantic-color-light-mode-fill-contextual-navitem-hover` | rgba(69,77,94,0.06) | Nav item hover |
-| `fill.contextual.navitem.active` | `--semantic-color-light-mode-fill-contextual-navitem-active` | #eef2fb | Active nav item fill |
-| `text.contextual.navitem.base` | `--semantic-color-light-mode-text-contextual-navitem-base` | #484848 | Nav item label |
-| `text.contextual.navitem.active` | `--semantic-color-light-mode-text-contextual-navitem-active` | #3555a0 | Active nav item label |
-| `icon.contextual.navitem.base` | `--semantic-color-light-mode-icon-contextual-navitem-base` | #606060 | Nav item icon (resting) |
-| `icon.contextual.navitem.active` | `--semantic-color-light-mode-icon-contextual-navitem-active` | #3555a0 | Active nav item icon |
+| `surface.nav.light` | `--semantic-color-light-mode-surface-sheet` | #f9f9f9 | SideNav background |
+| `stroke.static.neutral.light` | `--semantic-color-light-mode-stroke-static-neutral-faint` | #f6f6f6 | Right border + section separators |
+| `fill.contextual.navitem.hover` | `--semantic-color-light-mode-fill-action-selection-hover` | rgba(69,77,94,0.06) | Nav item hover |
+| `fill.contextual.navitem.active` | `--semantic-color-light-mode-fill-action-selection-selected` | #eef2fb | Active nav item fill |
+| `text.contextual.navitem.base` | `--semantic-color-light-mode-foreground-action-secondary-rest` | #484848 | Nav item label |
+| `text.contextual.navitem.active` | `--semantic-color-light-mode-foreground-action-primary-rest` | #3555a0 | Active nav item label |
+| `icon.contextual.navitem.base` | `--semantic-color-light-mode-foreground-action-secondary-rest` | #606060 | Nav item icon (resting) |
+| `icon.contextual.navitem.active` | `--semantic-color-light-mode-foreground-action-primary-rest` | #3555a0 | Active nav item icon |
 
 ### ScreenTemplate surface (light mode)
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `surface.canvas.light` | `--semantic-color-light-mode-surface-canvas-light` | #fafafa | Page background |
-| `fill.static.neutral.light` | `--semantic-color-light-mode-fill-static-neutral-light` | #ffffff | Card background |
-| `stroke.action.secondary-inverse.base` | `--semantic-color-light-mode-stroke-action-secondary-inverse-base` | #d2d2d2 | Card border + toolbar search border |
-| `text.static.primary.base` | `--semantic-color-light-mode-text-static-primary-base` | #202020 | Page heading, card title |
-| `text.static.secondary.base` | `--semantic-color-light-mode-text-static-secondary-base` | #484848 | Page subtitle |
-| `text.static.secondary.subtle` | `--semantic-color-light-mode-text-static-secondary-subtle` | #606060 | Section heading, card body, search placeholder |
-| `fill.action.tertiary.base` | `--semantic-color-light-mode-fill-action-tertiary-base` | #eef2fb | Active filter chip bg |
-| `text.action.primary.base` | `--semantic-color-light-mode-text-action-primary-base` | #3555a0 | Active tab, active filter chip text |
-| `fill.static.accent_amethyst.light` | `--semantic-color-light-mode-fill-static-accent-amethyst-light` | #f4f2fa | Badge background |
-| `text.static.accent-amethyst.contrast` | `--semantic-color-light-mode-text-static-accent-amethyst-contrast` | #221e3f | Badge text |
+| `surface.canvas.light` | `--semantic-color-light-mode-surface-canvas` | #fafafa | Page background |
+| `fill.static.neutral.light` | `--semantic-color-light-mode-fill-static-neutral-faint` | #ffffff | Card background |
+| `stroke.action.secondary-inverse.base` | `--semantic-color-light-mode-stroke-action-secondary-rest` | #d2d2d2 | Card border + toolbar search border |
+| `text.static.primary.base` | `--semantic-color-light-mode-foreground-static-neutral-bold` | #202020 | Page heading, card title |
+| `text.static.secondary.base` | `--semantic-color-light-mode-foreground-static-neutral-medium` | #484848 | Page subtitle |
+| `text.static.secondary.subtle` | `--semantic-color-light-mode-foreground-static-neutral-subtle` | #606060 | Section heading, card body, search placeholder |
+| `fill.action.tertiary.base` | `--semantic-color-light-mode-fill-action-primary-dim-rest` | #eef2fb | Active filter chip bg |
+| `text.action.primary.base` | `--semantic-color-light-mode-foreground-action-primary-rest` | #3555a0 | Active tab, active filter chip text |
+| `fill.static.accent_amethyst.light` | `--semantic-color-light-mode-fill-static-accent-amethyst-faint` | #f4f2fa | Badge background |
+| `text.static.accent-amethyst.contrast` | `--semantic-color-light-mode-foreground-static-accent-amethyst-contrast` | #221e3f | Badge text |
 
 ---
 
@@ -431,8 +431,8 @@ On mobile, the org trigger shows abbreviated text. The rules:
 
 ### 9.6 What to never do
 
-- Never hardcode `#2d4889` — always use `var(--semantic-color-light-mode-fill-static-brand-base, #2d4889)`.
-- Never hardcode `#fafafa` — always use `var(--semantic-color-light-mode-surface-canvas-light, #fafafa)`.
+- Never hardcode `#2d4889` — always use `var(--semantic-color-light-mode-fill-static-brand-medium, #2d4889)`.
+- Never hardcode `#fafafa` — always use `var(--semantic-color-light-mode-surface-canvas, #fafafa)`.
 - Never use `display: none` on the SideNav for any state — use `width: 0` with `overflow: hidden`.
 - Never set `border-radius: 8px` on the ToolBar search input — it is 6px (confirmed from Figma).
 - Never put `overflow: hidden` on Shell.Main — the content area must scroll.

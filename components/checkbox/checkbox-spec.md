@@ -133,24 +133,24 @@ Hover, focus, and pressed states show on the **state-layer** (44×44px backgroun
 | Element | State | Token | CSS variable |
 |---|---|---|---|
 | Box fill | All unchecked | transparent | — |
-| Box fill | Checked / Indeterminate | `fill.action.primary.base` | `--semantic-color-light-mode-fill-action-primary-base` |
+| Box fill | Checked / Indeterminate | `fill.action.primary.base` | `--semantic-color-light-mode-fill-action-primary-rest` |
 | Box fill | Checked hover | `fill.action.primary.hover` | `--semantic-color-light-mode-fill-action-primary-hover` |
 | Box fill | Checked focused | `fill.action.primary.hover` | `--semantic-color-light-mode-fill-action-primary-hover` |
 | Box fill | Checked pressed | `fill.action.primary.pressed` | `--semantic-color-light-mode-fill-action-primary-pressed` |
-| Box fill | Disabled checked | `fill.action.primary.disabled` | `--semantic-color-light-mode-fill-action-primary-disabled` |
-| Box border | Unchecked default | `stroke.action.secondary.base` | `--semantic-color-light-mode-stroke-action-secondary-base` |
+| Box fill | Disabled checked | `fill.action.primary.disabled` | `--semantic-color-light-mode-fill-action-disabled` |
+| Box border | Unchecked default | `stroke.action.secondary.base` | `--semantic-color-light-mode-stroke-action-secondary-rest` |
 | Box border | Unchecked hover | `stroke.action.secondary.hover` | `--semantic-color-light-mode-stroke-action-secondary-hover` |
 | Box border | Unchecked focused | `stroke.action.secondary.hover` | `--semantic-color-light-mode-stroke-action-secondary-hover` |
 | Box border | Unchecked pressed | `stroke.action.secondary.pressed` | `--semantic-color-light-mode-stroke-action-secondary-pressed` |
 | Box border | Checked (all states) | same as fill | (border hidden under fill) |
-| Box border | Disabled unchecked | `stroke.action.secondary.disabled` | `--semantic-color-light-mode-stroke-action-secondary-disabled` |
-| Checkmark / dash icon | Checked / indeterminate | `icon.action.primaryinverse.base` | `--semantic-color-light-mode-icon-action-primaryinverse-base` |
+| Box border | Disabled unchecked | `stroke.action.secondary.disabled` | `--semantic-color-light-mode-stroke-action-disabled` |
+| Checkmark / dash icon | Checked / indeterminate | `icon.action.primaryinverse.base` | `--semantic-color-light-mode-foreground-action-primary-rest` |
 | State-layer fill | Unchecked hover | `fill.action.secondary.hover` | `--semantic-color-light-mode-fill-action-secondary-hover` |
 | State-layer fill | Unchecked focused | `fill.action.secondary.hover` | `--semantic-color-light-mode-fill-action-secondary-hover` |
-| State-layer fill | Checked hover | `fill.action.primaryinverse.hover` | `--semantic-color-light-mode-fill-action-primaryinverse-hover` |
-| State-layer fill | Checked focused | `fill.action.primaryinverse.hover` | `--semantic-color-light-mode-fill-action-primaryinverse-hover` |
-| State-layer fill | Checked pressed | `fill.action.primaryinverse.pressed` | `--semantic-color-light-mode-fill-action-primaryinverse-pressed` |
-| Label text | All | `text.static.secondary.base` | `--semantic-color-light-mode-text-static-secondary-base` |
+| State-layer fill | Checked hover | `fill.action.primaryinverse.hover` | `--semantic-color-light-mode-fill-action-primary-dim-hover` |
+| State-layer fill | Checked focused | `fill.action.primaryinverse.hover` | `--semantic-color-light-mode-fill-action-primary-dim-hover` |
+| State-layer fill | Checked pressed | `fill.action.primaryinverse.pressed` | `--semantic-color-light-mode-fill-action-primary-dim-pressed` |
+| Label text | All | `text.static.secondary.base` | `--semantic-color-light-mode-foreground-static-neutral-medium` |
 | Border radius | Box | `cornerradius.xsmall` | `--semantic-layout-units-cornerradius-xsmall` |
 
 ### 5.2 Error (negative) — error unchecked / error checked

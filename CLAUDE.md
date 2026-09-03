@@ -37,11 +37,13 @@ tokens/pathway-design-tokens.json                        │
   └──────────────────────────┬────────────────────────────┘
                              │  node style-dictionary.config.js
                              ▼
-        src/tokens/tokens.css          all tokens, mode baked into the name (legacy)
-        src/tokens/type-classes.css    111 composite type styles as CSS classes
-        src/tokens/themes/light.css    452 semantic colours under :root
-        src/tokens/themes/midnight.css the same 452 names under [data-theme]
-        src/tokens/tokens.js           flat JS map, consumed by resolve-tokens + stories
+        src/tokens/tokens.css              all tokens, mode baked into the name (legacy)
+        src/tokens/type-classes.css        111 composite type styles as CSS classes
+        src/tokens/themes/light.css        332 semantic colours under :root
+        src/tokens/themes/midnight.css     the same 332 names under [data-theme]
+        src/tokens/layout.css              39 layout tokens, breakpoint by media query
+        src/tokens/layout-contextual.css   30 component metrics, same treatment
+        src/tokens/tokens.js               flat JS map, consumed by resolve-tokens + stories
 ```
 
 **The manual export step is gone (replaced 2026-09-02).** There is no Figma REST
@@ -62,14 +64,25 @@ Full architecture, the contract-versus-internal split, and the publishing flow
 are documented in **`docs/token-pipeline.md`**. Read that before changing the
 pipeline.
 
-### 2.0 The four CSS outputs, and which one to consume
+### 2.0 The CSS outputs, and which one to consume
 
 | File | Contains | Consume it? |
 |---|---|---|
-| `themes/light.css` + `themes/midnight.css` | 452 semantic colour names, one name per token, mode resolved by selector | **Yes.** This is the colour contract |
+| `themes/light.css` + `themes/midnight.css` | 332 semantic colour names, one name per token, mode resolved by selector | **Yes.** This is the colour contract |
 | `type-classes.css` | 111 `.pw-type-*` classes, one per text style, with a mobile media query | **Yes.** Apply one class, not five properties |
+| `layout.css` | 39 layout and spacing names, breakpoint resolved by media query | **Yes.** This is the spacing contract |
+| `layout-contextual.css` | 30 component metrics (Button, Card, NavItem, Page, focus ring) | Component internals. The components in this repo use it; product code should not |
 | `tokens.css` | Everything, with the mode baked into each name (`--semantic-color-light-mode-…`) | Legacy. Still emitted so nothing breaks; being retired |
 | `tokens.js` | Flat JS map | Only via `resolve-tokens.js` |
+
+**Layout got the same treatment as colour on 2026-09-03.** `Semantic: Layout & Units`
+gained Desktop/Tablet/Mobile modes, which put the breakpoint into every property name
+(`--semantic-layout-units-desktop-1440pt-padding-base`). That breaks every existing
+spacing reference and makes responsive layout impossible by selector. `layout.css`
+and `layout-contextual.css` strip the breakpoint and scope it with a media query
+instead, emitting only the values that actually differ per breakpoint. Expect a
+"token collisions were found" warning on both files — three modes collapsing onto one
+name IS the intent.
 
 Both colour name sets are live at once on purpose, so consumers can migrate at
 their own pace. Migrating off `tokens.css` is a `-light-mode` string deletion for

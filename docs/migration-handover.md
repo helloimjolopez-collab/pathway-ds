@@ -8,24 +8,27 @@ Read `docs/token-pipeline.md` alongside this for how tokens flow out of Figma.
 
 ## 1. The public contract
 
-**374 public variables. 999 private.** The private ones are implementation detail and
+**407 public variables. 966 private.** The private ones are implementation detail and
 carry no compatibility promise; their names and slot numbers move whenever a ramp is
 retuned.
 
 | Collection | Public | Private | Modes |
 |---|---|---|---|
-| Semantic: Color | 329 | 0 | Light Mode, Midnight Mode |
+| Semantic: Color | 332 | 0 | Light Mode, Midnight Mode |
 | Semantic: Layout & Units | 39 | 0 | Desktop 1440pt, Tablet 798pt, Mobile 393pt |
+| Contextual: Layout & Units | 30 | 0 | Desktop, Tablet, Mobile |
 | Breakpoints | 5 | 0 | Value |
 | Semantic: Type | 1 | 553 | Desktop, Mobile |
-| Primitive: Color | 0 | 301 | Mode 1 |
+| Primitive: Color | 0 | 302 | Mode 1 |
 | Primitive: Type | 0 | 79 | Value |
 | Primitive: Unit | 0 | 32 | Mode 1 |
-| Contextual: Color | 0 | 3 | Light Mode, Midnight Mode |
-| Contextual: Layout & Units | 0 | 30 | Desktop, Tablet, Mobile |
 
-The public colour contract was 463 variables before this work and is 329 now.
-Total public surface went from 936 to 374.
+Total public surface went from **936 to 407**. The emitted colour contract went from
+**452 to 332** custom property names, measured off the built CSS.
+
+`Contextual: Color` was deleted; see §3.10. `Contextual: Layout & Units` is public
+because a token a designer cannot see in their library is not a token: nobody can lay
+out a button or a nav item without `Button/Padding` and `NavItem/Large/Radius`.
 
 ### Why Semantic: Type shows 1 public variable
 
@@ -43,8 +46,11 @@ published variable keeps the collection visible. Do not hide it.
 Only these:
 
 - `--semantic-color-*` from `themes/light.css` and `themes/midnight.css`
-- `--semantic-layout-units-*`
+- `--semantic-layout-units-*` from `layout.css`
 - the `.pw-type-*` classes from `type-classes.css`
+
+`layout-contextual.css` carries component internals (Button, Card, NavItem, Page,
+focus ring metrics). The components in this repo consume it; product code should not.
 
 Everything else, including every `--primitive-color-*` name, is internal.
 
@@ -79,11 +85,15 @@ Mode. It is the token for tonal buttons, selected rows, and tinted callouts.
 
 ## 3. What changed, and why
 
-### 3.1 Public surface cut from 936 to 374
+### 3.1 Public surface cut from 936 to 407
 
-Primitives, both contextual collections, and Semantic: Type were made private. None of
-these were ever meant to be a contract. Primitive slot numbers move when a ramp is
-retuned, so a consumer bound to `Brand/450` breaks silently on any retune.
+Primitives and Semantic: Type were made private. Neither was ever meant to be a
+contract: primitive slot numbers move when a ramp is retuned, so a consumer bound to
+`Brand/450` breaks silently on any retune, and type is consumed as classes.
+
+`Contextual: Layout & Units` was made private in the same pass and then **put back**,
+because it made the component metrics invisible in a designer's Figma library. That is
+the 374 → 407 difference; no tokens were added to get there.
 
 ### 3.2 Tertiary removed entirely
 
@@ -185,6 +195,44 @@ separate public tokens:
 - `Stroke/Action/Field` for inputs (`#7b7b7b` to `#606060`, 4.1:1 to 6.0:1)
 - `Stroke/Action/Secondary` for buttons (`#c4c4c4` to `#a6a6a6`, 1.7:1 to 2.3:1)
 
+### 3.10 Contextual colour became a public Selection group
+
+`Contextual: Color` held three variables, all `NavItem/Fill/*`, and it was private.
+That was wrong twice over. A private token is invisible in a designer's library, so
+the nav item could not be styled at all; and those three values were never
+nav-specific — by inspection they serve nav rows, popover rows, open select and
+search panels, and chips.
+
+They are now **`Fill/Action/Selection/{Hover, Selected, Trail}`**, public, and the
+collection is deleted.
+
+| token | Light | Midnight |
+|---|---|---|
+| `Selection/Hover` | `Warm Neutral/800 @ 4%` | `Warm Neutral/25 @ 8%` |
+| `Selection/Selected` | `Brand/100 @ 16%` | `Brand/100 @ 16%` |
+| `Selection/Trail` | `Warm Neutral/800 @ 8%` | `Warm Neutral/25 @ 16%` |
+
+Two bugs were fixed in the move: they were on **cool** neutrals when a fill wash
+should be warm (§3.5), and Hover and Trail resolved to the **same value** in Light,
+so an open group was indistinguishable from a hovered row. Trail is now double the
+hover weight.
+
+`Selection/Selected` also works as a `::selection` background — body text measures
+15.7 to 16.3:1 on it across every surface — so there is no separate text-selection
+token.
+
+### 3.11 Layout gained breakpoint modes, and needed the colour treatment
+
+`Semantic: Layout & Units` gained Desktop/Tablet/Mobile modes, which put the
+breakpoint into every property name
+(`--semantic-layout-units-desktop-1440pt-padding-base`). That breaks every spacing
+reference and forces a consumer to swap variable *names* per breakpoint instead of
+letting the cascade resolve one name.
+
+`layout.css` and `layout-contextual.css` now strip the breakpoint and scope it with a
+media query, emitting only the values that actually differ. Today that is just the
+page padding, so the override blocks are four declarations total.
+
 ## 4. Breaking changes
 
 | Removed or renamed | Use instead |
@@ -233,9 +281,10 @@ These are known and deliberate, not oversights.
 
 | Item | Detail |
 |---|---|
-| **Repo not yet synced** | Everything in §3 is in Figma. The repo still carries the previous token set. One `sync-from-figma` pass closes it. This must be the last step, because any further Figma change invalidates it. |
-| `PENDING_SYNC` allowlist | `scripts/check-demo-tokens.js` holds 11 token names that exist in Figma but not yet in the built CSS. The sync must empty this list. Any entry surviving a sync means the token does not exist and the component is wrong. |
-| Component reconciliation | 11 components, their Storybook stories and their MDX docs still reference pre-restructure token names. Follow `CLAUDE.md` §3. |
+| ~~Repo not yet synced~~ | **DONE.** Synced 2026-09-03. 1,178 rows dumped from Figma plus 1,219 hash-verified reused rows = all 2,397. |
+| ~~`PENDING_SYNC` allowlist~~ | **DONE.** Emptied. All 9 demos resolve every token they reference. |
+| ~~Component reconciliation~~ | **DONE.** 306 stale references migrated across 20 files by `scripts/migrate-token-names.js`, which validates every replacement against the emitted CSS and refuses to write a name that does not exist. Storybook builds clean. |
+| 9 primitive references in a draft | `components/search/SEARCH-SPEC-TO-REVIEW.md` documents a raw primitive palette whose slot numbers no longer exist. It is a pending-review draft, so it was left alone rather than rewritten. Per `CLAUDE.md` §8 it is a candidate for deletion or the sandbox repo. |
 | Code Connect not published | All 7 mapping files under `components/sidenav/` parse cleanly and point at the right source, but were never published. Publishing needs a Figma token with Code Connect write scope, or it can go through the Figma MCP server. |
 | Solid ramp order | `Cool Neutral/10`, `/50`, `/400`, `/800`, `/900` and `Brand/10` render after `/700` in the panel. Same no-reorder-API cause as the alphas. Fixing needs recreate and repoint, and unlike the alphas these steps are aliased by hundreds of semantics. |
 | Colour docs page | Holds swatches bound to deleted tokens. Needs a `pathway-color-docs-sync` run. |

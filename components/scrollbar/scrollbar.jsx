@@ -34,7 +34,7 @@ export const SCROLL = {
   thumbHover:  "var(--semantic-color-light-mode-scrim-light)",    // black 30% — hover/drag
   thumbBlur:   "blur(8px) saturate(180%)",
   // Hairline glass edge: semantic white at 35% via color-mix.
-  thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-light-mode-fill-static-neutral-light) 35%, transparent)",
+  thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-light-mode-fill-static-neutral-faint) 35%, transparent)",
   // Asymmetric fade, motion-token driven: snappy appear (200ms decelerate glide-in), graceful fade-out (380ms).
   fadeIn:      "opacity var(--motion-duration-3) var(--motion-easing-decelerate), background var(--motion-duration-3) var(--motion-easing-standard)",
   fadeOut:     "opacity var(--motion-duration-5) var(--motion-easing-standard)",

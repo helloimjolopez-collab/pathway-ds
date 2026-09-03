@@ -199,7 +199,7 @@ Border width: `--semantic-layout-units-contextual-button-border-width-base-base`
 ```css
 box-shadow:
   0 0 0 6px #ffffff,
-  0 0 0 8px var(--semantic-color-light-mode-stroke-contextual-focusring-base);
+  0 0 0 8px var(--semantic-color-light-mode-stroke-focusring-base);
 ```
 
 The inner halo (6 px white) provides contrast against any button surface colour. The outer band (2 px brand ring) is the visible focus indicator. This meets WCAG 2.4.11 (Focus Appearance) at all states.
