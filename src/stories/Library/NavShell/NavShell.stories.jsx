@@ -101,7 +101,7 @@ const SHELL_STYLE = {
   display: "flex",
   height: "100vh",
   flexDirection: "column",
-  background: "var(--semantic-color-surface-canvas, #fafafa)",
+  background: "var(--semantic-color-fill-surface-canvas, #fafafa)",
   fontFamily: "'Red Hat Text', sans-serif",
   overflow: "hidden",
 };
@@ -121,7 +121,7 @@ const MAIN_STYLE = (marginLeft) => ({
   marginLeft,
   transition: "margin-left var(--motion-duration-6) var(--motion-easing-emphasized)",
   padding: "12px 36px 56px",
-  background: "var(--semantic-color-surface-canvas, #fafafa)",
+  background: "var(--semantic-color-fill-surface-canvas, #fafafa)",
 });
 
 // ── MINIMAL SCREEN TEMPLATE (page content placeholder) ────────────────────

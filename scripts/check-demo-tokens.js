@@ -82,6 +82,7 @@ const CONTRACT_CSS = [
   "src/tokens/themes/midnight.css",
   "src/tokens/layout.css",
   "src/tokens/layout-contextual.css",
+  "src/tokens/type.css",
   "src/tokens/motion.css",
   "src/tokens/breakpoints.css",
 ];

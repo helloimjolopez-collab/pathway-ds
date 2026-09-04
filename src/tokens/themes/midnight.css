@@ -130,6 +130,9 @@
   --semantic-color-fill-static-accent-lagoon-medium: var(--primitive-color-lagoon-700);
   --semantic-color-fill-static-accent-lagoon-contrast: var(--primitive-color-lagoon-500);
   --semantic-color-fill-static-accent-lagoon-bold: var(--primitive-color-lagoon-250);
+  --semantic-color-fill-surface-canvas: var(--primitive-color-brand-900);
+  --semantic-color-fill-surface-sheet: var(--primitive-color-brand-800);
+  --semantic-color-fill-surface-elevated: var(--primitive-color-brand-700);
   --semantic-color-scrim-light: var(--primitive-color-cool-neutral-800-24);
   --semantic-color-scrim-subtle: var(--primitive-color-cool-neutral-800-50);
   --semantic-color-scrim-base: var(--primitive-color-cool-neutral-800-70);
@@ -326,8 +329,4 @@
   --semantic-color-stroke-static-accent-lagoon-contrast: var(--primitive-color-lagoon-500);
   --semantic-color-stroke-static-accent-lagoon-bold: var(--primitive-color-lagoon-250);
   --semantic-color-stroke-focusring-base: var(--primitive-color-cool-neutral-0-24);
-  --semantic-color-surface-canvas: var(--primitive-color-brand-900);
-  --semantic-color-surface-sheet: var(--primitive-color-brand-800);
-  --semantic-color-surface-elevated-base: var(--primitive-color-brand-700);
-  --semantic-color-surface-elevated-medium: var(--primitive-color-brand-800);
 }

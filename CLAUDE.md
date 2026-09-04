@@ -43,7 +43,7 @@ tokens/pathway-design-tokens.json                        │
         src/tokens/themes/midnight.css     the same 327 names under [data-theme=midnight]
         src/tokens/layout.css              39 layout tokens, breakpoint by media query
         src/tokens/layout-contextual.css   34 component metrics, same treatment
-        src/tokens/type-classes.css        111 composite type styles as CSS classes
+        src/tokens/type.css                41 type scale tokens
         src/tokens/motion.css              17 durations and easings
         src/tokens/breakpoints.css         5 breakpoint values
         src/tokens/tokens.js               flat JS map, consumed by resolve-tokens + stories
@@ -85,7 +85,7 @@ Load these seven, in this order:
 | `themes/light.css` + `themes/midnight.css` | 327 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
 | `layout.css` | 39 layout and spacing names, breakpoint by media query | **Yes.** The spacing contract |
 | `layout-contextual.css` | 34 component metrics (Button, Card, NavItem, Page, focus ring) | Component internals. This repo's components use it; product code should not |
-| `type-classes.css` | 111 `.pw-type-*` classes, one per text style | **Yes.** Apply one class, not five properties |
+| `type.css` | The 41-token type SCALE: 1 family, 13 sizes, 18 line heights, 5 weights, 4 tracking steps | **Yes.** Compose from these |
 | `motion.css` | 17 durations and easings | **Yes** |
 | `breakpoints.css` | 5 breakpoint values | **Yes** |
 | `tokens.js` | Flat JS map | Only via `resolve-tokens.js` |
@@ -103,6 +103,29 @@ can sit inside a light page AND a light island inside that dark island — which
 needs, being a dark bar with white dropdown panels. A component that styles a
 permanently dark region uses the MODELESS name plus a `data-theme` wrapper; it must
 never reach for a mode-qualified property name, because those no longer exist.
+
+**Type is a SCALE, not composites (changed 2026-09-03).** `Semantic: Type` went from
+554 variables to 41: one family, 13 sizes (XXXS through 6XL, where R = 16px is the
+base), 18 line heights (size x density), 5 weights, 4 tracking steps. The 111
+composite text styles now live ONLY as Figma text styles, which is where a designer
+applies them; every one carries a hover description. Code composes:
+
+```css
+font-family: var(--semantic-type-family-brand);
+font-size: var(--semantic-type-font-size-s);
+font-weight: var(--semantic-type-weight-medium);
+line-height: var(--semantic-type-line-height-s-single);
+letter-spacing: var(--semantic-type-letter-spacing-spacious);
+```
+
+The `pathway/type-classes` format that emitted 111 `.pw-type-*` classes is GONE. Do
+not reinstate it. Only faces Red Hat Text actually ships are defined, so a weight
+variable never names a face that would silently fall back.
+
+**Surface lives under Fill (changed 2026-09-03).** There is no top-level `Surface`
+group: it is `Fill/Surface/{Canvas, Sheet, Elevated}`, alongside `Fill/Static` and
+`Fill/Action`. Elevated has ONE step, not Base and Medium — a header band inside an
+elevated widget uses `Fill/Static/Neutral` rather than a second surface step.
 
 **Layout and breakpoints got the same treatment as colour.** `Semantic: Layout & Units`
 gained Desktop/Tablet/Mobile modes, which put the breakpoint into every property name

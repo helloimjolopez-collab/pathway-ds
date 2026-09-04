@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
   <link rel="stylesheet" href="../../src/tokens/layout.css" />
   <link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
-  <link rel="stylesheet" href="../../src/tokens/type-classes.css" />
+  <link rel="stylesheet" href="../../src/tokens/type.css" />
   <link rel="stylesheet" href="../../src/tokens/motion.css" />
   <link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
   <style>
@@ -147,11 +147,23 @@ const T = {
   iconPressed: "var(--semantic-color-foreground-action-mono-rest, #ffffff)",
   fillAvatarPlaceholder: "var(--semantic-color-fill-action-secondary-rest, rgba(255,255,255,0.08))",
   // Typography (Figma: Label/Button/S and Label/Button/XS).
-  // Type is applied as ONE class, not five custom properties — the five-property
-  // form was the thing that made the type layer 1,108 properties. These are class
-  // names, so they go on className, not into a style object.
-  typeS:  "pw-type-label-button-s",
-  typeXS: "pw-type-label-button-xs",
+  // Composed from the Semantic: Type SCALE. The composite text styles live only as
+  // Figma text styles now — code assembles them from family + size + weight +
+  // line height + tracking, which is 41 tokens instead of 1,108.
+  typeS: {
+    fontFamily:    "var(--semantic-type-family-brand, 'Red Hat Text'), sans-serif",
+    fontSize:      "var(--semantic-type-font-size-s, 14px)",
+    fontWeight:    "var(--semantic-type-weight-medium, 500)",
+    lineHeight:    "var(--semantic-type-line-height-s-single, 20px)",
+    letterSpacing: "var(--semantic-type-letter-spacing-spacious, 0.3px)",
+  },
+  typeXS: {
+    fontFamily:    "var(--semantic-type-family-brand, 'Red Hat Text'), sans-serif",
+    fontSize:      "var(--semantic-type-font-size-xs, 12px)",
+    fontWeight:    "var(--semantic-type-weight-medium, 500)",
+    lineHeight:    "var(--semantic-type-line-height-xs-single, 18px)",
+    letterSpacing: "var(--semantic-type-letter-spacing-spacious, 0.3px)",
+  },
   radiusMedium: "var(--semantic-layout-units-cornerradius-medium, 8px)",
   radiusSmall:  "var(--semantic-layout-units-cornerradius-small,  4px)",
   borderWidth:  "var(--semantic-layout-units-borderwidth-base,    1px)",
@@ -468,7 +480,7 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
           {!mobile && (
             <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:248, flexShrink:0, minWidth:0 }}>
               <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:180, flexShrink:1, minWidth:0 }}>
-                <p className={T.typeS} style={{ color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:180 }}>{orgName}</p>
+                <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:180 }}>{orgName}</p>
               </div>
               {/* CityName.Catholic — gated on orgType==="catholic" (spec §0.1).
                   paddingLeft:6 gives the pipe visual breathing room from OrgName;
@@ -476,7 +488,7 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
                   unreliable across browsers, so we use container padding instead. */}
               {showCityName && (
                 <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:78, flexShrink:0, minWidth:0, paddingLeft:6 }}>
-                  <p className={T.typeS} style={{ color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", maxWidth:72, margin:0 }}>{`| ${cityName}`}</p>
+                  <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", maxWidth:72, margin:0 }}>{`| ${cityName}`}</p>
                 </div>
               )}
             </div>
@@ -486,7 +498,7 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
               NO flex grow. Typography is Label/Button/S (14px) — same as desktop. */}
           {mobile && (
             <div style={{ display:"flex", alignItems:"center", height:"100%", width:50, flexShrink:0, minWidth:0 }}>
-              <p className={T.typeS} style={{ color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:50 }}>{mobileText}</p>
+              <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:50 }}>{mobileText}</p>
             </div>
           )}
         </div>

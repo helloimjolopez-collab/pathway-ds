@@ -459,7 +459,7 @@ Spinner is not focusable. It has no interactive behaviour. The consumer should e
 
 ### 8.7 Colour contrast
 
-Spinner is a non-text UI component. WCAG 1.4.11 requires a `3:1` ratio between the spinner paint and its background. Using `Icon/Action/Primary/Base` (`#3555a0`) on `Surface/Canvas/Light` (`#fafafa`) gives `~6.5:1` — comfortably passing. Consumers placing the spinner on a coloured surface (brand-filled button, dark background, coloured card) must verify contrast against the specific background.
+Spinner is a non-text UI component. WCAG 1.4.11 requires a `3:1` ratio between the spinner paint and its background. Using `Icon/Action/Primary/Base` (`#3555a0`) on `Fill/Surface/Canvas/Light` (`#fafafa`) gives `~6.5:1` — comfortably passing. Consumers placing the spinner on a coloured surface (brand-filled button, dark background, coloured card) must verify contrast against the specific background.
 
 ### 8.8 Screen reader announcements
 

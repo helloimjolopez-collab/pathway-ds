@@ -7,7 +7,7 @@ import { copyFileSync, mkdirSync, rmSync } from "fs";
 rmSync("dist", { recursive: true, force: true });
 mkdirSync("dist", { recursive: true });
 copyFileSync("src/tokens/primitives.css", "dist/primitives.css");
-copyFileSync("src/tokens/type-classes.css", "dist/type-classes.css");
+copyFileSync("src/tokens/type.css", "dist/type.css");
 copyFileSync("src/tokens/motion.css", "dist/motion.css");
 copyFileSync("src/tokens/breakpoints.css", "dist/breakpoints.css");
 // Layout and spacing, modeless with the breakpoint in a media query. Added
@@ -19,4 +19,4 @@ copyFileSync("src/tokens/themes/light.css", "dist/themes/light.css");
 copyFileSync("src/tokens/themes/midnight.css", "dist/themes/midnight.css");
 copyFileSync("src/tokens/tokens.js", "dist/tokens.js");
 copyFileSync("tokens/pathway-design-tokens.json", "dist/tokens.json");
-console.log("dist/ built: themes/light.css, themes/midnight.css, layout.css, layout-contextual.css, type-classes.css, motion.css, breakpoints.css, primitives.css, tokens.js, tokens.json");
+console.log("dist/ built: themes/light.css, themes/midnight.css, layout.css, layout-contextual.css, type.css, motion.css, breakpoints.css, primitives.css, tokens.js, tokens.json");

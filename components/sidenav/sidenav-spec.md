@@ -43,7 +43,7 @@ import "@helloimjolopez-pathway/pathway-tokens/themes/midnight.css";
 import "@helloimjolopez-pathway/pathway-tokens/css";
 
 // The type classes. Apply one class, never five separate properties.
-import "@helloimjolopez-pathway/pathway-tokens/type-classes.css";
+import "@helloimjolopez-pathway/pathway-tokens/type.css";
 ```
 
 **All four stylesheets are required.** The component references custom properties across
@@ -482,11 +482,11 @@ drifted from the build, and a wrong hex in a spec reads as a design decision. Ru
 
 | Semantic token | CSS custom property | Usage |
 |---|---|---|
-| `Surface/Sheet` | `--semantic-color-surface-sheet` | SideNav container background |
-| `Surface/Canvas` | `--semantic-color-surface-canvas` | Page/viewport background behind the rail |
+| `Fill/Surface/Sheet` | `--semantic-color-fill-surface-sheet` | SideNav container background |
+| `Fill/Surface/Canvas` | `--semantic-color-fill-surface-canvas` | Page/viewport background behind the rail |
 
-> `Surface/Nav/Light` and `Surface/Canvas/Light` no longer exist. The surface model is now
-> `Surface/Canvas`, `Surface/Sheet`, `Elevation/Raised`, `Elevation/Overlay` — four tokens,
+> `Surface/Nav/Light` and `Fill/Surface/Canvas/Light` no longer exist. The surface model is now
+> `Fill/Surface/Canvas`, `Fill/Surface/Sheet`, `Elevation/Raised`, `Elevation/Overlay` — four tokens,
 > no per-component surfaces.
 
 ### 3.2 Fill (NavItem states)
@@ -513,7 +513,7 @@ pressed at +14/255 against the sheet, which made hovering look stronger than sel
 **Light mode uses opaque warm steps, Midnight uses white alphas.** This asymmetry is
 deliberate. The Warm Neutral ramp peaks at 14/255 warmth and carries only 4/255 at its dark
 end, so any low-alpha warm tint composites to neutral grey — measured at 0.3/255 of warmth
-at 8%. Only an opaque step delivers visible warmth. The rail always sits on `Surface/Sheet`,
+at 8%. Only an opaque step delivers visible warmth. The rail always sits on `Fill/Surface/Sheet`,
 so an opaque fill is safe here; it would be wrong for a general-purpose overlay.
 
 ### 3.3 Foreground (label, icon and chevron)

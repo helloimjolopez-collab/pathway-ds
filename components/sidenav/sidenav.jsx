@@ -35,7 +35,7 @@ import ReactDOM from "react-dom";
  * WHAT THE CONSUMER MUST LOAD (see sidenav-spec.md §Consuming):
  *   themes/light.css + themes/midnight.css  → every --semantic-color-* below
  *   layout.css                              → every --semantic-layout-units-* below
- *   type-classes.css                        → .pw-type-label-menu-base-medium
+ *   type.css                                → the Semantic: Type scale (compose it)
  *
  * Token names verified against the Figma Variables panel on 2026-09-02.
  */
@@ -57,7 +57,7 @@ export const T = {
     navTrail:   c("fill-action-selection-trail"),
     infoSubtle: c("stroke-static-neutral-subtle"),   // container right border
   },
-  surface: { navLight: c("surface-sheet") },
+  surface: { navLight: c("fill-surface-sheet") },
   // Label, icon and chevron all resolve to the SAME token per state. A nav item
   // is one interactive surface, so its foreground must not split across two
   // ramps that can drift apart.

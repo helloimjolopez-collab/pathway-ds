@@ -15,12 +15,12 @@
   <link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
   <link rel="stylesheet" href="../../src/tokens/layout.css" />
   <link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
-  <link rel="stylesheet" href="../../src/tokens/type-classes.css" />
+  <link rel="stylesheet" href="../../src/tokens/type.css" />
   <link rel="stylesheet" href="../../src/tokens/motion.css" />
   <link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  /* Surface/Canvas = #fafafa (same hex as Surface/Nav/Light — see token table) */
+  /* Fill/Surface/Canvas = #fafafa (same hex as Surface/Nav/Light — see token table) */
   html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -365,7 +365,7 @@
     "Fill/Action/Selection/Trail":       "#11111105",
     "Stroke/Static/Neutral/Light":         "#f6f6f6",
     "Surface/Nav/Light":                   "#fafafa",
-    "Surface/Canvas/Light":                "#fafafa",
+    "Fill/Surface/Canvas/Light":                "#fafafa",
     "Text/Contextual/NavItem/Base":        "#313131",
     "Text/Contextual/NavItem/Hover":       "#252525",
     "Text/Contextual/NavItem/Active":      "#1b2d57",
@@ -485,8 +485,8 @@ const T = {
     infoSubtle: c("stroke-static-neutral-subtle"),   // divider + nav border-right
   },
   surface: {
-    navLight: c("surface-sheet"),
-    canvas:   c("surface-canvas"),
+    navLight: c("fill-surface-sheet"),
+    canvas:   c("fill-surface-canvas"),
   },
   // Label, icon and chevron share ONE token per state. A nav item is a single
   // interactive surface, so its foreground must not split across two ramps.
@@ -1325,7 +1325,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
 const TOKEN_ROWS = [
   // ── Surface ────────────────────────────────────────────────────────────────
   { cat:"Surface", semantic:"Surface/Nav/Light",              prim:"—",        value:"#fafafa",              role:"SideNav container background" },
-  { cat:"Surface", semantic:"Surface/Canvas/Light",           prim:"Brand/10", value:"#fafafa",              role:"Page/viewport background (confirmed Figma variable)" },
+  { cat:"Surface", semantic:"Fill/Surface/Canvas/Light",           prim:"Brand/10", value:"#fafafa",              role:"Page/viewport background (confirmed Figma variable)" },
   { cat:"Surface", semantic:"Fill/Static/Surface/White",      prim:"—",        value:"#ffffff",              role:"PopoverMenu surface + SideNavTooltip background" },
 
   // ── Fill (NavItem states) ──────────────────────────────────────────────────

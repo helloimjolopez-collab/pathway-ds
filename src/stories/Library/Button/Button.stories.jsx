@@ -552,7 +552,7 @@ TokensIcon.parameters = {
 const TYPOGRAPHY_ROWS = [
   {
     size: "L",
-    typeClass: ".pw-type-label-button-l",
+    typeTokens: "--semantic-type-font-size-l + weight-medium + line-height-l-single + letter-spacing-spacious",
     fontSize: "18px",
     lineHeight: "24px",
     fontWeight: "500",
@@ -561,7 +561,7 @@ const TYPOGRAPHY_ROWS = [
   },
   {
     size: "M (base)",
-    typeClass: ".pw-type-label-button-base",
+    typeTokens: "--semantic-type-font-size-r + weight-medium + line-height-r-single + letter-spacing-spacious",
     fontSize: "16px",
     lineHeight: "22px",
     fontWeight: "500",
@@ -570,7 +570,7 @@ const TYPOGRAPHY_ROWS = [
   },
   {
     size: "S",
-    typeClass: ".pw-type-label-button-s",
+    typeTokens: "--semantic-type-font-size-s + weight-medium + line-height-s-single + letter-spacing-spacious",
     fontSize: "14px",
     lineHeight: "20px",
     fontWeight: "500",
@@ -579,7 +579,7 @@ const TYPOGRAPHY_ROWS = [
   },
 ];
 
-function TypographyRow({ size, typeClass, fontSize, lineHeight, fontWeight, letterSpacing, role }) {
+function TypographyRow({ size, typeTokens, fontSize, lineHeight, fontWeight, letterSpacing, role }) {
   return (
     <div style={{
       display: "grid", gridTemplateColumns: "80px 280px 160px 1fr",
@@ -589,10 +589,10 @@ function TypographyRow({ size, typeClass, fontSize, lineHeight, fontWeight, lett
       <span style={{ fontSize: 12, fontWeight: 600, color: "#313131" }}>{size}</span>
       <div>
         <code style={{ fontSize: 11, color: "#2d4889", fontFamily: "monospace", display: "block" }}>
-          {typeClass}
+          {typeTokens}
         </code>
         <code style={{ fontSize: 11, color: "#8890b0", fontFamily: "monospace", display: "block", marginTop: 2 }}>
-          one class sets font-family, size, weight, line-height and letter-spacing
+          composed from the Semantic: Type scale
         </code>
       </div>
       <div style={{

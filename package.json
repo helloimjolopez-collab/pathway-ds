@@ -18,14 +18,14 @@
     ".": "./dist/tokens.js",
     "./json": "./dist/tokens.json",
     "./primitives.css": "./dist/primitives.css",
-    "./type-classes.css": "./dist/type-classes.css",
     "./themes/light.css": "./dist/themes/light.css",
     "./themes/midnight.css": "./dist/themes/midnight.css",
     "./sidenav": "./components/sidenav/sidenav.jsx",
     "./layout.css": "./dist/layout.css",
     "./layout-contextual.css": "./dist/layout-contextual.css",
     "./motion.css": "./dist/motion.css",
-    "./breakpoints.css": "./dist/breakpoints.css"
+    "./breakpoints.css": "./dist/breakpoints.css",
+    "./type.css": "./dist/type.css"
   },
   "peerDependencies": {
     "react": ">=18",
