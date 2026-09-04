@@ -359,9 +359,9 @@
 (function () {
   var R = {
     "Fill/Contextual/NavItem/Base":        "#fafafa",
-    "Fill/Contextual/NavItem/Hover":       "#11111105",
-    "Fill/Contextual/NavItem/Active":      "#a0b5e629",
-    "Fill/Contextual/NavItem/Trail":       "#11111105",
+    "Fill/Action/Selection/Hover":       "#11111105",
+    "Fill/Action/Selection/Selected":      "#a0b5e629",
+    "Fill/Action/Selection/Trail":       "#11111105",
     "Stroke/Static/Neutral/Light":         "#f6f6f6",
     "Surface/Nav/Light":                   "#fafafa",
     "Surface/Canvas/Light":                "#fafafa",
@@ -478,9 +478,9 @@ const T = {
   fill: {
     // Rest paints nothing — the Figma token was deleted so resting is genuinely bare.
     navBase:    "transparent",
-    navHover:   c("fill-contextual-navitem-hover"),
-    navActive:  c("fill-contextual-navitem-pressed"),
-    navTrail:   c("fill-contextual-navitem-trail"),
+    navHover:   c("fill-action-selection-hover"),
+    navActive:  c("fill-action-selection-selected"),
+    navTrail:   c("fill-action-selection-trail"),
     infoSubtle: c("stroke-static-neutral-subtle"),   // divider + nav border-right
   },
   surface: {
@@ -493,7 +493,7 @@ const T = {
     navBase:         c("foreground-action-secondary-rest"),
     navHover:        c("foreground-action-secondary-hover"),
     navActive:       c("foreground-action-secondary-pressed"),
-    navDisabled:     c("foreground-action-secondary-disabled"),
+    navDisabled:     c("foreground-action-disabled"),
     secondary:       c("foreground-static-neutral-subtle"),
     secondarySubtle: c("foreground-static-neutral-subtle"),  // PopoverMenu.SectionLabel
   },
@@ -501,8 +501,8 @@ const T = {
     navBase:         c("foreground-action-secondary-rest"),
     navHover:        c("foreground-action-secondary-hover"),
     navActive:       c("foreground-action-secondary-pressed"),
-    navDisabled:     c("foreground-action-secondary-disabled"),
-    actionSecondary: c("foreground-action-secondary-inverse-rest"), // CollapseButton
+    navDisabled:     c("foreground-action-disabled"),
+    actionSecondary: c("foreground-action-secondary-rest"), // CollapseButton
   },
   // The stripe takes the loud brand blue from the Action tier rather than owning
   // a token of its own.
@@ -1329,9 +1329,9 @@ const TOKEN_ROWS = [
 
   // ── Fill (NavItem states) ──────────────────────────────────────────────────
   { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Base",   prim:"—",        value:"#fafafa",              role:"Item resting fill (effectively transparent on nav surface)" },
-  { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Hover",  prim:"—",        value:"#11111105",            role:"Item hover fill (≈rgba 17,17,17 / 2%)" },
-  { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Active", prim:"—",        value:"#a0b5e629",            role:"Active + collapsed-trail fill (≈rgba 160,181,230 / 16%)" },
-  { cat:"Fill",    semantic:"Fill/Contextual/NavItem/Trail",  prim:"—",        value:"#11111105",            role:"Expanded grouper fill (same hex as Hover, distinct tokens)" },
+  { cat:"Fill",    semantic:"Fill/Action/Selection/Hover",  prim:"—",        value:"#11111105",            role:"Item hover fill (≈rgba 17,17,17 / 2%)" },
+  { cat:"Fill",    semantic:"Fill/Action/Selection/Selected", prim:"—",        value:"#a0b5e629",            role:"Active + collapsed-trail fill (≈rgba 160,181,230 / 16%)" },
+  { cat:"Fill",    semantic:"Fill/Action/Selection/Trail",  prim:"—",        value:"#11111105",            role:"Expanded grouper fill (same hex as Hover, distinct tokens)" },
 
   // ── Stroke ─────────────────────────────────────────────────────────────────
   { cat:"Stroke",  semantic:"Stroke/Static/Neutral/Light",    prim:"—",        value:"#f6f6f6",              role:"Nav border-right · NavHeader divider · section-label divider in 72px rail (replaces NavSectionLabel)" },
