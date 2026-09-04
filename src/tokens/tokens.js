@@ -1826,67 +1826,67 @@ const tokens = {
       "100-70"
     ]
   },
-  "primitive-color-warm-neutral-450-4": {
-    "value": "#67625c0a",
+  "primitive-color-warm-neutral-500-4": {
+    "value": "#57534e0a",
     "type": "color",
     "path": [
       "primitive-color",
       "warm-neutral",
-      "450-4"
+      "500-4"
     ]
   },
-  "primitive-color-warm-neutral-450-8": {
-    "value": "#67625c14",
+  "primitive-color-warm-neutral-500-8": {
+    "value": "#57534e14",
     "type": "color",
     "path": [
       "primitive-color",
       "warm-neutral",
-      "450-8"
+      "500-8"
     ]
   },
-  "primitive-color-warm-neutral-450-16": {
-    "value": "#67625c29",
+  "primitive-color-warm-neutral-500-16": {
+    "value": "#57534e29",
     "type": "color",
     "path": [
       "primitive-color",
       "warm-neutral",
-      "450-16"
+      "500-16"
     ]
   },
-  "primitive-color-warm-neutral-450-24": {
-    "value": "#67625c3d",
+  "primitive-color-warm-neutral-500-24": {
+    "value": "#57534e3d",
     "type": "color",
     "path": [
       "primitive-color",
       "warm-neutral",
-      "450-24"
+      "500-24"
     ]
   },
-  "primitive-color-warm-neutral-450-36": {
-    "value": "#67625c5c",
+  "primitive-color-warm-neutral-500-36": {
+    "value": "#57534e5c",
     "type": "color",
     "path": [
       "primitive-color",
       "warm-neutral",
-      "450-36"
+      "500-36"
     ]
   },
-  "primitive-color-warm-neutral-450-50": {
-    "value": "#67625c80",
+  "primitive-color-warm-neutral-500-50": {
+    "value": "#57534e80",
     "type": "color",
     "path": [
       "primitive-color",
       "warm-neutral",
-      "450-50"
+      "500-50"
     ]
   },
-  "primitive-color-warm-neutral-450-70": {
-    "value": "#67625cb2",
+  "primitive-color-warm-neutral-500-70": {
+    "value": "#57534eb2",
     "type": "color",
     "path": [
       "primitive-color",
       "warm-neutral",
-      "450-70"
+      "500-70"
     ]
   },
   "primitive-color-mauve-0": {
@@ -3039,7 +3039,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-disabled": {
-    "value": "#67625c0a",
+    "value": "#57534e0a",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3062,7 +3062,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-selection-hover": {
-    "value": "#67625c0a",
+    "value": "#57534e0a",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3086,7 +3086,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-action-selection-trail": {
-    "value": "#67625c14",
+    "value": "#57534e14",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5344,7 +5344,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-stroke-action-disabled": {
-    "value": "#67625c29",
+    "value": "#57534e29",
     "type": "color",
     "path": [
       "semantic-color",

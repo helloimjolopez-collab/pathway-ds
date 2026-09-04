@@ -72,11 +72,11 @@
   --semantic-color-fill-action-accent-lagoon-dim-rest: var(--primitive-color-lagoon-25);
   --semantic-color-fill-action-accent-lagoon-dim-hover: var(--primitive-color-lagoon-50);
   --semantic-color-fill-action-accent-lagoon-dim-pressed: var(--primitive-color-lagoon-75);
-  --semantic-color-fill-action-disabled: var(--primitive-color-warm-neutral-450-4);
+  --semantic-color-fill-action-disabled: var(--primitive-color-warm-neutral-500-4);
   --semantic-color-fill-action-mono-rest: var(--primitive-color-cool-neutral-0);
-  --semantic-color-fill-action-selection-hover: var(--primitive-color-warm-neutral-450-4);
+  --semantic-color-fill-action-selection-hover: var(--primitive-color-warm-neutral-500-4);
   --semantic-color-fill-action-selection-selected: var(--primitive-color-brand-300-16);
-  --semantic-color-fill-action-selection-trail: var(--primitive-color-warm-neutral-450-8);
+  --semantic-color-fill-action-selection-trail: var(--primitive-color-warm-neutral-500-8);
   --semantic-color-fill-static-neutral-medium: var(--primitive-color-warm-neutral-50);
   --semantic-color-fill-static-neutral-faint: var(--primitive-color-warm-neutral-25);
   --semantic-color-fill-static-neutral-white: var(--primitive-color-warm-neutral-0);
@@ -254,7 +254,7 @@
   --semantic-color-stroke-action-primary-rest: var(--primitive-color-brand-250);
   --semantic-color-stroke-action-primary-hover: var(--primitive-color-brand-300);
   --semantic-color-stroke-action-primary-pressed: var(--primitive-color-brand-350);
-  --semantic-color-stroke-action-disabled: var(--primitive-color-warm-neutral-450-16);
+  --semantic-color-stroke-action-disabled: var(--primitive-color-warm-neutral-500-16);
   --semantic-color-stroke-action-accent-amethyst-rest: var(--primitive-color-amethyst-350);
   --semantic-color-stroke-action-accent-amethyst-hover: var(--primitive-color-amethyst-400);
   --semantic-color-stroke-action-accent-amethyst-pressed: var(--primitive-color-amethyst-500);

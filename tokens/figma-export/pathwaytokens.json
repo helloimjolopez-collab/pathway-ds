@@ -834,33 +834,33 @@
               "$type": "color",
               "$value": "#d8d3cdb2"
             },
-            "450 @ 4%": {
+            "500 @ 4%": {
               "$type": "color",
-              "$value": "#67625c0a"
+              "$value": "#57534e0a"
             },
-            "450 @ 8%": {
+            "500 @ 8%": {
               "$type": "color",
-              "$value": "#67625c14"
+              "$value": "#57534e14"
             },
-            "450 @ 16%": {
+            "500 @ 16%": {
               "$type": "color",
-              "$value": "#67625c29"
+              "$value": "#57534e29"
             },
-            "450 @ 24%": {
+            "500 @ 24%": {
               "$type": "color",
-              "$value": "#67625c3d"
+              "$value": "#57534e3d"
             },
-            "450 @ 36%": {
+            "500 @ 36%": {
               "$type": "color",
-              "$value": "#67625c5c"
+              "$value": "#57534e5c"
             },
-            "450 @ 50%": {
+            "500 @ 50%": {
               "$type": "color",
-              "$value": "#67625c80"
+              "$value": "#57534e80"
             },
-            "450 @ 70%": {
+            "500 @ 70%": {
               "$type": "color",
-              "$value": "#67625cb2"
+              "$value": "#57534eb2"
             }
           },
           "Mauve": {
@@ -1461,7 +1461,7 @@
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
-                "$value": "{Warm Neutral.450 @ 4%}"
+                "$value": "{Warm Neutral.500 @ 4%}"
               },
               "Mono": {
                 "Rest": {
@@ -1476,7 +1476,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.450 @ 4%}"
+                  "$value": "{Warm Neutral.500 @ 4%}"
                 },
                 "Selected": {
                   "$type": "color",
@@ -1488,7 +1488,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.450 @ 8%}"
+                  "$value": "{Warm Neutral.500 @ 8%}"
                 }
               }
             },
@@ -2671,7 +2671,7 @@
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
-                "$value": "{Warm Neutral.450 @ 16%}"
+                "$value": "{Warm Neutral.500 @ 16%}"
               },
               "Accent": {
                 "Amethyst": {

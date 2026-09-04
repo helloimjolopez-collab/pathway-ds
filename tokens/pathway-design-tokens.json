@@ -831,33 +831,33 @@
         "$type": "color",
         "$value": "#d8d3cdb2"
       },
-      "450-4": {
+      "500-4": {
         "$type": "color",
-        "$value": "#67625c0a"
+        "$value": "#57534e0a"
       },
-      "450-8": {
+      "500-8": {
         "$type": "color",
-        "$value": "#67625c14"
+        "$value": "#57534e14"
       },
-      "450-16": {
+      "500-16": {
         "$type": "color",
-        "$value": "#67625c29"
+        "$value": "#57534e29"
       },
-      "450-24": {
+      "500-24": {
         "$type": "color",
-        "$value": "#67625c3d"
+        "$value": "#57534e3d"
       },
-      "450-36": {
+      "500-36": {
         "$type": "color",
-        "$value": "#67625c5c"
+        "$value": "#57534e5c"
       },
-      "450-50": {
+      "500-50": {
         "$type": "color",
-        "$value": "#67625c80"
+        "$value": "#57534e80"
       },
-      "450-70": {
+      "500-70": {
         "$type": "color",
-        "$value": "#67625cb2"
+        "$value": "#57534eb2"
       }
     },
     "mauve": {
@@ -1313,7 +1313,7 @@
           },
           "disabled": {
             "$type": "color",
-            "$value": "{primitive-color.warm-neutral.450-4}"
+            "$value": "{primitive-color.warm-neutral.500-4}"
           },
           "mono": {
             "rest": {
@@ -1324,7 +1324,7 @@
           "selection": {
             "hover": {
               "$type": "color",
-              "$value": "{primitive-color.warm-neutral.450-4}"
+              "$value": "{primitive-color.warm-neutral.500-4}"
             },
             "selected": {
               "$type": "color",
@@ -1332,7 +1332,7 @@
             },
             "trail": {
               "$type": "color",
-              "$value": "{primitive-color.warm-neutral.450-8}"
+              "$value": "{primitive-color.warm-neutral.500-8}"
             }
           }
         },
@@ -2159,7 +2159,7 @@
           },
           "disabled": {
             "$type": "color",
-            "$value": "{primitive-color.warm-neutral.450-16}"
+            "$value": "{primitive-color.warm-neutral.500-16}"
           },
           "accent": {
             "amethyst": {
