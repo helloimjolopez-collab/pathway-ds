@@ -314,16 +314,33 @@ const config = {
       transformGroup: "css-with-px",
       buildPath: "src/tokens/",
       files: [
-        {
-          destination: "tokens.css",
-          format: "css/variables",
-          options: {
-            outputReferences: true,
-          },
-        },
+        // tokens.css is GONE (retired 2026-09-03). It emitted every variable
+        // times every mode with the mode baked into the name — 2,338 custom
+        // properties — and it was the file every demo, Storybook and the package
+        // actually loaded, so the restructured 329-name contract was invisible to
+        // anyone reading the CSS. The replacement is themes/*.css + layout*.css +
+        // type-classes.css + motion.css + breakpoints.css, all modeless.
+        // Do not reinstate it: scripts/check-demo-tokens.js deliberately omits it
+        // from CSS_SOURCES so a stale legacy name fails instead of silently passing.
         {
           destination: "type-classes.css",
           format: "pathway/type-classes",
+        },
+        {
+          // Motion and breakpoints carry no modes, so their names are already
+          // final. They lived only in tokens.css, which is why that file could not
+          // be retired: 797 component references would have broken. Emitting them
+          // standalone is what makes retiring tokens.css possible.
+          destination: "motion.css",
+          format: "css/variables",
+          filter: (t) => String(t.path[0]).toLowerCase() === "motion",
+          options: { outputReferences: false },
+        },
+        {
+          destination: "breakpoints.css",
+          format: "css/variables",
+          filter: (t) => String(t.path[0]).toLowerCase() === "breakpoints",
+          options: { outputReferences: false },
         },
         {
           // Primitives on their own. NOT "private" in the sense of removed —
@@ -342,13 +359,25 @@ const config = {
     // Additive — tokens.css still carries the old mode-in-name properties, so
     // both name sets are live and nothing downstream breaks yet.
     //
-    // EXPECTED WARNING: "filtered out token references were found" on
-    // themes/light.css. These files are filtered to semantic-color only, so the
-    // primitives they reference are not in the same file — they live in
-    // tokens.css, which consumers load alongside. Verified: all 199 referenced
-    // primitives resolve, 0 unresolved. Do not "fix" this by setting
-    // outputReferences: false; that inlines hex and breaks the primitive
-    // cascade, so retuning a primitive would no longer reach the themes.
+    // PRIMITIVES ARE INLINED HERE ON PURPOSE (changed 2026-09-03).
+    //
+    // The previous note here said not to set outputReferences: false because it
+    // "breaks the primitive cascade, so retuning a primitive would no longer reach
+    // the themes". That reasoning was wrong: a rebuild always picks up a retuned
+    // primitive, because the inlining happens at build time. What inlining actually
+    // costs is RUNTIME override — a consumer can no longer reskin by setting
+    // --primitive-color-brand-400 on :root. Pathway does not theme that way; Light
+    // and Midnight are selector-scoped, and a rebrand is a value swap in Figma
+    // followed by a rebuild.
+    //
+    // What it buys is that primitives stop being part of what a consumer sees.
+    // With references, a consumer had to load primitives.css too and 232 internal
+    // --primitive-* names showed up in their devtools and their payload, which
+    // contradicts the whole point of marking primitives private in Figma. Inlined,
+    // the colour contract is exactly 329 names and nothing else.
+    //
+    // primitives.css is still built, for the Storybook ramp documentation. It is
+    // NOT shipped to consumers.
     cssThemes: {
       transformGroup: "css-modeless",
       buildPath: "src/tokens/",
@@ -357,7 +386,12 @@ const config = {
           destination: "themes/light.css",
           format: "css/variables",
           filter: (t) => isSemanticColor(t) && inMode(t, /light/i),
-          options: { selector: ":root", outputReferences: true },
+          // ":root" alone only matches <html>, which makes region theming one-way:
+          // you could scope a dark island inside a light page, but not a light
+          // island inside that dark island. top-nav is exactly that case — a dark
+          // bar with white dropdown panels — so light must be addressable by
+          // selector too, or the panels inherit midnight.
+          options: { selector: ':root, [data-theme="light"]', outputReferences: false },
         },
         {
           // Figma calls this mode "Midnight Mode", so the file is named for it.
@@ -369,7 +403,7 @@ const config = {
           filter: (t) => isSemanticColor(t) && inMode(t, /dark|midnight/i),
           options: {
             selector: '[data-theme="midnight"], [data-theme="dark"]',
-            outputReferences: true,
+            outputReferences: false,
           },
         },
       ],

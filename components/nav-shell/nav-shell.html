@@ -6,7 +6,13 @@
   <title>NavShell — Pathway Design System</title>
 
   <!-- Pathway tokens — all semantic CSS variables -->
-  <link rel="stylesheet" href="../../src/tokens/tokens.css" />
+  <link rel="stylesheet" href="../../src/tokens/themes/light.css" />
+  <link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
+  <link rel="stylesheet" href="../../src/tokens/type-classes.css" />
+  <link rel="stylesheet" href="../../src/tokens/motion.css" />
+  <link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,8 +60,8 @@
     ───────────────────────────────────────────────────────────────────────── */
     .sidenav {
       flex-shrink: 0;
-      background: var(--semantic-color-light-mode-surface-sheet, #fafafa);
-      border-right: 0.5px solid var(--semantic-color-light-mode-stroke-static-neutral-faint, #f6f6f6);
+      background: var(--semantic-color-surface-sheet, #fafafa);
+      border-right: 0.5px solid var(--semantic-color-stroke-static-neutral-faint, #f6f6f6);
       display: flex; flex-direction: column;
       transition: width var(--motion-duration-6) var(--motion-easing-emphasized);
       overflow: hidden;
@@ -67,13 +73,13 @@
     .nav-header {
       display: flex; align-items: center; justify-content: flex-end;
       padding: 8px 16px; min-height: 56px; flex-shrink: 0;
-      border-bottom: 1px solid var(--semantic-color-light-mode-stroke-static-neutral-faint, #f6f6f6);
+      border-bottom: 1px solid var(--semantic-color-stroke-static-neutral-faint, #f6f6f6);
     }
     .nav-header.collapsed { justify-content: center; padding: 8px 12px; }
     .nav-header__label {
       flex: 1; font-size: 13px; font-weight: 600; letter-spacing: 0.05em;
       text-transform: uppercase; white-space: nowrap; overflow: hidden;
-      color: var(--semantic-color-light-mode-foreground-action-secondary-rest, #484848);
+      color: var(--semantic-color-foreground-action-secondary-rest, #484848);
       opacity: 1; transition: opacity var(--motion-duration-3) var(--motion-easing-standard);
     }
     .nav-header__label.hidden { opacity: 0; width: 0; min-width: 0; }
@@ -81,11 +87,11 @@
       display: flex; align-items: center; justify-content: center;
       width: 32px; height: 32px; border-radius: 6px; flex-shrink: 0;
       background: transparent; border: none; cursor: pointer;
-      color: var(--semantic-color-light-mode-foreground-action-secondary-rest, #606060);
+      color: var(--semantic-color-foreground-action-secondary-rest, #606060);
       transition: background var(--motion-duration-2) var(--motion-easing-standard);
     }
     .nav-header__btn:hover {
-      background: var(--semantic-color-light-mode-fill-action-selection-hover, rgba(69,77,94,0.06));
+      background: var(--semantic-color-fill-action-selection-hover, rgba(69,77,94,0.06));
     }
 
     /* Nav menu */
@@ -104,7 +110,7 @@
       display: flex; align-items: center;
       min-height: 32px; padding: 0 16px; margin-top: 4px;
       font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
-      color: var(--semantic-color-light-mode-foreground-static-neutral-subtle, #606060);
+      color: var(--semantic-color-foreground-static-neutral-subtle, #606060);
       white-space: nowrap; overflow: hidden;
       opacity: 1; transition: opacity var(--motion-duration-3) var(--motion-easing-standard);
     }
@@ -119,23 +125,23 @@
       padding: 0 16px; cursor: pointer; border: none;
       background: transparent; font-family: inherit;
       font-size: 14px; font-weight: 400; line-height: 1; letter-spacing: 0.3px;
-      color: var(--semantic-color-light-mode-foreground-action-secondary-rest, #484848);
+      color: var(--semantic-color-foreground-action-secondary-rest, #484848);
       white-space: nowrap; transition: background var(--motion-duration-2) var(--motion-easing-standard);
       position: relative; text-align: left; width: 100%;
     }
     .nav-item:hover {
-      background: var(--semantic-color-light-mode-fill-action-selection-hover, rgba(69,77,94,0.06));
+      background: var(--semantic-color-fill-action-selection-hover, rgba(69,77,94,0.06));
     }
     .nav-item.active {
-      background: var(--semantic-color-light-mode-fill-action-selection-selected, #eef2fb);
-      color: var(--semantic-color-light-mode-foreground-action-primary-rest, #3555a0);
+      background: var(--semantic-color-fill-action-selection-selected, #eef2fb);
+      color: var(--semantic-color-foreground-action-primary-rest, #3555a0);
       font-weight: 500;
     }
     /* Indicator stripe — 4px at SideNav left edge */
     .nav-item.active::before {
       content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
       width: 4px; height: 24px; border-radius: 0 4px 4px 0;
-      background: var(--semantic-color-light-mode-foreground-action-primary-rest, #3555a0);
+      background: var(--semantic-color-foreground-action-primary-rest, #3555a0);
     }
     .nav-item__icon {
       width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
@@ -176,7 +182,7 @@
     ───────────────────────────────────────────────────────────────────────── */
     .shell__main {
       flex: 1; min-width: 0; overflow-y: auto; overflow-x: hidden;
-      background: var(--semantic-color-light-mode-surface-canvas, #fafafa);
+      background: var(--semantic-color-surface-canvas, #fafafa);
     }
     .screen {
       padding: 12px 36px 56px; min-height: 100%;
@@ -188,28 +194,28 @@
     ───────────────────────────────────────────────────────────────────────── */
     .page-tabs {
       display: flex;
-      border-bottom: 1px solid var(--semantic-color-light-mode-stroke-static-neutral-faint, #f6f6f6);
+      border-bottom: 1px solid var(--semantic-color-stroke-static-neutral-faint, #f6f6f6);
       flex-shrink: 0; margin-bottom: 0;
     }
     .page-tab {
       display: flex; align-items: center; justify-content: center;
       padding: 14px 16px; cursor: pointer; position: relative;
       font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: 0.3px;
-      color: var(--semantic-color-light-mode-foreground-static-neutral-subtle, #606060);
+      color: var(--semantic-color-foreground-static-neutral-subtle, #606060);
       border: none; background: transparent; font-family: inherit;
       transition: color var(--motion-duration-3) var(--motion-easing-standard);
     }
     .page-tab:hover {
-      color: var(--semantic-color-light-mode-foreground-static-neutral-bold, #202020);
+      color: var(--semantic-color-foreground-static-neutral-bold, #202020);
     }
     .page-tab.active {
-      color: var(--semantic-color-light-mode-foreground-action-primary-rest, #3555a0);
+      color: var(--semantic-color-foreground-action-primary-rest, #3555a0);
       font-weight: 600;
     }
     .page-tab.active::after {
       content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
       height: 2px; border-radius: 2px 2px 0 0;
-      background: var(--semantic-color-light-mode-fill-action-primary-rest, #4b6ec3);
+      background: var(--semantic-color-fill-action-primary-rest, #4b6ec3);
     }
 
     /* ── Screen content (Container.ScreenContent) ───────────────────────────
@@ -230,12 +236,12 @@
     }
     .page-heading__title {
       font-size: 24px; font-weight: 600; line-height: "30px"; letter-spacing: 0.1px;
-      color: var(--semantic-color-light-mode-foreground-static-neutral-bold, #202020);
+      color: var(--semantic-color-foreground-static-neutral-bold, #202020);
     }
     .page-heading__subtitle {
       margin-top: 8px;
       font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0.1px;
-      color: var(--semantic-color-light-mode-foreground-static-neutral-medium, #484848);
+      color: var(--semantic-color-foreground-static-neutral-medium, #484848);
     }
     .page-heading__actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
@@ -251,18 +257,18 @@
     }
     .btn--outlined {
       background: transparent;
-      border: 1px solid var(--semantic-color-light-mode-stroke-action-secondary-rest, #292724);
-      color: var(--semantic-color-light-mode-foreground-action-secondary-rest, #292724);
+      border: 1px solid var(--semantic-color-stroke-action-secondary-rest, #292724);
+      color: var(--semantic-color-foreground-action-secondary-rest, #292724);
     }
     .btn--outlined:hover {
-      background: var(--semantic-color-light-mode-fill-action-secondary-hover, #f7f5f3);
+      background: var(--semantic-color-fill-action-secondary-hover, #f7f5f3);
     }
     .btn--filled {
-      background: var(--semantic-color-light-mode-fill-action-primary-rest, #4b6ec3);
+      background: var(--semantic-color-fill-action-primary-rest, #4b6ec3);
       color: #ffffff; border: none;
     }
     .btn--filled:hover {
-      background: var(--semantic-color-light-mode-fill-action-primary-hover, #6e8bd4);
+      background: var(--semantic-color-fill-action-primary-hover, #6e8bd4);
     }
 
     /* ── Toolbar (Container.ToolBar) ─────────────────────────────────────────
@@ -282,22 +288,22 @@
       display: flex; align-items: center; gap: 8px;
       width: 400px; min-width: 200px; max-width: 400px;
       height: 36px; padding: 0 8px;
-      border: 0.75px solid var(--semantic-color-light-mode-stroke-action-secondary-rest, #d2d2d2);
+      border: 0.75px solid var(--semantic-color-stroke-action-secondary-rest, #d2d2d2);
       border-radius: 6px;
-      background: var(--semantic-color-light-mode-fill-static-neutral-faint, #ffffff);
+      background: var(--semantic-color-fill-static-neutral-faint, #ffffff);
       flex-shrink: 0;
     }
     .toolbar__search:focus-within {
-      border: 1px solid var(--semantic-color-light-mode-stroke-action-primary-pressed, #6e8bd4);
+      border: 1px solid var(--semantic-color-stroke-action-primary-pressed, #6e8bd4);
     }
     .toolbar__search input {
       flex: 1; border: none; outline: none; background: transparent;
       font-family: 'Red Hat Text', sans-serif; font-size: 16px; font-weight: 400;
       line-height: 22px; letter-spacing: 0.1px;
-      color: var(--semantic-color-light-mode-foreground-static-neutral-medium, #484848);
+      color: var(--semantic-color-foreground-static-neutral-medium, #484848);
     }
     .toolbar__search input::placeholder {
-      color: var(--semantic-color-light-mode-foreground-static-neutral-subtle, #606060);
+      color: var(--semantic-color-foreground-static-neutral-subtle, #606060);
     }
 
     /* FilterChips — Figma: each 60px wide, gap=8px, touch target 48px */
@@ -310,15 +316,15 @@
       display: flex; align-items: center; justify-content: center;
       padding: 4px 8px; border-radius: 4px;
       font-size: 12px; font-weight: 500; line-height: 18px; letter-spacing: 0.3px;
-      color: var(--semantic-color-light-mode-foreground-action-secondary-rest, #292724);
+      color: var(--semantic-color-foreground-action-secondary-rest, #292724);
       white-space: nowrap; transition: background var(--motion-duration-2) var(--motion-easing-standard);
     }
     .filter-chip:hover .filter-chip__inner {
       background: rgba(0,0,0,0.04);
     }
     .filter-chip.active .filter-chip__inner {
-      background: var(--semantic-color-light-mode-fill-action-primary-dim-rest, #eef2fb);
-      color: var(--semantic-color-light-mode-foreground-action-primary-rest, #3555a0);
+      background: var(--semantic-color-fill-action-primary-dim-rest, #eef2fb);
+      color: var(--semantic-color-foreground-action-primary-rest, #3555a0);
       font-weight: 600;
     }
 
@@ -336,7 +342,7 @@
       padding: 6px 0; margin-bottom: 8px;
       font-size: 14px; font-weight: 600; line-height: 22px; letter-spacing: 0.6px;
       text-transform: uppercase;
-      color: var(--semantic-color-light-mode-foreground-static-neutral-subtle, #606060);
+      color: var(--semantic-color-foreground-static-neutral-subtle, #606060);
     }
 
     /* Card grid — Figma: 4 columns × 275px, gap=8px → total 1124px = exact content width */
@@ -354,8 +360,8 @@
        gap: 12px (contextual.card.gap)
     */
     .card {
-      background: var(--semantic-color-light-mode-fill-static-neutral-faint, #ffffff);
-      border: 0.5px solid var(--semantic-color-light-mode-stroke-action-secondary-rest, #d2d2d2);
+      background: var(--semantic-color-fill-static-neutral-faint, #ffffff);
+      border: 0.5px solid var(--semantic-color-stroke-action-secondary-rest, #d2d2d2);
       border-radius: 8px;
       padding: 16px;
       display: flex; flex-direction: column; gap: 12px;
@@ -364,7 +370,7 @@
     }
     .card:hover {
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      border-color: var(--semantic-color-light-mode-stroke-action-primary-hover, #86a0dd);
+      border-color: var(--semantic-color-stroke-action-primary-hover, #86a0dd);
     }
 
     /* CardHeading: height=32, gap=8 between icon(32px) and title */
@@ -376,23 +382,23 @@
       display: flex; align-items: center; justify-content: center;
     }
     .card__icon--accent {
-      background: var(--semantic-color-light-mode-fill-static-accent-amethyst-faint, #f4f2fa);
+      background: var(--semantic-color-fill-static-accent-amethyst-faint, #f4f2fa);
     }
     .card__icon--positive {
-      background: var(--semantic-color-light-mode-fill-static-status-positive-faint, #f0faf1);
+      background: var(--semantic-color-fill-static-status-positive-faint, #f0faf1);
     }
     .card__icon--info {
-      background: var(--semantic-color-light-mode-fill-static-brand-light, #eef2fb);
+      background: var(--semantic-color-fill-static-brand-light, #eef2fb);
     }
     .card__icon--warning {
-      background: var(--semantic-color-light-mode-fill-static-status-warning-faint, #fff8e1);
+      background: var(--semantic-color-fill-static-status-warning-faint, #fff8e1);
     }
 
     /* CardTitle: text.body.base.semibold = 16px/600/22px */
     .card__title {
       flex: 1; min-width: 0;
       font-size: 16px; font-weight: 600; line-height: 22px; letter-spacing: 0.1px;
-      color: var(--semantic-color-light-mode-foreground-static-neutral-bold, #202020);
+      color: var(--semantic-color-foreground-static-neutral-bold, #202020);
       overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     }
 
@@ -404,18 +410,18 @@
       display: inline-flex; align-items: center;
       padding: 1px 6px; border-radius: 12px;
       font-size: 11px; font-weight: 500; line-height: 18px; letter-spacing: 0.3px;
-      background: var(--semantic-color-light-mode-fill-static-accent-amethyst-faint, #f4f2fa);
-      color: var(--semantic-color-light-mode-foreground-static-accent-amethyst-contrast, #221e3f);
+      background: var(--semantic-color-fill-static-accent-amethyst-faint, #f4f2fa);
+      color: var(--semantic-color-foreground-static-accent-amethyst-contrast, #221e3f);
     }
     .card__badge--positive {
-      background: var(--semantic-color-light-mode-fill-static-status-positive-faint, #f0faf1);
+      background: var(--semantic-color-fill-static-status-positive-faint, #f0faf1);
       color: #1b5e20;
     }
 
     /* CardBody: text.body.small.regular = 14px/400/20px, text.static.secondary.subtle */
     .card__body {
       font-size: 14px; font-weight: 400; line-height: 20px; letter-spacing: 0.3px;
-      color: var(--semantic-color-light-mode-foreground-static-neutral-subtle, #606060);
+      color: var(--semantic-color-foreground-static-neutral-subtle, #606060);
     }
 
     /* ── Responsive ─────────────────────────────────────────────────────────── */
@@ -653,7 +659,7 @@
 
       return (
         <nav ref={navRef} aria-label="Global navigation" style={{
-          background:`var(--semantic-color-light-mode-fill-static-brand-medium, ${TN.navBg})`,
+          background:`var(--semantic-color-fill-static-brand-medium, ${TN.navBg})`,
           display:"flex", alignItems:"center", justifyContent:"space-between",
           height:56, padding:"4px 16px", position:"relative",
           overflow:"visible", zIndex:100, fontFamily:"'Red Hat Text',sans-serif", flexShrink:0,
@@ -1052,7 +1058,7 @@
                 <div className="toolbar__search">
                   <span className="material-symbols-rounded" aria-hidden="true"
                     style={{ fontSize:16, fontVariationSettings:"'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 20",
-                      color:"var(--semantic-color-light-mode-foreground-action-secondary-rest, #6b6b6b)",
+                      color:"var(--semantic-color-foreground-action-secondary-rest, #6b6b6b)",
                       lineHeight:1, flexShrink:0 }}>
                     search
                   </span>

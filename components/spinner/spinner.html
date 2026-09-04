@@ -9,7 +9,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
   <!-- Pathway tokens: the real built CSS. Never inline a hand-copied subset -->
-  <link rel="stylesheet" href="../../src/tokens/tokens.css" />
+  <link rel="stylesheet" href="../../src/tokens/themes/light.css" />
+  <link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
+  <link rel="stylesheet" href="../../src/tokens/type-classes.css" />
+  <link rel="stylesheet" href="../../src/tokens/motion.css" />
+  <link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
 <style>
   :root {
 
@@ -58,65 +64,65 @@
   /* Token binding — every valid combination is an explicit rule. Enumerating
      them (rather than constructing a var name from attributes with CSS
      concatenation, which CSS can't do) guarantees only valid tones work.    */
-  .pds-spinner[data-tone="neutral"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-foreground-static-neutral-light); }
-  .pds-spinner[data-tone="neutral"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-foreground-static-neutral-subtle); }
-  .pds-spinner[data-tone="neutral"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-foreground-static-neutral-medium); }
-  .pds-spinner[data-tone="neutral"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-foreground-static-neutral-contrast); }
-  .pds-spinner[data-tone="neutral"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-foreground-static-neutral-bold); }
+  .pds-spinner[data-tone="neutral"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-neutral-light); }
+  .pds-spinner[data-tone="neutral"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-neutral-subtle); }
+  .pds-spinner[data-tone="neutral"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-neutral-medium); }
+  .pds-spinner[data-tone="neutral"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-neutral-contrast); }
+  .pds-spinner[data-tone="neutral"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-neutral-bold); }
 
-  .pds-spinner[data-tone="brand"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-foreground-static-brand-light); }
-  .pds-spinner[data-tone="brand"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-foreground-static-brand-faint); }
-  .pds-spinner[data-tone="brand"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-foreground-static-brand-medium); }
-  .pds-spinner[data-tone="brand"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-foreground-static-brand-bold); }
-  .pds-spinner[data-tone="brand"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-foreground-static-brand-bold); }
+  .pds-spinner[data-tone="brand"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-brand-light); }
+  .pds-spinner[data-tone="brand"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-brand-faint); }
+  .pds-spinner[data-tone="brand"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-brand-medium); }
+  .pds-spinner[data-tone="brand"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-brand-bold); }
+  .pds-spinner[data-tone="brand"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-brand-bold); }
 
-  .pds-spinner[data-tone="info"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-foreground-static-brand-light); }
-  .pds-spinner[data-tone="info"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-foreground-static-brand-faint); }
-  .pds-spinner[data-tone="info"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-foreground-static-brand-medium); }
-  .pds-spinner[data-tone="info"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-foreground-static-brand-bold); }
-  .pds-spinner[data-tone="info"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-foreground-static-brand-bold); }
+  .pds-spinner[data-tone="info"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-brand-light); }
+  .pds-spinner[data-tone="info"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-brand-faint); }
+  .pds-spinner[data-tone="info"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-brand-medium); }
+  .pds-spinner[data-tone="info"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-brand-bold); }
+  .pds-spinner[data-tone="info"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-brand-bold); }
 
-  .pds-spinner[data-tone="warning"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-foreground-static-status-warning-faint); }
-  .pds-spinner[data-tone="warning"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-foreground-static-status-warning-subtle); }
-  .pds-spinner[data-tone="warning"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-foreground-static-status-warning-medium); }
-  .pds-spinner[data-tone="warning"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-foreground-static-status-warning-contrast); }
-  .pds-spinner[data-tone="warning"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-foreground-static-status-warning-bold); }
+  .pds-spinner[data-tone="warning"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-status-warning-faint); }
+  .pds-spinner[data-tone="warning"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-status-warning-subtle); }
+  .pds-spinner[data-tone="warning"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-status-warning-medium); }
+  .pds-spinner[data-tone="warning"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-status-warning-contrast); }
+  .pds-spinner[data-tone="warning"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-status-warning-bold); }
 
-  .pds-spinner[data-tone="danger"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-foreground-static-status-negative-faint); }
-  .pds-spinner[data-tone="danger"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-foreground-static-status-negative-subtle); }
-  .pds-spinner[data-tone="danger"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-foreground-static-status-negative-medium); }
-  .pds-spinner[data-tone="danger"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-foreground-static-status-negative-contrast); }
-  .pds-spinner[data-tone="danger"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-foreground-static-status-negative-bold); }
+  .pds-spinner[data-tone="danger"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-status-negative-faint); }
+  .pds-spinner[data-tone="danger"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-status-negative-subtle); }
+  .pds-spinner[data-tone="danger"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-status-negative-medium); }
+  .pds-spinner[data-tone="danger"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-status-negative-contrast); }
+  .pds-spinner[data-tone="danger"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-status-negative-bold); }
 
-  .pds-spinner[data-tone="negative"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-foreground-static-status-negative-faint); }
-  .pds-spinner[data-tone="negative"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-foreground-static-status-negative-subtle); }
-  .pds-spinner[data-tone="negative"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-foreground-static-status-negative-medium); }
-  .pds-spinner[data-tone="negative"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-foreground-static-status-negative-contrast); }
-  .pds-spinner[data-tone="negative"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-foreground-static-status-negative-bold); }
+  .pds-spinner[data-tone="negative"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-status-negative-faint); }
+  .pds-spinner[data-tone="negative"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-status-negative-subtle); }
+  .pds-spinner[data-tone="negative"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-status-negative-medium); }
+  .pds-spinner[data-tone="negative"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-status-negative-contrast); }
+  .pds-spinner[data-tone="negative"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-status-negative-bold); }
 
-  .pds-spinner[data-tone="positive"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-foreground-static-status-positive-faint); }
-  .pds-spinner[data-tone="positive"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-foreground-static-status-positive-subtle); }
-  .pds-spinner[data-tone="positive"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-foreground-static-status-positive-medium); }
-  .pds-spinner[data-tone="positive"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-foreground-static-status-positive-contrast); }
-  .pds-spinner[data-tone="positive"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-foreground-static-status-positive-bold); }
+  .pds-spinner[data-tone="positive"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-status-positive-faint); }
+  .pds-spinner[data-tone="positive"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-status-positive-subtle); }
+  .pds-spinner[data-tone="positive"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-status-positive-medium); }
+  .pds-spinner[data-tone="positive"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-status-positive-contrast); }
+  .pds-spinner[data-tone="positive"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-status-positive-bold); }
 
-  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-foreground-static-accent-amethyst-faint); }
-  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-foreground-static-accent-amethyst-subtle); }
-  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-foreground-static-accent-amethyst-medium); }
-  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-foreground-static-accent-amethyst-contrast); }
-  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-foreground-static-accent-amethyst-bold); }
+  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-accent-amethyst-faint); }
+  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-accent-amethyst-subtle); }
+  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-accent-amethyst-medium); }
+  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-accent-amethyst-contrast); }
+  .pds-spinner[data-tone="accent-amethyst"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-accent-amethyst-bold); }
 
-  .pds-spinner[data-tone="accent-jade"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-foreground-static-accent-jade-faint); }
-  .pds-spinner[data-tone="accent-jade"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-foreground-static-accent-jade-subtle); }
-  .pds-spinner[data-tone="accent-jade"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-foreground-static-accent-jade-medium); }
-  .pds-spinner[data-tone="accent-jade"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-foreground-static-accent-jade-contrast); }
-  .pds-spinner[data-tone="accent-jade"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-foreground-static-accent-jade-bold); }
+  .pds-spinner[data-tone="accent-jade"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-accent-jade-faint); }
+  .pds-spinner[data-tone="accent-jade"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-accent-jade-subtle); }
+  .pds-spinner[data-tone="accent-jade"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-accent-jade-medium); }
+  .pds-spinner[data-tone="accent-jade"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-accent-jade-contrast); }
+  .pds-spinner[data-tone="accent-jade"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-accent-jade-bold); }
 
-  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="light"]    { color: var(--semantic-color-light-mode-foreground-static-accent-seabreeze-faint); }
-  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="subtle"]   { color: var(--semantic-color-light-mode-foreground-static-accent-seabreeze-subtle); }
-  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="base"]     { color: var(--semantic-color-light-mode-foreground-static-accent-seabreeze-medium); }
-  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="contrast"] { color: var(--semantic-color-light-mode-foreground-static-accent-seabreeze-contrast); }
-  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="bold"]     { color: var(--semantic-color-light-mode-foreground-static-accent-seabreeze-bold); }
+  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-accent-seabreeze-faint); }
+  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-accent-seabreeze-subtle); }
+  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-accent-seabreeze-medium); }
+  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-accent-seabreeze-contrast); }
+  .pds-spinner[data-tone="accent-seabreeze"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-accent-seabreeze-bold); }
 
   .pds-spinner__svg {
     width: 100%;

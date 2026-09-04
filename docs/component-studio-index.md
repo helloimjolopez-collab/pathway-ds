@@ -14,7 +14,7 @@ This file exists so the component studio skill can orient itself without crawlin
 | Component pipeline (Figma → repo → Storybook) | `docs/component-pipeline.md` | Handoff and audit phases |
 | Figma prep checklist | `docs/figma-prep-checklist.md` | Step 4 pre-flight |
 | Token definitions (DTCG JSON) | `tokens/pathway-design-tokens.json` | Step 3 (token table), any token lookup |
-| CSS token variables (generated) | `src/tokens/tokens.css` | Demo build — load via `<link>` in every HTML demo |
+| CSS token variables (generated) | `src/tokens/themes/light.css` + `midnight.css`, `layout.css`, `layout-contextual.css`, `type-classes.css`, `motion.css`, `breakpoints.css` | Demo build — load all seven via `<link>` in every HTML demo |
 | Token agent brief | `tokens/agent-brief.md` | Any session involving token questions |
 
 GitHub raw base: `https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/`

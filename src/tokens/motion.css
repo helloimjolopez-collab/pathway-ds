@@ -1,0 +1,23 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --motion-duration-1: 100ms; /** Instant tap feedback, tiny opacity flickers */
+  --motion-duration-2: 150ms; /** Hover fills, small opacity fades, colour transitions — the most common micro-interaction timing */
+  --motion-duration-3: 200ms; /** Micro-interactions needing slightly more presence; small reveals, focus rings */
+  --motion-duration-4: 300ms; /** Chevron / disclosure rotation, dropdown & popover content, in-component state */
+  --motion-duration-5: 380ms; /** Panel state changes: accordions, expand/collapse, item enter/exit */
+  --motion-duration-6: 460ms; /** Large physical-scale moves (e.g. SideNav width expand/collapse) */
+  --motion-duration-7: 680ms; /** Cross-component transitions: page content sliding, large layout shifts */
+  --motion-duration-8: 1100ms; /** Slowest transition step: very large layout shifts, deliberate full-screen moves */
+  --motion-duration-loop: 1000ms; /** Standard continuous-loop period (standalone Spinner, skeleton shimmer) */
+  --motion-duration-loop-fast: 750ms; /** Tighter loop for embedded/inline contexts (in-button spinner — faster reads as more responsive feedback) */
+  --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1); /** Most transitions — enters AND exits. Smooth, no overshoot. Default for colour, fill, opacity, focus rings. */
+  --motion-easing-spring: cubic-bezier(0.34, 1.04, 0.64, 1); /** Signature Pathway curve. Interactive element entrances: dropdown/popover panel opens. A whisper of overshoot (y2=1.04) — easeful, only *ever so slightly* alive. Softened 2026-06-08 from 1.08, which read as too bouncy. Not for chevrons — see chevron rule below. */
+  --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1); /** Enters where the element should glide in smoothly — overlay panels, popovers, anything appearing from outside. Pure ease-out, no bounce. */
+  --motion-easing-accelerate: cubic-bezier(0.4, 0, 1, 1); /** Exits where the element leaves cleanly — dismissing overlays, scaling down. */
+  --motion-easing-emphasized: cubic-bezier(0.32, 0.72, 0, 1); /** Large physical-scale transitions: full-panel width changes, SideNav width. Smooth glide, no overshoot. */
+  --motion-easing-accordion: cubic-bezier(0.33, 1.03, 0.68, 1); /** Accordion settle — content reveal/hide, chevron rotation. The gentlest overshoot in the system (y2=1.03). Softened 2026-06-08 from 0.22,1.12,0.36,1, which was visibly bouncy. */
+  --motion-easing-linear: cubic-bezier(0, 0, 1, 1); /** Continuous loops only (spinners, shimmer). Never for bounded transitions. */
+}

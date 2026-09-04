@@ -13,10 +13,9 @@
     "components/scrollbar/scrollbar.jsx"
   ],
   "main": "./dist/tokens.js",
-  "style": "./dist/tokens.css",
+  "style": "./dist/themes/light.css",
   "exports": {
     ".": "./dist/tokens.js",
-    "./css": "./dist/tokens.css",
     "./json": "./dist/tokens.json",
     "./primitives.css": "./dist/primitives.css",
     "./type-classes.css": "./dist/type-classes.css",
@@ -24,7 +23,9 @@
     "./themes/midnight.css": "./dist/themes/midnight.css",
     "./sidenav": "./components/sidenav/sidenav.jsx",
     "./layout.css": "./dist/layout.css",
-    "./layout-contextual.css": "./dist/layout-contextual.css"
+    "./layout-contextual.css": "./dist/layout-contextual.css",
+    "./motion.css": "./dist/motion.css",
+    "./breakpoints.css": "./dist/breakpoints.css"
   },
   "peerDependencies": {
     "react": ">=18",

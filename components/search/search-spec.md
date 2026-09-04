@@ -555,7 +555,7 @@ Applies to TopNavSearch expand/collapse only. All motion resolves through `--mot
 1. This spec (all sections).
 2. The HTML demo: `components/search/search.html` — the production reference. Every state, every interaction is live and inspectable.
 3. Figma nodes: 40006978-23158 (base), 40007351-13533 (filter-active), 40007095-4048 (TopNavSearch).
-4. Token file: `src/tokens/tokens.css` — all semantic CSS variables, already resolved.
+4. Token files: `themes/light.css` + `themes/midnight.css` (colour), `layout.css` (spacing), `type-classes.css` (type), `motion.css`, `breakpoints.css`. `tokens.css` was retired 2026-09-03.
 5. Icon ligature names: `search`, `cancel`, `filter_alt` — all Material Symbols Rounded, rendered as font characters.
 
 ---

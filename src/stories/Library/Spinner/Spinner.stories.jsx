@@ -3,7 +3,7 @@
 // The Spinner component is simple enough to define inline here. The
 // authoritative spec lives at components/spinner/spinner-spec.md.
 // Token-binding CSS lives in spinner.css (imported below), which reads
-// from the global tokens.css loaded by .storybook/preview.js.
+// from the token contract loaded by .storybook/preview.js.
 
 import React from "react";
 import "./spinner.css";

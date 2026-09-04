@@ -10,7 +10,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <!-- Real Pathway token file — colours resolved from here, never inlined -->
-<link rel="stylesheet" href="../../src/tokens/tokens.css">
+<link rel="stylesheet" href="../../src/tokens/themes/light.css" />
+<link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
+<link rel="stylesheet" href="../../src/tokens/layout.css" />
+<link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
+<link rel="stylesheet" href="../../src/tokens/type-classes.css" />
+<link rel="stylesheet" href="../../src/tokens/motion.css" />
+<link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
 <style>
   :root {
   }
@@ -53,7 +59,7 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 
 /* ── TopNav shell ─────────────────────────────────────────────────────────────── */
 .topnav {
-  background: var(--semantic-color-light-mode-fill-static-brand-medium, #2d4889);
+  background: var(--semantic-color-fill-static-brand-medium, #2d4889);
   display: flex; align-items: center; justify-content: space-between;
   height: 56px; max-height: 56px; padding: 4px 16px;
   position: relative; overflow: visible; z-index: 100;
@@ -72,8 +78,8 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
   padding: 8px; border-radius: 8px; background: transparent;
   border: none; cursor: pointer; color: #fbfbfb; transition: background var(--motion-duration-2) var(--motion-easing-standard);
 }
-.tn-iconbtn__inner:hover  { background: var(--semantic-color-midnight-mode-fill-action-primary-dim-hover, rgba(10,18,35,0.16)); }
-.tn-iconbtn__inner:active { background: var(--semantic-color-midnight-mode-fill-action-primary-dim-pressed, rgba(255,255,255,0.08)); }
+.tn-iconbtn__inner:hover  { background: var(--semantic-color-fill-action-primary-dim-hover, rgba(10,18,35,0.16)); }
+.tn-iconbtn__inner:active { background: var(--semantic-color-fill-action-primary-dim-pressed, rgba(255,255,255,0.08)); }
 
 /* ── Module Switcher ─────────────────────────────────────────────────────────── */
 .tn-mod { position: relative; padding: 4px 2px; }
@@ -84,8 +90,8 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
   cursor: pointer; color: #fbfbfb; font-family: inherit;
   transition: background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard);
 }
-.tn-mod__btn:hover              { background: var(--semantic-color-midnight-mode-fill-action-primary-dim-hover, rgba(10,18,35,0.16)); border-color: var(--semantic-color-midnight-mode-stroke-action-primary-hover, rgba(160,181,230,0.20)); }
-.tn-mod__btn[aria-expanded="true"] { background: var(--semantic-color-midnight-mode-fill-action-primary-dim-pressed, rgba(255,255,255,0.08)); border-color: var(--semantic-color-midnight-mode-stroke-action-primary-pressed, rgba(160,181,230,0.30)); }
+.tn-mod__btn:hover              { background: var(--semantic-color-fill-action-primary-dim-hover, rgba(10,18,35,0.16)); border-color: var(--semantic-color-stroke-action-primary-hover, rgba(160,181,230,0.20)); }
+.tn-mod__btn[aria-expanded="true"] { background: var(--semantic-color-fill-action-primary-dim-pressed, rgba(255,255,255,0.08)); border-color: var(--semantic-color-stroke-action-primary-pressed, rgba(160,181,230,0.30)); }
 /* Static (Amplify Dashboard): label only — no chevron, no hover, no pressed, not a control */
 .tn-mod__static { display: flex; align-items: center; height: 36px; padding: 4px;
   border-radius: 8px; background: transparent; border: 1px solid transparent;
@@ -105,14 +111,14 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 .tn-org__btn {
   display: flex; align-items: center; gap: 4px;
   min-height: 36px; padding: 4px; border-radius: 8px;
-  background: var(--semantic-color-midnight-mode-fill-action-primary-dim-rest, rgba(160,181,230,0.04));
-  border: 1px solid var(--semantic-color-midnight-mode-stroke-action-primary-rest, rgba(160,181,230,0.16));
+  background: var(--semantic-color-fill-action-primary-dim-rest, rgba(160,181,230,0.04));
+  border: 1px solid var(--semantic-color-stroke-action-primary-rest, rgba(160,181,230,0.16));
   cursor: pointer; color: #fbfbfb; font-family: inherit;
   transition: background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard);
 }
 .tn-org.is-mobile .tn-org__btn { padding: 4px 2px; }
-.tn-org__btn:hover              { background: var(--semantic-color-midnight-mode-fill-action-primary-dim-hover, rgba(10,18,35,0.16)); border-color: var(--semantic-color-midnight-mode-stroke-action-primary-hover, rgba(160,181,230,0.20)); }
-.tn-org__btn[aria-expanded="true"] { background: var(--semantic-color-midnight-mode-fill-action-primary-dim-pressed, rgba(255,255,255,0.08)); border-color: var(--semantic-color-midnight-mode-stroke-action-primary-pressed, rgba(160,181,230,0.30)); }
+.tn-org__btn:hover              { background: var(--semantic-color-fill-action-primary-dim-hover, rgba(10,18,35,0.16)); border-color: var(--semantic-color-stroke-action-primary-hover, rgba(160,181,230,0.20)); }
+.tn-org__btn[aria-expanded="true"] { background: var(--semantic-color-fill-action-primary-dim-pressed, rgba(255,255,255,0.08)); border-color: var(--semantic-color-stroke-action-primary-pressed, rgba(160,181,230,0.30)); }
 .tn-org__avatar-row { display: flex; align-items: center; gap: 4px; height: 20px; padding: 0 2px; }
 .tn-org__avatar-pad { width: 24px; height: 24px; padding: 2px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -120,14 +126,14 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 /* Org avatar: 20×20, radius 4px, border */
 .tn-org__avatar {
   width: 20px; height: 20px; border-radius: 4px;
-  border: 1px solid var(--semantic-color-midnight-mode-stroke-action-primary-rest, rgba(160,181,230,0.16));
+  border: 1px solid var(--semantic-color-stroke-action-primary-rest, rgba(160,181,230,0.16));
   display: flex; align-items: center; justify-content: center;
   overflow: hidden; position: relative; flex-shrink: 0;
 }
 /* With logo: transparent bg */
 .tn-org__avatar { background: transparent; }
 /* No logo: Fill/Action/Secondary/Base (Figma) */
-.tn-org__avatar.no-logo { background: var(--semantic-color-midnight-mode-fill-action-primary-dim-pressed, rgba(255,255,255,0.08)); }
+.tn-org__avatar.no-logo { background: var(--semantic-color-fill-action-primary-dim-pressed, rgba(255,255,255,0.08)); }
 
 /* Org logo image: scale to fill proportionally (Figma annotation) */
 .tn-org__avatar img {
@@ -156,13 +162,13 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 .tn-search__pill {
   display: flex; align-items: center; justify-content: center;
   height: 32px; width: 32px;
-  background: var(--semantic-color-midnight-mode-fill-action-primary-dim-rest, rgba(160,181,230,0.08));
+  background: var(--semantic-color-fill-action-primary-dim-rest, rgba(160,181,230,0.08));
   border: 0.75px solid #fbfbfb;
   border-radius: 9999px; cursor: pointer; flex-shrink: 0;
   color: #fbfbfb; transition: background var(--motion-duration-2) var(--motion-easing-standard);
 }
-.tn-search__pill:hover  { background: var(--semantic-color-midnight-mode-fill-action-primary-dim-hover, rgba(10,18,35,0.16)); }
-.tn-search__pill:active { background: var(--semantic-color-midnight-mode-fill-action-primary-dim-pressed, rgba(255,255,255,0.08)); }
+.tn-search__pill:hover  { background: var(--semantic-color-fill-action-primary-dim-hover, rgba(10,18,35,0.16)); }
+.tn-search__pill:active { background: var(--semantic-color-fill-action-primary-dim-pressed, rgba(255,255,255,0.08)); }
 
 /* Expanded search — white pill, blue border (Figma State=Focused / with-value) */
 .tn-search__expanded {
@@ -192,8 +198,8 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 .tn-profile__btn { display: flex; align-items: center; justify-content: center;
   width: 44px; height: 44px; background: transparent; border: none;
   border-radius: 50%; cursor: pointer; padding: 6px; transition: background var(--motion-duration-2) var(--motion-easing-standard); }
-.tn-profile__btn:hover              { background: var(--semantic-color-midnight-mode-fill-action-primary-dim-hover, rgba(10,18,35,0.16)); }
-.tn-profile__btn[aria-expanded="true"] { background: var(--semantic-color-midnight-mode-fill-action-primary-dim-pressed, rgba(255,255,255,0.08)); }
+.tn-profile__btn:hover              { background: var(--semantic-color-fill-action-primary-dim-hover, rgba(10,18,35,0.16)); }
+.tn-profile__btn[aria-expanded="true"] { background: var(--semantic-color-fill-action-primary-dim-pressed, rgba(255,255,255,0.08)); }
 /* Desktop/Tablet: Text/Body/Small/Semibold 14px/600 */
 .tn-profile__avatar {
   width: 32px; height: 32px; border-radius: 50%;
@@ -425,7 +431,7 @@ function TopNav({
   const useTakeover = searchOpen;
 
   return (
-    <nav className={navClass} aria-label="Global navigation" ref={navRef}>
+    <nav className={navClass} data-theme="midnight" aria-label="Global navigation" ref={navRef}>
 
       {/* ── ROW START ── */}
       <div className="topnav__start">
@@ -479,7 +485,7 @@ function TopNav({
           )}
 
           {open === "module" && (
-            <ul className="tn-dropdown" role="listbox" aria-label="Switch module">
+            <ul className="tn-dropdown" data-theme="light" role="listbox" aria-label="Switch module">
               {MODULES.map(m => (
                 <li key={m.id} role="option" aria-selected={m.id === moduleId}>
                   <button
@@ -524,7 +530,7 @@ function TopNav({
           </button>
 
           {open === "org" && (
-            <div className="tn-panel" role="dialog" aria-label="Switch organisation">
+            <div className="tn-panel" data-theme="light" role="dialog" aria-label="Switch organisation">
               <div className="tn-panel__heading">Organisations</div>
               {ORGS.map(org => (
                 <div key={org.id}
@@ -597,7 +603,7 @@ function TopNav({
           </button>
 
           {open === "profile" && (
-            <div className="tn-profile-menu" role="menu">
+            <div className="tn-profile-menu" data-theme="light" role="menu">
               <div className="tn-profile-menu__header">
                 <div className="tn-profile-menu__name">{userName}</div>
                 <div className="tn-profile-menu__email">{userEmail}</div>
@@ -618,7 +624,7 @@ function TopNav({
           breakpoint, so it can never overlap the OrgSwitcher or other controls. */}
       {useTakeover && (
         <div style={{ position:"absolute", inset:0, zIndex:200,
-          background:"var(--semantic-color-light-mode-fill-static-brand-medium, #2d4889)",
+          background:"var(--semantic-color-fill-static-brand-medium, #2d4889)",
           display:"flex", alignItems:"center", padding:"0 16px" }}>
           <div style={{ flex:1, minWidth:0, display:"flex", alignItems:"center", gap:8,
             height:36, padding:"0 8px", background:"white", border:"1px solid #6e8bd4", borderRadius:9999 }}>

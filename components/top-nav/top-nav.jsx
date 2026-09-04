@@ -26,31 +26,38 @@ import { OrgSwitcherPanel, DEMO_ORGS } from "../org-switcher/org-switcher.jsx";
 // white dropdown panels use the LIGHT-MODE set. Each var() carries the previously
 // hand-copied hex as a fallback, so rendering is unchanged if a var is unavailable;
 // values were verified against get_variable_defs on Figma node 40007067:5284.
-const SCD = (p, fb) => `var(--semantic-color-dark-mode-${p}, ${fb})`;   // dark-surface controls
-const SCL = (p, fb) => `var(--semantic-color-light-mode-${p}, ${fb})`;  // brand bg / avatar / panels
+// Both helpers emit the MODELESS name. The mode is no longer baked into the
+// property — it comes from the nearest [data-theme] ancestor, which is why the bar
+// carries data-theme="midnight" and the dropdown panels carry data-theme="light".
+// SCD and SCL are kept as separate names purely to document INTENT at each call
+// site: SCD marks "this sits on the dark bar", SCL marks "this sits on a light
+// panel". They resolve identically; the wrapper does the work.
+const TOK = (p, fb) => `var(--semantic-color-${p}, ${fb})`;
+const SCD = TOK;   // on the dark bar
+const SCL = TOK;   // on a light panel
 export const T = {
-  navBg:          SCL("fill-static-brand-base", "#2d4889"),
-  orgFill:        SCD("fill-action-tertiary-base", "rgba(160,181,230,0.04)"),
-  orgStroke:      SCD("stroke-action-tertiary-base", "rgba(160,181,230,0.16)"),
-  orgStrokeHover: SCD("stroke-action-tertiary-hover", "rgba(160,181,230,0.20)"),
-  searchFill:     SCD("fill-action-primaryinverse-base", "rgba(160,181,230,0.08)"),
-  controlHover:   SCD("fill-action-primaryinverse-hover", "rgba(10,18,35,0.16)"),
-  controlPressed: SCD("fill-action-primaryinverse-pressed", "rgba(255,255,255,0.08)"),
-  noLogoBg:       SCD("fill-action-secondaryinverse-base", "rgba(255,255,255,0.08)"),
-  monoBase:       SCD("icon-action-mono-base", "#fbfbfb"),
+  navBg:          SCL("fill-static-brand-medium", "#2d4889"),
+  orgFill:        SCD("fill-action-primary-dim-rest", "rgba(160,181,230,0.04)"),
+  orgStroke:      SCD("stroke-action-primary-rest", "rgba(160,181,230,0.16)"),
+  orgStrokeHover: SCD("stroke-action-primary-hover", "rgba(160,181,230,0.20)"),
+  searchFill:     SCD("fill-action-primary-dim-rest", "rgba(160,181,230,0.08)"),
+  controlHover:   SCD("fill-action-primary-dim-hover", "rgba(10,18,35,0.16)"),
+  controlPressed: SCD("fill-action-primary-dim-pressed", "rgba(255,255,255,0.08)"),
+  noLogoBg:       SCD("fill-action-secondary-rest", "rgba(255,255,255,0.08)"),
+  monoBase:       SCD("foreground-action-mono-rest", "#fbfbfb"),
   // OrgSwitcher trigger (reconciled to Figma node 40006819:14581, 2026-08-06):
   // org name uses Text/Static/Primary/Base, chevron uses Icon/Static/Neutral/Base.
-  orgText:        SCD("text-static-primary-base", "#eceaf3"),
-  orgChevron:     SCD("icon-static-neutral-base", "rgba(255,255,255,0.8)"),
-  avatarBg:       SCL("fill-static-accent-amethyst-base", "#dcd9ef"),
-  avatarText:     SCL("text-static-accent-amethyst-contrast", "#221e3f"),
+  orgText:        SCD("foreground-static-neutral-bold", "#eceaf3"),
+  orgChevron:     SCD("foreground-static-neutral-medium", "rgba(255,255,255,0.8)"),
+  avatarBg:       SCL("fill-static-accent-amethyst-medium", "#dcd9ef"),
+  avatarText:     SCL("foreground-static-accent-amethyst-contrast", "#221e3f"),
   // White dropdown-menu surface — tracks fill-static-neutral-light (now warm-neutral-0).
-  panelBg:        SCL("fill-static-neutral-light", "#ffffff"),
-  activeItem:     SCL("fill-action-tertiary-base", "#eef2fb"),
-  itemText:       SCL("text-static-secondary-bold", "#252525"),
-  itemTextBase:   SCL("text-static-secondary-base", "#484848"),
-  itemMeta:       SCL("text-static-secondary-subtle", "#6b6b6b"),
-  signOut:        SCL("text-action-negative-base", "#c0392b"),
+  panelBg:        SCL("fill-static-neutral-faint", "#ffffff"),
+  activeItem:     SCL("fill-action-primary-dim-rest", "#eef2fb"),
+  itemText:       SCL("foreground-static-neutral-bold", "#252525"),
+  itemTextBase:   SCL("foreground-static-neutral-medium", "#484848"),
+  itemMeta:       SCL("foreground-static-neutral-subtle", "#6b6b6b"),
+  signOut:        SCL("foreground-action-status-negative-rest", "#c0392b"),
   // Token gaps (no semantic token exists yet — flagged P2 in the pipeline report):
   panelBorder:    "rgba(45,72,137,0.12)",
   panelShadow:    "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
@@ -528,10 +535,15 @@ export function TopNav({
   return (
     <nav
       ref={navRef}
+      // The bar is a permanently dark region. Every control on it resolves through
+      // the Midnight values via this wrapper, which is why the token names in T are
+      // modeless. The floating dropdown panels below opt back out with
+      // data-theme="light" — they are white by design.
+      data-theme="midnight"
       aria-label="Global navigation"
       className={className}
       style={{
-        background: `var(--semantic-color-light-mode-fill-static-brand-medium, ${T.navBg})`,
+        background: `var(--semantic-color-fill-static-brand-medium, ${T.navBg})`,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         maxHeight: navH, padding: `${L.deskPadV}px ${padH}px`,
         position: "relative", overflow: "visible", zIndex: 100,
@@ -568,7 +580,7 @@ export function TopNav({
 
         {/* Module dropdown — never opens in static mode (non-interactive) */}
         {openPanel === "module" && moduleSwitcherType !== "static" && (
-          <ul role="listbox" aria-label="Switch module"
+          <ul role="listbox" data-theme="light" aria-label="Switch module"
             style={{
               position: "absolute", top: "calc(100% + 4px)", left: padH,
               width: 243, background: T.panelBg,
@@ -653,7 +665,7 @@ export function TopNav({
 
         {/* Profile menu */}
         {openPanel === "profile" && (
-          <div role="menu"
+          <div role="menu" data-theme="light"
             style={{
               position: "absolute", top: "calc(100% + 4px)", right: padH,
               width: 200, background: T.panelBg,
@@ -695,7 +707,7 @@ export function TopNav({
         <div
           style={{
             position: "absolute", inset: 0, zIndex: 200,
-            background: `var(--semantic-color-light-mode-fill-static-brand-medium, ${T.navBg})`,
+            background: `var(--semantic-color-fill-static-brand-medium, ${T.navBg})`,
             display: "flex", alignItems: "center", gap: 8,
             padding: `0 ${padH}px`,
           }}

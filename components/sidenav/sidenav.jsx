@@ -34,7 +34,7 @@ import ReactDOM from "react-dom";
  *
  * WHAT THE CONSUMER MUST LOAD (see sidenav-spec.md §Consuming):
  *   themes/light.css + themes/midnight.css  → every --semantic-color-* below
- *   tokens.css                              → every --semantic-layout-units-* below
+ *   layout.css                              → every --semantic-layout-units-* below
  *   type-classes.css                        → .pw-type-label-menu-base-medium
  *
  * Token names verified against the Figma Variables panel on 2026-09-02.

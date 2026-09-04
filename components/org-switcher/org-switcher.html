@@ -11,7 +11,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
   <!-- Pathway tokens: the real built CSS. Never inline a hand-copied subset -->
-  <link rel="stylesheet" href="../../src/tokens/tokens.css" />
+  <link rel="stylesheet" href="../../src/tokens/themes/light.css" />
+  <link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
+  <link rel="stylesheet" href="../../src/tokens/type-classes.css" />
+  <link rel="stylesheet" href="../../src/tokens/motion.css" />
+  <link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -126,34 +132,25 @@ const { useState, useRef, useEffect } = React;
 
 // ── Tokens ──────────────────────────────────────────────────────────────────
 const T = {
-  fillBase:    "var(--semantic-color-midnight-mode-fill-action-primary-dim-rest,    rgba(160,181,230,0.04))",
-  fillHover:   "var(--semantic-color-midnight-mode-fill-action-primary-dim-hover,   rgba(10,18,35,0.16))",
-  fillPressed: "var(--semantic-color-midnight-mode-fill-action-primary-dim-pressed, rgba(255,255,255,0.08))",
-  strokeBase:    "var(--semantic-color-midnight-mode-stroke-action-primary-rest,    rgba(160,181,230,0.16))",
-  strokeHover:   "var(--semantic-color-midnight-mode-stroke-action-primary-hover,   rgba(160,181,230,0.20))",
-  strokePressed: "var(--semantic-color-midnight-mode-stroke-action-primary-pressed, rgba(160,181,230,0.30))",
-  textBase:    "var(--semantic-color-midnight-mode-foreground-action-mono-rest,    #fbfbfb)",
-  textHover:   "var(--semantic-color-midnight-mode-foreground-action-mono-rest,   #ffffff)",
-  textPressed: "var(--semantic-color-midnight-mode-foreground-action-mono-rest, #ffffff)",
-  iconBase:    "var(--semantic-color-midnight-mode-foreground-action-mono-rest,    #fbfbfb)",
-  iconHover:   "var(--semantic-color-midnight-mode-foreground-action-mono-rest,   #ffffff)",
-  iconPressed: "var(--semantic-color-midnight-mode-foreground-action-mono-rest, #ffffff)",
-  fillAvatarPlaceholder: "var(--semantic-color-midnight-mode-fill-action-secondary-rest, rgba(255,255,255,0.08))",
-  // Typography (Figma: Label/Button/S and Label/Button/XS)
-  typeS: {
-    fontFamily:    "var(--semantic-type-desktop-label-button-s-fontfamily, 'Red Hat Text', sans-serif)",
-    fontWeight:    "var(--semantic-type-desktop-label-button-s-fontweight, 500)",
-    fontSize:      "var(--semantic-type-desktop-label-button-s-fontsize, 14px)",
-    lineHeight:    "var(--semantic-type-desktop-label-button-s-lineheight, 20px)",
-    letterSpacing: "var(--semantic-type-desktop-label-button-s-letterspacing, 0.3px)",
-  },
-  typeXS: {
-    fontFamily:    "var(--semantic-type-desktop-label-button-xs-fontfamily, 'Red Hat Text', sans-serif)",
-    fontWeight:    "var(--semantic-type-desktop-label-button-xs-fontweight, 500)",
-    fontSize:      "var(--semantic-type-desktop-label-button-xs-fontsize, 12px)",
-    lineHeight:    "var(--semantic-type-desktop-label-button-xs-lineheight, 18px)",
-    letterSpacing: "var(--semantic-type-desktop-label-button-xs-letterspacing, 0.3px)",
-  },
+  fillBase:    "var(--semantic-color-fill-action-primary-dim-rest,    rgba(160,181,230,0.04))",
+  fillHover:   "var(--semantic-color-fill-action-primary-dim-hover,   rgba(10,18,35,0.16))",
+  fillPressed: "var(--semantic-color-fill-action-primary-dim-pressed, rgba(255,255,255,0.08))",
+  strokeBase:    "var(--semantic-color-stroke-action-primary-rest,    rgba(160,181,230,0.16))",
+  strokeHover:   "var(--semantic-color-stroke-action-primary-hover,   rgba(160,181,230,0.20))",
+  strokePressed: "var(--semantic-color-stroke-action-primary-pressed, rgba(160,181,230,0.30))",
+  textBase:    "var(--semantic-color-foreground-action-mono-rest,    #fbfbfb)",
+  textHover:   "var(--semantic-color-foreground-action-mono-rest,   #ffffff)",
+  textPressed: "var(--semantic-color-foreground-action-mono-rest, #ffffff)",
+  iconBase:    "var(--semantic-color-foreground-action-mono-rest,    #fbfbfb)",
+  iconHover:   "var(--semantic-color-foreground-action-mono-rest,   #ffffff)",
+  iconPressed: "var(--semantic-color-foreground-action-mono-rest, #ffffff)",
+  fillAvatarPlaceholder: "var(--semantic-color-fill-action-secondary-rest, rgba(255,255,255,0.08))",
+  // Typography (Figma: Label/Button/S and Label/Button/XS).
+  // Type is applied as ONE class, not five custom properties — the five-property
+  // form was the thing that made the type layer 1,108 properties. These are class
+  // names, so they go on className, not into a style object.
+  typeS:  "pw-type-label-button-s",
+  typeXS: "pw-type-label-button-xs",
   radiusMedium: "var(--semantic-layout-units-cornerradius-medium, 8px)",
   radiusSmall:  "var(--semantic-layout-units-cornerradius-small,  4px)",
   borderWidth:  "var(--semantic-layout-units-borderwidth-base,    1px)",
@@ -470,7 +467,7 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
           {!mobile && (
             <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:248, flexShrink:0, minWidth:0 }}>
               <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:180, flexShrink:1, minWidth:0 }}>
-                <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:180 }}>{orgName}</p>
+                <p className={T.typeS} style={{ color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:180 }}>{orgName}</p>
               </div>
               {/* CityName.Catholic — gated on orgType==="catholic" (spec §0.1).
                   paddingLeft:6 gives the pipe visual breathing room from OrgName;
@@ -478,7 +475,7 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
                   unreliable across browsers, so we use container padding instead. */}
               {showCityName && (
                 <div style={{ display:"flex", alignItems:"center", height:"100%", maxWidth:78, flexShrink:0, minWidth:0, paddingLeft:6 }}>
-                  <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", maxWidth:72, margin:0 }}>{`| ${cityName}`}</p>
+                  <p className={T.typeS} style={{ color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", maxWidth:72, margin:0 }}>{`| ${cityName}`}</p>
                 </div>
               )}
             </div>
@@ -488,7 +485,7 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
               NO flex grow. Typography is Label/Button/S (14px) — same as desktop. */}
           {mobile && (
             <div style={{ display:"flex", alignItems:"center", height:"100%", width:50, flexShrink:0, minWidth:0 }}>
-              <p style={{ ...T.typeS, color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:50 }}>{mobileText}</p>
+              <p className={T.typeS} style={{ color:text, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", margin:0, maxWidth:50 }}>{mobileText}</p>
             </div>
           )}
         </div>
@@ -512,7 +509,7 @@ function OrgSwitcher({ orgName="Organisation", orgType="protestant", cityName=""
 // owns the visible content.
 function NavShell({ children }) {
   return (
-    <div style={{ background:"#2d4889", borderBottom:"1px solid rgba(160,181,230,0.12)", padding:"0 20px", display:"flex", alignItems:"center", height:56, gap:12, position:"relative", overflow:"visible" }}>
+    <div data-theme="midnight" style={{ background:"#2d4889", borderBottom:"1px solid rgba(160,181,230,0.12)", padding:"0 20px", display:"flex", alignItems:"center", height:56, gap:12, position:"relative", overflow:"visible" }}>
       {children}
     </div>
   );

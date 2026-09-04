@@ -436,7 +436,7 @@ export const TokensText = () => (
           return (
             <TokenRow
               key={suffix}
-              name={`var(--semantic-color-light-mode-${tokenBase})`}
+              name={`var(--semantic-color-${tokenBase})`}
               description={`Fill / ${type} / ${suffix} label colour`}
             />
           );
@@ -486,7 +486,7 @@ export const TokensStroke = () => (
     ))}
     <SectionLabel>Focus ring</SectionLabel>
     <TokenRow
-      name="var(--semantic-color-light-mode-stroke-focusring-base)"
+      name="var(--semantic-color-stroke-focusring-base)"
       description="Outer ring of the 6px white + 2px brand focus halo"
     />
   </div>
@@ -520,7 +520,7 @@ export const TokensIcon = () => (
           return (
             <TokenRow
               key={suffix}
-              name={`var(--semantic-color-light-mode-${tokenBase})`}
+              name={`var(--semantic-color-${tokenBase})`}
               description={`Fill / ${type} / ${suffix} icon/spinner colour`}
             />
           );
@@ -552,7 +552,7 @@ TokensIcon.parameters = {
 const TYPOGRAPHY_ROWS = [
   {
     size: "L",
-    tokenBase: "--semantic-type-desktop-label-button-l",
+    typeClass: ".pw-type-label-button-l",
     fontSize: "18px",
     lineHeight: "24px",
     fontWeight: "500",
@@ -561,7 +561,7 @@ const TYPOGRAPHY_ROWS = [
   },
   {
     size: "M (base)",
-    tokenBase: "--semantic-type-desktop-label-button-base",
+    typeClass: ".pw-type-label-button-base",
     fontSize: "16px",
     lineHeight: "22px",
     fontWeight: "500",
@@ -570,7 +570,7 @@ const TYPOGRAPHY_ROWS = [
   },
   {
     size: "S",
-    tokenBase: "--semantic-type-desktop-label-button-s",
+    typeClass: ".pw-type-label-button-s",
     fontSize: "14px",
     lineHeight: "20px",
     fontWeight: "500",
@@ -579,7 +579,7 @@ const TYPOGRAPHY_ROWS = [
   },
 ];
 
-function TypographyRow({ size, tokenBase, fontSize, lineHeight, fontWeight, letterSpacing, role }) {
+function TypographyRow({ size, typeClass, fontSize, lineHeight, fontWeight, letterSpacing, role }) {
   return (
     <div style={{
       display: "grid", gridTemplateColumns: "80px 280px 160px 1fr",
@@ -589,10 +589,10 @@ function TypographyRow({ size, tokenBase, fontSize, lineHeight, fontWeight, lett
       <span style={{ fontSize: 12, fontWeight: 600, color: "#313131" }}>{size}</span>
       <div>
         <code style={{ fontSize: 11, color: "#2d4889", fontFamily: "monospace", display: "block" }}>
-          {tokenBase}-fontsize
+          {typeClass}
         </code>
         <code style={{ fontSize: 11, color: "#8890b0", fontFamily: "monospace", display: "block", marginTop: 2 }}>
-          {tokenBase}-lineheight · -fontweight · -letterspacing
+          one class sets font-family, size, weight, line-height and letter-spacing
         </code>
       </div>
       <div style={{

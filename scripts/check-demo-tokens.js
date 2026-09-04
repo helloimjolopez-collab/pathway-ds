@@ -69,9 +69,21 @@ const PENDING_SYNC = new Set([
   // and a reason.
 ]);
 
-const TOKENS_CSS = "src/tokens/tokens.css";
+// The contract a demo must load. tokens.css is deliberately NOT here: it emitted
+// every variable times every mode (2,338 properties) and was retired 2026-09-03.
+// Leaving it out of CSS_SOURCES is what makes this script enforce the new contract
+// — a name that exists only in the legacy file now fails instead of passing.
+const CONTRACT_CSS = [
+  "src/tokens/themes/light.css",
+  "src/tokens/themes/midnight.css",
+  "src/tokens/layout.css",
+  "src/tokens/layout-contextual.css",
+  "src/tokens/motion.css",
+  "src/tokens/breakpoints.css",
+];
+const TOKENS_CSS = "src/tokens/themes/light.css";
 const TOKEN_DECL = /^\s*--(?:semantic|primitive|motion)-[a-z0-9-]+\s*:/;
-const REAL_LINK = /<link[^>]*tokens\.css/;
+const REAL_LINK = /<link[^>]*themes\/light\.css/;
 const VAR_USE = /var\(--((?:semantic|primitive|motion)-[a-z0-9-]+)/g;
 // t("Fill/Contextual/NavItem/Hover") — a slash is required, so this cannot match
 // an unrelated one-argument function that happens to be called t.
@@ -112,15 +124,11 @@ function candidateSuffixes(tokenId) {
 // mode-in-name form. Checking only tokens.css would wrongly flag every correct
 // modern reference as unresolved.
 const CSS_SOURCES = [
-  TOKENS_CSS,
-  "src/tokens/themes/light.css",
-  "src/tokens/themes/midnight.css",
+  ...CONTRACT_CSS,
+  // primitives.css is NOT part of the contract and demos do not load it. It is
+  // listed only so the two Storybook pages that document the ramps do not trip
+  // this check; a component referencing a primitive is still a §6 violation.
   "src/tokens/primitives.css",
-  // Layout and spacing moved out of tokens.css on 2026-09-03 when
-  // Semantic: Layout & Units gained breakpoint modes. The modeless names live
-  // here now, with the breakpoint resolved by media query.
-  "src/tokens/layout.css",
-  "src/tokens/layout-contextual.css",
 ];
 
 const defined = new Set();
@@ -153,7 +161,7 @@ for (const file of demos) {
   const problems = [];
 
   if (!REAL_LINK.test(src)) {
-    problems.push("no <link> to src/tokens/tokens.css — this demo has no tokens at all");
+    problems.push("no <link> to src/tokens/themes/light.css — this demo has no tokens at all");
   }
 
   const inlined = src.split("\n").filter((l) => TOKEN_DECL.test(l));
@@ -236,4 +244,4 @@ if (failures) {
   console.log(`${failures} demo(s) failed. Demos must consume the built token CSS.`);
   process.exit(1);
 }
-console.log(`All ${demos.length} demos link the built token CSS and inline nothing.`);
+console.log(`All ${demos.length} demos link the token contract and inline nothing.`);

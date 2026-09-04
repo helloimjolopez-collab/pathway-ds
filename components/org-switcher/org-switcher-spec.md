@@ -34,7 +34,7 @@ Every artefact you might need is linked here. If something isn't in this table o
 | 💻 **React module** | [`components/org-switcher/org-switcher.jsx`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher.jsx) | The trigger component. Source of truth for implementation. |
 | 🌐 **Standalone HTML source** | [`components/org-switcher/org-switcher.html`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/org-switcher/org-switcher.html) | The page that powers the live HTML demo. |
 | 🎨 **Design tokens (DTCG JSON)** | [`tokens/pathway-design-tokens.json`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/tokens/pathway-design-tokens.json) | Generated from Figma export. Source for every token referenced in §3. |
-| 🎨 **Design tokens (CSS variables)** | [`src/tokens/tokens.css`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/src/tokens/tokens.css) | Style-Dictionary output. Consume these CSS vars in component code. |
+| 🎨 **Design tokens (CSS variables)** | [`src/tokens/themes/light.css`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/src/tokens/themes/light.css) | Style-Dictionary output. The colour contract: one name per token, mode by selector. Spacing is `layout.css`, type is `type-classes.css`. |
 | 📦 **npm package** | [`@helloimjolopez-pathway/pathway-tokens`](https://www.npmjs.com/package/@helloimjolopez-pathway/pathway-tokens) | The tokens shipped to consumer apps. `npm install` → import the CSS and JS bundles. |
 | 📄 **Design-system spec** | [`docs/design-system-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/design-system-spec.md) | System-wide rules for motion, accessibility, breakpoints, typography. Every component spec inherits from this. |
 | 📄 **Component manifest** | [`components/manifest.json`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/manifest.json) | Machine-readable registry of every Pathway component. The OrgSwitcher row mirrors this spec's metadata. |
@@ -665,7 +665,7 @@ If you are pointing Claude (or any agent) at this component, hand it:
 3. **The standalone HTML demo.** `components/org-switcher/org-switcher.html` — shows every state in context.
 4. **Storybook stories.** `src/stories/Library/OrgSwitcher/OrgSwitcher.stories.jsx` — shows the component-property surface area.
 5. **Figma file key + node ID.** File `3sw45aVcngFAmpbP6cfrXP`, root node `40006819:14583`. The 8 variant node IDs are in §1's table.
-6. **Token files.** `src/tokens/tokens.css` (the CSS vars the agent must consume) and `tokens/pathway-design-tokens.json` (the source-of-truth DTCG JSON).
+6. **Token files.** The contract is `themes/light.css` + `themes/midnight.css` (colour), `layout.css` (spacing), `type-classes.css` (type), `motion.css`, `breakpoints.css`; `tokens/pathway-design-tokens.json` is the source-of-truth DTCG JSON. `tokens.css` was retired 2026-09-03.
 7. **System-wide spec.** `docs/design-system-spec.md` — defines motion, breakpoints, accessibility minimums.
 8. **The icon system rule.** All Pathway icons are Material Symbols Rounded. The component already uses `expand_more`. Never look for a custom SVG file for icons.
 

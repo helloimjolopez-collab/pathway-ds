@@ -52,7 +52,7 @@ The Pathway Button is the **only correct element for triggering actions** — sa
 
 ## Exact tokens
 
-All values via CSS custom properties from `src/tokens/tokens.css`.
+All values via CSS custom properties from `themes/light.css` + `themes/midnight.css` (colour), `layout.css` (spacing), `type-classes.css` (type), `motion.css`, `breakpoints.css`.
 
 ### Radius & border
 ```

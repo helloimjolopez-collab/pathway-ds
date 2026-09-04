@@ -484,7 +484,7 @@ Producers (page/form authors) are responsible for:
 
 1. `components/button/button.jsx` — authoritative React implementation
 2. `components/button/button.html` — self-contained CDN demo with all tokens inlined
-3. `src/tokens/tokens.css` — all `--semantic-*` CSS variables (source of truth for variable names)
+3. the token contract (`themes/*.css`, `layout.css`, `type-classes.css`, `motion.css`, `breakpoints.css`) — all `--semantic-*` CSS variables. `tokens.css` was retired 2026-09-03.
 4. `components/sidenav/sidenav.jsx` — architecture reference (T/L export pattern)
 5. `components/checkbox/checkbox.jsx` — CSS var helper pattern (`SC()`, `SL()`, `ST()`)
 
@@ -510,7 +510,7 @@ button.jsx exports:
 ```
 Build the Pathway Button using:
 - components/button/button.jsx as the exact implementation reference
-- tokens from src/tokens/tokens.css (never invent or hardcode colours)
+- tokens from the token contract (`themes/*.css`, `layout.css`, `type-classes.css`, `motion.css`, `breakpoints.css`) (never invent or hardcode colours)
 - Material Symbols Rounded for all icons
 - Outer <button> as touch target (min 48×48, 6px padding)
 - Inner Container.Main span for all visual styling

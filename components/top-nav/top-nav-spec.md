@@ -182,7 +182,7 @@ All labels on the nav bar use **Red Hat Text** (the Pathway system font).
 
 ## 4. Layout and Spacing
 
-All spacing values are in pixels (Figma-sourced). Where a semantic spacing token exists in `tokens.css`, it is cited. Unit tokens in the system are unitless numbers (e.g. `--primitive-unit-unit-4: 4`) and require `px` postfix in CSS.
+All spacing values are in pixels (Figma-sourced). Where a semantic spacing token exists in `layout.css`, it is cited. Unit tokens in the system are unitless numbers (e.g. `--primitive-unit-unit-4: 4`) and require `px` postfix in CSS.
 
 | Value | Used for | Semantic token |
 |---|---|---|
@@ -812,7 +812,7 @@ These are the Pathway system breakpoints from `docs/design-system-spec.md` §5.2
 
 | Gap | Priority | Notes |
 |---|---|---|
-| Active item token in module dropdown and org panel | MEDIUM | Currently uses `#eef2fb` (raw brand-tint). No semantic token found in tokens.css. Needs a `fill.contextual.navitem.active` equivalent or a new token. |
+| Active item token in module dropdown and org panel | MEDIUM | Currently uses `#eef2fb` (raw brand-tint). RESOLVED 2026-09-03: use `Fill/Action/Selection/Selected`, the general interaction wash. |
 | Destructive item ("Sign out") token | MEDIUM | Currently hardcoded red. Should use a `text.status.danger` or equivalent semantic token once it exists. |
 | Profile menu on mobile | MEDIUM | Figma mobile variant shows no profile menu (just the avatar button). What happens when the avatar is tapped on mobile? Not yet designed. |
 | Notification badge / dot on bell icon | HIGH | Bell icons exist in the nav but the notification indicator dot/badge is not designed. Required for the notification system. |

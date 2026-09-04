@@ -22,7 +22,7 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 
 // ─── TOKENS ──────────────────────────────────────────────────────────────────
-// Every colour + unit resolves through a SEMANTIC Pathway token (tokens.css) — no primitives,
+// Every colour + unit resolves through a SEMANTIC Pathway token — no primitives,
 // no hardcoded hex/px. Motion uses the --motion-* tokens (durations/easings from design-system-spec §2).
 export const SCROLL = {
   thumbWidth:  "var(--semantic-layout-units-padding-xtight)",     // 6px — visible thumb thickness
@@ -30,11 +30,11 @@ export const SCROLL = {
   thumbMin:    28,                                                // px — min thumb length (grab-target floor); JS layout math
   gutter:      "var(--semantic-layout-units-padding-xxxtight)",   // 2px — inset from the right edge
   grabZone:    16,                                                // px — invisible mouse grab strip (wider than the 6px thumb so it's catchable)
-  thumbRest:   "var(--semantic-color-light-mode-scrim-faint)",    // black 16% — faint overlay (rest)
-  thumbHover:  "var(--semantic-color-light-mode-scrim-light)",    // black 30% — hover/drag
+  thumbRest:   "var(--semantic-color-scrim-faint)",    // black 16% — faint overlay (rest)
+  thumbHover:  "var(--semantic-color-scrim-light)",    // black 30% — hover/drag
   thumbBlur:   "blur(8px) saturate(180%)",
   // Hairline glass edge: semantic white at 35% via color-mix.
-  thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-light-mode-fill-static-neutral-faint) 35%, transparent)",
+  thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-fill-static-neutral-faint) 35%, transparent)",
   // Asymmetric fade, motion-token driven: snappy appear (200ms decelerate glide-in), graceful fade-out (380ms).
   fadeIn:      "opacity var(--motion-duration-3) var(--motion-easing-decelerate), background var(--motion-duration-3) var(--motion-easing-standard)",
   fadeOut:     "opacity var(--motion-duration-5) var(--motion-easing-standard)",

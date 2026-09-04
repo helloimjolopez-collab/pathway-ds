@@ -11,7 +11,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
   <!-- Pathway tokens: the real built CSS. Never inline a hand-copied subset -->
-  <link rel="stylesheet" href="../../src/tokens/tokens.css" />
+  <link rel="stylesheet" href="../../src/tokens/themes/light.css" />
+  <link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
+  <link rel="stylesheet" href="../../src/tokens/type-classes.css" />
+  <link rel="stylesheet" href="../../src/tokens/motion.css" />
+  <link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
 <style>
   body { margin: 0; background: #f4f5f7; font-family: 'Red Hat Text', sans-serif; color: #252525; }
   .wrap { max-width: 920px; margin: 0 auto; padding: 40px 24px 80px; }
@@ -44,10 +50,10 @@ const SCROLL = {
   gutter:      "var(--semantic-layout-units-padding-xxxtight)",
   thumbMin:    28,
   grabZone:    16,
-  thumbRest:   "var(--semantic-color-light-mode-scrim-faint)",
-  thumbHover:  "var(--semantic-color-light-mode-scrim-light)",
+  thumbRest:   "var(--semantic-color-scrim-faint)",
+  thumbHover:  "var(--semantic-color-scrim-light)",
   thumbBlur:   "blur(8px) saturate(180%)",
-  thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-light-mode-fill-static-neutral-faint) 35%, transparent)",
+  thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-fill-static-neutral-faint) 35%, transparent)",
   fadeIn:      "opacity var(--motion-duration-3) var(--motion-easing-decelerate), background var(--motion-duration-3) var(--motion-easing-standard)",
   fadeOut:     "opacity var(--motion-duration-5) var(--motion-easing-standard)",
   idleHideMs:  500,

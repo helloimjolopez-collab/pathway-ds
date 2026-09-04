@@ -9,7 +9,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
   <!-- Pathway tokens: the real built CSS. Never inline a hand-copied subset -->
-  <link rel="stylesheet" href="../../src/tokens/tokens.css" />
+  <link rel="stylesheet" href="../../src/tokens/themes/light.css" />
+  <link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
+  <link rel="stylesheet" href="../../src/tokens/type-classes.css" />
+  <link rel="stylesheet" href="../../src/tokens/motion.css" />
+  <link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
 <style>
 
   /* ── Demo page chrome ─────────────────────────────────────────────────────── */
@@ -104,42 +110,42 @@ const { useState, useRef, useEffect } = React;
 
 
 const V = {
-  fillCheckedBase:     "var(--semantic-color-light-mode-fill-action-primary-rest)",
-  fillCheckedHover:    "var(--semantic-color-light-mode-fill-action-primary-hover)",
-  fillCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primary-hover)",
-  fillCheckedPressed:  "var(--semantic-color-light-mode-fill-action-primary-pressed)",
-  fillCheckedDisabled: "var(--semantic-color-light-mode-fill-action-disabled)",
+  fillCheckedBase:     "var(--semantic-color-fill-action-primary-rest)",
+  fillCheckedHover:    "var(--semantic-color-fill-action-primary-hover)",
+  fillCheckedFocused:  "var(--semantic-color-fill-action-primary-hover)",
+  fillCheckedPressed:  "var(--semantic-color-fill-action-primary-pressed)",
+  fillCheckedDisabled: "var(--semantic-color-fill-action-disabled)",
 
-  borderBase:     "var(--semantic-color-light-mode-stroke-action-secondary-rest)",
-  borderHover:    "var(--semantic-color-light-mode-stroke-action-secondary-hover)",
-  borderFocused:  "var(--semantic-color-light-mode-stroke-action-secondary-hover)",
-  borderPressed:  "var(--semantic-color-light-mode-stroke-action-secondary-pressed)",
-  borderDisabled: "var(--semantic-color-light-mode-stroke-action-disabled)",
+  borderBase:     "var(--semantic-color-stroke-action-secondary-rest)",
+  borderHover:    "var(--semantic-color-stroke-action-secondary-hover)",
+  borderFocused:  "var(--semantic-color-stroke-action-secondary-hover)",
+  borderPressed:  "var(--semantic-color-stroke-action-secondary-pressed)",
+  borderDisabled: "var(--semantic-color-stroke-action-disabled)",
 
-  iconPrimary: "var(--semantic-color-light-mode-foreground-action-primary-rest)",
-  iconError:   "var(--semantic-color-light-mode-foreground-action-status-negative-rest)",
+  iconPrimary: "var(--semantic-color-foreground-action-primary-rest)",
+  iconError:   "var(--semantic-color-foreground-action-status-negative-rest)",
 
-  stateLayerUncheckedHover:  "var(--semantic-color-light-mode-fill-action-secondary-hover)",
-  stateLayerCheckedHover:    "var(--semantic-color-light-mode-fill-action-primary-dim-hover)",
-  stateLayerCheckedFocused:  "var(--semantic-color-light-mode-fill-action-primary-dim-hover)",
-  stateLayerCheckedPressed:  "var(--semantic-color-light-mode-fill-action-primary-dim-pressed)",
+  stateLayerUncheckedHover:  "var(--semantic-color-fill-action-secondary-hover)",
+  stateLayerCheckedHover:    "var(--semantic-color-fill-action-primary-dim-hover)",
+  stateLayerCheckedFocused:  "var(--semantic-color-fill-action-primary-dim-hover)",
+  stateLayerCheckedPressed:  "var(--semantic-color-fill-action-primary-dim-pressed)",
 
-  fillErrorBase:     "var(--semantic-color-light-mode-fill-action-status-negative-rest)",
-  fillErrorHover:    "var(--semantic-color-light-mode-fill-action-status-negative-hover)",
-  fillErrorFocused:  "var(--semantic-color-light-mode-fill-action-status-negative-hover)",
-  fillErrorPressed:  "var(--semantic-color-light-mode-fill-action-status-negative-pressed)",
-  fillErrorDisabled: "var(--semantic-color-light-mode-fill-action-disabled)",
+  fillErrorBase:     "var(--semantic-color-fill-action-status-negative-rest)",
+  fillErrorHover:    "var(--semantic-color-fill-action-status-negative-hover)",
+  fillErrorFocused:  "var(--semantic-color-fill-action-status-negative-hover)",
+  fillErrorPressed:  "var(--semantic-color-fill-action-status-negative-pressed)",
+  fillErrorDisabled: "var(--semantic-color-fill-action-disabled)",
 
-  borderErrorBase:     "var(--semantic-color-light-mode-stroke-action-status-negative-rest)",
-  borderErrorHover:    "var(--semantic-color-light-mode-stroke-action-status-negative-hover)",
-  borderErrorFocused:  "var(--semantic-color-light-mode-stroke-action-status-negative-hover)",
-  borderErrorPressed:  "var(--semantic-color-light-mode-stroke-action-status-negative-pressed)",
-  borderErrorDisabled: "var(--semantic-color-light-mode-stroke-action-disabled)",
+  borderErrorBase:     "var(--semantic-color-stroke-action-status-negative-rest)",
+  borderErrorHover:    "var(--semantic-color-stroke-action-status-negative-hover)",
+  borderErrorFocused:  "var(--semantic-color-stroke-action-status-negative-hover)",
+  borderErrorPressed:  "var(--semantic-color-stroke-action-status-negative-pressed)",
+  borderErrorDisabled: "var(--semantic-color-stroke-action-disabled)",
 
-  stateLayerErrorHover: "var(--semantic-color-light-mode-fill-action-status-negative-dim-hover)",
-  highlightResting:     "var(--semantic-color-light-mode-fill-action-secondary-rest)",
+  stateLayerErrorHover: "var(--semantic-color-fill-action-status-negative-dim-hover)",
+  highlightResting:     "var(--semantic-color-fill-action-secondary-rest)",
 
-  labelColor: "var(--semantic-color-light-mode-foreground-static-neutral-medium)",
+  labelColor: "var(--semantic-color-foreground-static-neutral-medium)",
   radius:     "calc(var(--semantic-layout-units-cornerradius-small) * 1px)",
   radiusFull: "100px",
 };

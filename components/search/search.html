@@ -6,7 +6,13 @@
   <title>Search — Pathway Design System</title>
 
   <!-- Pathway tokens -->
-  <link rel="stylesheet" href="../../src/tokens/tokens.css" />
+  <link rel="stylesheet" href="../../src/tokens/themes/light.css" />
+  <link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
+  <link rel="stylesheet" href="../../src/tokens/type-classes.css" />
+  <link rel="stylesheet" href="../../src/tokens/motion.css" />
+  <link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,7 +27,7 @@
 
     body {
       margin: 0;
-      background: var(--semantic-color-light-mode-fill-static-brand-light, #f0f4ff);
+      background: var(--semantic-color-fill-static-brand-light, #f0f4ff);
       font-family: 'Red Hat Text', sans-serif;
       padding: 32px;
       min-height: 100vh;
@@ -87,28 +93,28 @@
     const { useState, useEffect, useRef } = React;
 
     const T = {
-      barBg:           "var(--semantic-color-light-mode-fill-static-neutral-faint, #ffffff)",
-      filterActiveFill:"var(--semantic-color-light-mode-fill-action-primary-dim-rest, #eef2fb)",
+      barBg:           "var(--semantic-color-fill-static-neutral-faint, #ffffff)",
+      filterActiveFill:"var(--semantic-color-fill-action-primary-dim-rest, #eef2fb)",
       iconPillHover:   "rgba(0,0,0,0.06)",   // token gap — see search-spec.md §17
       iconPillPressed: "rgba(0,0,0,0.10)",
-      badgeFill:       "var(--semantic-color-light-mode-fill-action-primary-rest, #3555a0)",
-      collapsedBtnFill:"var(--semantic-color-light-mode-fill-action-primary-dim-rest, rgba(160,181,230,0.08))",
+      badgeFill:       "var(--semantic-color-fill-action-primary-rest, #3555a0)",
+      collapsedBtnFill:"var(--semantic-color-fill-action-primary-dim-rest, rgba(160,181,230,0.08))",
       disabledBg:      "var(--primitive-color-cool-neutral-10, #fbfbfb)",
-      borderIdle:      "var(--semantic-color-light-mode-stroke-static-neutral-faint, #f6f6f6)",
-      borderHover:     "var(--semantic-color-light-mode-stroke-action-primary-hover, #86a0dd)",
-      borderActive:    "var(--semantic-color-light-mode-stroke-action-primary-pressed, #6e8bd4)",
-      borderError:     "var(--semantic-color-light-mode-stroke-action-status-negative-rest, #b03a3a)",
+      borderIdle:      "var(--semantic-color-stroke-static-neutral-faint, #f6f6f6)",
+      borderHover:     "var(--semantic-color-stroke-action-primary-hover, #86a0dd)",
+      borderActive:    "var(--semantic-color-stroke-action-primary-pressed, #6e8bd4)",
+      borderError:     "var(--semantic-color-stroke-action-status-negative-rest, #b03a3a)",
       borderDisabled:  "var(--primitive-color-cool-neutral-25, #ededed)",
-      divider:         "var(--semantic-color-light-mode-stroke-action-secondary-rest, #d2d2d2)",
-      textPlaceholder: "var(--semantic-color-light-mode-foreground-static-neutral-subtle, #606060)",
-      textValue:       "var(--semantic-color-light-mode-foreground-static-neutral-bold, #202020)",
-      iconIdle:        "var(--semantic-color-light-mode-foreground-action-secondary-rest, #6b6b6b)",
-      iconHover:       "var(--semantic-color-light-mode-foreground-action-secondary-hover, #545454)",
-      iconDisabled:    "var(--semantic-color-light-mode-foreground-action-disabled, #979797)",
-      iconError:       "var(--semantic-color-light-mode-foreground-action-status-negative-rest, #b03a3a)",
+      divider:         "var(--semantic-color-stroke-action-secondary-rest, #d2d2d2)",
+      textPlaceholder: "var(--semantic-color-foreground-static-neutral-subtle, #606060)",
+      textValue:       "var(--semantic-color-foreground-static-neutral-bold, #202020)",
+      iconIdle:        "var(--semantic-color-foreground-action-secondary-rest, #6b6b6b)",
+      iconHover:       "var(--semantic-color-foreground-action-secondary-hover, #545454)",
+      iconDisabled:    "var(--semantic-color-foreground-action-disabled, #979797)",
+      iconError:       "var(--semantic-color-foreground-action-status-negative-rest, #b03a3a)",
       navIconFill:     "rgba(251,251,251,0.9)",
       collapsedBtnBorder:"rgba(251,251,251,0.14)",
-      badgeBorderColor:"var(--semantic-color-light-mode-fill-static-neutral-faint, #ffffff)",
+      badgeBorderColor:"var(--semantic-color-fill-static-neutral-faint, #ffffff)",
     };
 
     function Icon({ name, size = 16, color }) {

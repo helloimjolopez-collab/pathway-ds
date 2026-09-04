@@ -199,11 +199,11 @@ function walk(dir, out = []) {
   for (const e of readdirSync(dir, { withFileTypes: true })) {
     const p = join(dir, e.name);
     if (e.isDirectory()) walk(p, out);
-    else if (/\.(html|jsx?|mdx|md)$/.test(e.name)) out.push(p);
+    else if (/\.(html|jsx?|mdx|md|css)$/.test(e.name)) out.push(p);
   }
   return out;
 }
-const files = [...walk("components"), ...walk("src/stories"), ...walk("docs")];
+const files = [...walk("components"), ...walk("src/stories"), ...walk("docs"), ...walk(".storybook")];
 
 const NAME_RE = /((?:semantic|primitive|motion|contextual)-[a-z0-9-]+)/g;
 const changes = new Map();   // file -> [[from, to]]

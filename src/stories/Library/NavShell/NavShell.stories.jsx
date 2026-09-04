@@ -101,7 +101,7 @@ const SHELL_STYLE = {
   display: "flex",
   height: "100vh",
   flexDirection: "column",
-  background: "var(--semantic-color-light-mode-surface-canvas, #fafafa)",
+  background: "var(--semantic-color-surface-canvas, #fafafa)",
   fontFamily: "'Red Hat Text', sans-serif",
   overflow: "hidden",
 };
@@ -121,7 +121,7 @@ const MAIN_STYLE = (marginLeft) => ({
   marginLeft,
   transition: "margin-left var(--motion-duration-6) var(--motion-easing-emphasized)",
   padding: "12px 36px 56px",
-  background: "var(--semantic-color-light-mode-surface-canvas, #fafafa)",
+  background: "var(--semantic-color-surface-canvas, #fafafa)",
 });
 
 // ── MINIMAL SCREEN TEMPLATE (page content placeholder) ────────────────────
@@ -134,22 +134,22 @@ function ScreenContent({ title, subtitle }) {
       <div style={{ paddingTop: 8, paddingBottom: 16 }}>
         <h1 style={{
           fontSize: 24, fontWeight: 600, lineHeight: "30px", letterSpacing: "0.1px",
-          color: "var(--semantic-color-light-mode-foreground-static-neutral-bold, #202020)",
+          color: "var(--semantic-color-foreground-static-neutral-bold, #202020)",
           margin: 0,
         }}>{title}</h1>
         {subtitle && (
           <p style={{
             marginTop: 8,
             fontSize: 16, fontWeight: 400, lineHeight: "22px", letterSpacing: "0.1px",
-            color: "var(--semantic-color-light-mode-foreground-static-neutral-medium, #484848)",
+            color: "var(--semantic-color-foreground-static-neutral-medium, #484848)",
           }}>{subtitle}</p>
         )}
       </div>
       <div style={{
         padding: "8px 0",
-        borderTop: "1px solid var(--semantic-color-light-mode-stroke-static-neutral-faint, #f6f6f6)",
+        borderTop: "1px solid var(--semantic-color-stroke-static-neutral-faint, #f6f6f6)",
         marginTop: 16,
-        color: "var(--semantic-color-light-mode-foreground-static-neutral-subtle, #606060)",
+        color: "var(--semantic-color-foreground-static-neutral-subtle, #606060)",
         fontSize: 13, lineHeight: "20px",
       }}>
         Page content area - replace with real ScreenTemplate content.

@@ -41,33 +41,33 @@ const CHURCH_ICON_PATH =
 
 // ─── DESIGN TOKENS (dark mode) ────────────────────────────────────────────────
 // Every value is a semantic token name. Fallbacks are the resolved Figma values
-// — they're never used at runtime when Storybook loads tokens.css, but they
+// — they're never used at runtime when Storybook loads the token contract, but they
 // keep the file readable on its own.
 const T = {
   // Container fills
-  fillBase:    "var(--semantic-color-midnight-mode-fill-action-primary-dim-rest,    rgba(160,181,230,0.04))",
-  fillHover:   "var(--semantic-color-midnight-mode-fill-action-primary-dim-hover,   rgba(10,18,35,0.16))",
-  fillPressed: "var(--semantic-color-midnight-mode-fill-action-primary-dim-pressed, rgba(255,255,255,0.08))",
+  fillBase:    "var(--semantic-color-fill-action-primary-dim-rest,    rgba(160,181,230,0.04))",
+  fillHover:   "var(--semantic-color-fill-action-primary-dim-hover,   rgba(10,18,35,0.16))",
+  fillPressed: "var(--semantic-color-fill-action-primary-dim-pressed, rgba(255,255,255,0.08))",
 
   // Avatar placeholder background (when no logo on file)
-  fillAvatarPlaceholder: "var(--semantic-color-midnight-mode-fill-action-secondary-rest, rgba(255,255,255,0.08))",
+  fillAvatarPlaceholder: "var(--semantic-color-fill-action-secondary-rest, rgba(255,255,255,0.08))",
 
   // Borders
-  strokeBase:    "var(--semantic-color-midnight-mode-stroke-action-primary-rest,    rgba(160,181,230,0.16))",
-  strokeHover:   "var(--semantic-color-midnight-mode-stroke-action-primary-hover,   rgba(160,181,230,0.20))",
-  strokePressed: "var(--semantic-color-midnight-mode-stroke-action-primary-pressed, rgba(160,181,230,0.30))",
+  strokeBase:    "var(--semantic-color-stroke-action-primary-rest,    rgba(160,181,230,0.16))",
+  strokeHover:   "var(--semantic-color-stroke-action-primary-hover,   rgba(160,181,230,0.20))",
+  strokePressed: "var(--semantic-color-stroke-action-primary-pressed, rgba(160,181,230,0.30))",
 
   // Text — org name. Reconciled to Figma (Text/Static/Primary/Base, node
   // 40006819:14581). Static token — no per-state variants; the interactive
   // feedback is carried by the fill/stroke, not the text colour.
-  textBase:    "var(--semantic-color-midnight-mode-foreground-static-neutral-bold, #eceaf3)",
-  textHover:   "var(--semantic-color-midnight-mode-foreground-static-neutral-bold, #eceaf3)",
-  textPressed: "var(--semantic-color-midnight-mode-foreground-static-neutral-bold, #eceaf3)",
+  textBase:    "var(--semantic-color-foreground-static-neutral-bold, #eceaf3)",
+  textHover:   "var(--semantic-color-foreground-static-neutral-bold, #eceaf3)",
+  textPressed: "var(--semantic-color-foreground-static-neutral-bold, #eceaf3)",
 
   // Chevron icon — reconciled to Figma (Icon/Static/Neutral/Base = white 80%).
-  iconBase:    "var(--semantic-color-midnight-mode-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
-  iconHover:   "var(--semantic-color-midnight-mode-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
-  iconPressed: "var(--semantic-color-midnight-mode-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
+  iconBase:    "var(--semantic-color-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
+  iconHover:   "var(--semantic-color-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
+  iconPressed: "var(--semantic-color-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
 
   // Geometry
   radiusMedium: "var(--semantic-layout-units-cornerradius-medium, 8px)",
@@ -160,7 +160,7 @@ function TriggerAvatar({ logoUrl, size, borderColor }) {
 
 // ─── TYPOGRAPHY ──────────────────────────────────────────────────────────────
 // Label/Button/S — used on both desktop and mobile per Figma. The primitive
-// values in tokens.css are unitless (e.g. lineheight=20, not 20px), which
+// values in the raw token JSON are unitless (e.g. lineheight=20, not 20px), which
 // breaks CSS inline `lineHeight: var(...)` because 20 is interpreted as a
 // multiplier. So raw px values are used here, with the token names captured
 // in comments. If/when the primitive values get units, swap these to vars.
@@ -469,13 +469,13 @@ export const DEMO_ORGS = [
 ];
 
 const PANEL_T = {
-  bg:        "var(--semantic-color-light-mode-fill-static-neutral-faint, #ffffff)",
-  header:    "var(--semantic-color-light-mode-foreground-static-neutral-subtle, #606060)",
-  border:    "var(--semantic-color-light-mode-stroke-static-neutral-faint, #ededed)",
-  name:      "var(--semantic-color-light-mode-foreground-static-neutral-bold, #202020)",
-  icon:      "var(--semantic-color-light-mode-foreground-static-neutral-medium, #949494)",
-  logoBg:    "var(--semantic-color-light-mode-fill-static-brand-medium, #2d4889)",
-  rowActive: "var(--semantic-color-light-mode-fill-action-primary-dim-rest, #eef2fb)",
+  bg:        "var(--semantic-color-fill-static-neutral-faint, #ffffff)",
+  header:    "var(--semantic-color-foreground-static-neutral-subtle, #606060)",
+  border:    "var(--semantic-color-stroke-static-neutral-faint, #ededed)",
+  name:      "var(--semantic-color-foreground-static-neutral-bold, #202020)",
+  icon:      "var(--semantic-color-foreground-static-neutral-medium, #949494)",
+  logoBg:    "var(--semantic-color-fill-static-brand-medium, #2d4889)",
+  rowActive: "var(--semantic-color-fill-action-primary-dim-rest, #eef2fb)",
 };
 
 function ModuleCluster() {
