@@ -506,6 +506,34 @@
       "100-70": {
         "$type": "color",
         "$value": "#a0b5e6b2"
+      },
+      "300-4": {
+        "$type": "color",
+        "$value": "#5475c60a"
+      },
+      "300-8": {
+        "$type": "color",
+        "$value": "#5475c614"
+      },
+      "300-16": {
+        "$type": "color",
+        "$value": "#5475c629"
+      },
+      "300-24": {
+        "$type": "color",
+        "$value": "#5475c63d"
+      },
+      "300-36": {
+        "$type": "color",
+        "$value": "#5475c65c"
+      },
+      "300-50": {
+        "$type": "color",
+        "$value": "#5475c680"
+      },
+      "300-70": {
+        "$type": "color",
+        "$value": "#5475c6b2"
       }
     },
     "seabreeze": {
@@ -1300,7 +1328,7 @@
             },
             "selected": {
               "$type": "color",
-              "$value": "{primitive-color.brand.100-16}"
+              "$value": "{primitive-color.brand.300-16}"
             },
             "trail": {
               "$type": "color",
@@ -1439,15 +1467,15 @@
             "amethyst": {
               "faint": {
                 "$type": "color",
-                "$value": "{primitive-color.amethyst.25}"
+                "$value": "{primitive-color.amethyst.75}"
               },
               "subtle": {
                 "$type": "color",
-                "$value": "{primitive-color.amethyst.50}"
+                "$value": "{primitive-color.amethyst.100}"
               },
               "bold": {
                 "$type": "color",
-                "$value": "{primitive-color.amethyst.350}"
+                "$value": "{primitive-color.amethyst.800}"
               },
               "medium": {
                 "$type": "color",
@@ -1455,7 +1483,7 @@
               },
               "contrast": {
                 "$type": "color",
-                "$value": "{primitive-color.amethyst.300}"
+                "$value": "{primitive-color.amethyst.500}"
               }
             },
             "jade": {
@@ -1861,23 +1889,23 @@
             "amethyst": {
               "subtle": {
                 "$type": "color",
-                "$value": "{primitive-color.amethyst.700}"
+                "$value": "{primitive-color.amethyst.500}"
               },
               "faint": {
                 "$type": "color",
-                "$value": "{primitive-color.amethyst.600}"
+                "$value": "{primitive-color.amethyst.400}"
               },
               "medium": {
                 "$type": "color",
-                "$value": "{primitive-color.amethyst.800}"
+                "$value": "{primitive-color.amethyst.700}"
               },
               "contrast": {
                 "$type": "color",
-                "$value": "{primitive-color.amethyst.600}"
+                "$value": "{primitive-color.amethyst.800}"
               },
               "bold": {
                 "$type": "color",
-                "$value": "{primitive-color.amethyst.700}"
+                "$value": "{primitive-color.amethyst.900}"
               }
             },
             "jade": {
@@ -2484,15 +2512,15 @@
           "primary": {
             "rest": {
               "$type": "color",
-              "$value": "{primitive-color.brand.200}"
+              "$value": "{primitive-color.brand.250}"
             },
             "hover": {
               "$type": "color",
-              "$value": "{primitive-color.brand.150}"
+              "$value": "{primitive-color.brand.200}"
             },
             "pressed": {
               "$type": "color",
-              "$value": "{primitive-color.brand.100}"
+              "$value": "{primitive-color.brand.150}"
             }
           },
           "status": {
@@ -2644,11 +2672,11 @@
             },
             "hover": {
               "$type": "color",
-              "$value": "{primitive-color.brand.550}"
+              "$value": "{primitive-color.brand.400}"
             },
             "pressed": {
               "$type": "color",
-              "$value": "{primitive-color.brand.500}"
+              "$value": "{primitive-color.brand.700}"
             }
           },
           "secondary": {
@@ -3124,15 +3152,15 @@
           "primary": {
             "rest": {
               "$type": "color",
-              "$value": "{primitive-color.brand.100}"
+              "$value": "{primitive-color.brand.50}"
             },
             "hover": {
               "$type": "color",
-              "$value": "{primitive-color.brand.75}"
+              "$value": "{primitive-color.brand.25}"
             },
             "pressed": {
               "$type": "color",
-              "$value": "{primitive-color.brand.50}"
+              "$value": "{primitive-color.brand.0}"
             }
           },
           "status": {
