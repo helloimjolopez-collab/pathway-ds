@@ -3531,7 +3531,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-accent-jade-medium": {
-    "value": "#daf1eb",
+    "value": "#c7ebe1",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3544,7 +3544,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-accent-jade-contrast": {
-    "value": "#c7ebe1",
+    "value": "#aee3d6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4661,7 +4661,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-foreground-static-accent-jade-subtle": {
-    "value": "#135349",
+    "value": "#176459",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4700,7 +4700,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-foreground-static-accent-jade-bold": {
-    "value": "#135349",
+    "value": "#012b25",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4713,7 +4713,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-foreground-static-accent-jade-contrast": {
-    "value": "#2bab92",
+    "value": "#0d362f",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4791,7 +4791,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-foreground-static-accent-lagoon-faint": {
-    "value": "#146171",
+    "value": "#1e99ae",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4804,7 +4804,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-foreground-static-accent-lagoon-subtle": {
-    "value": "#146171",
+    "value": "#187d8e",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4817,7 +4817,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-foreground-static-accent-lagoon-medium": {
-    "value": "#104956",
+    "value": "#146171",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4843,7 +4843,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-foreground-static-accent-lagoon-bold": {
-    "value": "#104956",
+    "value": "#003440",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7681,7 +7681,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-fill-static-accent-jade-medium": {
-    "value": "#10423b",
+    "value": "#135349",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7694,7 +7694,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-fill-static-accent-jade-contrast": {
-    "value": "#135349",
+    "value": "#176459",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7785,7 +7785,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-fill-static-accent-seabreeze-bold": {
-    "value": "#66badb",
+    "value": "#7bc7e5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8746,7 +8746,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-foreground-static-accent-amethyst-subtle": {
-    "value": "#a8a0d8",
+    "value": "#9a90d0",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8772,7 +8772,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-foreground-static-accent-amethyst-medium": {
-    "value": "#cbc6e8",
+    "value": "#a8a0d8",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8811,7 +8811,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-foreground-static-accent-jade-subtle": {
-    "value": "#85d6c2",
+    "value": "#2bab92",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8824,7 +8824,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-foreground-static-accent-jade-faint": {
-    "value": "#2bab92",
+    "value": "#208877",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8837,7 +8837,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-foreground-static-accent-jade-medium": {
-    "value": "#94dbc9",
+    "value": "#41c8a9",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8850,7 +8850,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-foreground-static-accent-jade-bold": {
-    "value": "#94dbc9",
+    "value": "#85d6c2",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8863,7 +8863,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-foreground-static-accent-jade-contrast": {
-    "value": "#208877",
+    "value": "#6fceb7",
     "type": "color",
     "path": [
       "semantic-color",

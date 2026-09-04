@@ -1719,13 +1719,13 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Jade.25}"
+                    "$value": "{Jade.50}"
                   },
                   "Contrast": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Jade.50}"
+                    "$value": "{Jade.75}"
                   },
                   "Bold": {
                     "$type": "color",
@@ -2315,7 +2315,7 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Jade.600}"
+                    "$value": "{Jade.500}"
                   },
                   "Faint": {
                     "$type": "color",
@@ -2333,13 +2333,13 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Jade.600}"
+                    "$value": "{Jade.900}"
                   },
                   "Contrast": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Jade.300}"
+                    "$value": "{Jade.800}"
                   }
                 },
                 "Seabreeze": {
@@ -2379,19 +2379,19 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Lagoon.700}"
+                    "$value": "{Lagoon.500}"
                   },
                   "Subtle": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Lagoon.700}"
+                    "$value": "{Lagoon.600}"
                   },
                   "Medium": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Lagoon.800}"
+                    "$value": "{Lagoon.700}"
                   },
                   "Contrast": {
                     "$type": "color",
@@ -2403,7 +2403,7 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Lagoon.800}"
+                    "$value": "{Lagoon.900}"
                   }
                 },
                 "Mauve": {
@@ -3895,13 +3895,13 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Jade.700}"
+                    "$value": "{Jade.600}"
                   },
                   "Contrast": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Jade.600}"
+                    "$value": "{Jade.500}"
                   },
                   "Bold": {
                     "$type": "color",
@@ -3945,7 +3945,7 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Seabreeze.250}"
+                    "$value": "{Seabreeze.200}"
                   }
                 },
                 "Mauve": {
@@ -4459,7 +4459,7 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Amethyst.200}"
+                    "$value": "{Amethyst.300}"
                   },
                   "Faint": {
                     "$type": "color",
@@ -4471,7 +4471,7 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Amethyst.100}"
+                    "$value": "{Amethyst.200}"
                   },
                   "Contrast": {
                     "$type": "color",
@@ -4491,31 +4491,31 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Jade.150}"
+                    "$value": "{Jade.300}"
                   },
                   "Faint": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Jade.300}"
+                    "$value": "{Jade.350}"
                   },
                   "Medium": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Jade.100}"
+                    "$value": "{Jade.250}"
                   },
                   "Bold": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Jade.100}"
+                    "$value": "{Jade.150}"
                   },
                   "Contrast": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Jade.350}"
+                    "$value": "{Jade.200}"
                   }
                 },
                 "Seabreeze": {
