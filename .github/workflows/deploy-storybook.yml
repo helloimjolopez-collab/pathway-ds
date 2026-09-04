@@ -55,8 +55,15 @@ jobs:
           rm -rf storybook
           mv storybook-static storybook
 
-          # Expose the built token CSS as a standalone file at /storybook/tokens.css
-          cp src/tokens/tokens.css storybook/tokens.css
+          # Expose the built token contract as standalone files under /storybook/.
+          # This used to be `cp src/tokens/tokens.css` — that file was retired on
+          # 2026-09-03 and the copy would now fail the job outright.
+          for f in primitives.css themes/light.css themes/midnight.css \
+                   layout.css layout-contextual.css type-classes.css \
+                   motion.css breakpoints.css; do
+            mkdir -p "storybook/$(dirname "$f")"
+            cp "src/tokens/$f" "storybook/$f"
+          done
 
           # Stage only the storybook output — ignore derived token files and other build artifacts
           git add storybook/

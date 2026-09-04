@@ -1470,13 +1470,13 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.25}"
+                  "$value": "{Warm Neutral.50}"
                 },
                 "Faint": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.0}"
+                  "$value": "{Warm Neutral.25}"
                 },
                 "White": {
                   "$type": "color",
@@ -1496,19 +1496,19 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.75}"
+                  "$value": "{Brand.100}"
                 },
                 "Contrast": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.200}"
+                  "$value": "{Brand.400}"
                 },
                 "Bold": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.300}"
+                  "$value": "{Brand.700}"
                 },
                 "Light": {
                   "$type": "color",
@@ -1520,7 +1520,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.900}"
+                  "$value": "{Brand.800}"
                 }
               },
               "Status": {
@@ -3130,20 +3130,6 @@
               "$libraryName": "",
               "$value": "{Cool Neutral.0}"
             },
-            "Overlay": {
-              "Base": {
-                "$type": "color",
-                "$collectionName": "Primitive: Color",
-                "$libraryName": "",
-                "$value": "{Warm Neutral.0}"
-              },
-              "Medium": {
-                "$type": "color",
-                "$collectionName": "Primitive: Color",
-                "$libraryName": "",
-                "$value": "{Warm Neutral.25}"
-              }
-            },
             "Elevated": {
               "Base": {
                 "$type": "color",
@@ -3674,7 +3660,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.800}"
+                  "$value": "{Warm Neutral.700}"
                 },
                 "White": {
                   "$type": "color",
@@ -5327,20 +5313,6 @@
               "$collectionName": "Primitive: Color",
               "$libraryName": "",
               "$value": "{Brand.800}"
-            },
-            "Overlay": {
-              "Base": {
-                "$type": "color",
-                "$collectionName": "Primitive: Color",
-                "$libraryName": "",
-                "$value": "{Brand.600}"
-              },
-              "Medium": {
-                "$type": "color",
-                "$collectionName": "Primitive: Color",
-                "$libraryName": "",
-                "$value": "{Brand.700}"
-              }
             },
             "Elevated": {
               "Base": {

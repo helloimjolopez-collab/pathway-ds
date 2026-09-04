@@ -1312,11 +1312,11 @@
           "neutral": {
             "medium": {
               "$type": "color",
-              "$value": "{primitive-color.warm-neutral.25}"
+              "$value": "{primitive-color.warm-neutral.50}"
             },
             "faint": {
               "$type": "color",
-              "$value": "{primitive-color.warm-neutral.0}"
+              "$value": "{primitive-color.warm-neutral.25}"
             },
             "white": {
               "$type": "color",
@@ -1330,15 +1330,15 @@
             },
             "medium": {
               "$type": "color",
-              "$value": "{primitive-color.brand.75}"
+              "$value": "{primitive-color.brand.100}"
             },
             "contrast": {
               "$type": "color",
-              "$value": "{primitive-color.brand.200}"
+              "$value": "{primitive-color.brand.400}"
             },
             "bold": {
               "$type": "color",
-              "$value": "{primitive-color.brand.300}"
+              "$value": "{primitive-color.brand.700}"
             },
             "light": {
               "$type": "color",
@@ -1346,7 +1346,7 @@
             },
             "black": {
               "$type": "color",
-              "$value": "{primitive-color.brand.900}"
+              "$value": "{primitive-color.brand.800}"
             }
           },
           "status": {
@@ -2472,16 +2472,6 @@
           "$type": "color",
           "$value": "{primitive-color.cool-neutral.0}"
         },
-        "overlay": {
-          "base": {
-            "$type": "color",
-            "$value": "{primitive-color.warm-neutral.0}"
-          },
-          "medium": {
-            "$type": "color",
-            "$value": "{primitive-color.warm-neutral.25}"
-          }
-        },
         "elevated": {
           "base": {
             "$type": "color",
@@ -2856,7 +2846,7 @@
             },
             "faint": {
               "$type": "color",
-              "$value": "{primitive-color.warm-neutral.800}"
+              "$value": "{primitive-color.warm-neutral.700}"
             },
             "white": {
               "$type": "color",
@@ -4011,16 +4001,6 @@
         "sheet": {
           "$type": "color",
           "$value": "{primitive-color.brand.800}"
-        },
-        "overlay": {
-          "base": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.600}"
-          },
-          "medium": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.700}"
-          }
         },
         "elevated": {
           "base": {

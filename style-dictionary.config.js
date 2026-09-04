@@ -359,25 +359,24 @@ const config = {
     // Additive — tokens.css still carries the old mode-in-name properties, so
     // both name sets are live and nothing downstream breaks yet.
     //
-    // PRIMITIVES ARE INLINED HERE ON PURPOSE (changed 2026-09-03).
+    // THE THEMES REFERENCE PRIMITIVES. Do not inline them.
     //
-    // The previous note here said not to set outputReferences: false because it
-    // "breaks the primitive cascade, so retuning a primitive would no longer reach
-    // the themes". That reasoning was wrong: a rebuild always picks up a retuned
-    // primitive, because the inlining happens at build time. What inlining actually
-    // costs is RUNTIME override — a consumer can no longer reskin by setting
-    // --primitive-color-brand-400 on :root. Pathway does not theme that way; Light
-    // and Midnight are selector-scoped, and a rebrand is a value swap in Figma
-    // followed by a rebuild.
+    // These files are filtered to semantic-color only, so Style Dictionary warns
+    // "filtered out token references were found". That warning is expected: the
+    // primitives they point at live in primitives.css, which a consumer loads
+    // alongside. Every referenced primitive resolves; none are missing.
     //
-    // What it buys is that primitives stop being part of what a consumer sees.
-    // With references, a consumer had to load primitives.css too and 232 internal
-    // --primitive-* names showed up in their devtools and their payload, which
-    // contradicts the whole point of marking primitives private in Figma. Inlined,
-    // the colour contract is exactly 329 names and nothing else.
+    // Inlining was tried on 2026-09-03 and reverted at Jo's instruction. It made
+    // the colour layer self-contained and dropped 232 names from the payload, but
+    // it also destroyed the semantic-to-primitive chain: a developer inspecting an
+    // element saw a bare hex instead of var(--primitive-color-brand-400), and a
+    // consumer lost the ability to override a primitive at runtime. Marking a
+    // variable private in the FIGMA panel only means designers are not offered it
+    // when styling; it is not a statement that the value should be absent from the
+    // CSS. Those are different layers and inlining conflated them.
     //
-    // primitives.css is still built, for the Storybook ramp documentation. It is
-    // NOT shipped to consumers.
+    // So primitives.css is REQUIRED, not optional. It must be in every demo's link
+    // list, in .storybook/preview.js, and in the package exports.
     cssThemes: {
       transformGroup: "css-modeless",
       buildPath: "src/tokens/",
@@ -391,7 +390,7 @@ const config = {
           // island inside that dark island. top-nav is exactly that case — a dark
           // bar with white dropdown panels — so light must be addressable by
           // selector too, or the panels inherit midnight.
-          options: { selector: ':root, [data-theme="light"]', outputReferences: false },
+          options: { selector: ':root, [data-theme="light"]', outputReferences: true },
         },
         {
           // Figma calls this mode "Midnight Mode", so the file is named for it.
@@ -403,7 +402,7 @@ const config = {
           filter: (t) => isSemanticColor(t) && inMode(t, /dark|midnight/i),
           options: {
             selector: '[data-theme="midnight"], [data-theme="dark"]',
-            outputReferences: false,
+            outputReferences: true,
           },
         },
       ],

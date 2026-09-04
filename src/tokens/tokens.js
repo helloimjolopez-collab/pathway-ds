@@ -3035,7 +3035,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-neutral-medium": {
-    "value": "#f9f7f5",
+    "value": "#f3f0ec",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3047,7 +3047,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-neutral-faint": {
-    "value": "#fefefd",
+    "value": "#f9f7f5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3083,7 +3083,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-brand-medium": {
-    "value": "#b6c6ec",
+    "value": "#a0b5e6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3095,7 +3095,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-brand-contrast": {
-    "value": "#6e8bd4",
+    "value": "#4364b6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3107,7 +3107,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-brand-bold": {
-    "value": "#5475c6",
+    "value": "#152343",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3131,7 +3131,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-brand-black": {
-    "value": "#060a15",
+    "value": "#0a1223",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6224,28 +6224,6 @@ const tokens = {
       "sheet"
     ]
   },
-  "semantic-color-light-mode-surface-overlay-base": {
-    "value": "#fefefd",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "surface",
-      "overlay",
-      "base"
-    ]
-  },
-  "semantic-color-light-mode-surface-overlay-medium": {
-    "value": "#f9f7f5",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "surface",
-      "overlay",
-      "medium"
-    ]
-  },
   "semantic-color-light-mode-surface-elevated-base": {
     "value": "#fefefd",
     "type": "color",
@@ -7228,7 +7206,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-fill-static-neutral-faint": {
-    "value": "#1e1c1a",
+    "value": "#2b2926",
     "type": "color",
     "path": [
       "semantic-color",
@@ -10403,28 +10381,6 @@ const tokens = {
       "midnight-mode",
       "surface",
       "sheet"
-    ]
-  },
-  "semantic-color-midnight-mode-surface-overlay-base": {
-    "value": "#22386b",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "midnight-mode",
-      "surface",
-      "overlay",
-      "base"
-    ]
-  },
-  "semantic-color-midnight-mode-surface-overlay-medium": {
-    "value": "#152343",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "midnight-mode",
-      "surface",
-      "overlay",
-      "medium"
     ]
   },
   "semantic-color-midnight-mode-surface-elevated-base": {

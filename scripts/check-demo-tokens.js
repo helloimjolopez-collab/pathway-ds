@@ -74,6 +74,10 @@ const PENDING_SYNC = new Set([
 // Leaving it out of CSS_SOURCES is what makes this script enforce the new contract
 // — a name that exists only in the legacy file now fails instead of passing.
 const CONTRACT_CSS = [
+  // primitives.css FIRST and REQUIRED: the theme files reference primitives via
+  // var(), so without it every colour resolves to nothing. Inlining was tried and
+  // reverted; see the note in style-dictionary.config.js.
+  "src/tokens/primitives.css",
   "src/tokens/themes/light.css",
   "src/tokens/themes/midnight.css",
   "src/tokens/layout.css",
@@ -123,13 +127,7 @@ function candidateSuffixes(tokenId) {
 // that new code is supposed to use, while tokens.css carries the legacy
 // mode-in-name form. Checking only tokens.css would wrongly flag every correct
 // modern reference as unresolved.
-const CSS_SOURCES = [
-  ...CONTRACT_CSS,
-  // primitives.css is NOT part of the contract and demos do not load it. It is
-  // listed only so the two Storybook pages that document the ramps do not trip
-  // this check; a component referencing a primitive is still a §6 violation.
-  "src/tokens/primitives.css",
-];
+const CSS_SOURCES = [...CONTRACT_CSS];
 
 const defined = new Set();
 for (const file of CSS_SOURCES) {

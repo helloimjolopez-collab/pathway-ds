@@ -37,12 +37,15 @@ tokens/pathway-design-tokens.json                        │
   └──────────────────────────┬────────────────────────────┘
                              │  node style-dictionary.config.js
                              ▼
-        src/tokens/tokens.css              all tokens, mode baked into the name (legacy)
-        src/tokens/type-classes.css        111 composite type styles as CSS classes
-        src/tokens/themes/light.css        332 semantic colours under :root
-        src/tokens/themes/midnight.css     the same 332 names under [data-theme]
+        src/tokens/primitives.css          343 raw ramp values — REQUIRED, the themes
+                                           reference these via var()
+        src/tokens/themes/light.css        327 semantic colours, :root + [data-theme=light]
+        src/tokens/themes/midnight.css     the same 327 names under [data-theme=midnight]
         src/tokens/layout.css              39 layout tokens, breakpoint by media query
-        src/tokens/layout-contextual.css   30 component metrics, same treatment
+        src/tokens/layout-contextual.css   34 component metrics, same treatment
+        src/tokens/type-classes.css        111 composite type styles as CSS classes
+        src/tokens/motion.css              17 durations and easings
+        src/tokens/breakpoints.css         5 breakpoint values
         src/tokens/tokens.js               flat JS map, consumed by resolve-tokens + stories
 ```
 
@@ -66,44 +69,48 @@ pipeline.
 
 ### 2.0 The CSS outputs, and which one to consume
 
+**`tokens.css` NO LONGER EXISTS (retired 2026-09-03).** It emitted every variable
+times every mode with the mode baked into the property name — 2,338 custom properties
+— and it was the file every demo, Storybook and the npm package actually loaded. A
+developer reading it counted 2,338 tokens and reasonably concluded the system was too
+granular to adopt, even though the contract had already been cut to 327 colour names.
+Do not reinstate it. `scripts/check-demo-tokens.js` deliberately omits it from
+`CSS_SOURCES` so a stale legacy name fails loudly instead of silently resolving.
+
+Load these seven, in this order:
+
 | File | Contains | Consume it? |
 |---|---|---|
-| `themes/light.css` + `themes/midnight.css` | 332 semantic colour names, one name per token, mode resolved by selector | **Yes.** This is the colour contract |
-| `type-classes.css` | 111 `.pw-type-*` classes, one per text style, with a mobile media query | **Yes.** Apply one class, not five properties |
-| `layout.css` | 39 layout and spacing names, breakpoint resolved by media query | **Yes.** This is the spacing contract |
-| `layout-contextual.css` | 30 component metrics (Button, Card, NavItem, Page, focus ring) | Component internals. The components in this repo use it; product code should not |
-| `tokens.css` | Everything, with the mode baked into each name (`--semantic-color-light-mode-…`) | Legacy. Still emitted so nothing breaks; being retired |
+| `primitives.css` | 343 raw ramp values | **Required, but never referenced.** The themes point at these via `var()`, so the file must load or every colour resolves to nothing. Product code must never name a `--primitive-*` (§6) |
+| `themes/light.css` + `themes/midnight.css` | 327 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
+| `layout.css` | 39 layout and spacing names, breakpoint by media query | **Yes.** The spacing contract |
+| `layout-contextual.css` | 34 component metrics (Button, Card, NavItem, Page, focus ring) | Component internals. This repo's components use it; product code should not |
+| `type-classes.css` | 111 `.pw-type-*` classes, one per text style | **Yes.** Apply one class, not five properties |
+| `motion.css` | 17 durations and easings | **Yes** |
+| `breakpoints.css` | 5 breakpoint values | **Yes** |
 | `tokens.js` | Flat JS map | Only via `resolve-tokens.js` |
 
-**Layout got the same treatment as colour on 2026-09-03.** `Semantic: Layout & Units`
+**Primitives are referenced, not inlined.** Inlining was tried on 2026-09-03 and
+reverted at the user's instruction. Marking a variable private in the Figma panel only
+means designers are not offered it when styling; it is NOT a statement that the value
+should be absent from the CSS. Those are different layers. Expect Style Dictionary to
+warn "filtered out token references were found" on the theme files — that is expected,
+because the primitives they reference live in `primitives.css`, which loads alongside.
+
+**Region theming composes both ways.** `light.css` matches `:root, [data-theme="light"]`
+and `midnight.css` matches `[data-theme="midnight"], [data-theme="dark"]`. A dark island
+can sit inside a light page AND a light island inside that dark island — which top-nav
+needs, being a dark bar with white dropdown panels. A component that styles a
+permanently dark region uses the MODELESS name plus a `data-theme` wrapper; it must
+never reach for a mode-qualified property name, because those no longer exist.
+
+**Layout and breakpoints got the same treatment as colour.** `Semantic: Layout & Units`
 gained Desktop/Tablet/Mobile modes, which put the breakpoint into every property name
-(`--semantic-layout-units-desktop-1440pt-padding-base`). That breaks every existing
-spacing reference and makes responsive layout impossible by selector. `layout.css`
-and `layout-contextual.css` strip the breakpoint and scope it with a media query
-instead, emitting only the values that actually differ per breakpoint. Expect a
-"token collisions were found" warning on both files — three modes collapsing onto one
-name IS the intent.
-
-Both colour name sets are live at once on purpose, so consumers can migrate at
-their own pace. Migrating off `tokens.css` is a `-light-mode` string deletion for
-literal references, plus manual work in the four files that build token names by
-string interpolation (`components/button/button.jsx`, `components/button/button.html`,
-`components/top-nav/top-nav.jsx`, `src/stories/Library/Button/Button.stories.jsx`).
-
-**`top-nav.jsx` needs care.** It currently reaches for `--semantic-color-dark-mode-…`
-by name to style its dark bar while the page is in light mode. Under selector-based
-theming that name resolves to one value only, so the dark region needs a
-`[data-theme="midnight"]` wrapper instead.
-
-Rules:
-
-- **The Figma export is authoritative.** If the user deletes a variable in Figma, the sync removes it from every derived file. If the user adds a variable, the sync adds it. **Never tell the user to fix broken aliases in Figma as a precondition to running the sync** — if a semantic token points at a deleted primitive, `sync-tokens.js` drops that token silently (with a warning in the CI log) and the build continues.
-- **One-time data migrations are a separate class of work.** When Figma renames or restructures a primitive group (e.g. the historical `Indigo → Brand` rename), a one-off script or `sed` may be needed to rewrite stale references in already-imported data so the tree resolves. Those are ad-hoc jobs, requested explicitly by the user, run once, committed, and done. **Never** bake a one-time rewrite into the recurring sync, audit, or `/update-tokens` routines — a repeating rewrite masks real broken state once the migration is complete and makes future orphans invisible.
-- **`pathway-design-tokens.json` is derived.** Do not hand-edit it. Changes made to it will be wiped by the next Figma sync.
-- **`tokens/motion-tokens.json` is derived.** Do not hand-edit it. `scripts/sync-motion-tokens.js` regenerates it from `docs/design-system-spec.md` §2 on every build. To change a motion value, edit the spec — the JSON updates automatically.
-- **Any edit to motion values in `docs/design-system-spec.md` §2 must be followed immediately — in the same operation, same commit — by running `node scripts/sync-motion-tokens.js && node style-dictionary.config.js` and committing the resulting `tokens/motion-tokens.json` and `src/tokens/tokens.css` alongside the spec change.** Never commit a spec-only motion edit. The spec and the CSS variables are one change, not two.
-- **`src/tokens/tokens.css` is derived.** Do not hand-edit it. Style Dictionary regenerates it on every build.
-- If a broken alias matters (e.g. a component visibly breaks because its token disappeared), the fix goes **in Figma**, not in the repo.
+(`--semantic-layout-units-desktop-1440pt-padding-base`). That breaks every spacing
+reference and makes responsive layout impossible by selector. `layout.css` and
+`layout-contextual.css` strip the breakpoint and scope it with a media query, emitting
+only the values that actually differ. Expect a "token collisions were found" warning on
+both files — three modes collapsing onto one name IS the intent.
 
 ### 2.1 Midnight Mode — ENABLED (2026-05-05, renamed 2026-08-28)
 
