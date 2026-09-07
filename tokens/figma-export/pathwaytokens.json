@@ -674,55 +674,55 @@
           "Saffron": {
             "0": {
               "$type": "color",
-              "$value": "#fefdfb"
+              "$value": "#fefaf2"
             },
             "25": {
               "$type": "color",
-              "$value": "#fcf7e3"
+              "$value": "#fef2de"
             },
             "75": {
               "$type": "color",
-              "$value": "#fcefc5"
+              "$value": "#fee2b3"
             },
             "100": {
               "$type": "color",
-              "$value": "#fbe39d"
+              "$value": "#fed897"
             },
             "150": {
               "$type": "color",
-              "$value": "#f9d87b"
+              "$value": "#ffc864"
             },
             "200": {
               "$type": "color",
-              "$value": "#f9cd5d"
+              "$value": "#eab655"
             },
             "300": {
               "$type": "color",
-              "$value": "#e1aa03"
+              "$value": "#bf9342"
             },
             "350": {
               "$type": "color",
-              "$value": "#b38106"
+              "$value": "#aa843e"
             },
             "400": {
               "$type": "color",
-              "$value": "#885e15"
+              "$value": "#91723b"
             },
             "500": {
               "$type": "color",
-              "$value": "#64431a"
+              "$value": "#6d5936"
             },
             "700": {
               "$type": "color",
-              "$value": "#49311a"
+              "$value": "#342d21"
             },
             "800": {
               "$type": "color",
-              "$value": "#312012"
+              "$value": "#1d1912"
             },
             "900": {
               "$type": "color",
-              "$value": "#20140c"
+              "$value": "#110d07"
             }
           },
           "Warm Neutral": {
