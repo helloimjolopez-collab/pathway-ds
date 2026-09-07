@@ -11,3 +11,7 @@ Library/Application Support/pathway-token-sync.sh
 # Paged Figma reads land here during a token sync; the assembled
 # pathwaytokens.json is what gets committed, not the intermediate pages.
 .figma-dump/
+
+# Built Storybook. Pages deploys a fresh artifact via deploy-pages.yml;
+# committing the build put 14MB of stale output on main per push.
+storybook/

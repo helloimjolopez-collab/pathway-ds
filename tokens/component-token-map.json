@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Machine-readable map: which CSS variable does each component element use. Eliminates guesswork for AI tools and design kit generators.",
-    "cssVariablesIn": "src/tokens/tokens.css",
+    "cssVariablesIn": "src/tokens/ (8-file contract; primitives.css + one theme)",
     "lastUpdated": "2026-06-08",
     "note": "fontsize values are unitless numbers — wrap with calc(var(...) * 1px) in CSS or hardcode px in JS"
   },

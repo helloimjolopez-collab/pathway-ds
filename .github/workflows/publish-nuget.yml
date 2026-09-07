@@ -66,15 +66,14 @@ jobs:
         # up front and name the missing file.
         run: |
           MISSING=0
-          for f in dist/themes/light.css dist/themes/midnight.css dist/type-classes.css \
-                   dist/primitives.css dist/tokens.css dist/tokens.json; do
+          for f in dist/primitives.css dist/themes/light.css dist/themes/midnight.css dist/type.css dist/layout.css dist/layout-contextual.css dist/motion.css dist/breakpoints.css dist/tokens.json; do
             if [ ! -s "$f" ]; then echo "MISSING or empty: $f"; MISSING=1; fi
           done
           if [ "$MISSING" = "1" ]; then
             echo "Refusing to pack an incomplete token package."
             exit 1
           fi
-          echo "All six token artefacts present."
+          echo "All 9 token artefacts present."
 
       - name: Read version from package.json
         run: |

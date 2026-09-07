@@ -58,17 +58,27 @@
     contentFiles so non-Blazor project types can copy them into wwwroot.
   -->
   <ItemGroup>
-    <None Include="..\dist\themes\light.css"    Pack="true" PackagePath="staticwebassets\themes\light.css" />
+    <!-- staticwebassets: how a Blazor host page references these -->
+    <None Include="..\dist\primitives.css" Pack="true" PackagePath="staticwebassets\primitives.css" />
+    <None Include="..\dist\themes\light.css" Pack="true" PackagePath="staticwebassets\themes\light.css" />
     <None Include="..\dist\themes\midnight.css" Pack="true" PackagePath="staticwebassets\themes\midnight.css" />
-    <None Include="..\dist\type-classes.css"    Pack="true" PackagePath="staticwebassets\type-classes.css" />
-    <None Include="..\dist\primitives.css"      Pack="true" PackagePath="staticwebassets\primitives.css" />
-    <None Include="..\dist\tokens.css"          Pack="true" PackagePath="staticwebassets\tokens.css" />
-    <None Include="..\dist\tokens.json"         Pack="true" PackagePath="staticwebassets\tokens.json" />
+    <None Include="..\dist\type.css" Pack="true" PackagePath="staticwebassets\type.css" />
+    <None Include="..\dist\layout.css" Pack="true" PackagePath="staticwebassets\layout.css" />
+    <None Include="..\dist\layout-contextual.css" Pack="true" PackagePath="staticwebassets\layout-contextual.css" />
+    <None Include="..\dist\motion.css" Pack="true" PackagePath="staticwebassets\motion.css" />
+    <None Include="..\dist\breakpoints.css" Pack="true" PackagePath="staticwebassets\breakpoints.css" />
+    <None Include="..\dist\tokens.json" Pack="true" PackagePath="staticwebassets\tokens.json" />
 
-    <None Include="..\dist\themes\light.css"    Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\themes\light.css" />
+    <!-- contentFiles: so non-Blazor project types can copy into wwwroot -->
+    <None Include="..\dist\primitives.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\primitives.css" />
+    <None Include="..\dist\themes\light.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\themes\light.css" />
     <None Include="..\dist\themes\midnight.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\themes\midnight.css" />
-    <None Include="..\dist\type-classes.css"    Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\type-classes.css" />
-    <None Include="..\dist\tokens.json"         Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\tokens.json" />
+    <None Include="..\dist\type.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\type.css" />
+    <None Include="..\dist\layout.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\layout.css" />
+    <None Include="..\dist\layout-contextual.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\layout-contextual.css" />
+    <None Include="..\dist\motion.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\motion.css" />
+    <None Include="..\dist\breakpoints.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\breakpoints.css" />
+    <None Include="..\dist\tokens.json" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\tokens.json" />
   </ItemGroup>
 
 </Project>

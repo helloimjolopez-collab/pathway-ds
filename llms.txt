@@ -13,7 +13,7 @@
 To implement any Pathway component correctly, use these — not HTML demos:
 
 - `.jsx` module: the React component to import (e.g. `components/sidenav/sidenav.jsx`)
-- `src/tokens/tokens.css`: all token CSS variables — import this
+- `src/tokens/`: the token contract, eight CSS files. Load `primitives.css` first, then one theme
 - `tokens/component-token-map.json`: **which CSS variable does each component element use** (card title, nav item, etc.) — eliminates guesswork
 - `NAME-spec.md`: rules, props, states, token names
 - `NAME/agent-brief.md`: compact paste-friendly summary for AI agents
@@ -44,7 +44,7 @@ HTML demos (`*.html`) are visual previews for designers. Do not copy implementat
 
 - [tokens/pathway-design-tokens.json](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/tokens/pathway-design-tokens.json): DTCG-format design tokens. Source of truth for every colour, typography style, radius, and accessibility value used in components. Do not invent new tokens.
 - [tokens/figma-export/pathwaytokens.json](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/tokens/figma-export/pathwaytokens.json): Raw Figma Variables export. Pathway-design-tokens.json is derived from this via scripts/sync-tokens.js.
-- [src/tokens/tokens.css](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/src/tokens/tokens.css): Style Dictionary CSS output. Import this directly to get all token CSS variables.
+- [src/tokens/](https://github.com/helloimjolopez-collab/pathway-ds/tree/main/src/tokens): Style Dictionary CSS output. Import this directly to get all token CSS variables.
 
 ## Overarching design system spec
 

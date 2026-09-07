@@ -222,7 +222,8 @@ In plain HTML or a project without a bundler, link the CSS directly:
 
 ```html
 <link rel="stylesheet"
-  href="https://helloimjolopez-collab.github.io/pathway-ds/storybook/tokens.css" />
+  href="https://helloimjolopez-collab.github.io/pathway-ds/tokens/primitives.css" />
+  <link rel="stylesheet" href="https://helloimjolopez-collab.github.io/pathway-ds/tokens/themes/light.css" />
 ```
 
 Once the CSS is loaded, all custom properties are available:

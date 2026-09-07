@@ -29,13 +29,22 @@ jobs:
           node-version: "20"
           cache: npm
       - run: npm ci
-      - name: Build tokens
-        run: node style-dictionary.config.js
+      - name: Build tokens and verify every token reference
+        # build-dist runs check-demo-tokens, check-token-refs and
+        # check-token-names before writing dist/, so a reference to a token that
+        # no longer exists fails CI here rather than shipping silently.
+        run: npm run build-dist
       - name: Build Storybook
         run: npx storybook build -o _site/storybook
       - name: Assemble site (component demos + root helpers)
         run: |
           cp -r components _site/components
+          # Serve the built token contract at /tokens/ so a consumer has a
+          # stable URL. The old /storybook/tokens.css URL died with that file.
+          mkdir -p _site/tokens/themes
+          cp dist/*.css _site/tokens/ 2>/dev/null || true
+          cp dist/themes/*.css _site/tokens/themes/
+          cp dist/tokens.json _site/tokens/
           touch _site/.nojekyll
           for f in llms.txt llms-full.txt AGENTS.md; do
             [ -f "$f" ] && cp "$f" _site/ || true

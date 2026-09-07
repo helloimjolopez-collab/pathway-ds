@@ -59,7 +59,7 @@ jobs:
           # This used to be `cp src/tokens/tokens.css` — that file was retired on
           # 2026-09-03 and the copy would now fail the job outright.
           for f in primitives.css themes/light.css themes/midnight.css \
-                   layout.css layout-contextual.css type-classes.css \
+                   layout.css layout-contextual.css type.css \
                    motion.css breakpoints.css; do
             mkdir -p "storybook/$(dirname "$f")"
             cp "src/tokens/$f" "storybook/$f"

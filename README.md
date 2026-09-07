@@ -73,7 +73,6 @@ pathway-ds/
 ├── .storybook/
 ├── .github/workflows/           Token sync · component sync · Storybook deploy
 ├── scripts/                     Token sync/audit/fix + component build scripts
-└── storybook/                   Built Storybook output (deployed by CI)
 ```
 
 ## Governance — where things live
@@ -95,7 +94,7 @@ Three workflows in `.github/workflows/`:
 
 1. **`sync-tokens.yml`** — fires when `tokens/figma-export/**` changes. Normalises the Figma export into the W3C DTCG JSON and commits `tokens/pathway-design-tokens.json`.
 2. **`sync-component.yml`** — fires when `components/sidenav/sidenav.html` changes. Regenerates the `sidenav-figmamake.html` variant and commits it.
-3. **`deploy-storybook.yml`** — fires when `tokens/`, `src/`, `.storybook/`, `components/`, `docs/`, or `style-dictionary.config.js` changes. Rebuilds Style Dictionary + Storybook and commits the built site to `/storybook/` on `main`. GitHub Pages serves that folder.
+3. **`deploy-pages.yml`** — fires on every push to `main`. Builds Style Dictionary and Storybook fresh and deploys a clean `_site` artifact through the official Pages actions. Nothing is committed back to `main`. (`deploy-storybook.yml` is the retired predecessor, kept manual-only; it committed 14MB of build output per push.)
 
 Source of truth is always the repo on `main`; Storybook is a downstream artifact.
 

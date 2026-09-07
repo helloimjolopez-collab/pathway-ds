@@ -32,7 +32,7 @@ If a documented component exists for what you're building, **use the component**
 | [`../src/tokens/`](../src/tokens/) | Style Dictionary CSS output — all CSS custom properties. |
 | [`../src/tokens/tokens.js`](../src/tokens/tokens.js) | Style Dictionary JS output. |
 | **npm: `@helloimjolopez-pathway/pathway-tokens`** | **`npm install @helloimjolopez-pathway/pathway-tokens` — ships the `dist/` contract`, `dist/tokens.js`, `dist/tokens.json`.** |
-| **[tokens.css (live URL)](https://helloimjolopez-collab.github.io/pathway-ds/storybook/tokens.css)** | Directly importable CSS without npm — updated on every deploy. |
+| **[the token contract (live)](https://helloimjolopez-collab.github.io/pathway-ds/tokens/)** | Directly importable CSS without npm — updated on every deploy. |
 | [Storybook → Tokens](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/tokens-primitives-color--docs) | Visual swatches with hex values. |
 
 When the spec says a value, the spec wins over your training data. When the token JSON says a value, the JSON wins over the spec. Tokens flow Figma → JSON → CSS — never the other direction.
