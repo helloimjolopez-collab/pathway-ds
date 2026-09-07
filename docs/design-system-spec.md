@@ -12,7 +12,7 @@ The `/pathway:spec-review` skill reads this document alongside every component s
 
 | Domain | Source of truth | Consumed by |
 |---|---|---|
-| Design tokens (primitives, semantics) | Figma library → exported to `tokens/figma-export/pathwaytokens.json` | Style Dictionary → `src/tokens/tokens.css` → components + Storybook |
+| Design tokens (primitives, semantics) | Figma library → exported to `tokens/figma-export/pathwaytokens.json` | Style Dictionary → the `src/tokens/` contract → components + Storybook |
 | Component visual design (variants, anatomy, states) | Figma (each component's node) | Component `-spec.md` + `.jsx` module |
 | Component implementation (HTML, CSS, props) | The `components/<name>/<name>.jsx` module in this repo | Storybook stories + standalone demo |
 | Component behaviour rules (spec) | The `components/<name>/<name>-spec.md` file in this repo | Every downstream implementation |
@@ -133,7 +133,7 @@ Components MAY need additional reduced-motion handling (e.g. replacing a slide w
 
 ### 2.5 Token implementation status
 
-Motion tokens are **live** in `src/tokens/tokens.css` and in the npm package (`dist/tokens.css`). They are sourced from `tokens/motion-tokens.json` — a hand-authored file that is never overwritten by Figma syncs.
+Motion tokens are **live** in `src/tokens/motion.css` and in the npm package (`dist/motion.css`). They are sourced from `tokens/motion-tokens.json` — a hand-authored file that is never overwritten by Figma syncs.
 
 **Components must now use `var(--motion-duration-*)` and `var(--motion-easing-*)` instead of hardcoded values.** Hardcoded millisecond values or cubic-bezier strings in component CSS are now a bug unless they are documented contextual overrides in §2.3.
 

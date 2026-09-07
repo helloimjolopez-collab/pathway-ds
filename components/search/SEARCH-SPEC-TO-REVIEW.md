@@ -337,7 +337,7 @@ All three live in the **Pathway Design System Master File MB 2.0.**
 
 ## Token Reference
 
-Every CSS variable this component uses. Source: `src/tokens/tokens.css`.
+Every CSS variable this component uses. Source: the `src/tokens/` contract (`primitives.css`, `themes/light.css`, `themes/midnight.css`, `layout.css`, `layout-contextual.css`, `type.css`, `motion.css`, `breakpoints.css`).
 
 ```css
 /* ── Resolved primitives ─────────────────────────────────── */

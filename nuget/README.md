@@ -21,7 +21,7 @@ Reference them from your host page (`App.razor`, `_Host.cshtml`, or `index.html`
 ```html
 <link rel="stylesheet" href="_content/Pathway.DesignTokens/themes/light.css" />
 <link rel="stylesheet" href="_content/Pathway.DesignTokens/themes/midnight.css" />
-<link rel="stylesheet" href="_content/Pathway.DesignTokens/type-classes.css" />
+<link rel="stylesheet" href="_content/Pathway.DesignTokens/type.css" />
 ```
 
 Then use the custom properties:
@@ -66,9 +66,9 @@ page:
 | File | Contains |
 |---|---|
 | `themes/light.css`, `themes/midnight.css` | Every semantic colour, one name per token, resolved by selector. **This is the colour contract.** |
-| `type-classes.css` | One `.pw-type-*` class per text style, with a mobile media query |
+| `type.css` | The 41-token type scale. Compose font-family, size, weight, line-height and tracking at the call site |
 | `primitives.css` | Raw ramp values. Building blocks, not a contract — do not reference these directly |
-| `tokens.css` | Legacy output with the mode baked into each name. Being retired; do not write new code against it |
+| ~~`tokens.css`~~ | Removed 2026-09-03. Load `primitives.css` plus one theme file instead |
 | `tokens.json` | DTCG JSON, for tooling |
 
 ## Which names are safe to depend on

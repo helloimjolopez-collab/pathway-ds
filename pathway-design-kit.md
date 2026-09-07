@@ -435,4 +435,4 @@ Colour contrast: text on `#fafafa` minimum 4.5:1. Text on `#2d4889` minimum 3:1.
 **To verify any component:**
 - Visual reference: https://helloimjolopez-collab.github.io/pathway-ds/storybook/
 - Design source: https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/
-- Token values: https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/tokens.css
+- Token values: https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/primitives.css plus https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/themes/light.css

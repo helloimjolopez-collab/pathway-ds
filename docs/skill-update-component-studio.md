@@ -33,7 +33,13 @@ Before writing a single line of a demo, spec, or component file, you must succes
 Every HTML demo must load the Pathway token file via a relative `<link>` tag:
 
 ```html
-<link rel="stylesheet" href="../../src/tokens/tokens.css">
+<link rel="stylesheet" href="../../src/tokens/primitives.css">
+  <link rel="stylesheet" href="../../src/tokens/themes/light.css">
+  <link rel="stylesheet" href="../../src/tokens/themes/midnight.css">
+  <link rel="stylesheet" href="../../src/tokens/type.css">
+  <link rel="stylesheet" href="../../src/tokens/layout.css">
+  <link rel="stylesheet" href="../../src/tokens/layout-contextual.css">
+  <link rel="stylesheet" href="../../src/tokens/motion.css">
 ```
 
 Adjust the path depth to wherever the demo file actually lives. Never copy-paste token resolved values into a `<style>` block. Never write `color: #0a1223` when a semantic token exists. Never approximate what a token resolves to and inline it.
@@ -94,6 +100,6 @@ With:
 | Situation | What Studio does |
 |---|---|
 | Figma MCP call fails or returns no data | Stops immediately. Shows the exact error verbatim. Does NOT build from approximation, context, or prior summaries. Waits for a live MCP response before writing anything. (Non-negotiable Rule 1.) |
-| Demo built with inlined token values instead of linking `src/tokens/tokens.css` | Treat as a broken demo. Rewrite it with the real token file linked before showing it to the user. No exceptions. (Non-negotiable Rule 2.) |
+| Demo built with inlined token values instead of linking the `src/tokens/` contract | Treat as a broken demo. Rewrite it with the real token file linked before showing it to the user. No exceptions. (Non-negotiable Rule 2.) |
 | User is asked to open localhost or a file path | This is always wrong. The demo must be rendered in Claude Preview and shown as a screenshot in the conversation. Fix the preview flow; never ask the user to navigate manually. (Non-negotiable Rule 3.) |
 | Sub-component already exists in `components/manifest.json` but a new version was written from scratch | Treat as a duplicate. Delete the invented version. Wire up the existing component. (Non-negotiable Rule 4.) |

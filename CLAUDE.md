@@ -145,8 +145,9 @@ another team should not have to learn our brand vocabulary to switch themes.
 
 - The `EXCLUDED_MODE_SLUGS` set in `sync-tokens.js` is empty, so all modes come through.
 - Light Mode and Midnight Mode tokens both land in `tokens/pathway-design-tokens.json`.
-  They are emitted twice: with the mode in the name in `tokens.css` (legacy), and with
-  one shared name per token across `themes/light.css` and `themes/midnight.css`.
+  They are emitted ONCE, as one shared name per token across `themes/light.css` and
+  `themes/midnight.css`, resolved by selector. There is no second mode-in-name
+  emission: that was `tokens.css`, retired 2026-09-03.
 - The mode-stripping is done by the `name/pathway-modeless` transform. Its
   `MODE_SEGMENTS` regex matches `light-mode`, `dark-mode` and `midnight-mode`, so it
   keeps working across the rename and against the NewCo branch.
@@ -302,14 +303,16 @@ Before writing any colour into a component, grep `tokens/pathway-design-tokens.j
 - Token names in `pathway-design-tokens.json` are always lowercase with dots (`semantic-color.light-mode.icon.static.neutral.base`). `sync-tokens.js` slugifies the Figma export to this form automatically. Do not override.
 - CSS custom properties derived by Style Dictionary replace dots with hyphens. There are
   now two naming forms and you must know which file you are reading:
-  - **Preferred**, from `themes/light.css` and `themes/midnight.css`: the mode is NOT in
-    the name, e.g. `--semantic-color-icon-static-neutral-base`. One name, two values,
-    resolved by selector.
-  - **Legacy**, from `tokens.css`: the mode IS in the name, e.g.
-    `--semantic-color-light-mode-icon-static-neutral-base`. Still emitted so existing
-    consumers keep working. Do not write new code against this form.
-  - Type is consumed as a class from `type-classes.css`, e.g. `.pw-type-label-menu-base-medium`,
-    never as five separate custom properties.
+  - From `themes/light.css` and `themes/midnight.css`: the mode is NOT in the name,
+    e.g. `--semantic-color-foreground-static-neutral-bold`. One name, two values,
+    resolved by selector. Note Text and Icon merged into Foreground.
+  - There is no mode-in-name form any more. `--semantic-color-light-mode-*` came from
+    `tokens.css`, retired 2026-09-03, and any such name now resolves to nothing.
+    `scripts/check-token-refs.js` fails the build on one.
+  - Type is composed from the SCALE, five custom properties at the call site
+    (`--semantic-type-font-size-*`, `-line-height-*`, `-weight-*`,
+    `-letter-spacing-*`, `-family-brand`). The `.pw-type-*` classes and
+    `type-classes.css` are gone.
   Consume names exactly as emitted by whichever file you are using; never hand-assemble one.
 - Component class names use BEM-lite kebab (`.pds-spinner__svg`). Never PascalCase or camelCase in CSS selectors.
 - File names: lowercase kebab (see §4).
@@ -427,7 +430,7 @@ For **non-font (SVG) implementations** (partner teams on older frameworks): keep
 ## 13. Things that are always wrong
 
 - Committing `node_modules/`, `storybook-static/`, `.env`, `.claude/`, or `.DS_Store` (all in `.gitignore`).
-- Hand-editing derived files (`pathway-design-tokens.json`, `src/tokens/tokens.css`, `src/tokens/tokens.js`, `components/sidenav/sidenav-figmamake.html`).
+- Hand-editing derived files (`pathway-design-tokens.json`, anything under `src/tokens/` or `dist/`, `components/sidenav/sidenav-figmamake.html`).
 - Force-pushing to `main`.
 - Amending a commit that's already on `origin/main`.
 - Using `rm -rf` on anything not clearly scratch.

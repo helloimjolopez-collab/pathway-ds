@@ -11,7 +11,7 @@ import { TopNav, DEFAULT_MODULES, abbreviateOrg } from "../../../../components/t
 // ─── Token CSS + Google Fonts (injected once) ─────────────────────────────────
 if (typeof document !== "undefined") {
   // .storybook/preview.js already imports the whole token contract, so this
-  // injection is redundant there. It used to point at src/tokens/tokens.css, which
+  // injection is redundant there. It used to point at src/tokens/, which
   // was retired 2026-09-03 and would now 404. Left as a no-op guard rather than
   // deleted, so the id check still prevents a duplicate if anything re-adds it.
   if (false && !document.getElementById("pds-topnav-tokens")) {

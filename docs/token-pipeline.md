@@ -24,7 +24,7 @@ Load two stylesheets for colour and one for type:
 ```html
 <link rel="stylesheet" href="…/themes/light.css" />
 <link rel="stylesheet" href="…/themes/midnight.css" />
-<link rel="stylesheet" href="…/type-classes.css" />
+<link rel="stylesheet" href="…/type.css" />
 ```
 
 Then reference tokens:
@@ -49,8 +49,8 @@ Type is a class, never five separate properties:
 | File | Contains | Depend on it? |
 |---|---|---|
 | `themes/light.css` + `themes/midnight.css` | Every semantic colour, one name per token, value chosen by selector | **Yes.** This is the colour contract |
-| `type-classes.css` | One `.pw-type-*` class per text style, with a mobile media query | **Yes** |
-| `tokens.css` | Everything, with the mode baked into each name (`--semantic-color-light-mode-…`) | No. Legacy, being retired |
+| `type.css` | The 41-token type SCALE: 1 family, 13 sizes, 18 line heights, 5 weights, 4 tracking steps. Compose at the call site | **Yes** |
+| ~~`tokens.css`~~ | Removed 2026-09-03. It emitted every variable times every mode with the mode in the name, 2,338 properties | Gone. `scripts/check-token-refs.js` fails the build on a `-light-mode-` name |
 | `primitives.css` | Raw ramp values | No. See §2 |
 | `tokens.json` | DTCG JSON | Only for tooling |
 
@@ -91,7 +91,7 @@ Fill      / Contextual/ NavItem   / Trail
   - `Contextual` belongs to one named component that needs states nothing else
     has (the side nav item's open-ancestor trail, for example).
 - **Intent** is meaning: `Primary`, `Secondary`, `Tertiary`, `Negative`,
-  `Positive`, `Warning`, `Alert`, `Brand`, `Neutral`, an accent.
+  `Positive`, `Warning`, `Danger`, `Brand`, `Neutral`, an accent.
 - **Step** is either an interaction state (`Rest`, `Hover`, `Pressed`,
   `Disabled`) or a prominence step (`Faint`, `Light`, `Subtle`, `Medium`,
   `Contrast`, `Bold`, `Black`).
@@ -130,17 +130,17 @@ is how a dark top bar sits on an otherwise light page:
 ```
 
 An earlier approach put the mode in the name
-(`--semantic-color-light-mode-fill-…`). That form is still emitted in
-`tokens.css` so existing consumers keep working, but it cannot express the
-example above: a name resolves to one value, so a component styled that way is
-frozen into one theme. New code should not use it.
+(`--semantic-color-light-mode-fill-…`), emitted from `tokens.css`. That file was
+removed on 2026-09-03 and the form no longer resolves to anything. It could not
+express the example above in any case: a name resolves to one value, so a
+component styled that way is frozen into one theme.
 
 Two other collections have modes that are **not** themes:
 
 - `Semantic: Layout & Units` has Desktop / Tablet / Mobile.
 - `Semantic: Type` has Desktop / Mobile.
 
-Those resolve by viewport, and `type-classes.css` emits the mobile values inside
+Those resolve by viewport, and `type.css` emits the mobile values inside
 a `max-width: 767px` media query.
 
 ---
@@ -168,9 +168,12 @@ Figma Variables panel                     docs/design-system-spec.md §2
                        ▼
         src/tokens/themes/light.css
         src/tokens/themes/midnight.css
-        src/tokens/type-classes.css
+        src/tokens/type.css
+        src/tokens/layout.css
+        src/tokens/layout-contextual.css
+        src/tokens/motion.css
+        src/tokens/breakpoints.css
         src/tokens/primitives.css
-        src/tokens/tokens.css        (legacy)
         src/tokens/tokens.js
                        │
                        │  scripts/build-dist.js
@@ -264,7 +267,7 @@ Choosing a bump:
 - Primitive names and slot numbers. These move when a ramp is retuned
 - Exact colour values. A retune changes values without changing names, which is
   the entire point of the semantic tier
-- `tokens.css` and its `-light-mode-` name form, which is being retired
+- `tokens.css` and its `-light-mode-` name form. Both removed 2026-09-03
 
 **Reporting a problem.** If a semantic name disappears without a major version
 bump, that is a bug in this repo. If a colour value changed and your layout broke,

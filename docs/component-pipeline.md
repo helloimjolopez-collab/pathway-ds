@@ -54,7 +54,7 @@ The component module at `components/<name>/<name>.jsx` is the single implementat
 3. **Accept data as props** — navigation items, icons, active state are props, not hardcoded constants
 4. **Internal state for UI concerns** — expand/collapse, hover, popover timers
 5. **External state for application concerns** — `activeId`, `collapsed`, `onNavigate` are controlled props
-6. **Token references** — use the `T` token constants object (hex values) or CSS custom properties from `tokens.css`
+6. **Token references** — use the `T` token constants object or CSS custom properties from the `src/tokens/` contract
 
 Both the standalone demo (`.html`) and the Storybook stories import or inline the same logic. When the component changes, both must be updated together.
 

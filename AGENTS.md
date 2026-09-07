@@ -115,9 +115,9 @@ Fresh CSS will miss rail alignment, transition curves, hover tokens, and state l
 
 **HTML demos are visual previews — not code to copy from.** See "What are the implementation artifacts?" above.
 
-### 2. Reading any file other than .jsx + spec + tokens.css as the implementation reference
+### 2. Reading any file other than .jsx + spec + the src/tokens/ contract as the implementation reference
 
-The implementation artifacts are: `.jsx` module + `src/tokens/tokens.css` + `NAME-spec.md`. Everything else (HTML demos, Storybook stories, Figma screenshots) is a visual reference. When any of these conflict with the `.jsx`, the `.jsx` wins.
+The implementation artifacts are: `.jsx` module + the `src/tokens/` contract + `NAME-spec.md`. Everything else (HTML demos, Storybook stories, Figma screenshots) is a visual reference. When any of these conflict with the `.jsx`, the `.jsx` wins.
 
 **Specific risk:** The spec may have a "Migration note" section flagging that an old behaviour has changed. Search the spec for "Migration note" before writing any code.
 
@@ -160,7 +160,7 @@ HTML demos (`*.html`) are **visual previews for designers** — open them in a b
 | What you need | Where to find it |
 |---|---|
 | The component itself (React) | `components/NAME/NAME.jsx` — import from this |
-| Token CSS variables | `src/tokens/tokens.css` — import or link this |
+| Token CSS variables | the `src/tokens/` contract: `primitives.css`, `themes/light.css`, `themes/midnight.css`, `layout.css`, `layout-contextual.css`, `type.css`, `motion.css`, `breakpoints.css` |
 | Rules, states, props | `components/NAME/NAME-spec.md` |
 | Quick copy-paste reference | `components/NAME/agent-brief.md` |
 | Visual verification | Storybook: https://helloimjolopez-collab.github.io/pathway-ds/storybook/ |

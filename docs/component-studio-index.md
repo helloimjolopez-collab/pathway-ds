@@ -14,7 +14,7 @@ This file exists so the component studio skill can orient itself without crawlin
 | Component pipeline (Figma → repo → Storybook) | `docs/component-pipeline.md` | Handoff and audit phases |
 | Figma prep checklist | `docs/figma-prep-checklist.md` | Step 4 pre-flight |
 | Token definitions (DTCG JSON) | `tokens/pathway-design-tokens.json` | Step 3 (token table), any token lookup |
-| CSS token variables (generated) | `src/tokens/themes/light.css` + `midnight.css`, `layout.css`, `layout-contextual.css`, `type-classes.css`, `motion.css`, `breakpoints.css` | Demo build — load all seven via `<link>` in every HTML demo |
+| CSS token variables (generated) | `src/tokens/themes/light.css` + `midnight.css`, `layout.css`, `layout-contextual.css`, `type.css`, `motion.css`, `breakpoints.css` | Demo build — load all seven via `<link>` in every HTML demo |
 | Token agent brief | `tokens/agent-brief.md` | Any session involving token questions |
 
 GitHub raw base: `https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/`
@@ -43,7 +43,13 @@ Pathway component demos are standalone HTML files. No npm, no build step. React 
   <title>[ComponentName] — Pathway Demo</title>
 
   <!-- Pathway design tokens -->
-  <link rel="stylesheet" href="../../src/tokens/tokens.css">
+  <link rel="stylesheet" href="../../src/tokens/primitives.css">
+  <link rel="stylesheet" href="../../src/tokens/themes/light.css">
+  <link rel="stylesheet" href="../../src/tokens/themes/midnight.css">
+  <link rel="stylesheet" href="../../src/tokens/type.css">
+  <link rel="stylesheet" href="../../src/tokens/layout.css">
+  <link rel="stylesheet" href="../../src/tokens/layout-contextual.css">
+  <link rel="stylesheet" href="../../src/tokens/motion.css">
 
   <!-- Material Symbols (Pathway icon library) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block">
@@ -170,7 +176,7 @@ Use only Pathway CSS variables. Never hardcode a value that exists as a token.
 - Colors: `--semantic-color-light-mode-{text|fill|icon|stroke|surface}-{role}-{variant}`
 - Corner radius: `--semantic-layout-units-cornerradius-{xsmall|small|medium|large|full}`
 - Spacing: component-contextual — `--semantic-layout-units-contextual-{component}-padding-{size}-{direction}`
-- Typography: `--semantic-type-{desktop|mobile}-{heading|text-*}-{scale}-{weight}-{property}` — always look up the exact name in `tokens.css`, never guess
+- Typography: `--semantic-type-font-size-*`, `--semantic-type-line-height-*`, `--semantic-type-weight-*`, `--semantic-type-letter-spacing-*`, `--semantic-type-family-brand` (a scale, composed at the call site) — always look up the exact name in `tokens.css`, never guess
 - No shadow tokens exist — raw `box-shadow` values must be logged as design debt in §15
 
 Do not use Tailwind classes — they do not work in this environment.
@@ -179,7 +185,7 @@ Do not use Tailwind classes — they do not work in this environment.
 
 ### Motion — Radix data-state animations
 
-Radix primitives expose `data-state` attributes (`open`/`closed`, `checked`/`unchecked`, `active`/`inactive`) for animation. Motion tokens are live in `src/tokens/tokens.css` — use them directly. For the full motion scale and rules see `docs/design-system-spec.md` §2.
+Radix primitives expose `data-state` attributes (`open`/`closed`, `checked`/`unchecked`, `active`/`inactive`) for animation. Motion tokens are live in the `src/tokens/` contract — use them directly. For the full motion scale and rules see `docs/design-system-spec.md` §2.
 
 ```css
 /* Overlay fade (Dialog, Drawer) — 150ms, standard easing */
@@ -255,4 +261,4 @@ Never use custom SVGs for standard UI icons. Never guess an icon name — read i
 
 ### If the token CSS file does not resolve
 
-If `../../src/tokens/tokens.css` does not resolve (path depends on where the demo file sits relative to repo root), inline the critical tokens in the `<style>` block. Extract them from `tokens/pathway-design-tokens.json`. This is a fallback only — the linked file is the source of truth.
+If `../../src/tokens/` does not resolve (path depends on where the demo file sits relative to repo root), inline the critical tokens in the `<style>` block. Extract them from `tokens/pathway-design-tokens.json`. This is a fallback only — the linked file is the source of truth.

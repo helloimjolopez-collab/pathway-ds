@@ -7,7 +7,7 @@ Repo:       https://github.com/helloimjolopez-collab/pathway-ds
 Storybook:  https://helloimjolopez-collab.github.io/pathway-ds/storybook/
 Figma:      https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/
 npm:        @helloimjolopez-pathway/pathway-tokens
-Tokens CSS: https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/tokens.css
+Tokens CSS: https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/primitives.css plus https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/themes/light.css
 ```
 
 ---
@@ -23,7 +23,15 @@ own SVG paths or emoji to "fix" it. The only correct fix is loading the font bel
 ```html
 <head>
   <!-- 1. Pathway design tokens (every color/size/space variable) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/tokens.css" />
+  <!-- primitives first: the themes reference these via var(), so this must load -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/primitives.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/themes/light.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/themes/midnight.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/type.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/layout.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/layout-contextual.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/motion.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/breakpoints.css" />
 
   <!-- 2. Material Symbols Rounded — REQUIRED or all icons become plain text -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
@@ -54,10 +62,26 @@ own SVG paths or emoji to "fix" it. The only correct fix is loading the font bel
 
 ```html
 <!-- In any HTML file: -->
-<link rel="stylesheet" href="https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/tokens.css" />
+<!-- primitives first: the themes reference these via var(), so this must load -->
+<link rel="stylesheet" href="https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/primitives.css" />
+<link rel="stylesheet" href="https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/themes/light.css" />
+<link rel="stylesheet" href="https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/themes/midnight.css" />
+<link rel="stylesheet" href="https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/type.css" />
+<link rel="stylesheet" href="https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/layout.css" />
+<link rel="stylesheet" href="https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/layout-contextual.css" />
+<link rel="stylesheet" href="https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/motion.css" />
+<link rel="stylesheet" href="https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/src/tokens/breakpoints.css" />
 
 <!-- Or use jsDelivr CDN (faster, cached): -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/tokens.css" />
+<!-- primitives first: the themes reference these via var(), so this must load -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/primitives.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/themes/light.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/themes/midnight.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/type.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/layout.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/layout-contextual.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/motion.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/breakpoints.css" />
 ```
 
 Once loaded, every CSS variable below is available. Always use CSS variables — never hardcode hex values.
@@ -110,7 +134,7 @@ Every Amplify screen uses this three-zone layout:
 
 ## Colour tokens
 
-Load `tokens.css` and use these CSS variables. The hex values are shown for reference — always use the variable, never the hex directly.
+Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnight.css` + `type.css` + `layout.css` + `layout-contextual.css` + `motion.css` + `breakpoints.css`) and use these CSS variables. The hex values are shown for reference — always use the variable, never the hex directly.
 
 ### Backgrounds and surfaces
 ```css

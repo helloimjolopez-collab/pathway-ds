@@ -29,9 +29,9 @@ If a documented component exists for what you're building, **use the component**
 |---|---|
 | [`pathway-design-tokens.json`](./pathway-design-tokens.json) | DTCG-format derived from Figma. **Authoritative.** Every token in production. |
 | [`figma-export/pathwaytokens.json`](./figma-export/pathwaytokens.json) | Raw Figma Variables export. Source of `pathway-design-tokens.json`. |
-| [`../src/tokens/tokens.css`](../src/tokens/tokens.css) | Style Dictionary CSS output — all CSS custom properties. |
+| [`../src/tokens/`](../src/tokens/) | Style Dictionary CSS output — all CSS custom properties. |
 | [`../src/tokens/tokens.js`](../src/tokens/tokens.js) | Style Dictionary JS output. |
-| **npm: `@helloimjolopez-pathway/pathway-tokens`** | **`npm install @helloimjolopez-pathway/pathway-tokens` — ships `dist/tokens.css`, `dist/tokens.js`, `dist/tokens.json`.** |
+| **npm: `@helloimjolopez-pathway/pathway-tokens`** | **`npm install @helloimjolopez-pathway/pathway-tokens` — ships the `dist/` contract`, `dist/tokens.js`, `dist/tokens.json`.** |
 | **[tokens.css (live URL)](https://helloimjolopez-collab.github.io/pathway-ds/storybook/tokens.css)** | Directly importable CSS without npm — updated on every deploy. |
 | [Storybook → Tokens](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/tokens-primitives-color--docs) | Visual swatches with hex values. |
 
@@ -61,7 +61,7 @@ Raw colour palettes. Higher step numbers = darker. Most palettes also have alpha
 | Lagoon | 10–190 | Teal-cyan. |
 | Jade | 10–190 | Green-teal. |
 | Amethyst | 0–180 | Purple. `30 = #dcd9ef`, `150 = #221e3f` (profile avatar). |
-| Saffron | 0–210 | Amber-yellow. Alert range. |
+| Saffron | 0-900 | Saffron gold easing into warm chocolate. Backs Status/Warning. |
 | Mauve | 0–200 | Pink-purple. |
 
 Primitives are **never referenced in components**. They are only aliased by semantic tokens.
@@ -131,7 +131,7 @@ Examples:
 Variants: Primary · PrimaryInverse · Secondary · SecondaryInverse · Tertiary · TertiaryInverse
           Mono · Warning · WarningInverse · Danger · DangerInverse
           Negative · NegativeInverse · Positive · PositiveInverse
-          Alert · Accent_Amethyst · Accent_Amethyst_Inverse · Accent_Jade · Accent_Jade_Inverse
+          Danger · Accent_Amethyst · Accent_Amethyst_Inverse · Accent_Jade · Accent_Jade_Inverse
 States:   Base · Hover · Pressed · Disabled (sometimes Selected)
 
 Examples:
