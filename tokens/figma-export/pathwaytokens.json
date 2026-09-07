@@ -1094,46 +1094,6 @@
                     "$value": "{Green.600}"
                   }
                 },
-                "Warning": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.350}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.400}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.500}"
-                  }
-                },
-                "Warning Dim": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.75}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.100}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.150}"
-                  }
-                },
                 "Info": {
                   "Rest": {
                     "$type": "color",
@@ -1172,6 +1132,46 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Brand.50}"
+                  }
+                },
+                "Warning": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.350}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.400}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.500}"
+                  }
+                },
+                "Warning Dim": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.75}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.100}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.150}"
                   }
                 },
                 "Danger": {
@@ -1552,32 +1552,6 @@
                 }
               },
               "Status": {
-                "Warning": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.0}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.25}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.75}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.100}"
-                  }
-                },
                 "Negative": {
                   "Faint": {
                     "$type": "color",
@@ -1640,6 +1614,32 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Green.200}"
+                  }
+                },
+                "Warning": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.0}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.25}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.75}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.100}"
                   }
                 },
                 "Danger": {
@@ -1968,26 +1968,6 @@
                     "$value": "{Green.700}"
                   }
                 },
-                "Warning": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.400}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.500}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.700}"
-                  }
-                },
                 "Info": {
                   "Rest": {
                     "$type": "color",
@@ -2006,6 +1986,26 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Brand.500}"
+                  }
+                },
+                "Warning": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.400}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.500}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.700}"
                   }
                 },
                 "Danger": {
@@ -2148,38 +2148,6 @@
             },
             "Static": {
               "Status": {
-                "Warning": {
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.500}"
-                  },
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.400}"
-                  },
-                  "Medium": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.700}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.800}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.900}"
-                  }
-                },
                 "Negative": {
                   "Subtle": {
                     "$type": "color",
@@ -2242,6 +2210,38 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Green.900}"
+                  }
+                },
+                "Warning": {
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.500}"
+                  },
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.400}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.700}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.800}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.900}"
                   }
                 },
                 "Danger": {
@@ -2566,26 +2566,6 @@
                     "$value": "{Green.600}"
                   }
                 },
-                "Warning": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.350}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.400}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.500}"
-                  }
-                },
                 "Info": {
                   "Rest": {
                     "$type": "color",
@@ -2604,6 +2584,26 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Brand.350}"
+                  }
+                },
+                "Warning": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.350}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.400}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.500}"
                   }
                 },
                 "Danger": {
@@ -2870,32 +2870,6 @@
                 }
               },
               "Status": {
-                "Warning": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.25}"
-                  },
-                  "Medium": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.75}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.100}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.150}"
-                  }
-                },
                 "Negative": {
                   "Faint": {
                     "$type": "color",
@@ -2958,6 +2932,32 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Green.350}"
+                  }
+                },
+                "Warning": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.25}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.75}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.100}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.150}"
                   }
                 },
                 "Danger": {
@@ -3270,46 +3270,6 @@
                     "$value": "{Green.200}"
                   }
                 },
-                "Warning": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.350}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.300}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.200}"
-                  }
-                },
-                "Warning Dim": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.700}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.500}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.400}"
-                  }
-                },
                 "Info": {
                   "Rest": {
                     "$type": "color",
@@ -3348,6 +3308,46 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Brand.500}"
+                  }
+                },
+                "Warning": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.350}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.300}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.200}"
+                  }
+                },
+                "Warning Dim": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.700}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.500}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.400}"
                   }
                 },
                 "Danger": {
@@ -3728,32 +3728,6 @@
                 }
               },
               "Status": {
-                "Warning": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.500}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.400}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.350}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.300}"
-                  }
-                },
                 "Negative": {
                   "Faint": {
                     "$type": "color",
@@ -3816,6 +3790,32 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Green.300}"
+                  }
+                },
+                "Warning": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.500}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.400}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.350}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.300}"
                   }
                 },
                 "Danger": {
@@ -4144,26 +4144,6 @@
                     "$value": "{Green.150}"
                   }
                 },
-                "Warning": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.300}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.200}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.150}"
-                  }
-                },
                 "Info": {
                   "Rest": {
                     "$type": "color",
@@ -4182,6 +4162,26 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Brand.50}"
+                  }
+                },
+                "Warning": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.300}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.200}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.150}"
                   }
                 },
                 "Danger": {
@@ -4324,38 +4324,6 @@
             },
             "Static": {
               "Status": {
-                "Warning": {
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.300}"
-                  },
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.350}"
-                  },
-                  "Medium": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.200}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.100}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.75}"
-                  }
-                },
                 "Negative": {
                   "Subtle": {
                     "$type": "color",
@@ -4418,6 +4386,38 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Green.100}"
+                  }
+                },
+                "Warning": {
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.300}"
+                  },
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.350}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.200}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.100}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.75}"
                   }
                 },
                 "Danger": {
@@ -4742,26 +4742,6 @@
                     "$value": "{Green.300}"
                   }
                 },
-                "Warning": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.350}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.300}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.200}"
-                  }
-                },
                 "Info": {
                   "Rest": {
                     "$type": "color",
@@ -4780,6 +4760,26 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Brand.100}"
+                  }
+                },
+                "Warning": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.350}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.300}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.200}"
                   }
                 },
                 "Danger": {
@@ -5046,32 +5046,6 @@
                 }
               },
               "Status": {
-                "Warning": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.900}"
-                  },
-                  "Medium": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.800}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.700}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.500}"
-                  }
-                },
                 "Negative": {
                   "Faint": {
                     "$type": "color",
@@ -5134,6 +5108,32 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Green.500}"
+                  }
+                },
+                "Warning": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.900}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.800}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.700}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.500}"
                   }
                 },
                 "Danger": {
