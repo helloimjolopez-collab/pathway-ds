@@ -228,7 +228,7 @@ const EMPHASES = ["light", "subtle", "base", "contrast", "bold"];
 //   label     — accessible name. Defaults to "Loading".
 //
 // Colour is resolved via [data-tone][data-emphasis] CSS selectors that map
-// to var(--semantic-color-light-mode-icon-static-{tone}-{emphasis}). There
+// to var(--semantic-color-foreground-static-{tone}-{emphasis}). There
 // is NO `color` prop and NO currentColor inheritance from arbitrary parents
 // — callers must pick a semantic token from the fixed list.
 function Spinner({ style: styleVariant = "progress-activity",

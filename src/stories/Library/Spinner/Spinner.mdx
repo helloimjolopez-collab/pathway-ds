@@ -100,7 +100,7 @@ tone=brand + emphasis=base
 #3555a0
 ```
 
-Consumers never see the primitive or the hex. The spinner wrapper sets `color: var(--semantic-color-light-mode-icon-static-{tone}-{emphasis})` via a `[data-tone][data-emphasis]` selector; the SVG strokes inherit that via `stroke: currentColor`. That's why "colour inheritance" works *inside* the component but doesn't leak from arbitrary parent elements.
+Consumers never see the primitive or the hex. The spinner wrapper sets `color: var(--semantic-color-foreground-static-{tone}-{emphasis})` via a `[data-tone][data-emphasis]` selector; the SVG strokes inherit that via `stroke: currentColor`. That's why "colour inheritance" works *inside* the component but doesn't leak from arbitrary parent elements.
 
 ---
 
