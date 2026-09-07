@@ -46,7 +46,7 @@ export const T = {
   noLogoBg:       SCD("fill-action-secondary-rest", "rgba(255,255,255,0.08)"),
   monoBase:       SCD("foreground-action-mono-rest", "#fbfbfb"),
   // OrgSwitcher trigger (reconciled to Figma node 40006819:14581, 2026-08-06):
-  // org name uses Text/Static/Primary/Base, chevron uses Icon/Static/Neutral/Base.
+  // org name uses Foreground/Static/Neutral/Bold, chevron uses Foreground/Static/Neutral/Bold.
   orgText:        SCD("foreground-static-neutral-bold", "#eceaf3"),
   orgChevron:     SCD("foreground-static-neutral-medium", "rgba(255,255,255,0.8)"),
   avatarBg:       SCL("fill-static-accent-amethyst-medium", "#dcd9ef"),

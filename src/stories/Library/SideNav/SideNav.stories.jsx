@@ -215,7 +215,7 @@ export const StateMatrix = () => {
       name: "Base",
       when: "Resting - not hovered, not active",
       item: <IsolatedItem item={sampleDest} />,
-      tokens: ["Fill/NavItem/Base", "Text/NavItem/Base", "Icon/NavItem/Base"],
+      tokens: ["no fill (rest paints nothing)", "Foreground/Action/Secondary/Rest", "Foreground/Action/Secondary/Rest"],
     },
     {
       name: "Hover",
@@ -238,25 +238,25 @@ export const StateMatrix = () => {
           </div>
         </div>
       ),
-      tokens: ["Fill/NavItem/Hover", "Text/NavItem/Hover", "Icon/NavItem/Hover"],
+      tokens: ["Fill/Action/Selection/Hover", "Foreground/Action/Secondary/Hover", "Foreground/Action/Secondary/Hover"],
     },
     {
       name: "Active destination",
       when: "The item is the current page - `aria-current=\"page\"`",
       item: <IsolatedItem item={sampleDest} isActive />,
-      tokens: ["Fill/NavItem/Active", "Text/NavItem/Active", "Icon/NavItem/Active", "indicator.stripe visible"],
+      tokens: ["Fill/Action/Selection/Selected", "Foreground/Action/Secondary/Pressed", "Foreground/Action/Secondary/Pressed", "indicator.stripe visible"],
     },
     {
       name: "Trail - expanded",
       when: "A grouper whose children are open. Applies regardless of which child (if any) is active.",
       item: <IsolatedItem item={sampleGroup} isExpanded />,
-      tokens: ["Fill/NavItem/Trail", "Text/NavItem/Active", "Icon/NavItem/Base", "(no stripe)"],
+      tokens: ["Fill/Action/Selection/Trail", "Foreground/Action/Secondary/Pressed", "Foreground/Action/Secondary/Rest", "(no stripe)"],
     },
     {
       name: "Trail - collapsed",
       when: "A grouper whose active child is hidden (grouper closed, or sidebar at 72 px rail). Same fill, text, and stripe as Active - chevron still visible pointing down since the group can be opened.",
       item: <IsolatedItem item={sampleGroup} isTrail />,
-      tokens: ["Fill/NavItem/Active", "Text/NavItem/Active", "Icon/NavItem/Active", "indicator.stripe visible"],
+      tokens: ["Fill/Action/Selection/Selected", "Foreground/Action/Secondary/Pressed", "Foreground/Action/Secondary/Pressed", "indicator.stripe visible"],
     },
   ];
 
@@ -355,22 +355,22 @@ NavItemExplorer.parameters = {
 
 // ─── Token showcases - each row: token name · swatch · element using it ─────
 const FILL_ROWS = [
-  { token: "Fill/Contextual/NavItem/Base",      value: T.fill.navBase,   hex: "#fafafa",   role: "Nav item resting state" },
-  { token: "Fill/Contextual/NavItem/Hover",     value: T.fill.navHover,  hex: "#11111105", role: "Nav item pointer-over (~4% black)" },
-  { token: "Fill/Contextual/NavItem/Active",    value: T.fill.navActive, hex: "#a0b5e629", role: "Active destination + Trail-collapsed" },
-  { token: "Fill/Contextual/NavItem/Trail",     value: T.fill.navTrail,  hex: "#11111105", role: "Trail-expanded grouper (~4% black, distinct from Hover)" },
-  { token: "Stroke/Static/Neutral/Light",       value: T.fill.infoSubtle, hex: "#f6f6f6", role: "Container right border · Popover border · Divider" },
+  { token: "no fill (rest paints nothing)",      value: T.fill.navBase,   hex: "#fafafa",   role: "Nav item resting state" },
+  { token: "Fill/Action/Selection/Hover",     value: T.fill.navHover,  hex: "#11111105", role: "Nav item pointer-over (~4% black)" },
+  { token: "Fill/Action/Selection/Selected",    value: T.fill.navActive, hex: "#a0b5e629", role: "Active destination + Trail-collapsed" },
+  { token: "Fill/Action/Selection/Trail",     value: T.fill.navTrail,  hex: "#11111105", role: "Trail-expanded grouper (~4% black, distinct from Hover)" },
+  { token: "Stroke/Static/Neutral/Subtle",       value: T.fill.infoSubtle, hex: "#f6f6f6", role: "Container right border · Popover border · Divider" },
 ];
 const TEXT_ROWS = [
-  { token: "Text/Contextual/NavItem/Base",   value: T.text.navBase,   hex: "#313131", role: "Resting label" },
-  { token: "Text/Contextual/NavItem/Hover",  value: T.text.navHover,  hex: "#252525", role: "Hovered label" },
-  { token: "Text/Contextual/NavItem/Active", value: T.text.navActive, hex: "#1b2d57", role: "Active + all trail states (no separate trail-text token)" },
+  { token: "Foreground/Action/Secondary/Rest",   value: T.text.navBase,   hex: "#313131", role: "Resting label" },
+  { token: "Foreground/Action/Secondary/Hover",  value: T.text.navHover,  hex: "#252525", role: "Hovered label" },
+  { token: "Foreground/Action/Secondary/Pressed", value: T.text.navActive, hex: "#1b2d57", role: "Active + all trail states (no separate trail-text token)" },
 ];
 const ICON_ROWS = [
-  { token: "Icon/Contextual/NavItem/Base",           value: T.icon.navBase,          hex: "#484848", role: "Leading icon resting" },
-  { token: "Icon/Contextual/NavItem/Hover",          value: T.icon.navHover,         hex: "#313131", role: "Leading icon hovered" },
-  { token: "Icon/Contextual/NavItem/Active",         value: T.icon.navActive,        hex: "#2d4889", role: "Leading icon active - also indicator stripe" },
-  { token: "Icon/Action/Secondary Inverse/Base",     value: T.icon.actionSecondary,  hex: "#6b6b6b", role: "CollapseButton action icon (right_panel_open / left_panel_open)" },
+  { token: "Foreground/Action/Secondary/Rest",           value: T.icon.navBase,          hex: "#484848", role: "Leading icon resting" },
+  { token: "Foreground/Action/Secondary/Hover",          value: T.icon.navHover,         hex: "#313131", role: "Leading icon hovered" },
+  { token: "Foreground/Action/Secondary/Pressed",         value: T.icon.navActive,        hex: "#2d4889", role: "Leading icon active - also indicator stripe" },
+  { token: "Foreground/Action/Secondary/Rest",     value: T.icon.actionSecondary,  hex: "#6b6b6b", role: "CollapseButton action icon (right_panel_open / left_panel_open)" },
 ];
 
 function TokenRow({ token, value, hex, role }) {
@@ -392,7 +392,7 @@ export const TokensFill = () => (
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
       Five fill tokens applied to nav items and container surfaces.
       <code>NavItem/Hover</code> and <code>NavItem/Trail</code> currently resolve to the same hex (<code>#11111105</code> ≈ 4% black) but are intentionally kept as separate tokens - they have diverged before and may again.
-      The last column in the row for <code>Stroke/Static/Neutral/Light</code> shows all three places it's used: container right border, section dividers, and popover borders.
+      The last column in the row for <code>Stroke/Static/Neutral/Subtle</code> shows all three places it's used: container right border, section dividers, and popover borders.
     </p>
     <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
       gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4 }}>
@@ -429,7 +429,7 @@ TokensText.tags = ["!dev"];
 export const TokensIcon = () => (
   <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
-      Four icon tokens. The <code>NavItem/Active</code> token (<code>#2d4889</code>) drives three things simultaneously: the leading icon in active state, the indicator stripe, and the collapsed-trail icon. The <code>Icon/Action/Secondary Inverse/Base</code> token (<code>#6b6b6b</code>) is used exclusively by the NavHeader collapse/expand action icon - it is static and does not change on hover.
+      Four icon tokens. The <code>NavItem/Active</code> token (<code>#2d4889</code>) drives three things simultaneously: the leading icon in active state, the indicator stripe, and the collapsed-trail icon. The <code>Foreground/Action/Secondary/Rest</code> token (<code>#6b6b6b</code>) is used exclusively by the NavHeader collapse/expand action icon - it is static and does not change on hover.
     </p>
     <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
       gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4 }}>
@@ -699,7 +699,7 @@ export const SectionLabels = () => (
         ))}
       </div>
       <div style={{ fontSize: 11, color: "#4b4b4b", lineHeight: "18px" }}>
-        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Text/Static/Secondary/Subtle</code> <span style={{ color: "#888" }}>(#606060)</span><br />
+        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Foreground/Static/Neutral/Subtle</code> <span style={{ color: "#888" }}>(#606060)</span><br />
         <strong>Type style:</strong> Label/Section/Small/Semibold<br />
         <strong>Container H:</strong> 40px · <strong>Padding:</strong> 4px H / 8px V
       </div>
@@ -735,7 +735,7 @@ export const SectionLabels = () => (
         ))}
       </div>
       <div style={{ fontSize: 11, color: "#4b4b4b", lineHeight: "18px" }}>
-        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Text/Static/Secondary/Light</code> <span style={{ color: "#888" }}>(#7b7b7b)</span><br />
+        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Foreground/Static/Neutral/Light</code> <span style={{ color: "#888" }}>(#7b7b7b)</span><br />
         <strong>Type style:</strong> Label/Section/Small/Semibold (same)<br />
         <strong>Padding:</strong> 12px L (Padding/Tight) · 8px V (Padding/XTight)
       </div>

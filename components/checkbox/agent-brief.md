@@ -29,7 +29,7 @@ Working code: [checkbox.html](./checkbox.html). Module: [checkbox.jsx](./checkbo
 
 4. **The label is part of the click target.** Clicking the text toggles the box. Don't make the label a separate non-interactive sibling.
 
-5. **Use semantic tokens for the fill, stroke, and check icon.** The check icon is `Icon/Static/Brand/Inverse` (white on brand-blue fill when checked). Never hardcode.
+5. **Use semantic tokens for the fill, stroke, and check icon.** The check icon is `Foreground/Static/Neutral/White` (white on brand-blue fill when checked). Never hardcode.
 
 ---
 

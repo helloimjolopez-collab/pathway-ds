@@ -14,7 +14,7 @@ Read this **first**. The full spec is at [top-nav-spec.md](./top-nav-spec.md).
 
 **Hard contract:**
 - **Height: 56 px** (54 px on tablet per Figma; unified to 56 px in implementation)
-- **Background: `Fill/Static/Brand/Base` → `#2d4889`** (brand blue, NOT dark navy)
+- **Background: `Fill/Static/Brand/Contrast` → `#2d4889`** (brand blue, NOT dark navy)
 - **Position: `fixed; top: 0; left: 0; right: 0; z-index: 100`**
 - All icons are **Material Symbols Rounded** (Google Fonts CDN). Branded assets (Amplify Home icon, org logo) are SVGs/images.
 - Three breakpoint variants: Desktop (1440px), Tablet (768px), Mobile (393px) — see §3 in the full spec.
@@ -27,7 +27,7 @@ Working code: [top-nav.html](./top-nav.html). Module: [top-nav.jsx](./top-nav.js
 
 1. **Ship TopNav and SideNav together as a single shell.** Never produce a prototype with only one of them.
 
-2. **Use the brand-blue background.** `Fill/Static/Brand/Base` → `#2d4889`. Not dark navy (`#0a1223`). Not custom.
+2. **Use the brand-blue background.** `Fill/Static/Brand/Contrast` → `#2d4889`. Not dark navy (`#0a1223`). Not custom.
 
 3. **Slot layout (left → right) is fixed:**
    - **Row Start:** SideNav hamburger (mobile only, hidden ≥768px) · ModuleSwitcher (Amplify Home icon + `expand_more` chevron, NO text) · OrgSwitcher (church logo 20×20 + org name + `expand_more` chevron, with `stroke/action/tertiary/base` border)
@@ -37,7 +37,7 @@ Working code: [top-nav.html](./top-nav.html). Module: [top-nav.jsx](./top-nav.js
 
 5. **Desktop shows 2 notification bells; tablet and mobile show `more_vert`.** Not the other way around. See Figma node `40007067:8151` (tablet) and `40007067:8205` (mobile).
 
-6. **Profile is amethyst, always.** Background `Fill/Static/Accent_Amethyst/Base` (`#dcd9ef`), text `Text/Static/Accent-Amethyst/Contrast` (`#221e3f`). Initials, not photos.
+6. **Profile is amethyst, always.** Background `Fill/Static/Accent_Amethyst/Base` (`#dcd9ef`), text `Foreground/Static/Accent/Amethyst/Contrast` (`#221e3f`). Initials, not photos.
 
 7. **Search is a 32×32 circle, not a search field.** `cornerradius/full: 64px`. Click expands a dropdown/modal — the bar stays narrow at all times.
 

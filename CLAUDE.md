@@ -171,7 +171,7 @@ When the token library changes — every time `sync-tokens.js` runs and modifies
 
 2. **Find components that reference changed tokens.** For each file under `components/**`, `src/stories/Library/**`, and any `src/tokens/tokens.*` consumer, grep for:
    - CSS variable names like `--semantic-color-light-mode-icon-static-neutral-base`
-   - Token-path mentions in Markdown like `icon.static.neutral.base` or `Icon/Contextual/NavItem/Base`
+   - Token-path mentions in Markdown like `icon.static.neutral.base` or `Foreground/Action/Secondary/Rest`
    - Any direct hex values that the spec claimed came from a token (these indicate a hand-copy that's now stale)
    If the mentioned token appears in the *removed* or *renamed* set, the component is a reconciliation candidate.
 

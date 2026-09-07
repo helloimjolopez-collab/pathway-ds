@@ -335,7 +335,7 @@ export const TokensIcon = {
       <TokenRow key="icomono" varName="--semantic-color-foreground-action-mono-rest" fallback="#fbfbfb" label="All icons on nav bar surface" type="icon" />,
     ]} />
   ),
-  parameters: { docs: { description: { story: "Icon tokens. All Material Symbol icons on the brand-blue surface use Icon/Action/Mono/Base." } } },
+  parameters: { docs: { description: { story: "Icon tokens. All Material Symbol icons on the brand-blue surface use Foreground/Action/Mono/Rest." } } },
 };
 
 export const TokensTypography = {

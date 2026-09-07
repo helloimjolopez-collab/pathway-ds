@@ -41,7 +41,7 @@
     .shell { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
 
     /* ── TopNav ─────────────────────────────────────────────────────────────
-       Figma: background Fill/Static/Brand/Base = #2d4889, height 56px
+       Figma: background Fill/Static/Brand/Contrast = #2d4889, height 56px
        Slot.RowStart: gap 8px (ModuleSwitcher→OrgSwitcher: x gap = 171-163=8px)
        Slot.RowEnd: gap 8px (Search→Actions: 336-328=8px, Actions→Profile: 440-432=8px)
     ───────────────────────────────────────────────────────────────────────── */
@@ -54,8 +54,8 @@
     .shell__body { display: flex; flex: 1; overflow: hidden; position: relative; }
 
     /* ── SideNav ────────────────────────────────────────────────────────────
-       Figma: width 240px, background Surface/Nav/Light = #fafafa
-       border-right 0.5px Stroke/Static/Neutral/Light = #f6f6f6
+       Figma: width 240px, background Fill/Surface/Sheet = #fafafa
+       border-right 0.5px Stroke/Static/Neutral/Subtle = #f6f6f6
        NavItem height 44px (Figma: SideNavItem instances are 44px)
        menuGap: 6px (from sidenav.jsx L.menuGap)
     ───────────────────────────────────────────────────────────────────────── */
@@ -354,8 +354,8 @@
     }
 
     /* Card — Figma: CardContainer
-       bg: Fill/Static/Neutral/Light = #ffffff
-       border: 0.5px contextual.card.border-width, Stroke/Action/Secondary-Inverse/Base = #d2d2d2
+       bg: Fill/Static/Neutral/Medium = #ffffff
+       border: 0.5px contextual.card.border-width, Stroke/Action/Secondary/Rest = #d2d2d2
        border-radius: 8px (contextual.card.cornerradius)
        padding: 16px (contextual.card.padding.medium.horizontal)
        gap: 12px (contextual.card.gap)
@@ -905,17 +905,17 @@
 
     // Token values from sidenav.jsx T constant (resolved via resolve-tokens.js)
     const SN = {
-      surface:       "#fafafa",                     // Surface/Nav/Light
-      border:        "#f6f6f6",                     // Stroke/Static/Neutral/Light
-      fillBase:      "transparent",                 // Fill/Contextual/NavItem/Base
-      fillHover:     "rgba(69,77,94,0.06)",         // Fill/Contextual/NavItem/Hover
-      fillActive:    "#eef2fb",                     // Fill/Contextual/NavItem/Active = a0b5e629
-      textBase:      "#484848",                     // Text/Contextual/NavItem/Base
-      textActive:    "#3555a0",                     // Text/Contextual/NavItem/Active
-      iconBase:      "#606060",                     // Icon/Contextual/NavItem/Base
-      iconActive:    "#3555a0",                     // Icon/Contextual/NavItem/Active
-      iconAction:    "#6b6b6b",                     // Icon/Action/Secondary Inverse/Base
-      sectionText:   "#606060",                     // Text/Static/Secondary/Subtle
+      surface:       "#fafafa",                     // Fill/Surface/Sheet
+      border:        "#f6f6f6",                     // Stroke/Static/Neutral/Subtle
+      fillBase:      "transparent",                 // no fill (rest paints nothing)
+      fillHover:     "rgba(69,77,94,0.06)",         // Fill/Action/Selection/Hover
+      fillActive:    "#eef2fb",                     // Fill/Action/Selection/Selected = a0b5e629
+      textBase:      "#484848",                     // Foreground/Action/Secondary/Rest
+      textActive:    "#3555a0",                     // Foreground/Action/Secondary/Pressed
+      iconBase:      "#606060",                     // Foreground/Action/Secondary/Rest
+      iconActive:    "#3555a0",                     // Foreground/Action/Secondary/Pressed
+      iconAction:    "#6b6b6b",                     // Foreground/Action/Secondary/Rest
+      sectionText:   "#606060",                     // Foreground/Static/Neutral/Subtle
     };
 
     // NavHeader collapse button SVG icons — exact from sidenav.jsx

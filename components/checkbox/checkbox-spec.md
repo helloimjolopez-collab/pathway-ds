@@ -216,7 +216,7 @@ These tokens appear in the Figma component but are **not yet in `pathway-design-
 
 The `highlight` prop adds a tinted background on the state-layer even in the resting state. Used to visually associate the checkbox with an interactive surface (e.g. a selectable row).
 
-> **[TBD — needs user]:** Confirm the highlight background token. Figma shows `Fill/Action/SecondaryInverse/Base` on the state-layer for highlight resting state. This token is missing from the token file — see §5.3.
+> **[TBD — needs user]:** Confirm the highlight background token. Figma shows `Fill/Action/Secondary/Rest` on the state-layer for highlight resting state. This token is missing from the token file — see §5.3.
 
 ---
 

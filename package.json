@@ -52,7 +52,7 @@
     "fix-tokens": "node scripts/fix-tokens.js",
     "fix-tokens-preview": "node scripts/fix-tokens.js --dry-run",
     "build-tokens": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js",
-    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/check-demo-tokens.js && node scripts/build-dist.js",
+    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js && node scripts/build-dist.js",
     "storybook": "node style-dictionary.config.js && storybook dev -p 6006",
     "build-storybook": "storybook build",
     "check-demo-tokens": "node scripts/check-demo-tokens.js",
@@ -61,7 +61,10 @@
     "figma:parse": "figma connect parse",
     "figma:publish": "figma connect publish",
     "figma:unpublish": "figma connect unpublish",
-    "check-secrets": "node scripts/check-secrets.js"
+    "check-secrets": "node scripts/check-secrets.js",
+    "check-token-refs": "node scripts/check-token-refs.js",
+    "check-token-names": "node scripts/check-token-names.js",
+    "check-tokens": "node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.29.2",

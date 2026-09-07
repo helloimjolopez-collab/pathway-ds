@@ -67,82 +67,85 @@
 <script type="text/babel">
 const { useState, useEffect } = React;
 
-const SC = (p) => `var(--semantic-color-light-mode-${p})`;
+// Every name below is MODELESS. The mode resolves by selector from
+// themes/light.css and themes/midnight.css, so there is no "light-mode"
+// segment and no *inverse* family: an inverted button is this same button
+// inside a [data-theme="midnight"] region. See CLAUDE.md section 2.0.
+const SC = (p) => `var(--semantic-color-${p})`;
 const SL = (p) => `var(--semantic-layout-units-${p})`;
-const ST = (p) => `var(--semantic-type-desktop-${p})`;
+const CL = (p) => `var(--contextual-layout-units-${p})`;
+const ST = (p) => `var(--semantic-type-${p})`;
 
+// Tertiary reads Primary Dim (its own family was deleted for duplicating it),
+// Negative moved under Status, and Disabled is one token per tier.
 const FILL = {
   Fill: {
-    Primary:   { base: SC("fill-action-primary-base"),              hover: SC("fill-action-primary-hover"),              pressed: SC("fill-action-primary-pressed"),              disabled: SC("fill-action-primary-disabled") },
-    Secondary: { base: SC("fill-action-secondaryinverse-base"),     hover: SC("fill-action-secondaryinverse-hover"),     pressed: SC("fill-action-secondaryinverse-pressed"),     disabled: SC("fill-action-secondaryinverse-disabled") },
-    Tertiary:  { base: SC("fill-action-tertiary-base"),             hover: SC("fill-action-tertiary-hover"),             pressed: SC("fill-action-tertiary-pressed"),             disabled: SC("fill-action-tertiary-disabled") },
-    Negative:  { base: SC("fill-action-negative-base"),             hover: SC("fill-action-negative-hover"),             pressed: SC("fill-action-negative-pressed"),             disabled: SC("fill-action-negative-disabled") },
+    Primary:   { base: SC("fill-action-primary-rest"),         hover: SC("fill-action-primary-hover"),         pressed: SC("fill-action-primary-pressed"),         disabled: SC("fill-action-disabled") },
+    Secondary: { base: SC("fill-action-secondary-rest"),       hover: SC("fill-action-secondary-hover"),       pressed: SC("fill-action-secondary-pressed"),       disabled: SC("fill-action-disabled") },
+    Tertiary:  { base: SC("fill-action-primary-dim-rest"),     hover: SC("fill-action-primary-dim-hover"),     pressed: SC("fill-action-primary-dim-pressed"),     disabled: SC("fill-action-disabled") },
+    Negative:  { base: SC("fill-action-status-negative-rest"), hover: SC("fill-action-status-negative-hover"), pressed: SC("fill-action-status-negative-pressed"), disabled: SC("fill-action-disabled") },
   },
   Outlined: {
-    Primary:   { base: "transparent",                               hover: SC("fill-action-primaryinverse-hover"),       pressed: SC("fill-action-primaryinverse-pressed"),       disabled: "transparent" },
-    Secondary: { base: "transparent",                               hover: SC("fill-action-secondaryinverse-hover"),     pressed: SC("fill-action-secondaryinverse-pressed"),     disabled: "transparent" },
-    Tertiary:  { base: "transparent",                               hover: SC("fill-action-tertiary-inverse-hover"),     pressed: SC("fill-action-tertiary-inverse-pressed"),     disabled: "transparent" },
-    Negative:  { base: "transparent",                               hover: SC("fill-action-negativeinverse-hover"),      pressed: SC("fill-action-negativeinverse-pressed"),      disabled: "transparent" },
-  },
-  Naked: {
-    Primary:   { base: "transparent",                               hover: SC("fill-action-primaryinverse-hover"),       pressed: SC("fill-action-primaryinverse-pressed"),       disabled: "transparent" },
-    Secondary: { base: "transparent",                               hover: SC("fill-action-secondaryinverse-hover"),     pressed: SC("fill-action-secondaryinverse-pressed"),     disabled: "transparent" },
-    Tertiary:  { base: "transparent",                               hover: SC("fill-action-tertiary-inverse-hover"),     pressed: SC("fill-action-tertiary-inverse-pressed"),     disabled: "transparent" },
-    Negative:  { base: "transparent",                               hover: SC("fill-action-negativeinverse-hover"),      pressed: SC("fill-action-negativeinverse-pressed"),      disabled: "transparent" },
+    Primary:   { base: "transparent", hover: SC("fill-action-primary-dim-hover"),         pressed: SC("fill-action-primary-dim-pressed"),         disabled: "transparent" },
+    Secondary: { base: "transparent", hover: SC("fill-action-secondary-hover"),           pressed: SC("fill-action-secondary-pressed"),           disabled: "transparent" },
+    Tertiary:  { base: "transparent", hover: SC("fill-action-primary-dim-hover"),         pressed: SC("fill-action-primary-dim-pressed"),         disabled: "transparent" },
+    Negative:  { base: "transparent", hover: SC("fill-action-status-negative-dim-hover"), pressed: SC("fill-action-status-negative-dim-pressed"), disabled: "transparent" },
   },
 };
-const TEXT = {
-  Fill: {
-    Primary:   { base: SC("text-action-primaryinverse-base"), hover: SC("text-action-primaryinverse-hover"), pressed: SC("text-action-primaryinverse-pressed"), disabled: SC("text-action-primaryinverse-disabled") },
-    Secondary: { base: SC("text-action-secondary-base"),      hover: SC("text-action-secondary-hover"),      pressed: SC("text-action-secondary-pressed"),      disabled: SC("text-action-secondary-disabled") },
-    Tertiary:  { base: SC("text-action-tertiary-base"),       hover: SC("text-action-tertiary-hover"),       pressed: SC("text-action-tertiary-pressed"),       disabled: SC("text-action-tertiary-disabled") },
-    Negative:  { base: SC("text-action-mono-base"),           hover: SC("text-action-mono-hover"),           pressed: SC("text-action-mono-pressed"),           disabled: SC("text-action-mono-disabled") },
-  },
-  Outlined: {
-    Primary:   { base: SC("text-action-primary-base"),   hover: SC("text-action-primary-hover"),   pressed: SC("text-action-primary-pressed"),   disabled: SC("text-action-primary-disabled") },
-    Secondary: { base: SC("text-action-secondary-base"), hover: SC("text-action-secondary-hover"), pressed: SC("text-action-secondary-pressed"), disabled: SC("text-action-secondary-disabled") },
-    Tertiary:  { base: SC("text-action-tertiary-base"),  hover: SC("text-action-tertiary-hover"),  pressed: SC("text-action-tertiary-pressed"),  disabled: SC("text-action-tertiary-disabled") },
-    Negative:  { base: SC("text-action-negative-base"),  hover: SC("text-action-negative-hover"),  pressed: SC("text-action-negative-pressed"),  disabled: SC("text-action-negative-disabled") },
-  },
-};
-TEXT.Naked = TEXT.Outlined;
+FILL.Naked = FILL.Outlined;
 
-const ICON_T = {
+// Text and Icon merged into Foreground: a button is one interactive surface,
+// so label and icon must not resolve through two ramps that can drift apart.
+// Mono has only a rest step - white stays white through hover and pressed.
+const FG = {
   Fill: {
-    Primary:   { base: SC("icon-action-primaryinverse-base"), hover: SC("icon-action-primaryinverse-hover"), pressed: SC("icon-action-primaryinverse-pressed"), disabled: SC("icon-action-primaryinverse-disabled") },
-    Secondary: { base: SC("icon-action-secondary-base"),      hover: SC("icon-action-secondary-hover"),      pressed: SC("icon-action-secondary-pressed"),      disabled: SC("icon-action-secondary-disabled") },
-    Tertiary:  { base: SC("icon-action-tertiary-base"),       hover: SC("icon-action-tertiary-hover"),       pressed: SC("icon-action-tertiary-pressed"),       disabled: SC("icon-action-tertiary-disabled") },
-    Negative:  { base: SC("icon-action-mono-base"),           hover: SC("icon-action-mono-hover"),           pressed: SC("icon-action-mono-pressed"),           disabled: SC("icon-action-mono-disabled") },
+    Primary:   { base: SC("foreground-action-mono-rest"),            hover: SC("foreground-action-mono-rest"),            pressed: SC("foreground-action-mono-rest"),            disabled: SC("foreground-action-disabled") },
+    Secondary: { base: SC("foreground-action-secondary-rest"),       hover: SC("foreground-action-secondary-hover"),       pressed: SC("foreground-action-secondary-pressed"),       disabled: SC("foreground-action-disabled") },
+    Tertiary:  { base: SC("foreground-action-primary-rest"),         hover: SC("foreground-action-primary-hover"),         pressed: SC("foreground-action-primary-pressed"),         disabled: SC("foreground-action-disabled") },
+    Negative:  { base: SC("foreground-action-mono-rest"),            hover: SC("foreground-action-mono-rest"),            pressed: SC("foreground-action-mono-rest"),            disabled: SC("foreground-action-disabled") },
   },
   Outlined: {
-    Primary:   { base: SC("icon-action-primary-base"),   hover: SC("icon-action-primary-hover"),   pressed: SC("icon-action-primary-pressed"),   disabled: SC("icon-action-primary-disabled") },
-    Secondary: { base: SC("icon-action-secondary-base"), hover: SC("icon-action-secondary-hover"), pressed: SC("icon-action-secondary-pressed"), disabled: SC("icon-action-secondary-disabled") },
-    Tertiary:  { base: SC("icon-action-tertiary-base"),  hover: SC("icon-action-tertiary-hover"),  pressed: SC("icon-action-tertiary-pressed"),  disabled: SC("icon-action-tertiary-disabled") },
-    Negative:  { base: SC("icon-action-negative-base"),  hover: SC("icon-action-negative-hover"),  pressed: SC("icon-action-negative-pressed"),  disabled: SC("icon-action-negative-disabled") },
+    Primary:   { base: SC("foreground-action-primary-rest"),         hover: SC("foreground-action-primary-hover"),         pressed: SC("foreground-action-primary-pressed"),         disabled: SC("foreground-action-disabled") },
+    Secondary: { base: SC("foreground-action-secondary-rest"),       hover: SC("foreground-action-secondary-hover"),       pressed: SC("foreground-action-secondary-pressed"),       disabled: SC("foreground-action-disabled") },
+    Tertiary:  { base: SC("foreground-action-primary-rest"),         hover: SC("foreground-action-primary-hover"),         pressed: SC("foreground-action-primary-pressed"),         disabled: SC("foreground-action-disabled") },
+    Negative:  { base: SC("foreground-action-status-negative-rest"), hover: SC("foreground-action-status-negative-hover"), pressed: SC("foreground-action-status-negative-pressed"), disabled: SC("foreground-action-disabled") },
   },
 };
-ICON_T.Naked = ICON_T.Outlined;
+FG.Naked = FG.Outlined;
+const TEXT = FG;
+const ICON_T = FG;
 
+// No Primary Dim stroke ramp exists, so Tertiary borrows the Primary stroke.
 const STROKE = {
-  Primary:   { base: SC("stroke-action-primary-base"),                 hover: SC("stroke-action-primary-hover"),                 pressed: SC("stroke-action-primary-pressed"),                 disabled: SC("stroke-action-primary-disabled") },
-  Secondary: { base: SC("stroke-action-secondary-base"),               hover: SC("stroke-action-secondary-hover"),               pressed: SC("stroke-action-secondary-pressed"),               disabled: SC("stroke-action-secondary-disabled") },
-  Tertiary:  { base: SC("stroke-action-tertiary-base"),                hover: SC("stroke-action-tertiary-hover"),                pressed: SC("stroke-action-tertiary-pressed"),                disabled: SC("stroke-action-tertiary-disabled") },
-  Negative:  { base: SC("stroke-action-negative-base"),                hover: SC("stroke-action-negative-hover"),                pressed: SC("stroke-action-negative-pressed"),                disabled: SC("stroke-action-negative-disabled") },
+  Primary:   { base: SC("stroke-action-primary-rest"),         hover: SC("stroke-action-primary-hover"),         pressed: SC("stroke-action-primary-pressed"),         disabled: SC("stroke-action-disabled") },
+  Secondary: { base: SC("stroke-action-secondary-rest"),       hover: SC("stroke-action-secondary-hover"),       pressed: SC("stroke-action-secondary-pressed"),       disabled: SC("stroke-action-disabled") },
+  Tertiary:  { base: SC("stroke-action-primary-rest"),         hover: SC("stroke-action-primary-hover"),         pressed: SC("stroke-action-primary-pressed"),         disabled: SC("stroke-action-disabled") },
+  Negative:  { base: SC("stroke-action-status-negative-rest"), hover: SC("stroke-action-status-negative-hover"), pressed: SC("stroke-action-status-negative-pressed"), disabled: SC("stroke-action-disabled") },
 };
 
-const FOCUS_RING = `0 0 0 6px #ffffff, 0 0 0 8px ${SC("stroke-contextual-focusring-base")}`;
+const FOCUS_RING = `0 0 0 6px #ffffff, 0 0 0 8px ${SC("stroke-focusring-base")}`;
+
+// Type is a scale now, so each size composes its own five values. The px in
+// each comment is what the retired Label/Button composite resolved to.
+const LABEL = (size, lineHeight) => ({
+  fontFamily:    ST("family-brand"),
+  fontSize:      ST(`font-size-${size}`),
+  fontWeight:    ST("weight-medium"),
+  lineHeight:    ST(`line-height-${lineHeight}`),
+  letterSpacing: ST("letter-spacing-compact"),
+});
 
 const SIZES = {
-  L: { padH: SL("contextual-button-padding-large-horizontal"),  padV: SL("contextual-button-padding-large-vertical"),  iconWrap: 26, iconInner: 18, fontSize: ST("label-button-l-fontsize"),    fontFamily: ST("label-button-l-fontfamily"),    fontWeight: ST("label-button-l-fontweight"),    lineHeight: ST("label-button-l-lineheight"),    letterSpacing: ST("label-button-l-letterspacing") },
-  M: { padH: SL("contextual-button-padding-medium-horizontal"), padV: SL("contextual-button-padding-medium-vertical"), iconWrap: 24, iconInner: 16, fontSize: ST("label-button-base-fontsize"), fontFamily: ST("label-button-base-fontfamily"), fontWeight: ST("label-button-base-fontweight"), lineHeight: ST("label-button-base-lineheight"), letterSpacing: ST("label-button-base-letterspacing") },
-  S: { padH: SL("contextual-button-padding-small-horizontal"),  padV: SL("contextual-button-padding-small-vertical"),  iconWrap: 20, iconInner: 14, fontSize: ST("label-button-s-fontsize"),    fontFamily: ST("label-button-s-fontfamily"),    fontWeight: ST("label-button-s-fontweight"),    lineHeight: ST("label-button-s-lineheight"),    letterSpacing: ST("label-button-s-letterspacing") },
-  XS:{ padH: SL("contextual-button-padding-xsmall-horizontal"), padV: SL("contextual-button-padding-xsmall-vertical"), iconWrap: 16, iconInner: 12, fontSize: ST("label-button-xs-fontsize"),   fontFamily: ST("label-button-xs-fontfamily"),   fontWeight: ST("label-button-xs-fontweight"),   lineHeight: ST("label-button-xs-lineheight"),   letterSpacing: ST("label-button-xs-letterspacing") },
+  L: { padH: CL("button-padding-large-horizontal"),  padV: CL("button-padding-large-vertical"),  iconWrap: 26, iconInner: 18, ...LABEL("m",  "m-single")  },  // 18 / 24
+  M: { padH: CL("button-padding-medium-horizontal"), padV: CL("button-padding-medium-vertical"), iconWrap: 24, iconInner: 16, ...LABEL("r",  "r-single")  },  // 16 / 22
+  S: { padH: CL("button-padding-small-horizontal"),  padV: CL("button-padding-small-vertical"),  iconWrap: 20, iconInner: 14, ...LABEL("s",  "s-single")  },  // 14 / 20
+  XS:{ padH: CL("button-padding-xsmall-horizontal"), padV: CL("button-padding-xsmall-vertical"), iconWrap: 16, iconInner: 12, ...LABEL("xs", "xs-single") },  // 12 / 18
 };
 
 const T = {
-  radius: SL("contextual-button-radius-radius"),
-  border: SL("contextual-button-border-width-base-base"),
-  gap:    SL("contextual-button-gap-horizontal"),
+  radius: CL("button-radius-radius"),
+  border: CL("button-border-width-base-base"),
+  gap:    CL("button-gap-horizontal"),
   touch:  { pad: 6, min: 48 },
   focusShadow: FOCUS_RING,
 };
@@ -206,13 +209,18 @@ function Button({ buttonStyle = "Fill", size = "M", type = "Primary", text = "Bu
     borderRadius: T.radius,
     backgroundColor: bgColor,
     border: hasStroke ? `${T.border} solid ${strokeColor}` : "none",
-    gap: T.gap, flex: "1 0 0", minWidth: 0, color: iconColor,
+    gap: 0, flex: "1 0 0", minWidth: 0, color: iconColor,
     boxShadow: focused && !isDisabled ? T.focusShadow : "none",
     transition: "background-color var(--motion-duration-2) var(--motion-easing-standard), border-color var(--motion-duration-2) var(--motion-easing-standard), box-shadow var(--motion-duration-2) var(--motion-easing-standard), color var(--motion-duration-2) var(--motion-easing-standard)",
   };
+  // Figma's Container.Label carries pad=[0,4,0,4]. That half-gap on each side
+  // is what separates the label from an adjacent icon, and what keeps a
+  // text-only button symmetric. Container.Main's own gap stays 0 (see innerS)
+  // so the separation is not counted twice.
   const labelS = {
     fontFamily: sz.fontFamily, fontWeight: sz.fontWeight, fontSize: sz.fontSize,
     lineHeight: sz.lineHeight, letterSpacing: sz.letterSpacing,
+    paddingLeft: `calc(${T.gap} / 2)`, paddingRight: `calc(${T.gap} / 2)`,
     color: textColor, whiteSpace: "nowrap", userSelect: "none",
     transition: "color var(--motion-duration-2) var(--motion-easing-standard)",
   };

@@ -25,7 +25,7 @@ Working code: [spinner.html](./spinner.html). Full spec: [spinner-spec.md](./spi
 
 ## The 6 rules an AI agent must not skip
 
-1. **Use the documented semantic icon tokens.** The spinner's colour comes from `Icon/Static/*` or `Icon/Action/*` semantic tokens. Never raw hex, never a primitive. Allowed tones are listed in §7.1 of the spec.
+1. **Use the documented semantic icon tokens.** The spinner's colour comes from `Foreground/Static/*` or `Foreground/Action/*` semantic tokens (Icon was merged into Foreground). Never raw hex, never a primitive. Allowed tones are listed in §7.1 of the spec.
 
 2. **The geometry is fixed.** Don't reinvent the sunburst — it's an 8-spoke rotating SVG with specific path data. Copy from [spinner.html](./spinner.html).
 

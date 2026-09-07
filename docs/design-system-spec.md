@@ -185,9 +185,9 @@ Every state change the component triggers must have an intended screen-reader ou
 | Layer | Example | Consumers |
 |---|---|---|
 | Primitives | `Brand.300`, `Cool Neutral.150` | Aliased by semantics — **never** referenced directly by components |
-| Static semantics | `Icon/Static/Neutral/Base` | Context-free; used by standalone components (Spinner) |
-| Contextual semantics | `Icon/Contextual/NavItem/Base` | Bound to specific usage (NavItem, Button) |
-| Action semantics | `Icon/Action/Primary/Base` | Interactive states — have matching Hover/Focused/Pressed/Disabled variants |
+| Static semantics | `Foreground/Static/Neutral/Bold` | Context-free; used by standalone components (Spinner) |
+| Contextual semantics | `Foreground/Action/Secondary/Rest` | Bound to specific usage (NavItem, Button) |
+| Action semantics | `Foreground/Action/Primary/Rest` | Interactive states — have matching Hover/Focused/Pressed/Disabled variants |
 
 **Rules:**
 

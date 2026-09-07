@@ -189,11 +189,11 @@ For readable lookups in component demos and scripts, use the resolver utility:
 ```js
 import { t } from "../../tokens/resolve-tokens.js";
 
-const fill = t("Fill/Contextual/NavItem/Base");              // Light Mode
-const night = t("Fill/Contextual/NavItem/Base", "midnight");  // Midnight Mode
+const fill = t("no fill (rest paints nothing)");              // Light Mode
+const night = t("no fill (rest paints nothing)", "midnight");  // Midnight Mode
 ```
 
-`t()` converts the Figma display-path format (`"Fill/Contextual/NavItem/Base"`) into the resolved CSS variable value. It handles both modes and caches lookups.
+`t()` converts the Figma display-path format (`"no fill (rest paints nothing)"`) into the resolved CSS variable value. It handles both modes and caches lookups.
 
 ---
 

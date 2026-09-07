@@ -39,7 +39,7 @@ Working code: [org-switcher.html](./org-switcher.html). Module: [org-switcher.js
 
 6. **Click opens a dropdown panel** with searchable org list + campus list. Don't substitute a modal, full page, or inline switcher. The dropdown is anchored to the OrgSwitcher pill.
 
-7. **The pill colour responds to TopNav theme.** Text and chevron use `Text/Static/Primary/Inverse` (`#ffffff`) on the brand-blue TopNav. Don't use dark text.
+7. **The pill colour responds to TopNav theme.** Text and chevron use `Foreground/Static/Neutral/White` (`#ffffff`) on the brand-blue TopNav. Don't use dark text.
 
 ---
 

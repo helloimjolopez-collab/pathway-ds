@@ -23,7 +23,7 @@ For navigation specifically:
 3. Copy the implementation from [`components/sidenav/sidenav.html`](./components/sidenav/sidenav.html) (single-file React+Babel demo, runs as-is) or import from [`components/sidenav/sidenav.jsx`](./components/sidenav/sidenav.jsx) (named React exports).
 4. **Never invent token values.** All semantic colours, typography, motion durations, and radii come from `tokens/pathway-design-tokens.json` or are listed in the component spec.
 
-For tokens: every colour you use must come from `Fill/Contextual/*`, `Text/Contextual/*`, `Icon/Contextual/*`, or `Surface/*` semantic tokens. Never use raw hex. Never use primitive tokens directly.
+For tokens: every colour you use must come from `Fill/Action/*`, `Fill/Static/*`, `Fill/Surface/*`, `Foreground/Action/*`, `Foreground/Static/*`, `Stroke/Action/*`, `Stroke/Static/*` or `Scrim/*` semantic tokens. Never use raw hex. Never use primitive tokens directly. There is no Contextual colour group, and Text and Icon are both Foreground now.
 
 ### B. You are **modifying this repo** (changing the design system itself)
 
@@ -202,7 +202,7 @@ If you need to build something and **no entry exists in [`components/manifest.js
 
 3. **Surface the gap to the human.** Say plainly: "I needed a `<thing>` but no Pathway component exists for it. I've built it ad-hoc with semantic tokens — the design system owner should review whether this should become a real component." This is how gaps get fixed, not how they hide.
 
-**Never invent a new component silently.** A custom button styled with `Fill/Action/Primary/Base` is a visible gap the DS owner can promote into the system. A custom button styled with `#2d4889` is a bug that disappears into the prototype and quietly breaks the system over time.
+**Never invent a new component silently.** A custom button styled with `Fill/Action/Primary/Rest` is a visible gap the DS owner can promote into the system. A custom button styled with `#2d4889` is a bug that disappears into the prototype and quietly breaks the system over time.
 
 ---
 

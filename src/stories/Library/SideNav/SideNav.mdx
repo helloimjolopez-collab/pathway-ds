@@ -47,7 +47,7 @@ SideNav.Container                       240 px expanded · 72 px collapsed
 │   │   └── SideNavItem · Level 1
 │   └── SideNavItem · Level 0
 └── Collapse_Expand_Nav_Container
-    ├── Divider                         1 px · Stroke/Static/Neutral/Light
+    ├── Divider                         1 px · Stroke/Static/Neutral/Subtle
     └── CollapseButton                  item-like row, no indicator stripe
 ```
 
@@ -63,7 +63,7 @@ Every item can be in one of five states. Fill, text colour, icon colour, and the
 
 **Reading the matrix.** The first three states (Base, Hover, Active) are about what *this* item is doing. The last two are about *this grouper's children*:
 
-- **Trail - expanded** applies to any Level 0 grouper whose children are visible, regardless of which child (if any) is active. The fill is muted (`Fill/NavItem/Trail`, ~2% black), the text is active-coloured, the icon stays grey.
+- **Trail - expanded** applies to any Level 0 grouper whose children are visible, regardless of which child (if any) is active. The fill is muted (`Fill/Action/Selection/Trail`, ~2% black), the text is active-coloured, the icon stays grey.
 - **Trail - collapsed** applies when a grouper's active child is hidden - either because the grouper itself is closed, or because the whole sidebar is at 72 px. It's visually identical to Active; the only difference is semantic (Active is a leaf, Trail-collapsed is a parent).
 
 Trail-collapsed means "something inside me is selected, and you can't see it from here." That's why it shares Active's styling - the user needs to see that the grouper itself is on the active path.
@@ -82,7 +82,7 @@ Smallest unit you can inspect. Change the label to sanity-check long strings, fl
 
 ## Token mappings
 
-The SideNav binds every colour to a semantic variable in the `Contextual/NavItem/*` family, plus `Fill/Static/Info/Subtle` for the divider and border. No raw hex, no primitives.
+The SideNav binds every colour to a semantic variable in the `Contextual/NavItem/*` family, plus `Fill/Static/Brand/Faint` for the divider and border. No raw hex, no primitives.
 
 ### Fill
 
@@ -94,7 +94,7 @@ Note that `NavItem/Hover` and `NavItem/Trail` are different tokens even though t
 
 <Canvas of={Stories.TokensText} />
 
-There's no separate "trail text" token - every trail state reuses `Text/NavItem/Active`. If you need the active ink, it's `#1b2d57`.
+There's no separate "trail text" token - every trail state reuses `Foreground/Action/Secondary/Pressed`. If you need the active ink, it's `#1b2d57`.
 
 ### Icon
 
@@ -170,7 +170,7 @@ SideNav uses the ARIA **tree** pattern - `role="tree"` on the list, `role="treei
     <tr><td>Keyboard</td><td>Tab to enter · ↑/↓ to move · ←/→ to collapse/expand or descend · Enter/Space to activate</td></tr>
     <tr><td>Collapsed rail</td><td>Icon-only items need <code>aria-label</code> (or a visually-hidden span) since labels are hidden</td></tr>
     <tr><td>Touch target</td><td><code>min-height: 48px</code> on every item</td></tr>
-    <tr><td>Focus ring</td><td><code>outline: 2px solid #3555a0; outline-offset: 2px</code> (uses Icon/NavItem/Active)</td></tr>
+    <tr><td>Focus ring</td><td><code>outline: 2px solid #3555a0; outline-offset: 2px</code> (uses Foreground/Action/Secondary/Pressed)</td></tr>
     <tr><td>Reduced motion</td><td>The width transition (<code>--motion-duration-6</code>) and popover animations collapse to a simple opacity fade</td></tr>
   </tbody>
 </table>

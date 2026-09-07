@@ -57,14 +57,14 @@ const T = {
   strokeHover:   "var(--semantic-color-stroke-action-primary-hover,   rgba(160,181,230,0.20))",
   strokePressed: "var(--semantic-color-stroke-action-primary-pressed, rgba(160,181,230,0.30))",
 
-  // Text — org name. Reconciled to Figma (Text/Static/Primary/Base, node
+  // Text — org name. Reconciled to Figma (Foreground/Static/Neutral/Bold, node
   // 40006819:14581). Static token — no per-state variants; the interactive
   // feedback is carried by the fill/stroke, not the text colour.
   textBase:    "var(--semantic-color-foreground-static-neutral-bold, #eceaf3)",
   textHover:   "var(--semantic-color-foreground-static-neutral-bold, #eceaf3)",
   textPressed: "var(--semantic-color-foreground-static-neutral-bold, #eceaf3)",
 
-  // Chevron icon — reconciled to Figma (Icon/Static/Neutral/Base = white 80%).
+  // Chevron icon — reconciled to Figma (Foreground/Static/Neutral/Bold = white 80%).
   iconBase:    "var(--semantic-color-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
   iconHover:   "var(--semantic-color-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
   iconPressed: "var(--semantic-color-foreground-static-neutral-medium, rgba(255,255,255,0.8))",

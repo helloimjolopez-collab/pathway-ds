@@ -20,7 +20,7 @@ import ReactDOM from "react-dom";
  * resolved hex. This is deliberate and it is a behavioural fix, not a style
  * preference:
  *
- * This module previously called `t("Fill/Contextual/NavItem/Base")`, which reads
+ * This module previously called `t("no fill (rest paints nothing)")`, which reads
  * src/tokens/tokens.js and returns a LIGHT-MODE HEX at module load. That baked
  * one theme into the bundle, so Midnight Mode could not work at all in the coded
  * component no matter what the consumer did. `t()` also returns the token id
@@ -303,7 +303,7 @@ export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }
 
 // ─── SectionLabel ─────────────────────────────────────────────────────────────
 // Figma node 40006794-5977 — building block used in CollapsedPopover headers.
-// Tokens: Text/Static/Secondary/Light (#7b7b7b), Label/Section/Small/Semibold
+// Tokens: Foreground/Static/Neutral/Light (#7b7b7b), Label/Section/Small/Semibold
 //         (11px / 600 / 16px / 0.6px letter-spacing, uppercase)
 // Padding: Padding/Tight (12px left), Padding/XTight (8px vertical)
 export function SectionLabel({ label }) {
@@ -369,7 +369,7 @@ export function PopoverRow({ item, onClick, activeId }) {
 
 // ─── CollapseButton ───────────────────────────────────────────────────────────
 // Redesigned in Figma (2026-05-12): now uses Slot.RowStart (Module.Mark icon)
-// + Slot.RowEnd (Action Icon). The action icon uses Icon/Action/Secondary Inverse/Base
+// + Slot.RowEnd (Action Icon). The action icon uses Foreground/Action/Secondary/Rest
 // (#6b6b6b) — different from nav item icons. SVG assets fetched from Figma directly.
 export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, expandIcon }) {
   const [h, setH] = useState(false);
@@ -424,7 +424,7 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
 // ─── SideNav (top-level container) ────────────────────────────────────────────
 // ── NavSectionLabel ──────────────────────────────────────────────────────────
 // Optional in-nav section heading. Figma: SideNav.SectionLabel (node 40006794:5975).
-// Tokens: Label/Section/Small/Semibold (11px/600/16px/0.6px), Text/Static/Secondary/Subtle (#606060)
+// Tokens: Label/Section/Small/Semibold (11px/600/16px/0.6px), Foreground/Static/Neutral/Subtle (#606060)
 // Container: h-[40px], pl-[4px], pr-[4px], py-[8px]
 // In collapsed rail: hidden — replaced by a Divider (rendered by SideNav itself, see §2.3)
 // ── NavHeader ────────────────────────────────────────────────────────────────
@@ -464,7 +464,7 @@ export function NavHeader({ isSidebarCollapsed, onToggle, collapseIcon, expandIc
           </div>
         )}
       </div>
-      {/* Divider — Stroke/Static/Neutral/Light, py-[2px] in Figma */}
+      {/* Divider — Stroke/Static/Neutral/Subtle, py-[2px] in Figma */}
       <div style={{ padding: "2px 0" }}>
         <div style={{ height: 1, backgroundColor: T.fill.infoSubtle }} />
       </div>
@@ -752,7 +752,7 @@ function ChevUp({ size = 10, color }) {
 
 // ─── Collapse / Expand action icons (fetched from Figma 2026-05-12) ──────────
 // right_panel_open — used on the collapse button when sidebar is EXPANDED (click to collapse)
-// Token: Icon/Action/Secondary Inverse/Base (#6b6b6b)
+// Token: Foreground/Action/Secondary/Rest (#6b6b6b)
 // Figma component: SideBar Expand/Collapse, Type=Collapse, node 40006793:3783
 function RightPanelOpenIcon({ size = 12, color = T.icon.actionSecondary }) {
   return (
@@ -763,7 +763,7 @@ function RightPanelOpenIcon({ size = 12, color = T.icon.actionSecondary }) {
 }
 
 // left_panel_open — used on the collapse button when sidebar is COLLAPSED (click to expand)
-// Token: Icon/Action/Secondary Inverse/Base (#6b6b6b)
+// Token: Foreground/Action/Secondary/Rest (#6b6b6b)
 // Figma component: SideBar Expand/Collapse, Type=Expand, node 40006793:3783
 function LeftPanelOpenIcon({ size = 12, color = T.icon.actionSecondary }) {
   return (
