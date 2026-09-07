@@ -19,6 +19,26 @@ Different layers of this system have different sources of truth. Keep them strai
 - When anything in `components/<name>/<name>-spec.md` disagrees with what the component in Figma currently looks like — that means Figma was updated and this repo wasn't yet. Ask the user whether to pull. Don't assume either side is right.
 - Never edit Figma programmatically. The Figma MCP server exposes `use_figma` and write tools; do **not** call them unless the user explicitly asks you to change Figma. Read-only tools (`get_design_context`, `get_metadata`, `get_screenshot`, `get_variable_defs`) are fine for any diagnostic.
 
+### 1.1 SideNav is exempt from Figma overrides (2026-09-07)
+
+`components/sidenav/**` and `src/stories/Library/SideNav/**` are a deliberate
+carve-out from the rule above. Token sync and the component pipeline keep pulling
+from Figma normally **for everything else**; SideNav does not get pulled unless
+the user explicitly asks for it in that session.
+
+This inverts §1, so expect it to feel wrong: a reconciliation run WILL report
+sidenav drift against Figma, and that report is accurate. The correct action is
+still to leave the repo alone, name the drift, and wait for the user. Do not
+resolve it by fetching Figma.
+
+What triggered it: the Figma "SideBar Expand/Collapse" component (node
+40006793:3783) was changed to a different expand/collapse icon after the repo
+pulled it on 2026-05-12. The user rejected that change for the repo, for
+Storybook and for `<pathway-sidenav>`. The repo keeps `RightPanelOpenIcon` and
+`LeftPanelOpenIcon` at the bottom of `sidenav.jsx`.
+
+`<pathway-sidenav>` wraps `sidenav.jsx`, so it inherits the exemption.
+
 ## 2. Token sync — how Figma flows into this repo
 
 The pipeline, in order:

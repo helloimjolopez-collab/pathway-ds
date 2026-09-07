@@ -5,6 +5,13 @@
  * implementation; the standalone demo (sidenav.html) and the Storybook
  * stories both consume this.
  *
+ * EXEMPT FROM FIGMA OVERRIDES (2026-09-07). Token sync and the component
+ * pipeline pull from Figma normally for everything else, but this component is
+ * NOT re-synced unless the user explicitly asks for it in that session. A
+ * reconciliation run will report drift here against Figma and that report is
+ * accurate; the correct action is still to leave this file alone, name the
+ * drift, and wait. Do not resolve it by fetching Figma. See CLAUDE.md 1.1.
+ *
  * Spec: components/sidenav/sidenav-spec.md
  * Figma: https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003951-2927
  */
@@ -751,6 +758,20 @@ function ChevUp({ size = 10, color }) {
 }
 
 // ─── Collapse / Expand action icons (fetched from Figma 2026-05-12) ──────────
+//
+// PINNED 2026-09-07 — DO NOT RE-SYNC THESE TWO FROM FIGMA.
+//
+// The Figma SideBar Expand/Collapse component was changed after this date to a
+// different icon. Jo has explicitly rejected that change for the repo, for
+// Storybook and for <pathway-sidenav>. The panel-style pair below is the
+// intended design and stays.
+//
+// This is a deliberate divergence from Figma, which normally wins for component
+// visual design (CLAUDE.md §1). So if a reconciliation run reports these as
+// drift, that report is correct and the answer is "leave it". Do not resolve it
+// by pulling Figma, and do not silently re-fetch node 40006793:3783. Ask first
+// if you think it should change.
+// ─────────────────────────────────────────────────────────────────────────────
 // right_panel_open — used on the collapse button when sidebar is EXPANDED (click to collapse)
 // Token: Foreground/Action/Secondary/Rest (#6b6b6b)
 // Figma component: SideBar Expand/Collapse, Type=Collapse, node 40006793:3783

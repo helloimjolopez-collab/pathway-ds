@@ -52,7 +52,7 @@
     "fix-tokens": "node scripts/fix-tokens.js",
     "fix-tokens-preview": "node scripts/fix-tokens.js --dry-run",
     "build-tokens": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js",
-    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js && node scripts/build-dist.js",
+    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js && node scripts/build-dist.js && npm run build-elements",
     "storybook": "node style-dictionary.config.js && storybook dev -p 6006",
     "build-storybook": "storybook build",
     "check-demo-tokens": "node scripts/check-demo-tokens.js",
@@ -64,7 +64,8 @@
     "check-secrets": "node scripts/check-secrets.js",
     "check-token-refs": "node scripts/check-token-refs.js",
     "check-token-names": "node scripts/check-token-names.js",
-    "check-tokens": "node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js"
+    "check-tokens": "node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js",
+    "build-elements": "esbuild components/sidenav/pathway-sidenav.js --bundle --format=esm --minify --loader:.jsx=jsx --jsx=automatic --define:process.env.NODE_ENV='\"production\"' --outfile=dist/pathway-sidenav.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.29.2",
@@ -75,6 +76,7 @@
     "@storybook/addon-webpack5-compiler-babel": "^4.0.1",
     "@storybook/blocks": "^8.6.18",
     "@storybook/react-webpack5": "^8.6.18",
+    "esbuild": "^0.25.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "remark-gfm": "^4.0.1",

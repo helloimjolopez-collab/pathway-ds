@@ -5,6 +5,12 @@
 
 Complete implementation reference for the SideNav component. Covers anatomy, design tokens, states, spacing, interaction patterns, and accessibility. Use alongside the [Figma source](#figma-source) for a pixel-accurate build.
 
+> **This component is exempt from Figma overrides (2026-09-07).** Token sync and
+> the component pipeline pull from Figma normally for everything else, but SideNav
+> is not re-synced unless the user explicitly asks. A reconciliation run will
+> report drift here and that report is correct; leave the repo as it is and ask.
+> See CLAUDE.md §1.1.
+
 ## Links
 
 | Artefact | URL |

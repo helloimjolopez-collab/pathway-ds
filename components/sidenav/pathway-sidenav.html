@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>&lt;pathway-sidenav&gt; — framework-agnostic custom element</title>
+
+<!-- 1. THE TOKEN CONTRACT. primitives.css first: the themes reference it via var(). -->
+<link rel="stylesheet" href="../../src/tokens/primitives.css" />
+<link rel="stylesheet" href="../../src/tokens/themes/light.css" />
+<link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
+<link rel="stylesheet" href="../../src/tokens/type.css" />
+<link rel="stylesheet" href="../../src/tokens/layout.css" />
+<link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
+<link rel="stylesheet" href="../../src/tokens/motion.css" />
+
+<!-- 2. FONTS. Document-scoped, so they reach inside the shadow root. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+<style>
+  body {
+    margin: 0;
+    font-family: var(--semantic-type-family-brand), sans-serif;
+    background: var(--semantic-color-fill-surface-canvas);
+    color: var(--semantic-color-foreground-static-neutral-bold);
+  }
+  .page { display: flex; min-height: 100vh; }
+  .content { flex: 1; padding: 32px 40px; min-width: 0; }
+  h1 { font-size: var(--semantic-type-font-size-xl); margin: 0 0 4px; }
+  .sub { color: var(--semantic-color-foreground-static-neutral-subtle); font-size: var(--semantic-type-font-size-s); margin: 0 0 28px; }
+  .card {
+    background: var(--semantic-color-fill-surface-sheet);
+    border: 0.5px solid var(--semantic-color-stroke-static-neutral-subtle);
+    border-radius: var(--semantic-layout-units-cornerradius-medium);
+    padding: 20px 24px; margin-bottom: 20px;
+  }
+  .card h2 { font-size: var(--semantic-type-font-size-r); margin: 0 0 10px; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+  pre {
+    background: var(--semantic-color-fill-static-neutral-faint);
+    padding: 12px 14px; border-radius: 6px; overflow-x: auto; margin: 0;
+  }
+  #log { list-style: none; margin: 0; padding: 0; font-size: 12px; }
+  #log li { padding: 3px 0; border-bottom: 0.5px solid var(--semantic-color-stroke-static-neutral-faint); }
+  #log li:last-child { border-bottom: none; }
+  .empty { color: var(--semantic-color-foreground-static-neutral-subtle); }
+
+  /*
+    HOSTILE HOST CSS. This is the point of the demo. A host app with an
+    aggressive reset or an opinionated component library would wreck an
+    unencapsulated component. Shadow DOM means none of this reaches the nav.
+  */
+  body.hostile .content *, body.hostile .content {
+    font-family: "Comic Sans MS", cursive !important;
+    background: #ff00ff !important;
+    color: #00ff00 !important;
+    border: 3px dashed red !important;
+    padding: 9px !important;
+    box-sizing: content-box !important;
+    letter-spacing: 3px !important;
+  }
+  .hostile-note { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  #hostile-toggle {
+    font: inherit; cursor: pointer; padding: 5px 10px;
+    border-radius: var(--semantic-layout-units-cornerradius-small);
+    border: 0.5px solid var(--semantic-color-stroke-action-secondary-rest);
+    background: var(--semantic-color-fill-action-secondary-rest);
+    color: var(--semantic-color-foreground-action-secondary-rest);
+  }
+  .hostile-note {
+    background: var(--semantic-color-fill-static-status-warning-faint);
+    border: 0.5px solid var(--semantic-color-stroke-static-status-warning-medium);
+    color: var(--semantic-color-foreground-static-status-warning-bold);
+    border-radius: 6px; padding: 10px 12px; font-size: 12px; margin-bottom: 14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <!--
+    3. THE ELEMENT. Nav data as a JSON attribute, which is the path a
+       server-rendered host (Blazor, Radzen, Rails, ASP.NET) will use.
+       Icons are Material Symbols ligature strings.
+  -->
+  <pathway-sidenav
+    id="nav"
+    active-id="overview"
+    items='[
+      {"id":"applications","label":"Applications","icon":"apps","children":[
+        {"id":"overview","label":"Overview"},
+        {"id":"installed","label":"Installed"},
+        {"id":"scheduled","label":"Scheduled"}
+      ]},
+      {"id":"enter","label":"Enter","icon":"note_add"},
+      {"id":"manage","label":"Manage","icon":"tune"},
+      {"id":"view","label":"View","icon":"visibility","children":[
+        {"id":"reports","label":"Reports"},
+        {"id":"tables","label":"Tables"}
+      ]},
+      {"id":"help","label":"Help","icon":"help"}
+    ]'
+    default-expanded='{"applications":true}'></pathway-sidenav>
+
+  <main class="content">
+    <div class="hostile-note">
+      <button id="hostile-toggle" type="button">Simulate a hostile host app</button>
+      Forces Comic Sans, magenta backgrounds, green text and dashed red borders on
+      <code>*</code> with <code>!important</code>, the way a host app with an
+      aggressive reset or an opinionated component library would. The nav stays
+      untouched: that is Shadow DOM doing its job.
+    </div>
+
+    <h1>&lt;pathway-sidenav&gt;</h1>
+    <p class="sub">One HTML tag. No React on the host page. Works in Radzen, Blazor, Angular, Vue, or plain HTML.</p>
+
+    <div class="card">
+      <h2>How a team consumes it</h2>
+      <pre>&lt;link rel="stylesheet" href=".../tokens/primitives.css"&gt;
+&lt;link rel="stylesheet" href=".../tokens/themes/light.css"&gt;
+&lt;script type="module" src=".../pathway-sidenav.js"&gt;&lt;/script&gt;
+
+&lt;pathway-sidenav active-id="overview" items='[...]'&gt;&lt;/pathway-sidenav&gt;</pre>
+    </div>
+
+    <div class="card">
+      <h2>Events it emits</h2>
+      <pre>nav.addEventListener("pathway-navigate", e =&gt; e.detail.id);
+nav.addEventListener("pathway-collapse-change", e =&gt; e.detail.collapsed);</pre>
+    </div>
+
+    <div class="card">
+      <h2>Live event log</h2>
+      <ul id="log"><li class="empty">Click a nav item, or collapse the rail.</li></ul>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="../../dist/pathway-sidenav.js"></script>
+<script type="module">
+  const toggle = document.getElementById("hostile-toggle");
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("hostile");
+    toggle.textContent = document.body.classList.contains("hostile")
+      ? "Stop simulating a hostile host app"
+      : "Simulate a hostile host app";
+  });
+
+  const nav = document.getElementById("nav");
+  const log = document.getElementById("log");
+  const add = (text) => {
+    const empty = log.querySelector(".empty");
+    if (empty) empty.remove();
+    const li = document.createElement("li");
+    li.textContent = new Date().toLocaleTimeString() + "  " + text;
+    log.prepend(li);
+    while (log.children.length > 8) log.lastElementChild.remove();
+  };
+  nav.addEventListener("pathway-navigate", (e) => {
+    nav.setAttribute("active-id", e.detail.id);
+    add("pathway-navigate  ->  " + e.detail.id);
+  });
+  nav.addEventListener("pathway-collapse-change", (e) => {
+    add("pathway-collapse-change  ->  collapsed=" + e.detail.collapsed);
+  });
+</script>
+</body>
+</html>
