@@ -30,7 +30,12 @@
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, extname } from "node:path";
 
-const TOKENS_JSON = "dist/tokens.json";
+// Read the live names from the THEME CSS, not from dist/. This check runs inside
+// build-dist BEFORE build-dist.js writes dist/, so depending on dist/tokens.json
+// meant the check passed locally (where a previous dist/ lingered) and failed on
+// a clean CI checkout with "dist/tokens.json not found". The theme files are
+// written by style-dictionary, which runs first in the same chain.
+const THEME_CSS = "src/tokens/themes/light.css";
 
 const SKIP = [
   "node_modules", "storybook", "storybook-static", "dist", ".git",
@@ -81,25 +86,15 @@ const NAME_RE = new RegExp(
 );
 
 function liveNames() {
-  if (!existsSync(TOKENS_JSON)) {
-    console.error(`${TOKENS_JSON} not found. Run \`npm run build-dist\` first.`);
+  if (!existsSync(THEME_CSS)) {
+    console.error(`${THEME_CSS} not found. Run \`node style-dictionary.config.js\` first.`);
     process.exit(2);
   }
-  const raw = JSON.parse(readFileSync(TOKENS_JSON, "utf8"));
-  const flat = [];
-  (function walk(o, p = []) {
-    for (const [k, v] of Object.entries(o)) {
-      if (v && typeof v === "object") {
-        if ("value" in v || "$value" in v) flat.push(p.concat(k).join("-"));
-        else walk(v, p.concat(k));
-      }
-    }
-  })(raw);
-
+  const css = readFileSync(THEME_CSS, "utf8");
   const full = new Set();
-  for (const f of flat) {
-    const m = /^semantic-color-(?:light|midnight|dark)-mode-(.+)$/.exec(f);
-    if (m) full.add(m[1].replace(/-/g, "/"));
+  for (const m of css.matchAll(/^\s*--semantic-color-([a-z0-9-]+)\s*:/gim)) {
+    // --semantic-color-fill-action-primary-dim-rest -> fill/action/primary/dim/rest
+    full.add(m[1].replace(/-/g, "/"));
   }
   // every proper prefix is a legitimate group reference
   const groups = new Set();
