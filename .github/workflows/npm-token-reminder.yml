@@ -66,35 +66,35 @@ jobs:
               --label "npm-token-renewal" \
               --body "## npm token renewal needed
 
-The npm publish token expires on **\`${EXPIRES_AT}\`** — **${DAYS_LEFT} day(s)** from today.
+          The npm publish token expires on **\`${EXPIRES_AT}\`** — **${DAYS_LEFT} day(s)** from today.
 
-If not renewed, \`publish-tokens.yml\` will silently fail with a 404 error.
+          If not renewed, \`publish-tokens.yml\` will silently fail with a 404 error.
 
----
+          ---
 
-### How to renew (2 minutes)
+          ### How to renew (2 minutes)
 
-1. Go to [npmjs.com → Access Tokens → Generate New Token](https://www.npmjs.com/settings/helloimjolopez_pathway/tokens/granular-access-tokens/new)
-2. Fill in:
-   - **Token name**: \`pathway-ds-publish\`
-   - **Bypass 2FA**: ✅ checked
-   - **Packages and scopes → Permissions**: Read and write
-   - **Expiration**: 90 days
-3. Copy the token (starts with \`npm_...\`)
-4. Tell Claude: \`here is my new npm token: npm_xxx\`
+          1. Go to [npmjs.com → Access Tokens → Generate New Token](https://www.npmjs.com/settings/helloimjolopez_pathway/tokens/granular-access-tokens/new)
+          2. Fill in:
+          - **Token name**: \`pathway-ds-publish\`
+          - **Bypass 2FA**: ✅ checked
+          - **Packages and scopes → Permissions**: Read and write
+          - **Expiration**: 90 days
+          3. Copy the token (starts with \`npm_...\`)
+          4. Tell Claude: \`here is my new npm token: npm_xxx\`
 
-Claude will read \`.github/npm-token-meta.json\`, update every location below, update the expiry date, commit, and push — one step.
+          Claude will read \`.github/npm-token-meta.json\`, update every location below, update the expiry date, commit, and push — one step.
 
----
+          ---
 
-### Locations this token is used
+          ### Locations this token is used
 
-${USED_IN}
+          ${USED_IN}
 
----
+          ---
 
-*This issue was opened automatically by \`.github/workflows/npm-token-reminder.yml\`.*
-*It will close itself once the token is renewed and the expiry date in \`npm-token-meta.json\` is updated.*"
+          *This issue was opened automatically by \`.github/workflows/npm-token-reminder.yml\`.*
+          *It will close itself once the token is renewed and the expiry date in \`npm-token-meta.json\` is updated.*"
           else
             echo "Reminder issue already open — skipping."
           fi

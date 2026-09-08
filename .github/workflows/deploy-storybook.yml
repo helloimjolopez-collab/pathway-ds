@@ -8,8 +8,8 @@ name: Deploy Storybook to GitHub Pages (legacy — retired)
 # Kept as manual-only in case a committed /storybook/ is ever needed again.
 
 on:
+  # Manual only. This workflow is retired; deploy-pages.yml is the live one.
   workflow_dispatch:
-  workflow_dispatch: # Allow manual trigger
 
 # Only one deploy at a time. If a newer commit triggers a deploy while
 # one is in progress, cancel the older run.
