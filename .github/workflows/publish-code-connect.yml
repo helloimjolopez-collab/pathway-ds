@@ -60,16 +60,27 @@ jobs:
           fi
           echo "Token present (${#FIGMA_ACCESS_TOKEN} chars)."
 
-      - name: Validate the mappings parse
-        env:
-          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+      - name: Check the mappings parse
+        # Local parse only, no API call, so this catches a broken template
+        # before we attempt an upload.
         run: npx figma connect parse > /dev/null && echo "All mappings parse."
 
       - name: Publish
         if: ${{ github.event_name == 'push' || inputs.dry_run == false }}
         env:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
-        run: npx figma connect publish
+        # --skip-validation is required, not optional. Validation pre-checks each
+        # node via an endpoint needing the file_content:read scope, which the
+        # publish token does not carry. Publishing itself only needs Code
+        # Connect write. Without this flag the job 403s with a message about a
+        # scope that has nothing to do with publishing.
+        run: |
+          # Two labels, two runs. --label applies to the WHOLE run, not per
+          # file, so publishing everything with --label HTML would tag the React
+          # mappings as HTML too. The default run publishes the React mappings
+          # under "Code"; the second publishes only *-html.figma.ts under "HTML".
+          npx figma connect publish --skip-validation
+          npx figma connect publish --skip-validation --label HTML -c figma.config.html.json
 
       - name: Dry run only
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true }}
