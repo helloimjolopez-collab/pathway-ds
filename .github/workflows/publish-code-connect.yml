@@ -1,0 +1,76 @@
+name: Publish Code Connect to Figma
+
+# Publishes the .figma.ts mappings so Figma Dev Mode shows real code for a
+# component instead of nothing.
+#
+# WHY THIS EXISTS: publishing used to be a manual local run using a personal
+# access token in .env. Nothing watched that token, so when it expired Code
+# Connect silently stopped being published and Dev Mode showed nothing for an
+# unknown length of time. Moving it here puts the credential in the same place
+# as NPM_TOKEN and turns a silent failure into a red CI run.
+#
+# The token is the FIGMA_ACCESS_TOKEN repo secret. It needs exactly three
+# scopes; the API rejects the publish and names the missing one otherwise:
+#   File content   Read only    (file_content:read)
+#   Code Connect   Write        (file_code_connect:write)
+#   Dev resources  Write        (file_dev_resources:write)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "components/**/*.figma.ts"
+      - "components/**/*.jsx"
+      - "figma.config.json"
+      - ".github/workflows/publish-code-connect.yml"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Parse and validate only, do not publish"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: code-connect
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Fail early if the token is missing
+        # A missing secret otherwise surfaces as a confusing 403 from the API.
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        run: |
+          if [ -z "$FIGMA_ACCESS_TOKEN" ]; then
+            echo "FIGMA_ACCESS_TOKEN secret is not set."
+            echo "Add it under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+          echo "Token present (${#FIGMA_ACCESS_TOKEN} chars)."
+
+      - name: Validate the mappings parse
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        run: npx figma connect parse > /dev/null && echo "All mappings parse."
+
+      - name: Publish
+        if: ${{ github.event_name == 'push' || inputs.dry_run == false }}
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        run: npx figma connect publish
+
+      - name: Dry run only
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true }}
+        run: echo "Dry run requested. Parsed and validated, nothing published."
