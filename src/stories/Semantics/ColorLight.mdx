@@ -3,8 +3,26 @@ import { createSemanticColors } from "../components/SemanticColors.js";
 
 <Meta title="Tokens/Semantics/Color (Light Mode)" />
 
-# Semantic Color - Light Mode
+# Semantic Color — Light Mode
 
-Contextual color tokens for light mode, grouped by usage: text, fill, icon, stroke, surface, and overlay. Each token references a primitive color.
+The colour contract is **326 names**, grouped into four tiers: **Foreground**, **Fill**,
+**Stroke** and **Scrim**. Product code resolves colour only through these names, never
+through a primitive and never through a raw hex.
+
+Three of those tiers were reshaped on 2026-09-03 and older documents still describe the
+old shape, so to be explicit about what changed: **Text and Icon merged into
+Foreground** (every pair held the same value, so the split doubled the contract without
+ever letting the two diverge), **Surface moved under Fill** as `Fill/Surface/*`, and
+**Overlay became Scrim**. There is no top-level Surface group and no Contextual colour
+group.
+
+Each row shows the swatch on this mode's ground, the CSS custom property to copy, the
+resolved value, and which primitive rung that value lands on. Foreground rows also
+carry a measured contrast ratio against the ground — measured, not asserted, so a step
+that sits below AA shows up here rather than in a review.
+
+Ladder order below is imposed by the docs. The Figma Variables panel is in creation
+order and cannot be sorted: `variableIds` has no setter, and recreating the variables
+in order would break every existing node binding.
 
 <div ref={(el) => { if (el && !el.hasChildNodes()) el.appendChild(createSemanticColors("light-mode")); }} />

@@ -19,7 +19,14 @@
   line-height: 0;
 }
 
-/* Tone × emphasis binding - ONLY icon.static.* tokens. No raw hex, no primitives. */
+/* Tone x emphasis binding - ONLY foreground.static.* tokens. No raw hex, no
+   primitives. Text and Icon merged into Foreground on 2026-09-03, so the
+   `icon.static.*` family this file used to name no longer exists.
+
+   NOTE the two vocabularies in play: `data-emphasis` is the COMPONENT's prop
+   value and `base` is a valid one, mapping to the ladder's `medium` step. The
+   ladder itself has no `base` rung. Keeping the prop name is deliberate - it is
+   the component's API and renaming it would break every consumer. */
 .pds-spinner[data-tone="neutral"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-neutral-light); }
 .pds-spinner[data-tone="neutral"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-neutral-subtle); }
 .pds-spinner[data-tone="neutral"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-neutral-medium); }
@@ -38,11 +45,11 @@
 .pds-spinner[data-tone="info"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-brand-bold); }
 .pds-spinner[data-tone="info"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-brand-bold); }
 
-.pds-spinner[data-tone="warning"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-status-warning-faint); }
-.pds-spinner[data-tone="warning"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-status-warning-subtle); }
-.pds-spinner[data-tone="warning"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-status-warning-medium); }
-.pds-spinner[data-tone="warning"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-status-warning-contrast); }
-.pds-spinner[data-tone="warning"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-status-warning-bold); }
+.pds-spinner[data-tone="warning"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-status-attention-faint); }
+.pds-spinner[data-tone="warning"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-status-attention-subtle); }
+.pds-spinner[data-tone="warning"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-status-attention-medium); }
+.pds-spinner[data-tone="warning"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-status-attention-contrast); }
+.pds-spinner[data-tone="warning"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-status-attention-bold); }
 
 .pds-spinner[data-tone="danger"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-status-negative-faint); }
 .pds-spinner[data-tone="danger"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-status-negative-subtle); }

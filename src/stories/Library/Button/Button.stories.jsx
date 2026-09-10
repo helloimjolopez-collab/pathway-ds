@@ -2,7 +2,7 @@
  * Button - Storybook stories
  *
  * Playground · StateMatrix · ElementExplorer · AllSizes · IconVariants · LoadingState
- * · TokensFill · TokensText · TokensStroke · TokensIcon
+ * · TokensFill · TokensForeground · TokensStroke
  * · TokensTypography · TokensSpacing · TokensMotion · TokensRadius
  * · StandaloneDemo
  *
@@ -11,7 +11,7 @@
  */
 
 import React, { useState } from "react";
-import { Button, ButtonSpinner, T, SIZES } from "../../../../components/button/button.jsx";
+import { Button, ButtonSpinner, T, SIZES, FILL, FG, STROKE } from "../../../../components/button/button.jsx";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -380,85 +380,133 @@ LoadingState.parameters = {
   },
 };
 
+// ─── Colour token stories ─────────────────────────────────────────────────────
+//
+// These four stories are GENERATED from the component's own token tables, which
+// button.jsx exports as FILL, FG and STROKE. They are not a hand-written list.
+//
+// WHY: until 2026-09-09 they WERE a hand-written list, and every name in it was
+// wrong. They templated `--semantic-color-light-mode-fill-action-...`, a
+// mode-in-name form that died with tokens.css on 2026-09-03; they named
+// Tertiary and *inverse families that were deleted; they used `text-` and
+// `icon-` tiers that merged into `foreground-`; and they suffixed `base` where
+// the tokens now say `rest`. Every row rendered an empty swatch and a "-" hex,
+// because TokenRow resolves the variable for real and a name that resolves to
+// nothing has nothing to show.
+//
+// Reading the tables from the component makes that class of drift impossible:
+// there is one list of names, the component's, and it is the list that ships.
+// A token rename now moves these rows automatically or breaks the build.
+
+// The state keys the component's tables actually use.
+const TOKEN_STATES = ["base", "hover", "pressed", "disabled"];
+
+// `base` is the table's key for the resting state; the token it points at is
+// named `rest`. Both names are correct in their own layer, so the label says
+// which is which rather than pretending they are the same word.
+const STATE_LABEL = { base: "rest", hover: "hover", pressed: "pressed", disabled: "disabled" };
+
+/** Render one style x type block from a component token table. */
+function TokenBlock({ table, styleName, type, describe }) {
+  const row = table[styleName] && table[styleName][type];
+  if (!row) return null;
+  return (
+    <div key={styleName + type}>
+      <SectionLabel>{styleName} - {type}</SectionLabel>
+      {TOKEN_STATES.map((state) => {
+        const value = row[state];
+        if (!value) return null;
+        // A table entry can be the literal "transparent" rather than a var(),
+        // which is a real answer for Outlined and Naked at rest. Show it as
+        // such instead of rendering a swatch of nothing.
+        if (!String(value).startsWith("var(")) {
+          return (
+            <div
+              key={state}
+              style={{ display: "flex", alignItems: "center", gap: 12, padding: "6px 0",
+                borderBottom: "1px solid #f0f1f5", fontFamily: "'Red Hat Text', sans-serif" }}
+            >
+              <div style={{ width: 32, height: 32, borderRadius: 6, flexShrink: 0,
+                border: "1px dashed #c9cde0",
+                background: "repeating-conic-gradient(#f4f4f6 0% 25%, #fff 0% 50%) 50%/10px 10px" }} />
+              <code style={{ fontSize: 12, color: "#3a3f5c", flex: "0 0 360px" }}>{String(value)}</code>
+              <code style={{ fontSize: 12, color: "#8890b0", flex: "0 0 96px" }}>-</code>
+              <span style={{ fontSize: 12, color: "#8890b0" }}>
+                {describe(styleName, type, STATE_LABEL[state])} (no fill at rest by design)
+              </span>
+            </div>
+          );
+        }
+        return (
+          <TokenRow
+            key={state}
+            name={value}
+            description={describe(styleName, type, STATE_LABEL[state])}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
 // ─── TokensFill ───────────────────────────────────────────────────────────────
 
 export const TokensFill = () => (
   <div>
-    {TYPES.map(type => (
-      <div key={type}>
-        <SectionLabel>Fill - {type}</SectionLabel>
-        {[
-          { suffix: "base",     description: `${type} / Fill / resting background` },
-          { suffix: "hover",    description: `${type} / Fill / pointer over` },
-          { suffix: "pressed",  description: `${type} / Fill / active press` },
-          { suffix: "disabled", description: `${type} / Fill / non-interactive` },
-        ].map(({ suffix, description }) => (
-          <TokenRow
-            key={suffix}
-            name={`var(--semantic-color-light-mode-fill-action-${type.toLowerCase()}-${suffix})`}
-            description={description}
-          />
-        ))}
-        <SectionLabel>Outlined / Naked - {type} hover fill</SectionLabel>
-        <TokenRow
-          name={`var(--semantic-color-light-mode-fill-action-${type.toLowerCase()}inverse-hover)`}
-          description={`${type} / hover overlay on transparent surface`}
+    {["Fill", "Outlined"].map((styleName) =>
+      TYPES.map((type) => (
+        <TokenBlock
+          key={styleName + type}
+          table={FILL}
+          styleName={styleName}
+          type={type}
+          describe={(s, t, st) => `${t} / ${s} / ${st} background`}
         />
-      </div>
-    ))}
+      ))
+    )}
   </div>
 );
 TokensFill.parameters = {
   docs: {
     description: {
       story:
-        "All `fill.action.*` tokens consumed by the Button. Fill-style buttons use solid fills; " +
-        "Outlined and Naked share the `*inverse` hover/pressed overlays over a transparent base.",
+        "Every background token the Button resolves, read straight from the component's FILL table. " +
+        "Fill-style buttons carry a solid background. Outlined and Naked rest on `transparent` and " +
+        "tint on interaction from the Dim ramps, which is what the retired `*inverse` hover tokens " +
+        "used to do. Naked shares Outlined's table exactly, so it is not repeated. " +
+        "Disabled is ONE token per tier rather than one per type: a disabled control is the same " +
+        "colour whatever it would otherwise have been.",
     },
   },
 };
 
-// ─── TokensText ───────────────────────────────────────────────────────────────
+// ─── TokensForeground ─────────────────────────────────────────────────────────
 
-export const TokensText = () => (
+export const TokensForeground = () => (
   <div>
-    {TYPES.map(type => (
-      <div key={type}>
-        <SectionLabel>Text - Fill / {type}</SectionLabel>
-        {["base", "hover", "pressed", "disabled"].map(suffix => {
-          const isMono = type === "Negative";
-          const isFillPrimary = type === "Primary";
-          const tokenBase = isFillPrimary
-            ? `text-action-primaryinverse-${suffix}`
-            : isMono
-            ? `text-action-mono-${suffix}`
-            : `text-action-${type.toLowerCase()}-${suffix}`;
-          return (
-            <TokenRow
-              key={suffix}
-              name={`var(--semantic-color-${tokenBase})`}
-              description={`Fill / ${type} / ${suffix} label colour`}
-            />
-          );
-        })}
-        <SectionLabel>Text - Outlined & Naked / {type}</SectionLabel>
-        {["base", "hover", "pressed", "disabled"].map(suffix => (
-          <TokenRow
-            key={suffix}
-            name={`var(--semantic-color-light-mode-text-action-${type.toLowerCase()}-${suffix})`}
-            description={`Outlined+Naked / ${type} / ${suffix} label colour`}
-          />
-        ))}
-      </div>
-    ))}
+    {["Fill", "Outlined"].map((styleName) =>
+      TYPES.map((type) => (
+        <TokenBlock
+          key={styleName + type}
+          table={FG}
+          styleName={styleName}
+          type={type}
+          describe={(s, t, st) => `${t} / ${s} / ${st} label and icon colour`}
+        />
+      ))
+    )}
   </div>
 );
-TokensText.parameters = {
+TokensForeground.parameters = {
   docs: {
     description: {
       story:
-        "Label colour tokens. Fill buttons use *inverse* text on their coloured surface. " +
-        "Outlined and Naked use the direct action text token. Negative Fill uses `text.action.mono.*`.",
+        "Label and icon colour, which are now ONE tier. Text and Icon merged into Foreground on " +
+        "2026-09-03 because every pair held the same value; keeping them apart doubled the contract " +
+        "while never letting a button's label and its icon differ. The merge is also a correctness " +
+        "guard: a button is one interactive surface, so its label and icon must not resolve through " +
+        "two ramps that can drift. On a solid fill the foreground is Mono, which has only a `rest` " +
+        "step, so all three interaction states share it - white stays white through hover and press.",
     },
   },
 };
@@ -467,27 +515,19 @@ TokensText.parameters = {
 
 export const TokensStroke = () => (
   <div>
-    {TYPES.map(type => (
-      <div key={type}>
-        <SectionLabel>Stroke (Outlined only) - {type}</SectionLabel>
-        {["base", "hover", "pressed", "disabled"].map(suffix => {
-          const tokenName = type === "Secondary"
-            ? `stroke-action-secondary-inverse-${suffix}`
-            : `stroke-action-${type.toLowerCase()}-${suffix}`;
-          return (
-            <TokenRow
-              key={suffix}
-              name={`var(--semantic-color-light-mode-${tokenName})`}
-              description={`Outlined / ${type} / ${suffix} border colour`}
-            />
-          );
-        })}
-      </div>
+    {TYPES.map((type) => (
+      <TokenBlock
+        key={type}
+        table={{ Outlined: STROKE }}
+        styleName="Outlined"
+        type={type}
+        describe={(s, t, st) => `Outlined / ${t} / ${st} border colour`}
+      />
     ))}
     <SectionLabel>Focus ring</SectionLabel>
     <TokenRow
       name="var(--semantic-color-stroke-focusring-base)"
-      description="Outer ring of the 6px white + 2px brand focus halo"
+      description="Brand ring of the 6px white + 9px brand focus halo"
     />
   </div>
 );
@@ -495,94 +535,75 @@ TokensStroke.parameters = {
   docs: {
     description: {
       story:
-        "Border and focus-ring tokens. Outlined buttons render a 1.5px border " +
-        "(`--semantic-layout-units-contextual-button-border-width-base-base`). " +
-        "Fill and Naked have no border.",
+        "Border tokens, Outlined only - Fill and Naked have no border. There is no Primary Dim " +
+        "stroke ramp, so Tertiary borrows the Primary stroke; that is a deliberate reuse, recorded " +
+        "here so it does not read as a mistake. The border width comes from " +
+        "`--contextual-layout-units-button-border-width-base-base` (0.75px), not from a colour token. " +
+        "Focus ring moved out of the retired Contextual group to Stroke/FocusRing and is a single " +
+        "token shared by every focusable component.",
     },
   },
 };
-
-// ─── TokensIcon ───────────────────────────────────────────────────────────────
-
-export const TokensIcon = () => (
-  <div>
-    {TYPES.map(type => (
-      <div key={type}>
-        <SectionLabel>Icon - Fill / {type}</SectionLabel>
-        {["base", "hover", "pressed", "disabled"].map(suffix => {
-          const isMono = type === "Negative";
-          const isFillPrimary = type === "Primary";
-          const tokenBase = isFillPrimary
-            ? `icon-action-primaryinverse-${suffix}`
-            : isMono
-            ? `icon-action-mono-${suffix}`
-            : `icon-action-${type.toLowerCase()}-${suffix}`;
-          return (
-            <TokenRow
-              key={suffix}
-              name={`var(--semantic-color-${tokenBase})`}
-              description={`Fill / ${type} / ${suffix} icon/spinner colour`}
-            />
-          );
-        })}
-        <SectionLabel>Icon - Outlined & Naked / {type}</SectionLabel>
-        {["base", "hover", "pressed", "disabled"].map(suffix => (
-          <TokenRow
-            key={suffix}
-            name={`var(--semantic-color-light-mode-icon-action-${type.toLowerCase()}-${suffix})`}
-            description={`Outlined+Naked / ${type} / ${suffix} icon/spinner colour`}
-          />
-        ))}
-      </div>
-    ))}
-  </div>
-);
-TokensIcon.parameters = {
-  docs: {
-    description: {
-      story:
-        "Icon and spinner colour tokens. The spinner inherits via `currentColor` from the " +
-        "container's `color` property, which is always set to the current icon token.",
-    },
-  },
-};
-
 // ─── TokensTypography ────────────────────────────────────────────────────────
 
-const TYPOGRAPHY_ROWS = [
-  {
-    size: "L",
-    typeTokens: "--semantic-type-font-size-l + weight-medium + line-height-l-single + letter-spacing-spacious",
-    fontSize: "18px",
-    lineHeight: "24px",
-    fontWeight: "500",
-    letterSpacing: "0.3px",
-    role: "Size L button label",
-  },
-  {
-    size: "M (base)",
-    typeTokens: "--semantic-type-font-size-r + weight-medium + line-height-r-single + letter-spacing-spacious",
-    fontSize: "16px",
-    lineHeight: "22px",
-    fontWeight: "500",
-    letterSpacing: "0.3px",
-    role: "Size M button label (default)",
-  },
-  {
-    size: "S",
-    typeTokens: "--semantic-type-font-size-s + weight-medium + line-height-s-single + letter-spacing-spacious",
-    fontSize: "14px",
-    lineHeight: "20px",
-    fontWeight: "500",
-    letterSpacing: "0.3px",
-    role: "Size S button label",
-  },
-];
+// TYPOGRAPHY_ROWS is DERIVED from the component's SIZES table, not written out.
+//
+// WHY: the hand-written version claimed every size used
+// `letter-spacing-spacious` at 0.3px. The component uses
+// `letter-spacing-compact`, which is 0. It also listed only L, M and S, so XS -
+// added 2026-06-11 - was undocumented. Both errors are the same error: a second
+// copy of a fact that already lived in the code.
+//
+// SIZES stores each value as a `var(--semantic-type-...)` string, so the token
+// name is recovered from the var() and the rendered sample uses the var()
+// directly. That means the sample is drawn by the real token, not by a px
+// number retyped alongside it, so the two cannot disagree.
+const varName = (v) => String(v || "").replace(/^var\((.+)\)$/, "$1");
+
+const TYPOGRAPHY_ROWS = Object.entries(SIZES).map(([size, s]) => ({
+  size: size === "M" ? "M (base)" : size,
+  typeTokens: [
+    varName(s.fontSize),
+    varName(s.fontWeight),
+    varName(s.lineHeight),
+    varName(s.letterSpacing),
+  ].join("  +  "),
+  // Passed through as var() so the browser resolves them; a broken token shows
+  // up as visibly unstyled text rather than as a plausible wrong number.
+  fontSize: s.fontSize,
+  lineHeight: s.lineHeight,
+  fontWeight: s.fontWeight,
+  letterSpacing: s.letterSpacing,
+  role: `Size ${size} button label${size === "M" ? " (default)" : ""}`,
+}));
+/**
+ * Read back what the four type tokens actually computed to.
+ *
+ * The previous version printed hand-typed px numbers next to the token names.
+ * That is how the table came to claim 0.3px tracking for a button that uses 0:
+ * the number and the token were two facts, and only one of them shipped. This
+ * asks the browser instead, so the column cannot disagree with the sample
+ * beside it.
+ */
+function ResolvedType({ fontSize, fontWeight, lineHeight, letterSpacing }) {
+  const [vals, setVals] = useState(null);
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const cs = window.getComputedStyle(document.documentElement);
+    const get = (v) => cs.getPropertyValue(varName(v)).trim() || "?";
+    setVals([get(fontSize), get(fontWeight), get(lineHeight), get(letterSpacing)]);
+  }, [fontSize, fontWeight, lineHeight, letterSpacing]);
+  return (
+    <code style={{ fontSize: 11, color: "#555", fontFamily: "monospace" }}>
+      {vals ? vals.join(" / ") : "resolving..."}
+    </code>
+  );
+}
 
 function TypographyRow({ size, typeTokens, fontSize, lineHeight, fontWeight, letterSpacing, role }) {
   return (
     <div style={{
-      display: "grid", gridTemplateColumns: "80px 280px 160px 1fr",
+      display: "grid", gridTemplateColumns: "90px 360px 1fr 130px",
       gap: 16, alignItems: "center", padding: "12px 0",
       borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text', sans-serif",
     }}>
@@ -612,9 +633,8 @@ function TypographyRow({ size, typeTokens, fontSize, lineHeight, fontWeight, let
           Save changes
         </span>
       </div>
-      <code style={{ fontSize: 11, color: "#555", fontFamily: "monospace" }}>
-        {fontSize} / {fontWeight} / {lineHeight} / {letterSpacing}
-      </code>
+      <ResolvedType fontSize={fontSize} fontWeight={fontWeight}
+        lineHeight={lineHeight} letterSpacing={letterSpacing} />
     </div>
   );
 }
@@ -627,7 +647,7 @@ export const TokensTypography = () => (
       line-height scale.
     </p>
     <div style={{
-      display: "grid", gridTemplateColumns: "80px 280px 160px 1fr",
+      display: "grid", gridTemplateColumns: "90px 360px 1fr 130px",
       gap: 16, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4,
     }}>
       {["Size", "Token", "Sample", "Values"].map(h => (

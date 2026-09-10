@@ -26,6 +26,52 @@ const TONES = [
 ];
 const EMPHASES = ["light", "subtle", "base", "contrast", "bold"];
 
+// Which ladder step each (tone, emphasis) pair resolves to, mirroring the
+// bindings in spinner.css. It exists so the story can PRINT the real token name
+// under each swatch instead of the `icon.static.<tone>.base` it used to print,
+// which named a tier that was merged away and a rung the ladder never had.
+//
+// The two vocabularies here are worth reading carefully, because they no longer
+// agree and that is a live design question, not a bug in this file:
+//
+//   - `tone` is the COMPONENT's prop. Its values include `warning` and
+//     `danger`.
+//   - the TOKENS those two resolve to are now `status/attention` and
+//     `status/severe`, renamed on 2026-09-08.
+//
+// The prop names were deliberately NOT renamed to match. `tone` is public API
+// and changing it breaks every consumer, so it is the user's call, not a
+// silent tidy-up. Until they decide, this map is the place the mismatch is
+// written down.
+const TONE_FAMILY = {
+  neutral: "neutral",
+  brand: "brand",
+  info: "brand",                    // Info has no Static family; it reads Brand
+  warning: "status-attention",      // prop says warning, token says attention
+  danger: "status-severe",          // prop says danger, token says severe
+  negative: "status-negative",
+  positive: "status-positive",
+  "accent-amethyst": "accent-amethyst",
+  "accent-jade": "accent-jade",
+  "accent-seabreeze": "accent-seabreeze",
+};
+
+// The ladder step each emphasis prop maps to. `base` is a prop value, not a
+// rung: the ladder has no `base`, so it points at `medium`.
+const EMPHASIS_STEP = { light: "light", subtle: "subtle", base: "medium", contrast: "contrast", bold: "bold" };
+
+// Brand and Info have a shorter ladder than Neutral, so two steps fall back.
+const FAMILY_OVERRIDES = {
+  brand: { subtle: "faint", contrast: "bold" },
+};
+
+function toneToken(tone, emphasis) {
+  const family = TONE_FAMILY[tone] || tone;
+  const over = FAMILY_OVERRIDES[family === "brand" ? "brand" : family];
+  const step = (over && over[emphasis]) || EMPHASIS_STEP[emphasis] || emphasis;
+  return `foreground.static.${family.replace(/-/g, ".")}.${step}`;
+}
+
 // ─── Spinner component (React) ───────────────────────────────────────────────
 function Spinner({ size = 24, tone = "neutral", emphasis = "base", label = "Loading" }) {
   const style = size != null
@@ -76,7 +122,7 @@ export default {
       description: {
         component:
           "Indeterminate activity indicator built from the Figma `progress-activity` " +
-          "node (`40006622:50003`). Colour is locked to `icon.static.*` semantic tokens. " +
+          "node (`40006622:50003`). Colour is locked to `foreground.static.*` semantic tokens. " +
           "See `components/spinner/spinner-spec.md` for the full spec.",
       },
     },
@@ -103,7 +149,7 @@ FluidSizes.parameters = {
 export const AllTones = () => (
   <Grid>
     {TONES.map(tone => (
-      <Cell key={tone} label={tone} token={`icon.static.${tone}.base`}>
+      <Cell key={tone} label={tone} token={toneToken(tone, "base")}>
         <Spinner size={32} tone={tone} emphasis="base" />
       </Cell>
     ))}
@@ -113,7 +159,8 @@ AllTones.parameters = {
   docs: {
     description: {
       story:
-        "Every tone in `icon.static.*` at `emphasis=\"base\"`. These are the **only** " +
+        "Every tone at `emphasis=\"base\"`, which resolves to the ladder's `medium` step in " +
+        "`foreground.static.*`. These are the **only** " +
         "colour values the spinner accepts. No raw hex, no primitives, no invented tokens.",
     },
   },
@@ -122,7 +169,7 @@ AllTones.parameters = {
 export const EmphasisLadder = () => (
   <Grid>
     {EMPHASES.map(emphasis => (
-      <Cell key={emphasis} label={emphasis} token={`icon.static.brand.${emphasis}`}>
+      <Cell key={emphasis} label={emphasis} token={toneToken("brand", emphasis)}>
         <Spinner size={32} tone="brand" emphasis={emphasis} />
       </Cell>
     ))}

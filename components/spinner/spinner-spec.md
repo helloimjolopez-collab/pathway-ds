@@ -301,7 +301,7 @@ Verified against `tokens/pathway-design-tokens.json` → `semantic.light-mode.co
 | `brand` | `icon.static.brand.*` | `brand.300` | `#3555a0` |
 | `info` | `icon.static.info.*` | `brand.90` | `#5e7dc9` |
 | `warning` | `icon.static.warning.*` | `saffron.80` | `#d3aa43` |
-| `danger` | `Foreground/Static/Status/Danger/*` | `Orange/400` | `#c14d0f` |
+| `danger` | `Foreground/Static/Status/Severe/*` | `Orange/400` | `#c14d0f` |
 | `negative` | `icon.static.negative.*` | `red.100` | `#c84040` |
 | `positive` | `icon.static.positive.*` | `green.70` | `#558f5c` |
 | `accent-amethyst` | `icon.static.accent-amethyst.*` | `amethyst.80` | `#736baa` |
@@ -312,7 +312,7 @@ Verified against `tokens/pathway-design-tokens.json` → `semantic.light-mode.co
 
 > **Note on the status tones:** the token library defines exactly four status intents, each bound to one primitive family — `negative` (red), `alert` (orange), `warning` (saffron), `positive` (green). Use `warning` to prompt the user to stop and look, `alert` when something is failing but recoverable, and `negative` when something has already failed. The spinner accepts all of them for completeness; most product uses will only ever need `neutral` or `brand`.
 >
-> **Resolved 2026-09-07:** the token library renamed Status/Alert to Status/Danger, so `tone="danger"` now matches its token family exactly. No mismatch remains.
+> **Resolved 2026-09-07:** the token library renamed Status/Alert to Status/Severe, so `tone="danger"` now matches its token family exactly. No mismatch remains.
 
 #### 7.1.2 Allowed `emphasis` values
 
@@ -592,7 +592,7 @@ Hard rules. Breaking any of these breaks the component's contract.
 
 | Gap | Priority | Notes |
 |---|---|---|
-| ~~`tone="danger"` no longer matches its token family~~ | RESOLVED 2026-09-07 | Status/Alert was renamed to Status/Danger, so the tone and the token family agree. |
+| ~~`tone="danger"` no longer matches its token family~~ | RESOLVED 2026-09-07 | Status/Alert was renamed to Status/Severe, so the tone and the token family agree. |
 | `spinner.html` redeclares semantic tokens from primitives | MEDIUM (superseded: the demo now links the contract, verified by `scripts/check-demo-tokens.js`) | Lines ~98–102 define `--semantic-color-light-mode-icon-static-*` locally as `var(--primitive-color-orange-*)` rather than consuming `tokens.css`. That is a §6 violation and it means the demo does not track token changes. It also masked the `danger` rename, since the demo defines its own copies. |
 | No `motion` tokens in `pathway-design-tokens.json` | MEDIUM | Duration (`1s`) and easing (`linear`) are hard-coded. Recommend adding a motion token category (see §7.3). Blocks cross-component consistency, not this component's ship. |
 | No `icon.static.*` inverse track | MEDIUM | Spinners sitting on dark/brand-filled surfaces (primary buttons, brand banners) have no matching semantic token — the closest is `neutral.light` (`#7b7b7b`). Recommend adding an inverse track or a dedicated `icon.static.on-brand.*` family. See §9.3. |

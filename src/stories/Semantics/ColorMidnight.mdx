@@ -1,0 +1,28 @@
+import { Meta } from "@storybook/blocks";
+import { createSemanticColors } from "../components/SemanticColors.js";
+
+<Meta title="Tokens/Semantics/Color (Midnight Mode)" />
+
+# Semantic Color — Midnight Mode
+
+Pathway's dark mode is called **Midnight Mode**. The name matters in both directions:
+it is the Pathway name in the Figma Variables panel and in `themes/midnight.css`, and
+it is the only name used in any spec or document. The single exception is the CSS
+selector, which matches both `[data-theme="midnight"]` and `[data-theme="dark"]`, so a
+consumer on another team does not have to learn our vocabulary to switch themes.
+
+These are the **same 326 names** as Light Mode, carrying different values. That is the
+point of the contract: a component names `--semantic-color-foreground-static-neutral-bold`
+once and both modes resolve it by selector. There is no mode-in-name form any more —
+`--semantic-color-dark-mode-*` came from `tokens.css`, retired 2026-09-03, and now
+resolves to nothing.
+
+On the graded ladder the **values invert while the names hold**: Faint stays the
+lightest-touch step and Bold the heaviest, even though in Midnight that means Faint is
+a dark near-ground and Bold is near-white. White, XLight and Black are inversion
+anchors, so they keep their value across modes and are marked `anchor` below.
+
+Contrast badges are measured against a black ground, which is what Midnight surfaces
+resolve to.
+
+<div ref={(el) => { if (el && !el.hasChildNodes()) el.appendChild(createSemanticColors("midnight-mode")); }} />

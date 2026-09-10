@@ -107,17 +107,17 @@ For **icon-only buttons** (`showText={false}`), `ariaLabel` is mandatory - witho
 
 <Canvas of={Stories.TokensFill} />
 
-### Text tokens
+### Foreground tokens - text and icons
 
-<Canvas of={Stories.TokensText} />
+Text and Icon are one tier. They merged into Foreground on 2026-09-03 because
+every pair held the same value, so the split doubled the contract while never
+letting a control's label and its icon differ.
+
+<Canvas of={Stories.TokensForeground} />
 
 ### Stroke tokens
 
 <Canvas of={Stories.TokensStroke} />
-
-### Icon tokens
-
-<Canvas of={Stories.TokensIcon} />
 
 ### Typography
 

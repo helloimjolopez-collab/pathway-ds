@@ -25,7 +25,7 @@ Use it for short, indeterminate waits (roughly 1–10 seconds) where the duratio
 
 <Controls of={Stories.Playground} />
 
-Pick a **tone**, adjust the **emphasis**, change the **size** - every combination resolves to a real semantic token from `icon.static.*`. The `size` prop accepts any CSS length, so try `1em`, `2rem`, or `48` (interpreted as pixels).
+Pick a **tone**, adjust the **emphasis**, change the **size** - every combination resolves to a real semantic token from `foreground.static.*`. The `size` prop accepts any CSS length, so try `1em`, `2rem`, or `48` (interpreted as pixels).
 
 ---
 
@@ -72,15 +72,15 @@ Pass size via any of these equivalent routes:
 
 ---
 
-## Colour - `icon.static.*` semantic tokens only
+## Colour - `foreground.static.*` semantic tokens only
 
-Colour is **locked** to the `icon.static.*` family. The component takes `tone` (which family) and `emphasis` (how strong); the two together resolve to a single semantic token. **No `color` prop. No raw hex. No primitive tokens. No invented tokens.**
+Colour is **locked** to the `foreground.static.*` family. (Text and Icon merged into Foreground on 2026-09-03; `icon.static.*` no longer exists.) The component takes `tone` (which family) and `emphasis` (how strong); the two together resolve to a single semantic token. **No `color` prop. No raw hex. No primitive tokens. No invented tokens.**
 
 ### Tones
 
 <Canvas of={Stories.AllTones} />
 
-Ten semantic tones, each one a real child of `icon.static` in `tokens/pathway-design-tokens.json`. "Accent" isn't a single tone - it's three distinct families (amethyst, jade, seabreeze), each exposed separately. Warning, danger, and negative look similar in purpose but are distinct tokens: `warning` = "stop and look," `danger` = "failing but recoverable," `negative` = "already failed."
+Ten semantic tones, each one a real child of `foreground.static` in `tokens/pathway-design-tokens.json`. "Accent" isn't a single tone - it's three distinct families (amethyst, jade, seabreeze), each exposed separately. Warning, danger, and negative look similar in purpose but are distinct tokens: `warning` = "stop and look," `danger` = "failing but recoverable," `negative` = "already failed."
 
 ### Emphasis ladder
 

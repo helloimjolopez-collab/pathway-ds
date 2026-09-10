@@ -88,13 +88,13 @@ TopNavSearch is the search component that lives inside `TopNav.Global`. It is no
 
 <Canvas of={SearchStories.TokensStroke} />
 
-### Text
+### Foreground tokens - text and icons
 
-<Canvas of={SearchStories.TokensText} />
+Text and Icon are one tier. They merged into Foreground on 2026-09-03 because
+every pair held the same value, so the split doubled the contract while never
+letting a control's label and its icon differ.
 
-### Icon
-
-<Canvas of={SearchStories.TokensIcon} />
+<Canvas of={SearchStories.TokensForeground} />
 
 ### Spacing
 

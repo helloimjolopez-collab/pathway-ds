@@ -82,25 +82,41 @@ Smallest unit you can inspect. Change the label to sanity-check long strings, fl
 
 ## Token mappings
 
-The SideNav binds every colour to a semantic variable in the `Contextual/NavItem/*` family, plus `Fill/Static/Brand/Faint` for the divider and border. No raw hex, no primitives.
+The SideNav binds every colour to a semantic variable. No raw hex, no primitives.
+
+The nav-item colours live in **`Fill/Action/Selection/*`**, not in a `Contextual/NavItem/*` family. That family was retired with the Contextual colour group on 2026-09-03: a nav item is a selectable row, which is a general interaction pattern rather than a fact about navigation, so it belongs in Action alongside every other selectable surface. Anything still naming `Contextual/NavItem/*` is stale.
+
+The current bindings are:
+
+| Role | Token |
+|---|---|
+| Item hover | `Fill/Action/Selection/Hover` |
+| Item selected | `Fill/Action/Selection/Selected` |
+| Trail (ancestor of the active item) | `Fill/Action/Selection/Trail` |
+| Indicator stripe | `Fill/Action/Primary/Pressed` |
+| Panel ground | `Fill/Surface/Sheet` |
+| Divider and border | `Stroke/Static/Neutral/Subtle` |
+| Label, rest / hover / pressed | `Foreground/Action/Secondary/Rest` · `/Hover` · `/Pressed` |
+| Section label and muted text | `Foreground/Static/Neutral/Subtle` |
+| Disabled item | `Foreground/Action/Disabled` |
 
 ### Fill
 
 <Canvas of={Stories.TokensFill} />
 
-Note that `NavItem/Hover` and `NavItem/Trail` are different tokens even though they look similar (4% vs 2% black). They've diverged over time; if they ever fully merge, it'll happen in the token library, not in the component.
+Note that `Selection/Hover` and `Selection/Trail` are different tokens even though they look similar. They have diverged over time; if they ever fully merge, that will happen in the token library, not in the component.
 
 ### Text
 
 <Canvas of={Stories.TokensText} />
 
-There's no separate "trail text" token - every trail state reuses `Foreground/Action/Secondary/Pressed`. If you need the active ink, it's `#1b2d57`.
+There is no separate "trail text" token - every trail state reuses `Foreground/Action/Secondary/Pressed`. The active ink is that same token; read the value from the swatch above rather than copying a hex, because a hex written into prose stops tracking the token the moment the token moves.
 
 ### Icon
 
 <Canvas of={Stories.TokensIcon} />
 
-The Active icon token (`#2d4889`) is also the colour of the **indicator stripe**. Same variable, two places. When Figma updates this token, both repaint together.
+The Active icon token is also the colour of the **indicator stripe**. Same variable, two places, so when the token changes both repaint together. The value is deliberately not written out here: this page used to quote it as a hex, and a quoted hex is a second copy of a fact that silently goes stale.
 
 ### Section Label
 

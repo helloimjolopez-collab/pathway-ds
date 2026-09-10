@@ -1084,7 +1084,7 @@
                 "$value": "{primitive-color.brand.50}"
               }
             },
-            "warning": {
+            "attention": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.350}"
@@ -1098,7 +1098,7 @@
                 "$value": "{primitive-color.saffron.500}"
               }
             },
-            "warning-dim": {
+            "attention-dim": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.75}"
@@ -1112,7 +1112,7 @@
                 "$value": "{primitive-color.saffron.150}"
               }
             },
-            "danger": {
+            "severe": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.400}"
@@ -1126,7 +1126,7 @@
                 "$value": "{primitive-color.orange.600}"
               }
             },
-            "danger-dim": {
+            "severe-dim": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.25}"
@@ -1422,7 +1422,7 @@
                 "$value": "{primitive-color.green.200}"
               }
             },
-            "warning": {
+            "attention": {
               "faint": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.0}"
@@ -1433,14 +1433,14 @@
               },
               "contrast": {
                 "$type": "color",
-                "$value": "{primitive-color.saffron.75}"
+                "$value": "{primitive-color.saffron.100}"
               },
               "bold": {
                 "$type": "color",
-                "$value": "{primitive-color.saffron.100}"
+                "$value": "{primitive-color.saffron.150}"
               }
             },
-            "danger": {
+            "severe": {
               "faint": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.25}"
@@ -1682,7 +1682,7 @@
                 "$value": "{primitive-color.brand.500}"
               }
             },
-            "warning": {
+            "attention": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.400}"
@@ -1696,7 +1696,7 @@
                 "$value": "{primitive-color.saffron.700}"
               }
             },
-            "danger": {
+            "severe": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.500}"
@@ -1840,7 +1840,7 @@
                 "$value": "{primitive-color.green.900}"
               }
             },
-            "warning": {
+            "attention": {
               "subtle": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.500}"
@@ -1862,7 +1862,7 @@
                 "$value": "{primitive-color.saffron.900}"
               }
             },
-            "danger": {
+            "severe": {
               "subtle": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.500}"
@@ -2100,7 +2100,7 @@
                 "$value": "{primitive-color.brand.350}"
               }
             },
-            "warning": {
+            "attention": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.350}"
@@ -2114,7 +2114,7 @@
                 "$value": "{primitive-color.saffron.500}"
               }
             },
-            "danger": {
+            "severe": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.350}"
@@ -2344,25 +2344,25 @@
                 "$value": "{primitive-color.green.350}"
               }
             },
-            "warning": {
+            "attention": {
               "faint": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.25}"
               },
               "medium": {
                 "$type": "color",
-                "$value": "{primitive-color.saffron.75}"
+                "$value": "{primitive-color.saffron.100}"
               },
               "contrast": {
                 "$type": "color",
-                "$value": "{primitive-color.saffron.100}"
+                "$value": "{primitive-color.saffron.150}"
               },
               "bold": {
                 "$type": "color",
-                "$value": "{primitive-color.saffron.150}"
+                "$value": "{primitive-color.saffron.200}"
               }
             },
-            "danger": {
+            "severe": {
               "faint": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.0}"
@@ -2608,7 +2608,7 @@
                 "$value": "{primitive-color.brand.500}"
               }
             },
-            "warning": {
+            "attention": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.350}"
@@ -2622,7 +2622,7 @@
                 "$value": "{primitive-color.saffron.200}"
               }
             },
-            "warning-dim": {
+            "attention-dim": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.700}"
@@ -2636,7 +2636,7 @@
                 "$value": "{primitive-color.saffron.400}"
               }
             },
-            "danger": {
+            "severe": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.300}"
@@ -2650,7 +2650,7 @@
                 "$value": "{primitive-color.orange.200}"
               }
             },
-            "danger-dim": {
+            "severe-dim": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.800}"
@@ -2946,14 +2946,14 @@
                 "$value": "{primitive-color.green.300}"
               }
             },
-            "warning": {
+            "attention": {
               "faint": {
                 "$type": "color",
-                "$value": "{primitive-color.saffron.500}"
+                "$value": "{primitive-color.saffron.700}"
               },
               "subtle": {
                 "$type": "color",
-                "$value": "{primitive-color.saffron.400}"
+                "$value": "{primitive-color.saffron.500}"
               },
               "contrast": {
                 "$type": "color",
@@ -2964,7 +2964,7 @@
                 "$value": "{primitive-color.saffron.300}"
               }
             },
-            "danger": {
+            "severe": {
               "faint": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.800}"
@@ -3206,7 +3206,7 @@
                 "$value": "{primitive-color.brand.50}"
               }
             },
-            "warning": {
+            "attention": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.300}"
@@ -3220,7 +3220,7 @@
                 "$value": "{primitive-color.saffron.150}"
               }
             },
-            "danger": {
+            "severe": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.250}"
@@ -3364,7 +3364,7 @@
                 "$value": "{primitive-color.green.100}"
               }
             },
-            "warning": {
+            "attention": {
               "subtle": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.300}"
@@ -3386,7 +3386,7 @@
                 "$value": "{primitive-color.saffron.75}"
               }
             },
-            "danger": {
+            "severe": {
               "subtle": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.300}"
@@ -3624,7 +3624,7 @@
                 "$value": "{primitive-color.brand.100}"
               }
             },
-            "warning": {
+            "attention": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.350}"
@@ -3638,7 +3638,7 @@
                 "$value": "{primitive-color.saffron.200}"
               }
             },
-            "danger": {
+            "severe": {
               "rest": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.350}"
@@ -3868,25 +3868,25 @@
                 "$value": "{primitive-color.green.500}"
               }
             },
-            "warning": {
+            "attention": {
               "faint": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.900}"
               },
               "medium": {
                 "$type": "color",
-                "$value": "{primitive-color.saffron.800}"
+                "$value": "{primitive-color.saffron.700}"
               },
               "contrast": {
                 "$type": "color",
-                "$value": "{primitive-color.saffron.700}"
+                "$value": "{primitive-color.saffron.500}"
               },
               "bold": {
                 "$type": "color",
-                "$value": "{primitive-color.saffron.500}"
+                "$value": "{primitive-color.saffron.400}"
               }
             },
-            "danger": {
+            "severe": {
               "faint": {
                 "$type": "color",
                 "$value": "{primitive-color.orange.900}"

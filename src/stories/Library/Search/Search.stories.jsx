@@ -9,8 +9,9 @@
  *
  * Story set:
  *   Playground, StateMatrix, TopNavSearchStory, TokensFill, TokensStroke,
- *   TokensText, TokensIcon, TokensSpacing, TokensMotion, StandaloneDemo
+ *   TokensForeground, TokensSpacing, TokensMotion, StandaloneDemo
  */
+import { LiveTokenTable } from "../../components/LiveTokenTable.jsx";
 import React, { useState } from "react";
 import { SearchInput, TopNavSearch } from "../../../../components/search/search.jsx";
 
@@ -308,61 +309,71 @@ function TokenTable({ title, rows }) {
   );
 }
 
-// ── 4. Tokens - Fill ──────────────────────────────────────────────────────────
+// ── 4-7. Colour tokens ───────────────────────────────────────────────────────
+//
+// Rewritten 2026-09-09. These four tables previously listed names that no
+// longer exist (`fill.action.tertiary.*`, every `*inverse` family, `text.*` and
+// `icon.*` as separate tiers, `.base` on Action tokens) beside HAND-TYPED hex
+// values. Both halves could go stale independently, and both had.
+//
+// The names below are the ones search.jsx actually resolves. The values are not
+// written here at all - LiveTokenTable reads them off the live custom property,
+// so a token that gets deleted shows "unresolved" in red on this page rather
+// than a colour that used to be true.
+//
+// Text and Icon are ONE table now because they are one tier: they merged into
+// Foreground on 2026-09-03.
 
 export const TokensFill = () => (
-  <TokenTable title="Fill tokens" rows={[
-    { token: "fill.static.neutral.light",          hex: "#ffffff",             usage: "Bar background (all states except disabled)" },
-    { token: "fill.action.tertiary.base",           hex: "#eef2fb",             usage: "Filter pill background - filter-active state" },
-    { token: "fill.action.secondaryinverse.hover",  hex: "rgba(17,17,17,0.02)", usage: "Icon pill - hover" },
-    { token: "fill.action.secondaryinverse.pressed",hex: "#f6f6f6",             usage: "Icon pill - pressed" },
-    { token: "fill.action.primary.base",            hex: "#3555a0",             usage: "Badge dot fill" },
-    { token: "fill.action.primaryinverse.base",     hex: "rgba(160,181,230,0.08)", usage: "TopNavSearch collapsed button background" },
-    { token: "primitive.cool-neutral.10 (gap)",     hex: "#fbfbfb",             usage: "Bar background - disabled (primitive fallback, §17)" },
-  ]} />
+  <LiveTokenTable
+    title="Fill tokens"
+    note="Backgrounds. Surface lives under Fill now, so the bar ground is a Fill token rather than a Surface one."
+    rows={[
+      { token: "fill.static.neutral.faint",       usage: "Bar background - all states except disabled" },
+      { token: "fill.action.primary-dim.rest",    usage: "Filter pill background - filter-active state. Primary Dim replaced the deleted Tertiary ramp" },
+      { token: "fill.action.primary-dim.hover",   usage: "Icon pill - hover. The Dim ramp is the tint the retired *inverse hovers provided" },
+      { token: "fill.action.primary.rest",        usage: "Badge dot fill" },
+      { token: "fill.static.brand.light",         usage: "TopNavSearch collapsed button background" },
+    ]}
+  />
 );
 TokensFill.storyName = "Tokens - Fill";
 TokensFill.tags = ["!dev"];
 
-// ── 5. Tokens - Stroke ────────────────────────────────────────────────────────
-
 export const TokensStroke = () => (
-  <TokenTable title="Stroke tokens" rows={[
-    { token: "stroke.static.neutral.light",          hex: "#f6f6f6", usage: "Bar border - idle (0.75px)" },
-    { token: "stroke.action.primary.hover",          hex: "#86a0dd", usage: "Bar border - hover (1px)" },
-    { token: "stroke.action.primary.pressed",        hex: "#6e8bd4", usage: "Bar border - focused / with-value / filter-active (1px)" },
-    { token: "stroke.action.negative.base",          hex: "#b03a3a", usage: "Bar border - error (1px)" },
-    { token: "stroke.action.secondary-inverse.base", hex: "#d2d2d2", usage: "Cancel–filter divider (0.75px)" },
-    { token: "primitive.cool-neutral.30 (gap)",      hex: "#ededed", usage: "Bar border - disabled (primitive fallback, §17)" },
-  ]} />
+  <LiveTokenTable
+    title="Stroke tokens"
+    note="Borders. The disabled border no longer falls back to a primitive: product code must never name a --primitive-* (CLAUDE.md §6), so it reads the Static Neutral ladder."
+    rows={[
+      { token: "stroke.static.neutral.faint",        usage: "Bar border - idle (0.75px), and disabled" },
+      { token: "stroke.action.primary.rest",         usage: "Bar border - with-value / filter-active (1px)" },
+      { token: "stroke.action.primary.hover",        usage: "Bar border - hover (1px)" },
+      { token: "stroke.action.primary.pressed",      usage: "Bar border - focused (1px)" },
+      { token: "stroke.action.status-negative.rest", usage: "Bar border - error (1px). Negative moved under Status" },
+      { token: "stroke.action.secondary.rest",       usage: "Cancel-filter divider (0.75px)" },
+    ]}
+  />
 );
 TokensStroke.storyName = "Tokens - Stroke";
 TokensStroke.tags = ["!dev"];
 
-// ── 6. Tokens - Text ──────────────────────────────────────────────────────────
-
-export const TokensText = () => (
-  <TokenTable title="Text tokens" rows={[
-    { token: "text.static.secondary.subtle", hex: "#606060", usage: "Placeholder text" },
-    { token: "text.static.secondary.bold",   hex: "#202020", usage: "Input value text" },
-  ]} />
+export const TokensForeground = () => (
+  <LiveTokenTable
+    title="Foreground tokens - text and icons"
+    note="One tier for both. Text and Icon merged on 2026-09-03 because every pair held the same value; the split doubled the contract while never letting a control's label and its icon differ."
+    rows={[
+      { token: "foreground.static.neutral.subtle",         usage: "Placeholder text" },
+      { token: "foreground.static.neutral.bold",           usage: "Input value text" },
+      { token: "foreground.action.secondary.rest",         usage: "All icons - idle" },
+      { token: "foreground.action.secondary.hover",        usage: "All icons - hover / focused" },
+      { token: "foreground.action.disabled",               usage: "All icons - disabled. ONE disabled token per tier, not one per role" },
+      { token: "foreground.action.status-negative.rest",   usage: "Search icon - error state" },
+      { token: "foreground.action.mono.rest",              usage: "Badge count on the filled badge dot. Mono has only a rest step" },
+    ]}
+  />
 );
-TokensText.storyName = "Tokens - Text";
-TokensText.tags = ["!dev"];
-
-// ── 7. Tokens - Icon ──────────────────────────────────────────────────────────
-
-export const TokensIcon = () => (
-  <TokenTable title="Icon tokens" rows={[
-    { token: "icon.action.secondaryinverse.base",     hex: "#6b6b6b", usage: "All icons - idle" },
-    { token: "icon.action.secondaryinverse.hover",    hex: "#545454", usage: "All icons - hover / focused" },
-    { token: "icon.action.secondary.disabled",        hex: "#979797", usage: "All icons - disabled" },
-    { token: "icon.action.negative.base",             hex: "#b03a3a", usage: "Search icon - error state" },
-  ]} />
-);
-TokensIcon.storyName = "Tokens - Icon";
-TokensIcon.tags = ["!dev"];
-
+TokensForeground.storyName = "Tokens - Foreground";
+TokensForeground.tags = ["!dev"];
 // ── 8. Tokens - Spacing ───────────────────────────────────────────────────────
 
 export const TokensSpacing = () => (

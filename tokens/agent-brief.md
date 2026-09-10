@@ -61,7 +61,7 @@ Raw colour palettes. Higher step numbers = darker. Most palettes also have alpha
 | Lagoon | 10–190 | Teal-cyan. |
 | Jade | 10–190 | Green-teal. |
 | Amethyst | 0–180 | Purple. `30 = #dcd9ef`, `150 = #221e3f` (profile avatar). |
-| Saffron | 0-900 | Saffron gold easing into warm chocolate. Backs Status/Warning. |
+| Saffron | 0-900 | Saffron gold easing into warm chocolate. Backs Status/Attention. |
 | Mauve | 0–200 | Pink-purple. |
 
 Primitives are **never referenced in components**. They are only aliased by semantic tokens.

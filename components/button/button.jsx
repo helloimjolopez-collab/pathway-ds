@@ -33,7 +33,7 @@ const ST = (p) => `var(--semantic-type-${p})`;
 // offset by one ramp step, so Tertiary now reads the Primary Dim ramp. Negative
 // moved under Status. Disabled is ONE token per tier, not one per type — a
 // disabled control is the same colour whatever it would have been.
-const FILL = {
+export const FILL = {
   Fill: {
     Primary:   { base: SC("fill-action-primary-rest"),              hover: SC("fill-action-primary-hover"),              pressed: SC("fill-action-primary-pressed"),              disabled: SC("fill-action-disabled") },
     Secondary: { base: SC("fill-action-secondary-rest"),            hover: SC("fill-action-secondary-hover"),            pressed: SC("fill-action-secondary-pressed"),            disabled: SC("fill-action-disabled") },
@@ -58,7 +58,7 @@ FILL.Naked = FILL.Outlined;
 //
 // On a solid fill the foreground is Mono, which has only a rest step — white
 // stays white through hover and pressed, so all three states share it.
-const FG = {
+export const FG = {
   Fill: {
     Primary:   { base: SC("foreground-action-mono-rest"),             hover: SC("foreground-action-mono-rest"),             pressed: SC("foreground-action-mono-rest"),             disabled: SC("foreground-action-disabled") },
     Secondary: { base: SC("foreground-action-secondary-rest"),        hover: SC("foreground-action-secondary-hover"),        pressed: SC("foreground-action-secondary-pressed"),        disabled: SC("foreground-action-disabled") },
@@ -81,7 +81,7 @@ const ICON = FG;
 
 // ─── STROKE TOKENS (Outlined only) ────────────────────────────────────────────
 // There is no Primary Dim stroke ramp, so Tertiary borrows the Primary stroke.
-const STROKE = {
+export const STROKE = {
   Primary:   { base: SC("stroke-action-primary-rest"),          hover: SC("stroke-action-primary-hover"),          pressed: SC("stroke-action-primary-pressed"),          disabled: SC("stroke-action-disabled") },
   Secondary: { base: SC("stroke-action-secondary-rest"),        hover: SC("stroke-action-secondary-hover"),        pressed: SC("stroke-action-secondary-pressed"),        disabled: SC("stroke-action-disabled") },
   Tertiary:  { base: SC("stroke-action-primary-rest"),          hover: SC("stroke-action-primary-hover"),          pressed: SC("stroke-action-primary-pressed"),          disabled: SC("stroke-action-disabled") },

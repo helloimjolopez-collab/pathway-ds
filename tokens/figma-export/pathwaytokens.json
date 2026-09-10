@@ -1134,7 +1134,7 @@
                     "$value": "{Brand.50}"
                   }
                 },
-                "Warning": {
+                "Attention": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -1154,7 +1154,7 @@
                     "$value": "{Saffron.500}"
                   }
                 },
-                "Warning Dim": {
+                "Attention Dim": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -1174,7 +1174,7 @@
                     "$value": "{Saffron.150}"
                   }
                 },
-                "Danger": {
+                "Severe": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -1194,7 +1194,7 @@
                     "$value": "{Orange.600}"
                   }
                 },
-                "Danger Dim": {
+                "Severe Dim": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -1616,7 +1616,7 @@
                     "$value": "{Green.200}"
                   }
                 },
-                "Warning": {
+                "Attention": {
                   "Faint": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -1633,16 +1633,20 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Saffron.75}"
+                    "$value": "{Saffron.100}"
                   },
                   "Bold": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Saffron.100}"
+                    "$value": "{Saffron.150}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$value": "{Saffron.75}"
                   }
                 },
-                "Danger": {
+                "Severe": {
                   "Faint": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -1988,7 +1992,7 @@
                     "$value": "{Brand.500}"
                   }
                 },
-                "Warning": {
+                "Attention": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -2008,7 +2012,7 @@
                     "$value": "{Saffron.700}"
                   }
                 },
-                "Danger": {
+                "Severe": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -2212,7 +2216,7 @@
                     "$value": "{Green.900}"
                   }
                 },
-                "Warning": {
+                "Attention": {
                   "Subtle": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -2244,7 +2248,7 @@
                     "$value": "{Saffron.900}"
                   }
                 },
-                "Danger": {
+                "Severe": {
                   "Subtle": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -2586,7 +2590,7 @@
                     "$value": "{Brand.350}"
                   }
                 },
-                "Warning": {
+                "Attention": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -2606,7 +2610,7 @@
                     "$value": "{Saffron.500}"
                   }
                 },
-                "Danger": {
+                "Severe": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -2934,7 +2938,7 @@
                     "$value": "{Green.350}"
                   }
                 },
-                "Warning": {
+                "Attention": {
                   "Faint": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -2945,22 +2949,26 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Saffron.75}"
+                    "$value": "{Saffron.100}"
                   },
                   "Contrast": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Saffron.100}"
+                    "$value": "{Saffron.150}"
                   },
                   "Bold": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Saffron.150}"
+                    "$value": "{Saffron.200}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$value": "{Saffron.75}"
                   }
                 },
-                "Danger": {
+                "Severe": {
                   "Faint": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -3310,7 +3318,7 @@
                     "$value": "{Brand.500}"
                   }
                 },
-                "Warning": {
+                "Attention": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -3330,7 +3338,7 @@
                     "$value": "{Saffron.200}"
                   }
                 },
-                "Warning Dim": {
+                "Attention Dim": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -3350,7 +3358,7 @@
                     "$value": "{Saffron.400}"
                   }
                 },
-                "Danger": {
+                "Severe": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -3370,7 +3378,7 @@
                     "$value": "{Orange.200}"
                   }
                 },
-                "Danger Dim": {
+                "Severe Dim": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -3792,18 +3800,18 @@
                     "$value": "{Green.300}"
                   }
                 },
-                "Warning": {
+                "Attention": {
                   "Faint": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Saffron.500}"
+                    "$value": "{Saffron.700}"
                   },
                   "Subtle": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Saffron.400}"
+                    "$value": "{Saffron.500}"
                   },
                   "Contrast": {
                     "$type": "color",
@@ -3816,9 +3824,13 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Saffron.300}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$value": "{Saffron.400}"
                   }
                 },
-                "Danger": {
+                "Severe": {
                   "Faint": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -4164,7 +4176,7 @@
                     "$value": "{Brand.50}"
                   }
                 },
-                "Warning": {
+                "Attention": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -4184,7 +4196,7 @@
                     "$value": "{Saffron.150}"
                   }
                 },
-                "Danger": {
+                "Severe": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -4388,7 +4400,7 @@
                     "$value": "{Green.100}"
                   }
                 },
-                "Warning": {
+                "Attention": {
                   "Subtle": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -4420,7 +4432,7 @@
                     "$value": "{Saffron.75}"
                   }
                 },
-                "Danger": {
+                "Severe": {
                   "Subtle": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -4762,7 +4774,7 @@
                     "$value": "{Brand.100}"
                   }
                 },
-                "Warning": {
+                "Attention": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -4782,7 +4794,7 @@
                     "$value": "{Saffron.200}"
                   }
                 },
-                "Danger": {
+                "Severe": {
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -5110,7 +5122,7 @@
                     "$value": "{Green.500}"
                   }
                 },
-                "Warning": {
+                "Attention": {
                   "Faint": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
@@ -5121,22 +5133,26 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Saffron.800}"
+                    "$value": "{Saffron.700}"
                   },
                   "Contrast": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Saffron.700}"
+                    "$value": "{Saffron.500}"
                   },
                   "Bold": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Saffron.500}"
+                    "$value": "{Saffron.400}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$value": "{Saffron.800}"
                   }
                 },
-                "Danger": {
+                "Severe": {
                   "Faint": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",

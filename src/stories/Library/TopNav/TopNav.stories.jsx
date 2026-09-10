@@ -302,7 +302,7 @@ export const TokensFill = {
       <TokenRow key="avbg"   varName="--semantic-color-fill-static-accent-amethyst-medium" fallback="#dcd9ef"               label="Profile avatar background" />,
     ]} />
   ),
-  parameters: { docs: { description: { story: "All fill tokens used by TopNav.Global. Applied on the brand-blue surface via dark-mode token family." } } },
+  parameters: { docs: { description: { story: "All fill tokens used by TopNav.Global. The nav bar is a permanently dark region, and the way that works now is a MODELESS token name inside a [data-theme=\"midnight\"] wrapper - there is no dark-mode token family to reach for, because mode-qualified property names were retired with tokens.css on 2026-09-03." } } },
 };
 
 export const TokensStroke = {
@@ -314,7 +314,7 @@ export const TokensStroke = {
       <TokenRow key="searchbdr"   varName="--semantic-color-foreground-action-mono-rest"        fallback="#fbfbfb"                label="Search pill border (0.75px)" type="stroke" />,
     ]} />
   ),
-  parameters: { docs: { description: { story: "Stroke tokens. OrgSwitcher uses tertiary stroke family; search pill uses mono base at 0.75px." } } },
+  parameters: { docs: { description: { story: "Stroke tokens. There is no Tertiary stroke family any more - it was deleted because it duplicated Primary offset by one ramp step, so the OrgSwitcher border reads the Primary stroke ramp. The search pill uses Foreground/Action/Mono/Rest at 0.75px." } } },
 };
 
 export const TokensText = {
@@ -325,7 +325,7 @@ export const TokensText = {
       <TokenRow key="avtxt" varName="--semantic-color-foreground-static-accent-amethyst-contrast" fallback="#221e3f" label="Profile avatar initials" type="text" />,
     ]} />
   ),
-  parameters: { docs: { description: { story: "Text tokens. Both are on the nav bar surface - mono/base for all labels, amethyst/contrast for avatar initials." } } },
+  parameters: { docs: { description: { story: "Foreground tokens - text and icons are one tier since the 2026-09-03 merge. Mono/Rest for all labels, Accent/Amethyst/Contrast for avatar initials. Mono has only a rest step, so it does not change on hover or press." } } },
 };
 
 export const TokensIcon = {

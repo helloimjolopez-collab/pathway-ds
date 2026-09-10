@@ -1,0 +1,22 @@
+import { Meta } from "@storybook/blocks";
+import { createSemanticTypography } from "../components/SemanticTypography.js";
+
+<Meta title="Tokens/Semantics/Typography" />
+
+# Semantic Typography
+
+`Semantic: Type` is a **scale of 41 tokens**, not a set of finished text styles. One
+family, 13 sizes, 18 line heights, 5 weights, 4 tracking steps. A call site names five
+custom properties and composes the style it needs.
+
+There is **one page**, because there is one scale. Type carries no Desktop or Mobile
+mode: the two pages that used to exist here documented a mode that was removed on
+2026-09-03, and both had been rendering blank since.
+
+The 111 named composite styles (`Heading/Large`, `Label/Button/Base`,
+`Text/Body/Regular`, and so on) still exist as **Figma text styles**, which is where a
+designer applies them. They are
+deliberately not tokens: as variables they were 554 of them, they duplicated the
+scale five times over, and nothing could use them except by name.
+
+<div ref={(el) => { if (el && !el.hasChildNodes()) el.appendChild(createSemanticTypography()); }} />

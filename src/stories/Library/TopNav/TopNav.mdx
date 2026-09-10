@@ -118,24 +118,34 @@ All colors on the nav bar surface are resolved through dark-mode semantic tokens
   <thead>
     <tr>
       <th>Token</th>
-      <th>Resolved</th>
       <th>Usage</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td><code>fill.static.brand.base</code></td><td><code>#2d4889</code></td><td>Nav bar background</td></tr>
-    <tr><td><code>fill.action.tertiary.base</code> (dark)</td><td><code>rgba(160,181,230,0.04)</code></td><td>OrgSwitcher base fill</td></tr>
-    <tr><td><code>stroke.action.tertiary.base</code> (dark)</td><td><code>rgba(160,181,230,0.16)</code></td><td>OrgSwitcher border</td></tr>
-    <tr><td><code>fill.action.primaryinverse.base</code> (dark)</td><td><code>rgba(160,181,230,0.08)</code></td><td>Search icon pill fill (collapsed)</td></tr>
-    <tr><td><code>fill.action.primaryinverse.hover</code> (dark)</td><td><code>rgba(10,18,35,0.16)</code></td><td>All controls hover fill</td></tr>
-    <tr><td><code>fill.action.primaryinverse.pressed</code> (dark)</td><td><code>rgba(255,255,255,0.08)</code></td><td>All controls pressed fill</td></tr>
-    <tr><td><code>text.action.mono.base</code> (dark)</td><td><code>#fbfbfb</code></td><td>All text and icons on the nav bar</td></tr>
-    <tr><td><code>fill.static.accent.amethyst.base</code></td><td><code>#dcd9ef</code></td><td>Profile avatar background</td></tr>
-    <tr><td><code>text.static.accent-amethyst.contrast</code></td><td><code>#221e3f</code></td><td>Profile avatar initials</td></tr>
+    <tr><td><code>fill.static.brand.medium</code></td><td>Nav bar background</td></tr>
+    <tr><td><code>fill.action.primary-dim.rest</code></td><td>OrgSwitcher resting fill, and the collapsed search pill</td></tr>
+    <tr><td><code>fill.action.primary-dim.hover</code></td><td>All controls, hover</td></tr>
+    <tr><td><code>fill.action.primary-dim.pressed</code></td><td>All controls, pressed and open</td></tr>
+    <tr><td><code>stroke.action.primary.rest</code></td><td>OrgSwitcher border</td></tr>
+    <tr><td><code>stroke.action.primary.hover</code></td><td>OrgSwitcher border, hover</td></tr>
+    <tr><td><code>foreground.action.mono.rest</code></td><td>All text and icons on the nav bar</td></tr>
+    <tr><td><code>fill.static.accent.amethyst.medium</code></td><td>Profile avatar background</td></tr>
+    <tr><td><code>foreground.static.accent.amethyst.contrast</code></td><td>Profile avatar initials</td></tr>
   </tbody>
 </table>
 
-> All token values are sourced from the token contract (`themes/*.css`, `layout.css`, `type.css`, `motion.css`, `breakpoints.css`). Never hardcode these hex values in component code.
+> **Why this table has no value column.** It used to quote a resolved hex beside every
+> name, and by 2026-09-09 most of both columns were wrong: `fill.action.tertiary.*` and
+> the `*inverse` families had been deleted, `text.*` had merged into `foreground.*`,
+> `.base` had become `.rest`, and every hex was a hand-typed copy that no longer tracked
+> its token. The live values are in the token stories below, resolved from the running
+> stylesheet. Read them there.
+>
+> The `(dark)` annotations are gone too. Mode-qualified property names no longer exist:
+> the nav bar is a modeless name inside a `[data-theme="midnight"]` wrapper.
+>
+> All values come from the token contract (`themes/*.css`, `layout.css`, `type.css`,
+> `motion.css`, `breakpoints.css`). Never hardcode a hex in component code.
 
 ---
 

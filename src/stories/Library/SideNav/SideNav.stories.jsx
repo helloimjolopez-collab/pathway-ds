@@ -391,7 +391,7 @@ export const TokensFill = () => (
   <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
       Five fill tokens applied to nav items and container surfaces.
-      <code>NavItem/Hover</code> and <code>NavItem/Trail</code> currently resolve to the same hex (<code>#11111105</code> ≈ 4% black) but are intentionally kept as separate tokens - they have diverged before and may again.
+      <code>Selection/Hover</code> and <code>Selection/Trail</code> currently resolve to the same value but are intentionally kept as separate tokens - they have diverged before and may again. (They were <code>NavItem/*</code> until the Contextual colour group was retired on 2026-09-03.)
       The last column in the row for <code>Stroke/Static/Neutral/Subtle</code> shows all three places it's used: container right border, section dividers, and popover borders.
     </p>
     <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
@@ -429,7 +429,7 @@ TokensText.tags = ["!dev"];
 export const TokensIcon = () => (
   <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
-      Four icon tokens. The <code>NavItem/Active</code> token (<code>#2d4889</code>) drives three things simultaneously: the leading icon in active state, the indicator stripe, and the collapsed-trail icon. The <code>Foreground/Action/Secondary/Rest</code> token (<code>#6b6b6b</code>) is used exclusively by the NavHeader collapse/expand action icon - it is static and does not change on hover.
+      Four icon tokens. The active token drives three things simultaneously: the leading icon in active state, the indicator stripe, and the collapsed-trail icon. <code>Foreground/Action/Secondary/Rest</code> is used exclusively by the NavHeader collapse/expand action icon - it is static and does not change on hover. Values are read from the swatches rather than quoted here: this page previously quoted two hexes that had stopped matching their tokens.
     </p>
     <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
       gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4 }}>

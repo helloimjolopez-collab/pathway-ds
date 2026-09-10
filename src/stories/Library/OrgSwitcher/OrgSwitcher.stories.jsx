@@ -13,9 +13,10 @@
  *
  * Canonical story set (per pathway-component-pipeline skill rules):
  *   Playground · StateMatrix · AvatarExplorer · DesktopVariants · CatholicVsProtestant
- *   · Truncation · Mobile · TokensFill · TokensStroke · TokensText · TokensIcon
+ *   · Truncation · Mobile · TokensFill · TokensStroke · TokensForeground
  *   · TokensTypography · TokensSpacing · TokensMotion · TokensRadius · StandaloneDemo
  */
+import { LiveTokenTable } from "../../components/LiveTokenTable.jsx";
 import React, { useState } from "react";
 import { OrgSwitcher, OrgSwitcherPanel, DEMO_ORGS } from "../../../../components/org-switcher/org-switcher.jsx";
 
@@ -272,55 +273,64 @@ function TokenTable({ title, rows, noteEmpty }) {
   );
 }
 
-// ── 8. Tokens - Fill ────────────────────────────────────────────────────────
+// ── 8-11. Colour tokens ─────────────────────────────────────────────────────
+//
+// Rewritten 2026-09-09. The previous tables named `fill.action.tertiary.*` and
+// `*primaryinverse*` (both deleted), split Text and Icon into two tiers (merged
+// into Foreground), suffixed `.base` where Action tokens now say `.rest`, and
+// carried hand-typed rgba values beside every name.
+//
+// They were also titled "(dark mode)", which is doubly wrong: the mode is
+// called Midnight Mode, and these are not mode-specific tokens at all. The
+// OrgSwitcher sits in a permanently dark region of the top nav, and the way
+// that works now is a MODELESS token name inside a [data-theme="midnight"]
+// wrapper. There is no mode-qualified property to name any more.
 
 export const TokensFill = () => (
-  <TokenTable title="Fill tokens (dark mode)" rows={[
-    { token: "fill.action.tertiary.base",          hex: "rgba(160,181,230,0.04)", usage: "Trigger background - base" },
-    { token: "fill.action.primaryinverse.hover",   hex: "rgba(10,18,35,0.16)",    usage: "Trigger background - hover" },
-    { token: "fill.action.primaryinverse.pressed", hex: "rgba(255,255,255,0.08)", usage: "Trigger background - pressed / open" },
-    { token: "fill.action.secondary.base",         hex: "rgba(255,255,255,0.08)", usage: "Avatar placeholder background (no logo)" },
-  ]} />
+  <LiveTokenTable
+    title="Fill tokens"
+    note={'The OrgSwitcher renders inside a [data-theme="midnight"] region, so these modeless names resolve to their Midnight values there. Region theming composes both ways: a light island can sit inside this dark island, which is what the dropdown panel does.'}
+    rows={[
+      { token: "fill.action.primary-dim.rest",    usage: "Trigger background - rest. Primary Dim replaced the deleted Tertiary ramp" },
+      { token: "fill.action.primary-dim.hover",   usage: "Trigger background - hover" },
+      { token: "fill.action.primary-dim.pressed", usage: "Trigger background - pressed / open" },
+      { token: "fill.action.secondary.rest",      usage: "Avatar placeholder background when the org has no logo" },
+      { token: "fill.static.neutral.faint",       usage: "Dropdown panel ground" },
+      { token: "fill.static.brand.medium",        usage: "Selected-org marker" },
+    ]}
+  />
 );
 TokensFill.storyName = "Tokens - Fill";
 TokensFill.tags = ["!dev"];
 
-// ── 9. Tokens - Stroke ──────────────────────────────────────────────────────
-
 export const TokensStroke = () => (
-  <TokenTable title="Stroke tokens (dark mode)" rows={[
-    { token: "stroke.action.tertiary.base",    hex: "rgba(160,181,230,0.16)", usage: "Trigger + avatar border - base" },
-    { token: "stroke.action.tertiary.hover",   hex: "rgba(160,181,230,0.20)", usage: "Trigger + avatar border - hover" },
-    { token: "stroke.action.tertiary.pressed", hex: "rgba(160,181,230,0.30)", usage: "Trigger + avatar border - pressed / open" },
-  ]} />
+  <LiveTokenTable
+    title="Stroke tokens"
+    rows={[
+      { token: "stroke.action.primary.rest",    usage: "Trigger and avatar border - rest" },
+      { token: "stroke.action.primary.hover",   usage: "Trigger and avatar border - hover" },
+      { token: "stroke.action.primary.pressed", usage: "Trigger and avatar border - pressed / open" },
+      { token: "stroke.static.neutral.faint",   usage: "Dropdown panel border and row divider" },
+    ]}
+  />
 );
 TokensStroke.storyName = "Tokens - Stroke";
 TokensStroke.tags = ["!dev"];
 
-// ── 10. Tokens - Text ───────────────────────────────────────────────────────
-
-export const TokensText = () => (
-  <TokenTable title="Text tokens (dark mode)" rows={[
-    { token: "text.action.mono.base",    hex: "#fbfbfb", usage: "Trigger label - base" },
-    { token: "text.action.mono.hover",   hex: "#ffffff", usage: "Trigger label - hover" },
-    { token: "text.action.mono.pressed", hex: "#ffffff", usage: "Trigger label - pressed / open" },
-  ]} />
+export const TokensForeground = () => (
+  <LiveTokenTable
+    title="Foreground tokens - label and chevron"
+    note="One tier for text and icons. The trigger label and the chevron are the same control, so they must not resolve through two ramps that can drift apart. Mono has only a rest step: white stays white through hover and press."
+    rows={[
+      { token: "foreground.action.mono.rest",         usage: "Trigger label and chevron, all interaction states" },
+      { token: "foreground.static.neutral.bold",      usage: "Dropdown org name" },
+      { token: "foreground.static.neutral.medium",    usage: "Dropdown secondary line" },
+      { token: "foreground.static.neutral.subtle",    usage: "Dropdown section label" },
+    ]}
+  />
 );
-TokensText.storyName = "Tokens - Text";
-TokensText.tags = ["!dev"];
-
-// ── 11. Tokens - Icon ───────────────────────────────────────────────────────
-
-export const TokensIcon = () => (
-  <TokenTable title="Icon tokens (dark mode)" rows={[
-    { token: "icon.action.mono.base",    hex: "#fbfbfb", usage: "Chevron - base" },
-    { token: "icon.action.mono.hover",   hex: "#ffffff", usage: "Chevron - hover" },
-    { token: "icon.action.mono.pressed", hex: "#ffffff", usage: "Chevron - pressed / open" },
-  ]} />
-);
-TokensIcon.storyName = "Tokens - Icon";
-TokensIcon.tags = ["!dev"];
-
+TokensForeground.storyName = "Tokens - Foreground";
+TokensForeground.tags = ["!dev"];
 // ── 12. Tokens - Typography ─────────────────────────────────────────────────
 
 export const TokensTypography = () => (
