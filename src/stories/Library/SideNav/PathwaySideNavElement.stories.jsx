@@ -132,7 +132,18 @@ export const SurvivesHostileHostCSS = {
   render: () => (
     <>
       <style>{`
-        .pw-hostile .pw-host-content, .pw-hostile .pw-host-content * {
+        /* Targets the WHOLE subtree, including the nav.
+           This selector used to be scoped to .pw-host-content, so it never
+           pointed at the nav and the claim below was never actually tested.
+           Pointed at everything, it found a real leak: Shadow DOM blocks
+           selectors from reaching in, but not INHERITANCE. A rule matching the
+           <pathway-sidenav> element itself sets inherited properties on it, and
+           those flow through the boundary - the nav's items rendered in Comic
+           Sans, green, at 3px tracking, while background and border stayed put
+           because those are not inherited. The component now carries an
+           inheritance firewall on its shadow-root wrapper, which is what this
+           story verifies. */
+        .pw-hostile, .pw-hostile * {
           font-family: "Comic Sans MS", cursive !important;
           background: #ff00ff !important;
           color: #00ff00 !important;
@@ -148,7 +159,22 @@ export const SurvivesHostileHostCSS = {
               <h3>Host app content</h3>
               <p>
                 This side is what a host stylesheet does to anything it can reach.
-                The nav on the left renders through Shadow DOM, so it cannot.
+                The hostile rules target this whole subtree, the nav included, and
+                the nav still renders correctly.
+              </p>
+              <p>
+                Two things make that true, and only one of them is Shadow DOM.
+                Shadow DOM stops the host's <em>selectors</em> matching anything
+                inside the nav, which is why the magenta and the dashed borders
+                stop at the boundary. It does <strong>not</strong> stop
+                <em>inheritance</em>: font, colour and letter-spacing set on the{" "}
+                <code>&lt;pathway-sidenav&gt;</code> element itself flow straight
+                through. The component blocks that separately, with an explicit
+                reset of inherited properties on its shadow-root wrapper.
+              </p>
+              <p>
+                Slot content is the deliberate exception. Those nodes stay in the
+                host document so the host keeps owning them, styling included.
               </p>
             </div>
           </>
@@ -178,5 +204,65 @@ export const AttributeDriven = {
         <div style={{ flex: 1, background: "var(--semantic-color-fill-surface-canvas)" }} />
       </>
     );
+  },
+};
+
+export const Slots = {
+  name: "Slots (header, body, footer)",
+  render: () => {
+    const host = useRef(null);
+    useEffect(() => {
+      if (!host.current) return;
+      // Written as an HTML STRING on purpose. The point of this story is that a
+      // team with no React puts slot content in with ordinary markup, so
+      // building it with JSX here would demonstrate the wrong thing.
+      host.current.innerHTML = `
+        <style>
+          /* Slotted nodes live in the HOST document, so the host styles them.
+             That is also how a host adapts its own slot content to the 72px
+             rail: \`collapsed\` is reflected back as an attribute, so a plain
+             CSS selector is enough - no JS, no listener, no state to sync. */
+          pathway-sidenav[collapsed] .slot-footer-label { display: none; }
+          pathway-sidenav[collapsed] [slot="footer"] { justify-content: center; }
+        </style>
+        <pathway-sidenav active-id="manage" items='${JSON.stringify(ITEMS)}'>
+          <span slot="header" style="font-weight:600;">Giving</span>
+          <button slot="footer" type="button"
+            style="display:flex; align-items:center; gap:8px; width:100%; padding:8px;
+                   border:0; border-radius:8px; background:transparent; cursor:pointer;
+                   font:inherit; color:inherit; text-align:left;">
+            <span class="material-symbols-rounded" style="font-size:16px;">support_agent</span>
+            <span class="slot-footer-label">Get support</span>
+          </button>
+        </pathway-sidenav>`;
+    }, []);
+    return frame(
+      <>
+        <div ref={host} style={{ display: "contents" }} />
+        <div style={{ flex: 1, background: "var(--semantic-color-fill-surface-canvas)" }} />
+      </>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Three insertion points, mirroring the slot structure in Figma. **`header`** sits " +
+          "after the collapse toggle and is hidden on the 72px rail, which is only wide enough " +
+          "for a centred icon. **Unnamed** children scroll with the item list. **`footer`** is " +
+          "pinned below the scroll region and only draws its divider when it has content.\n\n" +
+          "Why slots exist at all: the `items` array already expresses anything item-shaped, so " +
+          "ten modules share one component by passing ten different arrays rather than forking " +
+          "ten navs. What `items` cannot express is a module-specific widget - a usage meter, a " +
+          "support button, a badge component a team already owns. Without a slot, a team needing " +
+          "one of those has exactly one option, which is to rebuild the nav. That is the drift " +
+          "this component exists to prevent, so the escape hatch belongs inside it.\n\n" +
+          "Slotted nodes stay in the host document. The host's CSS and framework keep owning " +
+          "them, which is what lets a Blazor or Radzen team drop *their* component into the " +
+          "footer and have it stay theirs. The corollary is that Shadow DOM does not protect " +
+          "slot content from host CSS - see the hostile-CSS story for where the boundary " +
+          "actually falls.",
+      },
+    },
   },
 };

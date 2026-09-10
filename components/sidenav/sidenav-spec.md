@@ -88,6 +88,83 @@ consuming team does not have to adopt Pathway's vocabulary to switch themes.
 `icon` is a Material Symbols Rounded ligature string, or a render function
 `({ size, color }) => ReactNode` for a branded asset. See §11.
 
+### Slots
+
+Three insertion points, mirroring the slot structure in Figma. Added 2026-09-10.
+
+| Slot | React prop | Custom element | Where it lands |
+|---|---|---|---|
+| Header | `headerEnd` | `slot="header"` | After the collapse toggle, in the pinned header. Hidden on the 72px rail. |
+| Body | `children` | unnamed children | Inside the scroll region, after the items. Scrolls with the list. |
+| Footer | `footer` | `slot="footer"` | Pinned below the scroll region. Stays put while the list scrolls. |
+
+**Why slots exist.** The `items` array expresses anything item-shaped: labels,
+icons, nesting, disabled rows. Ten modules therefore share one component by
+passing ten different arrays; nobody forks the nav to change its contents. What
+`items` cannot express is a module-specific widget: a usage meter, a support
+button, a badge component a team already owns. Without a slot, a team needing
+one of those has exactly one option, which is to stop using the component and
+rebuild the nav. That is precisely the drift this component exists to prevent,
+so the escape hatch has to be inside it.
+
+Each slot renders **nothing** when empty: no wrapper, no padding, no divider. An
+always-rendered empty wrapper would shift the layout of every nav that does not
+use the slot.
+
+```jsx
+<SideNav items={items} activeId={id} onNavigate={setId}
+  headerEnd={<strong>Giving</strong>}
+  footer={<SupportButton />}
+/>
+```
+
+```html
+<pathway-sidenav active-id="overview" items='[...]'>
+  <span slot="header">Giving</span>
+  <p>anything unnamed scrolls with the items</p>
+  <button slot="footer">Get support</button>
+</pathway-sidenav>
+```
+
+**Slotted content stays in the host document.** That is the contract, not a
+limitation: the host's CSS and framework keep owning those nodes, which is what
+lets a Blazor or Radzen team drop *their* component into the footer and have it
+remain theirs. The corollary is that Shadow DOM does **not** protect slot
+content from host CSS. See §0.1.
+
+The host adapts its own slot content to the collapsed rail with a plain CSS
+attribute selector, because `collapsed` is reflected back onto the element:
+
+```css
+pathway-sidenav[collapsed] .footer-label { display: none; }
+```
+
+Slot content often arrives **after** the element upgrades: Angular and Blazor
+both create the custom element first and fill it on the next change-detection
+pass. The element watches its own children (`childList` plus the `slot`
+attribute) and re-renders, so late content still appears.
+
+### 0.1 What Shadow DOM does and does not protect
+
+Measured on 2026-09-10, after the demo's hostile-CSS toggle was found to be
+scoped to a sibling element and therefore never testing the nav at all.
+
+| Host CSS does this | Reaches the nav's internals? |
+|---|---|
+| Matches a selector against nav internals | **No.** Nothing in the host document can match a node inside the shadow root. |
+| Sets a non-inherited property (`background`, `border`, `padding`) on the element | **No.** |
+| Sets an **inherited** property (`font-family`, `color`, `letter-spacing`, `line-height`) on the element | **It used to.** Shadow DOM blocks selectors, not inheritance. |
+| Styles slot content | **Yes, by design.** Those nodes live in the host document. |
+
+The inheritance case is the dangerous one because it is easy to miss: a hostile
+stylesheet that reaches in this way leaves the layout, backgrounds and borders
+intact, so a demo looks like proof of isolation while the nav renders in the
+host's font at the host's tracking. `pathway-sidenav.js` now carries an
+explicit reset of inherited properties on its shadow-root wrapper
+(`.pathway-sidenav-root`). It is on the wrapper rather than on `:host` because
+an outer-page `!important` beats a non-important `:host` rule, whereas nothing
+in the host document can match a node inside the shadow tree.
+
 ### Fonts
 
 Two font families must be available in the host app. Neither is bundled:

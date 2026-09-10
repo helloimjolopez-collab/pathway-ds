@@ -52,7 +52,17 @@
     aggressive reset or an opinionated component library would wreck an
     unencapsulated component. Shadow DOM means none of this reaches the nav.
   */
-  body.hostile .content *, body.hostile .content {
+  /* Applied to EVERYTHING in the document, deliberately.
+     This selector used to be `body.hostile .content *`, which scoped the
+     hostile styles to the article beside the nav - so the demo never actually
+     pointed them at the nav and the "stays untouched" claim was untested.
+     Now it hits the whole document, which shows two different things at once:
+       - the nav's own internals are untouched, because they are in a shadow
+         root and host CSS cannot reach in;
+       - SLOTTED content IS affected, because it lives in this document. That
+         is not a leak, it is the contract: slotted nodes stay yours, and so
+         does their styling. */
+  body.hostile *, body.hostile {
     font-family: "Comic Sans MS", cursive !important;
     background: #ff00ff !important;
     color: #00ff00 !important;
@@ -62,6 +72,17 @@
     letter-spacing: 3px !important;
   }
   .hostile-note { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+  /* Slotted content is styled from the HOST page - this stylesheet - because
+     those nodes live in this document. That is the contract, and it is also
+     how a host adapts its own slot content to the 72px rail.
+
+     `collapsed` is reflected back onto the element as an attribute whenever the
+     nav collapses, so a plain CSS attribute selector is enough: no JS, no event
+     listener, no state to keep in sync. Without this the label would wrap and
+     the footer would grow to ~76px on the rail. */
+  pathway-sidenav[collapsed] [slot="footer"] .footer-label { display: none; }
+  pathway-sidenav[collapsed] [slot="footer"] { justify-content: center; }
   #hostile-toggle {
     font: inherit; cursor: pointer; padding: 5px 10px;
     border-radius: var(--semantic-layout-units-cornerradius-small);
@@ -102,15 +123,58 @@
       ]},
       {"id":"help","label":"Help","icon":"help"}
     ]'
-    default-expanded='{"applications":true}'></pathway-sidenav>
+    default-expanded='{"applications":true}'>
+
+    <!-- ── SLOTS ────────────────────────────────────────────────────────────
+         Three named insertion points, mirroring the slot structure in Figma.
+         Everything below is ORDINARY HTML in this document: it stays in the
+         host DOM, the host's CSS and framework keep owning it, and the browser
+         projects it into the shadow root. That is what makes the nav absorbable
+         rather than forkable - a team on Radzen or Blazor can drop THEIR
+         component into the footer and it stays theirs.
+
+         The `items` array covers anything item-shaped. Slots cover what it
+         cannot express: a module-specific widget, a usage meter, a support
+         button. Without them a team needing one of those has only one option,
+         which is to rebuild the nav.                                        -->
+
+    <!-- header: sits after the collapse toggle. Hidden on the 72px rail. -->
+    <span slot="header" style="font-weight:600;">Giving</span>
+
+    <!-- footer: PINNED below the scrolling list, so it stays put. -->
+    <button slot="footer" type="button" id="support-btn"
+      style="display:flex; align-items:center; gap:8px; width:100%; padding:8px;
+             border:0; border-radius:8px; background:transparent; cursor:pointer;
+             font:inherit; color:inherit; text-align:left;">
+      <span class="material-symbols-rounded" style="font-size:16px;">support_agent</span>
+      <span class="footer-label">Get support</span>
+    </button>
+  </pathway-sidenav>
 
   <main class="content">
     <div class="hostile-note">
       <button id="hostile-toggle" type="button">Simulate a hostile host app</button>
       Forces Comic Sans, magenta backgrounds, green text and dashed red borders on
-      <code>*</code> with <code>!important</code>, the way a host app with an
-      aggressive reset or an opinionated component library would. The nav stays
-      untouched: that is Shadow DOM doing its job.
+      every element in the document with <code>!important</code>, the way a host app
+      with an aggressive reset or an opinionated component library would.
+      <strong>The nav's own internals stay untouched. Slotted content does not,
+      and that is the contract.</strong>
+    </div>
+
+    <div class="hostile-note" style="display:block;">
+      <strong>What this actually proves, and what it does not.</strong>
+      This toggle used to be scoped to <code>.content *</code>, so it never pointed at
+      the nav at all and the claim that the nav "stays untouched" was never tested.
+      Pointed at the whole document, it showed a real leak: Shadow DOM blocks
+      <em>selectors</em> from reaching in, but it does <em>not</em> block
+      <em>inheritance</em>. A rule matching the
+      <code>&lt;pathway-sidenav&gt;</code> element sets inherited properties on it, and
+      those flow through the boundary. The nav's items rendered in Comic Sans, green,
+      at 3px tracking. Background and border did not leak, because those are not
+      inherited, which is why the layout held and it looked fine.
+      The component now carries an inheritance firewall on its shadow root wrapper.
+      Slotted content is still governed by the host page, by design: those nodes stay
+      in your document, so your CSS and your framework keep owning them.
     </div>
 
     <h1>&lt;pathway-sidenav&gt;</h1>
@@ -123,6 +187,30 @@
 &lt;script type="module" src=".../pathway-sidenav.js"&gt;&lt;/script&gt;
 
 &lt;pathway-sidenav active-id="overview" items='[...]'&gt;&lt;/pathway-sidenav&gt;</pre>
+    </div>
+
+    <div class="card">
+      <h2>Slots — one component, ten modules</h2>
+      <p class="sub" style="margin-top:0;">
+        The <code>items</code> array expresses anything item-shaped: labels, icons,
+        nesting, disabled rows. Each module passes its own array, so ten modules share
+        one component rather than forking ten navs. Slots cover what <code>items</code>
+        cannot express - a module-specific widget, a usage meter, a support button.
+        Without them, a team needing one of those has to rebuild the nav, which is the
+        drift this component exists to prevent.
+      </p>
+      <pre>&lt;pathway-sidenav active-id="overview" items='[...]'&gt;
+  &lt;span slot="header"&gt;Giving&lt;/span&gt;          &lt;!-- after the collapse toggle --&gt;
+  &lt;p&gt;anything unnamed scrolls with the items&lt;/p&gt;
+  &lt;button slot="footer"&gt;Get support&lt;/button&gt;  &lt;!-- pinned at the bottom --&gt;
+&lt;/pathway-sidenav&gt;</pre>
+      <p class="sub">
+        <code>header</code> is hidden on the 72px rail, which is only wide enough for a
+        centred icon. <code>footer</code> stays pinned while the list scrolls and only
+        draws its divider when it has content. Slot content may arrive after the element
+        upgrades - Angular and Blazor both create the element first and fill it on the
+        next pass - so the element watches its own children and re-renders.
+      </p>
     </div>
 
     <div class="card">

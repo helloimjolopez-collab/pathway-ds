@@ -64,6 +64,51 @@ const BOOL_ATTRS = { collapsed: "collapsed", "hide-collapse-button": "hideCollap
 const SHADOW_CSS = `
 :host { display: block; height: 100%; }
 :host([hidden]) { display: none; }
+
+/* INHERITANCE FIREWALL — do not remove.
+   Added 2026-09-10 after measuring, not assuming.
+
+   Shadow DOM blocks SELECTORS from reaching in. It does NOT block INHERITANCE.
+   A host page rule like
+
+     body.hostile * { font-family: "Comic Sans MS" !important;
+                      color: #0f0 !important; letter-spacing: 3px !important; }
+
+   matches the <pathway-sidenav> element itself, and every inherited property it
+   sets there flows straight through the boundary into this shadow tree. Measured
+   on the demo page: the nav's items rendered in Comic Sans, green, at 3px
+   tracking. Background and border did NOT leak, because those are not
+   inherited - which is exactly why the leak is easy to miss. A casual look at a
+   hostile-CSS demo shows the layout holding and reads as proof of isolation.
+
+   The reset lives on the MOUNT WRAPPER rather than on :host on purpose. Outer
+   page rules can match the host element and an !important there beats a
+   non-important :host rule, so a :host reset is not reliable. Nothing in the
+   host document can match a node inside the shadow tree, so a rule here always
+   wins for everything below it.
+
+   Only inherited properties are listed. This is a firewall, not a CSS reset:
+   the component's own styles still do all the actual styling. */
+.pathway-sidenav-root {
+  font-family: var(--semantic-type-family-brand), system-ui, sans-serif;
+  font-size: var(--semantic-type-font-size-s);
+  font-weight: var(--semantic-type-weight-regular);
+  font-style: normal;
+  font-variant: normal;
+  line-height: var(--semantic-type-line-height-s-single);
+  letter-spacing: var(--semantic-type-letter-spacing-compact);
+  word-spacing: normal;
+  color: var(--semantic-color-foreground-action-secondary-rest);
+  text-align: start;
+  text-indent: 0;
+  text-transform: none;
+  text-shadow: none;
+  white-space: normal;
+  direction: ltr;
+  cursor: auto;
+  visibility: visible;
+  list-style: none;
+}
 .material-symbols-rounded {
   font-family: 'Material Symbols Rounded';
   font-weight: normal;
@@ -78,6 +123,22 @@ const SHADOW_CSS = `
   font-feature-settings: 'liga';
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+}
+
+/* Slotted content stays in the HOST document, so the host's CSS and framework
+   keep owning it - that is the point of using real slots. But inherited
+   properties resolve through the FLATTENED tree, which means they come from
+   the <slot>'s position in here. So the nav's typography reaches slotted
+   content for free, and a team's footer button matches the nav without them
+   doing anything.
+
+   Only inherited properties are set below. Setting anything else would be this
+   component reaching into markup it does not own. */
+::slotted(*) {
+  font-family: var(--semantic-type-family-brand), system-ui, sans-serif;
+  font-size: var(--semantic-type-font-size-s);
+  line-height: var(--semantic-type-line-height-s-single);
+  color: var(--semantic-color-foreground-action-secondary-rest);
 }`;
 
 const parseJSON = (raw, name) => {
@@ -138,14 +199,37 @@ export class PathwaySideNav extends HTMLElement {
       style.textContent = SHADOW_CSS;
       root.appendChild(style);
       this._mount = document.createElement("div");
+      // The class carries the inheritance firewall in SHADOW_CSS. Everything
+      // the component renders is a descendant of this node, so host-page
+      // typography and colour cannot bleed in.
+      this._mount.className = "pathway-sidenav-root";
       this._mount.style.height = "100%";
       root.appendChild(this._mount);
       this._reactRoot = createRoot(this._mount);
     }
+
+    // Watch the light DOM so slot content that arrives LATER still registers.
+    // A framework host almost never has its children in place at upgrade time:
+    // Angular and Blazor both create the custom element first and fill it on
+    // the next change-detection pass. Without this, a footer added a tick after
+    // mount would sit in the light DOM with no <slot> to project into and
+    // render nowhere at all - visibly broken, with nothing in the console.
+    //
+    // childList only, not subtree: the trigger is a child being added, removed
+    // or having its slot changed, not a keystroke inside someone's footer form.
+    if (!this._slotObserver) {
+      this._slotObserver = new MutationObserver(() => this._render());
+      this._slotObserver.observe(this, { childList: true, attributeFilter: ["slot"] });
+    }
+
     this._render();
   }
 
   disconnectedCallback() {
+    if (this._slotObserver) {
+      this._slotObserver.disconnect();
+      this._slotObserver = null;
+    }
     // Unmount asynchronously: React warns if a root is unmounted while it is
     // rendering, which happens when a host framework moves the node.
     const r = this._reactRoot;
@@ -181,11 +265,54 @@ export class PathwaySideNav extends HTMLElement {
     this.dispatchEvent(new CustomEvent(name, { detail, bubbles: true, composed: true }));
   }
 
+  /**
+   * Map the element's light-DOM children onto the component's slot props.
+   *
+   * A consumer writes ordinary HTML:
+   *
+   *   <pathway-sidenav items='[...]'>
+   *     <span slot="header">Giving</span>
+   *     <button slot="footer">Get support</button>
+   *     <p>anything unnamed lands in the body</p>
+   *   </pathway-sidenav>
+   *
+   * and React renders a matching <slot> inside the shadow root, which the
+   * browser projects that light DOM into. The nodes stay in the host document,
+   * so the host's own CSS and framework keep owning them - a Blazor or Angular
+   * team can put THEIR component in the footer and it still behaves like
+   * theirs. That is the point of using real slots rather than accepting an
+   * HTML string.
+   *
+   * A <slot> is only passed when content is actually assigned to it. An empty
+   * slot would still make the component render its wrapper, border and
+   * padding, so every nav without a footer would grow a stray divider.
+   */
+  _readSlots() {
+    const has = (name) =>
+      name === null
+        ? // Unnamed: any child with no slot attribute and some actual content.
+          [...this.childNodes].some(
+            (n) =>
+              (n.nodeType === 1 && !n.getAttribute("slot")) ||
+              (n.nodeType === 3 && n.textContent.trim())
+          )
+        : !!this.querySelector(`[slot="${name}"]`);
+
+    const slots = {};
+    // "header" is the public slot name because that is what it is called in
+    // Figma; it maps to the headerEnd prop, which says WHERE it lands relative
+    // to the collapse toggle.
+    if (has("header")) slots.headerEnd = React.createElement("slot", { name: "header" });
+    if (has("footer")) slots.footer = React.createElement("slot", { name: "footer" });
+    if (has(null)) slots.children = React.createElement("slot", null);
+    return slots;
+  }
+
   _render() {
     if (!this._reactRoot) return;
     // Properties win over attributes: a JS host that set a real object should not
     // have it overwritten by a stale JSON attribute.
-    const props = { ...this._readAttributes(), ...this._props };
+    const props = { ...this._readAttributes(), ...this._props, ...this._readSlots() };
 
     this._reactRoot.render(
       React.createElement(SideNav, {

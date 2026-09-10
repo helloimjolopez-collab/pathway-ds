@@ -92,6 +92,40 @@ That is the whole integration. 51 kB gzipped, self-contained.
 
 A boolean attribute is true when present, unless set to `"false"` or `"0"`.
 
+### Slots
+
+Your own markup, in three places.
+
+| Slot | Where it lands |
+|---|---|
+| `slot="header"` | After the collapse toggle, in the pinned header. Hidden on the 72px rail, which only fits a centred icon. |
+| unnamed children | Inside the scroll region, after the items. Scrolls with the list. |
+| `slot="footer"` | Pinned below the scroll region. Stays put while the list scrolls; draws a divider only when it has content. |
+
+```html
+<pathway-sidenav active-id="overview" items='[...]'>
+  <span slot="header">Giving</span>
+  <p>anything unnamed scrolls with the items</p>
+  <button slot="footer">Get support</button>
+</pathway-sidenav>
+```
+
+**You do not need a module-specific nav.** `items` expresses everything
+item-shaped — labels, icons, nesting, disabled rows — so every module passes its
+own array and they all share one component. Ten modules, ten arrays, one
+component. Slots exist for the things `items` cannot express: a usage meter, a
+support button, a badge component you already own. Without them your only option
+would be to rebuild the nav, which is the drift this component exists to
+prevent.
+
+An empty slot renders nothing — no wrapper, no padding, no divider — so omitting
+one costs you nothing.
+
+Slot content often arrives *after* the element upgrades, which is normal in
+Angular and Blazor: the framework creates the element first and fills it on the
+next change-detection pass. The element watches its own children and re-renders,
+so late content still appears. You do not need to call anything.
+
 ### Properties
 
 If your host runs JavaScript, set `items`, `sections`, `listSection`,
@@ -132,13 +166,43 @@ Storybook stories do.
 
 ## What Shadow DOM does and does not protect
 
-The nav renders inside a shadow root, so your CSS cannot reach in and its CSS
-cannot leak out. A host reset, a utility framework, or an opinionated component
-library will not disturb it. There is a Storybook story that proves this by
-forcing Comic Sans, magenta and dashed borders on `*` with `!important` next to an
-untouched nav.
+The nav renders inside a shadow root, so your selectors cannot reach in and its
+CSS cannot leak out. A host reset, a utility framework, or an opinionated
+component library will not disturb it.
 
-Two exceptions, both deliberate. The tooltip and the collapsed-group popover
+**But Shadow DOM blocks selectors, not inheritance,** and that distinction
+matters more than it sounds. Measured on 2026-09-10:
+
+| Your CSS does this | Reaches the nav's internals? |
+|---|---|
+| Matches a selector against nav internals | **No.** Nothing in your document can match a node inside the shadow root. |
+| Sets a non-inherited property (`background`, `border`, `padding`) on the element | **No.** |
+| Sets an **inherited** property (`font-family`, `color`, `letter-spacing`) on the element | **It used to.** Now blocked explicitly. |
+| Styles slot content | **Yes, by design.** Those nodes are in your document. |
+
+The inheritance row is the one that bit us. A rule like `* { font-family: X
+!important }` matches the `<pathway-sidenav>` element itself, and inherited
+properties flow from there through the boundary. Because backgrounds and borders
+do *not* inherit, the layout stays intact and it looks fine — the nav just
+quietly renders in your font at your tracking. Our own hostile-CSS demo missed
+this for weeks because it was scoped to a sibling element and never actually
+pointed at the nav. The component now resets inherited properties on its
+shadow-root wrapper, and the Storybook story targets the nav for real.
+
+**Slot content is the deliberate exception.** Anything you put in a slot stays
+in your document, so your CSS and your framework keep owning it. That is the
+point: it is how your own component can sit in the nav's footer and still behave
+like yours. It also means slot content is yours to style, including adapting it
+to the 72px collapsed rail:
+
+```css
+pathway-sidenav[collapsed] .my-footer-label { display: none; }
+```
+
+`collapsed` is reflected back onto the element as an attribute whenever the nav
+collapses, so that selector needs no JavaScript.
+
+Two further exceptions, both deliberate. The tooltip and the collapsed-group popover
 render through portals to `document.body`, so those two overlays sit outside the
 shadow root. Tokens still resolve for them, but a host page with very aggressive
 global CSS could reach them.

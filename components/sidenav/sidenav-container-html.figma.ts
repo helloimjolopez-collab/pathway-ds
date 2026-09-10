@@ -15,6 +15,12 @@
 // element takes the whole nav tree through its `items` attribute and renders the
 // children itself, so a consumer never writes an item, a section label or an
 // indicator stripe by hand. Publishing child mappings would suggest otherwise.
+//
+// Slots are the exception, and they are why that holds. `items` covers
+// everything item-SHAPED, so ten modules share one component by passing ten
+// arrays. Slots cover what it cannot express - a module-specific widget, a
+// usage meter, a support button - so a team needing one of those does not have
+// to abandon the component and rebuild the nav.
 import figma from 'figma'
 const instance = figma.selectedInstance
 
@@ -54,7 +60,13 @@ export default {
 
 <pathway-sidenav
   active-id="giving-overview"${collapsed ? '\n  collapsed' : ''}
-  items='${items}'></pathway-sidenav>
+  items='${items}'>
+  <!-- Slots, mirroring the slot structure in Figma. Ordinary HTML: these nodes
+       stay in your document, so your CSS and your framework keep owning them.
+       Omit any slot you do not need and it renders nothing at all. -->
+  <span slot="header">Giving</span>
+  <button slot="footer" type="button">Get support</button>
+</pathway-sidenav>
 
 <script>
   document.querySelector('pathway-sidenav')

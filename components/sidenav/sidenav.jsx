@@ -570,6 +570,34 @@ export function SideNav({
   hideCollapseButton = false,
   defaultExpanded = {},
   className = "",
+  // ── SLOTS ─────────────────────────────────────────────────────────────────
+  // Three insertion points, mirroring the slot structure in Figma. Added
+  // 2026-09-10 at the user's explicit request (which is what the §1.1 Figma
+  // exemption requires before SideNav changes).
+  //
+  // WHY SLOTS RATHER THAN MORE PROPS: the `items` array can express anything
+  // item-SHAPED - a label, an icon, nesting, a disabled state. It cannot
+  // express a module-specific widget: a support button, a plan-usage meter, a
+  // "New" badge component a team already owns. Without a slot those teams have
+  // exactly one option, which is to stop using the component and rebuild the
+  // nav. That is the drift this component exists to prevent, so the escape
+  // hatch has to be inside it.
+  //
+  //   headerEnd  after the collapse toggle in the pinned header. This is the
+  //              common case: a module name, a small action. In Figma the
+  //              header is a slot that can hold the toggle alone, or the
+  //              toggle plus a label or button.
+  //   children   inside the scroll region, after the items. Anything that
+  //              scrolls with the list.
+  //   footer     PINNED below the scroll region, so it stays put while the
+  //              list scrolls. Buttons live here.
+  //
+  // Each is null by default and renders NOTHING when null - no wrapper, no
+  // padding, no border. An always-rendered empty wrapper would shift the
+  // layout of every nav that does not use the slot.
+  headerEnd = null,
+  children = null,
+  footer = null,
 }) {
   const [expanded, setExpanded] = useState(defaultExpanded);
   const [popoverId, setPopoverId] = useState(null);
@@ -670,10 +698,31 @@ export function SideNav({
     }}>
       {/* NavHeader — TOP of nav, PINNED (flexShrink:0) so it stays visible while the
           item list scrolls beneath it. Hidden on mobile (<768px). */}
-      {!hideCollapseButton && (
+      {(!hideCollapseButton || headerEnd) && (
         <div style={{ flexShrink: 0 }}>
-          <NavHeader isSidebarCollapsed={collapsed}
-            onToggle={() => onCollapseChange && onCollapseChange(!collapsed)} />
+          {!hideCollapseButton && (
+            <NavHeader isSidebarCollapsed={collapsed}
+              onToggle={() => onCollapseChange && onCollapseChange(!collapsed)} />
+          )}
+          {/* headerEnd slot. Hidden on the 72px rail: the rail is only wide
+              enough for a centred icon, so arbitrary header content would
+              either overflow it or force it wider. It fades rather than
+              unmounting, on the same curve as the section labels, so the
+              header does not jump when the rail toggles. */}
+          {headerEnd && (
+            <div style={{
+              opacity: collapsed ? 0 : 1,
+              maxHeight: collapsed ? 0 : 200,
+              overflow: "hidden",
+              pointerEvents: collapsed ? "none" : "auto",
+              padding: collapsed ? 0 : `0 ${L.navPadH}`,
+              transition:
+                "opacity var(--motion-duration-4) var(--motion-easing-standard), " +
+                "max-height var(--motion-duration-5) var(--motion-easing-spring)",
+            }}>
+              {headerEnd}
+            </div>
+          )}
         </div>
       )}
 
@@ -734,9 +783,31 @@ export function SideNav({
           </div>
         )}
 
+        {/* Body slot — scrolls with the item list, so it sits INSIDE
+            Scrollable and above the spacer. Use this for content that belongs
+            with the items; use `footer` for anything that must stay visible. */}
+        {children && <div style={{ flexShrink: 0 }}>{children}</div>}
+
         {/* Bottom spacer — fills remaining height */}
         <div style={{ flex: 1, minHeight: L.menuPadB }} />
       </Scrollable>
+
+      {/* Footer slot — OUTSIDE Scrollable and flexShrink:0, so it is pinned to
+          the bottom of the nav and stays put while the list scrolls. The
+          divider only appears when the slot has content, so a nav without a
+          footer is unchanged. Padding drops to the rail's narrower inset when
+          collapsed rather than hiding: a footer button is usually an icon
+          button that still works at 72px, unlike arbitrary header content. */}
+      {footer && (
+        <div style={{
+          flexShrink: 0,
+          borderTop: `0.5px solid ${T.fill.infoSubtle}`,
+          padding: collapsed ? `8px ${L.navColPadH}` : `8px ${L.navPadH}`,
+          transition: "padding var(--motion-duration-6) var(--motion-easing-emphasized)",
+        }}>
+          {footer}
+        </div>
+      )}
     </nav>
   );
 }
