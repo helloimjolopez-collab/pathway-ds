@@ -3,8 +3,8 @@ set -euo pipefail
 
 usage() {
   echo "Usage: $(basename "$0") <token-id> <theme>" >&2
-  echo "  token-id  Slash-separated semantic token, e.g. Fill/Contextual/NavItem/Base" >&2
-  echo "  theme     light or dark" >&2
+  echo "  token-id  Slash-separated semantic token, e.g. Fill/Action/Selection/Selected" >&2
+  echo "  theme     light or midnight (dark accepted as an alias)" >&2
   exit 1
 }
 
@@ -15,12 +15,18 @@ THEME_INPUT="$2"
 
 case "$THEME_INPUT" in
   light) THEME="light-mode" ;;
-  dark)  THEME="dark-mode"  ;;
-  light-mode|dark-mode) THEME="$THEME_INPUT" ;;
+  # Pathway's dark mode is Midnight Mode; "dark" is accepted as an alias so a
+  # caller does not have to know the brand vocabulary.
+  dark|midnight) THEME="midnight-mode" ;;
+  light-mode|midnight-mode) THEME="$THEME_INPUT" ;;
   *) echo "Error: theme must be 'light' or 'dark'" >&2; exit 1 ;;
 esac
 
-TOKENS_FILE="$(dirname "$0")/tokens/pathway-design-tokens.json"
+# Resolve from the REPO ROOT, not from wherever the script happens to live.
+# This broke once when the script moved out of the repo root into scripts/:
+# dirname "$0" silently pointed at scripts/tokens/ and the lookup failed.
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+TOKENS_FILE="$REPO_ROOT/tokens/pathway-design-tokens.json"
 [[ -f "$TOKENS_FILE" ]] || { echo "Error: $TOKENS_FILE not found" >&2; exit 1; }
 
 # Build a jq path from slash-separated segments, lowercased

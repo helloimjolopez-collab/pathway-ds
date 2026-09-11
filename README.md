@@ -2,6 +2,9 @@
 
 Design system for Ministry Brands Amplify. Tokens + components + specifications, all versioned in one place, with Storybook deployed from `main`.
 
+> **Looking for the tokens?** → **[TOKENS.md](TOKENS.md)** — where the CSS lives, which
+> of the 460 names you may use, and what to link in what order.
+
 ## Using the tokens
 
 **The colour contract is 358 names. Your full working vocabulary is 460.**
