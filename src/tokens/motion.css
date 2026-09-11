@@ -1,7 +1,21 @@
-/**
- * Do not edit directly, this file was auto-generated.
- */
+/*
+ ==========================================================================
+ PATHWAY DESIGN TOKENS — CONTRACT
+ ==========================================================================
 
+ Durations and easings. Name these freely.
+
+ These are NOT in the Figma Variables panel — the panel has zero motion
+ variables. Their source of truth is docs/design-system-spec.md §2, and
+ scripts/sync-motion-tokens.js generates this file from it.
+
+ Consequence worth knowing: anyone rebuilding tokens from a Figma export
+ alone gets no motion at all, and no warning. Consume the package.
+
+ Declares 17 custom properties.
+ Generated — do not edit. Run `npm run build-tokens`.
+ ==========================================================================
+*/
 :root {
   --motion-duration-1: 100ms; /** Instant tap feedback, tiny opacity flickers */
   --motion-duration-2: 150ms; /** Hover fills, small opacity fades, colour transitions — the most common micro-interaction timing */

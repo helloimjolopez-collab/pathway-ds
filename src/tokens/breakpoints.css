@@ -1,7 +1,14 @@
-/**
- * Do not edit directly, this file was auto-generated.
- */
+/*
+ ==========================================================================
+ PATHWAY DESIGN TOKENS — CONTRACT
+ ==========================================================================
 
+ The breakpoint values. Name these freely.
+
+ Declares 5 custom properties.
+ Generated — do not edit. Run `npm run build-tokens`.
+ ==========================================================================
+*/
 :root {
   --breakpoints-desktop-1440px: 1440px;
   --breakpoints-tablet-1024px: 1024px;

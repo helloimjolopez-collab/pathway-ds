@@ -7,6 +7,12 @@ hand-copied fork that drifts.
 
 There is no C# in this package. It is CSS and JSON.
 
+**The colour contract is 358 names; the full working vocabulary is 460.** Adding up
+every declaration in the package gives ~1,200 — that is not the contract. The
+difference is that `primitives.css` ships but is never named, and the two themes share
+one name set rather than each having their own. `contract.json` lists every consumable
+name if you want to check against it.
+
 ## Install
 
 ```
@@ -19,10 +25,22 @@ The files are static web assets, served at `_content/Pathway.DesignTokens/`.
 Reference them from your host page (`App.razor`, `_Host.cshtml`, or `index.html`):
 
 ```html
+<!-- primitives.css MUST come first and MUST be present. Every semantic token
+     resolves through it via var(), so without it all colour resolves to nothing
+     and the page renders unstyled with NO console error. This block previously
+     omitted it, which is a silent, confusing failure. -->
+<link rel="stylesheet" href="_content/Pathway.DesignTokens/primitives.css" />
 <link rel="stylesheet" href="_content/Pathway.DesignTokens/themes/light.css" />
 <link rel="stylesheet" href="_content/Pathway.DesignTokens/themes/midnight.css" />
 <link rel="stylesheet" href="_content/Pathway.DesignTokens/type.css" />
+<link rel="stylesheet" href="_content/Pathway.DesignTokens/layout.css" />
+<link rel="stylesheet" href="_content/Pathway.DesignTokens/motion.css" />
+<link rel="stylesheet" href="_content/Pathway.DesignTokens/breakpoints.css" />
 ```
+
+You load `primitives.css` but never write a `--primitive-*` name yourself: it has one
+value per token and does not respond to `data-theme`, so naming one opts that element
+out of theming. Nothing blocks you if you specifically want a fixed value.
 
 Then use the custom properties:
 

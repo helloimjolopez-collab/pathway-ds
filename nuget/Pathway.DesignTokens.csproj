@@ -68,6 +68,9 @@
     <None Include="..\dist\motion.css" Pack="true" PackagePath="staticwebassets\motion.css" />
     <None Include="..\dist\breakpoints.css" Pack="true" PackagePath="staticwebassets\breakpoints.css" />
     <None Include="..\dist\tokens.json" Pack="true" PackagePath="staticwebassets\tokens.json" />
+    <!-- contract.json states which of the shipped names are consumable. Without it a
+         .NET consumer sees eight stylesheets and no indication which to name. -->
+    <None Include="..\dist\contract.json" Pack="true" PackagePath="staticwebassets\contract.json" />
 
     <!-- contentFiles: so non-Blazor project types can copy into wwwroot -->
     <None Include="..\dist\primitives.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\primitives.css" />
@@ -79,6 +82,7 @@
     <None Include="..\dist\motion.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\motion.css" />
     <None Include="..\dist\breakpoints.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\breakpoints.css" />
     <None Include="..\dist\tokens.json" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\tokens.json" />
+    <None Include="..\dist\contract.json" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\contract.json" />
   </ItemGroup>
 
 </Project>

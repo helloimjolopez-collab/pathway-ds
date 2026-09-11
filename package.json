@@ -1,7 +1,7 @@
 {
   "name": "@helloimjolopez-pathway/pathway-tokens",
   "version": "6.0.0",
-  "description": "Pathway Design System tokens — CSS custom properties, JS export, and DTCG JSON",
+  "description": "Pathway Design System tokens \u2014 CSS custom properties, JS export, and DTCG JSON",
   "license": "UNLICENSED",
   "type": "module",
   "engines": {
@@ -25,7 +25,9 @@
     "./layout-contextual.css": "./dist/layout-contextual.css",
     "./motion.css": "./dist/motion.css",
     "./breakpoints.css": "./dist/breakpoints.css",
-    "./type.css": "./dist/type.css"
+    "./type.css": "./dist/type.css",
+    "./contract.json": "./dist/contract.json",
+    "./README.md": "./dist/README.md"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -51,8 +53,8 @@
     "audit-tokens": "node scripts/audit-tokens.js",
     "fix-tokens": "node scripts/fix-tokens.js",
     "fix-tokens-preview": "node scripts/fix-tokens.js --dry-run",
-    "build-tokens": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js",
-    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js && node scripts/check-story-yield.js && node scripts/build-dist.js && npm run build-elements",
+    "build-tokens": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/stamp-headers.js",
+    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/stamp-headers.js && node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js && node scripts/check-story-yield.js && node scripts/build-dist.js && node scripts/build-contract.js && npm run build-elements",
     "storybook": "node style-dictionary.config.js && storybook dev -p 6006",
     "build-storybook": "storybook build",
     "check-demo-tokens": "node scripts/check-demo-tokens.js",
@@ -66,7 +68,10 @@
     "check-token-names": "node scripts/check-token-names.js",
     "check-tokens": "node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js && node scripts/check-story-yield.js",
     "build-elements": "esbuild components/sidenav/pathway-sidenav.js --bundle --format=esm --minify --loader:.jsx=jsx --jsx=automatic --define:process.env.NODE_ENV='\"production\"' --outfile=dist/pathway-sidenav.js",
-    "check-story-yield": "node scripts/check-story-yield.js"
+    "check-story-yield": "node scripts/check-story-yield.js",
+    "stamp-headers": "node scripts/stamp-headers.js",
+    "check-headers": "node scripts/stamp-headers.js --check",
+    "build-contract": "node scripts/build-contract.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.29.2",

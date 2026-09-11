@@ -1,7 +1,21 @@
-/**
- * Do not edit directly, this file was auto-generated.
- */
+/*
+ ==========================================================================
+ PATHWAY DESIGN TOKENS — CONTRACT
+ ==========================================================================
 
+ The colour contract, Light Mode. Name these freely.
+
+ Load primitives.css FIRST; every file below resolves through it.
+
+ themes/midnight.css declares the SAME names with inverted values, so a
+ component names a colour once and both modes resolve by selector. Never
+ put a mode in a property name — that form came from tokens.css, retired
+ 2026-09-03, and resolves to nothing.
+
+ Declares 358 custom properties.
+ Generated — do not edit. Run `npm run build-tokens`.
+ ==========================================================================
+*/
 :root, [data-theme="light"] {
   --semantic-color-fill-action-primary-rest: var(--primitive-color-brand-400);
   --semantic-color-fill-action-primary-hover: var(--primitive-color-brand-450);

@@ -1,7 +1,27 @@
-/**
- * Do not edit directly, this file was auto-generated.
- */
+/*
+ ==========================================================================
+ PATHWAY DESIGN TOKENS — INFRASTRUCTURE
+ ==========================================================================
 
+ The raw colour ramps. NOT part of the token contract.
+
+ You must LOAD this file — every semantic token resolves through it, so
+ without it all colour resolves to nothing and the page renders unstyled
+ with no console error. But product code should not NAME these.
+
+ The reason is a consequence, not a rule: Primitive: Color has exactly ONE
+ mode, and themes/midnight.css declares zero primitives. So a primitive
+ holds one value forever. `var(--primitive-color-brand-400)` stays that
+ blue in Midnight Mode; `var(--semantic-color-fill-action-primary-rest)`
+ flips. Reach for a primitive only when you specifically want a value that
+ does NOT respond to the theme.
+
+ Nothing blocks you. It is an escape hatch with a stated cost.
+
+ Declares 350 custom properties.
+ Generated — do not edit. Run `npm run build-tokens`.
+ ==========================================================================
+*/
 :root {
   --primitive-color-cool-neutral-0: #ffffff;
   --primitive-color-cool-neutral-10: #fafafa;

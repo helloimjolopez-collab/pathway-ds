@@ -4,24 +4,61 @@ Design system for Ministry Brands Amplify. Tokens + components + specifications,
 
 ## Using the tokens
 
-The Pathway token library is published to npm and updated automatically on every token sync.
+**The colour contract is 358 names. Your full working vocabulary is 460.**
+
+That is the number worth knowing, because adding up every declaration in the token
+folder gives 1,202 and the retired `tokens.css` used to emit 2,338. Neither is the
+contract. The difference is that primitives ship but are not named, and the modes share
+one name set rather than each having their own.
+
+| | Count | Name these? |
+|---|---|---|
+| Colour (`themes/light.css`, `themes/midnight.css` — same names) | **358** | Yes |
+| Type scale (`type.css`) | 41 | Yes |
+| Spacing, radii, borders (`layout.css`) | 39 | Yes |
+| Motion (`motion.css`) | 17 | Yes |
+| Breakpoints (`breakpoints.css`) | 5 | Yes |
+| **Working vocabulary** | **460** | |
+| Raw ramps (`primitives.css`) | 350 | **No** — but you must load it |
+| Component metrics (`layout-contextual.css`) | 34 | This repo's components |
+
+**The CSS lives in [`src/tokens/`](src/tokens/), and that folder has its own README**
+covering load order, theming, the primitives question and the traps. Read it before
+wiring anything up. The published package carries the same guidance in `dist/README.md`,
+plus `dist/contract.json` listing every consumable name if you want to lint against it.
+
+### Install
 
 ```bash
 npm install @helloimjolopez-pathway/pathway-tokens
 ```
 
+NuGet: `Pathway.DesignTokens`.
+
 ```js
-// CSS custom properties — import once in your app entry point
-import "@helloimjolopez-pathway/pathway-tokens/css";
+// Every stylesheet is a named subpath export. primitives.css MUST come first —
+// the themes resolve through it, so without it all colour resolves to nothing
+// and the page renders unstyled with no console error.
+import "@helloimjolopez-pathway/pathway-tokens/primitives.css";
+import "@helloimjolopez-pathway/pathway-tokens/themes/light.css";
+import "@helloimjolopez-pathway/pathway-tokens/themes/midnight.css";
+import "@helloimjolopez-pathway/pathway-tokens/type.css";
+import "@helloimjolopez-pathway/pathway-tokens/layout.css";
+import "@helloimjolopez-pathway/pathway-tokens/motion.css";
+import "@helloimjolopez-pathway/pathway-tokens/breakpoints.css";
 
-// JS token object
+// JS token object, and the raw DTCG JSON for tooling
 import tokens from "@helloimjolopez-pathway/pathway-tokens";
-
-// Raw DTCG JSON (for tooling)
 import tokenJson from "@helloimjolopez-pathway/pathway-tokens/json";
+import contract from "@helloimjolopez-pathway/pathway-tokens/contract.json";
 ```
 
-Without a bundler — link the CSS directly:
+There is deliberately no single `/css` entry point. One combined file was what
+`tokens.css` used to be: it emitted every token times every mode with the mode baked
+into the property name, 2,338 custom properties, and it is the reason this system read
+as too granular to adopt. Retired 2026-09-03 and not coming back.
+
+### Without a bundler
 
 ```html
 <!-- primitives first: the themes reference these via var(), so this must load -->
@@ -30,23 +67,34 @@ Without a bundler — link the CSS directly:
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/themes/midnight.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/type.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/layout.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/layout-contextual.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/motion.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/breakpoints.css" />
 ```
 
-Once loaded, use the custom properties anywhere:
+`@main` tracks the latest. Pin a tag instead if you need a fixed version.
+
+### Using a token
 
 ```css
-.my-component {
-  background: var(--semantic-color-fill-static-brand-medium);
-  color:      var(--semantic-color-foreground-static-neutral-white);
+.card {
+  background: var(--semantic-color-fill-surface-sheet);
+  color:      var(--semantic-color-foreground-static-neutral-bold);
+  border:     var(--semantic-layout-units-borderwidth-base) solid
+              var(--semantic-color-stroke-static-neutral-subtle);
+  border-radius: var(--semantic-layout-units-cornerradius-medium);
 }
 ```
 
-Full token reference: [Storybook → Tokens](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/tokens-primitives-color--docs) · [Token architecture](tokens/README.md) · [Agent brief](tokens/agent-brief.md)
+One name carries both modes. Set `data-theme="midnight"` on `<html>` to flip the page,
+or on any element to flip just that subtree. Never write a mode into a property name —
+`--semantic-color-light-mode-*` resolves to nothing.
 
----
+### Can I use a primitive?
+
+Yes, and nothing stops you. But `Primitive: Color` has exactly one mode, so a primitive
+holds one value forever and will **not** respond to `data-theme`. Reach for one only
+when you specifically want a fixed value. Full reasoning in
+[`src/tokens/README.md`](src/tokens/README.md).
 
 ## Layout
 

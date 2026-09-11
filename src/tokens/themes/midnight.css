@@ -1,7 +1,23 @@
-/**
- * Do not edit directly, this file was auto-generated.
- */
+/*
+ ==========================================================================
+ PATHWAY DESIGN TOKENS — CONTRACT
+ ==========================================================================
 
+ The colour contract, Midnight Mode. Identical names to themes/light.css.
+
+ Pathway's dark mode is called Midnight Mode. Both selectors are emitted:
+ [data-theme="midnight"] is the Pathway name, [data-theme="dark"] is what
+ every framework and prefers-color-scheme uses, so a consumer does not have
+ to learn our vocabulary to switch themes.
+
+ On the graded ladder the VALUES invert while the NAMES hold: Faint is
+ still the lightest-touch step even though here it is a dark near-ground.
+ White, XLight and Black are inversion anchors and keep their value.
+
+ Declares 358 custom properties.
+ Generated — do not edit. Run `npm run build-tokens`.
+ ==========================================================================
+*/
 [data-theme="midnight"], [data-theme="dark"] {
   --semantic-color-fill-action-primary-rest: var(--primitive-color-brand-250);
   --semantic-color-fill-action-primary-hover: var(--primitive-color-brand-200);
