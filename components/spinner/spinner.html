@@ -20,7 +20,7 @@
 <style>
   :root {
 
-    /* Semantic icon.static.* — the ONLY colour tokens the spinner is permitted
+    /* Semantic foreground.static.* — the ONLY colour tokens the spinner is permitted
        to resolve against. Each variable aliases a primitive above; the spinner
        never reads a primitive directly and never accepts a raw hex.           */
 
@@ -44,7 +44,7 @@
 
   /* ── COMPONENT: .pds-spinner ───────────────────────────────────────────────
      Colour contract (spec §7.1): the spinner accepts ONLY a semantic token
-     from the icon.static family. There is no `color` prop, no currentColor
+     from the foreground.static family. There is no `color` prop, no currentColor
      fallback from arbitrary parents, and no raw hex input. Valid tones and
      emphases are enumerated in §7.1 and §2.1; attempting any other value
      resolves to `unset` (visually broken — surfaces the bug immediately).
@@ -202,7 +202,7 @@ const SPINNER_SPOKES = [
 ];
 
 // ─── Allowed token enumerations — single source of truth for the colour API ──
-// These arrays MUST stay in sync with the semantic `icon.static` family in
+// These arrays MUST stay in sync with the semantic `foreground.static` family in
 // tokens/pathway-design-tokens.json. If you add a tone or emphasis there,
 // add it here AND in the [data-tone]/[data-emphasis] CSS block above.
 const TONES = [
@@ -280,7 +280,7 @@ function App() {
       <h1 className="demo-title">Spinner · style=&quot;progress-activity&quot;</h1>
       <p className="demo-sub">
         One component · eight Figma spoke paths · one keyframe · arbitrary size ·
-        semantic colour tokens only (icon.static).
+        semantic colour tokens only (foreground.static).
       </p>
 
       {/* ── Fluid pixel scaling ─────────────────────────────────────────── */}
@@ -333,7 +333,7 @@ function App() {
             <div key={tone} className="demo-cell">
               <div className="demo-swatch"><Spinner size={32} tone={tone} /></div>
               <span className="demo-cell-label">{tone}</span>
-              <span className="demo-cell-token">icon.static.{tone}.base</span>
+              <span className="demo-cell-token">foreground.static.{tone}.base</span>
             </div>
           ))}
         </div>
@@ -347,7 +347,7 @@ function App() {
             <div key={emphasis} className="demo-cell">
               <div className="demo-swatch"><Spinner size={32} tone="brand" emphasis={emphasis} /></div>
               <span className="demo-cell-label">{emphasis}</span>
-              <span className="demo-cell-token">icon.static.brand.{emphasis}</span>
+              <span className="demo-cell-token">foreground.static.brand.{emphasis}</span>
             </div>
           ))}
         </div>
@@ -391,7 +391,7 @@ function App() {
         <p className="demo-section-label">Not allowed (reference)</p>
         <p className="demo-sub" style={{ margin:0 }}>
           The spinner rejects: raw hex strings, primitive tokens (e.g. <code>primitive-color-brand-300</code>),
-          invented semantic tokens (e.g. <code>semantic-success</code>), and any token outside <code>icon.static.*</code>.
+          invented semantic tokens (e.g. <code>semantic-success</code>), and any token outside <code>foreground.static.*</code>.
           The <code>color</code> prop does not exist — use <code>tone</code> + <code>emphasis</code>.
         </p>
       </section>

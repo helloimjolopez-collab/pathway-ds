@@ -284,8 +284,11 @@ HighlightVariant.parameters = {
         "`highlight` adds a tinted background on the state-layer at rest. " +
         "Use when the checkbox lives inside a selectable list row - the tint " +
         "visually ties the control to the interactive surface. " +
-        "Note: the resting-state token `fill.action.secondaryinverse.base` is currently " +
-        "missing from the token file; a fallback is in use (see spec §5.3).",
+        "Note: this state was documented as missing a token (`fill.action.secondaryinverse.base`), " +
+        "with a fallback in use. That gap is closed: the *inverse families were deleted on " +
+        "2026-09-03, because an inverted control is the same control inside a " +
+        "[data-theme=\"midnight\"] region rather than a second set of tokens. " +
+        "`fill.action.secondary.rest` is the real token for this state now, not a stand-in.",
     },
   },
 };

@@ -133,58 +133,62 @@ Hover, focus, and pressed states show on the **state-layer** (44×44px backgroun
 | Element | State | Token | CSS variable |
 |---|---|---|---|
 | Box fill | All unchecked | transparent | — |
-| Box fill | Checked / Indeterminate | `fill.action.primary.base` | `--semantic-color-light-mode-fill-action-primary-rest` |
-| Box fill | Checked hover | `fill.action.primary.hover` | `--semantic-color-light-mode-fill-action-primary-hover` |
-| Box fill | Checked focused | `fill.action.primary.hover` | `--semantic-color-light-mode-fill-action-primary-hover` |
-| Box fill | Checked pressed | `fill.action.primary.pressed` | `--semantic-color-light-mode-fill-action-primary-pressed` |
-| Box fill | Disabled checked | `fill.action.primary.disabled` | `--semantic-color-light-mode-fill-action-disabled` |
-| Box border | Unchecked default | `stroke.action.secondary.base` | `--semantic-color-light-mode-stroke-action-secondary-rest` |
-| Box border | Unchecked hover | `stroke.action.secondary.hover` | `--semantic-color-light-mode-stroke-action-secondary-hover` |
-| Box border | Unchecked focused | `stroke.action.secondary.hover` | `--semantic-color-light-mode-stroke-action-secondary-hover` |
-| Box border | Unchecked pressed | `stroke.action.secondary.pressed` | `--semantic-color-light-mode-stroke-action-secondary-pressed` |
+| Box fill | Checked / Indeterminate | `fill.action.primary.rest` | `--semantic-color-fill-action-primary-rest` |
+| Box fill | Checked hover | `fill.action.primary.hover` | `--semantic-color-fill-action-primary-hover` |
+| Box fill | Checked focused | `fill.action.primary.hover` | `--semantic-color-fill-action-primary-hover` |
+| Box fill | Checked pressed | `fill.action.primary.pressed` | `--semantic-color-fill-action-primary-pressed` |
+| Box fill | Disabled checked | `fill.action.disabled` | `--semantic-color-fill-action-disabled` |
+| Box border | Unchecked default | `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` |
+| Box border | Unchecked hover | `stroke.action.secondary.hover` | `--semantic-color-stroke-action-secondary-hover` |
+| Box border | Unchecked focused | `stroke.action.secondary.hover` | `--semantic-color-stroke-action-secondary-hover` |
+| Box border | Unchecked pressed | `stroke.action.secondary.pressed` | `--semantic-color-stroke-action-secondary-pressed` |
 | Box border | Checked (all states) | same as fill | (border hidden under fill) |
-| Box border | Disabled unchecked | `stroke.action.secondary.disabled` | `--semantic-color-light-mode-stroke-action-disabled` |
-| Checkmark / dash icon | Checked / indeterminate | `icon.action.primaryinverse.base` | `--semantic-color-light-mode-foreground-action-primary-rest` |
-| State-layer fill | Unchecked hover | `fill.action.secondary.hover` | `--semantic-color-light-mode-fill-action-secondary-hover` |
-| State-layer fill | Unchecked focused | `fill.action.secondary.hover` | `--semantic-color-light-mode-fill-action-secondary-hover` |
-| State-layer fill | Checked hover | `fill.action.primaryinverse.hover` | `--semantic-color-light-mode-fill-action-primary-dim-hover` |
-| State-layer fill | Checked focused | `fill.action.primaryinverse.hover` | `--semantic-color-light-mode-fill-action-primary-dim-hover` |
-| State-layer fill | Checked pressed | `fill.action.primaryinverse.pressed` | `--semantic-color-light-mode-fill-action-primary-dim-pressed` |
-| Label text | All | `text.static.secondary.base` | `--semantic-color-light-mode-foreground-static-neutral-medium` |
+| Box border | Disabled unchecked | `stroke.action.disabled` | `--semantic-color-stroke-action-disabled` |
+| Checkmark / dash icon | Checked / indeterminate | `foreground.action.mono.rest` | `--semantic-color-foreground-action-primary-rest` |
+| State-layer fill | Unchecked hover | `fill.action.secondary.hover` | `--semantic-color-fill-action-secondary-hover` |
+| State-layer fill | Unchecked focused | `fill.action.secondary.hover` | `--semantic-color-fill-action-secondary-hover` |
+| State-layer fill | Checked hover | `fill.action.primary-dim.hover` | `--semantic-color-fill-action-primary-dim-hover` |
+| State-layer fill | Checked focused | `fill.action.primary-dim.hover` | `--semantic-color-fill-action-primary-dim-hover` |
+| State-layer fill | Checked pressed | `fill.action.primary-dim.pressed` | `--semantic-color-fill-action-primary-dim-pressed` |
+| Label text | All | `foreground.static.neutral.medium` | `--semantic-color-foreground-static-neutral-medium` |
 | Border radius | Box | `cornerradius.xsmall` | `--semantic-layout-units-cornerradius-xsmall` |
 
 ### 5.2 Error (negative) — error unchecked / error checked
 
 | Element | State | Token |
 |---|---|---|
-| Box fill | Error checked | `fill.action.negative.base` |
-| Box fill | Error checked hover | `fill.action.negative.hover` |
-| Box fill | Error checked focused | `fill.action.negative.hover` |
-| Box fill | Error checked pressed | `fill.action.negative.pressed` |
-| Box fill | Error disabled checked | `fill.action.negative.disabled` |
-| Box border | Error unchecked | `stroke.action.negative.base` |
-| Box border | Error unchecked hover | `stroke.action.negative.hover` |
-| Box border | Error unchecked focused | `stroke.action.negative.hover` |
-| Box border | Error unchecked pressed | `stroke.action.negative.pressed` |
-| Box border | Error disabled unchecked | `stroke.action.negative.disabled` |
-| Checkmark icon | Error checked | `icon.action.negativeinverse.base` |
-| State-layer | Error unchecked hover | `fill.action.negativeinverse.hover` |
-| State-layer | Error checked hover | `fill.action.negativeinverse.hover` |
+| Box fill | Error checked | `fill.action.status.negative.rest` |
+| Box fill | Error checked hover | `fill.action.status.negative.hover` |
+| Box fill | Error checked focused | `fill.action.status.negative.hover` |
+| Box fill | Error checked pressed | `fill.action.status.negative.pressed` |
+| Box fill | Error disabled checked | `fill.action.disabled` |
+| Box border | Error unchecked | `stroke.action.status.negative.rest` |
+| Box border | Error unchecked hover | `stroke.action.status.negative.hover` |
+| Box border | Error unchecked focused | `stroke.action.status.negative.hover` |
+| Box border | Error unchecked pressed | `stroke.action.status.negative.pressed` |
+| Box border | Error disabled unchecked | `stroke.action.disabled` |
+| Checkmark icon | Error checked | `foreground.action.mono.rest` |
+| State-layer | Error unchecked hover | `fill.action.status.negative-dim.hover` |
+| State-layer | Error checked hover | `fill.action.status.negative-dim.hover` |
 
-### 5.3 Token gaps — needs Figma update
+### 5.3 Token gaps — CLOSED (2026-09-11)
 
-These tokens appear in the Figma component but are **not yet in `pathway-design-tokens.json`**. The component uses the nearest available token as a fallback (noted below). These must be added to Figma variables and re-synced before the component is considered fully token-compliant.
+This section used to list eight tokens as "not yet in `pathway-design-tokens.json`",
+each with a nearest-available fallback. **Every one of them now exists.** The token
+rework of 2026-09-03 closed the whole list, and most of it was never really a gap:
 
-| Missing token | Figma value | Fallback used | Priority |
-|---|---|---|---|
-| `fill.action.secondaryinverse.hover` | `#f6f6f6` | `fill.action.secondary.hover` | HIGH |
-| `fill.action.secondaryinverse.hover` (focused state) | `#f6f6f6` | `fill.action.secondary.hover` | HIGH |
-| `fill.action.secondaryinverse.pressed` | `#ededed` | `fill.action.secondary.base` | HIGH |
-| `stroke.action.secondaryinverse.base` | `#d2d2d2` | `stroke.action.secondary.base` | MEDIUM |
-| `stroke.action.secondaryinverse.disabled` | `#e1e1e1` | `stroke.action.secondary.disabled` | MEDIUM |
-| `icon.action.monoinverse.base` | `#ffffff` | `icon.action.primaryinverse.base` | LOW (same value) |
-| `border-radius.xs` | `4px` | `cornerradius.xsmall` | LOW (same value) |
-| `border-width.m` | `1.5px` | hardcoded `1.5px` | MEDIUM |
+| Previously reported as missing | What was actually true |
+|---|---|
+| `fill.action.secondaryinverse.{base,hover,pressed}` | The `*inverse` families were **deleted**, not pending. An inverted control is the same control inside a `[data-theme="midnight"]` region, so `fill.action.secondary.*` is the real token rather than a stand-in |
+| `stroke.action.secondaryinverse.base` | Same. Reads `stroke.action.secondary.rest` |
+| `stroke.action.secondary.disabled` | Disabled collapsed to ONE token per tier: `stroke.action.disabled` |
+| `icon.action.monoinverse.base` | Text and Icon merged into Foreground; a mark on a solid fill is `foreground.action.mono.rest` |
+| `border-radius.xs` = 4px | `--semantic-layout-units-cornerradius-small` **is** 4px. `cornerradius-xsmall` is 2px, so the old note recommending it as an equal-value fallback was wrong |
+| `border-width.m` = 1.5px | `--semantic-layout-units-borderwidth-medium` **is** 1.5px. The component no longer needs to hardcode it |
+
+Nothing in this component is on a fallback any more. If a future gap appears, list it
+here with the Figma value and the interim token, and raise it in Figma — never patch a
+derived file.
 
 ---
 
@@ -203,7 +207,7 @@ These tokens appear in the Figma component but are **not yet in `pathway-design-
 
 ### Label
 - Font: Red Hat Text, 400 weight, 14px, line-height 20px
-- Colour: `text.static.secondary.base`
+- Colour: `foreground.static.neutral.medium`
 - 16px gap between box and label
 
 ### Spacing
@@ -216,7 +220,7 @@ These tokens appear in the Figma component but are **not yet in `pathway-design-
 
 The `highlight` prop adds a tinted background on the state-layer even in the resting state. Used to visually associate the checkbox with an interactive surface (e.g. a selectable row).
 
-> **[TBD — needs user]:** Confirm the highlight background token. Figma shows `Fill/Action/Secondary/Rest` on the state-layer for highlight resting state. This token is missing from the token file — see §5.3.
+> **Resolved 2026-09-11.** Figma shows `Fill/Action/Secondary/Rest` on the state-layer for the highlight resting state, and that token exists in the contract. It is no longer a fallback; see §5.3.
 
 ---
 
@@ -261,9 +265,9 @@ Standard focused state: browser default outline or design system focus ring — 
 | Error | Error message should be associated via `aria-describedby` |
 
 ### Contrast
-- Checked fill (`fill.action.primary.base` = `#345499`) on white: ≥ 3:1 for non-text UI (WCAG 1.4.11 ✓)
-- Label text (`text.static.secondary.base` = `#4b4b4b`) on white: ≥ 4.5:1 (WCAG 1.4.3 ✓)
-- Error fill (`fill.action.negative.base` = `#9d2d2d`) on white: ≥ 3:1 ✓
+- Checked fill (`fill.action.primary.rest` = `#345499`) on white: ≥ 3:1 for non-text UI (WCAG 1.4.11 ✓)
+- Label text (`foreground.static.neutral.medium` = `#4b4b4b`) on white: ≥ 4.5:1 (WCAG 1.4.3 ✓)
+- Error fill (`fill.action.status.negative.rest` = `#9d2d2d`) on white: ≥ 3:1 ✓
 
 ### Touch target
 44×44px minimum on all variants (WCAG 2.5.5 ✓).
@@ -324,8 +328,6 @@ Reduced motion: no change needed (no animation to remove).
 
 | Issue | Priority | Next step |
 |---|---|---|
-| 5 token families missing from token file (`secondaryinverse`, `monoinverse`, `border-width.m`) | HIGH | Add missing tokens to Figma variables, re-export, re-sync |
 | Secondary Indeterminate use case unclear | MEDIUM | Confirm with design: what triggers this variant? |
-| Highlight variant resting-state token missing | MEDIUM | Confirm `fill.action.secondaryinverse.base` in Figma, sync |
-| Focus ring token not defined for standard (non-error) state | MEDIUM | Design: add `focused-state` effect token to Figma |
+| Focus ring token not defined for standard (non-error) state | MEDIUM | `Stroke/FocusRing/Base` now exists and is shared by every focusable component; confirm the checkbox should use it rather than an effect token |
 | No link to this spec in Figma Dev Mode | LOW | Add spec URL in Figma Dev Mode → Resources: `https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/checkbox/checkbox-spec.md` |

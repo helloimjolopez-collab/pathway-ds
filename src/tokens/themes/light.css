@@ -100,6 +100,7 @@
   --semantic-color-fill-static-status-attention-subtle: var(--primitive-color-saffron-25);
   --semantic-color-fill-static-status-attention-contrast: var(--primitive-color-saffron-100);
   --semantic-color-fill-static-status-attention-bold: var(--primitive-color-saffron-150);
+  --semantic-color-fill-static-status-attention-medium: var(--primitive-color-saffron-75);
   --semantic-color-fill-static-status-severe-faint: var(--primitive-color-orange-25);
   --semantic-color-fill-static-status-severe-subtle: var(--primitive-color-orange-50);
   --semantic-color-fill-static-status-severe-medium: var(--primitive-color-orange-75);
@@ -130,6 +131,16 @@
   --semantic-color-fill-static-accent-lagoon-medium: var(--primitive-color-lagoon-100);
   --semantic-color-fill-static-accent-lagoon-contrast: var(--primitive-color-lagoon-500);
   --semantic-color-fill-static-accent-lagoon-bold: var(--primitive-color-lagoon-600);
+  --semantic-color-fill-static-accent-saffron-faint: var(--primitive-color-saffron-75);
+  --semantic-color-fill-static-accent-saffron-subtle: var(--primitive-color-saffron-100);
+  --semantic-color-fill-static-accent-saffron-medium: var(--primitive-color-saffron-150);
+  --semantic-color-fill-static-accent-saffron-contrast: var(--primitive-color-saffron-500);
+  --semantic-color-fill-static-accent-saffron-bold: var(--primitive-color-saffron-800);
+  --semantic-color-fill-static-accent-orange-faint: var(--primitive-color-orange-75);
+  --semantic-color-fill-static-accent-orange-subtle: var(--primitive-color-orange-100);
+  --semantic-color-fill-static-accent-orange-medium: var(--primitive-color-orange-150);
+  --semantic-color-fill-static-accent-orange-contrast: var(--primitive-color-orange-500);
+  --semantic-color-fill-static-accent-orange-bold: var(--primitive-color-orange-800);
   --semantic-color-fill-surface-canvas: var(--primitive-color-cool-neutral-10);
   --semantic-color-fill-surface-sheet: var(--primitive-color-cool-neutral-0);
   --semantic-color-fill-surface-elevated: var(--primitive-color-warm-neutral-0);
@@ -220,6 +231,16 @@
   --semantic-color-foreground-static-accent-mauve-medium: var(--primitive-color-mauve-700);
   --semantic-color-foreground-static-accent-mauve-contrast: var(--primitive-color-mauve-800);
   --semantic-color-foreground-static-accent-mauve-bold: var(--primitive-color-mauve-900);
+  --semantic-color-foreground-static-accent-saffron-faint: var(--primitive-color-saffron-400);
+  --semantic-color-foreground-static-accent-saffron-subtle: var(--primitive-color-saffron-500);
+  --semantic-color-foreground-static-accent-saffron-medium: var(--primitive-color-saffron-700);
+  --semantic-color-foreground-static-accent-saffron-contrast: var(--primitive-color-saffron-800);
+  --semantic-color-foreground-static-accent-saffron-bold: var(--primitive-color-saffron-900);
+  --semantic-color-foreground-static-accent-orange-faint: var(--primitive-color-orange-400);
+  --semantic-color-foreground-static-accent-orange-subtle: var(--primitive-color-orange-500);
+  --semantic-color-foreground-static-accent-orange-medium: var(--primitive-color-orange-700);
+  --semantic-color-foreground-static-accent-orange-contrast: var(--primitive-color-orange-800);
+  --semantic-color-foreground-static-accent-orange-bold: var(--primitive-color-orange-900);
   --semantic-color-foreground-static-brand-faint: var(--primitive-color-brand-450);
   --semantic-color-foreground-static-brand-medium: var(--primitive-color-brand-550);
   --semantic-color-foreground-static-brand-bold: var(--primitive-color-brand-600);
@@ -298,6 +319,7 @@
   --semantic-color-stroke-static-status-attention-medium: var(--primitive-color-saffron-100);
   --semantic-color-stroke-static-status-attention-contrast: var(--primitive-color-saffron-150);
   --semantic-color-stroke-static-status-attention-bold: var(--primitive-color-saffron-200);
+  --semantic-color-stroke-static-status-attention-subtle: var(--primitive-color-saffron-75);
   --semantic-color-stroke-static-status-severe-faint: var(--primitive-color-orange-0);
   --semantic-color-stroke-static-status-severe-subtle: var(--primitive-color-orange-75);
   --semantic-color-stroke-static-status-severe-medium: var(--primitive-color-orange-150);
@@ -328,5 +350,15 @@
   --semantic-color-stroke-static-accent-lagoon-medium: var(--primitive-color-lagoon-100);
   --semantic-color-stroke-static-accent-lagoon-contrast: var(--primitive-color-lagoon-500);
   --semantic-color-stroke-static-accent-lagoon-bold: var(--primitive-color-lagoon-600);
+  --semantic-color-stroke-static-accent-saffron-faint: var(--primitive-color-saffron-25);
+  --semantic-color-stroke-static-accent-saffron-subtle: var(--primitive-color-saffron-75);
+  --semantic-color-stroke-static-accent-saffron-medium: var(--primitive-color-saffron-100);
+  --semantic-color-stroke-static-accent-saffron-contrast: var(--primitive-color-saffron-300);
+  --semantic-color-stroke-static-accent-saffron-bold: var(--primitive-color-saffron-400);
+  --semantic-color-stroke-static-accent-orange-faint: var(--primitive-color-orange-50);
+  --semantic-color-stroke-static-accent-orange-subtle: var(--primitive-color-orange-75);
+  --semantic-color-stroke-static-accent-orange-medium: var(--primitive-color-orange-100);
+  --semantic-color-stroke-static-accent-orange-contrast: var(--primitive-color-orange-300);
+  --semantic-color-stroke-static-accent-orange-bold: var(--primitive-color-orange-400);
   --semantic-color-stroke-focusring-base: var(--primitive-color-brand-200);
 }

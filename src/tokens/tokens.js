@@ -3387,6 +3387,19 @@ const tokens = {
       "bold"
     ]
   },
+  "semantic-color-light-mode-fill-static-status-attention-medium": {
+    "value": "#fee2b3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "static",
+      "status",
+      "attention",
+      "medium"
+    ]
+  },
   "semantic-color-light-mode-fill-static-status-severe-faint": {
     "value": "#f9f1ed",
     "type": "color",
@@ -3774,6 +3787,136 @@ const tokens = {
       "static",
       "accent",
       "lagoon",
+      "bold"
+    ]
+  },
+  "semantic-color-light-mode-fill-static-accent-saffron-faint": {
+    "value": "#fee2b3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "static",
+      "accent",
+      "saffron",
+      "faint"
+    ]
+  },
+  "semantic-color-light-mode-fill-static-accent-saffron-subtle": {
+    "value": "#fed897",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "static",
+      "accent",
+      "saffron",
+      "subtle"
+    ]
+  },
+  "semantic-color-light-mode-fill-static-accent-saffron-medium": {
+    "value": "#ffc864",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "static",
+      "accent",
+      "saffron",
+      "medium"
+    ]
+  },
+  "semantic-color-light-mode-fill-static-accent-saffron-contrast": {
+    "value": "#6d5936",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "static",
+      "accent",
+      "saffron",
+      "contrast"
+    ]
+  },
+  "semantic-color-light-mode-fill-static-accent-saffron-bold": {
+    "value": "#1d1912",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "static",
+      "accent",
+      "saffron",
+      "bold"
+    ]
+  },
+  "semantic-color-light-mode-fill-static-accent-orange-faint": {
+    "value": "#f9d2bc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "static",
+      "accent",
+      "orange",
+      "faint"
+    ]
+  },
+  "semantic-color-light-mode-fill-static-accent-orange-subtle": {
+    "value": "#fabd9d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "static",
+      "accent",
+      "orange",
+      "subtle"
+    ]
+  },
+  "semantic-color-light-mode-fill-static-accent-orange-medium": {
+    "value": "#fda97b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "static",
+      "accent",
+      "orange",
+      "medium"
+    ]
+  },
+  "semantic-color-light-mode-fill-static-accent-orange-contrast": {
+    "value": "#a5420d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "static",
+      "accent",
+      "orange",
+      "contrast"
+    ]
+  },
+  "semantic-color-light-mode-fill-static-accent-orange-bold": {
+    "value": "#59270c",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "static",
+      "accent",
+      "orange",
       "bold"
     ]
   },
@@ -4920,6 +5063,136 @@ const tokens = {
       "bold"
     ]
   },
+  "semantic-color-light-mode-foreground-static-accent-saffron-faint": {
+    "value": "#91723b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "static",
+      "accent",
+      "saffron",
+      "faint"
+    ]
+  },
+  "semantic-color-light-mode-foreground-static-accent-saffron-subtle": {
+    "value": "#6d5936",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "static",
+      "accent",
+      "saffron",
+      "subtle"
+    ]
+  },
+  "semantic-color-light-mode-foreground-static-accent-saffron-medium": {
+    "value": "#342d21",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "static",
+      "accent",
+      "saffron",
+      "medium"
+    ]
+  },
+  "semantic-color-light-mode-foreground-static-accent-saffron-contrast": {
+    "value": "#1d1912",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "static",
+      "accent",
+      "saffron",
+      "contrast"
+    ]
+  },
+  "semantic-color-light-mode-foreground-static-accent-saffron-bold": {
+    "value": "#110d07",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "static",
+      "accent",
+      "saffron",
+      "bold"
+    ]
+  },
+  "semantic-color-light-mode-foreground-static-accent-orange-faint": {
+    "value": "#c14d0f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "static",
+      "accent",
+      "orange",
+      "faint"
+    ]
+  },
+  "semantic-color-light-mode-foreground-static-accent-orange-subtle": {
+    "value": "#a5420d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "static",
+      "accent",
+      "orange",
+      "subtle"
+    ]
+  },
+  "semantic-color-light-mode-foreground-static-accent-orange-medium": {
+    "value": "#72300c",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "static",
+      "accent",
+      "orange",
+      "medium"
+    ]
+  },
+  "semantic-color-light-mode-foreground-static-accent-orange-contrast": {
+    "value": "#59270c",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "static",
+      "accent",
+      "orange",
+      "contrast"
+    ]
+  },
+  "semantic-color-light-mode-foreground-static-accent-orange-bold": {
+    "value": "#491900",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "static",
+      "accent",
+      "orange",
+      "bold"
+    ]
+  },
   "semantic-color-light-mode-foreground-static-brand-faint": {
     "value": "#3a5aaa",
     "type": "color",
@@ -5899,6 +6172,19 @@ const tokens = {
       "bold"
     ]
   },
+  "semantic-color-light-mode-stroke-static-status-attention-subtle": {
+    "value": "#fee2b3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "static",
+      "status",
+      "attention",
+      "subtle"
+    ]
+  },
   "semantic-color-light-mode-stroke-static-status-severe-faint": {
     "value": "#fcfafa",
     "type": "color",
@@ -6286,6 +6572,136 @@ const tokens = {
       "static",
       "accent",
       "lagoon",
+      "bold"
+    ]
+  },
+  "semantic-color-light-mode-stroke-static-accent-saffron-faint": {
+    "value": "#fef2de",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "static",
+      "accent",
+      "saffron",
+      "faint"
+    ]
+  },
+  "semantic-color-light-mode-stroke-static-accent-saffron-subtle": {
+    "value": "#fee2b3",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "static",
+      "accent",
+      "saffron",
+      "subtle"
+    ]
+  },
+  "semantic-color-light-mode-stroke-static-accent-saffron-medium": {
+    "value": "#fed897",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "static",
+      "accent",
+      "saffron",
+      "medium"
+    ]
+  },
+  "semantic-color-light-mode-stroke-static-accent-saffron-contrast": {
+    "value": "#bf9342",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "static",
+      "accent",
+      "saffron",
+      "contrast"
+    ]
+  },
+  "semantic-color-light-mode-stroke-static-accent-saffron-bold": {
+    "value": "#91723b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "static",
+      "accent",
+      "saffron",
+      "bold"
+    ]
+  },
+  "semantic-color-light-mode-stroke-static-accent-orange-faint": {
+    "value": "#f9e2d6",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "static",
+      "accent",
+      "orange",
+      "faint"
+    ]
+  },
+  "semantic-color-light-mode-stroke-static-accent-orange-subtle": {
+    "value": "#f9d2bc",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "static",
+      "accent",
+      "orange",
+      "subtle"
+    ]
+  },
+  "semantic-color-light-mode-stroke-static-accent-orange-medium": {
+    "value": "#fabd9d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "static",
+      "accent",
+      "orange",
+      "medium"
+    ]
+  },
+  "semantic-color-light-mode-stroke-static-accent-orange-contrast": {
+    "value": "#f56618",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "static",
+      "accent",
+      "orange",
+      "contrast"
+    ]
+  },
+  "semantic-color-light-mode-stroke-static-accent-orange-bold": {
+    "value": "#c14d0f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "static",
+      "accent",
+      "orange",
       "bold"
     ]
   },
@@ -7537,6 +7953,19 @@ const tokens = {
       "bold"
     ]
   },
+  "semantic-color-midnight-mode-fill-static-status-attention-medium": {
+    "value": "#91723b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "static",
+      "status",
+      "attention",
+      "medium"
+    ]
+  },
   "semantic-color-midnight-mode-fill-static-status-severe-faint": {
     "value": "#59270c",
     "type": "color",
@@ -7924,6 +8353,136 @@ const tokens = {
       "static",
       "accent",
       "lagoon",
+      "bold"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-static-accent-saffron-faint": {
+    "value": "#342d21",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "static",
+      "accent",
+      "saffron",
+      "faint"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-static-accent-saffron-subtle": {
+    "value": "#6d5936",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "static",
+      "accent",
+      "saffron",
+      "subtle"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-static-accent-saffron-medium": {
+    "value": "#91723b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "static",
+      "accent",
+      "saffron",
+      "medium"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-static-accent-saffron-contrast": {
+    "value": "#aa843e",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "static",
+      "accent",
+      "saffron",
+      "contrast"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-static-accent-saffron-bold": {
+    "value": "#eab655",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "static",
+      "accent",
+      "saffron",
+      "bold"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-static-accent-orange-faint": {
+    "value": "#72300c",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "static",
+      "accent",
+      "orange",
+      "faint"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-static-accent-orange-subtle": {
+    "value": "#8d380b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "static",
+      "accent",
+      "orange",
+      "subtle"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-static-accent-orange-medium": {
+    "value": "#c14d0f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "static",
+      "accent",
+      "orange",
+      "medium"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-static-accent-orange-contrast": {
+    "value": "#e1580e",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "static",
+      "accent",
+      "orange",
+      "contrast"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-static-accent-orange-bold": {
+    "value": "#fe9156",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "static",
+      "accent",
+      "orange",
       "bold"
     ]
   },
@@ -9070,6 +9629,136 @@ const tokens = {
       "bold"
     ]
   },
+  "semantic-color-midnight-mode-foreground-static-accent-saffron-faint": {
+    "value": "#aa843e",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "static",
+      "accent",
+      "saffron",
+      "faint"
+    ]
+  },
+  "semantic-color-midnight-mode-foreground-static-accent-saffron-subtle": {
+    "value": "#bf9342",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "static",
+      "accent",
+      "saffron",
+      "subtle"
+    ]
+  },
+  "semantic-color-midnight-mode-foreground-static-accent-saffron-medium": {
+    "value": "#eab655",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "static",
+      "accent",
+      "saffron",
+      "medium"
+    ]
+  },
+  "semantic-color-midnight-mode-foreground-static-accent-saffron-contrast": {
+    "value": "#ffc864",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "static",
+      "accent",
+      "saffron",
+      "contrast"
+    ]
+  },
+  "semantic-color-midnight-mode-foreground-static-accent-saffron-bold": {
+    "value": "#fed897",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "static",
+      "accent",
+      "saffron",
+      "bold"
+    ]
+  },
+  "semantic-color-midnight-mode-foreground-static-accent-orange-faint": {
+    "value": "#e1580e",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "static",
+      "accent",
+      "orange",
+      "faint"
+    ]
+  },
+  "semantic-color-midnight-mode-foreground-static-accent-orange-subtle": {
+    "value": "#f56618",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "static",
+      "accent",
+      "orange",
+      "subtle"
+    ]
+  },
+  "semantic-color-midnight-mode-foreground-static-accent-orange-medium": {
+    "value": "#fe9156",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "static",
+      "accent",
+      "orange",
+      "medium"
+    ]
+  },
+  "semantic-color-midnight-mode-foreground-static-accent-orange-contrast": {
+    "value": "#fda97b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "static",
+      "accent",
+      "orange",
+      "contrast"
+    ]
+  },
+  "semantic-color-midnight-mode-foreground-static-accent-orange-bold": {
+    "value": "#fabd9d",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "static",
+      "accent",
+      "orange",
+      "bold"
+    ]
+  },
   "semantic-color-midnight-mode-foreground-static-brand-faint": {
     "value": "#5d7cca",
     "type": "color",
@@ -10049,6 +10738,19 @@ const tokens = {
       "bold"
     ]
   },
+  "semantic-color-midnight-mode-stroke-static-status-attention-subtle": {
+    "value": "#1d1912",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "stroke",
+      "static",
+      "status",
+      "attention",
+      "subtle"
+    ]
+  },
   "semantic-color-midnight-mode-stroke-static-status-severe-faint": {
     "value": "#491900",
     "type": "color",
@@ -10436,6 +11138,136 @@ const tokens = {
       "static",
       "accent",
       "lagoon",
+      "bold"
+    ]
+  },
+  "semantic-color-midnight-mode-stroke-static-accent-saffron-faint": {
+    "value": "#1d1912",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "stroke",
+      "static",
+      "accent",
+      "saffron",
+      "faint"
+    ]
+  },
+  "semantic-color-midnight-mode-stroke-static-accent-saffron-subtle": {
+    "value": "#342d21",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "stroke",
+      "static",
+      "accent",
+      "saffron",
+      "subtle"
+    ]
+  },
+  "semantic-color-midnight-mode-stroke-static-accent-saffron-medium": {
+    "value": "#6d5936",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "stroke",
+      "static",
+      "accent",
+      "saffron",
+      "medium"
+    ]
+  },
+  "semantic-color-midnight-mode-stroke-static-accent-saffron-contrast": {
+    "value": "#91723b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "stroke",
+      "static",
+      "accent",
+      "saffron",
+      "contrast"
+    ]
+  },
+  "semantic-color-midnight-mode-stroke-static-accent-saffron-bold": {
+    "value": "#aa843e",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "stroke",
+      "static",
+      "accent",
+      "saffron",
+      "bold"
+    ]
+  },
+  "semantic-color-midnight-mode-stroke-static-accent-orange-faint": {
+    "value": "#59270c",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "stroke",
+      "static",
+      "accent",
+      "orange",
+      "faint"
+    ]
+  },
+  "semantic-color-midnight-mode-stroke-static-accent-orange-subtle": {
+    "value": "#72300c",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "stroke",
+      "static",
+      "accent",
+      "orange",
+      "subtle"
+    ]
+  },
+  "semantic-color-midnight-mode-stroke-static-accent-orange-medium": {
+    "value": "#8d380b",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "stroke",
+      "static",
+      "accent",
+      "orange",
+      "medium"
+    ]
+  },
+  "semantic-color-midnight-mode-stroke-static-accent-orange-contrast": {
+    "value": "#c14d0f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "stroke",
+      "static",
+      "accent",
+      "orange",
+      "contrast"
+    ]
+  },
+  "semantic-color-midnight-mode-stroke-static-accent-orange-bold": {
+    "value": "#e1580e",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "stroke",
+      "static",
+      "accent",
+      "orange",
       "bold"
     ]
   },

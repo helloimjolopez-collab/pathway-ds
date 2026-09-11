@@ -269,7 +269,7 @@ const DEMO_ORGS = [
 
 // Avatar trigger — logo or church placeholder per Figma.
 // Container.Avatar: 2px (xxxtight) padding per Figma — NOT 4px.
-// Avatar inner: bg.fill.action.secondary.base, 1px border, rounded 4px.
+// Avatar inner: bg.fill.action.secondary.rest, 1px border, rounded 4px.
 // Logo image: object-fit cover — fills frame proportionally per Figma annotation.
 function TriggerAvatar({ logoUrl, size, borderColor }) {
   return (
@@ -622,7 +622,7 @@ function App() {
     │   ├── Container.Avatar            p-2 · 24×24 desktop · 20×20 mobile
     │   │   └── Avatar                  rounded-4 · 1px border
     │   │       ├─ [logo present]       <img object-fit:cover>
-    │   │       └─ [no logo]            church SVG · bg fill.action.secondary.base
+    │   │       └─ [no logo]            church SVG · bg fill.action.secondary.rest
     │   ├── Container.OrgLabel          DESKTOP ONLY · max-w-248
     │   │   ├── Container.OrgName       max-w-180 · content-sized · ellipsis
     │   │   └── Container.CityName.Catholic   CATHOLIC ONLY · max-w-72
@@ -649,22 +649,22 @@ function App() {
               <tbody>
                 {[
                   // Fill
-                  { cat:"Fill",   semantic:"fill.action.tertiary.base",         value:"rgba(160,181,230,0.04)", role:"Trigger background — base" },
-                  { cat:"Fill",   semantic:"fill.action.primaryinverse.hover",  value:"rgba(10,18,35,0.16)",    role:"Trigger background — hover" },
-                  { cat:"Fill",   semantic:"fill.action.primaryinverse.pressed",value:"rgba(255,255,255,0.08)", role:"Trigger background — pressed / open" },
-                  { cat:"Fill",   semantic:"fill.action.secondary.base",        value:"rgba(255,255,255,0.08)", role:"Avatar placeholder bg (no logo)" },
+                  { cat:"Fill",   semantic:"fill.action.primary-dim.rest",         value:"rgba(160,181,230,0.04)", role:"Trigger background — base" },
+                  { cat:"Fill",   semantic:"fill.action.primary-dim.hover",  value:"rgba(10,18,35,0.16)",    role:"Trigger background — hover" },
+                  { cat:"Fill",   semantic:"fill.action.primary-dim.pressed",value:"rgba(255,255,255,0.08)", role:"Trigger background — pressed / open" },
+                  { cat:"Fill",   semantic:"fill.action.secondary.rest",        value:"rgba(255,255,255,0.08)", role:"Avatar placeholder bg (no logo)" },
                   // Stroke
-                  { cat:"Stroke", semantic:"stroke.action.tertiary.base",       value:"rgba(160,181,230,0.16)", role:"Trigger + avatar border — base" },
-                  { cat:"Stroke", semantic:"stroke.action.tertiary.hover",      value:"rgba(160,181,230,0.20)", role:"Trigger + avatar border — hover" },
-                  { cat:"Stroke", semantic:"stroke.action.tertiary.pressed",    value:"rgba(160,181,230,0.30)", role:"Trigger + avatar border — pressed / open" },
+                  { cat:"Stroke", semantic:"stroke.action.primary.rest",       value:"rgba(160,181,230,0.16)", role:"Trigger + avatar border — base" },
+                  { cat:"Stroke", semantic:"stroke.action.primary.hover",      value:"rgba(160,181,230,0.20)", role:"Trigger + avatar border — hover" },
+                  { cat:"Stroke", semantic:"stroke.action.primary.pressed",    value:"rgba(160,181,230,0.30)", role:"Trigger + avatar border — pressed / open" },
                   // Text
-                  { cat:"Text",   semantic:"text.action.mono.base",             value:"#fbfbfb", role:"Label — base" },
-                  { cat:"Text",   semantic:"text.action.mono.hover",            value:"#ffffff", role:"Label — hover" },
-                  { cat:"Text",   semantic:"text.action.mono.pressed",          value:"#ffffff", role:"Label — pressed / open" },
+                  { cat:"Text",   semantic:"foreground.action.mono.rest",             value:"#fbfbfb", role:"Label — base" },
+                  { cat:"Text",   semantic:"foreground.action.mono.rest",            value:"#ffffff", role:"Label — hover" },
+                  { cat:"Text",   semantic:"foreground.action.mono.rest",          value:"#ffffff", role:"Label — pressed / open" },
                   // Icon
-                  { cat:"Icon",   semantic:"icon.action.mono.base",             value:"#fbfbfb", role:"Chevron — base" },
-                  { cat:"Icon",   semantic:"icon.action.mono.hover",            value:"#ffffff", role:"Chevron — hover" },
-                  { cat:"Icon",   semantic:"icon.action.mono.pressed",          value:"#ffffff", role:"Chevron — pressed / open" },
+                  { cat:"Icon",   semantic:"foreground.action.mono.rest",             value:"#fbfbfb", role:"Chevron — base" },
+                  { cat:"Icon",   semantic:"foreground.action.mono.rest",            value:"#ffffff", role:"Chevron — hover" },
+                  { cat:"Icon",   semantic:"foreground.action.mono.rest",          value:"#ffffff", role:"Chevron — pressed / open" },
                   // Geometry
                   { cat:"Geometry", semantic:"cornerradius.medium",             value:"8px",  role:"Trigger corner radius" },
                   { cat:"Geometry", semantic:"cornerradius.small",              value:"4px",  role:"Avatar corner radius" },
@@ -726,7 +726,7 @@ function App() {
           <div className="demo-section__body">
             <div style={{ minWidth:460 }}>
               {[
-                { label:"Base",              fill:"rgba(160,181,230,0.04)", stroke:"rgba(160,181,230,0.16)", desc:"Resting — fill.action.tertiary.base + stroke.action.tertiary.base" },
+                { label:"Base",              fill:"rgba(160,181,230,0.04)", stroke:"rgba(160,181,230,0.16)", desc:"Resting — fill.action.primary-dim.rest + stroke.action.primary.rest" },
                 { label:"Hover",             fill:"rgba(10,18,35,0.16)",    stroke:"rgba(160,181,230,0.20)", desc:"Cursor over — primaryinverse hover fill, tertiary hover stroke" },
                 { label:"Pressed / Open",    fill:"rgba(255,255,255,0.08)", stroke:"rgba(160,181,230,0.30)", desc:"Mouse-down or panel open — chevron rotates 180°" },
                 { label:"Disabled",          fill:"rgba(160,181,230,0.04)", stroke:"rgba(160,181,230,0.16)", desc:"Single-org users — base styling at 50% opacity, inert" },

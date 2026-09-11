@@ -275,7 +275,7 @@ function TokenTable({ title, rows, noteEmpty }) {
 
 // ── 8-11. Colour tokens ─────────────────────────────────────────────────────
 //
-// Rewritten 2026-09-09. The previous tables named `fill.action.tertiary.*` and
+// Rewritten 2026-09-09. The previous tables named `fill.action.primary-dim.*` and
 // `*primaryinverse*` (both deleted), split Text and Icon into two tiers (merged
 // into Foreground), suffixed `.base` where Action tokens now say `.rest`, and
 // carried hand-typed rgba values beside every name.

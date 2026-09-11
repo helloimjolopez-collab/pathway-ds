@@ -144,13 +144,13 @@ TopNavSearch.Container               position relative, FIXED 48×48 footprint (
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `fill.static.neutral.light` | `--semantic-color-light-mode-fill-static-neutral-faint` | #ffffff | Bar background (all states except disabled) |
-| `fill.action.tertiary.base` | `--semantic-color-light-mode-fill-action-primary-dim-rest` | #eef2fb | Filter pill background when filter-active |
-| `fill.action.secondaryinverse.hover` | `--semantic-color-light-mode-fill-action-secondary-hover` | rgba(17,17,17,0.02) | Icon pill hover state |
-| `fill.action.secondaryinverse.pressed` | `--semantic-color-light-mode-fill-action-secondary-pressed` | #f6f6f6 | Icon pill pressed state |
-| `fill.action.primary.base` | `--semantic-color-light-mode-fill-action-primary-rest` | #3555a0 | Badge dot fill |
-| `fill.action.primaryinverse.base` | `--semantic-color-light-mode-fill-action-primary-dim-rest` | rgba(160,181,230,0.08) | TopNavSearch collapsed button background (dark surface) |
-| `fill.static.info.light` | `--semantic-color-light-mode-fill-static-brand-light` | #f0f4ff | Page/demo surface |
+| `fill.static.neutral.faint` | `--semantic-color-fill-static-neutral-faint` | #ffffff | Bar background (all states except disabled) |
+| `fill.action.primary-dim.rest` | `--semantic-color-fill-action-primary-dim-rest` | #eef2fb | Filter pill background when filter-active |
+| `fill.action.secondary.hover` | `--semantic-color-fill-action-secondary-hover` | rgba(17,17,17,0.02) | Icon pill hover state |
+| `fill.action.secondary.pressed` | `--semantic-color-fill-action-secondary-pressed` | #f6f6f6 | Icon pill pressed state |
+| `fill.action.primary.rest` | `--semantic-color-fill-action-primary-rest` | #3555a0 | Badge dot fill |
+| `fill.action.primary-dim.rest` | `--semantic-color-fill-action-primary-dim-rest` | rgba(160,181,230,0.08) | TopNavSearch collapsed button background (dark surface) |
+| `fill.static.brand.faint` | `--semantic-color-fill-static-brand-light` | #f0f4ff | Page/demo surface |
 
 Disabled background: `Fill/Action/Disabled` (`--semantic-color-fill-action-disabled`). Resolved 2026-09-03 — the restructure added one shared Disabled per family, so the primitive fallback is gone.
 
@@ -158,11 +158,11 @@ Disabled background: `Fill/Action/Disabled` (`--semantic-color-fill-action-disab
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `stroke.static.neutral.light` | `--semantic-color-light-mode-stroke-static-neutral-faint` | #f6f6f6 | Default border (0.75px) |
-| `stroke.action.primary.hover` | `--semantic-color-light-mode-stroke-action-primary-hover` | #86a0dd | Hover border (1px) |
-| `stroke.action.primary.pressed` | `--semantic-color-light-mode-stroke-action-primary-pressed` | #6e8bd4 | Focused / with-value / filter-active border (1px) |
-| `stroke.action.secondary-inverse.base` | `--semantic-color-light-mode-stroke-action-secondary-rest` | #d2d2d2 | Cancel–filter divider (0.75px) |
-| `stroke.action.negative.base` | `--semantic-color-light-mode-stroke-action-status-negative-rest` | #b03a3a | Error state border (1px) |
+| `stroke.static.neutral.subtle` | `--semantic-color-stroke-static-neutral-faint` | #f6f6f6 | Default border (0.75px) |
+| `stroke.action.primary.hover` | `--semantic-color-stroke-action-primary-hover` | #86a0dd | Hover border (1px) |
+| `stroke.action.primary.pressed` | `--semantic-color-stroke-action-primary-pressed` | #6e8bd4 | Focused / with-value / filter-active border (1px) |
+| `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` | #d2d2d2 | Cancel–filter divider (0.75px) |
+| `stroke.action.status.negative.rest` | `--semantic-color-stroke-action-status-negative-rest` | #b03a3a | Error state border (1px) |
 
 Disabled border: `Stroke/Action/Disabled` (`--semantic-color-stroke-action-disabled`). Resolved 2026-09-03, same as the background.
 
@@ -172,17 +172,17 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `text.static.secondary.subtle` | `--semantic-color-light-mode-foreground-static-neutral-subtle` | #606060 | Placeholder text |
-| `text.static.secondary.bold` | `--semantic-color-light-mode-foreground-static-neutral-bold` | #202020 | Input value text |
+| `foreground.static.neutral.subtle` | `--semantic-color-foreground-static-neutral-subtle` | #606060 | Placeholder text |
+| `foreground.static.neutral.bold` | `--semantic-color-foreground-static-neutral-bold` | #202020 | Input value text |
 
 ### 3.4 Icon
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `icon.action.secondaryinverse.base` | `--semantic-color-light-mode-foreground-action-secondary-rest` | #6b6b6b | Search + cancel + filter icon — idle |
-| `icon.action.secondaryinverse.hover` | `--semantic-color-light-mode-foreground-action-secondary-hover` | #545454 | All icons — hover |
-| `icon.action.secondary.disabled` | `--semantic-color-light-mode-foreground-action-disabled` | #979797 | All icons — disabled |
-| `icon.action.negative.base` | `--semantic-color-light-mode-foreground-action-status-negative-rest` | #b03a3a | Search icon — error state |
+| `foreground.action.secondary.rest` | `--semantic-color-foreground-action-secondary-rest` | #6b6b6b | Search + cancel + filter icon — idle |
+| `foreground.action.secondary.hover` | `--semantic-color-foreground-action-secondary-hover` | #545454 | All icons — hover |
+| `foreground.action.disabled` | `--semantic-color-foreground-action-disabled` | #979797 | All icons — disabled |
+| `foreground.action.status.negative.rest` | `--semantic-color-foreground-action-status-negative-rest` | #b03a3a | Search icon — error state |
 
 ### 3.5 Geometry
 
@@ -226,7 +226,7 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 | TopNavSearch container padding | Wraps the collapsed btn / expanded bar | 4 | `layout.units.padding.xxtight` |
 
 > IMPLEMENTATION RULE: The filter divider is a left border on the filter-wrap element, not a separate element.
-> `.search__filter-wrap` carries `border-left: 0.75px solid <stroke.action.secondary-inverse.base>` and `padding-left: 4px`. The cancel button before it has no border. Do not separate the divider into its own DOM element.
+> `.search__filter-wrap` carries `border-left: 0.75px solid <stroke.action.secondary.rest>` and `padding-left: 4px`. The cancel button before it has no border. Do not separate the divider into its own DOM element.
 
 ---
 
@@ -264,7 +264,7 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 
 - The cancel (clear) button appears whenever `value.length > 0`, regardless of `filterActive` state.
 - The filter wrap (funnel + divider) appears only when `showFilter = true`.
-- When `filterActive = true`: bar gets blue border, funnel pill gets `fill.action.tertiary.base` background, input remains fully interactive.
+- When `filterActive = true`: bar gets blue border, funnel pill gets `fill.action.primary-dim.rest` background, input remains fully interactive.
 - When `disabled = true`: entire touch target at 38% opacity. All sub-elements non-interactive.
 - `error` and `disabled` are mutually exclusive. `error` wins if both are somehow set.
 
@@ -278,13 +278,13 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 | State | Bar border | Bar bg | Icon colour | Text colour | Filter pip bg |
 |---|---|---|---|---|---|
-| **Idle** | `stroke.static.neutral.light` 0.75px | `fill.static.neutral.light` | `icon.action.secondaryinverse.base` | placeholder: `text.static.secondary.subtle` | — |
-| **Hover** | `stroke.action.primary.hover` 1px | `fill.static.neutral.light` | `icon.action.secondaryinverse.hover` | (same) | — |
-| **Focused** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.light` | (same as hover) | (same) | — |
-| **With-value** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.light` | (base) | `text.static.secondary.bold` | — |
-| **Filter-active** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.light` | (base) | (placeholder or bold) | `fill.action.tertiary.base` |
-| **Disabled** | primitive fallback 1px | primitive fallback | `icon.action.secondary.disabled` | (38% opacity) | — |
-| **Error** | `stroke.action.negative.base` 1px | `fill.static.neutral.light` | `icon.action.negative.base` | (placeholder) | — |
+| **Idle** | `stroke.static.neutral.subtle` 0.75px | `fill.static.neutral.faint` | `foreground.action.secondary.rest` | placeholder: `foreground.static.neutral.subtle` | — |
+| **Hover** | `stroke.action.primary.hover` 1px | `fill.static.neutral.faint` | `foreground.action.secondary.hover` | (same) | — |
+| **Focused** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.faint` | (same as hover) | (same) | — |
+| **With-value** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.faint` | (base) | `foreground.static.neutral.bold` | — |
+| **Filter-active** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.faint` | (base) | (placeholder or bold) | `fill.action.primary-dim.rest` |
+| **Disabled** | primitive fallback 1px | primitive fallback | `foreground.action.disabled` | (38% opacity) | — |
+| **Error** | `stroke.action.status.negative.rest` 1px | `fill.static.neutral.faint` | `foreground.action.status.negative.rest` | (placeholder) | — |
 
 ### State logic rules
 
@@ -313,9 +313,9 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 ### Filter wrap and divider
 
-- `.search__filter-wrap` carries the left-border divider. Token: `stroke.action.secondary-inverse.base` (#d2d2d2), 0.75px, 4px padding-left.
+- `.search__filter-wrap` carries the left-border divider. Token: `stroke.action.secondary.rest` (#d2d2d2), 0.75px, 4px padding-left.
 - The funnel icon button (`aria-label="Open filters"` or `aria-label="Open filters (filters active)"`) is inside.
-- A 6×6px dot badge sits `position: absolute; top: 1px; right: 1px` relative to the badge-wrap. Fill: `fill.action.primary.base`. Border: 1.5px solid `fill.static.neutral.light` (white ring). Visible only when `filterBadge = true`.
+- A 6×6px dot badge sits `position: absolute; top: 1px; right: 1px` relative to the badge-wrap. Fill: `fill.action.primary.rest`. Border: 1.5px solid `fill.static.neutral.faint` (white ring). Visible only when `filterBadge = true`.
 
 ### Badge
 
@@ -329,7 +329,7 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 - Touch target: height 48px, width 100% (or fixed 320px in TopNavSearch). Display flex-column, justify-center.
 - Pill inner: min-height 36px, border-radius 64px (full), overflow clip.
-- Background: `fill.static.neutral.light` (#ffffff).
+- Background: `fill.static.neutral.faint` (#ffffff).
 
 ### 8.2 TopNavSearch container
 
@@ -341,7 +341,7 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 - Size: 48×48px outer.
 - Border-radius: 12px (`cornerradius.medium`).
-- Background: `fill.action.primaryinverse.base` = rgba(160,181,230,0.08).
+- Background: `fill.action.primary-dim.rest` = rgba(160,181,230,0.08).
 - Border: 1.5px solid rgba(251,251,251,0.14). No semantic token — flagged in §17.
 - Icon: 20×20px search SVG, fill rgba(251,251,251,0.9).
 
@@ -577,7 +577,7 @@ Applies to TopNavSearch expand/collapse only. All motion resolves through `--mot
 | ~~Disabled state border/bg tokens~~ | RESOLVED 2026-09-03 | Now `Fill/Action/Disabled` and `Stroke/Action/Disabled`. The restructure collapsed every per-intent disabled state onto one shared Disabled per family, which is what this gap was waiting for. |
 | TopNavSearch dark-surface icon tokens | MEDIUM | Icon fill `rgba(251,251,251,0.9)` and placeholder colour `rgba(255,255,255,0.45)` are raw values. No dark-mode semantic tokens exist for these yet. |
 | Badge dot border width | MEDIUM | The dot's white ring uses 1.5px border. `borderwidth.base` = 1px. 1.5px has no semantic token — raw value for now. |
-| Icon pill hover/pressed fill | MEDIUM | `fill.action.secondaryinverse.hover` resolves to `warm-neutral-200` (#f7f5f3) — a visible warm cream on white surfaces. Intended behavior is a subtle transparent overlay. Using `rgba(0,0,0,0.06)` and `rgba(0,0,0,0.10)` as fallbacks until a correct semantic token exists. |
+| Icon pill hover/pressed fill | MEDIUM | `fill.action.secondary.hover` resolves to `warm-neutral-200` (#f7f5f3) — a visible warm cream on white surfaces. Intended behavior is a subtle transparent overlay. Using `rgba(0,0,0,0.06)` and `rgba(0,0,0,0.10)` as fallbacks until a correct semantic token exists. |
 
 ---
 

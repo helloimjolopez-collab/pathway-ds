@@ -381,7 +381,7 @@ export function PopoverRow({ item, onClick, activeId }) {
 export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, expandIcon }) {
   const [h, setH] = useState(false);
   const labelColor = h ? T.text.navHover : T.text.navBase;
-  const actionIconColor = T.icon.actionSecondary; // #6b6b6b — always static, no hover change
+  const actionIconColor = T.foreground.actionSecondary; // #6b6b6b — always static, no hover change
   return (
     <div style={{ width: "100%" }}>
       <div style={{ height: 1, backgroundColor: T.fill.infoSubtle, marginBottom: L.collapseGap }} />
@@ -441,7 +441,7 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
 // Hidden on mobile (<768px) — TopNav hamburger is the sole toggle there.
 export function NavHeader({ isSidebarCollapsed, onToggle, collapseIcon, expandIcon }) {
   const [h, setH] = useState(false);
-  const actionIconColor = T.icon.actionSecondary; // #6b6b6b — always static
+  const actionIconColor = T.foreground.actionSecondary; // #6b6b6b — always static
   return (
     <div style={{ width: "100%", flexShrink: 0 }}>
       <div onClick={onToggle} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
@@ -846,7 +846,7 @@ function ChevUp({ size = 10, color }) {
 // right_panel_open — used on the collapse button when sidebar is EXPANDED (click to collapse)
 // Token: Foreground/Action/Secondary/Rest (#6b6b6b)
 // Figma component: SideBar Expand/Collapse, Type=Collapse, node 40006793:3783
-function RightPanelOpenIcon({ size = 12, color = T.icon.actionSecondary }) {
+function RightPanelOpenIcon({ size = 12, color = T.foreground.actionSecondary }) {
   return (
     <svg width={size} height={size} viewBox="0 0 12 12" fill="none">
       <path d="M5.66667 7.86667V4.13333C5.66667 3.97778 5.6 3.87222 5.46667 3.81667C5.33333 3.76111 5.21111 3.78889 5.1 3.9L3.46667 5.53333C3.33333 5.66667 3.26667 5.82222 3.26667 6C3.26667 6.17778 3.33333 6.33333 3.46667 6.46667L5.1 8.1C5.21111 8.21111 5.33333 8.23889 5.46667 8.18333C5.6 8.12778 5.66667 8.02222 5.66667 7.86667ZM1.33333 12C0.966667 12 0.652778 11.8694 0.391667 11.6083C0.130556 11.3472 0 11.0333 0 10.6667V1.33333C0 0.966667 0.130556 0.652778 0.391667 0.391667C0.652778 0.130556 0.966667 0 1.33333 0H10.6667C11.0333 0 11.3472 0.130556 11.6083 0.391667C11.8694 0.652778 12 0.966667 12 1.33333V10.6667C12 11.0333 11.8694 11.3472 11.6083 11.6083C11.3472 11.8694 11.0333 12 10.6667 12H1.33333ZM8.66667 10.6667H10.6667V1.33333H8.66667V10.6667ZM7.33333 10.6667V1.33333H1.33333V10.6667H7.33333Z" fill={color} />
@@ -857,7 +857,7 @@ function RightPanelOpenIcon({ size = 12, color = T.icon.actionSecondary }) {
 // left_panel_open — used on the collapse button when sidebar is COLLAPSED (click to expand)
 // Token: Foreground/Action/Secondary/Rest (#6b6b6b)
 // Figma component: SideBar Expand/Collapse, Type=Expand, node 40006793:3783
-function LeftPanelOpenIcon({ size = 12, color = T.icon.actionSecondary }) {
+function LeftPanelOpenIcon({ size = 12, color = T.foreground.actionSecondary }) {
   return (
     <svg width={size} height={size} viewBox="0 0 12 12" fill="none">
       <path d="M6.33333 4.13333V7.86667C6.33333 8.02222 6.4 8.12778 6.53333 8.18333C6.66667 8.23889 6.78889 8.21111 6.9 8.1L8.53333 6.46667C8.66667 6.33333 8.73333 6.17778 8.73333 6C8.73333 5.82222 8.66667 5.66667 8.53333 5.53333L6.9 3.9C6.78889 3.78889 6.66667 3.76111 6.53333 3.81667C6.4 3.87222 6.33333 3.97778 6.33333 4.13333ZM1.33333 12C0.966667 12 0.652778 11.8694 0.391667 11.6083C0.130556 11.3472 0 11.0333 0 10.6667V1.33333C0 0.966667 0.130556 0.652778 0.391667 0.391667C0.652778 0.130556 0.966667 0 1.33333 0H10.6667C11.0333 0 11.3472 0.130556 11.6083 0.391667C11.8694 0.652778 12 0.966667 12 1.33333V10.6667C12 11.0333 11.8694 11.3472 11.6083 11.6083C11.3472 11.8694 11.0333 12 10.6667 12H1.33333ZM3.33333 10.6667V1.33333H1.33333V10.6667H3.33333ZM4.66667 10.6667H10.6667V1.33333H4.66667V10.6667Z" fill={color} />

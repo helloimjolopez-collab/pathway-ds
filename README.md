@@ -39,8 +39,8 @@ Once loaded, use the custom properties anywhere:
 
 ```css
 .my-component {
-  background: var(--semantic-color-light-mode-fill-static-brand-base);
-  color:      var(--semantic-color-light-mode-text-static-primary-inverse);
+  background: var(--semantic-color-fill-static-brand-medium);
+  color:      var(--semantic-color-foreground-static-neutral-white);
 }
 ```
 

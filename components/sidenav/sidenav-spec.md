@@ -643,22 +643,22 @@ All `SideNavItem` labels at all levels use **the same** text style. There is no 
 
 | Property | CSS Variable (Style Dictionary output) | Resolved Value |
 |---|---|---|
-| Font family | `--semantic-type-desktop-label-menu-base-medium-fontfamily` | `'Red Hat Text', sans-serif` |
-| Font weight | `--semantic-type-desktop-label-menu-base-medium-fontweight` | `500` (Medium) |
-| Font size | `--semantic-type-desktop-label-menu-base-medium-fontsize` | `14px` |
-| Line height | `--semantic-type-desktop-label-menu-base-medium-lineheight` | `20px` |
-| Letter spacing | `--semantic-type-desktop-label-menu-base-medium-letterspacing` | `0.3px` |
+| Font family | `--semantic-type-family-brand` | `'Red Hat Text', sans-serif` |
+| Font weight | `--semantic-type-weight-medium` | `500` (Medium) |
+| Font size | `--semantic-type-font-size-s` | `14px` |
+| Line height | `--semantic-type-line-height-s-single` | `20px` |
+| Letter spacing | `--semantic-type-letter-spacing-compact` | `0.3px` |
 
 #### Implementation (CSS)
 
 ```css
 /* Using CSS custom properties */
 .sidenav-label {
-  font-family: var(--semantic-type-desktop-label-menu-base-medium-fontfamily, 'Red Hat Text', sans-serif);
-  font-weight: var(--semantic-type-desktop-label-menu-base-medium-fontweight, 500);
-  font-size: var(--semantic-type-desktop-label-menu-base-medium-fontsize, 14px);
-  line-height: var(--semantic-type-desktop-label-menu-base-medium-lineheight, 20px);
-  letter-spacing: var(--semantic-type-desktop-label-menu-base-medium-letterspacing, 0.3px);
+  font-family: var(--semantic-type-family-brand, 'Red Hat Text', sans-serif);
+  font-weight: var(--semantic-type-weight-medium, 500);
+  font-size: var(--semantic-type-font-size-s, 14px);
+  line-height: var(--semantic-type-line-height-s-single, 20px);
+  letter-spacing: var(--semantic-type-letter-spacing-compact, 0.3px);
 }
 
 /* Hard-coded fallback (no token system) */

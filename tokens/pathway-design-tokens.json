@@ -1438,6 +1438,10 @@
               "bold": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.150}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.75}"
               }
             },
             "severe": {
@@ -1572,6 +1576,50 @@
               "bold": {
                 "$type": "color",
                 "$value": "{primitive-color.lagoon.600}"
+              }
+            },
+            "saffron": {
+              "faint": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.75}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.100}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.150}"
+              },
+              "contrast": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.500}"
+              },
+              "bold": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.800}"
+              }
+            },
+            "orange": {
+              "faint": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.75}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.100}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.150}"
+              },
+              "contrast": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.500}"
+              },
+              "bold": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.800}"
               }
             }
           }
@@ -1995,6 +2043,50 @@
                 "$type": "color",
                 "$value": "{primitive-color.mauve.900}"
               }
+            },
+            "saffron": {
+              "faint": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.400}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.500}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.700}"
+              },
+              "contrast": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.800}"
+              },
+              "bold": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.900}"
+              }
+            },
+            "orange": {
+              "faint": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.400}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.500}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.700}"
+              },
+              "contrast": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.800}"
+              },
+              "bold": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.900}"
+              }
             }
           },
           "brand": {
@@ -2360,6 +2452,10 @@
               "bold": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.200}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.75}"
               }
             },
             "severe": {
@@ -2494,6 +2590,50 @@
               "bold": {
                 "$type": "color",
                 "$value": "{primitive-color.lagoon.600}"
+              }
+            },
+            "saffron": {
+              "faint": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.25}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.75}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.100}"
+              },
+              "contrast": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.300}"
+              },
+              "bold": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.400}"
+              }
+            },
+            "orange": {
+              "faint": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.50}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.75}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.100}"
+              },
+              "contrast": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.300}"
+              },
+              "bold": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.400}"
               }
             }
           }
@@ -2962,6 +3102,10 @@
               "bold": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.300}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.400}"
               }
             },
             "severe": {
@@ -3096,6 +3240,50 @@
               "bold": {
                 "$type": "color",
                 "$value": "{primitive-color.lagoon.250}"
+              }
+            },
+            "saffron": {
+              "faint": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.700}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.500}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.400}"
+              },
+              "contrast": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.350}"
+              },
+              "bold": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.200}"
+              }
+            },
+            "orange": {
+              "faint": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.700}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.600}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.400}"
+              },
+              "contrast": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.350}"
+              },
+              "bold": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.200}"
               }
             }
           }
@@ -3519,6 +3707,50 @@
                 "$type": "color",
                 "$value": "{primitive-color.mauve.75}"
               }
+            },
+            "saffron": {
+              "faint": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.350}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.300}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.200}"
+              },
+              "contrast": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.150}"
+              },
+              "bold": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.100}"
+              }
+            },
+            "orange": {
+              "faint": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.350}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.300}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.200}"
+              },
+              "contrast": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.150}"
+              },
+              "bold": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.100}"
+              }
             }
           },
           "brand": {
@@ -3884,6 +4116,10 @@
               "bold": {
                 "$type": "color",
                 "$value": "{primitive-color.saffron.400}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.800}"
               }
             },
             "severe": {
@@ -4018,6 +4254,50 @@
               "bold": {
                 "$type": "color",
                 "$value": "{primitive-color.lagoon.250}"
+              }
+            },
+            "saffron": {
+              "faint": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.800}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.700}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.500}"
+              },
+              "contrast": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.400}"
+              },
+              "bold": {
+                "$type": "color",
+                "$value": "{primitive-color.saffron.350}"
+              }
+            },
+            "orange": {
+              "faint": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.800}"
+              },
+              "subtle": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.700}"
+              },
+              "medium": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.600}"
+              },
+              "contrast": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.400}"
+              },
+              "bold": {
+                "$type": "color",
+                "$value": "{primitive-color.orange.350}"
               }
             }
           }

@@ -1,6 +1,6 @@
 # Token architecture
 
-Design tokens are named design decisions stored as data. Instead of `color: #4b6ec3` scattered across dozens of components, you write `color: var(--semantic-color-light-mode-text-action-brand-default)`. The name carries the intent; the value is managed in one place.
+Design tokens are named design decisions stored as data. Instead of `color: #4b6ec3` scattered across dozens of components, you write `color: var(--semantic-color-foreground-action-primary-rest)`. The name carries the intent; the value is managed in one place.
 
 Pathway tokens have two layers: **primitive** and **semantic**.
 
@@ -36,24 +36,39 @@ Semantic tokens alias a primitive and give it a _purpose_. The name tells you th
 
 ```css
 /* aliasing the primitive */
---semantic-color-light-mode-fill-contextual-navitem-base:
-    var(--primitive-color-cool-neutral-10)
+--semantic-color-fill-action-selection-selected:
+    var(--primitive-color-brand-75)
 
---semantic-color-light-mode-icon-static-neutral-base:
-    var(--primitive-color-cool-neutral-100)
+--semantic-color-foreground-static-neutral-medium:
+    var(--primitive-color-cool-neutral-400)
 
---semantic-color-light-mode-text-action-brand-default:
-    var(--primitive-color-brand-100)
+--semantic-color-foreground-action-primary-rest:
+    var(--primitive-color-brand-500)
 ```
 
-**Naming pattern:** `--semantic-color-[role]-[context]-[element]-[state]`
+**Naming pattern:** `--semantic-color-[tier]-[group]-[role]-[step|state]`
 
-| Segment | Example values |
+| Segment | Values |
 |---------|---------------|
-| `role` | `fill`, `icon`, `text`, `stroke`, `surface` |
-| `context` | `static`, `action`, `contextual` |
-| `element` | `brand`, `neutral`, `negative`, `warning`, `danger`, `positive`, `info`… |
-| `state` | `base`, `hover`, `pressed`, `disabled` |
+| `tier` | `foreground`, `fill`, `stroke`, `scrim` — and nothing else |
+| `group` | `static`, `action`, `surface` (Fill only), `focusring` (Stroke only) |
+| `role` | `neutral`, `brand`, `primary`, `primary-dim`, `secondary`, `mono`, `selection`, `status/*`, `accent/*` |
+| `step` (Static) | `faint`, `subtle`, `light`, `medium`, `contrast`, `bold`, plus the `white` / `xlight` / `black` anchors |
+| `state` (Action) | `rest`, `hover`, `pressed`, `selected`, `disabled` |
+
+Four things in that table changed on 2026-09-03 and older documents still show the
+old shape:
+
+- **`text` and `icon` are gone.** They merged into `foreground`, because every pair
+  held the same value, so the split doubled the contract while never letting a
+  control's label and its icon differ.
+- **`surface` is not a tier.** It sits under Fill as `fill-surface-{canvas,sheet,elevated}`.
+- **There is no `contextual` group.** A nav item is a selectable row, which is a general
+  interaction pattern rather than a fact about navigation, so those tokens live in
+  `fill-action-selection-*`. `Contextual: Layout & Units` is a *layout* collection and
+  contains no colour.
+- **Action states say `rest`, not `base`.** And there is ONE `disabled` per tier rather
+  than one per role: a disabled control is the same colour whatever it would have been.
 
 **There is no `mode` segment in the names you should be writing.** The mode used to be
 baked in (`--semantic-color-light-mode-…`), which gave every colour two unrelated names
@@ -74,8 +89,8 @@ If a semantic token is renamed or removed, CI flags it during reconciliation. Th
 This is the alias chain doing its job:
 
 ```
-Figma variable value   →   Primitive token   →   Semantic token   →   Component CSS
-     #4b6ec3           →   brand-100         →   text-action-brand-default   →   var(...)
+Figma variable value   →   Primitive token   →   Semantic token                        →  Component CSS
+     #4364b6           →   brand-500         →   foreground-action-primary-rest        →  var(...)
 ```
 
 ---
@@ -110,7 +125,7 @@ Figma Variables (source of truth for all token values)
             │
             │ emitted as CSS custom properties by Style Dictionary
             ▼
-      src/tokens/  ← var(--semantic-color-light-mode-fill-static-brand-base)
+      src/tokens/  ← var(--semantic-color-fill-static-brand-medium)
             │
             ▼
       Component styles
@@ -124,7 +139,7 @@ Figma Variables (source of truth for all token values)
 
 ```css
 /* correct */
-color: var(--semantic-color-light-mode-text-action-brand-default);
+color: var(--semantic-color-foreground-action-primary-rest);
 
 /* wrong — breaks the alias contract; components shouldn't know about the palette */
 color: var(--primitive-color-brand-100);
@@ -144,15 +159,21 @@ active theme is chosen by a selector:
 
 ```css
 /* themes/light.css */
-:root {
-  --semantic-color-fill-contextual-navitem-base: var(--primitive-color-brand-0);
+:root, [data-theme="light"] {
+  --semantic-color-foreground-static-neutral-bold: var(--primitive-color-cool-neutral-900);
 }
 
 /* themes/midnight.css */
 [data-theme="midnight"], [data-theme="dark"] {
-  --semantic-color-fill-contextual-navitem-base: var(--primitive-color-brand-900);
+  --semantic-color-foreground-static-neutral-bold: var(--primitive-color-cool-neutral-0);
 }
 ```
+
+Note what inverts and what does not: the **value** flips end-for-end between the two
+files while the **name** holds. That is what lets a component name
+`foreground-static-neutral-bold` once and get the right ink in both modes. White,
+XLight and Black are the exception — they are inversion anchors, so they keep their
+value across modes rather than flipping.
 
 Load both files. Set `data-theme="midnight"` on `<html>` to switch the whole page, or on
 any element to switch just that subtree — which is how you get a dark bar inside an
@@ -230,8 +251,8 @@ Once the CSS is loaded, all custom properties are available:
 
 ```css
 .my-component {
-  background: var(--semantic-color-light-mode-fill-static-brand-base);
-  color: var(--semantic-color-light-mode-text-static-primary-inverse);
+  background: var(--semantic-color-fill-static-brand-medium);
+  color: var(--semantic-color-foreground-static-neutral-white);
 }
 ```
 

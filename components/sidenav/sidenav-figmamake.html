@@ -1116,14 +1116,14 @@ function NavHeader({ isSidebarCollapsed, onToggle }) {
         {isSidebarCollapsed ? (
           /* Collapsed: centered action icon */
           <div style={{ flex:1, display:"flex", alignItems:"center", justifyContent:"center" }}>
-            <LeftPanelOpenIcon color={T.icon.actionSecondary} />
+            <LeftPanelOpenIcon color={T.foreground.actionSecondary} />
           </div>
         ) : (
           /* Expanded: right-aligned action icon in Slot.RowEnd */
           <div style={{ flex:1, display:"flex", alignItems:"center", justifyContent:"flex-end" }}>
             <div style={{ width:36, height:36, display:"flex",
               alignItems:"center", justifyContent:"center" }}>
-              <RightPanelOpenIcon color={T.icon.actionSecondary} />
+              <RightPanelOpenIcon color={T.foreground.actionSecondary} />
             </div>
           </div>
         )}

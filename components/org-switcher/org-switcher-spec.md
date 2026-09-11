@@ -142,7 +142,7 @@ OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 f
     │   ├── Container.Avatar            p-2 · 24×24 desktop · 20×20 mobile
     │   │   └── Avatar                  rounded-4 · 1px border
     │   │       ├─ [logo present]       <img object-fit: cover>
-    │   │       └─ [no logo]            church SVG · bg fill.action.secondary.base
+    │   │       └─ [no logo]            church SVG · bg fill.action.secondary.rest
     │   ├── Container.OrgLabel          DESKTOP ONLY · max-w-248
     │   │   ├── Container.OrgName       max-w-180 · content-sized · truncates with ellipsis
     │   │   └── Container.CityName.Catholic   CATHOLIC ONLY · max-w-72 · "| {cityName}"
@@ -156,11 +156,11 @@ OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 f
 
 - **Frame:** 24×24px (desktop) / 20×20px (mobile) outer, with 2px inner padding (`padding-xxxtight`)
 - **Inner avatar:** content area = outer − 2×padding = 20×20 (desktop) / 16×16 (mobile)
-- **Border:** 1px solid, uses `stroke.action.tertiary.*` per state (same token family as the outer trigger button)
+- **Border:** 1px solid, uses `stroke.action.primary.*` per state (same token family as the outer trigger button)
 - **Corner radius:** 4px (`cornerradius-small`)
 - **Two render modes:**
   - **Logo present** (`logoUrl` truthy): `<img>` with `object-fit: cover` filling 100% × 100%. Background transparent.
-  - **No logo** (`logoUrl` empty/missing): church SVG icon (see §2.2) on `fill.action.secondary.base` background (`rgba(255,255,255,0.08)`)
+  - **No logo** (`logoUrl` empty/missing): church SVG icon (see §2.2) on `fill.action.secondary.rest` background (`rgba(255,255,255,0.08)`)
 
 ### 2.2 Church placeholder SVG — sub-component anatomy
 
@@ -174,7 +174,7 @@ OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 f
 
 - **Frame:** 16×16, 2px inner padding → 12×12 effective icon area
 - **Icon:** Material Symbols Rounded `expand_more`
-- **Colour:** `icon.action.mono.*` per state
+- **Colour:** `foreground.action.mono.*` per state
 - **Rotation:** 0° closed, 180° open (`transform --motion-duration-4 --motion-easing-standard`)
 
 ---
@@ -187,34 +187,34 @@ All tokens confirmed from Figma node `40006819:14583`. This component uses **dar
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `fill.action.tertiary.base` | `--semantic-color-midnight-mode-fill-action-primary-dim-rest` | `rgba(160,181,230,0.04)` | Trigger background — base |
-| `fill.action.primaryinverse.hover` | `--semantic-color-midnight-mode-fill-action-primary-dim-hover` | `rgba(10,18,35,0.16)` | Trigger background — hover |
-| `fill.action.primaryinverse.pressed` | `--semantic-color-midnight-mode-fill-action-primary-dim-pressed` | `rgba(255,255,255,0.08)` | Trigger background — pressed / open |
-| `fill.action.secondary.base` | `--semantic-color-midnight-mode-fill-action-secondary-rest` | `rgba(255,255,255,0.08)` | Avatar placeholder background (no logo) |
+| `fill.action.primary-dim.rest` | `--semantic-color-fill-action-primary-dim-rest` | `rgba(160,181,230,0.04)` | Trigger background — base |
+| `fill.action.primary-dim.hover` | `--semantic-color-fill-action-primary-dim-hover` | `rgba(10,18,35,0.16)` | Trigger background — hover |
+| `fill.action.primary-dim.pressed` | `--semantic-color-fill-action-primary-dim-pressed` | `rgba(255,255,255,0.08)` | Trigger background — pressed / open |
+| `fill.action.secondary.rest` | `--semantic-color-fill-action-secondary-rest` | `rgba(255,255,255,0.08)` | Avatar placeholder background (no logo) |
 
 ### 3.2 Stroke
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `stroke.action.tertiary.base` | `--semantic-color-midnight-mode-stroke-action-primary-rest` | `rgba(160,181,230,0.16)` | Trigger + avatar border — base |
-| `stroke.action.tertiary.hover` | `--semantic-color-midnight-mode-stroke-action-primary-hover` | `rgba(160,181,230,0.20)` | Trigger + avatar border — hover |
-| `stroke.action.tertiary.pressed` | `--semantic-color-midnight-mode-stroke-action-primary-pressed` | `rgba(160,181,230,0.30)` | Trigger + avatar border — pressed / open |
+| `stroke.action.primary.rest` | `--semantic-color-stroke-action-primary-rest` | `rgba(160,181,230,0.16)` | Trigger + avatar border — base |
+| `stroke.action.primary.hover` | `--semantic-color-stroke-action-primary-hover` | `rgba(160,181,230,0.20)` | Trigger + avatar border — hover |
+| `stroke.action.primary.pressed` | `--semantic-color-stroke-action-primary-pressed` | `rgba(160,181,230,0.30)` | Trigger + avatar border — pressed / open |
 
 ### 3.3 Text
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `text.action.mono.base` | `--semantic-color-midnight-mode-foreground-action-mono-rest` | `#fbfbfb` | Label text — base |
-| `text.action.mono.hover` | `--semantic-color-midnight-mode-foreground-action-mono-rest` | `#ffffff` | Label text — hover |
-| `text.action.mono.pressed` | `--semantic-color-midnight-mode-foreground-action-mono-rest` | `#ffffff` | Label text — pressed / open |
+| `foreground.action.mono.rest` | `--semantic-color-foreground-action-mono-rest` | `#fbfbfb` | Label text — base |
+| `foreground.action.mono.rest` | `--semantic-color-foreground-action-mono-rest` | `#ffffff` | Label text — hover |
+| `foreground.action.mono.rest` | `--semantic-color-foreground-action-mono-rest` | `#ffffff` | Label text — pressed / open |
 
 ### 3.4 Icon
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `icon.action.mono.base` | `--semantic-color-midnight-mode-foreground-action-mono-rest` | `#fbfbfb` | Chevron — base |
-| `icon.action.mono.hover` | `--semantic-color-midnight-mode-foreground-action-mono-rest` | `#ffffff` | Chevron — hover |
-| `icon.action.mono.pressed` | `--semantic-color-midnight-mode-foreground-action-mono-rest` | `#ffffff` | Chevron — pressed / open |
+| `foreground.action.mono.rest` | `--semantic-color-foreground-action-mono-rest` | `#fbfbfb` | Chevron — base |
+| `foreground.action.mono.rest` | `--semantic-color-foreground-action-mono-rest` | `#ffffff` | Chevron — hover |
+| `foreground.action.mono.rest` | `--semantic-color-foreground-action-mono-rest` | `#ffffff` | Chevron — pressed / open |
 
 ### 3.5 Geometry
 
@@ -232,7 +232,7 @@ All tokens confirmed from Figma node `40006819:14583`. This component uses **dar
 | Usage | CSS Variable prefix | Weight | Size | Line-height | Letter-spacing |
 |---|---|---|---|---|---|
 | Trigger label (desktop + mobile, v1) | `--semantic-type-desktop-label-button-s-` | 500 | 14px | 20px | 0.3px |
-| Font family | `--semantic-type-desktop-label-button-s-fontfamily` | — | Red Hat Text | — | — |
+| Font family | `--semantic-type-family-brand` | — | Red Hat Text | — | — |
 
 > v1 uses the same `Label/Button/S` size on desktop and mobile. Earlier drafts used `Label/Button/XS` (12px) on mobile — Figma was updated to a uniform 14px in 2026-05.
 
@@ -291,7 +291,7 @@ When `logoUrl` is provided, the avatar renders the org's logo image with `object
 
 ### 5.4 Avatar — no logo (church placeholder)
 
-When `logoUrl` is absent (or fails to load), the avatar renders the **church/building SVG icon** on a `fill.action.secondary.base` (`rgba(255,255,255,0.08)`) background.
+When `logoUrl` is absent (or fails to load), the avatar renders the **church/building SVG icon** on a `fill.action.secondary.rest` (`rgba(255,255,255,0.08)`) background.
 
 - Figma node: `40007243:73405` (full placeholder state), inner icon `40007243:73426`
 - Icon inset: `4.17% 8.33% 8.33% 8.33%` within the inner avatar frame
@@ -306,9 +306,9 @@ All confirmed from Figma. Six trigger variants: `State × Type = {Base, Hover, P
 
 | State | Fill | Stroke | Text | Chevron |
 |---|---|---|---|---|
-| **Base** | `fill.action.tertiary.base` · `rgba(160,181,230,0.04)` | `stroke.action.tertiary.base` · `rgba(160,181,230,0.16)` | `text.action.mono.base` · `#fbfbfb` | `icon.action.mono.base` · `#fbfbfb` |
-| **Hover** | `fill.action.primaryinverse.hover` · `rgba(10,18,35,0.16)` | `stroke.action.tertiary.hover` · `rgba(160,181,230,0.20)` | `text.action.mono.hover` · `#ffffff` | `icon.action.mono.hover` · `#ffffff` |
-| **Pressed / Open** | `fill.action.primaryinverse.pressed` · `rgba(255,255,255,0.08)` | `stroke.action.tertiary.pressed` · `rgba(160,181,230,0.30)` | `text.action.mono.pressed` · `#ffffff` | `icon.action.mono.pressed` · `#ffffff` |
+| **Base** | `fill.action.primary-dim.rest` · `rgba(160,181,230,0.04)` | `stroke.action.primary.rest` · `rgba(160,181,230,0.16)` | `foreground.action.mono.rest` · `#fbfbfb` | `foreground.action.mono.rest` · `#fbfbfb` |
+| **Hover** | `fill.action.primary-dim.hover` · `rgba(10,18,35,0.16)` | `stroke.action.primary.hover` · `rgba(160,181,230,0.20)` | `foreground.action.mono.rest` · `#ffffff` | `foreground.action.mono.rest` · `#ffffff` |
+| **Pressed / Open** | `fill.action.primary-dim.pressed` · `rgba(255,255,255,0.08)` | `stroke.action.primary.pressed` · `rgba(160,181,230,0.30)` | `foreground.action.mono.rest` · `#ffffff` | `foreground.action.mono.rest` · `#ffffff` |
 | **Disabled** | Base fill at 50% opacity | Base stroke at 50% opacity | Base text at 50% opacity | Base icon at 50% opacity |
 | **Open** (additional) | Pressed styling | Pressed styling | Pressed styling | Rotated 180° |
 
@@ -337,7 +337,7 @@ See §2.1, §2.2, §2.3 for full anatomy. Brief summary:
 
 ## 8. Iconography
 
-- **Chevron:** Material Symbols Rounded `expand_more`. 12×12 effective. Colour: `icon.action.mono.*` per state.
+- **Chevron:** Material Symbols Rounded `expand_more`. 12×12 effective. Colour: `foreground.action.mono.*` per state.
 - **Avatar (logo):** product-supplied image — sourced from the org record. `object-fit: cover`.
 - **Avatar (no logo):** church/building SVG embedded in `org-switcher.jsx` as `CHURCH_ICON_PATH`. Never replace with text initials.
 
@@ -503,11 +503,11 @@ All values below use token resolved values on the `TopNav` surface (which resolv
 
 | Surface | Foreground token → hex | Background | Approx. ratio | WCAG AA (4.5:1 text / 3:1 non-text) |
 |---|---|---|---|---|
-| Trigger label, base | `text.action.mono.base` → `#fbfbfb` | TopNav surface (`#2d4889`) under `rgba(160,181,230,0.04)` fill ≈ `#2d4889` | ≈ 10.4:1 | ✅ Pass |
-| Trigger label, hover | `text.action.mono.hover` → `#ffffff` | `#2d4889` under `rgba(10,18,35,0.16)` fill ≈ `#26396f` | ≈ 9.2:1 | ✅ Pass |
-| Trigger label, pressed / open | `text.action.mono.pressed` → `#ffffff` | `#2d4889` under `rgba(255,255,255,0.08)` ≈ `#3a548d` | ≈ 9.7:1 | ✅ Pass |
-| Chevron, base | `icon.action.mono.base` → `#fbfbfb` | (as label, base) | ≈ 10.4:1 | ✅ Pass (non-text 3:1 minimum) |
-| Trigger border, base | `stroke.action.tertiary.base` → `rgba(160,181,230,0.16)` | `#2d4889` | ≈ 1.4:1 | ❌ Border alone fails 3:1 — relies on fill differentiation; acceptable per WCAG 1.4.11 because the button has a visible fill+text |
+| Trigger label, base | `foreground.action.mono.rest` → `#fbfbfb` | TopNav surface (`#2d4889`) under `rgba(160,181,230,0.04)` fill ≈ `#2d4889` | ≈ 10.4:1 | ✅ Pass |
+| Trigger label, hover | `foreground.action.mono.rest` → `#ffffff` | `#2d4889` under `rgba(10,18,35,0.16)` fill ≈ `#26396f` | ≈ 9.2:1 | ✅ Pass |
+| Trigger label, pressed / open | `foreground.action.mono.rest` → `#ffffff` | `#2d4889` under `rgba(255,255,255,0.08)` ≈ `#3a548d` | ≈ 9.7:1 | ✅ Pass |
+| Chevron, base | `foreground.action.mono.rest` → `#fbfbfb` | (as label, base) | ≈ 10.4:1 | ✅ Pass (non-text 3:1 minimum) |
+| Trigger border, base | `stroke.action.primary.rest` → `rgba(160,181,230,0.16)` | `#2d4889` | ≈ 1.4:1 | ❌ Border alone fails 3:1 — relies on fill differentiation; acceptable per WCAG 1.4.11 because the button has a visible fill+text |
 | Focus outline | `rgba(255,255,255,0.9)` ≈ `#e6e6e6` | `#2d4889` | ≈ 8.8:1 | ✅ Pass (WCAG 2.4.11 minimum 3:1) |
 
 > ⚠ The trigger border alone is below the 3:1 non-text contrast threshold, but WCAG 1.4.11 only requires 3:1 for UI components that are "essential to understanding". The trigger is essential, but its fill + label + chevron provide sufficient identification at every state. The thin border is decorative.

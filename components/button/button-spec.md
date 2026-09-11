@@ -114,8 +114,8 @@ Plus orthogonal state dimensions:
 
 **Primary** — brand blue (`fill.action.primary.*`). The default. Reserve for the most important action.  
 **Secondary** — neutral/muted (`fill.action.secondary.*`). Supporting actions.  
-**Tertiary** — lightest weight (`fill.action.tertiary.*`). Inline or low-priority.  
-**Negative** — destructive intent (`fill.action.negative.*`). Delete, revoke, remove. Use sparingly; its presence should always indicate danger, not just rejection.
+**Tertiary** — lightest weight (`fill.action.primary-dim.*`). Inline or low-priority.  
+**Negative** — destructive intent (`fill.action.status.negative.*`). Delete, revoke, remove. Use sparingly; its presence should always indicate danger, not just rejection.
 
 > IMPLEMENTATION RULE: Style and Type are independent axes.
 > A Naked/Negative button is valid — it is a low-visual-weight destructive action. Never conflate Type with visual weight (that is Style's job).
@@ -128,14 +128,14 @@ Plus orthogonal state dimensions:
 
 | Style | Type | Base | Hover | Pressed | Disabled |
 |---|---|---|---|---|---|
-| Fill | Primary | `fill.action.primary.base` | `fill.action.primary.hover` | `fill.action.primary.pressed` | `fill.action.primary.disabled` |
-| Fill | Secondary | `fill.action.secondary.base` | `fill.action.secondary.hover` | `fill.action.secondary.pressed` | `fill.action.secondaryinverse.disabled` |
-| Fill | Tertiary | `fill.action.tertiary.base` | `fill.action.tertiary.inverse.hover` | `fill.action.tertiary.inverse.pressed` | `fill.action.tertiary.disabled` |
-| Fill | Negative | `fill.action.negative.base` | `fill.action.negative.hover` | `fill.action.negative.pressed` | `fill.action.negative.disabled` |
-| Outlined / Naked | Primary | `transparent` | `fill.action.primaryinverse.hover` | `fill.action.primaryinverse.pressed` | `transparent` |
+| Fill | Primary | `fill.action.primary.rest` | `fill.action.primary.hover` | `fill.action.primary.pressed` | `fill.action.disabled` |
+| Fill | Secondary | `fill.action.secondary.rest` | `fill.action.secondary.hover` | `fill.action.secondary.pressed` | `fill.action.disabled` |
+| Fill | Tertiary | `fill.action.primary-dim.rest` | `fill.action.primary-dim.hover` | `fill.action.primary-dim.pressed` | `fill.action.disabled` |
+| Fill | Negative | `fill.action.status.negative.rest` | `fill.action.status.negative.hover` | `fill.action.status.negative.pressed` | `fill.action.disabled` |
+| Outlined / Naked | Primary | `transparent` | `fill.action.primary-dim.hover` | `fill.action.primary-dim.pressed` | `transparent` |
 | Outlined / Naked | Secondary | `transparent` | `fill.action.secondary.hover` | `fill.action.secondary.pressed` | `transparent` |
-| Outlined / Naked | Tertiary | `fill.action.tertiary.inverse.base` | `fill.action.tertiary.inverse.hover` | `fill.action.tertiary.inverse.pressed` | `transparent` |
-| Outlined / Naked | Negative | `transparent` | `fill.action.negativeinverse.hover` | `fill.action.negativeinverse.pressed` | `transparent` |
+| Outlined / Naked | Tertiary | `fill.action.primary-dim.rest` | `fill.action.primary-dim.hover` | `fill.action.primary-dim.pressed` | `transparent` |
+| Outlined / Naked | Negative | `transparent` | `fill.action.status.negative-dim.hover` | `fill.action.status.negative-dim.pressed` | `transparent` |
 
 ### 5.2 Text tokens (label colour)
 
@@ -143,37 +143,37 @@ Plus orthogonal state dimensions:
 
 | Type | Base | Hover | Pressed | Disabled |
 |---|---|---|---|---|
-| Primary | `text.action.primaryinverse.base` | `text.action.primaryinverse.hover` | `text.action.primaryinverse.pressed` | `text.action.primaryinverse.disabled` |
-| Secondary | `text.action.secondary.base` | `text.action.secondary.hover` | `text.action.secondary.pressed` | `text.action.secondary.disabled` |
-| Tertiary | `text.action.tertiary.base` | `text.action.tertiary.hover` | `text.action.tertiary.pressed` | `text.action.tertiary.disabled` |
-| Negative | `text.action.mono.base` | `text.action.mono.hover` | `text.action.mono.pressed` | `text.action.mono.disabled` |
+| Primary | `foreground.action.mono.rest` | `foreground.action.mono.rest` | `foreground.action.mono.rest` | `foreground.action.disabled` |
+| Secondary | `foreground.action.secondary.rest` | `foreground.action.secondary.hover` | `foreground.action.secondary.pressed` | `foreground.action.disabled` |
+| Tertiary | `foreground.action.primary.rest` | `foreground.action.primary.hover` | `foreground.action.primary.pressed` | `foreground.action.disabled` |
+| Negative | `foreground.action.mono.rest` | `foreground.action.mono.rest` | `foreground.action.mono.rest` | `foreground.action.disabled` |
 
 **Outlined and Naked** use direct-type text (coloured on transparent surface):
 
 | Type | Base | Hover | Pressed | Disabled |
 |---|---|---|---|---|
-| Primary | `text.action.primary.base` | `text.action.primary.hover` | `text.action.primary.pressed` | `text.action.primary.disabled` |
-| Secondary | `text.action.secondary.base` | `text.action.secondary.hover` | `text.action.secondary.pressed` | `text.action.secondary.disabled` |
-| Tertiary | `text.action.tertiary.base` | `text.action.tertiary.hover` | `text.action.tertiary.pressed` | `text.action.tertiary.disabled` |
-| Negative | `text.action.negative.base` | `text.action.negative.hover` | `text.action.negative.pressed` | `text.action.negative.disabled` |
+| Primary | `foreground.action.primary.rest` | `foreground.action.primary.hover` | `foreground.action.primary.pressed` | `foreground.action.disabled` |
+| Secondary | `foreground.action.secondary.rest` | `foreground.action.secondary.hover` | `foreground.action.secondary.pressed` | `foreground.action.disabled` |
+| Tertiary | `foreground.action.primary.rest` | `foreground.action.primary.hover` | `foreground.action.primary.pressed` | `foreground.action.disabled` |
+| Negative | `foreground.action.status.negative.rest` | `foreground.action.status.negative.hover` | `foreground.action.status.negative.pressed` | `foreground.action.disabled` |
 
 ### 5.3 Icon tokens
 
 Mirror the text token pattern exactly, substituting `icon` for `text`. Icon colours always match label colours within the same style/type/state.
 
-Fill/Primary uses `icon.action.primaryinverse.*`. Fill/Negative uses `icon.action.mono.*`.
-Outlined and Naked use `icon.action.{type}.*`.
+Fill/Primary uses `foreground.action.mono.*`. Fill/Negative uses `foreground.action.mono.*`.
+Outlined and Naked use `foreground.action.{type}.*`.
 
 ### 5.4 Stroke tokens (Outlined only)
 
 | Type | Base | Hover | Pressed | Disabled |
 |---|---|---|---|---|
-| Primary | `stroke.action.primary.base` | `stroke.action.primary.hover` | `stroke.action.primary.pressed` | `stroke.action.primary.disabled` |
-| Secondary | `stroke.action.secondary.inverse.base` | `stroke.action.secondary.inverse.hover` | `stroke.action.secondary.inverse.pressed` | `stroke.action.secondary.inverse.disabled` |
-| Tertiary | `stroke.action.tertiary.base` | `stroke.action.tertiary.hover` | `stroke.action.tertiary.pressed` | `stroke.action.tertiary.disabled` |
-| Negative | `stroke.action.negative.base` | `stroke.action.negative.hover` | `stroke.action.negative.pressed` | `stroke.action.negative.disabled` |
+| Primary | `stroke.action.primary.rest` | `stroke.action.primary.hover` | `stroke.action.primary.pressed` | `stroke.action.disabled` |
+| Secondary | `stroke.action.secondary.rest` | `stroke.action.secondary.hover` | `stroke.action.secondary.pressed` | `stroke.action.disabled` |
+| Tertiary | `stroke.action.primary.rest` | `stroke.action.primary.hover` | `stroke.action.primary.pressed` | `stroke.action.disabled` |
+| Negative | `stroke.action.status.negative.rest` | `stroke.action.status.negative.hover` | `stroke.action.status.negative.pressed` | `stroke.action.disabled` |
 
-Border width: `--semantic-layout-units-contextual-button-border-width-base-base` (1.5 px).
+Border width: `--contextual-layout-units-button-border-width-base-base` (1.5 px).
 
 > IMPLEMENTATION RULE: Fill and Naked buttons have `border: none`.
 > Only Outlined has a border. Never apply the stroke token to Fill or Naked — it would create an extra visual weight that conflicts with style intent.
@@ -182,24 +182,24 @@ Border width: `--semantic-layout-units-contextual-button-border-width-base-base`
 
 | Property | Token | Value |
 |---|---|---|
-| Border radius | `--semantic-layout-units-contextual-button-radius-radius` | 8 px |
-| Gap (icon ↔ label) | `--semantic-layout-units-contextual-button-gap-horizontal` | 8 px |
-| Border width (Outlined) | `--semantic-layout-units-contextual-button-border-width-base-base` | 0.75 px |
-| Padding L horizontal | `--semantic-layout-units-contextual-button-padding-large-horizontal` | 14 px |
-| Padding L vertical | `--semantic-layout-units-contextual-button-padding-large-vertical` | 12 px |
-| Padding M horizontal | `--semantic-layout-units-contextual-button-padding-medium-horizontal` | 12 px |
-| Padding M vertical | `--semantic-layout-units-contextual-button-padding-medium-vertical` | 10 px |
-| Padding S horizontal | `--semantic-layout-units-contextual-button-padding-small-horizontal` | 8 px |
-| Padding S vertical | `--semantic-layout-units-contextual-button-padding-small-vertical` | 6 px |
-| Padding XS horizontal | `--semantic-layout-units-contextual-button-padding-xsmall-horizontal` | 8 px |
-| Padding XS vertical | `--semantic-layout-units-contextual-button-padding-xsmall-vertical` | 6 px |
+| Border radius | `--contextual-layout-units-button-radius-radius` | 8 px |
+| Gap (icon ↔ label) | `--contextual-layout-units-button-gap-horizontal` | 8 px |
+| Border width (Outlined) | `--contextual-layout-units-button-border-width-base-base` | 0.75 px |
+| Padding L horizontal | `--contextual-layout-units-button-padding-large-horizontal` | 14 px |
+| Padding L vertical | `--contextual-layout-units-button-padding-large-vertical` | 12 px |
+| Padding M horizontal | `--contextual-layout-units-button-padding-medium-horizontal` | 12 px |
+| Padding M vertical | `--contextual-layout-units-button-padding-medium-vertical` | 10 px |
+| Padding S horizontal | `--contextual-layout-units-button-padding-small-horizontal` | 8 px |
+| Padding S vertical | `--contextual-layout-units-button-padding-small-vertical` | 6 px |
+| Padding XS horizontal | `--contextual-layout-units-button-padding-xsmall-horizontal` | 8 px |
+| Padding XS vertical | `--contextual-layout-units-button-padding-xsmall-vertical` | 6 px |
 
 ### 5.6 Focus ring
 
 ```css
 box-shadow:
   0 0 0 6px #ffffff,
-  0 0 0 8px var(--semantic-color-light-mode-stroke-focusring-base);
+  0 0 0 8px var(--semantic-color-stroke-focusring-base);
 ```
 
 The inner halo (6 px white) provides contrast against any button surface colour. The outer band (2 px brand ring) is the visible focus indicator. This meets WCAG 2.4.11 (Focus Appearance) at all states.
@@ -213,9 +213,9 @@ Typography tokens are per-size.
 
 | Size | Font size | Font family | Font weight | Line height | Letter spacing |
 |---|---|---|---|---|---|
-| L | `--semantic-type-desktop-label-button-l-fontsize` | `--semantic-type-desktop-label-button-l-fontfamily` | `--semantic-type-desktop-label-button-l-fontweight` | `--semantic-type-desktop-label-button-l-lineheight` | `--semantic-type-desktop-label-button-l-letterspacing` |
-| M | `--semantic-type-desktop-label-button-base-fontsize` | `--semantic-type-desktop-label-button-base-fontfamily` | `--semantic-type-desktop-label-button-base-fontweight` | `--semantic-type-desktop-label-button-base-lineheight` | `--semantic-type-desktop-label-button-base-letterspacing` |
-| S | `--semantic-type-desktop-label-button-s-fontsize` | `--semantic-type-desktop-label-button-s-fontfamily` | `--semantic-type-desktop-label-button-s-fontweight` | `--semantic-type-desktop-label-button-s-lineheight` | `--semantic-type-desktop-label-button-s-letterspacing` |
+| L | `--semantic-type-font-size-m` | `--semantic-type-family-brand` | `--semantic-type-weight-medium` | `--semantic-type-line-height-m-single` | `--semantic-type-letter-spacing-compact` |
+| M | `--semantic-type-font-size-r` | `--semantic-type-family-brand` | `--semantic-type-weight-medium` | `--semantic-type-line-height-r-single` | `--semantic-type-letter-spacing-compact` |
+| S | `--semantic-type-font-size-s` | `--semantic-type-family-brand` | `--semantic-type-weight-medium` | `--semantic-type-line-height-s-single` | `--semantic-type-letter-spacing-compact` |
 
 ---
 
@@ -396,7 +396,7 @@ Native `<button>` provides all keyboard handling. Do not override with `onKeyDow
 
 ### Contrast
 
-- Fill/Primary label on blue background: `text.action.primaryinverse` is guaranteed ≥ 4.5:1 against `fill.action.primary` by token design.
+- Fill/Primary label on blue background: `foreground.action.mono` is guaranteed ≥ 4.5:1 against `fill.action.primary` by token design.
 - Disabled buttons intentionally fall below 3:1 — this is acceptable per WCAG 1.4.3 (disabled UI components are exempt).
 
 ### Reduced motion
@@ -442,21 +442,21 @@ All previously-flagged HIGH gaps are resolved as of the 2026-05-26 token sync.
 
 | Token | Status |
 |---|---|
-| `--semantic-layout-units-contextual-button-padding-large-horizontal` | ✓ Added to Figma & synced |
-| `--semantic-layout-units-contextual-button-padding-large-vertical` | ✓ Added to Figma & synced |
-| `--semantic-layout-units-contextual-button-radius-radius` | ✓ Added to Figma & synced |
-| `--semantic-type-desktop-label-button-l-fontsize` | ✓ Exists in token file |
-| `--semantic-type-desktop-label-button-base-fontsize` | ✓ Exists in token file |
-| `--semantic-type-desktop-label-button-s-fontsize` | ✓ Exists in token file |
-| Secondary fill tokens now use `fill.action.secondaryinverse.*` (warm neutral) | ✓ Fixed |
+| `--contextual-layout-units-button-padding-large-horizontal` | ✓ Added to Figma & synced |
+| `--contextual-layout-units-button-padding-large-vertical` | ✓ Added to Figma & synced |
+| `--contextual-layout-units-button-radius-radius` | ✓ Added to Figma & synced |
+| `--semantic-type-font-size-m` | ✓ Exists in token file |
+| `--semantic-type-font-size-r` | ✓ Exists in token file |
+| `--semantic-type-font-size-s` | ✓ Exists in token file |
+| Secondary fill tokens now use `fill.action.secondary.*` (warm neutral) | ✓ Fixed |
 | Secondary stroke tokens now use `stroke.action.secondary.*` (warm neutral) | ✓ Fixed |
 
 ### RESOLVED (2026-06-11 — XS size)
 
 | Token | Status |
 |---|---|
-| `--semantic-layout-units-contextual-button-padding-xsmall-horizontal` (8 px) | ✓ Added to Figma & synced |
-| `--semantic-layout-units-contextual-button-padding-xsmall-vertical` (6 px) | ✓ Added to Figma & synced |
+| `--contextual-layout-units-button-padding-xsmall-horizontal` (8 px) | ✓ Added to Figma & synced |
+| `--contextual-layout-units-button-padding-xsmall-vertical` (6 px) | ✓ Added to Figma & synced |
 | `--semantic-type-desktop-label-button-xs-*` (12 px / 18 lh / 500) | ✓ Exists in token file |
 
 ### OPEN — Figma-side (do not block the repo; for the designer)
@@ -503,7 +503,7 @@ button.jsx exports:
 1. **All SIZES values are now CSS var strings.** `padH`, `padV`, and `fontSize` all use `SL()` or `ST()` helpers. Do not use numeric values.
 2. **Spinner inherits colour via `currentColor`.** The container's `color` property is set to `iconColor`. Do not set a separate `color` on the spinner.
 4. **`aria-hidden` on Container.Main.** The inner span is decorative; all semantics live on the outer `<button>`.
-5. **Style=Naked/Tertiary has a non-transparent base fill.** `fill.action.tertiary.inverse.base` is a subtle tinted colour, not transparent. All other Naked types are `transparent` at base.
+5. **Style=Naked/Tertiary has a non-transparent base fill.** `fill.action.primary-dim.rest` is a subtle tinted colour, not transparent. All other Naked types are `transparent` at base.
 
 ### Implementation prompt template
 

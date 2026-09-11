@@ -63,9 +63,14 @@ const V = {
   // State-layer — error hover (both unchecked and checked)
   stateLayerErrorHover: "var(--semantic-color-fill-action-status-negative-dim-hover)",
 
-  // Highlight resting state — FALLBACK
-  // fill.action.secondaryinverse.base is missing from token file (§5.3 HIGH).
-  // Using fill.action.secondary.base as the closest available value.
+  // Highlight resting state.
+  //
+  // This was flagged as a FALLBACK against a missing token
+  // (fill.action.secondaryinverse.base, spec §5.3 HIGH). That gap is closed:
+  // the *inverse families were deleted outright on 2026-09-03, because an
+  // inverted control is the same control inside a [data-theme="midnight"]
+  // region rather than a second set of tokens. fill.action.secondary.rest is
+  // the real token for this state, not a stand-in.
   highlightResting: "var(--semantic-color-fill-action-secondary-rest)",
 
   // Label text
@@ -74,9 +79,15 @@ const V = {
   // Geometry
   // cornerradius.small = 4px — matches the 4px box radius in the Figma spec.
   // (cornerradius.xsmall = 2px which is too small; small is the correct value.)
+  //
+  // NOT wrapped in calc(... * 1px). The layout tokens already carry their unit
+  // (`--semantic-layout-units-cornerradius-small: 4px`), so multiplying by 1px
+  // produced calc(4px * 1px) — px times px is not a length, so the browser
+  // dropped the declaration and the box rendered with square corners. Silent,
+  // because an invalid value falls back to the initial one rather than erroring.
   // Style Dictionary emits layout tokens as unitless numbers, so we multiply
   // by 1px inside calc() to get a valid CSS length.
-  radius:     "calc(var(--semantic-layout-units-cornerradius-small) * 1px)",
+  radius:     "var(--semantic-layout-units-cornerradius-small)",
   radiusFull: "100px",  // state-layer pill — no dedicated token, 100px safely rounds any 44px circle
 };
 

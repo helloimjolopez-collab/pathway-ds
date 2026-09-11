@@ -28,7 +28,7 @@ const EMPHASES = ["light", "subtle", "base", "contrast", "bold"];
 
 // Which ladder step each (tone, emphasis) pair resolves to, mirroring the
 // bindings in spinner.css. It exists so the story can PRINT the real token name
-// under each swatch instead of the `icon.static.<tone>.base` it used to print,
+// under each swatch instead of the `foreground.static.<tone>.base` it used to print,
 // which named a tier that was merged away and a rung the ladder never had.
 //
 // The two vocabularies here are worth reading carefully, because they no longer

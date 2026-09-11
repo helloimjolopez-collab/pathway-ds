@@ -153,7 +153,7 @@ Minimum **48 × 48 px** on every interactive element (WCAG 2.5.5). Bound to the 
 
 Every focusable element must have a **visible focus ring** that is not `outline: none` without a replacement. Use `:focus-visible` (not `:focus`) to avoid painting on mouse click.
 
-System default: `outline: 2px solid var(--semantic-color-light-mode-foreground-action-primary-rest); outline-offset: 2px;` (resolves to `#3555a0` / 2 px / 2 px offset in light mode).
+System default: `outline: 2px solid var(--semantic-color-foreground-action-primary-rest); outline-offset: 2px;` (resolves to `#3555a0` / 2 px / 2 px offset in light mode).
 
 ### 3.3 Contrast
 
@@ -184,20 +184,97 @@ Every state change the component triggers must have an intended screen-reader ou
 
 | Layer | Example | Consumers |
 |---|---|---|
-| Primitives | `Brand.300`, `Cool Neutral.150` | Aliased by semantics — **never** referenced directly by components |
-| Static semantics | `Foreground/Static/Neutral/Bold` | Context-free; used by standalone components (Spinner) |
-| Contextual semantics | `Foreground/Action/Secondary/Rest` | Bound to specific usage (NavItem, Button) |
-| Action semantics | `Foreground/Action/Primary/Rest` | Interactive states — have matching Hover/Focused/Pressed/Disabled variants |
+| Primitives | `Brand/300`, `Cool Neutral/150` | Aliased by semantics — **never** referenced directly by components (`CLAUDE.md` §6) |
+| Static semantics | `Foreground/Static/Neutral/Bold` | Context-free. The graded ladder, for anything not interactive |
+| Action semantics | `Foreground/Action/Primary/Rest` | Interactive. Rest / Hover / Pressed, with ONE Disabled per tier |
+
+There are four tiers: **Foreground**, **Fill**, **Stroke**, **Scrim**. Surface sits
+under Fill as `Fill/Surface/*`.
+
+**There is no Contextual colour group.** It was retired on 2026-09-03, and this
+section used to tell you to prefer it. A nav item is a selectable row, which is a
+general interaction pattern rather than a fact about navigation, so those tokens moved
+into `Fill/Action/Selection/*`. `Contextual: Layout & Units` is a *layout* collection
+and has no colour in it.
 
 **Rules:**
 
-1. Components resolve colour only through **semantic** tokens, never primitives, never raw hex. See `CLAUDE.md` §6.
-2. Prefer **contextual** tokens for component-specific usage; fall back to **static** tokens only when no contextual family fits.
-3. When adding a new component that needs a new contextual token family, add the tokens in Figma first, not in code.
+1. Components resolve colour only through **semantic** tokens, never primitives, never
+   raw hex.
+2. Reach for **Action** when the thing responds to a pointer, **Static** otherwise.
+3. A new token family goes into Figma first, never into code first. Figma is the
+   source of truth for tokens (§1).
 
-### 4.2 Modes
+### 4.2 Accent versus Status — which gets an Action group
 
-Pathway is light-mode only right now. Dark-mode tokens are exported from Figma but filtered out of the sync (`CLAUDE.md` §2.1). Components target `--semantic-color-light-mode-*` variables explicitly; once dark-mode ships system-wide, components will switch to unprefixed variables in a coordinated migration.
+This is the rule that decides where a new colour family belongs, and the two halves are
+deliberately asymmetric:
+
+| | Static tiers | Action tiers |
+|---|---|---|
+| **Status** — Negative, Positive, Attention, Severe, Info | yes | **yes** |
+| **Accent** — Amethyst, Jade, Seabreeze, Lagoon, Mauve, Saffron, Orange | yes | Amethyst, Jade, Seabreeze, Lagoon, Mauve only |
+
+**Why.** A status is a *state the product is in*, so it appears on things people click:
+a destructive button, an error field, a warning banner with a dismiss action. It needs
+Rest / Hover / Pressed. An accent is *decorative* — a chart series, a category chip, a
+filled star — so it has no interaction states to express, and an Action group for one is
+dead weight that still has to be maintained, documented and kept in step across two
+modes.
+
+Concretely: **filling a star uses `Foreground/Static/Accent/Saffron/*`.** Not a
+primitive, and not a Status family, because a filled star is not a warning.
+
+`Status/Info` is the mirror-image exception: it is **Action-only**, because "info"
+describes an interactive affordance rather than a decorative tone.
+
+Saffron and Orange were added as Static-only on 2026-09-10, following Amethyst's step
+mapping — the family that differentiates its three tiers properly rather than reusing
+one ramp position for both Fill and Stroke. Saffron's ramp has 13 steps rather than 16
+(no 50, 250 or 600), so it substitutes the neighbouring step twice. Every value was
+checked for missing primitives, duplicate hex within a ladder, and monotonic contrast
+before it was written.
+
+**Known contrast gap.** `Foreground/Static/Accent/Saffron/Faint` measures **4.49:1** on
+white and `Foreground/Static/Status/Attention/Faint` measures **4.30:1**. Both sit just
+under the 4.5:1 AA threshold for body text. This is a property of yellow rather than an
+oversight: no step light enough to still read as yellow clears AA on white. Treat both
+as large-text-only — they clear the 3:1 large-text threshold comfortably — until a
+Saffron 600 primitive exists to re-anchor the ladder.
+
+### 4.3 Modes
+
+Pathway ships **two modes: Light Mode and Midnight Mode.** Midnight has been enabled
+since 2026-05-05 (`CLAUDE.md` §2.1). This section previously said "Pathway is
+light-mode only" and told every component to target `--semantic-color-light-mode-*`
+variables; both statements were wrong, and since every component spec inherits from this
+document, that one paragraph was the single most load-bearing piece of staleness in the
+repo.
+
+Never call it "dark mode" in a document, a spec or a token name. The one exception is
+the CSS selector, which matches both `[data-theme="midnight"]` and `[data-theme="dark"]`
+so a consumer on another team does not have to learn our vocabulary.
+
+Both modes emit **one shared name per token**, resolved by selector across
+`themes/light.css` and `themes/midnight.css`:
+
+```css
+color: var(--semantic-color-foreground-static-neutral-bold);
+```
+
+**Components must never name a mode in a property.** The mode-in-name form came from
+`tokens.css`, retired 2026-09-03, and now resolves to nothing.
+`scripts/check-token-refs.js` fails the build on one, and
+`scripts/check-token-names.js` fails on one written in prose.
+
+A permanently dark region — the top nav, for instance — uses the modeless name inside a
+`[data-theme="midnight"]` wrapper. Region theming composes both ways, so a light island
+can sit inside that dark island, which is what the nav's white dropdown panels need.
+
+On the graded ladder the **values invert between modes while the names hold**: Faint
+stays the lightest-touch step and Bold the heaviest, even though in Midnight that means
+Faint is a dark near-ground. White, XLight and Black are inversion anchors — they keep
+their value across modes, so they are not rungs on the ladder.
 
 ---
 
@@ -248,12 +325,12 @@ Beyond the generic scale, Figma ships **contextual** layout-units families that 
 
 | Token | Resolves to |
 |---|---|
-| `--semantic-layout-units-contextual-card-cornerradius-cornerradius` | `unit-8` (8px) |
-| `--semantic-layout-units-contextual-card-gap-gap` | `unit-12` (12px) |
+| `--contextual-layout-units-card-cornerradius-cornerradius` | `unit-8` (8px) |
+| `--contextual-layout-units-card-gap-gap` | `unit-12` (12px) |
 | `--semantic-layout-units-contextual-card-padding-small-*` | `unit-14` (14px) |
 | `--semantic-layout-units-contextual-card-padding-medium-*` | `unit-16` (16px) |
-| `--semantic-layout-units-contextual-card-border-width-base-base` | `borderwidth-xthin` |
-| `--semantic-layout-units-contextual-card-border-width-thick-thick` | `borderwidth-thin` |
+| `--contextual-layout-units-card-border-width-base-base` | `borderwidth-xthin` |
+| `--contextual-layout-units-card-border-width-thick-thick` | `borderwidth-thin` |
 
 > **Card is layout-only — there is no contextual *colour* for cards.** The only `contextual` colour families are `navitem` and `focusring`. A card's **background** comes from a `surface/*` or `fill/static/*` token, its **border** from a `stroke/static/*` token; only its geometry (padding, gap, radius, border-width) comes from the `contextual/card` layout family. Do not reach for a `fill/contextual/card` token — it does not exist.
 
@@ -377,7 +454,7 @@ Lowercase kebab-case for component folders and files: `components/sidenav/sidena
 
 ### 8.2 Token names
 
-Lowercase with dots in JSON (`semantic-color.light-mode.icon.static.neutral.base`); style-dictionary emits hyphens for CSS (`--semantic-color-light-mode-foreground-static-neutral-medium`). Components consume the CSS variable form.
+Lowercase with dots in JSON (`semantic-color.light-mode.foreground.static.neutral.medium`); style-dictionary emits hyphens for CSS (`--semantic-color-foreground-static-neutral-medium`). Components consume the CSS variable form.
 
 ### 8.3 Component prop names
 
@@ -413,5 +490,5 @@ Skipping any of the six is grounds for the pipeline skill to refuse to proceed.
 | Motion tokens not in the token file | HIGH | Duration and easing are hardcoded in component CSS. Blocks cross-component consistency. |
 | Spacing tokens not in the token file | MEDIUM | Raw px values in every spec. |
 | Dark mode filtered from token sync | MEDIUM | By design, temporary. See `CLAUDE.md` §2.1. |
-| No `icon.static.*` inverse track | MEDIUM | White spinners on brand-filled buttons have no matching semantic token. |
+| No `foreground.static.*` inverse track | MEDIUM | White spinners on brand-filled buttons have no matching semantic token. |
 | No runtime theme-switching mechanism | MEDIUM | Dark/light mode switch is not implemented even though tokens for both exist. |

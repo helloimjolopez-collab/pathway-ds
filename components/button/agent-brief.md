@@ -56,31 +56,31 @@ All values via CSS custom properties from `themes/light.css` + `themes/midnight.
 
 ### Radius & border
 ```
---semantic-layout-units-contextual-button-radius-radius       → 8px
---semantic-layout-units-contextual-button-border-width-base-base → 0.75px
+--contextual-layout-units-button-radius-radius       → 8px
+--contextual-layout-units-button-border-width-base-base → 0.75px
 ```
 
 ### Padding
 ```
---semantic-layout-units-contextual-button-padding-large-horizontal  → 14px
---semantic-layout-units-contextual-button-padding-large-vertical    → 12px
---semantic-layout-units-contextual-button-padding-medium-horizontal → 12px
---semantic-layout-units-contextual-button-padding-medium-vertical   → 8px
---semantic-layout-units-contextual-button-padding-small-horizontal  → 10px
---semantic-layout-units-contextual-button-padding-small-vertical    → 6px
+--contextual-layout-units-button-padding-large-horizontal  → 14px
+--contextual-layout-units-button-padding-large-vertical    → 12px
+--contextual-layout-units-button-padding-medium-horizontal → 12px
+--contextual-layout-units-button-padding-medium-vertical   → 8px
+--contextual-layout-units-button-padding-small-horizontal  → 10px
+--contextual-layout-units-button-padding-small-vertical    → 6px
 ```
 
 ### Typography
 ```
---semantic-type-desktop-label-button-l-fontsize     → 18px
---semantic-type-desktop-label-button-base-fontsize  → 16px
---semantic-type-desktop-label-button-s-fontsize     → 14px
+--semantic-type-font-size-m     → 18px
+--semantic-type-font-size-r  → 16px
+--semantic-type-font-size-s     → 14px
 ```
 
 ### Focus ring
 ```
 box-shadow: 0 0 0 6px #ffffff,
-            0 0 0 8px var(--semantic-color-light-mode-stroke-focusring-base)
+            0 0 0 8px var(--semantic-color-stroke-focusring-base)
 ```
 
 ---

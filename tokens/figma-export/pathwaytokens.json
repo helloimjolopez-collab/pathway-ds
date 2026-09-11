@@ -1643,7 +1643,9 @@
                   },
                   "Medium": {
                     "$type": "color",
-                    "$value": "{Saffron.75}"
+                    "$value": "{Saffron.75}",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": ""
                   }
                 },
                 "Severe": {
@@ -1838,6 +1840,70 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Lagoon.600}"
+                  }
+                },
+                "Saffron": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.75}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.100}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.150}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.500}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.800}"
+                  }
+                },
+                "Orange": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.75}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.100}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.150}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.500}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.800}"
                   }
                 }
               }
@@ -2441,6 +2507,70 @@
                     "$libraryName": "",
                     "$value": "{Mauve.900}"
                   }
+                },
+                "Saffron": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.400}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.500}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.700}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.800}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.900}"
+                  }
+                },
+                "Orange": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.400}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.500}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.700}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.800}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.900}"
+                  }
                 }
               },
               "Brand": {
@@ -2965,7 +3095,9 @@
                   },
                   "Subtle": {
                     "$type": "color",
-                    "$value": "{Saffron.75}"
+                    "$value": "{Saffron.75}",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": ""
                   }
                 },
                 "Severe": {
@@ -3160,6 +3292,70 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Lagoon.600}"
+                  }
+                },
+                "Saffron": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.25}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.75}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.100}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.300}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.400}"
+                  }
+                },
+                "Orange": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.50}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.75}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.100}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.300}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.400}"
                   }
                 }
               }
@@ -3827,7 +4023,9 @@
                   },
                   "Medium": {
                     "$type": "color",
-                    "$value": "{Saffron.400}"
+                    "$value": "{Saffron.400}",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": ""
                   }
                 },
                 "Severe": {
@@ -4022,6 +4220,70 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Lagoon.250}"
+                  }
+                },
+                "Saffron": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.700}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.500}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.400}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.350}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.200}"
+                  }
+                },
+                "Orange": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.700}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.600}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.400}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.350}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.200}"
                   }
                 }
               }
@@ -4625,6 +4887,70 @@
                     "$libraryName": "",
                     "$value": "{Mauve.75}"
                   }
+                },
+                "Saffron": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.350}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.300}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.200}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.150}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.100}"
+                  }
+                },
+                "Orange": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.350}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.300}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.200}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.150}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.100}"
+                  }
                 }
               },
               "Brand": {
@@ -5149,7 +5475,9 @@
                   },
                   "Subtle": {
                     "$type": "color",
-                    "$value": "{Saffron.800}"
+                    "$value": "{Saffron.800}",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": ""
                   }
                 },
                 "Severe": {
@@ -5344,6 +5672,70 @@
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
                     "$value": "{Lagoon.250}"
+                  }
+                },
+                "Saffron": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.800}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.700}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.500}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.400}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Saffron.350}"
+                  }
+                },
+                "Orange": {
+                  "Faint": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.800}"
+                  },
+                  "Subtle": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.700}"
+                  },
+                  "Medium": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.600}"
+                  },
+                  "Contrast": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.400}"
+                  },
+                  "Bold": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Orange.350}"
                   }
                 }
               }

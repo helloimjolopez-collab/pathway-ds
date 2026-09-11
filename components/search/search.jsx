@@ -30,7 +30,7 @@ export const T = {
   barBg:           "var(--semantic-color-fill-static-neutral-faint, #ffffff)",
   filterActiveFill:"var(--semantic-color-fill-action-primary-dim-rest, #eef2fb)",
   // Icon pill hover/pressed: no semantic token resolves to the correct subtle overlay
-  // on a white surface. fill.action.secondaryinverse.hover = warm-neutral-200 (#f7f5f3)
+  // on a white surface. fill.action.secondary.hover = warm-neutral-200 (#f7f5f3)
   // which creates a visible warm cream box — wrong. Using direct rgba values as a
   // token gap (see search-spec.md §17).
   iconPillHover:   "rgba(0,0,0,0.06)",

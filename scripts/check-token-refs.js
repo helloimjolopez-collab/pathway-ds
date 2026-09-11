@@ -47,7 +47,10 @@ const SKIP = [
   "node_modules", "storybook", "storybook-static", "dist", ".git",
   ".figma-dump", "components-sandbox", "src/tokens", "scripts",
 ];
-const EXTS = [".jsx", ".mdx", ".html", ".css"];
+// .ts covers the Code Connect templates, whose figma.code`` blocks embed real
+// var(--token) references. Those are the snippets Figma Dev Mode hands a
+// developer, so a broken reference there ships into a product via copy-paste.
+const EXTS = [".jsx", ".mdx", ".ts", ".html", ".css"];
 
 function loadContract() {
   const missing = CONTRACT.filter((p) => !existsSync(p));

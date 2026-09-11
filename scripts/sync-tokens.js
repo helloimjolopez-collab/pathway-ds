@@ -163,7 +163,13 @@ function processTokenGroup(obj, pathSoFar, callback, aliasCtx) {
 
       const tokenLeaf = {
         $type: dtcgType,
-        $value: formatValue(val.$value, dtcgType, val.$collectionName, aliasCtx),
+        // tokenPath is threaded through so a malformed alias can be reported by
+        // the path a human can actually find in the export, rather than just by
+        // its target.
+        $value: formatValue(val.$value, dtcgType, val.$collectionName, {
+          ...aliasCtx,
+          tokenPath: currentPath.join("."),
+        }),
       };
 
       if (val.$description) {
@@ -185,11 +191,30 @@ function processTokenGroup(obj, pathSoFar, callback, aliasCtx) {
  * - Color hex strings are lowercased.
  * - Everything else is passed through as-is.
  */
+// Aliases that arrived WITHOUT a $collectionName. Collected rather than warned
+// in place, so the run can report them together and fail.
+//
+// WHY THIS IS TRACKED SEPARATELY: an alias with no $collectionName gets emitted
+// unqualified — "{saffron.75}" instead of "{primitive-color.saffron.75}" — which
+// can never resolve, so pruneBrokenAliases silently deletes the token. It then
+// reports it as "target missing in Figma export", which is the WRONG diagnosis:
+// the target exists, the export entry is malformed. Four Status/Attention tokens
+// were dropped from the shipped contract for days behind that misleading message,
+// after a hand-patch of the export omitted the field.
+//
+// The two cases need different handling and that is the whole point of splitting
+// them. A genuinely deleted primitive is design debt to surface (CLAUDE.md §2), so
+// it warns. A malformed entry is a defect, so it fails the run.
+const malformedAliases = [];
+
 function formatValue(raw, dtcgType, collectionName, aliasCtx) {
   // Alias reference: "{Something.something}"
   if (typeof raw === "string" && /^\{.+\}$/.test(raw)) {
     const inner = raw.slice(1, -1);
     const tail = inner.split(".").map(slugify).join(".");
+    if (!collectionName && aliasCtx?.tokenPath) {
+      malformedAliases.push({ path: aliasCtx.tokenPath, target: inner });
+    }
     if (collectionName) {
       const targetSlug = slugify(collectionName);
       // A multi-mode target nests under a mode segment that Figma's alias omits.
@@ -388,10 +413,44 @@ function main() {
   // Dictionary (downstream) from failing on unresolved references.
   const dropped = pruneBrokenAliases(merged);
   if (dropped.length) {
-    console.warn(`\n⚠  Dropped ${dropped.length} token${dropped.length === 1 ? "" : "s"} with unresolvable aliases:`);
-    for (const { path, target } of dropped) {
-      console.warn(`     ${path}  →  {${target}}  (target missing in Figma export)`);
+    // The two lists record different path forms: `dropped` paths are fully
+    // qualified (semantic-color.light-mode.fill...) while a malformed alias is
+    // recorded from inside the collection walk (fill...). Match on suffix, or
+    // the malformed entries get double-reported — once with the wrong
+    // diagnosis, which is the confusion this split exists to remove.
+    const malformedPaths = malformedAliases.map((m) => m.path);
+    const isMalformed = (p) => malformedPaths.some((m) => p === m || p.endsWith("." + m));
+    const realDebt = dropped.filter((d) => !isMalformed(d.path));
+    if (realDebt.length) {
+      console.warn(`\n⚠  Dropped ${realDebt.length} token${realDebt.length === 1 ? "" : "s"} with unresolvable aliases:`);
+      for (const { path, target } of realDebt) {
+        console.warn(`     ${path}  →  {${target}}  (target missing in Figma export)`);
+      }
+      console.warn("   These are design debt to surface, not to patch (CLAUDE.md §2).");
     }
+  }
+
+  // A malformed entry is a DEFECT, not debt, so it stops the run. Left as a
+  // warning it reads as "the primitive was deleted" and gets shrugged off,
+  // which is exactly how four tokens went missing from the contract.
+  if (malformedAliases.length) {
+    console.error(
+      `\n✖  ${malformedAliases.length} alias entr${malformedAliases.length === 1 ? "y" : "ies"} in the Figma export ` +
+        `${malformedAliases.length === 1 ? "is" : "are"} missing "$collectionName":`
+    );
+    for (const { path, target } of malformedAliases) {
+      console.error(`     ${path}  →  {${target}}`);
+    }
+    console.error(
+      "\n   An alias without $collectionName is emitted unqualified and can never\n" +
+        "   resolve, so the token is silently dropped from every downstream file.\n" +
+        "   This is NOT a deleted primitive — the target almost certainly exists.\n" +
+        "   Fix: add \"$collectionName\": \"Primitive: Color\" (and \"$libraryName\": \"\")\n" +
+        "   to each entry above in tokens/figma-export/pathwaytokens.json, then re-run.\n" +
+        "   Every alias Figma itself exports carries the field; entries missing it\n" +
+        "   were almost certainly added by hand."
+    );
+    process.exit(1);
   }
 
   const outDir = dirname(OUTPUT_PATH);

@@ -6,12 +6,12 @@ import React, { useState, useEffect } from "react";
  * WHY THIS EXISTS: Search, TopNav, OrgSwitcher and Checkbox each carried their
  * own copy of a token table in the shape
  *
- *     { token: "fill.action.tertiary.base", hex: "#eef2fb", usage: "..." }
+ *     { token: "fill.action.primary-dim.rest", hex: "#eef2fb", usage: "..." }   // retired
  *
  * Two things were wrong with that shape, and the second is the reason this file
  * is shared rather than fixed four times:
  *
- *   1. The names went stale. `fill.action.tertiary.*` and every `*inverse`
+ *   1. The names went stale. `fill.action.primary-dim.*` and every `*inverse`
  *      family were deleted, `text.*` and `icon.*` merged into `foreground.*`,
  *      and `.base` became `.rest` on Action tokens. Four documents kept
  *      publishing them.

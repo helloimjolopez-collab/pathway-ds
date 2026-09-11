@@ -280,11 +280,11 @@ When the user requests reduced motion, the rotation is removed **and** the opaci
 
 ### 7.1 Colour
 
-Spinner's colour API is **locked to the `icon.static.*` semantic family**. The component exposes a `tone` prop (which family) and an `emphasis` prop (how strong). The two together resolve to a single semantic token; the token resolves to a primitive; the primitive resolves to a hex. Consumers never see the primitive or the hex.
+Spinner's colour API is **locked to the `foreground.static.*` semantic family**. The component exposes a `tone` prop (which family) and an `emphasis` prop (how strong). The two together resolve to a single semantic token; the token resolves to a primitive; the primitive resolves to a hex. Consumers never see the primitive or the hex.
 
 **Hard rules:**
 
-1. The spinner accepts **only** semantic tokens from `icon.static.<tone>.<emphasis>`.
+1. The spinner accepts **only** semantic tokens from `foreground.static.<tone>.<emphasis>`.
 2. It does **not** accept raw hex, RGB, or named CSS colours (no `color="#3555a0"`, no `color="red"`).
 3. It does **not** accept primitive tokens (no `color="brand.300"`, no `var(--primitive-color-brand-300)`).
 4. It does **not** accept made-up token names (no `icon/semantic/success`, no `semantic.error` — those categories do not exist in `tokens/pathway-design-tokens.json`).
@@ -293,20 +293,20 @@ Spinner's colour API is **locked to the `icon.static.*` semantic family**. The c
 
 #### 7.1.1 Allowed `tone` values
 
-Verified against `tokens/pathway-design-tokens.json` → `semantic.light-mode.color.icon.static`:
+Verified against `tokens/pathway-design-tokens.json` → `semantic.light-mode.color.foreground.static`:
 
 | `tone` | Semantic token family | Default-emphasis primitive (`base`) | Resolved hex |
 |---|---|---|---|
-| `neutral` *(default)* | `icon.static.neutral.*` | `cool-neutral.150` | `#4b4b4b` |
-| `brand` | `icon.static.brand.*` | `brand.300` | `#3555a0` |
-| `info` | `icon.static.info.*` | `brand.90` | `#5e7dc9` |
-| `warning` | `icon.static.warning.*` | `saffron.80` | `#d3aa43` |
+| `neutral` *(default)* | `foreground.static.neutral.*` | `cool-neutral.150` | `#4b4b4b` |
+| `brand` | `foreground.static.brand.*` | `brand.300` | `#3555a0` |
+| `info` | `foreground.static.brand.medium.*` | `brand.90` | `#5e7dc9` |
+| `warning` | `foreground.static.status.attention.medium.*` | `saffron.80` | `#d3aa43` |
 | `danger` | `Foreground/Static/Status/Severe/*` | `Orange/400` | `#c14d0f` |
-| `negative` | `icon.static.negative.*` | `red.100` | `#c84040` |
-| `positive` | `icon.static.positive.*` | `green.70` | `#558f5c` |
-| `accent-amethyst` | `icon.static.accent-amethyst.*` | `amethyst.80` | `#736baa` |
-| `accent-jade` | `icon.static.accent-jade.*` | `accent-jade.80` | `#1a8e84` |
-| `accent-seabreeze` | `icon.static.accent-seabreeze.*` | `seabreeze.60` | `#4ba8cb` |
+| `negative` | `foreground.static.status.negative.medium.*` | `red.100` | `#c84040` |
+| `positive` | `foreground.static.status.positive.medium.*` | `green.70` | `#558f5c` |
+| `accent-amethyst` | `foreground.static.accent.amethyst.*` | `amethyst.80` | `#736baa` |
+| `accent-jade` | `foreground.static.accent.jade.*` | `accent-jade.80` | `#1a8e84` |
+| `accent-seabreeze` | `foreground.static.accent.seabreeze.*` | `seabreeze.60` | `#4ba8cb` |
 
 > **Note on "accent":** there is no single `accent` tone in the token file; accent is split into three families (`accent-amethyst`, `accent-jade`, `accent-seabreeze`), each of which is a distinct semantic tone. The spinner exposes all three.
 
@@ -330,18 +330,18 @@ Every tone family defines these five emphases, in ascending contrast order:
 
 ```
   css-variable = --semantic-color-light-mode-icon-static-{tone}-{emphasis}
-  token-path   = semantic.light-mode.color.icon.static.{tone}.{emphasis}
+  token-path   = semantic.light-mode.color.foreground.static.{tone}.{emphasis}
 ```
 
 Examples:
 
 | `tone` | `emphasis` | CSS variable | Token path |
 |---|---|---|---|
-| `neutral` | `base` *(defaults)* | `--semantic-color-light-mode-foreground-static-neutral-medium` | `icon.static.neutral.base` |
-| `brand` | `bold` | `--semantic-color-light-mode-foreground-static-brand-bold` | `icon.static.brand.bold` |
-| `accent-jade` | `light` | `--semantic-color-light-mode-foreground-static-accent-jade-faint` | `icon.static.accent-jade.light` |
+| `neutral` | `base` *(defaults)* | `--semantic-color-foreground-static-neutral-medium` | `foreground.static.neutral.medium` |
+| `brand` | `bold` | `--semantic-color-foreground-static-brand-bold` | `foreground.static.brand.bold` |
+| `accent-jade` | `light` | `--semantic-color-foreground-static-accent-jade-faint` | `foreground.static.accent.jade.subtle` |
 
-The Figma source node authors the spinner at `icon.static.neutral.base` (`#4b4b4b`). That is the correct default for a generic, context-free spinner.
+The Figma source node authors the spinner at `foreground.static.neutral.medium` (`#4b4b4b`). That is the correct default for a generic, context-free spinner.
 
 #### 7.1.4 Dark mode
 
@@ -532,7 +532,7 @@ The `data-tone`/`data-emphasis` attributes are what CSS uses to resolve the corr
 </button>
 ```
 
-> **⚠ Gap:** A brand-filled primary button wants a white spinner, but `icon.static.*` has no inverse track — the closest match is `neutral.light` (`#7b7b7b`). This is a known gap; see §11. Until an inverse track is added, either (a) use `neutral.light` and accept the lower contrast, or (b) use a different loading pattern (disabled button with a text-only "Saving…" label).
+> **⚠ Gap:** A brand-filled primary button wants a white spinner, but `foreground.static.*` has no inverse track — the closest match is `neutral.light` (`#7b7b7b`). This is a known gap; see §11. Until an inverse track is added, either (a) use `neutral.light` and accept the lower contrast, or (b) use a different loading pattern (disabled button with a text-only "Saving…" label).
 
 ### 9.4 Inline in running copy
 
@@ -551,7 +551,7 @@ The `data-tone`/`data-emphasis` attributes are what CSS uses to resolve the corr
 </p>
 ```
 
-Size (`1em` = 16px) is inherited from the paragraph's font-size. The paragraph's `color` is **not** used by the spinner — the spinner is painted by `icon.static.brand.base` regardless of what colour the surrounding text is.
+Size (`1em` = 16px) is inherited from the paragraph's font-size. The paragraph's `color` is **not** used by the spinner — the spinner is painted by `foreground.static.brand.medium` regardless of what colour the surrounding text is.
 
 ### 9.5 Explicit variant via `style` prop (forward-compat)
 
@@ -595,7 +595,7 @@ Hard rules. Breaking any of these breaks the component's contract.
 | ~~`tone="danger"` no longer matches its token family~~ | RESOLVED 2026-09-07 | Status/Alert was renamed to Status/Severe, so the tone and the token family agree. |
 | `spinner.html` redeclares semantic tokens from primitives | MEDIUM (superseded: the demo now links the contract, verified by `scripts/check-demo-tokens.js`) | Lines ~98–102 define `--semantic-color-light-mode-icon-static-*` locally as `var(--primitive-color-orange-*)` rather than consuming `tokens.css`. That is a §6 violation and it means the demo does not track token changes. It also masked the `danger` rename, since the demo defines its own copies. |
 | No `motion` tokens in `pathway-design-tokens.json` | MEDIUM | Duration (`1s`) and easing (`linear`) are hard-coded. Recommend adding a motion token category (see §7.3). Blocks cross-component consistency, not this component's ship. |
-| No `icon.static.*` inverse track | MEDIUM | Spinners sitting on dark/brand-filled surfaces (primary buttons, brand banners) have no matching semantic token — the closest is `neutral.light` (`#7b7b7b`). Recommend adding an inverse track or a dedicated `icon.static.on-brand.*` family. See §9.3. |
+| No `foreground.static.*` inverse track | MEDIUM | Spinners sitting on dark/brand-filled surfaces (primary buttons, brand banners) have no matching semantic token — the closest is `neutral.light` (`#7b7b7b`). Recommend adding an inverse track or a dedicated `foreground.action.mono.rest.*` family. See §9.3. |
 | No dark-mode runtime switch | MEDIUM | The token file emits `dark-mode` variables but no theme-switching mechanism exists yet. Spinner binds `light-mode` only. Revisit when the broader DS picks a theme-switching strategy (`[data-theme="dark"]`, `prefers-color-scheme`, …). |
 | No semantic `Component/Spinner/Size/*` scale | LOW | Sizes in §4.3 are advisory only. Adding named sizes would let teams reference `var(--component-spinner-size-s)` etc. Not a blocker. |
 | Only one `style` value exists | LOW | `progress-activity` is the only style today. Add more only when a real use case appears — don't speculate. |

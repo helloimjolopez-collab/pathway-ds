@@ -120,13 +120,13 @@ All semantic. Trigger/inline icons sit on the **dark** nav surface (dark-mode co
 
 | Element | Property | Semantic token | Resolved |
 |---|---|---|---|
-| Inline icon / ellipsis glyph | colour | `dark-mode.icon.action.mono.base` | `#fbfbfb` |
-| Icon button | hover bg | `dark-mode.fill.action.primaryinverse.hover` | `rgba(10,18,35,0.16)` |
-| Ellipsis (open) | bg | `dark-mode.fill.action.primaryinverse.pressed` | `rgba(255,255,255,0.08)` |
-| Menu panel | surface | `light-mode.fill.static.neutral.light` | `#ffffff` |
-| Menu item | label | `light-mode.text.static.secondary.bold` | `#252525` |
-| Menu item | leading icon | `light-mode.text.static.secondary.base` | `#484848` |
-| Menu item | hover/focus bg | `light-mode.fill.action.tertiary.base` | `#eef2fb` |
+| Inline icon / ellipsis glyph | colour | `dark-mode.foreground.action.mono.rest` | `#fbfbfb` |
+| Icon button | hover bg | `dark-mode.fill.action.primary-dim.hover` | `rgba(10,18,35,0.16)` |
+| Ellipsis (open) | bg | `dark-mode.fill.action.primary-dim.pressed` | `rgba(255,255,255,0.08)` |
+| Menu panel | surface | `light-mode.fill.static.neutral.faint` | `#ffffff` |
+| Menu item | label | `light-mode.foreground.static.neutral.bold` | `#252525` |
+| Menu item | leading icon | `light-mode.foreground.static.neutral.medium` | `#484848` |
+| Menu item | hover/focus bg | `light-mode.fill.action.primary-dim.rest` | `#eef2fb` |
 
 | Geometry | Value | Token |
 |---|---|---|

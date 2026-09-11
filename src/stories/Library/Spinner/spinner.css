@@ -21,7 +21,7 @@
 
 /* Tone x emphasis binding - ONLY foreground.static.* tokens. No raw hex, no
    primitives. Text and Icon merged into Foreground on 2026-09-03, so the
-   `icon.static.*` family this file used to name no longer exists.
+   `foreground.static.*` family this file used to name no longer exists.
 
    NOTE the two vocabularies in play: `data-emphasis` is the COMPONENT's prop
    value and `base` is a valid one, mapping to the ladder's `medium` step. The

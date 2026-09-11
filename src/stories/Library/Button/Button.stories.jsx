@@ -334,7 +334,7 @@ IconVariants.parameters = {
   docs: {
     description: {
       story:
-        "Leading icon · trailing icon · icon-only. The gap between icon and label is `--semantic-layout-units-contextual-button-gap-horizontal` (8px).",
+        "Leading icon · trailing icon · icon-only. The gap between icon and label is `--contextual-layout-units-button-gap-horizontal` (8px).",
     },
   },
 };
@@ -672,14 +672,14 @@ TokensTypography.parameters = {
 // ─── TokensSpacing ────────────────────────────────────────────────────────────
 
 const SPACING_ROWS = [
-  { name: "Padding - L horizontal", value: "14px", token: "--semantic-layout-units-contextual-button-padding-large-horizontal",  role: "Left + right padding inside Container.Main for size L" },
-  { name: "Padding - L vertical",   value: "12px", token: "--semantic-layout-units-contextual-button-padding-large-vertical",    role: "Top + bottom padding inside Container.Main for size L" },
-  { name: "Padding - M horizontal", value: "12px", token: "--semantic-layout-units-contextual-button-padding-medium-horizontal", role: "Left + right padding inside Container.Main for size M (default)" },
-  { name: "Padding - M vertical",   value: "10px", token: "--semantic-layout-units-contextual-button-padding-medium-vertical",   role: "Top + bottom padding inside Container.Main for size M" },
-  { name: "Padding - S horizontal", value: "8px",  token: "--semantic-layout-units-contextual-button-padding-small-horizontal",  role: "Left + right padding inside Container.Main for size S" },
-  { name: "Padding - S vertical",   value: "6px",  token: "--semantic-layout-units-contextual-button-padding-small-vertical",    role: "Top + bottom padding inside Container.Main for size S" },
-  { name: "Icon–label gap",         value: "8px",  token: "--semantic-layout-units-contextual-button-gap-horizontal",            role: "Gap between leading/trailing icon and label text" },
-  { name: "Border width (Outlined)",value: "0.75px",token: "--semantic-layout-units-contextual-button-border-width-base-base",   role: "Outlined style border thickness" },
+  { name: "Padding - L horizontal", value: "14px", token: "--contextual-layout-units-button-padding-large-horizontal",  role: "Left + right padding inside Container.Main for size L" },
+  { name: "Padding - L vertical",   value: "12px", token: "--contextual-layout-units-button-padding-large-vertical",    role: "Top + bottom padding inside Container.Main for size L" },
+  { name: "Padding - M horizontal", value: "12px", token: "--contextual-layout-units-button-padding-medium-horizontal", role: "Left + right padding inside Container.Main for size M (default)" },
+  { name: "Padding - M vertical",   value: "10px", token: "--contextual-layout-units-button-padding-medium-vertical",   role: "Top + bottom padding inside Container.Main for size M" },
+  { name: "Padding - S horizontal", value: "8px",  token: "--contextual-layout-units-button-padding-small-horizontal",  role: "Left + right padding inside Container.Main for size S" },
+  { name: "Padding - S vertical",   value: "6px",  token: "--contextual-layout-units-button-padding-small-vertical",    role: "Top + bottom padding inside Container.Main for size S" },
+  { name: "Icon–label gap",         value: "8px",  token: "--contextual-layout-units-button-gap-horizontal",            role: "Gap between leading/trailing icon and label text" },
+  { name: "Border width (Outlined)",value: "0.75px",token: "--contextual-layout-units-button-border-width-base-base",   role: "Outlined style border thickness" },
   { name: "Touch-target padding",   value: "6px",  token: "- (hardcoded)",  role: "Transparent outer padding on <button> - ensures 48×48px minimum touch target (WCAG 2.5.5)" },
   { name: "Touch target min-size",  value: "48px", token: "- (hardcoded)",  role: "Minimum interactive area enforced by outer <button> min-height + min-width" },
 ];
@@ -805,7 +805,7 @@ const RADIUS_ROWS = [
   {
     name: "Container.Main",
     value: "8px",
-    token: "--semantic-layout-units-contextual-button-radius-radius",
+    token: "--contextual-layout-units-button-radius-radius",
     role: "Visible button surface - all sizes, all styles",
   },
   {

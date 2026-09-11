@@ -349,7 +349,7 @@ export const TokensStroke = () => (
       { token: "stroke.action.primary.rest",         usage: "Bar border - with-value / filter-active (1px)" },
       { token: "stroke.action.primary.hover",        usage: "Bar border - hover (1px)" },
       { token: "stroke.action.primary.pressed",      usage: "Bar border - focused (1px)" },
-      { token: "stroke.action.status-negative.rest", usage: "Bar border - error (1px). Negative moved under Status" },
+      { token: "stroke.action.status.negative.rest", usage: "Bar border - error (1px). Negative moved under Status" },
       { token: "stroke.action.secondary.rest",       usage: "Cancel-filter divider (0.75px)" },
     ]}
   />
@@ -367,7 +367,7 @@ export const TokensForeground = () => (
       { token: "foreground.action.secondary.rest",         usage: "All icons - idle" },
       { token: "foreground.action.secondary.hover",        usage: "All icons - hover / focused" },
       { token: "foreground.action.disabled",               usage: "All icons - disabled. ONE disabled token per tier, not one per role" },
-      { token: "foreground.action.status-negative.rest",   usage: "Search icon - error state" },
+      { token: "foreground.action.status.negative.rest",   usage: "Search icon - error state" },
       { token: "foreground.action.mono.rest",              usage: "Badge count on the filled badge dot. Mono has only a rest step" },
     ]}
   />

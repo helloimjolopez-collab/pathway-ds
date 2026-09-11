@@ -370,7 +370,7 @@ const ICON_ROWS = [
   { token: "Foreground/Action/Secondary/Rest",           value: T.icon.navBase,          hex: "#484848", role: "Leading icon resting" },
   { token: "Foreground/Action/Secondary/Hover",          value: T.icon.navHover,         hex: "#313131", role: "Leading icon hovered" },
   { token: "Foreground/Action/Secondary/Pressed",         value: T.icon.navActive,        hex: "#2d4889", role: "Leading icon active - also indicator stripe" },
-  { token: "Foreground/Action/Secondary/Rest",     value: T.icon.actionSecondary,  hex: "#6b6b6b", role: "CollapseButton action icon (right_panel_open / left_panel_open)" },
+  { token: "Foreground/Action/Secondary/Rest",     value: T.foreground.actionSecondary,  hex: "#6b6b6b", role: "CollapseButton action icon (right_panel_open / left_panel_open)" },
 ];
 
 function TokenRow({ token, value, hex, role }) {

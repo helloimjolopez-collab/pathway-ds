@@ -76,12 +76,12 @@ const PAGES = [
   {
     title: "Tokens/Semantics/Color (Light Mode)",
     render: () => createSemanticColors("light-mode"),
-    floor: 2200, // observed 3419 elements for 326 rows
+    floor: 2400, // observed 3749 elements for 358 rows
   },
   {
     title: "Tokens/Semantics/Color (Midnight Mode)",
     render: () => createSemanticColors("midnight-mode"),
-    floor: 2200, // observed 3419 elements for 326 rows
+    floor: 2400, // observed 3749 elements for 358 rows
   },
   {
     title: "Tokens/Primitives/Color",

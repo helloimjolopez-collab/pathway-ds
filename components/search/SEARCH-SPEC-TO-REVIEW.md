@@ -30,7 +30,7 @@ Two components ship together:
 
 **TopNavSearch** — wrapper that hosts SearchInput in the top nav. Three modes: Collapsed (48×48 dark-surface icon button), Expanded (bar slides in with spring animation), Open (bar + results dropdown — design TBD, not shipped yet).
 
-**Filter-active state:** when the user returns from a filter page with filters applied — blue border on bar, `fill.action.tertiary.base` (#eef2fb) background on funnel pill, dot badge on funnel, **input stays fully active and interactive**.
+**Filter-active state:** when the user returns from a filter page with filters applied — blue border on bar, `fill.action.primary-dim.rest` (#eef2fb) background on funnel pill, dot badge on funnel, **input stays fully active and interactive**.
 
 **Not used for:** inline list filtering, command palettes, form autocomplete, global persistent nav state.
 
@@ -157,7 +157,7 @@ TopNavSearch.Container               overflow hidden, padding 4px, flex row alig
 
 **Badge dot**
 - 6×6px, `position: absolute; top: 1px; right: 1px` on the badge-wrap
-- Fill: `#345499` (`fill.action.primary.base`)
+- Fill: `#345499` (`fill.action.primary.rest`)
 - Border: `1.5px solid #ffffff` (white ring)
 - `aria-hidden="true"` — accessible state communicated via aria-label change on button
 
@@ -198,7 +198,7 @@ TopNavSearch.Container               overflow hidden, padding 4px, flex row alig
 
 | Property | Value | How |
 |---|---|---|
-| Font family | Red Hat Text | `var(--semantic-type-desktop-label-input-base-regular-fontfamily)` |
+| Font family | Red Hat Text | `var(--semantic-type-family-brand)` |
 | Weight | 400 | — |
 | Size | 14px | `calc(var(--primitive-unit-unit-14) * 1px)` |
 | Line height | 20px | `calc(var(--primitive-type-line-height-14pt-single) * 1px)` |
@@ -210,7 +210,7 @@ TopNavSearch.Container               overflow hidden, padding 4px, flex row alig
 
 **Collapsed button:**
 - 48×48px, border-radius 12px
-- Background: `rgba(160,181,230,0.08)` → `fill.action.primaryinverse.base`
+- Background: `rgba(160,181,230,0.08)` → `fill.action.primary-dim.rest`
 - Border: `1.5px solid rgba(251,251,251,0.14)` — no semantic token yet (flagged in Gaps)
 - Icon fill: `rgba(251,251,251,0.9)` — no dark-mode token yet (flagged in Gaps)
 
@@ -340,44 +340,33 @@ All three live in the **Pathway Design System Master File MB 2.0.**
 Every CSS variable this component uses. Source: the `src/tokens/` contract (`primitives.css`, `themes/light.css`, `themes/midnight.css`, `layout.css`, `layout-contextual.css`, `type.css`, `motion.css`, `breakpoints.css`).
 
 ```css
-/* ── Resolved primitives ─────────────────────────────────── */
---primitive-color-cool-neutral-0:   #ffffff;   /* white */
---primitive-color-cool-neutral-10:  #fbfbfb;   /* near-white / disabled bg fallback */
---primitive-color-cool-neutral-20:  #f6f6f6;   /* icon pressed */
---primitive-color-cool-neutral-30:  #ededed;   /* disabled border fallback */
---primitive-color-cool-neutral-50:  #d2d2d2;   /* idle border */
---primitive-color-cool-neutral-60:  #c4c4c4;   /* hover border */
---primitive-color-cool-neutral-90:  #979797;   /* disabled icon */
---primitive-color-cool-neutral-120: #6b6b6b;   /* idle icon */
---primitive-color-cool-neutral-130: #606060;   /* placeholder text / hover icon */
---primitive-color-cool-neutral-190: #202020;   /* input value text */
---primitive-color-cool-neutral-220-2: rgba(17,17,17,0.02);  /* icon hover bg */
---primitive-color-brand-0:          #fafafa;
---primitive-color-brand-10:         #eef2fb;   /* filter pill active bg */
---primitive-color-brand-40:         #c0ceef;   /* cancel-filter divider */
---primitive-color-brand-50:         #a0b5e6;   /* focused/active/filter border */
---primitive-color-brand-400:        #345499;   /* badge dot fill */
---primitive-color-red-50:           #e29f9f;
---primitive-color-red-100:          #b03a3a;   /* error border + icon */
+/* A spec must never name a primitive. CLAUDE.md §6: primitives are building
+   blocks for the design system itself, not a contract, and a component that
+   names one breaks the moment a ramp is re-anchored.
+
+   This block used to list 18 resolved primitives, nine of which no longer
+   existed after the ramps were rebuilt. Removed 2026-09-10. Read a resolved
+   value from the Storybook token page, which computes it from the live
+   stylesheet, rather than copying one into a document where it cannot track. */
 
 /* ── Semantic tokens — colour ────────────────────────────── */
---semantic-color-light-mode-fill-static-neutral-faint:      var(--primitive-color-cool-neutral-0);    /* #ffffff — bar bg */
---semantic-color-light-mode-fill-action-primary-dim-rest:      var(--primitive-color-brand-10);          /* #eef2fb — filter pill active */
---semantic-color-light-mode-fill-action-secondary-hover:    var(--primitive-color-cool-neutral-220-2); /* rgba(17,17,17,0.02) — icon hover */
---semantic-color-light-mode-fill-action-secondary-pressed:  var(--primitive-color-cool-neutral-20);    /* #f6f6f6 — icon pressed */
---semantic-color-light-mode-fill-action-primary-rest:       var(--primitive-color-brand-400);         /* #345499 — badge dot */
---semantic-color-light-mode-fill-action-primary-dim-rest: var(--primitive-color-brand-0);          /* rgba(160,181,230,0.08) — topnav collapsed btn bg */
---semantic-color-light-mode-stroke-action-secondary-rest:  var(--primitive-color-cool-neutral-50);  /* #d2d2d2 — idle border */
---semantic-color-light-mode-stroke-action-secondary-hover: var(--primitive-color-cool-neutral-60);  /* #c4c4c4 — hover border */
---semantic-color-light-mode-stroke-action-primary-pressed: var(--primitive-color-brand-50);   /* #a0b5e6 — focused/filter-active border */
---semantic-color-light-mode-stroke-action-primary-rest:    var(--primitive-color-brand-40);   /* #c0ceef — cancel-filter divider */
---semantic-color-light-mode-stroke-action-status-negative-rest:    var(--primitive-color-red-100);           /* #b03a3a — error border */
---semantic-color-light-mode-foreground-static-neutral-subtle:   var(--primitive-color-cool-neutral-130);  /* #606060 — placeholder */
---semantic-color-light-mode-foreground-static-neutral-bold:     var(--primitive-color-cool-neutral-190);  /* #202020 — input value */
---semantic-color-light-mode-foreground-action-secondary-rest:  var(--primitive-color-cool-neutral-120); /* #6b6b6b — idle icon */
---semantic-color-light-mode-foreground-action-secondary-hover: var(--primitive-color-cool-neutral-130); /* #606060 — hover icon */
---semantic-color-light-mode-foreground-action-disabled:  var(--primitive-color-cool-neutral-90);  /* #979797 — disabled icon */
---semantic-color-light-mode-foreground-action-status-negative-rest:       var(--primitive-color-red-100);          /* #b03a3a — error icon */
+--semantic-color-fill-static-neutral-faint;  /* #ffffff — bar bg */
+--semantic-color-fill-action-primary-dim-rest;  /* #eef2fb — filter pill active */
+--semantic-color-fill-action-secondary-hover;  /* rgba(17,17,17,0.02) — icon hover */
+--semantic-color-fill-action-secondary-pressed;  /* #f6f6f6 — icon pressed */
+--semantic-color-fill-action-primary-rest;  /* #345499 — badge dot */
+--semantic-color-fill-action-primary-dim-rest;  /* rgba(160,181,230,0.08) — topnav collapsed btn bg */
+--semantic-color-stroke-action-secondary-rest;  /* #d2d2d2 — idle border */
+--semantic-color-stroke-action-secondary-hover;  /* #c4c4c4 — hover border */
+--semantic-color-stroke-action-primary-pressed;  /* #a0b5e6 — focused/filter-active border */
+--semantic-color-stroke-action-primary-rest;  /* #c0ceef — cancel-filter divider */
+--semantic-color-stroke-action-status-negative-rest;  /* #b03a3a — error border */
+--semantic-color-foreground-static-neutral-subtle;  /* #606060 — placeholder */
+--semantic-color-foreground-static-neutral-bold;  /* #202020 — input value */
+--semantic-color-foreground-action-secondary-rest;  /* #6b6b6b — idle icon */
+--semantic-color-foreground-action-secondary-hover;  /* #606060 — hover icon */
+--semantic-color-foreground-action-disabled;  /* #979797 — disabled icon */
+--semantic-color-foreground-action-status-negative-rest;  /* #b03a3a — error icon */
 
 /* ── Unit tokens (all unitless — multiply by 1px in CSS) ─── */
 --primitive-unit-unit-0-point-75: 0.75;   /* 0.75px border */

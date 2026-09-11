@@ -303,20 +303,20 @@ These are the mistakes AI agents make most often when consuming this design syst
 **✅ Semantic token**
 ```jsx
 <button style={{
-  color: "var(--text-action-primary-base)",
-  background: "var(--fill-static-surface-white)"
+  color: "var(--semantic-color-foreground-action-primary-rest)",
+  background: "var(--semantic-color-fill-surface-canvas)"
 }}>Save</button>
 ```
 
 **❌ Primitive token used directly**
 ```css
-color: var(--primitive-color-blue-180);
+color: var(--primitive-color-brand-500);
 ```
 Primitives are building blocks for *the design system itself*. Components never consume them directly — they consume the semantic token that wraps the primitive. If the primitive is renamed in Figma, your component breaks. If you use the semantic, it doesn't.
 
 **✅ Semantic token**
 ```css
-color: var(--text-static-brand-base);
+color: var(--semantic-color-foreground-static-brand-medium);
 ```
 
 **❌ Invented token name**

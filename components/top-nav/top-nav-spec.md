@@ -110,16 +110,16 @@ The TopNav.Global surface is always the brand-blue background. Because this back
 
 | Semantic Token | Primitive | Resolved | Usage |
 |---|---|---|---|
-| `semantic-color.light-mode.fill.static.brand.base` | `primitive-color.brand-500` | `#2d4889` | Nav bar background |
+| `semantic-color.light-mode.fill.static.brand.medium` | `primitive-color.brand-500` | `#2d4889` | Nav bar background |
 
 ### 3.2 Interactive control fills (OrgSwitcher base state)
 
 | Semantic Token | Primitive | Resolved | Usage |
 |---|---|---|---|
-| `semantic-color.dark-mode.fill.action.tertiary.base` | `primitive-color.brand-50-4` | `rgba(160,181,230,0.04)` | OrgSwitcher inner base fill |
-| `semantic-color.dark-mode.fill.action.primaryinverse.base` | `primitive-color.brand-50-8` | `rgba(160,181,230,0.08)` | Search pill base fill |
-| `semantic-color.dark-mode.fill.action.primaryinverse.hover` | `primitive-color.brand-900-16` | `rgba(10,18,35,0.16)` | All controls hover fill |
-| `semantic-color.dark-mode.fill.action.primaryinverse.pressed` | `primitive-color.cool-neutral-0-8` | `rgba(255,255,255,0.08)` | All controls pressed fill |
+| `semantic-color.dark-mode.fill.action.primary-dim.rest` | `primitive-color.brand-50-4` | `rgba(160,181,230,0.04)` | OrgSwitcher inner base fill |
+| `semantic-color.dark-mode.fill.action.primary-dim.rest` | `primitive-color.brand-50-8` | `rgba(160,181,230,0.08)` | Search pill base fill |
+| `semantic-color.dark-mode.fill.action.primary-dim.hover` | `primitive-color.brand-900-16` | `rgba(10,18,35,0.16)` | All controls hover fill |
+| `semantic-color.dark-mode.fill.action.primary-dim.pressed` | `primitive-color.cool-neutral-0-8` | `rgba(255,255,255,0.08)` | All controls pressed fill |
 
 > IMPLEMENTATION RULE: All dark-mode fill tokens
 > Every button, pill, and interactive container on TopNav.Global uses dark-mode fill tokens. Never use light-mode fill tokens here regardless of the app's color-scheme setting. The nav surface is always brand-blue and always "dark."
@@ -128,9 +128,9 @@ The TopNav.Global surface is always the brand-blue background. Because this back
 
 | Semantic Token | Primitive | Resolved | Usage |
 |---|---|---|---|
-| `semantic-color.dark-mode.stroke.action.tertiary.base` | `primitive-color.brand-50-16` | `rgba(160,181,230,0.16)` | OrgSwitcher border base; avatar border |
-| `semantic-color.dark-mode.stroke.action.tertiary.hover` | `primitive-color.brand-50-20` | `rgba(160,181,230,0.20)` | OrgSwitcher border hover |
-| `semantic-color.dark-mode.stroke.action.tertiary.pressed` | `primitive-color.brand-50-30` | `rgba(160,181,230,0.30)` | OrgSwitcher border pressed/expanded |
+| `semantic-color.dark-mode.stroke.action.primary.rest` | `primitive-color.brand-50-16` | `rgba(160,181,230,0.16)` | OrgSwitcher border base; avatar border |
+| `semantic-color.dark-mode.stroke.action.primary.hover` | `primitive-color.brand-50-20` | `rgba(160,181,230,0.20)` | OrgSwitcher border hover |
+| `semantic-color.dark-mode.stroke.action.primary.pressed` | `primitive-color.brand-50-30` | `rgba(160,181,230,0.30)` | OrgSwitcher border pressed/expanded |
 
 The Search pill uses a distinct border: `0.75px solid` at the `icon-action-mono-base` value (`#fbfbfb`), not the tertiary stroke token. This is a Figma-confirmed design decision.
 
@@ -138,15 +138,15 @@ The Search pill uses a distinct border: `0.75px solid` at the `icon-action-mono-
 
 | Semantic Token | Primitive | Resolved | Usage |
 |---|---|---|---|
-| `semantic-color.dark-mode.text.action.mono.base` | `primitive-color.cool-neutral-10` | `#fbfbfb` | ModuleSwitcher label, OrgSwitcher label |
-| `semantic-color.dark-mode.icon.action.mono.base` | `primitive-color.cool-neutral-10` | `#fbfbfb` | All icon fills on the nav bar |
+| `semantic-color.dark-mode.foreground.action.mono.rest` | `primitive-color.cool-neutral-10` | `#fbfbfb` | ModuleSwitcher label, OrgSwitcher label |
+| `semantic-color.dark-mode.foreground.action.mono.rest` | `primitive-color.cool-neutral-10` | `#fbfbfb` | All icon fills on the nav bar |
 
 ### 3.5 Profile avatar
 
 | Semantic Token | Primitive | Resolved | Usage |
 |---|---|---|---|
-| `semantic-color.light-mode.fill.static.accent.amethyst.base` | `primitive-color.amethyst-30` | `#dcd9ef` | Profile avatar background |
-| `semantic-color.light-mode.text.static.accent.amethyst.contrast` | `primitive-color.amethyst-150` | `#221e3f` | Profile avatar initials text |
+| `semantic-color.light-mode.fill.static.accent.amethyst.medium` | `primitive-color.amethyst-30` | `#dcd9ef` | Profile avatar background |
+| `semantic-color.light-mode.foreground.static.accent.amethyst.contrast` | `primitive-color.amethyst-150` | `#221e3f` | Profile avatar initials text |
 
 The profile avatar uses light-mode amethyst tokens. This is correct: the avatar is a content element with its own background color, not part of the nav bar's interactive surface.
 
@@ -244,12 +244,12 @@ States apply to the interactive inner controls (ModuleSwitcher.Inner, OrgSwitche
 
 | State | Fill | Stroke | Text/Icon |
 |---|---|---|---|
-| **Base (ModuleSwitcher)** | transparent | transparent | `dark-mode.text.action.mono.base` (#fbfbfb) |
-| **Base (OrgSwitcher)** | `dark-mode.fill.action.tertiary.base` (rgba 160,181,230 / 0.04) | `dark-mode.stroke.action.tertiary.base` (rgba 160,181,230 / 0.16) | `dark-mode.text.action.mono.base` (#fbfbfb) |
-| **Base (Search pill)** | `dark-mode.fill.action.primaryinverse.base` (rgba 160,181,230 / 0.08) | `dark-mode.icon.action.mono.base` (#fbfbfb), 0.75px | `dark-mode.icon.action.mono.base` (#fbfbfb) |
-| **Base (ActionIcon)** | transparent | none | `dark-mode.icon.action.mono.base` (#fbfbfb) |
-| **Hover (all controls)** | `dark-mode.fill.action.primaryinverse.hover` (rgba 10,18,35 / 0.16) | (tertiary hover for org/mod) | unchanged |
-| **Pressed / Expanded** | `dark-mode.fill.action.primaryinverse.pressed` (rgba 255,255,255 / 0.08) | (tertiary pressed for org/mod) | unchanged |
+| **Base (ModuleSwitcher)** | transparent | transparent | `dark-mode.foreground.action.mono.rest` (#fbfbfb) |
+| **Base (OrgSwitcher)** | `dark-mode.fill.action.primary-dim.rest` (rgba 160,181,230 / 0.04) | `dark-mode.stroke.action.primary.rest` (rgba 160,181,230 / 0.16) | `dark-mode.foreground.action.mono.rest` (#fbfbfb) |
+| **Base (Search pill)** | `dark-mode.fill.action.primary-dim.rest` (rgba 160,181,230 / 0.08) | `dark-mode.foreground.action.mono.rest` (#fbfbfb), 0.75px | `dark-mode.foreground.action.mono.rest` (#fbfbfb) |
+| **Base (ActionIcon)** | transparent | none | `dark-mode.foreground.action.mono.rest` (#fbfbfb) |
+| **Hover (all controls)** | `dark-mode.fill.action.primary-dim.hover` (rgba 10,18,35 / 0.16) | (tertiary hover for org/mod) | unchanged |
+| **Pressed / Expanded** | `dark-mode.fill.action.primary-dim.pressed` (rgba 255,255,255 / 0.08) | (tertiary pressed for org/mod) | unchanged |
 | **Focus-visible** | unchanged | 2px solid `rgba(160,181,230,0.7)`, 2px offset | unchanged |
 
 ### State logic rules
@@ -363,7 +363,7 @@ When no logo image is available for an org, the avatar container shows the org's
 
 | Context | Container | Background | Text size | Text color |
 |---|---|---|---|---|
-| Nav bar trigger | 20×20, `border-radius: 4px` | `rgba(45,72,137,0.3)` (semi-transparent brand) | 7px / 700 | `dark-mode.text.action.mono.base` (#fbfbfb) |
+| Nav bar trigger | 20×20, `border-radius: 4px` | `rgba(45,72,137,0.3)` (semi-transparent brand) | 7px / 700 | `dark-mode.foreground.action.mono.rest` (#fbfbfb) |
 | Org panel item | 32×32, `border-radius: 4px` | `#2d4889` (brand base) | 9px / 700 | `#ffffff` |
 
 The nav bar fallback uses a semi-transparent brand fill so the underlying nav-bar color bleeds through slightly, keeping the avatar visually integrated. The panel fallback uses solid brand fill because it sits on a white panel surface.
@@ -397,8 +397,8 @@ A circular pill button sits in the RowEnd slot.
 
 - Outer container: 48×48px (touch target)
 - Pill: 32×32px, `border-radius: 9999px`
-- Background: `dark-mode.fill.action.primaryinverse.base` (`rgba(160,181,230,0.08)`)
-- Border: `0.75px solid #fbfbfb` (the `dark-mode.icon.action.mono.base` resolved value)
+- Background: `dark-mode.fill.action.primary-dim.rest` (`rgba(160,181,230,0.08)`)
+- Border: `0.75px solid #fbfbfb` (the `dark-mode.foreground.action.mono.rest` resolved value)
 - Icon: search SVG, fill #fbfbfb, 16px
 
 #### Expanded state
@@ -406,14 +406,14 @@ A circular pill button sits in the RowEnd slot.
 Clicking the collapsed pill opens the search as a **full-width takeover** of the entire TopNav (see "Search takeover" below). It stays open until the user closes it (leading search icon or Escape).
 
 **Focused-empty** (just opened, no text entered):
-- Container: white fill (`fill.static.neutral.light`), 1px solid `#6e8bd4` (`stroke.action.primary.pressed`), `border-radius: 9999px`, 36px height, fills the bar width, `padding: 0 8px`
-- Leading icon: search, 24px container, color `#606060` (`text.static.secondary.subtle`)
+- Container: white fill (`fill.static.neutral.faint`), 1px solid `#6e8bd4` (`stroke.action.primary.pressed`), `border-radius: 9999px`, 36px height, fills the bar width, `padding: 0 8px`
+- Leading icon: search, 24px container, color `#606060` (`foreground.static.neutral.subtle`)
 - Placeholder text: "Search…", 14px/400, color `#606060`
 - **No trailing clear button** (none in Figma for this state)
 
 **with-value** (text entered):
 - Same container styling as focused-empty
-- Input text color: `#202020` (`text.static.secondary.bold`)
+- Input text color: `#202020` (`foreground.static.neutral.bold`)
 - Trailing `cancel` (circled X) icon button: 24px container, color `#606060` — visible only when query is non-empty
 - Clicking the clear button clears the input and refocuses — it does **not** collapse the pill
 
@@ -434,17 +434,17 @@ Two bell/notification icon buttons sit in the RowEnd slot (desktop and tablet on
 - Outer: 48×48px touch target
 - Inner: full outer size with `padding: 8px`, `border-radius: 8px`
 - Icon: bell SVG, fill `#fbfbfb`, positioned within the inner padded area
-- Hover: `dark-mode.fill.action.primaryinverse.hover`
-- Pressed: `dark-mode.fill.action.primaryinverse.pressed`
+- Hover: `dark-mode.fill.action.primary-dim.hover`
+- Pressed: `dark-mode.fill.action.primary-dim.pressed`
 - Badge / notification indicator: not yet designed — see §17
 
 ### 7.5 Profile trigger and menu
 
 - Outer: 48×48px touch target
 - Avatar: 32×32px circle, `border-radius: 50%`
-- Avatar background: `light-mode.fill.static.accent.amethyst.base` (#dcd9ef)
-- Avatar text (initials): `light-mode.text.static.accent.amethyst.contrast` (#221e3f), 14px/600
-- Hover: outer 44×44 rounded-full receives `dark-mode.fill.action.primaryinverse.hover`
+- Avatar background: `light-mode.fill.static.accent.amethyst.medium` (#dcd9ef)
+- Avatar text (initials): `light-mode.foreground.static.accent.amethyst.contrast` (#221e3f), 14px/600
+- Hover: outer 44×44 rounded-full receives `dark-mode.fill.action.primary-dim.hover`
 
 **Profile menu (panel, desktop/tablet):**
 - Position: `absolute`, right-aligned to the profile trigger, `top: 100% + 4px`
@@ -461,7 +461,7 @@ Two bell/notification icon buttons sit in the RowEnd slot (desktop and tablet on
 ## 8. Container / Surface
 
 ### 8.1 Surface
-- Background: `semantic-color.light-mode.fill.static.brand.base` (#2d4889)
+- Background: `semantic-color.light-mode.fill.static.brand.medium` (#2d4889)
 - No border
 - No shadow on the bar itself (shadow is applied to opened dropdown panels)
 
@@ -505,7 +505,7 @@ TopNav.Global is `position: sticky` or `position: fixed` at `top: 0`. The decisi
 
 ### 10.1 SideNav.Control
 
-On mobile (<768px), a hamburger button appears as the leftmost element in Slot.RowStart. This control opens/closes the SideNav overlay. It inherits the same 48×48 touch target and `dark-mode.fill.action.primaryinverse.hover` hover state as all other nav controls.
+On mobile (<768px), a hamburger button appears as the leftmost element in Slot.RowStart. This control opens/closes the SideNav overlay. It inherits the same 48×48 touch target and `dark-mode.fill.action.primary-dim.hover` hover state as all other nav controls.
 
 ### 10.2 Mobile org label abbreviation rules
 

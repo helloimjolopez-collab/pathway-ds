@@ -57,9 +57,9 @@ Pathway component demos are standalone HTML files. No npm, no build step. React 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: var(--semantic-type-desktop-text-supporting-base-regular-fontfamily, system-ui, sans-serif);
-      background: var(--semantic-color-light-mode-surface-canvas);
-      color: var(--semantic-color-light-mode-foreground-static-neutral-bold);
+      font-family: var(--semantic-type-family-brand, system-ui, sans-serif);
+      background: var(--semantic-color-fill-surface-canvas);
+      color: var(--semantic-color-foreground-static-neutral-bold);
       padding: 2rem;
     }
   </style>
@@ -76,9 +76,9 @@ Pathway component demos are standalone HTML files. No npm, no build step. React 
 
     const styles = `
       .my-component {
-        background: var(--semantic-color-light-mode-surface-canvas);
+        background: var(--semantic-color-fill-surface-canvas);
         border-radius: var(--semantic-layout-units-cornerradius-medium);
-        padding: var(--semantic-layout-units-contextual-card-padding-medium-vertical) var(--semantic-layout-units-contextual-card-padding-medium-horizontal);
+        padding: var(--contextual-layout-units-card-padding-medium-vertical) var(--contextual-layout-units-card-padding-medium-horizontal);
       }
     `;
 
@@ -158,9 +158,9 @@ Use only Pathway CSS variables. Never hardcode a value that exists as a token.
 ```css
 /* Correct */
 .dialog-content {
-  background: var(--semantic-color-light-mode-surface-canvas);
+  background: var(--semantic-color-fill-surface-canvas);
   border-radius: var(--semantic-layout-units-cornerradius-large);
-  padding: var(--semantic-layout-units-contextual-card-padding-medium-vertical) var(--semantic-layout-units-contextual-card-padding-medium-horizontal);
+  padding: var(--contextual-layout-units-card-padding-medium-vertical) var(--contextual-layout-units-card-padding-medium-horizontal);
   /* No semantic shadow token exists — log raw box-shadow as design debt in §15 */
 }
 
@@ -244,7 +244,7 @@ Icons use Material Symbols loaded from Google Fonts. The icon renders as a text 
 .material-symbols-outlined {
   font-size: 20px;
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
-  color: var(--semantic-color-light-mode-foreground-action-secondary-rest);
+  color: var(--semantic-color-foreground-action-secondary-rest);
   line-height: 1;
   user-select: none;
 }
