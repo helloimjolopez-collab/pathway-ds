@@ -27,7 +27,8 @@
     "./breakpoints.css": "./dist/breakpoints.css",
     "./type.css": "./dist/type.css",
     "./contract.json": "./dist/contract.json",
-    "./README.md": "./dist/README.md"
+    "./README.md": "./dist/README.md",
+    "./layout-responsive.css": "./dist/layout-responsive.css"
   },
   "peerDependencies": {
     "react": ">=18",

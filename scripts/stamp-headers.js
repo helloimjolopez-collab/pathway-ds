@@ -153,6 +153,22 @@ const FILES = [
     ],
   },
   {
+    path: `${SRC}/layout-responsive.css`,
+    kind: "CONTRACT",
+    lines: [
+      "The only layout tokens that change by breakpoint. Name these freely.",
+      "",
+      "Sheet padding and TopNav padding/height really do tighten on smaller",
+      "screens, so they keep a Desktop/Tablet/Mobile axis and are emitted with",
+      "media queries. Everything else in layout.css and layout-contextual.css is",
+      "single-valued: of 69 layout tokens only these varied, so the other 66 lost",
+      "the mode axis on 2026-09-14 rather than carry the same number three times.",
+      "",
+      "A developer cannot derive these from a responsive grid. The grid governs",
+      "columns; it says nothing about the chrome's padding.",
+    ],
+  },
+  {
     path: `${SRC}/breakpoints.css`,
     kind: "CONTRACT",
     lines: ["The breakpoint values. Name these freely."],

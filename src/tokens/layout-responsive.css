@@ -1,0 +1,46 @@
+/*
+ ==========================================================================
+ PATHWAY DESIGN TOKENS — CONTRACT
+ ==========================================================================
+
+ The only layout tokens that change by breakpoint. Name these freely.
+
+ Sheet padding and TopNav padding/height really do tighten on smaller
+ screens, so they keep a Desktop/Tablet/Mobile axis and are emitted with
+ media queries. Everything else in layout.css and layout-contextual.css is
+ single-valued: of 69 layout tokens only these varied, so the other 66 lost
+ the mode axis on 2026-09-14 rather than carry the same number three times.
+
+ A developer cannot derive these from a responsive grid. The grid governs
+ columns; it says nothing about the chrome's padding.
+
+ Declares 14 custom properties.
+ Generated — do not edit. Run `npm run build-tokens`.
+ ==========================================================================
+*/
+:root {
+  --responsive-layout-padding-bottom: 64px;
+  --responsive-layout-padding-horizontal: 36px;
+  --responsive-layout-padding-top: 16px;
+  --responsive-layout-topnav-height: 56px;
+  --responsive-layout-topnav-padding-horizontal: 16px;
+  --responsive-layout-topnav-padding-vertical: 6px;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --responsive-layout-padding-bottom: 48px;
+    --responsive-layout-padding-horizontal: 24px;
+    --responsive-layout-padding-top: 14px;
+    --responsive-layout-topnav-padding-horizontal: 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --responsive-layout-padding-bottom: 36px;
+    --responsive-layout-padding-horizontal: 16px;
+    --responsive-layout-padding-top: 12px;
+    --responsive-layout-topnav-padding-horizontal: 8px;
+  }
+}

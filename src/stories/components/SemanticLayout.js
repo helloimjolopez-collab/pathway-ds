@@ -7,7 +7,16 @@ import tokens from "../../tokens/tokens.js";
 export function createSemanticLayout() {
   const groups = {};
   for (const [name, token] of Object.entries(tokens)) {
-    if (token.path[0] !== "semantic-layout-units") continue;
+    // Three layout collections, all shown here, because a reader looking for
+    // "the padding tokens" should not have to know which collection a token
+    // lives in. The split exists for a maintenance reason (a collection's mode
+    // axis applies to every variable in it), not a documentation one.
+    //
+    //   semantic-layout-units    the general scale, single-valued
+    //   contextual-layout-units  per-component metrics, single-valued
+    //   responsive-layout        the only tokens that change by breakpoint
+    if (!["semantic-layout-units", "contextual-layout-units", "responsive-layout"]
+      .includes(token.path[0])) continue;
 
     const category = token.path[1]; // button, navitem, accessibility, page, section, etc.
     if (!groups[category]) groups[category] = [];

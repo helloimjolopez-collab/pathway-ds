@@ -41,6 +41,7 @@ const FILES = [
   { file: "layout.css",            contract: true,  load: true,  role: "Spacing, radii, border widths." },
   { file: "layout-contextual.css", contract: false, load: false, role: "Per-component metrics. This repo's components use these." },
   { file: "motion.css",            contract: true,  load: true,  role: "Durations and easings." },
+  { file: "layout-responsive.css", contract: true,  load: true,  role: "Sheet and TopNav padding. The only layout tokens with media queries." },
   { file: "breakpoints.css",       contract: true,  load: true,  role: "Breakpoint values." },
 ];
 

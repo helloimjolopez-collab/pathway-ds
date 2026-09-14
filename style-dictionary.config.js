@@ -346,16 +346,31 @@ const config = {
       buildPath: "src/tokens/",
       files: [
         {
+          // Single mode as of 2026-09-14: not one of these 39 tokens differed by
+          // breakpoint, so the Desktop/Tablet/Mobile axis was 117 cells carrying
+          // 39 values. singleMode skips the media-query machinery entirely.
           destination: "layout.css",
           format: "pathway/layout-responsive",
           filter: (t) => String(t.path[0]).toLowerCase() === "semantic-layout-units",
-          options: { collection: "semantic-layout-units" },
+          options: { collection: "semantic-layout-units", media: [], singleMode: true },
         },
         {
+          // Also single mode now. The three sheet-padding tokens that DID vary
+          // moved to Responsive: Sheet below, which is the only collection that
+          // still earns a breakpoint axis.
           destination: "layout-contextual.css",
           format: "pathway/layout-responsive",
           filter: (t) => String(t.path[0]).toLowerCase() === "contextual-layout-units",
-          options: { collection: "contextual-layout-units" },
+          options: { collection: "contextual-layout-units", media: [], singleMode: true },
+        },
+        {
+          // The only genuinely responsive layout tokens in the system: sheet
+          // padding, which really does tighten on smaller screens. Keeping them
+          // in their own collection is what let the other 66 drop the axis.
+          destination: "layout-responsive.css",
+          format: "pathway/layout-responsive",
+          filter: (t) => String(t.path[0]).toLowerCase() === "responsive-layout",
+          options: { collection: "responsive-layout" },
         },
         {
           // Type is a SCALE now, not 111 composites. Semantic: Type went from 554

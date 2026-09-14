@@ -9,14 +9,13 @@
  prefer layout.css, which is the general spacing contract. These exist so a
  component's geometry can be tuned without moving the whole scale.
 
- Declares 34 custom properties.
+ Declares 29 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
 :root {
-  --contextual-layout-units-button-border-width-base-base: 0.75px;
-  --contextual-layout-units-button-border-width-thick-thick: 1px;
-  --contextual-layout-units-button-border-width-thin-thin: 0.5px;
+  --contextual-layout-units-button-border-width-hover: 1px;
+  --contextual-layout-units-button-border-width-rest: 0.75px;
   --contextual-layout-units-button-gap-horizontal: 8px;
   --contextual-layout-units-button-padding-large-horizontal: 14px;
   --contextual-layout-units-button-padding-large-vertical: 12px;
@@ -26,36 +25,22 @@
   --contextual-layout-units-button-padding-small-vertical: 6px;
   --contextual-layout-units-button-padding-xsmall-horizontal: 8px;
   --contextual-layout-units-button-padding-xsmall-vertical: 6px;
-  --contextual-layout-units-button-radius-radius: 8px;
-  --contextual-layout-units-card-border-width-base-base: 0.5px;
-  --contextual-layout-units-card-border-width-thick-thick: 0.75px;
-  --contextual-layout-units-card-cornerradius-cornerradius: 12px;
-  --contextual-layout-units-card-gap-gap: 8px;
+  --contextual-layout-units-button-radius: 8px;
+  --contextual-layout-units-card-border-width-hover: 0.75px;
+  --contextual-layout-units-card-border-width-rest: 0.5px;
+  --contextual-layout-units-card-cornerradius: 12px;
+  --contextual-layout-units-card-gap: 8px;
   --contextual-layout-units-card-padding-medium-horizontal: 16px;
   --contextual-layout-units-card-padding-medium-vertical: 16px;
   --contextual-layout-units-card-padding-small-horizontal: 14px;
   --contextual-layout-units-card-padding-small-vertical: 14px;
-  --contextual-layout-units-focused-element-borderwidth-borderwidth: 2px;
-  --contextual-layout-units-focused-element-cornerradius-cornerradius: 12px;
+  --contextual-layout-units-focus-ring-offset: 2px;
+  --contextual-layout-units-focus-ring-width: 2px;
   --contextual-layout-units-navitem-large-padding-horizontal: 14px;
   --contextual-layout-units-navitem-large-padding-vertical: 12px;
-  --contextual-layout-units-navitem-large-radius-radius: 8px;
-  --contextual-layout-units-navitem-large-stroke-width-stroke-width: 1.5px;
-  --contextual-layout-units-page-padding-bottom: 64px;
-  --contextual-layout-units-page-padding-horizontal: 36px;
-  --contextual-layout-units-page-padding-top: 16px;
-}
-
-@media (max-width: 1023px) {
-  :root {
-    --contextual-layout-units-page-padding-horizontal: 24px;
-    --contextual-layout-units-page-padding-top: 14px;
-  }
-}
-
-@media (max-width: 767px) {
-  :root {
-    --contextual-layout-units-page-padding-horizontal: 16px;
-    --contextual-layout-units-page-padding-top: 12px;
-  }
+  --contextual-layout-units-navitem-large-radius: 8px;
+  --contextual-layout-units-navitem-large-stroke-width: 1.5px;
+  --contextual-layout-units-sidenav-collapsed-padding-horizontal: 12px;
+  --contextual-layout-units-sidenav-padding-horizontal: 16px;
+  --contextual-layout-units-sidenav-padding-vertical: 8px;
 }

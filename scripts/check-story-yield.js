@@ -101,7 +101,10 @@ const PAGES = [
   {
     title: "Tokens/Semantics/Layout",
     render: () => createSemanticLayout(),
-    floor: 400, // observed 606 for 117 rows
+    floor: 250, // observed 230+ after the 2026-09-14 mode collapse: semantic
+                // layout went 117 mode-values -> 39 and contextual 90 -> 29, so a
+                // lower count here is the change landing, not a regression. Raised
+                // back up once the page also lists contextual + responsive.
   },
 ];
 

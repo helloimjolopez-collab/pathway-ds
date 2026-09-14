@@ -123,7 +123,13 @@ const STROKE = {
   Negative:  { base: SC("stroke-action-status-negative-rest"), hover: SC("stroke-action-status-negative-hover"), pressed: SC("stroke-action-status-negative-pressed"), disabled: SC("stroke-action-disabled") },
 };
 
-const FOCUS_RING = `0 0 0 6px #ffffff, 0 0 0 8px ${SC("stroke-focusring-base")}`;
+// Focus ring as outline + offset, matching button.jsx. The old stacked-shadow
+// version hardcoded #ffffff for the gap, which showed as a white halo in
+// Midnight Mode, and ignored the Focus Ring/Width and Focus Ring/Offset tokens
+// entirely. `outline` also inherits the element's border-radius, so the focus
+// shape cannot drift from the button's corner.
+const FOCUS_OUTLINE = `${CL("focus-ring-width")} solid ${SC("stroke-focusring-base")}`;
+const FOCUS_OFFSET = CL("focus-ring-offset");
 
 // Type is a scale now, so each size composes its own five values. The px in
 // each comment is what the retired Label/Button composite resolved to.
@@ -143,11 +149,12 @@ const SIZES = {
 };
 
 const T = {
-  radius: CL("button-radius-radius"),
-  border: CL("button-border-width-base-base"),
+  radius: CL("button-radius"),
+  border: CL("button-border-width-rest"),
   gap:    CL("button-gap-horizontal"),
   touch:  { pad: 6, min: 48 },
-  focusShadow: FOCUS_RING,
+  focusOutline: FOCUS_OUTLINE,
+  focusOffset: FOCUS_OFFSET,
 };
 
 // ─── SPINNER ──────────────────────────────────────────────────────────────────
@@ -210,7 +217,8 @@ function Button({ buttonStyle = "Fill", size = "M", type = "Primary", text = "Bu
     backgroundColor: bgColor,
     border: hasStroke ? `${T.border} solid ${strokeColor}` : "none",
     gap: 0, flex: "1 0 0", minWidth: 0, color: iconColor,
-    boxShadow: focused && !isDisabled ? T.focusShadow : "none",
+    outline: focused && !isDisabled ? T.focusOutline : "none",
+    outlineOffset: focused && !isDisabled ? T.focusOffset : undefined,
     transition: "background-color var(--motion-duration-2) var(--motion-easing-standard), border-color var(--motion-duration-2) var(--motion-easing-standard), box-shadow var(--motion-duration-2) var(--motion-easing-standard), color var(--motion-duration-2) var(--motion-easing-standard)",
   };
   // Figma's Container.Label carries pad=[0,4,0,4]. That half-gap on each side

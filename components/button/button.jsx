@@ -96,11 +96,28 @@ export const STROKE = {
 // --contextual-layout-units-*, not as a "contextual" branch of the semantic
 // layout scale. The focus ring moved out of Contextual to Stroke/FocusRing.
 export const T = {
-  radius:      CL("button-radius-radius"),                                  // 8px
-  border:      CL("button-border-width-base-base"),                         // 0.75px
+  radius:      CL("button-radius"),                                        // 8px
+  border:      CL("button-border-width-rest"),                             // 0.75px
+  borderHover: CL("button-border-width-hover"),                             // 1px
   gap:         CL("button-gap-horizontal"),                                  // 8px
   touch:       { pad: 6, min: 48 },
-  focusShadow: `0 0 0 6px #ffffff, 0 0 0 9px ${SC("stroke-focusring-base")}`,
+  // Focus ring drawn as outline + outline-offset rather than stacked shadows.
+  //
+  // Three reasons this changed on 2026-09-14:
+  //   1. It hardcoded #ffffff for the gap, so in Midnight Mode the ring sat in a
+  //      white halo on a dark surface.
+  //   2. The 6px gap + 3px ring ignored Focus Ring/Width and Focus Ring/Offset,
+  //      which existed and said 2px and 2px. Three tokens, zero references.
+  //   3. `outline` follows the element's own border-radius automatically, so the
+  //      focus shape can never disagree with the button's corner. A shadow-based
+  //      ring needs its own radius token, which is one more thing to keep in
+  //      step and was already wrong.
+  //
+  // The offset is not decoration. Stroke/FocusRing/Base measures 3.19:1 against
+  // the canvas but only 1.69:1 against the Primary fill, so a ring drawn on the
+  // fill would fail WCAG 2.4.11. The offset puts it on the surface instead.
+  focusOutline: `${CL("focus-ring-width")} solid ${SC("stroke-focusring-base")}`,
+  focusOffset: CL("focus-ring-offset"),
 };
 
 // Type is a scale now, not 111 composites, so each size composes its own five
@@ -303,7 +320,8 @@ export function Button({
     // against 12px on the label side. Keep this 0 and let the slots pad
     // themselves - see labelStyle and iconWrapStyle below.
     gap:              0,
-    boxShadow:        showFocusRing ? T.focusShadow : "none",
+    outline:          showFocusRing ? T.focusOutline : "none",
+    outlineOffset:    showFocusRing ? T.focusOffset : undefined,
     transition:       "background-color var(--motion-duration-2) var(--motion-easing-standard), border-color var(--motion-duration-2) var(--motion-easing-standard), box-shadow var(--motion-duration-2) var(--motion-easing-standard), color var(--motion-duration-2) var(--motion-easing-standard)",
     color:            iconColor,  // propagated to icons via currentColor
   };

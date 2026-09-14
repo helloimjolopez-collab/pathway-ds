@@ -39,6 +39,7 @@ const CONTRACT = [
   "src/tokens/type.css",
   "src/tokens/motion.css",
   "src/tokens/breakpoints.css",
+  "src/tokens/layout-responsive.css",
 ];
 
 // Scratch prototypes are deliberately not held to the contract. They live here

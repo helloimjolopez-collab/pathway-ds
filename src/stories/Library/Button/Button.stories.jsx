@@ -538,7 +538,7 @@ TokensStroke.parameters = {
         "Border tokens, Outlined only - Fill and Naked have no border. There is no Primary Dim " +
         "stroke ramp, so Tertiary borrows the Primary stroke; that is a deliberate reuse, recorded " +
         "here so it does not read as a mistake. The border width comes from " +
-        "`--contextual-layout-units-button-border-width-base-base` (0.75px), not from a colour token. " +
+        "`--contextual-layout-units-button-border-width-rest` (0.75px), not from a colour token. " +
         "Focus ring moved out of the retired Contextual group to Stroke/FocusRing and is a single " +
         "token shared by every focusable component.",
     },
@@ -679,7 +679,7 @@ const SPACING_ROWS = [
   { name: "Padding - S horizontal", value: "8px",  token: "--contextual-layout-units-button-padding-small-horizontal",  role: "Left + right padding inside Container.Main for size S" },
   { name: "Padding - S vertical",   value: "6px",  token: "--contextual-layout-units-button-padding-small-vertical",    role: "Top + bottom padding inside Container.Main for size S" },
   { name: "Icon–label gap",         value: "8px",  token: "--contextual-layout-units-button-gap-horizontal",            role: "Gap between leading/trailing icon and label text" },
-  { name: "Border width (Outlined)",value: "0.75px",token: "--contextual-layout-units-button-border-width-base-base",   role: "Outlined style border thickness" },
+  { name: "Border width (Outlined)",value: "0.75px",token: "--contextual-layout-units-button-border-width-rest",   role: "Outlined style border thickness" },
   { name: "Touch-target padding",   value: "6px",  token: "- (hardcoded)",  role: "Transparent outer padding on <button> - ensures 48×48px minimum touch target (WCAG 2.5.5)" },
   { name: "Touch target min-size",  value: "48px", token: "- (hardcoded)",  role: "Minimum interactive area enforced by outer <button> min-height + min-width" },
 ];
@@ -805,7 +805,7 @@ const RADIUS_ROWS = [
   {
     name: "Container.Main",
     value: "8px",
-    token: "--contextual-layout-units-button-radius-radius",
+    token: "--contextual-layout-units-button-radius",
     role: "Visible button surface - all sizes, all styles",
   },
   {

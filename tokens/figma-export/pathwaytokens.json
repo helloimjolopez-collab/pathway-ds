@@ -7022,515 +7022,7 @@
   {
     "Semantic: Layout & Units": {
       "modes": {
-        "Desktop 1440pt": {
-          "Accessibility": {
-            "Touch Target": {
-              "AA": {
-                "Height": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.44}"
-                },
-                "Width": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.44}"
-                }
-              },
-              "Desktop Only": {
-                "Height": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.36}"
-                },
-                "Width": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.36}"
-                }
-              },
-              "AAA": {
-                "Height": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.48}"
-                },
-                "Width": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.48}"
-                }
-              }
-            }
-          },
-          "BorderWidth": {
-            "Thin": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.0 point 75}"
-            },
-            "Base": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.1}"
-            },
-            "Medium": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.1 point 5}"
-            },
-            "Thick": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.2}"
-            },
-            "XThin": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.0 point 5}"
-            },
-            "XThick": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.4}"
-            },
-            "XXThick": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.6}"
-            }
-          },
-          "CornerRadius": {
-            "XSmall": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.2}"
-            },
-            "Medium": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.8}"
-            },
-            "XLarge": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.16}"
-            },
-            "Full": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.64}"
-            },
-            "Small": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.4}"
-            },
-            "Large": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.12}"
-            }
-          },
-          "Gap": {
-            "XXTight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.4}"
-            },
-            "Tight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.8}"
-            },
-            "Base": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.16}"
-            },
-            "Relaxed": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.24}"
-            },
-            "Wide": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.36}"
-            },
-            "Medium": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.12}"
-            },
-            "XXXTight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.2}"
-            },
-            "XTight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.6}"
-            }
-          },
-          "Padding": {
-            "XXTight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.4}"
-            },
-            "Tight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.8}"
-            },
-            "Medium": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.12}"
-            },
-            "Base": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.16}"
-            },
-            "Relaxed": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.24}"
-            },
-            "Wide": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.36}"
-            },
-            "XWide": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.48}"
-            },
-            "XXWide": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.56}"
-            },
-            "Ginormous": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.64}"
-            },
-            "Collosal": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.120}"
-            },
-            "XXXTight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.2}"
-            },
-            "XTight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.6}"
-            }
-          }
-        },
-        "Tablet 798pt": {
-          "Accessibility": {
-            "Touch Target": {
-              "AA": {
-                "Height": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.44}"
-                },
-                "Width": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.44}"
-                }
-              },
-              "Desktop Only": {
-                "Height": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.36}"
-                },
-                "Width": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.36}"
-                }
-              },
-              "AAA": {
-                "Height": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.48}"
-                },
-                "Width": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.48}"
-                }
-              }
-            }
-          },
-          "BorderWidth": {
-            "Thin": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.0 point 75}"
-            },
-            "Base": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.1}"
-            },
-            "Medium": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.1 point 5}"
-            },
-            "Thick": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.2}"
-            },
-            "XThin": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.0 point 5}"
-            },
-            "XThick": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.4}"
-            },
-            "XXThick": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.6}"
-            }
-          },
-          "CornerRadius": {
-            "XSmall": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.2}"
-            },
-            "Medium": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.8}"
-            },
-            "XLarge": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.16}"
-            },
-            "Full": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.64}"
-            },
-            "Small": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.4}"
-            },
-            "Large": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.12}"
-            }
-          },
-          "Gap": {
-            "XXTight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.4}"
-            },
-            "Tight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.8}"
-            },
-            "Base": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.16}"
-            },
-            "Relaxed": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.24}"
-            },
-            "Wide": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.36}"
-            },
-            "Medium": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.12}"
-            },
-            "XXXTight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.2}"
-            },
-            "XTight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.6}"
-            }
-          },
-          "Padding": {
-            "XXTight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.4}"
-            },
-            "Tight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.8}"
-            },
-            "Medium": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.12}"
-            },
-            "Base": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.16}"
-            },
-            "Relaxed": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.24}"
-            },
-            "Wide": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.36}"
-            },
-            "XWide": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.48}"
-            },
-            "XXWide": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.56}"
-            },
-            "Ginormous": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.64}"
-            },
-            "Collosal": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.120}"
-            },
-            "XXXTight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.2}"
-            },
-            "XTight": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.6}"
-            }
-          }
-        },
-        "Mobile 393pt": {
+        "Value": {
           "Accessibility": {
             "Touch Target": {
               "AA": {
@@ -7790,7 +7282,7 @@
   {
     "Contextual: Layout & Units": {
       "modes": {
-        "Desktop 1440pt": {
+        "Value": {
           "NavItem": {
             "Large": {
               "Padding": {
@@ -7808,42 +7300,16 @@
                 }
               },
               "Radius": {
-                "Radius": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.8}"
-                }
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.8}"
               },
               "Stroke Width": {
-                "Stroke Width": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.1 point 5}"
-                }
-              }
-            }
-          },
-          "Page": {
-            "Padding": {
-              "Top": {
                 "$type": "float",
                 "$collectionName": "Primitive: Unit",
                 "$libraryName": "",
-                "$value": "{Unit.16}"
-              },
-              "Horizontal": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.36}"
-              },
-              "Bottom": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.64}"
+                "$value": "{Unit.1 point 5}"
               }
             }
           },
@@ -7915,66 +7381,32 @@
               }
             },
             "Border Width": {
-              "Base": {
-                "Base": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.Thin}"
-                }
+              "Rest": {
+                "$type": "float",
+                "$collectionName": "Semantic: Layout & Units",
+                "$libraryName": "",
+                "$value": "{BorderWidth.Thin}"
               },
-              "Thick": {
-                "Thick": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.Base}"
-                }
-              },
-              "Thin": {
-                "Thin": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.XThin}"
-                }
+              "Hover": {
+                "$type": "float",
+                "$collectionName": "Semantic: Layout & Units",
+                "$libraryName": "",
+                "$value": "{BorderWidth.Base}"
               }
             },
             "Radius": {
-              "Radius": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.8}"
-              }
-            }
-          },
-          "Focused Element": {
-            "CornerRadius": {
-              "CornerRadius": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.12}"
-              }
-            },
-            "BorderWidth": {
-              "BorderWidth": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.2}"
-              }
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.8}"
             }
           },
           "Card": {
             "Gap": {
-              "Gap": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.8}"
-              }
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.8}"
             },
             "Padding": {
               "Medium": {
@@ -8007,518 +7439,202 @@
               }
             },
             "Border Width": {
-              "Base": {
-                "Base": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.XThin}"
-                }
+              "Rest": {
+                "$type": "float",
+                "$collectionName": "Semantic: Layout & Units",
+                "$libraryName": "",
+                "$value": "{BorderWidth.XThin}"
               },
-              "Thick": {
-                "Thick": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.Thin}"
-                }
+              "Hover": {
+                "$type": "float",
+                "$collectionName": "Semantic: Layout & Units",
+                "$libraryName": "",
+                "$value": "{BorderWidth.Thin}"
               }
             },
             "CornerRadius": {
-              "CornerRadius": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.12}"
+            }
+          },
+          "Focus Ring": {
+            "Width": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.2}"
+            },
+            "Offset": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.2}"
+            }
+          },
+          "SideNav": {
+            "Padding": {
+              "Horizontal": {
                 "$type": "float",
                 "$collectionName": "Primitive: Unit",
                 "$libraryName": "",
-                "$value": "{Unit.12}"
+                "$value": "{Unit.16}"
+              },
+              "Vertical": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.8}"
               }
+            },
+            "Collapsed": {
+              "Padding": {
+                "Horizontal": {
+                  "$type": "float",
+                  "$collectionName": "Primitive: Unit",
+                  "$libraryName": "",
+                  "$value": "{Unit.12}"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "Responsive: Layout": {
+      "modes": {
+        "Desktop 1440pt": {
+          "Padding": {
+            "Top": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.16}"
+            },
+            "Horizontal": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.36}"
+            },
+            "Bottom": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.64}"
+            }
+          },
+          "TopNav": {
+            "Padding": {
+              "Horizontal": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.16}"
+              },
+              "Vertical": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.6}"
+              }
+            },
+            "Height": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.56}"
             }
           }
         },
         "Tablet 798pt": {
-          "NavItem": {
-            "Large": {
-              "Padding": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.12}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.14}"
-                }
-              },
-              "Radius": {
-                "Radius": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.8}"
-                }
-              },
-              "Stroke Width": {
-                "Stroke Width": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.1 point 5}"
-                }
-              }
+          "Padding": {
+            "Top": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.14}"
+            },
+            "Horizontal": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.24}"
+            },
+            "Bottom": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.48}"
             }
           },
-          "Page": {
+          "TopNav": {
             "Padding": {
-              "Top": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.14}"
-              },
               "Horizontal": {
                 "$type": "float",
                 "$collectionName": "Primitive: Unit",
                 "$libraryName": "",
-                "$value": "{Unit.24}"
-              },
-              "Bottom": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.64}"
-              }
-            }
-          },
-          "Button": {
-            "Padding": {
-              "Medium": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.10}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.12}"
-                }
-              },
-              "Small": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.6}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.8}"
-                }
-              },
-              "Large": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.12}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.14}"
-                }
-              },
-              "XSmall": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.6}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.8}"
-                }
-              }
-            },
-            "Gap": {
-              "Horizontal": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.8}"
-              }
-            },
-            "Border Width": {
-              "Base": {
-                "Base": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.Thin}"
-                }
-              },
-              "Thick": {
-                "Thick": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.Base}"
-                }
-              },
-              "Thin": {
-                "Thin": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.XThin}"
-                }
-              }
-            },
-            "Radius": {
-              "Radius": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.8}"
-              }
-            }
-          },
-          "Focused Element": {
-            "CornerRadius": {
-              "CornerRadius": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
                 "$value": "{Unit.12}"
-              }
-            },
-            "BorderWidth": {
-              "BorderWidth": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.2}"
-              }
-            }
-          },
-          "Card": {
-            "Gap": {
-              "Gap": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.8}"
-              }
-            },
-            "Padding": {
-              "Medium": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.16}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.16}"
-                }
               },
-              "Small": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.14}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.14}"
-                }
-              }
-            },
-            "Border Width": {
-              "Base": {
-                "Base": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.XThin}"
-                }
-              },
-              "Thick": {
-                "Thick": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.Thin}"
-                }
-              }
-            },
-            "CornerRadius": {
-              "CornerRadius": {
+              "Vertical": {
                 "$type": "float",
                 "$collectionName": "Primitive: Unit",
                 "$libraryName": "",
-                "$value": "{Unit.12}"
+                "$value": "{Unit.6}"
               }
+            },
+            "Height": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.56}"
             }
           }
         },
         "Mobile 393pt": {
-          "NavItem": {
-            "Large": {
-              "Padding": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.12}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.14}"
-                }
-              },
-              "Radius": {
-                "Radius": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.8}"
-                }
-              },
-              "Stroke Width": {
-                "Stroke Width": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.1 point 5}"
-                }
-              }
-            }
-          },
-          "Page": {
-            "Padding": {
-              "Top": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.12}"
-              },
-              "Horizontal": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.16}"
-              },
-              "Bottom": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.64}"
-              }
-            }
-          },
-          "Button": {
-            "Padding": {
-              "Medium": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.10}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.12}"
-                }
-              },
-              "Small": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.6}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.8}"
-                }
-              },
-              "Large": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.12}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.14}"
-                }
-              },
-              "XSmall": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.6}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.8}"
-                }
-              }
+          "Padding": {
+            "Top": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.12}"
             },
-            "Gap": {
+            "Horizontal": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.16}"
+            },
+            "Bottom": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.36}"
+            }
+          },
+          "TopNav": {
+            "Padding": {
               "Horizontal": {
                 "$type": "float",
                 "$collectionName": "Primitive: Unit",
                 "$libraryName": "",
                 "$value": "{Unit.8}"
-              }
-            },
-            "Border Width": {
-              "Base": {
-                "Base": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.Thin}"
-                }
               },
-              "Thick": {
-                "Thick": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.Base}"
-                }
-              },
-              "Thin": {
-                "Thin": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.XThin}"
-                }
-              }
-            },
-            "Radius": {
-              "Radius": {
+              "Vertical": {
                 "$type": "float",
                 "$collectionName": "Primitive: Unit",
                 "$libraryName": "",
-                "$value": "{Unit.8}"
-              }
-            }
-          },
-          "Focused Element": {
-            "CornerRadius": {
-              "CornerRadius": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.12}"
+                "$value": "{Unit.6}"
               }
             },
-            "BorderWidth": {
-              "BorderWidth": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.2}"
-              }
-            }
-          },
-          "Card": {
-            "Gap": {
-              "Gap": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.8}"
-              }
-            },
-            "Padding": {
-              "Medium": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.16}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.16}"
-                }
-              },
-              "Small": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.14}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.14}"
-                }
-              }
-            },
-            "Border Width": {
-              "Base": {
-                "Base": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.XThin}"
-                }
-              },
-              "Thick": {
-                "Thick": {
-                  "$type": "float",
-                  "$collectionName": "Semantic: Layout & Units",
-                  "$libraryName": "",
-                  "$value": "{BorderWidth.Thin}"
-                }
-              }
-            },
-            "CornerRadius": {
-              "CornerRadius": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.12}"
-              }
+            "Height": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.56}"
             }
           }
         }

@@ -173,7 +173,7 @@ Outlined and Naked use `foreground.action.{type}.*`.
 | Tertiary | `stroke.action.primary.rest` | `stroke.action.primary.hover` | `stroke.action.primary.pressed` | `stroke.action.disabled` |
 | Negative | `stroke.action.status.negative.rest` | `stroke.action.status.negative.hover` | `stroke.action.status.negative.pressed` | `stroke.action.disabled` |
 
-Border width: `--contextual-layout-units-button-border-width-base-base` (1.5 px).
+Border width: `--contextual-layout-units-button-border-width-rest` (1.5 px).
 
 > IMPLEMENTATION RULE: Fill and Naked buttons have `border: none`.
 > Only Outlined has a border. Never apply the stroke token to Fill or Naked — it would create an extra visual weight that conflicts with style intent.
@@ -182,9 +182,9 @@ Border width: `--contextual-layout-units-button-border-width-base-base` (1.5 px)
 
 | Property | Token | Value |
 |---|---|---|
-| Border radius | `--contextual-layout-units-button-radius-radius` | 8 px |
+| Border radius | `--contextual-layout-units-button-radius` | 8 px |
 | Gap (icon ↔ label) | `--contextual-layout-units-button-gap-horizontal` | 8 px |
-| Border width (Outlined) | `--contextual-layout-units-button-border-width-base-base` | 0.75 px |
+| Border width (Outlined) | `--contextual-layout-units-button-border-width-rest` | 0.75 px |
 | Padding L horizontal | `--contextual-layout-units-button-padding-large-horizontal` | 14 px |
 | Padding L vertical | `--contextual-layout-units-button-padding-large-vertical` | 12 px |
 | Padding M horizontal | `--contextual-layout-units-button-padding-medium-horizontal` | 12 px |
@@ -444,7 +444,7 @@ All previously-flagged HIGH gaps are resolved as of the 2026-05-26 token sync.
 |---|---|
 | `--contextual-layout-units-button-padding-large-horizontal` | ✓ Added to Figma & synced |
 | `--contextual-layout-units-button-padding-large-vertical` | ✓ Added to Figma & synced |
-| `--contextual-layout-units-button-radius-radius` | ✓ Added to Figma & synced |
+| `--contextual-layout-units-button-radius` | ✓ Added to Figma & synced |
 | `--semantic-type-font-size-m` | ✓ Exists in token file |
 | `--semantic-type-font-size-r` | ✓ Exists in token file |
 | `--semantic-type-font-size-s` | ✓ Exists in token file |

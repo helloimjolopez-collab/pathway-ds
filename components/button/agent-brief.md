@@ -56,8 +56,8 @@ All values via CSS custom properties from `themes/light.css` + `themes/midnight.
 
 ### Radius & border
 ```
---contextual-layout-units-button-radius-radius       → 8px
---contextual-layout-units-button-border-width-base-base → 0.75px
+--contextual-layout-units-button-radius       → 8px
+--contextual-layout-units-button-border-width-rest → 0.75px
 ```
 
 ### Padding

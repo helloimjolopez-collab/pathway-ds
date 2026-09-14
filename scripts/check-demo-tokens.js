@@ -85,6 +85,7 @@ const CONTRACT_CSS = [
   "src/tokens/type.css",
   "src/tokens/motion.css",
   "src/tokens/breakpoints.css",
+  "src/tokens/layout-responsive.css",
 ];
 const TOKENS_CSS = "src/tokens/themes/light.css";
 const TOKEN_DECL = /^\s*--(?:semantic|primitive|motion)-[a-z0-9-]+\s*:/;

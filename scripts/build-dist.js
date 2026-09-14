@@ -10,6 +10,9 @@ copyFileSync("src/tokens/primitives.css", "dist/primitives.css");
 copyFileSync("src/tokens/type.css", "dist/type.css");
 copyFileSync("src/tokens/motion.css", "dist/motion.css");
 copyFileSync("src/tokens/breakpoints.css", "dist/breakpoints.css");
+// The only layout file with real media queries: sheet and TopNav padding are
+// the only tokens in the system that change by breakpoint.
+copyFileSync("src/tokens/layout-responsive.css", "dist/layout-responsive.css");
 // Layout and spacing, modeless with the breakpoint in a media query. Added
 // 2026-09-03 when Semantic: Layout & Units gained breakpoint modes.
 copyFileSync("src/tokens/layout.css", "dist/layout.css");
@@ -55,4 +58,4 @@ copyFileSync("src/tokens/tokens.js", "dist/tokens.js");
   writeFileSync("dist/tokens.json", JSON.stringify(merged, null, 2) + "\n");
   console.log(`dist/tokens.json: ${count(design)} design tokens + ${motionCount} motion tokens`);
 }
-console.log("dist/ built: themes/light.css, themes/midnight.css, layout.css, layout-contextual.css, type.css, motion.css, breakpoints.css, primitives.css, tokens.js, tokens.json");
+console.log("dist/ built: themes/light.css, themes/midnight.css, layout.css, layout-contextual.css, layout-responsive.css, type.css, motion.css, breakpoints.css, primitives.css, tokens.js, tokens.json");
