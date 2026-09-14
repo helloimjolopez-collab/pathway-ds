@@ -156,7 +156,7 @@ function rewrite(bare) {
 function settle(full) {
   if (defined.has(full)) return full;
   const attempts = [
-    // Foreground/Static/Brand carries {black, bold, faint, light, medium} only
+    // Foreground/Brand carries {black, bold, faint, light, medium} only
     full.replace(/-contrast$/, "-bold"),
     full.replace(/-subtle$/, "-faint"),
     full.replace(/-light$/, "-faint"),

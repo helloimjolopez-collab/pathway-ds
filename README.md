@@ -3,25 +3,25 @@
 Design system for Ministry Brands Amplify. Tokens + components + specifications, all versioned in one place, with Storybook deployed from `main`.
 
 > **Looking for the tokens?** → **[TOKENS.md](TOKENS.md)** — where the CSS lives, which
-> of the 460 names you may use, and what to link in what order.
+> of the 400 names you may use, and what to link in what order.
 
 ## Using the tokens
 
-**The colour contract is 358 names. Your full working vocabulary is 460.**
+**The colour contract is 298 names. Your full working vocabulary is 400.**
 
 That is the number worth knowing, because adding up every declaration in the token
-folder gives 1,202 and the retired `tokens.css` used to emit 2,338. Neither is the
+folder gives 1,082 and the retired `tokens.css` used to emit 2,338. Neither is the
 contract. The difference is that primitives ship but are not named, and the modes share
 one name set rather than each having their own.
 
 | | Count | Name these? |
 |---|---|---|
-| Colour (`themes/light.css`, `themes/midnight.css` — same names) | **358** | Yes |
+| Colour (`themes/light.css`, `themes/midnight.css` — same names) | **298** | Yes |
 | Type scale (`type.css`) | 41 | Yes |
 | Spacing, radii, borders (`layout.css`) | 39 | Yes |
 | Motion (`motion.css`) | 17 | Yes |
 | Breakpoints (`breakpoints.css`) | 5 | Yes |
-| **Working vocabulary** | **460** | |
+| **Working vocabulary** | **400** | |
 | Raw ramps (`primitives.css`) | 350 | **No** — but you must load it |
 | Component metrics (`layout-contextual.css`) | 34 | This repo's components |
 
@@ -81,9 +81,9 @@ as too granular to adopt. Retired 2026-09-03 and not coming back.
 ```css
 .card {
   background: var(--semantic-color-fill-surface-sheet);
-  color:      var(--semantic-color-foreground-static-neutral-bold);
+  color:      var(--semantic-color-foreground-neutral-bold);
   border:     var(--semantic-layout-units-borderwidth-base) solid
-              var(--semantic-color-stroke-static-neutral-subtle);
+              var(--semantic-color-stroke-neutral-subtle);
   border-radius: var(--semantic-layout-units-cornerradius-medium);
 }
 ```

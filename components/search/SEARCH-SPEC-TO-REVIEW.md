@@ -350,7 +350,7 @@ Every CSS variable this component uses. Source: the `src/tokens/` contract (`pri
    stylesheet, rather than copying one into a document where it cannot track. */
 
 /* ── Semantic tokens — colour ────────────────────────────── */
---semantic-color-fill-static-neutral-faint;  /* #ffffff — bar bg */
+--semantic-color-fill-neutral-faint;  /* #ffffff — bar bg */
 --semantic-color-fill-action-primary-dim-rest;  /* #eef2fb — filter pill active */
 --semantic-color-fill-action-secondary-hover;  /* rgba(17,17,17,0.02) — icon hover */
 --semantic-color-fill-action-secondary-pressed;  /* #f6f6f6 — icon pressed */
@@ -361,8 +361,8 @@ Every CSS variable this component uses. Source: the `src/tokens/` contract (`pri
 --semantic-color-stroke-action-primary-pressed;  /* #a0b5e6 — focused/filter-active border */
 --semantic-color-stroke-action-primary-rest;  /* #c0ceef — cancel-filter divider */
 --semantic-color-stroke-action-status-negative-rest;  /* #b03a3a — error border */
---semantic-color-foreground-static-neutral-subtle;  /* #606060 — placeholder */
---semantic-color-foreground-static-neutral-bold;  /* #202020 — input value */
+--semantic-color-foreground-neutral-subtle;  /* #606060 — placeholder */
+--semantic-color-foreground-neutral-bold;  /* #202020 — input value */
 --semantic-color-foreground-action-secondary-rest;  /* #6b6b6b — idle icon */
 --semantic-color-foreground-action-secondary-hover;  /* #606060 — hover icon */
 --semantic-color-foreground-action-disabled;  /* #979797 — disabled icon */

@@ -1,6 +1,6 @@
 # Pathway tokens — start here
 
-**The colour contract is 358 names. Your full working vocabulary is 460.**
+**The colour contract is 298 names. Your full working vocabulary is 400.**
 
 This file exists at the repo root because the previous arrangement failed a real test: a
 developer went looking for "the token CSS", could not find it, and had no way to tell
@@ -38,13 +38,13 @@ error**.
 
 | File | Names | May I name these? |
 |---|---|---|
-| `themes/light.css` | **358** | **Yes** — this is the colour contract |
-| `themes/midnight.css` | 358 | Yes — the *same* names, different values |
+| `themes/light.css` | **298** | **Yes** — this is the colour contract |
+| `themes/midnight.css` | 298 | Yes — the *same* names, different values |
 | `type.css` | 41 | Yes |
 | `layout.css` | 39 | Yes |
 | `motion.css` | 17 | Yes |
 | `breakpoints.css` | 5 | Yes |
-| **Working vocabulary** | **460** | |
+| **Working vocabulary** | **400** | |
 | `primitives.css` | 350 | **No** — but you must load it |
 | `layout-contextual.css` | 34 | This repo's own components |
 
@@ -57,12 +57,12 @@ every consumable name machine-readably, if you want to lint against it. Those ar
 generated into `dist/`, which is not committed, so you will see them after
 `npm run build-dist` or inside the installed package.
 
-## Why 358 and not 1,198
+## Why 298 and not 1,082
 
-If you add up every declaration across the token folder you get 1,198. That number is
+If you add up every declaration across the token folder you get 1,082. That number is
 real and it is not the contract:
 
-- **The two theme files declare the same 358 names**, once each. One name, two values,
+- **The two theme files declare the same 298 names**, once each. One name, two values,
   chosen by selector. So they count once, not twice.
 - **350 of them are primitives** — infrastructure you load and never name, the same way
   the glyphs inside a font file are not part of your type scale.

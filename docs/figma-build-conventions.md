@@ -207,8 +207,8 @@ Every fill, stroke, text colour, border-radius, shadow, and (where tokens exist)
 
 | Surface | Token family | Example |
 |---|---|---|
-| Component fills (backgrounds) | `Fill/Action/<role>/<state>` or `Fill/Static/<role>/<emphasis>` | `Fill/Action/Selection/Selected` |
-| Text colour | `Foreground/Action/<role>/<state>` or `Foreground/Static/<tone>/<emphasis>` | `Foreground/Action/Secondary/Hover` |
+| Component fills (backgrounds) | `Fill/Action/<role>/<state>` or `Fill/<role>/<emphasis>` | `Fill/Action/Selection/Selected` |
+| Text colour | `Foreground/Action/<role>/<state>` or `Foreground/<tone>/<emphasis>` | `Foreground/Action/Secondary/Hover` |
 | Icon colour | Same as text. Label and icon share one ramp | `Foreground/Action/Secondary/Pressed` |
 | Strokes / borders | Same family rules as fills | |
 | Border radius | `--contextual-layout-units-<component>-radius-radius` or `--semantic-layout-units-cornerradius-<size>` | `cornerradius-small` |
@@ -279,7 +279,7 @@ Annotations are text nodes (and sometimes lines/arrows) that label parts of the 
 
 ### 6.2 Annotation styling
 
-Annotations use the design system's text styles (`Body/S/Regular`, `Label/Small/Medium`). They don't use raw font properties. They use `Foreground/Static/Neutral/Subtle` as their colour token. They sit at the same depth on the canvas as the thing they annotate, never on top of it.
+Annotations use the design system's text styles (`Body/S/Regular`, `Label/Small/Medium`). They don't use raw font properties. They use `Foreground/Neutral/Subtle` as their colour token. They sit at the same depth on the canvas as the thing they annotate, never on top of it.
 
 ### 6.3 What annotations don't do
 

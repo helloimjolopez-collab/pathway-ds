@@ -57,17 +57,17 @@ const T = {
   strokeHover:   "var(--semantic-color-stroke-action-primary-hover,   rgba(160,181,230,0.20))",
   strokePressed: "var(--semantic-color-stroke-action-primary-pressed, rgba(160,181,230,0.30))",
 
-  // Text — org name. Reconciled to Figma (Foreground/Static/Neutral/Bold, node
+  // Text — org name. Reconciled to Figma (Foreground/Neutral/Bold, node
   // 40006819:14581). Static token — no per-state variants; the interactive
   // feedback is carried by the fill/stroke, not the text colour.
-  textBase:    "var(--semantic-color-foreground-static-neutral-bold, #eceaf3)",
-  textHover:   "var(--semantic-color-foreground-static-neutral-bold, #eceaf3)",
-  textPressed: "var(--semantic-color-foreground-static-neutral-bold, #eceaf3)",
+  textBase:    "var(--semantic-color-foreground-neutral-bold, #eceaf3)",
+  textHover:   "var(--semantic-color-foreground-neutral-bold, #eceaf3)",
+  textPressed: "var(--semantic-color-foreground-neutral-bold, #eceaf3)",
 
-  // Chevron icon — reconciled to Figma (Foreground/Static/Neutral/Bold = white 80%).
-  iconBase:    "var(--semantic-color-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
-  iconHover:   "var(--semantic-color-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
-  iconPressed: "var(--semantic-color-foreground-static-neutral-medium, rgba(255,255,255,0.8))",
+  // Chevron icon — reconciled to Figma (Foreground/Neutral/Bold = white 80%).
+  iconBase:    "var(--semantic-color-foreground-neutral-medium, rgba(255,255,255,0.8))",
+  iconHover:   "var(--semantic-color-foreground-neutral-medium, rgba(255,255,255,0.8))",
+  iconPressed: "var(--semantic-color-foreground-neutral-medium, rgba(255,255,255,0.8))",
 
   // Geometry
   radiusMedium: "var(--semantic-layout-units-cornerradius-medium, 8px)",
@@ -469,12 +469,12 @@ export const DEMO_ORGS = [
 ];
 
 const PANEL_T = {
-  bg:        "var(--semantic-color-fill-static-neutral-faint, #ffffff)",
-  header:    "var(--semantic-color-foreground-static-neutral-subtle, #606060)",
-  border:    "var(--semantic-color-stroke-static-neutral-faint, #ededed)",
-  name:      "var(--semantic-color-foreground-static-neutral-bold, #202020)",
-  icon:      "var(--semantic-color-foreground-static-neutral-medium, #949494)",
-  logoBg:    "var(--semantic-color-fill-static-brand-medium, #2d4889)",
+  bg:        "var(--semantic-color-fill-neutral-faint, #ffffff)",
+  header:    "var(--semantic-color-foreground-neutral-subtle, #606060)",
+  border:    "var(--semantic-color-stroke-neutral-faint, #ededed)",
+  name:      "var(--semantic-color-foreground-neutral-bold, #202020)",
+  icon:      "var(--semantic-color-foreground-neutral-medium, #949494)",
+  logoBg:    "var(--semantic-color-fill-brand-medium, #2d4889)",
   rowActive: "var(--semantic-color-fill-action-primary-dim-rest, #eef2fb)",
 };
 

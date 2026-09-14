@@ -32,7 +32,7 @@ const ITEMS = [
 ];
 
 const frame = (children, height = 560) => (
-  <div style={{ display: "flex", height, border: "0.5px solid var(--semantic-color-stroke-static-neutral-subtle)",
+  <div style={{ display: "flex", height, border: "0.5px solid var(--semantic-color-stroke-neutral-subtle)",
     borderRadius: "var(--semantic-layout-units-cornerradius-medium)", overflow: "hidden" }}>
     {children}
   </div>
@@ -97,14 +97,14 @@ export const Playground = {
             <div style={{ flex: 1, padding: 20, background: "var(--semantic-color-fill-surface-canvas)",
               fontFamily: "var(--semantic-type-family-brand), sans-serif" }}>
               <p style={{ margin: 0, fontSize: "var(--semantic-type-font-size-s)",
-                color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>
+                color: "var(--semantic-color-foreground-neutral-subtle)" }}>
                 Active: <code>{active}</code>
               </p>
             </div>
           </>
         )}
         <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 11,
-          color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>
+          color: "var(--semantic-color-foreground-neutral-subtle)" }}>
           {log.length ? log.map((l) => <div key={l}>{l}</div>) : <div>Click an item, or collapse the rail.</div>}
         </div>
       </div>

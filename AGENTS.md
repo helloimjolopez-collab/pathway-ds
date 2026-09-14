@@ -23,7 +23,7 @@ For navigation specifically:
 3. Copy the implementation from [`components/sidenav/sidenav.html`](./components/sidenav/sidenav.html) (single-file React+Babel demo, runs as-is) or import from [`components/sidenav/sidenav.jsx`](./components/sidenav/sidenav.jsx) (named React exports).
 4. **Never invent token values.** All semantic colours, typography, motion durations, and radii come from `tokens/pathway-design-tokens.json` or are listed in the component spec.
 
-For tokens: every colour you use must come from `Fill/Action/*`, `Fill/Static/*`, `Fill/Surface/*`, `Foreground/Action/*`, `Foreground/Static/*`, `Stroke/Action/*`, `Stroke/Static/*` or `Scrim/*` semantic tokens. Never use raw hex. Never use primitive tokens directly. There is no Contextual colour group, and Text and Icon are both Foreground now.
+For tokens: every colour you use must come from `Fill/Action/*`, `Fill/*`, `Fill/Surface/*`, `Foreground/Action/*`, `Foreground/*`, `Stroke/Action/*`, `Stroke/*` or `Scrim/*` semantic tokens. Never use raw hex. Never use primitive tokens directly. There is no Contextual colour group, and Text and Icon are both Foreground now.
 
 ### B. You are **modifying this repo** (changing the design system itself)
 

@@ -109,13 +109,13 @@
         "fill.action.selection.hover",
         "fill.action.selection.selected",
         "fill.action.selection.trail",
-        "stroke.static.neutral.subtle",
+        "stroke.neutral.subtle",
         "fill.surface.sheet",
         "foreground.action.secondary.rest",
         "foreground.action.secondary.hover",
         "foreground.action.secondary.pressed",
-        "foreground.static.neutral.light",
-        "foreground.static.neutral.subtle",
+        "foreground.neutral.light",
+        "foreground.neutral.subtle",
         "foreground.action.secondary.rest",
         "foreground.action.secondary.hover",
         "foreground.action.secondary.pressed",
@@ -265,7 +265,7 @@
           "stroke.action.disabled",
           "foreground.action.mono.rest",
           "foreground.action.mono.rest",
-          "foreground.static.neutral.medium",
+          "foreground.neutral.medium",
           "cornerradius.small"
         ],
         "missing": [
@@ -482,7 +482,7 @@
         "iconRotation": "--motion-duration-4 / --motion-easing-standard (transform)"
       },
       "tokens": [
-        "light-mode.fill.static.brand.medium",
+        "light-mode.fill.brand.medium",
         "dark-mode.fill.action.primary-dim.rest",
         "dark-mode.fill.action.primary-dim.rest",
         "dark-mode.fill.action.primary-dim.hover",
@@ -492,8 +492,8 @@
         "dark-mode.stroke.action.primary.pressed",
         "dark-mode.foreground.action.mono.rest",
         "dark-mode.foreground.action.mono.rest",
-        "light-mode.fill.static.accent.amethyst.medium",
-        "light-mode.foreground.static.accent.amethyst.contrast"
+        "light-mode.fill.accent.amethyst.medium",
+        "light-mode.foreground.accent.amethyst.contrast"
       ],
       "gaps": [
         "Active item token in dropdowns: uses raw #eef2fb \u2014 no semantic token exists yet (HIGH).",
@@ -562,16 +562,16 @@
         }
       },
       "tokens": [
-        "foreground.static.neutral.*",
-        "foreground.static.brand.*",
-        "foreground.static.brand.medium.*",
-        "foreground.static.status.attention.medium.*",
-        "foreground.static.status.severe.medium.*",
-        "foreground.static.status.negative.medium.*",
-        "foreground.static.status.positive.medium.*",
-        "foreground.static.accent.amethyst.*",
-        "foreground.static.accent.jade.*",
-        "foreground.static.accent.seabreeze.*"
+        "foreground.neutral.*",
+        "foreground.brand.*",
+        "foreground.brand.medium.*",
+        "foreground.status.attention.medium.*",
+        "foreground.status.severe.medium.*",
+        "foreground.status.negative.medium.*",
+        "foreground.status.positive.medium.*",
+        "foreground.accent.amethyst.*",
+        "foreground.accent.jade.*",
+        "foreground.accent.seabreeze.*"
       ]
     },
     "button": {
@@ -898,21 +898,21 @@
       },
       "tokens": {
         "fill": [
-          "fill.static.neutral.faint",
+          "fill.neutral.faint",
           "fill.action.primary-dim.rest",
           "fill.action.primary.rest",
           "fill.action.primary-dim.rest"
         ],
         "stroke": [
-          "stroke.static.neutral.subtle",
+          "stroke.neutral.subtle",
           "stroke.action.primary.hover",
           "stroke.action.primary.pressed",
           "stroke.action.secondary.rest",
           "stroke.action.status.negative.rest"
         ],
         "text": [
-          "foreground.static.neutral.subtle",
-          "foreground.static.neutral.bold"
+          "foreground.neutral.subtle",
+          "foreground.neutral.bold"
         ],
         "icon": [
           "foreground.action.secondary.rest",

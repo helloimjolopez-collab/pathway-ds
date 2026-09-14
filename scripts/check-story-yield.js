@@ -150,7 +150,7 @@ function measure(node) {
  * The Figma panel cannot be sorted, so ordering is imposed downstream by
  * tokenOrder.js. That makes it a piece of LOGIC, and logic that nothing checks
  * silently stops working: the first version ordered
- * Foreground/Static/Neutral as bold, contrast, faint, light - alphabetical -
+ * Foreground/Neutral as bold, contrast, faint, light - alphabetical -
  * because each vocabulary in the comparator answered alphabetically for
  * segments it did not recognise, so the ladder was never reached.
  *
@@ -161,7 +161,7 @@ const LADDER_EXPECTED = ["white", "xlight", "faint", "subtle", "light", "medium"
 
 function checkLadderOrder(node) {
   const printed = (node.textContent || "").match(/--semantic-color-[a-z0-9-]+/g) || [];
-  const prefix = "--semantic-color-foreground-static-neutral-";
+  const prefix = "--semantic-color-foreground-neutral-";
   const seen = [];
   for (const n of printed) {
     if (!n.startsWith(prefix)) continue;

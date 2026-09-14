@@ -5,7 +5,7 @@
  * has no setter, so there is no API call that moves a variable up a list, and
  * recreating 791 variables in the right order would break 17,875 node bindings.
  * The panel therefore shows groups in creation order, which is why
- * Foreground/Static/Neutral reads "faint, subtle, medium, contrast, bold,
+ * Foreground/Neutral reads "faint, subtle, medium, contrast, bold,
  * xlight, white, light" — the two anchors and one rung added later sit at the
  * bottom.
  *
@@ -100,7 +100,7 @@ export function rankBy(list) {
  * only move on to the next one if the current one can say "not mine". A
  * comparator that answers alphabetically for two names it has never heard of
  * is indistinguishable from one that ranked them, so the FIRST vocabulary
- * tried always won and the ladder was never consulted: Foreground/Static/Neutral
+ * tried always won and the ladder was never consulted: Foreground/Neutral
  * came out bold, contrast, faint, light — alphabetical, the exact disorder this
  * module was written to fix.
  */

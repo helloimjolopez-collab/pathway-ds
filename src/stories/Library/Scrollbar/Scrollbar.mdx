@@ -70,7 +70,7 @@ The thumb is positioned `2px` from the **right edge of the `<Scrollable>` wrappe
 
 ## Tokens & constants
 
-Every colour and unit resolves through a **semantic** Pathway token (exported as `SCROLL` from `scrollbar.jsx`) - no primitives, no hardcoded hex/px. Colour uses the `fill.static.neutral` overlay semantics; geometry uses the semantic `layout-units` tokens.
+Every colour and unit resolves through a **semantic** Pathway token (exported as `SCROLL` from `scrollbar.jsx`) - no primitives, no hardcoded hex/px. Colour uses the `fill.neutral` overlay semantics; geometry uses the semantic `layout-units` tokens.
 
 | Constant | Semantic token | Resolved | Meaning |
 |---|---|---|---|
@@ -80,7 +80,7 @@ Every colour and unit resolves through a **semantic** Pathway token (exported as
 | `gutter` | `--semantic-layout-units-padding-xxxtight` | 2 px | inset from the right edge |
 | `thumbRest` | `--semantic-color-scrim-faint` | `rgba(17,17,17,0.16)` | resting overlay (black 16%) |
 | `thumbHover` | `--semantic-color-scrim-light` | `rgba(17,17,17,0.30)` | hover / drag overlay (black 30%) |
-| `thumbEdge` | `--semantic-color-fill-static-neutral-faint` @ 35% | white, 35% | hairline glass edge (`color-mix`) |
+| `thumbEdge` | `--semantic-color-fill-neutral-faint` @ 35% | white, 35% | hairline glass edge (`color-mix`) |
 | `thumbBlur` | - (effect) | `blur(8px) saturate(180%)` | backdrop-filter (liquid glass) |
 | `fadeMs` | - | 240 ms | reveal / hide transition |
 | `idleHideMs` | - | 900 ms | hide delay after scrolling stops |

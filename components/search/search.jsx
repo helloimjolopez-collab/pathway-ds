@@ -27,7 +27,7 @@ import React, { useState, useEffect, useRef } from "react";
 // the token contract — used only when Storybook has not loaded it yet.
 export const T = {
   // Bar fills
-  barBg:           "var(--semantic-color-fill-static-neutral-faint, #ffffff)",
+  barBg:           "var(--semantic-color-fill-neutral-faint, #ffffff)",
   filterActiveFill:"var(--semantic-color-fill-action-primary-dim-rest, #eef2fb)",
   // Icon pill hover/pressed: no semantic token resolves to the correct subtle overlay
   // on a white surface. fill.action.secondary.hover = warm-neutral-200 (#f7f5f3)
@@ -40,7 +40,7 @@ export const T = {
   disabledBg:      "var(--primitive-color-cool-neutral-10, #fbfbfb)",      // token gap §17
 
   // Bar borders
-  borderIdle:     "var(--semantic-color-stroke-static-neutral-faint, #f6f6f6)",
+  borderIdle:     "var(--semantic-color-stroke-neutral-faint, #f6f6f6)",
   borderHover:    "var(--semantic-color-stroke-action-primary-hover, #86a0dd)",
   borderActive:   "var(--semantic-color-stroke-action-primary-pressed, #6e8bd4)",
   borderError:    "var(--semantic-color-stroke-action-status-negative-rest, #b03a3a)",
@@ -48,8 +48,8 @@ export const T = {
   divider:        "var(--semantic-color-stroke-action-secondary-rest, #d2d2d2)",
 
   // Text
-  textPlaceholder:"var(--semantic-color-foreground-static-neutral-subtle, #606060)",
-  textValue:      "var(--semantic-color-foreground-static-neutral-bold, #202020)",
+  textPlaceholder:"var(--semantic-color-foreground-neutral-subtle, #606060)",
+  textValue:      "var(--semantic-color-foreground-neutral-bold, #202020)",
 
   // Icons
   iconIdle:    "var(--semantic-color-foreground-action-secondary-rest, #6b6b6b)",
@@ -65,7 +65,7 @@ export const T = {
   collapsedBtnFill:   "var(--semantic-color-fill-action-primary-dim-rest, rgba(160,181,230,0.08))",
   collapsedBtnHover:  "var(--semantic-color-fill-action-primary-dim-hover, rgba(10,18,35,0.16))",
   collapsedBtnBorder: "var(--semantic-color-stroke-action-primary-rest, rgba(160,181,230,0.5))",
-  badgeBorderColor:   "var(--semantic-color-fill-static-neutral-faint, #ffffff)",
+  badgeBorderColor:   "var(--semantic-color-fill-neutral-faint, #ffffff)",
 };
 
 // ─── LAYOUT VALUES ─────────────────────────────────────────────────────────────

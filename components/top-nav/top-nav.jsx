@@ -36,7 +36,7 @@ const TOK = (p, fb) => `var(--semantic-color-${p}, ${fb})`;
 const SCD = TOK;   // on the dark bar
 const SCL = TOK;   // on a light panel
 export const T = {
-  navBg:          SCL("fill-static-brand-medium", "#2d4889"),
+  navBg:          SCL("fill-brand-medium", "#2d4889"),
   orgFill:        SCD("fill-action-primary-dim-rest", "rgba(160,181,230,0.04)"),
   orgStroke:      SCD("stroke-action-primary-rest", "rgba(160,181,230,0.16)"),
   orgStrokeHover: SCD("stroke-action-primary-hover", "rgba(160,181,230,0.20)"),
@@ -46,17 +46,17 @@ export const T = {
   noLogoBg:       SCD("fill-action-secondary-rest", "rgba(255,255,255,0.08)"),
   monoBase:       SCD("foreground-action-mono-rest", "#fbfbfb"),
   // OrgSwitcher trigger (reconciled to Figma node 40006819:14581, 2026-08-06):
-  // org name uses Foreground/Static/Neutral/Bold, chevron uses Foreground/Static/Neutral/Bold.
-  orgText:        SCD("foreground-static-neutral-bold", "#eceaf3"),
-  orgChevron:     SCD("foreground-static-neutral-medium", "rgba(255,255,255,0.8)"),
-  avatarBg:       SCL("fill-static-accent-amethyst-medium", "#dcd9ef"),
-  avatarText:     SCL("foreground-static-accent-amethyst-contrast", "#221e3f"),
-  // White dropdown-menu surface — tracks fill-static-neutral-light (now warm-neutral-0).
-  panelBg:        SCL("fill-static-neutral-faint", "#ffffff"),
+  // org name uses Foreground/Neutral/Bold, chevron uses Foreground/Neutral/Bold.
+  orgText:        SCD("foreground-neutral-bold", "#eceaf3"),
+  orgChevron:     SCD("foreground-neutral-medium", "rgba(255,255,255,0.8)"),
+  avatarBg:       SCL("fill-accent-amethyst-medium", "#dcd9ef"),
+  avatarText:     SCL("foreground-accent-amethyst-contrast", "#221e3f"),
+  // White dropdown-menu surface — tracks fill-neutral-light (now warm-neutral-0).
+  panelBg:        SCL("fill-neutral-faint", "#ffffff"),
   activeItem:     SCL("fill-action-primary-dim-rest", "#eef2fb"),
-  itemText:       SCL("foreground-static-neutral-bold", "#252525"),
-  itemTextBase:   SCL("foreground-static-neutral-medium", "#484848"),
-  itemMeta:       SCL("foreground-static-neutral-subtle", "#6b6b6b"),
+  itemText:       SCL("foreground-neutral-bold", "#252525"),
+  itemTextBase:   SCL("foreground-neutral-medium", "#484848"),
+  itemMeta:       SCL("foreground-neutral-subtle", "#6b6b6b"),
   signOut:        SCL("foreground-action-status-negative-rest", "#c0392b"),
   // Token gaps (no semantic token exists yet — flagged P2 in the pipeline report):
   panelBorder:    "rgba(45,72,137,0.12)",
@@ -543,7 +543,7 @@ export function TopNav({
       aria-label="Global navigation"
       className={className}
       style={{
-        background: `var(--semantic-color-fill-static-brand-medium, ${T.navBg})`,
+        background: `var(--semantic-color-fill-brand-medium, ${T.navBg})`,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         maxHeight: navH, padding: `${L.deskPadV}px ${padH}px`,
         position: "relative", overflow: "visible", zIndex: 100,
@@ -707,7 +707,7 @@ export function TopNav({
         <div
           style={{
             position: "absolute", inset: 0, zIndex: 200,
-            background: `var(--semantic-color-fill-static-brand-medium, ${T.navBg})`,
+            background: `var(--semantic-color-fill-brand-medium, ${T.navBg})`,
             display: "flex", alignItems: "center", gap: 8,
             padding: `0 ${padH}px`,
           }}

@@ -359,7 +359,7 @@ const FILL_ROWS = [
   { token: "Fill/Action/Selection/Hover",     value: T.fill.navHover,  hex: "#11111105", role: "Nav item pointer-over (~4% black)" },
   { token: "Fill/Action/Selection/Selected",    value: T.fill.navActive, hex: "#a0b5e629", role: "Active destination + Trail-collapsed" },
   { token: "Fill/Action/Selection/Trail",     value: T.fill.navTrail,  hex: "#11111105", role: "Trail-expanded grouper (~4% black, distinct from Hover)" },
-  { token: "Stroke/Static/Neutral/Subtle",       value: T.fill.infoSubtle, hex: "#f6f6f6", role: "Container right border · Popover border · Divider" },
+  { token: "Stroke/Neutral/Subtle",       value: T.fill.infoSubtle, hex: "#f6f6f6", role: "Container right border · Popover border · Divider" },
 ];
 const TEXT_ROWS = [
   { token: "Foreground/Action/Secondary/Rest",   value: T.text.navBase,   hex: "#313131", role: "Resting label" },
@@ -392,7 +392,7 @@ export const TokensFill = () => (
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
       Five fill tokens applied to nav items and container surfaces.
       <code>Selection/Hover</code> and <code>Selection/Trail</code> currently resolve to the same value but are intentionally kept as separate tokens - they have diverged before and may again. (They were <code>NavItem/*</code> until the Contextual colour group was retired on 2026-09-03.)
-      The last column in the row for <code>Stroke/Static/Neutral/Subtle</code> shows all three places it's used: container right border, section dividers, and popover borders.
+      The last column in the row for <code>Stroke/Neutral/Subtle</code> shows all three places it's used: container right border, section dividers, and popover borders.
     </p>
     <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
       gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4 }}>
@@ -699,7 +699,7 @@ export const SectionLabels = () => (
         ))}
       </div>
       <div style={{ fontSize: 11, color: "#4b4b4b", lineHeight: "18px" }}>
-        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Foreground/Static/Neutral/Subtle</code> <span style={{ color: "#888" }}>(#606060)</span><br />
+        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Foreground/Neutral/Subtle</code> <span style={{ color: "#888" }}>(#606060)</span><br />
         <strong>Type style:</strong> Label/Section/Small/Semibold<br />
         <strong>Container H:</strong> 40px · <strong>Padding:</strong> 4px H / 8px V
       </div>
@@ -735,7 +735,7 @@ export const SectionLabels = () => (
         ))}
       </div>
       <div style={{ fontSize: 11, color: "#4b4b4b", lineHeight: "18px" }}>
-        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Foreground/Static/Neutral/Light</code> <span style={{ color: "#888" }}>(#7b7b7b)</span><br />
+        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Foreground/Neutral/Light</code> <span style={{ color: "#888" }}>(#7b7b7b)</span><br />
         <strong>Type style:</strong> Label/Section/Small/Semibold (same)<br />
         <strong>Padding:</strong> 12px L (Padding/Tight) · 8px V (Padding/XTight)
       </div>

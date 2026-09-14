@@ -54,10 +54,10 @@ Read the icon name from the Figma layer's `data-name` attribute. Never guess.
 ## Tokens
 
 ```
-Bar border idle:    --semantic-color-stroke-static-neutral-faint     #f6f6f6
+Bar border idle:    --semantic-color-stroke-neutral-faint     #f6f6f6
 Bar border hover:   --semantic-color-stroke-action-primary-hover      #86a0dd
 Bar border active:  --semantic-color-stroke-action-primary-pressed    #6e8bd4
-Bar bg:             --semantic-color-fill-static-neutral-faint        #ffffff
+Bar bg:             --semantic-color-fill-neutral-faint        #ffffff
 Icon idle:          --semantic-color-foreground-action-secondary-rest #6b6b6b
 Icon hover:         --semantic-color-foreground-action-secondary-hover #545454
 Filter active fill: --semantic-color-fill-action-primary-dim-rest        #eef2fb

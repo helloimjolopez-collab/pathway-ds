@@ -28,7 +28,7 @@ const EMPHASES = ["light", "subtle", "base", "contrast", "bold"];
 
 // Which ladder step each (tone, emphasis) pair resolves to, mirroring the
 // bindings in spinner.css. It exists so the story can PRINT the real token name
-// under each swatch instead of the `foreground.static.<tone>.base` it used to print,
+// under each swatch instead of the `foreground.<tone>.base` it used to print,
 // which named a tier that was merged away and a rung the ladder never had.
 //
 // The two vocabularies here are worth reading carefully, because they no longer
@@ -69,7 +69,7 @@ function toneToken(tone, emphasis) {
   const family = TONE_FAMILY[tone] || tone;
   const over = FAMILY_OVERRIDES[family === "brand" ? "brand" : family];
   const step = (over && over[emphasis]) || EMPHASIS_STEP[emphasis] || emphasis;
-  return `foreground.static.${family.replace(/-/g, ".")}.${step}`;
+  return `foreground.${family.replace(/-/g, ".")}.${step}`;
 }
 
 // ─── Spinner component (React) ───────────────────────────────────────────────
@@ -122,7 +122,7 @@ export default {
       description: {
         component:
           "Indeterminate activity indicator built from the Figma `progress-activity` " +
-          "node (`40006622:50003`). Colour is locked to `foreground.static.*` semantic tokens. " +
+          "node (`40006622:50003`). Colour is locked to `foreground.*` semantic tokens. " +
           "See `components/spinner/spinner-spec.md` for the full spec.",
       },
     },
@@ -160,7 +160,7 @@ AllTones.parameters = {
     description: {
       story:
         "Every tone at `emphasis=\"base\"`, which resolves to the ladder's `medium` step in " +
-        "`foreground.static.*`. These are the **only** " +
+        "`foreground.*`. These are the **only** " +
         "colour values the spinner accepts. No raw hex, no primitives, no invented tokens.",
     },
   },

@@ -59,7 +59,7 @@ Pathway component demos are standalone HTML files. No npm, no build step. React 
     body {
       font-family: var(--semantic-type-family-brand, system-ui, sans-serif);
       background: var(--semantic-color-fill-surface-canvas);
-      color: var(--semantic-color-foreground-static-neutral-bold);
+      color: var(--semantic-color-foreground-neutral-bold);
       padding: 2rem;
     }
   </style>

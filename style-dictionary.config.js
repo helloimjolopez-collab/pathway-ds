@@ -222,6 +222,15 @@ StyleDictionary.registerTransformGroup({
 });
 
 const isSemanticColor = (t) => String(t.path[0]).toLowerCase() === "semantic-color";
+
+// Anything under Deprecated/ in the Figma panel is excluded from every emitted
+// file. The variables still EXIST in Figma on purpose: they were renamed rather
+// than deleted so that any node still bound to one keeps rendering, because
+// three separate binding scans of that file disagreed and deleting would have
+// been betting on the unreliable one. Excluding them here means the shipped
+// contract shrinks immediately while the panel stays safe, and the final delete
+// becomes a no-op for consumers.
+const isDeprecated = (t) => t.path.some((s) => String(s).toLowerCase() === "deprecated");
 const inMode = (t, re) => re.test(String(t.path[1]));
 
 const config = {
@@ -298,7 +307,7 @@ const config = {
         {
           destination: "themes/light.css",
           format: "css/variables",
-          filter: (t) => isSemanticColor(t) && inMode(t, /light/i),
+          filter: (t) => isSemanticColor(t) && !isDeprecated(t) && inMode(t, /light/i),
           // ":root" alone only matches <html>, which makes region theming one-way:
           // you could scope a dark island inside a light page, but not a light
           // island inside that dark island. top-nav is exactly that case — a dark
@@ -313,7 +322,7 @@ const config = {
           // consumer should not have to know our brand vocabulary to theme.
           destination: "themes/midnight.css",
           format: "css/variables",
-          filter: (t) => isSemanticColor(t) && inMode(t, /dark|midnight/i),
+          filter: (t) => isSemanticColor(t) && !isDeprecated(t) && inMode(t, /dark|midnight/i),
           options: {
             selector: '[data-theme="midnight"], [data-theme="dark"]',
             outputReferences: true,

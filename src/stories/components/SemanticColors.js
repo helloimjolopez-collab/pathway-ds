@@ -81,7 +81,7 @@ const TITLE = {
 const TIER_BLURB = {
   foreground:
     "Text and icons. These were two separate tiers until 2026-09-03; they merged because every single pair held the same value, so the split doubled the contract without ever letting the two diverge.",
-  fill: "Backgrounds, including page ground under Fill/Surface. Surface/Elevated has one step, not two: a header band inside an elevated widget uses Fill/Static/Neutral instead.",
+  fill: "Backgrounds, including page ground under Fill/Surface. Surface/Elevated has one step, not two: a header band inside an elevated widget uses Fill/Neutral instead.",
   stroke: "Borders and dividers, plus the single focus-ring token.",
   scrim: "The veil behind a modal or drawer. Four opacities, no hue choice.",
 };

@@ -143,9 +143,9 @@ not reinstate it. Only faces Red Hat Text actually ships are defined, so a weigh
 variable never names a face that would silently fall back.
 
 **Surface lives under Fill (changed 2026-09-03).** There is no top-level `Surface`
-group: it is `Fill/Surface/{Canvas, Sheet, Elevated}`, alongside `Fill/Static` and
-`Fill/Action`. Elevated has ONE step, not Base and Medium — a header band inside an
-elevated widget uses `Fill/Static/Neutral` rather than a second surface step.
+group: it is `Fill/Surface/{Canvas, Sheet, Elevated}`, alongside `Fill/Neutral`,
+`Fill/Status`, `Fill/Accent`, `Fill/Brand` and `Fill/Action`. Elevated has ONE step, not Base and Medium — a header band inside an
+elevated widget uses `Fill/Neutral` rather than a second surface step.
 
 **Layout and breakpoints got the same treatment as colour.** `Semantic: Layout & Units`
 gained Desktop/Tablet/Mobile modes, which put the breakpoint into every property name
@@ -192,7 +192,7 @@ When the token library changes — every time `sync-tokens.js` runs and modifies
 
 2. **Find components that reference changed tokens.** For each file under `components/**`, `src/stories/Library/**`, and any `src/tokens/tokens.*` consumer, grep for:
    - CSS variable names like `--semantic-color-light-mode-icon-static-neutral-base`
-   - Token-path mentions in Markdown like `foreground.static.neutral.medium` or `Foreground/Action/Secondary/Rest`
+   - Token-path mentions in Markdown like `foreground.neutral.medium` or `Foreground/Action/Secondary/Rest`
    - Any direct hex values that the spec claimed came from a token (these indicate a hand-copy that's now stale)
    If the mentioned token appears in the *removed* or *renamed* set, the component is a reconciliation candidate.
 
@@ -206,7 +206,7 @@ When the token library changes — every time `sync-tokens.js` runs and modifies
    - If Figma's token set *also* references a missing token (Figma itself is out of sync with the newly-updated tokens): add this component to the "needs manual attention" list (see §3.5). Do not rewrite the component to use a different token as a guess.
    - If the Figma fetch fails (node deleted, MCP error after retry): add the component to the list. Do not guess.
 
-5. **Commit reconciled components.** One commit per logical component update, with a message that says *why* the change was needed (e.g. "reconcile spinner: icon.static.brand-warm renamed to foreground.static.brand").
+5. **Commit reconciled components.** One commit per logical component update, with a message that says *why* the change was needed (e.g. "reconcile spinner: icon.static.brand-warm renamed to foreground.brand").
 
 6. **Report unresolved items** at the end of the run. Format (one line per item):
    ```
@@ -241,7 +241,7 @@ Reconciliation — 2 components need manual attention:
 
   spinner
     file:   components/spinner/spinner-spec.md
-    stale:  foreground.static.accent.jade.medium
+    stale:  foreground.accent.jade.medium
     reason: removed-from-tokens
     next:   delete the accent-jade branch from the Figma spinner node,
             or restore the accent-jade tokens in Figma
@@ -306,8 +306,8 @@ New components that don't yet need every section can omit, but match the depth o
 
 Components resolve colour **only through semantic tokens** — never raw hex, never primitive tokens, never invented semantic names.
 
-- Icons (including indicators like the spinner): **`foreground.static.<tone>.<emphasis>`** or **`foreground.action.<role>.<state>`** — both exist as real token families in `tokens/pathway-design-tokens.json`. Any `tone` must match a real child of the family in that file. See `components/spinner/spinner-spec.md` §7.1 for the complete allowed list.
-- Text: `foreground.static.*` or `foreground.action.*` or `text.contextual.*` — same rule.
+- Icons (including indicators like the spinner): **`foreground.<tone>.<emphasis>`** or **`foreground.action.<role>.<state>`** — both exist as real token families in `tokens/pathway-design-tokens.json`. Any `tone` must match a real child of the family in that file. See `components/spinner/spinner-spec.md` §7.1 for the complete allowed list.
+- Text: `foreground.*` or `foreground.action.*` or `text.contextual.*` — same rule.
 - Fills, strokes, surfaces: same rule applied to the right family.
 
 **Forbidden in any component CSS or spec:**
@@ -320,11 +320,11 @@ Before writing any colour into a component, grep `tokens/pathway-design-tokens.j
 
 ## 7. Naming, casing, and slugs
 
-- Token names in `pathway-design-tokens.json` are always lowercase with dots (`semantic-color.light-mode.foreground.static.neutral.medium`). `sync-tokens.js` slugifies the Figma export to this form automatically. Do not override.
+- Token names in `pathway-design-tokens.json` are always lowercase with dots (`semantic-color.light-mode.foreground.neutral.medium`). `sync-tokens.js` slugifies the Figma export to this form automatically. Do not override.
 - CSS custom properties derived by Style Dictionary replace dots with hyphens. There are
   now two naming forms and you must know which file you are reading:
   - From `themes/light.css` and `themes/midnight.css`: the mode is NOT in the name,
-    e.g. `--semantic-color-foreground-static-neutral-bold`. One name, two values,
+    e.g. `--semantic-color-foreground-neutral-bold`. One name, two values,
     resolved by selector. Note Text and Icon merged into Foreground.
   - There is no mode-in-name form any more. `--semantic-color-light-mode-*` came from
     `tokens.css`, retired 2026-09-03, and any such name now resolves to nothing.
