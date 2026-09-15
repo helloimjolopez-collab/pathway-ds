@@ -177,16 +177,16 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 
 ### Semantic accent (icon containers, badges)
 ```css
---semantic-color-fill-accent-amethyst-subtle  /* #f4f2fa — Purple icon container bg */
+--semantic-color-fill-accent-amethyst-dim  /* #f4f2fa — Purple icon container bg */
 --semantic-color-foreground-accent-amethyst-contrast /* #221e3f — Text on amethyst bg */
---semantic-color-fill-status-positive-faint          /* #f0faf1 — Green icon container bg */
+--semantic-color-fill-positive-faint          /* #f0faf1 — Green icon container bg */
 --semantic-color-fill-brand-faint              /* #eef2fb — Blue icon container bg */
 --semantic-color-fill-status-attention-faint           /* #fff8e1 — Warm icon container bg */
 ```
 
 ### Profile avatar
 ```css
---semantic-color-fill-accent-amethyst-medium   /* #dcd9ef — Avatar background */
+--semantic-color-fill-accent-amethyst-subtle   /* #dcd9ef — Avatar background */
 --semantic-color-foreground-accent-amethyst-contrast /* #221e3f — Avatar initials */
 ```
 

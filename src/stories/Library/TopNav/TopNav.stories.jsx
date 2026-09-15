@@ -299,7 +299,7 @@ export const TokensFill = {
       <TokenRow key="search"  varName="--semantic-color-fill-action-primary-dim-rest"  fallback="rgba(160,181,230,0.08)" label="Search pill fill" />,
       <TokenRow key="hover"   varName="--semantic-color-fill-action-primary-dim-hover" fallback="rgba(10,18,35,0.16)"    label="All controls hover" />,
       <TokenRow key="pressed" varName="--semantic-color-fill-action-primary-dim-pressed" fallback="rgba(255,255,255,0.08)" label="All controls pressed / open" />,
-      <TokenRow key="avbg"   varName="--semantic-color-fill-accent-amethyst-medium" fallback="#dcd9ef"               label="Profile avatar background" />,
+      <TokenRow key="avbg"   varName="--semantic-color-fill-accent-amethyst-subtle" fallback="#dcd9ef"               label="Profile avatar background" />,
     ]} />
   ),
   parameters: { docs: { description: { story: "All fill tokens used by TopNav.Global. The nav bar is a permanently dark region, and the way that works now is a MODELESS token name inside a [data-theme=\"midnight\"] wrapper - there is no dark-mode token family to reach for, because mode-qualified property names were retired with tokens.css on 2026-09-03." } } },

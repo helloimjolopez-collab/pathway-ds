@@ -301,14 +301,14 @@ every row below is the token the spinner CSS actually binds at
 |---|---|---|---|
 | `neutral` *(default)* | `foreground.neutral.subtle` | `cool-neutral-600` | `#313131` |
 | `brand` | `foreground.action.primary.rest` | `brand-550` | `#2d4889` |
-| `info` | `foreground.accent.amethyst.medium` | `amethyst-700` | `#353063` |
-| `warning` | `foreground.status.attention.medium` | `saffron-700` | `#342d21` |
-| `danger` | `foreground.status.negative.medium` | `red-700` | `#722121` |
-| `negative` | `foreground.status.negative.medium` | `red-700` | `#722121` |
-| `positive` | `foreground.status.positive.medium` | `green-700` | `#174f26` |
-| `accent-amethyst` | `foreground.accent.amethyst.medium` | `amethyst-700` | `#353063` |
-| `accent-jade` | `foreground.accent.jade.medium` | `jade-700` | `#10423b` |
-| `accent-seabreeze` | `foreground.accent.seabreeze.medium` | `seabreeze-700` | `#185167` |
+| `info` | `foreground.accent.amethyst.subtle` | `amethyst-700` | `#353063` |
+| `warning` | `foreground.status.attention.subtle` | `saffron-700` | `#342d21` |
+| `danger` | `foreground.negative.subtle` | `red-700` | `#722121` |
+| `negative` | `foreground.negative.subtle` | `red-700` | `#722121` |
+| `positive` | `foreground.positive.subtle` | `green-700` | `#174f26` |
+| `accent-amethyst` | `foreground.accent.amethyst.subtle` | `amethyst-700` | `#353063` |
+| `accent-jade` | `foreground.accent.jade.subtle` | `jade-700` | `#10423b` |
+| `accent-seabreeze` | `foreground.accent.seabreeze.subtle` | `seabreeze-700` | `#185167` |
 
 > **`brand` no longer has an emphasis ramp.** `Foreground/Brand` was deleted from
 > the Variables panel on 2026-09-14: a brand-coloured foreground now exists only
@@ -318,7 +318,7 @@ every row below is the token the spinner CSS actually binds at
 > substitutes — `Stroke/Brand` runs `Brand/0` to `Brand/200`, near-white to pale.
 
 > **`danger` and `negative` are the same token.** Both bind
-> `foreground.status.negative.medium`. The two names are kept because both are in
+> `foreground.negative.subtle`. The two names are kept because both are in
 > use by consumers, but there is one colour, not two.
 
 > **`info` stopped impersonating brand.** It used to borrow the brand ramp, which
@@ -620,7 +620,7 @@ Hard rules. Breaking any of these breaks the component's contract.
 | `spinner.html` redeclares semantic tokens from primitives | MEDIUM (superseded: the demo now links the contract, verified by `scripts/check-demo-tokens.js`) | Lines ~98–102 define `--semantic-color-light-mode-icon-static-*` locally as `var(--primitive-color-orange-*)` rather than consuming `tokens.css`. That is a §6 violation and it means the demo does not track token changes. It also masked the `danger` rename, since the demo defines its own copies. |
 | No `motion` tokens in `pathway-design-tokens.json` | MEDIUM | Duration (`1s`) and easing (`linear`) are hard-coded. Recommend adding a motion token category (see §7.3). Blocks cross-component consistency, not this component's ship. |
 | No `mono` tone on the spinner | MEDIUM | The inverse *token* now exists: `foreground.neutral.mono` is `#ffffff` in both modes. The spinner cannot reach it, because the `neutral` emphasis ramp runs `faint → dim → subtle → contrast → bold`. Fix is a `mono` tone: five CSS rules plus an argType. See §9.3. |
-| `warning` `base` is nearly black | LOW | `foreground.status.attention.medium` is `saffron-700` (`#342d21`). That is correct for *text* on a pale attention fill, which is what the Foreground/Status ladder is built for, but as a graphic a "warning" spinner reads as dark brown rather than amber. Retuning it means picking a different rung, not a different token. |
+| `warning` `base` is nearly black | LOW | `foreground.status.attention.subtle` is `saffron-700` (`#342d21`). That is correct for *text* on a pale attention fill, which is what the Foreground/Status ladder is built for, but as a graphic a "warning" spinner reads as dark brown rather than amber. Retuning it means picking a different rung, not a different token. |
 | `warning`, `danger`, `negative`, `positive` bind static `Foreground/Status/*` | HIGH | That group is slated for deletion — status is moving into Action groups only. When it goes, four spinner tones lose their tokens. Re-point them at `foreground.action.status.*` in the same change. |
 | No dark-mode runtime switch | MEDIUM | The token file emits `dark-mode` variables but no theme-switching mechanism exists yet. Spinner binds `light-mode` only. Revisit when the broader DS picks a theme-switching strategy (`[data-theme="dark"]`, `prefers-color-scheme`, …). |
 | No semantic `Component/Spinner/Size/*` scale | LOW | Sizes in §4.3 are advisory only. Adding named sizes would let teams reference `var(--component-spinner-size-s)` etc. Not a blocker. |

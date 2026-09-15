@@ -103,7 +103,7 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 | `stroke.action.primary.rest` (dark) | dark-mode | rgba(160,181,230,0.16) | OrgSwitcher border |
 | `fill.action.primary-dim.hover` (dark) | dark-mode | rgba(10,18,35,0.16) | All nav controls hover |
 | `foreground.neutral.mono` (dark) | dark-mode | #fbfbfb | All text + icons on nav |
-| `fill.accent.amethyst.medium` | `--semantic-color-fill-accent-amethyst-medium` | #dcd9ef | Profile avatar bg |
+| `fill.accent.amethyst.subtle` | `--semantic-color-fill-accent-amethyst-subtle` | #dcd9ef | Profile avatar bg |
 | `foreground.accent.amethyst.contrast` | `--semantic-color-foreground-accent-amethyst-contrast` | #221e3f | Profile avatar initials |
 
 ### SideNav surface (light mode)
@@ -281,7 +281,7 @@ Card (bg: white, border: 0.5px #d2d2d2, radius: 8px, padding: 16px, gap: 12px)
 
 Card icon color variants (32×32 container):
 - **Accent/amethyst:** bg `fill.accent_amethyst.light` (#f4f2fa)
-- **Positive/green:** bg `fill.status.positive.faint` (#f0faf1)
+- **Positive/green:** bg `fill.positive.faint` (#f0faf1)
 - **Info/blue:** bg `fill.brand.faint` (#eef2fb)
 - **Warning:** bg `fill.status.attention.faint` (#fff8e1)
 

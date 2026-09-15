@@ -40,12 +40,25 @@
 //   light   -> deleted; cool-500 is not a rung on the new ladder
 //   xlight  -> deleted; cool-200 is 2.92:1 on canvas, unusable for text
 //
-// `white`, `xlight`, `light`, `medium` and `black` stay LISTED even though
-// Foreground/Neutral no longer uses them, because other groups still do —
-// Fill/Neutral/White, Fill/Brand/Light, Fill/Brand/Medium, Scrim/Light,
-// Foreground/Status/*/Medium, Stroke/Brand/Black. An unknown rung falls through
-// to alphabetical, which is the exact disorder this module exists to prevent, so
-// removing a name here is only safe once nothing anywhere uses it.
+// On 2026-09-15 the SAME positional rename was applied to every other tone
+// ladder, so accents, Negative, Positive, Attention and Severe all read
+// Faint/Dim/Subtle/Contrast/Bold. Only two groups still hold a `medium` and
+// three a `light`:
+//
+//   white    Fill/Neutral/White
+//   light    Fill/Brand/Light, Stroke/Brand/Light, Scrim/Light
+//   medium   Fill/Brand/Medium, Fill/Neutral/Medium
+//   black    Fill/Brand/Black, Stroke/Brand/Black
+//   xlight   nothing on main; kept for the NewCo branch, which still has it
+//
+// An unknown rung falls through to alphabetical, which is the exact disorder
+// this module exists to prevent, so removing a name here is only safe once
+// nothing anywhere uses it.
+//
+// `light` sits before `subtle` because that is the order Scrim and Fill/Brand
+// need. Stroke/Brand wants the opposite (Subtle is Brand/25, Light is Brand/50),
+// and it is the only group that holds both — Brand has not been normalised to
+// the five-rung ladder yet, which is what would remove the conflict.
 export const LADDER = [
   "mono",
   "white",
@@ -88,9 +101,49 @@ export const TRACKING = ["compact", "wide", "spacious", "extraspacious"];
 // reader looks at, then what sits behind it, then its edge, then the veil.
 export const TIERS = ["foreground", "fill", "stroke", "scrim"];
 
-// Within a tier: Static is the graded ladder, Action is the interactive set,
-// Surface is the page ground, FocusRing is a single accessibility token.
+// Within a tier: Action is the interactive set, Surface is the page ground,
+// FocusRing is a single accessibility token. "static" is listed for the NewCo
+// branch, which still carries that tier; main dropped it.
 export const GROUPS = ["static", "surface", "action", "focusring", "base"];
+
+/**
+ * What can appear at segment 1, in display order.
+ *
+ * This list exists because segment 1 stopped being one kind of thing on
+ * 2026-09-15. Negative and Positive were promoted out of /Status/ to sit beside
+ * Neutral, so the same position now holds:
+ *
+ *   a ROLE     foreground/negative/faint
+ *   a GROUP    foreground/accent/saffron/faint, fill/status/attention/faint
+ *   a RUNG     scrim/faint
+ *
+ * Before that they were uniformly groups, so a single GROUPS comparator worked.
+ * Afterwards it did not: rankBy sends anything it does not recognise to the end
+ * and then sorts alphabetically, so `negative` and `neutral` were ordered by
+ * spelling rather than by meaning — the precise failure the comment on
+ * strictRankBy describes, reappearing one segment to the left.
+ *
+ * Order: the neutrals and the meaning-bearing tones a reader looks at first,
+ * then brand, then the remaining tone groups, then interaction, then the page
+ * ground and the single accessibility token.
+ */
+export const SEGMENT1 = [
+  "neutral",
+  "negative",
+  "positive",
+  "info",
+  "brand",
+  "status",
+  "accent",
+  "action",
+  "surface",
+  "focusring",
+  // Scrim's rungs sit directly at segment 1 because Scrim has no role tier.
+  "faint",
+  "light",
+  "subtle",
+  "base",
+];
 
 // Roles inside Static/Action. Neutral and Brand lead because they carry most
 // of the UI; Status is ordered by severity, not alphabetically; Accent last
@@ -144,25 +197,31 @@ const byTier = rankBy(TIERS);
 const byGroup = rankBy(GROUPS);
 
 // Strict variants, for the multi-vocabulary walk in compareColorPaths.
+const strictSegment1 = strictRankBy(SEGMENT1);
+const strictGroup = strictRankBy(GROUPS);
 const strictRole = strictRankBy(ROLES);
 const strictLadder = strictRankBy(LADDER);
 const strictState = strictRankBy(STATES);
 const strictSurface = strictRankBy(SURFACES);
 
 /**
- * Order two colour token paths against each other. Compares tier, then group,
- * then role, then walks the remaining segments trying ladder, then state, then
- * surface — a leaf is exactly one of those, so the first list that knows the
- * segment wins.
+ * Order two colour token paths against each other. Compares tier, then walks
+ * every remaining segment trying each vocabulary in turn — a segment is exactly
+ * one kind of thing, so the first list that knows it wins.
+ *
+ * Segment 1 used to be compared separately with the non-strict GROUPS
+ * comparator. That stopped being correct when Negative and Positive were
+ * promoted to sit beside Neutral, because segment 1 then held roles, groups and
+ * (for Scrim) ladder rungs, and a non-strict comparator answers alphabetically
+ * for names it has never heard of. It is folded into the same strict walk now,
+ * which is what the rest of the path already did.
  */
 export function compareColorPaths(a, b) {
   // a and b are path arrays already stripped of ["semantic-color", "<mode>"]
-  let r = byTier(a[0], b[0]);
-  if (r) return r;
-  r = byGroup(a[1], b[1]);
+  const r = byTier(a[0], b[0]);
   if (r) return r;
 
-  for (let i = 2; i < Math.max(a.length, b.length); i++) {
+  for (let i = 1; i < Math.max(a.length, b.length); i++) {
     const sa = a[i], sb = b[i];
     if (sa === undefined) return -1;
     if (sb === undefined) return 1;
@@ -172,7 +231,7 @@ export function compareColorPaths(a, b) {
     // vocabulary knows the pair does it settle alphabetically. Using the
     // non-strict comparators here is what broke the ladder before: they answer
     // alphabetically for unknown names, so the first one tried always won.
-    for (const cmp of [strictRole, strictLadder, strictState, strictSurface]) {
+    for (const cmp of [strictSegment1, strictGroup, strictRole, strictLadder, strictState, strictSurface]) {
       const known = cmp(sa, sb);
       if (known !== null && known !== 0) return known;
     }

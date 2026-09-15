@@ -492,7 +492,7 @@
         "dark-mode.stroke.action.primary.pressed",
         "dark-mode.foreground.neutral.mono",
         "dark-mode.foreground.neutral.mono",
-        "light-mode.fill.accent.amethyst.medium",
+        "light-mode.fill.accent.amethyst.subtle",
         "light-mode.foreground.accent.amethyst.contrast"
       ],
       "gaps": [
@@ -565,10 +565,10 @@
         "foreground.neutral.*",
         "foreground.brand.*",
         "foreground.brand.medium.*",
-        "foreground.status.attention.medium.*",
-        "foreground.status.severe.medium.*",
-        "foreground.status.negative.medium.*",
-        "foreground.status.positive.medium.*",
+        "foreground.status.attention.subtle.*",
+        "foreground.status.severe.subtle.*",
+        "foreground.negative.subtle.*",
+        "foreground.positive.subtle.*",
         "foreground.accent.amethyst.*",
         "foreground.accent.jade.*",
         "foreground.accent.seabreeze.*"
