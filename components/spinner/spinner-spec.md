@@ -299,7 +299,7 @@ every row below is the token the spinner CSS actually binds at
 
 | `tone` | Token bound at `base` | Primitive | Resolved hex |
 |---|---|---|---|
-| `neutral` *(default)* | `foreground.static.neutral.subtle` | `cool-neutral-600` | `#313131` |
+| `neutral` *(default)* | `foreground.static.neutral.base` | `cool-neutral-600` | `#313131` |
 | `brand` | `foreground.action.primary.rest` | `brand-550` | `#2d4889` |
 | `info` | `foreground.static.accent.amethyst.subtle` | `amethyst-700` | `#353063` |
 | `warning` | `foreground.static.accent.saffron.subtle` | `saffron-700` | `#342d21` |
@@ -356,11 +356,11 @@ Examples:
 
 | `tone` | `emphasis` | CSS variable | Token path |
 |---|---|---|---|
-| `neutral` | `base` *(defaults)* | `--semantic-color-foreground-static-neutral-subtle` | `foreground.static.neutral.subtle` |
+| `neutral` | `base` *(defaults)* | `--semantic-color-foreground-static-neutral-base` | `foreground.static.neutral.base` |
 | `brand` | any | `--semantic-color-foreground-action-primary-rest` | `foreground.action.primary.rest` |
 | `accent-jade` | `light` | `--semantic-color-foreground-static-accent-jade-faint` | `foreground.static.accent.jade.faint` |
 
-The Figma source node authors the spinner at `foreground.static.neutral.subtle` (`#313131`). That is the correct default for a generic, context-free spinner.
+The Figma source node authors the spinner at `foreground.static.neutral.base` (`#313131`). That is the correct default for a generic, context-free spinner.
 
 #### 7.1.4 Dark mode
 

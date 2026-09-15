@@ -3596,20 +3596,8 @@ const tokens = {
       "faint"
     ]
   },
-  "semantic-color-light-mode-foreground-static-neutral-dim": {
-    "value": "#313131",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "foreground",
-      "static",
-      "neutral",
-      "dim"
-    ]
-  },
   "semantic-color-light-mode-foreground-static-neutral-subtle": {
-    "value": "#202020",
+    "value": "#313131",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3620,7 +3608,19 @@ const tokens = {
       "subtle"
     ]
   },
-  "semantic-color-light-mode-foreground-static-neutral-contrast": {
+  "semantic-color-light-mode-foreground-static-neutral-base": {
+    "value": "#202020",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "static",
+      "neutral",
+      "base"
+    ]
+  },
+  "semantic-color-light-mode-foreground-static-neutral-strong": {
     "value": "#161616",
     "type": "color",
     "path": [
@@ -3629,7 +3629,7 @@ const tokens = {
       "foreground",
       "static",
       "neutral",
-      "contrast"
+      "strong"
     ]
   },
   "semantic-color-light-mode-foreground-static-neutral-bold": {
@@ -6653,20 +6653,8 @@ const tokens = {
       "faint"
     ]
   },
-  "semantic-color-midnight-mode-foreground-static-neutral-dim": {
-    "value": "#a6a6a6",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "midnight-mode",
-      "foreground",
-      "static",
-      "neutral",
-      "dim"
-    ]
-  },
   "semantic-color-midnight-mode-foreground-static-neutral-subtle": {
-    "value": "#e1e1e1",
+    "value": "#a6a6a6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -6677,7 +6665,19 @@ const tokens = {
       "subtle"
     ]
   },
-  "semantic-color-midnight-mode-foreground-static-neutral-contrast": {
+  "semantic-color-midnight-mode-foreground-static-neutral-base": {
+    "value": "#e1e1e1",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "static",
+      "neutral",
+      "base"
+    ]
+  },
+  "semantic-color-midnight-mode-foreground-static-neutral-strong": {
     "value": "#f6f6f6",
     "type": "color",
     "path": [
@@ -6686,7 +6686,7 @@ const tokens = {
       "foreground",
       "static",
       "neutral",
-      "contrast"
+      "strong"
     ]
   },
   "semantic-color-midnight-mode-foreground-static-neutral-bold": {

@@ -115,7 +115,7 @@
         "foreground.action.secondary.hover",
         "foreground.action.secondary.pressed",
         "foreground.static.neutral.faint",
-        "foreground.static.neutral.subtle",
+        "foreground.static.neutral.base",
         "foreground.action.secondary.rest",
         "foreground.action.secondary.hover",
         "foreground.action.secondary.pressed",
@@ -265,7 +265,7 @@
           "stroke.action.disabled",
           "foreground.static.neutral.mono",
           "foreground.static.neutral.mono",
-          "foreground.static.neutral.subtle",
+          "foreground.static.neutral.base",
           "cornerradius.small"
         ],
         "missing": [
@@ -911,7 +911,7 @@
           "stroke.action.status.negative.rest"
         ],
         "text": [
-          "foreground.static.neutral.subtle",
+          "foreground.static.neutral.base",
           "foreground.static.neutral.bold"
         ],
         "icon": [

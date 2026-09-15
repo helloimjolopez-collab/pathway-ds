@@ -132,9 +132,9 @@
   --semantic-color-foreground-action-status-info-pressed: var(--primitive-color-amethyst-900);
   --semantic-color-foreground-static-neutral-mono: var(--primitive-color-cool-neutral-0);
   --semantic-color-foreground-static-neutral-faint: var(--primitive-color-cool-neutral-500);
-  --semantic-color-foreground-static-neutral-dim: var(--primitive-color-cool-neutral-600);
-  --semantic-color-foreground-static-neutral-subtle: var(--primitive-color-cool-neutral-700);
-  --semantic-color-foreground-static-neutral-contrast: var(--primitive-color-cool-neutral-800);
+  --semantic-color-foreground-static-neutral-subtle: var(--primitive-color-cool-neutral-600);
+  --semantic-color-foreground-static-neutral-base: var(--primitive-color-cool-neutral-700);
+  --semantic-color-foreground-static-neutral-strong: var(--primitive-color-cool-neutral-800);
   --semantic-color-foreground-static-neutral-bold: var(--primitive-color-cool-neutral-900);
   --semantic-color-foreground-static-negative-faint: var(--primitive-color-red-500);
   --semantic-color-foreground-static-negative-dim: var(--primitive-color-red-600);

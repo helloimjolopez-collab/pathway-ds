@@ -73,8 +73,8 @@ export const T = {
     navHover:        c("foreground-action-secondary-hover"),
     navActive:       c("foreground-action-secondary-pressed"),
     navDisabled:     c("foreground-action-disabled"),
-    secondary:       c("foreground-static-neutral-subtle"),   // PopoverMenu.SectionLabel
-    secondarySubtle: c("foreground-static-neutral-subtle"),   // NavSectionLabel
+    secondary:       c("foreground-static-neutral-base"),   // PopoverMenu.SectionLabel
+    secondarySubtle: c("foreground-static-neutral-base"),   // NavSectionLabel
   },
   icon: {
     navBase:         c("foreground-action-secondary-rest"),
@@ -310,7 +310,7 @@ export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }
 
 // ─── SectionLabel ─────────────────────────────────────────────────────────────
 // Figma node 40006794-5977 — building block used in CollapsedPopover headers.
-// Tokens: Foreground/Static/Neutral/Subtle (#313131), Label/Section/Small/Semibold
+// Tokens: Foreground/Static/Neutral/Base (#313131), Label/Section/Small/Semibold
 //         (11px / 600 / 16px / 0.6px letter-spacing, uppercase)
 // Padding: Padding/Tight (12px left), Padding/XTight (8px vertical)
 export function SectionLabel({ label }) {
@@ -431,7 +431,7 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
 // ─── SideNav (top-level container) ────────────────────────────────────────────
 // ── NavSectionLabel ──────────────────────────────────────────────────────────
 // Optional in-nav section heading. Figma: SideNav.SectionLabel (node 40006794:5975).
-// Tokens: Label/Section/Small/Semibold (11px/600/16px/0.6px), Foreground/Static/Neutral/Subtle (#606060)
+// Tokens: Label/Section/Small/Semibold (11px/600/16px/0.6px), Foreground/Static/Neutral/Base (#606060)
 // Container: h-[40px], pl-[4px], pr-[4px], py-[8px]
 // In collapsed rail: hidden — replaced by a Divider (rendered by SideNav itself, see §2.3)
 // ── NavHeader ────────────────────────────────────────────────────────────────

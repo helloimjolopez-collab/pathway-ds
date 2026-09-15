@@ -1758,19 +1758,19 @@
                   "$libraryName": "",
                   "$value": "{Cool Neutral.500}"
                 },
-                "Dim": {
+                "Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Cool Neutral.600}"
                 },
-                "Subtle": {
+                "Base": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Cool Neutral.700}"
                 },
-                "Contrast": {
+                "Strong": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
@@ -3368,19 +3368,19 @@
                   "$libraryName": "",
                   "$value": "{Cool Neutral.250}"
                 },
-                "Dim": {
+                "Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Cool Neutral.175}"
                 },
-                "Subtle": {
+                "Base": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Cool Neutral.75}"
                 },
-                "Contrast": {
+                "Strong": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",

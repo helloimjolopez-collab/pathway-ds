@@ -205,7 +205,7 @@ When the token library changes — every time `sync-tokens.js` runs and modifies
 
 2. **Find components that reference changed tokens.** For each file under `components/**`, `src/stories/Library/**`, and any `src/tokens/tokens.*` consumer, grep for:
    - CSS variable names like `--semantic-color-light-mode-icon-static-neutral-base`
-   - Token-path mentions in Markdown like `foreground.static.neutral.subtle` or `Foreground/Action/Secondary/Rest`
+   - Token-path mentions in Markdown like `foreground.static.neutral.base` or `Foreground/Action/Secondary/Rest`
    - Any direct hex values that the spec claimed came from a token (these indicate a hand-copy that's now stale)
    If the mentioned token appears in the *removed* or *renamed* set, the component is a reconciliation candidate.
 
@@ -333,7 +333,7 @@ Before writing any colour into a component, grep `tokens/pathway-design-tokens.j
 
 ## 7. Naming, casing, and slugs
 
-- Token names in `pathway-design-tokens.json` are always lowercase with dots (`semantic-color.light-mode.foreground.static.neutral.subtle`). `sync-tokens.js` slugifies the Figma export to this form automatically. Do not override.
+- Token names in `pathway-design-tokens.json` are always lowercase with dots (`semantic-color.light-mode.foreground.static.neutral.base`). `sync-tokens.js` slugifies the Figma export to this form automatically. Do not override.
 - CSS custom properties derived by Style Dictionary replace dots with hyphens. There are
   now two naming forms and you must know which file you are reading:
   - From `themes/light.css` and `themes/midnight.css`: the mode is NOT in the name,

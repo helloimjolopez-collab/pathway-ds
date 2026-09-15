@@ -39,7 +39,7 @@ Semantic tokens alias a primitive and give it a _purpose_. The name tells you th
 --semantic-color-fill-action-selection-selected:
     var(--primitive-color-brand-75)
 
---semantic-color-foreground-static-neutral-subtle:
+--semantic-color-foreground-static-neutral-base:
     var(--primitive-color-cool-neutral-400)
 
 --semantic-color-foreground-action-primary-rest:

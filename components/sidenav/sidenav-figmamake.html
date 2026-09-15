@@ -369,7 +369,7 @@
     "Foreground/Action/Secondary/Rest":        "#313131",
     "Foreground/Action/Secondary/Hover":       "#252525",
     "Foreground/Action/Secondary/Pressed":      "#1b2d57",
-    "Foreground/Static/Neutral/Subtle":        "#606060",
+    "Foreground/Static/Neutral/Base":        "#606060",
     "Foreground/Action/Secondary/Rest":        "#484848",
     "Foreground/Action/Secondary/Hover":       "#313131",
     "Foreground/Action/Secondary/Pressed":      "#2d4889",
@@ -494,8 +494,8 @@ const T = {
     navHover:        c("foreground-action-secondary-hover"),
     navActive:       c("foreground-action-secondary-pressed"),
     navDisabled:     c("foreground-action-disabled"),
-    secondary:       c("foreground-static-neutral-subtle"),
-    secondarySubtle: c("foreground-static-neutral-subtle"),  // PopoverMenu.SectionLabel
+    secondary:       c("foreground-static-neutral-base"),
+    secondarySubtle: c("foreground-static-neutral-base"),  // PopoverMenu.SectionLabel
   },
   icon: {
     navBase:         c("foreground-action-secondary-rest"),
@@ -908,7 +908,7 @@ function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }) {
 
 // ── SectionLabel ─────────────────────────────────────────────────────────────
 // Figma: PopoverMenu.SectionLabel (node 40005748:20503)
-// Tokens: Foreground/Static/Neutral/Subtle (#606060), Label/Menu/Base/Regular
+// Tokens: Foreground/Static/Neutral/Base (#606060), Label/Menu/Base/Regular
 //         (14px / 400 / 20px / 0.3px letter-spacing) — NOT uppercase (updated 2026-05-13)
 // Border: border-bottom 0.5px solid Stroke/Static/Neutral/Subtle (#ededed)
 // Width: 200px, minHeight: 40px, overflow-clip, pr-[12px]
@@ -930,7 +930,7 @@ function SectionLabel({ label }) {
 // ── NavSectionLabel ──────────────────────────────────────────────────────────
 // Figma: SideNav.SectionLabel / SideNav.ListSection › SectionLabel (node 40006794:5975)
 // Used as a group-header divider INSIDE the nav (different from PopoverMenu.SectionLabel).
-// Tokens: Foreground/Static/Neutral/Subtle (#606060), Label/Section/Small/Semibold (11px/600/16px/0.6px)
+// Tokens: Foreground/Static/Neutral/Base (#606060), Label/Section/Small/Semibold (11px/600/16px/0.6px)
 // Typography: uppercase, semibold — matches Figma "label/section/small/semibold" scale
 // Container: h-[40px], pl-[4px], pr-[4px], py-[8px] (gap/xxtight = 4px)
 function NavSectionLabel({ label }) {
@@ -1341,7 +1341,7 @@ const TOKEN_ROWS = [
   { cat:"Text",    semantic:"Foreground/Action/Secondary/Rest",   prim:"—",        value:"#313131",              role:"SideNavItem label default · PopoverMenu.Item base · ListItem base" },
   { cat:"Text",    semantic:"Foreground/Action/Secondary/Hover",  prim:"—",        value:"#252525",              role:"SideNavItem label hover · PopoverMenu.Item hover · ListItem hover" },
   { cat:"Text",    semantic:"Foreground/Action/Secondary/Pressed", prim:"—",        value:"#1b2d57",              role:"SideNavItem label active + ALL trail states · ListItem active" },
-  { cat:"Text",    semantic:"Foreground/Static/Neutral/Subtle",   prim:"Cool-Neutral/130", value:"#606060",       role:"NavSectionLabel text (MUSIC / PEOPLE etc.) + PopoverMenu.SectionLabel text" },
+  { cat:"Text",    semantic:"Foreground/Static/Neutral/Base",   prim:"Cool-Neutral/130", value:"#606060",       role:"NavSectionLabel text (MUSIC / PEOPLE etc.) + PopoverMenu.SectionLabel text" },
   { cat:"Text",    semantic:"Foreground/Static/Neutral/Bold",       prim:"—",        value:"#202020",              role:"SideNavTooltip text" },
 
   // ── Icon ───────────────────────────────────────────────────────────────────

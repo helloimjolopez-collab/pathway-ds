@@ -111,7 +111,7 @@
       display: flex; align-items: center;
       min-height: 32px; padding: 0 16px; margin-top: 4px;
       font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
-      color: var(--semantic-color-foreground-static-neutral-subtle, #606060);
+      color: var(--semantic-color-foreground-static-neutral-base, #606060);
       white-space: nowrap; overflow: hidden;
       opacity: 1; transition: opacity var(--motion-duration-3) var(--motion-easing-standard);
     }
@@ -202,7 +202,7 @@
       display: flex; align-items: center; justify-content: center;
       padding: 14px 16px; cursor: pointer; position: relative;
       font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: 0.3px;
-      color: var(--semantic-color-foreground-static-neutral-subtle, #606060);
+      color: var(--semantic-color-foreground-static-neutral-base, #606060);
       border: none; background: transparent; font-family: inherit;
       transition: color var(--motion-duration-3) var(--motion-easing-standard);
     }
@@ -242,7 +242,7 @@
     .page-heading__subtitle {
       margin-top: 8px;
       font-size: 16px; font-weight: 400; line-height: 22px; letter-spacing: 0.1px;
-      color: var(--semantic-color-foreground-static-neutral-subtle, #484848);
+      color: var(--semantic-color-foreground-static-neutral-base, #484848);
     }
     .page-heading__actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
@@ -301,10 +301,10 @@
       flex: 1; border: none; outline: none; background: transparent;
       font-family: 'Red Hat Text', sans-serif; font-size: 16px; font-weight: 400;
       line-height: 22px; letter-spacing: 0.1px;
-      color: var(--semantic-color-foreground-static-neutral-subtle, #484848);
+      color: var(--semantic-color-foreground-static-neutral-base, #484848);
     }
     .toolbar__search input::placeholder {
-      color: var(--semantic-color-foreground-static-neutral-subtle, #606060);
+      color: var(--semantic-color-foreground-static-neutral-base, #606060);
     }
 
     /* FilterChips — Figma: each 60px wide, gap=8px, touch target 48px */
@@ -343,7 +343,7 @@
       padding: 6px 0; margin-bottom: 8px;
       font-size: 14px; font-weight: 600; line-height: 22px; letter-spacing: 0.6px;
       text-transform: uppercase;
-      color: var(--semantic-color-foreground-static-neutral-subtle, #606060);
+      color: var(--semantic-color-foreground-static-neutral-base, #606060);
     }
 
     /* Card grid — Figma: 4 columns × 275px, gap=8px → total 1124px = exact content width */
@@ -419,10 +419,10 @@
       color: #1b5e20;
     }
 
-    /* CardBody: text.body.small.regular = 14px/400/20px, foreground.static.neutral.subtle */
+    /* CardBody: text.body.small.regular = 14px/400/20px, foreground.static.neutral.base */
     .card__body {
       font-size: 14px; font-weight: 400; line-height: 20px; letter-spacing: 0.3px;
-      color: var(--semantic-color-foreground-static-neutral-subtle, #606060);
+      color: var(--semantic-color-foreground-static-neutral-base, #606060);
     }
 
     /* ── Responsive ─────────────────────────────────────────────────────────── */
@@ -915,7 +915,7 @@
       iconBase:      "#606060",                     // Foreground/Action/Secondary/Rest
       iconActive:    "#3555a0",                     // Foreground/Action/Secondary/Pressed
       iconAction:    "#6b6b6b",                     // Foreground/Action/Secondary/Rest
-      sectionText:   "#606060",                     // Foreground/Static/Neutral/Subtle
+      sectionText:   "#606060",                     // Foreground/Static/Neutral/Base
     };
 
     // NavHeader collapse button SVG icons — exact from sidenav.jsx

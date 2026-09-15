@@ -80,7 +80,7 @@ const RULES = [
   [/^text-static-primary-(subtle|light|faint)$/, "foreground-static-neutral-medium"],
   [/^text-static-secondary-(base|rest|medium)$/, "foreground-static-neutral-medium"],
   [/^text-static-secondary-bold$/, "foreground-static-neutral-bold"],
-  [/^text-static-secondary-(subtle|light|faint)$/, "foreground-static-neutral-subtle"],
+  [/^text-static-secondary-(subtle|light|faint)$/, "foreground-static-neutral-base"],
 
   // ── Icon and Text tiers merged into Foreground ──
   [/^icon-/, "foreground-"],

@@ -85,7 +85,7 @@ Paste these into your CSS or token system **as-is**. The names match `tokens/pat
 ### Section label (optional)
 ```
 font:        11px/16px 'Red Hat Text', 600 SemiBold, 0.6px letter-spacing, UPPERCASE
-color:       #606060   /* Foreground/Static/Neutral/Subtle */
+color:       #606060   /* Foreground/Static/Neutral/Base */
 height:      40px
 padding:     8px 4px
 ```

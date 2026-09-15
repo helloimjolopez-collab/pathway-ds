@@ -172,7 +172,7 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `foreground.static.neutral.subtle` | `--semantic-color-foreground-static-neutral-subtle` | #606060 | Placeholder text |
+| `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` | #606060 | Placeholder text |
 | `foreground.static.neutral.bold` | `--semantic-color-foreground-static-neutral-bold` | #202020 | Input value text |
 
 ### 3.4 Icon
@@ -278,7 +278,7 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 | State | Bar border | Bar bg | Icon colour | Text colour | Filter pip bg |
 |---|---|---|---|---|---|
-| **Idle** | `stroke.static.neutral.subtle` 0.75px | `fill.static.neutral.faint` | `foreground.action.secondary.rest` | placeholder: `foreground.static.neutral.subtle` | — |
+| **Idle** | `stroke.static.neutral.subtle` 0.75px | `fill.static.neutral.faint` | `foreground.action.secondary.rest` | placeholder: `foreground.static.neutral.base` | — |
 | **Hover** | `stroke.action.primary.hover` 1px | `fill.static.neutral.faint` | `foreground.action.secondary.hover` | (same) | — |
 | **Focused** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.faint` | (same as hover) | (same) | — |
 | **With-value** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.faint` | (base) | `foreground.static.neutral.bold` | — |

@@ -375,7 +375,7 @@ NavSectionLabel
 | Line height | `Label/Section/Small/Semibold/LineHeight` | `16px` |
 | Letter spacing | `Label/Section/Small/Semibold/LetterSpacing` | `0.6px` |
 | Text transform | *(design rule)* | `uppercase` |
-| Text colour | `Foreground/Static/Neutral/Subtle` | `#606060` |
+| Text colour | `Foreground/Static/Neutral/Base` | `#606060` |
 
 ### Collapsed rail behaviour
 
@@ -611,7 +611,7 @@ label, leading icon and chevron must not resolve through separate ramps that can
 | `Foreground/Action/Secondary/Pressed` | `--semantic-color-foreground-action-secondary-pressed` | Active destination and all trail states |
 | `Foreground/Action/Disabled` | `--semantic-color-foreground-action-disabled` | Disabled |
 | `Foreground/Action/Secondary/Rest` | `--semantic-color-foreground-action-secondary-rest` | CollapseButton icon |
-| `Foreground/Static/Neutral/Subtle` | `--semantic-color-foreground-static-neutral-subtle` | `NavSectionLabel`, `PopoverMenu.SectionLabel` |
+| `Foreground/Static/Neutral/Base` | `--semantic-color-foreground-static-neutral-base` | `NavSectionLabel`, `PopoverMenu.SectionLabel` |
 
 > The `Text/` and `Icon/` tiers were merged into `Foreground/` because they were two names
 > for one layer. There is no `Foreground/Action/Secondary/*` group — the nav item uses the
@@ -970,7 +970,7 @@ Both appear with an **8px gap** from the container's right edge (`left: calc(100
 | Left indicator slot | `4px wide` (same structural column as `indicator.stripe`) |: |
 | Text indent | `8px left padding` |: |
 | Typography | 14px / 400 / 20px / 0.02px | `Label/Menu/Base/Regular` |
-| Text colour | `#6b6b6b` | `Foreground/Static/Neutral/Subtle` |
+| Text colour | `#6b6b6b` | `Foreground/Static/Neutral/Base` |
 
 **`PopoverMenu.Item`** (each child):
 

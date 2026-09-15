@@ -48,7 +48,7 @@ export const T = {
   divider:        "var(--semantic-color-stroke-action-secondary-rest, #d2d2d2)",
 
   // Text
-  textPlaceholder:"var(--semantic-color-foreground-static-neutral-subtle, #606060)",
+  textPlaceholder:"var(--semantic-color-foreground-static-neutral-base, #606060)",
   textValue:      "var(--semantic-color-foreground-static-neutral-bold, #202020)",
 
   // Icons

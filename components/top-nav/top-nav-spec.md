@@ -407,7 +407,7 @@ Clicking the collapsed pill opens the search as a **full-width takeover** of the
 
 **Focused-empty** (just opened, no text entered):
 - Container: white fill (`fill.static.neutral.faint`), 1px solid `#6e8bd4` (`stroke.action.primary.pressed`), `border-radius: 9999px`, 36px height, fills the bar width, `padding: 0 8px`
-- Leading icon: search, 24px container, color `#606060` (`foreground.static.neutral.subtle`)
+- Leading icon: search, 24px container, color `#606060` (`foreground.static.neutral.base`)
 - Placeholder text: "Search…", 14px/400, color `#606060`
 - **No trailing clear button** (none in Figma for this state)
 

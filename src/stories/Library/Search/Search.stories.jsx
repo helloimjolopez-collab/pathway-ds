@@ -362,7 +362,7 @@ export const TokensForeground = () => (
     title="Foreground tokens - text and icons"
     note="One tier for both. Text and Icon merged on 2026-09-03 because every pair held the same value; the split doubled the contract while never letting a control's label and its icon differ."
     rows={[
-      { token: "foreground.static.neutral.subtle",         usage: "Placeholder text" },
+      { token: "foreground.static.neutral.base",         usage: "Placeholder text" },
       { token: "foreground.static.neutral.bold",           usage: "Input value text" },
       { token: "foreground.action.secondary.rest",         usage: "All icons - idle" },
       { token: "foreground.action.secondary.hover",        usage: "All icons - hover / focused" },

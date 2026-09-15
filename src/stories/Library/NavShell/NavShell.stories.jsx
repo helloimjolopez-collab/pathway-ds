@@ -141,7 +141,7 @@ function ScreenContent({ title, subtitle }) {
           <p style={{
             marginTop: 8,
             fontSize: 16, fontWeight: 400, lineHeight: "22px", letterSpacing: "0.1px",
-            color: "var(--semantic-color-foreground-static-neutral-subtle, #484848)",
+            color: "var(--semantic-color-foreground-static-neutral-base, #484848)",
           }}>{subtitle}</p>
         )}
       </div>
@@ -149,7 +149,7 @@ function ScreenContent({ title, subtitle }) {
         padding: "8px 0",
         borderTop: "1px solid var(--semantic-color-stroke-static-neutral-faint, #f6f6f6)",
         marginTop: 16,
-        color: "var(--semantic-color-foreground-static-neutral-subtle, #606060)",
+        color: "var(--semantic-color-foreground-static-neutral-base, #606060)",
         fontSize: 13, lineHeight: "20px",
       }}>
         Page content area - replace with real ScreenTemplate content.

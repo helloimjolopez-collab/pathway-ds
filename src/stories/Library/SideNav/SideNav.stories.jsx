@@ -699,7 +699,7 @@ export const SectionLabels = () => (
         ))}
       </div>
       <div style={{ fontSize: 11, color: "#4b4b4b", lineHeight: "18px" }}>
-        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Foreground/Static/Neutral/Subtle</code> <span style={{ color: "#888" }}>(#606060)</span><br />
+        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Foreground/Static/Neutral/Base</code> <span style={{ color: "#888" }}>(#606060)</span><br />
         <strong>Type style:</strong> Label/Section/Small/Semibold<br />
         <strong>Container H:</strong> 40px · <strong>Padding:</strong> 4px H / 8px V
       </div>
@@ -735,7 +735,7 @@ export const SectionLabels = () => (
         ))}
       </div>
       <div style={{ fontSize: 11, color: "#4b4b4b", lineHeight: "18px" }}>
-        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Foreground/Static/Neutral/Subtle</code> <span style={{ color: "#888" }}>(#313131)</span><br />
+        <strong>Text colour:</strong> <code style={{ color: "#2d4889" }}>Foreground/Static/Neutral/Base</code> <span style={{ color: "#888" }}>(#313131)</span><br />
         <strong>Type style:</strong> Label/Section/Small/Semibold (same)<br />
         <strong>Padding:</strong> 12px L (Padding/Tight) · 8px V (Padding/XTight)
       </div>

@@ -37,7 +37,7 @@
     "item.font-size": "--semantic-type-font-size-s (=14)",
     "item.font-weight.resting": "400",
     "item.font-weight.active": "500",
-    "section-label.text": "--semantic-color-foreground-static-neutral-subtle",
+    "section-label.text": "--semantic-color-foreground-static-neutral-base",
     "_icon-rule": "ALL nav icons use Material Symbols Rounded FILL=1 (filled)"
   },
   "button": {
@@ -62,7 +62,7 @@
     "title.text": "--semantic-color-foreground-static-neutral-bold",
     "title.font-size": "--semantic-type-font-size-r (=16)",
     "title.font-weight": "--semantic-type-weight-semibold (=600)",
-    "body.text": "--semantic-color-foreground-static-neutral-subtle",
+    "body.text": "--semantic-color-foreground-static-neutral-base",
     "body.font-size": "--semantic-type-font-size-s (=14)",
     "icon-container.accent-bg": "--semantic-color-fill-static-accent-amethyst-dim",
     "icon-container.positive-bg": "--semantic-color-fill-static-positive-faint",
@@ -92,7 +92,7 @@
     "bar.border.focused": "--semantic-color-stroke-action-primary-pressed",
     "bar.border-radius": "9999px (pill)",
     "bar.toolbar-input-border-radius": "6px (NOT standard 8px — confirmed Figma)",
-    "input.placeholder": "--semantic-color-foreground-static-neutral-subtle",
+    "input.placeholder": "--semantic-color-foreground-static-neutral-base",
     "input.value": "--semantic-color-foreground-static-neutral-bold",
     "icon.idle": "--semantic-color-foreground-action-secondary-rest",
     "icon.fill-setting": "FILL=1",
@@ -104,12 +104,12 @@
     "title.text": "--semantic-color-foreground-static-neutral-bold",
     "title.font-size": "--semantic-type-font-size-xxl (=24)",
     "title.font-weight": "--semantic-type-weight-semibold (=600)",
-    "subtitle.text": "--semantic-color-foreground-static-neutral-subtle",
+    "subtitle.text": "--semantic-color-foreground-static-neutral-base",
     "subtitle.font-size": "--semantic-type-font-size-r (=16)"
   },
   "section-heading": {
     "_note": "Not yet standalone",
-    "label.text": "--semantic-color-foreground-static-neutral-subtle",
+    "label.text": "--semantic-color-foreground-static-neutral-base",
     "label.font-size": "--semantic-type-font-size-m (=14)",
     "label.font-weight": "600",
     "label.letter-spacing": "--semantic-type-letter-spacing-compact (=0.6px)"

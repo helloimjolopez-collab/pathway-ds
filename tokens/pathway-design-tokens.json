@@ -1520,15 +1520,15 @@
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.500}"
             },
-            "dim": {
+            "subtle": {
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.600}"
             },
-            "subtle": {
+            "base": {
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.700}"
             },
-            "contrast": {
+            "strong": {
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.800}"
             },
@@ -2644,15 +2644,15 @@
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.250}"
             },
-            "dim": {
+            "subtle": {
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.175}"
             },
-            "subtle": {
+            "base": {
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.75}"
             },
-            "contrast": {
+            "strong": {
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.25}"
             },
