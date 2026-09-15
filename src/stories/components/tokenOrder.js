@@ -47,10 +47,18 @@
 //
 //   white    Fill/Neutral/White        Neutral is allowed extras
 //   medium   Fill/Neutral/Medium       likewise
-//   black    Fill/Brand/Black,         a sixth rung past Bold on both Brand
-//            Stroke/Brand/Black        ladders; docs-page bindings only
+//   boldest  Fill/Brand/Boldest,       a sixth rung past Bold, kept on BOTH
+//            Stroke/Brand/Boldest      Brand ladders on purpose
 //   light    Scrim/Light               Scrim is an opacity ramp, not a tone one
 //   xlight   nothing on main           kept for the NewCo branch, which has it
+//   black    nothing                   retired 2026-09-15, see below
+//
+// Brand's sixth rung was spelled Dark on Fill and Black on Stroke, which put two
+// names on one ladder position. It is `Boldest` on both now, and the reason is
+// worth keeping: Stroke/Brand's sixth rung resolves to Brand/0 in Midnight,
+// which is nearly WHITE, so "Black" was factually wrong in one of the two modes.
+// Faint and Bold survive mode inversion because they describe a position on the
+// ladder rather than a colour; Boldest does the same.
 //
 // An unknown rung falls through to alphabetical, which is the exact disorder
 // this module exists to prevent, so removing a name here is only safe once
@@ -77,6 +85,7 @@ export const LADDER = [
   "medium",
   "contrast",
   "bold",
+  "boldest",
   "black",
 ];
 

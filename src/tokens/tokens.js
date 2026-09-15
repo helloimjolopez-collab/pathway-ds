@@ -2738,7 +2738,7 @@ const tokens = {
       "bold"
     ]
   },
-  "semantic-color-light-mode-fill-brand-dark": {
+  "semantic-color-light-mode-fill-brand-boldest": {
     "value": "#0a1223",
     "type": "color",
     "path": [
@@ -2746,7 +2746,7 @@ const tokens = {
       "light-mode",
       "fill",
       "brand",
-      "dark"
+      "boldest"
     ]
   },
   "semantic-color-light-mode-fill-negative-faint": {
@@ -4769,7 +4769,7 @@ const tokens = {
       "subtle"
     ]
   },
-  "semantic-color-light-mode-stroke-brand-black": {
+  "semantic-color-light-mode-stroke-brand-boldest": {
     "value": "#060a15",
     "type": "color",
     "path": [
@@ -4777,7 +4777,7 @@ const tokens = {
       "light-mode",
       "stroke",
       "brand",
-      "black"
+      "boldest"
     ]
   },
   "semantic-color-light-mode-stroke-negative-faint": {
@@ -5938,7 +5938,7 @@ const tokens = {
       "bold"
     ]
   },
-  "semantic-color-midnight-mode-fill-brand-dark": {
+  "semantic-color-midnight-mode-fill-brand-boldest": {
     "value": "#0a1223",
     "type": "color",
     "path": [
@@ -5946,7 +5946,7 @@ const tokens = {
       "midnight-mode",
       "fill",
       "brand",
-      "dark"
+      "boldest"
     ]
   },
   "semantic-color-midnight-mode-fill-negative-faint": {
@@ -7969,7 +7969,7 @@ const tokens = {
       "subtle"
     ]
   },
-  "semantic-color-midnight-mode-stroke-brand-black": {
+  "semantic-color-midnight-mode-stroke-brand-boldest": {
     "value": "#f9fafd",
     "type": "color",
     "path": [
@@ -7977,7 +7977,7 @@ const tokens = {
       "midnight-mode",
       "stroke",
       "brand",
-      "black"
+      "boldest"
     ]
   },
   "semantic-color-midnight-mode-stroke-negative-faint": {

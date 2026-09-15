@@ -1313,7 +1313,7 @@
                 "$libraryName": "",
                 "$value": "{Brand.700}"
               },
-              "Dark": {
+              "Boldest": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
@@ -2427,7 +2427,7 @@
                 "$libraryName": "",
                 "$value": "{Brand.50}"
               },
-              "Black": {
+              "Boldest": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
@@ -3075,7 +3075,7 @@
                 "$libraryName": "",
                 "$value": "{Brand.700}"
               },
-              "Dark": {
+              "Boldest": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
@@ -4189,7 +4189,7 @@
                 "$libraryName": "",
                 "$value": "{Brand.550}"
               },
-              "Black": {
+              "Boldest": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",

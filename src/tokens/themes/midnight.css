@@ -67,7 +67,7 @@
   --semantic-color-fill-brand-subtle: var(--primitive-color-brand-100);
   --semantic-color-fill-brand-contrast: var(--primitive-color-brand-400);
   --semantic-color-fill-brand-bold: var(--primitive-color-brand-700);
-  --semantic-color-fill-brand-dark: var(--primitive-color-brand-800);
+  --semantic-color-fill-brand-boldest: var(--primitive-color-brand-800);
   --semantic-color-fill-negative-faint: var(--primitive-color-red-800);
   --semantic-color-fill-negative-dim: var(--primitive-color-red-700);
   --semantic-color-fill-negative-subtle: var(--primitive-color-red-600);
@@ -236,7 +236,7 @@
   --semantic-color-stroke-brand-contrast: var(--primitive-color-brand-500);
   --semantic-color-stroke-brand-bold: var(--primitive-color-brand-400);
   --semantic-color-stroke-brand-subtle: var(--primitive-color-brand-550);
-  --semantic-color-stroke-brand-black: var(--primitive-color-brand-0);
+  --semantic-color-stroke-brand-boldest: var(--primitive-color-brand-0);
   --semantic-color-stroke-negative-faint: var(--primitive-color-red-600);
   --semantic-color-stroke-negative-dim: var(--primitive-color-red-500);
   --semantic-color-stroke-negative-subtle: var(--primitive-color-red-400);
