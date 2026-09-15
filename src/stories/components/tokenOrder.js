@@ -19,23 +19,44 @@
  * mode-independent and this module needs no mode argument.
  */
 
-// The graded ladder, per docs/design-system-spec.md. White, XLight and Black
-// are inversion ANCHORS rather than rungs — they hold their value across modes
+// The graded ladder, per docs/design-system-spec.md. Mono and Black are
+// inversion ANCHORS rather than rungs — they hold their value across modes
 // instead of flipping — but they still have a place on the ramp, so they are
 // ordered here and marked as anchors below for the UI to annotate.
+//
+// SIMPLIFIED 2026-09-14. It used to run white, xlight, faint, subtle, light,
+// medium, contrast, bold — eight steps, two of which (faint at cool-400 and
+// light at cool-500) were close enough to be a coin toss, and whose NAMES
+// disagreed with their values: `subtle` sat at cool-450 and `light` at cool-500,
+// so "light" was the darker of the two. The target is six:
+//
+//   mono, faint, dim, subtle, contrast, bold
+//
+// Every entry below is either on that list or still present in the panel:
+//   white   -> renamed to mono (same value, cool-neutral-0)
+//   subtle  -> renamed to dim  (same value, cool-neutral-450)
+//   medium  -> renamed to subtle (same value, cool-neutral-600)
+//   light   -> deleted, no exact successor; cool-500 is not on the new ladder
+//   xlight  -> still in the panel, 2.92:1 on canvas, slated for deletion
+//
+// Keep `light` and `medium` listed. Fill/Brand and Stroke/Brand still use them,
+// and an unknown rung falls through to alphabetical, which is the exact disorder
+// this module exists to prevent.
 export const LADDER = [
+  "mono",
   "white",
   "xlight",
   "faint",
-  "subtle",
+  "dim",
   "light",
+  "subtle",
   "medium",
   "contrast",
   "bold",
   "black",
 ];
 
-export const ANCHORS = new Set(["white", "xlight", "black"]);
+export const ANCHORS = new Set(["mono", "white", "xlight", "black"]);
 
 // Interaction states, in the order a pointer actually moves through them.
 // Disabled last because it is terminal, not a step.

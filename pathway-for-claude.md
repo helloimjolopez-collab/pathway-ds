@@ -147,7 +147,7 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 ### Text
 ```css
 --semantic-color-foreground-neutral-bold    /* #202020  — Page headings, card titles */
---semantic-color-foreground-neutral-medium  /* #484848  — Body text, subtitles */
+--semantic-color-foreground-neutral-subtle  /* #484848  — Body text, subtitles */
 --semantic-color-foreground-neutral-subtle /* #606060 — Captions, placeholders, card body */
 --semantic-color-foreground-action-primary-rest    /* #345499  — Active links, active tab text */
 --semantic-color-foreground-action-secondary-pressed /* #1b2d57 — Active SideNav item label */
@@ -288,7 +288,7 @@ The SideNav in the repo has its own hardcoded demo items. For a prototype with c
     min-height: 44px; padding: 0 16px; width: 100%;
     background: transparent; border: none; cursor: pointer;
     font-size: 14px; font-weight: 400; letter-spacing: 0.3px;
-    color: var(--semantic-color-foreground-neutral-medium);
+    color: var(--semantic-color-foreground-neutral-subtle);
     position: relative;
   ">
     <!-- Active state: add background #eef2fb, text #1b2d57, 4px stripe -->
@@ -409,7 +409,7 @@ Not yet a standalone component — build inline:
         Page Title
       </h1>
       <p style="margin-top:8px; font-size:16px; line-height:22px;
-                color: var(--semantic-color-foreground-neutral-medium);">
+                color: var(--semantic-color-foreground-neutral-subtle);">
         Page subtitle text
       </p>
     </div>

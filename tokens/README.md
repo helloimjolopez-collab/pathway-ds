@@ -39,7 +39,7 @@ Semantic tokens alias a primitive and give it a _purpose_. The name tells you th
 --semantic-color-fill-action-selection-selected:
     var(--primitive-color-brand-75)
 
---semantic-color-foreground-neutral-medium:
+--semantic-color-foreground-neutral-subtle:
     var(--primitive-color-cool-neutral-400)
 
 --semantic-color-foreground-action-primary-rest:
@@ -252,7 +252,7 @@ Once the CSS is loaded, all custom properties are available:
 ```css
 .my-component {
   background: var(--semantic-color-fill-brand-medium);
-  color: var(--semantic-color-foreground-neutral-white);
+  color: var(--semantic-color-foreground-neutral-mono);
 }
 ```
 

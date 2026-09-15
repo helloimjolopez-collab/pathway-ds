@@ -7,7 +7,7 @@ Every file below is generated. Never hand-edit one — run `npm run build-tokens
 
 ## The short version
 
-**The colour contract is 298 names.** Not 1,082, which is what you get if you add up
+**The colour contract is 290 names.** Not 1,066, which is what you get if you add up
 every declaration in this folder, and not 2,338, which is what the retired `tokens.css`
 used to emit. The difference is explained below, and it is the whole reason this folder
 is split the way it is.
@@ -20,6 +20,7 @@ is split the way it is.
 <link rel="stylesheet" href="themes/midnight.css">
 <link rel="stylesheet" href="type.css">
 <link rel="stylesheet" href="layout.css">
+<link rel="stylesheet" href="layout-responsive.css">
 <link rel="stylesheet" href="motion.css">
 <link rel="stylesheet" href="breakpoints.css">
 ```
@@ -33,17 +34,18 @@ error** — which is a genuinely nasty way to lose an afternoon.
 | File | Names | Status | Name these? |
 |---|---|---|---|
 | `primitives.css` | 350 | **Infrastructure** | **No** — but you must load it |
-| `themes/light.css` | 298 | **Contract** | Yes |
-| `themes/midnight.css` | 298 | **Contract** (same names as light) | Yes |
+| `themes/light.css` | 290 | **Contract** | Yes |
+| `themes/midnight.css` | 290 | **Contract** (same names as light) | Yes |
 | `type.css` | 41 | **Contract** | Yes |
 | `layout.css` | 39 | **Contract** | Yes |
-| `layout-contextual.css` | 34 | Component internals | Prefer `layout.css` |
+| `layout-responsive.css` | 8 | **Contract** (the only layout tokens with media queries) | Yes |
+| `layout-contextual.css` | 26 | Component internals | Prefer `layout.css` |
 | `motion.css` | 17 | **Contract** | Yes |
 | `breakpoints.css` | 5 | **Contract** | Yes |
 
-**Your working vocabulary is 400 names** — 298 colour + 41 type + 39 layout + 17 motion
-+ 5 breakpoints. The 350 primitives are not part of it, and the 34 component metrics are
-this repo's own business.
+**Your working vocabulary is 400 names** — 290 colour + 41 type + 39 layout + 17 motion
++ 8 responsive layout + 5 breakpoints. The 350 primitives are not part of it, and the 26
+component metrics are this repo's own business.
 
 Each file repeats its status in its own header, with the count computed at build time so
 it cannot drift.
@@ -54,7 +56,7 @@ Three separate questions that are easy to conflate:
 
 1. **Are they private in Figma?** No. That setting only controls whether designers are
    *offered* a variable in the styling picker. It says nothing about CSS.
-2. **Are they in the CSS?** Yes, and they have to be. All 298 semantics resolve via
+2. **Are they in the CSS?** Yes, and they have to be. All 290 semantics resolve via
    `var(--primitive-*)`. Delete the file and every colour breaks.
 3. **Are they part of the contract?** No. They are infrastructure, the same way the
    glyphs inside Red Hat Text are not part of the type scale.

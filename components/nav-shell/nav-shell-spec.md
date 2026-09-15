@@ -127,7 +127,7 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 | `fill.neutral.faint` | `--semantic-color-fill-neutral-faint` | #ffffff | Card background |
 | `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` | #d2d2d2 | Card border + toolbar search border |
 | `foreground.neutral.bold` | `--semantic-color-foreground-neutral-bold` | #202020 | Page heading, card title |
-| `foreground.neutral.medium` | `--semantic-color-foreground-neutral-medium` | #484848 | Page subtitle |
+| `foreground.neutral.subtle` | `--semantic-color-foreground-neutral-subtle` | #484848 | Page subtitle |
 | `foreground.neutral.subtle` | `--semantic-color-foreground-neutral-subtle` | #606060 | Section heading, card body, search placeholder |
 | `fill.action.primary-dim.rest` | `--semantic-color-fill-action-primary-dim-rest` | #eef2fb | Active filter chip bg |
 | `foreground.action.primary.rest` | `--semantic-color-foreground-action-primary-rest` | #3555a0 | Active tab, active filter chip text |
@@ -238,7 +238,7 @@ Optional. When present, renders above the PageHeading.
 - **Title:** `heading.page.base.semibold` — 24px / 600 / 30px line-height / 0.1px tracking
   - Color: `foreground.neutral.bold` = #202020
 - **Subtitle:** `text.body.base.regular` — 16px / 400 / 22px / 0.1px tracking
-  - Color: `foreground.neutral.medium` = #484848
+  - Color: `foreground.neutral.subtle` = #484848
 - **Padding:** top 8px, bottom 16px, gap 8px between title and subtitle
 - **Trailing actions slot:** right-aligned, contains action buttons (Button DS component)
 

@@ -48,14 +48,14 @@ export const T = {
   // OrgSwitcher trigger (reconciled to Figma node 40006819:14581, 2026-08-06):
   // org name uses Foreground/Neutral/Bold, chevron uses Foreground/Neutral/Bold.
   orgText:        SCD("foreground-neutral-bold", "#eceaf3"),
-  orgChevron:     SCD("foreground-neutral-medium", "rgba(255,255,255,0.8)"),
+  orgChevron:     SCD("foreground-neutral-subtle", "rgba(255,255,255,0.8)"),
   avatarBg:       SCL("fill-accent-amethyst-medium", "#dcd9ef"),
   avatarText:     SCL("foreground-accent-amethyst-contrast", "#221e3f"),
   // White dropdown-menu surface — tracks fill-neutral-light (now warm-neutral-0).
   panelBg:        SCL("fill-neutral-faint", "#ffffff"),
   activeItem:     SCL("fill-action-primary-dim-rest", "#eef2fb"),
   itemText:       SCL("foreground-neutral-bold", "#252525"),
-  itemTextBase:   SCL("foreground-neutral-medium", "#484848"),
+  itemTextBase:   SCL("foreground-neutral-subtle", "#484848"),
   itemMeta:       SCL("foreground-neutral-subtle", "#6b6b6b"),
   signOut:        SCL("foreground-action-status-negative-rest", "#c0392b"),
   // Token gaps (no semantic token exists yet — flagged P2 in the pipeline report):

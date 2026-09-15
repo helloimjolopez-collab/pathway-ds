@@ -324,7 +324,7 @@ export const TokensForeground = () => (
     rows={[
       { token: "foreground.action.mono.rest",         usage: "Trigger label and chevron, all interaction states" },
       { token: "foreground.neutral.bold",      usage: "Dropdown org name" },
-      { token: "foreground.neutral.medium",    usage: "Dropdown secondary line" },
+      { token: "foreground.neutral.subtle",    usage: "Dropdown secondary line" },
       { token: "foreground.neutral.subtle",    usage: "Dropdown section label" },
     ]}
   />

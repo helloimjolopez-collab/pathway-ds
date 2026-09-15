@@ -160,7 +160,12 @@ function measure(node) {
  * Checking one well-populated ladder is enough. If the comparator regresses it
  * regresses for all of them.
  */
-const LADDER_EXPECTED = ["white", "xlight", "faint", "subtle", "light", "medium", "contrast", "bold"];
+// Must stay in step with LADDER in src/stories/components/tokenOrder.js — that
+// module decides the order, this list only asserts it was applied. Simplified
+// 2026-09-14: white -> mono, subtle -> dim, medium -> subtle, light deleted.
+// `xlight` is still here because it is still in the panel, not because it is
+// wanted; it is 2.92:1 on canvas and slated for deletion.
+const LADDER_EXPECTED = ["mono", "xlight", "faint", "dim", "subtle", "contrast", "bold"];
 
 function checkLadderOrder(node) {
   const printed = (node.textContent || "").match(/--semantic-color-[a-z0-9-]+/g) || [];

@@ -141,7 +141,7 @@ function ScreenContent({ title, subtitle }) {
           <p style={{
             marginTop: 8,
             fontSize: 16, fontWeight: 400, lineHeight: "22px", letterSpacing: "0.1px",
-            color: "var(--semantic-color-foreground-neutral-medium, #484848)",
+            color: "var(--semantic-color-foreground-neutral-subtle, #484848)",
           }}>{subtitle}</p>
         )}
       </div>

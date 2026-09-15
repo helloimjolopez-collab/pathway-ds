@@ -454,7 +454,7 @@ Lowercase kebab-case for component folders and files: `components/sidenav/sidena
 
 ### 8.2 Token names
 
-Lowercase with dots in JSON (`semantic-color.light-mode.foreground.neutral.medium`); style-dictionary emits hyphens for CSS (`--semantic-color-foreground-neutral-medium`). Components consume the CSS variable form.
+Lowercase with dots in JSON (`semantic-color.light-mode.foreground.neutral.subtle`); style-dictionary emits hyphens for CSS (`--semantic-color-foreground-neutral-subtle`). Components consume the CSS variable form.
 
 ### 8.3 Component prop names
 

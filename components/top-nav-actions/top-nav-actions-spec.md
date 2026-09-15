@@ -125,7 +125,7 @@ All semantic. Trigger/inline icons sit on the **dark** nav surface (dark-mode co
 | Ellipsis (open) | bg | `dark-mode.fill.action.primary-dim.pressed` | `rgba(255,255,255,0.08)` |
 | Menu panel | surface | `light-mode.fill.neutral.faint` | `#ffffff` |
 | Menu item | label | `light-mode.foreground.neutral.bold` | `#252525` |
-| Menu item | leading icon | `light-mode.foreground.neutral.medium` | `#484848` |
+| Menu item | leading icon | `light-mode.foreground.neutral.subtle` | `#484848` |
 | Menu item | hover/focus bg | `light-mode.fill.action.primary-dim.rest` | `#eef2fb` |
 
 | Geometry | Value | Token |

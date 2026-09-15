@@ -150,7 +150,7 @@ Hover, focus, and pressed states show on the **state-layer** (44×44px backgroun
 | State-layer fill | Checked hover | `fill.action.primary-dim.hover` | `--semantic-color-fill-action-primary-dim-hover` |
 | State-layer fill | Checked focused | `fill.action.primary-dim.hover` | `--semantic-color-fill-action-primary-dim-hover` |
 | State-layer fill | Checked pressed | `fill.action.primary-dim.pressed` | `--semantic-color-fill-action-primary-dim-pressed` |
-| Label text | All | `foreground.neutral.medium` | `--semantic-color-foreground-neutral-medium` |
+| Label text | All | `foreground.neutral.subtle` | `--semantic-color-foreground-neutral-subtle` |
 | Border radius | Box | `cornerradius.xsmall` | `--semantic-layout-units-cornerradius-xsmall` |
 
 ### 5.2 Error (negative) — error unchecked / error checked
@@ -207,7 +207,7 @@ derived file.
 
 ### Label
 - Font: Red Hat Text, 400 weight, 14px, line-height 20px
-- Colour: `foreground.neutral.medium`
+- Colour: `foreground.neutral.subtle`
 - 16px gap between box and label
 
 ### Spacing
@@ -266,7 +266,7 @@ Standard focused state: browser default outline or design system focus ring — 
 
 ### Contrast
 - Checked fill (`fill.action.primary.rest` = `#345499`) on white: ≥ 3:1 for non-text UI (WCAG 1.4.11 ✓)
-- Label text (`foreground.neutral.medium` = `#4b4b4b`) on white: ≥ 4.5:1 (WCAG 1.4.3 ✓)
+- Label text (`foreground.neutral.subtle` = `#4b4b4b`) on white: ≥ 4.5:1 (WCAG 1.4.3 ✓)
 - Error fill (`fill.action.status.negative.rest` = `#9d2d2d`) on white: ≥ 3:1 ✓
 
 ### Touch target

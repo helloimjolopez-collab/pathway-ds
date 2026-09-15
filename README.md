@@ -7,23 +7,24 @@ Design system for Ministry Brands Amplify. Tokens + components + specifications,
 
 ## Using the tokens
 
-**The colour contract is 298 names. Your full working vocabulary is 400.**
+**The colour contract is 290 names. Your full working vocabulary is 400.**
 
 That is the number worth knowing, because adding up every declaration in the token
-folder gives 1,082 and the retired `tokens.css` used to emit 2,338. Neither is the
+folder gives 1,066 and the retired `tokens.css` used to emit 2,338. Neither is the
 contract. The difference is that primitives ship but are not named, and the modes share
 one name set rather than each having their own.
 
 | | Count | Name these? |
 |---|---|---|
-| Colour (`themes/light.css`, `themes/midnight.css` — same names) | **298** | Yes |
+| Colour (`themes/light.css`, `themes/midnight.css` — same names) | **290** | Yes |
 | Type scale (`type.css`) | 41 | Yes |
 | Spacing, radii, borders (`layout.css`) | 39 | Yes |
 | Motion (`motion.css`) | 17 | Yes |
+| Sheet and TopNav padding (`layout-responsive.css`) | 8 | Yes |
 | Breakpoints (`breakpoints.css`) | 5 | Yes |
 | **Working vocabulary** | **400** | |
 | Raw ramps (`primitives.css`) | 350 | **No** — but you must load it |
-| Component metrics (`layout-contextual.css`) | 34 | This repo's components |
+| Component metrics (`layout-contextual.css`) | 26 | This repo's components |
 
 **The CSS lives in [`src/tokens/`](src/tokens/), and that folder has its own README**
 covering load order, theming, the primitives question and the traps. Read it before

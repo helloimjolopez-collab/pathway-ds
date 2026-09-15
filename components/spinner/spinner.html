@@ -65,23 +65,34 @@
   /* Token binding — every valid combination is an explicit rule. Enumerating
      them (rather than constructing a var name from attributes with CSS
      concatenation, which CSS can't do) guarantees only valid tones work.    */
-  .pds-spinner[data-tone="neutral"][data-emphasis="light"]    { color: var(--semantic-color-foreground-neutral-light); }
+  .pds-spinner[data-tone="neutral"][data-emphasis="light"]    { color: var(--semantic-color-foreground-neutral-faint); }
   .pds-spinner[data-tone="neutral"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-neutral-subtle); }
-  .pds-spinner[data-tone="neutral"][data-emphasis="base"]     { color: var(--semantic-color-foreground-neutral-medium); }
+  .pds-spinner[data-tone="neutral"][data-emphasis="base"]     { color: var(--semantic-color-foreground-neutral-subtle); }
   .pds-spinner[data-tone="neutral"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-neutral-contrast); }
   .pds-spinner[data-tone="neutral"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-neutral-bold); }
 
-  .pds-spinner[data-tone="brand"][data-emphasis="light"]    { color: var(--semantic-color-foreground-brand-light); }
-  .pds-spinner[data-tone="brand"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-brand-faint); }
-  .pds-spinner[data-tone="brand"][data-emphasis="base"]     { color: var(--semantic-color-foreground-brand-medium); }
-  .pds-spinner[data-tone="brand"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-brand-bold); }
-  .pds-spinner[data-tone="brand"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-brand-bold); }
+  /* `brand` has no emphasis ramp any more, deliberately. Foreground/Brand was
+     deleted from the panel on 2026-09-14: a brand-coloured foreground now
+     exists ONLY as an action foreground, the naked primary button. There is one
+     such value, so all five emphases resolve to it.
 
-  .pds-spinner[data-tone="info"][data-emphasis="light"]    { color: var(--semantic-color-foreground-brand-light); }
-  .pds-spinner[data-tone="info"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-brand-faint); }
-  .pds-spinner[data-tone="info"][data-emphasis="base"]     { color: var(--semantic-color-foreground-brand-medium); }
-  .pds-spinner[data-tone="info"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-brand-bold); }
-  .pds-spinner[data-tone="info"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-brand-bold); }
+     Do NOT "restore the ramp" from Fill/Brand or Stroke/Brand. Stroke/Brand
+     runs Brand/0 to Brand/200, near-white to pale, so a spinner painted from it
+     is invisible on canvas; and Fill/* on `color` is a category error (§6). */
+  .pds-spinner[data-tone="brand"][data-emphasis="light"]    { color: var(--semantic-color-foreground-action-primary-rest); }
+  .pds-spinner[data-tone="brand"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-action-primary-rest); }
+  .pds-spinner[data-tone="brand"][data-emphasis="base"]     { color: var(--semantic-color-foreground-action-primary-rest); }
+  .pds-spinner[data-tone="brand"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-action-primary-rest); }
+  .pds-spinner[data-tone="brand"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-action-primary-rest); }
+
+  /* `info` used to borrow the brand ramp, which is why info and brand spinners
+     were indistinguishable. Info is Amethyst now, system-wide, and
+     Foreground/Accent/Amethyst is a real five-rung ladder. */
+  .pds-spinner[data-tone="info"][data-emphasis="light"]    { color: var(--semantic-color-foreground-accent-amethyst-faint); }
+  .pds-spinner[data-tone="info"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-accent-amethyst-subtle); }
+  .pds-spinner[data-tone="info"][data-emphasis="base"]     { color: var(--semantic-color-foreground-accent-amethyst-medium); }
+  .pds-spinner[data-tone="info"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-accent-amethyst-contrast); }
+  .pds-spinner[data-tone="info"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-accent-amethyst-bold); }
 
   .pds-spinner[data-tone="warning"][data-emphasis="light"]    { color: var(--semantic-color-foreground-status-attention-faint); }
   .pds-spinner[data-tone="warning"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-status-attention-subtle); }

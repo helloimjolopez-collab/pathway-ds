@@ -65,9 +65,9 @@ const T = {
   textPressed: "var(--semantic-color-foreground-neutral-bold, #eceaf3)",
 
   // Chevron icon — reconciled to Figma (Foreground/Neutral/Bold = white 80%).
-  iconBase:    "var(--semantic-color-foreground-neutral-medium, rgba(255,255,255,0.8))",
-  iconHover:   "var(--semantic-color-foreground-neutral-medium, rgba(255,255,255,0.8))",
-  iconPressed: "var(--semantic-color-foreground-neutral-medium, rgba(255,255,255,0.8))",
+  iconBase:    "var(--semantic-color-foreground-neutral-subtle, rgba(255,255,255,0.8))",
+  iconHover:   "var(--semantic-color-foreground-neutral-subtle, rgba(255,255,255,0.8))",
+  iconPressed: "var(--semantic-color-foreground-neutral-subtle, rgba(255,255,255,0.8))",
 
   // Geometry
   radiusMedium: "var(--semantic-layout-units-cornerradius-medium, 8px)",
@@ -473,7 +473,7 @@ const PANEL_T = {
   header:    "var(--semantic-color-foreground-neutral-subtle, #606060)",
   border:    "var(--semantic-color-stroke-neutral-faint, #ededed)",
   name:      "var(--semantic-color-foreground-neutral-bold, #202020)",
-  icon:      "var(--semantic-color-foreground-neutral-medium, #949494)",
+  icon:      "var(--semantic-color-foreground-neutral-subtle, #949494)",
   logoBg:    "var(--semantic-color-fill-brand-medium, #2d4889)",
   rowActive: "var(--semantic-color-fill-action-primary-dim-rest, #eef2fb)",
 };

@@ -104,7 +104,7 @@
     "title.text": "--semantic-color-foreground-neutral-bold",
     "title.font-size": "--semantic-type-font-size-xxl (=24)",
     "title.font-weight": "--semantic-type-weight-semibold (=600)",
-    "subtitle.text": "--semantic-color-foreground-neutral-medium",
+    "subtitle.text": "--semantic-color-foreground-neutral-subtle",
     "subtitle.font-size": "--semantic-type-font-size-r (=16)"
   },
   "section-heading": {

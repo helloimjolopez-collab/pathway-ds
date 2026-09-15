@@ -13,7 +13,7 @@ If a documented component exists for what you're building, **use the component**
 2. **Semantic colour token names follow `Role / Scope / Variant / State`.** Examples: `Fill/Brand/Contrast`, `Foreground/Action/Secondary/Pressed`, `Foreground/Action/Primary/Hover`. Type token names follow `Category/Subcategory/Size/Weight` (e.g. `Heading/Display/XL/Bold`, `Label/Button/Base`). Layout token names follow `Category/Size` (e.g. `BorderWidth/Base`, `CornerRadius/Medium`). If you propose a name that isn't in this file, it doesn't exist — look it up.
 
 3. **There are three scopes:** `Static`, `Action`, and `Contextual`.
-   - `Static` — fixed meaning across the whole product, not tied to interaction state (e.g. `Fill/Brand/Contrast = #2d4889`, `Foreground/Neutral/White = #ffffff`).
+   - `Static` — fixed meaning across the whole product, not tied to interaction state (e.g. `Fill/Brand/Contrast = #2d4889`, `Foreground/Neutral/Mono = #ffffff`).
    - `Action` — for interactive elements; always come with states (`Base`, `Hover`, `Pressed`, `Disabled`) and variants (`Primary`, `Secondary`, `Tertiary`). Use these on buttons, links, focus rings, and interactive controls (e.g. `Fill/Action/Primary/Rest`, `Fill/Action/Primary/Hover`, `Stroke/Action/Primary/Rest`).
    - `Contextual` — scoped to a specific component family; they may share hex values with other scopes today but are kept separate so they can diverge independently (e.g. `Fill/Action/Selection/Selected`, `Foreground/Action/Secondary/Hover`).
 
@@ -316,7 +316,7 @@ Primitives are building blocks for *the design system itself*. Components never 
 
 **✅ Semantic token**
 ```css
-color: var(--semantic-color-foreground-brand-medium);
+color: var(--semantic-color-foreground-action-primary-rest);
 ```
 
 **❌ Invented token name**

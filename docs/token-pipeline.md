@@ -219,13 +219,64 @@ Or as one step once the dump is in place:
 npm run sync-from-figma
 ```
 
-`build-dist` runs two guards, and both are build failures rather than warnings:
+### 5.1 The dump format
+
+Pipe-delimited. A pipe cannot appear in a Figma variable name; a tab can be
+mangled in transit, which is why this is not really TSV despite the extension.
+
+```
+#T|1065                                     total data rows expected
+#M|Primitive: Color|Mode 1|COLOR            one per collection
+#M|Semantic: Color|Light Mode~Midnight Mode|COLOR
+#M|Primitive: Type|Value|MIXED              collection with more than one type
+#G|Semantic: Color|Light Mode               group marker: collection + mode
+Fill/Action/Primary/Rest|@Brand/450         alias, @-prefixed
+Cool Neutral/0 @ 6%|#ffffff/0.06            alpha as hex/float
+~FLOAT|Weight/400|400                       per-row type, MIXED collections only
+Font Size/R|@Primitive: Type::Size/16       collection-qualified alias
+```
+
+Two of those spellings exist because of bugs found on 2026-09-14, and both are
+worth knowing before you write a dumper:
+
+- **`MIXED` and the `~TYPE|` row prefix.** `#M` used to give a whole collection
+  one type taken from its first variable. `Primitive: Type` is 5 STRING and 74
+  FLOAT, `Semantic: Type` is 1 STRING and 40 FLOAT, and in both the first
+  variable is `Family/Brand` — a STRING. So 114 numbers were typed as strings,
+  Style Dictionary's px transform skipped them, and the CSS read
+  `letter-spacing: 0.3` and `line-height: 48`. Unitless. A browser drops the
+  first and reinterprets the second as a ratio. It built clean and passed every
+  checker.
+- **`@<collection>::<name>`.** A Figma variable name is unique only *within* a
+  collection, and three names (`Family/Brand`, `Letter Spacing/Compact`,
+  `Letter Spacing/Wide`) exist in both type collections. A bare alias to one of
+  those is ambiguous; the assembler now refuses it rather than guessing.
+
+`assemble-figma-export.js` **refuses to run on a count mismatch** against `#T`,
+naming the offset to resume from. Never work around that by editing the total.
+
+### 5.2 The build guards
+
+`build-dist` runs these, and every one is a build failure rather than a warning:
 
 - **`check-demo-tokens.js`** verifies every component demo links the real built
   CSS, inlines no token declarations of its own, and references only tokens that
   exist. It checks `var()` references, `t("…")` calls, and names built by the
   `c()` / `u()` helpers. All three matter: a hand-copied token subset drifts
   silently, and a wrong colour looks like a design decision rather than a bug.
+- **`check-token-refs.js`** expands the helper templates in code and resolves
+  the resulting names against the contract.
+- **`check-token-names.js`** checks token names written as *prose*, in all three
+  shapes a document might use: slash (`Fill/Action/Primary/Rest`), dash
+  (`--semantic-color-fill-action-primary-rest`) and dot
+  (`fill.action.primary.rest`).
+- **`check-state-distinctness.js`** fails when `rest`, `hover` and `pressed` in
+  one group resolve to the same primitive. Every other check above asks whether
+  a NAME resolves; none can see that two names hold the same VALUE, which is how
+  three groups shipped a hover that painted exactly its own rest.
+- **`check-story-yield.js`** renders each docs generator under jsdom and asserts
+  a minimum row count, because a filter that matches nothing produces a valid,
+  empty, clean-building page.
 - **`check-secrets.js`** fails on any credential in a tracked file. This exists
   because a codegen tool read the git remote URL, found an embedded token, and
   wrote it into seven generated files with no warning.

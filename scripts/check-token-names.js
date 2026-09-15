@@ -265,6 +265,27 @@ const RETIRED_EXAMPLES = new Set([
   "--semantic-color-light-mode-icon-static-neutral-base",
 ]);
 
+// Slash-form names that documents legitimately QUOTE as retired.
+//
+// This set exists because of a failure mode worth naming: on 2026-09-14 the
+// Spinner's brand tone was re-pointed away from the deleted Foreground/Brand
+// group, and the code comments and spec notes explaining WHY it was deleted
+// immediately failed this checker. The sentences were true; the checker was
+// reading the subject of a sentence as a reference to a live token. That is the
+// same shape of mistake as the earlier bulk rename, which turned true sentences
+// about retired names into false ones by rewriting them.
+//
+// So a name belongs here when a document names it in order to say it is gone.
+// It does NOT belong here to silence a genuine stale reference — if it starts
+// turning up in documents that USE it rather than discuss it, the reference is
+// the bug, not the check.
+const RETIRED_SLASH_EXAMPLES = new Set([
+  // Deleted 2026-09-14. A brand-coloured foreground now exists only as an
+  // action foreground (the naked primary button). The spinner's CSS, spec and
+  // MDX all name the group to explain why `tone="brand"` lost its ramp.
+  "Foreground/Brand",
+]);
+
 
 // "Primary Dim" in prose is the token whose CSS name is primary-dim, which in
 // slash form is Primary/Dim. So a spaced segment has to be tried BOTH ways:
@@ -326,7 +347,7 @@ for (const file of files) {
 
   for (const m of txt.matchAll(NAME_RE)) {
     const name = m[0].replace(/[\s-]+$/, "");
-    if (TYPE_STYLE.test(name) || ALLOW.has(name)) { skipped++; continue; }
+    if (TYPE_STYLE.test(name) || ALLOW.has(name) || RETIRED_SLASH_EXAMPLES.has(name)) { skipped++; continue; }
     scanned++;
     if (isLive(name)) { valid++; continue; }
     if (!stale.has(file)) stale.set(file, new Map());

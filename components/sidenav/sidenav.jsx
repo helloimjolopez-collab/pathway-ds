@@ -310,7 +310,7 @@ export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }
 
 // ─── SectionLabel ─────────────────────────────────────────────────────────────
 // Figma node 40006794-5977 — building block used in CollapsedPopover headers.
-// Tokens: Foreground/Neutral/Light (#7b7b7b), Label/Section/Small/Semibold
+// Tokens: Foreground/Neutral/Subtle (#313131), Label/Section/Small/Semibold
 //         (11px / 600 / 16px / 0.6px letter-spacing, uppercase)
 // Padding: Padding/Tight (12px left), Padding/XTight (8px vertical)
 export function SectionLabel({ label }) {

@@ -114,7 +114,7 @@
         "foreground.action.secondary.rest",
         "foreground.action.secondary.hover",
         "foreground.action.secondary.pressed",
-        "foreground.neutral.light",
+        "foreground.neutral.faint",
         "foreground.neutral.subtle",
         "foreground.action.secondary.rest",
         "foreground.action.secondary.hover",
@@ -265,7 +265,7 @@
           "stroke.action.disabled",
           "foreground.action.mono.rest",
           "foreground.action.mono.rest",
-          "foreground.neutral.medium",
+          "foreground.neutral.subtle",
           "cornerradius.small"
         ],
         "missing": [

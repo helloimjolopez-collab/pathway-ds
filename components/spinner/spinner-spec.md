@@ -293,20 +293,37 @@ Spinner's colour API is **locked to the `foreground.*` semantic family**. The co
 
 #### 7.1.1 Allowed `tone` values
 
-Verified against `tokens/pathway-design-tokens.json` → `semantic.light-mode.color.foreground.static`:
+Read out of `src/tokens/themes/light.css` on 2026-09-14 rather than transcribed:
+every row below is the token the spinner CSS actually binds at
+`data-emphasis="base"`, and the primitive and hex it resolves to today.
 
-| `tone` | Semantic token family | Default-emphasis primitive (`base`) | Resolved hex |
+| `tone` | Token bound at `base` | Primitive | Resolved hex |
 |---|---|---|---|
-| `neutral` *(default)* | `foreground.neutral.*` | `cool-neutral.150` | `#4b4b4b` |
-| `brand` | `foreground.brand.*` | `brand.300` | `#3555a0` |
-| `info` | `foreground.brand.medium.*` | `brand.90` | `#5e7dc9` |
-| `warning` | `foreground.status.attention.medium.*` | `saffron.80` | `#d3aa43` |
-| `danger` | `Foreground/Status/Severe/*` | `Orange/400` | `#c14d0f` |
-| `negative` | `foreground.status.negative.medium.*` | `red.100` | `#c84040` |
-| `positive` | `foreground.status.positive.medium.*` | `green.70` | `#558f5c` |
-| `accent-amethyst` | `foreground.accent.amethyst.*` | `amethyst.80` | `#736baa` |
-| `accent-jade` | `foreground.accent.jade.*` | `accent-jade.80` | `#1a8e84` |
-| `accent-seabreeze` | `foreground.accent.seabreeze.*` | `seabreeze.60` | `#4ba8cb` |
+| `neutral` *(default)* | `foreground.neutral.subtle` | `cool-neutral-600` | `#313131` |
+| `brand` | `foreground.action.primary.rest` | `brand-550` | `#2d4889` |
+| `info` | `foreground.accent.amethyst.medium` | `amethyst-700` | `#353063` |
+| `warning` | `foreground.status.attention.medium` | `saffron-700` | `#342d21` |
+| `danger` | `foreground.status.negative.medium` | `red-700` | `#722121` |
+| `negative` | `foreground.status.negative.medium` | `red-700` | `#722121` |
+| `positive` | `foreground.status.positive.medium` | `green-700` | `#174f26` |
+| `accent-amethyst` | `foreground.accent.amethyst.medium` | `amethyst-700` | `#353063` |
+| `accent-jade` | `foreground.accent.jade.medium` | `jade-700` | `#10423b` |
+| `accent-seabreeze` | `foreground.accent.seabreeze.medium` | `seabreeze-700` | `#185167` |
+
+> **`brand` no longer has an emphasis ramp.** `Foreground/Brand` was deleted from
+> the Variables panel on 2026-09-14: a brand-coloured foreground now exists only
+> as an action foreground, which is the naked primary button. So all five
+> emphases on `tone="brand"` resolve to the single value above and the emphasis
+> control is inert for that tone. `Fill/Brand` and `Stroke/Brand` are not
+> substitutes — `Stroke/Brand` runs `Brand/0` to `Brand/200`, near-white to pale.
+
+> **`danger` and `negative` are the same token.** Both bind
+> `foreground.status.negative.medium`. The two names are kept because both are in
+> use by consumers, but there is one colour, not two.
+
+> **`info` stopped impersonating brand.** It used to borrow the brand ramp, which
+> is why info and brand spinners were indistinguishable. Info is Amethyst now,
+> system-wide.
 
 > **Note on "accent":** there is no single `accent` tone in the token file; accent is split into three families (`accent-amethyst`, `accent-jade`, `accent-seabreeze`), each of which is a distinct semantic tone. The spinner exposes all three.
 
@@ -337,11 +354,11 @@ Examples:
 
 | `tone` | `emphasis` | CSS variable | Token path |
 |---|---|---|---|
-| `neutral` | `base` *(defaults)* | `--semantic-color-foreground-neutral-medium` | `foreground.neutral.medium` |
-| `brand` | `bold` | `--semantic-color-foreground-brand-bold` | `foreground.brand.bold` |
-| `accent-jade` | `light` | `--semantic-color-foreground-accent-jade-faint` | `foreground.accent.jade.subtle` |
+| `neutral` | `base` *(defaults)* | `--semantic-color-foreground-neutral-subtle` | `foreground.neutral.subtle` |
+| `brand` | any | `--semantic-color-foreground-action-primary-rest` | `foreground.action.primary.rest` |
+| `accent-jade` | `light` | `--semantic-color-foreground-accent-jade-faint` | `foreground.accent.jade.faint` |
 
-The Figma source node authors the spinner at `foreground.neutral.medium` (`#4b4b4b`). That is the correct default for a generic, context-free spinner.
+The Figma source node authors the spinner at `foreground.neutral.subtle` (`#313131`). That is the correct default for a generic, context-free spinner.
 
 #### 7.1.4 Dark mode
 
@@ -532,7 +549,14 @@ The `data-tone`/`data-emphasis` attributes are what CSS uses to resolve the corr
 </button>
 ```
 
-> **⚠ Gap:** A brand-filled primary button wants a white spinner, but `foreground.*` has no inverse track — the closest match is `neutral.light` (`#7b7b7b`). This is a known gap; see §11. Until an inverse track is added, either (a) use `neutral.light` and accept the lower contrast, or (b) use a different loading pattern (disabled button with a text-only "Saving…" label).
+> **⚠ Gap, now half closed:** a brand-filled primary button wants a white
+> spinner. The token for that exists as of 2026-09-14 —
+> `foreground.neutral.mono` is `#ffffff` in both Light and Midnight, which is
+> exactly an inverse track. What is still missing is a way to *reach* it: the
+> `neutral` tone's emphasis ramp runs `faint → dim → subtle → contrast → bold`
+> and never touches `mono`. Adding a `mono` tone is five CSS rules plus an
+> argType; until then, use a disabled button with a text-only "Saving…" label
+> rather than an under-contrast spinner. See §11.
 
 ### 9.4 Inline in running copy
 
@@ -551,7 +575,7 @@ The `data-tone`/`data-emphasis` attributes are what CSS uses to resolve the corr
 </p>
 ```
 
-Size (`1em` = 16px) is inherited from the paragraph's font-size. The paragraph's `color` is **not** used by the spinner — the spinner is painted by `foreground.brand.medium` regardless of what colour the surrounding text is.
+Size (`1em` = 16px) is inherited from the paragraph's font-size. The paragraph's `color` is **not** used by the spinner — the spinner is painted by `foreground.action.primary.rest` regardless of what colour the surrounding text is.
 
 ### 9.5 Explicit variant via `style` prop (forward-compat)
 
@@ -595,7 +619,9 @@ Hard rules. Breaking any of these breaks the component's contract.
 | ~~`tone="danger"` no longer matches its token family~~ | RESOLVED 2026-09-07 | Status/Alert was renamed to Status/Severe, so the tone and the token family agree. |
 | `spinner.html` redeclares semantic tokens from primitives | MEDIUM (superseded: the demo now links the contract, verified by `scripts/check-demo-tokens.js`) | Lines ~98–102 define `--semantic-color-light-mode-icon-static-*` locally as `var(--primitive-color-orange-*)` rather than consuming `tokens.css`. That is a §6 violation and it means the demo does not track token changes. It also masked the `danger` rename, since the demo defines its own copies. |
 | No `motion` tokens in `pathway-design-tokens.json` | MEDIUM | Duration (`1s`) and easing (`linear`) are hard-coded. Recommend adding a motion token category (see §7.3). Blocks cross-component consistency, not this component's ship. |
-| No `foreground.*` inverse track | MEDIUM | Spinners sitting on dark/brand-filled surfaces (primary buttons, brand banners) have no matching semantic token — the closest is `neutral.light` (`#7b7b7b`). Recommend adding an inverse track or a dedicated `foreground.action.mono.rest.*` family. See §9.3. |
+| No `mono` tone on the spinner | MEDIUM | The inverse *token* now exists: `foreground.neutral.mono` is `#ffffff` in both modes. The spinner cannot reach it, because the `neutral` emphasis ramp runs `faint → dim → subtle → contrast → bold`. Fix is a `mono` tone: five CSS rules plus an argType. See §9.3. |
+| `warning` `base` is nearly black | LOW | `foreground.status.attention.medium` is `saffron-700` (`#342d21`). That is correct for *text* on a pale attention fill, which is what the Foreground/Status ladder is built for, but as a graphic a "warning" spinner reads as dark brown rather than amber. Retuning it means picking a different rung, not a different token. |
+| `warning`, `danger`, `negative`, `positive` bind static `Foreground/Status/*` | HIGH | That group is slated for deletion — status is moving into Action groups only. When it goes, four spinner tones lose their tokens. Re-point them at `foreground.action.status.*` in the same change. |
 | No dark-mode runtime switch | MEDIUM | The token file emits `dark-mode` variables but no theme-switching mechanism exists yet. Spinner binds `light-mode` only. Revisit when the broader DS picks a theme-switching strategy (`[data-theme="dark"]`, `prefers-color-scheme`, …). |
 | No semantic `Component/Spinner/Size/*` scale | LOW | Sizes in §4.3 are advisory only. Adding named sizes would let teams reference `var(--component-spinner-size-s)` etc. Not a blocker. |
 | Only one `style` value exists | LOW | `progress-activity` is the only style today. Add more only when a real use case appears — don't speculate. |

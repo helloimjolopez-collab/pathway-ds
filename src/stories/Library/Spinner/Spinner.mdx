@@ -88,19 +88,23 @@ Ten semantic tones, each one a real child of `foreground.static` in `tokens/path
 
 Every tone exposes the same five emphasis levels: `light` · `subtle` · `base` *(default)* · `contrast` · `bold`. Start with `base`. Use `light`/`subtle` when the spinner sits on a strongly tinted surface of the same tone (and the base would be too heavy); use `contrast`/`bold` only when `base` doesn't stand out enough. If you reach for `bold` often, the surface is probably wrong.
 
+`tone="brand"` is the exception: it has one value and the emphasis control does nothing. `Foreground/Brand` was removed from the Variables panel on 2026-09-14, because a brand-coloured foreground now exists only as an action foreground — the naked primary button — and there is exactly one of those.
+
 ### How the token resolves
 
 ```
-tone=brand + emphasis=base
+tone=neutral + emphasis=base
   ↓
---semantic-color-foreground-brand-medium
+--semantic-color-foreground-neutral-subtle
   ↓
---primitive-color-brand-300
+--primitive-color-cool-neutral-600
   ↓
-#3555a0
+#313131
 ```
 
-Consumers never see the primitive or the hex. The spinner wrapper sets `color: var(--semantic-color-foreground-{tone}-{emphasis})` via a `[data-tone][data-emphasis]` selector; the SVG strokes inherit that via `stroke: currentColor`. That's why "colour inheritance" works *inside* the component but doesn't leak from arbitrary parent elements.
+Consumers never see the primitive or the hex. The spinner wrapper sets `color:` to a semantic foreground token via a `[data-tone][data-emphasis]` selector; the SVG strokes inherit that via `stroke: currentColor`. That's why "colour inheritance" works *inside* the component but doesn't leak from arbitrary parent elements.
+
+The mapping is an explicit rule per pair rather than a name built by concatenation, so a tone's token family does not have to match its name — which is how `info` now resolves to Amethyst rather than to a brand tint.
 
 ---
 
