@@ -1313,7 +1313,7 @@
                 "$libraryName": "",
                 "$value": "{Brand.700}"
               },
-              "Black": {
+              "Dark": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
@@ -2299,6 +2299,66 @@
                     "$libraryName": "",
                     "$value": "{Warm Neutral.175}"
                   }
+                },
+                "Negative Dim": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Red.250}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Red.300}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Red.350}"
+                  }
+                },
+                "Positive Dim": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Green.400}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Green.500}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Green.600}"
+                  }
+                }
+              },
+              "Primary Dim": {
+                "Rest": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.250}"
+                },
+                "Hover": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.300}"
+                },
+                "Pressed": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.350}"
                 }
               }
             },
@@ -2989,37 +3049,37 @@
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
-                "$value": "{Brand.700}"
+                "$value": "{Brand.25}"
               },
               "Dim": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
-                "$value": "{Brand.600}"
+                "$value": "{Brand.50}"
               },
               "Subtle": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
-                "$value": "{Brand.550}"
+                "$value": "{Brand.100}"
               },
               "Contrast": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
-                "$value": "{Brand.450}"
+                "$value": "{Brand.400}"
               },
               "Bold": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
-                "$value": "{Brand.400}"
+                "$value": "{Brand.700}"
               },
-              "Black": {
+              "Dark": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
-                "$value": "{Brand.25}"
+                "$value": "{Brand.800}"
               }
             },
             "Negative": {
@@ -4001,6 +4061,66 @@
                     "$libraryName": "",
                     "$value": "{Warm Neutral.400}"
                   }
+                },
+                "Negative Dim": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Red.250}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Red.200}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Red.150}"
+                  }
+                },
+                "Positive Dim": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Green.400}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Green.350}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Green.300}"
+                  }
+                }
+              },
+              "Primary Dim": {
+                "Rest": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.200}"
+                },
+                "Hover": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.150}"
+                },
+                "Pressed": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.100}"
                 }
               }
             },

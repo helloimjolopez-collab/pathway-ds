@@ -1209,7 +1209,7 @@
             "$type": "color",
             "$value": "{primitive-color.brand.700}"
           },
-          "black": {
+          "dark": {
             "$type": "color",
             "$value": "{primitive-color.brand.800}"
           }
@@ -1895,6 +1895,48 @@
                 "$type": "color",
                 "$value": "{primitive-color.warm-neutral.175}"
               }
+            },
+            "negative-dim": {
+              "rest": {
+                "$type": "color",
+                "$value": "{primitive-color.red.250}"
+              },
+              "hover": {
+                "$type": "color",
+                "$value": "{primitive-color.red.300}"
+              },
+              "pressed": {
+                "$type": "color",
+                "$value": "{primitive-color.red.350}"
+              }
+            },
+            "positive-dim": {
+              "rest": {
+                "$type": "color",
+                "$value": "{primitive-color.green.400}"
+              },
+              "hover": {
+                "$type": "color",
+                "$value": "{primitive-color.green.500}"
+              },
+              "pressed": {
+                "$type": "color",
+                "$value": "{primitive-color.green.600}"
+              }
+            }
+          },
+          "primary-dim": {
+            "rest": {
+              "$type": "color",
+              "$value": "{primitive-color.brand.250}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{primitive-color.brand.300}"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{primitive-color.brand.350}"
             }
           }
         },
@@ -2377,27 +2419,27 @@
         "brand": {
           "faint": {
             "$type": "color",
-            "$value": "{primitive-color.brand.700}"
+            "$value": "{primitive-color.brand.25}"
           },
           "dim": {
             "$type": "color",
-            "$value": "{primitive-color.brand.600}"
+            "$value": "{primitive-color.brand.50}"
           },
           "subtle": {
             "$type": "color",
-            "$value": "{primitive-color.brand.550}"
+            "$value": "{primitive-color.brand.100}"
           },
           "contrast": {
             "$type": "color",
-            "$value": "{primitive-color.brand.450}"
+            "$value": "{primitive-color.brand.400}"
           },
           "bold": {
             "$type": "color",
-            "$value": "{primitive-color.brand.400}"
+            "$value": "{primitive-color.brand.700}"
           },
-          "black": {
+          "dark": {
             "$type": "color",
-            "$value": "{primitive-color.brand.25}"
+            "$value": "{primitive-color.brand.800}"
           }
         },
         "negative": {
@@ -3081,6 +3123,48 @@
                 "$type": "color",
                 "$value": "{primitive-color.warm-neutral.400}"
               }
+            },
+            "negative-dim": {
+              "rest": {
+                "$type": "color",
+                "$value": "{primitive-color.red.250}"
+              },
+              "hover": {
+                "$type": "color",
+                "$value": "{primitive-color.red.200}"
+              },
+              "pressed": {
+                "$type": "color",
+                "$value": "{primitive-color.red.150}"
+              }
+            },
+            "positive-dim": {
+              "rest": {
+                "$type": "color",
+                "$value": "{primitive-color.green.400}"
+              },
+              "hover": {
+                "$type": "color",
+                "$value": "{primitive-color.green.350}"
+              },
+              "pressed": {
+                "$type": "color",
+                "$value": "{primitive-color.green.300}"
+              }
+            }
+          },
+          "primary-dim": {
+            "rest": {
+              "$type": "color",
+              "$value": "{primitive-color.brand.200}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{primitive-color.brand.150}"
+            },
+            "pressed": {
+              "$type": "color",
+              "$value": "{primitive-color.brand.100}"
             }
           }
         },

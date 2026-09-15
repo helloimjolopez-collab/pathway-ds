@@ -12,7 +12,7 @@
  put a mode in a property name — that form came from tokens.css, retired
  2026-09-03, and resolves to nothing.
 
- Declares 258 custom properties.
+ Declares 267 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -65,7 +65,7 @@
   --semantic-color-fill-brand-subtle: var(--primitive-color-brand-100);
   --semantic-color-fill-brand-contrast: var(--primitive-color-brand-400);
   --semantic-color-fill-brand-bold: var(--primitive-color-brand-700);
-  --semantic-color-fill-brand-black: var(--primitive-color-brand-800);
+  --semantic-color-fill-brand-dark: var(--primitive-color-brand-800);
   --semantic-color-fill-negative-faint: var(--primitive-color-red-25);
   --semantic-color-fill-negative-dim: var(--primitive-color-red-50);
   --semantic-color-fill-negative-subtle: var(--primitive-color-red-75);
@@ -215,6 +215,15 @@
   --semantic-color-stroke-action-status-neutral-rest: var(--primitive-color-warm-neutral-125);
   --semantic-color-stroke-action-status-neutral-hover: var(--primitive-color-warm-neutral-150);
   --semantic-color-stroke-action-status-neutral-pressed: var(--primitive-color-warm-neutral-175);
+  --semantic-color-stroke-action-status-negative-dim-rest: var(--primitive-color-red-250);
+  --semantic-color-stroke-action-status-negative-dim-hover: var(--primitive-color-red-300);
+  --semantic-color-stroke-action-status-negative-dim-pressed: var(--primitive-color-red-350);
+  --semantic-color-stroke-action-status-positive-dim-rest: var(--primitive-color-green-400);
+  --semantic-color-stroke-action-status-positive-dim-hover: var(--primitive-color-green-500);
+  --semantic-color-stroke-action-status-positive-dim-pressed: var(--primitive-color-green-600);
+  --semantic-color-stroke-action-primary-dim-rest: var(--primitive-color-brand-250);
+  --semantic-color-stroke-action-primary-dim-hover: var(--primitive-color-brand-300);
+  --semantic-color-stroke-action-primary-dim-pressed: var(--primitive-color-brand-350);
   --semantic-color-stroke-focusring-base: var(--primitive-color-brand-200);
   --semantic-color-stroke-neutral-faint: var(--primitive-color-warm-neutral-50);
   --semantic-color-stroke-neutral-subtle: var(--primitive-color-warm-neutral-100);

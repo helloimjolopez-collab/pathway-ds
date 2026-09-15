@@ -59,8 +59,8 @@ tokens/pathway-design-tokens.json                        │
                              ▼
         src/tokens/primitives.css          350 raw ramp values — REQUIRED, the themes
                                            reference these via var()
-        src/tokens/themes/light.css        258 semantic colours, :root + [data-theme=light]
-        src/tokens/themes/midnight.css     the same 258 names under [data-theme=midnight]
+        src/tokens/themes/light.css        267 semantic colours, :root + [data-theme=light]
+        src/tokens/themes/midnight.css     the same 267 names under [data-theme=midnight]
         src/tokens/layout.css              39 layout tokens, breakpoint by media query
         src/tokens/layout-contextual.css   26 component metrics, same treatment
         src/tokens/type.css                41 type scale tokens
@@ -102,7 +102,7 @@ Load these eight, in this order:
 | File | Contains | Consume it? |
 |---|---|---|
 | `primitives.css` | 350 raw ramp values | **Required, but never referenced.** The themes point at these via `var()`, so the file must load or every colour resolves to nothing. Product code must never name a `--primitive-*` (§6) |
-| `themes/light.css` + `themes/midnight.css` | 258 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
+| `themes/light.css` + `themes/midnight.css` | 267 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
 | `layout.css` | 39 layout and spacing names, single-valued | **Yes.** The spacing contract |
 | `layout-responsive.css` | 8 names that genuinely change by breakpoint: Sheet padding, TopNav padding and height. Emitted with media queries | **Yes.** A developer cannot derive these from a responsive grid — the grid governs columns, not the chrome's padding |
 | `layout-contextual.css` | 26 component metrics (Button, Card, NavItem, focus ring) | Component internals. This repo's components use it; product code should not |
