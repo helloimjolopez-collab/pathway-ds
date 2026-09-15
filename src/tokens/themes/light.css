@@ -12,7 +12,7 @@
  put a mode in a property name — that form came from tokens.css, retired
  2026-09-03, and resolves to nothing.
 
- Declares 249 custom properties.
+ Declares 243 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -251,12 +251,6 @@
   --semantic-color-stroke-action-status-info-rest: var(--primitive-color-amethyst-75);
   --semantic-color-stroke-action-status-info-hover: var(--primitive-color-amethyst-100);
   --semantic-color-stroke-action-status-info-pressed: var(--primitive-color-amethyst-200);
-  --semantic-color-stroke-brand-faint: var(--primitive-color-brand-0);
-  --semantic-color-stroke-brand-dim: var(--primitive-color-brand-10);
-  --semantic-color-stroke-brand-subtle: var(--primitive-color-brand-25);
-  --semantic-color-stroke-brand-contrast: var(--primitive-color-brand-50);
-  --semantic-color-stroke-brand-bold: var(--primitive-color-brand-75);
-  --semantic-color-stroke-brand-boldest: var(--primitive-color-brand-150);
   --semantic-color-stroke-positive-faint: var(--primitive-color-green-0);
   --semantic-color-stroke-positive-dim: var(--primitive-color-green-25);
   --semantic-color-stroke-positive-subtle: var(--primitive-color-green-75);

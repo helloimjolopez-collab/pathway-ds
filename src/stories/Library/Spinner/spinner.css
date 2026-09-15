@@ -40,10 +40,11 @@
    value, so all five emphases resolve to it and the emphasis control is inert
    for this tone.
 
-   Do NOT "restore the ramp" by reaching for Fill/Brand or Stroke/Brand. They
-   still exist, but Stroke/Brand runs Brand/0 to Brand/200 - near-white to pale
-   - so a spinner painted from it is invisible on canvas, and Fill/* on a
-   `color` property is a category error (CLAUDE.md §6). */
+   Do NOT "restore the ramp" by reaching for Fill/Brand. It still exists, but
+   Fill/* on a `color` property is a category error (CLAUDE.md §6). The other
+   tempting option was the brand stroke ladder, and it is gone: deleted
+   2026-09-15, because a brand-coloured border always turned out to be either an
+   action border or a neutral one. */
 .pds-spinner[data-tone="brand"][data-emphasis="light"]    { color: var(--semantic-color-foreground-action-primary-rest); }
 .pds-spinner[data-tone="brand"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-action-primary-rest); }
 .pds-spinner[data-tone="brand"][data-emphasis="base"]     { color: var(--semantic-color-foreground-action-primary-rest); }

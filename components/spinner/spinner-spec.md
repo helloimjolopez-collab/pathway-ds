@@ -314,8 +314,10 @@ every row below is the token the spinner CSS actually binds at
 > the Variables panel on 2026-09-14: a brand-coloured foreground now exists only
 > as an action foreground, which is the naked primary button. So all five
 > emphases on `tone="brand"` resolve to the single value above and the emphasis
-> control is inert for that tone. `Fill/Brand` and `Stroke/Brand` are not
-> substitutes — `Stroke/Brand` runs `Brand/0` to `Brand/200`, near-white to pale.
+> control is inert for that tone. `Fill/Brand` is not a substitute: a fill token
+> on a `color` property is a category error. The brand stroke ladder was deleted
+> on 2026-09-15, because a brand-coloured border was always really an action
+> border or a neutral one.
 
 > **`danger` and `negative` are the same token.** Both bind
 > `foreground.negative.subtle`. The two names are kept because both are in

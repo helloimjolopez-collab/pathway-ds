@@ -2058,32 +2058,6 @@
             }
           }
         },
-        "brand": {
-          "faint": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.0}"
-          },
-          "dim": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.10}"
-          },
-          "subtle": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.25}"
-          },
-          "contrast": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.50}"
-          },
-          "bold": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.75}"
-          },
-          "boldest": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.150}"
-          }
-        },
         "positive": {
           "faint": {
             "$type": "color",
@@ -3200,32 +3174,6 @@
                 "$value": "{primitive-color.amethyst.500}"
               }
             }
-          }
-        },
-        "brand": {
-          "faint": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.800}"
-          },
-          "dim": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.700}"
-          },
-          "subtle": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.550}"
-          },
-          "contrast": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.500}"
-          },
-          "bold": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.400}"
-          },
-          "boldest": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.0}"
           }
         },
         "positive": {
