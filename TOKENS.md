@@ -1,6 +1,6 @@
 # Pathway tokens — start here
 
-**The colour contract is 267 names. Your full working vocabulary is 377.**
+**The colour contract is 249 names. Your full working vocabulary is 359.**
 
 This file exists at the repo root because the previous arrangement failed a real test: a
 developer went looking for "the token CSS", could not find it, and had no way to tell
@@ -39,14 +39,14 @@ error**.
 
 | File | Names | May I name these? |
 |---|---|---|
-| `themes/light.css` | **267** | **Yes** — this is the colour contract |
-| `themes/midnight.css` | 267 | Yes — the *same* names, different values |
+| `themes/light.css` | **249** | **Yes** — this is the colour contract |
+| `themes/midnight.css` | 249 | Yes — the *same* names, different values |
 | `type.css` | 41 | Yes |
 | `layout.css` | 39 | Yes |
 | `motion.css` | 17 | Yes |
 | `layout-responsive.css` | 8 | Yes — the only layout tokens with media queries |
 | `breakpoints.css` | 5 | Yes |
-| **Working vocabulary** | **377** | |
+| **Working vocabulary** | **359** | |
 | `primitives.css` | 350 | **No** — but you must load it |
 | `layout-contextual.css` | 26 | This repo's own components |
 
@@ -59,12 +59,12 @@ every consumable name machine-readably, if you want to lint against it. Those ar
 generated into `dist/`, which is not committed, so you will see them after
 `npm run build-dist` or inside the installed package.
 
-## Why 377 and not 1,020
+## Why 359 and not 984
 
-If you add up every declaration across the token folder you get 1,020. That number is
+If you add up every declaration across the token folder you get 984. That number is
 real and it is not the contract:
 
-- **The two theme files declare the same 267 names**, once each. One name, two values,
+- **The two theme files declare the same 249 names**, once each. One name, two values,
   chosen by selector. So they count once, not twice.
 - **350 of them are primitives** — infrastructure you load and never name, the same way
   the glyphs inside a font file are not part of your type scale.
