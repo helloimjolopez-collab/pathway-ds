@@ -144,13 +144,13 @@ TopNavSearch.Container               position relative, FIXED 48×48 footprint (
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `fill.neutral.faint` | `--semantic-color-fill-neutral-faint` | #ffffff | Bar background (all states except disabled) |
+| `fill.static.neutral.faint` | `--semantic-color-fill-static-neutral-faint` | #ffffff | Bar background (all states except disabled) |
 | `fill.action.primary-dim.rest` | `--semantic-color-fill-action-primary-dim-rest` | #eef2fb | Filter pill background when filter-active |
 | `fill.action.secondary.hover` | `--semantic-color-fill-action-secondary-hover` | rgba(17,17,17,0.02) | Icon pill hover state |
 | `fill.action.secondary.pressed` | `--semantic-color-fill-action-secondary-pressed` | #f6f6f6 | Icon pill pressed state |
 | `fill.action.primary.rest` | `--semantic-color-fill-action-primary-rest` | #3555a0 | Badge dot fill |
 | `fill.action.primary-dim.rest` | `--semantic-color-fill-action-primary-dim-rest` | rgba(160,181,230,0.08) | TopNavSearch collapsed button background (dark surface) |
-| `fill.brand.faint` | `--semantic-color-fill-brand-dim` | #f0f4ff | Page/demo surface |
+| `fill.static.brand.faint` | `--semantic-color-fill-static-brand-dim` | #f0f4ff | Page/demo surface |
 
 Disabled background: `Fill/Action/Disabled` (`--semantic-color-fill-action-disabled`). Resolved 2026-09-03 — the restructure added one shared Disabled per family, so the primitive fallback is gone.
 
@@ -158,7 +158,7 @@ Disabled background: `Fill/Action/Disabled` (`--semantic-color-fill-action-disab
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `stroke.neutral.subtle` | `--semantic-color-stroke-neutral-faint` | #f6f6f6 | Default border (0.75px) |
+| `stroke.static.neutral.subtle` | `--semantic-color-stroke-static-neutral-faint` | #f6f6f6 | Default border (0.75px) |
 | `stroke.action.primary.hover` | `--semantic-color-stroke-action-primary-hover` | #86a0dd | Hover border (1px) |
 | `stroke.action.primary.pressed` | `--semantic-color-stroke-action-primary-pressed` | #6e8bd4 | Focused / with-value / filter-active border (1px) |
 | `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` | #d2d2d2 | Cancel–filter divider (0.75px) |
@@ -172,8 +172,8 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `foreground.neutral.subtle` | `--semantic-color-foreground-neutral-subtle` | #606060 | Placeholder text |
-| `foreground.neutral.bold` | `--semantic-color-foreground-neutral-bold` | #202020 | Input value text |
+| `foreground.static.neutral.subtle` | `--semantic-color-foreground-static-neutral-subtle` | #606060 | Placeholder text |
+| `foreground.static.neutral.bold` | `--semantic-color-foreground-static-neutral-bold` | #202020 | Input value text |
 
 ### 3.4 Icon
 
@@ -278,13 +278,13 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 | State | Bar border | Bar bg | Icon colour | Text colour | Filter pip bg |
 |---|---|---|---|---|---|
-| **Idle** | `stroke.neutral.subtle` 0.75px | `fill.neutral.faint` | `foreground.action.secondary.rest` | placeholder: `foreground.neutral.subtle` | — |
-| **Hover** | `stroke.action.primary.hover` 1px | `fill.neutral.faint` | `foreground.action.secondary.hover` | (same) | — |
-| **Focused** | `stroke.action.primary.pressed` 1px | `fill.neutral.faint` | (same as hover) | (same) | — |
-| **With-value** | `stroke.action.primary.pressed` 1px | `fill.neutral.faint` | (base) | `foreground.neutral.bold` | — |
-| **Filter-active** | `stroke.action.primary.pressed` 1px | `fill.neutral.faint` | (base) | (placeholder or bold) | `fill.action.primary-dim.rest` |
+| **Idle** | `stroke.static.neutral.subtle` 0.75px | `fill.static.neutral.faint` | `foreground.action.secondary.rest` | placeholder: `foreground.static.neutral.subtle` | — |
+| **Hover** | `stroke.action.primary.hover` 1px | `fill.static.neutral.faint` | `foreground.action.secondary.hover` | (same) | — |
+| **Focused** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.faint` | (same as hover) | (same) | — |
+| **With-value** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.faint` | (base) | `foreground.static.neutral.bold` | — |
+| **Filter-active** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.faint` | (base) | (placeholder or bold) | `fill.action.primary-dim.rest` |
 | **Disabled** | primitive fallback 1px | primitive fallback | `foreground.action.disabled` | (38% opacity) | — |
-| **Error** | `stroke.action.status.negative.rest` 1px | `fill.neutral.faint` | `foreground.action.status.negative.rest` | (placeholder) | — |
+| **Error** | `stroke.action.status.negative.rest` 1px | `fill.static.neutral.faint` | `foreground.action.status.negative.rest` | (placeholder) | — |
 
 ### State logic rules
 
@@ -315,7 +315,7 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 - `.search__filter-wrap` carries the left-border divider. Token: `stroke.action.secondary.rest` (#d2d2d2), 0.75px, 4px padding-left.
 - The funnel icon button (`aria-label="Open filters"` or `aria-label="Open filters (filters active)"`) is inside.
-- A 6×6px dot badge sits `position: absolute; top: 1px; right: 1px` relative to the badge-wrap. Fill: `fill.action.primary.rest`. Border: 1.5px solid `fill.neutral.faint` (white ring). Visible only when `filterBadge = true`.
+- A 6×6px dot badge sits `position: absolute; top: 1px; right: 1px` relative to the badge-wrap. Fill: `fill.action.primary.rest`. Border: 1.5px solid `fill.static.neutral.faint` (white ring). Visible only when `filterBadge = true`.
 
 ### Badge
 
@@ -329,7 +329,7 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 - Touch target: height 48px, width 100% (or fixed 320px in TopNavSearch). Display flex-column, justify-center.
 - Pill inner: min-height 36px, border-radius 64px (full), overflow clip.
-- Background: `fill.neutral.faint` (#ffffff).
+- Background: `fill.static.neutral.faint` (#ffffff).
 
 ### 8.2 TopNavSearch container
 

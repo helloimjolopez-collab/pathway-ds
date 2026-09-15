@@ -144,13 +144,13 @@ Hover, focus, and pressed states show on the **state-layer** (44×44px backgroun
 | Box border | Unchecked pressed | `stroke.action.secondary.pressed` | `--semantic-color-stroke-action-secondary-pressed` |
 | Box border | Checked (all states) | same as fill | (border hidden under fill) |
 | Box border | Disabled unchecked | `stroke.action.disabled` | `--semantic-color-stroke-action-disabled` |
-| Checkmark / dash icon | Checked / indeterminate | `foreground.neutral.mono` | `--semantic-color-foreground-action-primary-rest` |
+| Checkmark / dash icon | Checked / indeterminate | `foreground.static.neutral.mono` | `--semantic-color-foreground-action-primary-rest` |
 | State-layer fill | Unchecked hover | `fill.action.secondary.hover` | `--semantic-color-fill-action-secondary-hover` |
 | State-layer fill | Unchecked focused | `fill.action.secondary.hover` | `--semantic-color-fill-action-secondary-hover` |
 | State-layer fill | Checked hover | `fill.action.primary-dim.hover` | `--semantic-color-fill-action-primary-dim-hover` |
 | State-layer fill | Checked focused | `fill.action.primary-dim.hover` | `--semantic-color-fill-action-primary-dim-hover` |
 | State-layer fill | Checked pressed | `fill.action.primary-dim.pressed` | `--semantic-color-fill-action-primary-dim-pressed` |
-| Label text | All | `foreground.neutral.subtle` | `--semantic-color-foreground-neutral-subtle` |
+| Label text | All | `foreground.static.neutral.subtle` | `--semantic-color-foreground-static-neutral-subtle` |
 | Border radius | Box | `cornerradius.xsmall` | `--semantic-layout-units-cornerradius-xsmall` |
 
 ### 5.2 Error (negative) — error unchecked / error checked
@@ -167,7 +167,7 @@ Hover, focus, and pressed states show on the **state-layer** (44×44px backgroun
 | Box border | Error unchecked focused | `stroke.action.status.negative.hover` |
 | Box border | Error unchecked pressed | `stroke.action.status.negative.pressed` |
 | Box border | Error disabled unchecked | `stroke.action.disabled` |
-| Checkmark icon | Error checked | `foreground.neutral.mono` |
+| Checkmark icon | Error checked | `foreground.static.neutral.mono` |
 | State-layer | Error unchecked hover | `fill.action.status.negative-dim.hover` |
 | State-layer | Error checked hover | `fill.action.status.negative-dim.hover` |
 
@@ -182,7 +182,7 @@ rework of 2026-09-03 closed the whole list, and most of it was never really a ga
 | `fill.action.secondaryinverse.{base,hover,pressed}` | The `*inverse` families were **deleted**, not pending. An inverted control is the same control inside a `[data-theme="midnight"]` region, so `fill.action.secondary.*` is the real token rather than a stand-in |
 | `stroke.action.secondaryinverse.base` | Same. Reads `stroke.action.secondary.rest` |
 | `stroke.action.secondary.disabled` | Disabled collapsed to ONE token per tier: `stroke.action.disabled` |
-| `icon.action.monoinverse.base` | Text and Icon merged into Foreground; a mark on a solid fill is `foreground.neutral.mono` |
+| `icon.action.monoinverse.base` | Text and Icon merged into Foreground; a mark on a solid fill is `foreground.static.neutral.mono` |
 | `border-radius.xs` = 4px | `--semantic-layout-units-cornerradius-small` **is** 4px. `cornerradius-xsmall` is 2px, so the old note recommending it as an equal-value fallback was wrong |
 | `border-width.m` = 1.5px | `--semantic-layout-units-borderwidth-medium` **is** 1.5px. The component no longer needs to hardcode it |
 
@@ -207,7 +207,7 @@ derived file.
 
 ### Label
 - Font: Red Hat Text, 400 weight, 14px, line-height 20px
-- Colour: `foreground.neutral.subtle`
+- Colour: `foreground.static.neutral.subtle`
 - 16px gap between box and label
 
 ### Spacing
@@ -266,7 +266,7 @@ Standard focused state: browser default outline or design system focus ring — 
 
 ### Contrast
 - Checked fill (`fill.action.primary.rest` = `#345499`) on white: ≥ 3:1 for non-text UI (WCAG 1.4.11 ✓)
-- Label text (`foreground.neutral.subtle` = `#4b4b4b`) on white: ≥ 4.5:1 (WCAG 1.4.3 ✓)
+- Label text (`foreground.static.neutral.subtle` = `#4b4b4b`) on white: ≥ 4.5:1 (WCAG 1.4.3 ✓)
 - Error fill (`fill.action.status.negative.rest` = `#9d2d2d`) on white: ≥ 3:1 ✓
 
 ### Touch target

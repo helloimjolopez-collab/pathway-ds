@@ -37,7 +37,7 @@ Full spec: [sidenav-spec.md](./sidenav-spec.md). Working code: [sidenav.html](./
 
 7. **Section labels are flat siblings of nav items, never wrappers.** Wrapping items inside a section div breaks the parent `gap: 6 px` flex layout. See [§2.3](./sidenav-spec.md#23-navsectionlabel) "Implementation pattern."
 
-8. **The NavHeader (expand/collapse control) renders at the TOP of the nav at ALL breakpoints ≥768 px**, in both the 240 px and 72 px states. It is absent only on mobile (<768 px). At 72 px the action icon is **centered**; at 240 px it is **right-aligned** in Slot.RowEnd. The icon is 12×12 (`right_panel_open` when expanded, `left_panel_open` when collapsed), colour `Foreground/Action/Secondary/Rest` (`#6b6b6b`). A 1 px `Stroke/Neutral/Subtle` (`#f6f6f6`) divider sits **below** the NavHeader. It is sticky-positioned so it never scrolls out of view. See [§9](./sidenav-spec.md#9-navheader-collapse--expand-control).
+8. **The NavHeader (expand/collapse control) renders at the TOP of the nav at ALL breakpoints ≥768 px**, in both the 240 px and 72 px states. It is absent only on mobile (<768 px). At 72 px the action icon is **centered**; at 240 px it is **right-aligned** in Slot.RowEnd. The icon is 12×12 (`right_panel_open` when expanded, `left_panel_open` when collapsed), colour `Foreground/Action/Secondary/Rest` (`#6b6b6b`). A 1 px `Stroke/Static/Neutral/Subtle` (`#f6f6f6`) divider sits **below** the NavHeader. It is sticky-positioned so it never scrolls out of view. See [§9](./sidenav-spec.md#9-navheader-collapse--expand-control).
 
 9. **Responsive contract**:
    - **≥1024 px**: SideNav is in flow (`flex-shrink: 0`), 240 px or 72 px. Content shifts.
@@ -85,7 +85,7 @@ Paste these into your CSS or token system **as-is**. The names match `tokens/pat
 ### Section label (optional)
 ```
 font:        11px/16px 'Red Hat Text', 600 SemiBold, 0.6px letter-spacing, UPPERCASE
-color:       #606060   /* Foreground/Neutral/Subtle */
+color:       #606060   /* Foreground/Static/Neutral/Subtle */
 height:      40px
 padding:     8px 4px
 ```

@@ -94,7 +94,7 @@ One name, two values, resolved by selector:
 So a component writes the name once:
 
 ```css
-color: var(--semantic-color-foreground-neutral-bold);
+color: var(--semantic-color-foreground-static-neutral-bold);
 ```
 
 Set `data-theme="midnight"` on `<html>` to flip the page, or on any element to flip just

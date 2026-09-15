@@ -39,7 +39,7 @@ Semantic tokens alias a primitive and give it a _purpose_. The name tells you th
 --semantic-color-fill-action-selection-selected:
     var(--primitive-color-brand-75)
 
---semantic-color-foreground-neutral-subtle:
+--semantic-color-foreground-static-neutral-subtle:
     var(--primitive-color-cool-neutral-400)
 
 --semantic-color-foreground-action-primary-rest:
@@ -125,7 +125,7 @@ Figma Variables (source of truth for all token values)
             │
             │ emitted as CSS custom properties by Style Dictionary
             ▼
-      src/tokens/  ← var(--semantic-color-fill-brand-subtle)
+      src/tokens/  ← var(--semantic-color-fill-static-brand-subtle)
             │
             ▼
       Component styles
@@ -160,12 +160,12 @@ active theme is chosen by a selector:
 ```css
 /* themes/light.css */
 :root, [data-theme="light"] {
-  --semantic-color-foreground-neutral-bold: var(--primitive-color-cool-neutral-900);
+  --semantic-color-foreground-static-neutral-bold: var(--primitive-color-cool-neutral-900);
 }
 
 /* themes/midnight.css */
 [data-theme="midnight"], [data-theme="dark"] {
-  --semantic-color-foreground-neutral-bold: var(--primitive-color-cool-neutral-0);
+  --semantic-color-foreground-static-neutral-bold: var(--primitive-color-cool-neutral-0);
 }
 ```
 
@@ -251,8 +251,8 @@ Once the CSS is loaded, all custom properties are available:
 
 ```css
 .my-component {
-  background: var(--semantic-color-fill-brand-subtle);
-  color: var(--semantic-color-foreground-neutral-mono);
+  background: var(--semantic-color-fill-static-brand-subtle);
+  color: var(--semantic-color-foreground-static-neutral-mono);
 }
 ```
 

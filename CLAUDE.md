@@ -147,14 +147,14 @@ not reinstate it. Only faces Red Hat Text actually ships are defined, so a weigh
 variable never names a face that would silently fall back.
 
 **Surface lives under Fill (changed 2026-09-03).** There is no top-level `Surface`
-group: it is `Fill/Surface/{Canvas, Sheet, Elevated}`, alongside `Fill/Neutral`,
-`Fill/Negative`, `Fill/Positive`, `Fill/Accent`, `Fill/Brand` and `Fill/Action`.
+group: it is `Fill/Surface/{Canvas, Sheet, Elevated}`, alongside `Fill/Static/Neutral`,
+`Fill/Static/Negative`, `Fill/Static/Positive`, `Fill/Static/Accent`, `Fill/Static/Brand` and `Fill/Action`.
 Elevated has ONE step, not Base and Medium — a header band inside an elevated
-widget uses `Fill/Neutral` rather than a second surface step.
+widget uses `Fill/Static/Neutral` rather than a second surface step.
 
 **There is no `Status` group outside `Action` (finished 2026-09-15).** A tone
-ladder for status now sits at the same level as Neutral — `Fill/Negative`,
-`Fill/Positive` — or, where a hue already existed as an accent, on that accent:
+ladder for status now sits at the same level as Neutral — `Fill/Static/Negative`,
+`Fill/Static/Positive` — or, where a hue already existed as an accent, on that accent:
 Attention folded onto `Accent/Saffron` and Severe onto `Accent/Orange`. Status as
 a *meaning* is expressed by the Figma colour STYLES, not by a variable group.
 `Status` appears in a variable name only under `Action`, where it qualifies an
@@ -205,7 +205,7 @@ When the token library changes — every time `sync-tokens.js` runs and modifies
 
 2. **Find components that reference changed tokens.** For each file under `components/**`, `src/stories/Library/**`, and any `src/tokens/tokens.*` consumer, grep for:
    - CSS variable names like `--semantic-color-light-mode-icon-static-neutral-base`
-   - Token-path mentions in Markdown like `foreground.neutral.medium` or `Foreground/Action/Secondary/Rest`
+   - Token-path mentions in Markdown like `foreground.static.neutral.subtle` or `Foreground/Action/Secondary/Rest`
    - Any direct hex values that the spec claimed came from a token (these indicate a hand-copy that's now stale)
    If the mentioned token appears in the *removed* or *renamed* set, the component is a reconciliation candidate.
 
@@ -254,7 +254,7 @@ Reconciliation — 2 components need manual attention:
 
   spinner
     file:   components/spinner/spinner-spec.md
-    stale:  foreground.accent.jade.medium
+    stale:  foreground.static.accent.jade.medium
     reason: removed-from-tokens
     next:   delete the accent-jade branch from the Figma spinner node,
             or restore the accent-jade tokens in Figma
@@ -333,11 +333,11 @@ Before writing any colour into a component, grep `tokens/pathway-design-tokens.j
 
 ## 7. Naming, casing, and slugs
 
-- Token names in `pathway-design-tokens.json` are always lowercase with dots (`semantic-color.light-mode.foreground.neutral.medium`). `sync-tokens.js` slugifies the Figma export to this form automatically. Do not override.
+- Token names in `pathway-design-tokens.json` are always lowercase with dots (`semantic-color.light-mode.foreground.static.neutral.subtle`). `sync-tokens.js` slugifies the Figma export to this form automatically. Do not override.
 - CSS custom properties derived by Style Dictionary replace dots with hyphens. There are
   now two naming forms and you must know which file you are reading:
   - From `themes/light.css` and `themes/midnight.css`: the mode is NOT in the name,
-    e.g. `--semantic-color-foreground-neutral-bold`. One name, two values,
+    e.g. `--semantic-color-foreground-static-neutral-bold`. One name, two values,
     resolved by selector. Note Text and Icon merged into Foreground.
   - There is no mode-in-name form any more. `--semantic-color-light-mode-*` came from
     `tokens.css`, retired 2026-09-03, and any such name now resolves to nothing.

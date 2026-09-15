@@ -174,7 +174,7 @@ OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 f
 
 - **Frame:** 16×16, 2px inner padding → 12×12 effective icon area
 - **Icon:** Material Symbols Rounded `expand_more`
-- **Colour:** `foreground.neutral.mono` (one value; the mono group never had per-state variants)
+- **Colour:** `foreground.static.neutral.mono` (one value; the mono group never had per-state variants)
 - **Rotation:** 0° closed, 180° open (`transform --motion-duration-4 --motion-easing-standard`)
 
 ---
@@ -204,17 +204,17 @@ All tokens confirmed from Figma node `40006819:14583`. This component uses **dar
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `foreground.neutral.mono` | `--semantic-color-foreground-neutral-mono` | `#fbfbfb` | Label text — base |
-| `foreground.neutral.mono` | `--semantic-color-foreground-neutral-mono` | `#ffffff` | Label text — hover |
-| `foreground.neutral.mono` | `--semantic-color-foreground-neutral-mono` | `#ffffff` | Label text — pressed / open |
+| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#fbfbfb` | Label text — base |
+| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Label text — hover |
+| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Label text — pressed / open |
 
 ### 3.4 Icon
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `foreground.neutral.mono` | `--semantic-color-foreground-neutral-mono` | `#fbfbfb` | Chevron — base |
-| `foreground.neutral.mono` | `--semantic-color-foreground-neutral-mono` | `#ffffff` | Chevron — hover |
-| `foreground.neutral.mono` | `--semantic-color-foreground-neutral-mono` | `#ffffff` | Chevron — pressed / open |
+| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#fbfbfb` | Chevron — base |
+| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Chevron — hover |
+| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Chevron — pressed / open |
 
 ### 3.5 Geometry
 
@@ -306,9 +306,9 @@ All confirmed from Figma. Six trigger variants: `State × Type = {Base, Hover, P
 
 | State | Fill | Stroke | Text | Chevron |
 |---|---|---|---|---|
-| **Base** | `fill.action.primary-dim.rest` · `rgba(160,181,230,0.04)` | `stroke.action.primary.rest` · `rgba(160,181,230,0.16)` | `foreground.neutral.mono` · `#fbfbfb` | `foreground.neutral.mono` · `#fbfbfb` |
-| **Hover** | `fill.action.primary-dim.hover` · `rgba(10,18,35,0.16)` | `stroke.action.primary.hover` · `rgba(160,181,230,0.20)` | `foreground.neutral.mono` · `#ffffff` | `foreground.neutral.mono` · `#ffffff` |
-| **Pressed / Open** | `fill.action.primary-dim.pressed` · `rgba(255,255,255,0.08)` | `stroke.action.primary.pressed` · `rgba(160,181,230,0.30)` | `foreground.neutral.mono` · `#ffffff` | `foreground.neutral.mono` · `#ffffff` |
+| **Base** | `fill.action.primary-dim.rest` · `rgba(160,181,230,0.04)` | `stroke.action.primary.rest` · `rgba(160,181,230,0.16)` | `foreground.static.neutral.mono` · `#fbfbfb` | `foreground.static.neutral.mono` · `#fbfbfb` |
+| **Hover** | `fill.action.primary-dim.hover` · `rgba(10,18,35,0.16)` | `stroke.action.primary.hover` · `rgba(160,181,230,0.20)` | `foreground.static.neutral.mono` · `#ffffff` | `foreground.static.neutral.mono` · `#ffffff` |
+| **Pressed / Open** | `fill.action.primary-dim.pressed` · `rgba(255,255,255,0.08)` | `stroke.action.primary.pressed` · `rgba(160,181,230,0.30)` | `foreground.static.neutral.mono` · `#ffffff` | `foreground.static.neutral.mono` · `#ffffff` |
 | **Disabled** | Base fill at 50% opacity | Base stroke at 50% opacity | Base text at 50% opacity | Base icon at 50% opacity |
 | **Open** (additional) | Pressed styling | Pressed styling | Pressed styling | Rotated 180° |
 
@@ -337,7 +337,7 @@ See §2.1, §2.2, §2.3 for full anatomy. Brief summary:
 
 ## 8. Iconography
 
-- **Chevron:** Material Symbols Rounded `expand_more`. 12×12 effective. Colour: `foreground.neutral.mono`.
+- **Chevron:** Material Symbols Rounded `expand_more`. 12×12 effective. Colour: `foreground.static.neutral.mono`.
 - **Avatar (logo):** product-supplied image — sourced from the org record. `object-fit: cover`.
 - **Avatar (no logo):** church/building SVG embedded in `org-switcher.jsx` as `CHURCH_ICON_PATH`. Never replace with text initials.
 
@@ -503,10 +503,10 @@ All values below use token resolved values on the `TopNav` surface (which resolv
 
 | Surface | Foreground token → hex | Background | Approx. ratio | WCAG AA (4.5:1 text / 3:1 non-text) |
 |---|---|---|---|---|
-| Trigger label, base | `foreground.neutral.mono` → `#fbfbfb` | TopNav surface (`#2d4889`) under `rgba(160,181,230,0.04)` fill ≈ `#2d4889` | ≈ 10.4:1 | ✅ Pass |
-| Trigger label, hover | `foreground.neutral.mono` → `#ffffff` | `#2d4889` under `rgba(10,18,35,0.16)` fill ≈ `#26396f` | ≈ 9.2:1 | ✅ Pass |
-| Trigger label, pressed / open | `foreground.neutral.mono` → `#ffffff` | `#2d4889` under `rgba(255,255,255,0.08)` ≈ `#3a548d` | ≈ 9.7:1 | ✅ Pass |
-| Chevron, base | `foreground.neutral.mono` → `#fbfbfb` | (as label, base) | ≈ 10.4:1 | ✅ Pass (non-text 3:1 minimum) |
+| Trigger label, base | `foreground.static.neutral.mono` → `#fbfbfb` | TopNav surface (`#2d4889`) under `rgba(160,181,230,0.04)` fill ≈ `#2d4889` | ≈ 10.4:1 | ✅ Pass |
+| Trigger label, hover | `foreground.static.neutral.mono` → `#ffffff` | `#2d4889` under `rgba(10,18,35,0.16)` fill ≈ `#26396f` | ≈ 9.2:1 | ✅ Pass |
+| Trigger label, pressed / open | `foreground.static.neutral.mono` → `#ffffff` | `#2d4889` under `rgba(255,255,255,0.08)` ≈ `#3a548d` | ≈ 9.7:1 | ✅ Pass |
+| Chevron, base | `foreground.static.neutral.mono` → `#fbfbfb` | (as label, base) | ≈ 10.4:1 | ✅ Pass (non-text 3:1 minimum) |
 | Trigger border, base | `stroke.action.primary.rest` → `rgba(160,181,230,0.16)` | `#2d4889` | ≈ 1.4:1 | ❌ Border alone fails 3:1 — relies on fill differentiation; acceptable per WCAG 1.4.11 because the button has a visible fill+text |
 | Focus outline | `rgba(255,255,255,0.9)` ≈ `#e6e6e6` | `#2d4889` | ≈ 8.8:1 | ✅ Pass (WCAG 2.4.11 minimum 3:1) |
 

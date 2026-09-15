@@ -39,8 +39,8 @@ Then use the names, never the values:
 ```css
 .my-card {
   background: var(--semantic-color-fill-surface-sheet);
-  color: var(--semantic-color-foreground-neutral-bold);
-  border: 0.5px solid var(--semantic-color-stroke-neutral-subtle);
+  color: var(--semantic-color-foreground-static-neutral-bold);
+  border: 0.5px solid var(--semantic-color-stroke-static-neutral-subtle);
   border-radius: var(--semantic-layout-units-cornerradius-medium);
   padding: var(--semantic-layout-units-padding-base);
 }

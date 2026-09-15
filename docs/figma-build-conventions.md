@@ -279,7 +279,7 @@ Annotations are text nodes (and sometimes lines/arrows) that label parts of the 
 
 ### 6.2 Annotation styling
 
-Annotations use the design system's text styles (`Body/S/Regular`, `Label/Small/Medium`). They don't use raw font properties. They use `Foreground/Neutral/Subtle` as their colour token. They sit at the same depth on the canvas as the thing they annotate, never on top of it.
+Annotations use the design system's text styles (`Body/S/Regular`, `Label/Small/Medium`). They don't use raw font properties. They use `Foreground/Static/Neutral/Subtle` as their colour token. They sit at the same depth on the canvas as the thing they annotate, never on top of it.
 
 ### 6.3 What annotations don't do
 

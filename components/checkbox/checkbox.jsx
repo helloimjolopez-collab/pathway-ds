@@ -74,7 +74,7 @@ const V = {
   highlightResting: "var(--semantic-color-fill-action-secondary-rest)",
 
   // Label text
-  labelColor: "var(--semantic-color-foreground-neutral-subtle)",
+  labelColor: "var(--semantic-color-foreground-static-neutral-subtle)",
 
   // Geometry
   // cornerradius.small = 4px — matches the 4px box radius in the Figma spec.
@@ -346,7 +346,7 @@ export function Checkbox({
             lineHeight: "20px",
             fontWeight: 400,
             color:      disabled
-              ? "var(--semantic-color-foreground-neutral-subtle)"
+              ? "var(--semantic-color-foreground-static-neutral-subtle)"
               : V.labelColor,
           }}
         >

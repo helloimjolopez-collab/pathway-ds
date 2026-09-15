@@ -153,7 +153,7 @@ function measure(node) {
  * The Figma panel cannot be sorted, so ordering is imposed downstream by
  * tokenOrder.js. That makes it a piece of LOGIC, and logic that nothing checks
  * silently stops working: the first version ordered
- * Foreground/Neutral as bold, contrast, faint, light - alphabetical -
+ * Foreground/Static/Neutral as bold, contrast, faint, light - alphabetical -
  * because each vocabulary in the comparator answered alphabetically for
  * segments it did not recognise, so the ladder was never reached.
  *

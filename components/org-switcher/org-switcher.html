@@ -139,12 +139,12 @@ const T = {
   strokeBase:    "var(--semantic-color-stroke-action-primary-rest,    rgba(160,181,230,0.16))",
   strokeHover:   "var(--semantic-color-stroke-action-primary-hover,   rgba(160,181,230,0.20))",
   strokePressed: "var(--semantic-color-stroke-action-primary-pressed, rgba(160,181,230,0.30))",
-  textBase:    "var(--semantic-color-foreground-neutral-mono,    #fbfbfb)",
-  textHover:   "var(--semantic-color-foreground-neutral-mono,   #ffffff)",
-  textPressed: "var(--semantic-color-foreground-neutral-mono, #ffffff)",
-  iconBase:    "var(--semantic-color-foreground-neutral-mono,    #fbfbfb)",
-  iconHover:   "var(--semantic-color-foreground-neutral-mono,   #ffffff)",
-  iconPressed: "var(--semantic-color-foreground-neutral-mono, #ffffff)",
+  textBase:    "var(--semantic-color-foreground-static-neutral-mono,    #fbfbfb)",
+  textHover:   "var(--semantic-color-foreground-static-neutral-mono,   #ffffff)",
+  textPressed: "var(--semantic-color-foreground-static-neutral-mono, #ffffff)",
+  iconBase:    "var(--semantic-color-foreground-static-neutral-mono,    #fbfbfb)",
+  iconHover:   "var(--semantic-color-foreground-static-neutral-mono,   #ffffff)",
+  iconPressed: "var(--semantic-color-foreground-static-neutral-mono, #ffffff)",
   fillAvatarPlaceholder: "var(--semantic-color-fill-action-secondary-rest, rgba(255,255,255,0.08))",
   // Typography (Figma: Label/Button/S and Label/Button/XS).
   // Composed from the Semantic: Type SCALE. The composite text styles live only as
@@ -658,13 +658,13 @@ function App() {
                   { cat:"Stroke", semantic:"stroke.action.primary.hover",      value:"rgba(160,181,230,0.20)", role:"Trigger + avatar border — hover" },
                   { cat:"Stroke", semantic:"stroke.action.primary.pressed",    value:"rgba(160,181,230,0.30)", role:"Trigger + avatar border — pressed / open" },
                   // Text
-                  { cat:"Text",   semantic:"foreground.neutral.mono",             value:"#fbfbfb", role:"Label — base" },
-                  { cat:"Text",   semantic:"foreground.neutral.mono",            value:"#ffffff", role:"Label — hover" },
-                  { cat:"Text",   semantic:"foreground.neutral.mono",          value:"#ffffff", role:"Label — pressed / open" },
+                  { cat:"Text",   semantic:"foreground.static.neutral.mono",             value:"#fbfbfb", role:"Label — base" },
+                  { cat:"Text",   semantic:"foreground.static.neutral.mono",            value:"#ffffff", role:"Label — hover" },
+                  { cat:"Text",   semantic:"foreground.static.neutral.mono",          value:"#ffffff", role:"Label — pressed / open" },
                   // Icon
-                  { cat:"Icon",   semantic:"foreground.neutral.mono",             value:"#fbfbfb", role:"Chevron — base" },
-                  { cat:"Icon",   semantic:"foreground.neutral.mono",            value:"#ffffff", role:"Chevron — hover" },
-                  { cat:"Icon",   semantic:"foreground.neutral.mono",          value:"#ffffff", role:"Chevron — pressed / open" },
+                  { cat:"Icon",   semantic:"foreground.static.neutral.mono",             value:"#fbfbfb", role:"Chevron — base" },
+                  { cat:"Icon",   semantic:"foreground.static.neutral.mono",            value:"#ffffff", role:"Chevron — hover" },
+                  { cat:"Icon",   semantic:"foreground.static.neutral.mono",          value:"#ffffff", role:"Chevron — pressed / open" },
                   // Geometry
                   { cat:"Geometry", semantic:"cornerradius.medium",             value:"8px",  role:"Trigger corner radius" },
                   { cat:"Geometry", semantic:"cornerradius.small",              value:"4px",  role:"Avatar corner radius" },

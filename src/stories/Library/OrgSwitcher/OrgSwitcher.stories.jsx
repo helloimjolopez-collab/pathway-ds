@@ -295,8 +295,8 @@ export const TokensFill = () => (
       { token: "fill.action.primary-dim.hover",   usage: "Trigger background - hover" },
       { token: "fill.action.primary-dim.pressed", usage: "Trigger background - pressed / open" },
       { token: "fill.action.secondary.rest",      usage: "Avatar placeholder background when the org has no logo" },
-      { token: "fill.neutral.faint",       usage: "Dropdown panel ground" },
-      { token: "fill.brand.subtle",        usage: "Selected-org marker" },
+      { token: "fill.static.neutral.faint",       usage: "Dropdown panel ground" },
+      { token: "fill.static.brand.subtle",        usage: "Selected-org marker" },
     ]}
   />
 );
@@ -310,7 +310,7 @@ export const TokensStroke = () => (
       { token: "stroke.action.primary.rest",    usage: "Trigger and avatar border - rest" },
       { token: "stroke.action.primary.hover",   usage: "Trigger and avatar border - hover" },
       { token: "stroke.action.primary.pressed", usage: "Trigger and avatar border - pressed / open" },
-      { token: "stroke.neutral.faint",   usage: "Dropdown panel border and row divider" },
+      { token: "stroke.static.neutral.faint",   usage: "Dropdown panel border and row divider" },
     ]}
   />
 );
@@ -322,10 +322,10 @@ export const TokensForeground = () => (
     title="Foreground tokens - label and chevron"
     note="One tier for text and icons. The trigger label and the chevron are the same control, so they must not resolve through two ramps that can drift apart. Mono has only a rest step: white stays white through hover and press."
     rows={[
-      { token: "foreground.neutral.mono",         usage: "Trigger label and chevron, all interaction states" },
-      { token: "foreground.neutral.bold",      usage: "Dropdown org name" },
-      { token: "foreground.neutral.subtle",    usage: "Dropdown secondary line" },
-      { token: "foreground.neutral.subtle",    usage: "Dropdown section label" },
+      { token: "foreground.static.neutral.mono",         usage: "Trigger label and chevron, all interaction states" },
+      { token: "foreground.static.neutral.bold",      usage: "Dropdown org name" },
+      { token: "foreground.static.neutral.subtle",    usage: "Dropdown secondary line" },
+      { token: "foreground.static.neutral.subtle",    usage: "Dropdown section label" },
     ]}
   />
 );

@@ -299,28 +299,28 @@ every row below is the token the spinner CSS actually binds at
 
 | `tone` | Token bound at `base` | Primitive | Resolved hex |
 |---|---|---|---|
-| `neutral` *(default)* | `foreground.neutral.subtle` | `cool-neutral-600` | `#313131` |
+| `neutral` *(default)* | `foreground.static.neutral.subtle` | `cool-neutral-600` | `#313131` |
 | `brand` | `foreground.action.primary.rest` | `brand-550` | `#2d4889` |
-| `info` | `foreground.accent.amethyst.subtle` | `amethyst-700` | `#353063` |
-| `warning` | `foreground.accent.saffron.subtle` | `saffron-700` | `#342d21` |
-| `danger` | `foreground.negative.subtle` | `red-700` | `#722121` |
-| `negative` | `foreground.negative.subtle` | `red-700` | `#722121` |
-| `positive` | `foreground.positive.subtle` | `green-700` | `#174f26` |
-| `accent-amethyst` | `foreground.accent.amethyst.subtle` | `amethyst-700` | `#353063` |
-| `accent-jade` | `foreground.accent.jade.subtle` | `jade-700` | `#10423b` |
-| `accent-seabreeze` | `foreground.accent.seabreeze.subtle` | `seabreeze-700` | `#185167` |
+| `info` | `foreground.static.accent.amethyst.subtle` | `amethyst-700` | `#353063` |
+| `warning` | `foreground.static.accent.saffron.subtle` | `saffron-700` | `#342d21` |
+| `danger` | `foreground.static.negative.subtle` | `red-700` | `#722121` |
+| `negative` | `foreground.static.negative.subtle` | `red-700` | `#722121` |
+| `positive` | `foreground.static.positive.subtle` | `green-700` | `#174f26` |
+| `accent-amethyst` | `foreground.static.accent.amethyst.subtle` | `amethyst-700` | `#353063` |
+| `accent-jade` | `foreground.static.accent.jade.subtle` | `jade-700` | `#10423b` |
+| `accent-seabreeze` | `foreground.static.accent.seabreeze.subtle` | `seabreeze-700` | `#185167` |
 
 > **`brand` no longer has an emphasis ramp.** `Foreground/Brand` was deleted from
 > the Variables panel on 2026-09-14: a brand-coloured foreground now exists only
 > as an action foreground, which is the naked primary button. So all five
 > emphases on `tone="brand"` resolve to the single value above and the emphasis
-> control is inert for that tone. `Fill/Brand` is not a substitute: a fill token
+> control is inert for that tone. `Fill/Static/Brand` is not a substitute: a fill token
 > on a `color` property is a category error. The brand stroke ladder was deleted
 > on 2026-09-15, because a brand-coloured border was always really an action
 > border or a neutral one.
 
 > **`danger` and `negative` are the same token.** Both bind
-> `foreground.negative.subtle`. The two names are kept because both are in
+> `foreground.static.negative.subtle`. The two names are kept because both are in
 > use by consumers, but there is one colour, not two.
 
 > **`info` stopped impersonating brand.** It used to borrow the brand ramp, which
@@ -356,11 +356,11 @@ Examples:
 
 | `tone` | `emphasis` | CSS variable | Token path |
 |---|---|---|---|
-| `neutral` | `base` *(defaults)* | `--semantic-color-foreground-neutral-subtle` | `foreground.neutral.subtle` |
+| `neutral` | `base` *(defaults)* | `--semantic-color-foreground-static-neutral-subtle` | `foreground.static.neutral.subtle` |
 | `brand` | any | `--semantic-color-foreground-action-primary-rest` | `foreground.action.primary.rest` |
-| `accent-jade` | `light` | `--semantic-color-foreground-accent-jade-faint` | `foreground.accent.jade.faint` |
+| `accent-jade` | `light` | `--semantic-color-foreground-static-accent-jade-faint` | `foreground.static.accent.jade.faint` |
 
-The Figma source node authors the spinner at `foreground.neutral.subtle` (`#313131`). That is the correct default for a generic, context-free spinner.
+The Figma source node authors the spinner at `foreground.static.neutral.subtle` (`#313131`). That is the correct default for a generic, context-free spinner.
 
 #### 7.1.4 Dark mode
 
@@ -553,7 +553,7 @@ The `data-tone`/`data-emphasis` attributes are what CSS uses to resolve the corr
 
 > **⚠ Gap, now half closed:** a brand-filled primary button wants a white
 > spinner. The token for that exists as of 2026-09-14 —
-> `foreground.neutral.mono` is `#ffffff` in both Light and Midnight, which is
+> `foreground.static.neutral.mono` is `#ffffff` in both Light and Midnight, which is
 > exactly an inverse track. What is still missing is a way to *reach* it: the
 > `neutral` tone's emphasis ramp runs `faint → dim → subtle → contrast → bold`
 > and never touches `mono`. Adding a `mono` tone is five CSS rules plus an
@@ -621,9 +621,9 @@ Hard rules. Breaking any of these breaks the component's contract.
 | ~~`tone="danger"` no longer matches its token family~~ | RESOLVED 2026-09-07 | Status/Alert was renamed to Status/Severe, so the tone and the token family agree. |
 | `spinner.html` redeclares semantic tokens from primitives | MEDIUM (superseded: the demo now links the contract, verified by `scripts/check-demo-tokens.js`) | Lines ~98–102 define `--semantic-color-light-mode-icon-static-*` locally as `var(--primitive-color-orange-*)` rather than consuming `tokens.css`. That is a §6 violation and it means the demo does not track token changes. It also masked the `danger` rename, since the demo defines its own copies. |
 | No `motion` tokens in `pathway-design-tokens.json` | MEDIUM | Duration (`1s`) and easing (`linear`) are hard-coded. Recommend adding a motion token category (see §7.3). Blocks cross-component consistency, not this component's ship. |
-| No `mono` tone on the spinner | MEDIUM | The inverse *token* now exists: `foreground.neutral.mono` is `#ffffff` in both modes. The spinner cannot reach it, because the `neutral` emphasis ramp runs `faint → dim → subtle → contrast → bold`. Fix is a `mono` tone: five CSS rules plus an argType. See §9.3. |
-| `warning` `base` is nearly black | LOW | `foreground.accent.saffron.subtle` is `saffron-700` (`#342d21`). That rung is built for *text* on a pale fill, so as a graphic a "warning" spinner reads as dark brown rather than amber. Retuning it means picking a different rung, not a different token. |
-| ~~`warning`, `danger`, `negative`, `positive` bind static `Foreground/Status/*`~~ | RESOLVED 2026-09-15 | The Foreground and Stroke halves of that group are gone. Attention and Severe folded onto the Accent ladders they duplicated (`foreground.accent.saffron.*`, `foreground.accent.orange.*` — 5 of 10 were value-identical), and Negative and Positive were promoted to sit beside Neutral (`foreground.negative.*`, `foreground.positive.*`). All four tones now name live tokens. |
+| No `mono` tone on the spinner | MEDIUM | The inverse *token* now exists: `foreground.static.neutral.mono` is `#ffffff` in both modes. The spinner cannot reach it, because the `neutral` emphasis ramp runs `faint → dim → subtle → contrast → bold`. Fix is a `mono` tone: five CSS rules plus an argType. See §9.3. |
+| `warning` `base` is nearly black | LOW | `foreground.static.accent.saffron.subtle` is `saffron-700` (`#342d21`). That rung is built for *text* on a pale fill, so as a graphic a "warning" spinner reads as dark brown rather than amber. Retuning it means picking a different rung, not a different token. |
+| ~~`warning`, `danger`, `negative`, `positive` bind static `Foreground/Status/*`~~ | RESOLVED 2026-09-15 | The Foreground and Stroke halves of that group are gone. Attention and Severe folded onto the Accent ladders they duplicated (`foreground.static.accent.saffron.*`, `foreground.static.accent.orange.*` — 5 of 10 were value-identical), and Negative and Positive were promoted to sit beside Neutral (`foreground.static.negative.*`, `foreground.static.positive.*`). All four tones now name live tokens. |
 | No dark-mode runtime switch | MEDIUM | The token file emits `dark-mode` variables but no theme-switching mechanism exists yet. Spinner binds `light-mode` only. Revisit when the broader DS picks a theme-switching strategy (`[data-theme="dark"]`, `prefers-color-scheme`, …). |
 | No semantic `Component/Spinner/Size/*` scale | LOW | Sizes in §4.3 are advisory only. Adding named sizes would let teams reference `var(--component-spinner-size-s)` etc. Not a blocker. |
 | Only one `style` value exists | LOW | `progress-activity` is the only style today. Add more only when a real use case appears — don't speculate. |

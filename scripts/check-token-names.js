@@ -58,7 +58,7 @@ const ALLOW = new Set([
   // in the Primary type, not a token called Fill/Primary.
   "Fill/Primary",
   "Fill/Secondary",
-  "Fill/Negative",
+  "Fill/Static/Negative",
   "Fill/Tertiary",
   "Fill/Outlined/Naked", // shorthand for "the Outlined and Naked styles"
   // Ordinary English that happens to sit either side of a slash.
@@ -219,7 +219,7 @@ const RETIRED_DOT_EXAMPLES = new Set([
   // name, and a bulk rename "fixed" it into a live name — which destroys the
   // example, because the whole point of that block is to show a name that does
   // NOT resolve.
-  "foreground.accent.jade.medium",
+  "foreground.static.accent.jade.medium",
 ]);
 
 // Valid dot names are exactly the paths in the generated tree. Reading them

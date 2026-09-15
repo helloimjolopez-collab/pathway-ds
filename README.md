@@ -84,9 +84,9 @@ as too granular to adopt. Retired 2026-09-03 and not coming back.
 ```css
 .card {
   background: var(--semantic-color-fill-surface-sheet);
-  color:      var(--semantic-color-foreground-neutral-bold);
+  color:      var(--semantic-color-foreground-static-neutral-bold);
   border:     var(--semantic-layout-units-borderwidth-base) solid
-              var(--semantic-color-stroke-neutral-subtle);
+              var(--semantic-color-stroke-static-neutral-subtle);
   border-radius: var(--semantic-layout-units-cornerradius-medium);
 }
 ```

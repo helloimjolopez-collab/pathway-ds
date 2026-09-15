@@ -329,11 +329,11 @@ export const TokensFill = () => (
     title="Fill tokens"
     note="Backgrounds. Surface lives under Fill now, so the bar ground is a Fill token rather than a Surface one."
     rows={[
-      { token: "fill.neutral.faint",       usage: "Bar background - all states except disabled" },
+      { token: "fill.static.neutral.faint",       usage: "Bar background - all states except disabled" },
       { token: "fill.action.primary-dim.rest",    usage: "Filter pill background - filter-active state. Primary Dim replaced the deleted Tertiary ramp" },
       { token: "fill.action.primary-dim.hover",   usage: "Icon pill - hover. The Dim ramp is the tint the retired *inverse hovers provided" },
       { token: "fill.action.primary.rest",        usage: "Badge dot fill" },
-      { token: "fill.brand.dim",         usage: "TopNavSearch collapsed button background" },
+      { token: "fill.static.brand.dim",         usage: "TopNavSearch collapsed button background" },
     ]}
   />
 );
@@ -345,7 +345,7 @@ export const TokensStroke = () => (
     title="Stroke tokens"
     note="Borders. The disabled border no longer falls back to a primitive: product code must never name a --primitive-* (CLAUDE.md §6), so it reads the Static Neutral ladder."
     rows={[
-      { token: "stroke.neutral.faint",        usage: "Bar border - idle (0.75px), and disabled" },
+      { token: "stroke.static.neutral.faint",        usage: "Bar border - idle (0.75px), and disabled" },
       { token: "stroke.action.primary.rest",         usage: "Bar border - with-value / filter-active (1px)" },
       { token: "stroke.action.primary.hover",        usage: "Bar border - hover (1px)" },
       { token: "stroke.action.primary.pressed",      usage: "Bar border - focused (1px)" },
@@ -362,13 +362,13 @@ export const TokensForeground = () => (
     title="Foreground tokens - text and icons"
     note="One tier for both. Text and Icon merged on 2026-09-03 because every pair held the same value; the split doubled the contract while never letting a control's label and its icon differ."
     rows={[
-      { token: "foreground.neutral.subtle",         usage: "Placeholder text" },
-      { token: "foreground.neutral.bold",           usage: "Input value text" },
+      { token: "foreground.static.neutral.subtle",         usage: "Placeholder text" },
+      { token: "foreground.static.neutral.bold",           usage: "Input value text" },
       { token: "foreground.action.secondary.rest",         usage: "All icons - idle" },
       { token: "foreground.action.secondary.hover",        usage: "All icons - hover / focused" },
       { token: "foreground.action.disabled",               usage: "All icons - disabled. ONE disabled token per tier, not one per role" },
       { token: "foreground.action.status.negative.rest",   usage: "Search icon - error state" },
-      { token: "foreground.neutral.mono",              usage: "Badge count on the filled badge dot. Mono has only a rest step" },
+      { token: "foreground.static.neutral.mono",              usage: "Badge count on the filled badge dot. Mono has only a rest step" },
     ]}
   />
 );

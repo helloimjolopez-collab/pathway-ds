@@ -27,11 +27,11 @@
    value and `base` is a valid one, mapping to the ladder's `medium` step. The
    ladder itself has no `base` rung. Keeping the prop name is deliberate - it is
    the component's API and renaming it would break every consumer. */
-.pds-spinner[data-tone="neutral"][data-emphasis="light"]    { color: var(--semantic-color-foreground-neutral-faint); }
-.pds-spinner[data-tone="neutral"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-neutral-subtle); }
-.pds-spinner[data-tone="neutral"][data-emphasis="base"]     { color: var(--semantic-color-foreground-neutral-subtle); }
-.pds-spinner[data-tone="neutral"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-neutral-contrast); }
-.pds-spinner[data-tone="neutral"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-neutral-bold); }
+.pds-spinner[data-tone="neutral"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-neutral-faint); }
+.pds-spinner[data-tone="neutral"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-neutral-subtle); }
+.pds-spinner[data-tone="neutral"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-neutral-subtle); }
+.pds-spinner[data-tone="neutral"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-neutral-contrast); }
+.pds-spinner[data-tone="neutral"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-neutral-bold); }
 
 /* `brand` has no emphasis ramp any more, and that is deliberate rather than an
    oversight to tidy up later. Foreground/Brand was deleted from the panel on
@@ -40,7 +40,7 @@
    value, so all five emphases resolve to it and the emphasis control is inert
    for this tone.
 
-   Do NOT "restore the ramp" by reaching for Fill/Brand. It still exists, but
+   Do NOT "restore the ramp" by reaching for Fill/Static/Brand. It still exists, but
    Fill/* on a `color` property is a category error (CLAUDE.md §6). The other
    tempting option was the brand stroke ladder, and it is gone: deleted
    2026-09-15, because a brand-coloured border always turned out to be either an
@@ -53,55 +53,55 @@
 
 /* `info` used to borrow the brand ramp, which is why info and brand spinners
    were indistinguishable. Info is Amethyst now, system-wide, and
-   Foreground/Accent/Amethyst is a real five-rung ladder - so this tone gets a
+   Foreground/Static/Accent/Amethyst is a real five-rung ladder - so this tone gets a
    genuine ramp back and stops impersonating brand. */
-.pds-spinner[data-tone="info"][data-emphasis="light"]    { color: var(--semantic-color-foreground-accent-amethyst-faint); }
-.pds-spinner[data-tone="info"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-accent-amethyst-dim); }
-.pds-spinner[data-tone="info"][data-emphasis="base"]     { color: var(--semantic-color-foreground-accent-amethyst-subtle); }
-.pds-spinner[data-tone="info"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-accent-amethyst-contrast); }
-.pds-spinner[data-tone="info"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-accent-amethyst-bold); }
+.pds-spinner[data-tone="info"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-accent-amethyst-faint); }
+.pds-spinner[data-tone="info"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-accent-amethyst-dim); }
+.pds-spinner[data-tone="info"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-accent-amethyst-subtle); }
+.pds-spinner[data-tone="info"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-accent-amethyst-contrast); }
+.pds-spinner[data-tone="info"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-accent-amethyst-bold); }
 
-.pds-spinner[data-tone="warning"][data-emphasis="light"]    { color: var(--semantic-color-foreground-accent-saffron-faint); }
-.pds-spinner[data-tone="warning"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-accent-saffron-dim); }
-.pds-spinner[data-tone="warning"][data-emphasis="base"]     { color: var(--semantic-color-foreground-accent-saffron-subtle); }
-.pds-spinner[data-tone="warning"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-accent-saffron-contrast); }
-.pds-spinner[data-tone="warning"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-accent-saffron-bold); }
+.pds-spinner[data-tone="warning"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-accent-saffron-faint); }
+.pds-spinner[data-tone="warning"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-accent-saffron-dim); }
+.pds-spinner[data-tone="warning"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-accent-saffron-subtle); }
+.pds-spinner[data-tone="warning"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-accent-saffron-contrast); }
+.pds-spinner[data-tone="warning"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-accent-saffron-bold); }
 
-.pds-spinner[data-tone="danger"][data-emphasis="light"]    { color: var(--semantic-color-foreground-negative-faint); }
-.pds-spinner[data-tone="danger"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-negative-dim); }
-.pds-spinner[data-tone="danger"][data-emphasis="base"]     { color: var(--semantic-color-foreground-negative-subtle); }
-.pds-spinner[data-tone="danger"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-negative-contrast); }
-.pds-spinner[data-tone="danger"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-negative-bold); }
+.pds-spinner[data-tone="danger"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-negative-faint); }
+.pds-spinner[data-tone="danger"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-negative-dim); }
+.pds-spinner[data-tone="danger"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-negative-subtle); }
+.pds-spinner[data-tone="danger"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-negative-contrast); }
+.pds-spinner[data-tone="danger"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-negative-bold); }
 
-.pds-spinner[data-tone="negative"][data-emphasis="light"]    { color: var(--semantic-color-foreground-negative-faint); }
-.pds-spinner[data-tone="negative"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-negative-dim); }
-.pds-spinner[data-tone="negative"][data-emphasis="base"]     { color: var(--semantic-color-foreground-negative-subtle); }
-.pds-spinner[data-tone="negative"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-negative-contrast); }
-.pds-spinner[data-tone="negative"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-negative-bold); }
+.pds-spinner[data-tone="negative"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-negative-faint); }
+.pds-spinner[data-tone="negative"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-negative-dim); }
+.pds-spinner[data-tone="negative"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-negative-subtle); }
+.pds-spinner[data-tone="negative"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-negative-contrast); }
+.pds-spinner[data-tone="negative"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-negative-bold); }
 
-.pds-spinner[data-tone="positive"][data-emphasis="light"]    { color: var(--semantic-color-foreground-positive-faint); }
-.pds-spinner[data-tone="positive"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-positive-dim); }
-.pds-spinner[data-tone="positive"][data-emphasis="base"]     { color: var(--semantic-color-foreground-positive-subtle); }
-.pds-spinner[data-tone="positive"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-positive-contrast); }
-.pds-spinner[data-tone="positive"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-positive-bold); }
+.pds-spinner[data-tone="positive"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-positive-faint); }
+.pds-spinner[data-tone="positive"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-positive-dim); }
+.pds-spinner[data-tone="positive"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-positive-subtle); }
+.pds-spinner[data-tone="positive"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-positive-contrast); }
+.pds-spinner[data-tone="positive"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-positive-bold); }
 
-.pds-spinner[data-tone="accent-amethyst"][data-emphasis="light"]    { color: var(--semantic-color-foreground-accent-amethyst-faint); }
-.pds-spinner[data-tone="accent-amethyst"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-accent-amethyst-dim); }
-.pds-spinner[data-tone="accent-amethyst"][data-emphasis="base"]     { color: var(--semantic-color-foreground-accent-amethyst-subtle); }
-.pds-spinner[data-tone="accent-amethyst"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-accent-amethyst-contrast); }
-.pds-spinner[data-tone="accent-amethyst"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-accent-amethyst-bold); }
+.pds-spinner[data-tone="accent-amethyst"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-accent-amethyst-faint); }
+.pds-spinner[data-tone="accent-amethyst"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-accent-amethyst-dim); }
+.pds-spinner[data-tone="accent-amethyst"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-accent-amethyst-subtle); }
+.pds-spinner[data-tone="accent-amethyst"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-accent-amethyst-contrast); }
+.pds-spinner[data-tone="accent-amethyst"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-accent-amethyst-bold); }
 
-.pds-spinner[data-tone="accent-jade"][data-emphasis="light"]    { color: var(--semantic-color-foreground-accent-jade-faint); }
-.pds-spinner[data-tone="accent-jade"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-accent-jade-dim); }
-.pds-spinner[data-tone="accent-jade"][data-emphasis="base"]     { color: var(--semantic-color-foreground-accent-jade-subtle); }
-.pds-spinner[data-tone="accent-jade"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-accent-jade-contrast); }
-.pds-spinner[data-tone="accent-jade"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-accent-jade-bold); }
+.pds-spinner[data-tone="accent-jade"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-accent-jade-faint); }
+.pds-spinner[data-tone="accent-jade"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-accent-jade-dim); }
+.pds-spinner[data-tone="accent-jade"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-accent-jade-subtle); }
+.pds-spinner[data-tone="accent-jade"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-accent-jade-contrast); }
+.pds-spinner[data-tone="accent-jade"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-accent-jade-bold); }
 
-.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="light"]    { color: var(--semantic-color-foreground-accent-seabreeze-faint); }
-.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-accent-seabreeze-dim); }
-.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="base"]     { color: var(--semantic-color-foreground-accent-seabreeze-subtle); }
-.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-accent-seabreeze-contrast); }
-.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-accent-seabreeze-bold); }
+.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-accent-seabreeze-faint); }
+.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="subtle"]   { color: var(--semantic-color-foreground-static-accent-seabreeze-dim); }
+.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="base"]     { color: var(--semantic-color-foreground-static-accent-seabreeze-subtle); }
+.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="contrast"] { color: var(--semantic-color-foreground-static-accent-seabreeze-contrast); }
+.pds-spinner[data-tone="accent-seabreeze"][data-emphasis="bold"]     { color: var(--semantic-color-foreground-static-accent-seabreeze-bold); }
 
 .pds-spinner__svg {
   width: 100%; height: 100%;

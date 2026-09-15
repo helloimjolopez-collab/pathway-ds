@@ -5,7 +5,7 @@
  * has no setter, so there is no API call that moves a variable up a list, and
  * recreating 791 variables in the right order would break 17,875 node bindings.
  * The panel therefore shows groups in creation order, which is why
- * Foreground/Neutral reads "faint, subtle, medium, contrast, bold,
+ * Foreground/Static/Neutral reads "faint, subtle, medium, contrast, bold,
  * xlight, white, light" — the two anchors and one rung added later sit at the
  * bottom.
  *
@@ -24,12 +24,12 @@
 // instead of flipping — but they still have a place on the ramp, so they are
 // ordered here and marked as anchors below for the UI to annotate.
 //
-// SIMPLIFIED 2026-09-14, completed 2026-09-15. Foreground/Neutral used to run
+// SIMPLIFIED 2026-09-14, completed 2026-09-15. Foreground/Static/Neutral used to run
 // white, xlight, faint, subtle, light, medium, contrast, bold — eight steps, two
 // of which (faint at cool-400 and light at cool-500) were close enough to be a
 // coin toss, and whose NAMES disagreed with their values: `subtle` sat at
 // cool-450 and `light` at cool-500, so "light" was the darker of the two.
-// Foreground/Neutral is now exactly six:
+// Foreground/Static/Neutral is now exactly six:
 //
 //   mono, faint, dim, subtle, contrast, bold
 //
@@ -45,10 +45,10 @@
 // Faint/Dim/Subtle/Contrast/Bold. These are the only non-conforming rungs left,
 // and each is deliberate:
 //
-//   white    Fill/Neutral/White        Neutral is allowed extras
-//   medium   Fill/Neutral/Medium       likewise
-//   boldest  Fill/Brand/Boldest,       a sixth rung past Bold, kept on BOTH
-//            Stroke/Brand/Boldest      Brand ladders on purpose
+//   white    Fill/Static/Neutral/White        Neutral is allowed extras
+//   medium   Fill/Static/Neutral/Medium       likewise
+//   boldest  Fill/Static/Brand/Boldest,       a sixth rung past Bold, kept on BOTH
+//            Stroke/Static/Brand/Boldest      Brand ladders on purpose
 //   light    Scrim/Light               Scrim is an opacity ramp, not a tone one
 //   xlight   nothing on main           kept for the NewCo branch, which has it
 //   black    nothing                   retired 2026-09-15, see below
@@ -70,9 +70,9 @@
 // entirely, so Scrim is now the sole claimant and the order is uncontested.
 //
 // A NOTE ON EDITING THIS COMMENT: the list above names retired rungs on purpose.
-// A bulk rename pass hit it on 2026-09-15 and rewrote "light  Fill/Brand/Light"
-// into "light  Fill/Brand/Dim", which is nonsense — the entry existed to say
-// that Fill/Brand was where `light` still lived. Prose about a retired name is
+// A bulk rename pass hit it on 2026-09-15 and rewrote "light  Fill/Static/Brand/Light"
+// into "light  Fill/Static/Brand/Dim", which is nonsense — the entry existed to say
+// that Fill/Static/Brand was where `light` still lived. Prose about a retired name is
 // not a reference to it.
 export const LADDER = [
   "mono",
@@ -194,7 +194,7 @@ export function rankBy(list) {
  * only move on to the next one if the current one can say "not mine". A
  * comparator that answers alphabetically for two names it has never heard of
  * is indistinguishable from one that ranked them, so the FIRST vocabulary
- * tried always won and the ladder was never consulted: Foreground/Neutral
+ * tried always won and the ladder was never consulted: Foreground/Static/Neutral
  * came out bold, contrast, faint, light — alphabetical, the exact disorder this
  * module was written to fix.
  */
