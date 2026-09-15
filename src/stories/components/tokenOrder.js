@@ -41,24 +41,31 @@
 //   xlight  -> deleted; cool-200 is 2.92:1 on canvas, unusable for text
 //
 // On 2026-09-15 the SAME positional rename was applied to every other tone
-// ladder, so accents, Negative, Positive, Attention and Severe all read
-// Faint/Dim/Subtle/Contrast/Bold. Only two groups still hold a `medium` and
-// three a `light`:
+// ladder, including both Brand ladders, so every tone group now reads
+// Faint/Dim/Subtle/Contrast/Bold. These are the only non-conforming rungs left,
+// and each is deliberate:
 //
-//   white    Fill/Neutral/White
-//   light    Fill/Brand/Light, Stroke/Brand/Light, Scrim/Light
-//   medium   Fill/Brand/Medium, Fill/Neutral/Medium
-//   black    Fill/Brand/Black, Stroke/Brand/Black
-//   xlight   nothing on main; kept for the NewCo branch, which still has it
+//   white    Fill/Neutral/White        Neutral is allowed extras
+//   medium   Fill/Neutral/Medium       likewise
+//   black    Fill/Brand/Black,         a sixth rung past Bold on both Brand
+//            Stroke/Brand/Black        ladders; docs-page bindings only
+//   light    Scrim/Light               Scrim is an opacity ramp, not a tone one
+//   xlight   nothing on main           kept for the NewCo branch, which has it
 //
 // An unknown rung falls through to alphabetical, which is the exact disorder
 // this module exists to prevent, so removing a name here is only safe once
 // nothing anywhere uses it.
 //
-// `light` sits before `subtle` because that is the order Scrim and Fill/Brand
-// need. Stroke/Brand wants the opposite (Subtle is Brand/25, Light is Brand/50),
-// and it is the only group that holds both — Brand has not been normalised to
-// the five-rung ladder yet, which is what would remove the conflict.
+// `light` before `subtle` used to be a genuine conflict: Scrim needed that
+// order while Stroke/Brand needed the reverse, and Stroke/Brand was the only
+// group holding both. Normalising the Brand ladders removed its `light`
+// entirely, so Scrim is now the sole claimant and the order is uncontested.
+//
+// A NOTE ON EDITING THIS COMMENT: the list above names retired rungs on purpose.
+// A bulk rename pass hit it on 2026-09-15 and rewrote "light  Fill/Brand/Light"
+// into "light  Fill/Brand/Dim", which is nonsense — the entry existed to say
+// that Fill/Brand was where `light` still lived. Prose about a retired name is
+// not a reference to it.
 export const LADDER = [
   "mono",
   "white",

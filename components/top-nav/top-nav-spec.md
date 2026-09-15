@@ -110,7 +110,7 @@ The TopNav.Global surface is always the brand-blue background. Because this back
 
 | Semantic Token | Primitive | Resolved | Usage |
 |---|---|---|---|
-| `semantic-color.light-mode.fill.brand.medium` | `primitive-color.brand-500` | `#2d4889` | Nav bar background |
+| `semantic-color.light-mode.fill.brand.subtle` | `primitive-color.brand-500` | `#2d4889` | Nav bar background |
 
 ### 3.2 Interactive control fills (OrgSwitcher base state)
 
@@ -461,7 +461,7 @@ Two bell/notification icon buttons sit in the RowEnd slot (desktop and tablet on
 ## 8. Container / Surface
 
 ### 8.1 Surface
-- Background: `semantic-color.light-mode.fill.brand.medium` (#2d4889)
+- Background: `semantic-color.light-mode.fill.brand.subtle` (#2d4889)
 - No border
 - No shadow on the bar itself (shadow is applied to opened dropdown panels)
 

@@ -98,7 +98,7 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `fill.brand.medium` | `--semantic-color-fill-brand-medium` | #2d4889 | Nav bar background |
+| `fill.brand.subtle` | `--semantic-color-fill-brand-subtle` | #2d4889 | Nav bar background |
 | `fill.action.primary-dim.rest` (dark) | dark-mode | rgba(160,181,230,0.04) | OrgSwitcher resting fill |
 | `stroke.action.primary.rest` (dark) | dark-mode | rgba(160,181,230,0.16) | OrgSwitcher border |
 | `fill.action.primary-dim.hover` (dark) | dark-mode | rgba(10,18,35,0.16) | All nav controls hover |
@@ -283,7 +283,7 @@ Card icon color variants (32×32 container):
 - **Accent/amethyst:** bg `fill.accent_amethyst.light` (#f4f2fa)
 - **Positive/green:** bg `fill.positive.faint` (#f0faf1)
 - **Info/blue:** bg `fill.brand.faint` (#eef2fb)
-- **Warning:** bg `fill.status.attention.faint` (#fff8e1)
+- **Warning:** bg `fill.accent.saffron.faint` (#fff8e1)
 
 ---
 
@@ -431,7 +431,7 @@ On mobile, the org trigger shows abbreviated text. The rules:
 
 ### 9.6 What to never do
 
-- Never hardcode `#2d4889` — always use `var(--semantic-color-fill-brand-medium, #2d4889)`.
+- Never hardcode `#2d4889` — always use `var(--semantic-color-fill-brand-subtle, #2d4889)`.
 - Never hardcode `#fafafa` — always use `var(--semantic-color-fill-surface-canvas, #fafafa)`.
 - Never use `display: none` on the SideNav for any state — use `width: 0` with `overflow: hidden`.
 - Never set `border-radius: 8px` on the ToolBar search input — it is 6px (confirmed from Figma).

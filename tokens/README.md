@@ -125,7 +125,7 @@ Figma Variables (source of truth for all token values)
             │
             │ emitted as CSS custom properties by Style Dictionary
             ▼
-      src/tokens/  ← var(--semantic-color-fill-brand-medium)
+      src/tokens/  ← var(--semantic-color-fill-brand-subtle)
             │
             ▼
       Component styles
@@ -251,7 +251,7 @@ Once the CSS is loaded, all custom properties are available:
 
 ```css
 .my-component {
-  background: var(--semantic-color-fill-brand-medium);
+  background: var(--semantic-color-fill-brand-subtle);
   color: var(--semantic-color-foreground-neutral-mono);
 }
 ```

@@ -543,7 +543,7 @@ export function TopNav({
       aria-label="Global navigation"
       className={className}
       style={{
-        background: `var(--semantic-color-fill-brand-medium, ${T.navBg})`,
+        background: `var(--semantic-color-fill-brand-subtle, ${T.navBg})`,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         maxHeight: navH, padding: `${L.deskPadV}px ${padH}px`,
         position: "relative", overflow: "visible", zIndex: 100,
@@ -707,7 +707,7 @@ export function TopNav({
         <div
           style={{
             position: "absolute", inset: 0, zIndex: 200,
-            background: `var(--semantic-color-fill-brand-medium, ${T.navBg})`,
+            background: `var(--semantic-color-fill-brand-subtle, ${T.navBg})`,
             display: "flex", alignItems: "center", gap: 8,
             padding: `0 ${padH}px`,
           }}

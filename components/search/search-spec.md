@@ -150,7 +150,7 @@ TopNavSearch.Container               position relative, FIXED 48×48 footprint (
 | `fill.action.secondary.pressed` | `--semantic-color-fill-action-secondary-pressed` | #f6f6f6 | Icon pill pressed state |
 | `fill.action.primary.rest` | `--semantic-color-fill-action-primary-rest` | #3555a0 | Badge dot fill |
 | `fill.action.primary-dim.rest` | `--semantic-color-fill-action-primary-dim-rest` | rgba(160,181,230,0.08) | TopNavSearch collapsed button background (dark surface) |
-| `fill.brand.faint` | `--semantic-color-fill-brand-light` | #f0f4ff | Page/demo surface |
+| `fill.brand.faint` | `--semantic-color-fill-brand-dim` | #f0f4ff | Page/demo surface |
 
 Disabled background: `Fill/Action/Disabled` (`--semantic-color-fill-action-disabled`). Resolved 2026-09-03 — the restructure added one shared Disabled per family, so the primitive fallback is gone.
 

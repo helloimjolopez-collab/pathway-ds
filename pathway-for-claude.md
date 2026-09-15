@@ -102,7 +102,7 @@ Every Amplify screen uses this three-zone layout:
 ```
 
 ### TopNav
-- Background: `var(--semantic-color-fill-brand-medium)` = `#2d4889`
+- Background: `var(--semantic-color-fill-brand-subtle)` = `#2d4889`
 - Height: **56px fixed**
 - Left side: ModuleSwitcher + OrgSwitcher (8px gap between them)
 - Right side: TopNavSearch + action buttons + profile avatar (8px gaps)
@@ -138,7 +138,7 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 
 ### Backgrounds and surfaces
 ```css
---semantic-color-fill-brand-medium    /* #2d4889  — TopNav background */
+--semantic-color-fill-brand-subtle    /* #2d4889  — TopNav background */
 --semantic-color-fill-surface-canvas      /* #fafafa  — Page background */
 --semantic-color-fill-surface-sheet         /* #fafafa  — SideNav background */
 --semantic-color-fill-neutral-faint /* #ffffff  — Cards, inputs, white surfaces */
@@ -181,7 +181,7 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 --semantic-color-foreground-accent-amethyst-contrast /* #221e3f — Text on amethyst bg */
 --semantic-color-fill-positive-faint          /* #f0faf1 — Green icon container bg */
 --semantic-color-fill-brand-faint              /* #eef2fb — Blue icon container bg */
---semantic-color-fill-status-attention-faint           /* #fff8e1 — Warm icon container bg */
+--semantic-color-fill-accent-saffron-faint           /* #fff8e1 — Warm icon container bg */
 ```
 
 ### Profile avatar
@@ -504,7 +504,7 @@ Not yet a standalone component — build inline:
 
 ## What NOT to do (causes wrong output every time)
 
-1. **Do not hardcode hex values** — use CSS variables. `#2d4889` → `var(--semantic-color-fill-brand-medium)`.
+1. **Do not hardcode hex values** — use CSS variables. `#2d4889` → `var(--semantic-color-fill-brand-subtle)`.
 2. **Do not use Material Icons or Material Symbols Outlined** — always Rounded. Never `material-icons` class.
 3. **Do not put the SideNav collapse button at the bottom** — it is at the top, in the NavHeader.
 4. **Do not invent new colours** — every colour you need is in the token list above.

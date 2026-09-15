@@ -296,7 +296,7 @@ export const TokensFill = () => (
       { token: "fill.action.primary-dim.pressed", usage: "Trigger background - pressed / open" },
       { token: "fill.action.secondary.rest",      usage: "Avatar placeholder background when the org has no logo" },
       { token: "fill.neutral.faint",       usage: "Dropdown panel ground" },
-      { token: "fill.brand.medium",        usage: "Selected-org marker" },
+      { token: "fill.brand.subtle",        usage: "Selected-org marker" },
     ]}
   />
 );

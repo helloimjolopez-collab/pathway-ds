@@ -294,7 +294,7 @@ export const TokensFill = {
   tags: ["!dev"],
   render: () => (
     <TokenTable title="Fill tokens" rows={[
-      <TokenRow key="brand"   varName="--semantic-color-fill-brand-medium"         fallback="#2d4889"               label="Nav bar background" />,
+      <TokenRow key="brand"   varName="--semantic-color-fill-brand-subtle"         fallback="#2d4889"               label="Nav bar background" />,
       <TokenRow key="org"     varName="--semantic-color-fill-action-primary-dim-rest"        fallback="rgba(160,181,230,0.04)" label="OrgSwitcher resting fill" />,
       <TokenRow key="search"  varName="--semantic-color-fill-action-primary-dim-rest"  fallback="rgba(160,181,230,0.08)" label="Search pill fill" />,
       <TokenRow key="hover"   varName="--semantic-color-fill-action-primary-dim-hover" fallback="rgba(10,18,35,0.16)"    label="All controls hover" />,

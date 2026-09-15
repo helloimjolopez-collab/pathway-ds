@@ -60,7 +60,7 @@ html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: 
 
 /* ── TopNav shell ─────────────────────────────────────────────────────────────── */
 .topnav {
-  background: var(--semantic-color-fill-brand-medium, #2d4889);
+  background: var(--semantic-color-fill-brand-subtle, #2d4889);
   display: flex; align-items: center; justify-content: space-between;
   height: 56px; max-height: 56px; padding: 4px 16px;
   position: relative; overflow: visible; z-index: 100;
@@ -625,7 +625,7 @@ function TopNav({
           breakpoint, so it can never overlap the OrgSwitcher or other controls. */}
       {useTakeover && (
         <div style={{ position:"absolute", inset:0, zIndex:200,
-          background:"var(--semantic-color-fill-brand-medium, #2d4889)",
+          background:"var(--semantic-color-fill-brand-subtle, #2d4889)",
           display:"flex", alignItems:"center", padding:"0 16px" }}>
           <div style={{ flex:1, minWidth:0, display:"flex", alignItems:"center", gap:8,
             height:36, padding:"0 8px", background:"white", border:"1px solid #6e8bd4", borderRadius:9999 }}>

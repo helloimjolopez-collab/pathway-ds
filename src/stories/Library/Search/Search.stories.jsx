@@ -333,7 +333,7 @@ export const TokensFill = () => (
       { token: "fill.action.primary-dim.rest",    usage: "Filter pill background - filter-active state. Primary Dim replaced the deleted Tertiary ramp" },
       { token: "fill.action.primary-dim.hover",   usage: "Icon pill - hover. The Dim ramp is the tint the retired *inverse hovers provided" },
       { token: "fill.action.primary.rest",        usage: "Badge dot fill" },
-      { token: "fill.brand.light",         usage: "TopNavSearch collapsed button background" },
+      { token: "fill.brand.dim",         usage: "TopNavSearch collapsed button background" },
     ]}
   />
 );

@@ -474,7 +474,7 @@ const PANEL_T = {
   border:    "var(--semantic-color-stroke-neutral-faint, #ededed)",
   name:      "var(--semantic-color-foreground-neutral-bold, #202020)",
   icon:      "var(--semantic-color-foreground-neutral-subtle, #949494)",
-  logoBg:    "var(--semantic-color-fill-brand-medium, #2d4889)",
+  logoBg:    "var(--semantic-color-fill-brand-subtle, #2d4889)",
   rowActive: "var(--semantic-color-fill-action-primary-dim-rest, #eef2fb)",
 };
 

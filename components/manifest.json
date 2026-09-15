@@ -482,7 +482,7 @@
         "iconRotation": "--motion-duration-4 / --motion-easing-standard (transform)"
       },
       "tokens": [
-        "light-mode.fill.brand.medium",
+        "light-mode.fill.brand.subtle",
         "dark-mode.fill.action.primary-dim.rest",
         "dark-mode.fill.action.primary-dim.rest",
         "dark-mode.fill.action.primary-dim.hover",
