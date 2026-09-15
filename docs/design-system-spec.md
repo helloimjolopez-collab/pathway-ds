@@ -236,7 +236,7 @@ checked for missing primitives, duplicate hex within a ladder, and monotonic con
 before it was written.
 
 **Known contrast gap.** `Foreground/Accent/Saffron/Faint` measures **4.49:1** on
-white and `Foreground/Status/Attention/Faint` measures **4.30:1**. Both sit just
+white and `Foreground/Accent/Saffron/Faint` measures **4.30:1**. Both sit just
 under the 4.5:1 AA threshold for body text. This is a property of yellow rather than an
 oversight: no step light enough to still read as yellow clears AA on white. Treat both
 as large-text-only — they clear the 3:1 large-text threshold comfortably — until a

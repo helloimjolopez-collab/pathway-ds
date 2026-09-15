@@ -292,6 +292,16 @@ const RETIRED_SLASH_EXAMPLES = new Set([
   // action foreground (the naked primary button). The spinner's CSS, spec and
   // MDX all name the group to explain why `tone="brand"` lost its ramp.
   "Foreground/Brand",
+  // Deleted 2026-09-15. Attention and Severe folded onto the Accent ladders
+  // they duplicated; Negative and Positive were promoted beside Neutral. The
+  // spinner spec's gap table names the group in a struck-through RESOLVED row,
+  // which only reads correctly if the name stays as it was.
+  //
+  // Note this is deliberately NOT "Fill/Status": the Fill half survives, because
+  // accent fills run light->dark over a far wider range than the pale band the
+  // status fills occupy, so folding those would repaint badge backgrounds.
+  "Foreground/Status",
+  "Stroke/Status",
 ]);
 
 

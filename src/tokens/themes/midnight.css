@@ -14,7 +14,7 @@
  still the lightest-touch step even though here it is a dark near-ground.
  White, XLight and Black are inversion anchors and keep their value.
 
- Declares 288 custom properties.
+ Declares 268 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -129,16 +129,6 @@
   --semantic-color-foreground-neutral-subtle: var(--primitive-color-cool-neutral-75);
   --semantic-color-foreground-neutral-contrast: var(--primitive-color-cool-neutral-25);
   --semantic-color-foreground-neutral-bold: var(--primitive-color-cool-neutral-0);
-  --semantic-color-foreground-status-attention-faint: var(--primitive-color-saffron-350);
-  --semantic-color-foreground-status-attention-dim: var(--primitive-color-saffron-300);
-  --semantic-color-foreground-status-attention-subtle: var(--primitive-color-saffron-200);
-  --semantic-color-foreground-status-attention-contrast: var(--primitive-color-saffron-100);
-  --semantic-color-foreground-status-attention-bold: var(--primitive-color-saffron-75);
-  --semantic-color-foreground-status-severe-faint: var(--primitive-color-orange-350);
-  --semantic-color-foreground-status-severe-dim: var(--primitive-color-orange-300);
-  --semantic-color-foreground-status-severe-subtle: var(--primitive-color-orange-200);
-  --semantic-color-foreground-status-severe-contrast: var(--primitive-color-orange-150);
-  --semantic-color-foreground-status-severe-bold: var(--primitive-color-orange-75);
   --semantic-color-foreground-negative-faint: var(--primitive-color-red-300);
   --semantic-color-foreground-negative-dim: var(--primitive-color-red-250);
   --semantic-color-foreground-negative-subtle: var(--primitive-color-red-200);
@@ -248,16 +238,6 @@
   --semantic-color-stroke-brand-bold: var(--primitive-color-brand-400);
   --semantic-color-stroke-brand-light: var(--primitive-color-brand-550);
   --semantic-color-stroke-brand-black: var(--primitive-color-brand-0);
-  --semantic-color-stroke-status-attention-faint: var(--primitive-color-saffron-900);
-  --semantic-color-stroke-status-attention-subtle: var(--primitive-color-saffron-700);
-  --semantic-color-stroke-status-attention-contrast: var(--primitive-color-saffron-500);
-  --semantic-color-stroke-status-attention-bold: var(--primitive-color-saffron-400);
-  --semantic-color-stroke-status-attention-dim: var(--primitive-color-saffron-800);
-  --semantic-color-stroke-status-severe-faint: var(--primitive-color-orange-900);
-  --semantic-color-stroke-status-severe-dim: var(--primitive-color-orange-800);
-  --semantic-color-stroke-status-severe-subtle: var(--primitive-color-orange-600);
-  --semantic-color-stroke-status-severe-contrast: var(--primitive-color-orange-500);
-  --semantic-color-stroke-status-severe-bold: var(--primitive-color-orange-350);
   --semantic-color-stroke-negative-faint: var(--primitive-color-red-600);
   --semantic-color-stroke-negative-dim: var(--primitive-color-red-500);
   --semantic-color-stroke-negative-subtle: var(--primitive-color-red-400);
