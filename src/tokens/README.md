@@ -7,7 +7,7 @@ Every file below is generated. Never hand-edit one — run `npm run build-tokens
 
 ## The short version
 
-**The colour contract is 243 names.** Not 972, which is what you get if you add up
+**The colour contract is 243 names.** Not 966, which is what you get if you add up
 every declaration in this folder, and not 2,338, which is what the retired `tokens.css`
 used to emit. The difference is explained below, and it is the whole reason this folder
 is split the way it is.
@@ -43,8 +43,8 @@ error** — which is a genuinely nasty way to lose an afternoon.
 | `motion.css` | 17 | **Contract** | Yes |
 | `breakpoints.css` | 5 | **Contract** | Yes |
 
-**Your working vocabulary is 353 names** — 243 colour + 41 type + 39 layout + 17 motion
-+ 8 responsive layout + 5 breakpoints. The 350 primitives are not part of it, and the 26
+**Your working vocabulary is 351 names** — 243 colour + 41 type + 39 layout + 17 motion
++ 6 responsive layout + 5 breakpoints. The 350 primitives are not part of it, and the 26
 component metrics are this repo's own business.
 
 Each file repeats its status in its own header, with the count computed at build time so

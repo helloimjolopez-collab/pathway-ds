@@ -10131,28 +10131,6 @@ const tokens = {
       "height"
     ]
   },
-  "shell-layout-desktop-1440pt-sidenav-padding-horizontal": {
-    "value": 16,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "desktop-1440pt",
-      "sidenav",
-      "padding",
-      "horizontal"
-    ]
-  },
-  "shell-layout-desktop-1440pt-sidenav-padding-vertical": {
-    "value": 8,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "desktop-1440pt",
-      "sidenav",
-      "padding",
-      "vertical"
-    ]
-  },
   "shell-layout-tablet-798pt-sheet-padding-top": {
     "value": 14,
     "type": "number",
@@ -10218,28 +10196,6 @@ const tokens = {
       "height"
     ]
   },
-  "shell-layout-tablet-798pt-sidenav-padding-horizontal": {
-    "value": 16,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "tablet-798pt",
-      "sidenav",
-      "padding",
-      "horizontal"
-    ]
-  },
-  "shell-layout-tablet-798pt-sidenav-padding-vertical": {
-    "value": 8,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "tablet-798pt",
-      "sidenav",
-      "padding",
-      "vertical"
-    ]
-  },
   "shell-layout-mobile-393pt-sheet-padding-top": {
     "value": 12,
     "type": "number",
@@ -10303,28 +10259,6 @@ const tokens = {
       "mobile-393pt",
       "topnav",
       "height"
-    ]
-  },
-  "shell-layout-mobile-393pt-sidenav-padding-horizontal": {
-    "value": 16,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "mobile-393pt",
-      "sidenav",
-      "padding",
-      "horizontal"
-    ]
-  },
-  "shell-layout-mobile-393pt-sidenav-padding-vertical": {
-    "value": 8,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "mobile-393pt",
-      "sidenav",
-      "padding",
-      "vertical"
     ]
   },
   "motion-duration-1": {

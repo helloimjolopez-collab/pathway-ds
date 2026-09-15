@@ -104,7 +104,7 @@ Load these eight, in this order:
 | `primitives.css` | 350 raw ramp values | **Required, but never referenced.** The themes point at these via `var()`, so the file must load or every colour resolves to nothing. Product code must never name a `--primitive-*` (§6) |
 | `themes/light.css` + `themes/midnight.css` | 243 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
 | `layout.css` | 39 layout and spacing names, single-valued | **Yes.** The spacing contract |
-| `layout-responsive.css` | 8 names that genuinely change by breakpoint: Sheet padding, TopNav padding and height. Emitted with media queries | **Yes.** A developer cannot derive these from a responsive grid — the grid governs columns, not the chrome's padding |
+| `layout-responsive.css` | 6 names that genuinely change by breakpoint: Sheet padding, TopNav padding and height. Emitted with media queries | **Yes.** A developer cannot derive these from a responsive grid — the grid governs columns, not the chrome's padding |
 | `layout-contextual.css` | 26 component metrics (Button, Card, NavItem, focus ring) | Component internals. This repo's components use it; product code should not |
 | `type.css` | The 41-token type SCALE: 1 family, 13 sizes, 18 line heights, 5 weights, 4 tracking steps | **Yes.** Compose from these |
 | `motion.css` | 17 durations and easings | **Yes** |

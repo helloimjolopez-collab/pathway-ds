@@ -3,14 +3,14 @@
 Design system for Ministry Brands Amplify. Tokens + components + specifications, all versioned in one place, with Storybook deployed from `main`.
 
 > **Looking for the tokens?** → **[TOKENS.md](TOKENS.md)** — where the CSS lives, which
-> of the 353 names you may use, and what to link in what order.
+> of the 351 names you may use, and what to link in what order.
 
 ## Using the tokens
 
-**The colour contract is 243 names. Your full working vocabulary is 353.**
+**The colour contract is 243 names. Your full working vocabulary is 351.**
 
 That is the number worth knowing, because adding up every declaration in the token
-folder gives 972 and the retired `tokens.css` used to emit 2,338. Neither is the
+folder gives 966 and the retired `tokens.css` used to emit 2,338. Neither is the
 contract. The difference is that primitives ship but are not named, and the modes share
 one name set rather than each having their own.
 
@@ -20,9 +20,9 @@ one name set rather than each having their own.
 | Type scale (`type.css`) | 41 | Yes |
 | Spacing, radii, borders (`layout.css`) | 39 | Yes |
 | Motion (`motion.css`) | 17 | Yes |
-| Sheet and TopNav padding (`layout-responsive.css`) | 8 | Yes |
+| Sheet and TopNav padding (`layout-responsive.css`) | 6 | Yes |
 | Breakpoints (`breakpoints.css`) | 5 | Yes |
-| **Working vocabulary** | **353** | |
+| **Working vocabulary** | **351** | |
 | Raw ramps (`primitives.css`) | 350 | **No** — but you must load it |
 | Component metrics (`layout-contextual.css`) | 26 | This repo's components |
 

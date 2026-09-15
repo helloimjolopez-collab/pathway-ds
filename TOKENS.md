@@ -1,6 +1,6 @@
 # Pathway tokens — start here
 
-**The colour contract is 243 names. Your full working vocabulary is 353.**
+**The colour contract is 243 names. Your full working vocabulary is 351.**
 
 This file exists at the repo root because the previous arrangement failed a real test: a
 developer went looking for "the token CSS", could not find it, and had no way to tell
@@ -44,9 +44,9 @@ error**.
 | `type.css` | 41 | Yes |
 | `layout.css` | 39 | Yes |
 | `motion.css` | 17 | Yes |
-| `layout-responsive.css` | 8 | Yes — the only layout tokens with media queries |
+| `layout-responsive.css` | 6 | Yes — the only layout tokens with media queries |
 | `breakpoints.css` | 5 | Yes |
-| **Working vocabulary** | **353** | |
+| **Working vocabulary** | **351** | |
 | `primitives.css` | 350 | **No** — but you must load it |
 | `layout-contextual.css` | 26 | This repo's own components |
 
@@ -59,9 +59,9 @@ every consumable name machine-readably, if you want to lint against it. Those ar
 generated into `dist/`, which is not committed, so you will see them after
 `npm run build-dist` or inside the installed package.
 
-## Why 353 and not 972
+## Why 351 and not 966
 
-If you add up every declaration across the token folder you get 972. That number is
+If you add up every declaration across the token folder you get 966. That number is
 real and it is not the contract:
 
 - **The two theme files declare the same 243 names**, once each. One name, two values,

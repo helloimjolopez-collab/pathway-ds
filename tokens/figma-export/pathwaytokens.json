@@ -5552,22 +5552,6 @@
               "$libraryName": "",
               "$value": "{Unit.56}"
             }
-          },
-          "SideNav": {
-            "Padding": {
-              "Horizontal": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.16}"
-              },
-              "Vertical": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.8}"
-              }
-            }
           }
         },
         "Tablet 798pt": {
@@ -5614,22 +5598,6 @@
               "$libraryName": "",
               "$value": "{Unit.56}"
             }
-          },
-          "SideNav": {
-            "Padding": {
-              "Horizontal": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.16}"
-              },
-              "Vertical": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.8}"
-              }
-            }
           }
         },
         "Mobile 393pt": {
@@ -5675,22 +5643,6 @@
               "$collectionName": "Primitive: Unit",
               "$libraryName": "",
               "$value": "{Unit.56}"
-            }
-          },
-          "SideNav": {
-            "Padding": {
-              "Horizontal": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.16}"
-              },
-              "Vertical": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.8}"
-              }
             }
           }
         }

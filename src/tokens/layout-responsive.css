@@ -14,7 +14,7 @@
  A developer cannot derive these from a responsive grid. The grid governs
  columns; it says nothing about the chrome's padding.
 
- Declares 16 custom properties.
+ Declares 14 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -22,8 +22,6 @@
   --shell-layout-sheet-padding-bottom: 64px;
   --shell-layout-sheet-padding-horizontal: 36px;
   --shell-layout-sheet-padding-top: 16px;
-  --shell-layout-sidenav-padding-horizontal: 16px;
-  --shell-layout-sidenav-padding-vertical: 8px;
   --shell-layout-topnav-height: 56px;
   --shell-layout-topnav-padding-horizontal: 16px;
   --shell-layout-topnav-padding-vertical: 6px;
