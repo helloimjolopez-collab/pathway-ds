@@ -9,7 +9,7 @@
     "_figma": "40007067-6508",
     "container.background": "--semantic-color-fill-brand-medium",
     "container.height": "56px",
-    "all-controls.text+icon": "--semantic-color-foreground-action-mono-rest",
+    "all-controls.text+icon": "--semantic-color-foreground-neutral-mono",
     "all-controls.hover-fill": "rgba(10,18,35,0.16)",
     "all-controls.pressed-fill": "rgba(255,255,255,0.08)",
     "orgswitcher.resting-fill": "--semantic-color-fill-action-primary-dim-rest",
@@ -46,7 +46,7 @@
     "fill.primary.hover": "--semantic-color-fill-action-primary-hover",
     "fill.secondary.base": "--semantic-color-fill-action-secondary-rest",
     "fill.negative.base": "--semantic-color-fill-action-status-negative-rest",
-    "text.primary-filled": "--semantic-color-foreground-action-mono-rest",
+    "text.primary-filled": "--semantic-color-foreground-neutral-mono",
     "text.secondary-outlined": "--semantic-color-foreground-action-secondary-rest",
     "border.outlined": "--semantic-color-stroke-action-secondary-rest",
     "label.font-size.M": "--semantic-type-font-size-r (=16)",
@@ -81,7 +81,7 @@
     "_warning": "TRIGGER TEXT ONLY. No avatar, no logo, no icon by default.",
     "container.fill.resting": "--semantic-color-fill-action-primary-dim-rest",
     "container.border.resting": "--semantic-color-stroke-action-primary-rest",
-    "label.text": "--semantic-color-foreground-action-mono-rest",
+    "label.text": "--semantic-color-foreground-neutral-mono",
     "label.font-size": "--semantic-type-font-size-s (=14)"
   },
   "search": {

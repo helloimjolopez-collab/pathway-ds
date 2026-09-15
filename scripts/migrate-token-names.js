@@ -112,10 +112,21 @@ const RULES = [
   [/^(fill|stroke|foreground)-static-danger(-|$)/, "$1-static-status-negative$2"],
   [/^(fill|stroke|foreground)-action-danger(-|$)/, "$1-action-status-negative$2"],
 
-  // ── Mono keeps Rest only, by design ──
-  [/^foreground-action-mono-(base|hover|pressed|rest)$/, "foreground-action-mono-rest"],
-  [/^fill-action-mono-(base|hover|pressed|rest)$/, "fill-action-mono-rest"],
-  [/^stroke-action-mono-(base|hover|pressed|rest)$/, "stroke-action-mono-rest"],
+  // ── The Action/Mono group is GONE (deleted 2026-09-15) ──
+  // It never had real states: only Rest existed, and its value was Cool
+  // Neutral/0 in both modes — identical to Foreground/Neutral/Mono, which is
+  // where a white-on-fill foreground belongs. The 269 nodes and 1 paint style
+  // still on it were rebound before the delete, and because the two resolved to
+  // the same #ffffff in both modes the rebind changed nothing on screen.
+  // Fill and Stroke variants had already gone the same way.
+  [/^(foreground|fill|stroke)-action-mono-(base|hover|pressed|rest)$/, "foreground-neutral-mono"],
+
+  // ── XLight is gone too (deleted 2026-09-15) ──
+  // Cool Neutral/200 at 2.92:1 on canvas, which is unusable for text, and not a
+  // rung on the six-step ladder (mono, faint, dim, subtle, contrast, bold). Its
+  // only two bindings were the Light/Midnight swatch pair on the Color docs
+  // page. Faint is the nearest usable rung.
+  [/^foreground-neutral-xlight$/, "foreground-neutral-faint"],
 
   // ── action states: Base → Rest ──
   [/-base$/, "-rest"],

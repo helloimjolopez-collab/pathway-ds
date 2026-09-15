@@ -143,10 +143,10 @@ Plus orthogonal state dimensions:
 
 | Type | Base | Hover | Pressed | Disabled |
 |---|---|---|---|---|
-| Primary | `foreground.action.mono.rest` | `foreground.action.mono.rest` | `foreground.action.mono.rest` | `foreground.action.disabled` |
+| Primary | `foreground.neutral.mono` | `foreground.neutral.mono` | `foreground.neutral.mono` | `foreground.action.disabled` |
 | Secondary | `foreground.action.secondary.rest` | `foreground.action.secondary.hover` | `foreground.action.secondary.pressed` | `foreground.action.disabled` |
 | Tertiary | `foreground.action.primary.rest` | `foreground.action.primary.hover` | `foreground.action.primary.pressed` | `foreground.action.disabled` |
-| Negative | `foreground.action.mono.rest` | `foreground.action.mono.rest` | `foreground.action.mono.rest` | `foreground.action.disabled` |
+| Negative | `foreground.neutral.mono` | `foreground.neutral.mono` | `foreground.neutral.mono` | `foreground.action.disabled` |
 
 **Outlined and Naked** use direct-type text (coloured on transparent surface):
 
@@ -161,7 +161,7 @@ Plus orthogonal state dimensions:
 
 Mirror the text token pattern exactly, substituting `icon` for `text`. Icon colours always match label colours within the same style/type/state.
 
-Fill/Primary uses `foreground.action.mono.*`. Fill/Negative uses `foreground.action.mono.*`.
+Fill/Primary uses `foreground.neutral.mono`. Fill/Negative uses `foreground.neutral.mono`.
 Outlined and Naked use `foreground.action.{type}.*`.
 
 ### 5.4 Stroke tokens (Outlined only)
@@ -396,7 +396,7 @@ Native `<button>` provides all keyboard handling. Do not override with `onKeyDow
 
 ### Contrast
 
-- Fill/Primary label on blue background: `foreground.action.mono` is guaranteed ≥ 4.5:1 against `fill.action.primary` by token design.
+- Fill/Primary label on blue background: `foreground.neutral.mono` is white in both modes, so it is guaranteed ≥ 4.5:1 against `fill.action.primary` by token design.
 - Disabled buttons intentionally fall below 3:1 — this is acceptable per WCAG 1.4.3 (disabled UI components are exempt).
 
 ### Reduced motion

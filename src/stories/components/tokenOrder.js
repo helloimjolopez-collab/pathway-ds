@@ -24,24 +24,28 @@
 // instead of flipping — but they still have a place on the ramp, so they are
 // ordered here and marked as anchors below for the UI to annotate.
 //
-// SIMPLIFIED 2026-09-14. It used to run white, xlight, faint, subtle, light,
-// medium, contrast, bold — eight steps, two of which (faint at cool-400 and
-// light at cool-500) were close enough to be a coin toss, and whose NAMES
-// disagreed with their values: `subtle` sat at cool-450 and `light` at cool-500,
-// so "light" was the darker of the two. The target is six:
+// SIMPLIFIED 2026-09-14, completed 2026-09-15. Foreground/Neutral used to run
+// white, xlight, faint, subtle, light, medium, contrast, bold — eight steps, two
+// of which (faint at cool-400 and light at cool-500) were close enough to be a
+// coin toss, and whose NAMES disagreed with their values: `subtle` sat at
+// cool-450 and `light` at cool-500, so "light" was the darker of the two.
+// Foreground/Neutral is now exactly six:
 //
 //   mono, faint, dim, subtle, contrast, bold
 //
-// Every entry below is either on that list or still present in the panel:
-//   white   -> renamed to mono (same value, cool-neutral-0)
-//   subtle  -> renamed to dim  (same value, cool-neutral-450)
-//   medium  -> renamed to subtle (same value, cool-neutral-600)
-//   light   -> deleted, no exact successor; cool-500 is not on the new ladder
-//   xlight  -> still in the panel, 2.92:1 on canvas, slated for deletion
+// How the old rungs resolved, by value rather than by name:
+//   white   -> renamed to mono    (same value, cool-neutral-0)
+//   subtle  -> renamed to dim     (same value, cool-neutral-450)
+//   medium  -> renamed to subtle  (same value, cool-neutral-600)
+//   light   -> deleted; cool-500 is not a rung on the new ladder
+//   xlight  -> deleted; cool-200 is 2.92:1 on canvas, unusable for text
 //
-// Keep `light` and `medium` listed. Fill/Brand and Stroke/Brand still use them,
-// and an unknown rung falls through to alphabetical, which is the exact disorder
-// this module exists to prevent.
+// `white`, `xlight`, `light`, `medium` and `black` stay LISTED even though
+// Foreground/Neutral no longer uses them, because other groups still do —
+// Fill/Neutral/White, Fill/Brand/Light, Fill/Brand/Medium, Scrim/Light,
+// Foreground/Status/*/Medium, Stroke/Brand/Black. An unknown rung falls through
+// to alphabetical, which is the exact disorder this module exists to prevent, so
+// removing a name here is only safe once nothing anywhere uses it.
 export const LADDER = [
   "mono",
   "white",
@@ -56,7 +60,7 @@ export const LADDER = [
   "black",
 ];
 
-export const ANCHORS = new Set(["mono", "white", "xlight", "black"]);
+export const ANCHORS = new Set(["mono", "white", "black"]);
 
 // Interaction states, in the order a pointer actually moves through them.
 // Disabled last because it is terminal, not a step.

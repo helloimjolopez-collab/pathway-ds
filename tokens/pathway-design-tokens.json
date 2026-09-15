@@ -1467,10 +1467,6 @@
             "$type": "color",
             "$value": "{primitive-color.cool-neutral.0}"
           },
-          "xlight": {
-            "$type": "color",
-            "$value": "{primitive-color.cool-neutral.200}"
-          },
           "faint": {
             "$type": "color",
             "$value": "{primitive-color.cool-neutral.400}"
@@ -1769,12 +1765,6 @@
             "pressed": {
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.900}"
-            }
-          },
-          "mono": {
-            "rest": {
-              "$type": "color",
-              "$value": "{primitive-color.cool-neutral.0}"
             }
           },
           "status": {
@@ -2801,10 +2791,6 @@
             "$type": "color",
             "$value": "{primitive-color.cool-neutral.0}"
           },
-          "xlight": {
-            "$type": "color",
-            "$value": "{primitive-color.cool-neutral.0-16}"
-          },
           "faint": {
             "$type": "color",
             "$value": "{primitive-color.cool-neutral.250}"
@@ -3103,12 +3089,6 @@
             "pressed": {
               "$type": "color",
               "$value": "{primitive-color.cool-neutral.125}"
-            }
-          },
-          "mono": {
-            "rest": {
-              "$type": "color",
-              "$value": "{primitive-color.cool-neutral.0}"
             }
           },
           "status": {

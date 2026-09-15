@@ -61,7 +61,7 @@ export const T = {
   // resolves through the DARK-MODE token set (per Figma node 40007095-4048). The
   // expanded bar itself stays white (light-mode SearchInput) — only the collapsed
   // icon button + its icon use the inverse/mono dark-mode tokens.
-  navIconFill:        "var(--semantic-color-foreground-action-mono-rest, #fbfbfb)",
+  navIconFill:        "var(--semantic-color-foreground-neutral-mono, #fbfbfb)",
   collapsedBtnFill:   "var(--semantic-color-fill-action-primary-dim-rest, rgba(160,181,230,0.08))",
   collapsedBtnHover:  "var(--semantic-color-fill-action-primary-dim-hover, rgba(10,18,35,0.16))",
   collapsedBtnBorder: "var(--semantic-color-stroke-action-primary-rest, rgba(160,181,230,0.5))",

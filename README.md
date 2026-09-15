@@ -3,26 +3,26 @@
 Design system for Ministry Brands Amplify. Tokens + components + specifications, all versioned in one place, with Storybook deployed from `main`.
 
 > **Looking for the tokens?** → **[TOKENS.md](TOKENS.md)** — where the CSS lives, which
-> of the 400 names you may use, and what to link in what order.
+> of the 398 names you may use, and what to link in what order.
 
 ## Using the tokens
 
-**The colour contract is 290 names. Your full working vocabulary is 400.**
+**The colour contract is 288 names. Your full working vocabulary is 398.**
 
 That is the number worth knowing, because adding up every declaration in the token
-folder gives 1,066 and the retired `tokens.css` used to emit 2,338. Neither is the
+folder gives 1,064 and the retired `tokens.css` used to emit 2,338. Neither is the
 contract. The difference is that primitives ship but are not named, and the modes share
 one name set rather than each having their own.
 
 | | Count | Name these? |
 |---|---|---|
-| Colour (`themes/light.css`, `themes/midnight.css` — same names) | **290** | Yes |
+| Colour (`themes/light.css`, `themes/midnight.css` — same names) | **288** | Yes |
 | Type scale (`type.css`) | 41 | Yes |
 | Spacing, radii, borders (`layout.css`) | 39 | Yes |
 | Motion (`motion.css`) | 17 | Yes |
 | Sheet and TopNav padding (`layout-responsive.css`) | 8 | Yes |
 | Breakpoints (`breakpoints.css`) | 5 | Yes |
-| **Working vocabulary** | **400** | |
+| **Working vocabulary** | **398** | |
 | Raw ramps (`primitives.css`) | 350 | **No** — but you must load it |
 | Component metrics (`layout-contextual.css`) | 26 | This repo's components |
 
@@ -48,6 +48,7 @@ import "@helloimjolopez-pathway/pathway-tokens/themes/light.css";
 import "@helloimjolopez-pathway/pathway-tokens/themes/midnight.css";
 import "@helloimjolopez-pathway/pathway-tokens/type.css";
 import "@helloimjolopez-pathway/pathway-tokens/layout.css";
+import "@helloimjolopez-pathway/pathway-tokens/layout-responsive.css";
 import "@helloimjolopez-pathway/pathway-tokens/motion.css";
 import "@helloimjolopez-pathway/pathway-tokens/breakpoints.css";
 
@@ -71,6 +72,7 @@ as too granular to adopt. Retired 2026-09-03 and not coming back.
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/themes/midnight.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/type.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/layout.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/layout-responsive.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/motion.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/breakpoints.css" />
 ```

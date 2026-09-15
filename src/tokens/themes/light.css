@@ -12,7 +12,7 @@
  put a mode in a property name — that form came from tokens.css, retired
  2026-09-03, and resolves to nothing.
 
- Declares 290 custom properties.
+ Declares 288 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -122,7 +122,6 @@
   --semantic-color-fill-action-selection-selected: var(--primitive-color-brand-75-24);
   --semantic-color-fill-action-selection-trail: var(--primitive-color-warm-neutral-100-24);
   --semantic-color-foreground-neutral-mono: var(--primitive-color-cool-neutral-0);
-  --semantic-color-foreground-neutral-xlight: var(--primitive-color-cool-neutral-200);
   --semantic-color-foreground-neutral-faint: var(--primitive-color-cool-neutral-400);
   --semantic-color-foreground-neutral-dim: var(--primitive-color-cool-neutral-450);
   --semantic-color-foreground-neutral-subtle: var(--primitive-color-cool-neutral-600);
@@ -190,7 +189,6 @@
   --semantic-color-foreground-action-secondary-rest: var(--primitive-color-cool-neutral-500);
   --semantic-color-foreground-action-secondary-hover: var(--primitive-color-cool-neutral-700);
   --semantic-color-foreground-action-secondary-pressed: var(--primitive-color-cool-neutral-900);
-  --semantic-color-foreground-action-mono-rest: var(--primitive-color-cool-neutral-0);
   --semantic-color-foreground-action-status-negative-rest: var(--primitive-color-red-600);
   --semantic-color-foreground-action-status-negative-hover: var(--primitive-color-red-700);
   --semantic-color-foreground-action-status-negative-pressed: var(--primitive-color-red-900);

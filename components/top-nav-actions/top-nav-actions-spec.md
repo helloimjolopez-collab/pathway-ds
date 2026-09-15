@@ -120,7 +120,7 @@ All semantic. Trigger/inline icons sit on the **dark** nav surface (dark-mode co
 
 | Element | Property | Semantic token | Resolved |
 |---|---|---|---|
-| Inline icon / ellipsis glyph | colour | `dark-mode.foreground.action.mono.rest` | `#fbfbfb` |
+| Inline icon / ellipsis glyph | colour | `dark-mode.foreground.neutral.mono` | `#fbfbfb` |
 | Icon button | hover bg | `dark-mode.fill.action.primary-dim.hover` | `rgba(10,18,35,0.16)` |
 | Ellipsis (open) | bg | `dark-mode.fill.action.primary-dim.pressed` | `rgba(255,255,255,0.08)` |
 | Menu panel | surface | `light-mode.fill.neutral.faint` | `#ffffff` |

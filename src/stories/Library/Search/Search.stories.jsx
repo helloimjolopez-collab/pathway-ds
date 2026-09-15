@@ -368,7 +368,7 @@ export const TokensForeground = () => (
       { token: "foreground.action.secondary.hover",        usage: "All icons - hover / focused" },
       { token: "foreground.action.disabled",               usage: "All icons - disabled. ONE disabled token per tier, not one per role" },
       { token: "foreground.action.status.negative.rest",   usage: "Search icon - error state" },
-      { token: "foreground.action.mono.rest",              usage: "Badge count on the filled badge dot. Mono has only a rest step" },
+      { token: "foreground.neutral.mono",              usage: "Badge count on the filled badge dot. Mono has only a rest step" },
     ]}
   />
 );

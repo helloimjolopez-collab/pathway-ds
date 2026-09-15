@@ -161,11 +161,14 @@ function measure(node) {
  * regresses for all of them.
  */
 // Must stay in step with LADDER in src/stories/components/tokenOrder.js — that
-// module decides the order, this list only asserts it was applied. Simplified
-// 2026-09-14: white -> mono, subtle -> dim, medium -> subtle, light deleted.
-// `xlight` is still here because it is still in the panel, not because it is
-// wanted; it is 2.92:1 on canvas and slated for deletion.
-const LADDER_EXPECTED = ["mono", "xlight", "faint", "dim", "subtle", "contrast", "bold"];
+// module decides the order, this list only asserts it was applied. The ladder
+// was simplified to six rungs across 2026-09-14/15: white -> mono,
+// subtle -> dim, medium -> subtle, and light and xlight deleted outright.
+//
+// checkLadderOrder filters this down to the rungs actually present, so a rung
+// listed here but absent from the panel does not fail the check. That is why it
+// is safe to keep asserting the full expected sequence.
+const LADDER_EXPECTED = ["mono", "faint", "dim", "subtle", "contrast", "bold"];
 
 function checkLadderOrder(node) {
   const printed = (node.textContent || "").match(/--semantic-color-[a-z0-9-]+/g) || [];

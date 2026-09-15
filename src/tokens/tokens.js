@@ -3420,17 +3420,6 @@ const tokens = {
       "mono"
     ]
   },
-  "semantic-color-light-mode-foreground-neutral-xlight": {
-    "value": "#979797",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "foreground",
-      "neutral",
-      "xlight"
-    ]
-  },
   "semantic-color-light-mode-foreground-neutral-faint": {
     "value": "#606060",
     "type": "color",
@@ -4227,18 +4216,6 @@ const tokens = {
       "action",
       "secondary",
       "pressed"
-    ]
-  },
-  "semantic-color-light-mode-foreground-action-mono-rest": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "foreground",
-      "action",
-      "mono",
-      "rest"
     ]
   },
   "semantic-color-light-mode-foreground-action-status-negative-rest": {
@@ -6919,17 +6896,6 @@ const tokens = {
       "mono"
     ]
   },
-  "semantic-color-midnight-mode-foreground-neutral-xlight": {
-    "value": "#ffffff29",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "midnight-mode",
-      "foreground",
-      "neutral",
-      "xlight"
-    ]
-  },
   "semantic-color-midnight-mode-foreground-neutral-faint": {
     "value": "#8b8b8b",
     "type": "color",
@@ -7726,18 +7692,6 @@ const tokens = {
       "action",
       "secondary",
       "pressed"
-    ]
-  },
-  "semantic-color-midnight-mode-foreground-action-mono-rest": {
-    "value": "#ffffff",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "midnight-mode",
-      "foreground",
-      "action",
-      "mono",
-      "rest"
     ]
   },
   "semantic-color-midnight-mode-foreground-action-status-negative-rest": {

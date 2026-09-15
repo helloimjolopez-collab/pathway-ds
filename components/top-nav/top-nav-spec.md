@@ -138,8 +138,8 @@ The Search pill uses a distinct border: `0.75px solid` at the `icon-action-mono-
 
 | Semantic Token | Primitive | Resolved | Usage |
 |---|---|---|---|
-| `semantic-color.dark-mode.foreground.action.mono.rest` | `primitive-color.cool-neutral-10` | `#fbfbfb` | ModuleSwitcher label, OrgSwitcher label |
-| `semantic-color.dark-mode.foreground.action.mono.rest` | `primitive-color.cool-neutral-10` | `#fbfbfb` | All icon fills on the nav bar |
+| `semantic-color.dark-mode.foreground.neutral.mono` | `primitive-color.cool-neutral-10` | `#fbfbfb` | ModuleSwitcher label, OrgSwitcher label |
+| `semantic-color.dark-mode.foreground.neutral.mono` | `primitive-color.cool-neutral-10` | `#fbfbfb` | All icon fills on the nav bar |
 
 ### 3.5 Profile avatar
 
@@ -244,10 +244,10 @@ States apply to the interactive inner controls (ModuleSwitcher.Inner, OrgSwitche
 
 | State | Fill | Stroke | Text/Icon |
 |---|---|---|---|
-| **Base (ModuleSwitcher)** | transparent | transparent | `dark-mode.foreground.action.mono.rest` (#fbfbfb) |
-| **Base (OrgSwitcher)** | `dark-mode.fill.action.primary-dim.rest` (rgba 160,181,230 / 0.04) | `dark-mode.stroke.action.primary.rest` (rgba 160,181,230 / 0.16) | `dark-mode.foreground.action.mono.rest` (#fbfbfb) |
-| **Base (Search pill)** | `dark-mode.fill.action.primary-dim.rest` (rgba 160,181,230 / 0.08) | `dark-mode.foreground.action.mono.rest` (#fbfbfb), 0.75px | `dark-mode.foreground.action.mono.rest` (#fbfbfb) |
-| **Base (ActionIcon)** | transparent | none | `dark-mode.foreground.action.mono.rest` (#fbfbfb) |
+| **Base (ModuleSwitcher)** | transparent | transparent | `dark-mode.foreground.neutral.mono` (#fbfbfb) |
+| **Base (OrgSwitcher)** | `dark-mode.fill.action.primary-dim.rest` (rgba 160,181,230 / 0.04) | `dark-mode.stroke.action.primary.rest` (rgba 160,181,230 / 0.16) | `dark-mode.foreground.neutral.mono` (#fbfbfb) |
+| **Base (Search pill)** | `dark-mode.fill.action.primary-dim.rest` (rgba 160,181,230 / 0.08) | `dark-mode.foreground.neutral.mono` (#fbfbfb), 0.75px | `dark-mode.foreground.neutral.mono` (#fbfbfb) |
+| **Base (ActionIcon)** | transparent | none | `dark-mode.foreground.neutral.mono` (#fbfbfb) |
 | **Hover (all controls)** | `dark-mode.fill.action.primary-dim.hover` (rgba 10,18,35 / 0.16) | (tertiary hover for org/mod) | unchanged |
 | **Pressed / Expanded** | `dark-mode.fill.action.primary-dim.pressed` (rgba 255,255,255 / 0.08) | (tertiary pressed for org/mod) | unchanged |
 | **Focus-visible** | unchanged | 2px solid `rgba(160,181,230,0.7)`, 2px offset | unchanged |
@@ -363,7 +363,7 @@ When no logo image is available for an org, the avatar container shows the org's
 
 | Context | Container | Background | Text size | Text color |
 |---|---|---|---|---|
-| Nav bar trigger | 20×20, `border-radius: 4px` | `rgba(45,72,137,0.3)` (semi-transparent brand) | 7px / 700 | `dark-mode.foreground.action.mono.rest` (#fbfbfb) |
+| Nav bar trigger | 20×20, `border-radius: 4px` | `rgba(45,72,137,0.3)` (semi-transparent brand) | 7px / 700 | `dark-mode.foreground.neutral.mono` (#fbfbfb) |
 | Org panel item | 32×32, `border-radius: 4px` | `#2d4889` (brand base) | 9px / 700 | `#ffffff` |
 
 The nav bar fallback uses a semi-transparent brand fill so the underlying nav-bar color bleeds through slightly, keeping the avatar visually integrated. The panel fallback uses solid brand fill because it sits on a white panel surface.
@@ -398,7 +398,7 @@ A circular pill button sits in the RowEnd slot.
 - Outer container: 48×48px (touch target)
 - Pill: 32×32px, `border-radius: 9999px`
 - Background: `dark-mode.fill.action.primary-dim.rest` (`rgba(160,181,230,0.08)`)
-- Border: `0.75px solid #fbfbfb` (the `dark-mode.foreground.action.mono.rest` resolved value)
+- Border: `0.75px solid #fbfbfb` (the `dark-mode.foreground.neutral.mono` resolved value)
 - Icon: search SVG, fill #fbfbfb, 16px
 
 #### Expanded state

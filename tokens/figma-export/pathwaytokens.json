@@ -1685,12 +1685,6 @@
                 "$libraryName": "",
                 "$value": "{Cool Neutral.0}"
               },
-              "XLight": {
-                "$type": "color",
-                "$collectionName": "Primitive: Color",
-                "$libraryName": "",
-                "$value": "{Cool Neutral.200}"
-              },
               "Faint": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
@@ -2123,14 +2117,6 @@
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Cool Neutral.900}"
-                }
-              },
-              "Mono": {
-                "Rest": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Cool Neutral.0}"
                 }
               },
               "Status": {
@@ -3599,12 +3585,6 @@
                 "$libraryName": "",
                 "$value": "{Cool Neutral.0}"
               },
-              "XLight": {
-                "$type": "color",
-                "$collectionName": "Primitive: Color",
-                "$libraryName": "",
-                "$value": "{Cool Neutral.0 @ 16%}"
-              },
               "Faint": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
@@ -4037,14 +4017,6 @@
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Cool Neutral.125}"
-                }
-              },
-              "Mono": {
-                "Rest": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Cool Neutral.0}"
                 }
               },
               "Status": {

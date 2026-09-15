@@ -102,7 +102,7 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 | `fill.action.primary-dim.rest` (dark) | dark-mode | rgba(160,181,230,0.04) | OrgSwitcher resting fill |
 | `stroke.action.primary.rest` (dark) | dark-mode | rgba(160,181,230,0.16) | OrgSwitcher border |
 | `fill.action.primary-dim.hover` (dark) | dark-mode | rgba(10,18,35,0.16) | All nav controls hover |
-| `foreground.action.mono.rest` (dark) | dark-mode | #fbfbfb | All text + icons on nav |
+| `foreground.neutral.mono` (dark) | dark-mode | #fbfbfb | All text + icons on nav |
 | `fill.accent.amethyst.medium` | `--semantic-color-fill-accent-amethyst-medium` | #dcd9ef | Profile avatar bg |
 | `foreground.accent.amethyst.contrast` | `--semantic-color-foreground-accent-amethyst-contrast` | #221e3f | Profile avatar initials |
 

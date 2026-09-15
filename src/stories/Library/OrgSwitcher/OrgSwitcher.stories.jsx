@@ -322,7 +322,7 @@ export const TokensForeground = () => (
     title="Foreground tokens - label and chevron"
     note="One tier for text and icons. The trigger label and the chevron are the same control, so they must not resolve through two ramps that can drift apart. Mono has only a rest step: white stays white through hover and press."
     rows={[
-      { token: "foreground.action.mono.rest",         usage: "Trigger label and chevron, all interaction states" },
+      { token: "foreground.neutral.mono",         usage: "Trigger label and chevron, all interaction states" },
       { token: "foreground.neutral.bold",      usage: "Dropdown org name" },
       { token: "foreground.neutral.subtle",    usage: "Dropdown secondary line" },
       { token: "foreground.neutral.subtle",    usage: "Dropdown section label" },

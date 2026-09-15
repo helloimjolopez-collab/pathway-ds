@@ -311,17 +311,17 @@ export const TokensStroke = {
     <TokenTable title="Stroke tokens" rows={[
       <TokenRow key="orgborder"   varName="--semantic-color-stroke-action-primary-rest"  fallback="rgba(160,181,230,0.16)" label="OrgSwitcher border" type="stroke" />,
       <TokenRow key="orghover"    varName="--semantic-color-stroke-action-primary-hover" fallback="rgba(160,181,230,0.20)" label="OrgSwitcher hover border" type="stroke" />,
-      <TokenRow key="searchbdr"   varName="--semantic-color-foreground-action-mono-rest"        fallback="#fbfbfb"                label="Search pill border (0.75px)" type="stroke" />,
+      <TokenRow key="searchbdr"   varName="--semantic-color-foreground-neutral-mono"        fallback="#fbfbfb"                label="Search pill border (0.75px)" type="stroke" />,
     ]} />
   ),
-  parameters: { docs: { description: { story: "Stroke tokens. There is no Tertiary stroke family any more - it was deleted because it duplicated Primary offset by one ramp step, so the OrgSwitcher border reads the Primary stroke ramp. The search pill uses Foreground/Action/Mono/Rest at 0.75px." } } },
+  parameters: { docs: { description: { story: "Stroke tokens. There is no Tertiary stroke family any more - it was deleted because it duplicated Primary offset by one ramp step, so the OrgSwitcher border reads the Primary stroke ramp. The search pill uses Foreground/Neutral/Mono at 0.75px." } } },
 };
 
 export const TokensText = {
   tags: ["!dev"],
   render: () => (
     <TokenTable title="Text tokens" rows={[
-      <TokenRow key="mono"  varName="--semantic-color-foreground-action-mono-rest"               fallback="#fbfbfb" label="All text on nav bar" type="text" />,
+      <TokenRow key="mono"  varName="--semantic-color-foreground-neutral-mono"               fallback="#fbfbfb" label="All text on nav bar" type="text" />,
       <TokenRow key="avtxt" varName="--semantic-color-foreground-accent-amethyst-contrast" fallback="#221e3f" label="Profile avatar initials" type="text" />,
     ]} />
   ),
@@ -332,10 +332,10 @@ export const TokensIcon = {
   tags: ["!dev"],
   render: () => (
     <TokenTable title="Icon tokens" rows={[
-      <TokenRow key="icomono" varName="--semantic-color-foreground-action-mono-rest" fallback="#fbfbfb" label="All icons on nav bar surface" type="icon" />,
+      <TokenRow key="icomono" varName="--semantic-color-foreground-neutral-mono" fallback="#fbfbfb" label="All icons on nav bar surface" type="icon" />,
     ]} />
   ),
-  parameters: { docs: { description: { story: "Icon tokens. All Material Symbol icons on the brand-blue surface use Foreground/Action/Mono/Rest." } } },
+  parameters: { docs: { description: { story: "Icon tokens. All Material Symbol icons on the brand-blue surface use Foreground/Neutral/Mono." } } },
 };
 
 export const TokensTypography = {

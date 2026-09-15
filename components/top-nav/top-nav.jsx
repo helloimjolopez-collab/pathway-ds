@@ -44,7 +44,7 @@ export const T = {
   controlHover:   SCD("fill-action-primary-dim-hover", "rgba(10,18,35,0.16)"),
   controlPressed: SCD("fill-action-primary-dim-pressed", "rgba(255,255,255,0.08)"),
   noLogoBg:       SCD("fill-action-secondary-rest", "rgba(255,255,255,0.08)"),
-  monoBase:       SCD("foreground-action-mono-rest", "#fbfbfb"),
+  monoBase:       SCD("foreground-neutral-mono", "#fbfbfb"),
   // OrgSwitcher trigger (reconciled to Figma node 40006819:14581, 2026-08-06):
   // org name uses Foreground/Neutral/Bold, chevron uses Foreground/Neutral/Bold.
   orgText:        SCD("foreground-neutral-bold", "#eceaf3"),

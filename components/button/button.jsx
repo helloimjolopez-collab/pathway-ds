@@ -60,10 +60,10 @@ FILL.Naked = FILL.Outlined;
 // stays white through hover and pressed, so all three states share it.
 export const FG = {
   Fill: {
-    Primary:   { base: SC("foreground-action-mono-rest"),             hover: SC("foreground-action-mono-rest"),             pressed: SC("foreground-action-mono-rest"),             disabled: SC("foreground-action-disabled") },
+    Primary:   { base: SC("foreground-neutral-mono"),             hover: SC("foreground-neutral-mono"),             pressed: SC("foreground-neutral-mono"),             disabled: SC("foreground-action-disabled") },
     Secondary: { base: SC("foreground-action-secondary-rest"),        hover: SC("foreground-action-secondary-hover"),        pressed: SC("foreground-action-secondary-pressed"),        disabled: SC("foreground-action-disabled") },
     Tertiary:  { base: SC("foreground-action-primary-rest"),          hover: SC("foreground-action-primary-hover"),          pressed: SC("foreground-action-primary-pressed"),          disabled: SC("foreground-action-disabled") },
-    Negative:  { base: SC("foreground-action-mono-rest"),             hover: SC("foreground-action-mono-rest"),             pressed: SC("foreground-action-mono-rest"),             disabled: SC("foreground-action-disabled") },
+    Negative:  { base: SC("foreground-neutral-mono"),             hover: SC("foreground-neutral-mono"),             pressed: SC("foreground-neutral-mono"),             disabled: SC("foreground-action-disabled") },
   },
   Outlined: {
     Primary:   { base: SC("foreground-action-primary-rest"),          hover: SC("foreground-action-primary-hover"),          pressed: SC("foreground-action-primary-pressed"),          disabled: SC("foreground-action-disabled") },
