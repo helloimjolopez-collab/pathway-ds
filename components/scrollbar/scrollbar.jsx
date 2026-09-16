@@ -30,13 +30,28 @@ export const SCROLL = {
   thumbMin:    28,                                                // px — min thumb length (grab-target floor); JS layout math
   gutter:      "var(--semantic-layout-units-padding-xxxtight)",   // 2px — inset from the right edge
   grabZone:    16,                                                // px — invisible mouse grab strip (wider than the 6px thumb so it's catchable)
-  thumbRest:   "var(--semantic-color-scrim-faint)",    // black 16% — faint overlay (rest)
-  thumbHover:  "var(--semantic-color-scrim-light)",    // black 30% — hover/drag
+  // WHY THESE TWO RUNGS AND NOT THE FAINTER ONES (2026-09-16):
+  //
+  // Rest was Scrim/Faint (black 16%), which composites to 1.4:1 against both
+  // canvas and sheet. The AA floor for a non-text UI component is 3:1, so a 6px
+  // pill at 1.4:1 sat right at the threshold of perception: one person saw it
+  // and another, on a brighter display, reported the scrollbar as missing
+  // entirely. That was a real report, not a misconfiguration.
+  //
+  // Measured over #fafafa: Faint 16% = 1.4:1, Light 24% = 1.68:1,
+  // Subtle 50% = 3.4:1, Base 70% = 6.57:1. Subtle is the lightest rung that
+  // clears the floor, so rest takes it and hover takes Base, which keeps the
+  // hover step legible as a step.
+  thumbRest:   "var(--semantic-color-scrim-subtle)",   // black 50% — 3.4:1, the lightest rung clearing 3:1
+  thumbHover:  "var(--semantic-color-scrim-base)",     // black 70% — 6.57:1, hover/drag
   thumbBlur:   "blur(8px) saturate(180%)",
   // Hairline glass edge: semantic white at 35% via color-mix.
   thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-fill-static-neutral-faint) 35%, transparent)",
-  // Asymmetric fade, motion-token driven: snappy appear (200ms decelerate glide-in), graceful fade-out (380ms).
-  fadeIn:      "opacity var(--motion-duration-3) var(--motion-easing-decelerate), background var(--motion-duration-3) var(--motion-easing-standard)",
+  // Fade OUT gracefully, but appear INSTANTLY. Animating opacity on the way in
+  // multiplied the thumb's own alpha by the in-flight opacity, so during the
+  // 200ms glide-in it rendered as low as 1.18:1 — below the floor at the exact
+  // moment the user is looking for it. Only the fade-out is animated now.
+  fadeIn:      "background var(--motion-duration-3) var(--motion-easing-standard)",
   fadeOut:     "opacity var(--motion-duration-5) var(--motion-easing-standard)",
   idleHideMs:  500,                                               // hide the thumb this long after scrolling stops / mouse leaves the bar
 };
