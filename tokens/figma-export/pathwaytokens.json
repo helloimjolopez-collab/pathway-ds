@@ -1111,23 +1111,45 @@
               },
               "Status": {
                 "Info": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.25}"
+                  "Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.25}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.50}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.75}"
+                    }
                   },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.50}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.75}"
+                  "Strong": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.200}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.300}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.350}"
+                    }
                   }
                 },
                 "Positive": {
@@ -1173,43 +1195,87 @@
                   }
                 },
                 "Attention": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.25}"
+                  "Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.25}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.75}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.100}"
+                    }
                   },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.75}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.100}"
+                  "Strong": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.150}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.200}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.300}"
+                    }
                   }
                 },
                 "Severe": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.50}"
+                  "Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.50}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.75}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.100}"
+                    }
                   },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.75}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.100}"
+                  "Strong": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.250}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.300}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.350}"
+                    }
                   }
                 },
                 "Negative": {
@@ -1491,6 +1557,12 @@
                     "$libraryName": "",
                     "$value": "{Brand.800}"
                   }
+                },
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Cool Neutral.0}"
                 }
               },
               "Secondary": {
@@ -1554,6 +1626,12 @@
                       "$libraryName": "",
                       "$value": "{Amethyst.900}"
                     }
+                  },
+                  "On Strong": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Cool Neutral.900}"
                   }
                 },
                 "Positive": {
@@ -1576,6 +1654,12 @@
                       "$libraryName": "",
                       "$value": "{Green.900}"
                     }
+                  },
+                  "On Strong": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Cool Neutral.0}"
                   }
                 },
                 "Attention": {
@@ -1598,6 +1682,12 @@
                       "$libraryName": "",
                       "$value": "{Saffron.900}"
                     }
+                  },
+                  "On Strong": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Cool Neutral.900}"
                   }
                 },
                 "Severe": {
@@ -1620,6 +1710,12 @@
                       "$libraryName": "",
                       "$value": "{Orange.900}"
                     }
+                  },
+                  "On Strong": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Cool Neutral.900}"
                   }
                 },
                 "Negative": {
@@ -1642,6 +1738,12 @@
                       "$libraryName": "",
                       "$value": "{Red.900}"
                     }
+                  },
+                  "On Strong": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Cool Neutral.0}"
                   }
                 }
               }
@@ -2311,23 +2413,45 @@
               },
               "Status": {
                 "Info": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.700}"
+                  "Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.700}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.600}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.500}"
+                    }
                   },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.600}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.500}"
+                  "Strong": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.200}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.300}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.350}"
+                    }
                   }
                 },
                 "Positive": {
@@ -2373,43 +2497,87 @@
                   }
                 },
                 "Attention": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.700}"
+                  "Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.700}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.500}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.400}"
+                    }
                   },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.500}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.400}"
+                  "Strong": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.200}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.300}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.350}"
+                    }
                   }
                 },
                 "Severe": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.800}"
+                  "Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.800}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.700}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.600}"
+                    }
                   },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.700}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.600}"
+                  "Strong": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.200}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.250}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.300}"
+                    }
                   }
                 },
                 "Negative": {
@@ -2691,6 +2859,12 @@
                     "$libraryName": "",
                     "$value": "{Brand.0}"
                   }
+                },
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Cool Neutral.900}"
                 }
               },
               "Secondary": {
@@ -2754,6 +2928,12 @@
                       "$libraryName": "",
                       "$value": "{Amethyst.50}"
                     }
+                  },
+                  "On Strong": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Cool Neutral.900}"
                   }
                 },
                 "Positive": {
@@ -2776,6 +2956,12 @@
                       "$libraryName": "",
                       "$value": "{Green.150}"
                     }
+                  },
+                  "On Strong": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Cool Neutral.900}"
                   }
                 },
                 "Attention": {
@@ -2798,6 +2984,12 @@
                       "$libraryName": "",
                       "$value": "{Saffron.150}"
                     }
+                  },
+                  "On Strong": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Cool Neutral.900}"
                   }
                 },
                 "Severe": {
@@ -2820,6 +3012,12 @@
                       "$libraryName": "",
                       "$value": "{Orange.150}"
                     }
+                  },
+                  "On Strong": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Cool Neutral.900}"
                   }
                 },
                 "Negative": {
@@ -2842,6 +3040,12 @@
                       "$libraryName": "",
                       "$value": "{Red.100}"
                     }
+                  },
+                  "On Strong": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Cool Neutral.900}"
                   }
                 }
               }

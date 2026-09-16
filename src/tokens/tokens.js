@@ -2362,7 +2362,7 @@ const tokens = {
       "trail"
     ]
   },
-  "semantic-color-light-mode-fill-action-status-info-rest": {
+  "semantic-color-light-mode-fill-action-status-info-subtle-rest": {
     "value": "#f4f2fa",
     "type": "color",
     "path": [
@@ -2372,10 +2372,11 @@ const tokens = {
       "action",
       "status",
       "info",
+      "subtle",
       "rest"
     ]
   },
-  "semantic-color-light-mode-fill-action-status-info-hover": {
+  "semantic-color-light-mode-fill-action-status-info-subtle-hover": {
     "value": "#e8e6f5",
     "type": "color",
     "path": [
@@ -2385,10 +2386,11 @@ const tokens = {
       "action",
       "status",
       "info",
+      "subtle",
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-status-info-pressed": {
+  "semantic-color-light-mode-fill-action-status-info-subtle-pressed": {
     "value": "#dcd9ef",
     "type": "color",
     "path": [
@@ -2398,6 +2400,49 @@ const tokens = {
       "action",
       "status",
       "info",
+      "subtle",
+      "pressed"
+    ]
+  },
+  "semantic-color-light-mode-fill-action-status-info-strong-rest": {
+    "value": "#a8a0d8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "action",
+      "status",
+      "info",
+      "strong",
+      "rest"
+    ]
+  },
+  "semantic-color-light-mode-fill-action-status-info-strong-hover": {
+    "value": "#9a90d0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "action",
+      "status",
+      "info",
+      "strong",
+      "hover"
+    ]
+  },
+  "semantic-color-light-mode-fill-action-status-info-strong-pressed": {
+    "value": "#877ec8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "action",
+      "status",
+      "info",
+      "strong",
       "pressed"
     ]
   },
@@ -2485,7 +2530,7 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-status-attention-rest": {
+  "semantic-color-light-mode-fill-action-status-attention-subtle-rest": {
     "value": "#fef2de",
     "type": "color",
     "path": [
@@ -2495,10 +2540,11 @@ const tokens = {
       "action",
       "status",
       "attention",
+      "subtle",
       "rest"
     ]
   },
-  "semantic-color-light-mode-fill-action-status-attention-hover": {
+  "semantic-color-light-mode-fill-action-status-attention-subtle-hover": {
     "value": "#fee2b3",
     "type": "color",
     "path": [
@@ -2508,10 +2554,11 @@ const tokens = {
       "action",
       "status",
       "attention",
+      "subtle",
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-status-attention-pressed": {
+  "semantic-color-light-mode-fill-action-status-attention-subtle-pressed": {
     "value": "#fed897",
     "type": "color",
     "path": [
@@ -2521,10 +2568,53 @@ const tokens = {
       "action",
       "status",
       "attention",
+      "subtle",
       "pressed"
     ]
   },
-  "semantic-color-light-mode-fill-action-status-severe-rest": {
+  "semantic-color-light-mode-fill-action-status-attention-strong-rest": {
+    "value": "#ffc864",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "action",
+      "status",
+      "attention",
+      "strong",
+      "rest"
+    ]
+  },
+  "semantic-color-light-mode-fill-action-status-attention-strong-hover": {
+    "value": "#eab655",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "action",
+      "status",
+      "attention",
+      "strong",
+      "hover"
+    ]
+  },
+  "semantic-color-light-mode-fill-action-status-attention-strong-pressed": {
+    "value": "#bf9342",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "action",
+      "status",
+      "attention",
+      "strong",
+      "pressed"
+    ]
+  },
+  "semantic-color-light-mode-fill-action-status-severe-subtle-rest": {
     "value": "#f9e2d6",
     "type": "color",
     "path": [
@@ -2534,10 +2624,11 @@ const tokens = {
       "action",
       "status",
       "severe",
+      "subtle",
       "rest"
     ]
   },
-  "semantic-color-light-mode-fill-action-status-severe-hover": {
+  "semantic-color-light-mode-fill-action-status-severe-subtle-hover": {
     "value": "#f9d2bc",
     "type": "color",
     "path": [
@@ -2547,10 +2638,11 @@ const tokens = {
       "action",
       "status",
       "severe",
+      "subtle",
       "hover"
     ]
   },
-  "semantic-color-light-mode-fill-action-status-severe-pressed": {
+  "semantic-color-light-mode-fill-action-status-severe-subtle-pressed": {
     "value": "#fabd9d",
     "type": "color",
     "path": [
@@ -2560,6 +2652,49 @@ const tokens = {
       "action",
       "status",
       "severe",
+      "subtle",
+      "pressed"
+    ]
+  },
+  "semantic-color-light-mode-fill-action-status-severe-strong-rest": {
+    "value": "#f97b38",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "action",
+      "status",
+      "severe",
+      "strong",
+      "rest"
+    ]
+  },
+  "semantic-color-light-mode-fill-action-status-severe-strong-hover": {
+    "value": "#f56618",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "action",
+      "status",
+      "severe",
+      "strong",
+      "hover"
+    ]
+  },
+  "semantic-color-light-mode-fill-action-status-severe-strong-pressed": {
+    "value": "#e1580e",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "action",
+      "status",
+      "severe",
+      "strong",
       "pressed"
     ]
   },
@@ -3065,6 +3200,18 @@ const tokens = {
       "pressed"
     ]
   },
+  "semantic-color-light-mode-foreground-action-primary-on-strong": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "action",
+      "primary",
+      "on-strong"
+    ]
+  },
   "semantic-color-light-mode-foreground-action-secondary-rest": {
     "value": "#3d3d3d",
     "type": "color",
@@ -3182,6 +3329,19 @@ const tokens = {
       "pressed"
     ]
   },
+  "semantic-color-light-mode-foreground-action-status-info-on-strong": {
+    "value": "#070707",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "action",
+      "status",
+      "info",
+      "on-strong"
+    ]
+  },
   "semantic-color-light-mode-foreground-action-status-positive-on-subtle-rest": {
     "value": "#174f26",
     "type": "color",
@@ -3222,6 +3382,19 @@ const tokens = {
       "positive",
       "on-subtle",
       "pressed"
+    ]
+  },
+  "semantic-color-light-mode-foreground-action-status-positive-on-strong": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "action",
+      "status",
+      "positive",
+      "on-strong"
     ]
   },
   "semantic-color-light-mode-foreground-action-status-attention-on-subtle-rest": {
@@ -3266,6 +3439,19 @@ const tokens = {
       "pressed"
     ]
   },
+  "semantic-color-light-mode-foreground-action-status-attention-on-strong": {
+    "value": "#070707",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "action",
+      "status",
+      "attention",
+      "on-strong"
+    ]
+  },
   "semantic-color-light-mode-foreground-action-status-severe-on-subtle-rest": {
     "value": "#72300c",
     "type": "color",
@@ -3308,6 +3494,19 @@ const tokens = {
       "pressed"
     ]
   },
+  "semantic-color-light-mode-foreground-action-status-severe-on-strong": {
+    "value": "#070707",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "action",
+      "status",
+      "severe",
+      "on-strong"
+    ]
+  },
   "semantic-color-light-mode-foreground-action-status-negative-on-subtle-rest": {
     "value": "#722121",
     "type": "color",
@@ -3348,6 +3547,19 @@ const tokens = {
       "negative",
       "on-subtle",
       "pressed"
+    ]
+  },
+  "semantic-color-light-mode-foreground-action-status-negative-on-strong": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "foreground",
+      "action",
+      "status",
+      "negative",
+      "on-strong"
     ]
   },
   "semantic-color-light-mode-foreground-static-neutral-mono": {
@@ -4513,7 +4725,7 @@ const tokens = {
       "trail"
     ]
   },
-  "semantic-color-midnight-mode-fill-action-status-info-rest": {
+  "semantic-color-midnight-mode-fill-action-status-info-subtle-rest": {
     "value": "#353063",
     "type": "color",
     "path": [
@@ -4523,10 +4735,11 @@ const tokens = {
       "action",
       "status",
       "info",
+      "subtle",
       "rest"
     ]
   },
-  "semantic-color-midnight-mode-fill-action-status-info-hover": {
+  "semantic-color-midnight-mode-fill-action-status-info-subtle-hover": {
     "value": "#464080",
     "type": "color",
     "path": [
@@ -4536,10 +4749,11 @@ const tokens = {
       "action",
       "status",
       "info",
+      "subtle",
       "hover"
     ]
   },
-  "semantic-color-midnight-mode-fill-action-status-info-pressed": {
+  "semantic-color-midnight-mode-fill-action-status-info-subtle-pressed": {
     "value": "#5951a0",
     "type": "color",
     "path": [
@@ -4549,6 +4763,49 @@ const tokens = {
       "action",
       "status",
       "info",
+      "subtle",
+      "pressed"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-action-status-info-strong-rest": {
+    "value": "#a8a0d8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "action",
+      "status",
+      "info",
+      "strong",
+      "rest"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-action-status-info-strong-hover": {
+    "value": "#9a90d0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "action",
+      "status",
+      "info",
+      "strong",
+      "hover"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-action-status-info-strong-pressed": {
+    "value": "#877ec8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "action",
+      "status",
+      "info",
+      "strong",
       "pressed"
     ]
   },
@@ -4636,7 +4893,7 @@ const tokens = {
       "pressed"
     ]
   },
-  "semantic-color-midnight-mode-fill-action-status-attention-rest": {
+  "semantic-color-midnight-mode-fill-action-status-attention-subtle-rest": {
     "value": "#342d21",
     "type": "color",
     "path": [
@@ -4646,10 +4903,11 @@ const tokens = {
       "action",
       "status",
       "attention",
+      "subtle",
       "rest"
     ]
   },
-  "semantic-color-midnight-mode-fill-action-status-attention-hover": {
+  "semantic-color-midnight-mode-fill-action-status-attention-subtle-hover": {
     "value": "#6d5936",
     "type": "color",
     "path": [
@@ -4659,10 +4917,11 @@ const tokens = {
       "action",
       "status",
       "attention",
+      "subtle",
       "hover"
     ]
   },
-  "semantic-color-midnight-mode-fill-action-status-attention-pressed": {
+  "semantic-color-midnight-mode-fill-action-status-attention-subtle-pressed": {
     "value": "#91723b",
     "type": "color",
     "path": [
@@ -4672,10 +4931,53 @@ const tokens = {
       "action",
       "status",
       "attention",
+      "subtle",
       "pressed"
     ]
   },
-  "semantic-color-midnight-mode-fill-action-status-severe-rest": {
+  "semantic-color-midnight-mode-fill-action-status-attention-strong-rest": {
+    "value": "#eab655",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "action",
+      "status",
+      "attention",
+      "strong",
+      "rest"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-action-status-attention-strong-hover": {
+    "value": "#bf9342",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "action",
+      "status",
+      "attention",
+      "strong",
+      "hover"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-action-status-attention-strong-pressed": {
+    "value": "#aa843e",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "action",
+      "status",
+      "attention",
+      "strong",
+      "pressed"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-action-status-severe-subtle-rest": {
     "value": "#59270c",
     "type": "color",
     "path": [
@@ -4685,10 +4987,11 @@ const tokens = {
       "action",
       "status",
       "severe",
+      "subtle",
       "rest"
     ]
   },
-  "semantic-color-midnight-mode-fill-action-status-severe-hover": {
+  "semantic-color-midnight-mode-fill-action-status-severe-subtle-hover": {
     "value": "#72300c",
     "type": "color",
     "path": [
@@ -4698,10 +5001,11 @@ const tokens = {
       "action",
       "status",
       "severe",
+      "subtle",
       "hover"
     ]
   },
-  "semantic-color-midnight-mode-fill-action-status-severe-pressed": {
+  "semantic-color-midnight-mode-fill-action-status-severe-subtle-pressed": {
     "value": "#8d380b",
     "type": "color",
     "path": [
@@ -4711,6 +5015,49 @@ const tokens = {
       "action",
       "status",
       "severe",
+      "subtle",
+      "pressed"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-action-status-severe-strong-rest": {
+    "value": "#fe9156",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "action",
+      "status",
+      "severe",
+      "strong",
+      "rest"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-action-status-severe-strong-hover": {
+    "value": "#f97b38",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "action",
+      "status",
+      "severe",
+      "strong",
+      "hover"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-action-status-severe-strong-pressed": {
+    "value": "#f56618",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "action",
+      "status",
+      "severe",
+      "strong",
       "pressed"
     ]
   },
@@ -5216,6 +5563,18 @@ const tokens = {
       "pressed"
     ]
   },
+  "semantic-color-midnight-mode-foreground-action-primary-on-strong": {
+    "value": "#070707",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "action",
+      "primary",
+      "on-strong"
+    ]
+  },
   "semantic-color-midnight-mode-foreground-action-secondary-rest": {
     "value": "#a6a6a6",
     "type": "color",
@@ -5333,6 +5692,19 @@ const tokens = {
       "pressed"
     ]
   },
+  "semantic-color-midnight-mode-foreground-action-status-info-on-strong": {
+    "value": "#070707",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "action",
+      "status",
+      "info",
+      "on-strong"
+    ]
+  },
   "semantic-color-midnight-mode-foreground-action-status-positive-on-subtle-rest": {
     "value": "#3db856",
     "type": "color",
@@ -5373,6 +5745,19 @@ const tokens = {
       "positive",
       "on-subtle",
       "pressed"
+    ]
+  },
+  "semantic-color-midnight-mode-foreground-action-status-positive-on-strong": {
+    "value": "#070707",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "action",
+      "status",
+      "positive",
+      "on-strong"
     ]
   },
   "semantic-color-midnight-mode-foreground-action-status-attention-on-subtle-rest": {
@@ -5417,6 +5802,19 @@ const tokens = {
       "pressed"
     ]
   },
+  "semantic-color-midnight-mode-foreground-action-status-attention-on-strong": {
+    "value": "#070707",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "action",
+      "status",
+      "attention",
+      "on-strong"
+    ]
+  },
   "semantic-color-midnight-mode-foreground-action-status-severe-on-subtle-rest": {
     "value": "#f97b38",
     "type": "color",
@@ -5459,6 +5857,19 @@ const tokens = {
       "pressed"
     ]
   },
+  "semantic-color-midnight-mode-foreground-action-status-severe-on-strong": {
+    "value": "#070707",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "action",
+      "status",
+      "severe",
+      "on-strong"
+    ]
+  },
   "semantic-color-midnight-mode-foreground-action-status-negative-on-subtle-rest": {
     "value": "#d98686",
     "type": "color",
@@ -5499,6 +5910,19 @@ const tokens = {
       "negative",
       "on-subtle",
       "pressed"
+    ]
+  },
+  "semantic-color-midnight-mode-foreground-action-status-negative-on-strong": {
+    "value": "#070707",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "foreground",
+      "action",
+      "status",
+      "negative",
+      "on-strong"
     ]
   },
   "semantic-color-midnight-mode-foreground-static-neutral-mono": {

@@ -55,7 +55,7 @@
     "fix-tokens": "node scripts/fix-tokens.js",
     "fix-tokens-preview": "node scripts/fix-tokens.js --dry-run",
     "build-tokens": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/stamp-headers.js",
-    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/stamp-headers.js && node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js && node scripts/check-state-distinctness.js && node scripts/check-ladder-order.js && node scripts/check-variant-distinctness.js && node scripts/check-story-yield.js && node scripts/build-dist.js && node scripts/build-contract.js && npm run build-elements",
+    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/stamp-headers.js && node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js && node scripts/check-state-distinctness.js && node scripts/check-ladder-order.js && node scripts/check-variant-distinctness.js && node scripts/check-pairing-invariant.js && node scripts/check-story-yield.js && node scripts/build-dist.js && node scripts/build-contract.js && npm run build-elements",
     "storybook": "node style-dictionary.config.js && storybook dev -p 6006",
     "build-storybook": "storybook build",
     "check-demo-tokens": "node scripts/check-demo-tokens.js",
