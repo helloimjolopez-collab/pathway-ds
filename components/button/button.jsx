@@ -35,18 +35,18 @@ const ST = (p) => `var(--semantic-type-${p})`;
 // disabled control is the same colour whatever it would have been.
 export const FILL = {
   Fill: {
-    Primary:   { base: SC("fill-action-primary-rest"),              hover: SC("fill-action-primary-hover"),              pressed: SC("fill-action-primary-pressed"),              disabled: SC("fill-action-disabled") },
+    Primary:   { base: SC("fill-action-primary-strong-rest"),              hover: SC("fill-action-primary-strong-hover"),              pressed: SC("fill-action-primary-strong-pressed"),              disabled: SC("fill-action-disabled") },
     Secondary: { base: SC("fill-action-secondary-rest"),            hover: SC("fill-action-secondary-hover"),            pressed: SC("fill-action-secondary-pressed"),            disabled: SC("fill-action-disabled") },
-    Tertiary:  { base: SC("fill-action-primary-dim-rest"),          hover: SC("fill-action-primary-dim-hover"),          pressed: SC("fill-action-primary-dim-pressed"),          disabled: SC("fill-action-disabled") },
-    Negative:  { base: SC("fill-action-status-negative-rest"),      hover: SC("fill-action-status-negative-hover"),      pressed: SC("fill-action-status-negative-pressed"),      disabled: SC("fill-action-disabled") },
+    Tertiary:  { base: SC("fill-action-primary-subtle-rest"),          hover: SC("fill-action-primary-subtle-hover"),          pressed: SC("fill-action-primary-subtle-pressed"),          disabled: SC("fill-action-disabled") },
+    Negative:  { base: SC("fill-action-status-negative-strong-rest"),      hover: SC("fill-action-status-negative-strong-hover"),      pressed: SC("fill-action-status-negative-strong-pressed"),      disabled: SC("fill-action-disabled") },
   },
   // Outlined and Naked rest on nothing and tint on interaction. The Dim ramps
   // are exactly that tint, which is what the retired *inverse* hovers were for.
   Outlined: {
-    Primary:   { base: "transparent", hover: SC("fill-action-primary-dim-hover"),          pressed: SC("fill-action-primary-dim-pressed"),          disabled: "transparent" },
+    Primary:   { base: "transparent", hover: SC("fill-action-primary-subtle-hover"),          pressed: SC("fill-action-primary-subtle-pressed"),          disabled: "transparent" },
     Secondary: { base: "transparent", hover: SC("fill-action-secondary-hover"),            pressed: SC("fill-action-secondary-pressed"),            disabled: "transparent" },
-    Tertiary:  { base: "transparent", hover: SC("fill-action-primary-dim-hover"),          pressed: SC("fill-action-primary-dim-pressed"),          disabled: "transparent" },
-    Negative:  { base: "transparent", hover: SC("fill-action-status-negative-dim-hover"),  pressed: SC("fill-action-status-negative-dim-pressed"),  disabled: "transparent" },
+    Tertiary:  { base: "transparent", hover: SC("fill-action-primary-subtle-hover"),          pressed: SC("fill-action-primary-subtle-pressed"),          disabled: "transparent" },
+    Negative:  { base: "transparent", hover: SC("fill-action-status-negative-subtle-hover"),  pressed: SC("fill-action-status-negative-subtle-pressed"),  disabled: "transparent" },
   },
 };
 FILL.Naked = FILL.Outlined;
@@ -62,14 +62,14 @@ export const FG = {
   Fill: {
     Primary:   { base: SC("foreground-static-neutral-mono"),             hover: SC("foreground-static-neutral-mono"),             pressed: SC("foreground-static-neutral-mono"),             disabled: SC("foreground-action-disabled") },
     Secondary: { base: SC("foreground-action-secondary-rest"),        hover: SC("foreground-action-secondary-hover"),        pressed: SC("foreground-action-secondary-pressed"),        disabled: SC("foreground-action-disabled") },
-    Tertiary:  { base: SC("foreground-action-primary-rest"),          hover: SC("foreground-action-primary-hover"),          pressed: SC("foreground-action-primary-pressed"),          disabled: SC("foreground-action-disabled") },
+    Tertiary:  { base: SC("foreground-action-primary-on-subtle-rest"),          hover: SC("foreground-action-primary-on-subtle-hover"),          pressed: SC("foreground-action-primary-on-subtle-pressed"),          disabled: SC("foreground-action-disabled") },
     Negative:  { base: SC("foreground-static-neutral-mono"),             hover: SC("foreground-static-neutral-mono"),             pressed: SC("foreground-static-neutral-mono"),             disabled: SC("foreground-action-disabled") },
   },
   Outlined: {
-    Primary:   { base: SC("foreground-action-primary-rest"),          hover: SC("foreground-action-primary-hover"),          pressed: SC("foreground-action-primary-pressed"),          disabled: SC("foreground-action-disabled") },
+    Primary:   { base: SC("foreground-action-primary-on-subtle-rest"),          hover: SC("foreground-action-primary-on-subtle-hover"),          pressed: SC("foreground-action-primary-on-subtle-pressed"),          disabled: SC("foreground-action-disabled") },
     Secondary: { base: SC("foreground-action-secondary-rest"),        hover: SC("foreground-action-secondary-hover"),        pressed: SC("foreground-action-secondary-pressed"),        disabled: SC("foreground-action-disabled") },
-    Tertiary:  { base: SC("foreground-action-primary-rest"),          hover: SC("foreground-action-primary-hover"),          pressed: SC("foreground-action-primary-pressed"),          disabled: SC("foreground-action-disabled") },
-    Negative:  { base: SC("foreground-action-status-negative-rest"),  hover: SC("foreground-action-status-negative-hover"),  pressed: SC("foreground-action-status-negative-pressed"),  disabled: SC("foreground-action-disabled") },
+    Tertiary:  { base: SC("foreground-action-primary-on-subtle-rest"),          hover: SC("foreground-action-primary-on-subtle-hover"),          pressed: SC("foreground-action-primary-on-subtle-pressed"),          disabled: SC("foreground-action-disabled") },
+    Negative:  { base: SC("foreground-action-status-negative-on-subtle-rest"),  hover: SC("foreground-action-status-negative-on-subtle-hover"),  pressed: SC("foreground-action-status-negative-on-subtle-pressed"),  disabled: SC("foreground-action-disabled") },
   },
 };
 FG.Naked = FG.Outlined;

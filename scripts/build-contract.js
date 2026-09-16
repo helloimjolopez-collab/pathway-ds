@@ -137,7 +137,7 @@ value forever:
 
 \`\`\`css
 color: var(--primitive-color-brand-400);               /* stays this blue in Midnight */
-color: var(--semantic-color-fill-action-primary-rest);  /* flips with the theme */
+color: var(--semantic-color-fill-action-primary-strong-rest);  /* flips with the theme */
 \`\`\`
 
 Use one when you specifically want a value that does not respond to the theme.

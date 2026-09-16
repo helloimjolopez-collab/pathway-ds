@@ -97,7 +97,7 @@ function liveNames() {
   const css = readFileSync(THEME_CSS, "utf8");
   const full = new Set();
   for (const m of css.matchAll(/^\s*--semantic-color-([a-z0-9-]+)\s*:/gim)) {
-    // --semantic-color-fill-action-primary-dim-rest -> fill/action/primary/dim/rest
+    // --semantic-color-fill-action-primary-subtle-rest -> fill/action/primary/subtle/rest
     full.add(m[1].replace(/-/g, "/"));
   }
   // every proper prefix is a legitimate group reference
@@ -220,6 +220,12 @@ const RETIRED_DOT_EXAMPLES = new Set([
   // example, because the whole point of that block is to show a name that does
   // NOT resolve.
   "foreground.static.accent.jade.medium",
+  // Retired 2026-09-15. "Primary Dim" was a space-joined suffix, which read as
+  // part of the tone name rather than as a variant of it; it is
+  // fill.action.primary.subtle.* now. TopNav.mdx, OrgSwitcher.stories.jsx and
+  // LiveTokenTable.jsx each quote the old form in a paragraph explaining that
+  // the old names went stale, so the retired spelling IS the subject.
+  "fill.action.primary-dim",
 ]);
 
 // Valid dot names are exactly the paths in the generated tree. Reading them
@@ -302,6 +308,11 @@ const RETIRED_SLASH_EXAMPLES = new Set([
   // status fills occupy, so folding those would repaint badge backgrounds.
   "Foreground/Status",
   "Stroke/Status",
+  // Deleted 2026-09-15, same day, second pass. The Accent tier was dropped so a
+  // hue now sits directly under Static. tokenOrder.js's header comment states
+  // the mapping ("Fill/Static/Jade/Subtle, not Fill/Static/Accent/Jade/Faint"),
+  // which needs the retired path spelled out to mean anything.
+  "Fill/Static/Accent/Jade",
 ]);
 
 

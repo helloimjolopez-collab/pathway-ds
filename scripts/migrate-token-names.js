@@ -71,7 +71,7 @@ const RULES = [
   [/^fill-contextual-navitem-(pressed|active|selected)$/, "fill-action-selection-selected"],
   [/^fill-contextual-navitem-hover$/, "fill-action-selection-hover"],
   [/^fill-contextual-navitem-trail$/, "fill-action-selection-trail"],
-  [/^(icon|text)-contextual-navitem-(active|selected|pressed)$/, "foreground-action-primary-rest"],
+  [/^(icon|text)-contextual-navitem-(active|selected|pressed)$/, "foreground-action-primary-on-subtle-rest"],
   [/^(icon|text)-contextual-navitem-(base|rest)$/, "foreground-action-secondary-rest"],
 
   // ── Text/Static/{Primary,Secondary} were text PROMINENCE levels, not the

@@ -133,9 +133,9 @@ const { useState, useRef, useEffect } = React;
 
 // ── Tokens ──────────────────────────────────────────────────────────────────
 const T = {
-  fillBase:    "var(--semantic-color-fill-action-primary-dim-rest,    rgba(160,181,230,0.04))",
-  fillHover:   "var(--semantic-color-fill-action-primary-dim-hover,   rgba(10,18,35,0.16))",
-  fillPressed: "var(--semantic-color-fill-action-primary-dim-pressed, rgba(255,255,255,0.08))",
+  fillBase:    "var(--semantic-color-fill-action-primary-subtle-rest,    rgba(160,181,230,0.04))",
+  fillHover:   "var(--semantic-color-fill-action-primary-subtle-hover,   rgba(10,18,35,0.16))",
+  fillPressed: "var(--semantic-color-fill-action-primary-subtle-pressed, rgba(255,255,255,0.08))",
   strokeBase:    "var(--semantic-color-stroke-action-primary-rest,    rgba(160,181,230,0.16))",
   strokeHover:   "var(--semantic-color-stroke-action-primary-hover,   rgba(160,181,230,0.20))",
   strokePressed: "var(--semantic-color-stroke-action-primary-pressed, rgba(160,181,230,0.30))",
@@ -649,9 +649,9 @@ function App() {
               <tbody>
                 {[
                   // Fill
-                  { cat:"Fill",   semantic:"fill.action.primary-dim.rest",         value:"rgba(160,181,230,0.04)", role:"Trigger background — base" },
-                  { cat:"Fill",   semantic:"fill.action.primary-dim.hover",  value:"rgba(10,18,35,0.16)",    role:"Trigger background — hover" },
-                  { cat:"Fill",   semantic:"fill.action.primary-dim.pressed",value:"rgba(255,255,255,0.08)", role:"Trigger background — pressed / open" },
+                  { cat:"Fill",   semantic:"fill.action.primary.subtle.rest",         value:"rgba(160,181,230,0.04)", role:"Trigger background — base" },
+                  { cat:"Fill",   semantic:"fill.action.primary.subtle.hover",  value:"rgba(10,18,35,0.16)",    role:"Trigger background — hover" },
+                  { cat:"Fill",   semantic:"fill.action.primary.subtle.pressed",value:"rgba(255,255,255,0.08)", role:"Trigger background — pressed / open" },
                   { cat:"Fill",   semantic:"fill.action.secondary.rest",        value:"rgba(255,255,255,0.08)", role:"Avatar placeholder bg (no logo)" },
                   // Stroke
                   { cat:"Stroke", semantic:"stroke.action.primary.rest",       value:"rgba(160,181,230,0.16)", role:"Trigger + avatar border — base" },
@@ -726,7 +726,7 @@ function App() {
           <div className="demo-section__body">
             <div style={{ minWidth:460 }}>
               {[
-                { label:"Base",              fill:"rgba(160,181,230,0.04)", stroke:"rgba(160,181,230,0.16)", desc:"Resting — fill.action.primary-dim.rest + stroke.action.primary.rest" },
+                { label:"Base",              fill:"rgba(160,181,230,0.04)", stroke:"rgba(160,181,230,0.16)", desc:"Resting — fill.action.primary.subtle.rest + stroke.action.primary.rest" },
                 { label:"Hover",             fill:"rgba(10,18,35,0.16)",    stroke:"rgba(160,181,230,0.20)", desc:"Cursor over — primaryinverse hover fill, tertiary hover stroke" },
                 { label:"Pressed / Open",    fill:"rgba(255,255,255,0.08)", stroke:"rgba(160,181,230,0.30)", desc:"Mouse-down or panel open — chevron rotates 180°" },
                 { label:"Disabled",          fill:"rgba(160,181,230,0.04)", stroke:"rgba(160,181,230,0.16)", desc:"Single-org users — base styling at 50% opacity, inert" },

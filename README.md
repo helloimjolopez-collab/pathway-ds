@@ -3,11 +3,11 @@
 Design system for Ministry Brands Amplify. Tokens + components + specifications, all versioned in one place, with Storybook deployed from `main`.
 
 > **Looking for the tokens?** → **[TOKENS.md](TOKENS.md)** — where the CSS lives, which
-> of the 351 names you may use, and what to link in what order.
+> of the 260 names you may use, and what to link in what order.
 
 ## Using the tokens
 
-**The colour contract is 243 names. Your full working vocabulary is 351.**
+**The colour contract is 162 names. Your full working vocabulary is 260.**
 
 That is the number worth knowing, because adding up every declaration in the token
 folder gives 966 and the retired `tokens.css` used to emit 2,338. Neither is the
@@ -16,13 +16,13 @@ one name set rather than each having their own.
 
 | | Count | Name these? |
 |---|---|---|
-| Colour (`themes/light.css`, `themes/midnight.css` — same names) | **243** | Yes |
+| Colour (`themes/light.css`, `themes/midnight.css` — same names) | **162** | Yes |
 | Type scale (`type.css`) | 41 | Yes |
-| Spacing, radii, borders (`layout.css`) | 39 | Yes |
+| Spacing, radii, borders (`layout.css`) | 40 | Yes |
 | Motion (`motion.css`) | 17 | Yes |
 | Sheet and TopNav padding (`layout-responsive.css`) | 6 | Yes |
 | Breakpoints (`breakpoints.css`) | 5 | Yes |
-| **Working vocabulary** | **351** | |
+| **Working vocabulary** | **260** | |
 | Raw ramps (`primitives.css`) | 350 | **No** — but you must load it |
 | Component metrics (`layout-contextual.css`) | 26 | This repo's components |
 
@@ -84,9 +84,9 @@ as too granular to adopt. Retired 2026-09-03 and not coming back.
 ```css
 .card {
   background: var(--semantic-color-fill-surface-sheet);
-  color:      var(--semantic-color-foreground-static-neutral-bold);
+  color:      var(--semantic-color-foreground-static-neutral-strong);
   border:     var(--semantic-layout-units-borderwidth-base) solid
-              var(--semantic-color-stroke-static-neutral-subtle);
+              var(--semantic-color-stroke-static-neutral-base);
   border-radius: var(--semantic-layout-units-cornerradius-medium);
 }
 ```

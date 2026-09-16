@@ -45,9 +45,9 @@ const CHURCH_ICON_PATH =
 // keep the file readable on its own.
 const T = {
   // Container fills
-  fillBase:    "var(--semantic-color-fill-action-primary-dim-rest,    rgba(160,181,230,0.04))",
-  fillHover:   "var(--semantic-color-fill-action-primary-dim-hover,   rgba(10,18,35,0.16))",
-  fillPressed: "var(--semantic-color-fill-action-primary-dim-pressed, rgba(255,255,255,0.08))",
+  fillBase:    "var(--semantic-color-fill-action-primary-subtle-rest,    rgba(160,181,230,0.04))",
+  fillHover:   "var(--semantic-color-fill-action-primary-subtle-hover,   rgba(10,18,35,0.16))",
+  fillPressed: "var(--semantic-color-fill-action-primary-subtle-pressed, rgba(255,255,255,0.08))",
 
   // Avatar placeholder background (when no logo on file)
   fillAvatarPlaceholder: "var(--semantic-color-fill-action-secondary-rest, rgba(255,255,255,0.08))",
@@ -474,8 +474,8 @@ const PANEL_T = {
   border:    "var(--semantic-color-stroke-static-neutral-faint, #ededed)",
   name:      "var(--semantic-color-foreground-static-neutral-bold, #202020)",
   icon:      "var(--semantic-color-foreground-static-neutral-base, #949494)",
-  logoBg:    "var(--semantic-color-fill-static-brand-subtle, #2d4889)",
-  rowActive: "var(--semantic-color-fill-action-primary-dim-rest, #eef2fb)",
+  logoBg:    "var(--semantic-color-fill-static-brand-base, #2d4889)",
+  rowActive: "var(--semantic-color-fill-action-primary-subtle-rest, #eef2fb)",
 };
 
 function ModuleCluster() {

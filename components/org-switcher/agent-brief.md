@@ -59,7 +59,7 @@ expand_more · Material Symbols Rounded · 20px · white
 
 /* Dropdown panel (when open) */
 --fill-static-surface-white:     #ffffff
---stroke-static-neutral-subtle:  #ededed
+--stroke-static-neutral-base:  #ededed
 --cornerradius-medium:           8px
 shadow: 2px 2px 8px 4px rgba(0,0,0,0.06)
 ```
@@ -91,7 +91,7 @@ import { OrgSwitcher } from "components/org-switcher/org-switcher.jsx";
 />
 ```
 
-If no logo is provided, render a 20×20 circle with the first letter of `org.name` in `Fill/Static/Accent_Amethyst/Base` (same pattern as the Profile avatar).
+If no logo is provided, render a 20×20 circle with the first letter of `org.name` in `Fill/Static/Amethyst/Subtle` (same pattern as the Profile avatar).
 
 ---
 

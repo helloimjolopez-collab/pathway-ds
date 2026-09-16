@@ -7,7 +7,7 @@ Every file below is generated. Never hand-edit one — run `npm run build-tokens
 
 ## The short version
 
-**The colour contract is 243 names.** Not 966, which is what you get if you add up
+**The colour contract is 162 names.** Not 966, which is what you get if you add up
 every declaration in this folder, and not 2,338, which is what the retired `tokens.css`
 used to emit. The difference is explained below, and it is the whole reason this folder
 is split the way it is.
@@ -34,16 +34,16 @@ error** — which is a genuinely nasty way to lose an afternoon.
 | File | Names | Status | Name these? |
 |---|---|---|---|
 | `primitives.css` | 350 | **Infrastructure** | **No** — but you must load it |
-| `themes/light.css` | 243 | **Contract** | Yes |
-| `themes/midnight.css` | 243 | **Contract** (same names as light) | Yes |
+| `themes/light.css` | 162 | **Contract** | Yes |
+| `themes/midnight.css` | 162 | **Contract** (same names as light) | Yes |
 | `type.css` | 41 | **Contract** | Yes |
-| `layout.css` | 39 | **Contract** | Yes |
+| `layout.css` | 40 | **Contract** | Yes |
 | `layout-responsive.css` | 8 | **Contract** (the only layout tokens with media queries) | Yes |
 | `layout-contextual.css` | 26 | Component internals | Prefer `layout.css` |
 | `motion.css` | 17 | **Contract** | Yes |
 | `breakpoints.css` | 5 | **Contract** | Yes |
 
-**Your working vocabulary is 351 names** — 243 colour + 41 type + 39 layout + 17 motion
+**Your working vocabulary is 260 names** — 162 colour + 41 type + 40 layout + 17 motion
 + 6 responsive layout + 5 breakpoints. The 350 primitives are not part of it, and the 26
 component metrics are this repo's own business.
 
@@ -56,7 +56,7 @@ Three separate questions that are easy to conflate:
 
 1. **Are they private in Figma?** No. That setting only controls whether designers are
    *offered* a variable in the styling picker. It says nothing about CSS.
-2. **Are they in the CSS?** Yes, and they have to be. All 243 semantics resolve via
+2. **Are they in the CSS?** Yes, and they have to be. All 162 semantics resolve via
    `var(--primitive-*)`. Delete the file and every colour breaks.
 3. **Are they part of the contract?** No. They are infrastructure, the same way the
    glyphs inside Red Hat Text are not part of the type scale.
@@ -72,7 +72,7 @@ primitives. So a primitive holds one value forever.
 
 ```css
 color: var(--primitive-color-brand-400);              /* stays this blue in Midnight */
-color: var(--semantic-color-fill-action-primary-rest); /* flips with the theme */
+color: var(--semantic-color-fill-action-primary-strong-rest); /* flips with the theme */
 ```
 
 Reach for a primitive when you specifically want a value that does **not** respond to

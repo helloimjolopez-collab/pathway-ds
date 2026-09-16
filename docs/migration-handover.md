@@ -146,7 +146,7 @@ Three deliberate exceptions:
 ### 3.6 Brand light end respaced, and #fafafa moved out of it
 
 `Brand/0` was `#fafafa`, which is achromatic: red, green and blue are all 250, chroma
-0. A brand ramp step with no brand hue meant `Fill/Action/Primary Dim/Rest` rendered as
+0. A brand ramp step with no brand hue meant `Fill/Action/Primary/Subtle/Rest` rendered as
 flat grey and then jumped to a visible blue on hover.
 
 `#fafafa` is now `Cool Neutral/10`, and the Brand light end steps evenly:
@@ -288,7 +288,7 @@ These are known and deliberate, not oversights.
 | Code Connect not published | All 7 mapping files under `components/sidenav/` parse cleanly and point at the right source, but were never published. Publishing needs a Figma token with Code Connect write scope, or it can go through the Figma MCP server. |
 | Solid ramp order | `Cool Neutral/10`, `/50`, `/400`, `/800`, `/900` and `Brand/10` render after `/700` in the panel. Same no-reorder-API cause as the alphas. Fixing needs recreate and repoint, and unlike the alphas these steps are aliased by hundreds of semantics. |
 | Colour docs page | Holds swatches bound to deleted tokens. Needs a `pathway-color-docs-sync` run. |
-| Side Nav raw values | 7 nodes on the Side Nav page carry raw `#a0b5e6` with no binding, on active nav items. There is no NavItem foreground token in Contextual: Color, and `Foreground/Action/Primary/Rest` is wrong for a dark surface, so this needs a design decision rather than a guess. |
+| Side Nav raw values | 7 nodes on the Side Nav page carry raw `#a0b5e6` with no binding, on active nav items. There is no NavItem foreground token in Contextual: Color, and `Foreground/Action/Primary/On Subtle/Rest` is wrong for a dark surface, so this needs a design decision rather than a guess. |
 | Semantic Type reduction | 554 variables serve 111 styles. About 160 are removable with no visual change, but 104 text styles bind them and need repointing first. One style, `Text/Dense/Small/Regular`, is cross-wired. |
 | Static prominence duplicates | Some Static ramps still hold duplicate values, for example `Foreground/Static/Status/Warning` where Bold, Contrast and Faint resolve alike. |
 

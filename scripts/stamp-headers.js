@@ -57,7 +57,7 @@ const FILES = [
       "The reason is a consequence, not a rule: Primitive: Color has exactly ONE",
       "mode, and themes/midnight.css declares zero primitives. So a primitive",
       "holds one value forever. `var(--primitive-color-brand-400)` stays that",
-      "blue in Midnight Mode; `var(--semantic-color-fill-action-primary-rest)`",
+      "blue in Midnight Mode; `var(--semantic-color-fill-action-primary-strong-rest)`",
       "flips. Reach for a primitive only when you specifically want a value that",
       "does NOT respond to the theme.",
       "",

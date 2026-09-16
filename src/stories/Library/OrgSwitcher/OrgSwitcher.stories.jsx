@@ -291,12 +291,12 @@ export const TokensFill = () => (
     title="Fill tokens"
     note={'The OrgSwitcher renders inside a [data-theme="midnight"] region, so these modeless names resolve to their Midnight values there. Region theming composes both ways: a light island can sit inside this dark island, which is what the dropdown panel does.'}
     rows={[
-      { token: "fill.action.primary-dim.rest",    usage: "Trigger background - rest. Primary Dim replaced the deleted Tertiary ramp" },
-      { token: "fill.action.primary-dim.hover",   usage: "Trigger background - hover" },
-      { token: "fill.action.primary-dim.pressed", usage: "Trigger background - pressed / open" },
+      { token: "fill.action.primary.subtle.rest",    usage: "Trigger background - rest. Primary Dim replaced the deleted Tertiary ramp" },
+      { token: "fill.action.primary.subtle.hover",   usage: "Trigger background - hover" },
+      { token: "fill.action.primary.subtle.pressed", usage: "Trigger background - pressed / open" },
       { token: "fill.action.secondary.rest",      usage: "Avatar placeholder background when the org has no logo" },
       { token: "fill.static.neutral.faint",       usage: "Dropdown panel ground" },
-      { token: "fill.static.brand.subtle",        usage: "Selected-org marker" },
+      { token: "fill.static.brand.base",        usage: "Selected-org marker" },
     ]}
   />
 );

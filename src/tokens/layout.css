@@ -12,7 +12,7 @@
  Breakpoints are handled by media query inside this file rather than by
  putting the breakpoint in the property name, so one name works responsively.
 
- Declares 39 custom properties.
+ Declares 40 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -30,6 +30,7 @@
   --semantic-layout-units-borderwidth-xthick: 4px;
   --semantic-layout-units-borderwidth-xthin: 0.5px;
   --semantic-layout-units-borderwidth-xxthick: 6px;
+  --semantic-layout-units-cornerradius-base: 8px;
   --semantic-layout-units-cornerradius-full: 64px;
   --semantic-layout-units-cornerradius-large: 12px;
   --semantic-layout-units-cornerradius-medium: 8px;

@@ -153,7 +153,7 @@ Minimum **48 × 48 px** on every interactive element (WCAG 2.5.5). Bound to the 
 
 Every focusable element must have a **visible focus ring** that is not `outline: none` without a replacement. Use `:focus-visible` (not `:focus`) to avoid painting on mouse click.
 
-System default: `outline: 2px solid var(--semantic-color-foreground-action-primary-rest); outline-offset: 2px;` (resolves to `#3555a0` / 2 px / 2 px offset in light mode).
+System default: `outline: 2px solid var(--semantic-color-foreground-action-primary-on-subtle-rest); outline-offset: 2px;` (resolves to `#3555a0` / 2 px / 2 px offset in light mode).
 
 ### 3.3 Contrast
 
@@ -186,7 +186,7 @@ Every state change the component triggers must have an intended screen-reader ou
 |---|---|---|
 | Primitives | `Brand/300`, `Cool Neutral/150` | Aliased by semantics — **never** referenced directly by components (`CLAUDE.md` §6) |
 | Static semantics | `Foreground/Static/Neutral/Bold` | Context-free. The graded ladder, for anything not interactive |
-| Action semantics | `Foreground/Action/Primary/Rest` | Interactive. Rest / Hover / Pressed, with ONE Disabled per tier |
+| Action semantics | `Foreground/Action/Primary/On Subtle/Rest` | Interactive. Rest / Hover / Pressed, with ONE Disabled per tier |
 
 There are four tiers: **Foreground**, **Fill**, **Stroke**, **Scrim**. Surface sits
 under Fill as `Fill/Surface/*`.
@@ -222,7 +222,7 @@ filled star — so it has no interaction states to express, and an Action group 
 dead weight that still has to be maintained, documented and kept in step across two
 modes.
 
-Concretely: **filling a star uses `Foreground/Static/Accent/Saffron/*`.** Not a
+Concretely: **filling a star uses `Foreground/Static/Saffron/*`.** Not a
 primitive, and not a Status family, because a filled star is not a warning.
 
 `Status/Info` is the mirror-image exception: it is **Action-only**, because "info"
@@ -235,8 +235,8 @@ one ramp position for both Fill and Stroke. Saffron's ramp has 13 steps rather t
 checked for missing primitives, duplicate hex within a ladder, and monotonic contrast
 before it was written.
 
-**Known contrast gap.** `Foreground/Static/Accent/Saffron/Faint` measures **4.49:1** on
-white and `Foreground/Static/Accent/Saffron/Faint` measures **4.30:1**. Both sit just
+**Known contrast gap.** `Foreground/Static/Saffron/On Subtle` measures **4.49:1** on
+white and `Foreground/Static/Saffron/On Subtle` measures **4.30:1**. Both sit just
 under the 4.5:1 AA threshold for body text. This is a property of yellow rather than an
 oversight: no step light enough to still read as yellow clears AA on white. Treat both
 as large-text-only — they clear the 3:1 large-text threshold comfortably — until a

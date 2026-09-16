@@ -329,16 +329,16 @@ The nav surface (`#fafafa`) sits flush against the page background with no drawn
 
 ### Stroked
 
-A 0.5px right-hand border (`border-right: 0.5px solid #f6f6f6`) is rendered on the nav container. The stroke colour is `Stroke/Static/Neutral/Subtle` (`#f6f6f6`): the same token used for the horizontal divider above the collapse control and popover borders.
+A 0.5px right-hand border (`border-right: 0.5px solid #f6f6f6`) is rendered on the nav container. The stroke colour is `Stroke/Static/Neutral/Base` (`#f6f6f6`): the same token used for the horizontal divider above the collapse control and popover borders.
 
-> **2026-05-12 update:** Token changed from `Fill/Static/Brand/Faint` (`#edf0f9`) to `Stroke/Static/Neutral/Subtle` (`#f6f6f6`). All three places it's used (container border, divider, popover border) updated together.
+> **2026-05-12 update:** Token changed from `Fill/Static/Brand/Faint` (`#edf0f9`) to `Stroke/Static/Neutral/Base` (`#f6f6f6`). All three places it's used (container border, divider, popover border) updated together.
 
 Use the stroked variant when modules need an explicit visual boundary: for example, when the page content background is also `#fafafa` (identical to the nav surface) and the two areas would otherwise appear merged.
 
 | Variant | Applies to | Token | Value |
 |---|---|---|---|
 | **Unstroked** | Expanded + Collapsed | *(no border)* |: |
-| **Stroked** | Expanded + Collapsed | `Stroke/Static/Neutral/Subtle` | `#f6f6f6` |
+| **Stroked** | Expanded + Collapsed | `Stroke/Static/Neutral/Base` | `#f6f6f6` |
 
 > **Usage guidance:** Neither variant is "correct": the choice belongs to the individual module team, not the design system. Use the variant that produces the clearest visual hierarchy for that module's specific page backgrounds.
 
@@ -386,7 +386,7 @@ The divider that replaces a section label uses identical tokens to the `NavHeade
 | Property | Value | Token |
 |---|---|---|
 | Height | `1px` | *(raw)* |
-| Colour | `#f6f6f6` | `Stroke/Static/Neutral/Subtle` |
+| Colour | `#f6f6f6` | `Stroke/Static/Neutral/Base` |
 | Surrounding padding | `2px top / 2px bottom` | *(raw)* |
 
 **First section rule:** If the first `NavSectionLabel` in the list is replaced by a divider in rail mode, no divider is rendered above the very first section (there is nothing above it to separate). Subsequent sections each get a divider between them. This matches Figma node `40006794:6144`.
@@ -580,8 +580,8 @@ drifted from the build, and a wrong hex in a spec reads as a design decision. Ru
 | `Fill/Action/Selection/Hover` | `--semantic-color-fill-action-selection-hover` | Hover fill |
 | `Fill/Action/Selection/Selected` | `--semantic-color-fill-action-selection-selected` | Active destination + collapsed-trail grouper |
 | `Fill/Action/Selection/Trail` | `--semantic-color-fill-action-selection-trail` | Expanded grouper (open ancestor) |
-| `Fill/Action/Primary/Pressed` | `--semantic-color-fill-action-primary-pressed` | `indicator.stripe` |
-| `Stroke/Static/Neutral/Subtle` | `--semantic-color-stroke-static-neutral-subtle` | Divider, nav `border-right`, popover border |
+| `Fill/Action/Primary/Strong/Pressed` | `--semantic-color-fill-action-primary-strong-pressed` | `indicator.stripe` |
+| `Stroke/Static/Neutral/Base` | `--semantic-color-stroke-static-neutral-base` | Divider, nav `border-right`, popover border |
 
 **Rest has no token on purpose.** `no fill (rest paints nothing)` was deleted because it
 painted the sheet colour over the sheet — a no-op that still had to be maintained, and that
@@ -807,7 +807,7 @@ The `container.indicator` column is **always present** on every `SideNavItem` (L
 
 ### 8.1 Surface
 - Background: `Fill/Surface/Sheet` → `#fafafa`
-- Right border: `0.5px solid` `Stroke/Static/Neutral/Subtle` → `#f6f6f6`
+- Right border: `0.5px solid` `Stroke/Static/Neutral/Base` → `#f6f6f6`
 
 ### 8.2 Dimensions & Padding
 ```
@@ -849,7 +849,7 @@ NavHeader  (48px row + 1px divider below)
 ├── Container.Main  (h-[48px], full width, hover fill)
 │   ├── Expanded (240px): action icon right-aligned in Slot.RowEnd (36×36 wrapper, 12×12 icon)
 │   └── Collapsed (72px): action icon centered (12×12)
-└── Divider  (1px, Stroke/Static/Neutral/Subtle #f6f6f6, py-[2px])
+└── Divider  (1px, Stroke/Static/Neutral/Base #f6f6f6, py-[2px])
 ```
 
 **Action icons:** `right_panel_open` (when sidebar is expanded — click to collapse) and `left_panel_open` (when sidebar is collapsed — click to expand). Both 12×12 SVG glyphs, fill colour `Foreground/Action/Secondary/Rest` (`#6b6b6b`).
@@ -912,7 +912,7 @@ The overflow/scroll behaviour is not annotated in Figma. The nav container is de
 | Width | 72px | None: raw value |
 | Padding | `12px` horizontal (`Padding/Medium`), `8px` top (`Padding/Tight`), `0` bottom | None |
 | Background | `#fafafa` | `Fill/Surface/Sheet` |
-| Border-right | `0.5px solid #f6f6f6` | `Stroke/Static/Neutral/Subtle` |
+| Border-right | `0.5px solid #f6f6f6` | `Stroke/Static/Neutral/Base` |
 | Item gap | `6px` | `Gap/XTight` |
 
 The 72px breaks down as: 12px left padding + 48px item + 12px right padding. Items are 44px tall × 48px wide in the collapsed rail.
@@ -941,7 +941,7 @@ Both appear with an **8px gap** from the container's right edge (`left: calc(100
 | Property | Value | Token |
 |---|---|---|
 | Background | `white` | `Fill/Static/Neutral/White` |
-| Border | `0.5px solid #f6f6f6` | `Stroke/Static/Neutral/Subtle` |
+| Border | `0.5px solid #f6f6f6` | `Stroke/Static/Neutral/Base` |
 | Border radius | `8px` | `Border/Radius/S` |
 | Shadow | `2px 2px 8px 0px rgba(0,0,0,0.03)` |: |
 | Padding | `6px 8px` |: |
@@ -954,7 +954,7 @@ Both appear with an **8px gap** from the container's right edge (`left: calc(100
 | Property | Value | Token |
 |---|---|---|
 | Background | `white` | `Fill/Static/Neutral/White` |
-| Border | `0.5px solid #ededed` | `Stroke/Static/Neutral/Subtle` |
+| Border | `0.5px solid #ededed` | `Stroke/Static/Neutral/Base` |
 | Border radius | `8px` | `Border/Radius/S` |
 | Shadow | `2px 2px 8px 4px rgba(0,0,0,0.03)` | `Shadow.Medium` |
 | Padding | `6px` |: |
@@ -966,7 +966,7 @@ Both appear with an **8px gap** from the container's right edge (`left: calc(100
 | Property | Value | Token |
 |---|---|---|
 | Height | `40px min` |: |
-| Bottom border | `0.5px solid #ededed` | `Stroke/Static/Neutral/Subtle` |
+| Bottom border | `0.5px solid #ededed` | `Stroke/Static/Neutral/Base` |
 | Left indicator slot | `4px wide` (same structural column as `indicator.stripe`) |: |
 | Text indent | `8px left padding` |: |
 | Typography | 14px / 400 / 20px / 0.02px | `Label/Menu/Base/Regular` |
@@ -1517,11 +1517,11 @@ A fifth value (>1900px) exists in the variables panel but is unused and unconfir
 
 ### 17.4 Global top nav (TopNav.Global): out of scope, Figma reference
 
-The global top navigation is a separate component not owned by this spec. The Pathway Design System has standardised on **TopNav.Global** (Figma node `40005504:55844`) — a **brand-blue (`Fill/Static/Brand/Contrast` → `#2d4889`)** nav bar with a fixed height of **56 px**. Full component documentation is maintained on the [TopNav Figma page](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/%E2%9D%87%EF%B8%8F--Pathway-Design-System--Master-File--MB-2.0-?node-id=40005504-55844).
+The global top navigation is a separate component not owned by this spec. The Pathway Design System has standardised on **TopNav.Global** (Figma node `40005504:55844`) — a **brand-blue (`Fill/Static/Brand/Bold` → `#2d4889`)** nav bar with a fixed height of **56 px**. Full component documentation is maintained on the [TopNav Figma page](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/%E2%9D%87%EF%B8%8F--Pathway-Design-System--Master-File--MB-2.0-?node-id=40005504-55844).
 
 **TopNav.Global slot layout (left → right) — as read from Figma 2026-05-13:**
 - **Row Start:** SideNav control (mobile hamburger `menu`, hidden ≥768px via CSS) · ModuleSwitcher (Amplify Home icon + `expand_more` chevron, no text label) · OrgSwitcher (church logo 20×20 sq + "Sacred Heart Church-ITD | Knoxville" label + `expand_more` chevron; container has `stroke/action/tertiary/base` border)
-- **Row End:** Search (48×48 wrapper → 32×32 circle button with `cornerradius/full:64px` and `search` icon) · Desktop: 2× Notifications bell (`notifications` Material Symbol, 48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Accent_Amethyst/Base #dcd9ef`, "JL" in `#221e3f`)
+- **Row End:** Search (48×48 wrapper → 32×32 circle button with `cornerradius/full:64px` and `search` icon) · Desktop: 2× Notifications bell (`notifications` Material Symbol, 48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Amethyst/Subtle #dcd9ef`, "JL" in `#221e3f`)
 
 **Breakpoint variants (Figma node IDs):**
 - Desktop 1440px: `40007103:17678` — `justify-content: space-between`, right slot `width: 216px`

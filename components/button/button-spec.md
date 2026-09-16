@@ -114,7 +114,7 @@ Plus orthogonal state dimensions:
 
 **Primary** — brand blue (`fill.action.primary.*`). The default. Reserve for the most important action.  
 **Secondary** — neutral/muted (`fill.action.secondary.*`). Supporting actions.  
-**Tertiary** — lightest weight (`fill.action.primary-dim.*`). Inline or low-priority.  
+**Tertiary** — lightest weight (`fill.action.primary.subtle.*`). Inline or low-priority.  
 **Negative** — destructive intent (`fill.action.status.negative.*`). Delete, revoke, remove. Use sparingly; its presence should always indicate danger, not just rejection.
 
 > IMPLEMENTATION RULE: Style and Type are independent axes.
@@ -128,14 +128,14 @@ Plus orthogonal state dimensions:
 
 | Style | Type | Base | Hover | Pressed | Disabled |
 |---|---|---|---|---|---|
-| Fill | Primary | `fill.action.primary.rest` | `fill.action.primary.hover` | `fill.action.primary.pressed` | `fill.action.disabled` |
+| Fill | Primary | `fill.action.primary.strong.rest` | `fill.action.primary.strong.hover` | `fill.action.primary.strong.pressed` | `fill.action.disabled` |
 | Fill | Secondary | `fill.action.secondary.rest` | `fill.action.secondary.hover` | `fill.action.secondary.pressed` | `fill.action.disabled` |
-| Fill | Tertiary | `fill.action.primary-dim.rest` | `fill.action.primary-dim.hover` | `fill.action.primary-dim.pressed` | `fill.action.disabled` |
-| Fill | Negative | `fill.action.status.negative.rest` | `fill.action.status.negative.hover` | `fill.action.status.negative.pressed` | `fill.action.disabled` |
-| Outlined / Naked | Primary | `transparent` | `fill.action.primary-dim.hover` | `fill.action.primary-dim.pressed` | `transparent` |
+| Fill | Tertiary | `fill.action.primary.subtle.rest` | `fill.action.primary.subtle.hover` | `fill.action.primary.subtle.pressed` | `fill.action.disabled` |
+| Fill | Negative | `fill.action.status.negative.strong.rest` | `fill.action.status.negative.strong.hover` | `fill.action.status.negative.strong.pressed` | `fill.action.disabled` |
+| Outlined / Naked | Primary | `transparent` | `fill.action.primary.subtle.hover` | `fill.action.primary.subtle.pressed` | `transparent` |
 | Outlined / Naked | Secondary | `transparent` | `fill.action.secondary.hover` | `fill.action.secondary.pressed` | `transparent` |
-| Outlined / Naked | Tertiary | `fill.action.primary-dim.rest` | `fill.action.primary-dim.hover` | `fill.action.primary-dim.pressed` | `transparent` |
-| Outlined / Naked | Negative | `transparent` | `fill.action.status.negative-dim.hover` | `fill.action.status.negative-dim.pressed` | `transparent` |
+| Outlined / Naked | Tertiary | `fill.action.primary.subtle.rest` | `fill.action.primary.subtle.hover` | `fill.action.primary.subtle.pressed` | `transparent` |
+| Outlined / Naked | Negative | `transparent` | `fill.action.status.negative.subtle.hover` | `fill.action.status.negative.subtle.pressed` | `transparent` |
 
 ### 5.2 Text tokens (label colour)
 
@@ -145,17 +145,17 @@ Plus orthogonal state dimensions:
 |---|---|---|---|---|
 | Primary | `foreground.static.neutral.mono` | `foreground.static.neutral.mono` | `foreground.static.neutral.mono` | `foreground.action.disabled` |
 | Secondary | `foreground.action.secondary.rest` | `foreground.action.secondary.hover` | `foreground.action.secondary.pressed` | `foreground.action.disabled` |
-| Tertiary | `foreground.action.primary.rest` | `foreground.action.primary.hover` | `foreground.action.primary.pressed` | `foreground.action.disabled` |
+| Tertiary | `foreground.action.primary.on-subtle.rest` | `foreground.action.primary.on-subtle.hover` | `foreground.action.primary.on-subtle.pressed` | `foreground.action.disabled` |
 | Negative | `foreground.static.neutral.mono` | `foreground.static.neutral.mono` | `foreground.static.neutral.mono` | `foreground.action.disabled` |
 
 **Outlined and Naked** use direct-type text (coloured on transparent surface):
 
 | Type | Base | Hover | Pressed | Disabled |
 |---|---|---|---|---|
-| Primary | `foreground.action.primary.rest` | `foreground.action.primary.hover` | `foreground.action.primary.pressed` | `foreground.action.disabled` |
+| Primary | `foreground.action.primary.on-subtle.rest` | `foreground.action.primary.on-subtle.hover` | `foreground.action.primary.on-subtle.pressed` | `foreground.action.disabled` |
 | Secondary | `foreground.action.secondary.rest` | `foreground.action.secondary.hover` | `foreground.action.secondary.pressed` | `foreground.action.disabled` |
-| Tertiary | `foreground.action.primary.rest` | `foreground.action.primary.hover` | `foreground.action.primary.pressed` | `foreground.action.disabled` |
-| Negative | `foreground.action.status.negative.rest` | `foreground.action.status.negative.hover` | `foreground.action.status.negative.pressed` | `foreground.action.disabled` |
+| Tertiary | `foreground.action.primary.on-subtle.rest` | `foreground.action.primary.on-subtle.hover` | `foreground.action.primary.on-subtle.pressed` | `foreground.action.disabled` |
+| Negative | `foreground.action.status.negative.on-subtle.rest` | `foreground.action.status.negative.on-subtle.hover` | `foreground.action.status.negative.on-subtle.pressed` | `foreground.action.disabled` |
 
 ### 5.3 Icon tokens
 
@@ -503,7 +503,7 @@ button.jsx exports:
 1. **All SIZES values are now CSS var strings.** `padH`, `padV`, and `fontSize` all use `SL()` or `ST()` helpers. Do not use numeric values.
 2. **Spinner inherits colour via `currentColor`.** The container's `color` property is set to `iconColor`. Do not set a separate `color` on the spinner.
 4. **`aria-hidden` on Container.Main.** The inner span is decorative; all semantics live on the outer `<button>`.
-5. **Style=Naked/Tertiary has a non-transparent base fill.** `fill.action.primary-dim.rest` is a subtle tinted colour, not transparent. All other Naked types are `transparent` at base.
+5. **Style=Naked/Tertiary has a non-transparent base fill.** `fill.action.primary.subtle.rest` is a subtle tinted colour, not transparent. All other Naked types are `transparent` at base.
 
 ### Implementation prompt template
 

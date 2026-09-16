@@ -98,26 +98,26 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `fill.static.brand.subtle` | `--semantic-color-fill-static-brand-subtle` | #2d4889 | Nav bar background |
-| `fill.action.primary-dim.rest` (dark) | dark-mode | rgba(160,181,230,0.04) | OrgSwitcher resting fill |
+| `fill.static.brand.base` | `--semantic-color-fill-static-brand-base` | #2d4889 | Nav bar background |
+| `fill.action.primary.subtle.rest` (dark) | dark-mode | rgba(160,181,230,0.04) | OrgSwitcher resting fill |
 | `stroke.action.primary.rest` (dark) | dark-mode | rgba(160,181,230,0.16) | OrgSwitcher border |
-| `fill.action.primary-dim.hover` (dark) | dark-mode | rgba(10,18,35,0.16) | All nav controls hover |
+| `fill.action.primary.subtle.hover` (dark) | dark-mode | rgba(10,18,35,0.16) | All nav controls hover |
 | `foreground.static.neutral.mono` (dark) | dark-mode | #fbfbfb | All text + icons on nav |
-| `fill.static.accent.amethyst.subtle` | `--semantic-color-fill-static-accent-amethyst-subtle` | #dcd9ef | Profile avatar bg |
-| `foreground.static.accent.amethyst.contrast` | `--semantic-color-foreground-static-accent-amethyst-contrast` | #221e3f | Profile avatar initials |
+| `fill.static.amethyst.subtle` | `--semantic-color-fill-static-amethyst-subtle` | #dcd9ef | Profile avatar bg |
+| `foreground.static.amethyst.on-subtle` | `--semantic-color-foreground-static-amethyst-on-subtle` | #221e3f | Profile avatar initials |
 
 ### SideNav surface (light mode)
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
 | `surface.nav.light` | `--semantic-color-fill-surface-sheet` | #f9f9f9 | SideNav background |
-| `stroke.static.neutral.subtle` | `--semantic-color-stroke-static-neutral-faint` | #f6f6f6 | Right border + section separators |
+| `stroke.static.neutral.base` | `--semantic-color-stroke-static-neutral-faint` | #f6f6f6 | Right border + section separators |
 | `fill.action.selection.hover` | `--semantic-color-fill-action-selection-hover` | rgba(69,77,94,0.06) | Nav item hover |
 | `fill.action.selection.selected` | `--semantic-color-fill-action-selection-selected` | #eef2fb | Active nav item fill |
 | `foreground.action.secondary.rest` | `--semantic-color-foreground-action-secondary-rest` | #484848 | Nav item label |
-| `foreground.action.secondary.pressed` | `--semantic-color-foreground-action-primary-rest` | #3555a0 | Active nav item label |
+| `foreground.action.secondary.pressed` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #3555a0 | Active nav item label |
 | `foreground.action.secondary.rest` | `--semantic-color-foreground-action-secondary-rest` | #606060 | Nav item icon (resting) |
-| `foreground.action.secondary.pressed` | `--semantic-color-foreground-action-primary-rest` | #3555a0 | Active nav item icon |
+| `foreground.action.secondary.pressed` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #3555a0 | Active nav item icon |
 
 ### ScreenTemplate surface (light mode)
 
@@ -129,10 +129,10 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 | `foreground.static.neutral.bold` | `--semantic-color-foreground-static-neutral-bold` | #202020 | Page heading, card title |
 | `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` | #484848 | Page subtitle |
 | `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` | #606060 | Section heading, card body, search placeholder |
-| `fill.action.primary-dim.rest` | `--semantic-color-fill-action-primary-dim-rest` | #eef2fb | Active filter chip bg |
-| `foreground.action.primary.rest` | `--semantic-color-foreground-action-primary-rest` | #3555a0 | Active tab, active filter chip text |
-| `fill.accent_amethyst.light` | `--semantic-color-fill-static-accent-amethyst-faint` | #f4f2fa | Badge background |
-| `foreground.static.accent.amethyst.contrast` | `--semantic-color-foreground-static-accent-amethyst-contrast` | #221e3f | Badge text |
+| `fill.action.primary.subtle.rest` | `--semantic-color-fill-action-primary-subtle-rest` | #eef2fb | Active filter chip bg |
+| `foreground.action.primary.on-subtle.rest` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #3555a0 | Active tab, active filter chip text |
+| `fill.accent_amethyst.light` | `--semantic-color-fill-static-amethyst-subtle` | #f4f2fa | Badge background |
+| `foreground.static.amethyst.on-subtle` | `--semantic-color-foreground-static-amethyst-on-subtle` | #221e3f | Badge text |
 
 ---
 
@@ -228,10 +228,10 @@ The ScreenTemplate fills the Shell.Main scrollable area. It is composed from fou
 Optional. When present, renders above the PageHeading.
 
 - Background: `surface.canvas.light` (#fafafa)
-- Active tab: `foreground.action.primary.rest` (#3555a0), font-weight 600
-- Active indicator: 2px bar at bottom, `fill.action.primary.rest` (#3555a0), border-radius 2px 2px 0 0
+- Active tab: `foreground.action.primary.on-subtle.rest` (#3555a0), font-weight 600
+- Active indicator: 2px bar at bottom, `fill.action.primary.strong.rest` (#3555a0), border-radius 2px 2px 0 0
 - Inactive tab: `foreground.static.neutral.base` (#606060), font-weight 500
-- Border-bottom on the tab container: 1px `stroke.static.neutral.subtle`
+- Border-bottom on the tab container: 1px `stroke.static.neutral.base`
 
 ### 7.2 PageHeading
 
@@ -254,7 +254,7 @@ Stacks vertically at 8px gap. Default: one row.
   - Search icon: 16×16, `foreground.action.secondary.rest` = #6b6b6b
 - FilterChips: inline row, gap 4px, each chip min-height 48px
   - Resting: transparent background, `foreground.action.secondary.rest` = #292724, font 12px/500
-  - Active: `fill.action.primary-dim.rest` = #eef2fb, `foreground.action.primary.rest` = #3555a0, font-weight 600
+  - Active: `fill.action.primary.subtle.rest` = #eef2fb, `foreground.action.primary.on-subtle.rest` = #3555a0, font-weight 600
   - Border-radius: 4px (`border-radius.xs`) — NOT 8px
 
 **Trailing slot:** action buttons (right-aligned)
@@ -275,15 +275,15 @@ Card (bg: white, border: 0.5px #d2d2d2, radius: 8px, padding: 16px, gap: 12px)
 ├── Slot.CardSubtitle
 │   └── Badge (bg: fill.accent_amethyst.light = #f4f2fa, radius: 12px)
 │       └── label.badge.small.medium: 11px/500/16px, tracking 0.3px
-│           color: foreground.static.accent.amethyst.contrast = #221e3f
+│           color: foreground.static.amethyst.on-subtle = #221e3f
 └── CardBody (14px/400/20px, foreground.static.neutral.base = #606060)
 ```
 
 Card icon color variants (32×32 container):
 - **Accent/amethyst:** bg `fill.accent_amethyst.light` (#f4f2fa)
-- **Positive/green:** bg `fill.static.positive.faint` (#f0faf1)
+- **Positive/green:** bg `fill.static.green.subtle` (#f0faf1)
 - **Info/blue:** bg `fill.static.brand.faint` (#eef2fb)
-- **Warning:** bg `fill.static.accent.saffron.faint` (#fff8e1)
+- **Warning:** bg `fill.static.saffron.subtle` (#fff8e1)
 
 ---
 
@@ -308,7 +308,7 @@ Card icon color variants (32×32 container):
 
 - Clicking the OrgSwitcher trigger opens a panel listing all organisations the user has access to.
 - Clicking outside or pressing Escape closes it.
-- The active org is highlighted with `fill.action.primary-dim` in the panel.
+- The active org is highlighted with `fill.action.primary.subtle` in the panel.
 
 ### TopNavSearch (TopNavSearch component)
 
@@ -431,7 +431,7 @@ On mobile, the org trigger shows abbreviated text. The rules:
 
 ### 9.6 What to never do
 
-- Never hardcode `#2d4889` — always use `var(--semantic-color-fill-static-brand-subtle, #2d4889)`.
+- Never hardcode `#2d4889` — always use `var(--semantic-color-fill-static-brand-base, #2d4889)`.
 - Never hardcode `#fafafa` — always use `var(--semantic-color-fill-surface-canvas, #fafafa)`.
 - Never use `display: none` on the SideNav for any state — use `width: 0` with `overflow: hidden`.
 - Never set `border-radius: 8px` on the ToolBar search input — it is 6px (confirmed from Figma).

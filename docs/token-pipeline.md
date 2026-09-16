@@ -33,7 +33,7 @@ Then reference tokens:
 .card {
   background: var(--semantic-color-fill-surface-sheet);
   color: var(--semantic-color-foreground-static-neutral-bold);
-  border: 1px solid var(--semantic-color-stroke-static-neutral-subtle);
+  border: 1px solid var(--semantic-color-stroke-static-neutral-base);
   border-radius: var(--semantic-layout-units-cornerradius-medium);
 }
 ```
@@ -230,7 +230,7 @@ mangled in transit, which is why this is not really TSV despite the extension.
 #M|Semantic: Color|Light Mode~Midnight Mode|COLOR
 #M|Primitive: Type|Value|MIXED              collection with more than one type
 #G|Semantic: Color|Light Mode               group marker: collection + mode
-Fill/Action/Primary/Rest|@Brand/450         alias, @-prefixed
+Fill/Action/Primary/Strong/Rest|@Brand/450         alias, @-prefixed
 Cool Neutral/0 @ 6%|#ffffff/0.06            alpha as hex/float
 ~FLOAT|Weight/400|400                       per-row type, MIXED collections only
 Font Size/R|@Primitive: Type::Size/16       collection-qualified alias
@@ -267,9 +267,9 @@ naming the offset to resume from. Never work around that by editing the total.
 - **`check-token-refs.js`** expands the helper templates in code and resolves
   the resulting names against the contract.
 - **`check-token-names.js`** checks token names written as *prose*, in all three
-  shapes a document might use: slash (`Fill/Action/Primary/Rest`), dash
-  (`--semantic-color-fill-action-primary-rest`) and dot
-  (`fill.action.primary.rest`).
+  shapes a document might use: slash (`Fill/Action/Primary/Strong/Rest`), dash
+  (`--semantic-color-fill-action-primary-strong-rest`) and dot
+  (`fill.action.primary.strong.rest`).
 - **`check-state-distinctness.js`** fails when `rest`, `hover` and `pressed` in
   one group resolve to the same primitive. Every other check above asks whether
   a NAME resolves; none can see that two names hold the same VALUE, which is how

@@ -16,6 +16,7 @@
 :root {
   --contextual-layout-units-button-border-width-hover: 1px;
   --contextual-layout-units-button-border-width-rest: 0.75px;
+  --contextual-layout-units-button-corner-radius-radius: 8px;
   --contextual-layout-units-button-gap-horizontal: 8px;
   --contextual-layout-units-button-padding-large-horizontal: 14px;
   --contextual-layout-units-button-padding-large-vertical: 12px;
@@ -36,8 +37,7 @@
   --contextual-layout-units-card-padding-small-vertical: 14px;
   --contextual-layout-units-focus-ring-offset: 2px;
   --contextual-layout-units-focus-ring-width: 2px;
-  --contextual-layout-units-navitem-large-padding-horizontal: 14px;
-  --contextual-layout-units-navitem-large-padding-vertical: 12px;
-  --contextual-layout-units-navitem-large-radius: 8px;
-  --contextual-layout-units-navitem-large-stroke-width: 1.5px;
+  --contextual-layout-units-navitem-corner-radius-radius: 8px;
+  --contextual-layout-units-navitem-padding-horizontal: 14px;
+  --contextual-layout-units-navitem-padding-vertical: 12px;
 }

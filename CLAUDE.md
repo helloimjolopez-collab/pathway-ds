@@ -59,9 +59,9 @@ tokens/pathway-design-tokens.json                        │
                              ▼
         src/tokens/primitives.css          350 raw ramp values — REQUIRED, the themes
                                            reference these via var()
-        src/tokens/themes/light.css        243 semantic colours, :root + [data-theme=light]
-        src/tokens/themes/midnight.css     the same 243 names under [data-theme=midnight]
-        src/tokens/layout.css              39 layout tokens, breakpoint by media query
+        src/tokens/themes/light.css        162 semantic colours, :root + [data-theme=light]
+        src/tokens/themes/midnight.css     the same 162 names under [data-theme=midnight]
+        src/tokens/layout.css              40 layout tokens, breakpoint by media query
         src/tokens/layout-contextual.css   26 component metrics, same treatment
         src/tokens/type.css                41 type scale tokens
         src/tokens/motion.css              17 durations and easings
@@ -102,8 +102,8 @@ Load these eight, in this order:
 | File | Contains | Consume it? |
 |---|---|---|
 | `primitives.css` | 350 raw ramp values | **Required, but never referenced.** The themes point at these via `var()`, so the file must load or every colour resolves to nothing. Product code must never name a `--primitive-*` (§6) |
-| `themes/light.css` + `themes/midnight.css` | 243 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
-| `layout.css` | 39 layout and spacing names, single-valued | **Yes.** The spacing contract |
+| `themes/light.css` + `themes/midnight.css` | 162 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
+| `layout.css` | 40 layout and spacing names, single-valued | **Yes.** The spacing contract |
 | `layout-responsive.css` | 6 names that genuinely change by breakpoint: Sheet padding, TopNav padding and height. Emitted with media queries | **Yes.** A developer cannot derive these from a responsive grid — the grid governs columns, not the chrome's padding |
 | `layout-contextual.css` | 26 component metrics (Button, Card, NavItem, focus ring) | Component internals. This repo's components use it; product code should not |
 | `type.css` | The 41-token type SCALE: 1 family, 13 sizes, 18 line heights, 5 weights, 4 tracking steps | **Yes.** Compose from these |
@@ -148,15 +148,39 @@ variable never names a face that would silently fall back.
 
 **Surface lives under Fill (changed 2026-09-03).** There is no top-level `Surface`
 group: it is `Fill/Surface/{Canvas, Sheet, Elevated}`, alongside `Fill/Static/Neutral`,
-`Fill/Static/Negative`, `Fill/Static/Positive`, `Fill/Static/Accent`, `Fill/Static/Brand` and `Fill/Action`.
-Elevated has ONE step, not Base and Medium — a header band inside an elevated
-widget uses `Fill/Static/Neutral` rather than a second surface step.
+`Fill/Static/Brand`, and one group per hue (`Fill/Static/Red`, `Fill/Static/Jade`, …),
+plus `Fill/Action`. Elevated has ONE step, not Base and Medium — a header band
+inside an elevated widget uses `Fill/Static/Neutral` rather than a second surface step.
 
-**There is no `Status` group outside `Action` (finished 2026-09-15).** A tone
-ladder for status now sits at the same level as Neutral — `Fill/Static/Negative`,
-`Fill/Static/Positive` — or, where a hue already existed as an accent, on that accent:
-Attention folded onto `Accent/Saffron` and Severe onto `Accent/Orange`. Status as
-a *meaning* is expressed by the Figma colour STYLES, not by a variable group.
+**Static is hue-named, and every hue has exactly two rungs (2026-09-15).** A tone
+group under `Static` carries the name of the primitive family it resolves to:
+`Fill/Static/Red`, not `Fill/Static/Negative`. Meaning is expressed by the Figma
+colour STYLES, not by a variable group, because the same red serves "failed",
+"overdue" and "destructive" and the variable cannot say which.
+
+Each hue has two fill rungs and two stroke rungs, `Subtle` and `Strong`, plus two
+foregrounds that name the fill they belong on:
+
+| | what it is | pairs with |
+|---|---|---|
+| `Fill/Static/<Hue>/Subtle` | the pale tint | `Foreground/Static/<Hue>/On Subtle` |
+| `Fill/Static/<Hue>/Strong` | the solid block | `Foreground/Static/<Hue>/On Strong` |
+
+`On Subtle` is the hue's readable text, and it works on the canvas as well as on
+the Subtle fill, which is why one token covers both. `On Strong` resolves to the
+mono anchor, because text on a solid hue is white in Light and in Midnight alike.
+Naming the pairing is what stops an agent putting hue text on a hue block and
+getting 1.4:1.
+
+Only Neutral and Brand keep a longer ladder, because they carry most of the UI:
+Neutral's foreground runs Mono, Faint, Subtle, Base, Bold, Strong, and
+`Fill/Static/Brand` keeps six rungs through `Strongest`.
+
+**Strong is always the last rung.** The ladder runs lightest to heaviest and ends
+at Strong, so `Bold` is the second-heaviest, not the heaviest.
+`scripts/check-ladder-order.js` asserts this by resolved luminance, because the
+names were out of step with the values twice on the day this landed.
+
 `Status` appears in a variable name only under `Action`, where it qualifies an
 interactive set that has real rest/hover/pressed states.
 
@@ -254,7 +278,7 @@ Reconciliation — 2 components need manual attention:
 
   spinner
     file:   components/spinner/spinner-spec.md
-    stale:  foreground.static.accent.jade.medium
+    stale:  foreground.static.jade.on-subtle
     reason: removed-from-tokens
     next:   delete the accent-jade branch from the Figma spinner node,
             or restore the accent-jade tokens in Figma
@@ -337,7 +361,7 @@ Before writing any colour into a component, grep `tokens/pathway-design-tokens.j
 - CSS custom properties derived by Style Dictionary replace dots with hyphens. There are
   now two naming forms and you must know which file you are reading:
   - From `themes/light.css` and `themes/midnight.css`: the mode is NOT in the name,
-    e.g. `--semantic-color-foreground-static-neutral-bold`. One name, two values,
+    e.g. `--semantic-color-foreground-static-neutral-strong`. One name, two values,
     resolved by selector. Note Text and Icon merged into Foreground.
   - There is no mode-in-name form any more. `--semantic-color-light-mode-*` came from
     `tokens.css`, retired 2026-09-03, and any such name now resolves to nothing.

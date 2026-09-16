@@ -24,6 +24,27 @@
 // instead of flipping — but they still have a place on the ramp, so they are
 // ordered here and marked as anchors below for the UI to annotate.
 //
+// STRONG IS THE LAST RUNG (2026-09-15, final pass). The ladder now reads
+//
+//   Faint, Subtle, Base, Bold, Strong
+//
+// with Neutral allowed Mono and White on top of that. Two things landed at once:
+// the `Accent` tier was dropped, so a hue sits directly under Static
+// (Fill/Static/Jade/Subtle, not Fill/Static/Accent/Jade/Faint), and every group
+// shifted up one so the heaviest rung is Strong rather than Bold. Base is the
+// default: the rung to reach for when nothing about the context says otherwise.
+//
+// How the previous rungs map, by position:
+//   dim      -> subtle
+//   subtle   -> base
+//   medium   -> base       (only Fill/Static/Neutral had one)
+//   contrast -> bold
+//   bold     -> strong
+//   boldest  -> strongest  (Fill/Static/Brand's sixth rung)
+//
+// Foreground/Static/Neutral had already been shifted in the earlier pass, so it
+// carried Base before this one and needed only Bold and Strong exchanged.
+//
 // SIMPLIFIED 2026-09-14, completed 2026-09-15. Foreground/Static/Neutral used to run
 // white, xlight, faint, subtle, light, medium, contrast, bold — eight steps, two
 // of which (faint at cool-400 and light at cool-500) were close enough to be a
@@ -41,24 +62,22 @@
 //   xlight  -> deleted; cool-200 is 2.92:1 on canvas, unusable for text
 //
 // On 2026-09-15 the SAME positional rename was applied to every other tone
-// ladder, including both Brand ladders, so every tone group now reads
-// Faint/Dim/Subtle/Contrast/Bold. These are the only non-conforming rungs left,
-// and each is deliberate:
+// ladder, including both Brand ladders, and then the whole set shifted again so
+// Strong ends it (see the top of this comment). These are the only
+// non-conforming rungs left, and each is deliberate:
 //
-//   white    Fill/Static/Neutral/White        Neutral is allowed extras
-//   medium   Fill/Static/Neutral/Medium       likewise
-//   boldest  Fill/Static/Brand/Boldest,       a sixth rung past Bold, kept on BOTH
-//            Stroke/Static/Brand/Boldest      Brand ladders on purpose
-//   light    Scrim/Light               Scrim is an opacity ramp, not a tone one
-//   xlight   nothing on main           kept for the NewCo branch, which has it
-//   black    nothing                   retired 2026-09-15, see below
+//   white     Fill/Static/Neutral/White    Neutral is allowed extras
+//   strongest Fill/Static/Brand/Strongest  a sixth rung past Strong, Brand only
+//   light     Scrim/Light                  Scrim is an opacity ramp, not a tone one
+//   xlight    nothing on main              kept for the NewCo branch, which has it
+//   black     nothing                      retired 2026-09-15, see below
 //
 // Brand's sixth rung was spelled Dark on Fill and Black on Stroke, which put two
-// names on one ladder position. It is `Boldest` on both now, and the reason is
-// worth keeping: Stroke/Brand's sixth rung resolves to Brand/0 in Midnight,
-// which is nearly WHITE, so "Black" was factually wrong in one of the two modes.
-// Faint and Bold survive mode inversion because they describe a position on the
-// ladder rather than a colour; Boldest does the same.
+// names on one ladder position. It is `Strongest` now, and the reason is worth
+// keeping: that rung resolves to Brand/0 in Midnight, which is nearly WHITE, so
+// "Black" was factually wrong in one of the two modes. Faint and Strong survive
+// mode inversion because they describe a position on the ladder rather than a
+// colour; Strongest does the same.
 //
 // An unknown rung falls through to alphabetical, which is the exact disorder
 // this module exists to prevent, so removing a name here is only safe once
@@ -71,9 +90,12 @@
 //
 // A NOTE ON EDITING THIS COMMENT: the list above names retired rungs on purpose.
 // A bulk rename pass hit it on 2026-09-15 and rewrote "light  Fill/Static/Brand/Light"
-// into "light  Fill/Static/Brand/Dim", which is nonsense — the entry existed to say
+// into "light  Fill/Static/Brand/Subtle", which is nonsense — the entry existed to say
 // that Fill/Static/Brand was where `light` still lived. Prose about a retired name is
 // not a reference to it.
+// Retired names are kept in place rather than deleted: an unknown rung falls
+// through to alphabetical, so a stale reference anywhere downstream would
+// silently reorder a whole table instead of standing out.
 export const LADDER = [
   "mono",
   "white",
@@ -82,10 +104,13 @@ export const LADDER = [
   "dim",
   "light",
   "subtle",
+  "base",
   "medium",
   "contrast",
   "bold",
+  "strong",
   "boldest",
+  "strongest",
   "black",
 ];
 
@@ -144,6 +169,10 @@ export const GROUPS = ["static", "surface", "action", "focusring", "base"];
  * ground and the single accessibility token.
  */
 export const SEGMENT1 = [
+  // Static was reinstated on 2026-09-15 and now holds the hue directly, so a
+  // path reads fill/static/jade/subtle and the tone name has moved to segment 2
+  // where ROLES already covers it.
+  "static",
   "neutral",
   "negative",
   "positive",

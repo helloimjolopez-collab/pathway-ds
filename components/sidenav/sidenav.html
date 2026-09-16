@@ -79,7 +79,7 @@
 
   /* ── TOP NAV (TopNav.Global — Pathway DS) ──────────────────────── */
   /* Source: Figma node 40005504:55844 — read 2026-05-13 via Figma MCP   */
-  /* Background: Fill/Static/Brand/Contrast → #2d4889 (brand blue, NOT dark navy) */
+  /* Background: Fill/Static/Brand/Bold → #2d4889 (brand blue, NOT dark navy) */
   /* Height: 56px. z-index: 100.                                          */
   /* Breakpoints: ≥1024 desktop | 768–1023 tablet | <768 mobile          */
   /* Icons: Material Symbols Rounded (Google Fonts CDN)                  */
@@ -117,7 +117,7 @@
   .topnav {
     position: fixed; top: 0; left: 0; right: 0;
     height: 56px;
-    background: var(--semantic-color-fill-static-brand-contrast);
+    background: var(--semantic-color-fill-static-brand-bold);
     z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 4px 16px;
@@ -255,10 +255,10 @@
   .tn-profile-btn:focus-visible { outline: 2px solid rgba(160,181,230,0.7); outline-offset: 2px; border-radius: 50%; }
   .tn-profile-av {
     width: 32px; height: 32px; border-radius: 200px;
-    background: var(--semantic-color-fill-static-accent-amethyst-faint);
+    background: var(--semantic-color-fill-static-amethyst-subtle);
     display: flex; align-items: center; justify-content: center;
     font-size: 14px; font-weight: 600; line-height: 20px; letter-spacing: 0.3px;
-    color: var(--semantic-color-foreground-static-accent-amethyst-contrast);
+    color: var(--semantic-color-foreground-static-amethyst-on-subtle);
     font-family: 'Red Hat Text', sans-serif;
   }
 
@@ -363,7 +363,7 @@
     "Fill/Action/Selection/Hover":       "#11111105",
     "Fill/Action/Selection/Selected":      "#a0b5e629",
     "Fill/Action/Selection/Trail":       "#11111105",
-    "Stroke/Static/Neutral/Subtle":         "#f6f6f6",
+    "Stroke/Static/Neutral/Base":         "#f6f6f6",
     "Fill/Surface/Sheet":                   "#fafafa",
     "Fill/Surface/Canvas":                "#fafafa",
     "Foreground/Action/Secondary/Rest":        "#313131",
@@ -481,7 +481,7 @@ const T = {
     navHover:   c("fill-action-selection-hover"),
     navActive:  c("fill-action-selection-selected"),
     navTrail:   c("fill-action-selection-trail"),
-    infoSubtle: c("stroke-static-neutral-subtle"),   // divider + nav border-right
+    infoSubtle: c("stroke-static-neutral-base"),   // divider + nav border-right
   },
   surface: {
     navLight: c("fill-surface-sheet"),
@@ -506,7 +506,7 @@ const T = {
   },
   // The stripe takes the loud brand blue from the Action tier rather than owning
   // a token of its own.
-  indicator: c("fill-action-primary-pressed"),
+  indicator: c("fill-action-primary-strong-pressed"),
   radius:    u("cornerradius-medium", 8),
 };
 
@@ -874,7 +874,7 @@ function SideNavItem({ item, isActive, isTrail, isExpanded, isSidebarCollapsed,
 
 // ── SideNavTooltip ─────────────────────────────────────────────────────────
 // Shown on hover of a collapsed destination item (non-grouper).
-// Tokens: Fill/Static/Neutral/White, Stroke/Static/Neutral/Subtle (#f6f6f6),
+// Tokens: Fill/Static/Neutral/White, Stroke/Static/Neutral/Base (#f6f6f6),
 //         Foreground/Static/Neutral/Bold (#202020), Text/Body/S/Regular (14px/400/20px)
 // Shadow: 2px 2px 8px 0px rgba(0,0,0,0.03)
 // Offset: left edge at container right edge + 8px gap (bridge element covers gap)
@@ -910,7 +910,7 @@ function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }) {
 // Figma: PopoverMenu.SectionLabel (node 40005748:20503)
 // Tokens: Foreground/Static/Neutral/Base (#606060), Label/Menu/Base/Regular
 //         (14px / 400 / 20px / 0.3px letter-spacing) — NOT uppercase (updated 2026-05-13)
-// Border: border-bottom 0.5px solid Stroke/Static/Neutral/Subtle (#ededed)
+// Border: border-bottom 0.5px solid Stroke/Static/Neutral/Base (#ededed)
 // Width: 200px, minHeight: 40px, overflow-clip, pr-[12px]
 function SectionLabel({ label }) {
   return (
@@ -1024,7 +1024,7 @@ function SideNavListSection({ label, items, activeId, onNavigate }) {
 // ── CollapsedPopover ─────────────────────────────────────────────────────────
 // Shown on hover of a collapsed grouper item. Contains a SectionLabel (group
 // name) + list of child items.
-// Tokens: Fill/Static/Neutral/White, Stroke/Static/Neutral/Subtle (#ededed) 0.5px,
+// Tokens: Fill/Static/Neutral/White, Stroke/Static/Neutral/Base (#ededed) 0.5px,
 //         Border/Radius/S (8px), Shadow.Medium (2px 2px 8px 4px rgba(0,0,0,0.03))
 // Section label: Label/Section/Small/Semibold (11px/600/16px/0.6px), #7b7b7b, uppercase, bottom border
 // Items: Text/Body/S/Regular (14px/400/20px), Foreground/Action/Secondary/Rest (#313131)
@@ -1096,7 +1096,7 @@ function PopoverRow({ item, onClick, activeId }) {
 //   Slot.RowEnd — right-aligned action icon (right_panel_open 12×12 SVG)
 //   Slot.RowStart — optional brand mark (hidden in demo by default)
 //
-// Divider: h-[1px] Stroke/Static/Neutral/Subtle (#f6f6f6) below the control row.
+// Divider: h-[1px] Stroke/Static/Neutral/Base (#f6f6f6) below the control row.
 // Action icon token: Foreground/Action/Secondary/Rest (#6b6b6b) — no hover change.
 function NavHeader({ isSidebarCollapsed, onToggle }) {
   const [h, setH] = useState(false);
@@ -1128,7 +1128,7 @@ function NavHeader({ isSidebarCollapsed, onToggle }) {
         )}
       </div>
 
-      {/* Divider — Stroke/Static/Neutral/Subtle, py-[2px] in Figma */}
+      {/* Divider — Stroke/Static/Neutral/Base, py-[2px] in Figma */}
       <div style={{ padding:"2px 0" }}>
         <div style={{ height:1, backgroundColor:T.fill.infoSubtle }} />
       </div>
@@ -1137,10 +1137,10 @@ function NavHeader({ isSidebarCollapsed, onToggle }) {
 }
 
 // ─── SIDENAV CONTAINER ────────────────────────────────────────────────────────
-// Fill/Surface/Sheet (#fafafa), border-r Stroke/Static/Neutral/Subtle (#f6f6f6)
+// Fill/Surface/Sheet (#fafafa), border-r Stroke/Static/Neutral/Base (#f6f6f6)
 // Padding: pt-[8px] pb-[12px] px-[16px expanded / 12px collapsed] (updated 2026-05-13)
 // Width: 240px expanded, 72px collapsed (updated from 220px, 2026-05-12)
-// Border-right: 0.5px solid Stroke/Static/Neutral/Subtle (#f6f6f6)
+// Border-right: 0.5px solid Stroke/Static/Neutral/Base (#f6f6f6)
 // NavHeader: TOP of nav (moved from bottom — 2026-05-13). Accordion groupers (2026-05-13).
 //
 // Props:
@@ -1334,8 +1334,8 @@ const TOKEN_ROWS = [
   { cat:"Fill",    semantic:"Fill/Action/Selection/Trail",  prim:"—",        value:"#11111105",            role:"Expanded grouper fill (same hex as Hover, distinct tokens)" },
 
   // ── Stroke ─────────────────────────────────────────────────────────────────
-  { cat:"Stroke",  semantic:"Stroke/Static/Neutral/Subtle",    prim:"—",        value:"#f6f6f6",              role:"Nav border-right · NavHeader divider · section-label divider in 72px rail (replaces NavSectionLabel)" },
-  { cat:"Stroke",  semantic:"Stroke/Static/Neutral/Subtle",   prim:"—",        value:"#ededed",              role:"PopoverMenu border + PopoverMenu.SectionLabel bottom border" },
+  { cat:"Stroke",  semantic:"Stroke/Static/Neutral/Base",    prim:"—",        value:"#f6f6f6",              role:"Nav border-right · NavHeader divider · section-label divider in 72px rail (replaces NavSectionLabel)" },
+  { cat:"Stroke",  semantic:"Stroke/Static/Neutral/Base",   prim:"—",        value:"#ededed",              role:"PopoverMenu border + PopoverMenu.SectionLabel bottom border" },
 
   // ── Text (item) ────────────────────────────────────────────────────────────
   { cat:"Text",    semantic:"Foreground/Action/Secondary/Rest",   prim:"—",        value:"#313131",              role:"SideNavItem label default · PopoverMenu.Item base · ListItem base" },
@@ -1369,7 +1369,7 @@ const TOKEN_ROWS = [
   { cat:"⚠ Spacing (no token)", semantic:"NavSectionLabel height",        prim:"—",    value:"40px",                 role:"Section heading row height (h-[40px])" },
   { cat:"⚠ Spacing (no token)", semantic:"NavSectionLabel padding L/R",   prim:"Gap/XTight", value:"4px",            role:"NavSectionLabel pl-[4px] pr-[4px]" },
   { cat:"⚠ Spacing (no token)", semantic:"NavSectionLabel padding T/B",   prim:"Padding/Tight", value:"8px",          role:"NavSectionLabel py-[8px]" },
-  { cat:"⚠ Spacing (no token)", semantic:"Rail section divider height",   prim:"—",    value:"1px",                  role:"Divider that replaces NavSectionLabel in 72px rail (Stroke/Static/Neutral/Subtle)" },
+  { cat:"⚠ Spacing (no token)", semantic:"Rail section divider height",   prim:"—",    value:"1px",                  role:"Divider that replaces NavSectionLabel in 72px rail (Stroke/Static/Neutral/Base)" },
   { cat:"⚠ Spacing (no token)", semantic:"Rail section divider padding",  prim:"—",    value:"2px top / 2px btm",    role:"Vertical padding around the rail divider line" },
 
   // ── SideNavListSection (ListItem) layout ───────────────────────────────────
@@ -1386,7 +1386,7 @@ const TOKEN_ROWS = [
 
   // ── SideNavTooltip (destination hover) layout ──────────────────────────────
   { cat:"⚠ Spacing (no token)", semantic:"SideNavTooltip padding",        prim:"—",    value:"6px 8px",              role:"Tooltip inner padding" },
-  { cat:"⚠ Spacing (no token)", semantic:"SideNavTooltip border",         prim:"Stroke/Static/Neutral/Subtle", value:"0.5px #f6f6f6", role:"Tooltip border" },
+  { cat:"⚠ Spacing (no token)", semantic:"SideNavTooltip border",         prim:"Stroke/Static/Neutral/Base", value:"0.5px #f6f6f6", role:"Tooltip border" },
   { cat:"⚠ Spacing (no token)", semantic:"SideNavTooltip offset",         prim:"—",    value:"8px",                  role:"Distance from rail right edge" },
 
   // ── SideNav container spacing ──────────────────────────────────────────────
@@ -1455,7 +1455,7 @@ const WRN = () => (
 //            [OrgSwitcher: church logo + "Sacred Heart Church-ITD | Knoxville" + chevron]
 //   RIGHT — [Search: circular button] [desktop: 2× Bell | tablet+mobile: more_vert] [Profile: amethyst JL]
 //
-// Background: Fill/Static/Brand/Contrast → #2d4889 (brand blue).
+// Background: Fill/Static/Brand/Bold → #2d4889 (brand blue).
 // Icons: Material Symbols Rounded (Google Fonts CDN, FILL 0, wght 300).
 // Branded image assets (expire 2026-05-20):
 //   Church logo: Figma CDN — TN_CHURCH_LOGO
@@ -1577,7 +1577,7 @@ function TopNav({ onSideNavToggle }) {
             </button>
           )}
 
-          {/* Profile — amethyst circle, Fill/Static/Accent_Amethyst/Base #dcd9ef */}
+          {/* Profile — amethyst circle, Fill/Static/Amethyst/Subtle #dcd9ef */}
           <button className="tn-profile-btn" aria-label="Account: Jo Lopez">
             <span className="tn-profile-av">JL</span>
           </button>

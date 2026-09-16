@@ -40,7 +40,7 @@ Then use the names, never the values:
 .my-card {
   background: var(--semantic-color-fill-surface-sheet);
   color: var(--semantic-color-foreground-static-neutral-bold);
-  border: 0.5px solid var(--semantic-color-stroke-static-neutral-subtle);
+  border: 0.5px solid var(--semantic-color-stroke-static-neutral-base);
   border-radius: var(--semantic-layout-units-cornerradius-medium);
   padding: var(--semantic-layout-units-padding-base);
 }

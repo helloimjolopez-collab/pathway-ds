@@ -19,10 +19,10 @@ import React, { useRef, useEffect, useState } from "react";
 // Fallbacks are used where noted and will be updated once Figma is re-synced.
 const V = {
   // Box fill — standard checked / indeterminate
-  fillCheckedBase:     "var(--semantic-color-fill-action-primary-rest)",
-  fillCheckedHover:    "var(--semantic-color-fill-action-primary-hover)",
-  fillCheckedFocused:  "var(--semantic-color-fill-action-primary-hover)",
-  fillCheckedPressed:  "var(--semantic-color-fill-action-primary-pressed)",
+  fillCheckedBase:     "var(--semantic-color-fill-action-primary-strong-rest)",
+  fillCheckedHover:    "var(--semantic-color-fill-action-primary-strong-hover)",
+  fillCheckedFocused:  "var(--semantic-color-fill-action-primary-strong-hover)",
+  fillCheckedPressed:  "var(--semantic-color-fill-action-primary-strong-pressed)",
   fillCheckedDisabled: "var(--semantic-color-fill-action-disabled)",
 
   // Box border — standard unchecked
@@ -33,24 +33,24 @@ const V = {
   borderDisabled: "var(--semantic-color-stroke-action-disabled)",
 
   // Checkmark / dash icon — standard
-  iconPrimary: "var(--semantic-color-foreground-action-primary-rest)",
+  iconPrimary: "var(--semantic-color-foreground-action-primary-on-subtle-rest)",
 
   // Checkmark / dash icon — error
-  iconError: "var(--semantic-color-foreground-action-status-negative-rest)",
+  iconError: "var(--semantic-color-foreground-action-status-negative-on-subtle-rest)",
 
   // State-layer — unchecked hover / focused
   stateLayerUncheckedHover: "var(--semantic-color-fill-action-secondary-hover)",
 
   // State-layer — checked hover / focused / pressed
-  stateLayerCheckedHover:    "var(--semantic-color-fill-action-primary-dim-hover)",
-  stateLayerCheckedFocused:  "var(--semantic-color-fill-action-primary-dim-hover)",
-  stateLayerCheckedPressed:  "var(--semantic-color-fill-action-primary-dim-pressed)",
+  stateLayerCheckedHover:    "var(--semantic-color-fill-action-primary-subtle-hover)",
+  stateLayerCheckedFocused:  "var(--semantic-color-fill-action-primary-subtle-hover)",
+  stateLayerCheckedPressed:  "var(--semantic-color-fill-action-primary-subtle-pressed)",
 
   // Box fill — error checked / indeterminate
-  fillErrorBase:     "var(--semantic-color-fill-action-status-negative-rest)",
-  fillErrorHover:    "var(--semantic-color-fill-action-status-negative-hover)",
-  fillErrorFocused:  "var(--semantic-color-fill-action-status-negative-hover)",
-  fillErrorPressed:  "var(--semantic-color-fill-action-status-negative-pressed)",
+  fillErrorBase:     "var(--semantic-color-fill-action-status-negative-strong-rest)",
+  fillErrorHover:    "var(--semantic-color-fill-action-status-negative-strong-hover)",
+  fillErrorFocused:  "var(--semantic-color-fill-action-status-negative-strong-hover)",
+  fillErrorPressed:  "var(--semantic-color-fill-action-status-negative-strong-pressed)",
   fillErrorDisabled: "var(--semantic-color-fill-action-disabled)",
 
   // Box border — error unchecked
@@ -61,7 +61,7 @@ const V = {
   borderErrorDisabled: "var(--semantic-color-stroke-action-disabled)",
 
   // State-layer — error hover (both unchecked and checked)
-  stateLayerErrorHover: "var(--semantic-color-fill-action-status-negative-dim-hover)",
+  stateLayerErrorHover: "var(--semantic-color-fill-action-status-negative-subtle-hover)",
 
   // Highlight resting state.
   //

@@ -187,9 +187,9 @@ All tokens confirmed from Figma node `40006819:14583`. This component uses **dar
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `fill.action.primary-dim.rest` | `--semantic-color-fill-action-primary-dim-rest` | `rgba(160,181,230,0.04)` | Trigger background — base |
-| `fill.action.primary-dim.hover` | `--semantic-color-fill-action-primary-dim-hover` | `rgba(10,18,35,0.16)` | Trigger background — hover |
-| `fill.action.primary-dim.pressed` | `--semantic-color-fill-action-primary-dim-pressed` | `rgba(255,255,255,0.08)` | Trigger background — pressed / open |
+| `fill.action.primary.subtle.rest` | `--semantic-color-fill-action-primary-subtle-rest` | `rgba(160,181,230,0.04)` | Trigger background — base |
+| `fill.action.primary.subtle.hover` | `--semantic-color-fill-action-primary-subtle-hover` | `rgba(10,18,35,0.16)` | Trigger background — hover |
+| `fill.action.primary.subtle.pressed` | `--semantic-color-fill-action-primary-subtle-pressed` | `rgba(255,255,255,0.08)` | Trigger background — pressed / open |
 | `fill.action.secondary.rest` | `--semantic-color-fill-action-secondary-rest` | `rgba(255,255,255,0.08)` | Avatar placeholder background (no logo) |
 
 ### 3.2 Stroke
@@ -306,9 +306,9 @@ All confirmed from Figma. Six trigger variants: `State × Type = {Base, Hover, P
 
 | State | Fill | Stroke | Text | Chevron |
 |---|---|---|---|---|
-| **Base** | `fill.action.primary-dim.rest` · `rgba(160,181,230,0.04)` | `stroke.action.primary.rest` · `rgba(160,181,230,0.16)` | `foreground.static.neutral.mono` · `#fbfbfb` | `foreground.static.neutral.mono` · `#fbfbfb` |
-| **Hover** | `fill.action.primary-dim.hover` · `rgba(10,18,35,0.16)` | `stroke.action.primary.hover` · `rgba(160,181,230,0.20)` | `foreground.static.neutral.mono` · `#ffffff` | `foreground.static.neutral.mono` · `#ffffff` |
-| **Pressed / Open** | `fill.action.primary-dim.pressed` · `rgba(255,255,255,0.08)` | `stroke.action.primary.pressed` · `rgba(160,181,230,0.30)` | `foreground.static.neutral.mono` · `#ffffff` | `foreground.static.neutral.mono` · `#ffffff` |
+| **Base** | `fill.action.primary.subtle.rest` · `rgba(160,181,230,0.04)` | `stroke.action.primary.rest` · `rgba(160,181,230,0.16)` | `foreground.static.neutral.mono` · `#fbfbfb` | `foreground.static.neutral.mono` · `#fbfbfb` |
+| **Hover** | `fill.action.primary.subtle.hover` · `rgba(10,18,35,0.16)` | `stroke.action.primary.hover` · `rgba(160,181,230,0.20)` | `foreground.static.neutral.mono` · `#ffffff` | `foreground.static.neutral.mono` · `#ffffff` |
+| **Pressed / Open** | `fill.action.primary.subtle.pressed` · `rgba(255,255,255,0.08)` | `stroke.action.primary.pressed` · `rgba(160,181,230,0.30)` | `foreground.static.neutral.mono` · `#ffffff` | `foreground.static.neutral.mono` · `#ffffff` |
 | **Disabled** | Base fill at 50% opacity | Base stroke at 50% opacity | Base text at 50% opacity | Base icon at 50% opacity |
 | **Open** (additional) | Pressed styling | Pressed styling | Pressed styling | Rotated 180° |
 

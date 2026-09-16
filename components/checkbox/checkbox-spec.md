@@ -133,10 +133,10 @@ Hover, focus, and pressed states show on the **state-layer** (44×44px backgroun
 | Element | State | Token | CSS variable |
 |---|---|---|---|
 | Box fill | All unchecked | transparent | — |
-| Box fill | Checked / Indeterminate | `fill.action.primary.rest` | `--semantic-color-fill-action-primary-rest` |
-| Box fill | Checked hover | `fill.action.primary.hover` | `--semantic-color-fill-action-primary-hover` |
-| Box fill | Checked focused | `fill.action.primary.hover` | `--semantic-color-fill-action-primary-hover` |
-| Box fill | Checked pressed | `fill.action.primary.pressed` | `--semantic-color-fill-action-primary-pressed` |
+| Box fill | Checked / Indeterminate | `fill.action.primary.strong.rest` | `--semantic-color-fill-action-primary-strong-rest` |
+| Box fill | Checked hover | `fill.action.primary.strong.hover` | `--semantic-color-fill-action-primary-strong-hover` |
+| Box fill | Checked focused | `fill.action.primary.strong.hover` | `--semantic-color-fill-action-primary-strong-hover` |
+| Box fill | Checked pressed | `fill.action.primary.strong.pressed` | `--semantic-color-fill-action-primary-strong-pressed` |
 | Box fill | Disabled checked | `fill.action.disabled` | `--semantic-color-fill-action-disabled` |
 | Box border | Unchecked default | `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` |
 | Box border | Unchecked hover | `stroke.action.secondary.hover` | `--semantic-color-stroke-action-secondary-hover` |
@@ -144,12 +144,12 @@ Hover, focus, and pressed states show on the **state-layer** (44×44px backgroun
 | Box border | Unchecked pressed | `stroke.action.secondary.pressed` | `--semantic-color-stroke-action-secondary-pressed` |
 | Box border | Checked (all states) | same as fill | (border hidden under fill) |
 | Box border | Disabled unchecked | `stroke.action.disabled` | `--semantic-color-stroke-action-disabled` |
-| Checkmark / dash icon | Checked / indeterminate | `foreground.static.neutral.mono` | `--semantic-color-foreground-action-primary-rest` |
+| Checkmark / dash icon | Checked / indeterminate | `foreground.static.neutral.mono` | `--semantic-color-foreground-action-primary-on-subtle-rest` |
 | State-layer fill | Unchecked hover | `fill.action.secondary.hover` | `--semantic-color-fill-action-secondary-hover` |
 | State-layer fill | Unchecked focused | `fill.action.secondary.hover` | `--semantic-color-fill-action-secondary-hover` |
-| State-layer fill | Checked hover | `fill.action.primary-dim.hover` | `--semantic-color-fill-action-primary-dim-hover` |
-| State-layer fill | Checked focused | `fill.action.primary-dim.hover` | `--semantic-color-fill-action-primary-dim-hover` |
-| State-layer fill | Checked pressed | `fill.action.primary-dim.pressed` | `--semantic-color-fill-action-primary-dim-pressed` |
+| State-layer fill | Checked hover | `fill.action.primary.subtle.hover` | `--semantic-color-fill-action-primary-subtle-hover` |
+| State-layer fill | Checked focused | `fill.action.primary.subtle.hover` | `--semantic-color-fill-action-primary-subtle-hover` |
+| State-layer fill | Checked pressed | `fill.action.primary.subtle.pressed` | `--semantic-color-fill-action-primary-subtle-pressed` |
 | Label text | All | `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` |
 | Border radius | Box | `cornerradius.xsmall` | `--semantic-layout-units-cornerradius-xsmall` |
 
@@ -157,10 +157,10 @@ Hover, focus, and pressed states show on the **state-layer** (44×44px backgroun
 
 | Element | State | Token |
 |---|---|---|
-| Box fill | Error checked | `fill.action.status.negative.rest` |
-| Box fill | Error checked hover | `fill.action.status.negative.hover` |
-| Box fill | Error checked focused | `fill.action.status.negative.hover` |
-| Box fill | Error checked pressed | `fill.action.status.negative.pressed` |
+| Box fill | Error checked | `fill.action.status.negative.strong.rest` |
+| Box fill | Error checked hover | `fill.action.status.negative.strong.hover` |
+| Box fill | Error checked focused | `fill.action.status.negative.strong.hover` |
+| Box fill | Error checked pressed | `fill.action.status.negative.strong.pressed` |
 | Box fill | Error disabled checked | `fill.action.disabled` |
 | Box border | Error unchecked | `stroke.action.status.negative.rest` |
 | Box border | Error unchecked hover | `stroke.action.status.negative.hover` |
@@ -168,8 +168,8 @@ Hover, focus, and pressed states show on the **state-layer** (44×44px backgroun
 | Box border | Error unchecked pressed | `stroke.action.status.negative.pressed` |
 | Box border | Error disabled unchecked | `stroke.action.disabled` |
 | Checkmark icon | Error checked | `foreground.static.neutral.mono` |
-| State-layer | Error unchecked hover | `fill.action.status.negative-dim.hover` |
-| State-layer | Error checked hover | `fill.action.status.negative-dim.hover` |
+| State-layer | Error unchecked hover | `fill.action.status.negative.subtle.hover` |
+| State-layer | Error checked hover | `fill.action.status.negative.subtle.hover` |
 
 ### 5.3 Token gaps — CLOSED (2026-09-11)
 
@@ -265,9 +265,9 @@ Standard focused state: browser default outline or design system focus ring — 
 | Error | Error message should be associated via `aria-describedby` |
 
 ### Contrast
-- Checked fill (`fill.action.primary.rest` = `#345499`) on white: ≥ 3:1 for non-text UI (WCAG 1.4.11 ✓)
+- Checked fill (`fill.action.primary.strong.rest` = `#345499`) on white: ≥ 3:1 for non-text UI (WCAG 1.4.11 ✓)
 - Label text (`foreground.static.neutral.base` = `#4b4b4b`) on white: ≥ 4.5:1 (WCAG 1.4.3 ✓)
-- Error fill (`fill.action.status.negative.rest` = `#9d2d2d`) on white: ≥ 3:1 ✓
+- Error fill (`fill.action.status.negative.strong.rest` = `#9d2d2d`) on white: ≥ 3:1 ✓
 
 ### Touch target
 44×44px minimum on all variants (WCAG 2.5.5 ✓).

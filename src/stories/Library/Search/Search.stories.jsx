@@ -330,10 +330,10 @@ export const TokensFill = () => (
     note="Backgrounds. Surface lives under Fill now, so the bar ground is a Fill token rather than a Surface one."
     rows={[
       { token: "fill.static.neutral.faint",       usage: "Bar background - all states except disabled" },
-      { token: "fill.action.primary-dim.rest",    usage: "Filter pill background - filter-active state. Primary Dim replaced the deleted Tertiary ramp" },
-      { token: "fill.action.primary-dim.hover",   usage: "Icon pill - hover. The Dim ramp is the tint the retired *inverse hovers provided" },
-      { token: "fill.action.primary.rest",        usage: "Badge dot fill" },
-      { token: "fill.static.brand.dim",         usage: "TopNavSearch collapsed button background" },
+      { token: "fill.action.primary.subtle.rest",    usage: "Filter pill background - filter-active state. Primary Dim replaced the deleted Tertiary ramp" },
+      { token: "fill.action.primary.subtle.hover",   usage: "Icon pill - hover. The Dim ramp is the tint the retired *inverse hovers provided" },
+      { token: "fill.action.primary.strong.rest",        usage: "Badge dot fill" },
+      { token: "fill.static.brand.subtle",         usage: "TopNavSearch collapsed button background" },
     ]}
   />
 );
@@ -367,7 +367,7 @@ export const TokensForeground = () => (
       { token: "foreground.action.secondary.rest",         usage: "All icons - idle" },
       { token: "foreground.action.secondary.hover",        usage: "All icons - hover / focused" },
       { token: "foreground.action.disabled",               usage: "All icons - disabled. ONE disabled token per tier, not one per role" },
-      { token: "foreground.action.status.negative.rest",   usage: "Search icon - error state" },
+      { token: "foreground.action.status.negative.on-subtle.rest",   usage: "Search icon - error state" },
       { token: "foreground.static.neutral.mono",              usage: "Badge count on the filled badge dot. Mono has only a rest step" },
     ]}
   />

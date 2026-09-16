@@ -41,7 +41,7 @@
     .shell { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
 
     /* ── TopNav ─────────────────────────────────────────────────────────────
-       Figma: background Fill/Static/Brand/Contrast = #2d4889, height 56px
+       Figma: background Fill/Static/Brand/Bold = #2d4889, height 56px
        Slot.RowStart: gap 8px (ModuleSwitcher→OrgSwitcher: x gap = 171-163=8px)
        Slot.RowEnd: gap 8px (Search→Actions: 336-328=8px, Actions→Profile: 440-432=8px)
     ───────────────────────────────────────────────────────────────────────── */
@@ -55,7 +55,7 @@
 
     /* ── SideNav ────────────────────────────────────────────────────────────
        Figma: width 240px, background Fill/Surface/Sheet = #fafafa
-       border-right 0.5px Stroke/Static/Neutral/Subtle = #f6f6f6
+       border-right 0.5px Stroke/Static/Neutral/Base = #f6f6f6
        NavItem height 44px (Figma: SideNavItem instances are 44px)
        menuGap: 6px (from sidenav.jsx L.menuGap)
     ───────────────────────────────────────────────────────────────────────── */
@@ -135,14 +135,14 @@
     }
     .nav-item.active {
       background: var(--semantic-color-fill-action-selection-selected, #eef2fb);
-      color: var(--semantic-color-foreground-action-primary-rest, #3555a0);
+      color: var(--semantic-color-foreground-action-primary-on-subtle-rest, #3555a0);
       font-weight: 500;
     }
     /* Indicator stripe — 4px at SideNav left edge */
     .nav-item.active::before {
       content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
       width: 4px; height: 24px; border-radius: 0 4px 4px 0;
-      background: var(--semantic-color-foreground-action-primary-rest, #3555a0);
+      background: var(--semantic-color-foreground-action-primary-on-subtle-rest, #3555a0);
     }
     .nav-item__icon {
       width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
@@ -210,13 +210,13 @@
       color: var(--semantic-color-foreground-static-neutral-bold, #202020);
     }
     .page-tab.active {
-      color: var(--semantic-color-foreground-action-primary-rest, #3555a0);
+      color: var(--semantic-color-foreground-action-primary-on-subtle-rest, #3555a0);
       font-weight: 600;
     }
     .page-tab.active::after {
       content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
       height: 2px; border-radius: 2px 2px 0 0;
-      background: var(--semantic-color-fill-action-primary-rest, #4b6ec3);
+      background: var(--semantic-color-fill-action-primary-strong-rest, #4b6ec3);
     }
 
     /* ── Screen content (Container.ScreenContent) ───────────────────────────
@@ -265,11 +265,11 @@
       background: var(--semantic-color-fill-action-secondary-hover, #f7f5f3);
     }
     .btn--filled {
-      background: var(--semantic-color-fill-action-primary-rest, #4b6ec3);
+      background: var(--semantic-color-fill-action-primary-strong-rest, #4b6ec3);
       color: #ffffff; border: none;
     }
     .btn--filled:hover {
-      background: var(--semantic-color-fill-action-primary-hover, #6e8bd4);
+      background: var(--semantic-color-fill-action-primary-strong-hover, #6e8bd4);
     }
 
     /* ── Toolbar (Container.ToolBar) ─────────────────────────────────────────
@@ -324,8 +324,8 @@
       background: rgba(0,0,0,0.04);
     }
     .filter-chip.active .filter-chip__inner {
-      background: var(--semantic-color-fill-action-primary-dim-rest, #eef2fb);
-      color: var(--semantic-color-foreground-action-primary-rest, #3555a0);
+      background: var(--semantic-color-fill-action-primary-subtle-rest, #eef2fb);
+      color: var(--semantic-color-foreground-action-primary-on-subtle-rest, #3555a0);
       font-weight: 600;
     }
 
@@ -354,7 +354,7 @@
     }
 
     /* Card — Figma: CardContainer
-       bg: Fill/Static/Neutral/Medium = #ffffff
+       bg: Fill/Static/Neutral/Base = #ffffff
        border: 0.5px contextual.card.border-width, Stroke/Action/Secondary/Rest = #d2d2d2
        border-radius: 8px (contextual.card.cornerradius)
        padding: 16px (contextual.card.padding.medium.horizontal)
@@ -383,16 +383,16 @@
       display: flex; align-items: center; justify-content: center;
     }
     .card__icon--accent {
-      background: var(--semantic-color-fill-static-accent-amethyst-faint, #f4f2fa);
+      background: var(--semantic-color-fill-static-amethyst-subtle, #f4f2fa);
     }
     .card__icon--positive {
-      background: var(--semantic-color-fill-static-positive-faint, #f0faf1);
+      background: var(--semantic-color-fill-static-green-subtle, #f0faf1);
     }
     .card__icon--info {
-      background: var(--semantic-color-fill-static-brand-dim, #eef2fb);
+      background: var(--semantic-color-fill-static-brand-subtle, #eef2fb);
     }
     .card__icon--warning {
-      background: var(--semantic-color-fill-static-accent-saffron-faint, #fff8e1);
+      background: var(--semantic-color-fill-static-saffron-subtle, #fff8e1);
     }
 
     /* CardTitle: text.body.base.semibold = 16px/600/22px */
@@ -411,11 +411,11 @@
       display: inline-flex; align-items: center;
       padding: 1px 6px; border-radius: 12px;
       font-size: 11px; font-weight: 500; line-height: 18px; letter-spacing: 0.3px;
-      background: var(--semantic-color-fill-static-accent-amethyst-faint, #f4f2fa);
-      color: var(--semantic-color-foreground-static-accent-amethyst-contrast, #221e3f);
+      background: var(--semantic-color-fill-static-amethyst-subtle, #f4f2fa);
+      color: var(--semantic-color-foreground-static-amethyst-on-subtle, #221e3f);
     }
     .card__badge--positive {
-      background: var(--semantic-color-fill-static-positive-faint, #f0faf1);
+      background: var(--semantic-color-fill-static-green-subtle, #f0faf1);
       color: #1b5e20;
     }
 
@@ -660,7 +660,7 @@
 
       return (
         <nav ref={navRef} aria-label="Global navigation" style={{
-          background:`var(--semantic-color-fill-static-brand-subtle, ${TN.navBg})`,
+          background:`var(--semantic-color-fill-static-brand-base, ${TN.navBg})`,
           display:"flex", alignItems:"center", justifyContent:"space-between",
           height:56, padding:"4px 16px", position:"relative",
           overflow:"visible", zIndex:100, fontFamily:"'Red Hat Text',sans-serif", flexShrink:0,
@@ -906,7 +906,7 @@
     // Token values from sidenav.jsx T constant (resolved via resolve-tokens.js)
     const SN = {
       surface:       "#fafafa",                     // Fill/Surface/Sheet
-      border:        "#f6f6f6",                     // Stroke/Static/Neutral/Subtle
+      border:        "#f6f6f6",                     // Stroke/Static/Neutral/Base
       fillBase:      "transparent",                 // no fill (rest paints nothing)
       fillHover:     "rgba(69,77,94,0.06)",         // Fill/Action/Selection/Hover
       fillActive:    "#eef2fb",                     // Fill/Action/Selection/Selected = a0b5e629

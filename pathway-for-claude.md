@@ -102,7 +102,7 @@ Every Amplify screen uses this three-zone layout:
 ```
 
 ### TopNav
-- Background: `var(--semantic-color-fill-static-brand-subtle)` = `#2d4889`
+- Background: `var(--semantic-color-fill-static-brand-base)` = `#2d4889`
 - Height: **56px fixed**
 - Left side: ModuleSwitcher + OrgSwitcher (8px gap between them)
 - Right side: TopNavSearch + action buttons + profile avatar (8px gaps)
@@ -112,7 +112,7 @@ Every Amplify screen uses this three-zone layout:
 ### SideNav
 - Width: 240px expanded / 72px collapsed rail
 - Background: `var(--semantic-color-fill-surface-sheet)` = `#fafafa`
-- Right border: `0.5px solid var(--semantic-color-stroke-static-neutral-subtle)` = `#f6f6f6`
+- Right border: `0.5px solid var(--semantic-color-stroke-static-neutral-base)` = `#f6f6f6`
 - Collapse button: **at the top** (in the NavHeader), never at the bottom
 - Nav item height: 44px
 - Nav item gap: 6px
@@ -138,7 +138,7 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 
 ### Backgrounds and surfaces
 ```css
---semantic-color-fill-static-brand-subtle    /* #2d4889  — TopNav background */
+--semantic-color-fill-static-brand-base    /* #2d4889  — TopNav background */
 --semantic-color-fill-surface-canvas      /* #fafafa  — Page background */
 --semantic-color-fill-surface-sheet         /* #fafafa  — SideNav background */
 --semantic-color-fill-static-neutral-faint /* #ffffff  — Cards, inputs, white surfaces */
@@ -146,24 +146,24 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 
 ### Text
 ```css
---semantic-color-foreground-static-neutral-bold    /* #202020  — Page headings, card titles */
+--semantic-color-foreground-static-neutral-strong    /* #202020  — Page headings, card titles */
 --semantic-color-foreground-static-neutral-base  /* #484848  — Body text, subtitles */
 --semantic-color-foreground-static-neutral-base /* #606060 — Captions, placeholders, card body */
---semantic-color-foreground-action-primary-rest    /* #345499  — Active links, active tab text */
+--semantic-color-foreground-action-primary-on-subtle-rest    /* #345499  — Active links, active tab text */
 --semantic-color-foreground-action-secondary-pressed /* #1b2d57 — Active SideNav item label */
 ```
 
 ### Interactive / brand
 ```css
---semantic-color-fill-action-primary-rest    /* #4b6ec3  — Primary button fill, active indicators */
---semantic-color-fill-action-primary-hover   /* #5475c6  — Primary button hover */
---semantic-color-fill-action-primary-dim-rest   /* #eef2fb  — Active filter chip bg, active nav item bg */
+--semantic-color-fill-action-primary-strong-rest    /* #4b6ec3  — Primary button fill, active indicators */
+--semantic-color-fill-action-primary-strong-hover   /* #5475c6  — Primary button hover */
+--semantic-color-fill-action-primary-subtle-rest   /* #eef2fb  — Active filter chip bg, active nav item bg */
 --semantic-color-fill-action-selection-selected /* rgba(160,181,230,0.16) — Active nav item fill */
 ```
 
 ### Borders and strokes
 ```css
---semantic-color-stroke-static-neutral-subtle         /* #f6f6f6 — Dividers, SideNav border */
+--semantic-color-stroke-static-neutral-base         /* #f6f6f6 — Dividers, SideNav border */
 --semantic-color-stroke-action-secondary-rest /* #d2d2d2 — Card border (0.5px), input border */
 --semantic-color-stroke-action-primary-hover         /* #86a0dd — Input/search hover border */
 --semantic-color-stroke-action-primary-pressed       /* #6e8bd4 — Input/search focused border */
@@ -177,17 +177,17 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 
 ### Semantic accent (icon containers, badges)
 ```css
---semantic-color-fill-static-accent-amethyst-dim  /* #f4f2fa — Purple icon container bg */
---semantic-color-foreground-static-accent-amethyst-contrast /* #221e3f — Text on amethyst bg */
---semantic-color-fill-static-positive-faint          /* #f0faf1 — Green icon container bg */
+--semantic-color-fill-static-amethyst-subtle  /* #f4f2fa — Purple icon container bg */
+--semantic-color-foreground-static-amethyst-on-subtle /* #221e3f — Text on amethyst bg */
+--semantic-color-fill-static-green-subtle          /* #f0faf1 — Green icon container bg */
 --semantic-color-fill-static-brand-faint              /* #eef2fb — Blue icon container bg */
---semantic-color-fill-static-accent-saffron-faint           /* #fff8e1 — Warm icon container bg */
+--semantic-color-fill-static-saffron-subtle           /* #fff8e1 — Warm icon container bg */
 ```
 
 ### Profile avatar
 ```css
---semantic-color-fill-static-accent-amethyst-subtle   /* #dcd9ef — Avatar background */
---semantic-color-foreground-static-accent-amethyst-contrast /* #221e3f — Avatar initials */
+--semantic-color-fill-static-amethyst-subtle   /* #dcd9ef — Avatar background */
+--semantic-color-foreground-static-amethyst-on-subtle /* #221e3f — Avatar initials */
 ```
 
 ---
@@ -278,7 +278,7 @@ The SideNav in the repo has its own hardcoded demo items. For a prototype with c
 <nav style="
   width: 240px; /* or 72px collapsed */
   background: var(--semantic-color-fill-surface-sheet);
-  border-right: 0.5px solid var(--semantic-color-stroke-static-neutral-subtle);
+  border-right: 0.5px solid var(--semantic-color-stroke-static-neutral-base);
   display: flex; flex-direction: column;
   transition: width 380ms cubic-bezier(0.32,0.72,0,1);
 ">
@@ -405,7 +405,7 @@ Not yet a standalone component — build inline:
               padding: 8px 0 16px;">
     <div>
       <h1 style="font-size:24px; font-weight:600; line-height:30px;
-                 color: var(--semantic-color-foreground-static-neutral-bold);">
+                 color: var(--semantic-color-foreground-static-neutral-strong);">
         Page Title
       </h1>
       <p style="margin-top:8px; font-size:16px; line-height:22px;
@@ -504,7 +504,7 @@ Not yet a standalone component — build inline:
 
 ## What NOT to do (causes wrong output every time)
 
-1. **Do not hardcode hex values** — use CSS variables. `#2d4889` → `var(--semantic-color-fill-static-brand-subtle)`.
+1. **Do not hardcode hex values** — use CSS variables. `#2d4889` → `var(--semantic-color-fill-static-brand-base)`.
 2. **Do not use Material Icons or Material Symbols Outlined** — always Rounded. Never `material-icons` class.
 3. **Do not put the SideNav collapse button at the bottom** — it is at the top, in the NavHeader.
 4. **Do not invent new colours** — every colour you need is in the token list above.

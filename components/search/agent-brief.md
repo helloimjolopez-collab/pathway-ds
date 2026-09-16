@@ -60,7 +60,7 @@ Bar border active:  --semantic-color-stroke-action-primary-pressed    #6e8bd4
 Bar bg:             --semantic-color-fill-static-neutral-faint        #ffffff
 Icon idle:          --semantic-color-foreground-action-secondary-rest #6b6b6b
 Icon hover:         --semantic-color-foreground-action-secondary-hover #545454
-Filter active fill: --semantic-color-fill-action-primary-dim-rest        #eef2fb
+Filter active fill: --semantic-color-fill-action-primary-subtle-rest        #eef2fb
 ```
 
 ## Key rules

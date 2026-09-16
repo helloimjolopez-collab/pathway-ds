@@ -359,7 +359,7 @@ const FILL_ROWS = [
   { token: "Fill/Action/Selection/Hover",     value: T.fill.navHover,  hex: "#11111105", role: "Nav item pointer-over (~4% black)" },
   { token: "Fill/Action/Selection/Selected",    value: T.fill.navActive, hex: "#a0b5e629", role: "Active destination + Trail-collapsed" },
   { token: "Fill/Action/Selection/Trail",     value: T.fill.navTrail,  hex: "#11111105", role: "Trail-expanded grouper (~4% black, distinct from Hover)" },
-  { token: "Stroke/Static/Neutral/Subtle",       value: T.fill.infoSubtle, hex: "#f6f6f6", role: "Container right border · Popover border · Divider" },
+  { token: "Stroke/Static/Neutral/Base",       value: T.fill.infoSubtle, hex: "#f6f6f6", role: "Container right border · Popover border · Divider" },
 ];
 const TEXT_ROWS = [
   { token: "Foreground/Action/Secondary/Rest",   value: T.text.navBase,   hex: "#313131", role: "Resting label" },
@@ -392,7 +392,7 @@ export const TokensFill = () => (
     <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
       Five fill tokens applied to nav items and container surfaces.
       <code>Selection/Hover</code> and <code>Selection/Trail</code> currently resolve to the same value but are intentionally kept as separate tokens - they have diverged before and may again. (They were <code>NavItem/*</code> until the Contextual colour group was retired on 2026-09-03.)
-      The last column in the row for <code>Stroke/Static/Neutral/Subtle</code> shows all three places it's used: container right border, section dividers, and popover borders.
+      The last column in the row for <code>Stroke/Static/Neutral/Base</code> shows all three places it's used: container right border, section dividers, and popover borders.
     </p>
     <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
       gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4 }}>

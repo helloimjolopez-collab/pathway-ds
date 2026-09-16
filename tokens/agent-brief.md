@@ -10,11 +10,11 @@ If a documented component exists for what you're building, **use the component**
 
 1. **Every colour you use must come from a semantic token.** Never raw hex. Never primitive tokens (`Blue/180`, `Cool-Neutral/130`, etc.). Never invented token names.
 
-2. **Semantic colour token names follow `Role / Scope / Variant / State`.** Examples: `Fill/Static/Brand/Contrast`, `Foreground/Action/Secondary/Pressed`, `Foreground/Action/Primary/Hover`. Type token names follow `Category/Subcategory/Size/Weight` (e.g. `Heading/Display/XL/Bold`, `Label/Button/Base`). Layout token names follow `Category/Size` (e.g. `BorderWidth/Base`, `CornerRadius/Medium`). If you propose a name that isn't in this file, it doesn't exist — look it up.
+2. **Semantic colour token names follow `Role / Scope / Variant / State`.** Examples: `Fill/Static/Brand/Bold`, `Foreground/Action/Secondary/Pressed`, `Foreground/Action/Primary/On Subtle/Hover`. Type token names follow `Category/Subcategory/Size/Weight` (e.g. `Heading/Display/XL/Bold`, `Label/Button/Base`). Layout token names follow `Category/Size` (e.g. `BorderWidth/Base`, `CornerRadius/Medium`). If you propose a name that isn't in this file, it doesn't exist — look it up.
 
 3. **There are three scopes:** `Static`, `Action`, and `Contextual`.
-   - `Static` — fixed meaning across the whole product, not tied to interaction state (e.g. `Fill/Static/Brand/Contrast = #2d4889`, `Foreground/Static/Neutral/Mono = #ffffff`).
-   - `Action` — for interactive elements; always come with states (`Base`, `Hover`, `Pressed`, `Disabled`) and variants (`Primary`, `Secondary`, `Tertiary`). Use these on buttons, links, focus rings, and interactive controls (e.g. `Fill/Action/Primary/Rest`, `Fill/Action/Primary/Hover`, `Stroke/Action/Primary/Rest`).
+   - `Static` — fixed meaning across the whole product, not tied to interaction state (e.g. `Fill/Static/Brand/Bold = #2d4889`, `Foreground/Static/Neutral/Mono = #ffffff`).
+   - `Action` — for interactive elements; always come with states (`Base`, `Hover`, `Pressed`, `Disabled`) and variants (`Primary`, `Secondary`, `Tertiary`). Use these on buttons, links, focus rings, and interactive controls (e.g. `Fill/Action/Primary/Strong/Rest`, `Fill/Action/Primary/Strong/Hover`, `Stroke/Action/Primary/Rest`).
    - `Contextual` — scoped to a specific component family; they may share hex values with other scopes today but are kept separate so they can diverge independently (e.g. `Fill/Action/Selection/Selected`, `Foreground/Action/Secondary/Hover`).
 
 4. **Typography is `Red Hat Text`, weights 400/500/600/700.** No other font. No other weights. No display font.
@@ -264,7 +264,7 @@ If no component exists for what you need (e.g. a custom card, a banner, a confir
 
 1. **Background:** pick from the Surface or Fill families. White cards use `Fill/Static/Neutral/White`. Subtle grey panels use `Fill/Surface/Canvas` (`#fafafa`). Don't invent new surface colours.
 
-2. **Border:** `Stroke/Static/Neutral/Subtle` (`#ededed`) for separating elements, `Stroke/Static/Neutral/Subtle` (`#f6f6f6`) for very subtle structural dividers.
+2. **Border:** `Stroke/Static/Neutral/Base` (`#ededed`) for separating elements, `Stroke/Static/Neutral/Base` (`#f6f6f6`) for very subtle structural dividers.
 
 3. **Radius:** 8px (`Border/Radius/S`) for almost anything. 12px (`Border/Radius/M`) for cards. 64px+ for circles. Never invent radii.
 
@@ -303,7 +303,7 @@ These are the mistakes AI agents make most often when consuming this design syst
 **✅ Semantic token**
 ```jsx
 <button style={{
-  color: "var(--semantic-color-foreground-action-primary-rest)",
+  color: "var(--semantic-color-foreground-action-primary-on-subtle-rest)",
   background: "var(--semantic-color-fill-surface-canvas)"
 }}>Save</button>
 ```
@@ -316,7 +316,7 @@ Primitives are building blocks for *the design system itself*. Components never 
 
 **✅ Semantic token**
 ```css
-color: var(--semantic-color-foreground-action-primary-rest);
+color: var(--semantic-color-foreground-action-primary-on-subtle-rest);
 ```
 
 **❌ Invented token name**

@@ -62,7 +62,7 @@ export const T = {
     navHover:   c("fill-action-selection-hover"),
     navActive:  c("fill-action-selection-selected"),
     navTrail:   c("fill-action-selection-trail"),
-    infoSubtle: c("stroke-static-neutral-subtle"),   // container right border
+    infoSubtle: c("stroke-static-neutral-base"),   // container right border
   },
   surface: { navLight: c("fill-surface-sheet") },
   // Label, icon and chevron all resolve to the SAME token per state. A nav item
@@ -85,7 +85,7 @@ export const T = {
   },
   // The active-item stripe takes the loud brand blue straight from the Action
   // tier rather than owning a token of its own.
-  indicator: c("fill-action-primary-pressed"),
+  indicator: c("fill-action-primary-strong-pressed"),
   radius:    u("cornerradius-medium", 8),
 };
 
@@ -471,7 +471,7 @@ export function NavHeader({ isSidebarCollapsed, onToggle, collapseIcon, expandIc
           </div>
         )}
       </div>
-      {/* Divider — Stroke/Static/Neutral/Subtle, py-[2px] in Figma */}
+      {/* Divider — Stroke/Static/Neutral/Base, py-[2px] in Figma */}
       <div style={{ padding: "2px 0" }}>
         <div style={{ height: 1, backgroundColor: T.fill.infoSubtle }} />
       </div>

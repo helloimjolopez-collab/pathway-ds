@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
  * WHY THIS EXISTS: Search, TopNav, OrgSwitcher and Checkbox each carried their
  * own copy of a token table in the shape
  *
- *     { token: "fill.action.primary-dim.rest", hex: "#eef2fb", usage: "..." }   // retired
+ *     { token: "fill.action.primary.subtle.rest", hex: "#eef2fb", usage: "..." }   // retired
  *
  * Two things were wrong with that shape, and the second is the reason this file
  * is shared rather than fixed four times:
@@ -26,7 +26,7 @@ import React, { useState, useEffect } from "react";
  * renders an empty swatch and "unresolved" in red, so a stale row is visible on
  * the page instead of looking like a fact.
  *
- * `token` is accepted in dot form (`fill.action.primary.rest`) because that is
+ * `token` is accepted in dot form (`fill.action.primary.strong.rest`) because that is
  * how the specs write it, and converted to the custom property. Pass
  * `cssVar` instead to name the property directly.
  */

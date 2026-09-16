@@ -111,10 +111,10 @@ const { useState, useRef, useEffect } = React;
 
 
 const V = {
-  fillCheckedBase:     "var(--semantic-color-fill-action-primary-rest)",
-  fillCheckedHover:    "var(--semantic-color-fill-action-primary-hover)",
-  fillCheckedFocused:  "var(--semantic-color-fill-action-primary-hover)",
-  fillCheckedPressed:  "var(--semantic-color-fill-action-primary-pressed)",
+  fillCheckedBase:     "var(--semantic-color-fill-action-primary-strong-rest)",
+  fillCheckedHover:    "var(--semantic-color-fill-action-primary-strong-hover)",
+  fillCheckedFocused:  "var(--semantic-color-fill-action-primary-strong-hover)",
+  fillCheckedPressed:  "var(--semantic-color-fill-action-primary-strong-pressed)",
   fillCheckedDisabled: "var(--semantic-color-fill-action-disabled)",
 
   borderBase:     "var(--semantic-color-stroke-action-secondary-rest)",
@@ -123,18 +123,18 @@ const V = {
   borderPressed:  "var(--semantic-color-stroke-action-secondary-pressed)",
   borderDisabled: "var(--semantic-color-stroke-action-disabled)",
 
-  iconPrimary: "var(--semantic-color-foreground-action-primary-rest)",
-  iconError:   "var(--semantic-color-foreground-action-status-negative-rest)",
+  iconPrimary: "var(--semantic-color-foreground-action-primary-on-subtle-rest)",
+  iconError:   "var(--semantic-color-foreground-action-status-negative-on-subtle-rest)",
 
   stateLayerUncheckedHover:  "var(--semantic-color-fill-action-secondary-hover)",
-  stateLayerCheckedHover:    "var(--semantic-color-fill-action-primary-dim-hover)",
-  stateLayerCheckedFocused:  "var(--semantic-color-fill-action-primary-dim-hover)",
-  stateLayerCheckedPressed:  "var(--semantic-color-fill-action-primary-dim-pressed)",
+  stateLayerCheckedHover:    "var(--semantic-color-fill-action-primary-subtle-hover)",
+  stateLayerCheckedFocused:  "var(--semantic-color-fill-action-primary-subtle-hover)",
+  stateLayerCheckedPressed:  "var(--semantic-color-fill-action-primary-subtle-pressed)",
 
-  fillErrorBase:     "var(--semantic-color-fill-action-status-negative-rest)",
-  fillErrorHover:    "var(--semantic-color-fill-action-status-negative-hover)",
-  fillErrorFocused:  "var(--semantic-color-fill-action-status-negative-hover)",
-  fillErrorPressed:  "var(--semantic-color-fill-action-status-negative-pressed)",
+  fillErrorBase:     "var(--semantic-color-fill-action-status-negative-strong-rest)",
+  fillErrorHover:    "var(--semantic-color-fill-action-status-negative-strong-hover)",
+  fillErrorFocused:  "var(--semantic-color-fill-action-status-negative-strong-hover)",
+  fillErrorPressed:  "var(--semantic-color-fill-action-status-negative-strong-pressed)",
   fillErrorDisabled: "var(--semantic-color-fill-action-disabled)",
 
   borderErrorBase:     "var(--semantic-color-stroke-action-status-negative-rest)",
@@ -143,7 +143,7 @@ const V = {
   borderErrorPressed:  "var(--semantic-color-stroke-action-status-negative-pressed)",
   borderErrorDisabled: "var(--semantic-color-stroke-action-disabled)",
 
-  stateLayerErrorHover: "var(--semantic-color-fill-action-status-negative-dim-hover)",
+  stateLayerErrorHover: "var(--semantic-color-fill-action-status-negative-subtle-hover)",
   highlightResting:     "var(--semantic-color-fill-action-secondary-rest)",
 
   labelColor: "var(--semantic-color-foreground-static-neutral-base)",

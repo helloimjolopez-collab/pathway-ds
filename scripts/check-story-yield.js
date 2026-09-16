@@ -76,12 +76,14 @@ const PAGES = [
   {
     title: "Tokens/Semantics/Color (Light Mode)",
     render: () => createSemanticColors("light-mode"),
-    floor: 2400, // observed 3749 elements for 358 rows
+    floor: 1200, // observed 1725 for 162 rows. Was 2400 against 358 rows: the
+                 // hue ladders were cut to Subtle + Strong on 2026-09-15, so
+                 // the smaller number IS the change and not a regression.
   },
   {
     title: "Tokens/Semantics/Color (Midnight Mode)",
     render: () => createSemanticColors("midnight-mode"),
-    floor: 2400, // observed 3749 elements for 358 rows
+    floor: 1200, // observed 1725 for 162 rows, same cut as above
   },
   {
     title: "Tokens/Primitives/Color",
@@ -168,11 +170,14 @@ function measure(node) {
 // checkLadderOrder filters this down to the rungs actually present, so a rung
 // listed here but absent from the panel does not fail the check. That is why it
 // is safe to keep asserting the full expected sequence.
-const LADDER_EXPECTED = ["mono", "faint", "dim", "subtle", "contrast", "bold"];
+const LADDER_EXPECTED = ["mono", "faint", "subtle", "base", "bold", "strong"];
 
 function checkLadderOrder(node) {
   const printed = (node.textContent || "").match(/--semantic-color-[a-z0-9-]+/g) || [];
-  const prefix = "--semantic-color-foreground-neutral-";
+  // `static` belongs in this prefix. Without it the match found nothing, the
+  // "not enough rungs to judge" guard returned null, and the check reported ok
+  // while asserting nothing at all.
+  const prefix = "--semantic-color-foreground-static-neutral-";
   const seen = [];
   for (const n of printed) {
     if (!n.startsWith(prefix)) continue;

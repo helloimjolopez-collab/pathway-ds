@@ -202,7 +202,7 @@ If you need to build something and **no entry exists in [`components/manifest.js
 
 3. **Surface the gap to the human.** Say plainly: "I needed a `<thing>` but no Pathway component exists for it. I've built it ad-hoc with semantic tokens — the design system owner should review whether this should become a real component." This is how gaps get fixed, not how they hide.
 
-**Never invent a new component silently.** A custom button styled with `Fill/Action/Primary/Rest` is a visible gap the DS owner can promote into the system. A custom button styled with `#2d4889` is a bug that disappears into the prototype and quietly breaks the system over time.
+**Never invent a new component silently.** A custom button styled with `Fill/Action/Primary/Strong/Rest` is a visible gap the DS owner can promote into the system. A custom button styled with `#2d4889` is a bug that disappears into the prototype and quietly breaks the system over time.
 
 ---
 

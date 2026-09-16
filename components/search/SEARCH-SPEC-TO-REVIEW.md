@@ -30,7 +30,7 @@ Two components ship together:
 
 **TopNavSearch** — wrapper that hosts SearchInput in the top nav. Three modes: Collapsed (48×48 dark-surface icon button), Expanded (bar slides in with spring animation), Open (bar + results dropdown — design TBD, not shipped yet).
 
-**Filter-active state:** when the user returns from a filter page with filters applied — blue border on bar, `fill.action.primary-dim.rest` (#eef2fb) background on funnel pill, dot badge on funnel, **input stays fully active and interactive**.
+**Filter-active state:** when the user returns from a filter page with filters applied — blue border on bar, `fill.action.primary.subtle.rest` (#eef2fb) background on funnel pill, dot badge on funnel, **input stays fully active and interactive**.
 
 **Not used for:** inline list filtering, command palettes, form autocomplete, global persistent nav state.
 
@@ -157,7 +157,7 @@ TopNavSearch.Container               overflow hidden, padding 4px, flex row alig
 
 **Badge dot**
 - 6×6px, `position: absolute; top: 1px; right: 1px` on the badge-wrap
-- Fill: `#345499` (`fill.action.primary.rest`)
+- Fill: `#345499` (`fill.action.primary.strong.rest`)
 - Border: `1.5px solid #ffffff` (white ring)
 - `aria-hidden="true"` — accessible state communicated via aria-label change on button
 
@@ -210,7 +210,7 @@ TopNavSearch.Container               overflow hidden, padding 4px, flex row alig
 
 **Collapsed button:**
 - 48×48px, border-radius 12px
-- Background: `rgba(160,181,230,0.08)` → `fill.action.primary-dim.rest`
+- Background: `rgba(160,181,230,0.08)` → `fill.action.primary.subtle.rest`
 - Border: `1.5px solid rgba(251,251,251,0.14)` — no semantic token yet (flagged in Gaps)
 - Icon fill: `rgba(251,251,251,0.9)` — no dark-mode token yet (flagged in Gaps)
 
@@ -351,11 +351,11 @@ Every CSS variable this component uses. Source: the `src/tokens/` contract (`pri
 
 /* ── Semantic tokens — colour ────────────────────────────── */
 --semantic-color-fill-static-neutral-faint;  /* #ffffff — bar bg */
---semantic-color-fill-action-primary-dim-rest;  /* #eef2fb — filter pill active */
+--semantic-color-fill-action-primary-subtle-rest;  /* #eef2fb — filter pill active */
 --semantic-color-fill-action-secondary-hover;  /* rgba(17,17,17,0.02) — icon hover */
 --semantic-color-fill-action-secondary-pressed;  /* #f6f6f6 — icon pressed */
---semantic-color-fill-action-primary-rest;  /* #345499 — badge dot */
---semantic-color-fill-action-primary-dim-rest;  /* rgba(160,181,230,0.08) — topnav collapsed btn bg */
+--semantic-color-fill-action-primary-strong-rest;  /* #345499 — badge dot */
+--semantic-color-fill-action-primary-subtle-rest;  /* rgba(160,181,230,0.08) — topnav collapsed btn bg */
 --semantic-color-stroke-action-secondary-rest;  /* #d2d2d2 — idle border */
 --semantic-color-stroke-action-secondary-hover;  /* #c4c4c4 — hover border */
 --semantic-color-stroke-action-primary-pressed;  /* #a0b5e6 — focused/filter-active border */
@@ -366,7 +366,7 @@ Every CSS variable this component uses. Source: the `src/tokens/` contract (`pri
 --semantic-color-foreground-action-secondary-rest;  /* #6b6b6b — idle icon */
 --semantic-color-foreground-action-secondary-hover;  /* #606060 — hover icon */
 --semantic-color-foreground-action-disabled;  /* #979797 — disabled icon */
---semantic-color-foreground-action-status-negative-rest;  /* #b03a3a — error icon */
+--semantic-color-foreground-action-status-negative-on-subtle-rest;  /* #b03a3a — error icon */
 
 /* ── Unit tokens (all unitless — multiply by 1px in CSS) ─── */
 --primitive-unit-unit-0-point-75: 0.75;   /* 0.75px border */

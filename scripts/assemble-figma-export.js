@@ -36,7 +36,7 @@
  *   #G|Primitive: Color|Mode 1                       group marker: collection + mode
  *   Cool Neutral/0|#ffffff                           name|value
  *   Cool Neutral/0 @ 6%|#ffffff/0.06                 alpha as hex/float
- *   Fill/Action/Primary/Rest|@Brand/450              alias, @-prefixed
+ *   Fill/Action/Primary/Strong/Rest|@Brand/450       alias, @-prefixed
  *   Unit/16|16                                       number
  *   Family/Brand|Red Hat Text                        string
  *   Font Size/R|@Primitive: Type::Size/16            alias, collection-qualified

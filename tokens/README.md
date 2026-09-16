@@ -1,6 +1,6 @@
 # Token architecture
 
-Design tokens are named design decisions stored as data. Instead of `color: #4b6ec3` scattered across dozens of components, you write `color: var(--semantic-color-foreground-action-primary-rest)`. The name carries the intent; the value is managed in one place.
+Design tokens are named design decisions stored as data. Instead of `color: #4b6ec3` scattered across dozens of components, you write `color: var(--semantic-color-foreground-action-primary-on-subtle-rest)`. The name carries the intent; the value is managed in one place.
 
 Pathway tokens have two layers: **primitive** and **semantic**.
 
@@ -42,7 +42,7 @@ Semantic tokens alias a primitive and give it a _purpose_. The name tells you th
 --semantic-color-foreground-static-neutral-base:
     var(--primitive-color-cool-neutral-400)
 
---semantic-color-foreground-action-primary-rest:
+--semantic-color-foreground-action-primary-on-subtle-rest:
     var(--primitive-color-brand-500)
 ```
 
@@ -90,7 +90,7 @@ This is the alias chain doing its job:
 
 ```
 Figma variable value   →   Primitive token   →   Semantic token                        →  Component CSS
-     #4364b6           →   brand-500         →   foreground-action-primary-rest        →  var(...)
+     #4364b6           →   brand-500         →   foreground-action-primary-on-subtle-rest        →  var(...)
 ```
 
 ---
@@ -125,7 +125,7 @@ Figma Variables (source of truth for all token values)
             │
             │ emitted as CSS custom properties by Style Dictionary
             ▼
-      src/tokens/  ← var(--semantic-color-fill-static-brand-subtle)
+      src/tokens/  ← var(--semantic-color-fill-static-brand-base)
             │
             ▼
       Component styles
@@ -139,7 +139,7 @@ Figma Variables (source of truth for all token values)
 
 ```css
 /* correct */
-color: var(--semantic-color-foreground-action-primary-rest);
+color: var(--semantic-color-foreground-action-primary-on-subtle-rest);
 
 /* wrong — breaks the alias contract; components shouldn't know about the palette */
 color: var(--primitive-color-brand-100);
@@ -251,7 +251,7 @@ Once the CSS is loaded, all custom properties are available:
 
 ```css
 .my-component {
-  background: var(--semantic-color-fill-static-brand-subtle);
+  background: var(--semantic-color-fill-static-brand-base);
   color: var(--semantic-color-foreground-static-neutral-mono);
 }
 ```

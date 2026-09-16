@@ -32,7 +32,7 @@ const ITEMS = [
 ];
 
 const frame = (children, height = 560) => (
-  <div style={{ display: "flex", height, border: "0.5px solid var(--semantic-color-stroke-static-neutral-subtle)",
+  <div style={{ display: "flex", height, border: "0.5px solid var(--semantic-color-stroke-static-neutral-base)",
     borderRadius: "var(--semantic-layout-units-cornerradius-medium)", overflow: "hidden" }}>
     {children}
   </div>

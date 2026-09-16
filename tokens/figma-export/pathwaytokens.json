@@ -1012,401 +1012,53 @@
                 "$value": "{Warm Neutral.0}"
               }
             },
-            "Static": {
-              "Neutral": {
-                "White": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.0}"
-                },
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.25}"
-                },
-                "Medium": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.50}"
-                }
-              },
-              "Brand": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.25}"
-                },
-                "Dim": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.50}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.100}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.400}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.700}"
-                },
-                "Boldest": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.800}"
-                }
-              },
-              "Negative": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.25}"
-                },
-                "Dim": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.50}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.75}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.250}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.350}"
-                }
-              },
-              "Positive": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.0}"
-                },
-                "Dim": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.25}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.50}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.100}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.200}"
-                }
-              },
-              "Accent": {
-                "Amethyst": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.75}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.100}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.150}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.500}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.600}"
-                  }
-                },
-                "Jade": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.75}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.100}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.150}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.500}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.600}"
-                  }
-                },
-                "Seabreeze": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.25}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.50}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.75}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.350}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.600}"
-                  }
-                },
-                "Mauve": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.0}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.25}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.100}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.300}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.350}"
-                  }
-                },
-                "Lagoon": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.25}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.50}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.100}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.500}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.600}"
-                  }
-                },
-                "Saffron": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.75}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.100}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.150}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.500}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.800}"
-                  }
-                },
-                "Orange": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.75}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.100}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.150}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.500}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.800}"
-                  }
-                }
-              }
-            },
             "Action": {
               "Disabled": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
-                "$value": "{Warm Neutral.500 @ 4%}"
+                "$value": "{Warm Neutral.500 @ 16%}"
               },
               "Primary": {
-                "Rest": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.400}"
+                "Strong": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.400}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.450}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.500}"
+                  }
                 },
-                "Hover": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.450}"
-                },
-                "Pressed": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.500}"
-                }
-              },
-              "Primary Dim": {
-                "Rest": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.10}"
-                },
-                "Hover": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.25}"
-                },
-                "Pressed": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.50}"
+                "Subtle": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.10}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.25}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.50}"
+                  }
                 }
               },
               "Secondary": {
@@ -1429,85 +1081,109 @@
                   "$value": "{Warm Neutral.75}"
                 }
               },
+              "Selection": {
+                "Hover": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.100 @ 24%}"
+                },
+                "Selected": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.75 @ 24%}"
+                },
+                "Trail": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.500 @ 8%}"
+                }
+              },
               "Status": {
                 "Negative": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.350}"
+                  "Strong": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.350}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.400}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.450}"
+                    }
                   },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.400}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.450}"
-                  }
-                },
-                "Negative Dim": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.50}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.75}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.100}"
+                  "Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.25}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.50}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.75}"
+                    }
                   }
                 },
                 "Positive": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.500}"
+                  "Strong": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.500}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.600}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.700}"
+                    }
                   },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.600}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.700}"
-                  }
-                },
-                "Positive Dim": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.25}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.50}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.75}"
+                  "Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.25}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.50}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.75}"
+                    }
                   }
                 },
                 "Attention": {
@@ -1570,25 +1246,191 @@
                     "$value": "{Amethyst.75}"
                   }
                 }
+              }
+            },
+            "Static": {
+              "Neutral": {
+                "White": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.0}"
+                },
+                "Faint": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.50}"
+                },
+                "Base": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.100}"
+                }
               },
-              "Selection": {
-                "Hover": {
+              "Brand": {
+                "Faint": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.100 @ 16%}"
+                  "$value": "{Brand.25}"
                 },
-                "Selected": {
+                "Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.75 @ 24%}"
+                  "$value": "{Brand.50}"
                 },
-                "Trail": {
+                "Base": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.100 @ 24%}"
+                  "$value": "{Brand.100}"
+                },
+                "Bold": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.400}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.700}"
+                },
+                "Strongest": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.800}"
+                }
+              },
+              "Red": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Red.75}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Red.400}"
+                }
+              },
+              "Green": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Green.25}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Green.200}"
+                }
+              },
+              "Amethyst": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Amethyst.100}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Amethyst.600}"
+                }
+              },
+              "Jade": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Jade.100}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Jade.600}"
+                }
+              },
+              "Seabreeze": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Seabreeze.50}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Seabreeze.600}"
+                }
+              },
+              "Mauve": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Mauve.25}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Mauve.350}"
+                }
+              },
+              "Lagoon": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Lagoon.50}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Lagoon.600}"
+                }
+              },
+              "Saffron": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Saffron.100}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Saffron.800}"
+                }
+              },
+              "Orange": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Orange.100}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Orange.800}"
                 }
               }
             }
@@ -1602,23 +1444,25 @@
                 "$value": "{Cool Neutral.800 @ 50%}"
               },
               "Primary": {
-                "Rest": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.500}"
-                },
-                "Hover": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.600}"
-                },
-                "Pressed": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.700}"
+                "On Subtle": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.500}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.600}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.800}"
+                  }
                 }
               },
               "Secondary": {
@@ -1632,7 +1476,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.700}"
+                  "$value": "{Cool Neutral.600}"
                 },
                 "Pressed": {
                   "$type": "color",
@@ -1643,103 +1487,113 @@
               },
               "Status": {
                 "Negative": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.700}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.800}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.900}"
+                  "On Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.700}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.800}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.900}"
+                    }
                   }
                 },
                 "Positive": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.700}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.800}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.900}"
+                  "On Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.700}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.800}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.900}"
+                    }
                   }
                 },
                 "Attention": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.700}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.800}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.900}"
+                  "On Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.700}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.800}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.900}"
+                    }
                   }
                 },
                 "Severe": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.700}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.800}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.900}"
+                  "On Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.700}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.800}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.900}"
+                    }
                   }
                 },
                 "Info": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.700}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.800}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.900}"
+                  "On Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.700}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.800}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.900}"
+                    }
                   }
                 }
               }
@@ -1756,15 +1610,21 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.500}"
+                  "$value": "{Cool Neutral.400}"
                 },
                 "Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.600}"
+                  "$value": "{Cool Neutral.500}"
                 },
                 "Base": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Cool Neutral.600}"
+                },
+                "Bold": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
@@ -1774,634 +1634,138 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.800}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
                   "$value": "{Cool Neutral.900}"
                 }
               },
-              "Negative": {
-                "Faint": {
+              "Red": {
+                "On Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Red.500}"
+                  "$value": "{Red.450}"
                 },
-                "Dim": {
+                "On Strong": {
                   "$type": "color",
-                  "$collectionName": "Primitive: Color",
+                  "$collectionName": "Semantic: Color",
                   "$libraryName": "",
-                  "$value": "{Red.600}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.700}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.800}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.900}"
+                  "$value": "{Foreground.Static.Neutral.Mono}"
                 }
               },
-              "Positive": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.500}"
-                },
-                "Dim": {
+              "Green": {
+                "On Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Green.600}"
                 },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.700}"
-                },
-                "Contrast": {
+                "On Strong": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Green.800}"
-                },
-                "Bold": {
+                }
+              },
+              "Amethyst": {
+                "On Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Green.900}"
+                  "$value": "{Amethyst.600}"
+                },
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Semantic: Color",
+                  "$libraryName": "",
+                  "$value": "{Foreground.Static.Neutral.Mono}"
                 }
               },
-              "Accent": {
-                "Amethyst": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.400}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.500}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.700}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.800}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.900}"
-                  }
+              "Jade": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Jade.500}"
                 },
-                "Jade": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.400}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.500}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.700}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.800}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.900}"
-                  }
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Semantic: Color",
+                  "$libraryName": "",
+                  "$value": "{Foreground.Static.Neutral.Mono}"
+                }
+              },
+              "Seabreeze": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Seabreeze.600}"
                 },
-                "Seabreeze": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.500}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.600}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.700}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.800}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.900}"
-                  }
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Semantic: Color",
+                  "$libraryName": "",
+                  "$value": "{Foreground.Static.Neutral.Mono}"
+                }
+              },
+              "Lagoon": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Lagoon.700}"
                 },
-                "Lagoon": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.500}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.600}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.700}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.800}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.900}"
-                  }
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Semantic: Color",
+                  "$libraryName": "",
+                  "$value": "{Foreground.Static.Neutral.Mono}"
+                }
+              },
+              "Mauve": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Mauve.400}"
                 },
-                "Mauve": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.400}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.500}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.700}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.800}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.900}"
-                  }
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Semantic: Color",
+                  "$libraryName": "",
+                  "$value": "{Foreground.Static.Neutral.Mono}"
+                }
+              },
+              "Saffron": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Saffron.500}"
                 },
-                "Saffron": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.400}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.500}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.700}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.800}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.900}"
-                  }
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Saffron.700}"
+                }
+              },
+              "Orange": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Orange.600}"
                 },
-                "Orange": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.400}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.500}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.700}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.800}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.900}"
-                  }
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Orange.900}"
                 }
               }
             }
           },
           "Stroke": {
-            "FocusRing": {
-              "Base": {
-                "$type": "color",
-                "$collectionName": "Primitive: Color",
-                "$libraryName": "",
-                "$value": "{Brand.200}"
-              }
-            },
-            "Static": {
-              "Neutral": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.50}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.100}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.175}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.350}"
-                }
-              },
-              "Negative": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.50}"
-                },
-                "Dim": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.100}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.150}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.300}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.500}"
-                }
-              },
-              "Accent": {
-                "Amethyst": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.50}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.75}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.100}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.300}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.400}"
-                  }
-                },
-                "Jade": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.0}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.25}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.50}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.150}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.250}"
-                  }
-                },
-                "Mauve": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.0}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.25}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.100}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.300}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.350}"
-                  }
-                },
-                "Seabreeze": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.25}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.50}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.150}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.400}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.600}"
-                  }
-                },
-                "Lagoon": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.25}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.50}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.100}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.500}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.600}"
-                  }
-                },
-                "Saffron": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.25}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.75}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.100}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.300}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.400}"
-                  }
-                },
-                "Orange": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.50}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.75}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.100}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.300}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.400}"
-                  }
-                }
-              },
-              "Positive": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.0}"
-                },
-                "Dim": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.25}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.75}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.150}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.300}"
-                }
-              }
-            },
             "Action": {
               "Disabled": {
                 "$type": "color",
@@ -2434,19 +1798,19 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.175}"
+                  "$value": "{Warm Neutral.250}"
                 },
                 "Hover": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.200}"
+                  "$value": "{Warm Neutral.350}"
                 },
                 "Pressed": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.250}"
+                  "$value": "{Warm Neutral.450}"
                 }
               },
               "Field": {
@@ -2571,6 +1935,168 @@
                   }
                 }
               }
+            },
+            "FocusRing": {
+              "Base": {
+                "$type": "color",
+                "$collectionName": "Primitive: Color",
+                "$libraryName": "",
+                "$value": "{Brand.200}"
+              }
+            },
+            "Static": {
+              "Neutral": {
+                "Faint": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.50}"
+                },
+                "Base": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.100}"
+                },
+                "Bold": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.175}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.350}"
+                }
+              },
+              "Red": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Red.100}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Red.500}"
+                }
+              },
+              "Green": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Green.25}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Green.300}"
+                }
+              },
+              "Amethyst": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Amethyst.75}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Amethyst.400}"
+                }
+              },
+              "Jade": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Jade.25}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Jade.250}"
+                }
+              },
+              "Mauve": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Mauve.25}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Mauve.350}"
+                }
+              },
+              "Seabreeze": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Seabreeze.50}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Seabreeze.600}"
+                }
+              },
+              "Lagoon": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Lagoon.50}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Lagoon.600}"
+                }
+              },
+              "Saffron": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Saffron.75}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Saffron.400}"
+                }
+              },
+              "Orange": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Orange.75}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Orange.400}"
+                }
+              }
             }
           },
           "Scrim": {
@@ -2622,356 +2148,6 @@
                 "$value": "{Brand.700}"
               }
             },
-            "Static": {
-              "Neutral": {
-                "White": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.900}"
-                },
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.800}"
-                },
-                "Medium": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.700}"
-                }
-              },
-              "Brand": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.25}"
-                },
-                "Dim": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.50}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.100}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.400}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.700}"
-                },
-                "Boldest": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.800}"
-                }
-              },
-              "Negative": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.800}"
-                },
-                "Dim": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.700}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.600}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.400}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.300}"
-                }
-              },
-              "Positive": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.800}"
-                },
-                "Dim": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.700}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.600}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.400}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.300}"
-                }
-              },
-              "Accent": {
-                "Amethyst": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.700}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.600}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.400}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.350}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.200}"
-                  }
-                },
-                "Jade": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.700}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.600}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.400}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.350}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.200}"
-                  }
-                },
-                "Seabreeze": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.800}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.700}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.600}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.250}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.200}"
-                  }
-                },
-                "Mauve": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.900}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.800}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.500}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.300}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.150}"
-                  }
-                },
-                "Lagoon": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.900}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.800}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.700}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.500}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.250}"
-                  }
-                },
-                "Saffron": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.700}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.500}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.400}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.350}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.200}"
-                  }
-                },
-                "Orange": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.700}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.600}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.400}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.350}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.200}"
-                  }
-                }
-              }
-            },
             "Action": {
               "Disabled": {
                 "$type": "color",
@@ -2980,43 +2156,45 @@
                 "$value": "{Warm Neutral.100 @ 8%}"
               },
               "Primary": {
-                "Rest": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.250}"
+                "Strong": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.250}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.200}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.150}"
+                  }
                 },
-                "Hover": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.200}"
-                },
-                "Pressed": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.150}"
-                }
-              },
-              "Primary Dim": {
-                "Rest": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.600}"
-                },
-                "Hover": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.75 @ 8%}"
-                },
-                "Pressed": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.600 @ 50%}"
+                "Subtle": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.600}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.75 @ 8%}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.600 @ 50%}"
+                  }
                 }
               },
               "Secondary": {
@@ -3039,85 +2217,109 @@
                   "$value": "{Warm Neutral.500}"
                 }
               },
+              "Selection": {
+                "Hover": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.100 @ 8%}"
+                },
+                "Selected": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.75 @ 16%}"
+                },
+                "Trail": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.100 @ 16%}"
+                }
+              },
               "Status": {
                 "Negative": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.200}"
+                  "Strong": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.200}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.150}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.100}"
+                    }
                   },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.150}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.100}"
-                  }
-                },
-                "Negative Dim": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.800}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.700}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.600}"
+                  "Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.800}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.700}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.600}"
+                    }
                   }
                 },
                 "Positive": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.350}"
+                  "Strong": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.350}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.300}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.200}"
+                    }
                   },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.300}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.200}"
-                  }
-                },
-                "Positive Dim": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.800}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.700}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.600}"
+                  "Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.800}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.700}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.600}"
+                    }
                   }
                 },
                 "Attention": {
@@ -3180,25 +2382,191 @@
                     "$value": "{Amethyst.500}"
                   }
                 }
+              }
+            },
+            "Static": {
+              "Neutral": {
+                "White": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.900}"
+                },
+                "Faint": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.800}"
+                },
+                "Base": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.700}"
+                }
               },
-              "Selection": {
-                "Hover": {
+              "Brand": {
+                "Faint": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.100 @ 8%}"
+                  "$value": "{Brand.25}"
                 },
-                "Selected": {
+                "Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.75 @ 16%}"
+                  "$value": "{Brand.50}"
                 },
-                "Trail": {
+                "Base": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.100 @ 16%}"
+                  "$value": "{Brand.100}"
+                },
+                "Bold": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.400}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.700}"
+                },
+                "Strongest": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Brand.800}"
+                }
+              },
+              "Red": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Red.700}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Red.300}"
+                }
+              },
+              "Green": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Green.700}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Green.300}"
+                }
+              },
+              "Amethyst": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Amethyst.600}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Amethyst.200}"
+                }
+              },
+              "Jade": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Jade.600}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Jade.200}"
+                }
+              },
+              "Seabreeze": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Seabreeze.700}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Seabreeze.200}"
+                }
+              },
+              "Mauve": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Mauve.800}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Mauve.150}"
+                }
+              },
+              "Lagoon": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Lagoon.800}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Lagoon.250}"
+                }
+              },
+              "Saffron": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Saffron.500}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Saffron.200}"
+                }
+              },
+              "Orange": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Orange.600}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Orange.200}"
                 }
               }
             }
@@ -3212,23 +2580,25 @@
                 "$value": "{Cool Neutral.0 @ 50%}"
               },
               "Primary": {
-                "Rest": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.50}"
-                },
-                "Hover": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.25}"
-                },
-                "Pressed": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Brand.0}"
+                "On Subtle": {
+                  "Rest": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.50}"
+                  },
+                  "Hover": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.25}"
+                  },
+                  "Pressed": {
+                    "$type": "color",
+                    "$collectionName": "Primitive: Color",
+                    "$libraryName": "",
+                    "$value": "{Brand.0}"
+                  }
                 }
               },
               "Secondary": {
@@ -3253,103 +2623,113 @@
               },
               "Status": {
                 "Negative": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.200}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.150}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Red.100}"
+                  "On Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.200}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.150}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Red.100}"
+                    }
                   }
                 },
                 "Positive": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.300}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.200}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Green.150}"
+                  "On Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.300}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.200}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Green.150}"
+                    }
                   }
                 },
                 "Attention": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.300}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.200}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.150}"
+                  "On Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.300}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.200}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Saffron.150}"
+                    }
                   }
                 },
                 "Severe": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.250}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.200}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.150}"
+                  "On Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.250}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.200}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Orange.150}"
+                    }
                   }
                 },
                 "Info": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.100}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.75}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.50}"
+                  "On Subtle": {
+                    "Rest": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.100}"
+                    },
+                    "Hover": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.75}"
+                    },
+                    "Pressed": {
+                      "$type": "color",
+                      "$collectionName": "Primitive: Color",
+                      "$libraryName": "",
+                      "$value": "{Amethyst.50}"
+                    }
                   }
                 }
               }
@@ -3380,638 +2760,148 @@
                   "$libraryName": "",
                   "$value": "{Cool Neutral.75}"
                 },
-                "Strong": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Cool Neutral.25}"
-                },
                 "Bold": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Cool Neutral.0}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Cool Neutral.25}"
                 }
               },
-              "Negative": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.300}"
-                },
-                "Dim": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.250}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.200}"
-                },
-                "Contrast": {
+              "Red": {
+                "On Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Red.150}"
                 },
-                "Bold": {
+                "On Strong": {
                   "$type": "color",
-                  "$collectionName": "Primitive: Color",
+                  "$collectionName": "Semantic: Color",
                   "$libraryName": "",
-                  "$value": "{Red.100}"
+                  "$value": "{Foreground.Static.Neutral.Mono}"
                 }
               },
-              "Positive": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.350}"
-                },
-                "Dim": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.300}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.200}"
-                },
-                "Contrast": {
+              "Green": {
+                "On Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Green.150}"
                 },
-                "Bold": {
+                "On Strong": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Green.100}"
+                  "$value": "{Green.800}"
                 }
               },
-              "Accent": {
-                "Amethyst": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.350}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.300}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.200}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.150}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.100}"
-                  }
+              "Amethyst": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Amethyst.150}"
                 },
-                "Jade": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.350}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.300}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.250}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.150}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.200}"
-                  }
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Amethyst.700}"
+                }
+              },
+              "Jade": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Jade.200}"
                 },
-                "Seabreeze": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.400}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.300}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.250}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.200}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.100}"
-                  }
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Jade.600}"
+                }
+              },
+              "Seabreeze": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Seabreeze.200}"
                 },
-                "Lagoon": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.500}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.400}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.300}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.250}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.150}"
-                  }
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Seabreeze.700}"
+                }
+              },
+              "Lagoon": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Lagoon.250}"
                 },
-                "Mauve": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.300}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.200}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.150}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.100}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.75}"
-                  }
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Lagoon.800}"
+                }
+              },
+              "Mauve": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Mauve.150}"
                 },
-                "Saffron": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.350}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.300}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.200}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.150}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.100}"
-                  }
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Mauve.700}"
+                }
+              },
+              "Saffron": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Saffron.100}"
                 },
-                "Orange": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.350}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.300}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.200}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.150}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.100}"
-                  }
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Saffron.700}"
+                }
+              },
+              "Orange": {
+                "On Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Orange.100}"
+                },
+                "On Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Orange.800}"
                 }
               }
             }
           },
           "Stroke": {
-            "FocusRing": {
-              "Base": {
-                "$type": "color",
-                "$collectionName": "Primitive: Color",
-                "$libraryName": "",
-                "$value": "{Cool Neutral.0 @ 24%}"
-              }
-            },
-            "Static": {
-              "Neutral": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.800}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.700}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.450}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Warm Neutral.200}"
-                }
-              },
-              "Negative": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.600}"
-                },
-                "Dim": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.500}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.400}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.250}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Red.200}"
-                }
-              },
-              "Accent": {
-                "Amethyst": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.800}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.700}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.600}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.400}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Amethyst.350}"
-                  }
-                },
-                "Jade": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.900}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.800}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.700}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.600}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Jade.500}"
-                  }
-                },
-                "Mauve": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.900}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.800}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.500}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.300}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Mauve.150}"
-                  }
-                },
-                "Seabreeze": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.900}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.800}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.700}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.400}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Seabreeze.250}"
-                  }
-                },
-                "Lagoon": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.900}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.800}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.700}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.500}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Lagoon.250}"
-                  }
-                },
-                "Saffron": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.800}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.700}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.500}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.400}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Saffron.350}"
-                  }
-                },
-                "Orange": {
-                  "Faint": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.800}"
-                  },
-                  "Dim": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.700}"
-                  },
-                  "Subtle": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.600}"
-                  },
-                  "Contrast": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.400}"
-                  },
-                  "Bold": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Orange.350}"
-                  }
-                }
-              },
-              "Positive": {
-                "Faint": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.900}"
-                },
-                "Dim": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.800}"
-                },
-                "Subtle": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.700}"
-                },
-                "Contrast": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.600}"
-                },
-                "Bold": {
-                  "$type": "color",
-                  "$collectionName": "Primitive: Color",
-                  "$libraryName": "",
-                  "$value": "{Green.500}"
-                }
-              }
-            },
             "Action": {
               "Disabled": {
                 "$type": "color",
@@ -4179,6 +3069,168 @@
                     "$libraryName": "",
                     "$value": "{Amethyst.500}"
                   }
+                }
+              }
+            },
+            "FocusRing": {
+              "Base": {
+                "$type": "color",
+                "$collectionName": "Primitive: Color",
+                "$libraryName": "",
+                "$value": "{Cool Neutral.0 @ 24%}"
+              }
+            },
+            "Static": {
+              "Neutral": {
+                "Faint": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.800}"
+                },
+                "Base": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.700}"
+                },
+                "Bold": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.450}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.200}"
+                }
+              },
+              "Red": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Red.500}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Red.200}"
+                }
+              },
+              "Green": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Green.800}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Green.500}"
+                }
+              },
+              "Amethyst": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Amethyst.700}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Amethyst.350}"
+                }
+              },
+              "Jade": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Jade.800}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Jade.500}"
+                }
+              },
+              "Mauve": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Mauve.800}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Mauve.150}"
+                }
+              },
+              "Seabreeze": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Seabreeze.800}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Seabreeze.250}"
+                }
+              },
+              "Lagoon": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Lagoon.800}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Lagoon.250}"
+                }
+              },
+              "Saffron": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Saffron.700}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Saffron.350}"
+                }
+              },
+              "Orange": {
+                "Subtle": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Orange.700}"
+                },
+                "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Orange.350}"
                 }
               }
             }
@@ -5108,6 +4160,12 @@
             }
           },
           "CornerRadius": {
+            "Base": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.8}"
+            },
             "XSmall": {
               "$type": "float",
               "$collectionName": "Primitive: Unit",
@@ -5324,36 +4382,38 @@
       "modes": {
         "Value": {
           "NavItem": {
-            "Large": {
-              "Padding": {
-                "Vertical": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.12}"
-                },
-                "Horizontal": {
-                  "$type": "float",
-                  "$collectionName": "Primitive: Unit",
-                  "$libraryName": "",
-                  "$value": "{Unit.14}"
-                }
+            "Padding": {
+              "Vertical": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.12}"
               },
+              "Horizontal": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.14}"
+              }
+            },
+            "Corner Radius": {
               "Radius": {
                 "$type": "float",
                 "$collectionName": "Primitive: Unit",
                 "$libraryName": "",
                 "$value": "{Unit.8}"
-              },
-              "Stroke Width": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.1 point 5}"
               }
             }
           },
           "Button": {
+            "Corner Radius": {
+              "Radius": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.8}"
+              }
+            },
             "Radius": {
               "$type": "float",
               "$collectionName": "Primitive: Unit",
