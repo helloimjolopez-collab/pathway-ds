@@ -488,6 +488,34 @@ If files accumulate at the repo root that don't belong to the design system (one
 
 Don't let the design system repo become a junk drawer.
 
+### 8.1 The Figma `↳ Select` page is not a Pathway component (found 2026-09-16)
+
+It is a paste from a remote third-party library, almost certainly Untitled UI. The
+evidence: **203 foreign style applications against 40 Pathway ones, so 16% Pathway.**
+The foreign styles are `Gray/50` through `Gray/900`, `Brand/500`, `Brand/600`,
+`Base/White` and `Avatar user square/*`, all marked `remote`, and its focused field
+border is `#9e77ed` purple. Pathway's brand is `#2d4889` blue and Pathway has no
+`Gray/*` or `Brand/*` style namespace at all.
+
+**Do not "fix" it by binding its properties to Pathway tokens.** That produces a
+component that is half one system and half another, and it inflates every coverage
+count with a component the design system does not own. Either rebuild Select as a
+Pathway component or move the page to the sandbox file. Until then, exclude it from
+coverage sweeps and say so in the report rather than silently counting it.
+
+Per-page Pathway share on the field and selector pages, for reference:
+
+| Page | Pathway | Foreign | Pathway share |
+|---|---|---|---|
+| `↳ ❇️ Checkbox`, `↳ Search`, `↳ ❇️ Radio`, `↳ Toggle`, `↳ Input DOB`, `↳ ❇️ Scroll to Enable Checkbox` | — | 0 | 100% |
+| `↳ ❇️ Input` | 145 | 40 | 78% |
+| `↳ ToolTips & Toggle Tips` | 2 | 3 | 40% |
+| `↳ Select` | 40 | 203 | **16%** |
+
+The `❇️` prefix is not a reliable signal of this: `↳ Search` carries no prefix and is
+100% Pathway, while `↳ ❇️ Input` carries one and is 78%. Measure, do not infer from
+the page name.
+
 ## 9. Deployment and CI
 
 Three GitHub Actions live in `.github/workflows/`:

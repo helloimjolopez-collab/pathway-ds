@@ -6,13 +6,6 @@ Complete implementation reference for the Ministry Brands Amplify navigation she
 
 ---
 
-## Authorship
-
-Design (Jo Lopez) owns and signs off on: Status, Purpose, Layout, Breakpoints, Token reference, Accessibility intent, Usage rules.
-Engineering owns and signs off on: prop types, ARIA implementation in code, browser-specific behaviour.
-Neither signs off on the other's section.
-
----
 
 ## Links
 
@@ -46,6 +39,7 @@ Neither signs off on the other's section.
 
 ---
 
+
 ## 1. Purpose
 
 The NavShell is the fixed application frame that wraps every page in Ministry Brands Amplify. It is not a page — it is the container that every page lives inside. Its three jobs:
@@ -55,6 +49,12 @@ The NavShell is the fixed application frame that wraps every page in Ministry Br
 3. **Layout** — defines the stable three-zone layout (TopNav + SideNav + Content) that every module shares. This predictability is what makes the product feel like a system rather than a collection of pages.
 
 The NavShell never changes between pages. The SideNav items change per module. The content area changes per page. Everything else is constant.
+
+---
+
+## 1.1 Governance: where things live
+
+**Rule:** Design (Jo Lopez) owns and signs off on: Status, Purpose, Layout, Breakpoints, Token reference, Accessibility intent, Usage rules. Engineering owns and signs off on: prop types, ARIA implementation in code, browser-specific behaviour. Neither signs off on the other's section.
 
 ---
 
@@ -570,13 +570,6 @@ These are implemented inline in `nav-shell.html`. Each will get its own pipeline
 
 ---
 
-## Changelog
-
-| Version | Date | Author | Change |
-|---|---|---|---|
-| 0.1 | 2026-06-05 | Jo Lopez + Claude | Initial draft. NavShell spec + HTML demo. Figma ScreenTemplate node 40006538-43236 read. TopNav + SideNav reuse existing components. ScreenTemplate sub-components inline pending standalone pipeline runs. |
-
----
 
 ## Agent implementation rules
 
