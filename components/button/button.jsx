@@ -101,8 +101,12 @@ export const STROKE = {
 // layout scale. The focus ring moved out of Contextual to Stroke/FocusRing.
 export const T = {
   radius:      CL("button-radius"),                                        // 8px
-  border:      CL("button-border-width-rest"),                             // 0.75px
-  borderHover: CL("button-border-width-hover"),                             // 1px
+  border:      CL("button-border-width-rest"),                             // 1px
+  // There was a `borderHover` here reading button-border-width-hover. That token
+  // was renamed to .../Selected (1.5px) in Figma on 2026-09-16, and the constant
+  // had never been referenced: the outlined button draws one border weight in
+  // every state. Figma now has a Selected state on 192 nodes that this component
+  // does not implement, which is a real gap rather than a missing constant.
   gap:         CL("button-gap-horizontal"),                                  // 8px
   touch:       { pad: 6, min: 48 },
   // Focus ring drawn as outline + outline-offset rather than stacked shadows.

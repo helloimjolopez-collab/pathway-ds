@@ -1560,9 +1560,9 @@
                 },
                 "On Strong": {
                   "$type": "color",
-                  "$collectionName": "Primitive: Color",
+                  "$collectionName": "Semantic: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Fill.Static.Neutral.Mono}"
                 }
               },
               "Secondary": {
@@ -1583,26 +1583,6 @@
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Cool Neutral.800}"
-                },
-                "Subtle": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Cool Neutral.400}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Cool Neutral.450}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Cool Neutral.500}"
-                  }
                 }
               },
               "Status": {
@@ -1657,9 +1637,9 @@
                   },
                   "On Strong": {
                     "$type": "color",
-                    "$collectionName": "Primitive: Color",
+                    "$collectionName": "Semantic: Color",
                     "$libraryName": "",
-                    "$value": "{Cool Neutral.0}"
+                    "$value": "{Fill.Static.Neutral.Mono}"
                   }
                 },
                 "Attention": {
@@ -1741,9 +1721,9 @@
                   },
                   "On Strong": {
                     "$type": "color",
-                    "$collectionName": "Primitive: Color",
+                    "$collectionName": "Semantic: Color",
                     "$libraryName": "",
-                    "$value": "{Cool Neutral.0}"
+                    "$value": "{Fill.Static.Neutral.Mono}"
                   }
                 }
               }
@@ -2862,9 +2842,9 @@
                 },
                 "On Strong": {
                   "$type": "color",
-                  "$collectionName": "Primitive: Color",
+                  "$collectionName": "Semantic: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.900}"
+                  "$value": "{Fill.Static.Neutral.Mono}"
                 }
               },
               "Secondary": {
@@ -2885,26 +2865,6 @@
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Cool Neutral.125}"
-                },
-                "Subtle": {
-                  "Rest": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Cool Neutral.100}"
-                  },
-                  "Hover": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Cool Neutral.75}"
-                  },
-                  "Pressed": {
-                    "$type": "color",
-                    "$collectionName": "Primitive: Color",
-                    "$libraryName": "",
-                    "$value": "{Cool Neutral.50}"
-                  }
                 }
               },
               "Status": {
@@ -2959,9 +2919,9 @@
                   },
                   "On Strong": {
                     "$type": "color",
-                    "$collectionName": "Primitive: Color",
+                    "$collectionName": "Semantic: Color",
                     "$libraryName": "",
-                    "$value": "{Cool Neutral.900}"
+                    "$value": "{Fill.Static.Neutral.Mono}"
                   }
                 },
                 "Attention": {
@@ -3043,9 +3003,9 @@
                   },
                   "On Strong": {
                     "$type": "color",
-                    "$collectionName": "Primitive: Color",
+                    "$collectionName": "Semantic: Color",
                     "$libraryName": "",
-                    "$value": "{Cool Neutral.900}"
+                    "$value": "{Fill.Static.Neutral.Mono}"
                   }
                 }
               }
@@ -4821,13 +4781,13 @@
                 "$type": "float",
                 "$collectionName": "Semantic: Layout & Units",
                 "$libraryName": "",
-                "$value": "{BorderWidth.Thin}"
+                "$value": "{BorderWidth.Base}"
               },
-              "Hover": {
+              "Selected": {
                 "$type": "float",
                 "$collectionName": "Semantic: Layout & Units",
                 "$libraryName": "",
-                "$value": "{BorderWidth.Base}"
+                "$value": "{BorderWidth.Medium}"
               }
             },
             "Radius": {
