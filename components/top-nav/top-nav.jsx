@@ -36,7 +36,7 @@ const TOK = (p, fb) => `var(--semantic-color-${p}, ${fb})`;
 const SCD = TOK;   // on the dark bar
 const SCL = TOK;   // on a light panel
 export const T = {
-  navBg:          SCL("fill-static-brand-strong", "#22386b"),
+  navBg:          SCL("fill-static-brand-bold", "#4364b6"),
   orgFill:        SCD("fill-action-primary-subtle-rest", "rgba(160,181,230,0.04)"),
   orgStroke:      SCD("stroke-action-primary-rest", "rgba(160,181,230,0.16)"),
   orgStrokeHover: SCD("stroke-action-primary-hover", "rgba(160,181,230,0.20)"),
@@ -49,8 +49,8 @@ export const T = {
   // org name uses Foreground/Static/Neutral/Bold, chevron uses Foreground/Static/Neutral/Bold.
   orgText:        SCD("foreground-static-neutral-bold", "#eceaf3"),
   orgChevron:     SCD("foreground-static-neutral-base", "rgba(255,255,255,0.8)"),
-  avatarBg:       SCL("fill-accent-amethyst-medium", "#dcd9ef"),
-  avatarText:     SCL("foreground-static-info-on-subtle", "#221e3f"),
+  avatarBg:       SCL("fill-static-info-subtle", "#f4f2fa"),
+  avatarText:     SCL("foreground-static-info-on-subtle", "#464080"),
   // White dropdown-menu surface — tracks fill-neutral-light (now warm-neutral-0).
   panelBg:        SCL("fill-static-neutral-faint", "#ffffff"),
   activeItem:     SCL("fill-action-primary-subtle-rest", "#eef2fb"),
@@ -543,7 +543,7 @@ export function TopNav({
       aria-label="Global navigation"
       className={className}
       style={{
-        background: `var(--semantic-color-fill-static-brand-strong, ${T.navBg})`,
+        background: `var(--semantic-color-fill-static-brand-bold, ${T.navBg})`,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         maxHeight: navH, padding: `${L.deskPadV}px ${padH}px`,
         position: "relative", overflow: "visible", zIndex: 100,
@@ -707,7 +707,7 @@ export function TopNav({
         <div
           style={{
             position: "absolute", inset: 0, zIndex: 200,
-            background: `var(--semantic-color-fill-static-brand-strong, ${T.navBg})`,
+            background: `var(--semantic-color-fill-static-brand-bold, ${T.navBg})`,
             display: "flex", alignItems: "center", gap: 8,
             padding: `0 ${padH}px`,
           }}
