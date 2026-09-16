@@ -19,7 +19,9 @@
  ==========================================================================
 */
 :root {
-  --shell-layout-sheet-padding-bottom: 64px;
+  --shell-layout-canvas-padding-horizontal: 0px;
+  --shell-layout-canvas-padding-top: 0px;
+  --shell-layout-sheet-cornerradius-top: 0px;
   --shell-layout-sheet-padding-horizontal: 36px;
   --shell-layout-sheet-padding-top: 16px;
   --shell-layout-topnav-height: 56px;
@@ -29,7 +31,6 @@
 
 @media (max-width: 1023px) {
   :root {
-    --shell-layout-sheet-padding-bottom: 48px;
     --shell-layout-sheet-padding-horizontal: 24px;
     --shell-layout-sheet-padding-top: 14px;
     --shell-layout-topnav-padding-horizontal: 12px;
@@ -38,7 +39,6 @@
 
 @media (max-width: 767px) {
   :root {
-    --shell-layout-sheet-padding-bottom: 36px;
     --shell-layout-sheet-padding-horizontal: 16px;
     --shell-layout-sheet-padding-top: 12px;
     --shell-layout-topnav-padding-horizontal: 8px;

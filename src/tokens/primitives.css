@@ -18,7 +18,7 @@
 
  Nothing blocks you. It is an escape hatch with a stated cost.
 
- Declares 352 custom properties.
+ Declares 353 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -372,6 +372,7 @@
   --primitive-unit-unit-104: 104px;
   --primitive-unit-unit-112: 112px;
   --primitive-unit-unit-120: 120px;
+  --primitive-unit-unit-250: 250px;
   --primitive-unit-unit-0-point-5: 0.5px;
   --primitive-unit-unit-0-point-75: 0.75px;
   --primitive-unit-unit-1-point-5: 1.5px;

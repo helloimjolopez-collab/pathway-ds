@@ -9,7 +9,7 @@
  prefer layout.css, which is the general spacing contract. These exist so a
  component's geometry can be tuned without moving the whole scale.
 
- Declares 28 custom properties.
+ Declares 30 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -42,4 +42,6 @@
   --contextual-layout-units-navitem-padding-horizontal: 14px;
   --contextual-layout-units-navitem-padding-vertical: 12px;
   --contextual-layout-units-selector-borderwidth: 1px;
+  --contextual-layout-units-sidenav-width-collapsed: 72px;
+  --contextual-layout-units-sidenav-width-expanded: 250px;
 }

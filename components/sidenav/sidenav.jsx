@@ -48,6 +48,11 @@ import ReactDOM from "react-dom";
  */
 const c = (name) => `var(--semantic-color-${name})`;
 const u = (name, fallback) => `var(--semantic-layout-units-${name}, ${fallback}px)`;
+// Component metrics live in the CONTEXTUAL collection, not the semantic one, so
+// they need their own prefix. SideNav's two widths moved there on 2026-09-16:
+// they were numeric literals with a "no token in Figma" comment, which was true
+// until the tokens were created.
+const x = (name, fallback) => `var(--contextual-layout-units-${name}, ${fallback}px)`;
 
 // Negate a length that may be either a number or a var() reference. Used for the
 // scroll-region edge bleed, where `-value` on a string would give NaN.
@@ -64,7 +69,10 @@ export const T = {
     navTrail:   c("fill-action-selection-trail"),
     infoSubtle: c("stroke-static-neutral-base"),   // container right border
   },
-  surface: { navLight: c("fill-surface-sheet") },
+  surface: {
+    navLight:    c("fill-surface-sheet"),      // the nav container itself: white
+    navElevated: c("fill-surface-elevated"),   // PopoverMenu, per Figma's "Popover Menu"
+  },
   // Label, icon and chevron all resolve to the SAME token per state. A nav item
   // is one interactive surface, so its foreground must not split across two
   // ramps that can drift apart.
@@ -100,8 +108,11 @@ export const L = {
   navPadH:     u("padding-base", 16),
   navColPadH:  u("padding-medium", 12),
   navPadTop:   u("padding-tight", 8),
-  navW:        240,  // no token in Figma — expanded sidebar width
-  navWcol:     72,   // no token in Figma — collapsed rail width
+  // Read from SideNav.Container in Figma on 2026-09-16: every expanded variant
+  // is 250 wide (Base, Stroked, Mobile.Base, Mobile.Stroked) and every
+  // collapsed one is 72. Was 240, which no longer matched the component.
+  navW:        x("sidenav-width-expanded", 250),
+  navWcol:     x("sidenav-width-collapsed", 72),
   menuGap:     u("gap-xtight", 6),
   menuPadT:    u("padding-tight", 8),
   menuPadB:    u("padding-xxwide", 56),
@@ -294,13 +305,13 @@ export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }
       style={{ position: "fixed",
         left: anchorRect.right + 8,
         top: anchorRect.top + anchorRect.height / 2,
-        zIndex: 1000, backgroundColor: "#fff",
-        border: "0.5px solid #f6f6f6", borderRadius: 8,
+        zIndex: 1000, backgroundColor: T.surface.navLight,
+        border: `0.5px solid ${c("stroke-static-neutral-faint")}`, borderRadius: 8,
         boxShadow: "2px 2px 8px 0px rgba(0,0,0,0.03)",
         padding: "6px 8px", whiteSpace: "nowrap", pointerEvents: "auto",
         animation: "popoverInCentered var(--motion-duration-3) var(--motion-easing-spring) forwards" }}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
-        fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px", color: "#202020" }}>
+        fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px", color: T.text.secondary }}>
         {label}
       </span>
     </div>,
@@ -333,13 +344,13 @@ export function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMo
   return ReactDOM.createPortal(
     <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
       style={{ position: "fixed", left: anchorRect.right + 8, top: anchorRect.top,
-        zIndex: 1000, backgroundColor: "#fff",
-        border: "0.5px solid #ededed", borderRadius: 8,
+        zIndex: 1000, backgroundColor: T.surface.navElevated,
+        border: `0.5px solid ${c("stroke-static-neutral-faint")}`, borderRadius: 8,
         boxShadow: "2px 2px 8px 4px rgba(0,0,0,0.03)",
         padding: 6, minWidth: 200, pointerEvents: "auto",
         animation: "popoverIn var(--motion-duration-3) var(--motion-easing-spring) forwards" }}>
       {/* Section label — Figma component 40006794-5977 */}
-      <div style={{ borderBottom: "0.5px solid #ededed" }}>
+      <div style={{ borderBottom: `0.5px solid ${c("stroke-static-neutral-faint")}` }}>
         <SectionLabel label={item.label} />
       </div>
       {item.children.map(child =>
