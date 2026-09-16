@@ -1560,9 +1560,9 @@
                 },
                 "On Strong": {
                   "$type": "color",
-                  "$collectionName": "Semantic: Color",
+                  "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Fill.Static.Neutral.Mono}"
+                  "$value": "{Cool Neutral.0}"
                 }
               },
               "Secondary": {
@@ -1721,9 +1721,9 @@
                   },
                   "On Strong": {
                     "$type": "color",
-                    "$collectionName": "Semantic: Color",
+                    "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Fill.Static.Neutral.Mono}"
+                    "$value": "{Cool Neutral.0}"
                   }
                 }
               }
@@ -2842,9 +2842,9 @@
                 },
                 "On Strong": {
                   "$type": "color",
-                  "$collectionName": "Semantic: Color",
+                  "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Fill.Static.Neutral.Mono}"
+                  "$value": "{Cool Neutral.900}"
                 }
               },
               "Secondary": {
@@ -2919,9 +2919,9 @@
                   },
                   "On Strong": {
                     "$type": "color",
-                    "$collectionName": "Semantic: Color",
+                    "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Fill.Static.Neutral.Mono}"
+                    "$value": "{Cool Neutral.900}"
                   }
                 },
                 "Attention": {
@@ -3003,9 +3003,9 @@
                   },
                   "On Strong": {
                     "$type": "color",
-                    "$collectionName": "Semantic: Color",
+                    "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Fill.Static.Neutral.Mono}"
+                    "$value": "{Cool Neutral.900}"
                   }
                 }
               }

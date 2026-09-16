@@ -1392,7 +1392,7 @@
             },
             "on-strong": {
               "$type": "color",
-              "$value": "{semantic-color.light-mode.fill.static.neutral.mono}"
+              "$value": "{primitive-color.cool-neutral.0}"
             }
           },
           "secondary": {
@@ -1507,7 +1507,7 @@
               },
               "on-strong": {
                 "$type": "color",
-                "$value": "{semantic-color.light-mode.fill.static.neutral.mono}"
+                "$value": "{primitive-color.cool-neutral.0}"
               }
             }
           }
@@ -2308,7 +2308,7 @@
             },
             "on-strong": {
               "$type": "color",
-              "$value": "{semantic-color.midnight-mode.fill.static.neutral.mono}"
+              "$value": "{primitive-color.cool-neutral.900}"
             }
           },
           "secondary": {
@@ -2363,7 +2363,7 @@
               },
               "on-strong": {
                 "$type": "color",
-                "$value": "{semantic-color.midnight-mode.fill.static.neutral.mono}"
+                "$value": "{primitive-color.cool-neutral.900}"
               }
             },
             "attention": {
@@ -2423,7 +2423,7 @@
               },
               "on-strong": {
                 "$type": "color",
-                "$value": "{semantic-color.midnight-mode.fill.static.neutral.mono}"
+                "$value": "{primitive-color.cool-neutral.900}"
               }
             }
           }
