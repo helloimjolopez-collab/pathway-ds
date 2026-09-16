@@ -3291,7 +3291,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-foreground-action-status-info-on-strong": {
-    "value": "#070707",
+    "value": "#110c2c",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3401,7 +3401,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-foreground-action-status-attention-on-strong": {
-    "value": "#070707",
+    "value": "#342d21",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5615,7 +5615,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-foreground-action-status-info-on-strong": {
-    "value": "#070707",
+    "value": "#110c2c",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5725,7 +5725,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-foreground-action-status-attention-on-strong": {
-    "value": "#070707",
+    "value": "#342d21",
     "type": "color",
     "path": [
       "semantic-color",

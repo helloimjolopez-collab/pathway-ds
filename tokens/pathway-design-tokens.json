@@ -1427,7 +1427,7 @@
               },
               "on-strong": {
                 "$type": "color",
-                "$value": "{primitive-color.cool-neutral.900}"
+                "$value": "{primitive-color.amethyst.900}"
               }
             },
             "positive": {
@@ -1467,7 +1467,7 @@
               },
               "on-strong": {
                 "$type": "color",
-                "$value": "{primitive-color.cool-neutral.900}"
+                "$value": "{primitive-color.saffron.700}"
               }
             },
             "severe": {
@@ -2343,7 +2343,7 @@
               },
               "on-strong": {
                 "$type": "color",
-                "$value": "{primitive-color.cool-neutral.900}"
+                "$value": "{primitive-color.amethyst.900}"
               }
             },
             "positive": {
@@ -2383,7 +2383,7 @@
               },
               "on-strong": {
                 "$type": "color",
-                "$value": "{primitive-color.cool-neutral.900}"
+                "$value": "{primitive-color.saffron.700}"
               }
             },
             "severe": {

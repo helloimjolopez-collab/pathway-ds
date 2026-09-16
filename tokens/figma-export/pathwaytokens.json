@@ -1611,7 +1611,7 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Cool Neutral.900}"
+                    "$value": "{Amethyst.900}"
                   }
                 },
                 "Positive": {
@@ -1667,7 +1667,7 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Cool Neutral.900}"
+                    "$value": "{Saffron.700}"
                   }
                 },
                 "Severe": {
@@ -2893,7 +2893,7 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Cool Neutral.900}"
+                    "$value": "{Amethyst.900}"
                   }
                 },
                 "Positive": {
@@ -2949,7 +2949,7 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Cool Neutral.900}"
+                    "$value": "{Saffron.700}"
                   }
                 },
                 "Severe": {

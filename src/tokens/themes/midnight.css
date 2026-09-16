@@ -106,7 +106,7 @@
   --semantic-color-foreground-action-status-info-on-subtle-rest: var(--primitive-color-amethyst-100);
   --semantic-color-foreground-action-status-info-on-subtle-hover: var(--primitive-color-amethyst-75);
   --semantic-color-foreground-action-status-info-on-subtle-pressed: var(--primitive-color-amethyst-50);
-  --semantic-color-foreground-action-status-info-on-strong: var(--primitive-color-cool-neutral-900);
+  --semantic-color-foreground-action-status-info-on-strong: var(--primitive-color-amethyst-900);
   --semantic-color-foreground-action-status-positive-on-subtle-rest: var(--primitive-color-green-300);
   --semantic-color-foreground-action-status-positive-on-subtle-hover: var(--primitive-color-green-200);
   --semantic-color-foreground-action-status-positive-on-subtle-pressed: var(--primitive-color-green-150);
@@ -114,7 +114,7 @@
   --semantic-color-foreground-action-status-attention-on-subtle-rest: var(--primitive-color-saffron-300);
   --semantic-color-foreground-action-status-attention-on-subtle-hover: var(--primitive-color-saffron-200);
   --semantic-color-foreground-action-status-attention-on-subtle-pressed: var(--primitive-color-saffron-150);
-  --semantic-color-foreground-action-status-attention-on-strong: var(--primitive-color-cool-neutral-900);
+  --semantic-color-foreground-action-status-attention-on-strong: var(--primitive-color-saffron-700);
   --semantic-color-foreground-action-status-severe-on-subtle-rest: var(--primitive-color-orange-250);
   --semantic-color-foreground-action-status-severe-on-subtle-hover: var(--primitive-color-orange-200);
   --semantic-color-foreground-action-status-severe-on-subtle-pressed: var(--primitive-color-orange-150);
