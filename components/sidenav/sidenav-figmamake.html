@@ -1688,7 +1688,8 @@ function App() {
   // Even on a 393px phone, 250px leaves a 143px scrim strip to tap outside.
   // Full-width overlays feel like modals and destroy context; 250px is industry
   // standard (Gmail, Slack, WhatsApp all use ~260–320px drawers on phone).
-  const overlayNavW = 240;
+  // Overlay drawer reuses the expanded width token.
+  const overlayNavW = 250;
 
   return (
     <div style={{ display:"flex", flexDirection:"column", height:"100vh",
