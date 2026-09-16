@@ -86,9 +86,13 @@ Ten semantic tones, each one a real child of `foreground.static` in `tokens/path
 
 <Canvas of={Stories.EmphasisLadder} />
 
-Every tone exposes the same five emphasis levels: `light` · `subtle` · `base` *(default)* · `contrast` · `bold`. Start with `base`. Use `light`/`subtle` when the spinner sits on a strongly tinted surface of the same tone (and the base would be too heavy); use `contrast`/`bold` only when `base` doesn't stand out enough. If you reach for `bold` often, the surface is probably wrong.
+**`emphasis` only does something on `tone="neutral"`.** Nine of the ten tones resolve all five levels to one colour, which is measured rather than assumed.
 
-`tone="brand"` is the exception: it has one value and the emphasis control does nothing. `Foreground/Brand` was removed from the Variables panel on 2026-09-14, because a brand-coloured foreground now exists only as an action foreground — the naked primary button — and there is exactly one of those.
+That is the token architecture, not a bug here. Since 2026-09-16 a tone carries exactly one canvas-readable foreground, `Foreground/Static/<Tone>/On Subtle`, because a five-rung ladder per tone produced rungs nobody could tell apart. Only Neutral kept a ladder, since it carries most of the UI. On `neutral`, `light`/`subtle` give you Faint, `base` gives Base, `contrast` gives Bold and `bold` gives Strong.
+
+The prop stays so existing call sites keep working; passing it on another tone is harmless and does nothing.
+
+Two pairs are now the same colour for the same reason: `danger` equals `negative`, and `accent-amethyst` equals `info` because Amethyst is what `Info` resolves to. Prefer the meaning name in new code.
 
 ### How the token resolves
 

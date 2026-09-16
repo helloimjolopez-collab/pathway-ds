@@ -327,7 +327,7 @@ every row below is the token the spinner CSS actually binds at
 > is why info and brand spinners were indistinguishable. Info is Amethyst now,
 > system-wide.
 
-> **Note on "accent":** there is no single `accent` tone in the token file; accent is split into three families (`accent-amethyst`, `accent-jade`, `accent-seabreeze`), each of which is a distinct semantic tone. The spinner exposes all three.
+> **Note on "accent":** there is no single `accent` tone in the token file. Under `Static` the decorative hues sit beneath `Accent` (`Accent/Jade`, `Accent/Mauve`, `Accent/Lagoon`, `Accent/Seabreeze`) precisely because they carry no meaning. The spinner exposes `accent-jade` and `accent-seabreeze`; its third, `accent-amethyst`, is now the same colour as `info`, because Amethyst is what `Info` resolves to.
 
 > **Note on the status tones:** the token library defines exactly four status intents, each bound to one primitive family — `negative` (red), `alert` (orange), `warning` (saffron), `positive` (green). Use `warning` to prompt the user to stop and look, `alert` when something is failing but recoverable, and `negative` when something has already failed. The spinner accepts all of them for completeness; most product uses will only ever need `neutral` or `brand`.
 >
@@ -335,15 +335,37 @@ every row below is the token the spinner CSS actually binds at
 
 #### 7.1.2 Allowed `emphasis` values
 
-Every tone family defines these five emphases, in ascending contrast order:
+**`emphasis` only changes anything on `tone="neutral"`.** Every other tone ignores
+it. This is measured, not assumed: of the ten tones the spinner exposes, nine
+resolve all five emphasis levels to a single colour.
 
-| `emphasis` | Notes |
+The reason is the token architecture, not a bug in the spinner. As of 2026-09-16 a
+tone carries exactly one canvas-readable foreground,
+`Foreground/Static/<Tone>/On Subtle`, because a five-rung ladder per tone produced
+rungs nobody could tell apart. Only Neutral kept a ladder, since it carries most
+of the UI.
+
+| `emphasis` | On `neutral` | On every other tone |
+|---|---|---|
+| `light` | `foreground.static.neutral.faint` | ignored |
+| `subtle` | `foreground.static.neutral.faint` | ignored |
+| `base` *(default)* | `foreground.static.neutral.base` | ignored |
+| `contrast` | `foreground.static.neutral.bold` | ignored |
+| `bold` | `foreground.static.neutral.strong` | ignored |
+
+The prop is kept rather than removed so existing call sites keep working. Passing
+it on a non-neutral tone is harmless and has no effect.
+
+**Two tone pairs now resolve identically**, for the same reason:
+
+| These tones | Both resolve to |
 |---|---|
-| `light` | Faintest usable value; for spinners on strongly tinted surfaces of the same tone. |
-| `subtle` | One notch darker than `light`. |
-| `base` *(default)* | The standard value — start here. |
-| `contrast` | For spinners sitting on light-tinted surfaces of the same tone where `base` would be too close in value. |
-| `bold` | Heaviest value — use sparingly. |
+| `danger`, `negative` | `foreground.static.negative.on-subtle` |
+| `accent-amethyst`, `info` | `foreground.static.info.on-subtle` |
+
+`Info` IS Amethyst under the meaning-named Static groups, so the two names were
+always the same colour; the rename made that visible. Prefer the meaning name
+(`negative`, `info`) in new code.
 
 #### 7.1.3 Resolution rule
 
@@ -555,10 +577,10 @@ The `data-tone`/`data-emphasis` attributes are what CSS uses to resolve the corr
 > spinner. The token for that exists as of 2026-09-14 —
 > `foreground.static.neutral.mono` is `#ffffff` in both Light and Midnight, which is
 > exactly an inverse track. What is still missing is a way to *reach* it: the
-> `neutral` tone's emphasis ramp runs `faint → dim → subtle → contrast → bold`
-> and never touches `mono`. Adding a `mono` tone is five CSS rules plus an
-> argType; until then, use a disabled button with a text-only "Saving…" label
-> rather than an under-contrast spinner. See §11.
+> `neutral` tone's emphasis ramp runs `faint → base → bold → strong` and never
+> touches `mono`. Adding a `mono` tone is five CSS rules plus an argType; until
+> then, use a disabled button with a text-only "Saving…" label rather than an
+> under-contrast spinner. See §11.
 
 ### 9.4 Inline in running copy
 
@@ -621,7 +643,7 @@ Hard rules. Breaking any of these breaks the component's contract.
 | ~~`tone="danger"` no longer matches its token family~~ | RESOLVED 2026-09-07 | Status/Alert was renamed to Status/Severe, so the tone and the token family agree. |
 | `spinner.html` redeclares semantic tokens from primitives | MEDIUM (superseded: the demo now links the contract, verified by `scripts/check-demo-tokens.js`) | Lines ~98–102 define `--semantic-color-light-mode-icon-static-*` locally as `var(--primitive-color-orange-*)` rather than consuming `tokens.css`. That is a §6 violation and it means the demo does not track token changes. It also masked the `danger` rename, since the demo defines its own copies. |
 | No `motion` tokens in `pathway-design-tokens.json` | MEDIUM | Duration (`1s`) and easing (`linear`) are hard-coded. Recommend adding a motion token category (see §7.3). Blocks cross-component consistency, not this component's ship. |
-| No `mono` tone on the spinner | MEDIUM | The inverse *token* now exists: `foreground.static.neutral.mono` is `#ffffff` in both modes. The spinner cannot reach it, because the `neutral` emphasis ramp runs `faint → dim → subtle → contrast → bold`. Fix is a `mono` tone: five CSS rules plus an argType. See §9.3. |
+| No `mono` tone on the spinner | MEDIUM | The inverse *token* now exists: `foreground.static.neutral.mono` is `#ffffff` in both modes. The spinner cannot reach it, because the `neutral` emphasis ramp runs `faint → base → bold → strong`. Fix is a `mono` tone: five CSS rules plus an argType. See §9.3. |
 | `warning` `base` is nearly black | LOW | `foreground.static.attention.on-subtle` is `saffron-700` (`#342d21`). That rung is built for *text* on a pale fill, so as a graphic a "warning" spinner reads as dark brown rather than amber. Retuning it means picking a different rung, not a different token. |
 | ~~`warning`, `danger`, `negative`, `positive` bind static `Foreground/Status/*`~~ | RESOLVED 2026-09-15 | The Foreground and Stroke halves of that group are gone. Attention and Severe folded onto the Accent ladders they duplicated (`foreground.static.attention.*`, `foreground.static.severe.*` — 5 of 10 were value-identical), and Negative and Positive were promoted to sit beside Neutral (`foreground.static.negative.*`, `foreground.static.positive.*`). All four tones now name live tokens. |
 | No dark-mode runtime switch | MEDIUM | The token file emits `dark-mode` variables but no theme-switching mechanism exists yet. Spinner binds `light-mode` only. Revisit when the broader DS picks a theme-switching strategy (`[data-theme="dark"]`, `prefers-color-scheme`, …). |

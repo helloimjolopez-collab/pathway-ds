@@ -29,9 +29,12 @@ const ST = (p) => `var(--semantic-type-${p})`;
 // ─── FILL TOKENS ──────────────────────────────────────────────────────────────
 // Background colour by (buttonStyle, type, interactionState).
 // Outlined/Naked use transparent base + light overlay on hover/pressed.
-// Tertiary's own token family was deleted because it duplicated Primary Dim
-// offset by one ramp step, so Tertiary now reads the Primary Dim ramp. Negative
-// moved under Status. Disabled is ONE token per tier, not one per type — a
+// Tertiary's own token family was deleted because it duplicated the quiet
+// primary ramp offset by one step, so Tertiary now reads
+// Fill/Action/Primary/Subtle. That group was called "Primary Dim" until
+// 2026-09-15, when the space-joined suffix was promoted to a real segment
+// because "Primary Dim" read as a tone name rather than a variant of Primary.
+// Negative moved under Status. Disabled is ONE token per tier, not one per type — a
 // disabled control is the same colour whatever it would have been.
 export const FILL = {
   Fill: {
