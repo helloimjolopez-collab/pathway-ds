@@ -1,8 +1,8 @@
 /**
- * check-pairing-invariant.js — fail the build when a fill offers a variant its
+ * check-fill-foreground-pairs.js — fail the build when a fill offers a variant its
  * paired foreground does not, or a foreground claims a pairing no fill offers.
  *
- * THE INVARIANT:
+ * THE RULE (it must always be true, which is why the build checks it):
  *
  *   Wherever a tone has a Subtle fill, it has a paired On Subtle foreground.
  *   Wherever a tone has a Strong fill, it has a paired On Strong foreground.
@@ -28,7 +28,7 @@
  * perfectly well. The defect is in what the SET of names does or does not offer,
  * which you only see by comparing tiers against each other.
  *
- * TWO DELIBERATE EXEMPTIONS, both recorded here rather than left implicit:
+ * TWO DELIBERATE EXCEPTIONS, both recorded here rather than left implicit:
  *
  *   Neutral runs a LADDER (Mono, Faint, Subtle, Base, Bold, Strong) rather than
  *   a pair, in fill, foreground and stroke alike, because it carries most of the
@@ -41,7 +41,7 @@
  *   check-variant-distinctness.js exists to catch. On a pale fill the contrast
  *   genuinely shifts per state, so that half stays per-state.
  *
- * Usage:  node scripts/check-pairing-invariant.js [--verbose]
+ * Usage:  node scripts/check-fill-foreground-pairs.js [--verbose]
  * Exit 1 if the invariant is broken.
  */
 
@@ -114,11 +114,11 @@ if (problems.length) {
   console.error(`\n${problems.length} pairing problem(s):\n`);
   for (const p of problems) console.error(`  ${p.kind.toUpperCase().padEnd(14)} ${p.detail}`);
   console.error(
-    "\nThe pairing model is what stops tone text landing on a tone block at 1.4:1.\n" +
+    "\nThis rule is what stops tone-coloured text landing on a tone-coloured block at 1.4:1.\n" +
       "Either add the missing half, or remove the name that promises a pair it does not have.\n" +
       "A tone that should run a ladder instead of a pair belongs in LADDER_NOT_PAIR, with a reason.\n"
   );
   process.exit(1);
 }
 
-console.log(`Pairing invariant holds across all ${checked} paired tone groups.`);
+console.log(`Every fill has the foreground that goes on it. Checked ${checked} paired tone groups.`);

@@ -16,13 +16,6 @@ Complete implementation reference for the Search Input and TopNavSearch componen
 
 ---
 
-## Authorship
-
-Design (Jo Lopez) owns and signs off on: Status, Purpose, Variants, States, Token reference, Figma setup, Accessibility intent, Usage rules.
-Engineering owns and signs off on: prop types, ARIA implementation in code, browser-specific behaviour.
-Neither party signs off on the other's section.
-
----
 
 ## 1. Component Overview
 
@@ -74,6 +67,11 @@ The filter button is an affordance that navigates the user to a separate filter 
 | ARIA implementation detail | Engineering | §13 of this spec |
 | When to show filter-active state | Product | §9 of this spec |
 | Open state (dropdown) design | Design | Deferred — production dropdown unchanged, future v2 pass. See §17. |
+
+**Rule:** neither party signs off on the other's rows. Design owns Status, purpose,
+variants, states, token assignments, Figma setup, accessibility intent and usage
+rules. Engineering owns prop types, the ARIA implementation in code, and
+browser-specific behaviour.
 
 ---
 
@@ -589,13 +587,6 @@ The HTML demo at `components/search/search.html` is the production visual refere
 
 ---
 
-## Changelog
-
-| Version | Date | Author | Change |
-|---|---|---|---|
-| 0.1 | 2026-05-13 | Jo Lopez + Claude | Initial draft. Base search input + TopNavSearch. All states from Figma 40006978-23158, 40007351-13533, 40007095-4048. Filter-active: blue border + tertiary-base funnel fill, input active (not disabled). Spring expand animation locked. |
-
----
 
 ## Agent implementation rules
 

@@ -16,13 +16,6 @@ The right-side **action-icon group** of the TopNav, with responsive overflow. Wh
 
 ---
 
-## Authorship
-
-Design (Jo Lopez) owns and signs off on: Status, Purpose, Collapse rule, States, Token reference, Figma setup, Accessibility intent, Usage rules.
-Engineering owns and signs off on: prop types, the menu's ARIA/keyboard implementation, browser behaviour.
-Neither party signs off on the other's section.
-
----
 
 ## 1. Component Overview
 
@@ -65,6 +58,9 @@ Neither party signs off on the other's section.
 | Reused dropdown-panel tokens | Design | `components/top-nav` `T` theme (shared with ModuleSwitcher/OrgSwitcher/Profile) |
 
 ---
+
+
+**Rule:** Design (Jo Lopez) owns and signs off on: Status, Purpose, Collapse rule, States, Token reference, Figma setup, Accessibility intent, Usage rules. Engineering owns and signs off on: prop types, the menu's ARIA/keyboard implementation, browser behaviour. Neither party signs off on the other's section.
 
 ## 3. Anatomy
 
@@ -258,9 +254,3 @@ The menu open/close reuses the **TopNav dropdown-panel motion** (same as ModuleS
 - **Verify:** Storybook story with a `breakpoint` control + an `actions` count, showing inline / collapsed / open; computed touch targets ≥ 44px.
 
 ---
-
-## Changelog
-
-| Version | Date | Author | Change |
-|---|---|---|---|
-| 0.1 | 2026-06-25 | Jo Lopez + Claude | Initial draft from the studio demo. Only action icons collapse; ellipsis (`more_vert`) → anchored dropdown menu reusing the TopNav panel; mobile-optimal (48px rows, tap-catcher, no sheet); collapse rule desktop=inline / tablet>3 / mobile>1. Figma Open-variant + labels flagged as the parity gap. |

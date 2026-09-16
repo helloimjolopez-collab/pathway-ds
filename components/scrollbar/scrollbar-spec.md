@@ -15,13 +15,6 @@ The canonical, reusable overlay scrollbar for Pathway. `<Scrollable>` wraps any 
 
 ---
 
-## Authorship
-
-Design (Jo Lopez) owns and signs off on: Status, Purpose, States, Token reference, Accessibility intent, Usage rules.
-Engineering owns and signs off on: prop types, the native-scrollbar-hide implementation, browser-specific backdrop-filter behaviour.
-Neither party signs off on the other's section.
-
----
 
 ## 1. Component Overview
 
@@ -62,6 +55,8 @@ Pathway hides the native bar entirely and draws its own thumb. That is the only 
 | The native-scrollbar-hide rule | Engineering | `scrollbar.jsx` injected `<style id="pds-scrollable-base">` |
 | System-wide adoption guidance | Design | "System-wide adoption and rationale" at the end of this spec |
 | Figma | — | N/A — no Figma node (see §1.2) |
+
+**Rule:** Design (Jo Lopez) owns and signs off on: Status, Purpose, States, Token reference, Accessibility intent, Usage rules. Engineering owns and signs off on: prop types, the native-scrollbar-hide implementation, browser-specific backdrop-filter behaviour. Neither party signs off on the other's section.
 
 ---
 
@@ -286,13 +281,6 @@ Hard rules:
 
 ---
 
-## Changelog
-
-| Version | Date | Author | Change |
-|---|---|---|---|
-| 1.0 | 2026-06-23 | Jo Lopez + Claude | Canonical component spec authored in `components/scrollbar/` (was previously only the system-wide `docs/scrollbar-spec.md`). Documents the code-only / no-Figma model, semantic-token bindings (rest and hover scrim rungs; see the token table for current values), liquid-glass thumb, edge-hug rule, accessibility, responsiveness, motion. |
-
----
 
 ## System-wide adoption and rationale
 

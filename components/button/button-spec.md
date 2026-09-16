@@ -7,13 +7,6 @@
 
 ---
 
-## Authorship
-
-Design owns and signs off on: Status, Purpose, Variants, States, Token reference, Figma setup, Accessibility intent, Usage rules.  
-Engineering owns and signs off on: prop types, ARIA implementation in code, browser-specific behaviour.  
-Neither signs off on the other's section.
-
----
 
 ## §1 Purpose
 
@@ -52,6 +45,9 @@ The Button is **not** a navigation element. It does not route users to a new URL
 - **Button component:** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003293-93741)
 
 ---
+
+
+**Rule:** Design owns and signs off on: Status, Purpose, Variants, States, Token reference, Figma setup, Accessibility intent, Usage rules. Engineering owns and signs off on: prop types, ARIA implementation in code, browser-specific behaviour. Neither signs off on the other's section.
 
 ## §3 Anatomy
 
