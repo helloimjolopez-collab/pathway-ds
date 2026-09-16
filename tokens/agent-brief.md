@@ -262,7 +262,7 @@ Accelerate (exit):  cubic-bezier(0.4, 0, 0.6, 1)
 
 If no component exists for what you need (e.g. a custom card, a banner, a confirmation message):
 
-1. **Background:** pick from the Surface or Fill families. White cards use `Fill/Static/Neutral/White`. Subtle grey panels use `Fill/Surface/Canvas` (`#fafafa`). Don't invent new surface colours.
+1. **Background:** pick from the Surface or Fill families. White cards use `Fill/Static/Neutral/Mono`. Subtle grey panels use `Fill/Surface/Canvas` (`#fafafa`). Don't invent new surface colours.
 
 2. **Border:** `Stroke/Static/Neutral/Base` (`#ededed`) for separating elements, `Stroke/Static/Neutral/Base` (`#f6f6f6`) for very subtle structural dividers.
 

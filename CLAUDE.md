@@ -57,10 +57,10 @@ tokens/pathway-design-tokens.json                        │
   └──────────────────────────┬────────────────────────────┘
                              │  node style-dictionary.config.js
                              ▼
-        src/tokens/primitives.css          350 raw ramp values — REQUIRED, the themes
+        src/tokens/primitives.css          351 raw ramp values — REQUIRED, the themes
                                            reference these via var()
-        src/tokens/themes/light.css        162 semantic colours, :root + [data-theme=light]
-        src/tokens/themes/midnight.css     the same 162 names under [data-theme=midnight]
+        src/tokens/themes/light.css        172 semantic colours, :root + [data-theme=light]
+        src/tokens/themes/midnight.css     the same 172 names under [data-theme=midnight]
         src/tokens/layout.css              40 layout tokens, breakpoint by media query
         src/tokens/layout-contextual.css   26 component metrics, same treatment
         src/tokens/type.css                41 type scale tokens
@@ -76,7 +76,7 @@ authenticated and absent in headless runs.
 
 **The read must be paged, and the guard must not be bypassed.** MCP responses cap
 at roughly 20KB against ~2,300 variable-mode rows, so a single read truncates
-silently at about 350 rows. That is the dangerous failure — a truncated page
+silently at about 351 rows. That is the dangerous failure — a truncated page
 yields a token file that looks plausible, is missing hundreds of tokens, and
 builds successfully. So: the first page declares the expected row total, pages
 land in `.figma-dump/*.tsv`, and `scripts/assemble-figma-export.js` **refuses to
@@ -101,8 +101,8 @@ Load these eight, in this order:
 
 | File | Contains | Consume it? |
 |---|---|---|
-| `primitives.css` | 350 raw ramp values | **Required, but never referenced.** The themes point at these via `var()`, so the file must load or every colour resolves to nothing. Product code must never name a `--primitive-*` (§6) |
-| `themes/light.css` + `themes/midnight.css` | 162 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
+| `primitives.css` | 351 raw ramp values | **Required, but never referenced.** The themes point at these via `var()`, so the file must load or every colour resolves to nothing. Product code must never name a `--primitive-*` (§6) |
+| `themes/light.css` + `themes/midnight.css` | 172 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
 | `layout.css` | 40 layout and spacing names, single-valued | **Yes.** The spacing contract |
 | `layout-responsive.css` | 6 names that genuinely change by breakpoint: Sheet padding, TopNav padding and height. Emitted with media queries | **Yes.** A developer cannot derive these from a responsive grid — the grid governs columns, not the chrome's padding |
 | `layout-contextual.css` | 26 component metrics (Button, Card, NavItem, focus ring) | Component internals. This repo's components use it; product code should not |

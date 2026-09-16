@@ -940,7 +940,7 @@ Both appear with an **8px gap** from the container's right edge (`left: calc(100
 
 | Property | Value | Token |
 |---|---|---|
-| Background | `white` | `Fill/Static/Neutral/White` |
+| Background | `white` | `Fill/Static/Neutral/Mono` |
 | Border | `0.5px solid #f6f6f6` | `Stroke/Static/Neutral/Base` |
 | Border radius | `8px` | `Border/Radius/S` |
 | Shadow | `2px 2px 8px 0px rgba(0,0,0,0.03)` |: |
@@ -953,7 +953,7 @@ Both appear with an **8px gap** from the container's right edge (`left: calc(100
 
 | Property | Value | Token |
 |---|---|---|
-| Background | `white` | `Fill/Static/Neutral/White` |
+| Background | `white` | `Fill/Static/Neutral/Mono` |
 | Border | `0.5px solid #ededed` | `Stroke/Static/Neutral/Base` |
 | Border radius | `8px` | `Border/Radius/S` |
 | Shadow | `2px 2px 8px 4px rgba(0,0,0,0.03)` | `Shadow.Medium` |

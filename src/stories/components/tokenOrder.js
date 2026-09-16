@@ -28,7 +28,7 @@
 //
 //   Faint, Subtle, Base, Bold, Strong
 //
-// with Neutral allowed Mono and White on top of that. Two things landed at once:
+// with Neutral allowed Mono on top of that. Two things landed at once:
 // the `Accent` tier was dropped, so a hue sits directly under Static
 // (Fill/Static/Jade/Subtle, not Fill/Static/Accent/Jade/Faint), and every group
 // shifted up one so the heaviest rung is Strong rather than Bold. Base is the
@@ -66,10 +66,13 @@
 // Strong ends it (see the top of this comment). These are the only
 // non-conforming rungs left, and each is deliberate:
 //
-//   white     Fill/Static/Neutral/White    Neutral is allowed extras
+//   mono      Fill/Static/Neutral/Mono     Neutral is allowed the anchor
 //   strongest Fill/Static/Brand/Strongest  a sixth rung past Strong, Brand only
 //   light     Scrim/Light                  Scrim is an opacity ramp, not a tone one
 //   xlight    nothing on main              kept for the NewCo branch, which has it
+//   white     nothing                      retired 2026-09-16: the neutral fill
+//                                          anchor was renamed Mono to match the
+//                                          name the foreground side already used
 //   black     nothing                      retired 2026-09-15, see below
 //
 // Brand's sixth rung was spelled Dark on Fill and Black on Stroke, which put two

@@ -874,7 +874,7 @@ function SideNavItem({ item, isActive, isTrail, isExpanded, isSidebarCollapsed,
 
 // ── SideNavTooltip ─────────────────────────────────────────────────────────
 // Shown on hover of a collapsed destination item (non-grouper).
-// Tokens: Fill/Static/Neutral/White, Stroke/Static/Neutral/Base (#f6f6f6),
+// Tokens: Fill/Static/Neutral/Mono, Stroke/Static/Neutral/Base (#f6f6f6),
 //         Foreground/Static/Neutral/Bold (#202020), Text/Body/S/Regular (14px/400/20px)
 // Shadow: 2px 2px 8px 0px rgba(0,0,0,0.03)
 // Offset: left edge at container right edge + 8px gap (bridge element covers gap)
@@ -1024,7 +1024,7 @@ function SideNavListSection({ label, items, activeId, onNavigate }) {
 // ── CollapsedPopover ─────────────────────────────────────────────────────────
 // Shown on hover of a collapsed grouper item. Contains a SectionLabel (group
 // name) + list of child items.
-// Tokens: Fill/Static/Neutral/White, Stroke/Static/Neutral/Base (#ededed) 0.5px,
+// Tokens: Fill/Static/Neutral/Mono, Stroke/Static/Neutral/Base (#ededed) 0.5px,
 //         Border/Radius/S (8px), Shadow.Medium (2px 2px 8px 4px rgba(0,0,0,0.03))
 // Section label: Label/Section/Small/Semibold (11px/600/16px/0.6px), #7b7b7b, uppercase, bottom border
 // Items: Text/Body/S/Regular (14px/400/20px), Foreground/Action/Secondary/Rest (#313131)
@@ -1325,7 +1325,7 @@ const TOKEN_ROWS = [
   // ── Surface ────────────────────────────────────────────────────────────────
   { cat:"Surface", semantic:"Fill/Surface/Sheet",              prim:"—",        value:"#fafafa",              role:"SideNav container background" },
   { cat:"Surface", semantic:"Fill/Surface/Canvas",           prim:"Brand/10", value:"#fafafa",              role:"Page/viewport background (confirmed Figma variable)" },
-  { cat:"Surface", semantic:"Fill/Static/Neutral/White",      prim:"—",        value:"#ffffff",              role:"PopoverMenu surface + SideNavTooltip background" },
+  { cat:"Surface", semantic:"Fill/Static/Neutral/Mono",      prim:"—",        value:"#ffffff",              role:"PopoverMenu surface + SideNavTooltip background" },
 
   // ── Fill (NavItem states) ──────────────────────────────────────────────────
   { cat:"Fill",    semantic:"no fill (rest paints nothing)",   prim:"—",        value:"#fafafa",              role:"Item resting fill (effectively transparent on nav surface)" },
