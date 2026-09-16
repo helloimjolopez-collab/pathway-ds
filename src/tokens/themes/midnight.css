@@ -14,7 +14,7 @@
  still the lightest-touch step even though here it is a dark near-ground.
  White, XLight and Black are inversion anchors and keep their value.
 
- Declares 140 custom properties.
+ Declares 144 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -38,6 +38,9 @@
   --semantic-color-fill-action-status-positive-subtle-rest: var(--primitive-color-green-800);
   --semantic-color-fill-action-status-positive-subtle-hover: var(--primitive-color-green-700);
   --semantic-color-fill-action-status-positive-subtle-pressed: var(--primitive-color-green-600);
+  --semantic-color-fill-action-status-positive-strong-rest: var(--primitive-color-green-350);
+  --semantic-color-fill-action-status-positive-strong-hover: var(--primitive-color-green-300);
+  --semantic-color-fill-action-status-positive-strong-pressed: var(--primitive-color-green-200);
   --semantic-color-fill-action-status-negative-strong-rest: var(--primitive-color-red-200);
   --semantic-color-fill-action-status-negative-strong-hover: var(--primitive-color-red-150);
   --semantic-color-fill-action-status-negative-strong-pressed: var(--primitive-color-red-100);
@@ -74,6 +77,14 @@
   --semantic-color-fill-static-accent-mauve-strong: var(--primitive-color-mauve-150);
   --semantic-color-fill-static-accent-lagoon-subtle: var(--primitive-color-lagoon-800);
   --semantic-color-fill-static-accent-lagoon-strong: var(--primitive-color-lagoon-250);
+  --semantic-color-foreground-action-status-positive-on-strong: var(--primitive-color-cool-neutral-900);
+  --semantic-color-foreground-action-status-positive-on-subtle-rest: var(--primitive-color-green-300);
+  --semantic-color-foreground-action-status-positive-on-subtle-hover: var(--primitive-color-green-200);
+  --semantic-color-foreground-action-status-positive-on-subtle-pressed: var(--primitive-color-green-150);
+  --semantic-color-foreground-action-status-negative-on-subtle-rest: var(--primitive-color-red-200);
+  --semantic-color-foreground-action-status-negative-on-subtle-hover: var(--primitive-color-red-150);
+  --semantic-color-foreground-action-status-negative-on-subtle-pressed: var(--primitive-color-red-100);
+  --semantic-color-foreground-action-status-negative-on-strong: var(--primitive-color-cool-neutral-900);
   --semantic-color-foreground-action-disabled: var(--primitive-color-cool-neutral-0-50);
   --semantic-color-foreground-action-primary-on-subtle-rest: var(--primitive-color-brand-50);
   --semantic-color-foreground-action-primary-on-subtle-hover: var(--primitive-color-brand-25);
@@ -82,13 +93,6 @@
   --semantic-color-foreground-action-secondary-rest: var(--primitive-color-cool-neutral-175);
   --semantic-color-foreground-action-secondary-hover: var(--primitive-color-cool-neutral-150);
   --semantic-color-foreground-action-secondary-pressed: var(--primitive-color-cool-neutral-125);
-  --semantic-color-foreground-action-status-positive-on-subtle-rest: var(--primitive-color-green-300);
-  --semantic-color-foreground-action-status-positive-on-subtle-hover: var(--primitive-color-green-200);
-  --semantic-color-foreground-action-status-positive-on-subtle-pressed: var(--primitive-color-green-150);
-  --semantic-color-foreground-action-status-negative-on-subtle-rest: var(--primitive-color-red-200);
-  --semantic-color-foreground-action-status-negative-on-subtle-hover: var(--primitive-color-red-150);
-  --semantic-color-foreground-action-status-negative-on-subtle-pressed: var(--primitive-color-red-100);
-  --semantic-color-foreground-action-status-negative-on-strong: var(--primitive-color-cool-neutral-900);
   --semantic-color-foreground-static-neutral-mono: var(--primitive-color-cool-neutral-0);
   --semantic-color-foreground-static-neutral-faint: var(--primitive-color-cool-neutral-250);
   --semantic-color-foreground-static-neutral-subtle: var(--primitive-color-cool-neutral-175);
