@@ -157,7 +157,7 @@ TopNavSearch.Container               overflow hidden, padding 4px, flex row alig
 
 **Badge dot**
 - 6×6px, `position: absolute; top: 1px; right: 1px` on the badge-wrap
-- Fill: `#345499` (`fill.action.primary.strong.rest`)
+- Fill: `#4364b6` (`fill.action.primary.strong.rest`)
 - Border: `1.5px solid #ffffff` (white ring)
 - `aria-hidden="true"` — accessible state communicated via aria-label change on button
 

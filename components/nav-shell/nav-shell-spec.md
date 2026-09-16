@@ -98,41 +98,41 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `fill.static.brand.base` | `--semantic-color-fill-static-brand-base` | #2d4889 | Nav bar background |
+| `fill.static.brand.base` | `--semantic-color-fill-static-brand-base` | #ccd7f2 | Nav bar background |
 | `fill.action.primary.subtle.rest` (dark) | dark-mode | rgba(160,181,230,0.04) | OrgSwitcher resting fill |
 | `stroke.action.primary.rest` (dark) | dark-mode | rgba(160,181,230,0.16) | OrgSwitcher border |
 | `fill.action.primary.subtle.hover` (dark) | dark-mode | rgba(10,18,35,0.16) | All nav controls hover |
-| `foreground.static.neutral.mono` (dark) | dark-mode | #fbfbfb | All text + icons on nav |
-| `fill.static.info.subtle` | `--semantic-color-fill-static-info-subtle` | #dcd9ef | Profile avatar bg |
-| `foreground.static.info.on-subtle` | `--semantic-color-foreground-static-info-on-subtle` | #221e3f | Profile avatar initials |
+| `foreground.static.neutral.mono` (dark) | dark-mode | #ffffff | All text + icons on nav |
+| `fill.static.info.subtle` | `--semantic-color-fill-static-info-subtle` | #f4f2fa | Profile avatar bg |
+| `foreground.static.info.on-subtle` | `--semantic-color-foreground-static-info-on-subtle` | #464080 | Profile avatar initials |
 
 ### SideNav surface (light mode)
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
 | `surface.nav.light` | `--semantic-color-fill-surface-sheet` | #f9f9f9 | SideNav background |
-| `stroke.static.neutral.base` | `--semantic-color-stroke-static-neutral-faint` | #f6f6f6 | Right border + section separators |
+| `stroke.static.neutral.base` | `--semantic-color-stroke-static-neutral-faint` | #d8d3cd | Right border + section separators |
 | `fill.action.selection.hover` | `--semantic-color-fill-action-selection-hover` | rgba(69,77,94,0.06) | Nav item hover |
 | `fill.action.selection.selected` | `--semantic-color-fill-action-selection-selected` | #eef2fb | Active nav item fill |
-| `foreground.action.secondary.rest` | `--semantic-color-foreground-action-secondary-rest` | #484848 | Nav item label |
-| `foreground.action.secondary.pressed` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #3555a0 | Active nav item label |
-| `foreground.action.secondary.rest` | `--semantic-color-foreground-action-secondary-rest` | #606060 | Nav item icon (resting) |
-| `foreground.action.secondary.pressed` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #3555a0 | Active nav item icon |
+| `foreground.action.secondary.rest` | `--semantic-color-foreground-action-secondary-rest` | #3d3d3d | Nav item label |
+| `foreground.action.secondary.pressed` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #161616 | Active nav item label |
+| `foreground.action.secondary.rest` | `--semantic-color-foreground-action-secondary-rest` | #3d3d3d | Nav item icon (resting) |
+| `foreground.action.secondary.pressed` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #161616 | Active nav item icon |
 
 ### ScreenTemplate surface (light mode)
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
 | `surface.canvas.light` | `--semantic-color-fill-surface-canvas` | #fafafa | Page background |
-| `fill.static.neutral.faint` | `--semantic-color-fill-static-neutral-faint` | #ffffff | Card background |
-| `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` | #d2d2d2 | Card border + toolbar search border |
+| `fill.static.neutral.faint` | `--semantic-color-fill-static-neutral-faint` | #f9f7f5 | Card background |
+| `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` | #b0aaa2 | Card border + toolbar search border |
 | `foreground.static.neutral.bold` | `--semantic-color-foreground-static-neutral-bold` | #202020 | Page heading, card title |
-| `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` | #484848 | Page subtitle |
-| `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` | #606060 | Section heading, card body, search placeholder |
+| `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` | #313131 | Page subtitle |
+| `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` | #313131 | Section heading, card body, search placeholder |
 | `fill.action.primary.subtle.rest` | `--semantic-color-fill-action-primary-subtle-rest` | #eef2fb | Active filter chip bg |
-| `foreground.action.primary.on-subtle.rest` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #3555a0 | Active tab, active filter chip text |
+| `foreground.action.primary.on-subtle.rest` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #345499 | Active tab, active filter chip text |
 | `fill.accent_amethyst.light` | `--semantic-color-fill-static-info-subtle` | #f4f2fa | Badge background |
-| `foreground.static.info.on-subtle` | `--semantic-color-foreground-static-info-on-subtle` | #221e3f | Badge text |
+| `foreground.static.info.on-subtle` | `--semantic-color-foreground-static-info-on-subtle` | #464080 | Badge text |
 
 ---
 
@@ -228,9 +228,9 @@ The ScreenTemplate fills the Shell.Main scrollable area. It is composed from fou
 Optional. When present, renders above the PageHeading.
 
 - Background: `surface.canvas.light` (#fafafa)
-- Active tab: `foreground.action.primary.on-subtle.rest` (#3555a0), font-weight 600
-- Active indicator: 2px bar at bottom, `fill.action.primary.strong.rest` (#3555a0), border-radius 2px 2px 0 0
-- Inactive tab: `foreground.static.neutral.base` (#606060), font-weight 500
+- Active tab: `foreground.action.primary.on-subtle.rest` (#345499), font-weight 600
+- Active indicator: 2px bar at bottom, `fill.action.primary.strong.rest` (#4364b6), border-radius 2px 2px 0 0
+- Inactive tab: `foreground.static.neutral.base` (#313131), font-weight 500
 - Border-bottom on the tab container: 1px `stroke.static.neutral.base`
 
 ### 7.2 PageHeading
@@ -238,7 +238,7 @@ Optional. When present, renders above the PageHeading.
 - **Title:** `heading.page.base.semibold` — 24px / 600 / 30px line-height / 0.1px tracking
   - Color: `foreground.static.neutral.bold` = #202020
 - **Subtitle:** `text.body.base.regular` — 16px / 400 / 22px / 0.1px tracking
-  - Color: `foreground.static.neutral.base` = #484848
+  - Color: `foreground.static.neutral.base` = #313131
 - **Padding:** top 8px, bottom 16px, gap 8px between title and subtitle
 - **Trailing actions slot:** right-aligned, contains action buttons (Button DS component)
 
@@ -248,12 +248,12 @@ Stacks vertically at 8px gap. Default: one row.
 
 **Leading slot:**
 - Search bar: max-width 400px, min-width 200px, height 36px
-  - Border: 0.75px `stroke.action.secondary.rest` = #d2d2d2
+  - Border: 0.75px `stroke.action.secondary.rest` = #b0aaa2
   - **Border-radius: 6px** (NOT 8px — confirmed from Figma)
   - Padding: 8px horizontal
-  - Search icon: 16×16, `foreground.action.secondary.rest` = #6b6b6b
+  - Search icon: 16×16, `foreground.action.secondary.rest` = #3d3d3d
 - FilterChips: inline row, gap 4px, each chip min-height 48px
-  - Resting: transparent background, `foreground.action.secondary.rest` = #292724, font 12px/500
+  - Resting: transparent background, `foreground.action.secondary.rest` = #3d3d3d, font 12px/500
   - Active: `fill.action.primary.subtle.rest` = #eef2fb, `foreground.action.primary.on-subtle.rest` = #3555a0, font-weight 600
   - Border-radius: 4px (`border-radius.xs`) — NOT 8px
 
@@ -262,7 +262,7 @@ Stacks vertically at 8px gap. Default: one row.
 ### 7.4 Content sections
 
 Each section has:
-1. **SectionHeading:** 14px/600 uppercase, `foreground.static.neutral.base` (#606060), letter-spacing 0.6px, padding-vertical 6px
+1. **SectionHeading:** 14px/600 uppercase, `foreground.static.neutral.base` (#313131), letter-spacing 0.6px, padding-vertical 6px
 2. **Card grid:** `grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))`, gap 8px
 
 **Card anatomy:**
@@ -275,15 +275,15 @@ Card (bg: white, border: 0.5px #d2d2d2, radius: 8px, padding: 16px, gap: 12px)
 ├── Slot.CardSubtitle
 │   └── Badge (bg: fill.accent_amethyst.light = #f4f2fa, radius: 12px)
 │       └── label.badge.small.medium: 11px/500/16px, tracking 0.3px
-│           color: foreground.static.info.on-subtle = #221e3f
-└── CardBody (14px/400/20px, foreground.static.neutral.base = #606060)
+│           color: foreground.static.info.on-subtle = #464080
+└── CardBody (14px/400/20px, foreground.static.neutral.base = #313131)
 ```
 
 Card icon color variants (32×32 container):
 - **Accent/amethyst:** bg `fill.accent_amethyst.light` (#f4f2fa)
-- **Positive/green:** bg `fill.static.positive.subtle` (#f0faf1)
+- **Positive/green:** bg `fill.static.positive.subtle` (#dff6e2)
 - **Info/blue:** bg `fill.static.brand.faint` (#eef2fb)
-- **Warning:** bg `fill.static.attention.subtle` (#fff8e1)
+- **Warning:** bg `fill.static.attention.subtle` (#fef2de)
 
 ---
 

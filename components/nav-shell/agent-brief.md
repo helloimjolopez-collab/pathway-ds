@@ -75,8 +75,8 @@ All icons are **Material Symbols Rounded, FILL=1** (filled). Icon name = Figma l
 Background:         surface.canvas.light = #fafafa
 Page padding:       px:36 pt:12 pb:56
 Section gap:        gap-relaxed = 24px
-Card bg:            fill.static.neutral.faint = #ffffff
-Card border:        0.5px stroke.action.secondary.rest = #d2d2d2
+Card bg:            fill.static.neutral.faint = #f9f7f5
+Card border:        0.5px stroke.action.secondary.rest = #b0aaa2
 Card radius:        8px (contextual.card.cornerradius)
 ```
 

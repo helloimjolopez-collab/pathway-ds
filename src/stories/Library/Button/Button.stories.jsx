@@ -535,8 +535,8 @@ TokensStroke.parameters = {
   docs: {
     description: {
       story:
-        "Border tokens, Outlined only - Fill and Naked have no border. There is no Primary Dim " +
-        "stroke ramp, so Tertiary borrows the Primary stroke; that is a deliberate reuse, recorded " +
+        "Border tokens, Outlined only - Fill and Naked have no border. Fill/Action/Primary/Subtle " +
+        "has no matching stroke ramp, so Tertiary borrows the Primary stroke; that is a deliberate reuse, recorded " +
         "here so it does not read as a mistake. The border width comes from " +
         "`--contextual-layout-units-button-border-width-rest` (0.75px), not from a colour token. " +
         "Focus ring moved out of the retired Contextual group to Stroke/FocusRing and is a single " +

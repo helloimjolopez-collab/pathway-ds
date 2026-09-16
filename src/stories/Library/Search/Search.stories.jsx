@@ -330,7 +330,7 @@ export const TokensFill = () => (
     note="Backgrounds. Surface lives under Fill now, so the bar ground is a Fill token rather than a Surface one."
     rows={[
       { token: "fill.static.neutral.faint",       usage: "Bar background - all states except disabled" },
-      { token: "fill.action.primary.subtle.rest",    usage: "Filter pill background - filter-active state. Primary Dim replaced the deleted Tertiary ramp" },
+      { token: "fill.action.primary.subtle.rest",    usage: "Filter pill background - filter-active state. Primary/Subtle replaced the deleted Tertiary ramp" },
       { token: "fill.action.primary.subtle.hover",   usage: "Icon pill - hover. The Dim ramp is the tint the retired *inverse hovers provided" },
       { token: "fill.action.primary.strong.rest",        usage: "Badge dot fill" },
       { token: "fill.static.brand.subtle",         usage: "TopNavSearch collapsed button background" },

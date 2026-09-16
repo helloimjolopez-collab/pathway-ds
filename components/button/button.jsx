@@ -83,7 +83,8 @@ const TEXT = FG;
 const ICON = FG;
 
 // ─── STROKE TOKENS (Outlined only) ────────────────────────────────────────────
-// There is no Primary Dim stroke ramp, so Tertiary borrows the Primary stroke.
+// Fill/Action/Primary/Subtle has no matching STROKE ramp, so Tertiary borrows
+// the Primary stroke. That group was called "Primary Dim" before 2026-09-15.
 export const STROKE = {
   Primary:   { base: SC("stroke-action-primary-rest"),          hover: SC("stroke-action-primary-hover"),          pressed: SC("stroke-action-primary-pressed"),          disabled: SC("stroke-action-disabled") },
   Secondary: { base: SC("stroke-action-secondary-rest"),        hover: SC("stroke-action-secondary-hover"),        pressed: SC("stroke-action-secondary-pressed"),        disabled: SC("stroke-action-disabled") },

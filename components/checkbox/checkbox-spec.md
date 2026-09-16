@@ -265,9 +265,9 @@ Standard focused state: browser default outline or design system focus ring — 
 | Error | Error message should be associated via `aria-describedby` |
 
 ### Contrast
-- Checked fill (`fill.action.primary.strong.rest` = `#345499`) on white: ≥ 3:1 for non-text UI (WCAG 1.4.11 ✓)
-- Label text (`foreground.static.neutral.base` = `#4b4b4b`) on white: ≥ 4.5:1 (WCAG 1.4.3 ✓)
-- Error fill (`fill.action.status.negative.strong.rest` = `#9d2d2d`) on white: ≥ 3:1 ✓
+- Checked fill (`fill.action.primary.strong.rest` = `#4364b6`) on white: ≥ 3:1 for non-text UI (WCAG 1.4.11 ✓)
+- Label text (`foreground.static.neutral.base` = `#313131`) on white: ≥ 4.5:1 (WCAG 1.4.3 ✓)
+- Error fill (`fill.action.status.negative.strong.rest` = `#ba4646`) on white: ≥ 3:1 ✓
 
 ### Touch target
 44×44px minimum on all variants (WCAG 2.5.5 ✓).

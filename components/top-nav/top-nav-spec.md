@@ -110,7 +110,7 @@ The TopNav.Global surface is always the brand-blue background. Because this back
 
 | Semantic Token | Primitive | Resolved | Usage |
 |---|---|---|---|
-| `semantic-color.light-mode.fill.static.brand.base` | `primitive-color.brand-500` | `#2d4889` | Nav bar background |
+| `semantic-color.light-mode.fill.static.brand.base` | `primitive-color.brand-500` | `#ccd7f2` | Nav bar background |
 
 ### 3.2 Interactive control fills (OrgSwitcher base state)
 
@@ -138,15 +138,15 @@ The Search pill uses a distinct border: `0.75px solid` at the `icon-action-mono-
 
 | Semantic Token | Primitive | Resolved | Usage |
 |---|---|---|---|
-| `semantic-color.dark-mode.foreground.static.neutral.mono` | `primitive-color.cool-neutral-10` | `#fbfbfb` | ModuleSwitcher label, OrgSwitcher label |
-| `semantic-color.dark-mode.foreground.static.neutral.mono` | `primitive-color.cool-neutral-10` | `#fbfbfb` | All icon fills on the nav bar |
+| `semantic-color.dark-mode.foreground.static.neutral.mono` | `primitive-color.cool-neutral-10` | `#ffffff` | ModuleSwitcher label, OrgSwitcher label |
+| `semantic-color.dark-mode.foreground.static.neutral.mono` | `primitive-color.cool-neutral-10` | `#ffffff` | All icon fills on the nav bar |
 
 ### 3.5 Profile avatar
 
 | Semantic Token | Primitive | Resolved | Usage |
 |---|---|---|---|
-| `semantic-color.light-mode.fill.static.info.subtle` | `primitive-color.amethyst-30` | `#dcd9ef` | Profile avatar background |
-| `semantic-color.light-mode.foreground.static.info.on-subtle` | `primitive-color.amethyst-150` | `#221e3f` | Profile avatar initials text |
+| `semantic-color.light-mode.fill.static.info.subtle` | `primitive-color.amethyst-30` | `#f4f2fa` | Profile avatar background |
+| `semantic-color.light-mode.foreground.static.info.on-subtle` | `primitive-color.amethyst-150` | `#464080` | Profile avatar initials text |
 
 The profile avatar uses light-mode amethyst tokens. This is correct: the avatar is a content element with its own background color, not part of the nav bar's interactive surface.
 
@@ -244,10 +244,10 @@ States apply to the interactive inner controls (ModuleSwitcher.Inner, OrgSwitche
 
 | State | Fill | Stroke | Text/Icon |
 |---|---|---|---|
-| **Base (ModuleSwitcher)** | transparent | transparent | `dark-mode.foreground.static.neutral.mono` (#fbfbfb) |
+| **Base (ModuleSwitcher)** | transparent | transparent | `dark-mode.foreground.static.neutral.mono` (#ffffff) |
 | **Base (OrgSwitcher)** | `dark-mode.fill.action.primary.subtle.rest` (rgba 160,181,230 / 0.04) | `dark-mode.stroke.action.primary.rest` (rgba 160,181,230 / 0.16) | `dark-mode.foreground.static.neutral.mono` (#fbfbfb) |
 | **Base (Search pill)** | `dark-mode.fill.action.primary.subtle.rest` (rgba 160,181,230 / 0.08) | `dark-mode.foreground.static.neutral.mono` (#fbfbfb), 0.75px | `dark-mode.foreground.static.neutral.mono` (#fbfbfb) |
-| **Base (ActionIcon)** | transparent | none | `dark-mode.foreground.static.neutral.mono` (#fbfbfb) |
+| **Base (ActionIcon)** | transparent | none | `dark-mode.foreground.static.neutral.mono` (#ffffff) |
 | **Hover (all controls)** | `dark-mode.fill.action.primary.subtle.hover` (rgba 10,18,35 / 0.16) | (tertiary hover for org/mod) | unchanged |
 | **Pressed / Expanded** | `dark-mode.fill.action.primary.subtle.pressed` (rgba 255,255,255 / 0.08) | (tertiary pressed for org/mod) | unchanged |
 | **Focus-visible** | unchanged | 2px solid `rgba(160,181,230,0.7)`, 2px offset | unchanged |
@@ -363,7 +363,7 @@ When no logo image is available for an org, the avatar container shows the org's
 
 | Context | Container | Background | Text size | Text color |
 |---|---|---|---|---|
-| Nav bar trigger | 20×20, `border-radius: 4px` | `rgba(45,72,137,0.3)` (semi-transparent brand) | 7px / 700 | `dark-mode.foreground.static.neutral.mono` (#fbfbfb) |
+| Nav bar trigger | 20×20, `border-radius: 4px` | `rgba(45,72,137,0.3)` (semi-transparent brand) | 7px / 700 | `dark-mode.foreground.static.neutral.mono` (#ffffff) |
 | Org panel item | 32×32, `border-radius: 4px` | `#2d4889` (brand base) | 9px / 700 | `#ffffff` |
 
 The nav bar fallback uses a semi-transparent brand fill so the underlying nav-bar color bleeds through slightly, keeping the avatar visually integrated. The panel fallback uses solid brand fill because it sits on a white panel surface.
@@ -398,7 +398,7 @@ A circular pill button sits in the RowEnd slot.
 - Outer container: 48×48px (touch target)
 - Pill: 32×32px, `border-radius: 9999px`
 - Background: `dark-mode.fill.action.primary.subtle.rest` (`rgba(160,181,230,0.08)`)
-- Border: `0.75px solid #fbfbfb` (the `dark-mode.foreground.static.neutral.mono` resolved value)
+- Border: `0.75px solid #ffffff` (the `dark-mode.foreground.static.neutral.mono` resolved value)
 - Icon: search SVG, fill #fbfbfb, 16px
 
 #### Expanded state
@@ -407,7 +407,7 @@ Clicking the collapsed pill opens the search as a **full-width takeover** of the
 
 **Focused-empty** (just opened, no text entered):
 - Container: white fill (`fill.static.neutral.faint`), 1px solid `#6e8bd4` (`stroke.action.primary.pressed`), `border-radius: 9999px`, 36px height, fills the bar width, `padding: 0 8px`
-- Leading icon: search, 24px container, color `#606060` (`foreground.static.neutral.base`)
+- Leading icon: search, 24px container, color `#313131` (`foreground.static.neutral.base`)
 - Placeholder text: "Search…", 14px/400, color `#606060`
 - **No trailing clear button** (none in Figma for this state)
 
@@ -442,8 +442,8 @@ Two bell/notification icon buttons sit in the RowEnd slot (desktop and tablet on
 
 - Outer: 48×48px touch target
 - Avatar: 32×32px circle, `border-radius: 50%`
-- Avatar background: `light-mode.fill.static.info.subtle` (#dcd9ef)
-- Avatar text (initials): `light-mode.foreground.static.info.on-subtle` (#221e3f), 14px/600
+- Avatar background: `light-mode.fill.static.info.subtle` (#f4f2fa)
+- Avatar text (initials): `light-mode.foreground.static.info.on-subtle` (#464080), 14px/600
 - Hover: outer 44×44 rounded-full receives `dark-mode.fill.action.primary.subtle.hover`
 
 **Profile menu (panel, desktop/tablet):**
@@ -461,7 +461,7 @@ Two bell/notification icon buttons sit in the RowEnd slot (desktop and tablet on
 ## 8. Container / Surface
 
 ### 8.1 Surface
-- Background: `semantic-color.light-mode.fill.static.brand.base` (#2d4889)
+- Background: `semantic-color.light-mode.fill.static.brand.base` (#ccd7f2)
 - No border
 - No shadow on the bar itself (shadow is applied to opened dropdown panels)
 
