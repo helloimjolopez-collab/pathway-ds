@@ -11,6 +11,10 @@
  *   stroke-action-status-positive   light   rest = hover   green-500
  *   foreground-action-status-info   light   rest = hover   amethyst-400
  *
+ * The third of those names no longer exists: Attention, Severe and Info left the
+ * Action tier entirely on 2026-09-16. It is kept here because the example is
+ * about the SHAPE of the defect, which any future tone can repeat.
+ *
  * A hover that paints the same colour as rest is a hover that does nothing. The
  * component is correct, the token name resolves, the contrast passes, the build
  * is clean and Storybook renders — so every existing checker was happy:

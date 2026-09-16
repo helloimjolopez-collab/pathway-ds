@@ -12,7 +12,7 @@
  put a mode in a property name — that form came from tokens.css, retired
  2026-09-03, and resolves to nothing.
 
- Declares 167 custom properties.
+ Declares 140 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -32,18 +32,9 @@
   --semantic-color-fill-action-selection-hover: var(--primitive-color-warm-neutral-100-24);
   --semantic-color-fill-action-selection-selected: var(--primitive-color-brand-75-24);
   --semantic-color-fill-action-selection-trail: var(--primitive-color-warm-neutral-500-8);
-  --semantic-color-fill-action-status-info-subtle-rest: var(--primitive-color-amethyst-25);
-  --semantic-color-fill-action-status-info-subtle-hover: var(--primitive-color-amethyst-50);
-  --semantic-color-fill-action-status-info-subtle-pressed: var(--primitive-color-amethyst-75);
   --semantic-color-fill-action-status-positive-subtle-rest: var(--primitive-color-green-25);
   --semantic-color-fill-action-status-positive-subtle-hover: var(--primitive-color-green-50);
   --semantic-color-fill-action-status-positive-subtle-pressed: var(--primitive-color-green-75);
-  --semantic-color-fill-action-status-attention-subtle-rest: var(--primitive-color-saffron-25);
-  --semantic-color-fill-action-status-attention-subtle-hover: var(--primitive-color-saffron-75);
-  --semantic-color-fill-action-status-attention-subtle-pressed: var(--primitive-color-saffron-100);
-  --semantic-color-fill-action-status-severe-subtle-rest: var(--primitive-color-orange-50);
-  --semantic-color-fill-action-status-severe-subtle-hover: var(--primitive-color-orange-75);
-  --semantic-color-fill-action-status-severe-subtle-pressed: var(--primitive-color-orange-100);
   --semantic-color-fill-action-status-negative-strong-rest: var(--primitive-color-red-350);
   --semantic-color-fill-action-status-negative-strong-hover: var(--primitive-color-red-400);
   --semantic-color-fill-action-status-negative-strong-pressed: var(--primitive-color-red-450);
@@ -87,18 +78,9 @@
   --semantic-color-foreground-action-secondary-rest: var(--primitive-color-cool-neutral-550);
   --semantic-color-foreground-action-secondary-hover: var(--primitive-color-cool-neutral-600);
   --semantic-color-foreground-action-secondary-pressed: var(--primitive-color-cool-neutral-800);
-  --semantic-color-foreground-action-status-info-on-subtle-rest: var(--primitive-color-amethyst-700);
-  --semantic-color-foreground-action-status-info-on-subtle-hover: var(--primitive-color-amethyst-800);
-  --semantic-color-foreground-action-status-info-on-subtle-pressed: var(--primitive-color-amethyst-900);
   --semantic-color-foreground-action-status-positive-on-subtle-rest: var(--primitive-color-green-700);
   --semantic-color-foreground-action-status-positive-on-subtle-hover: var(--primitive-color-green-800);
   --semantic-color-foreground-action-status-positive-on-subtle-pressed: var(--primitive-color-green-900);
-  --semantic-color-foreground-action-status-attention-on-subtle-rest: var(--primitive-color-saffron-700);
-  --semantic-color-foreground-action-status-attention-on-subtle-hover: var(--primitive-color-saffron-800);
-  --semantic-color-foreground-action-status-attention-on-subtle-pressed: var(--primitive-color-saffron-900);
-  --semantic-color-foreground-action-status-severe-on-subtle-rest: var(--primitive-color-orange-700);
-  --semantic-color-foreground-action-status-severe-on-subtle-hover: var(--primitive-color-orange-800);
-  --semantic-color-foreground-action-status-severe-on-subtle-pressed: var(--primitive-color-orange-900);
   --semantic-color-foreground-action-status-negative-on-subtle-rest: var(--primitive-color-red-700);
   --semantic-color-foreground-action-status-negative-on-subtle-hover: var(--primitive-color-red-800);
   --semantic-color-foreground-action-status-negative-on-subtle-pressed: var(--primitive-color-red-900);
@@ -144,15 +126,6 @@
   --semantic-color-stroke-action-status-positive-rest: var(--primitive-color-green-500);
   --semantic-color-stroke-action-status-positive-hover: var(--primitive-color-green-600);
   --semantic-color-stroke-action-status-positive-pressed: var(--primitive-color-green-700);
-  --semantic-color-stroke-action-status-attention-rest: var(--primitive-color-saffron-150);
-  --semantic-color-stroke-action-status-attention-hover: var(--primitive-color-saffron-200);
-  --semantic-color-stroke-action-status-attention-pressed: var(--primitive-color-saffron-300);
-  --semantic-color-stroke-action-status-severe-rest: var(--primitive-color-orange-250);
-  --semantic-color-stroke-action-status-severe-hover: var(--primitive-color-orange-300);
-  --semantic-color-stroke-action-status-severe-pressed: var(--primitive-color-orange-400);
-  --semantic-color-stroke-action-status-info-rest: var(--primitive-color-amethyst-75);
-  --semantic-color-stroke-action-status-info-hover: var(--primitive-color-amethyst-100);
-  --semantic-color-stroke-action-status-info-pressed: var(--primitive-color-amethyst-200);
   --semantic-color-stroke-focusring-base: var(--primitive-color-brand-200);
   --semantic-color-stroke-static-neutral-faint: var(--primitive-color-warm-neutral-50);
   --semantic-color-stroke-static-neutral-base: var(--primitive-color-warm-neutral-100);
