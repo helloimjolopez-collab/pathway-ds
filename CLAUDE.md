@@ -221,6 +221,27 @@ names were out of step with the values twice on the day this landed.
 `Status` appears in a variable name only under `Action`, where it qualifies an
 interactive set that has real rest/hover/pressed states.
 
+**Canvas and Sheet are two different things (2026-09-16).** The page is built
+from two nested regions, and they are deliberately separate in both tiers:
+
+| | the region | painted by | padding | corners |
+|---|---|---|---|---|
+| **Canvas** | everything inside the chrome, around the page | `Fill/Surface/Canvas` | `Canvas/Padding/Top`, `/Horizontal` | none, it meets the chrome squarely |
+| **Sheet** | the page that sits on the canvas | `Fill/Surface/Sheet` | `Sheet/Padding/Top`, `/Horizontal` | `Sheet/CornerRadius/Top` — TOP only |
+
+**Neither has a bottom inset, and there is no `*/Padding/Bottom` for either.** The
+sheet scrolls, so its bottom edge is never seen and content runs to it. A token
+that must always be zero is worse than no token, because it invites someone to
+set it.
+
+`Sheet/CornerRadius/Top` should only be non-zero when `Canvas/Padding/Top` is
+too: a rounded top with no gap above it clips against the TopNav.
+
+Both Canvas values are 0 at every breakpoint today, which is what ScreenTemplate
+measures in Figma: the sheet currently runs edge to edge. The tokens exist so
+that can change in one place per breakpoint instead of by editing the shell and
+the page separately.
+
 **Layout and breakpoints got the same treatment as colour.** `Semantic: Layout & Units`
 gained Desktop/Tablet/Mobile modes, which put the breakpoint into every property name
 (`--semantic-layout-units-desktop-1440pt-padding-base`). That breaks every spacing

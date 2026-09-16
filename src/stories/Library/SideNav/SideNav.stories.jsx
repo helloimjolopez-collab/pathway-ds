@@ -134,7 +134,7 @@ export default {
       description: {
         component:
           "Persistent vertical navigation panel for Ministry Brands Amplify modules. Two levels " +
-          "of depth, two sidebar widths (240 px expanded, 72 px collapsed), three responsive " +
+          "of depth, two sidebar widths (250 px expanded, 72 px collapsed), three responsive " +
           "modes (push / overlay / hidden-overlay). See the full specification for every token, " +
           "state rule, and ARIA attribute.",
       },
@@ -150,7 +150,7 @@ export default {
     collapsed: {
       name: "Sidebar collapsed?",
       control: { type: "boolean" },
-      description: "Toggle between 240 px expanded and 72 px icon-only rail.",
+      description: "Toggle between 250 px expanded and 72 px icon-only rail.",
     },
     hideCollapseButton: {
       name: "Hide the collapse control",
@@ -477,7 +477,7 @@ const TYPOGRAPHY_ROWS = [
 
 function TypographyRow({ token, role, value, sample }) {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "240px 1fr 160px",
+    <div style={{ display: "grid", gridTemplateColumns: "250px 1fr 160px",
       gap: 16, alignItems: "center", padding: "12px 0",
       borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text',sans-serif" }}>
       <div>
@@ -524,7 +524,7 @@ const SPACING_ROWS = [
   { name: "Indicator stripe width",   value: "4px",   token: "- (no token)",  role: "indicator.stripe - always in DOM, structural" },
   { name: "SectionLabel padding L",   value: "12px",  token: "Padding/Tight",  role: "CollapsedPopover section header" },
   { name: "SectionLabel padding V",   value: "8px",   token: "Padding/XTight", role: "CollapsedPopover section header" },
-  { name: "Expanded sidebar width",   value: "240px", token: "- (no token)",  role: "SideNav.Container expanded (updated from 220px, 2026-05-12)" },
+  { name: "Expanded sidebar width",   value: "250px", token: "- (no token)",  role: "SideNav.Container expanded (updated from 220px, 2026-05-12)" },
   { name: "Collapsed sidebar width",  value: "72px",  token: "- (no token)",  role: "SideNav.Container collapsed rail" },
 ];
 
@@ -558,7 +558,7 @@ TokensSpacing.parameters = {
 
 // ─── Motion tokens ──────────────────────────────────────────────────────────
 const MOTION_ROWS = [
-  { name: "Panel width",          duration: "--motion-duration-6", standard: "460ms", token: "--motion-easing-emphasized", rationale: "240↔72px width - smooth glide, no overshoot" },
+  { name: "Panel width",          duration: "--motion-duration-6", standard: "460ms", token: "--motion-easing-emphasized", rationale: "250↔72px width - smooth glide, no overshoot" },
   { name: "Label/chevron width",  duration: "--motion-duration-6", standard: "460ms", token: "--motion-easing-emphasized", rationale: "Rail-header label + chevron max-width - same as panel" },
   { name: "Label/chevron opacity",duration: "--motion-duration-3", standard: "200ms", token: "--motion-easing-standard",   rationale: "Shorter than width so labels land before width finishes" },
   { name: "Grouper accordion",    duration: "--motion-duration-5", standard: "380ms", token: "--motion-easing-accordion",  rationale: "grid-template-rows 0fr→1fr - content reveal (single-open)" },
@@ -682,11 +682,11 @@ export const SectionLabels = () => (
           NavSectionLabel
         </p>
         <p style={{ fontSize: 12, color: "#8890b0", margin: "0 0 12px" }}>
-          In-nav section heading - visible in the <strong>expanded (240 px)</strong> sidebar only.
+          In-nav section heading - visible in the <strong>expanded (250 px)</strong> sidebar only.
           Replaced by a thin divider in the 72 px rail. Figma: <code>40006794:5975</code>.
         </p>
       </div>
-      <div style={{ width: 240, background: T.surface.navLight,
+      <div style={{ width: L.navW, background: T.surface.navLight,
         border: `0.5px solid ${T.fill.infoSubtle}`, borderRadius: 8, padding: 8 }}>
         <NavSectionLabel label="Workflows" />
         {["Enter", "Manage", "View"].map(l => (

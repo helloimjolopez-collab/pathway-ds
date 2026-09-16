@@ -8345,6 +8345,15 @@ const tokens = {
       "120"
     ]
   },
+  "primitive-unit-unit-250": {
+    "value": 250,
+    "type": "number",
+    "path": [
+      "primitive-unit",
+      "unit",
+      "250"
+    ]
+  },
   "primitive-unit-unit-0-point-5": {
     "value": 0.5,
     "type": "number",
@@ -8744,6 +8753,26 @@ const tokens = {
       "width"
     ]
   },
+  "contextual-layout-units-sidenav-width-expanded": {
+    "value": 250,
+    "type": "number",
+    "path": [
+      "contextual-layout-units",
+      "sidenav",
+      "width",
+      "expanded"
+    ]
+  },
+  "contextual-layout-units-sidenav-width-collapsed": {
+    "value": 72,
+    "type": "number",
+    "path": [
+      "contextual-layout-units",
+      "sidenav",
+      "width",
+      "collapsed"
+    ]
+  },
   "contextual-layout-units-selector-borderwidth": {
     "value": 1,
     "type": "number",
@@ -9051,15 +9080,15 @@ const tokens = {
       "horizontal"
     ]
   },
-  "shell-layout-desktop-1440pt-sheet-padding-bottom": {
-    "value": 64,
+  "shell-layout-desktop-1440pt-sheet-cornerradius-top": {
+    "value": 0,
     "type": "number",
     "path": [
       "shell-layout",
       "desktop-1440pt",
       "sheet",
-      "padding",
-      "bottom"
+      "cornerradius",
+      "top"
     ]
   },
   "shell-layout-desktop-1440pt-topnav-padding-horizontal": {
@@ -9094,6 +9123,28 @@ const tokens = {
       "height"
     ]
   },
+  "shell-layout-desktop-1440pt-canvas-padding-top": {
+    "value": 0,
+    "type": "number",
+    "path": [
+      "shell-layout",
+      "desktop-1440pt",
+      "canvas",
+      "padding",
+      "top"
+    ]
+  },
+  "shell-layout-desktop-1440pt-canvas-padding-horizontal": {
+    "value": 0,
+    "type": "number",
+    "path": [
+      "shell-layout",
+      "desktop-1440pt",
+      "canvas",
+      "padding",
+      "horizontal"
+    ]
+  },
   "shell-layout-tablet-798pt-sheet-padding-top": {
     "value": 14,
     "type": "number",
@@ -9116,15 +9167,15 @@ const tokens = {
       "horizontal"
     ]
   },
-  "shell-layout-tablet-798pt-sheet-padding-bottom": {
-    "value": 48,
+  "shell-layout-tablet-798pt-sheet-cornerradius-top": {
+    "value": 0,
     "type": "number",
     "path": [
       "shell-layout",
       "tablet-798pt",
       "sheet",
-      "padding",
-      "bottom"
+      "cornerradius",
+      "top"
     ]
   },
   "shell-layout-tablet-798pt-topnav-padding-horizontal": {
@@ -9159,6 +9210,28 @@ const tokens = {
       "height"
     ]
   },
+  "shell-layout-tablet-798pt-canvas-padding-top": {
+    "value": 0,
+    "type": "number",
+    "path": [
+      "shell-layout",
+      "tablet-798pt",
+      "canvas",
+      "padding",
+      "top"
+    ]
+  },
+  "shell-layout-tablet-798pt-canvas-padding-horizontal": {
+    "value": 0,
+    "type": "number",
+    "path": [
+      "shell-layout",
+      "tablet-798pt",
+      "canvas",
+      "padding",
+      "horizontal"
+    ]
+  },
   "shell-layout-mobile-393pt-sheet-padding-top": {
     "value": 12,
     "type": "number",
@@ -9181,15 +9254,15 @@ const tokens = {
       "horizontal"
     ]
   },
-  "shell-layout-mobile-393pt-sheet-padding-bottom": {
-    "value": 36,
+  "shell-layout-mobile-393pt-sheet-cornerradius-top": {
+    "value": 0,
     "type": "number",
     "path": [
       "shell-layout",
       "mobile-393pt",
       "sheet",
-      "padding",
-      "bottom"
+      "cornerradius",
+      "top"
     ]
   },
   "shell-layout-mobile-393pt-topnav-padding-horizontal": {
@@ -9222,6 +9295,28 @@ const tokens = {
       "mobile-393pt",
       "topnav",
       "height"
+    ]
+  },
+  "shell-layout-mobile-393pt-canvas-padding-top": {
+    "value": 0,
+    "type": "number",
+    "path": [
+      "shell-layout",
+      "mobile-393pt",
+      "canvas",
+      "padding",
+      "top"
+    ]
+  },
+  "shell-layout-mobile-393pt-canvas-padding-horizontal": {
+    "value": 0,
+    "type": "number",
+    "path": [
+      "shell-layout",
+      "mobile-393pt",
+      "canvas",
+      "padding",
+      "horizontal"
     ]
   },
   "motion-duration-1": {

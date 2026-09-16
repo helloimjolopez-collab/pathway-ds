@@ -198,7 +198,7 @@
     font-family: 'Red Hat Text', sans-serif;
   }
   .tn-org-panel {
-    position: absolute; top: calc(100% + 8px); left: 0; min-width: 240px;
+    position: absolute; top: calc(100% + 8px); left: 0; min-width: var(--contextual-layout-units-sidenav-width-expanded, 250px);
     background: #1e2d52; border: 1px solid rgba(160,181,230,0.14); border-radius: 10px;
     padding: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.30);
     z-index: 200; animation: tnDropdownIn var(--motion-duration-2) var(--motion-easing-decelerate) both;
@@ -288,7 +288,7 @@
      Exit:  transform --motion-duration-4 + opacity --motion-duration-3, both accelerate. */
   .overlay-panel {
     position: fixed; left: 0; bottom: 0; z-index: 100;
-    /* top:64 / width:overlayNavW(240) set via inline style (see App render)   */
+    /* top:64 / width:overlayNavW(250) set via inline style (see App render)   */
     transform: translateX(-110%);   /* 110% hides any box-shadow bleed         */
     opacity: 0;
     pointer-events: none;           /* non-visible panel must not eat clicks    */
@@ -310,7 +310,7 @@
   }
 
   /* Scrim — all overlay breakpoints (<1024px, both tablet AND mobile).
-     Overlay is 240px wide at all sizes, so page content is always partially
+     Overlay is 250px wide at all sizes, so page content is always partially
      visible behind it and the scrim is always needed. Always rendered when
      !isDesktop (not gated on isOverlay) so the CSS fade-out plays on dismiss —
      removing from the DOM on close would cause an instant vanish.             */
@@ -473,6 +473,8 @@ function Scrollable({ children, style={}, viewStyle={} }) {
 // property lets the cascade resolve it, so [data-theme="midnight"] just works.
 const c = (name) => `var(--semantic-color-${name})`;
 const u = (name, fallback) => `var(--semantic-layout-units-${name}, ${fallback}px)`;
+// Component metrics live in the CONTEXTUAL collection and need their own prefix.
+const x = (name, fallback) => `var(--contextual-layout-units-${name}, ${fallback}px)`;
 
 const T = {
   fill: {
@@ -519,8 +521,10 @@ const L = {
   navPadHcol:  12,   // SideNav.Container px-[12px] when collapsed — Figma: NavHeader.Collapsed at x:12
   navPadV:     8,    // SideNav.Container pt-[8px] — NavHeader sits at y:8 in Figma (updated from 12px, 2026-05-13)
   navPadVb:    12,   // SideNav.Container pb-[12px] — bottom padding unchanged
-  navW:        240,  // SideNav expanded width (updated from 220px, 2026-05-12)
-  navWcol:     72,   // SideNav collapsed width — Figma: 72px
+  // Tokenised 2026-09-16. Read from SideNav.Container in Figma: every expanded
+  // variant is 250 wide and every collapsed one is 72. Was 240.
+  navW:        x("sidenav-width-expanded", 250),
+  navWcol:     x("sidenav-width-collapsed", 72),
   menuGap:     6,    // SideNavMenu gap — Gap/XTight 6px (updated from 0, 2026-05-13)
   menuPadT:    8,    // SideNavMenu paddingTop — gap between NavHeader divider and first item
   itemH:       44,   // Accessibility/Touch Target/AA → 44px (Figma 40005281:10058, updated 2026-06-08 from 48)
@@ -1139,14 +1143,15 @@ function NavHeader({ isSidebarCollapsed, onToggle }) {
 // ─── SIDENAV CONTAINER ────────────────────────────────────────────────────────
 // Fill/Surface/Sheet (#fafafa), border-r Stroke/Static/Neutral/Base (#f6f6f6)
 // Padding: pt-[8px] pb-[12px] px-[16px expanded / 12px collapsed] (updated 2026-05-13)
-// Width: 240px expanded, 72px collapsed (updated from 220px, 2026-05-12)
+// Width: 250px expanded, 72px collapsed (tokenised 2026-09-16 as
+// Contextual SideNav/Width/Expanded and .../Collapsed; was 240)
 // Border-right: 0.5px solid Stroke/Static/Neutral/Base (#f6f6f6)
 // NavHeader: TOP of nav (moved from bottom — 2026-05-13). Accordion groupers (2026-05-13).
 //
 // Props:
 //   activeId          — id of the currently active nav item
 //   onNavigate        — called with item id when user navigates
-//   sidebarCollapsed  — true = 72px icon-only rail; false = 240px expanded
+//   sidebarCollapsed  — true = 72px icon-only rail; false = 250px expanded
 //   onCollapseChange  — called with new boolean value when collapse state changes
 //   hideCollapseButton— when true, NavHeader is not rendered.
 //                       Set to true on mobile (<768px) where there is no 72px rail
@@ -1187,7 +1192,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
   const onPopoverLeave = () => { timerRef.current = setTimeout(() => { setPopoverId(null); setPopoverRect(null); }, 300); };
 
   // Collapsed state: navPadH=12 (Figma: NavHeader.Collapsed at x:12 in 72px container)
-  // Expanded state:  navPadH=16 (Figma: NavHeader at x:16 in 240px container)
+  // Expanded state:  navPadH=16 (Figma: NavHeader at x:16 in a 250px container)
   const padH = sidebarCollapsed ? L.navPadHcol : L.navPadH;
 
   return (
@@ -1219,7 +1224,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
       {/* SideNavMenu — the ONLY scroll region, wrapped in the system <Scrollable> overlay
           scrollbar (components/scrollbar). Bleed to the nav's true right edge (marginRight)
           and re-add the inset inside the view (paddingRight) so the overlay thumb hugs the
-          edge in BOTH the 240px expanded and 72px collapsed rail. */}
+          edge in BOTH the 250px expanded and 72px collapsed rail. */}
       <Scrollable
         style={{ flex:1, minHeight:0, marginRight: -padH }}
         viewStyle={{ display:"flex", flexDirection:"column",
@@ -1398,7 +1403,7 @@ const TOKEN_ROWS = [
   { cat:"⚠ Spacing (no token)", semantic:"Row horizontal padding",        prim:"—",    value:"8px",                  role:"Container.rowStart px-[8px]" },
   { cat:"⚠ Spacing (no token)", semantic:"Child indent",                  prim:"—",    value:"24px",                 role:"container.main pl-[24px] for L1 items" },
   { cat:"⚠ Spacing (no token)", semantic:"Indicator stripe width",        prim:"—",    value:"4px",                  role:"indicator.stripe column width on every item" },
-  { cat:"⚠ Spacing (no token)", semantic:"Expanded nav width",            prim:"—",    value:"240px",                role:"SideNav.Container expanded width" },
+  { cat:"Spacing",              semantic:"SideNav/Width/Expanded",       prim:"--contextual-layout-units-sidenav-width-expanded", value:"250px", role:"SideNav.Container expanded width — tokenised 2026-09-16" },
   { cat:"⚠ Spacing (no token)", semantic:"Collapsed nav width",           prim:"—",    value:"72px",                 role:"SideNav.Container rail width (12 + 48 + 12)" },
   { cat:"⚠ Spacing (no token)", semantic:"CollapseButton icon size",      prim:"—",    value:"12×12",                role:"NavHeader right_panel_open / left_panel_open SVGs" },
 
@@ -1408,7 +1413,7 @@ const TOKEN_ROWS = [
   { cat:"Motion",  semantic:"Children opacity fade-in",        prim:"--motion-duration-4 (+ 70ms delay)",    value:"300ms / 70ms delay · standard", role:"Inner child wrapper opacity 0→1 (when expanding)" },
   { cat:"Motion",  semantic:"Children opacity fade-out",       prim:"--motion-duration-3 · standard",        value:"200ms · standard",          role:"Inner child wrapper opacity 1→0 (when collapsing — snappier exit)" },
   { cat:"Motion",  semantic:"Chevron rotation",                prim:"--motion-duration-5 · accordion",       value:"380ms · accordion",         role:"Grouper chevron 0°→180° · matches accordion timing" },
-  { cat:"Motion",  semantic:"Sidebar width transition",        prim:"--motion-duration-6 · emphasized",      value:"460ms · emphasized",        role:"240px ↔ 72px — soft personality, no overshoot" },
+  { cat:"Motion",  semantic:"Sidebar width transition",        prim:"--motion-duration-6 · emphasized",      value:"460ms · emphasized",        role:"250px ↔ 72px — soft personality, no overshoot" },
   { cat:"Motion",  semantic:"Label / chevron max-width",       prim:"--motion-duration-6 · emphasized",      value:"460ms · emphasized",        role:"Item label + grouper chevron width collapse" },
   { cat:"Motion",  semantic:"Label / chevron opacity",          prim:"--motion-duration-3 · standard",        value:"200ms · standard",          role:"Opacity fade alongside max-width — slightly faster so labels land before width finishes" },
   { cat:"Motion",  semantic:"NavSectionLabel ↔ Divider",       prim:"--motion-duration-4 / -5 · standard/spring", value:"300ms opacity / 380ms max-height", role:"Crossfade between section label (expanded) and rail divider (collapsed)" },
@@ -1591,18 +1596,18 @@ function TopNav({ onSideNavToggle }) {
 // ─── APP ──────────────────────────────────────────────────────────────────────
 // Responsive layout — three breakpoint zones:
 //
-//  ≥1024px  DESKTOP   push layout    SideNav is in-flow (expanded 240px or collapsed 72px)
+//  ≥1024px  DESKTOP   push layout    SideNav is in-flow (expanded 250px or collapsed 72px)
 //                                    TopNav: position:fixed (height 56px, TopNav.Global)
 //                                    Body area: marginTop:56, left by SideNav width
 //
-//  768–1023px TABLET  overlay layout SideNav slides over content (240px wide, 72px collapsed)
+//  768–1023px TABLET  overlay layout SideNav slides over content (250px wide, 72px collapsed)
 //                                    TopNav: position:fixed
 //                                    Scrim (rgba 0,0,0,0.32) shown behind overlay
 //                                    Collapse button on overlay nav → collapses back to 72px rail
 //
 //  <768px   MOBILE    hidden + full overlay
 //                                    SideNav hidden by default (hamburger icon in TopNav)
-//                                    Opening → 240px overlay drawer (same width as tablet)
+//                                    Opening → 250px overlay drawer (same width as tablet)
 //                                    NO 72px collapsed state on mobile (hover/popover patterns
 //                                    don't apply to touch devices; screen width too narrow)
 //                                    TopNav: position:relative (in-flow, not fixed)
@@ -1668,7 +1673,7 @@ function App() {
   const handleNavigate = (id) => {
     setActiveId(id);
     // Mobile: close the full-screen overlay after navigation so the page is visible.
-    // Tablet: keep the 240px overlay open — content is visible beside the nav,
+    // Tablet: keep the 250px overlay open — content is visible beside the nav,
     //         so there's no need to force-close on every navigation.
     if (isMobile && !sidebarCollapsed) { setSidebarCollapsed(true); setNavHidden(true); }
   };
@@ -1679,11 +1684,12 @@ function App() {
   const PageIconSource = NAV.find(i => i.id === activeId) || parent;
   const pageIconName = PageIconSource && PageIconSource.icon;
 
-  // Overlay nav width: 240px at all breakpoints — consistent drawer width.
-  // Even on a 393px phone, 240px leaves a 143px scrim strip to tap outside.
-  // Full-width overlays feel like modals and destroy context; 240px is industry
+  // Overlay nav width: 250px at all breakpoints — consistent drawer width.
+  // Even on a 393px phone, 250px leaves a 143px scrim strip to tap outside.
+  // Full-width overlays feel like modals and destroy context; 250px is industry
   // standard (Gmail, Slack, WhatsApp all use ~260–320px drawers on phone).
-  const overlayNavW = 240;
+  // Overlay drawer reuses the expanded width token.
+  const overlayNavW = 250;
 
   return (
     <div style={{ display:"flex", flexDirection:"column", height:"100vh",
@@ -1700,7 +1706,7 @@ function App() {
 
         {/* ── SCRIM — all overlay breakpoints (tablet + mobile) ──────────── */}
         {/* Shown at all non-desktop breakpoints whenever the overlay is open.
-            On mobile (<768px) the nav is 240px wide, leaving a 143px+ strip of
+            On mobile (<768px) the nav is 250px wide, leaving a 143px+ strip of
             page content visible — the scrim dims it and provides a tap target
             to dismiss. Always rendered when !isDesktop (not conditional on
             isOverlay) so the CSS fade-out transition plays on close.           */}
@@ -1719,7 +1725,7 @@ function App() {
             OUT when the overlay closes. The --open class drives enter/exit.
             top:64 is correct for BOTH tablet (TopNav fixed) and mobile (TopNav
             in-flow at 64px) — the overlay starts right below the TopNav in
-            both cases. width:overlayNavW is 240px at all overlay breakpoints. */}
+            both cases. width:overlayNavW is 250px at all overlay breakpoints. */}
         {!isDesktop && (
           <div
             className={isOverlay ? "overlay-panel overlay-panel--open" : "overlay-panel"}

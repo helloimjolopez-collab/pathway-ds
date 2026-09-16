@@ -4434,6 +4434,10 @@
               "$type": "float",
               "$value": 120
             },
+            "250": {
+              "$type": "float",
+              "$value": 250
+            },
             "0 point 5": {
               "$type": "float",
               "$value": 0.5
@@ -4721,6 +4725,22 @@
     "Contextual: Layout & Units": {
       "modes": {
         "Value": {
+          "SideNav": {
+            "Width": {
+              "Expanded": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.250}"
+              },
+              "Collapsed": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.72}"
+              }
+            }
+          },
           "Selector": {
             "BorderWidth": {
               "$type": "float",
@@ -4950,12 +4970,12 @@
                 "$collectionName": "Primitive: Unit",
                 "$libraryName": "",
                 "$value": "{Unit.36}"
-              },
-              "Bottom": {
+              }
+            },
+            "CornerRadius": {
+              "Top": {
                 "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.64}"
+                "$value": 0
               }
             }
           },
@@ -4979,6 +4999,18 @@
               "$collectionName": "Primitive: Unit",
               "$libraryName": "",
               "$value": "{Unit.56}"
+            }
+          },
+          "Canvas": {
+            "Padding": {
+              "Top": {
+                "$type": "float",
+                "$value": 0
+              },
+              "Horizontal": {
+                "$type": "float",
+                "$value": 0
+              }
             }
           }
         },
@@ -4996,12 +5028,12 @@
                 "$collectionName": "Primitive: Unit",
                 "$libraryName": "",
                 "$value": "{Unit.24}"
-              },
-              "Bottom": {
+              }
+            },
+            "CornerRadius": {
+              "Top": {
                 "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.48}"
+                "$value": 0
               }
             }
           },
@@ -5026,6 +5058,18 @@
               "$libraryName": "",
               "$value": "{Unit.56}"
             }
+          },
+          "Canvas": {
+            "Padding": {
+              "Top": {
+                "$type": "float",
+                "$value": 0
+              },
+              "Horizontal": {
+                "$type": "float",
+                "$value": 0
+              }
+            }
           }
         },
         "Mobile 393pt": {
@@ -5042,12 +5086,12 @@
                 "$collectionName": "Primitive: Unit",
                 "$libraryName": "",
                 "$value": "{Unit.16}"
-              },
-              "Bottom": {
+              }
+            },
+            "CornerRadius": {
+              "Top": {
                 "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.36}"
+                "$value": 0
               }
             }
           },
@@ -5071,6 +5115,18 @@
               "$collectionName": "Primitive: Unit",
               "$libraryName": "",
               "$value": "{Unit.56}"
+            }
+          },
+          "Canvas": {
+            "Padding": {
+              "Top": {
+                "$type": "float",
+                "$value": 0
+              },
+              "Horizontal": {
+                "$type": "float",
+                "$value": 0
+              }
             }
           }
         }

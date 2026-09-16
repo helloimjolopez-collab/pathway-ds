@@ -17,9 +17,9 @@ import * as Stories from "./SideNav.stories.jsx";
 
 A persistent vertical navigation panel for Ministry Brands Amplify. Every module gets its own `SideNav` instance - it renders the primary navigation tree and, at all times, communicates where the user is in it. This is module-level navigation, not global app navigation and not action buttons.
 
-SideNav supports **two levels of depth** (Level 0 parents, Level 1 child-destinations), **two sidebar widths** (240 px expanded, 72 px collapsed), and **three responsive modes** (push on desktop, overlay on tablet, hidden-overlay on mobile).
+SideNav supports **two levels of depth** (Level 0 parents, Level 1 child-destinations), **two sidebar widths** (250 px expanded, 72 px collapsed), and **three responsive modes** (push on desktop, overlay on tablet, hidden-overlay on mobile).
 
-When the menu is taller than the panel, it scrolls via the system **[Scrollbar component](?path=/docs/library-scrollbar--docs)** (`<Scrollable>`) - the native bar is hidden and a slim overlay thumb is drawn, so scrolling looks identical on every OS and never shifts the 240 px / 72 px rail. SideNav nests it rather than rolling its own scrollbar.
+When the menu is taller than the panel, it scrolls via the system **[Scrollbar component](?path=/docs/library-scrollbar--docs)** (`<Scrollable>`) - the native bar is hidden and a slim overlay thumb is drawn, so scrolling looks identical on every OS and never shifts the 250 px / 72 px rail. SideNav nests it rather than rolling its own scrollbar.
 
 ---
 
@@ -38,7 +38,7 @@ Click items to navigate. Use the **Active item** dropdown to set any of the 14 d
 The SideNav is made up of a container, a stack of items, and a collapse control at the bottom. Items can be Level 0 (with an icon) or Level 1 (no icon, indented). Every item has an indicator-stripe column on the left - 4 px wide, structural, always present in the DOM. The stripe only paints when the item is Active or Trail-collapsed.
 
 ```
-SideNav.Container                       240 px expanded · 72 px collapsed
+SideNav.Container                       250 px expanded · 72 px collapsed
 └── SideNavMenu                         flex column · gap 6 px · Gap/XTight
 │   ├── SideNavItem · Level 0           48 px min-height
 │   │   [indicator 4 px][leading icon 24×24][label flex][row-end 40×24 · groupers only]
@@ -157,9 +157,9 @@ Same `activeId` in both panels. Watch what happens to "View" (the grouper whose 
     <tr><th>Viewport</th><th>Default state</th><th>Expanded behaviour</th><th>Can be hidden?</th></tr>
   </thead>
   <tbody>
-    <tr><td>≥ 1024 px · Desktop</td><td>Expanded (240 px)</td><td><strong>Push</strong> - content shifts right</td><td>No</td></tr>
-    <tr><td>768–1023 px · Tablet</td><td>Collapsed (72 px)</td><td><strong>Overlay</strong> - 240 px panel floats above content with a scrim</td><td>No</td></tr>
-    <tr><td>{"< 768 px"} · Mobile</td><td><strong>Hidden</strong></td><td><strong>Overlay</strong> - 240 px drawer triggered by TopNav hamburger</td><td>Yes</td></tr>
+    <tr><td>≥ 1024 px · Desktop</td><td>Expanded (250 px)</td><td><strong>Push</strong> - content shifts right</td><td>No</td></tr>
+    <tr><td>768–1023 px · Tablet</td><td>Collapsed (72 px)</td><td><strong>Overlay</strong> - 250 px panel floats above content with a scrim</td><td>No</td></tr>
+    <tr><td>{"< 768 px"} · Mobile</td><td><strong>Hidden</strong></td><td><strong>Overlay</strong> - 250 px drawer triggered by TopNav hamburger</td><td>Yes</td></tr>
   </tbody>
 </table>
 
