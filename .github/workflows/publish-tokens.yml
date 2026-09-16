@@ -67,8 +67,21 @@ jobs:
       - name: Build tokens (Style Dictionary)
         run: node style-dictionary.config.js
 
+      # stamp-headers.js writes the explanatory header on each emitted
+      # stylesheet: which file to load, in what order, and that product code
+      # must never name a --primitive-*. Omitting it here is why v7.0.0 shipped
+      # with those headers stripped and why the commit-back to main showed 164
+      # deletions that looked like missing tokens.
+      - name: Stamp the stylesheet headers
+        run: node scripts/stamp-headers.js
+
       - name: Build dist/
         run: node scripts/build-dist.js
+
+      # contract.json states which emitted names are consumable. The NuGet
+      # csproj ships it, so it has to exist before that workflow packs.
+      - name: Build the contract manifest
+        run: node scripts/build-contract.js
 
       - name: Publish to npm
         run: npm publish --access public
