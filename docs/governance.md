@@ -122,7 +122,7 @@ same command, so all three gate every push to `main`.
 |---|---|
 | `check-demo-tokens.js` | A standalone demo that inlines values instead of linking the contract, or names a token the contract does not define |
 | `check-token-refs.js` | Token names in **code**, including names built by template. It reads each file's own helper definitions and expands the calls |
-| `check-token-names.js` | Token names written as **prose** in specs, MDX and agent briefs, skipping type styles and known non-token phrases |
+| `check-token-names.js` | Token names written as **prose** in specs and MDX, skipping type styles and known non-token phrases |
 
 Run them alone with `npm run check-tokens`.
 

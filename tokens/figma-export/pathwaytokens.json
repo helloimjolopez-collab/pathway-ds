@@ -4725,38 +4725,6 @@
     "Contextual: Layout & Units": {
       "modes": {
         "Value": {
-          "SideNav": {
-            "Width": {
-              "Expanded": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.250}"
-              },
-              "Collapsed": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.72}"
-              }
-            }
-          },
-          "Selector": {
-            "BorderWidth": {
-              "$type": "float",
-              "$collectionName": "Semantic: Layout & Units",
-              "$libraryName": "",
-              "$value": "{BorderWidth.Base}"
-            }
-          },
-          "Field": {
-            "BorderWidth": {
-              "$type": "float",
-              "$collectionName": "Semantic: Layout & Units",
-              "$libraryName": "",
-              "$value": "{BorderWidth.Base}"
-            }
-          },
           "NavItem": {
             "Padding": {
               "Vertical": {
@@ -4782,20 +4750,6 @@
             }
           },
           "Button": {
-            "Corner Radius": {
-              "Radius": {
-                "$type": "float",
-                "$collectionName": "Primitive: Unit",
-                "$libraryName": "",
-                "$value": "{Unit.8}"
-              }
-            },
-            "Radius": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.8}"
-            },
             "Padding": {
               "Medium": {
                 "Vertical": {
@@ -4875,6 +4829,34 @@
                 "$libraryName": "",
                 "$value": "{BorderWidth.Base}"
               }
+            },
+            "Radius": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.8}"
+            },
+            "Corner Radius": {
+              "Radius": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.8}"
+              }
+            }
+          },
+          "Focus Ring": {
+            "Width": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.2}"
+            },
+            "Offset": {
+              "$type": "float",
+              "$collectionName": "Primitive: Unit",
+              "$libraryName": "",
+              "$value": "{Unit.2}"
             }
           },
           "Card": {
@@ -4935,18 +4917,66 @@
               "$value": "{Unit.12}"
             }
           },
-          "Focus Ring": {
+          "SideNav": {
             "Width": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.2}"
+              "Expanded": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.250}"
+              },
+              "Collapsed": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.72}"
+              }
             },
-            "Offset": {
+            "Padding": {
+              "Horizontal": {
+                "Expanded": {
+                  "$type": "float",
+                  "$collectionName": "Primitive: Unit",
+                  "$libraryName": "",
+                  "$value": "{Unit.16}"
+                },
+                "Collapsed": {
+                  "$type": "float",
+                  "$collectionName": "Primitive: Unit",
+                  "$libraryName": "",
+                  "$value": "{Unit.12}"
+                }
+              },
+              "Vertical": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.8}"
+              }
+            },
+            "Gap": {
+              "Vertical": {
+                "$type": "float",
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.6}"
+              }
+            }
+          },
+          "Selector": {
+            "BorderWidth": {
               "$type": "float",
-              "$collectionName": "Primitive: Unit",
+              "$collectionName": "Semantic: Layout & Units",
               "$libraryName": "",
-              "$value": "{Unit.2}"
+              "$value": "{BorderWidth.Base}"
+            }
+          },
+          "Field": {
+            "BorderWidth": {
+              "$type": "float",
+              "$collectionName": "Semantic: Layout & Units",
+              "$libraryName": "",
+              "$value": "{BorderWidth.Thin}"
             }
           }
         }
@@ -4954,7 +4984,7 @@
     }
   },
   {
-    "Shell: Layout": {
+    "Responsive: Layout": {
       "modes": {
         "Desktop 1440pt": {
           "Sheet": {
@@ -4975,7 +5005,9 @@
             "CornerRadius": {
               "Top": {
                 "$type": "float",
-                "$value": 0
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.16}"
               }
             }
           },
@@ -4999,17 +5031,13 @@
               "$collectionName": "Primitive: Unit",
               "$libraryName": "",
               "$value": "{Unit.56}"
-            }
-          },
-          "Canvas": {
-            "Padding": {
-              "Top": {
-                "$type": "float",
-                "$value": 0
-              },
+            },
+            "Gap": {
               "Horizontal": {
                 "$type": "float",
-                "$value": 0
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.8}"
               }
             }
           }
@@ -5033,7 +5061,9 @@
             "CornerRadius": {
               "Top": {
                 "$type": "float",
-                "$value": 0
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.12}"
               }
             }
           },
@@ -5057,17 +5087,13 @@
               "$collectionName": "Primitive: Unit",
               "$libraryName": "",
               "$value": "{Unit.56}"
-            }
-          },
-          "Canvas": {
-            "Padding": {
-              "Top": {
-                "$type": "float",
-                "$value": 0
-              },
+            },
+            "Gap": {
               "Horizontal": {
                 "$type": "float",
-                "$value": 0
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.8}"
               }
             }
           }
@@ -5091,7 +5117,9 @@
             "CornerRadius": {
               "Top": {
                 "$type": "float",
-                "$value": 0
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.8}"
               }
             }
           },
@@ -5115,17 +5143,13 @@
               "$collectionName": "Primitive: Unit",
               "$libraryName": "",
               "$value": "{Unit.56}"
-            }
-          },
-          "Canvas": {
-            "Padding": {
-              "Top": {
-                "$type": "float",
-                "$value": 0
-              },
+            },
+            "Gap": {
               "Horizontal": {
                 "$type": "float",
-                "$value": 0
+                "$collectionName": "Primitive: Unit",
+                "$libraryName": "",
+                "$value": "{Unit.8}"
               }
             }
           }

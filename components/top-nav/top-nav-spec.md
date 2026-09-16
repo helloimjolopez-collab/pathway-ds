@@ -830,3 +830,33 @@ Not yet in Storybook. Awaiting spec review and branch creation before pipeline r
 ---
 
 *Spec authored from live Figma MCP data. Node: `40007067:6508`, file: `3sw45aVcngFAmpbP6cfrXP`. Demo reference: `components-sandbox/top-nav/top-nav-2026-05-13-v3.html`.*
+
+---
+
+## Agent implementation rules
+
+For any agent implementing this component: Figma Make, Lovable, v0, Claude,
+Cursor, Copilot or equivalent. Folded in from the separate `agent-brief.md`,
+deleted 2026-09-16. One doc per component, so there is no second file to drift.
+
+### The 8 rules an AI agent must not skip
+
+1. **Ship TopNav and SideNav together as a single shell.** Never produce a prototype with only one of them.
+
+2. **Use the brand-blue background.** `Fill/Static/Brand/Bold` → `#2d4889`. Not dark navy (`#0a1223`). Not custom.
+
+3. **Slot layout (left → right) is fixed:**
+   - **Row Start:** SideNav hamburger (mobile only, hidden ≥768px) · ModuleSwitcher (Amplify Home icon + `expand_more` chevron, NO text) · OrgSwitcher (church logo 20×20 + org name + `expand_more` chevron, with `stroke/action/tertiary/base` border)
+   - **Row End:** Search (48×48 wrapper → 32×32 circle with `cornerradius/full: 64px` + `search` icon) · Desktop: 2× `notifications` bells (48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Info/Subtle` `#dcd9ef`, initials in `#221e3f`)
+
+4. **The mobile hamburger lives in TopNav.** It calls `onSideNavToggle` to open the SideNav overlay. The TopNav owns this control, not the SideNav.
+
+5. **Desktop shows 2 notification bells; tablet and mobile show `more_vert`.** Not the other way around. See Figma node `40007067:8151` (tablet) and `40007067:8205` (mobile).
+
+6. **Profile is amethyst, always.** Background `Fill/Static/Info/Subtle` (`#dcd9ef`), text `Foreground/Static/Info/On Subtle` (`#221e3f`). Initials, not photos.
+
+7. **Search is a 32×32 circle, not a search field.** `cornerradius/full: 64px`. Click expands a dropdown/modal — the bar stays narrow at all times.
+
+8. **All Material Symbols Rounded, no exceptions.** Specifically: `menu`, `expand_more`, `search`, `notifications`, `more_vert`. Use Google Fonts CDN: `https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`.
+
+---

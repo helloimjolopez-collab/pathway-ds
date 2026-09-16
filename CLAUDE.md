@@ -62,7 +62,7 @@ tokens/pathway-design-tokens.json                        │
         src/tokens/themes/light.css        186 semantic colours, :root + [data-theme=light]
         src/tokens/themes/midnight.css     the same 186 names under [data-theme=midnight]
         src/tokens/layout.css              40 layout tokens, breakpoint by media query
-        src/tokens/layout-contextual.css   28 component metrics, same treatment
+        src/tokens/layout-contextual.css   34 component metrics, same treatment
         src/tokens/type.css                41 type scale tokens
         src/tokens/motion.css              17 durations and easings
         src/tokens/breakpoints.css         5 breakpoint values
@@ -104,8 +104,8 @@ Load these eight, in this order:
 | `primitives.css` | 352 raw ramp values | **Required, but never referenced.** The themes point at these via `var()`, so the file must load or every colour resolves to nothing. Product code must never name a `--primitive-*` (§6) |
 | `themes/light.css` + `themes/midnight.css` | 186 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
 | `layout.css` | 40 layout and spacing names, single-valued | **Yes.** The spacing contract |
-| `layout-responsive.css` | 6 names that genuinely change by breakpoint: Sheet padding, TopNav padding and height. Emitted with media queries | **Yes.** A developer cannot derive these from a responsive grid — the grid governs columns, not the chrome's padding |
-| `layout-contextual.css` | 28 component metrics (Button, Card, NavItem, Selector, Field, focus ring) | Component internals. This repo's components use it; product code should not |
+| `layout-responsive.css` | 7 names that genuinely change by breakpoint: Sheet padding and top radius, TopNav padding, height and gap. Emitted with media queries. Prefix `--responsive-layout-*`, from the `Responsive: Layout` collection | **Yes.** A developer cannot derive these from a responsive grid — the grid governs columns, not the chrome's padding |
+| `layout-contextual.css` | 34 component metrics (Button, Card, NavItem, Selector, Field, focus ring) | Component internals. This repo's components use it; product code should not |
 | `type.css` | The 41-token type SCALE: 1 family, 13 sizes, 18 line heights, 5 weights, 4 tracking steps | **Yes.** Compose from these |
 | `motion.css` | 17 durations and easings | **Yes** |
 | `breakpoints.css` | 5 breakpoint values | **Yes** |
@@ -221,26 +221,51 @@ names were out of step with the values twice on the day this landed.
 `Status` appears in a variable name only under `Action`, where it qualifies an
 interactive set that has real rest/hover/pressed states.
 
-**Canvas and Sheet are two different things (2026-09-16).** The page is built
-from two nested regions, and they are deliberately separate in both tiers:
+### 2.0.1 The four screen regions (2026-09-16)
 
-| | the region | painted by | padding | corners |
+There is **one** vocabulary for screen layout. Four nested regions, each owning
+exactly what it needs and nothing more:
+
+| Region | What it is | Colour | Layout tokens | Collection |
 |---|---|---|---|---|
-| **Canvas** | everything inside the chrome, around the page | `Fill/Surface/Canvas` | `Canvas/Padding/Top`, `/Horizontal` | none, it meets the chrome squarely |
-| **Sheet** | the page that sits on the canvas | `Fill/Surface/Sheet` | `Sheet/Padding/Top`, `/Horizontal` | `Sheet/CornerRadius/Top` — TOP only |
+| **Canvas** | the entire screen, chrome included | `Fill/Surface/Canvas` | **none** | — |
+| **Chrome: SideNav** | the left rail | `Fill/Surface/Sheet` | `SideNav/Width/{Expanded,Collapsed}`, `SideNav/Padding/Horizontal/{Expanded,Collapsed}`, `SideNav/Padding/Vertical`, `SideNav/Gap/Vertical` | `Contextual: Layout & Units` |
+| **Chrome: TopNav** | the top bar | `Fill/Static/Brand/Bold` | `TopNav/Height`, `TopNav/Padding/{Horizontal,Vertical}`, `TopNav/Gap/Horizontal` | `Responsive: Layout` |
+| **Sheet** | the page itself, sitting inside the chrome | `Fill/Surface/Sheet` | `Sheet/Padding/{Top,Horizontal}`, `Sheet/CornerRadius/Top` | `Responsive: Layout` |
 
-**Neither has a bottom inset, and there is no `*/Padding/Bottom` for either.** The
-sheet scrolls, so its bottom edge is never seen and content runs to it. A token
-that must always be zero is worse than no token, because it invites someone to
-set it.
+**The canvas gets a colour token and nothing else.** It is the whole screen, so it
+has no padding of its own to express. `Canvas/Padding/Top` and
+`Canvas/Padding/Horizontal` existed briefly and were deleted: they were 0 at every
+breakpoint and there was no region they described.
 
-`Sheet/CornerRadius/Top` should only be non-zero when `Canvas/Padding/Top` is
-too: a rounded top with no gap above it clips against the TopNav.
+**Which collection a token goes in is decided by one question: does it change across
+breakpoints?** If yes it goes in `Responsive: Layout`, which is the only collection
+with Desktop/Tablet/Mobile modes. If no it goes in `Contextual: Layout & Units`,
+which has a single `Value` mode by design. TopNav horizontal padding tightens on
+small screens (16/12/8) so TopNav is Responsive; SideNav is the same width and
+padding at every breakpoint, so it is Contextual.
 
-Both Canvas values are 0 at every breakpoint today, which is what ScreenTemplate
-measures in Figma: the sheet currently runs edge to edge. The tokens exist so
-that can change in one place per breakpoint instead of by editing the shell and
-the page separately.
+**No region has a bottom inset, and there is no `*/Padding/Bottom` anywhere.** The
+sheet scrolls, so its bottom edge is never seen and content runs to it. A token that
+must always be zero is worse than no token, because it invites someone to set it.
+
+**The sheet has rounded TOP corners only**: 16/12/8 by breakpoint. Bottom corners are
+square because the sheet runs off the bottom of the viewport.
+
+**There is no separate "screen container" token set.** A `Screen/Padding/*` pair was
+created and then removed: in Figma the single `Container.Screen.Main` node carries
+both the outer gutter and the sheet's own inset, so splitting 36/16 between a
+container and the sheet is a design decision that moves pixels. Until that decision
+is made the sheet carries the whole value, and a second token would have been 0
+everywhere. Add it when there is a real number for it, not before.
+
+### 2.0.2 The collection is called `Responsive: Layout`
+
+Renamed from `Shell: Layout` on 2026-09-16. It holds the tokens that vary by
+breakpoint, which is the only thing its three modes are for, and "shell" implied it
+held all chrome tokens when SideNav's live in Contextual. The emitted prefix is
+`--responsive-layout-*` and the file is `layout-responsive.css`, so collection, file
+and property name now agree.
 
 **Layout and breakpoints got the same treatment as colour.** `Semantic: Layout & Units`
 gained Desktop/Tablet/Mobile modes, which put the breakpoint into every property name
@@ -380,6 +405,28 @@ When the user says *"I changed the spinner in Figma, update GitHub"* or *"pull t
 
 ## 5. Component specs
 
+**One markdown doc per component folder, and it is `<name>-spec.md` (2026-09-16).**
+No `agent-brief.md`, no per-component `README.md`, no second spec, no "system-wide"
+companion doc. Eleven such files were deleted on 2026-09-16 and their unique content
+folded into the specs.
+
+This is not a tidiness preference, it is a correctness one. Every duplicate had gone
+stale in a way nothing could catch: the SideNav brief still named
+`--fill-contextual-navitem-*` tokens that no longer existed, `docs/scrollbar-spec.md`
+still said the SideNav menu was 240px and still named the pre-fix `scrim/faint` thumb
+rung, and `SEARCH-SPEC-TO-REVIEW.md` documented primitive slot numbers that had been
+respaced away. A second doc is a second thing to update, and it never gets updated.
+
+If a spec is hard to navigate, **fix its ordering, do not add a front door.** The
+answer to "where is the icon library, the token list, the demo link" is the first
+three sections of the spec, not a new file. `sidenav-spec.md` is the reference for
+this shape: Links, then icon library, then tokens at a glance, then a "Where to look
+for what" index, then the 1,800 lines of detail. Adding a README on top of that is
+how the pile got big in the first place.
+
+Agent-facing rules live in the spec, in a section named **"Agent implementation
+rules"** (SideNav keeps them at §18.0 for historical anchor stability).
+
 Every `<name>-spec.md` must follow the structure of `components/sidenav/sidenav-spec.md`. At minimum it has:
 
 0. **Links** (CANONICAL — always at the very top, immediately after the one-paragraph overview, **never** as a trailing section). A `## Links` table with Figma node, Storybook (`?path=/docs/library-<name>--docs`), HTML demo, and GitHub source. A reader or agent must reach every artefact without scrolling. `org-switcher` uses an equivalent top `## Resources` table — either heading is acceptable as long as it is at the top. This rule is baked into `docs/component-spec-template.md`; copy it from there.
@@ -511,7 +558,7 @@ If the user says *"just do it, don't ask me"* for a specific action, proceed wit
 
 ## 12. Iconography — Material Symbols Rounded, always
 
-**Every icon in Pathway uses Material Symbols Rounded.** This is non-negotiable and applies to every component, every demo, every story, every spec, every agent-brief, and every prototype built from this system.
+**Every icon in Pathway uses Material Symbols Rounded.** This is non-negotiable and applies to every component, every demo, every story, every spec, and every prototype built from this system.
 
 ### Source of truth for available icons
 

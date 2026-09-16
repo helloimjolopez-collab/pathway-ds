@@ -14,8 +14,8 @@ export function createSemanticLayout() {
     //
     //   semantic-layout-units    the general scale, single-valued
     //   contextual-layout-units  per-component metrics, single-valued
-    //   shell-layout        the only tokens that change by breakpoint
-    if (!["semantic-layout-units", "contextual-layout-units", "shell-layout"]
+    //   responsive-layout        the only tokens that change by breakpoint
+    if (!["semantic-layout-units", "contextual-layout-units", "responsive-layout"]
       .includes(token.path[0])) continue;
 
     const category = token.path[1]; // button, navitem, accessibility, page, section, etc.

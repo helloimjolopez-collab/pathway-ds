@@ -575,3 +575,44 @@ These are implemented inline in `nav-shell.html`. Each will get its own pipeline
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-06-05 | Jo Lopez + Claude | Initial draft. NavShell spec + HTML demo. Figma ScreenTemplate node 40006538-43236 read. TopNav + SideNav reuse existing components. ScreenTemplate sub-components inline pending standalone pipeline runs. |
+
+---
+
+## Agent implementation rules
+
+For any agent implementing this component: Figma Make, Lovable, v0, Claude,
+Cursor, Copilot or equivalent. Folded in from the separate `agent-brief.md`,
+deleted 2026-09-16. One doc per component, so there is no second file to drift.
+
+### Import the real modules — do not reimplement
+
+```javascript
+import { TopNav, DEFAULT_MODULES } from './components/top-nav/top-nav.jsx';
+import { SideNav }                  from './components/sidenav/sidenav.jsx';
+```
+
+Do not write fresh CSS for TopNav or SideNav. Import them. Fresh CSS will be wrong.
+
+---
+
+### Customisation — change only these values
+
+```javascript
+// Module
+const module = { id: "giving", label: "Amplify Giving", icon: "volunteer_activism" };
+
+// Organisation
+const org = { name: "NorthPoint Church", campus: "" };
+
+// User (for profile avatar)
+const user = { name: "Jo Lopez", initials: "JL", email: "jo@northpoint.org" };
+
+// SideNav items
+const navItems = [
+  { id: "home",    label: "Home",    icon: "home",   active: true },
+  { id: "teams",   label: "Teams",   icon: "group" },
+  { id: "projects",label: "Projects",icon: "folder" },
+];
+```
+
+All icons are **Material Symbols Rounded, FILL=1** (filled). Icon name = Figma layer `data-name`.

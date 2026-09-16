@@ -8753,44 +8753,6 @@ const tokens = {
       "width"
     ]
   },
-  "contextual-layout-units-sidenav-width-expanded": {
-    "value": 250,
-    "type": "number",
-    "path": [
-      "contextual-layout-units",
-      "sidenav",
-      "width",
-      "expanded"
-    ]
-  },
-  "contextual-layout-units-sidenav-width-collapsed": {
-    "value": 72,
-    "type": "number",
-    "path": [
-      "contextual-layout-units",
-      "sidenav",
-      "width",
-      "collapsed"
-    ]
-  },
-  "contextual-layout-units-selector-borderwidth": {
-    "value": 1,
-    "type": "number",
-    "path": [
-      "contextual-layout-units",
-      "selector",
-      "borderwidth"
-    ]
-  },
-  "contextual-layout-units-field-borderwidth": {
-    "value": 1,
-    "type": "number",
-    "path": [
-      "contextual-layout-units",
-      "field",
-      "borderwidth"
-    ]
-  },
   "contextual-layout-units-navitem-padding-vertical": {
     "value": 12,
     "type": "number",
@@ -8818,25 +8780,6 @@ const tokens = {
       "contextual-layout-units",
       "navitem",
       "corner-radius",
-      "radius"
-    ]
-  },
-  "contextual-layout-units-button-corner-radius-radius": {
-    "value": 8,
-    "type": "number",
-    "path": [
-      "contextual-layout-units",
-      "button",
-      "corner-radius",
-      "radius"
-    ]
-  },
-  "contextual-layout-units-button-radius": {
-    "value": 8,
-    "type": "number",
-    "path": [
-      "contextual-layout-units",
-      "button",
       "radius"
     ]
   },
@@ -8958,6 +8901,43 @@ const tokens = {
       "hover"
     ]
   },
+  "contextual-layout-units-button-radius": {
+    "value": 8,
+    "type": "number",
+    "path": [
+      "contextual-layout-units",
+      "button",
+      "radius"
+    ]
+  },
+  "contextual-layout-units-button-corner-radius-radius": {
+    "value": 8,
+    "type": "number",
+    "path": [
+      "contextual-layout-units",
+      "button",
+      "corner-radius",
+      "radius"
+    ]
+  },
+  "contextual-layout-units-focus-ring-width": {
+    "value": 2,
+    "type": "number",
+    "path": [
+      "contextual-layout-units",
+      "focus-ring",
+      "width"
+    ]
+  },
+  "contextual-layout-units-focus-ring-offset": {
+    "value": 2,
+    "type": "number",
+    "path": [
+      "contextual-layout-units",
+      "focus-ring",
+      "offset"
+    ]
+  },
   "contextual-layout-units-card-gap": {
     "value": 8,
     "type": "number",
@@ -9040,282 +9020,311 @@ const tokens = {
       "cornerradius"
     ]
   },
-  "contextual-layout-units-focus-ring-width": {
-    "value": 2,
+  "contextual-layout-units-sidenav-width-expanded": {
+    "value": 250,
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "focus-ring",
-      "width"
+      "sidenav",
+      "width",
+      "expanded"
     ]
   },
-  "contextual-layout-units-focus-ring-offset": {
-    "value": 2,
+  "contextual-layout-units-sidenav-width-collapsed": {
+    "value": 72,
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "focus-ring",
-      "offset"
+      "sidenav",
+      "width",
+      "collapsed"
     ]
   },
-  "shell-layout-desktop-1440pt-sheet-padding-top": {
+  "contextual-layout-units-sidenav-padding-horizontal-expanded": {
     "value": 16,
     "type": "number",
     "path": [
-      "shell-layout",
-      "desktop-1440pt",
-      "sheet",
+      "contextual-layout-units",
+      "sidenav",
       "padding",
-      "top"
+      "horizontal",
+      "expanded"
     ]
   },
-  "shell-layout-desktop-1440pt-sheet-padding-horizontal": {
-    "value": 36,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "desktop-1440pt",
-      "sheet",
-      "padding",
-      "horizontal"
-    ]
-  },
-  "shell-layout-desktop-1440pt-sheet-cornerradius-top": {
-    "value": 0,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "desktop-1440pt",
-      "sheet",
-      "cornerradius",
-      "top"
-    ]
-  },
-  "shell-layout-desktop-1440pt-topnav-padding-horizontal": {
-    "value": 16,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "desktop-1440pt",
-      "topnav",
-      "padding",
-      "horizontal"
-    ]
-  },
-  "shell-layout-desktop-1440pt-topnav-padding-vertical": {
-    "value": 6,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "desktop-1440pt",
-      "topnav",
-      "padding",
-      "vertical"
-    ]
-  },
-  "shell-layout-desktop-1440pt-topnav-height": {
-    "value": 56,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "desktop-1440pt",
-      "topnav",
-      "height"
-    ]
-  },
-  "shell-layout-desktop-1440pt-canvas-padding-top": {
-    "value": 0,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "desktop-1440pt",
-      "canvas",
-      "padding",
-      "top"
-    ]
-  },
-  "shell-layout-desktop-1440pt-canvas-padding-horizontal": {
-    "value": 0,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "desktop-1440pt",
-      "canvas",
-      "padding",
-      "horizontal"
-    ]
-  },
-  "shell-layout-tablet-798pt-sheet-padding-top": {
-    "value": 14,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "tablet-798pt",
-      "sheet",
-      "padding",
-      "top"
-    ]
-  },
-  "shell-layout-tablet-798pt-sheet-padding-horizontal": {
-    "value": 24,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "tablet-798pt",
-      "sheet",
-      "padding",
-      "horizontal"
-    ]
-  },
-  "shell-layout-tablet-798pt-sheet-cornerradius-top": {
-    "value": 0,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "tablet-798pt",
-      "sheet",
-      "cornerradius",
-      "top"
-    ]
-  },
-  "shell-layout-tablet-798pt-topnav-padding-horizontal": {
+  "contextual-layout-units-sidenav-padding-horizontal-collapsed": {
     "value": 12,
     "type": "number",
     "path": [
-      "shell-layout",
-      "tablet-798pt",
-      "topnav",
+      "contextual-layout-units",
+      "sidenav",
       "padding",
-      "horizontal"
+      "horizontal",
+      "collapsed"
     ]
   },
-  "shell-layout-tablet-798pt-topnav-padding-vertical": {
-    "value": 6,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "tablet-798pt",
-      "topnav",
-      "padding",
-      "vertical"
-    ]
-  },
-  "shell-layout-tablet-798pt-topnav-height": {
-    "value": 56,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "tablet-798pt",
-      "topnav",
-      "height"
-    ]
-  },
-  "shell-layout-tablet-798pt-canvas-padding-top": {
-    "value": 0,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "tablet-798pt",
-      "canvas",
-      "padding",
-      "top"
-    ]
-  },
-  "shell-layout-tablet-798pt-canvas-padding-horizontal": {
-    "value": 0,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "tablet-798pt",
-      "canvas",
-      "padding",
-      "horizontal"
-    ]
-  },
-  "shell-layout-mobile-393pt-sheet-padding-top": {
-    "value": 12,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "mobile-393pt",
-      "sheet",
-      "padding",
-      "top"
-    ]
-  },
-  "shell-layout-mobile-393pt-sheet-padding-horizontal": {
-    "value": 16,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "mobile-393pt",
-      "sheet",
-      "padding",
-      "horizontal"
-    ]
-  },
-  "shell-layout-mobile-393pt-sheet-cornerradius-top": {
-    "value": 0,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "mobile-393pt",
-      "sheet",
-      "cornerradius",
-      "top"
-    ]
-  },
-  "shell-layout-mobile-393pt-topnav-padding-horizontal": {
+  "contextual-layout-units-sidenav-padding-vertical": {
     "value": 8,
     "type": "number",
     "path": [
-      "shell-layout",
+      "contextual-layout-units",
+      "sidenav",
+      "padding",
+      "vertical"
+    ]
+  },
+  "contextual-layout-units-sidenav-gap-vertical": {
+    "value": 6,
+    "type": "number",
+    "path": [
+      "contextual-layout-units",
+      "sidenav",
+      "gap",
+      "vertical"
+    ]
+  },
+  "contextual-layout-units-selector-borderwidth": {
+    "value": 1,
+    "type": "number",
+    "path": [
+      "contextual-layout-units",
+      "selector",
+      "borderwidth"
+    ]
+  },
+  "contextual-layout-units-field-borderwidth": {
+    "value": 0.75,
+    "type": "number",
+    "path": [
+      "contextual-layout-units",
+      "field",
+      "borderwidth"
+    ]
+  },
+  "responsive-layout-desktop-1440pt-sheet-padding-top": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "desktop-1440pt",
+      "sheet",
+      "padding",
+      "top"
+    ]
+  },
+  "responsive-layout-desktop-1440pt-sheet-padding-horizontal": {
+    "value": 36,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "desktop-1440pt",
+      "sheet",
+      "padding",
+      "horizontal"
+    ]
+  },
+  "responsive-layout-desktop-1440pt-sheet-cornerradius-top": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "desktop-1440pt",
+      "sheet",
+      "cornerradius",
+      "top"
+    ]
+  },
+  "responsive-layout-desktop-1440pt-topnav-padding-horizontal": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "desktop-1440pt",
+      "topnav",
+      "padding",
+      "horizontal"
+    ]
+  },
+  "responsive-layout-desktop-1440pt-topnav-padding-vertical": {
+    "value": 6,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "desktop-1440pt",
+      "topnav",
+      "padding",
+      "vertical"
+    ]
+  },
+  "responsive-layout-desktop-1440pt-topnav-height": {
+    "value": 56,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "desktop-1440pt",
+      "topnav",
+      "height"
+    ]
+  },
+  "responsive-layout-desktop-1440pt-topnav-gap-horizontal": {
+    "value": 8,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "desktop-1440pt",
+      "topnav",
+      "gap",
+      "horizontal"
+    ]
+  },
+  "responsive-layout-tablet-798pt-sheet-padding-top": {
+    "value": 14,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "tablet-798pt",
+      "sheet",
+      "padding",
+      "top"
+    ]
+  },
+  "responsive-layout-tablet-798pt-sheet-padding-horizontal": {
+    "value": 24,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "tablet-798pt",
+      "sheet",
+      "padding",
+      "horizontal"
+    ]
+  },
+  "responsive-layout-tablet-798pt-sheet-cornerradius-top": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "tablet-798pt",
+      "sheet",
+      "cornerradius",
+      "top"
+    ]
+  },
+  "responsive-layout-tablet-798pt-topnav-padding-horizontal": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "tablet-798pt",
+      "topnav",
+      "padding",
+      "horizontal"
+    ]
+  },
+  "responsive-layout-tablet-798pt-topnav-padding-vertical": {
+    "value": 6,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "tablet-798pt",
+      "topnav",
+      "padding",
+      "vertical"
+    ]
+  },
+  "responsive-layout-tablet-798pt-topnav-height": {
+    "value": 56,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "tablet-798pt",
+      "topnav",
+      "height"
+    ]
+  },
+  "responsive-layout-tablet-798pt-topnav-gap-horizontal": {
+    "value": 8,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "tablet-798pt",
+      "topnav",
+      "gap",
+      "horizontal"
+    ]
+  },
+  "responsive-layout-mobile-393pt-sheet-padding-top": {
+    "value": 12,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "mobile-393pt",
+      "sheet",
+      "padding",
+      "top"
+    ]
+  },
+  "responsive-layout-mobile-393pt-sheet-padding-horizontal": {
+    "value": 16,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "mobile-393pt",
+      "sheet",
+      "padding",
+      "horizontal"
+    ]
+  },
+  "responsive-layout-mobile-393pt-sheet-cornerradius-top": {
+    "value": 8,
+    "type": "number",
+    "path": [
+      "responsive-layout",
+      "mobile-393pt",
+      "sheet",
+      "cornerradius",
+      "top"
+    ]
+  },
+  "responsive-layout-mobile-393pt-topnav-padding-horizontal": {
+    "value": 8,
+    "type": "number",
+    "path": [
+      "responsive-layout",
       "mobile-393pt",
       "topnav",
       "padding",
       "horizontal"
     ]
   },
-  "shell-layout-mobile-393pt-topnav-padding-vertical": {
+  "responsive-layout-mobile-393pt-topnav-padding-vertical": {
     "value": 6,
     "type": "number",
     "path": [
-      "shell-layout",
+      "responsive-layout",
       "mobile-393pt",
       "topnav",
       "padding",
       "vertical"
     ]
   },
-  "shell-layout-mobile-393pt-topnav-height": {
+  "responsive-layout-mobile-393pt-topnav-height": {
     "value": 56,
     "type": "number",
     "path": [
-      "shell-layout",
+      "responsive-layout",
       "mobile-393pt",
       "topnav",
       "height"
     ]
   },
-  "shell-layout-mobile-393pt-canvas-padding-top": {
-    "value": 0,
+  "responsive-layout-mobile-393pt-topnav-gap-horizontal": {
+    "value": 8,
     "type": "number",
     "path": [
-      "shell-layout",
+      "responsive-layout",
       "mobile-393pt",
-      "canvas",
-      "padding",
-      "top"
-    ]
-  },
-  "shell-layout-mobile-393pt-canvas-padding-horizontal": {
-    "value": 0,
-    "type": "number",
-    "path": [
-      "shell-layout",
-      "mobile-393pt",
-      "canvas",
-      "padding",
+      "topnav",
+      "gap",
       "horizontal"
     ]
   },

@@ -1,6 +1,6 @@
 /**
  * Scrollable (overlay scrollbar) - Storybook stories
- * Spec: docs/scrollbar-spec.md
+ * Spec: components/scrollbar/scrollbar-spec.md
  */
 import React from "react";
 import { Scrollable } from "../../../../components/scrollbar/scrollbar.jsx";
@@ -38,7 +38,7 @@ export default {
   parameters: {
     layout: "padded",
     docs: { description: { component:
-      "One overlay scrollbar for the whole system. Hides the native OS scrollbar and draws a slim, semitransparent thumb so scrolling looks IDENTICAL on macOS, Windows, iOS, and Android - and never takes layout space or shifts padding. Hover or scroll the frame to reveal the thumb. See docs/scrollbar-spec.md." } },
+      "One overlay scrollbar for the whole system. Hides the native OS scrollbar and draws a slim, semitransparent thumb so scrolling looks IDENTICAL on macOS, Windows, iOS, and Android - and never takes layout space or shifts padding. Hover or scroll the frame to reveal the thumb. See components/scrollbar/scrollbar-spec.md." } },
   },
 };
 
