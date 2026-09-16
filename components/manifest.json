@@ -33,10 +33,11 @@
         "L"
       ],
       "spec": "components/sidenav/sidenav-spec.md",
-      "agentBrief": "components/sidenav/agent-brief.md",
       "demo": "components/sidenav/sidenav.html",
       "stories": "src/stories/Library/SideNav/SideNav.stories.jsx",
-      "uses": ["scrollbar"],
+      "uses": [
+        "scrollbar"
+      ],
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
         "nodeId": "40003951:2927"
@@ -126,18 +127,35 @@
       "displayName": "Scrollable",
       "description": "System-wide overlay scrollbar. Hides the native OS scrollbar and renders one slim semitransparent thumb so scrolling is identical on macOS/Windows/iOS/Android and never takes layout space or shifts padding. Wrap any internal scroll region in <Scrollable>. First consumer: SideNav.",
       "module": "components/scrollbar/scrollbar.jsx",
-      "exports": ["Scrollable", "SCROLL"],
+      "exports": [
+        "Scrollable",
+        "SCROLL"
+      ],
       "spec": "components/scrollbar/scrollbar-spec.md",
-      "systemWideDoc": "docs/scrollbar-spec.md",
       "demo": "components/scrollbar/scrollbar.html",
       "stories": "src/stories/Library/Scrollbar/Scrollbar.stories.jsx",
       "props": {
         "Scrollable": {
-          "children": { "type": "node", "description": "Scrollable content" },
-          "style": { "type": "object", "description": "Wrapper style (positioning context). Use flex:1; minHeight:0 in a flex column." },
-          "viewStyle": { "type": "object", "description": "Inner scroll-view style (content flex layout, gap, padding)." },
-          "className": { "type": "string", "description": "Extra class on the wrapper" },
-          "viewClassName": { "type": "string", "description": "Extra class on the inner scroll view" }
+          "children": {
+            "type": "node",
+            "description": "Scrollable content"
+          },
+          "style": {
+            "type": "object",
+            "description": "Wrapper style (positioning context). Use flex:1; minHeight:0 in a flex column."
+          },
+          "viewStyle": {
+            "type": "object",
+            "description": "Inner scroll-view style (content flex layout, gap, padding)."
+          },
+          "className": {
+            "type": "string",
+            "description": "Extra class on the wrapper"
+          },
+          "viewClassName": {
+            "type": "string",
+            "description": "Extra class on the inner scroll view"
+          }
         }
       },
       "tokens": []
@@ -156,7 +174,6 @@
         "LABEL_GAP"
       ],
       "spec": "components/checkbox/checkbox-spec.md",
-      "agentBrief": "components/checkbox/agent-brief.md",
       "demo": "components/checkbox/checkbox.html",
       "stories": "src/stories/Library/Checkbox/Checkbox.stories.jsx",
       "figma": {
@@ -423,7 +440,6 @@
       "status": "REVIEWED",
       "module": "components/top-nav/top-nav.html",
       "spec": "components/top-nav/top-nav-spec.md",
-      "agentBrief": "components/top-nav/agent-brief.md",
       "demo": "components/top-nav/top-nav.html",
       "stories": "src/stories/Library/TopNav/TopNav.stories.jsx",
       "figma": {
@@ -511,7 +527,6 @@
       "moduleNote": "Spinner ships HTML/SVG/CSS only \u2014 no React module today. Inline the SVG from spinner.html, or copy markup from the spec. A .jsx wrapper is on the pipeline backlog.",
       "exports": [],
       "spec": "components/spinner/spinner-spec.md",
-      "agentBrief": "components/spinner/agent-brief.md",
       "demo": "components/spinner/spinner.html",
       "stories": "src/stories/Library/Spinner/Spinner.stories.jsx",
       "figma": {
@@ -920,15 +935,13 @@
           "foreground.action.disabled",
           "foreground.action.status.negative.on-subtle.rest"
         ]
-      },
-      "agentBrief": "components/search/agent-brief.md"
+      }
     },
     "nav-shell": {
       "displayName": "NavShell",
       "description": "Application shell \u2014 TopNav + SideNav + content area. The outermost layout wrapping every Amplify page. Compose from top-nav.jsx and sidenav.jsx \u2014 do not reimplement.",
       "module": "components/nav-shell/nav-shell-spec.md",
       "spec": "components/nav-shell/nav-shell-spec.md",
-      "agentBrief": "components/nav-shell/agent-brief.md",
       "stories": "src/stories/Library/NavShell/NavShell.stories.jsx",
       "demo": "components/nav-shell/nav-shell.html",
       "figma": {

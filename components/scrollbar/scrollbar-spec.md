@@ -12,7 +12,6 @@ The canonical, reusable overlay scrollbar for Pathway. `<Scrollable>` wraps any 
 | Storybook | [Library/Scrollbar](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-scrollbar--docs) |
 | HTML demo | [components/scrollbar/scrollbar.html](https://helloimjolopez-collab.github.io/pathway-ds/components/scrollbar/scrollbar.html) |
 | React module | [components/scrollbar/scrollbar.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/scrollbar/scrollbar.jsx) |
-| System-wide doc | [docs/scrollbar-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/scrollbar-spec.md) (cross-component adoption + rationale) |
 
 ---
 
@@ -61,7 +60,7 @@ Pathway hides the native bar entirely and draws its own thumb. That is the only 
 | Token bindings (colour, units) | Design | §6 of this spec + the semantic tokens in Figma's variable collection |
 | Component API / prop types | Engineering | §4 of this spec |
 | The native-scrollbar-hide rule | Engineering | `scrollbar.jsx` injected `<style id="pds-scrollable-base">` |
-| System-wide adoption guidance | Design | [docs/scrollbar-spec.md](../../docs/scrollbar-spec.md) |
+| System-wide adoption guidance | Design | "System-wide adoption and rationale" at the end of this spec |
 | Figma | — | N/A — no Figma node (see §1.2) |
 
 ---
@@ -291,4 +290,52 @@ Hard rules:
 
 | Version | Date | Author | Change |
 |---|---|---|---|
-| 1.0 | 2026-06-23 | Jo Lopez + Claude | Canonical component spec authored in `components/scrollbar/` (was previously only the system-wide `docs/scrollbar-spec.md`). Documents the code-only / no-Figma model, semantic-token bindings (`scrim/faint` rest, `scrim/light` hover), liquid-glass thumb, edge-hug rule, accessibility, responsiveness, motion. |
+| 1.0 | 2026-06-23 | Jo Lopez + Claude | Canonical component spec authored in `components/scrollbar/` (was previously only the system-wide `docs/scrollbar-spec.md`). Documents the code-only / no-Figma model, semantic-token bindings (rest and hover scrim rungs; see the token table for current values), liquid-glass thumb, edge-hug rule, accessibility, responsiveness, motion. |
+
+---
+
+## System-wide adoption and rationale
+
+Folded in from the separate `docs/scrollbar-spec.md`, deleted 2026-09-16. That file
+existed to carry the cross-component adoption story, but splitting one component
+across two docs is how facts go stale: it still said the SideNav menu was 240px
+(it is 250) and still named `scrim/faint` rest and `scrim/light` hover (the rest
+rung moved to `scrim/subtle` and hover to `scrim/base` on 2026-09-16 when a
+designer reported the thumb as invisible). One doc per component, so there is
+nothing to fall behind.
+
+### Why this exists
+
+Native scrollbars cannot be made consistent across platforms, and styling them is
+a losing game:
+
+- **Windows (Chromium/Edge)** renders a chunky, space-**taking** bar with corner and
+  track boxes. CSS can thin it but cannot make it overlay, so it shifts content and
+  changes padding.
+- **macOS** uses a thin overlay bar that takes no space, already different from Windows.
+- **Firefox** exposes only `scrollbar-width` and `scrollbar-color`: no px control, no overlay.
+- **iOS and Android** use auto-hiding overlay bars that are not reliably stylable.
+
+So Pathway hides the native scrollbar entirely and draws its own thumb. That is the
+only way to get one overlay scrollbar that is identical everywhere and never affects
+layout.
+
+### No Figma, and that is correct
+
+This is the one component with no Figma node, intentionally. Its whole job is runtime
+behaviour: hide the OS bar, draw an overlay thumb, refract through a backdrop blur,
+fade on activity, hug the edge, auto-size. None of that is expressible in a static
+Figma frame, and there are no variants to bind. Source of truth is this spec plus
+`scrollbar.jsx`. The token-reconciliation flow in `CLAUDE.md §3.4` does not apply.
+See §1.2.
+
+### Adoption: use it everywhere
+
+Any component with an internal scroll region uses `<Scrollable>`, never a raw
+`overflow-y: auto` with native scrollbars.
+
+| Component | Uses `<Scrollable>`? |
+|---|---|
+| SideNav (menu: 250px expanded, 72px collapsed rail) | yes |
+| Dropdown and popover panels, dialogs, long lists, sheets | adopt as they are built or updated |
+| Any future component with an internal scroll region | required |

@@ -18,10 +18,9 @@ You are working in some other project (a feature prototype, a new page, a Figma 
 
 For navigation specifically:
 
-1. Read [`components/sidenav/agent-brief.md`](./components/sidenav/agent-brief.md) — short, concrete, paste-friendly summary of the SideNav contract.
-2. Read [`components/sidenav/sidenav-spec.md`](./components/sidenav/sidenav-spec.md) only if the brief doesn't answer your question.
-3. Copy the implementation from [`components/sidenav/sidenav.html`](./components/sidenav/sidenav.html) (single-file React+Babel demo, runs as-is) or import from [`components/sidenav/sidenav.jsx`](./components/sidenav/sidenav.jsx) (named React exports).
-4. **Never invent token values.** All semantic colours, typography, motion durations, and radii come from `tokens/pathway-design-tokens.json` or are listed in the component spec.
+1. Read [`components/sidenav/sidenav-spec.md`](./components/sidenav/sidenav-spec.md). It is the **only** doc for the component: links, icon library, tokens and an index in the first three sections, then the full detail. The agent rules you must not skip are §18.0.
+2. Copy the implementation from [`components/sidenav/sidenav.html`](./components/sidenav/sidenav.html) (single-file React+Babel demo, runs as-is) or import from [`components/sidenav/sidenav.jsx`](./components/sidenav/sidenav.jsx) (named React exports).
+3. **Never invent token values.** All semantic colours, typography, motion durations, and radii come from `tokens/pathway-design-tokens.json` or are listed in the component spec.
 
 For tokens: every colour you use must come from `Fill/Action/*`, `Fill/*`, `Fill/Surface/*`, `Foreground/Action/*`, `Foreground/*`, `Stroke/Action/*`, `Stroke/*` or `Scrim/*` semantic tokens. Never use raw hex. Never use primitive tokens directly. There is no Contextual colour group, and Text and Icon are both Foreground now.
 
@@ -40,9 +39,8 @@ When an agent (or a human) is handed nothing more than this repo URL and the Sto
 | 1 | **This file** (`AGENTS.md`) | What this repo is and where to go for what task |
 | 2 | [`llms.txt`](./llms.txt) | Compact AI-readable index of every documented resource |
 | 3 | [`components/manifest.json`](./components/manifest.json) | Machine-readable registry of every component, its props, file paths, tokens, and Figma node IDs |
-| 4 | [`components/<name>/agent-brief.md`](./components/sidenav/agent-brief.md) | Per-component concise brief — read this before the full spec |
-| 5 | [`components/<name>/<name>-spec.md`](./components/sidenav/sidenav-spec.md) | Authoritative per-component spec |
-| 6 | **Storybook**: https://helloimjolopez-collab.github.io/pathway-ds/storybook/ | Visual reference + live examples + token tables |
+| 4 | [`components/<name>/<name>-spec.md`](./components/sidenav/sidenav-spec.md) | The authoritative and **only** per-component doc. Its first three sections are the quick answers: links, icon library, tokens, and an index to everything else |
+| 5 | **Storybook**: https://helloimjolopez-collab.github.io/pathway-ds/storybook/ | Visual reference + live examples + token tables |
 
 No step requires asking a human anything. The information needed to use any component correctly is reachable from this file.
 
@@ -96,7 +94,7 @@ Read [`components/manifest.json`](./components/manifest.json) for the authoritat
 - **Variation settings:** `font-variation-settings: 'FILL' <0or1>, 'wght' 400, 'GRAD' 0, 'opsz' 20` (use `opsz: 24` for icons rendered above 20px)
 - **Markup:** `<span class="material-symbols-rounded">icon_name</span>`
 
-This rule applies to every component, demo, story, spec, prototype, and agent brief.
+This rule applies to every component, demo, story, spec and prototype.
 
 If you need a component that isn't in the manifest, use **[Radix UI](https://www.radix-ui.com/)** as the headless base (it handles ARIA, keyboard, and focus management correctly, and is the same foundation Pathway components are built on). Do **not** use Material UI — it carries Google's visual language and will conflict with Pathway tokens. Then apply all Pathway tokens to the Radix primitive: typography (Red Hat Text, using `Label/Button/*` or the appropriate type token), colours (semantic `Fill/*`, `Text/*`, `Icon/*`, `Stroke/*` tokens — never raw hex, never primitives), spacing (`Padding/*` and `Gap/*` tokens), radii (`CornerRadius/*` tokens), and border widths (`BorderWidth/*` tokens). See [`tokens/agent-brief.md`](./tokens/agent-brief.md) for the full token rules. Better: ask the user whether a Pathway component exists before reaching for a primitive.
 
@@ -109,7 +107,7 @@ These are mistakes real agents (including Claude Code) have made when implementi
 ### 1. Reimplementing a component instead of importing it
 
 **Wrong:** Writing fresh CSS for a TopNav or SideNav from scratch when building a composite.
-**Right:** Import from the `.jsx` module. Read the `agent-brief.md` for the import path.
+**Right:** Import from the `.jsx` module. Read the component spec for the import path.
 
 Fresh CSS will miss rail alignment, transition curves, hover tokens, and state logic that the `.jsx` has already solved. One wrong token and everything is off.
 
@@ -143,8 +141,7 @@ Active indicator stripes, tooltips, and dropdown panels often need to escape the
 ## What to do when you're uncertain
 
 - **Look first at the manifest.** It's machine-readable and exhaustive.
-- **Then at the agent-brief for the relevant component.** It's the fastest authoritative summary.
-- **Then the full spec.** Use the spec's Table of Contents to jump to the section you need.
+- **Then the component's spec**, `components/NAME/NAME-spec.md`. It is the only doc for that component. Its first three sections are the quick answers; use its "Where to look for what" index to jump straight to the section you need.
 - **Then Figma.** The Pathway file key is `3sw45aVcngFAmpbP6cfrXP`. Use the Figma MCP server (`mcp__Figma__*` or `mcp__c5ffa7b0-*__*`) to fetch design context for any node ID listed in the manifest.
 
 Do not guess values from your training data. Do not ask the user "what colour should the active state be" — that colour is defined.
@@ -161,8 +158,7 @@ HTML demos (`*.html`) are **visual previews for designers** — open them in a b
 |---|---|
 | The component itself (React) | `components/NAME/NAME.jsx` — import from this |
 | Token CSS variables | the `src/tokens/` contract: `primitives.css`, `themes/light.css`, `themes/midnight.css`, `layout.css`, `layout-contextual.css`, `type.css`, `motion.css`, `breakpoints.css` |
-| Rules, states, props | `components/NAME/NAME-spec.md` |
-| Quick copy-paste reference | `components/NAME/agent-brief.md` |
+| Rules, states, props, and the quick copy-paste reference | `components/NAME/NAME-spec.md` — the only doc for the component |
 | Visual verification | Storybook: https://helloimjolopez-collab.github.io/pathway-ds/storybook/ |
 
 **Storybook is for visual verification.** HTML demos are for designer preview. Neither is the implementation artifact. The implementation artifacts are the `.jsx` module + `tokens.css` + spec.
@@ -173,20 +169,27 @@ HTML demos (`*.html`) are **visual previews for designers** — open them in a b
 
 Figma Make lives inside Figma. To implement Pathway components accurately in Figma Make:
 
-1. **Paste the `agent-brief.md`** for the component you need — it contains the import contract, token names, props, and key rules in a compact paste-friendly format.
+1. **Paste the component's spec**, or just its "Agent implementation rules" section (§18 for SideNav). The spec carries the import contract, token names, props and key rules.
 2. **Reference the Figma components** directly in the [Pathway Figma file](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) — they exist as proper Figma instances with variables bound.
 3. **Do not paste the `.html` demo source** — HTML demos are visual previews, not implementation references.
 
-| Component | Agent brief |
+| Component | Spec |
 |---|---|
-| SideNav | [`components/sidenav/agent-brief.md`](./components/sidenav/agent-brief.md) |
-| TopNav | [`components/top-nav/agent-brief.md`](./components/top-nav/agent-brief.md) |
-| OrgSwitcher | [`components/org-switcher/agent-brief.md`](./components/org-switcher/agent-brief.md) |
-| Search | [`components/search/agent-brief.md`](./components/search/agent-brief.md) |
-| NavShell | [`components/nav-shell/agent-brief.md`](./components/nav-shell/agent-brief.md) |
-| Button | [`components/button/agent-brief.md`](./components/button/agent-brief.md) |
-| Spinner | [`components/spinner/agent-brief.md`](./components/spinner/agent-brief.md) |
-| Checkbox | [`components/checkbox/agent-brief.md`](./components/checkbox/agent-brief.md) |
+| SideNav | [`components/sidenav/sidenav-spec.md`](./components/sidenav/sidenav-spec.md) |
+| TopNav | [`components/top-nav/top-nav-spec.md`](./components/top-nav/top-nav-spec.md) |
+| OrgSwitcher | [`components/org-switcher/org-switcher-spec.md`](./components/org-switcher/org-switcher-spec.md) |
+| Search | [`components/search/search-spec.md`](./components/search/search-spec.md) |
+| NavShell | [`components/nav-shell/nav-shell-spec.md`](./components/nav-shell/nav-shell-spec.md) |
+| Button | [`components/button/button-spec.md`](./components/button/button-spec.md) |
+| Spinner | [`components/spinner/spinner-spec.md`](./components/spinner/spinner-spec.md) |
+| Checkbox | [`components/checkbox/checkbox-spec.md`](./components/checkbox/checkbox-spec.md) |
+| Scrollbar | [`components/scrollbar/scrollbar-spec.md`](./components/scrollbar/scrollbar-spec.md) |
+
+**One doc per component.** As of 2026-09-16 there are no `agent-brief.md` files and no
+per-component READMEs. There was a second and sometimes a third doc per component, and
+they drifted: the SideNav brief still named `--fill-contextual-navitem-*` tokens that no
+longer existed, and the separate scrollbar doc still said the SideNav menu was 240px. The
+rules from each brief now live in that component's spec under "Agent implementation rules".
 
 Figma Code Connect is **not** set up. When it is, this section should point at the Code Connect mapping instead.
 

@@ -14,33 +14,34 @@
  A developer cannot derive these from a responsive grid. The grid governs
  columns; it says nothing about the chrome's padding.
 
- Declares 14 custom properties.
+ Declares 15 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
 :root {
-  --shell-layout-canvas-padding-horizontal: 0px;
-  --shell-layout-canvas-padding-top: 0px;
-  --shell-layout-sheet-cornerradius-top: 0px;
-  --shell-layout-sheet-padding-horizontal: 36px;
-  --shell-layout-sheet-padding-top: 16px;
-  --shell-layout-topnav-height: 56px;
-  --shell-layout-topnav-padding-horizontal: 16px;
-  --shell-layout-topnav-padding-vertical: 6px;
+  --responsive-layout-sheet-cornerradius-top: 16px;
+  --responsive-layout-sheet-padding-horizontal: 36px;
+  --responsive-layout-sheet-padding-top: 16px;
+  --responsive-layout-topnav-gap-horizontal: 8px;
+  --responsive-layout-topnav-height: 56px;
+  --responsive-layout-topnav-padding-horizontal: 16px;
+  --responsive-layout-topnav-padding-vertical: 6px;
 }
 
 @media (max-width: 1023px) {
   :root {
-    --shell-layout-sheet-padding-horizontal: 24px;
-    --shell-layout-sheet-padding-top: 14px;
-    --shell-layout-topnav-padding-horizontal: 12px;
+    --responsive-layout-sheet-cornerradius-top: 12px;
+    --responsive-layout-sheet-padding-horizontal: 24px;
+    --responsive-layout-sheet-padding-top: 14px;
+    --responsive-layout-topnav-padding-horizontal: 12px;
   }
 }
 
 @media (max-width: 767px) {
   :root {
-    --shell-layout-sheet-padding-horizontal: 16px;
-    --shell-layout-sheet-padding-top: 12px;
-    --shell-layout-topnav-padding-horizontal: 8px;
+    --responsive-layout-sheet-cornerradius-top: 8px;
+    --responsive-layout-sheet-padding-horizontal: 16px;
+    --responsive-layout-sheet-padding-top: 12px;
+    --responsive-layout-topnav-padding-horizontal: 8px;
   }
 }

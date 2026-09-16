@@ -518,3 +518,31 @@ Build the Pathway Button using:
 - Loading state: spinner only, aria-busy=true, implicit disabled
 - All transitions --motion-duration-2 · --motion-easing-standard (spinner loop: --motion-duration-loop-fast · --motion-easing-linear)
 ```
+
+---
+
+## Agent implementation rules
+
+For any agent implementing this component: Figma Make, Lovable, v0, Claude,
+Cursor, Copilot or equivalent. Folded in from the separate `agent-brief.md`,
+deleted 2026-09-16. One doc per component, so there is no second file to drift.
+
+### The 8 rules an agent must not skip
+
+1. **Use the existing component.** Import from `components/button/button.jsx` or copy `button.html`. Do not write a custom button.
+
+2. **Three styles, four types — they compose.** Style (`Fill` / `Outlined` / `Naked`) × Type (`Primary` / `Secondary` / `Tertiary` / `Negative`) × Size (`L` / `M` / `S`). Every combination is valid. Default is `Fill` + `Primary` + `M`.
+
+3. **One Fill/Primary per action group.** `Fill` is the strongest visual signal. Use it once per primary action. Supporting actions get `Outlined`. Tertiary or inline actions get `Naked`.
+
+4. **Negative type for destructive actions only.** Delete, revoke, sign out, permanent removes. Never use it for cancellation or secondary de-emphasis.
+
+5. **Touch target is always 48 × 48 px minimum.** The outer `<button>` carries 6 px transparent padding on all sides. The visible surface (`pw-button__container`) is smaller. Do not remove the padding.
+
+6. **Loading state is semantic, not just visual.** `loading={true}` sets `aria-busy="true"` + `disabled`, replaces all content with a spinner, and prevents double-submission. Never fake it with a disabled state alone.
+
+7. **Icon-only buttons require `ariaLabel`.** When `showText={false}`, the `ariaLabel` prop becomes the accessible name. Without it the button fails WCAG 4.1.2.
+
+8. **All icons are Material Symbols Rounded.** CSS class `material-symbols-rounded`. Never Outlined, Sharp, or custom SVG for any icon that exists in that library.
+
+---

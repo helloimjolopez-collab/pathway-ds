@@ -761,3 +761,29 @@ Hard rules that must not be broken:
 8. **`mobile` prop is tristate.** `true` forces mobile, `false` forces desktop, `undefined` auto-detects. Never coerce to a plain boolean.
 9. **Dropdown menu / panel is non-normative in v1.** Treat all panel code as placeholder until a v2 panel spec lands.
 10. **Touch target 48×48 minimum** at every viewport (WCAG 2.5.5).
+
+---
+
+## Agent implementation rules
+
+For any agent implementing this component: Figma Make, Lovable, v0, Claude,
+Cursor, Copilot or equivalent. Folded in from the separate `agent-brief.md`,
+deleted 2026-09-16. One doc per component, so there is no second file to drift.
+
+### The 7 rules an AI agent must not skip
+
+1. **Always inside TopNav.Global.** Don't render it outside the TopNav, don't put it on a page, don't make it standalone.
+
+2. **The logo is the org logo, not the product logo.** It's a 20×20 image (or a fallback initial-letter avatar if no logo is set). Source per-org.
+
+3. **The org name is `Org` then `|` then `Campus`.** "Sacred Heart Church-ITD | Knoxville" is the format. On mobile it truncates org with ellipsis at 80 px max-width and may drop the `|Campus` portion.
+
+4. **Bordered pill, not a button.** Border is `stroke/action/tertiary/base` (semi-transparent white on the brand-blue TopNav background). Radius `cornerradius/medium: 8px`.
+
+5. **Chevron is `expand_more` from Material Symbols Rounded.** Same icon family as the rest of the TopNav. 20px size, white.
+
+6. **Click opens a dropdown panel** with searchable org list + campus list. Don't substitute a modal, full page, or inline switcher. The dropdown is anchored to the OrgSwitcher pill.
+
+7. **The pill colour responds to TopNav theme.** Text and chevron use `Foreground/Static/Neutral/Mono` (`#ffffff`) on the brand-blue TopNav. Don't use dark text.
+
+---

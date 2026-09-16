@@ -369,8 +369,8 @@ const config = {
           // in their own collection is what let the other 66 drop the axis.
           destination: "layout-responsive.css",
           format: "pathway/layout-responsive",
-          filter: (t) => String(t.path[0]).toLowerCase() === "shell-layout",
-          options: { collection: "shell-layout" },
+          filter: (t) => String(t.path[0]).toLowerCase() === "responsive-layout",
+          options: { collection: "responsive-layout" },
         },
         {
           // Type is a SCALE now, not 111 composites. Semantic: Type went from 554

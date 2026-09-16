@@ -594,3 +594,20 @@ The HTML demo at `components/search/search.html` is the production visual refere
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 0.1 | 2026-05-13 | Jo Lopez + Claude | Initial draft. Base search input + TopNavSearch. All states from Figma 40006978-23158, 40007351-13533, 40007095-4048. Filter-active: blue border + tertiary-base funnel fill, input active (not disabled). Spring expand animation locked. |
+
+---
+
+## Agent implementation rules
+
+For any agent implementing this component: Figma Make, Lovable, v0, Claude,
+Cursor, Copilot or equivalent. Folded in from the separate `agent-brief.md`,
+deleted 2026-09-16. One doc per component, so there is no second file to drift.
+
+### Key rules
+
+1. `SearchInput` is controlled — always supply `value` + `onChange`.
+2. `TopNavSearch` is specifically for TopNav. Do not use it as a generic expandable search.
+3. The search icon inside the expanded `TopNavSearch` bar **collapses** the bar (calls `collapse()`). Wire `onSearchIconClick={collapse}` on the `SearchInput`.
+4. Escape key collapses `TopNavSearch`. This is already implemented in the component.
+5. The input uses `type="text" role="searchbox"` — not `type="search"` (which triggers browser native clear button).
+6. v1: Open state (dropdown results) is deferred. Use Radix `Combobox` for that.

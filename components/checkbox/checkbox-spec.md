@@ -331,3 +331,25 @@ Reduced motion: no change needed (no animation to remove).
 | Secondary Indeterminate use case unclear | MEDIUM | Confirm with design: what triggers this variant? |
 | Focus ring token not defined for standard (non-error) state | MEDIUM | `Stroke/FocusRing/Base` now exists and is shared by every focusable component; confirm the checkbox should use it rather than an effect token |
 | No link to this spec in Figma Dev Mode | LOW | Add spec URL in Figma Dev Mode → Resources: `https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/checkbox/checkbox-spec.md` |
+
+---
+
+## Agent implementation rules
+
+For any agent implementing this component: Figma Make, Lovable, v0, Claude,
+Cursor, Copilot or equivalent. Folded in from the separate `agent-brief.md`,
+deleted 2026-09-16. One doc per component, so there is no second file to drift.
+
+### The 5 rules an AI agent must not skip
+
+1. **Three checked states exist:** `unchecked`, `checked`, and `indeterminate` (the parent-of-a-mixed-selection state). Don't omit indeterminate — it appears in any tree/list checkbox.
+
+2. **All four interaction states must be implemented:** base, hover, focus, disabled. Plus the three checked states above = 12 combinations. The spec has the full matrix.
+
+3. **Touch target is 24×24 visually but 44×44 minimum hit area.** Wrap the visible 24×24 box in a 44×44 label or padded container. WCAG 2.5.5.
+
+4. **The label is part of the click target.** Clicking the text toggles the box. Don't make the label a separate non-interactive sibling.
+
+5. **Use semantic tokens for the fill, stroke, and check icon.** The check icon is `Foreground/Static/Neutral/Mono` (white on brand-blue fill when checked). Never hardcode.
+
+---

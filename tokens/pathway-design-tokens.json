@@ -3750,30 +3750,6 @@
     }
   },
   "contextual-layout-units": {
-    "sidenav": {
-      "width": {
-        "expanded": {
-          "$type": "number",
-          "$value": "{primitive-unit.unit.250}"
-        },
-        "collapsed": {
-          "$type": "number",
-          "$value": "{primitive-unit.unit.72}"
-        }
-      }
-    },
-    "selector": {
-      "borderwidth": {
-        "$type": "number",
-        "$value": "{semantic-layout-units.borderwidth.base}"
-      }
-    },
-    "field": {
-      "borderwidth": {
-        "$type": "number",
-        "$value": "{semantic-layout-units.borderwidth.base}"
-      }
-    },
     "navitem": {
       "padding": {
         "vertical": {
@@ -3793,16 +3769,6 @@
       }
     },
     "button": {
-      "corner-radius": {
-        "radius": {
-          "$type": "number",
-          "$value": "{primitive-unit.unit.8}"
-        }
-      },
-      "radius": {
-        "$type": "number",
-        "$value": "{primitive-unit.unit.8}"
-      },
       "padding": {
         "medium": {
           "vertical": {
@@ -3860,6 +3826,26 @@
           "$type": "number",
           "$value": "{semantic-layout-units.borderwidth.base}"
         }
+      },
+      "radius": {
+        "$type": "number",
+        "$value": "{primitive-unit.unit.8}"
+      },
+      "corner-radius": {
+        "radius": {
+          "$type": "number",
+          "$value": "{primitive-unit.unit.8}"
+        }
+      }
+    },
+    "focus-ring": {
+      "width": {
+        "$type": "number",
+        "$value": "{primitive-unit.unit.2}"
+      },
+      "offset": {
+        "$type": "number",
+        "$value": "{primitive-unit.unit.2}"
       }
     },
     "card": {
@@ -3904,18 +3890,54 @@
         "$value": "{primitive-unit.unit.12}"
       }
     },
-    "focus-ring": {
+    "sidenav": {
       "width": {
-        "$type": "number",
-        "$value": "{primitive-unit.unit.2}"
+        "expanded": {
+          "$type": "number",
+          "$value": "{primitive-unit.unit.250}"
+        },
+        "collapsed": {
+          "$type": "number",
+          "$value": "{primitive-unit.unit.72}"
+        }
       },
-      "offset": {
+      "padding": {
+        "horizontal": {
+          "expanded": {
+            "$type": "number",
+            "$value": "{primitive-unit.unit.16}"
+          },
+          "collapsed": {
+            "$type": "number",
+            "$value": "{primitive-unit.unit.12}"
+          }
+        },
+        "vertical": {
+          "$type": "number",
+          "$value": "{primitive-unit.unit.8}"
+        }
+      },
+      "gap": {
+        "vertical": {
+          "$type": "number",
+          "$value": "{primitive-unit.unit.6}"
+        }
+      }
+    },
+    "selector": {
+      "borderwidth": {
         "$type": "number",
-        "$value": "{primitive-unit.unit.2}"
+        "$value": "{semantic-layout-units.borderwidth.base}"
+      }
+    },
+    "field": {
+      "borderwidth": {
+        "$type": "number",
+        "$value": "{semantic-layout-units.borderwidth.thin}"
       }
     }
   },
-  "shell-layout": {
+  "responsive-layout": {
     "desktop-1440pt": {
       "sheet": {
         "padding": {
@@ -3931,7 +3953,7 @@
         "cornerradius": {
           "top": {
             "$type": "number",
-            "$value": 0
+            "$value": "{primitive-unit.unit.16}"
           }
         }
       },
@@ -3949,17 +3971,11 @@
         "height": {
           "$type": "number",
           "$value": "{primitive-unit.unit.56}"
-        }
-      },
-      "canvas": {
-        "padding": {
-          "top": {
-            "$type": "number",
-            "$value": 0
-          },
+        },
+        "gap": {
           "horizontal": {
             "$type": "number",
-            "$value": 0
+            "$value": "{primitive-unit.unit.8}"
           }
         }
       }
@@ -3979,7 +3995,7 @@
         "cornerradius": {
           "top": {
             "$type": "number",
-            "$value": 0
+            "$value": "{primitive-unit.unit.12}"
           }
         }
       },
@@ -3997,17 +4013,11 @@
         "height": {
           "$type": "number",
           "$value": "{primitive-unit.unit.56}"
-        }
-      },
-      "canvas": {
-        "padding": {
-          "top": {
-            "$type": "number",
-            "$value": 0
-          },
+        },
+        "gap": {
           "horizontal": {
             "$type": "number",
-            "$value": 0
+            "$value": "{primitive-unit.unit.8}"
           }
         }
       }
@@ -4027,7 +4037,7 @@
         "cornerradius": {
           "top": {
             "$type": "number",
-            "$value": 0
+            "$value": "{primitive-unit.unit.8}"
           }
         }
       },
@@ -4045,17 +4055,11 @@
         "height": {
           "$type": "number",
           "$value": "{primitive-unit.unit.56}"
-        }
-      },
-      "canvas": {
-        "padding": {
-          "top": {
-            "$type": "number",
-            "$value": 0
-          },
+        },
+        "gap": {
           "horizontal": {
             "$type": "number",
-            "$value": 0
+            "$value": "{primitive-unit.unit.8}"
           }
         }
       }

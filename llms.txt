@@ -16,14 +16,13 @@ To implement any Pathway component correctly, use these — not HTML demos:
 - `src/tokens/`: the token contract, eight CSS files. Load `primitives.css` first, then one theme
 - `tokens/component-token-map.json`: **which CSS variable does each component element use** (card title, nav item, etc.) — eliminates guesswork
 - `NAME-spec.md`: rules, props, states, token names
-- `NAME/agent-brief.md`: compact paste-friendly summary for AI agents
+- One doc per component. There is no `agent-brief.md` and no per-component README: the spec first three sections are the quick answers, and its "Agent implementation rules" section is the paste-friendly brief.
 
 HTML demos (`*.html`) are visual previews for designers. Do not copy implementation from them.
 
 ## Navigation shell (always use these — do not reinvent)
 
-- [components/sidenav/agent-brief.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/agent-brief.md): Concise paste-ready SideNav contract.
-- [components/sidenav/sidenav-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav-spec.md): Full SideNav spec (anatomy, tokens, states, accessibility, motion, responsive).
+- [components/sidenav/sidenav-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav-spec.md): The only SideNav doc. Links, icon library and tokens up front; then anatomy, states, accessibility, motion, responsive. Agent rules in section 18.
 - [components/sidenav/sidenav.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav.jsx): React module with named exports (SideNav, SideNavItem, NavSectionLabel, BulletDot, ListItem, SideNavListSection, CollapseButton, etc.).
 - [components/sidenav/sidenav.html](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav.html): Self-contained React+Babel runnable demo.
 - [components/top-nav/top-nav-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/top-nav/top-nav-spec.md): TopNav.Global spec.
@@ -31,8 +30,7 @@ HTML demos (`*.html`) are visual previews for designers. Do not copy implementat
 
 ## Other documented components
 
-- [components/button/agent-brief.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/agent-brief.md): Concise paste-ready Button contract — read this before writing any action trigger.
-- [components/button/button-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button-spec.md): Full Button spec (anatomy, variants, tokens, states, accessibility).
+- [components/button/button-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button-spec.md): The only Button doc: anatomy, variants, tokens, states, accessibility, plus the agent implementation rules.
 - [components/button/button.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button.jsx): React module. Exports: `Button`, `STYLES`, `TYPES`, `SIZES`, `FILL`, `TEXT`, `ICON`, `STROKE`.
 - [components/button/button.html](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/button/button.html): Self-contained React+Babel runnable demo.
 - [components/spinner/spinner-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/spinner/spinner-spec.md): Loading indicator spec.

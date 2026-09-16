@@ -656,3 +656,27 @@ Hard rules. Breaking any of these breaks the component's contract.
 ## 12. Storybook
 
 > **Note for the team:** this component should be added to Storybook once component stories are being introduced. Right now the repo's Storybook build contains tokens only — no component stories have been authored yet. When that work begins, Spinner is a good first candidate: it has a single narrow API surface (`style`, `size`, `color`, `label`), a clean set of story permutations (default, in-button, inline, reduced-motion, custom colour, large/small), and no external dependencies. The `spinner.html` demo in this repo can be lifted almost directly into stories.
+
+---
+
+## Agent implementation rules
+
+For any agent implementing this component: Figma Make, Lovable, v0, Claude,
+Cursor, Copilot or equivalent. Folded in from the separate `agent-brief.md`,
+deleted 2026-09-16. One doc per component, so there is no second file to drift.
+
+### The 6 rules an AI agent must not skip
+
+1. **Use the documented semantic icon tokens.** The spinner's colour comes from `Foreground/*` or `Foreground/Action/*` semantic tokens (Icon was merged into Foreground). Never raw hex, never a primitive. Allowed tones are listed in §7.1 of the spec.
+
+2. **The geometry is fixed.** Don't reinvent the sunburst — it's an 8-spoke rotating SVG with specific path data. Copy from [spinner.html](./spinner.html).
+
+3. **Animation: smooth continuous rotation, no easing.** `animation: rotate var(--motion-duration-loop) var(--motion-easing-linear) infinite` is the canonical value. Don't ease in/out — it must feel mechanical and constant or it looks like it's stopping.
+
+4. **Respect `prefers-reduced-motion: reduce`.** Replace the rotation with a static dot pulse or simply a static icon. Never strip the wait signal entirely.
+
+5. **The spinner is a primitive — it doesn't own the wait state.** The consuming component is responsible for the surrounding label ("Loading..."), the network request, and the announce-to-screen-reader logic. The spinner just spins.
+
+6. **Sizes come from `Accessibility/Icon Wrapping/*` tokens.** Don't pick arbitrary px values.
+
+---
