@@ -14,8 +14,8 @@
  ==========================================================================
 */
 :root {
-  --contextual-layout-units-button-border-width-hover: 1px;
-  --contextual-layout-units-button-border-width-rest: 0.75px;
+  --contextual-layout-units-button-border-width-rest: 1px;
+  --contextual-layout-units-button-border-width-selected: 1.5px;
   --contextual-layout-units-button-corner-radius-radius: 8px;
   --contextual-layout-units-button-gap-horizontal: 8px;
   --contextual-layout-units-button-padding-large-horizontal: 14px;
