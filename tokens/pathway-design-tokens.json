@@ -999,7 +999,7 @@
           },
           "sheet": {
             "$type": "color",
-            "$value": "{primitive-color.cool-neutral.0}"
+            "$value": "{semantic-color.light-mode.fill.static.neutral.mono}"
           },
           "elevated": {
             "$type": "color",
@@ -1392,7 +1392,7 @@
             },
             "on-strong": {
               "$type": "color",
-              "$value": "{primitive-color.cool-neutral.0}"
+              "$value": "{semantic-color.light-mode.fill.static.neutral.mono}"
             }
           },
           "secondary": {
@@ -1507,7 +1507,7 @@
               },
               "on-strong": {
                 "$type": "color",
-                "$value": "{primitive-color.cool-neutral.0}"
+                "$value": "{semantic-color.light-mode.fill.static.neutral.mono}"
               }
             }
           }

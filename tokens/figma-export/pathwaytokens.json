@@ -1009,9 +1009,9 @@
               },
               "Sheet": {
                 "$type": "color",
-                "$collectionName": "Primitive: Color",
+                "$collectionName": "Semantic: Color",
                 "$libraryName": "",
-                "$value": "{Cool Neutral.0}"
+                "$value": "{Fill.Static.Neutral.Mono}"
               },
               "Elevated": {
                 "$type": "color",
@@ -1560,9 +1560,9 @@
                 },
                 "On Strong": {
                   "$type": "color",
-                  "$collectionName": "Primitive: Color",
+                  "$collectionName": "Semantic: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.0}"
+                  "$value": "{Fill.Static.Neutral.Mono}"
                 }
               },
               "Secondary": {
@@ -1721,9 +1721,9 @@
                   },
                   "On Strong": {
                     "$type": "color",
-                    "$collectionName": "Primitive: Color",
+                    "$collectionName": "Semantic: Color",
                     "$libraryName": "",
-                    "$value": "{Cool Neutral.0}"
+                    "$value": "{Fill.Static.Neutral.Mono}"
                   }
                 }
               }

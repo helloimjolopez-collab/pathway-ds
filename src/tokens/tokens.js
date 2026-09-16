@@ -2180,7 +2180,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-surface-sheet": {
-    "value": "#ffffff",
+    "value": "#fefefd",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3201,7 +3201,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-foreground-action-primary-on-strong": {
-    "value": "#ffffff",
+    "value": "#fefefd",
     "type": "color",
     "path": [
       "semantic-color",
@@ -3511,7 +3511,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-foreground-action-status-negative-on-strong": {
-    "value": "#ffffff",
+    "value": "#fefefd",
     "type": "color",
     "path": [
       "semantic-color",

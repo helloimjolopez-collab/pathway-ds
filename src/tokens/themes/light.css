@@ -18,7 +18,6 @@
 */
 :root, [data-theme="light"] {
   --semantic-color-fill-surface-canvas: var(--primitive-color-cool-neutral-10);
-  --semantic-color-fill-surface-sheet: var(--primitive-color-cool-neutral-0);
   --semantic-color-fill-surface-elevated: var(--primitive-color-warm-neutral-0);
   --semantic-color-fill-action-disabled: var(--primitive-color-warm-neutral-100-36);
   --semantic-color-fill-action-primary-strong-rest: var(--primitive-color-brand-400);
@@ -97,7 +96,6 @@
   --semantic-color-foreground-action-primary-on-subtle-rest: var(--primitive-color-brand-500);
   --semantic-color-foreground-action-primary-on-subtle-hover: var(--primitive-color-brand-600);
   --semantic-color-foreground-action-primary-on-subtle-pressed: var(--primitive-color-brand-800);
-  --semantic-color-foreground-action-primary-on-strong: var(--primitive-color-cool-neutral-0);
   --semantic-color-foreground-action-secondary-rest: var(--primitive-color-cool-neutral-550);
   --semantic-color-foreground-action-secondary-hover: var(--primitive-color-cool-neutral-600);
   --semantic-color-foreground-action-secondary-pressed: var(--primitive-color-cool-neutral-800);
@@ -119,7 +117,6 @@
   --semantic-color-foreground-action-status-negative-on-subtle-rest: var(--primitive-color-red-700);
   --semantic-color-foreground-action-status-negative-on-subtle-hover: var(--primitive-color-red-800);
   --semantic-color-foreground-action-status-negative-on-subtle-pressed: var(--primitive-color-red-900);
-  --semantic-color-foreground-action-status-negative-on-strong: var(--primitive-color-cool-neutral-0);
   --semantic-color-foreground-static-neutral-mono: var(--primitive-color-cool-neutral-0);
   --semantic-color-foreground-static-neutral-faint: var(--primitive-color-cool-neutral-400);
   --semantic-color-foreground-static-neutral-subtle: var(--primitive-color-cool-neutral-500);
@@ -199,5 +196,8 @@
   --semantic-color-scrim-light: var(--primitive-color-cool-neutral-800-24);
   --semantic-color-scrim-subtle: var(--primitive-color-cool-neutral-800-50);
   --semantic-color-scrim-base: var(--primitive-color-cool-neutral-800-70);
+  --semantic-color-fill-surface-sheet: var(--semantic-color-fill-static-neutral-mono);
+  --semantic-color-foreground-action-primary-on-strong: var(--semantic-color-fill-static-neutral-mono);
   --semantic-color-foreground-action-status-positive-on-strong: var(--semantic-color-fill-static-neutral-mono);
+  --semantic-color-foreground-action-status-negative-on-strong: var(--semantic-color-fill-static-neutral-mono);
 }
