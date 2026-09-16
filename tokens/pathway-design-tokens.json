@@ -1194,6 +1194,10 @@
             },
             "strong": {
               "$type": "color",
+              "$value": "{primitive-color.warm-neutral.800}"
+            },
+            "bold": {
+              "$type": "color",
               "$value": "{primitive-color.warm-neutral.150}"
             }
           },
@@ -1725,6 +1729,10 @@
             "strong": {
               "$type": "color",
               "$value": "{primitive-color.warm-neutral.350}"
+            },
+            "mono": {
+              "$type": "color",
+              "$value": "{primitive-color.cool-neutral.0}"
             }
           },
           "info": {
@@ -2043,6 +2051,10 @@
               "$value": "{primitive-color.warm-neutral.600}"
             },
             "strong": {
+              "$type": "color",
+              "$value": "{primitive-color.warm-neutral.100}"
+            },
+            "bold": {
               "$type": "color",
               "$value": "{primitive-color.warm-neutral.500}"
             }
@@ -2575,6 +2587,10 @@
             "strong": {
               "$type": "color",
               "$value": "{primitive-color.warm-neutral.200}"
+            },
+            "mono": {
+              "$type": "color",
+              "$value": "{primitive-color.cool-neutral.0}"
             }
           },
           "info": {

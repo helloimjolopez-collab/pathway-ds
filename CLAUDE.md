@@ -59,8 +59,8 @@ tokens/pathway-design-tokens.json                        │
                              ▼
         src/tokens/primitives.css          352 raw ramp values — REQUIRED, the themes
                                            reference these via var()
-        src/tokens/themes/light.css        169 semantic colours, :root + [data-theme=light]
-        src/tokens/themes/midnight.css     the same 169 names under [data-theme=midnight]
+        src/tokens/themes/light.css        171 semantic colours, :root + [data-theme=light]
+        src/tokens/themes/midnight.css     the same 171 names under [data-theme=midnight]
         src/tokens/layout.css              40 layout tokens, breakpoint by media query
         src/tokens/layout-contextual.css   28 component metrics, same treatment
         src/tokens/type.css                41 type scale tokens
@@ -102,7 +102,7 @@ Load these eight, in this order:
 | File | Contains | Consume it? |
 |---|---|---|
 | `primitives.css` | 352 raw ramp values | **Required, but never referenced.** The themes point at these via `var()`, so the file must load or every colour resolves to nothing. Product code must never name a `--primitive-*` (§6) |
-| `themes/light.css` + `themes/midnight.css` | 169 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
+| `themes/light.css` + `themes/midnight.css` | 171 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
 | `layout.css` | 40 layout and spacing names, single-valued | **Yes.** The spacing contract |
 | `layout-responsive.css` | 6 names that genuinely change by breakpoint: Sheet padding, TopNav padding and height. Emitted with media queries | **Yes.** A developer cannot derive these from a responsive grid — the grid governs columns, not the chrome's padding |
 | `layout-contextual.css` | 28 component metrics (Button, Card, NavItem, Selector, Field, focus ring) | Component internals. This repo's components use it; product code should not |
@@ -190,11 +190,28 @@ across both modes. Five fills had to move one or two ramp steps to make that
 reachable, because a mid-tone fill is too dark for dark text and too light for
 white and nothing reaches 7:1 from either side.
 
-Only Neutral and Brand keep a longer ladder, because they carry most of the UI:
-Neutral's foreground runs Mono, Faint, Subtle, Base, Bold, Strong; its fill runs
-Mono, Faint, Subtle, Base, Strong; `Fill/Static/Brand` keeps six rungs through
-`Strongest`. There is no `Stroke/Static/Brand` — it was built and then removed as
-unnecessary on 2026-09-16.
+Only Neutral and Brand keep a longer ladder, because they carry most of the UI.
+Neutral's fill and foreground now run the SAME six rungs, which is the point:
+
+```
+Foreground/Static/Neutral   Mono, Faint, Subtle, Base, Bold, Strong
+Fill/Static/Neutral         Mono, Faint, Subtle, Base, Bold, Strong
+Stroke/Static/Neutral       Mono, Faint, Base, Bold, Strong
+```
+
+`Fill/Static/Neutral/Strong` is the DARK end (Warm Neutral/800 in Light). It was
+added on 2026-09-16 because the fill ladder previously topped out at a light grey,
+so there was no token for a dark neutral surface at all: a mono button or a
+near-black selected tab had nothing to bind to and used a hand-picked hex. Do not
+reach for a Brand token when you need something dark and neutral.
+
+`Stroke/Static/Neutral/Mono` is a white border, added the same day for the same
+reason: Mono existed in Fill and Foreground but not Stroke, so 79 white rings
+across the library had nothing to bind to. Use it for a ring separating an element
+from a coloured or image background; against the page it is invisible by definition.
+
+`Fill/Static/Brand` keeps six rungs through `Strongest`. There is no
+`Stroke/Static/Brand` — it was built and then removed as unnecessary.
 
 **Strong is always the last rung.** The ladder runs lightest to heaviest and ends
 at Strong, so `Bold` is the second-heaviest, not the heaviest.

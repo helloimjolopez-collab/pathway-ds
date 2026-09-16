@@ -1286,6 +1286,12 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
+                  "$value": "{Warm Neutral.800}"
+                },
+                "Bold": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
                   "$value": "{Warm Neutral.150}"
                 }
               },
@@ -2027,6 +2033,12 @@
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Warm Neutral.350}"
+                },
+                "Mono": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Cool Neutral.0}"
                 }
               },
               "Info": {
@@ -2471,6 +2483,12 @@
                   "$value": "{Warm Neutral.600}"
                 },
                 "Strong": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Warm Neutral.100}"
+                },
+                "Bold": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
@@ -3215,6 +3233,12 @@
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
                   "$value": "{Warm Neutral.200}"
+                },
+                "Mono": {
+                  "$type": "color",
+                  "$collectionName": "Primitive: Color",
+                  "$libraryName": "",
+                  "$value": "{Cool Neutral.0}"
                 }
               },
               "Info": {

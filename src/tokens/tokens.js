@@ -2696,7 +2696,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-mode-fill-static-neutral-strong": {
-    "value": "#cbc6be",
+    "value": "#1e1c1a",
     "type": "color",
     "path": [
       "semantic-color",
@@ -2705,6 +2705,18 @@ const tokens = {
       "static",
       "neutral",
       "strong"
+    ]
+  },
+  "semantic-color-light-mode-fill-static-neutral-bold": {
+    "value": "#cbc6be",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "fill",
+      "static",
+      "neutral",
+      "bold"
     ]
   },
   "semantic-color-light-mode-fill-static-brand-faint": {
@@ -4031,6 +4043,18 @@ const tokens = {
       "strong"
     ]
   },
+  "semantic-color-light-mode-stroke-static-neutral-mono": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "light-mode",
+      "stroke",
+      "static",
+      "neutral",
+      "mono"
+    ]
+  },
   "semantic-color-light-mode-stroke-static-info-subtle": {
     "value": "#a8a0d8",
     "type": "color",
@@ -4823,7 +4847,7 @@ const tokens = {
     ]
   },
   "semantic-color-midnight-mode-fill-static-neutral-strong": {
-    "value": "#57534e",
+    "value": "#d8d3cd",
     "type": "color",
     "path": [
       "semantic-color",
@@ -4832,6 +4856,18 @@ const tokens = {
       "static",
       "neutral",
       "strong"
+    ]
+  },
+  "semantic-color-midnight-mode-fill-static-neutral-bold": {
+    "value": "#57534e",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "fill",
+      "static",
+      "neutral",
+      "bold"
     ]
   },
   "semantic-color-midnight-mode-fill-static-brand-faint": {
@@ -6156,6 +6192,18 @@ const tokens = {
       "static",
       "neutral",
       "strong"
+    ]
+  },
+  "semantic-color-midnight-mode-stroke-static-neutral-mono": {
+    "value": "#ffffff",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "midnight-mode",
+      "stroke",
+      "static",
+      "neutral",
+      "mono"
     ]
   },
   "semantic-color-midnight-mode-stroke-static-info-subtle": {

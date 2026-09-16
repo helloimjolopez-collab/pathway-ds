@@ -14,7 +14,7 @@
  still the lightest-touch step even though here it is a dark near-ground.
  White, XLight and Black are inversion anchors and keep their value.
 
- Declares 169 custom properties.
+ Declares 171 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -60,7 +60,8 @@
   --semantic-color-fill-static-neutral-faint: var(--primitive-color-warm-neutral-800);
   --semantic-color-fill-static-neutral-subtle: var(--primitive-color-warm-neutral-700);
   --semantic-color-fill-static-neutral-base: var(--primitive-color-warm-neutral-600);
-  --semantic-color-fill-static-neutral-strong: var(--primitive-color-warm-neutral-500);
+  --semantic-color-fill-static-neutral-strong: var(--primitive-color-warm-neutral-100);
+  --semantic-color-fill-static-neutral-bold: var(--primitive-color-warm-neutral-500);
   --semantic-color-fill-static-brand-faint: var(--primitive-color-brand-25);
   --semantic-color-fill-static-brand-subtle: var(--primitive-color-brand-50);
   --semantic-color-fill-static-brand-base: var(--primitive-color-brand-100);
@@ -166,6 +167,7 @@
   --semantic-color-stroke-static-neutral-base: var(--primitive-color-warm-neutral-700);
   --semantic-color-stroke-static-neutral-bold: var(--primitive-color-warm-neutral-450);
   --semantic-color-stroke-static-neutral-strong: var(--primitive-color-warm-neutral-200);
+  --semantic-color-stroke-static-neutral-mono: var(--primitive-color-cool-neutral-0);
   --semantic-color-stroke-static-info-subtle: var(--primitive-color-amethyst-700);
   --semantic-color-stroke-static-info-strong: var(--primitive-color-amethyst-350);
   --semantic-color-stroke-static-positive-subtle: var(--primitive-color-green-800);
