@@ -50,7 +50,7 @@ export const T = {
   orgText:        SCD("foreground-static-neutral-bold", "#eceaf3"),
   orgChevron:     SCD("foreground-static-neutral-base", "rgba(255,255,255,0.8)"),
   avatarBg:       SCL("fill-accent-amethyst-medium", "#dcd9ef"),
-  avatarText:     SCL("foreground-static-amethyst-on-subtle", "#221e3f"),
+  avatarText:     SCL("foreground-static-info-on-subtle", "#221e3f"),
   // White dropdown-menu surface — tracks fill-neutral-light (now warm-neutral-0).
   panelBg:        SCL("fill-static-neutral-faint", "#ffffff"),
   activeItem:     SCL("fill-action-primary-subtle-rest", "#eef2fb"),

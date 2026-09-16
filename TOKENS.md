@@ -1,6 +1,6 @@
 # Pathway tokens — start here
 
-**The colour contract is 172 names. Your full working vocabulary is 270.**
+**The colour contract is 169 names. Your full working vocabulary is 267.**
 
 This file exists at the repo root because the previous arrangement failed a real test: a
 developer went looking for "the token CSS", could not find it, and had no way to tell
@@ -39,16 +39,16 @@ error**.
 
 | File | Names | May I name these? |
 |---|---|---|
-| `themes/light.css` | **172** | **Yes** — this is the colour contract |
-| `themes/midnight.css` | 172 | Yes — the *same* names, different values |
+| `themes/light.css` | **169** | **Yes** — this is the colour contract |
+| `themes/midnight.css` | 169 | Yes — the *same* names, different values |
 | `type.css` | 41 | Yes |
 | `layout.css` | 40 | Yes |
 | `motion.css` | 17 | Yes |
 | `layout-responsive.css` | 6 | Yes — the only layout tokens with media queries |
 | `breakpoints.css` | 5 | Yes |
-| **Working vocabulary** | **270** | |
+| **Working vocabulary** | **267** | |
 | `primitives.css` | 350 | **No** — but you must load it |
-| `layout-contextual.css` | 26 | This repo's own components |
+| `layout-contextual.css` | 28 | This repo's own components |
 
 Every file repeats this in **its own header**, with the count computed at build time so
 it cannot drift from the file it describes. Open any of them and the first thing you read
@@ -59,12 +59,12 @@ every consumable name machine-readably, if you want to lint against it. Those ar
 generated into `dist/`, which is not committed, so you will see them after
 `npm run build-dist` or inside the installed package.
 
-## Why 270 and not 966
+## Why 267 and not 966
 
 If you add up every declaration across the token folder you get 966. That number is
 real and it is not the contract:
 
-- **The two theme files declare the same 172 names**, once each. One name, two values,
+- **The two theme files declare the same 169 names**, once each. One name, two values,
   chosen by selector. So they count once, not twice.
 - **350 of them are primitives** — infrastructure you load and never name, the same way
   the glyphs inside a font file are not part of your type scale.

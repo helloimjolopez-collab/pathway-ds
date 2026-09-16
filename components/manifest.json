@@ -492,8 +492,8 @@
         "dark-mode.stroke.action.primary.pressed",
         "dark-mode.foreground.static.neutral.mono",
         "dark-mode.foreground.static.neutral.mono",
-        "light-mode.fill.static.amethyst.subtle",
-        "light-mode.foreground.static.amethyst.on-subtle"
+        "light-mode.fill.static.info.subtle",
+        "light-mode.foreground.static.info.on-subtle"
       ],
       "gaps": [
         "Active item token in dropdowns: uses raw #eef2fb \u2014 no semantic token exists yet (HIGH).",
@@ -565,13 +565,13 @@
         "foreground.static.neutral.*",
         "foreground.action.primary.*",
         "foreground.action.primary.on-subtle.rest",
-        "foreground.static.saffron.on-subtle.*",
-        "foreground.static.orange.on-subtle.*",
-        "foreground.static.red.on-subtle.*",
-        "foreground.static.green.on-subtle.*",
-        "foreground.static.amethyst.*",
-        "foreground.static.jade.*",
-        "foreground.static.seabreeze.*"
+        "foreground.static.attention.on-subtle.*",
+        "foreground.static.severe.on-subtle.*",
+        "foreground.static.negative.on-subtle.*",
+        "foreground.static.positive.on-subtle.*",
+        "foreground.static.info.*",
+        "foreground.static.accent.jade.*",
+        "foreground.static.accent.seabreeze.*"
       ]
     },
     "button": {

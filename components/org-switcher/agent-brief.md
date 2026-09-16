@@ -91,7 +91,7 @@ import { OrgSwitcher } from "components/org-switcher/org-switcher.jsx";
 />
 ```
 
-If no logo is provided, render a 20×20 circle with the first letter of `org.name` in `Fill/Static/Amethyst/Subtle` (same pattern as the Profile avatar).
+If no logo is provided, render a 20×20 circle with the first letter of `org.name` in `Fill/Static/Info/Subtle` (same pattern as the Profile avatar).
 
 ---
 

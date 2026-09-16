@@ -304,7 +304,7 @@ No filter UI. Just the search bar. Filtering happens upstream (e.g., toggles or 
 | Filter chip fill | `fill.static.info.subtle` or `fill.contextual.chip.base` | TBD when inverse-translucent chip needed |
 | Filter chip text | `text.action.primary.base` | white |
 | Help text | `text.action.secondaryinverse.base` | white at 0.7 |
-| Error text | `text.static.red.base` | tone-correct red |
+| Error text | `text.static.negative.base` | tone-correct red |
 | Label | `text.action.secondary.base` | white |
 
 ### 5.8 Accessibility

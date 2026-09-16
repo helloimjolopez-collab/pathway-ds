@@ -103,8 +103,8 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 | `stroke.action.primary.rest` (dark) | dark-mode | rgba(160,181,230,0.16) | OrgSwitcher border |
 | `fill.action.primary.subtle.hover` (dark) | dark-mode | rgba(10,18,35,0.16) | All nav controls hover |
 | `foreground.static.neutral.mono` (dark) | dark-mode | #fbfbfb | All text + icons on nav |
-| `fill.static.amethyst.subtle` | `--semantic-color-fill-static-amethyst-subtle` | #dcd9ef | Profile avatar bg |
-| `foreground.static.amethyst.on-subtle` | `--semantic-color-foreground-static-amethyst-on-subtle` | #221e3f | Profile avatar initials |
+| `fill.static.info.subtle` | `--semantic-color-fill-static-info-subtle` | #dcd9ef | Profile avatar bg |
+| `foreground.static.info.on-subtle` | `--semantic-color-foreground-static-info-on-subtle` | #221e3f | Profile avatar initials |
 
 ### SideNav surface (light mode)
 
@@ -131,8 +131,8 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 | `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` | #606060 | Section heading, card body, search placeholder |
 | `fill.action.primary.subtle.rest` | `--semantic-color-fill-action-primary-subtle-rest` | #eef2fb | Active filter chip bg |
 | `foreground.action.primary.on-subtle.rest` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #3555a0 | Active tab, active filter chip text |
-| `fill.accent_amethyst.light` | `--semantic-color-fill-static-amethyst-subtle` | #f4f2fa | Badge background |
-| `foreground.static.amethyst.on-subtle` | `--semantic-color-foreground-static-amethyst-on-subtle` | #221e3f | Badge text |
+| `fill.accent_amethyst.light` | `--semantic-color-fill-static-info-subtle` | #f4f2fa | Badge background |
+| `foreground.static.info.on-subtle` | `--semantic-color-foreground-static-info-on-subtle` | #221e3f | Badge text |
 
 ---
 
@@ -275,15 +275,15 @@ Card (bg: white, border: 0.5px #d2d2d2, radius: 8px, padding: 16px, gap: 12px)
 ├── Slot.CardSubtitle
 │   └── Badge (bg: fill.accent_amethyst.light = #f4f2fa, radius: 12px)
 │       └── label.badge.small.medium: 11px/500/16px, tracking 0.3px
-│           color: foreground.static.amethyst.on-subtle = #221e3f
+│           color: foreground.static.info.on-subtle = #221e3f
 └── CardBody (14px/400/20px, foreground.static.neutral.base = #606060)
 ```
 
 Card icon color variants (32×32 container):
 - **Accent/amethyst:** bg `fill.accent_amethyst.light` (#f4f2fa)
-- **Positive/green:** bg `fill.static.green.subtle` (#f0faf1)
+- **Positive/green:** bg `fill.static.positive.subtle` (#f0faf1)
 - **Info/blue:** bg `fill.static.brand.faint` (#eef2fb)
-- **Warning:** bg `fill.static.saffron.subtle` (#fff8e1)
+- **Warning:** bg `fill.static.attention.subtle` (#fff8e1)
 
 ---
 

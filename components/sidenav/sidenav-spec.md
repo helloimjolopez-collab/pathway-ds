@@ -1521,7 +1521,7 @@ The global top navigation is a separate component not owned by this spec. The Pa
 
 **TopNav.Global slot layout (left → right) — as read from Figma 2026-05-13:**
 - **Row Start:** SideNav control (mobile hamburger `menu`, hidden ≥768px via CSS) · ModuleSwitcher (Amplify Home icon + `expand_more` chevron, no text label) · OrgSwitcher (church logo 20×20 sq + "Sacred Heart Church-ITD | Knoxville" label + `expand_more` chevron; container has `stroke/action/tertiary/base` border)
-- **Row End:** Search (48×48 wrapper → 32×32 circle button with `cornerradius/full:64px` and `search` icon) · Desktop: 2× Notifications bell (`notifications` Material Symbol, 48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Amethyst/Subtle #dcd9ef`, "JL" in `#221e3f`)
+- **Row End:** Search (48×48 wrapper → 32×32 circle button with `cornerradius/full:64px` and `search` icon) · Desktop: 2× Notifications bell (`notifications` Material Symbol, 48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Info/Subtle #dcd9ef`, "JL" in `#221e3f`)
 
 **Breakpoint variants (Figma node IDs):**
 - Desktop 1440px: `40007103:17678` — `justify-content: space-between`, right slot `width: 216px`

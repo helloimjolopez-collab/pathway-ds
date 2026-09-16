@@ -18,7 +18,7 @@
 
  Nothing blocks you. It is an escape hatch with a stated cost.
 
- Declares 351 custom properties.
+ Declares 352 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -247,6 +247,7 @@
   --primitive-color-saffron-350: #aa843e;
   --primitive-color-saffron-400: #91723b;
   --primitive-color-saffron-500: #6d5936;
+  --primitive-color-saffron-600: #51432c;
   --primitive-color-saffron-700: #342d21;
   --primitive-color-saffron-800: #1d1912;
   --primitive-color-saffron-900: #110d07;

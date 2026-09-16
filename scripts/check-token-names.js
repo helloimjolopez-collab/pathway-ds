@@ -310,9 +310,16 @@ const RETIRED_SLASH_EXAMPLES = new Set([
   "Stroke/Status",
   // Deleted 2026-09-15, same day, second pass. The Accent tier was dropped so a
   // hue now sits directly under Static. tokenOrder.js's header comment states
-  // the mapping ("Fill/Static/Jade/Subtle, not Fill/Static/Accent/Jade/Faint"),
+  // the mapping ("Fill/Static/Accent/Jade/Subtle, not Fill/Static/Accent/Jade/Faint"),
   // which needs the retired path spelled out to mean anything.
   "Fill/Static/Accent/Jade",
+  // Retired 2026-09-16, when Static went from hue names to meaning names.
+  // CLAUDE.md §2.0 names this one to say it does NOT exist, which is the single
+  // most useful line in that section for an agent about to guess a token name.
+  "Fill/Static/Red",
+  // Built and removed the same day. CLAUDE.md records the removal so a later
+  // session does not rebuild it; the sentence needs the name to mean anything.
+  "Stroke/Static/Brand",
 ]);
 
 

@@ -57,12 +57,12 @@ tokens/pathway-design-tokens.json                        │
   └──────────────────────────┬────────────────────────────┘
                              │  node style-dictionary.config.js
                              ▼
-        src/tokens/primitives.css          351 raw ramp values — REQUIRED, the themes
+        src/tokens/primitives.css          352 raw ramp values — REQUIRED, the themes
                                            reference these via var()
-        src/tokens/themes/light.css        172 semantic colours, :root + [data-theme=light]
-        src/tokens/themes/midnight.css     the same 172 names under [data-theme=midnight]
+        src/tokens/themes/light.css        169 semantic colours, :root + [data-theme=light]
+        src/tokens/themes/midnight.css     the same 169 names under [data-theme=midnight]
         src/tokens/layout.css              40 layout tokens, breakpoint by media query
-        src/tokens/layout-contextual.css   26 component metrics, same treatment
+        src/tokens/layout-contextual.css   28 component metrics, same treatment
         src/tokens/type.css                41 type scale tokens
         src/tokens/motion.css              17 durations and easings
         src/tokens/breakpoints.css         5 breakpoint values
@@ -76,7 +76,7 @@ authenticated and absent in headless runs.
 
 **The read must be paged, and the guard must not be bypassed.** MCP responses cap
 at roughly 20KB against ~2,300 variable-mode rows, so a single read truncates
-silently at about 351 rows. That is the dangerous failure — a truncated page
+silently at about 350 rows. That is the dangerous failure — a truncated page
 yields a token file that looks plausible, is missing hundreds of tokens, and
 builds successfully. So: the first page declares the expected row total, pages
 land in `.figma-dump/*.tsv`, and `scripts/assemble-figma-export.js` **refuses to
@@ -101,11 +101,11 @@ Load these eight, in this order:
 
 | File | Contains | Consume it? |
 |---|---|---|
-| `primitives.css` | 351 raw ramp values | **Required, but never referenced.** The themes point at these via `var()`, so the file must load or every colour resolves to nothing. Product code must never name a `--primitive-*` (§6) |
-| `themes/light.css` + `themes/midnight.css` | 172 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
+| `primitives.css` | 352 raw ramp values | **Required, but never referenced.** The themes point at these via `var()`, so the file must load or every colour resolves to nothing. Product code must never name a `--primitive-*` (§6) |
+| `themes/light.css` + `themes/midnight.css` | 169 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
 | `layout.css` | 40 layout and spacing names, single-valued | **Yes.** The spacing contract |
 | `layout-responsive.css` | 6 names that genuinely change by breakpoint: Sheet padding, TopNav padding and height. Emitted with media queries | **Yes.** A developer cannot derive these from a responsive grid — the grid governs columns, not the chrome's padding |
-| `layout-contextual.css` | 26 component metrics (Button, Card, NavItem, focus ring) | Component internals. This repo's components use it; product code should not |
+| `layout-contextual.css` | 28 component metrics (Button, Card, NavItem, Selector, Field, focus ring) | Component internals. This repo's components use it; product code should not |
 | `type.css` | The 41-token type SCALE: 1 family, 13 sizes, 18 line heights, 5 weights, 4 tracking steps | **Yes.** Compose from these |
 | `motion.css` | 17 durations and easings | **Yes** |
 | `breakpoints.css` | 5 breakpoint values | **Yes** |
@@ -148,33 +148,53 @@ variable never names a face that would silently fall back.
 
 **Surface lives under Fill (changed 2026-09-03).** There is no top-level `Surface`
 group: it is `Fill/Surface/{Canvas, Sheet, Elevated}`, alongside `Fill/Static/Neutral`,
-`Fill/Static/Brand`, and one group per hue (`Fill/Static/Red`, `Fill/Static/Jade`, …),
-plus `Fill/Action`. Elevated has ONE step, not Base and Medium — a header band
-inside an elevated widget uses `Fill/Static/Neutral` rather than a second surface step.
+`Fill/Static/Brand`, the five meaning groups and the four accents (below), plus
+`Fill/Action`. Elevated has ONE step, not Base and Medium — a header band inside
+an elevated widget uses `Fill/Static/Neutral` rather than a second surface step.
 
-**Static is hue-named, and every hue has exactly two rungs (2026-09-15).** A tone
-group under `Static` carries the name of the primitive family it resolves to:
-`Fill/Static/Red`, not `Fill/Static/Negative`. Meaning is expressed by the Figma
-colour STYLES, not by a variable group, because the same red serves "failed",
-"overdue" and "destructive" and the variable cannot say which.
+**Static is MEANING-named, and every tone has exactly two rungs (2026-09-16).**
+A tone group under `Static` carries what it MEANS, never the hue it resolves to,
+so Static and Action share one vocabulary:
 
-Each hue has two fill rungs and two stroke rungs, `Subtle` and `Strong`, plus two
+| group | resolves to | Action has the same name |
+|---|---|---|
+| `Negative` | Red | yes |
+| `Positive` | Green | yes |
+| `Attention` | Saffron | yes |
+| `Severe` | Orange | yes |
+| `Info` | Amethyst | yes |
+| `Neutral`, `Brand` | Warm/Cool Neutral, Brand | yes |
+| `Accent/Jade`, `Accent/Mauve`, `Accent/Lagoon`, `Accent/Seabreeze` | their own hue | no, decorative only |
+
+The four under `Accent` keep hue names BECAUSE they carry no meaning: the split is
+how a reader tells a semantic colour from palette. Never write
+`Fill/Static/Red` — it does not exist.
+
+Each tone has two fill rungs and two stroke rungs, `Subtle` and `Strong`, plus two
 foregrounds that name the fill they belong on:
 
 | | what it is | pairs with |
 |---|---|---|
-| `Fill/Static/<Hue>/Subtle` | the pale tint | `Foreground/Static/<Hue>/On Subtle` |
-| `Fill/Static/<Hue>/Strong` | the solid block | `Foreground/Static/<Hue>/On Strong` |
+| `Fill/Static/<Tone>/Subtle` | the pale tint | `Foreground/Static/<Tone>/On Subtle` |
+| `Fill/Static/<Tone>/Strong` | the solid block | `Foreground/Static/<Tone>/On Strong` |
 
-`On Subtle` is the hue's readable text, and it works on the canvas as well as on
-the Subtle fill, which is why one token covers both. `On Strong` resolves to the
-mono anchor, because text on a solid hue is white in Light and in Midnight alike.
-Naming the pairing is what stops an agent putting hue text on a hue block and
-getting 1.4:1.
+`On Subtle` is the tone's readable text and works on the canvas as well as on the
+Subtle fill, which is why one token covers both. `On Strong` is whatever reads on
+the solid fill — usually a dark rung of the same hue, sometimes the mono anchor,
+occasionally a dark neutral. It is NOT white by default: white measured 1.53:1 to
+3.09:1 on the Saffron, Green and Orange Strong fills. Naming the pairing is what
+stops an agent putting tone text on a tone block and getting 1.4:1.
+
+**Every one of the 40 pairings clears AAA (7:1)**, verified by resolved luminance
+across both modes. Five fills had to move one or two ramp steps to make that
+reachable, because a mid-tone fill is too dark for dark text and too light for
+white and nothing reaches 7:1 from either side.
 
 Only Neutral and Brand keep a longer ladder, because they carry most of the UI:
-Neutral's foreground runs Mono, Faint, Subtle, Base, Bold, Strong, and
-`Fill/Static/Brand` keeps six rungs through `Strongest`.
+Neutral's foreground runs Mono, Faint, Subtle, Base, Bold, Strong; its fill runs
+Mono, Faint, Subtle, Base, Strong; `Fill/Static/Brand` keeps six rungs through
+`Strongest`. There is no `Stroke/Static/Brand` — it was built and then removed as
+unnecessary on 2026-09-16.
 
 **Strong is always the last rung.** The ladder runs lightest to heaviest and ends
 at Strong, so `Bold` is the second-heaviest, not the heaviest.
@@ -278,7 +298,7 @@ Reconciliation — 2 components need manual attention:
 
   spinner
     file:   components/spinner/spinner-spec.md
-    stale:  foreground.static.jade.on-subtle
+    stale:  foreground.static.accent.jade.on-subtle
     reason: removed-from-tokens
     next:   delete the accent-jade branch from the Figma spinner node,
             or restore the accent-jade tokens in Figma

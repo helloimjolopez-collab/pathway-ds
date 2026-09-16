@@ -145,8 +145,8 @@ The Search pill uses a distinct border: `0.75px solid` at the `icon-action-mono-
 
 | Semantic Token | Primitive | Resolved | Usage |
 |---|---|---|---|
-| `semantic-color.light-mode.fill.static.amethyst.subtle` | `primitive-color.amethyst-30` | `#dcd9ef` | Profile avatar background |
-| `semantic-color.light-mode.foreground.static.amethyst.on-subtle` | `primitive-color.amethyst-150` | `#221e3f` | Profile avatar initials text |
+| `semantic-color.light-mode.fill.static.info.subtle` | `primitive-color.amethyst-30` | `#dcd9ef` | Profile avatar background |
+| `semantic-color.light-mode.foreground.static.info.on-subtle` | `primitive-color.amethyst-150` | `#221e3f` | Profile avatar initials text |
 
 The profile avatar uses light-mode amethyst tokens. This is correct: the avatar is a content element with its own background color, not part of the nav bar's interactive surface.
 
@@ -442,8 +442,8 @@ Two bell/notification icon buttons sit in the RowEnd slot (desktop and tablet on
 
 - Outer: 48×48px touch target
 - Avatar: 32×32px circle, `border-radius: 50%`
-- Avatar background: `light-mode.fill.static.amethyst.subtle` (#dcd9ef)
-- Avatar text (initials): `light-mode.foreground.static.amethyst.on-subtle` (#221e3f), 14px/600
+- Avatar background: `light-mode.fill.static.info.subtle` (#dcd9ef)
+- Avatar text (initials): `light-mode.foreground.static.info.on-subtle` (#221e3f), 14px/600
 - Hover: outer 44×44 rounded-full receives `dark-mode.fill.action.primary.subtle.hover`
 
 **Profile menu (panel, desktop/tablet):**

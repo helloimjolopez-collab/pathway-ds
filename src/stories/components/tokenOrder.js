@@ -30,7 +30,7 @@
 //
 // with Neutral allowed Mono on top of that. Two things landed at once:
 // the `Accent` tier was dropped, so a hue sits directly under Static
-// (Fill/Static/Jade/Subtle, not Fill/Static/Accent/Jade/Faint), and every group
+// (Fill/Static/Accent/Jade/Subtle, not Fill/Static/Accent/Jade/Faint), and every group
 // shifted up one so the heaviest rung is Strong rather than Bold. Base is the
 // default: the rung to reach for when nothing about the context says otherwise.
 //

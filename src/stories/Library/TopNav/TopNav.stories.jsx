@@ -299,7 +299,7 @@ export const TokensFill = {
       <TokenRow key="search"  varName="--semantic-color-fill-action-primary-subtle-rest"  fallback="rgba(160,181,230,0.08)" label="Search pill fill" />,
       <TokenRow key="hover"   varName="--semantic-color-fill-action-primary-subtle-hover" fallback="rgba(10,18,35,0.16)"    label="All controls hover" />,
       <TokenRow key="pressed" varName="--semantic-color-fill-action-primary-subtle-pressed" fallback="rgba(255,255,255,0.08)" label="All controls pressed / open" />,
-      <TokenRow key="avbg"   varName="--semantic-color-fill-static-amethyst-subtle" fallback="#dcd9ef"               label="Profile avatar background" />,
+      <TokenRow key="avbg"   varName="--semantic-color-fill-static-info-subtle" fallback="#dcd9ef"               label="Profile avatar background" />,
     ]} />
   ),
   parameters: { docs: { description: { story: "All fill tokens used by TopNav.Global. The nav bar is a permanently dark region, and the way that works now is a MODELESS token name inside a [data-theme=\"midnight\"] wrapper - there is no dark-mode token family to reach for, because mode-qualified property names were retired with tokens.css on 2026-09-03." } } },
@@ -322,7 +322,7 @@ export const TokensText = {
   render: () => (
     <TokenTable title="Text tokens" rows={[
       <TokenRow key="mono"  varName="--semantic-color-foreground-static-neutral-mono"               fallback="#fbfbfb" label="All text on nav bar" type="text" />,
-      <TokenRow key="avtxt" varName="--semantic-color-foreground-static-amethyst-on-subtle" fallback="#221e3f" label="Profile avatar initials" type="text" />,
+      <TokenRow key="avtxt" varName="--semantic-color-foreground-static-info-on-subtle" fallback="#221e3f" label="Profile avatar initials" type="text" />,
     ]} />
   ),
   parameters: { docs: { description: { story: "Foreground tokens - text and icons are one tier since the 2026-09-03 merge. Mono/Rest for all labels, Accent/Amethyst/Contrast for avatar initials. Mono has only a rest step, so it does not change on hover or press." } } },

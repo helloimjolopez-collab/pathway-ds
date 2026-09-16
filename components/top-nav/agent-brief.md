@@ -31,13 +31,13 @@ Working code: [top-nav.html](./top-nav.html). Module: [top-nav.jsx](./top-nav.js
 
 3. **Slot layout (left → right) is fixed:**
    - **Row Start:** SideNav hamburger (mobile only, hidden ≥768px) · ModuleSwitcher (Amplify Home icon + `expand_more` chevron, NO text) · OrgSwitcher (church logo 20×20 + org name + `expand_more` chevron, with `stroke/action/tertiary/base` border)
-   - **Row End:** Search (48×48 wrapper → 32×32 circle with `cornerradius/full: 64px` + `search` icon) · Desktop: 2× `notifications` bells (48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Amethyst/Subtle` `#dcd9ef`, initials in `#221e3f`)
+   - **Row End:** Search (48×48 wrapper → 32×32 circle with `cornerradius/full: 64px` + `search` icon) · Desktop: 2× `notifications` bells (48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Info/Subtle` `#dcd9ef`, initials in `#221e3f`)
 
 4. **The mobile hamburger lives in TopNav.** It calls `onSideNavToggle` to open the SideNav overlay. The TopNav owns this control, not the SideNav.
 
 5. **Desktop shows 2 notification bells; tablet and mobile show `more_vert`.** Not the other way around. See Figma node `40007067:8151` (tablet) and `40007067:8205` (mobile).
 
-6. **Profile is amethyst, always.** Background `Fill/Static/Amethyst/Subtle` (`#dcd9ef`), text `Foreground/Static/Amethyst/On Subtle` (`#221e3f`). Initials, not photos.
+6. **Profile is amethyst, always.** Background `Fill/Static/Info/Subtle` (`#dcd9ef`), text `Foreground/Static/Info/On Subtle` (`#221e3f`). Initials, not photos.
 
 7. **Search is a 32×32 circle, not a search field.** `cornerradius/full: 64px`. Click expands a dropdown/modal — the bar stays narrow at all times.
 
@@ -50,8 +50,8 @@ Working code: [top-nav.html](./top-nav.html). Module: [top-nav.jsx](./top-nav.js
 ```
 --fill-static-brand-base:            #2d4889   /* TopNav background */
 --fill-static-surface-white:         #ffffff   /* Search circle, Profile (if overridden) */
---fill-static-amethyst-subtle:  #dcd9ef   /* Profile avatar background */
---text-static-amethyst-contrast: #221e3f /* Profile initials text */
+--fill-static-info-subtle:  #dcd9ef   /* Profile avatar background */
+--text-static-info-contrast: #221e3f /* Profile initials text */
 --stroke-action-tertiary-base:       rgba(255,255,255,0.16)  /* OrgSwitcher pill border */
 --text-static-primary-inverse:       #ffffff   /* TopNav labels + icons */
 ```
