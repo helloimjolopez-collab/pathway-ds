@@ -105,15 +105,21 @@ export const T = {
  * say so.
  */
 export const L = {
-  navPadH:     u("padding-base", 16),
-  navColPadH:  u("padding-medium", 12),
-  navPadTop:   u("padding-tight", 8),
+  // SideNav is chrome that does NOT change across breakpoints, so its own
+  // metrics live in Contextual: Layout & Units rather than Responsive: Layout.
+  // Values measured from SideNav.Container in Figma: expanded padding 16, the
+  // collapsed rail 12, vertical 8, item gap 6. These were on the generic
+  // semantic scale until 2026-09-17, which meant a change to Padding/Base
+  // would silently move the nav.
+  navPadH:     x("sidenav-padding-horizontal-expanded", 16),
+  navColPadH:  x("sidenav-padding-horizontal-collapsed", 12),
+  navPadTop:   x("sidenav-padding-vertical", 8),
   // Read from SideNav.Container in Figma on 2026-09-16: every expanded variant
   // is 250 wide (Base, Stroked, Mobile.Base, Mobile.Stroked) and every
   // collapsed one is 72. Was 240, which no longer matched the component.
   navW:        x("sidenav-width-expanded", 250),
   navWcol:     x("sidenav-width-collapsed", 72),
-  menuGap:     u("gap-xtight", 6),
+  menuGap:     x("sidenav-gap-vertical", 6),
   menuPadT:    u("padding-tight", 8),
   menuPadB:    u("padding-xxwide", 56),
   itemH:       u("accessibility-touch-target-aa-height", 44),

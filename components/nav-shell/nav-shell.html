@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
   <link rel="stylesheet" href="../../src/tokens/layout.css" />
   <link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
+  <link rel="stylesheet" href="../../src/tokens/layout-responsive.css" />
   <link rel="stylesheet" href="../../src/tokens/type.css" />
   <link rel="stylesheet" href="../../src/tokens/motion.css" />
   <link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
@@ -73,10 +74,14 @@
     /* NavHeader */
     .nav-header {
       display: flex; align-items: center; justify-content: flex-end;
-      padding: 8px 16px; min-height: 56px; flex-shrink: 0;
+      padding: var(--contextual-layout-units-sidenav-padding-vertical, 8px)
+               var(--contextual-layout-units-sidenav-padding-horizontal-expanded, 16px);
+      min-height: 56px; flex-shrink: 0;
       border-bottom: 1px solid var(--semantic-color-stroke-static-neutral-faint, #f6f6f6);
     }
-    .nav-header.collapsed { justify-content: center; padding: 8px 12px; }
+    .nav-header.collapsed { justify-content: center;
+      padding: var(--contextual-layout-units-sidenav-padding-vertical, 8px)
+               var(--contextual-layout-units-sidenav-padding-horizontal-collapsed, 12px); }
     .nav-header__label {
       flex: 1; font-size: 13px; font-weight: 600; letter-spacing: 0.05em;
       text-transform: uppercase; white-space: nowrap; overflow: hidden;
@@ -662,7 +667,10 @@
         <nav ref={navRef} aria-label="Global navigation" style={{
           background:`var(--semantic-color-fill-static-brand-bold, ${TN.navBg})`,
           display:"flex", alignItems:"center", justifyContent:"space-between",
-          height:56, padding:"4px 16px", position:"relative",
+          maxHeight:"var(--responsive-layout-topnav-height, 56px)",
+          height:"var(--responsive-layout-topnav-height, 56px)",
+          padding:"var(--responsive-layout-topnav-padding-vertical, 6px) var(--responsive-layout-topnav-padding-horizontal, 16px)",
+          gap:"var(--responsive-layout-topnav-gap-horizontal, 8px)", position:"relative",
           overflow:"visible", zIndex:100, fontFamily:"'Red Hat Text',sans-serif", flexShrink:0,
         }}>
           {/* Row Start */}

@@ -35,6 +35,12 @@ import { OrgSwitcherPanel, DEMO_ORGS } from "../org-switcher/org-switcher.jsx";
 const TOK = (p, fb) => `var(--semantic-color-${p}, ${fb})`;
 const SCD = TOK;   // on the dark bar
 const SCL = TOK;   // on a light panel
+// Layout helpers. `r` reads Responsive: Layout, the only collection with
+// breakpoint modes: layout-responsive.css emits ONE property name and switches
+// its value by media query, so the chrome's padding no longer needs a JS
+// breakpoint branch. `u` reads the single-valued semantic scale.
+const r = (name, fb) => `var(--responsive-layout-${name}, ${fb}px)`;
+const u = (name, fb) => `var(--semantic-layout-units-${name}, ${fb}px)`;
 export const T = {
   navBg:          SCL("fill-static-brand-bold", "#4364b6"),
   orgFill:        SCD("fill-action-primary-subtle-rest", "rgba(160,181,230,0.04)"),
@@ -65,14 +71,22 @@ export const T = {
 
 // ─── LAYOUT VALUES ─────────────────────────────────────────────────────────────
 export const L = {
-  deskPadH: 16, deskPadV: 6, deskH: 56,  // deskPadV 4→6 (Figma py-6px / Padding-XTight, updated 2026-06-08)
-  tabPadH:  12, tabH: 54,
-  mobPadH:  8,  mobH: 56,
+  // TopNav is chrome that DOES change across breakpoints, so its padding, height
+  // and gap live in Responsive: Layout and resolve by media query. One name each,
+  // no JS branch. Horizontal padding is 16 / 12 / 8 desktop / tablet / mobile,
+  // measured from Container.Main in Figma; vertical is 6 and the gap 8 at every
+  // breakpoint. Before 2026-09-17 these were six hardcoded numbers here, and the
+  // tablet height said 54 while the token said 56.
+  navPadH:     r("topnav-padding-horizontal", 16),
+  navPadV:     r("topnav-padding-vertical", 6),
+  navH:        r("topnav-height", 56),
+  navGap:      r("topnav-gap-horizontal", 8),
   deskOrgMax: 316, mobOrgMax: 120,
   touchTarget: 48, modInnerH: 36,
   orgAvatarNav: 20, orgAvatarSm: 24, orgAvatarPanel: 32,
   searchPill: 32, avatarSize: 32,
-  radius: 8, radiusSm: 4,
+  radius:      u("cornerradius-medium", 8),
+  radiusSm:    u("cornerradius-small", 4),
 };
 
 // ─── ABBREVIATION UTILITIES ────────────────────────────────────────────────────
@@ -503,8 +517,6 @@ export function TopNav({
 
   const isMobile  = breakpoint === "mobile";
   const isTablet  = breakpoint === "tablet";
-  const padH      = isMobile ? L.mobPadH : isTablet ? L.tabPadH : L.deskPadH;
-  const navH      = isTablet ? L.tabH : 56;
 
   const toggle = (p) => setOpenPanel(x => x === p ? null : p);
   const close  = () => setOpenPanel(null);
@@ -545,7 +557,7 @@ export function TopNav({
       style={{
         background: `var(--semantic-color-fill-static-brand-bold, ${T.navBg})`,
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        maxHeight: navH, padding: `${L.deskPadV}px ${padH}px`,
+        maxHeight: L.navH, padding: `${L.navPadV} ${L.navPadH}`, gap: L.navGap,
         position: "relative", overflow: "visible", zIndex: 100,
         fontFamily: "'Red Hat Text', sans-serif",
       }}
@@ -582,7 +594,7 @@ export function TopNav({
         {openPanel === "module" && moduleSwitcherType !== "static" && (
           <ul role="listbox" data-theme="light" aria-label="Switch module"
             style={{
-              position: "absolute", top: "calc(100% + 4px)", left: padH,
+              position: "absolute", top: "calc(100% + 4px)", left: L.navPadH,
               width: 243, background: T.panelBg,
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
@@ -628,7 +640,7 @@ export function TopNav({
         {openPanel === "org" && (
           <div style={{
             position: "absolute", top: "calc(100% + 4px)",
-            left: isMobile ? padH : padH + 40, zIndex: 300,
+            left: isMobile ? L.navPadH : `calc(${L.navPadH} + 40px)`, zIndex: 300,
             animation: "tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both",
           }}>
             <OrgSwitcherPanel
@@ -667,7 +679,7 @@ export function TopNav({
         {openPanel === "profile" && (
           <div role="menu" data-theme="light"
             style={{
-              position: "absolute", top: "calc(100% + 4px)", right: padH,
+              position: "absolute", top: "calc(100% + 4px)", right: L.navPadH,
               width: 200, background: T.panelBg,
               border: `1px solid rgba(45,72,137,0.10)`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
@@ -709,7 +721,7 @@ export function TopNav({
             position: "absolute", inset: 0, zIndex: 200,
             background: `var(--semantic-color-fill-static-brand-bold, ${T.navBg})`,
             display: "flex", alignItems: "center", gap: 8,
-            padding: `0 ${padH}px`,
+            padding: `0 ${L.navPadH}`,
           }}
         >
           <div style={{ flex: 1, minWidth: 0 }}>

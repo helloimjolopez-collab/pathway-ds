@@ -19,25 +19,26 @@ Different layers of this system have different sources of truth. Keep them strai
 - When anything in `components/<name>/<name>-spec.md` disagrees with what the component in Figma currently looks like — that means Figma was updated and this repo wasn't yet. Ask the user whether to pull. Don't assume either side is right.
 - Never edit Figma programmatically. The Figma MCP server exposes `use_figma` and write tools; do **not** call them unless the user explicitly asks you to change Figma. Read-only tools (`get_design_context`, `get_metadata`, `get_screenshot`, `get_variable_defs`) are fine for any diagnostic.
 
-### 1.1 SideNav is exempt from Figma overrides (2026-09-07)
+### 1.1 SideNav follows §1 like everything else (exemption lifted 2026-09-17)
 
-`components/sidenav/**` and `src/stories/Library/SideNav/**` are a deliberate
-carve-out from the rule above. Token sync and the component pipeline keep pulling
-from Figma normally **for everything else**; SideNav does not get pulled unless
-the user explicitly asks for it in that session.
+There is no carve-out. `components/sidenav/**` and `src/stories/Library/SideNav/**`
+pull from Figma on the same terms as every other component, and a reconciliation
+run that reports SideNav drift should be acted on, not left alone.
 
-This inverts §1, so expect it to feel wrong: a reconciliation run WILL report
-sidenav drift against Figma, and that report is accurate. The correct action is
-still to leave the repo alone, name the drift, and wait for the user. Do not
-resolve it by fetching Figma.
+From 2026-09-07 to 2026-09-17 SideNav WAS exempt. The trigger was the Figma
+"SideBar Expand/Collapse" component (node 40006793:3783) being changed to a
+different expand/collapse icon after the repo pulled it on 2026-05-12; that change
+was rejected for the repo, Storybook and `<pathway-sidenav>`, and the exemption
+was the blunt way of protecting it. Jo lifted it on 2026-09-17.
 
-What triggered it: the Figma "SideBar Expand/Collapse" component (node
-40006793:3783) was changed to a different expand/collapse icon after the repo
-pulled it on 2026-05-12. The user rejected that change for the repo, for
-Storybook and for `<pathway-sidenav>`. The repo keeps `RightPanelOpenIcon` and
-`LeftPanelOpenIcon` at the bottom of `sidenav.jsx`.
+This is recorded rather than deleted because the exemption is still referenced by
+the `pathway-component-pipeline` and `pathway-tokens-sync` skills, which are
+plugin skills and can only be changed through skill-creator. Until those two are
+regenerated they will still claim SideNav is exempt. **They are wrong. This file
+wins.**
 
-`<pathway-sidenav>` wraps `sidenav.jsx`, so it inherits the exemption.
+`<pathway-sidenav>` wraps `sidenav.jsx`, so it tracks whatever `sidenav.jsx` does.
+
 
 ## 2. Token sync — how Figma flows into this repo
 
@@ -59,8 +60,8 @@ tokens/pathway-design-tokens.json                        │
                              ▼
         src/tokens/primitives.css          352 raw ramp values — REQUIRED, the themes
                                            reference these via var()
-        src/tokens/themes/light.css        186 semantic colours, :root + [data-theme=light]
-        src/tokens/themes/midnight.css     the same 186 names under [data-theme=midnight]
+        src/tokens/themes/light.css        144 semantic colours, :root + [data-theme=light]
+        src/tokens/themes/midnight.css     the same 144 names under [data-theme=midnight]
         src/tokens/layout.css              40 layout tokens, breakpoint by media query
         src/tokens/layout-contextual.css   34 component metrics, same treatment
         src/tokens/type.css                41 type scale tokens
@@ -102,7 +103,7 @@ Load these eight, in this order:
 | File | Contains | Consume it? |
 |---|---|---|
 | `primitives.css` | 352 raw ramp values | **Required, but never referenced.** The themes point at these via `var()`, so the file must load or every colour resolves to nothing. Product code must never name a `--primitive-*` (§6) |
-| `themes/light.css` + `themes/midnight.css` | 186 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
+| `themes/light.css` + `themes/midnight.css` | 144 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
 | `layout.css` | 40 layout and spacing names, single-valued | **Yes.** The spacing contract |
 | `layout-responsive.css` | 7 names that genuinely change by breakpoint: Sheet padding and top radius, TopNav padding, height and gap. Emitted with media queries. Prefix `--responsive-layout-*`, from the `Responsive: Layout` collection | **Yes.** A developer cannot derive these from a responsive grid — the grid governs columns, not the chrome's padding |
 | `layout-contextual.css` | 34 component metrics (Button, Card, NavItem, Selector, Field, focus ring) | Component internals. This repo's components use it; product code should not |

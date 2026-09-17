@@ -244,4 +244,36 @@ if (failures) {
   console.log(`${failures} demo(s) failed. Demos must consume the built token CSS.`);
   process.exit(1);
 }
+// A demo that RESOLVES every name it uses can still be broken, because resolving
+// is checked against CONTRACT_CSS while the browser only sees the files the demo
+// actually <link>s. On 2026-09-17 every demo and .storybook/preview.js linked 8 of
+// the 9 contract files, omitting layout-responsive.css. Every --responsive-layout-*
+// reference therefore fell back to its hardcoded default, so the entire
+// Responsive: Layout collection had never once applied in a browser, and this
+// script passed the whole time. Now the load list itself is checked.
+const REQUIRED_LINKS = CONTRACT_CSS.map((f) => basename(f));
+let linkFailures = 0;
+const linkTargets = [...demos, ".storybook/preview.js"];
+for (const file of linkTargets) {
+  if (!existsSync(file)) continue;
+  const src = readFileSync(file, "utf8");
+  // Only demos that opt into the contract at all are held to loading all of it.
+  if (!src.includes("layout-contextual.css")) continue;
+  const missing = REQUIRED_LINKS.filter((b) => !src.includes(b));
+  if (missing.length) {
+    linkFailures++;
+    console.log(`FAIL  ${basename(file)}  does not load: ${missing.join(", ")}`);
+  }
+}
+if (linkFailures) {
+  console.log(
+    `\n${linkFailures} file(s) load part of the token contract but not all of it.\n` +
+    "An omitted contract file does not error: every var() in it silently falls back\n" +
+    "to the value hardcoded at the call site, so the tokens appear to work and do\n" +
+    "nothing. Add the missing <link> or import.\n"
+  );
+  process.exit(1);
+}
+
 console.log(`All ${demos.length} demos link the token contract and inline nothing.`);
+console.log(`All ${linkTargets.length} contract consumers load all ${REQUIRED_LINKS.length} contract files.`);

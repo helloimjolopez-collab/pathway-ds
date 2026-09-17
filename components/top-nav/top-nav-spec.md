@@ -184,16 +184,36 @@ All labels on the nav bar use **Red Hat Text** (the Pathway system font).
 
 All spacing values are in pixels (Figma-sourced). Where a semantic spacing token exists in `layout.css`, it is cited. Unit tokens in the system are unitless numbers (e.g. `--primitive-unit-unit-4: 4`) and require `px` postfix in CSS.
 
-| Value | Used for | Semantic token |
+| Value | Used for | Token |
 |---|---|---|
-| 4px | Nav bar top/bottom padding (`py`) | `primitive-unit-unit-4` (unitless) |
-| 16px | Nav bar left/right padding desktop (`px`) | `primitive-unit-unit-16` (unitless) |
-| 12px | Nav bar left/right padding tablet | `primitive-unit-unit-12` (unitless) |
-| 8px | Nav bar left/right padding mobile | `primitive-unit-unit-8` (unitless) |
-| 8px | Gap between nav bar start/end slot children | None — raw value |
-| 56px | Nav bar max-height desktop | None — raw value |
-| 54px | Nav bar max-height tablet | None — raw value |
+| 6px | Nav bar top/bottom padding | `--responsive-layout-topnav-padding-vertical` |
+| 16 / 12 / 8px | Nav bar left/right padding, desktop / tablet / mobile | `--responsive-layout-topnav-padding-horizontal` |
+| 8px | Gap between nav bar start/end slot children | `--responsive-layout-topnav-gap-horizontal` |
+| 56px | Nav bar height, all breakpoints | `--responsive-layout-topnav-height` |
+| 8px | Panel and control corner radius | `--semantic-layout-units-cornerradius-medium` |
+| 4px | Inner control corner radius | `--semantic-layout-units-cornerradius-small` |
 | 48px | All outer touch-target wrappers (min-h, min-w) | None — raw value |
+
+**These four are ONE property name each, not one per breakpoint.** TopNav is the
+chrome that genuinely changes with viewport, so its metrics live in
+`Responsive: Layout` and `layout-responsive.css` emits a single name whose value
+switches by media query. The component does not branch on breakpoint for padding.
+
+Three things this table used to get wrong, all corrected 2026-09-17:
+
+- It said the vertical padding was 4px. Figma's `Container.Main` is 6px, and
+  `top-nav.jsx` already used 6. The `nav-shell.html` demo really was drawing 4px,
+  because it carries its own copy of the bar; that is fixed.
+- It cited `primitive-unit-unit-*`. A spec must never name a primitive (CLAUDE.md
+  §6). Those citations existed because no semantic token covered the chrome's
+  padding at the time. Now one does.
+- It listed the tablet height as 54px while the token said 56. The token wins;
+  tablet is 56 like the others.
+
+**Open drift against Figma.** The Figma `TopNav.Global` variant frames measure 60px
+tall with `max-h-[62px]` on `Container.Main`, while the token and the
+implementation both say 56. That is a real disagreement and it is not resolved
+here, because changing it moves the whole shell. Recorded in §13.
 | 36px | Inner control height (OrgSwitcher, ModuleSwitcher) | None — raw value |
 | 4px | Inner control padding | None — raw value |
 | 4px | Gap within OrgSwitcher/ModuleSwitcher RowStart | None — raw value |
