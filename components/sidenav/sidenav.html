@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  /* Fill/Surface/Canvas = #fafafa (same hex as Fill/Surface/Sheet — see token table) */
+  /* Fill/Surface/Canvas = #fafafa (same hex as Fill/Static/Neutral/Mono — see token table) */
   html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -365,7 +365,7 @@
     "Fill/Action/Selection/Selected":      "#a0b5e629",
     "Fill/Action/Selection/Trail":       "#11111105",
     "Stroke/Static/Neutral/Base":         "#f6f6f6",
-    "Fill/Surface/Sheet":                   "#fafafa",
+    "Fill/Static/Neutral/Mono":                   "#fafafa",
     "Fill/Surface/Canvas":                "#fafafa",
     "Foreground/Action/Secondary/Rest":        "#313131",
     "Foreground/Action/Secondary/Hover":       "#252525",
@@ -487,7 +487,7 @@ const T = {
     infoSubtle: c("stroke-static-neutral-base"),   // divider + nav border-right
   },
   surface: {
-    navLight: c("fill-surface-sheet"),
+    navLight: c("fill-static-neutral-mono"),
     canvas:   c("fill-surface-canvas"),
   },
   // Label, icon and chevron share ONE token per state. A nav item is a single
@@ -1142,7 +1142,7 @@ function NavHeader({ isSidebarCollapsed, onToggle }) {
 }
 
 // ─── SIDENAV CONTAINER ────────────────────────────────────────────────────────
-// Fill/Surface/Sheet (#fafafa), border-r Stroke/Static/Neutral/Base (#f6f6f6)
+// Fill/Static/Neutral/Mono (#fafafa), border-r Stroke/Static/Neutral/Base (#f6f6f6)
 // Padding: pt-[8px] pb-[12px] px-[16px expanded / 12px collapsed] (updated 2026-05-13)
 // Width: 250px expanded, 72px collapsed (tokenised 2026-09-16 as
 // Contextual SideNav/Width/Expanded and .../Collapsed; was 240)
@@ -1202,7 +1202,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
       width: sidebarCollapsed ? L.navWcol : L.navW,
       // height:100% fills the body area (viewport − 64px topnav) exactly.
       height:"100%",
-      // Fill/Surface/Sheet
+      // Fill/Static/Neutral/Mono
       backgroundColor: T.surface.navLight,
       display:"flex", flexDirection:"column",
       // Padding: pt-[8px] pb-[12px], px responsive (updated 2026-05-13)
@@ -1329,7 +1329,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, hid
 // When token values change in Figma, update both this array AND the spec markdown.
 const TOKEN_ROWS = [
   // ── Surface ────────────────────────────────────────────────────────────────
-  { cat:"Surface", semantic:"Fill/Surface/Sheet",              prim:"—",        value:"#fafafa",              role:"SideNav container background" },
+  { cat:"Surface", semantic:"Fill/Static/Neutral/Mono",              prim:"—",        value:"#fafafa",              role:"SideNav container background" },
   { cat:"Surface", semantic:"Fill/Surface/Canvas",           prim:"Brand/10", value:"#fafafa",              role:"Page/viewport background (confirmed Figma variable)" },
   { cat:"Surface", semantic:"Fill/Static/Neutral/Mono",      prim:"—",        value:"#ffffff",              role:"PopoverMenu surface + SideNavTooltip background" },
 

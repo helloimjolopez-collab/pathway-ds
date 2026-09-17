@@ -55,14 +55,14 @@
     .shell__body { display: flex; flex: 1; overflow: hidden; position: relative; }
 
     /* ── SideNav ────────────────────────────────────────────────────────────
-       Figma: width 240px, background Fill/Surface/Sheet = #fafafa
+       Figma: width 240px, background Fill/Static/Neutral/Mono = #fafafa
        border-right 0.5px Stroke/Static/Neutral/Base = #f6f6f6
        NavItem height 44px (Figma: SideNavItem instances are 44px)
        menuGap: 6px (from sidenav.jsx L.menuGap)
     ───────────────────────────────────────────────────────────────────────── */
     .sidenav {
       flex-shrink: 0;
-      background: var(--semantic-color-fill-surface-sheet, #fafafa);
+      background: var(--semantic-color-fill-static-neutral-mono, #fefefd);
       border-right: 0.5px solid var(--semantic-color-stroke-static-neutral-faint, #f6f6f6);
       display: flex; flex-direction: column;
       transition: width var(--motion-duration-6) var(--motion-easing-emphasized);
@@ -913,7 +913,7 @@
 
     // Token values from sidenav.jsx T constant (resolved via resolve-tokens.js)
     const SN = {
-      surface:       "#fafafa",                     // Fill/Surface/Sheet
+      surface:       "#fafafa",                     // Fill/Static/Neutral/Mono
       border:        "#f6f6f6",                     // Stroke/Static/Neutral/Base
       fillBase:      "transparent",                 // no fill (rest paints nothing)
       fillHover:     "rgba(69,77,94,0.06)",         // Fill/Action/Selection/Hover

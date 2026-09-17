@@ -2179,17 +2179,6 @@ const tokens = {
       "canvas"
     ]
   },
-  "semantic-color-light-mode-fill-surface-sheet": {
-    "value": "#fefefd",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "light-mode",
-      "fill",
-      "surface",
-      "sheet"
-    ]
-  },
   "semantic-color-light-mode-fill-surface-elevated": {
     "value": "#fefefd",
     "type": "color",
@@ -3967,17 +3956,6 @@ const tokens = {
       "fill",
       "surface",
       "canvas"
-    ]
-  },
-  "semantic-color-midnight-mode-fill-surface-sheet": {
-    "value": "#0a1223",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "midnight-mode",
-      "fill",
-      "surface",
-      "sheet"
     ]
   },
   "semantic-color-midnight-mode-fill-surface-elevated": {
@@ -7753,15 +7731,6 @@ const tokens = {
       "button",
       "border-width",
       "selected"
-    ]
-  },
-  "contextual-layout-units-button-radius": {
-    "value": 8,
-    "type": "number",
-    "path": [
-      "contextual-layout-units",
-      "button",
-      "radius"
     ]
   },
   "contextual-layout-units-button-corner-radius-radius": {

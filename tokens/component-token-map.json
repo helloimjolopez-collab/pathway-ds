@@ -24,7 +24,7 @@
   },
   "sidenav": {
     "_figma": "40003951-2927",
-    "container.background": "--semantic-color-fill-surface-sheet",
+    "container.background": "--semantic-color-fill-static-neutral-mono",
     "container.border-right": "--semantic-color-stroke-static-neutral-base",
     "item.resting-fill": "transparent",
     "item.hover-fill": "--semantic-color-fill-action-selection-hover",

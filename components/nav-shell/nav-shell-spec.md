@@ -110,7 +110,7 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `surface.nav.light` | `--semantic-color-fill-surface-sheet` | #f9f9f9 | SideNav background |
+| `surface.nav.light` | `--semantic-color-fill-static-neutral-mono` | #f9f9f9 | SideNav background |
 | `stroke.static.neutral.base` | `--semantic-color-stroke-static-neutral-faint` | #d8d3cd | Right border + section separators |
 | `fill.action.selection.hover` | `--semantic-color-fill-action-selection-hover` | rgba(69,77,94,0.06) | Nav item hover |
 | `fill.action.selection.selected` | `--semantic-color-fill-action-selection-selected` | #eef2fb | Active nav item fill |

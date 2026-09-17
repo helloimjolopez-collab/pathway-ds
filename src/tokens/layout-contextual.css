@@ -9,7 +9,7 @@
  prefer layout.css, which is the general spacing contract. These exist so a
  component's geometry can be tuned without moving the whole scale.
 
- Declares 34 custom properties.
+ Declares 33 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -26,7 +26,6 @@
   --contextual-layout-units-button-padding-small-vertical: 6px;
   --contextual-layout-units-button-padding-xsmall-horizontal: 8px;
   --contextual-layout-units-button-padding-xsmall-vertical: 6px;
-  --contextual-layout-units-button-radius: 8px;
   --contextual-layout-units-card-border-width-hover: 0.75px;
   --contextual-layout-units-card-border-width-rest: 0.5px;
   --contextual-layout-units-card-cornerradius: 12px;

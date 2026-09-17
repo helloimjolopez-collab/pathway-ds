@@ -70,7 +70,7 @@ export const T = {
     infoSubtle: c("stroke-static-neutral-base"),   // container right border
   },
   surface: {
-    navLight:    c("fill-surface-sheet"),      // the nav container itself: white
+    navLight:    c("fill-static-neutral-mono"),  // the nav container itself: white
     navElevated: c("fill-surface-elevated"),   // PopoverMenu, per Figma's "Popover Menu"
   },
   // Label, icon and chevron all resolve to the SAME token per state. A nav item

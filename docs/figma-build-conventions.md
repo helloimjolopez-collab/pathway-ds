@@ -212,7 +212,7 @@ Every fill, stroke, text colour, border-radius, shadow, and (where tokens exist)
 | Icon colour | Same as text. Label and icon share one ramp | `Foreground/Action/Secondary/Pressed` |
 | Strokes / borders | Same family rules as fills | |
 | Border radius | `--contextual-layout-units-<component>-radius-radius` or `--semantic-layout-units-cornerradius-<size>` | `cornerradius-small` |
-| Surface (large background areas) | `Fill/Surface/<role>` | `Fill/Surface/Sheet` |
+| Surface (large background areas) | `Fill/Surface/<role>` | `Fill/Static/Neutral/Mono` |
 
 There is no Contextual COLOUR group. Component-specific colour was retired: a
 component reads the Action or Static ladder that matches its role, and only its

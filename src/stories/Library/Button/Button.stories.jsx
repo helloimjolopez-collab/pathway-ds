@@ -805,7 +805,7 @@ const RADIUS_ROWS = [
   {
     name: "Container.Main",
     value: "8px",
-    token: "--contextual-layout-units-button-radius",
+    token: "--contextual-layout-units-button-corner-radius-radius",
     role: "Visible button surface - all sizes, all styles",
   },
   {
