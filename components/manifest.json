@@ -14,6 +14,7 @@
     "sidenav": {
       "displayName": "SideNav",
       "description": "Persistent vertical navigation panel. Two levels of depth, expanded/collapsed states, responsive (push/overlay/hidden). Optional NavSectionLabel headings + optional SideNavListSection for contextual link lists.",
+      "status": "REVIEWED",
       "module": "components/sidenav/sidenav.jsx",
       "exports": [
         "SideNav",
@@ -438,7 +439,7 @@
       "displayName": "TopNav.Global",
       "description": "Fixed global navigation bar. Persists across all modules and viewports. Brand-blue surface, dark-mode tokens throughout. Three slots: ModuleSwitcher (left), OrgSwitcher (left), Search + ActionIcons + Profile (right). Spec status: PENDING HUMAN REVIEW.",
       "status": "REVIEWED",
-      "module": "components/top-nav/top-nav.html",
+      "module": "components/top-nav/top-nav.jsx",
       "spec": "components/top-nav/top-nav-spec.md",
       "demo": "components/top-nav/top-nav.html",
       "stories": "src/stories/Library/TopNav/TopNav.stories.jsx",
