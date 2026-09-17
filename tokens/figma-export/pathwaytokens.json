@@ -1007,12 +1007,6 @@
                 "$libraryName": "",
                 "$value": "{Cool Neutral.10}"
               },
-              "Sheet": {
-                "$type": "color",
-                "$collectionName": "Semantic: Color",
-                "$libraryName": "",
-                "$value": "{Fill.Static.Neutral.Mono}"
-              },
               "Elevated": {
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
@@ -2018,12 +2012,6 @@
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
                 "$value": "{Brand.900}"
-              },
-              "Sheet": {
-                "$type": "color",
-                "$collectionName": "Primitive: Color",
-                "$libraryName": "",
-                "$value": "{Brand.800}"
               },
               "Elevated": {
                 "$type": "color",
@@ -4249,12 +4237,6 @@
                 "$libraryName": "",
                 "$value": "{BorderWidth.Medium}"
               }
-            },
-            "Radius": {
-              "$type": "float",
-              "$collectionName": "Primitive: Unit",
-              "$libraryName": "",
-              "$value": "{Unit.8}"
             },
             "Corner Radius": {
               "Radius": {

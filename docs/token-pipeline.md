@@ -31,7 +31,7 @@ Then reference tokens:
 
 ```css
 .card {
-  background: var(--semantic-color-fill-surface-sheet);
+  background: var(--semantic-color-fill-static-neutral-mono);
   color: var(--semantic-color-foreground-static-neutral-bold);
   border: 1px solid var(--semantic-color-stroke-static-neutral-base);
   border-radius: var(--semantic-layout-units-cornerradius-medium);

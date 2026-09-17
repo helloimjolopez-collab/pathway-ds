@@ -150,8 +150,11 @@ const SIZES = {
 };
 
 const T = {
-  radius: CL("button-radius"),
+  radius: CL("button-corner-radius-radius"),
   border: CL("button-border-width-rest"),
+  // Matches button.jsx: Outlined thickens to 1.5px on hover, focus and pressed,
+  // which is what Figma applies to 48 Outlined variants.
+  borderEmphasis: CL("button-border-width-selected"),
   gap:    CL("button-gap-horizontal"),
   touch:  { pad: 6, min: 48 },
   focusOutline: FOCUS_OUTLINE,
@@ -216,7 +219,10 @@ function Button({ buttonStyle = "Fill", size = "M", type = "Primary", text = "Bu
     paddingTop: sz.padV, paddingBottom: sz.padV,
     borderRadius: T.radius,
     backgroundColor: bgColor,
-    border: hasStroke ? `${T.border} solid ${strokeColor}` : "none",
+    border: hasStroke
+      ? `${(!isDisabled && (stateKey === "hover" || stateKey === "pressed" || focused))
+          ? T.borderEmphasis : T.border} solid ${strokeColor}`
+      : "none",
     gap: 0, flex: "1 0 0", minWidth: 0, color: iconColor,
     outline: focused && !isDisabled ? T.focusOutline : "none",
     outlineOffset: focused && !isDisabled ? T.focusOffset : undefined,

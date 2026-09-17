@@ -100,13 +100,20 @@ export const STROKE = {
 // --contextual-layout-units-*, not as a "contextual" branch of the semantic
 // layout scale. The focus ring moved out of Contextual to Stroke/FocusRing.
 export const T = {
-  radius:      CL("button-radius"),                                        // 8px
+  // button-radius was deleted 2026-09-17: it duplicated Button/Corner Radius/Radius
+  // at the same 8px and carried ZERO Figma bindings, while the other carries 2,380.
+  // The dead one was the one this file referenced.
+  radius:      CL("button-corner-radius-radius"),                          // 8px
   border:      CL("button-border-width-rest"),                             // 1px
-  // There was a `borderHover` here reading button-border-width-hover. That token
-  // was renamed to .../Selected (1.5px) in Figma on 2026-09-16, and the constant
-  // had never been referenced: the outlined button draws one border weight in
-  // every state. Figma now has a Selected state on 192 nodes that this component
-  // does not implement, which is a real gap rather than a missing constant.
+  // Outlined buttons thicken their border on hover, focus and pressed. Figma
+  // applies Button/Border Width/Selected (1.5px) to 48 distinct Outlined variants
+  // across exactly those three states, and this component drew 1px in all of
+  // them, so every outlined hover was 0.5px thinner than the design.
+  //
+  // The token name says "Selected" and its usage says hover/focus/pressed. There
+  // is no selected or toggled state on this component. Named here for what it
+  // does; the token name is flagged in the spec as a mismatch to settle.
+  borderEmphasis: CL("button-border-width-selected"),                      // 1.5px
   gap:         CL("button-gap-horizontal"),                                  // 8px
   touch:       { pad: 6, min: 48 },
   // Focus ring drawn as outline + outline-offset rather than stacked shadows.
@@ -320,7 +327,12 @@ export function Button({
     paddingBottom:    sz.padV,
     borderRadius:     T.radius,
     backgroundColor:  bgColor,
-    border:           hasStroke ? `${T.border} solid ${strokeColor}` : "none",
+    // Hover, focus and pressed take the thicker weight, matching the 48 Outlined
+    // variants in Figma. Disabled and loading keep the rest weight.
+    border:           hasStroke
+      ? `${(!isDisabled && !loading && (stateKey === "hover" || stateKey === "pressed" || showFocusRing))
+          ? T.borderEmphasis : T.border} solid ${strokeColor}`
+      : "none",
     // Figma's Container.Main has gap 0. The 8px separation is realised as
     // padding INSIDE the icon and label containers (4px each side of each),
     // so applying it again as a flex gap double-counts it: the icon drifts to

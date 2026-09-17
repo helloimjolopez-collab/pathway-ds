@@ -178,7 +178,7 @@ Border width: `--contextual-layout-units-button-border-width-rest` (1.5 px).
 
 | Property | Token | Value |
 |---|---|---|
-| Border radius | `--contextual-layout-units-button-radius` | 8 px |
+| Border radius | `--contextual-layout-units-button-corner-radius-radius` | 8 px |
 | Gap (icon ↔ label) | `--contextual-layout-units-button-gap-horizontal` | 8 px |
 | Border width (Outlined) | `--contextual-layout-units-button-border-width-rest` | 0.75 px |
 | Padding L horizontal | `--contextual-layout-units-button-padding-large-horizontal` | 14 px |
@@ -440,7 +440,7 @@ All previously-flagged HIGH gaps are resolved as of the 2026-05-26 token sync.
 |---|---|
 | `--contextual-layout-units-button-padding-large-horizontal` | ✓ Added to Figma & synced |
 | `--contextual-layout-units-button-padding-large-vertical` | ✓ Added to Figma & synced |
-| `--contextual-layout-units-button-radius` | ✓ Added to Figma & synced |
+| `--contextual-layout-units-button-corner-radius-radius` | ✓ Added to Figma & synced |
 | `--semantic-type-font-size-m` | ✓ Exists in token file |
 | `--semantic-type-font-size-r` | ✓ Exists in token file |
 | `--semantic-type-font-size-s` | ✓ Exists in token file |

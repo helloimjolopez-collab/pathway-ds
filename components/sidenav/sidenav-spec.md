@@ -696,11 +696,11 @@ drifted from the build, and a wrong hex in a spec reads as a design decision. Ru
 
 | Semantic token | CSS custom property | Usage |
 |---|---|---|
-| `Fill/Surface/Sheet` | `--semantic-color-fill-surface-sheet` | SideNav container background |
+| `Fill/Static/Neutral/Mono` | `--semantic-color-fill-static-neutral-mono` | SideNav container background |
 | `Fill/Surface/Canvas` | `--semantic-color-fill-surface-canvas` | Page/viewport background behind the rail |
 
-> `Fill/Surface/Sheet` and `Fill/Surface/Canvas` no longer exist. The surface model is now
-> `Fill/Surface/Canvas`, `Fill/Surface/Sheet`, `Elevation/Raised`, `Elevation/Overlay` — four tokens,
+> `Fill/Static/Neutral/Mono` and `Fill/Surface/Canvas` no longer exist. The surface model is now
+> `Fill/Surface/Canvas`, `Fill/Static/Neutral/Mono`, `Elevation/Raised`, `Elevation/Overlay` — four tokens,
 > no per-component surfaces.
 
 ### 3.2 Fill (NavItem states)
@@ -727,7 +727,7 @@ pressed at +14/255 against the sheet, which made hovering look stronger than sel
 **Light mode uses opaque warm steps, Midnight uses white alphas.** This asymmetry is
 deliberate. The Warm Neutral ramp peaks at 14/255 warmth and carries only 4/255 at its dark
 end, so any low-alpha warm tint composites to neutral grey — measured at 0.3/255 of warmth
-at 8%. Only an opaque step delivers visible warmth. The rail always sits on `Fill/Surface/Sheet`,
+at 8%. Only an opaque step delivers visible warmth. The rail always sits on `Fill/Static/Neutral/Mono`,
 so an opaque fill is safe here; it would be wrong for a general-purpose overlay.
 
 ### 3.3 Foreground (label, icon and chevron)
@@ -937,7 +937,7 @@ The `container.indicator` column is **always present** on every `SideNavItem` (L
 ## 8. SideNav Container
 
 ### 8.1 Surface
-- Background: `Fill/Surface/Sheet` → `#fafafa`
+- Background: `Fill/Static/Neutral/Mono` → `#fafafa`
 - Right border: `0.5px solid` `Stroke/Static/Neutral/Base` → `#f6f6f6`
 
 ### 8.2 Dimensions & Padding
@@ -1042,7 +1042,7 @@ The overflow/scroll behaviour is not annotated in Figma. The nav container is de
 |---|---|---|
 | Width | 72px | None: raw value |
 | Padding | `12px` horizontal (`Padding/Medium`), `8px` top (`Padding/Tight`), `0` bottom | None |
-| Background | `#fafafa` | `Fill/Surface/Sheet` |
+| Background | `#fafafa` | `Fill/Static/Neutral/Mono` |
 | Border-right | `0.5px solid #f6f6f6` | `Stroke/Static/Neutral/Base` |
 | Item gap | `6px` | `Gap/XTight` |
 
@@ -1497,7 +1497,7 @@ All SideNav motion resolves through the **`--motion-*` tokens** (`docs/design-sy
 To implement SideNav from scratch with correct design system alignment, provide:
 
 1. **This document**
-2. **Figma variable export** from the [Pathway Design System file](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/): specifically the token values for `Fill/Action/Selection/*`, `Foreground/Action/Secondary/*`, `Foreground/Action/Secondary/*`, `Fill/Surface/Sheet`, `Fill/Static/Brand/Faint`, and `Component/NavItem/Large/Radius/Radius`
+2. **Figma variable export** from the [Pathway Design System file](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/): specifically the token values for `Fill/Action/Selection/*`, `Foreground/Action/Secondary/*`, `Foreground/Action/Secondary/*`, `Fill/Static/Neutral/Mono`, `Fill/Static/Brand/Faint`, and `Component/NavItem/Large/Radius/Radius`
 3. **Icon assets**: either the design system icon React component library, or SVG files for the fill-style icons embedded at build time
 4. **Specific nav content**: the nav items, their labels, icon names, and which are groupers vs destinations
 

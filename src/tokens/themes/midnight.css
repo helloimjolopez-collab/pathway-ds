@@ -14,13 +14,12 @@
  still the lightest-touch step even though here it is a dark near-ground.
  White, XLight and Black are inversion anchors and keep their value.
 
- Declares 144 custom properties.
+ Declares 143 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
 [data-theme="midnight"], [data-theme="dark"] {
   --semantic-color-fill-surface-canvas: var(--primitive-color-brand-900);
-  --semantic-color-fill-surface-sheet: var(--primitive-color-brand-800);
   --semantic-color-fill-surface-elevated: var(--primitive-color-brand-700);
   --semantic-color-fill-action-disabled: var(--primitive-color-warm-neutral-100-8);
   --semantic-color-fill-action-primary-strong-rest: var(--primitive-color-brand-250);

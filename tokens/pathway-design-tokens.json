@@ -997,10 +997,6 @@
             "$type": "color",
             "$value": "{primitive-color.cool-neutral.10}"
           },
-          "sheet": {
-            "$type": "color",
-            "$value": "{semantic-color.light-mode.fill.static.neutral.mono}"
-          },
           "elevated": {
             "$type": "color",
             "$value": "{primitive-color.warm-neutral.0}"
@@ -1720,10 +1716,6 @@
           "canvas": {
             "$type": "color",
             "$value": "{primitive-color.brand.900}"
-          },
-          "sheet": {
-            "$type": "color",
-            "$value": "{primitive-color.brand.800}"
           },
           "elevated": {
             "$type": "color",
@@ -3414,10 +3406,6 @@
           "$type": "number",
           "$value": "{semantic-layout-units.borderwidth.medium}"
         }
-      },
-      "radius": {
-        "$type": "number",
-        "$value": "{primitive-unit.unit.8}"
       },
       "corner-radius": {
         "radius": {

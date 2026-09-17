@@ -112,7 +112,7 @@
         "fill.action.selection.selected",
         "fill.action.selection.trail",
         "stroke.static.neutral.base",
-        "fill.surface.sheet",
+        "fill.static.neutral.mono",
         "foreground.action.secondary.rest",
         "foreground.action.secondary.hover",
         "foreground.action.secondary.pressed",

@@ -166,7 +166,7 @@ inside a 7-point band followed by an 18-point cliff.
 ### 3.7 Surface hierarchy corrected in Light Mode
 
 ```
-Fill/Surface/Sheet    #ffffff  L*=100.0   Cool Neutral/0
+Fill/Static/Neutral/Mono    #ffffff  L*=100.0   Cool Neutral/0
 Fill/Surface/Canvas   #fafafa  L*= 98.3   Cool Neutral/10
 ```
 

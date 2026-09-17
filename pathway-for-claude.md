@@ -111,7 +111,7 @@ Every Amplify screen uses this three-zone layout:
 
 ### SideNav
 - Width: 240px expanded / 72px collapsed rail
-- Background: `var(--semantic-color-fill-surface-sheet)` = `#fafafa`
+- Background: `var(--semantic-color-fill-static-neutral-mono)` = `#fafafa`
 - Right border: `0.5px solid var(--semantic-color-stroke-static-neutral-base)` = `#f6f6f6`
 - Collapse button: **at the top** (in the NavHeader), never at the bottom
 - Nav item height: 44px
@@ -140,7 +140,7 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 ```css
 --semantic-color-fill-static-brand-base    /* #2d4889  — TopNav background */
 --semantic-color-fill-surface-canvas      /* #fafafa  — Page background */
---semantic-color-fill-surface-sheet         /* #fafafa  — SideNav background */
+--semantic-color-fill-static-neutral-mono         /* #fafafa  — SideNav background */
 --semantic-color-fill-static-neutral-faint /* #ffffff  — Cards, inputs, white surfaces */
 ```
 
@@ -277,7 +277,7 @@ The SideNav in the repo has its own hardcoded demo items. For a prototype with c
 ```html
 <nav style="
   width: 240px; /* or 72px collapsed */
-  background: var(--semantic-color-fill-surface-sheet);
+  background: var(--semantic-color-fill-static-neutral-mono);
   border-right: 0.5px solid var(--semantic-color-stroke-static-neutral-base);
   display: flex; flex-direction: column;
   transition: width 380ms cubic-bezier(0.32,0.72,0,1);
