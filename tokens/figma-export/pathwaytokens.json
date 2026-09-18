@@ -1011,7 +1011,7 @@
                 "$type": "color",
                 "$collectionName": "Primitive: Color",
                 "$libraryName": "",
-                "$value": "{Warm Neutral.0}"
+                "$value": "{Cool Neutral.0}"
               }
             },
             "Action": {
@@ -1027,19 +1027,19 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.400}"
+                    "$value": "{Brand.450}"
                   },
                   "Hover": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.450}"
+                    "$value": "{Brand.500}"
                   },
                   "Pressed": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.500}"
+                    "$value": "{Brand.550}"
                   }
                 },
                 "Subtle": {
@@ -1196,7 +1196,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Warm Neutral.0}"
+                  "$value": "{Cool Neutral.0}"
                 },
                 "Faint": {
                   "$type": "color",
@@ -1252,7 +1252,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.400}"
+                  "$value": "{Brand.550}"
                 },
                 "Strong": {
                   "$type": "color",
@@ -1272,7 +1272,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.25}"
+                  "$value": "{Amethyst.75}"
                 },
                 "Strong": {
                   "$type": "color",
@@ -1475,7 +1475,7 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.600}"
+                    "$value": "{Brand.700}"
                   },
                   "Pressed": {
                     "$type": "color",
@@ -1502,13 +1502,13 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.600}"
+                  "$value": "{Cool Neutral.700}"
                 },
                 "Pressed": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.800}"
+                  "$value": "{Cool Neutral.900}"
                 }
               }
             },
@@ -1570,7 +1570,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.600}"
+                  "$value": "{Amethyst.700}"
                 },
                 "On Strong": {
                   "$type": "color",
@@ -1872,7 +1872,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Green.500}"
+                  "$value": "{Green.400}"
                 }
               },
               "Attention": {
@@ -1900,7 +1900,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Orange.400}"
+                  "$value": "{Orange.350}"
                 }
               },
               "Negative": {
@@ -1914,7 +1914,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Red.500}"
+                  "$value": "{Red.450}"
                 }
               },
               "Accent": {
@@ -1937,7 +1937,7 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Mauve.150}"
+                    "$value": "{Mauve.200}"
                   },
                   "Strong": {
                     "$type": "color",
@@ -1951,13 +1951,13 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Seabreeze.50}"
+                    "$value": "{Seabreeze.100}"
                   },
                   "Strong": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Seabreeze.600}"
+                    "$value": "{Seabreeze.400}"
                   }
                 },
                 "Lagoon": {
@@ -1965,13 +1965,13 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Lagoon.50}"
+                    "$value": "{Lagoon.200}"
                   },
                   "Strong": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Lagoon.600}"
+                    "$value": "{Lagoon.350}"
                   }
                 }
               }
@@ -2258,7 +2258,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.400}"
+                  "$value": "{Brand.550}"
                 },
                 "Strong": {
                   "$type": "color",
@@ -2278,7 +2278,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.600}"
+                  "$value": "{Amethyst.75}"
                 },
                 "Strong": {
                   "$type": "color",
@@ -2576,7 +2576,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.50}"
+                  "$value": "{Amethyst.700}"
                 },
                 "On Strong": {
                   "$type": "color",

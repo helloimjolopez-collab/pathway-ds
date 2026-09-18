@@ -55,10 +55,10 @@
   --semantic-color-fill-static-brand-faint: var(--primitive-color-brand-25);
   --semantic-color-fill-static-brand-subtle: var(--primitive-color-brand-50);
   --semantic-color-fill-static-brand-base: var(--primitive-color-brand-100);
-  --semantic-color-fill-static-brand-bold: var(--primitive-color-brand-400);
+  --semantic-color-fill-static-brand-bold: var(--primitive-color-brand-550);
   --semantic-color-fill-static-brand-strong: var(--primitive-color-brand-700);
   --semantic-color-fill-static-brand-strongest: var(--primitive-color-brand-800);
-  --semantic-color-fill-static-info-subtle: var(--primitive-color-amethyst-600);
+  --semantic-color-fill-static-info-subtle: var(--primitive-color-amethyst-75);
   --semantic-color-fill-static-info-strong: var(--primitive-color-amethyst-200);
   --semantic-color-fill-static-positive-subtle: var(--primitive-color-green-700);
   --semantic-color-fill-static-positive-strong: var(--primitive-color-green-300);
@@ -100,7 +100,7 @@
   --semantic-color-foreground-static-neutral-strong: var(--primitive-color-cool-neutral-25);
   --semantic-color-foreground-static-brand-on-subtle: var(--primitive-color-brand-600);
   --semantic-color-foreground-static-brand-on-strong: var(--primitive-color-brand-100);
-  --semantic-color-foreground-static-info-on-subtle: var(--primitive-color-amethyst-50);
+  --semantic-color-foreground-static-info-on-subtle: var(--primitive-color-amethyst-700);
   --semantic-color-foreground-static-info-on-strong: var(--primitive-color-amethyst-900);
   --semantic-color-foreground-static-attention-on-subtle: var(--primitive-color-saffron-100);
   --semantic-color-foreground-static-attention-on-strong: var(--primitive-color-saffron-700);
