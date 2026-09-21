@@ -275,5 +275,29 @@ if (linkFailures) {
   process.exit(1);
 }
 
+// The emitted CSS carries a stamped Pathway header: which file to consume, that
+// values already include their unit so calc(4px * 1px) is wrong, and the declared
+// property count. stamp-headers.js writes it, but a sync that runs
+// style-dictionary WITHOUT stamp-headers silently replaces all of it with Style
+// Dictionary's three-line default. That happened on 2026-09-18 (commit 7a16b81):
+// 162 lines of developer-facing guidance vanished, no token value changed, and
+// every checker stayed green. Now the header's absence is a build failure.
+let headerFailures = 0;
+for (const file of CONTRACT_CSS) {
+  if (!existsSync(file)) continue;
+  if (!readFileSync(file, "utf8").includes("PATHWAY DESIGN TOKENS")) {
+    headerFailures++;
+    console.log(`FAIL  ${basename(file)}  is missing its stamped Pathway header`);
+  }
+}
+if (headerFailures) {
+  console.log(
+    `\n${headerFailures} contract file(s) lost the stamped header.\n` +
+    "Run `node scripts/stamp-headers.js` (or `npm run build-dist`, which includes it).\n" +
+    "A sync that runs style-dictionary without stamp-headers causes this.\n"
+  );
+  process.exit(1);
+}
+
 console.log(`All ${demos.length} demos link the token contract and inline nothing.`);
 console.log(`All ${linkTargets.length} contract consumers load all ${REQUIRED_LINKS.length} contract files.`);
