@@ -130,7 +130,7 @@ export const Playground = {
 };
 
 const _capStyle = { padding: "10px 16px 6px", fontFamily: "'Red Hat Text',sans-serif", fontSize: 12,
-  fontWeight: 600, color: "#8890b0", textTransform: "uppercase", letterSpacing: "0.06em" };
+  fontWeight: 600, color: "var(--primitive-color-midnight-350)", textTransform: "uppercase", letterSpacing: "0.06em" };
 
 export const ModuleSwitcherVariants = {
   name: "ModuleSwitcher - interactive vs static",

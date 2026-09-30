@@ -55,11 +55,11 @@ export const NoLayoutShift = {
   render: () => (
     <div style={{ display: "flex", gap: 24, alignItems: "flex-start" }}>
       <div>
-        <div style={{ fontFamily: "'Red Hat Text',sans-serif", fontSize: 12, fontWeight: 600, color: "#8890b0", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 8 }}>Overflowing (scrollbar)</div>
+        <div style={{ fontFamily: "'Red Hat Text',sans-serif", fontSize: 12, fontWeight: 600, color: "var(--primitive-color-midnight-350)", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 8 }}>Overflowing (scrollbar)</div>
         <Frame><Scrollable style={{ height: "100%" }}><Rows n={40} /></Scrollable></Frame>
       </div>
       <div>
-        <div style={{ fontFamily: "'Red Hat Text',sans-serif", fontSize: 12, fontWeight: 600, color: "#8890b0", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 8 }}>Not overflowing</div>
+        <div style={{ fontFamily: "'Red Hat Text',sans-serif", fontSize: 12, fontWeight: 600, color: "var(--primitive-color-midnight-350)", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 8 }}>Not overflowing</div>
         <Frame><Scrollable style={{ height: "100%" }}><Rows n={4} /></Scrollable></Frame>
       </div>
     </div>

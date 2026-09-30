@@ -267,7 +267,7 @@ export const StateMatrix = () => {
         <div key={row.name} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           <div>
             <p style={{ fontSize: 13, fontWeight: 600, color: "var(--semantic-color-foreground-static-neutral-strong)", margin: "0 0 3px" }}>{row.name}</p>
-            <p style={{ fontSize: 12, color: "#8890b0", margin: 0 }}>{row.when}</p>
+            <p style={{ fontSize: 12, color: "var(--primitive-color-midnight-350)", margin: 0 }}>{row.when}</p>
           </div>
           <div style={{ padding: "10px 12px", background: T.surface.navLight,
             border: `0.5px solid ${T.fill.infoSubtle}`, borderRadius: 8 }}>
@@ -382,7 +382,7 @@ function TokenRow({ token, value, hex, role }) {
       <div style={{ width: 64, height: 28, borderRadius: 6,
         background: value, border: "1px solid rgba(0,0,0,0.07)" }} />
       <code style={{ fontSize: 12, color: "var(--semantic-color-foreground-static-neutral-subtle)", fontFamily: "monospace" }}>{hex}</code>
-      {role && <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>}
+      {role && <span style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)" }}>{role}</span>}
     </div>
   );
 }
@@ -482,7 +482,7 @@ function TypographyRow({ token, role, value, sample }) {
       borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text',sans-serif" }}>
       <div>
         <code style={{ fontSize: 12, color: "#2d4889", fontFamily: "monospace", display: "block" }}>{token}</code>
-        <span style={{ fontSize: 11, color: "#8890b0", marginTop: 2, display: "block" }}>{role}</span>
+        <span style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)", marginTop: 2, display: "block" }}>{role}</span>
       </div>
       <div style={{ padding: "4px 8px", background: T.surface.navLight,
         border: `0.5px solid ${T.fill.infoSubtle}`, borderRadius: 6 }}>
@@ -537,7 +537,7 @@ function SpacingRow({ name, value, token, role }) {
       <code style={{ fontSize: 12, fontWeight: 600, color: "#2d4889", fontFamily: "monospace" }}>{value}</code>
       <code style={{ fontSize: 11, color: token.startsWith("-") ? "#c00" : "#2d4889",
         fontFamily: "monospace" }}>{token}</code>
-      <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>
+      <span style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)" }}>{role}</span>
     </div>
   );
 }
@@ -584,9 +584,9 @@ function MotionRow({ name, duration, standard, curve, token, rationale }) {
       <span style={{ fontSize: 12, color: "#313131", fontWeight: isOverride ? 600 : 400 }}>{name}</span>
       <code style={{ fontSize: 12, fontWeight: 600,
         color: isOverride ? "#2d4889" : "#555", fontFamily: "monospace" }}>{duration}</code>
-      <span style={{ fontSize: 11, color: "#8890b0" }}>{standard}</span>
+      <span style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)" }}>{standard}</span>
       <code style={{ fontSize: 11, color: isOverride ? "#2d4889" : "#999", fontFamily: "monospace" }}>{token}</code>
-      <span style={{ fontSize: 11, color: "#8890b0" }}>{rationale}</span>
+      <span style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)" }}>{rationale}</span>
     </div>
   );
 }
@@ -638,7 +638,7 @@ function RadiusRow({ name, value, token, role }) {
       </div>
       <code style={{ fontSize: 11, color: token.startsWith("-") ? "#bbb" : "#2d4889",
         fontFamily: "monospace" }}>{token}</code>
-      <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>
+      <span style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)" }}>{role}</span>
     </div>
   );
 }
@@ -681,7 +681,7 @@ export const SectionLabels = () => (
         <p style={{ fontSize: 13, fontWeight: 600, color: "#02060d", margin: "0 0 4px" }}>
           NavSectionLabel
         </p>
-        <p style={{ fontSize: 12, color: "#8890b0", margin: "0 0 12px" }}>
+        <p style={{ fontSize: 12, color: "var(--primitive-color-midnight-350)", margin: "0 0 12px" }}>
           In-nav section heading - visible in the <strong>expanded (250 px)</strong> sidebar only.
           Replaced by a thin divider in the 72 px rail. Figma: <code>40006794:5975</code>.
         </p>
@@ -711,7 +711,7 @@ export const SectionLabels = () => (
         <p style={{ fontSize: 13, fontWeight: 600, color: "#02060d", margin: "0 0 4px" }}>
           SectionLabel (popover header)
         </p>
-        <p style={{ fontSize: 12, color: "#8890b0", margin: "0 0 12px" }}>
+        <p style={{ fontSize: 12, color: "var(--primitive-color-midnight-350)", margin: "0 0 12px" }}>
           Header row inside the <strong>CollapsedPopover flyout</strong> - only appears when
           hovering a grouper in the 72 px rail. Has a bottom divider, uses a lighter text
           colour, and wider left padding. Figma: <code>40006794:5977</code>.
@@ -791,7 +791,7 @@ TrailComparison.parameters = {
 export const StandaloneDemo = () => (
   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
     <div style={{ display: "flex", justifyContent: "space-between",
-      fontFamily: "'Red Hat Text', sans-serif", fontSize: 12, color: "#8890b0" }}>
+      fontFamily: "'Red Hat Text', sans-serif", fontSize: 12, color: "var(--primitive-color-midnight-350)" }}>
       <span>The full reference demo - includes the TopNav, responsive breakpoints, and the spec annotations panel below the component.</span>
       <a href="./components/sidenav/sidenav.html" target="_blank" rel="noopener"
         style={{ color: "#2d4889", textDecoration: "none", fontWeight: 500 }}>

@@ -643,7 +643,7 @@ function App() {
               <thead>
                 <tr>
                   {["Category","Semantic Token","Value","Role"].map(h => (
-                    <th key={h} style={{ textAlign:"left", padding:"8px 12px", background:"var(--semantic-color-fill-surface-canvas)", fontWeight:700, fontSize:11, color:"#8890b0", textTransform:"uppercase", letterSpacing:"0.06em", borderBottom:"2px solid var(--semantic-color-stroke-static-neutral-base)", whiteSpace:"nowrap" }}>{h}</th>
+                    <th key={h} style={{ textAlign:"left", padding:"8px 12px", background:"var(--semantic-color-fill-surface-canvas)", fontWeight:700, fontSize:11, color:"var(--primitive-color-midnight-350)", textTransform:"uppercase", letterSpacing:"0.06em", borderBottom:"2px solid var(--semantic-color-stroke-static-neutral-base)", whiteSpace:"nowrap" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -704,7 +704,7 @@ function App() {
           <div className="demo-section__body" style={{ maxWidth:680 }}>
             <div style={{ marginBottom:16, display:"flex", alignItems:"baseline", gap:10, flexWrap:"wrap" }}>
               <span style={{ fontFamily:"monospace", fontSize:13, color:"var(--semantic-color-foreground-static-brand-on-subtle)", background:"rgba(160,181,230,0.16)", padding:"3px 10px", borderRadius:4 }}>Label/Button/S</span>
-              <span style={{ fontSize:13, color:"#8890b0" }}>— desktop AND mobile in v1 (was XS on mobile in earlier drafts)</span>
+              <span style={{ fontSize:13, color:"var(--primitive-color-midnight-350)" }}>— desktop AND mobile in v1 (was XS on mobile in earlier drafts)</span>
             </div>
             {[
               ["--label/button/s/fontfamily",    "'Red Hat Text', sans-serif"],

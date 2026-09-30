@@ -1837,7 +1837,7 @@ function App() {
           background:"var(--semantic-color-fill-static-neutral-base)", borderBottom:"1px solid var(--semantic-color-stroke-static-neutral-base)",
           borderTop:"1px solid var(--semantic-color-stroke-static-neutral-base)", position:"sticky", top:0, zIndex:10 }}>
           <div style={{ flex:1, height:1, background:"var(--semantic-color-fill-static-neutral-strong)" }} />
-          <span style={{ fontSize:12, fontWeight:700, color:"#7880a0",
+          <span style={{ fontSize:12, fontWeight:700, color:"var(--primitive-color-midnight-400)",
             letterSpacing:"0.12em", textTransform:"uppercase", whiteSpace:"nowrap",
             fontFamily:"'Red Hat Text',sans-serif" }}>
             Component Documentation
@@ -1853,14 +1853,14 @@ function App() {
 
           {/* shared styles */}
           {(() => {
-            const SH = { fontSize:10, fontWeight:700, color:"#7880a0", textTransform:"uppercase",
+            const SH = { fontSize:10, fontWeight:700, color:"var(--primitive-color-midnight-400)", textTransform:"uppercase",
               letterSpacing:"0.1em", margin:"0 0 12px", fontFamily:"'Red Hat Text',sans-serif" };
             const CARD = { background:"transparent", borderRadius:12, padding:"20px 24px",
               border:"1px solid var(--semantic-color-stroke-static-neutral-base)", width:"100%" };
             const BODY = { fontSize:13, color:"var(--semantic-color-foreground-static-neutral-subtle)", margin:0,
               fontFamily:"'Red Hat Text',sans-serif", lineHeight:"20px",
               wordBreak:"break-word", overflowWrap:"anywhere" };
-            const SUB = { fontSize:12, color:"#8890b0",
+            const SUB = { fontSize:12, color:"var(--primitive-color-midnight-350)",
               fontFamily:"'Red Hat Text',sans-serif", lineHeight:"18px" };
             const GH = { fontSize:12, fontWeight:700, color:"var(--semantic-color-foreground-static-neutral-subtle)", margin:"0 0 10px",
               fontFamily:"'Red Hat Text',sans-serif", textTransform:"uppercase",
@@ -1886,7 +1886,7 @@ function App() {
                   <div>
                     <p style={{ fontSize:13, fontWeight:600, color:"var(--semantic-color-foreground-static-neutral-strong)", margin:"0 0 3px",
                       fontFamily:"'Red Hat Text',sans-serif" }}>SideNav — Component Spec</p>
-                    <p style={{ fontSize:12, color:"#8890b0", margin:0,
+                    <p style={{ fontSize:12, color:"var(--primitive-color-midnight-350)", margin:0,
                       fontFamily:"'Red Hat Text',sans-serif" }}>
                       Tokens · anatomy · states · keyboard · ARIA · screen reader strings · Figma gaps
                     </p>
@@ -1951,7 +1951,7 @@ function App() {
                             {["Category","Semantic Token","Primitive","Value","Role"].map(h => (
                               <th key={h} style={{ textAlign:"left", padding:"8px 12px",
                                 background:"var(--semantic-color-fill-surface-canvas)", fontWeight:700, fontSize:11,
-                                color:"#8890b0", textTransform:"uppercase", letterSpacing:"0.06em",
+                                color:"var(--primitive-color-midnight-350)", textTransform:"uppercase", letterSpacing:"0.06em",
                                 borderBottom:"2px solid var(--semantic-color-stroke-static-neutral-base)", whiteSpace:"nowrap" }}>{h}</th>
                             ))}
                           </tr>

@@ -186,7 +186,7 @@ EmphasisLadder.parameters = {
 
 export const ReducedMotion = () => (
   <div>
-    <p style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 13, color: "#8890b0", margin: "0 0 12px" }}>
+    <p style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 13, color: "var(--primitive-color-midnight-350)", margin: "0 0 12px" }}>
       With your OS set to reduce motion, the rotation stops and the opacity ladder
       flattens to a uniform 0.6 - a neutral "in progress" glyph instead of a paused head-and-tail.
     </p>

@@ -41,7 +41,7 @@ function Col({ children, gap = 8 }) {
 function SectionLabel({ children }) {
   return (
     <p style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 11, fontWeight: 600,
-      letterSpacing: "0.08em", textTransform: "uppercase", color: "#8890b0",
+      letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--primitive-color-midnight-350)",
       margin: "24px 0 8px" }}>
       {children}
     </p>
@@ -70,9 +70,9 @@ function TokenRow({ name, value, description }) {
       {/* Name */}
       <code style={{ fontSize: 12, color: "#3a3f5c", flex: "0 0 360px" }}>{cssVar}</code>
       {/* Hex */}
-      <code style={{ fontSize: 12, color: "#8890b0", flex: "0 0 96px" }}>{hex}</code>
+      <code style={{ fontSize: 12, color: "var(--primitive-color-midnight-350)", flex: "0 0 96px" }}>{hex}</code>
       {/* Usage */}
-      <span style={{ fontSize: 12, color: "#8890b0" }}>{description}</span>
+      <span style={{ fontSize: 12, color: "var(--primitive-color-midnight-350)" }}>{description}</span>
     </div>
   );
 }
@@ -205,7 +205,7 @@ export const StateMatrix = () => {
           <SectionLabel>{style}</SectionLabel>
           {TYPES.map(type => (
             <div key={type} style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 4 }}>
-              <span style={{ fontSize: 11, color: "#8890b0", width: 80, flexShrink: 0 }}>{type}</span>
+              <span style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)", width: 80, flexShrink: 0 }}>{type}</span>
               <Row gap={4} wrap={false}>
                 {combos.map(({ label, props: extra }) => (
                   <div key={label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
@@ -272,7 +272,7 @@ export const AllSizes = () => (
       {SIZES_OPT.map(sz => (
         <div key={sz} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <Button buttonStyle="Fill" type="Primary" size={sz} text={`Size ${sz}`} />
-          <span style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 11, color: "#8890b0" }}>
+          <span style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 11, color: "var(--primitive-color-midnight-350)" }}>
             {sz === "L" ? "18px" : sz === "M" ? "16px" : sz === "S" ? "14px" : "12px"} label
           </span>
         </div>
@@ -430,8 +430,8 @@ function TokenBlock({ table, styleName, type, describe }) {
                 border: "1px dashed #c9cde0",
                 background: "repeating-conic-gradient(var(--semantic-color-fill-surface-canvas) 0% 25%, #fff 0% 50%) 50%/10px 10px" }} />
               <code style={{ fontSize: 12, color: "#3a3f5c", flex: "0 0 360px" }}>{String(value)}</code>
-              <code style={{ fontSize: 12, color: "#8890b0", flex: "0 0 96px" }}>-</code>
-              <span style={{ fontSize: 12, color: "#8890b0" }}>
+              <code style={{ fontSize: 12, color: "var(--primitive-color-midnight-350)", flex: "0 0 96px" }}>-</code>
+              <span style={{ fontSize: 12, color: "var(--primitive-color-midnight-350)" }}>
                 {describe(styleName, type, STATE_LABEL[state])} (no fill at rest by design)
               </span>
             </div>
@@ -612,7 +612,7 @@ function TypographyRow({ size, typeTokens, fontSize, lineHeight, fontWeight, let
         <code style={{ fontSize: 11, color: "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace", display: "block" }}>
           {typeTokens}
         </code>
-        <code style={{ fontSize: 11, color: "#8890b0", fontFamily: "monospace", display: "block", marginTop: 2 }}>
+        <code style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)", fontFamily: "monospace", display: "block", marginTop: 2 }}>
           composed from the Semantic: Type scale
         </code>
       </div>
@@ -695,7 +695,7 @@ function SpacingRow({ name, value, token, role }) {
       <span style={{ fontSize: 12, color: "var(--semantic-color-foreground-static-neutral-base)" }}>{name}</span>
       <code style={{ fontSize: 12, fontWeight: 600, color: "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace" }}>{value}</code>
       <code style={{ fontSize: 11, color: noToken ? "#bbb" : "#2d4889", fontFamily: "monospace" }}>{token}</code>
-      <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>
+      <span style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)" }}>{role}</span>
     </div>
   );
 }
@@ -762,7 +762,7 @@ function MotionRow({ name, duration, curve, token, properties, rationale }) {
       <code style={{ fontSize: 12, fontWeight: 600, color: "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace" }}>{duration}</code>
       <code style={{ fontSize: 11, color: hasToken ? "var(--semantic-color-foreground-static-brand-on-subtle)" : "#bbb", fontFamily: "monospace" }}>{token}</code>
       <code style={{ fontSize: 11, color: "var(--semantic-color-foreground-static-neutral-subtle)", fontFamily: "monospace" }}>{curve}</code>
-      <span style={{ fontSize: 11, color: "#8890b0" }}>{rationale}</span>
+      <span style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)" }}>{rationale}</span>
     </div>
   );
 }
@@ -836,7 +836,7 @@ function RadiusRow({ name, value, token, role }) {
         <code style={{ fontSize: 12, fontWeight: 600, color: "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace" }}>{value}</code>
       </div>
       <code style={{ fontSize: 11, color: noToken ? "#bbb" : "#2d4889", fontFamily: "monospace" }}>{token}</code>
-      <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>
+      <span style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)" }}>{role}</span>
     </div>
   );
 }
