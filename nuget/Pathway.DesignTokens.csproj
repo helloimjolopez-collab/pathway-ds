@@ -46,6 +46,10 @@
     <RepositoryUrl>https://github.com/helloimjolopez-collab/pathway-ds</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <!-- The repo LICENSE is CC0 1.0 Universal. Without this, `dotnet pack` warns
+         "License missing" on every release and nuget.org shows the package as
+         unlicensed, which blocks adoption at some shops. -->
+    <PackageLicenseExpression>CC0-1.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
@@ -65,6 +69,12 @@
     <None Include="..\dist\type.css" Pack="true" PackagePath="staticwebassets\type.css" />
     <None Include="..\dist\layout.css" Pack="true" PackagePath="staticwebassets\layout.css" />
     <None Include="..\dist\layout-contextual.css" Pack="true" PackagePath="staticwebassets\layout-contextual.css" />
+    <!-- layout-responsive.css and index.css were MISSING from this package up to
+         and including 10.0.0. They are part of the nine-file contract, so a
+         Blazor consumer got no responsive Sheet/TopNav metrics and no single
+         entry point, while the npm package shipped both. -->
+    <None Include="..\dist\layout-responsive.css" Pack="true" PackagePath="staticwebassets\layout-responsive.css" />
+    <None Include="..\dist\index.css" Pack="true" PackagePath="staticwebassets\index.css" />
     <None Include="..\dist\motion.css" Pack="true" PackagePath="staticwebassets\motion.css" />
     <None Include="..\dist\breakpoints.css" Pack="true" PackagePath="staticwebassets\breakpoints.css" />
     <None Include="..\dist\tokens.json" Pack="true" PackagePath="staticwebassets\tokens.json" />
@@ -79,6 +89,8 @@
     <None Include="..\dist\type.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\type.css" />
     <None Include="..\dist\layout.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\layout.css" />
     <None Include="..\dist\layout-contextual.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\layout-contextual.css" />
+    <None Include="..\dist\layout-responsive.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\layout-responsive.css" />
+    <None Include="..\dist\index.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\index.css" />
     <None Include="..\dist\motion.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\motion.css" />
     <None Include="..\dist\breakpoints.css" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\breakpoints.css" />
     <None Include="..\dist\tokens.json" Pack="true" PackagePath="contentFiles\any\any\pathway-tokens\tokens.json" />
