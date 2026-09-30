@@ -46,7 +46,16 @@
 
   /* ── Demo chrome (not part of component) ── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: "Red Hat Text", sans-serif; background: #f7f8fc; color: #02060d; }
+  body {
+  /* Match Figma's text rendering. Without these, Medium (500) renders visibly
+     heavier in a browser than it does in Figma, and a designer comparing the two
+     reads the button label as Semibold. .storybook/preview-head.html has carried
+     these since the start, but a standalone demo is its own document and an
+     iframed demo inherits nothing from the Storybook preview, so every page has
+     to declare them itself. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility; font-family: "Red Hat Text", sans-serif; background: #f7f8fc; color: #02060d; }
   .demo-shell  { max-width: 1100px; margin: 0 auto; padding: 48px 32px 80px; }
   .demo-title  { font-size: 22px; font-weight: 600; line-height: 28px; margin-bottom: 4px; }
   .demo-sub    { font-size: 13px; color: #7880a0; margin-bottom: 40px; }
@@ -134,19 +143,29 @@ const FOCUS_OFFSET = CL("focusring-offset");
 
 // Type is a scale now, so each size composes its own five values. The px in
 // each comment is what the retired Label/Button composite resolved to.
-const LABEL = (size, lineHeight) => ({
+const LABEL = (size, lineHeight, tracking) => ({
   fontFamily:    ST("family-brand"),
   fontSize:      ST(`font-size-${size}`),
   fontWeight:    ST("weight-medium"),
   lineHeight:    ST(`line-height-${lineHeight}`),
-  letterSpacing: "normal",   // Semantic: Type exposes only Wide/Spacious/ExtraSpacious; there is no neutral tracking token, and 0 tracking is the default
+  // Tracking is NOT uniform across the sizes and the helper used to pretend it
+  // was. Figma's Label/Button styles read, per size: Large 0.1, Base 0.1,
+  // Small 0.3, XSmall 0.6 — tracking OPENS UP as the type gets smaller, which is
+  // what keeps a 12px label legible. It is passed in per size for that reason.
+  //
+  // It previously asked the SEMANTIC scale for a "compact" step, which does not
+  // exist there: that step is a primitive only. The reference resolved to
+  // nothing, the browser fell back to `normal`, and every button rendered at 0
+  // tracking against Figma's 0.1 to 0.6. Naming a token that does not exist
+  // fails silently, which is why it went unnoticed.
+  letterSpacing: ST(`letter-spacing-${tracking}`),
 });
 
 const SIZES = {
-  L: { padH: CL("button-padding-large-horizontal"),  padV: CL("button-padding-large-vertical"),  iconWrap: 26, iconInner: 18, ...LABEL("m",  "m-single")  },  // 18 / 24
-  M: { padH: CL("button-padding-medium-horizontal"), padV: CL("button-padding-medium-vertical"), iconWrap: 24, iconInner: 16, ...LABEL("r",  "r-single")  },  // 16 / 22
-  S: { padH: CL("button-padding-small-horizontal"),  padV: CL("button-padding-small-vertical"),  iconWrap: 20, iconInner: 14, ...LABEL("s",  "s-single")  },  // 14 / 20
-  XS:{ padH: CL("button-padding-xsmall-horizontal"), padV: CL("button-padding-xsmall-vertical"), iconWrap: 16, iconInner: 12, ...LABEL("xs", "xs-single") },  // 12 / 18
+  L: { padH: CL("button-padding-large-horizontal"),  padV: CL("button-padding-large-vertical"),  iconWrap: 26, iconInner: 18, ...LABEL("m",  "m-single", "wide")  },  // 18 / 24
+  M: { padH: CL("button-padding-medium-horizontal"), padV: CL("button-padding-medium-vertical"), iconWrap: 24, iconInner: 16, ...LABEL("r",  "r-single", "wide")  },  // 16 / 22
+  S: { padH: CL("button-padding-small-horizontal"),  padV: CL("button-padding-small-vertical"),  iconWrap: 20, iconInner: 14, ...LABEL("s",  "s-single", "spacious")  },  // 14 / 20
+  XS:{ padH: CL("button-padding-xsmall-horizontal"), padV: CL("button-padding-xsmall-vertical"), iconWrap: 16, iconInner: 12, ...LABEL("xs", "xs-single", "extraspacious") },  // 12 / 18
 };
 
 const T = {

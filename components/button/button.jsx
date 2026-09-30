@@ -138,12 +138,22 @@ export const T = {
 // Type is a scale now, not 111 composites, so each size composes its own five
 // values. The px in each comment is what the retired Label/Button composite
 // resolved to, kept so a drift here is obvious.
-const LABEL = (size, lineHeight) => ({
+const LABEL = (size, lineHeight, tracking) => ({
   fontFamily:    ST("family-brand"),
   fontSize:      ST(`font-size-${size}`),
   fontWeight:    ST("weight-medium"),
   lineHeight:    ST(`line-height-${lineHeight}`),
-  letterSpacing: "normal",   // Semantic: Type exposes only Wide/Spacious/ExtraSpacious; there is no neutral tracking token, and 0 tracking is the default
+  // Tracking is NOT uniform across the sizes and the helper used to pretend it
+  // was. Figma's Label/Button styles read, per size: Large 0.1, Base 0.1,
+  // Small 0.3, XSmall 0.6 — tracking OPENS UP as the type gets smaller, which is
+  // what keeps a 12px label legible. It is passed in per size for that reason.
+  //
+  // It previously asked the SEMANTIC scale for a "compact" step, which does not
+  // exist there: that step is a primitive only. The reference resolved to
+  // nothing, the browser fell back to `normal`, and every button rendered at 0
+  // tracking against Figma's 0.1 to 0.6. Naming a token that does not exist
+  // fails silently, which is why it went unnoticed.
+  letterSpacing: ST(`letter-spacing-${tracking}`),
 });
 
 // ─── SIZE TABLE ────────────────────────────────────────────────────────────────
@@ -153,21 +163,21 @@ export const SIZES = {
     padV:      CL("button-padding-large-vertical"),
     iconWrap:  26,
     iconInner: 18,
-    ...LABEL("m", "m-single"),        // was Label/Button/Large — 18 / 24
+    ...LABEL("m", "m-single", "wide"),        // was Label/Button/Large — 18 / 24
   },
   M: {
     padH:      CL("button-padding-medium-horizontal"),
     padV:      CL("button-padding-medium-vertical"),
     iconWrap:  24,
     iconInner: 16,
-    ...LABEL("r", "r-single"),        // was Label/Button/Base — 16 / 22
+    ...LABEL("r", "r-single", "wide"),        // was Label/Button/Base — 16 / 22
   },
   S: {
     padH:      CL("button-padding-small-horizontal"),
     padV:      CL("button-padding-small-vertical"),
     iconWrap:  20,
     iconInner: 14,
-    ...LABEL("s", "s-single"),        // was Label/Button/Small — 14 / 20
+    ...LABEL("s", "s-single", "spacious"),        // was Label/Button/Small — 14 / 20
   },
   // XS — added 2026-06-11 (Figma node 40007881:21300). 44×44 touch target preserved;
   // padding 8/6. Figma defines XS for Primary/Secondary/Negative across
@@ -177,7 +187,7 @@ export const SIZES = {
     padV:      CL("button-padding-xsmall-vertical"),
     iconWrap:  16,
     iconInner: 12,
-    ...LABEL("xs", "xs-single"),      // was Label/Button/XSmall — 12 / 18
+    ...LABEL("xs", "xs-single", "extraspacious"),      // was Label/Button/XSmall — 12 / 18
   },
 };
 

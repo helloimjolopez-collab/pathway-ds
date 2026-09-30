@@ -34,7 +34,16 @@
 */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; }
+html, body {
+  /* Match Figma's text rendering. Without these, Medium (500) renders visibly
+     heavier in a browser than it does in Figma, and a designer comparing the two
+     reads the button label as Semibold. .storybook/preview-head.html has carried
+     these since the start, but a standalone demo is its own document and an
+     iframed demo inherits nothing from the Storybook preview, so every page has
+     to declare them itself. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility; height: 100%; font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; }
 #root { height: 100%; }
 
 .material-symbols-rounded {
