@@ -430,6 +430,38 @@ When regenerating this component, confirm:
 
 ---
 
+## §16 Figma variant hygiene
+
+**The `PW_Button` set has stray values on three of its four axes.** Read from the
+panel on 2026-09-30, node `40003293:93741`, 258 variants:
+
+| Axis | Legitimate values | Stray value |
+|---|---|---|
+| `Style` | Fill, Outlined, Naked | `PW_Button` |
+| `Size` | L, M, S, XS | `Naked` |
+| `Type` | Primary, Secondary, Tertiary, Negative | `XS` |
+| `State` | Active, Disabled, Loading, Hover, Focused, Pressed | `Primary` |
+
+Each stray value is one that belongs to a *different* axis, which is the
+signature of variant properties being renamed while variants already existed:
+the old value stays behind on the wrong axis.
+
+**Effect on Code Connect.** `components/button/button.figma.ts` maps only the
+legitimate values. An unmapped enum value yields `undefined`, `renderProp` then
+omits the prop, and Dev Mode shows the component's own default instead. So a
+stray variant produces a snippet that is incomplete rather than wrong, which is
+the safer failure, but it is still a failure.
+
+**Fix belongs in Figma, not here.** Delete or re-assign the four stray values,
+then no mapping change is needed, because the legitimate values are already
+mapped one-to-one.
+
+**Also not mapped:** the `LeadingIcon` and `TrailingIcon` instance swaps.
+`button.jsx` takes a Material Symbols ligature string while an instance swap
+returns a component reference, and the ligature cannot be derived from it
+reliably. Emitting a guess would put a plausible but wrong icon name in front of
+a developer, so `leadingIcon` and `trailingIcon` are left to be set by hand.
+
 ## §15 Token gaps
 
 All previously-flagged HIGH gaps are resolved as of the 2026-05-26 token sync.
