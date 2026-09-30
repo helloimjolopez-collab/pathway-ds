@@ -111,7 +111,12 @@ export function createSemanticColors(mode) {
     return container;
   }
 
-  const isMidnight = mode === "pathway-dark" || mode === "midnight-mode";
+  // Accepts every spelling this mode has had: "midnight-mode" (pre-2026-09-03),
+  // "pathway-dark" (when the brand axis landed) and "amplify-dark" (2026-09-30,
+  // when the modes were renamed to the brand themes). A mode slug that does not
+  // match ANY of them renders an empty page rather than an error, which is how
+  // the rename took both colour pages down silently.
+  const isMidnight = /^(amplify-dark|pathway-dark|midnight-mode|dark)$/.test(mode);
   // The ground each foreground token is measured against for the contrast
   // badge. Foreground/*/Faint sitting at 4.3:1 is a real finding, and it only
   // shows up if the badge is computed rather than asserted.

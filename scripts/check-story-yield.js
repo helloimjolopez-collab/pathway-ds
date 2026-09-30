@@ -41,6 +41,7 @@
  * Exit 1 if any page yields fewer rows than its floor.
  */
 
+import { readFileSync } from "node:fs";
 import { JSDOM } from "jsdom";
 
 const verbose = process.argv.includes("--verbose");
@@ -67,6 +68,31 @@ const { createSemanticLayout } = await import("../src/stories/components/Semanti
  * zero so a shape change does. The comment records the count observed when the
  * floor was set, which is what makes a later drop legible.
  */
+/**
+ * Read the mode slug each colour page ACTUALLY passes, instead of hardcoding it.
+ *
+ * On 2026-09-30 the Figma modes were renamed from Pathway to Amplify. This file
+ * was updated to "amplify-light"/"amplify-dark" and the two .mdx pages were not,
+ * so the check rendered the new slug, passed, and reported healthy while both
+ * published colour pages asked for a mode that no longer existed. The checker
+ * was testing itself.
+ *
+ * Deriving the slug from the page means a rename can only ever be caught, never
+ * papered over: if the page asks for a dead mode the row count collapses to the
+ * error banner and the floor fails.
+ */
+function modeUsedBy(mdxPath) {
+  const src = readFileSync(mdxPath, "utf8");
+  const m = src.match(/createSemanticColors\(\s*["']([^"']+)["']\s*\)/);
+  if (!m) {
+    console.error(`check-story-yield: no createSemanticColors(...) call found in ${mdxPath}.`);
+    process.exit(1);
+  }
+  return m[1];
+}
+const LIGHT_MODE = modeUsedBy("src/stories/Semantics/ColorLight.mdx");
+const MIDNIGHT_MODE = modeUsedBy("src/stories/Semantics/ColorMidnight.mdx");
+
 const PAGES = [
   {
     title: "Tokens/Semantics/Typography",
@@ -75,14 +101,14 @@ const PAGES = [
   },
   {
     title: "Tokens/Semantics/Color (Light Mode)",
-    render: () => createSemanticColors("amplify-light"),
+    render: () => createSemanticColors(LIGHT_MODE),
     floor: 1200, // observed 1725 for 162 rows. Was 2400 against 358 rows: the
                  // hue ladders were cut to Subtle + Strong on 2026-09-15, so
                  // the smaller number IS the change and not a regression.
   },
   {
     title: "Tokens/Semantics/Color (Midnight Mode)",
-    render: () => createSemanticColors("amplify-dark"),
+    render: () => createSemanticColors(MIDNIGHT_MODE),
     floor: 1200, // observed 1725 for 162 rows, same cut as above
   },
   {
