@@ -51,7 +51,7 @@
   }
   .demo-header p {
     font-size: 14px;
-    color: #6b6b6b;
+    color: var(--semantic-color-stroke-action-field-hover);
   }
 
   .demo-section {
@@ -438,7 +438,7 @@ function Demo() {
                 describedBy="agree-error"
               />
               {!agreed && submitted && (
-                <p id="agree-error" style={{ fontSize: 13, color: "#9d2d2d", marginLeft: 44, marginTop: 4 }}>
+                <p id="agree-error" style={{ fontSize: 13, color: "var(--semantic-color-fill-static-negative-strong)", marginLeft: 44, marginTop: 4 }}>
                   You must agree to continue.
                 </p>
               )}

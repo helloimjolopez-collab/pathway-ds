@@ -694,7 +694,7 @@ function SpacingRow({ name, value, token, role }) {
     }}>
       <span style={{ fontSize: 12, color: "var(--semantic-color-foreground-static-neutral-base)" }}>{name}</span>
       <code style={{ fontSize: 12, fontWeight: 600, color: "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace" }}>{value}</code>
-      <code style={{ fontSize: 11, color: noToken ? "#bbb" : "#2d4889", fontFamily: "monospace" }}>{token}</code>
+      <code style={{ fontSize: 11, color: noToken ? "#bbb" : "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace" }}>{token}</code>
       <span style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)" }}>{role}</span>
     </div>
   );
@@ -829,13 +829,13 @@ function RadiusRow({ name, value, token, role }) {
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
         <div style={{
           width: 32, height: 32,
-          border: "1.5px solid #2d4889",
+          border: "1.5px solid var(--semantic-color-foreground-static-brand-on-subtle)",
           borderRadius: r,
           background: "rgba(160,181,230,0.12)",
         }} />
         <code style={{ fontSize: 12, fontWeight: 600, color: "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace" }}>{value}</code>
       </div>
-      <code style={{ fontSize: 11, color: noToken ? "#bbb" : "#2d4889", fontFamily: "monospace" }}>{token}</code>
+      <code style={{ fontSize: 11, color: noToken ? "#bbb" : "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace" }}>{token}</code>
       <span style={{ fontSize: 11, color: "var(--primitive-color-midnight-350)" }}>{role}</span>
     </div>
   );

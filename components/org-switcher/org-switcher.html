@@ -175,8 +175,8 @@ const T = {
   panelShadow: "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
   panelHeading:  "var(--semantic-color-foreground-static-neutral-bold)",
   panelOrgName:  "var(--semantic-color-foreground-static-neutral-bold)",
-  panelCampus:   "#6b6b6b",
-  panelSearch:   "#606060",
+  panelCampus:   "var(--semantic-color-stroke-action-field-hover)",
+  panelSearch:   "var(--semantic-color-stroke-action-field-pressed)",
   panelChevron:  "#c0c0c0",
   searchBg:      "var(--semantic-color-fill-surface-canvas)",
   searchBorder:  "var(--semantic-color-stroke-static-neutral-base)",
@@ -382,12 +382,12 @@ function OrgPanel({ orgs=[], activeOrgId, onOrgSelect, mobile=false }) {
 
       {/* Breadcrumb header — "My Organizations" */}
       <div style={{ display:"flex", alignItems:"center", padding:"4px 10px", borderRadius:4, flexShrink:0 }}>
-        <p style={{ margin:0, fontFamily:"'Red Hat Text', sans-serif", fontWeight:600, fontSize:14, lineHeight:"normal", color:"#6b6b6b", whiteSpace:"nowrap" }}>My Organizations</p>
+        <p style={{ margin:0, fontFamily:"'Red Hat Text', sans-serif", fontWeight:600, fontSize:14, lineHeight:"normal", color:"var(--semantic-color-stroke-action-field-hover)", whiteSpace:"nowrap" }}>My Organizations</p>
       </div>
 
       {/* Search — bordered rectangle */}
       <div style={{ display:"flex", alignItems:"center", gap:4, padding:8, border:"1px solid var(--semantic-color-stroke-static-neutral-bold)", borderRadius:4, background:"var(--semantic-color-fill-surface-elevated)", flexShrink:0, overflow:"hidden" }}>
-        <Icon name="search" size={24} style={{ color:"#6b6b6b", flexShrink:0 }} />
+        <Icon name="search" size={24} style={{ color:"var(--semantic-color-stroke-action-field-hover)", flexShrink:0 }} />
         <input type="text" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search" aria-label="Search organisations"
           style={{ flex:1, border:"none", background:"transparent", outline:"none", fontFamily:"'Red Hat Text', sans-serif", fontWeight:400, fontSize:16, lineHeight:"24px", color:"var(--semantic-color-foreground-static-neutral-base)" }} />
       </div>
@@ -395,7 +395,7 @@ function OrgPanel({ orgs=[], activeOrgId, onOrgSelect, mobile=false }) {
       {/* Org list — Switcher Items_V4 rows */}
       <div role="listbox" aria-label="Organisations" style={{ flex:"1 0 0", display:"flex", flexDirection:"column", gap:16, maxHeight:380, overflowY:"auto", minHeight:0 }}>
         {filtered.map(org => <OrgListItem key={org.id} org={org} isActive={org.id===activeOrgId} onSelect={onOrgSelect||(() => {})} />)}
-        {filtered.length===0 && <div style={{ padding:"16px 12px", fontSize:14, color:"#6b6b6b", fontFamily:"'Red Hat Text', sans-serif", textAlign:"center" }}>No organisations found</div>}
+        {filtered.length===0 && <div style={{ padding:"16px 12px", fontSize:14, color:"var(--semantic-color-stroke-action-field-hover)", fontFamily:"'Red Hat Text', sans-serif", textAlign:"center" }}>No organisations found</div>}
       </div>
     </div>
   );

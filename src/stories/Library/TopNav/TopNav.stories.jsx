@@ -80,7 +80,7 @@ export default {
     layout: "fullscreen",
     docs: {
       description: {
-        component: "Global navigation bar. Persists across all modules and viewports. Always on brand-blue surface (#2d4889). Uses dark-mode tokens throughout. Figma: node 40007067:6508.",
+        component: "Global navigation bar. Persists across all modules and viewports. Always on brand-blue surface (var(--semantic-color-foreground-static-brand-on-subtle)). Uses dark-mode tokens throughout. Figma: node 40007067:6508.",
       },
     },
   },
@@ -294,7 +294,7 @@ export const TokensFill = {
   tags: ["!dev"],
   render: () => (
     <TokenTable title="Fill tokens" rows={[
-      <TokenRow key="brand"   varName="--semantic-color-fill-surface-chrome"         fallback="#2d4889"               label="Nav bar background" />,
+      <TokenRow key="brand"   varName="--semantic-color-fill-surface-chrome"         fallback="var(--semantic-color-foreground-static-brand-on-subtle)"               label="Nav bar background" />,
       <TokenRow key="org"     varName="--semantic-color-fill-action-primary-subtle-rest"        fallback="rgba(160,181,230,0.04)" label="OrgSwitcher resting fill" />,
       <TokenRow key="search"  varName="--semantic-color-fill-action-primary-subtle-rest"  fallback="rgba(160,181,230,0.08)" label="Search pill fill" />,
       <TokenRow key="hover"   varName="--semantic-color-fill-action-primary-subtle-hover" fallback="rgba(10,18,35,0.16)"    label="All controls hover" />,
@@ -322,7 +322,7 @@ export const TokensText = {
   render: () => (
     <TokenTable title="Text tokens" rows={[
       <TokenRow key="mono"  varName="--semantic-color-foreground-static-neutral-mono"               fallback="#fbfbfb" label="All text on nav bar" type="text" />,
-      <TokenRow key="avtxt" varName="--semantic-color-foreground-static-info-on-subtle" fallback="#221e3f" label="Profile avatar initials" type="text" />,
+      <TokenRow key="avtxt" varName="--semantic-color-foreground-static-info-on-subtle" fallback="var(--semantic-color-fill-chart-sequential-02)" label="Profile avatar initials" type="text" />,
     ]} />
   ),
   parameters: { docs: { description: { story: "Foreground tokens - text and icons are one tier since the 2026-09-03 merge. Mono/Rest for all labels, Accent/Amethyst/Contrast for avatar initials. Mono has only a rest step, so it does not change on hover or press." } } },

@@ -25,7 +25,7 @@ const SACRED_HEART_LOGO = "components/org-switcher/assets/sacred-heart-logo.png"
 
 // TopNav surface colour. Owned by the TopNav component, mirrored here to match
 // the HTML demo's brand-blue body. NOT a token defined by OrgSwitcher.
-const TOPNAV_SURFACE = "#2d4889";
+const TOPNAV_SURFACE = "var(--semantic-color-foreground-static-brand-on-subtle)";
 
 // ── DemoCard ────────────────────────────────────────────────────────────────
 // Lifted from components/org-switcher/org-switcher.html (.demo-section /

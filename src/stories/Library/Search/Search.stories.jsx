@@ -15,7 +15,7 @@ import { LiveTokenTable } from "../../components/LiveTokenTable.jsx";
 import React, { useState } from "react";
 import { SearchInput, TopNavSearch } from "../../../../components/search/search.jsx";
 
-const TOPNAV_BG = "#2d4889";
+const TOPNAV_BG = "var(--semantic-color-foreground-static-brand-on-subtle)";
 
 // ── Demo wrappers ─────────────────────────────────────────────────────────────
 

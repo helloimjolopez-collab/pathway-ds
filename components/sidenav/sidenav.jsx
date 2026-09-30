@@ -420,7 +420,7 @@ export function PopoverRow({ item, onClick, activeId }) {
 export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, expandIcon }) {
   const [h, setH] = useState(false);
   const labelColor = h ? T.text.navHover : T.text.navBase;
-  const actionIconColor = T.icon.actionSecondary; // #6b6b6b — always static, no hover change
+  const actionIconColor = T.icon.actionSecondary; // var(--semantic-color-stroke-action-field-hover) — always static, no hover change
   return (
     <div style={{ width: "100%" }}>
       <div style={{ height: 1, backgroundColor: T.fill.infoSubtle, marginBottom: L.collapseGap }} />
@@ -480,7 +480,7 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
 // Hidden on mobile (<768px) — TopNav hamburger is the sole toggle there.
 export function NavHeader({ isSidebarCollapsed, onToggle, collapseIcon, expandIcon }) {
   const [h, setH] = useState(false);
-  const actionIconColor = T.icon.actionSecondary; // #6b6b6b — always static
+  const actionIconColor = T.icon.actionSecondary; // var(--semantic-color-stroke-action-field-hover) — always static
   return (
     <div style={{ width: "100%", flexShrink: 0 }}>
       <div onClick={onToggle} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}

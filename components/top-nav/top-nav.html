@@ -257,12 +257,12 @@ html, body {
   display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .tn-panel__org-name   { font-size: 13px; font-weight: 500; color: var(--semantic-color-foreground-static-neutral-bold);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.tn-panel__org-campus { font-size: 11px; color: #6b6b6b; margin-top: 1px; }
+.tn-panel__org-campus { font-size: 11px; color: var(--semantic-color-stroke-action-field-hover); margin-top: 1px; }
 
 .tn-profile-menu__header { padding: 10px 12px 8px;
   border-bottom: 1px solid rgba(0,0,0,0.06); margin-bottom: 4px; }
 .tn-profile-menu__name  { font-size: 13px; font-weight: 600; color: var(--semantic-color-foreground-static-neutral-bold); }
-.tn-profile-menu__email { font-size: 11px; color: #6b6b6b; margin-top: 1px; }
+.tn-profile-menu__email { font-size: 11px; color: var(--semantic-color-stroke-action-field-hover); margin-top: 1px; }
 .tn-profile-menu__item { width: 100%; display: flex; align-items: center; gap: 8px;
   padding: 8px 10px; border-radius: 6px; background: transparent;
   border: none; font-family: inherit; font-size: 13px; color: var(--semantic-color-foreground-static-neutral-base);
@@ -583,7 +583,7 @@ const MODULES_DATA = MODULES.map((id) => ({ id, label: MODULE_LABELS[id] }));
 // ORGS — no logoUrl so all show the church placeholder; demonstrates the no-logo state
 const ORGS = [
   { id: "shc",        name: "Sacred Heart Church-ITD", campus: "Knoxville",   initials: "SH", bg: "var(--semantic-color-fill-surface-chrome)" },
-  { id: "fellowship", name: "Fellowship Church",        campus: "Main Campus", initials: "FC", bg: "#22386b" },
+  { id: "fellowship", name: "Fellowship Church",        campus: "Main Campus", initials: "FC", bg: "var(--primitive-color-brand-600)" },
   { id: "grace",      name: "Grace Community Church",   campus: "West Campus", initials: "GC", bg: "var(--semantic-color-fill-surface-chrome)" },
 ];
 

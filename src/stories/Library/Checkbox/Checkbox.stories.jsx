@@ -211,7 +211,7 @@ export const ErrorWithMessage = () => {
         describedBy="terms-error"
       />
       {!agreed && submitted && (
-        <p id="terms-error" style={{ fontSize: 13, color: "#9d2d2d", marginLeft: 44, marginTop: 4 }}>
+        <p id="terms-error" style={{ fontSize: 13, color: "var(--semantic-color-fill-static-negative-strong)", marginLeft: 44, marginTop: 4 }}>
           You must agree to continue.
         </p>
       )}

@@ -103,7 +103,7 @@ tone=neutral + emphasis=base
   ↓
 --primitive-color-cool-neutral-600
   ↓
-#313131
+var(--semantic-color-foreground-static-neutral-base)
 ```
 
 Consumers never see the primitive or the hex. The spinner wrapper sets `color:` to a semantic foreground token via a `[data-tone][data-emphasis]` selector; the SVG strokes inherit that via `stroke: currentColor`. That's why "colour inheritance" works *inside* the component but doesn't leak from arbitrary parent elements.
