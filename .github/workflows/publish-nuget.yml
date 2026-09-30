@@ -34,6 +34,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      # Required for NuGet Trusted Publishing. NuGet/login@v1 exchanges this
+      # OIDC token for a short-lived API key, so there is no NUGET_API_KEY
+      # secret to store, rotate or leak. newco-ds has published this way since
+      # 2026-08 (NewCo.Tokens is on 3.0.28), which is why that repo has no NuGet
+      # secret either. Do not "fix" a push failure by adding a stored key.
+      id-token: write
 
     steps:
       - name: Checkout
@@ -98,16 +104,22 @@ jobs:
           echo "Package: $PKG"
           unzip -l "$PKG"
 
+      # Mints a short-lived key from the trusted publishing policy on nuget.org.
+      # The policy must name this repo AND this workflow file; if it does not,
+      # this step fails with a permission error rather than silently skipping,
+      # which is the point. `user` is the nuget.org account that owns the policy.
+      - name: NuGet login (Trusted Publishing via OIDC)
+        id: nuget-login
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.dry_run == false }}
+        uses: NuGet/login@v1
+        with:
+          user: jolopez
+
       - name: Push to NuGet
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.dry_run == false }}
         run: |
-          if [ -z "${{ secrets.NUGET_API_KEY }}" ]; then
-            echo "NUGET_API_KEY is not set — add it in Settings > Secrets > Actions."
-            echo "Skipping the push; the packed .nupkg is still attached as an artifact."
-            exit 0
-          fi
           dotnet nuget push artifacts/*.nupkg \
-            --api-key "${{ secrets.NUGET_API_KEY }}" \
+            --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate
 
