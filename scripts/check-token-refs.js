@@ -89,7 +89,19 @@ function findHelpers(txt) {
 
 function referencesIn(file, txt) {
   const refs = [];
-  const localDefs = new Set([...txt.matchAll(/(--[a-z0-9-]+)\s*:/gi)].map((m) => m[1]));
+  // A custom property declared in THIS file resolves, so it is not a dangling
+  // reference. The optional closing quote matters: a component that declares its
+  // own properties in a JS object writes them as a quoted key,
+  //
+  //     "--module-people-base": "var(--primitive-color-brand-300)",
+  //
+  // and without allowing that quote the name reads as undeclared. That produced
+  // 46 false failures against module-icon, whose 23 identity properties are
+  // declared exactly this way and are applied to the element inline. A real typo
+  // still fails, because the misspelling will not be in this set either.
+  const localDefs = new Set(
+    [...txt.matchAll(/(--[a-z0-9-]+)["']?\s*:/gi)].map((m) => m[1])
+  );
 
   // literal var(--name)
   for (const m of txt.matchAll(/var\(\s*(--[a-z0-9-]+)/gi)) {
