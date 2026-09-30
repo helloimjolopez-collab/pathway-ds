@@ -294,7 +294,7 @@ export const TokensFill = {
   tags: ["!dev"],
   render: () => (
     <TokenTable title="Fill tokens" rows={[
-      <TokenRow key="brand"   varName="--semantic-color-fill-static-brand-bold"         fallback="#2d4889"               label="Nav bar background" />,
+      <TokenRow key="brand"   varName="--semantic-color-fill-surface-chrome"         fallback="#2d4889"               label="Nav bar background" />,
       <TokenRow key="org"     varName="--semantic-color-fill-action-primary-subtle-rest"        fallback="rgba(160,181,230,0.04)" label="OrgSwitcher resting fill" />,
       <TokenRow key="search"  varName="--semantic-color-fill-action-primary-subtle-rest"  fallback="rgba(160,181,230,0.08)" label="Search pill fill" />,
       <TokenRow key="hover"   varName="--semantic-color-fill-action-primary-subtle-hover" fallback="rgba(10,18,35,0.16)"    label="All controls hover" />,
@@ -309,8 +309,8 @@ export const TokensStroke = {
   tags: ["!dev"],
   render: () => (
     <TokenTable title="Stroke tokens" rows={[
-      <TokenRow key="orgborder"   varName="--semantic-color-stroke-action-primary-rest"  fallback="rgba(160,181,230,0.16)" label="OrgSwitcher border" type="stroke" />,
-      <TokenRow key="orghover"    varName="--semantic-color-stroke-action-primary-hover" fallback="rgba(160,181,230,0.20)" label="OrgSwitcher hover border" type="stroke" />,
+      <TokenRow key="orgborder"   varName="--semantic-color-stroke-action-primary-strong-rest"  fallback="rgba(160,181,230,0.16)" label="OrgSwitcher border" type="stroke" />,
+      <TokenRow key="orghover"    varName="--semantic-color-stroke-action-primary-strong-hover" fallback="rgba(160,181,230,0.20)" label="OrgSwitcher hover border" type="stroke" />,
       <TokenRow key="searchbdr"   varName="--semantic-color-foreground-static-neutral-mono"        fallback="#fbfbfb"                label="Search pill border (0.75px)" type="stroke" />,
     ]} />
   ),
@@ -367,7 +367,7 @@ export const TokensRadius = {
     <div style={{ padding:24, fontFamily:"'Red Hat Text', sans-serif" }}>
       <h3 style={{ fontSize:14, fontWeight:600, color:"#252525", marginBottom:16 }}>Corner radius tokens</h3>
       {[
-        { token:"CornerRadius/Medium", value:"8px", label:"ModuleSwitcher, OrgSwitcher, icon buttons, dropdowns" },
+        { token:"CornerRadius/Base", value:"8px", label:"ModuleSwitcher, OrgSwitcher, icon buttons, dropdowns" },
         { token:"CornerRadius/Small",  value:"4px", label:"Org logo avatar (nav bar + panel)" },
         { token:"CornerRadius/Full",   value:"9999px", label:"Search pill" },
       ].map(({ token, value, label }) => (

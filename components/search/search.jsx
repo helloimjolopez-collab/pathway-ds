@@ -41,8 +41,8 @@ export const T = {
 
   // Bar borders
   borderIdle:     "var(--semantic-color-stroke-static-neutral-faint, #f6f6f6)",
-  borderHover:    "var(--semantic-color-stroke-action-primary-hover, #86a0dd)",
-  borderActive:   "var(--semantic-color-stroke-action-primary-pressed, #6e8bd4)",
+  borderHover:    "var(--semantic-color-stroke-action-primary-strong-hover, #86a0dd)",
+  borderActive:   "var(--semantic-color-stroke-action-primary-strong-pressed, #6e8bd4)",
   borderError:    "var(--semantic-color-stroke-action-status-negative-rest, #b03a3a)",
   borderDisabled: "var(--primitive-color-cool-neutral-25, #ededed)",       // token gap §17
   divider:        "var(--semantic-color-stroke-action-secondary-rest, #d2d2d2)",
@@ -64,7 +64,7 @@ export const T = {
   navIconFill:        "var(--semantic-color-foreground-static-neutral-mono, #fbfbfb)",
   collapsedBtnFill:   "var(--semantic-color-fill-action-primary-subtle-rest, rgba(160,181,230,0.08))",
   collapsedBtnHover:  "var(--semantic-color-fill-action-primary-subtle-hover, rgba(10,18,35,0.16))",
-  collapsedBtnBorder: "var(--semantic-color-stroke-action-primary-rest, rgba(160,181,230,0.5))",
+  collapsedBtnBorder: "var(--semantic-color-stroke-action-primary-strong-rest, rgba(160,181,230,0.5))",
   badgeBorderColor:   "var(--semantic-color-fill-static-neutral-faint, #ffffff)",
 };
 

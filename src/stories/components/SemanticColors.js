@@ -111,7 +111,7 @@ export function createSemanticColors(mode) {
     return container;
   }
 
-  const isMidnight = mode === "midnight-mode";
+  const isMidnight = mode === "pathway-dark" || mode === "midnight-mode";
   // The ground each foreground token is measured against for the contrast
   // badge. Foreground/*/Faint sitting at 4.3:1 is a real finding, and it only
   // shows up if the badge is computed rather than asserted.

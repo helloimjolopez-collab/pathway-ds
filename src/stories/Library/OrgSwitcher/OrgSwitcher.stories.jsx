@@ -307,9 +307,9 @@ export const TokensStroke = () => (
   <LiveTokenTable
     title="Stroke tokens"
     rows={[
-      { token: "stroke.action.primary.rest",    usage: "Trigger and avatar border - rest" },
-      { token: "stroke.action.primary.hover",   usage: "Trigger and avatar border - hover" },
-      { token: "stroke.action.primary.pressed", usage: "Trigger and avatar border - pressed / open" },
+      { token: "stroke.action.primary.strong.rest",    usage: "Trigger and avatar border - rest" },
+      { token: "stroke.action.primary.strong.hover",   usage: "Trigger and avatar border - hover" },
+      { token: "stroke.action.primary.strong.pressed", usage: "Trigger and avatar border - pressed / open" },
       { token: "stroke.static.neutral.faint",   usage: "Dropdown panel border and row divider" },
     ]}
   />
@@ -447,7 +447,7 @@ export const TokensRadius = () => (
       </thead>
       <tbody>
         <tr style={{ borderBottom: "1px solid #f5f5f5" }}>
-          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#3555a0" }}>--semantic-layout-units-cornerradius-medium</td>
+          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#3555a0" }}>--semantic-layout-units-cornerradius-base</td>
           <td style={{ padding: 8, fontFamily: "monospace" }}>8px</td>
           <td style={{ padding: 8 }}>Container.Main (the trigger pill)</td>
         </tr>

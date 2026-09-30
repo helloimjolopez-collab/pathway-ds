@@ -14,34 +14,42 @@
  A developer cannot derive these from a responsive grid. The grid governs
  columns; it says nothing about the chrome's padding.
 
- Declares 15 custom properties.
+ Declares 23 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
 :root {
-  --responsive-layout-sheet-cornerradius-top: 16px;
-  --responsive-layout-sheet-padding-horizontal: 36px;
+  --responsive-layout-sheet-corner-radius-cornerradius: 28px;
+  --responsive-layout-sheet-padding-bottom: 56px;
+  --responsive-layout-sheet-padding-horizontal: 32px;
   --responsive-layout-sheet-padding-top: 16px;
+  --responsive-layout-sheetcontainer-padding-horizontal: 24px;
+  --responsive-layout-sheetcontainer-padding-top: 16px;
   --responsive-layout-topnav-gap-horizontal: 8px;
-  --responsive-layout-topnav-height: 56px;
   --responsive-layout-topnav-padding-horizontal: 16px;
   --responsive-layout-topnav-padding-vertical: 6px;
 }
 
 @media (max-width: 1023px) {
   :root {
-    --responsive-layout-sheet-cornerradius-top: 12px;
+    --responsive-layout-sheet-corner-radius-cornerradius: 24px;
+    --responsive-layout-sheet-padding-bottom: 48px;
     --responsive-layout-sheet-padding-horizontal: 24px;
     --responsive-layout-sheet-padding-top: 14px;
-    --responsive-layout-topnav-padding-horizontal: 12px;
+    --responsive-layout-sheetcontainer-padding-horizontal: 16px;
+    --responsive-layout-sheetcontainer-padding-top: 12px;
+    --responsive-layout-topnav-padding-horizontal: 14px;
   }
 }
 
 @media (max-width: 767px) {
   :root {
-    --responsive-layout-sheet-cornerradius-top: 8px;
+    --responsive-layout-sheet-corner-radius-cornerradius: 20px;
+    --responsive-layout-sheet-padding-bottom: 32px;
     --responsive-layout-sheet-padding-horizontal: 16px;
-    --responsive-layout-sheet-padding-top: 12px;
-    --responsive-layout-topnav-padding-horizontal: 8px;
+    --responsive-layout-sheet-padding-top: 8px;
+    --responsive-layout-sheetcontainer-padding-horizontal: 12px;
+    --responsive-layout-sheetcontainer-padding-top: 8px;
+    --responsive-layout-topnav-padding-horizontal: 6px;
   }
 }

@@ -42,10 +42,10 @@ const SCL = TOK;   // on a light panel
 const r = (name, fb) => `var(--responsive-layout-${name}, ${fb}px)`;
 const u = (name, fb) => `var(--semantic-layout-units-${name}, ${fb}px)`;
 export const T = {
-  navBg:          SCL("fill-static-brand-bold", "#4364b6"),
+  navBg:          SCL("fill-surface-chrome", "#4364b6"),
   orgFill:        SCD("fill-action-primary-subtle-rest", "rgba(160,181,230,0.04)"),
-  orgStroke:      SCD("stroke-action-primary-rest", "rgba(160,181,230,0.16)"),
-  orgStrokeHover: SCD("stroke-action-primary-hover", "rgba(160,181,230,0.20)"),
+  orgStroke:      SCD("stroke-action-primary-strong-rest", "rgba(160,181,230,0.16)"),
+  orgStrokeHover: SCD("stroke-action-primary-strong-hover", "rgba(160,181,230,0.20)"),
   searchFill:     SCD("fill-action-primary-subtle-rest", "rgba(160,181,230,0.08)"),
   controlHover:   SCD("fill-action-primary-subtle-hover", "rgba(10,18,35,0.16)"),
   controlPressed: SCD("fill-action-primary-subtle-pressed", "rgba(255,255,255,0.08)"),
@@ -85,7 +85,7 @@ export const L = {
   touchTarget: 48, modInnerH: 36,
   orgAvatarNav: 20, orgAvatarSm: 24, orgAvatarPanel: 32,
   searchPill: 32, avatarSize: 32,
-  radius:      u("cornerradius-medium", 8),
+  radius:      u("cornerradius-base", 8),
   radiusSm:    u("cornerradius-small", 4),
 };
 
@@ -555,7 +555,7 @@ export function TopNav({
       aria-label="Global navigation"
       className={className}
       style={{
-        background: `var(--semantic-color-fill-static-brand-bold, ${T.navBg})`,
+        background: `var(--semantic-color-fill-surface-chrome, ${T.navBg})`,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         maxHeight: L.navH, padding: `${L.navPadV} ${L.navPadH}`, gap: L.navGap,
         position: "relative", overflow: "visible", zIndex: 100,
@@ -719,7 +719,7 @@ export function TopNav({
         <div
           style={{
             position: "absolute", inset: 0, zIndex: 200,
-            background: `var(--semantic-color-fill-static-brand-bold, ${T.navBg})`,
+            background: `var(--semantic-color-fill-surface-chrome, ${T.navBg})`,
             display: "flex", alignItems: "center", gap: 8,
             padding: `0 ${L.navPadH}`,
           }}

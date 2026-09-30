@@ -329,8 +329,8 @@ Beyond the generic scale, Figma ships **contextual** layout-units families that 
 | `--contextual-layout-units-card-gap` | `unit-12` (12px) |
 | `--semantic-layout-units-contextual-card-padding-small-*` | `unit-14` (14px) |
 | `--semantic-layout-units-contextual-card-padding-medium-*` | `unit-16` (16px) |
-| `--contextual-layout-units-card-border-width-rest` | `borderwidth-xthin` |
-| `--contextual-layout-units-card-border-width-hover` | `borderwidth-thin` |
+| `--contextual-layout-units-card-borderwidth-rest` | `borderwidth-xthin` |
+| `--contextual-layout-units-card-borderwidth-hover` | `borderwidth-thin` |
 
 > **Card is layout-only — there is no contextual *colour* for cards.** The only `contextual` colour families are `navitem` and `focusring`. A card's **background** comes from a `surface/*` or `fill/static/*` token, its **border** from a `stroke/static/*` token; only its geometry (padding, gap, radius, border-width) comes from the `contextual/card` layout family. Do not reach for a `fill/contextual/card` token — it does not exist.
 

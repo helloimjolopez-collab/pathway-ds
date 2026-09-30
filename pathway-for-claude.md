@@ -165,8 +165,8 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 ```css
 --semantic-color-stroke-static-neutral-base         /* #f6f6f6 — Dividers, SideNav border */
 --semantic-color-stroke-action-secondary-rest /* #d2d2d2 — Card border (0.5px), input border */
---semantic-color-stroke-action-primary-hover         /* #86a0dd — Input/search hover border */
---semantic-color-stroke-action-primary-pressed       /* #6e8bd4 — Input/search focused border */
+--semantic-color-stroke-action-primary-strong-hover         /* #86a0dd — Input/search hover border */
+--semantic-color-stroke-action-primary-strong-pressed       /* #6e8bd4 — Input/search focused border */
 ```
 
 ### Icons in SideNav

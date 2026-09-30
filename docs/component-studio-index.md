@@ -77,8 +77,8 @@ Pathway component demos are standalone HTML files. No npm, no build step. React 
     const styles = `
       .my-component {
         background: var(--semantic-color-fill-surface-canvas);
-        border-radius: var(--semantic-layout-units-cornerradius-medium);
-        padding: var(--contextual-layout-units-card-padding-medium-vertical) var(--contextual-layout-units-card-padding-medium-horizontal);
+        border-radius: var(--semantic-layout-units-cornerradius-base);
+        padding: var(--contextual-layout-units-card-padding-vertical) var(--contextual-layout-units-card-padding-horizontal);
       }
     `;
 
@@ -160,7 +160,7 @@ Use only Pathway CSS variables. Never hardcode a value that exists as a token.
 .dialog-content {
   background: var(--semantic-color-fill-surface-canvas);
   border-radius: var(--semantic-layout-units-cornerradius-large);
-  padding: var(--contextual-layout-units-card-padding-medium-vertical) var(--contextual-layout-units-card-padding-medium-horizontal);
+  padding: var(--contextual-layout-units-card-padding-vertical) var(--contextual-layout-units-card-padding-horizontal);
   /* No semantic shadow token exists — log raw box-shadow as design debt in §15 */
 }
 

@@ -1,48 +1,28 @@
-/*
- ==========================================================================
- PATHWAY DESIGN TOKENS — CONTRACT
- ==========================================================================
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
 
- The colour contract, Midnight Mode. Identical names to themes/light.css.
-
- Pathway's dark mode is called Midnight Mode. Both selectors are emitted:
- [data-theme="midnight"] is the Pathway name, [data-theme="dark"] is what
- every framework and prefers-color-scheme uses, so a consumer does not have
- to learn our vocabulary to switch themes.
-
- On the graded ladder the VALUES invert while the NAMES hold: Faint is
- still the lightest-touch step even though here it is a dark near-ground.
- White, XLight and Black are inversion anchors and keep their value.
-
- Declares 210 custom properties.
- Generated — do not edit. Run `npm run build-tokens`.
- ==========================================================================
-*/
-[data-theme="dark"], [data-theme="midnight"] {
-  --elevation-lift: 0 10px 28px -6px rgba(0,1,19,0.70);
-  --elevation-overlay: 0 20px 48px -10px rgba(0,1,19,0.70);
-  --elevation-sheet: 0 4px 32px -8px rgba(0,1,19,0.70);
-  --elevation-widget: 0 2px 8px -2px rgba(0,1,19,0.70);
-  --semantic-color-fill-action-disabled: var(--primitive-color-warm-neutral-100-16);
-  --semantic-color-fill-action-ghost-hover: var(--primitive-color-cool-neutral-0-16);
-  --semantic-color-fill-action-ghost-pressed: var(--primitive-color-brand-600-70);
-  --semantic-color-fill-action-ghost-rest: var(--primitive-color-cool-neutral-0-8);
-  --semantic-color-fill-action-primary-strong-hover: var(--primitive-color-brand-450);
-  --semantic-color-fill-action-primary-strong-pressed: var(--primitive-color-brand-500);
-  --semantic-color-fill-action-primary-strong-rest: var(--primitive-color-brand-400);
-  --semantic-color-fill-action-primary-subtle-hover: var(--primitive-color-brand-75-8);
-  --semantic-color-fill-action-primary-subtle-pressed: var(--primitive-color-brand-600-50);
-  --semantic-color-fill-action-primary-subtle-rest: var(--primitive-color-brand-600);
-  --semantic-color-fill-action-secondary-hover: var(--primitive-color-midnight-700);
-  --semantic-color-fill-action-secondary-pressed: var(--primitive-color-midnight-600);
-  --semantic-color-fill-action-secondary-rest: var(--primitive-color-midnight-800);
+[data-brand="newco"][data-theme="dark"], [data-brand="newco"][data-theme="midnight"] {
+  --semantic-color-fill-action-disabled: var(--primitive-color-warm-neutral-350-8);
+  --semantic-color-fill-action-ghost-hover: var(--primitive-color-midnight-350-8);
+  --semantic-color-fill-action-ghost-pressed: var(--primitive-color-midnight-900-36);
+  --semantic-color-fill-action-ghost-rest: var(--primitive-color-midnight-350-4);
+  --semantic-color-fill-action-primary-strong-hover: var(--primitive-color-brand-200);
+  --semantic-color-fill-action-primary-strong-pressed: var(--primitive-color-brand-300);
+  --semantic-color-fill-action-primary-strong-rest: var(--primitive-color-brand-250);
+  --semantic-color-fill-action-primary-subtle-hover: var(--primitive-color-brand-400-24);
+  --semantic-color-fill-action-primary-subtle-pressed: var(--primitive-color-brand-400-50);
+  --semantic-color-fill-action-primary-subtle-rest: var(--primitive-color-brand-400-8);
+  --semantic-color-fill-action-secondary-hover: var(--primitive-color-midnight-600);
+  --semantic-color-fill-action-secondary-pressed: var(--primitive-color-midnight-500);
+  --semantic-color-fill-action-secondary-rest: var(--primitive-color-midnight-700);
   --semantic-color-fill-action-selection-hover: var(--primitive-color-midnight-350-16);
-  --semantic-color-fill-action-selection-indicator: var(--primitive-color-brand-200);
-  --semantic-color-fill-action-selection-selected: var(--primitive-color-brand-400-36);
+  --semantic-color-fill-action-selection-indicator: var(--primitive-color-brand-250);
+  --semantic-color-fill-action-selection-selected: var(--primitive-color-brand-400-24);
   --semantic-color-fill-action-selection-trail: var(--primitive-color-midnight-350-24);
-  --semantic-color-fill-action-status-info-strong-hover: var(--primitive-color-amethyst-500);
-  --semantic-color-fill-action-status-info-strong-pressed: var(--primitive-color-amethyst-600);
-  --semantic-color-fill-action-status-info-strong-rest: var(--primitive-color-amethyst-400);
+  --semantic-color-fill-action-status-info-strong-hover: var(--primitive-color-amethyst-600);
+  --semantic-color-fill-action-status-info-strong-pressed: var(--primitive-color-amethyst-700);
+  --semantic-color-fill-action-status-info-strong-rest: var(--primitive-color-amethyst-500);
   --semantic-color-fill-action-status-info-subtle-hover: var(--primitive-color-amethyst-350-24);
   --semantic-color-fill-action-status-info-subtle-pressed: var(--primitive-color-amethyst-350-36);
   --semantic-color-fill-action-status-info-subtle-rest: var(--primitive-color-amethyst-350-16);
@@ -52,15 +32,15 @@
   --semantic-color-fill-action-status-negative-subtle-hover: var(--primitive-color-red-300-24);
   --semantic-color-fill-action-status-negative-subtle-pressed: var(--primitive-color-red-300-36);
   --semantic-color-fill-action-status-negative-subtle-rest: var(--primitive-color-red-300-16);
-  --semantic-color-fill-action-status-neutral-strong-hover: var(--primitive-color-warm-neutral-500);
-  --semantic-color-fill-action-status-neutral-strong-pressed: var(--primitive-color-warm-neutral-600);
-  --semantic-color-fill-action-status-neutral-strong-rest: var(--primitive-color-warm-neutral-400);
+  --semantic-color-fill-action-status-neutral-strong-hover: var(--primitive-color-warm-neutral-600);
+  --semantic-color-fill-action-status-neutral-strong-pressed: var(--primitive-color-warm-neutral-700);
+  --semantic-color-fill-action-status-neutral-strong-rest: var(--primitive-color-warm-neutral-500);
   --semantic-color-fill-action-status-neutral-subtle-hover: var(--primitive-color-warm-neutral-500-24);
   --semantic-color-fill-action-status-neutral-subtle-pressed: var(--primitive-color-warm-neutral-500-36);
   --semantic-color-fill-action-status-neutral-subtle-rest: var(--primitive-color-warm-neutral-500-16);
   --semantic-color-fill-action-status-positive-strong-hover: var(--primitive-color-green-300);
   --semantic-color-fill-action-status-positive-strong-pressed: var(--primitive-color-green-350);
-  --semantic-color-fill-action-status-positive-strong-rest: var(--primitive-color-green-200);
+  --semantic-color-fill-action-status-positive-strong-rest: var(--primitive-color-green-250);
   --semantic-color-fill-action-status-positive-subtle-hover: var(--primitive-color-green-350-24);
   --semantic-color-fill-action-status-positive-subtle-pressed: var(--primitive-color-green-350-36);
   --semantic-color-fill-action-status-positive-subtle-rest: var(--primitive-color-green-350-16);
@@ -84,7 +64,7 @@
   --semantic-color-fill-static-brand-strong: var(--primitive-color-brand-200);
   --semantic-color-fill-static-brand-strongest: var(--primitive-color-brand-200);
   --semantic-color-fill-static-brand-subtle: var(--primitive-color-brand-700);
-  --semantic-color-fill-static-info-strong: var(--primitive-color-amethyst-200);
+  --semantic-color-fill-static-info-strong: var(--primitive-color-amethyst-500);
   --semantic-color-fill-static-info-subtle: var(--primitive-color-amethyst-350-16);
   --semantic-color-fill-static-negative-strong: var(--primitive-color-red-400);
   --semantic-color-fill-static-negative-subtle: var(--primitive-color-red-300-16);
@@ -93,55 +73,55 @@
   --semantic-color-fill-static-neutral-mono: var(--primitive-color-cool-neutral-0);
   --semantic-color-fill-static-neutral-strong: var(--primitive-color-cool-neutral-400);
   --semantic-color-fill-static-neutral-subtle: var(--primitive-color-cool-neutral-700);
-  --semantic-color-fill-static-positive-strong: var(--primitive-color-green-300);
+  --semantic-color-fill-static-positive-strong: var(--primitive-color-green-250);
   --semantic-color-fill-static-positive-subtle: var(--primitive-color-green-350-16);
   --semantic-color-fill-static-severe-strong: var(--primitive-color-orange-200);
   --semantic-color-fill-static-severe-subtle: var(--primitive-color-orange-350-16);
-  --semantic-color-fill-surface-canvas: var(--primitive-color-midnight-950);
+  --semantic-color-fill-surface-canvas: var(--primitive-color-midnight-925);
   --semantic-color-fill-surface-chrome: var(--primitive-color-brand-700);
-  --semantic-color-fill-surface-elevated: var(--primitive-color-midnight-925);
+  --semantic-color-fill-surface-elevated: var(--primitive-color-midnight-900);
   --semantic-color-fill-surface-overlay: var(--primitive-color-midnight-975);
-  --semantic-color-fill-chart-sequential-10: var(--primitive-color-amethyst-400);
-  --semantic-color-fill-chart-sequential-11: var(--primitive-color-amethyst-500);
-  --semantic-color-fill-chart-sequential-12: var(--primitive-color-amethyst-600);
-  --semantic-color-fill-chart-sequential-13: var(--primitive-color-amethyst-700);
-  --semantic-color-fill-chart-sequential-14: var(--primitive-color-amethyst-800);
-  --semantic-color-fill-chart-sequential-15: var(--primitive-color-amethyst-900);
-  --semantic-color-fill-chart-sequential-01: var(--primitive-color-amethyst-25);
-  --semantic-color-fill-chart-sequential-02: var(--primitive-color-amethyst-50);
-  --semantic-color-fill-chart-sequential-03: var(--primitive-color-amethyst-75);
-  --semantic-color-fill-chart-sequential-04: var(--primitive-color-amethyst-100);
-  --semantic-color-fill-chart-sequential-05: var(--primitive-color-amethyst-150);
-  --semantic-color-fill-chart-sequential-06: var(--primitive-color-amethyst-200);
-  --semantic-color-fill-chart-sequential-07: var(--primitive-color-amethyst-250);
-  --semantic-color-fill-chart-sequential-08: var(--primitive-color-amethyst-300);
-  --semantic-color-fill-chart-sequential-09: var(--primitive-color-amethyst-350);
-  --semantic-color-fill-chart-sequential-anchor-end: var(--primitive-color-amethyst-900);
-  --semantic-color-fill-chart-sequential-anchor-start: var(--primitive-color-amethyst-25);
+  --semantic-color-fill-chart-sequential-10: var(--primitive-color-brand-400);
+  --semantic-color-fill-chart-sequential-11: var(--primitive-color-brand-450);
+  --semantic-color-fill-chart-sequential-12: var(--primitive-color-brand-500);
+  --semantic-color-fill-chart-sequential-13: var(--primitive-color-brand-550);
+  --semantic-color-fill-chart-sequential-14: var(--primitive-color-brand-600);
+  --semantic-color-fill-chart-sequential-15: var(--primitive-color-brand-650);
+  --semantic-color-fill-chart-sequential-01: var(--primitive-color-midnight-100);
+  --semantic-color-fill-chart-sequential-02: var(--primitive-color-brand-100);
+  --semantic-color-fill-chart-sequential-03: var(--primitive-color-brand-125);
+  --semantic-color-fill-chart-sequential-04: var(--primitive-color-brand-150);
+  --semantic-color-fill-chart-sequential-05: var(--primitive-color-brand-175);
+  --semantic-color-fill-chart-sequential-06: var(--primitive-color-brand-200);
+  --semantic-color-fill-chart-sequential-07: var(--primitive-color-brand-250);
+  --semantic-color-fill-chart-sequential-08: var(--primitive-color-brand-300);
+  --semantic-color-fill-chart-sequential-09: var(--primitive-color-brand-350);
+  --semantic-color-fill-chart-sequential-anchor-end: var(--primitive-color-brand-650);
+  --semantic-color-fill-chart-sequential-anchor-start: var(--primitive-color-midnight-100);
   --semantic-color-foreground-action-disabled: var(--primitive-color-cool-neutral-0-50);
   --semantic-color-foreground-action-ghost-hover: var(--primitive-color-midnight-25);
   --semantic-color-foreground-action-ghost-pressed: var(--primitive-color-midnight-0);
   --semantic-color-foreground-action-ghost-rest: var(--primitive-color-midnight-50);
-  --semantic-color-foreground-action-primary-on-strong: var(--primitive-color-cool-neutral-0);
+  --semantic-color-foreground-action-primary-on-strong: var(--primitive-color-warm-neutral-900);
   --semantic-color-foreground-action-primary-on-subtle-hover: var(--primitive-color-brand-25);
   --semantic-color-foreground-action-primary-on-subtle-pressed: var(--primitive-color-brand-0);
   --semantic-color-foreground-action-primary-on-subtle-rest: var(--primitive-color-brand-50);
-  --semantic-color-foreground-action-secondary-hover: var(--primitive-color-midnight-50);
-  --semantic-color-foreground-action-secondary-pressed: var(--primitive-color-midnight-25);
-  --semantic-color-foreground-action-secondary-rest: var(--primitive-color-midnight-100);
+  --semantic-color-foreground-action-secondary-hover: var(--primitive-color-midnight-100);
+  --semantic-color-foreground-action-secondary-pressed: var(--primitive-color-midnight-50);
+  --semantic-color-foreground-action-secondary-rest: var(--primitive-color-midnight-150);
   --semantic-color-foreground-action-status-info-on-strong: var(--primitive-color-cool-neutral-0);
-  --semantic-color-foreground-action-status-info-on-subtle-hover: var(--primitive-color-amethyst-100);
-  --semantic-color-foreground-action-status-info-on-subtle-pressed: var(--primitive-color-amethyst-50);
-  --semantic-color-foreground-action-status-info-on-subtle-rest: var(--primitive-color-amethyst-150);
+  --semantic-color-foreground-action-status-info-on-subtle-hover: var(--primitive-color-amethyst-150);
+  --semantic-color-foreground-action-status-info-on-subtle-pressed: var(--primitive-color-amethyst-100);
+  --semantic-color-foreground-action-status-info-on-subtle-rest: var(--primitive-color-amethyst-200);
   --semantic-color-foreground-action-status-negative-on-strong: var(--primitive-color-cool-neutral-0);
-  --semantic-color-foreground-action-status-negative-on-subtle-hover: var(--primitive-color-red-100);
-  --semantic-color-foreground-action-status-negative-on-subtle-pressed: var(--primitive-color-red-50);
-  --semantic-color-foreground-action-status-negative-on-subtle-rest: var(--primitive-color-red-150);
+  --semantic-color-foreground-action-status-negative-on-subtle-hover: var(--primitive-color-red-150);
+  --semantic-color-foreground-action-status-negative-on-subtle-pressed: var(--primitive-color-red-100);
+  --semantic-color-foreground-action-status-negative-on-subtle-rest: var(--primitive-color-red-200);
   --semantic-color-foreground-action-status-neutral-on-strong: var(--primitive-color-cool-neutral-0);
   --semantic-color-foreground-action-status-neutral-on-subtle-hover: var(--primitive-color-midnight-100);
   --semantic-color-foreground-action-status-neutral-on-subtle-pressed: var(--primitive-color-midnight-50);
   --semantic-color-foreground-action-status-neutral-on-subtle-rest: var(--primitive-color-midnight-150);
-  --semantic-color-foreground-action-status-positive-on-strong: var(--primitive-color-green-900);
+  --semantic-color-foreground-action-status-positive-on-strong: var(--primitive-color-green-800);
   --semantic-color-foreground-action-status-positive-on-subtle-hover: var(--primitive-color-green-100);
   --semantic-color-foreground-action-status-positive-on-subtle-pressed: var(--primitive-color-green-75);
   --semantic-color-foreground-action-status-positive-on-subtle-rest: var(--primitive-color-green-150);
@@ -152,19 +132,19 @@
   --semantic-color-foreground-static-accent-lagoon-on-strong: var(--primitive-color-lagoon-800);
   --semantic-color-foreground-static-accent-lagoon-on-subtle: var(--primitive-color-lagoon-150);
   --semantic-color-foreground-static-accent-mauve-on-strong: var(--primitive-color-cool-neutral-0);
-  --semantic-color-foreground-static-accent-mauve-on-subtle: var(--primitive-color-mauve-25);
+  --semantic-color-foreground-static-accent-mauve-on-subtle: var(--primitive-color-mauve-250);
   --semantic-color-foreground-static-accent-rose-on-strong: var(--primitive-color-cool-neutral-0);
   --semantic-color-foreground-static-accent-rose-on-subtle: var(--primitive-color-rose-150);
   --semantic-color-foreground-static-accent-seabreeze-on-strong: var(--primitive-color-cool-neutral-900);
-  --semantic-color-foreground-static-accent-seabreeze-on-subtle: var(--primitive-color-seabreeze-200);
+  --semantic-color-foreground-static-accent-seabreeze-on-subtle: var(--primitive-color-seabreeze-150);
   --semantic-color-foreground-static-attention-on-strong: var(--primitive-color-cool-neutral-900);
   --semantic-color-foreground-static-attention-on-subtle: var(--primitive-color-saffron-150);
   --semantic-color-foreground-static-brand-on-strong: var(--primitive-color-brand-900);
   --semantic-color-foreground-static-brand-on-subtle: var(--primitive-color-brand-150);
-  --semantic-color-foreground-static-info-on-strong: var(--primitive-color-amethyst-900);
+  --semantic-color-foreground-static-info-on-strong: var(--primitive-color-cool-neutral-0);
   --semantic-color-foreground-static-info-on-subtle: var(--primitive-color-amethyst-150);
   --semantic-color-foreground-static-negative-on-strong: var(--primitive-color-cool-neutral-0);
-  --semantic-color-foreground-static-negative-on-subtle: var(--primitive-color-red-150);
+  --semantic-color-foreground-static-negative-on-subtle: var(--primitive-color-red-200);
   --semantic-color-foreground-static-neutral-base: var(--primitive-color-midnight-50);
   --semantic-color-foreground-static-neutral-bold: var(--primitive-color-cool-neutral-25);
   --semantic-color-foreground-static-neutral-faint: var(--primitive-color-midnight-300);
@@ -179,10 +159,10 @@
   --semantic-color-scrim-faint: var(--primitive-color-cool-neutral-0-16);
   --semantic-color-scrim-light: var(--primitive-color-cool-neutral-0-24);
   --semantic-color-scrim-subtle: var(--primitive-color-cool-neutral-0-50);
-  --semantic-color-stroke-action-disabled: var(--primitive-color-warm-neutral-100-24);
+  --semantic-color-stroke-action-disabled: var(--primitive-color-warm-neutral-350-24);
   --semantic-color-stroke-action-field-hover: var(--primitive-color-cool-neutral-0-36);
-  --semantic-color-stroke-action-field-pressed: var(--primitive-color-cool-neutral-0-50);
-  --semantic-color-stroke-action-field-rest: var(--primitive-color-cool-neutral-0-24);
+  --semantic-color-stroke-action-field-pressed: var(--primitive-color-cool-neutral-0-36);
+  --semantic-color-stroke-action-field-rest: var(--primitive-color-cool-neutral-0-36);
   --semantic-color-stroke-action-ghost-hover: var(--primitive-color-cool-neutral-0-50);
   --semantic-color-stroke-action-ghost-pressed: var(--primitive-color-cool-neutral-0-70);
   --semantic-color-stroke-action-ghost-rest: var(--primitive-color-cool-neutral-0-36);
@@ -216,8 +196,8 @@
   --semantic-color-stroke-static-accent-seabreeze: var(--primitive-color-seabreeze-350);
   --semantic-color-stroke-static-attention-strong: var(--primitive-color-saffron-150);
   --semantic-color-stroke-static-attention-subtle: var(--primitive-color-saffron-300);
-  --semantic-color-stroke-static-info-strong: var(--primitive-color-amethyst-300);
-  --semantic-color-stroke-static-info-subtle: var(--primitive-color-amethyst-400);
+  --semantic-color-stroke-static-info-strong: var(--primitive-color-amethyst-150);
+  --semantic-color-stroke-static-info-subtle: var(--primitive-color-amethyst-300);
   --semantic-color-stroke-static-negative-strong: var(--primitive-color-red-300);
   --semantic-color-stroke-static-negative-subtle: var(--primitive-color-red-500);
   --semantic-color-stroke-static-neutral-base: var(--primitive-color-midnight-700);

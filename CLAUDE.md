@@ -231,7 +231,7 @@ exactly what it needs and nothing more:
 |---|---|---|---|---|
 | **Canvas** | the entire screen, chrome included | `Fill/Surface/Canvas` | **none** | — |
 | **Chrome: SideNav** | the left rail | `Fill/Static/Neutral/Mono` | `SideNav/Width/{Expanded,Collapsed}`, `SideNav/Padding/Horizontal/{Expanded,Collapsed}`, `SideNav/Padding/Vertical`, `SideNav/Gap/Vertical` | `Contextual: Layout & Units` |
-| **Chrome: TopNav** | the top bar | `Fill/Static/Brand/Bold` | `TopNav/Height`, `TopNav/Padding/{Horizontal,Vertical}`, `TopNav/Gap/Horizontal` | `Responsive: Layout` |
+| **Chrome: TopNav** | the top bar | `Fill/Surface/Chrome` | `TopNav/Height`, `TopNav/Padding/{Horizontal,Vertical}`, `TopNav/Gap/Horizontal` | `Responsive: Layout` |
 | **Sheet** | the page itself, sitting inside the chrome | `Fill/Static/Neutral/Mono` | `Sheet/Padding/{Top,Horizontal}`, `Sheet/CornerRadius/Top` | `Responsive: Layout` |
 
 **The canvas gets a colour token and nothing else.** It is the whole screen, so it

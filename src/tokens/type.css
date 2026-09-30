@@ -12,12 +12,12 @@
    font-size:      var(--semantic-type-font-size-m);
    font-weight:    var(--semantic-type-weight-semibold);
    line-height:    var(--semantic-type-line-height-m-single);
-   letter-spacing: var(--semantic-type-letter-spacing-compact);
+   letter-spacing: var(--semantic-type-letter-spacing-wide);
 
  The 111 named styles still exist as Figma text styles, which is where a
  designer applies them.
 
- Declares 41 custom properties.
+ Declares 39 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -36,7 +36,6 @@
   --semantic-type-font-size-xxs: 11px;
   --semantic-type-font-size-xxxl: 36px;
   --semantic-type-font-size-xxxs: 10px;
-  --semantic-type-letter-spacing-compact: 0px;
   --semantic-type-letter-spacing-extraspacious: 0.6px;
   --semantic-type-letter-spacing-spacious: 0.3px;
   --semantic-type-letter-spacing-wide: 0.1px;
@@ -59,7 +58,6 @@
   --semantic-type-line-height-xxxs-single: 14px;
   --semantic-type-line-height-xxxs-tight: 12px;
   --semantic-type-weight-bold: 700;
-  --semantic-type-weight-light: 300;
   --semantic-type-weight-medium: 500;
   --semantic-type-weight-regular: 400;
   --semantic-type-weight-semibold: 600;

@@ -86,9 +86,9 @@ const ICON = FG;
 // Fill/Action/Primary/Subtle has no matching STROKE ramp, so Tertiary borrows
 // the Primary stroke. That group was called "Primary Dim" before 2026-09-15.
 export const STROKE = {
-  Primary:   { base: SC("stroke-action-primary-rest"),          hover: SC("stroke-action-primary-hover"),          pressed: SC("stroke-action-primary-pressed"),          disabled: SC("stroke-action-disabled") },
+  Primary:   { base: SC("stroke-action-primary-strong-rest"),          hover: SC("stroke-action-primary-strong-hover"),          pressed: SC("stroke-action-primary-strong-pressed"),          disabled: SC("stroke-action-disabled") },
   Secondary: { base: SC("stroke-action-secondary-rest"),        hover: SC("stroke-action-secondary-hover"),        pressed: SC("stroke-action-secondary-pressed"),        disabled: SC("stroke-action-disabled") },
-  Tertiary:  { base: SC("stroke-action-primary-rest"),          hover: SC("stroke-action-primary-hover"),          pressed: SC("stroke-action-primary-pressed"),          disabled: SC("stroke-action-disabled") },
+  Tertiary:  { base: SC("stroke-action-primary-strong-rest"),          hover: SC("stroke-action-primary-strong-hover"),          pressed: SC("stroke-action-primary-strong-pressed"),          disabled: SC("stroke-action-disabled") },
   Negative:  { base: SC("stroke-action-status-negative-rest"),  hover: SC("stroke-action-status-negative-hover"),  pressed: SC("stroke-action-status-negative-pressed"),  disabled: SC("stroke-action-disabled") },
 };
 
@@ -103,8 +103,8 @@ export const T = {
   // button-radius was deleted 2026-09-17: it duplicated Button/Corner Radius/Radius
   // at the same 8px and carried ZERO Figma bindings, while the other carries 2,380.
   // The dead one was the one this file referenced.
-  radius:      CL("button-corner-radius-radius"),                          // 8px
-  border:      CL("button-border-width-rest"),                             // 1px
+  radius:      CL("button-cornerradius"),                          // 8px
+  border:      CL("button-borderwidth-rest"),                             // 1px
   // Outlined buttons thicken their border on hover, focus and pressed. Figma
   // applies Button/Border Width/Selected (1.5px) to 48 distinct Outlined variants
   // across exactly those three states, and this component drew 1px in all of
@@ -113,7 +113,7 @@ export const T = {
   // The token name says "Selected" and its usage says hover/focus/pressed. There
   // is no selected or toggled state on this component. Named here for what it
   // does; the token name is flagged in the spec as a mismatch to settle.
-  borderEmphasis: CL("button-border-width-selected"),                      // 1.5px
+  borderEmphasis: CL("button-borderwidth-selected"),                      // 1.5px
   gap:         CL("button-gap-horizontal"),                                  // 8px
   touch:       { pad: 6, min: 48 },
   // Focus ring drawn as outline + outline-offset rather than stacked shadows.
@@ -131,8 +131,8 @@ export const T = {
   // The offset is not decoration. Stroke/FocusRing/Base measures 3.19:1 against
   // the canvas but only 1.69:1 against the Primary fill, so a ring drawn on the
   // fill would fail WCAG 2.4.11. The offset puts it on the surface instead.
-  focusOutline: `${CL("focus-ring-width")} solid ${SC("stroke-focusring-base")}`,
-  focusOffset: CL("focus-ring-offset"),
+  focusOutline: `${CL("focusring-width")} solid ${SC("stroke-focusring-base")}`,
+  focusOffset: CL("focusring-offset"),
 };
 
 // Type is a scale now, not 111 composites, so each size composes its own five
@@ -143,7 +143,7 @@ const LABEL = (size, lineHeight) => ({
   fontSize:      ST(`font-size-${size}`),
   fontWeight:    ST("weight-medium"),
   lineHeight:    ST(`line-height-${lineHeight}`),
-  letterSpacing: ST("letter-spacing-compact"),   // 0px — the neutral tracking step
+  letterSpacing: "normal",   // Semantic: Type exposes only Wide/Spacious/ExtraSpacious; there is no neutral tracking token, and 0 tracking is the default
 });
 
 // ─── SIZE TABLE ────────────────────────────────────────────────────────────────
