@@ -75,7 +75,15 @@ export const T = {
     infoSubtle: c("stroke-static-neutral-base"),   // container right border
   },
   surface: {
-    navLight:    c("fill-static-neutral-mono"),  // the nav container itself: white
+    // Figma binds Fill/Surface/Elevated on SideNav.Container (node 40004059:1375).
+    // This was fill-static-neutral-mono, which is the same #ffffff in Light and
+    // therefore looked correct, but mono is the INVERSION ANCHOR: it is #ffffff
+    // in Midnight too. Elevated is #121523 there. So the nav stayed a white slab
+    // in dark mode while every surface around it went dark.
+    //
+    // It is also what a reader of this repo reports back as the nav's fill, which
+    // is how the drift surfaced: the value quoted did not match Figma.
+    navLight:    c("fill-surface-elevated"),   // the nav container itself
     navElevated: c("fill-surface-elevated"),   // PopoverMenu, per Figma's "Popover Menu"
   },
   // Label, icon and chevron all resolve to the SAME token per state. A nav item
@@ -216,7 +224,16 @@ export function SideNavItem({
           setHovered(false);
           if (isSidebarCollapsed && onPopoverLeave) onPopoverLeave();
         }}
-        style={{ display: "flex", alignItems: "center", minHeight: L.itemH, width: "100%",
+        style={{ display: "flex", alignItems: "center", minHeight: L.itemH,
+          // COLLAPSED IS A SQUARE. Figma's SideNavItem.Collapsed is 44x44 at
+          // x=8 inside the 60px column (84px rail minus 12px padding each side),
+          // so the fill is inset 8px and reads as a rounded square. Stretching
+          // it to the full 60 made it a rectangle, which is what Jo spotted.
+          // 44 is L.itemH, so the square is expressed as width = height rather
+          // than as a second number that could drift from it.
+          width: isSidebarCollapsed ? L.itemH : "100%",
+          marginLeft: isSidebarCollapsed ? "auto" : undefined,
+          marginRight: isSidebarCollapsed ? "auto" : undefined,
           borderRadius: T.radius, backgroundColor: fillBg,
           cursor: isDisabled ? "not-allowed" : "pointer",
           overflow: "hidden", transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)", userSelect: "none" }}>
