@@ -44,7 +44,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "button",
       "borderwidth",
       "rest"
@@ -55,7 +55,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "button",
       "borderwidth",
       "selected"
@@ -66,7 +66,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "button",
       "cornerradius"
     ]
@@ -76,7 +76,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "button",
       "gap",
       "horizontal"
@@ -87,7 +87,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "button",
       "padding",
       "large",
@@ -99,7 +99,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "button",
       "padding",
       "large",
@@ -111,7 +111,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "button",
       "padding",
       "medium",
@@ -123,7 +123,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "button",
       "padding",
       "medium",
@@ -135,7 +135,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "button",
       "padding",
       "small",
@@ -147,7 +147,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "button",
       "padding",
       "small",
@@ -159,7 +159,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "button",
       "padding",
       "xsmall",
@@ -171,7 +171,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "button",
       "padding",
       "xsmall",
@@ -183,7 +183,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "card",
       "borderwidth",
       "hover"
@@ -194,7 +194,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "card",
       "borderwidth",
       "rest"
@@ -205,7 +205,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "card",
       "borderwidth",
       "selected"
@@ -216,7 +216,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "card",
       "cornerradius"
     ]
@@ -226,7 +226,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "card",
       "gap"
     ]
@@ -236,7 +236,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "card",
       "padding",
       "horizontal"
@@ -247,7 +247,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "card",
       "padding",
       "vertical"
@@ -258,7 +258,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "field",
       "borderwidth"
     ]
@@ -268,7 +268,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "field",
       "cornerradius"
     ]
@@ -278,7 +278,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "focusring",
       "offset"
     ]
@@ -288,7 +288,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "focusring",
       "width"
     ]
@@ -298,7 +298,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "navitem",
       "cornerradius"
     ]
@@ -308,7 +308,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "navitem",
       "padding",
       "horizontal"
@@ -319,7 +319,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "navitem",
       "padding",
       "vertical"
@@ -330,7 +330,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "selection-controls",
       "borderwidth"
     ]
@@ -340,7 +340,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "sidenav",
       "gap",
       "vertical"
@@ -351,7 +351,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "sidenav",
       "padding",
       "horizontal",
@@ -363,7 +363,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "sidenav",
       "padding",
       "horizontal",
@@ -375,7 +375,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "sidenav",
       "padding",
       "vertical"
@@ -386,7 +386,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "sidenav",
       "width",
       "collapsed"
@@ -397,7 +397,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "sidenav",
       "width",
       "expanded"
@@ -408,7 +408,7 @@ const tokens = {
     "type": "number",
     "path": [
       "contextual-layout-units",
-      "pathway",
+      "amplify",
       "topnav",
       "height"
     ]
@@ -714,7 +714,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "0"
     ]
@@ -724,7 +724,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "25"
     ]
@@ -734,7 +734,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "50"
     ]
@@ -744,7 +744,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "75"
     ]
@@ -754,7 +754,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "100"
     ]
@@ -764,7 +764,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "150"
     ]
@@ -774,7 +774,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "200"
     ]
@@ -784,7 +784,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "250"
     ]
@@ -794,7 +794,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "300"
     ]
@@ -804,7 +804,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "350"
     ]
@@ -814,7 +814,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "400"
     ]
@@ -824,7 +824,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "500"
     ]
@@ -834,7 +834,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "600"
     ]
@@ -844,7 +844,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "700"
     ]
@@ -854,7 +854,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "800"
     ]
@@ -864,7 +864,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "900"
     ]
@@ -874,7 +874,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "350-16"
     ]
@@ -884,7 +884,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "350-24"
     ]
@@ -894,7 +894,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "350-36"
     ]
@@ -904,7 +904,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "350-4"
     ]
@@ -914,7 +914,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "350-50"
     ]
@@ -924,7 +924,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "350-70"
     ]
@@ -934,7 +934,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "amethyst",
       "350-8"
     ]
@@ -944,7 +944,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "0"
     ]
@@ -954,7 +954,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "10"
     ]
@@ -964,7 +964,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "25"
     ]
@@ -974,7 +974,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "50"
     ]
@@ -984,7 +984,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "75"
     ]
@@ -994,7 +994,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "100"
     ]
@@ -1004,7 +1004,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "125"
     ]
@@ -1014,7 +1014,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "150"
     ]
@@ -1024,7 +1024,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "175"
     ]
@@ -1034,7 +1034,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "200"
     ]
@@ -1044,7 +1044,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "250"
     ]
@@ -1054,7 +1054,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "300"
     ]
@@ -1064,7 +1064,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "350"
     ]
@@ -1074,7 +1074,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "400"
     ]
@@ -1084,7 +1084,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "450"
     ]
@@ -1094,7 +1094,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "500"
     ]
@@ -1104,7 +1104,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "550"
     ]
@@ -1114,7 +1114,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "600"
     ]
@@ -1124,7 +1124,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "650"
     ]
@@ -1134,7 +1134,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "700"
     ]
@@ -1144,7 +1144,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "750"
     ]
@@ -1154,7 +1154,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "800"
     ]
@@ -1164,7 +1164,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "850"
     ]
@@ -1174,7 +1174,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "900"
     ]
@@ -1184,7 +1184,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "400-16"
     ]
@@ -1194,7 +1194,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "400-24"
     ]
@@ -1204,7 +1204,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "400-36"
     ]
@@ -1214,7 +1214,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "400-4"
     ]
@@ -1224,7 +1224,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "400-50"
     ]
@@ -1234,7 +1234,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "400-70"
     ]
@@ -1244,7 +1244,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "400-8"
     ]
@@ -1254,7 +1254,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "600-16"
     ]
@@ -1264,7 +1264,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "600-24"
     ]
@@ -1274,7 +1274,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "600-36"
     ]
@@ -1284,7 +1284,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "600-4"
     ]
@@ -1294,7 +1294,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "600-50"
     ]
@@ -1304,7 +1304,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "600-70"
     ]
@@ -1314,7 +1314,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "600-8"
     ]
@@ -1324,7 +1324,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "75-16"
     ]
@@ -1334,7 +1334,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "75-24"
     ]
@@ -1344,7 +1344,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "75-36"
     ]
@@ -1354,7 +1354,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "75-4"
     ]
@@ -1364,7 +1364,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "75-50"
     ]
@@ -1374,7 +1374,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "75-70"
     ]
@@ -1384,7 +1384,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "brand",
       "75-8"
     ]
@@ -1394,7 +1394,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "0"
     ]
@@ -1404,7 +1404,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "25"
     ]
@@ -1414,7 +1414,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "50"
     ]
@@ -1424,7 +1424,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "75"
     ]
@@ -1434,7 +1434,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "100"
     ]
@@ -1444,7 +1444,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "150"
     ]
@@ -1454,7 +1454,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "200"
     ]
@@ -1464,7 +1464,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "250"
     ]
@@ -1474,7 +1474,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "300"
     ]
@@ -1484,7 +1484,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "350"
     ]
@@ -1494,7 +1494,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "400"
     ]
@@ -1504,7 +1504,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "500"
     ]
@@ -1514,7 +1514,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "600"
     ]
@@ -1524,7 +1524,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "700"
     ]
@@ -1534,7 +1534,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "800"
     ]
@@ -1544,7 +1544,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "350-16"
     ]
@@ -1554,7 +1554,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "350-24"
     ]
@@ -1564,7 +1564,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "350-36"
     ]
@@ -1574,7 +1574,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "350-4"
     ]
@@ -1584,7 +1584,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "350-50"
     ]
@@ -1594,7 +1594,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "350-70"
     ]
@@ -1604,7 +1604,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "citrine",
       "350-8"
     ]
@@ -1614,7 +1614,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "0"
     ]
@@ -1624,7 +1624,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "5"
     ]
@@ -1634,7 +1634,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "10"
     ]
@@ -1644,7 +1644,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "25"
     ]
@@ -1654,7 +1654,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "50"
     ]
@@ -1664,7 +1664,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "75"
     ]
@@ -1674,7 +1674,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "100"
     ]
@@ -1684,7 +1684,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "125"
     ]
@@ -1694,7 +1694,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "150"
     ]
@@ -1704,7 +1704,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "175"
     ]
@@ -1714,7 +1714,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "200"
     ]
@@ -1724,7 +1724,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "250"
     ]
@@ -1734,7 +1734,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "300"
     ]
@@ -1744,7 +1744,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "350"
     ]
@@ -1754,7 +1754,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "400"
     ]
@@ -1764,7 +1764,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "450"
     ]
@@ -1774,7 +1774,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "500"
     ]
@@ -1784,7 +1784,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "550"
     ]
@@ -1794,7 +1794,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "600"
     ]
@@ -1804,7 +1804,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "650"
     ]
@@ -1814,7 +1814,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "700"
     ]
@@ -1824,7 +1824,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "750"
     ]
@@ -1834,7 +1834,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "800"
     ]
@@ -1844,7 +1844,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "850"
     ]
@@ -1854,7 +1854,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "900"
     ]
@@ -1864,7 +1864,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "0-16"
     ]
@@ -1874,7 +1874,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "0-24"
     ]
@@ -1884,7 +1884,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "0-36"
     ]
@@ -1894,7 +1894,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "0-4"
     ]
@@ -1904,7 +1904,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "0-50"
     ]
@@ -1914,7 +1914,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "0-70"
     ]
@@ -1924,7 +1924,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "0-8"
     ]
@@ -1934,7 +1934,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "800-16"
     ]
@@ -1944,7 +1944,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "800-24"
     ]
@@ -1954,7 +1954,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "800-36"
     ]
@@ -1964,7 +1964,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "800-4"
     ]
@@ -1974,7 +1974,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "800-50"
     ]
@@ -1984,7 +1984,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "800-70"
     ]
@@ -1994,7 +1994,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "800-8"
     ]
@@ -2004,7 +2004,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "900-16"
     ]
@@ -2014,7 +2014,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "900-24"
     ]
@@ -2024,7 +2024,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "900-36"
     ]
@@ -2034,7 +2034,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "900-4"
     ]
@@ -2044,7 +2044,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "900-50"
     ]
@@ -2054,7 +2054,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "900-70"
     ]
@@ -2064,7 +2064,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "cool-neutral",
       "900-8"
     ]
@@ -2074,7 +2074,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "0"
     ]
@@ -2084,7 +2084,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "25"
     ]
@@ -2094,7 +2094,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "50"
     ]
@@ -2104,7 +2104,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "75"
     ]
@@ -2114,7 +2114,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "100"
     ]
@@ -2124,7 +2124,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "150"
     ]
@@ -2134,7 +2134,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "200"
     ]
@@ -2144,7 +2144,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "250"
     ]
@@ -2154,7 +2154,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "300"
     ]
@@ -2164,7 +2164,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "350"
     ]
@@ -2174,7 +2174,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "400"
     ]
@@ -2184,7 +2184,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "500"
     ]
@@ -2194,7 +2194,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "600"
     ]
@@ -2204,7 +2204,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "700"
     ]
@@ -2214,7 +2214,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "800"
     ]
@@ -2224,7 +2224,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "900"
     ]
@@ -2234,7 +2234,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "350-16"
     ]
@@ -2244,7 +2244,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "350-24"
     ]
@@ -2254,7 +2254,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "350-36"
     ]
@@ -2264,7 +2264,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "350-4"
     ]
@@ -2274,7 +2274,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "350-50"
     ]
@@ -2284,7 +2284,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "350-70"
     ]
@@ -2294,7 +2294,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "green",
       "350-8"
     ]
@@ -2304,7 +2304,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "0"
     ]
@@ -2314,7 +2314,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "25"
     ]
@@ -2324,7 +2324,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "50"
     ]
@@ -2334,7 +2334,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "75"
     ]
@@ -2344,7 +2344,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "100"
     ]
@@ -2354,7 +2354,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "150"
     ]
@@ -2364,7 +2364,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "200"
     ]
@@ -2374,7 +2374,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "250"
     ]
@@ -2384,7 +2384,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "300"
     ]
@@ -2394,7 +2394,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "350"
     ]
@@ -2404,7 +2404,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "400"
     ]
@@ -2414,7 +2414,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "500"
     ]
@@ -2424,7 +2424,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "600"
     ]
@@ -2434,7 +2434,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "700"
     ]
@@ -2444,7 +2444,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "800"
     ]
@@ -2454,7 +2454,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "900"
     ]
@@ -2464,7 +2464,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "300-16"
     ]
@@ -2474,7 +2474,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "300-24"
     ]
@@ -2484,7 +2484,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "300-36"
     ]
@@ -2494,7 +2494,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "300-4"
     ]
@@ -2504,7 +2504,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "300-50"
     ]
@@ -2514,7 +2514,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "300-70"
     ]
@@ -2524,7 +2524,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "jade",
       "300-8"
     ]
@@ -2534,7 +2534,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "0"
     ]
@@ -2544,7 +2544,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "25"
     ]
@@ -2554,7 +2554,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "50"
     ]
@@ -2564,7 +2564,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "75"
     ]
@@ -2574,7 +2574,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "100"
     ]
@@ -2584,7 +2584,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "150"
     ]
@@ -2594,7 +2594,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "200"
     ]
@@ -2604,7 +2604,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "250"
     ]
@@ -2614,7 +2614,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "300"
     ]
@@ -2624,7 +2624,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "350"
     ]
@@ -2634,7 +2634,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "400"
     ]
@@ -2644,7 +2644,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "500"
     ]
@@ -2654,7 +2654,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "600"
     ]
@@ -2664,7 +2664,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "700"
     ]
@@ -2674,7 +2674,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "800"
     ]
@@ -2684,7 +2684,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "900"
     ]
@@ -2694,7 +2694,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "300-16"
     ]
@@ -2704,7 +2704,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "300-24"
     ]
@@ -2714,7 +2714,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "300-36"
     ]
@@ -2724,7 +2724,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "300-4"
     ]
@@ -2734,7 +2734,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "300-50"
     ]
@@ -2744,7 +2744,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "300-70"
     ]
@@ -2754,7 +2754,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "lagoon",
       "300-8"
     ]
@@ -2764,7 +2764,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "0"
     ]
@@ -2774,7 +2774,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "25"
     ]
@@ -2784,7 +2784,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "50"
     ]
@@ -2794,7 +2794,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "75"
     ]
@@ -2804,7 +2804,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "100"
     ]
@@ -2814,7 +2814,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "150"
     ]
@@ -2824,7 +2824,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "200"
     ]
@@ -2834,7 +2834,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "250"
     ]
@@ -2844,7 +2844,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "300"
     ]
@@ -2854,7 +2854,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "350"
     ]
@@ -2864,7 +2864,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "400"
     ]
@@ -2874,7 +2874,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "500"
     ]
@@ -2884,7 +2884,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "600"
     ]
@@ -2894,7 +2894,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "700"
     ]
@@ -2904,7 +2904,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "800"
     ]
@@ -2914,7 +2914,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "900"
     ]
@@ -2924,7 +2924,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "350-16"
     ]
@@ -2934,7 +2934,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "350-24"
     ]
@@ -2944,7 +2944,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "350-36"
     ]
@@ -2954,7 +2954,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "350-4"
     ]
@@ -2964,7 +2964,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "350-50"
     ]
@@ -2974,7 +2974,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "350-70"
     ]
@@ -2984,7 +2984,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "mauve",
       "350-8"
     ]
@@ -2994,7 +2994,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "0"
     ]
@@ -3004,7 +3004,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "25"
     ]
@@ -3014,7 +3014,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "50"
     ]
@@ -3024,7 +3024,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "75"
     ]
@@ -3034,7 +3034,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "100"
     ]
@@ -3044,7 +3044,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "125"
     ]
@@ -3054,7 +3054,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "150"
     ]
@@ -3064,7 +3064,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "175"
     ]
@@ -3074,7 +3074,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "200"
     ]
@@ -3084,7 +3084,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "250"
     ]
@@ -3094,7 +3094,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "300"
     ]
@@ -3104,7 +3104,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "350"
     ]
@@ -3114,7 +3114,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "400"
     ]
@@ -3124,7 +3124,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "500"
     ]
@@ -3134,7 +3134,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "600"
     ]
@@ -3144,7 +3144,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "700"
     ]
@@ -3154,7 +3154,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "800"
     ]
@@ -3164,7 +3164,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "850"
     ]
@@ -3174,7 +3174,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "900"
     ]
@@ -3184,7 +3184,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "925"
     ]
@@ -3194,7 +3194,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "950"
     ]
@@ -3204,7 +3204,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "975"
     ]
@@ -3214,7 +3214,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "350-16"
     ]
@@ -3224,7 +3224,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "350-24"
     ]
@@ -3234,7 +3234,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "350-36"
     ]
@@ -3244,7 +3244,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "350-4"
     ]
@@ -3254,7 +3254,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "350-50"
     ]
@@ -3264,7 +3264,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "350-70"
     ]
@@ -3274,7 +3274,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "350-8"
     ]
@@ -3284,7 +3284,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "900-16"
     ]
@@ -3294,7 +3294,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "900-24"
     ]
@@ -3304,7 +3304,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "900-36"
     ]
@@ -3314,7 +3314,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "900-4"
     ]
@@ -3324,7 +3324,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "900-50"
     ]
@@ -3334,7 +3334,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "900-70"
     ]
@@ -3344,7 +3344,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "900-8"
     ]
@@ -3354,7 +3354,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "975-16"
     ]
@@ -3364,7 +3364,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "975-24"
     ]
@@ -3374,7 +3374,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "975-36"
     ]
@@ -3384,7 +3384,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "975-4"
     ]
@@ -3394,7 +3394,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "975-50"
     ]
@@ -3404,7 +3404,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "975-70"
     ]
@@ -3414,7 +3414,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "midnight",
       "975-8"
     ]
@@ -3424,7 +3424,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "0"
     ]
@@ -3434,7 +3434,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "25"
     ]
@@ -3444,7 +3444,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "50"
     ]
@@ -3454,7 +3454,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "75"
     ]
@@ -3464,7 +3464,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "100"
     ]
@@ -3474,7 +3474,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "150"
     ]
@@ -3484,7 +3484,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "200"
     ]
@@ -3494,7 +3494,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "250"
     ]
@@ -3504,7 +3504,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "300"
     ]
@@ -3514,7 +3514,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "350"
     ]
@@ -3524,7 +3524,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "400"
     ]
@@ -3534,7 +3534,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "500"
     ]
@@ -3544,7 +3544,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "600"
     ]
@@ -3554,7 +3554,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "700"
     ]
@@ -3564,7 +3564,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "800"
     ]
@@ -3574,7 +3574,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "900"
     ]
@@ -3584,7 +3584,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "350-16"
     ]
@@ -3594,7 +3594,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "350-24"
     ]
@@ -3604,7 +3604,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "350-36"
     ]
@@ -3614,7 +3614,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "350-4"
     ]
@@ -3624,7 +3624,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "350-50"
     ]
@@ -3634,7 +3634,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "350-70"
     ]
@@ -3644,7 +3644,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "orange",
       "350-8"
     ]
@@ -3654,7 +3654,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "0"
     ]
@@ -3664,7 +3664,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "25"
     ]
@@ -3674,7 +3674,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "50"
     ]
@@ -3684,7 +3684,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "75"
     ]
@@ -3694,7 +3694,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "100"
     ]
@@ -3704,7 +3704,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "150"
     ]
@@ -3714,7 +3714,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "200"
     ]
@@ -3724,7 +3724,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "250"
     ]
@@ -3734,7 +3734,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "300"
     ]
@@ -3744,7 +3744,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "350"
     ]
@@ -3754,7 +3754,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "400"
     ]
@@ -3764,7 +3764,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "450"
     ]
@@ -3774,7 +3774,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "500"
     ]
@@ -3784,7 +3784,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "600"
     ]
@@ -3794,7 +3794,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "700"
     ]
@@ -3804,7 +3804,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "800"
     ]
@@ -3814,7 +3814,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "900"
     ]
@@ -3824,7 +3824,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "300-16"
     ]
@@ -3834,7 +3834,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "300-24"
     ]
@@ -3844,7 +3844,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "300-36"
     ]
@@ -3854,7 +3854,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "300-4"
     ]
@@ -3864,7 +3864,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "300-50"
     ]
@@ -3874,7 +3874,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "300-70"
     ]
@@ -3884,7 +3884,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "red",
       "300-8"
     ]
@@ -3894,7 +3894,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "0"
     ]
@@ -3904,7 +3904,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "25"
     ]
@@ -3914,7 +3914,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "50"
     ]
@@ -3924,7 +3924,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "75"
     ]
@@ -3934,7 +3934,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "100"
     ]
@@ -3944,7 +3944,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "150"
     ]
@@ -3954,7 +3954,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "200"
     ]
@@ -3964,7 +3964,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "250"
     ]
@@ -3974,7 +3974,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "300"
     ]
@@ -3984,7 +3984,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "350"
     ]
@@ -3994,7 +3994,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "400"
     ]
@@ -4004,7 +4004,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "500"
     ]
@@ -4014,7 +4014,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "600"
     ]
@@ -4024,7 +4024,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "700"
     ]
@@ -4034,7 +4034,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "800"
     ]
@@ -4044,7 +4044,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "350-16"
     ]
@@ -4054,7 +4054,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "350-24"
     ]
@@ -4064,7 +4064,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "350-36"
     ]
@@ -4074,7 +4074,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "350-4"
     ]
@@ -4084,7 +4084,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "350-50"
     ]
@@ -4094,7 +4094,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "350-70"
     ]
@@ -4104,7 +4104,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "rose",
       "350-8"
     ]
@@ -4114,7 +4114,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "0"
     ]
@@ -4124,7 +4124,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "25"
     ]
@@ -4134,7 +4134,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "50"
     ]
@@ -4144,7 +4144,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "75"
     ]
@@ -4154,7 +4154,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "100"
     ]
@@ -4164,7 +4164,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "150"
     ]
@@ -4174,7 +4174,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "200"
     ]
@@ -4184,7 +4184,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "250"
     ]
@@ -4194,7 +4194,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "300"
     ]
@@ -4204,7 +4204,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "350"
     ]
@@ -4214,7 +4214,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "400"
     ]
@@ -4224,7 +4224,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "500"
     ]
@@ -4234,7 +4234,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "600"
     ]
@@ -4244,7 +4244,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "700"
     ]
@@ -4254,7 +4254,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "800"
     ]
@@ -4264,7 +4264,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "900"
     ]
@@ -4274,7 +4274,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "150-16"
     ]
@@ -4284,7 +4284,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "150-24"
     ]
@@ -4294,7 +4294,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "150-36"
     ]
@@ -4304,7 +4304,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "150-4"
     ]
@@ -4314,7 +4314,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "150-50"
     ]
@@ -4324,7 +4324,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "150-70"
     ]
@@ -4334,7 +4334,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "saffron",
       "150-8"
     ]
@@ -4344,7 +4344,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "0"
     ]
@@ -4354,7 +4354,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "25"
     ]
@@ -4364,7 +4364,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "50"
     ]
@@ -4374,7 +4374,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "75"
     ]
@@ -4384,7 +4384,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "100"
     ]
@@ -4394,7 +4394,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "150"
     ]
@@ -4404,7 +4404,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "200"
     ]
@@ -4414,7 +4414,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "250"
     ]
@@ -4424,7 +4424,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "300"
     ]
@@ -4434,7 +4434,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "350"
     ]
@@ -4444,7 +4444,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "400"
     ]
@@ -4454,7 +4454,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "500"
     ]
@@ -4464,7 +4464,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "600"
     ]
@@ -4474,7 +4474,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "700"
     ]
@@ -4484,7 +4484,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "800"
     ]
@@ -4494,7 +4494,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "900"
     ]
@@ -4504,7 +4504,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "300-16"
     ]
@@ -4514,7 +4514,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "300-24"
     ]
@@ -4524,7 +4524,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "300-36"
     ]
@@ -4534,7 +4534,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "300-4"
     ]
@@ -4544,7 +4544,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "300-50"
     ]
@@ -4554,7 +4554,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "300-70"
     ]
@@ -4564,7 +4564,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "seabreeze",
       "300-8"
     ]
@@ -4574,7 +4574,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "0"
     ]
@@ -4584,7 +4584,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "10"
     ]
@@ -4594,7 +4594,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "25"
     ]
@@ -4604,7 +4604,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "40"
     ]
@@ -4614,7 +4614,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "50"
     ]
@@ -4624,7 +4624,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "75"
     ]
@@ -4634,7 +4634,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "100"
     ]
@@ -4644,7 +4644,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "125"
     ]
@@ -4654,7 +4654,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "150"
     ]
@@ -4664,7 +4664,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "175"
     ]
@@ -4674,7 +4674,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "200"
     ]
@@ -4684,7 +4684,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "250"
     ]
@@ -4694,7 +4694,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "300"
     ]
@@ -4704,7 +4704,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "350"
     ]
@@ -4714,7 +4714,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "400"
     ]
@@ -4724,7 +4724,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "450"
     ]
@@ -4734,7 +4734,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "500"
     ]
@@ -4744,7 +4744,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "550"
     ]
@@ -4754,7 +4754,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "600"
     ]
@@ -4764,7 +4764,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "700"
     ]
@@ -4774,7 +4774,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "800"
     ]
@@ -4784,7 +4784,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "900"
     ]
@@ -4794,7 +4794,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "100-16"
     ]
@@ -4804,7 +4804,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "100-24"
     ]
@@ -4814,7 +4814,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "100-36"
     ]
@@ -4824,7 +4824,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "100-4"
     ]
@@ -4834,7 +4834,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "100-50"
     ]
@@ -4844,7 +4844,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "100-70"
     ]
@@ -4854,7 +4854,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "100-8"
     ]
@@ -4864,7 +4864,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "350-16"
     ]
@@ -4874,7 +4874,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "350-24"
     ]
@@ -4884,7 +4884,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "350-36"
     ]
@@ -4894,7 +4894,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "350-4"
     ]
@@ -4904,7 +4904,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "350-50"
     ]
@@ -4914,7 +4914,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "350-70"
     ]
@@ -4924,7 +4924,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "350-8"
     ]
@@ -4934,7 +4934,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "500-16"
     ]
@@ -4944,7 +4944,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "500-24"
     ]
@@ -4954,7 +4954,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "500-36"
     ]
@@ -4964,7 +4964,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "500-4"
     ]
@@ -4974,7 +4974,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "500-50"
     ]
@@ -4984,7 +4984,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "500-70"
     ]
@@ -4994,7 +4994,7 @@ const tokens = {
     "type": "color",
     "path": [
       "primitive-color",
-      "pathway",
+      "amplify",
       "warm-neutral",
       "500-8"
     ]
@@ -6424,7 +6424,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "disabled"
@@ -6435,7 +6435,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "ghost",
@@ -6447,7 +6447,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "ghost",
@@ -6459,7 +6459,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "ghost",
@@ -6471,7 +6471,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "primary",
@@ -6484,7 +6484,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "primary",
@@ -6497,7 +6497,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "primary",
@@ -6510,7 +6510,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "primary",
@@ -6523,7 +6523,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "primary",
@@ -6536,7 +6536,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "primary",
@@ -6549,7 +6549,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "secondary",
@@ -6561,7 +6561,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "secondary",
@@ -6573,7 +6573,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "secondary",
@@ -6585,7 +6585,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "selection",
@@ -6597,7 +6597,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "selection",
@@ -6609,7 +6609,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "selection",
@@ -6621,7 +6621,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "selection",
@@ -6633,7 +6633,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6647,7 +6647,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6661,7 +6661,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6675,7 +6675,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6689,7 +6689,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6703,7 +6703,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6717,7 +6717,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6731,7 +6731,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6745,7 +6745,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6759,7 +6759,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6773,7 +6773,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6787,7 +6787,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6801,7 +6801,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6815,7 +6815,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6829,7 +6829,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6843,7 +6843,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6857,7 +6857,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6871,7 +6871,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6885,7 +6885,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6899,7 +6899,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6913,7 +6913,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6927,7 +6927,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6941,7 +6941,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6955,7 +6955,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "action",
       "status",
@@ -6969,7 +6969,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -6981,7 +6981,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -6993,7 +6993,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7005,7 +7005,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7017,7 +7017,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7029,7 +7029,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7041,7 +7041,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7053,7 +7053,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7065,7 +7065,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7077,7 +7077,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7089,7 +7089,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7101,7 +7101,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7113,7 +7113,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7125,7 +7125,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7137,7 +7137,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7149,7 +7149,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7162,7 +7162,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "chart",
       "sequential",
@@ -7175,7 +7175,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "shadow",
       "dropshadow"
@@ -7186,7 +7186,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "accent",
@@ -7199,7 +7199,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "accent",
@@ -7212,7 +7212,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "accent",
@@ -7225,7 +7225,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "accent",
@@ -7238,7 +7238,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "accent",
@@ -7251,7 +7251,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "accent",
@@ -7264,7 +7264,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "accent",
@@ -7277,7 +7277,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "accent",
@@ -7290,7 +7290,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "accent",
@@ -7303,7 +7303,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "accent",
@@ -7316,7 +7316,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "accent",
@@ -7329,7 +7329,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "accent",
@@ -7342,7 +7342,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "attention",
@@ -7354,7 +7354,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "attention",
@@ -7366,7 +7366,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "brand",
@@ -7378,7 +7378,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "brand",
@@ -7390,7 +7390,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "brand",
@@ -7402,7 +7402,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "brand",
@@ -7414,7 +7414,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "brand",
@@ -7426,7 +7426,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "info",
@@ -7438,7 +7438,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "info",
@@ -7450,7 +7450,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "negative",
@@ -7462,7 +7462,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "negative",
@@ -7474,7 +7474,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "neutral",
@@ -7486,7 +7486,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "neutral",
@@ -7498,7 +7498,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "neutral",
@@ -7510,7 +7510,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "neutral",
@@ -7522,7 +7522,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "neutral",
@@ -7534,7 +7534,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "positive",
@@ -7546,7 +7546,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "positive",
@@ -7558,7 +7558,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "severe",
@@ -7570,7 +7570,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "static",
       "severe",
@@ -7582,7 +7582,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "surface",
       "canvas"
@@ -7593,7 +7593,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "surface",
       "chrome"
@@ -7604,7 +7604,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "surface",
       "elevated"
@@ -7615,7 +7615,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "fill",
       "surface",
       "overlay"
@@ -7626,7 +7626,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "disabled"
@@ -7637,7 +7637,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "ghost",
@@ -7649,7 +7649,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "ghost",
@@ -7661,7 +7661,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "ghost",
@@ -7673,7 +7673,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "primary",
@@ -7685,7 +7685,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "primary",
@@ -7698,7 +7698,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "primary",
@@ -7711,7 +7711,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "primary",
@@ -7724,7 +7724,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "secondary",
@@ -7736,7 +7736,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "secondary",
@@ -7748,7 +7748,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "secondary",
@@ -7760,7 +7760,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7773,7 +7773,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7787,7 +7787,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7801,7 +7801,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7815,7 +7815,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7828,7 +7828,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7842,7 +7842,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7856,7 +7856,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7870,7 +7870,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7883,7 +7883,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7897,7 +7897,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7911,7 +7911,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7925,7 +7925,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7938,7 +7938,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7952,7 +7952,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7966,7 +7966,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "action",
       "status",
@@ -7980,7 +7980,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "accent",
@@ -7993,7 +7993,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "accent",
@@ -8006,7 +8006,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "accent",
@@ -8019,7 +8019,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "accent",
@@ -8032,7 +8032,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "accent",
@@ -8045,7 +8045,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "accent",
@@ -8058,7 +8058,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "accent",
@@ -8071,7 +8071,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "accent",
@@ -8084,7 +8084,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "accent",
@@ -8097,7 +8097,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "accent",
@@ -8110,7 +8110,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "accent",
@@ -8123,7 +8123,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "accent",
@@ -8136,7 +8136,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "attention",
@@ -8148,7 +8148,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "attention",
@@ -8160,7 +8160,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "brand",
@@ -8172,7 +8172,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "brand",
@@ -8184,7 +8184,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "info",
@@ -8196,7 +8196,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "info",
@@ -8208,7 +8208,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "negative",
@@ -8220,7 +8220,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "negative",
@@ -8232,7 +8232,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "neutral",
@@ -8244,7 +8244,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "neutral",
@@ -8256,7 +8256,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "neutral",
@@ -8268,7 +8268,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "neutral",
@@ -8280,7 +8280,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "neutral",
@@ -8292,7 +8292,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "neutral",
@@ -8304,7 +8304,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "positive",
@@ -8316,7 +8316,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "positive",
@@ -8328,7 +8328,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "severe",
@@ -8340,7 +8340,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "foreground",
       "static",
       "severe",
@@ -8352,7 +8352,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "scrim",
       "base"
     ]
@@ -8362,7 +8362,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "scrim",
       "faint"
     ]
@@ -8372,7 +8372,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "scrim",
       "light"
     ]
@@ -8382,7 +8382,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "scrim",
       "subtle"
     ]
@@ -8392,7 +8392,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "disabled"
@@ -8403,7 +8403,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "field",
@@ -8415,7 +8415,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "field",
@@ -8427,7 +8427,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "field",
@@ -8439,7 +8439,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "ghost",
@@ -8451,7 +8451,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "ghost",
@@ -8463,7 +8463,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "ghost",
@@ -8475,7 +8475,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "primary",
@@ -8488,7 +8488,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "primary",
@@ -8501,7 +8501,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "primary",
@@ -8514,7 +8514,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "primary",
@@ -8527,7 +8527,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "primary",
@@ -8540,7 +8540,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "primary",
@@ -8553,7 +8553,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "secondary",
@@ -8565,7 +8565,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "secondary",
@@ -8577,7 +8577,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "secondary",
@@ -8589,7 +8589,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "status",
@@ -8602,7 +8602,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "status",
@@ -8615,7 +8615,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "status",
@@ -8628,7 +8628,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "status",
@@ -8641,7 +8641,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "status",
@@ -8654,7 +8654,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "status",
@@ -8667,7 +8667,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "status",
@@ -8680,7 +8680,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "status",
@@ -8693,7 +8693,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "status",
@@ -8706,7 +8706,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "status",
@@ -8719,7 +8719,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "status",
@@ -8732,7 +8732,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "action",
       "status",
@@ -8745,7 +8745,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "focusring",
       "base"
@@ -8756,7 +8756,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "accent",
@@ -8768,7 +8768,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "accent",
@@ -8780,7 +8780,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "accent",
@@ -8792,7 +8792,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "accent",
@@ -8804,7 +8804,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "accent",
@@ -8816,7 +8816,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "accent",
@@ -8828,7 +8828,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "attention",
@@ -8840,7 +8840,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "attention",
@@ -8852,7 +8852,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "info",
@@ -8864,7 +8864,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "info",
@@ -8876,7 +8876,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "negative",
@@ -8888,7 +8888,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "negative",
@@ -8900,7 +8900,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "neutral",
@@ -8912,7 +8912,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "neutral",
@@ -8924,7 +8924,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "neutral",
@@ -8936,7 +8936,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "neutral",
@@ -8948,7 +8948,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "neutral",
@@ -8960,7 +8960,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "positive",
@@ -8972,7 +8972,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "positive",
@@ -8984,7 +8984,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "severe",
@@ -8996,7 +8996,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-light",
+      "amplify-light",
       "stroke",
       "static",
       "severe",
@@ -9008,7 +9008,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "disabled"
@@ -9019,7 +9019,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "ghost",
@@ -9031,7 +9031,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "ghost",
@@ -9043,7 +9043,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "ghost",
@@ -9055,7 +9055,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "primary",
@@ -9068,7 +9068,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "primary",
@@ -9081,7 +9081,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "primary",
@@ -9094,7 +9094,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "primary",
@@ -9107,7 +9107,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "primary",
@@ -9120,7 +9120,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "primary",
@@ -9133,7 +9133,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "secondary",
@@ -9145,7 +9145,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "secondary",
@@ -9157,7 +9157,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "secondary",
@@ -9169,7 +9169,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "selection",
@@ -9181,7 +9181,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "selection",
@@ -9193,7 +9193,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "selection",
@@ -9205,7 +9205,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "selection",
@@ -9217,7 +9217,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9231,7 +9231,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9245,7 +9245,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9259,7 +9259,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9273,7 +9273,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9287,7 +9287,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9301,7 +9301,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9315,7 +9315,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9329,7 +9329,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9343,7 +9343,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9357,7 +9357,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9371,7 +9371,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9385,7 +9385,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9399,7 +9399,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9413,7 +9413,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9427,7 +9427,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9441,7 +9441,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9455,7 +9455,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9469,7 +9469,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9483,7 +9483,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9497,7 +9497,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9511,7 +9511,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9525,7 +9525,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9539,7 +9539,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "action",
       "status",
@@ -9553,7 +9553,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "shadow",
       "dropshadow"
@@ -9564,7 +9564,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "accent",
@@ -9577,7 +9577,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "accent",
@@ -9590,7 +9590,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "accent",
@@ -9603,7 +9603,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "accent",
@@ -9616,7 +9616,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "accent",
@@ -9629,7 +9629,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "accent",
@@ -9642,7 +9642,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "accent",
@@ -9655,7 +9655,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "accent",
@@ -9668,7 +9668,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "accent",
@@ -9681,7 +9681,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "accent",
@@ -9694,7 +9694,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "accent",
@@ -9707,7 +9707,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "accent",
@@ -9720,7 +9720,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "attention",
@@ -9732,7 +9732,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "attention",
@@ -9744,7 +9744,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "brand",
@@ -9756,7 +9756,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "brand",
@@ -9768,7 +9768,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "brand",
@@ -9776,11 +9776,11 @@ const tokens = {
     ]
   },
   "semantic-color-dark-fill-static-brand-strongest": {
-    "value": "#6e8bd4",
+    "value": "#86a0dd",
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "brand",
@@ -9792,7 +9792,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "brand",
@@ -9804,7 +9804,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "info",
@@ -9816,7 +9816,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "info",
@@ -9828,7 +9828,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "negative",
@@ -9840,7 +9840,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "negative",
@@ -9852,7 +9852,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "neutral",
@@ -9864,7 +9864,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "neutral",
@@ -9876,7 +9876,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "neutral",
@@ -9888,7 +9888,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "neutral",
@@ -9900,7 +9900,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "neutral",
@@ -9912,7 +9912,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "positive",
@@ -9924,7 +9924,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "positive",
@@ -9936,7 +9936,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "severe",
@@ -9948,7 +9948,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "static",
       "severe",
@@ -9960,7 +9960,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "surface",
       "canvas"
@@ -9971,7 +9971,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "surface",
       "chrome"
@@ -9982,7 +9982,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "surface",
       "elevated"
@@ -9993,7 +9993,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "surface",
       "overlay"
@@ -10004,7 +10004,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10016,7 +10016,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10028,7 +10028,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10040,7 +10040,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10052,7 +10052,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10064,7 +10064,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10076,7 +10076,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10088,7 +10088,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10100,7 +10100,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10112,7 +10112,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10124,7 +10124,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10136,7 +10136,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10148,7 +10148,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10160,7 +10160,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10172,7 +10172,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10184,7 +10184,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10197,7 +10197,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "fill",
       "chart",
       "sequential",
@@ -10210,7 +10210,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "disabled"
@@ -10221,7 +10221,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "ghost",
@@ -10233,7 +10233,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "ghost",
@@ -10245,7 +10245,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "ghost",
@@ -10257,7 +10257,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "primary",
@@ -10269,7 +10269,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "primary",
@@ -10282,7 +10282,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "primary",
@@ -10295,7 +10295,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "primary",
@@ -10308,7 +10308,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "secondary",
@@ -10320,7 +10320,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "secondary",
@@ -10332,7 +10332,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "secondary",
@@ -10344,7 +10344,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10357,7 +10357,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10371,7 +10371,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10385,7 +10385,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10399,7 +10399,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10412,7 +10412,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10426,7 +10426,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10440,7 +10440,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10454,7 +10454,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10467,7 +10467,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10481,7 +10481,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10495,7 +10495,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10509,7 +10509,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10522,7 +10522,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10536,7 +10536,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10550,7 +10550,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "action",
       "status",
@@ -10564,7 +10564,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "accent",
@@ -10577,7 +10577,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "accent",
@@ -10590,7 +10590,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "accent",
@@ -10603,7 +10603,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "accent",
@@ -10616,7 +10616,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "accent",
@@ -10629,7 +10629,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "accent",
@@ -10642,7 +10642,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "accent",
@@ -10655,7 +10655,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "accent",
@@ -10668,7 +10668,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "accent",
@@ -10681,7 +10681,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "accent",
@@ -10694,7 +10694,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "accent",
@@ -10707,7 +10707,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "accent",
@@ -10720,7 +10720,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "attention",
@@ -10732,7 +10732,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "attention",
@@ -10744,7 +10744,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "brand",
@@ -10756,7 +10756,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "brand",
@@ -10768,7 +10768,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "info",
@@ -10780,7 +10780,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "info",
@@ -10792,7 +10792,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "negative",
@@ -10804,7 +10804,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "negative",
@@ -10816,7 +10816,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "neutral",
@@ -10828,7 +10828,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "neutral",
@@ -10840,7 +10840,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "neutral",
@@ -10852,7 +10852,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "neutral",
@@ -10864,7 +10864,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "neutral",
@@ -10876,7 +10876,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "neutral",
@@ -10888,7 +10888,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "positive",
@@ -10900,7 +10900,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "positive",
@@ -10912,7 +10912,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "severe",
@@ -10924,7 +10924,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "foreground",
       "static",
       "severe",
@@ -10936,7 +10936,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "scrim",
       "base"
     ]
@@ -10946,7 +10946,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "scrim",
       "faint"
     ]
@@ -10956,7 +10956,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "scrim",
       "light"
     ]
@@ -10966,7 +10966,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "scrim",
       "subtle"
     ]
@@ -10976,7 +10976,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "disabled"
@@ -10987,7 +10987,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "field",
@@ -10999,7 +10999,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "field",
@@ -11011,7 +11011,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "field",
@@ -11023,7 +11023,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "ghost",
@@ -11035,7 +11035,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "ghost",
@@ -11047,7 +11047,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "ghost",
@@ -11059,7 +11059,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "primary",
@@ -11072,7 +11072,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "primary",
@@ -11085,7 +11085,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "primary",
@@ -11098,7 +11098,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "primary",
@@ -11111,7 +11111,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "primary",
@@ -11124,7 +11124,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "primary",
@@ -11137,7 +11137,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "secondary",
@@ -11149,7 +11149,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "secondary",
@@ -11161,7 +11161,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "secondary",
@@ -11173,7 +11173,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "status",
@@ -11186,7 +11186,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "status",
@@ -11199,7 +11199,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "status",
@@ -11212,7 +11212,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "status",
@@ -11225,7 +11225,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "status",
@@ -11238,7 +11238,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "status",
@@ -11251,7 +11251,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "status",
@@ -11264,7 +11264,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "status",
@@ -11277,7 +11277,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "status",
@@ -11290,7 +11290,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "status",
@@ -11303,7 +11303,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "status",
@@ -11316,7 +11316,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "action",
       "status",
@@ -11329,7 +11329,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "focusring",
       "base"
@@ -11340,7 +11340,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "accent",
@@ -11352,7 +11352,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "accent",
@@ -11364,7 +11364,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "accent",
@@ -11376,7 +11376,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "accent",
@@ -11388,7 +11388,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "accent",
@@ -11400,7 +11400,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "accent",
@@ -11412,7 +11412,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "attention",
@@ -11424,7 +11424,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "attention",
@@ -11436,7 +11436,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "info",
@@ -11448,7 +11448,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "info",
@@ -11460,7 +11460,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "negative",
@@ -11472,7 +11472,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "negative",
@@ -11484,7 +11484,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "neutral",
@@ -11496,7 +11496,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "neutral",
@@ -11508,7 +11508,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "neutral",
@@ -11520,7 +11520,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "neutral",
@@ -11532,7 +11532,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "neutral",
@@ -11544,7 +11544,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "positive",
@@ -11556,7 +11556,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "positive",
@@ -11568,7 +11568,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "severe",
@@ -11580,7 +11580,7 @@ const tokens = {
     "type": "color",
     "path": [
       "semantic-color",
-      "pathway-dark",
+      "amplify-dark",
       "stroke",
       "static",
       "severe",

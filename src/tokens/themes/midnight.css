@@ -82,7 +82,7 @@
   --semantic-color-fill-static-brand-base: var(--primitive-color-brand-600);
   --semantic-color-fill-static-brand-faint: var(--primitive-color-brand-800);
   --semantic-color-fill-static-brand-strong: var(--primitive-color-brand-200);
-  --semantic-color-fill-static-brand-strongest: var(--primitive-color-brand-200);
+  --semantic-color-fill-static-brand-strongest: var(--primitive-color-brand-150);
   --semantic-color-fill-static-brand-subtle: var(--primitive-color-brand-700);
   --semantic-color-fill-static-info-strong: var(--primitive-color-amethyst-200);
   --semantic-color-fill-static-info-subtle: var(--primitive-color-amethyst-350-16);

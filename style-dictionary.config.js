@@ -76,23 +76,23 @@ StyleDictionary.registerFormat({
       // bundle, which is what made the leak visible at all.
       //
       // Strip the BRAND only, and keep every other mode. A blanket
-      // MODE_SEGMENTS filter here is wrong: it collapses pathway-light onto
-      // pathway-dark (one key, whichever emitted last wins, so every semantic
+      // MODE_SEGMENTS filter here is wrong: it collapses amplify-light onto
+      // amplify-dark (one key, whichever emitted last wins, so every semantic
       // colour silently reported its dark value) and collapses the three
       // Responsive: Layout breakpoints onto each other the same way. So:
       //   pathway | newco              -> dropped
-      //   pathway-light | newco-light  -> light      (theme kept, brand removed)
-      //   pathway-dark  | newco-dark   -> dark
+      //   amplify-light | newco-light  -> light      (theme kept, brand removed)
+      //   amplify-dark  | newco-dark   -> dark
       //   desktop-1440pt | tablet-798pt | mobile-393pt -> kept verbatim
       // Because the brand is gone from the key, Pathway and NewCo collide, so
       // the two MUST be emitted as separate files. See the js platform below.
       const cssName = token.path
         .map((s) => {
           const seg = String(s).toLowerCase();
-          const themed = seg.match(/^(?:pathway|newco)-(light|dark)$/);
+          const themed = seg.match(/^(?:amplify|pathway|newco)-(light|dark)$/);
           return themed ? themed[1] : s;
         })
-        .filter((s) => !/^(?:pathway|newco)$/i.test(String(s)))
+        .filter((s) => !/^(?:amplify|pathway|newco)$/i.test(String(s)))
         .join("-");
       tokens[cssName] = {
         value: token.$value ?? token.value,
@@ -148,7 +148,7 @@ StyleDictionary.registerFormat({
 // All of those slugs have to be stripped here or every property name doubles again,
 // which is the exact regression this regex exists to prevent. Elevation's light/dark
 // are stripped for the same reason and fold into the theme files below.
-const MODE_SEGMENTS = /^(light-mode|dark-mode|midnight-mode|pathway-light|pathway-dark|newco-light|newco-dark|pathway|newco|light|dark|desktop-1440pt|tablet-798pt|mobile-393pt|desktop|mobile)$/i;
+const MODE_SEGMENTS = /^(light-mode|dark-mode|midnight-mode|amplify-light|amplify-dark|pathway-light|pathway-dark|newco-light|newco-dark|amplify|pathway|newco|light|dark|desktop-1440pt|tablet-798pt|mobile-393pt|desktop|mobile)$/i;
 
 // Which Figma mode maps to which media query. Desktop is the base (:root) because
 // it is the widest; narrower breakpoints override it, so the file must emit them in
@@ -340,7 +340,7 @@ const config = {
           // documented for consumers, not in the typed union, and flagged by
           // lint if referenced directly from product code (CLAUDE.md §6).
           // Pathway's primitives. Primitive: Type and Primitive: Unit carry no mode
-          // so they have no mode segment; Primitive: Color carries pathway|newco, and
+          // so they have no mode segment; Primitive: Color carries amplify|newco, and
           // only the pathway half belongs at :root.
           destination: "primitives.css",
           format: "css/variables",
@@ -389,8 +389,8 @@ const config = {
       transformGroup: "css-modeless",
       buildPath: "src/tokens/",
       files: [
-        // Two axes now: brand (pathway|newco) and theme (light|dark). The mode
-        // filters MUST be anchored. The old /light/i matched pathway-light AND
+        // Two axes now: brand (amplify|newco) and theme (light|dark). The mode
+        // filters MUST be anchored. The old /light/i matched amplify-light AND
         // newco-light, which would have collapsed both brands onto one name with
         // whichever file emitted last silently winning.
         {
@@ -398,7 +398,7 @@ const config = {
           format: "css/variables",
           filter: (t) =>
             !isDeprecated(t) &&
-            ((isSemanticColor(t) && themeMode(t) === "pathway-light") ||
+            ((isSemanticColor(t) && themeMode(t) === "amplify-light") ||
               (isElevation(t) && themeMode(t) === "light")),
           // ":root" alone only matches <html>, which makes region theming one-way:
           // you could scope a dark island inside a light page, but not a light
@@ -408,7 +408,9 @@ const config = {
           options: { selector: ':root, [data-theme="light"]', outputReferences: true },
         },
         {
-          // The Figma mode is now called "Pathway Dark", but this file keeps the
+          // The Figma mode is called "Amplify Dark" (renamed from "Pathway Dark"
+          // on 2026-09-30: Pathway is the design system, Amplify and NewCo are its
+          // brand themes, so a mode names the brand). This file keeps the
           // midnight.css name: it is referenced by 20+ files, .storybook/preview.js
           // and the package exports, so renaming it is a breaking change for
           // consumers and is not worth doing silently. Both selectors are emitted.
@@ -416,7 +418,7 @@ const config = {
           format: "css/variables",
           filter: (t) =>
             !isDeprecated(t) &&
-            ((isSemanticColor(t) && themeMode(t) === "pathway-dark") ||
+            ((isSemanticColor(t) && themeMode(t) === "amplify-dark") ||
               (isElevation(t) && themeMode(t) === "dark")),
           options: {
             selector: '[data-theme="dark"], [data-theme="midnight"]',

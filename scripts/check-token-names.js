@@ -236,7 +236,8 @@ function liveDotNames() {
   if (!existsSync(TREE)) return { full: new Set(), groups: new Set() };
   const tree = JSON.parse(readFileSync(TREE, "utf8"));
   // Resolve the light mode by SEARCH, not by a hardcoded key. It was
-  // "light-mode", became "pathway-light" when the brand axis landed on
+  // "light-mode", became "pathway-light" and then "amplify-light" when the
+  // brand axis landed on
   // 2026-09-29, and a missing key here fails OPEN in the worst way: `root`
   // becomes undefined, the valid-name set comes back empty, and every single
   // dotted token mention in every spec is reported stale. That is 620 false

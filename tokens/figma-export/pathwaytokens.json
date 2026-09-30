@@ -30,7 +30,7 @@
   {
     "Contextual: Layout & Units": {
       "modes": {
-        "Pathway": {
+        "Amplify": {
           "Button": {
             "BorderWidth": {
               "Rest": {
@@ -646,7 +646,7 @@
   {
     "Primitive: Color": {
       "modes": {
-        "Pathway": {
+        "Amplify": {
           "Amethyst": {
             "0": {
               "$type": "color",
@@ -4930,7 +4930,7 @@
   {
     "Semantic: Color": {
       "modes": {
-        "Pathway Light": {
+        "Amplify Light": {
           "Fill": {
             "Action": {
               "Disabled": {
@@ -6356,7 +6356,7 @@
             }
           }
         },
-        "Pathway Dark": {
+        "Amplify Dark": {
           "Fill": {
             "Action": {
               "Disabled": {
@@ -6776,7 +6776,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.200}"
+                  "$value": "{Brand.150}"
                 },
                 "Subtle": {
                   "$type": "color",
@@ -8202,7 +8202,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.600}"
+                  "$value": "{Brand.700}"
                 },
                 "Subtle": {
                   "$type": "color",
@@ -8937,19 +8937,19 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.500}"
+                    "$value": "{Brand.250}"
                   },
                   "Pressed": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.600}"
+                    "$value": "{Brand.300}"
                   },
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.400}"
+                    "$value": "{Brand.200}"
                   }
                 }
               },
@@ -9628,7 +9628,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.200}"
+                  "$value": "{Brand.150}"
                 },
                 "Subtle": {
                   "$type": "color",
@@ -10363,19 +10363,19 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.250}"
+                    "$value": "{Brand.125}"
                   },
                   "Pressed": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.200}"
+                    "$value": "{Brand.100}"
                   },
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.300}"
+                    "$value": "{Brand.150}"
                   }
                 }
               },

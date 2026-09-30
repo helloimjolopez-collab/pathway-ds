@@ -75,14 +75,14 @@ const PAGES = [
   },
   {
     title: "Tokens/Semantics/Color (Light Mode)",
-    render: () => createSemanticColors("pathway-light"),
+    render: () => createSemanticColors("amplify-light"),
     floor: 1200, // observed 1725 for 162 rows. Was 2400 against 358 rows: the
                  // hue ladders were cut to Subtle + Strong on 2026-09-15, so
                  // the smaller number IS the change and not a regression.
   },
   {
     title: "Tokens/Semantics/Color (Midnight Mode)",
-    render: () => createSemanticColors("pathway-dark"),
+    render: () => createSemanticColors("amplify-dark"),
     floor: 1200, // observed 1725 for 162 rows, same cut as above
   },
   {
