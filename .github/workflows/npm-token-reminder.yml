@@ -1,8 +1,24 @@
 name: npm token expiry reminder
 
 # Runs every Monday at 9am UTC.
-# If the token expires within 7 days, opens a GitHub issue with exact renewal steps.
-# Closes any existing reminder issue automatically once the token is renewed.
+#
+# It does two things, and which one wins matters:
+#
+#   1. PROBES the token for real with `npm whoami`. This is the authority.
+#   2. Reads the hand-maintained date in .github/npm-token-meta.json, purely as
+#      an early warning so a renewal can be scheduled before anything breaks.
+#
+# The probe exists because the date on its own failed exactly as you would
+# expect. The token was renewed on 2026-09-09 without npm-token-meta.json being
+# updated, so the file still claimed 2026-08-24. From 2026-09-14 this workflow
+# opened issue #61 announcing the token had expired 21 days earlier, and held it
+# open, while that same token was live and published 10.0.0 and 10.0.1 on
+# 2026-09-30. A reminder that cries wolf gets muted, and then the real expiry
+# passes unnoticed.
+#
+# So a LIVE token closes the reminder even if the date disagrees, and a DEAD
+# token opens it even if the date says there is time left. The date can rot; the
+# probe cannot.
 
 on:
   schedule:
@@ -18,6 +34,35 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+
+      # The authority on whether the token works. `npm whoami` is read-only and
+      # fails on an expired, revoked or malformed token, which is the one thing
+      # a date in a file cannot tell us.
+      - name: Probe the token
+        id: probe
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "alive=false" >> $GITHUB_OUTPUT
+            echo "reason=NPM_TOKEN secret is not set" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          if WHO=$(npm whoami --registry=https://registry.npmjs.org 2>&1); then
+            echo "alive=true" >> $GITHUB_OUTPUT
+            echo "reason=authenticated as $WHO" >> $GITHUB_OUTPUT
+            echo "Token is LIVE ($WHO)."
+          else
+            echo "alive=false" >> $GITHUB_OUTPUT
+            echo "reason=npm whoami failed: $WHO" >> $GITHUB_OUTPUT
+            echo "Token is DEAD: $WHO"
+          fi
 
       - name: Read expiry metadata
         id: meta
@@ -43,7 +88,7 @@ jobs:
             --description "npm publish token needs renewal" 2>/dev/null || true
 
       - name: Open reminder issue (if expiring soon and not already open)
-        if: ${{ fromJson(steps.meta.outputs.days_left) <= fromJson(steps.meta.outputs.reminder_days) }}
+        if: ${{ steps.probe.outputs.alive != 'true' || fromJson(steps.meta.outputs.days_left) <= fromJson(steps.meta.outputs.reminder_days) }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -100,7 +145,7 @@ jobs:
           fi
 
       - name: Close stale reminder issues (token is fine)
-        if: ${{ fromJson(steps.meta.outputs.days_left) > fromJson(steps.meta.outputs.reminder_days) }}
+        if: ${{ steps.probe.outputs.alive == 'true' && fromJson(steps.meta.outputs.days_left) > fromJson(steps.meta.outputs.reminder_days) }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

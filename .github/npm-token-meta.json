@@ -1,5 +1,5 @@
 {
-  "expiresAt": "2026-08-24",
+  "expiresAt": "2026-12-08",
   "renewalReminderDays": 7,
   "usedIn": [
     {
@@ -9,5 +9,7 @@
       "description": "Publishes @helloimjolopez-pathway/pathway-tokens to npm via publish-tokens.yml"
     }
   ],
-  "_instructions": "When renewing: tell Claude 'here is my new npm token: npm_xxx'. It will read this file, update every entry in usedIn[], update expiresAt, commit, and push. To add a new location, append an entry to usedIn[]."
+  "_instructions": "When renewing: tell Claude 'here is my new npm token: npm_xxx'. It will read this file, update every entry in usedIn[], update expiresAt, commit, and push. To add a new location, append an entry to usedIn[].",
+  "expiresAtIsInferred": true,
+  "_expiryNote": "INFERRED, not read from npm. npm exposes no token metadata without the token itself and GitHub secrets are write-only, so the true expiry cannot be looked up. The NPM_TOKEN secret was replaced 2026-09-09 and this workflow's own renewal instructions say to create it with a 90-day expiry, which gives 2026-12-08. Correct this if a different expiry was chosen. The weekly reminder no longer depends on this date being right: it probes the token with `npm whoami`, so a live token closes the reminder and a dead one opens it regardless of what this field says."
 }
