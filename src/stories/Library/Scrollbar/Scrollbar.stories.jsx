@@ -27,7 +27,7 @@ const Rows = ({ n = 40 }) => (
 
 const Frame = ({ children, w = 320, h = 300 }) => (
   <div style={{ width: w, height: h, border: "1px solid var(--semantic-color-stroke-static-neutral-base)", borderRadius: 12,
-    overflow: "hidden", background: "var(--semantic-color-fill-surface-canvas)", fontFamily: "'Red Hat Text', sans-serif" }}>
+    overflow: "hidden", background: "var(--semantic-color-fill-surface-elevated)", fontFamily: "'Red Hat Text', sans-serif" }}>
     {children}
   </div>
 );

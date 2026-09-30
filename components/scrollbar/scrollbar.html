@@ -38,7 +38,8 @@
            text-transform: uppercase; margin: 0 0 8px; }
   .row { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
   .frame { width: 320px; height: 300px; border: 1px solid var(--semantic-color-stroke-static-neutral-base); border-radius: 12px;
-           overflow: hidden; background: var(--semantic-color-fill-surface-canvas); }
+           /* elevated, NOT canvas: this is a surface sitting on the page. */
+           overflow: hidden; background: var(--semantic-color-fill-surface-elevated); }
   .item { padding: 10px 16px; font-size: 14px; border-bottom: 1px solid var(--semantic-color-stroke-static-neutral-faint); white-space: nowrap; }
   /* The one rule the overlay scrollbar relies on — hide the native bar on the scroll view. */
   .pds-scrollable__view { scrollbar-width: none; -ms-overflow-style: none; }

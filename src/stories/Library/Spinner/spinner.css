@@ -129,7 +129,7 @@
 /* ── Storybook-only grid chrome for the multi-swatch stories ───────────────── */
 .sb-spinner-grid {
   display: flex; flex-wrap: wrap; gap: 24px 28px;
-  padding: 16px; background: var(--semantic-color-fill-surface-canvas);
+  padding: 16px; background: var(--semantic-color-fill-surface-elevated);
   border: 1px solid var(--semantic-color-stroke-static-neutral-faint); border-radius: 12px;
   font-family: 'Red Hat Text', sans-serif;
 }

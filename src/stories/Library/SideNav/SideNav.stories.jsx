@@ -70,7 +70,7 @@ function Shell({ initialActiveId = "balance_sheet", collapsed: initialCollapsed 
         </div>
         <div style={{ display: "flex", gap: 10, marginBottom: 10 }}>
           {["Summary", "Details", "History"].map(label => (
-            <div key={label} style={{ flex: 1, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8,
+            <div key={label} style={{ flex: 1, background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 8,
               border: "1px dashed var(--semantic-color-stroke-static-neutral-base)", padding: 18, minHeight: 60,
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 10, color: "#c4c8d8" }}>{label}</div>

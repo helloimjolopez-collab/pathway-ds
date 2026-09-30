@@ -564,20 +564,39 @@ export function TopNav({
   const useTakeover = searchExpanded;
 
   return (
+    // TWO ELEMENTS, AND THE SPLIT IS THE POINT.
+    //
+    // The bar is brand-coloured, not dark-themed. Those are different things and
+    // conflating them was a real bug: data-theme="midnight" used to sit on the
+    // <nav> itself, and a [data-theme] applies to the element it is on as well as
+    // its descendants, so the bar re-resolved its OWN background through Midnight
+    // and painted Fill/Surface/Chrome as #152343. In Figma the bar is #2d4889 and
+    // carries no mode override at all, so on a Light page the repo was showing a
+    // colour the design does not contain.
+    //
+    // So the background is read OUT here, in the page's own theme, and the dark
+    // region starts INSIDE. The nav keeps position:relative, so the absolutely
+    // positioned dropdown panels still anchor to it and nothing about layout
+    // moves.
+    <div
+      style={{
+        background: "var(--semantic-color-fill-surface-chrome)",
+        position: "relative", zIndex: 100,
+      }}
+    >
     <nav
       ref={navRef}
-      // The bar is a permanently dark region. Every control on it resolves through
-      // the Midnight values via this wrapper, which is why the token names in T are
-      // modeless. The floating dropdown panels below opt back out with
-      // data-theme="light" — they are white by design.
+      // Every CONTROL on the bar resolves through the Midnight values, which is
+      // why the token names in T are modeless. The floating dropdown panels opt
+      // back out with data-theme="light": they are white by design.
       data-theme="midnight"
       aria-label="Global navigation"
       className={className}
       style={{
-        background: `var(--semantic-color-fill-surface-chrome, ${T.navBg})`,
+        background: "transparent",
         display: "flex", alignItems: "center", justifyContent: "space-between",
         maxHeight: L.navH, padding: `${L.navPadV} ${L.navPadH}`, gap: L.navGap,
-        position: "relative", overflow: "visible", zIndex: 100,
+        position: "relative", overflow: "visible",
         fontFamily: "'Red Hat Text', sans-serif",
       }}
     >
@@ -768,6 +787,7 @@ export function TopNav({
         </div>
       )}
     </nav>
+    </div>
   );
 }
 

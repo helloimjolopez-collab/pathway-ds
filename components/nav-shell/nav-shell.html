@@ -946,7 +946,7 @@ function ModuleIcon({ module, size = 24, color = "full", title, style, ...rest }
                   {openPanel==="module" && (
                     <ul role="listbox" aria-label="Switch module"
                       style={{ position:"absolute", top:"calc(100% + 4px)", left:0,
-                        width:243, background:"var(--semantic-color-fill-surface-canvas)",
+                        width:243, background:"var(--semantic-color-fill-surface-elevated)",
                         border:`1px solid ${TN.panelBorder}`, borderRadius:8,
                         boxShadow:TN.panelShadow, padding:4, zIndex:300, margin:0, listStyle:"none",
                         animation:"tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both" }}>
@@ -1003,7 +1003,7 @@ function ModuleIcon({ module, size = 24, color = "full", title, style, ...rest }
                   {openPanel==="org" && (
                     <div role="dialog" aria-label="Switch organisation"
                       style={{ position:"absolute", top:"calc(100% + 4px)", left:isMobile?0:40,
-                        width:280, background:"var(--semantic-color-fill-surface-canvas)",
+                        width:280, background:"var(--semantic-color-fill-surface-elevated)",
                         border:`1px solid ${TN.panelBorder}`, borderRadius:8,
                         boxShadow:TN.panelShadow, padding:8, zIndex:300,
                         animation:"tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both" }}>
@@ -1094,7 +1094,7 @@ function ModuleIcon({ module, size = 24, color = "full", title, style, ...rest }
                   {openPanel==="profile" && (
                     <div role="menu"
                       style={{ position:"absolute", top:"calc(100% + 4px)", right:0,
-                        width:200, background:"var(--semantic-color-fill-surface-canvas)",
+                        width:200, background:"var(--semantic-color-fill-surface-elevated)",
                         border:`1px solid rgba(45,72,137,0.10)`, borderRadius:8,
                         boxShadow:TN.panelShadow, padding:4, zIndex:300,
                         animation:"tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both" }}>

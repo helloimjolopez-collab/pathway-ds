@@ -151,10 +151,18 @@ function snap(tier, hex) {
   const rungs = L[tier];
   if (!rungs) return null;
   const scored = [];
+  // WHITE IS NEVER THE CANVAS. fill-surface-canvas is #fafafa and
+  // fill-surface-elevated is #ffffff, roughly 2 dE apart, which put them inside
+  // PREF_BAND together; 44 pure-white card and panel surfaces across fifteen
+  // demo and story files came out as canvas, so a raised surface ended up the
+  // same colour as the page behind it and stopped reading as a surface at all.
+  // A near-white source can only be an elevated, overlay or mono surface.
+  const nearWhite = tier === "background" && lum(hex) > 0.93;
   for (let i = 0; i < rungs.length; i++) {
     const r = rungs[i];
     // A foreground rung below AA on white is never a legal target for text.
     if (tier === "color" && crWhite(r.value) < AA_FLOOR && crWhite(r.value) > 1.2) continue;
+    if (nearWhite && !/(elevated|overlay|mono)$/.test(r.name)) continue;
     scored.push({ ...r, d: dE(r.value, hex), rank: i });
   }
   if (!scored.length) return null;

@@ -34,7 +34,7 @@ const TOPNAV_SURFACE = "#2d4889";
 function DemoCard({ caption, children }) {
   return (
     <div style={{
-      background: "var(--semantic-color-fill-surface-canvas)",
+      background: "var(--semantic-color-fill-surface-elevated)",
       borderRadius: 10,
       boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
       overflow: "visible",
@@ -252,7 +252,7 @@ function TokenRow({ token, hex, usage }) {
 
 function TokenTable({ title, rows, noteEmpty }) {
   return (
-    <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8, marginBottom: 16 }}>
+    <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 8, marginBottom: 16 }}>
       <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>{title}</h3>
       {rows.length === 0 ? (
         <p style={{ margin: 0, color: "#71717a", fontSize: 13 }}>{noteEmpty}</p>
@@ -334,7 +334,7 @@ TokensForeground.tags = ["!dev"];
 // ── 12. Tokens - Typography ─────────────────────────────────────────────────
 
 export const TokensTypography = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 8 }}>
     <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>Typography tokens</h3>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>
@@ -360,7 +360,7 @@ TokensTypography.tags = ["!dev"];
 // ── 13. Tokens - Spacing ────────────────────────────────────────────────────
 
 export const TokensSpacing = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 8 }}>
     <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>Spacing tokens</h3>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>
@@ -396,7 +396,7 @@ TokensSpacing.tags = ["!dev"];
 // ── 14. Tokens - Motion ─────────────────────────────────────────────────────
 
 export const TokensMotion = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 8 }}>
     <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>Motion</h3>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>
@@ -435,7 +435,7 @@ TokensMotion.tags = ["!dev"];
 // ── 15. Tokens - Radius ─────────────────────────────────────────────────────
 
 export const TokensRadius = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 8 }}>
     <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>Corner radius tokens</h3>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>

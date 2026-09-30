@@ -87,7 +87,7 @@ export function LiveTokenTable({ title, rows, note }) {
       style={{
         fontFamily: "'Red Hat Text', sans-serif",
         padding: 24,
-        background: "var(--semantic-color-fill-surface-canvas)",
+        background: "var(--semantic-color-fill-surface-elevated)",
         borderRadius: 8,
         marginBottom: 16,
       }}

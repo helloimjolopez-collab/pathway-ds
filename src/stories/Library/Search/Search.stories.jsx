@@ -21,7 +21,7 @@ const TOPNAV_BG = "#2d4889";
 
 function LightCard({ caption, children }) {
   return (
-    <div style={{ background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 10,
+    <div style={{ background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 10,
       boxShadow: "0 1px 3px rgba(0,0,0,0.07)", overflow: "hidden",
       fontFamily: "'Red Hat Text', sans-serif" }}>
       {caption && (
@@ -45,7 +45,7 @@ function LightCard({ caption, children }) {
  */
 function NavBar({ children, label }) {
   return (
-    <div style={{ background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 10,
+    <div style={{ background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 10,
       boxShadow: "0 1px 3px rgba(0,0,0,0.07)", overflow: "hidden",
       fontFamily: "'Red Hat Text', sans-serif" }}>
       {label && (
@@ -92,7 +92,7 @@ function NavBar({ children, label }) {
 
 function NavCard({ caption, children }) {
   return (
-    <div style={{ background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 10,
+    <div style={{ background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 10,
       boxShadow: "0 1px 3px rgba(0,0,0,0.07)", overflow: "hidden",
       fontFamily: "'Red Hat Text', sans-serif" }}>
       {caption && (
@@ -243,7 +243,7 @@ export const TopNavSearchStory = () => {
 
       {/* Behaviour notes */}
       <div style={{
-        background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8, padding: "16px 20px",
+        background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 8, padding: "16px 20px",
         fontFamily: "'Red Hat Text', sans-serif", fontSize: 13, color: "var(--semantic-color-foreground-static-neutral-subtle)",
         lineHeight: 1.6, border: "1px solid var(--semantic-color-stroke-static-neutral-base)",
       }}>
@@ -291,7 +291,7 @@ function TokenRow({ token, hex, usage }) {
 
 function TokenTable({ title, rows }) {
   return (
-    <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)",
+    <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-elevated)",
       borderRadius: 8, marginBottom: 16 }}>
       <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>{title}</h3>
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
@@ -377,7 +377,7 @@ TokensForeground.tags = ["!dev"];
 // ── 8. Tokens - Spacing ───────────────────────────────────────────────────────
 
 export const TokensSpacing = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 8 }}>
     <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>Spacing tokens</h3>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>
@@ -410,7 +410,7 @@ TokensSpacing.tags = ["!dev"];
 // ── 9. Tokens - Motion ────────────────────────────────────────────────────────
 
 export const TokensMotion = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 8 }}>
     <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>Motion (TopNavSearch only)</h3>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>

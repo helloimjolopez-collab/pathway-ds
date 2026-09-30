@@ -255,7 +255,7 @@ export const HighlightVariant = () => {
     setRows(rows.map(r => r.id === id ? { ...r, checked: !r.checked } : r));
 
   return (
-    <div style={{ background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8, border: "1px solid var(--semantic-color-stroke-static-neutral-base)", overflow: "hidden", fontFamily: "'Red Hat Text',sans-serif" }}>
+    <div style={{ background: "var(--semantic-color-fill-surface-elevated)", borderRadius: 8, border: "1px solid var(--semantic-color-stroke-static-neutral-base)", overflow: "hidden", fontFamily: "'Red Hat Text',sans-serif" }}>
       {rows.map((row, i) => (
         <div
           key={row.id}
