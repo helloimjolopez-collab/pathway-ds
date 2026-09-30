@@ -863,11 +863,11 @@ deleted 2026-09-16. One doc per component, so there is no second file to drift.
 
 1. **Ship TopNav and SideNav together as a single shell.** Never produce a prototype with only one of them.
 
-2. **Use the brand-blue background.** `Fill/Surface/Chrome` → `#2d4889`. Not dark navy (`#0a1223`). Not custom.
+2. **Use the brand-blue background.** `Fill/Surface/Chrome` → `#2d4889`. Not dark navy (`#2d4889`). Not custom.
 
 3. **Slot layout (left → right) is fixed:**
    - **Row Start:** SideNav hamburger (mobile only, hidden ≥768px) · ModuleSwitcher (Amplify Home icon + `expand_more` chevron, NO text) · OrgSwitcher (church logo 20×20 + org name + `expand_more` chevron, with `stroke/action/tertiary/base` border)
-   - **Row End:** Search (48×48 wrapper → 32×32 circle with `cornerradius/full: 64px` + `search` icon) · Desktop: 2× `notifications` bells (48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Info/Subtle` `#dcd9ef`, initials in `#221e3f`)
+   - **Row End:** Search (48×48 wrapper → 32×32 circle with `cornerradius/full: 64px` + `search` icon) · Desktop: 2× `notifications` bells (48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Info/Subtle` `#dcd9ef`, initials in `#dcd9ef`)
 
 4. **The mobile hamburger lives in TopNav.** It calls `onSideNavToggle` to open the SideNav overlay. The TopNav owns this control, not the SideNav.
 

@@ -102,7 +102,7 @@ Every Amplify screen uses this three-zone layout:
 ```
 
 ### TopNav
-- Background: `var(--semantic-color-fill-static-brand-base)` = `#2d4889`
+- Background: `var(--semantic-color-fill-static-brand-base)` = `#4b6ec3`
 - Height: **56px fixed**
 - Left side: ModuleSwitcher + OrgSwitcher (8px gap between them)
 - Right side: TopNavSearch + action buttons + profile avatar (8px gaps)
@@ -111,8 +111,8 @@ Every Amplify screen uses this three-zone layout:
 
 ### SideNav
 - Width: 240px expanded / 72px collapsed rail
-- Background: `var(--semantic-color-fill-static-neutral-mono)` = `#fafafa`
-- Right border: `0.5px solid var(--semantic-color-stroke-static-neutral-base)` = `#f6f6f6`
+- Background: `var(--semantic-color-fill-static-neutral-mono)` = `#ffffff`
+- Right border: `0.5px solid var(--semantic-color-stroke-static-neutral-base)` = `#e6e2dc`
 - Collapse button: **at the top** (in the NavHeader), never at the bottom
 - Nav item height: 44px
 - Nav item gap: 6px
@@ -138,56 +138,56 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 
 ### Backgrounds and surfaces
 ```css
---semantic-color-fill-static-brand-base    /* #2d4889  — TopNav background */
+--semantic-color-fill-static-brand-base    /* #4b6ec3  — TopNav background */
 --semantic-color-fill-surface-canvas      /* #fafafa  — Page background */
---semantic-color-fill-static-neutral-mono         /* #fafafa  — SideNav background */
---semantic-color-fill-static-neutral-faint /* #ffffff  — Cards, inputs, white surfaces */
+--semantic-color-fill-static-neutral-mono         /* #ffffff  — SideNav background */
+--semantic-color-fill-static-neutral-faint /* #fdfdfd  — Cards, inputs, white surfaces */
 ```
 
 ### Text
 ```css
---semantic-color-foreground-static-neutral-strong    /* #202020  — Page headings, card titles */
---semantic-color-foreground-static-neutral-base  /* #484848  — Body text, subtitles */
---semantic-color-foreground-static-neutral-base /* #606060 — Captions, placeholders, card body */
+--semantic-color-foreground-static-neutral-strong    /* #070707  — Page headings, card titles */
+--semantic-color-foreground-static-neutral-base  /* #313131  — Body text, subtitles */
+--semantic-color-foreground-static-neutral-base /* #313131 — Captions, placeholders, card body */
 --semantic-color-foreground-action-primary-on-subtle-rest    /* #345499  — Active links, active tab text */
---semantic-color-foreground-action-secondary-pressed /* #1b2d57 — Active SideNav item label */
+--semantic-color-foreground-action-secondary-pressed /* #070707 — Active SideNav item label */
 ```
 
 ### Interactive / brand
 ```css
---semantic-color-fill-action-primary-strong-rest    /* #4b6ec3  — Primary button fill, active indicators */
---semantic-color-fill-action-primary-strong-hover   /* #5475c6  — Primary button hover */
+--semantic-color-fill-action-primary-strong-rest    /* #3a5aaa  — Primary button fill, active indicators */
+--semantic-color-fill-action-primary-strong-hover   /* #345499  — Primary button hover */
 --semantic-color-fill-action-primary-subtle-rest   /* #eef2fb  — Active filter chip bg, active nav item bg */
 --semantic-color-fill-action-selection-selected /* rgba(160,181,230,0.16) — Active nav item fill */
 ```
 
 ### Borders and strokes
 ```css
---semantic-color-stroke-static-neutral-base         /* #f6f6f6 — Dividers, SideNav border */
---semantic-color-stroke-action-secondary-rest /* #d2d2d2 — Card border (0.5px), input border */
---semantic-color-stroke-action-primary-strong-hover         /* #86a0dd — Input/search hover border */
+--semantic-color-stroke-static-neutral-base         /* #e6e2dc — Dividers, SideNav border */
+--semantic-color-stroke-action-secondary-rest /* #77726b — Card border (0.5px), input border */
+--semantic-color-stroke-action-primary-strong-hover         /* #5475c6 — Input/search hover border */
 --semantic-color-stroke-action-primary-strong-pressed       /* #6e8bd4 — Input/search focused border */
 ```
 
 ### Icons in SideNav
 ```css
---semantic-color-foreground-action-secondary-rest   /* #484848  — Resting nav icon */
---semantic-color-foreground-action-secondary-pressed /* #2d4889  — Active nav icon */
+--semantic-color-foreground-action-secondary-rest   /* #3d3d3d  — Resting nav icon */
+--semantic-color-foreground-action-secondary-pressed /* #070707  — Active nav icon */
 ```
 
 ### Semantic accent (icon containers, badges)
 ```css
---semantic-color-fill-static-info-subtle  /* #f4f2fa — Purple icon container bg */
---semantic-color-foreground-static-info-on-subtle /* #221e3f — Text on amethyst bg */
---semantic-color-fill-static-positive-subtle          /* #f0faf1 — Green icon container bg */
+--semantic-color-fill-static-info-subtle  /* #dcd9ef — Purple icon container bg */
+--semantic-color-foreground-static-info-on-subtle /* #353063 — Text on amethyst bg */
+--semantic-color-fill-static-positive-subtle          /* #dff6e2 — Green icon container bg */
 --semantic-color-fill-static-brand-faint              /* #eef2fb — Blue icon container bg */
---semantic-color-fill-static-attention-subtle           /* #fff8e1 — Warm icon container bg */
+--semantic-color-fill-static-attention-subtle           /* #fef2de — Warm icon container bg */
 ```
 
 ### Profile avatar
 ```css
 --semantic-color-fill-static-info-subtle   /* #dcd9ef — Avatar background */
---semantic-color-foreground-static-info-on-subtle /* #221e3f — Avatar initials */
+--semantic-color-foreground-static-info-on-subtle /* #353063 — Avatar initials */
 ```
 
 ---
@@ -504,7 +504,7 @@ Not yet a standalone component — build inline:
 
 ## What NOT to do (causes wrong output every time)
 
-1. **Do not hardcode hex values** — use CSS variables. `#2d4889` → `var(--semantic-color-fill-static-brand-base)`.
+1. **Do not hardcode hex values** — use CSS variables. `#4b6ec3` → `var(--semantic-color-fill-static-brand-base)`.
 2. **Do not use Material Icons or Material Symbols Outlined** — always Rounded. Never `material-icons` class.
 3. **Do not put the SideNav collapse button at the bottom** — it is at the top, in the NavHeader.
 4. **Do not invent new colours** — every colour you need is in the token list above.

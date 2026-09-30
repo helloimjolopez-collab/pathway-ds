@@ -460,7 +460,7 @@ The nav surface (`#fafafa`) sits flush against the page background with no drawn
 
 ### Stroked
 
-A 0.5px right-hand border (`border-right: 0.5px solid #f6f6f6`) is rendered on the nav container. The stroke colour is `Stroke/Static/Neutral/Base` (`#f6f6f6`): the same token used for the horizontal divider above the collapse control and popover borders.
+A 0.5px right-hand border (`border-right: 0.5px solid #e6e2dc`) is rendered on the nav container. The stroke colour is `Stroke/Static/Neutral/Base` (`#e6e2dc`): the same token used for the horizontal divider above the collapse control and popover borders.
 
 > **2026-05-12 update:** Token changed from `Fill/Static/Brand/Faint` (`#edf0f9`) to `Stroke/Static/Neutral/Base` (`#f6f6f6`). All three places it's used (container border, divider, popover border) updated together.
 
@@ -469,7 +469,7 @@ Use the stroked variant when modules need an explicit visual boundary: for examp
 | Variant | Applies to | Token | Value |
 |---|---|---|---|
 | **Unstroked** | Expanded + Collapsed | *(no border)* |: |
-| **Stroked** | Expanded + Collapsed | `Stroke/Static/Neutral/Base` | `#f6f6f6` |
+| **Stroked** | Expanded + Collapsed | `Stroke/Static/Neutral/Base` | `#e6e2dc` |
 
 > **Usage guidance:** Neither variant is "correct": the choice belongs to the individual module team, not the design system. Use the variant that produces the clearest visual hierarchy for that module's specific page backgrounds.
 
@@ -506,7 +506,7 @@ NavSectionLabel
 | Line height | `Label/Section/Small/Semibold/LineHeight` | `16px` |
 | Letter spacing | `Label/Section/Small/Semibold/LetterSpacing` | `0.6px` |
 | Text transform | *(design rule)* | `uppercase` |
-| Text colour | `Foreground/Static/Neutral/Base` | `#606060` |
+| Text colour | `Foreground/Static/Neutral/Base` | `#313131` |
 
 ### Collapsed rail behaviour
 
@@ -517,7 +517,7 @@ The divider that replaces a section label uses identical tokens to the `NavHeade
 | Property | Value | Token |
 |---|---|---|
 | Height | `1px` | *(raw)* |
-| Colour | `#f6f6f6` | `Stroke/Static/Neutral/Base` |
+| Colour | `#e6e2dc` | `Stroke/Static/Neutral/Base` |
 | Surrounding padding | `2px top / 2px bottom` | *(raw)* |
 
 **First section rule:** If the first `NavSectionLabel` in the list is replaced by a divider in rail mode, no divider is rendered above the very first section (there is nothing above it to separate). Subsequent sections each get a divider between them. This matches Figma node `40006794:6144`.
@@ -630,12 +630,12 @@ SideNavListSection
 | Fill (base) | `no fill (rest paints nothing)` | `#fafafa` (transparent) |
 | Fill (hover) | `Fill/Action/Selection/Hover` | `rgba(17,17,17,0.02)` |
 | Fill (active) | `Fill/Action/Selection/Selected` | `rgba(160,181,230,0.16)` |
-| Text (base) | `Foreground/Action/Secondary/Rest` | `#313131` |
-| Text (hover) | `Foreground/Action/Secondary/Hover` | `#252525` |
-| Text (active) | `Foreground/Action/Secondary/Pressed` | `#1b2d57` |
-| Bullet dot (base) | `Foreground/Action/Secondary/Rest` | `#484848` |
-| Bullet dot (hover) | `Foreground/Action/Secondary/Hover` | `#313131` |
-| Bullet dot (active) | `Foreground/Action/Secondary/Pressed` | `#2d4889` |
+| Text (base) | `Foreground/Action/Secondary/Rest` | `#3d3d3d` |
+| Text (hover) | `Foreground/Action/Secondary/Hover` | `#202020` |
+| Text (active) | `Foreground/Action/Secondary/Pressed` | `#070707` |
+| Bullet dot (base) | `Foreground/Action/Secondary/Rest` | `#3d3d3d` |
+| Bullet dot (hover) | `Foreground/Action/Secondary/Hover` | `#202020` |
+| Bullet dot (active) | `Foreground/Action/Secondary/Pressed` | `#070707` |
 | Font size | `Text/Body/XSmall/Regular` | `12px` |
 | Font weight | `Text/Body/XSmall/Regular` | `400` |
 | Line height | `Text/Body/XSmall/Regular` | `18px` |
@@ -911,7 +911,7 @@ The expanded SideNav is a **fixed 250px** wide. Item labels (especially Level 1 
 2. **Collapsed grouper with active child** (children hidden because grouper is closed, OR sidebar is fully collapsed) → Trail-collapsed state. Visually identical to Active state: same fill, same icon color, same stripe.
 3. When the sidebar collapses, any grouper that was in expanded-trail automatically transitions to collapsed-trail if it has an active child.
 4. `indicator.stripe` is only visible in **Active** and **Trail-collapsed** states.
-5. `indicator.stripe` color = `Foreground/Action/Secondary/Pressed` (`#2d4889`): same token as icon active.
+5. `indicator.stripe` color = `Foreground/Action/Secondary/Pressed` (`#070707`): same token as icon active.
 
 > **Standalone implementation rule: Trail-collapsed:** When a grouper is closed and any of its children is the active destination, apply **exactly the same 5 token values as Active state** to the grouper row: fill `#a0b5e629`, text `#1b2d57`, icon `#2d4889`, stripe visible `#2d4889`. Trail-collapsed and Active are visually indistinguishable. The only difference is semantic: Active applies to a leaf destination; Trail-collapsed applies to a grouper whose active descendant is hidden. This rule applies whether the sidebar is 250px expanded or 72px collapsed.
 
@@ -937,8 +937,8 @@ The `container.indicator` column is **always present** on every `SideNavItem` (L
 ## 8. SideNav Container
 
 ### 8.1 Surface
-- Background: `Fill/Static/Neutral/Mono` → `#fafafa`
-- Right border: `0.5px solid` `Stroke/Static/Neutral/Base` → `#f6f6f6`
+- Background: `Fill/Static/Neutral/Mono` → `#ffffff`
+- Right border: `0.5px solid` `Stroke/Static/Neutral/Base` → `#e6e2dc`
 
 ### 8.2 Dimensions & Padding
 ```
@@ -980,10 +980,10 @@ NavHeader  (48px row + 1px divider below)
 ├── Container.Main  (h-[48px], full width, hover fill)
 │   ├── Expanded (250px): action icon right-aligned in Slot.RowEnd (36×36 wrapper, 12×12 icon)
 │   └── Collapsed (72px): action icon centered (12×12)
-└── Divider  (1px, Stroke/Static/Neutral/Base #f6f6f6, py-[2px])
+└── Divider  (1px, Stroke/Static/Neutral/Base #e6e2dc, py-[2px])
 ```
 
-**Action icons:** `right_panel_open` (when sidebar is expanded — click to collapse) and `left_panel_open` (when sidebar is collapsed — click to expand). Both 12×12 SVG glyphs, fill colour `Foreground/Action/Secondary/Rest` (`#6b6b6b`).
+**Action icons:** `right_panel_open` (when sidebar is expanded — click to collapse) and `left_panel_open` (when sidebar is collapsed — click to expand). Both 12×12 SVG glyphs, fill colour `Foreground/Action/Secondary/Rest` (`#3d3d3d`).
 
 **Key differences from `SideNavItem`:**
 - No `container.indicator` / `indicator.stripe` column
@@ -1042,8 +1042,8 @@ The overflow/scroll behaviour is not annotated in Figma. The nav container is de
 |---|---|---|
 | Width | 72px | None: raw value |
 | Padding | `12px` horizontal (`Padding/Medium`), `8px` top (`Padding/Tight`), `0` bottom | None |
-| Background | `#fafafa` | `Fill/Static/Neutral/Mono` |
-| Border-right | `0.5px solid #f6f6f6` | `Stroke/Static/Neutral/Base` |
+| Background | `#ffffff` | `Fill/Static/Neutral/Mono` |
+| Border-right | `0.5px solid #e6e2dc` | `Stroke/Static/Neutral/Base` |
 | Item gap | `6px` | `Gap/XTight` |
 
 The 72px breaks down as: 12px left padding + 48px item + 12px right padding. Items are 44px tall × 48px wide in the collapsed rail.
@@ -1072,7 +1072,7 @@ Both appear with an **8px gap** from the container's right edge (`left: calc(100
 | Property | Value | Token |
 |---|---|---|
 | Background | `white` | `Fill/Static/Neutral/Mono` |
-| Border | `0.5px solid #f6f6f6` | `Stroke/Static/Neutral/Base` |
+| Border | `0.5px solid #e6e2dc` | `Stroke/Static/Neutral/Base` |
 | Border radius | `8px` | `Border/Radius/S` |
 | Shadow | `2px 2px 8px 0px rgba(0,0,0,0.03)` |: |
 | Padding | `6px 8px` |: |
@@ -1085,7 +1085,7 @@ Both appear with an **8px gap** from the container's right edge (`left: calc(100
 | Property | Value | Token |
 |---|---|---|
 | Background | `white` | `Fill/Static/Neutral/Mono` |
-| Border | `0.5px solid #ededed` | `Stroke/Static/Neutral/Base` |
+| Border | `0.5px solid #e6e2dc` | `Stroke/Static/Neutral/Base` |
 | Border radius | `8px` | `Border/Radius/S` |
 | Shadow | `2px 2px 8px 4px rgba(0,0,0,0.03)` | `Shadow.Medium` |
 | Padding | `6px` |: |
@@ -1097,11 +1097,11 @@ Both appear with an **8px gap** from the container's right edge (`left: calc(100
 | Property | Value | Token |
 |---|---|---|
 | Height | `40px min` |: |
-| Bottom border | `0.5px solid #ededed` | `Stroke/Static/Neutral/Base` |
+| Bottom border | `0.5px solid #e6e2dc` | `Stroke/Static/Neutral/Base` |
 | Left indicator slot | `4px wide` (same structural column as `indicator.stripe`) |: |
 | Text indent | `8px left padding` |: |
 | Typography | 14px / 400 / 20px / 0.02px | `Label/Menu/Base/Regular` |
-| Text colour | `#6b6b6b` | `Foreground/Static/Neutral/Base` |
+| Text colour | `#313131` | `Foreground/Static/Neutral/Base` |
 
 **`PopoverMenu.Item`** (each child):
 
@@ -1111,8 +1111,8 @@ Both appear with an **8px gap** from the container's right edge (`left: calc(100
 | Padding | `4px 12px` |: |
 | Border radius | `8px` | `Border/Radius/S` |
 | Typography | 14px / 400 / 20px / 0.02px | `Text/Body/S/Regular` |
-| Text colour (base) | `#313131` | `Foreground/Action/Secondary/Rest` |
-| Text colour (hover) | `#252525` | `Foreground/Action/Secondary/Hover` |
+| Text colour (base) | `#3d3d3d` | `Foreground/Action/Secondary/Rest` |
+| Text colour (hover) | `#202020` | `Foreground/Action/Secondary/Hover` |
 | Fill (hover) | `rgba(17,17,17,0.04)` | `Fill/Action/Selection/Hover` |
 
 ### 10.4 Hover-safe interaction
@@ -1399,7 +1399,7 @@ The entire nav is a single Tab stop. Arrow keys navigate within it.
 | Visible focus ring on all interactive items | ❓ Not styled in demo: browser default outline only |
 | Focus ring must not be suppressed (`outline: none` without replacement) | 📋 Required: WCAG 2.4.11 |
 | Focus ring should use `:focus-visible` (not `:focus`) to avoid painting on mouse click | 📋 Recommended |
-| Suggested focus style | `outline: 2px solid #2d4889; outline-offset: 2px;` (uses `Foreground/Action/Secondary/Pressed`) |
+| Suggested focus style | `outline: 2px solid #070707; outline-offset: 2px;` (uses `Foreground/Action/Secondary/Pressed`) |
 
 > Figma does not contain a "focused" state variant in the `SideNavItem` component variants. This is a documentation gap: a focused state should be added to the component before production. See §16.
 
@@ -1443,11 +1443,11 @@ All values below use token resolved values. Verify with a tool (e.g. Colour Cont
 
 | State | Text token → hex | Background | Approx. ratio | WCAG AA (4.5:1) |
 |---|---|---|---|---|
-| Base | `Foreground/Action/Secondary/Rest` → `#313131` on `#fafafa` | ~11.6:1 | ✅ Pass |
-| Hover | `Foreground/Action/Secondary/Hover` → `#252525` on `≈#f5f5f5` | ~14.1:1 | ✅ Pass |
-| Active | `Foreground/Action/Secondary/Pressed` → `#1b2d57` on `≈#eef1f8` | ~16.3:1 | ✅ Pass |
-| Trail (expanded) | `Foreground/Action/Secondary/Pressed` → `#1b2d57` on `≈#f5f5f5` | ~17.9:1 | ✅ Pass |
-| `indicator.stripe` | `Foreground/Action/Secondary/Pressed` → `#2d4889` on `#fafafa` | Non-text UI component | ✅ 3:1 (WCAG 1.4.11) |
+| Base | `Foreground/Action/Secondary/Rest` → `#3d3d3d` on `#3d3d3d` | ~11.6:1 | ✅ Pass |
+| Hover | `Foreground/Action/Secondary/Hover` → `#202020` on `≈#202020` | ~14.1:1 | ✅ Pass |
+| Active | `Foreground/Action/Secondary/Pressed` → `#070707` on `≈#070707` | ~16.3:1 | ✅ Pass |
+| Trail (expanded) | `Foreground/Action/Secondary/Pressed` → `#070707` on `≈#070707` | ~17.9:1 | ✅ Pass |
+| `indicator.stripe` | `Foreground/Action/Secondary/Pressed` → `#070707` on `#070707` | Non-text UI component | ✅ 3:1 (WCAG 1.4.11) |
 | Focus ring (proposed) | `#2d4889` outline on `#fafafa` | Non-text UI component | ✅ 3:1: verify with tool |
 
 > ⚠ Contrast ratios are approximated on the `#fafafa` nav surface. Alpha-blended fills (`rgba(...)`) will vary on other backgrounds.
@@ -1652,7 +1652,7 @@ The global top navigation is a separate component not owned by this spec. The Pa
 
 **TopNav.Global slot layout (left → right) — as read from Figma 2026-05-13:**
 - **Row Start:** SideNav control (mobile hamburger `menu`, hidden ≥768px via CSS) · ModuleSwitcher (Amplify Home icon + `expand_more` chevron, no text label) · OrgSwitcher (church logo 20×20 sq + "Sacred Heart Church-ITD | Knoxville" label + `expand_more` chevron; container has `stroke/action/tertiary/base` border)
-- **Row End:** Search (48×48 wrapper → 32×32 circle button with `cornerradius/full:64px` and `search` icon) · Desktop: 2× Notifications bell (`notifications` Material Symbol, 48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Info/Subtle #dcd9ef`, "JL" in `#221e3f`)
+- **Row End:** Search (48×48 wrapper → 32×32 circle button with `cornerradius/full:64px` and `search` icon) · Desktop: 2× Notifications bell (`notifications` Material Symbol, 48×48 each) | Tablet+Mobile: `more_vert` (48×48) · Profile (32×32 circle, `Fill/Static/Info/Subtle #dcd9ef`, "JL" in `#dcd9ef`)
 
 **Breakpoint variants (Figma node IDs):**
 - Desktop 1440px: `40007103:17678` — `justify-content: space-between`, right slot `width: 216px`
@@ -1884,8 +1884,8 @@ Concrete example: user clicks "Hyena" (child of Elephant). Elephant's children s
 | Property | Token | Value |
 |---|---|---|
 | Background | `Fill/Action/Selection/Selected` | `#a0b5e629` |
-| Text | `Foreground/Action/Secondary/Pressed` | `#1b2d57` |
-| Icon | `Foreground/Action/Secondary/Pressed` | `#2d4889` |
+| Text | `Foreground/Action/Secondary/Pressed` | `#070707` |
+| Icon | `Foreground/Action/Secondary/Pressed` | `#070707` |
 | `indicator.stripe` | visible | `#2d4889` |
 
 This applies whether the sidebar is 250px or 72px. Full detail at §6 and §7.

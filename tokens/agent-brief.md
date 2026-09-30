@@ -264,7 +264,7 @@ If no component exists for what you need (e.g. a custom card, a banner, a confir
 
 1. **Background:** pick from the Surface or Fill families. White cards use `Fill/Static/Neutral/Mono`. Subtle grey panels use `Fill/Surface/Canvas` (`#fafafa`). Don't invent new surface colours.
 
-2. **Border:** `Stroke/Static/Neutral/Base` (`#ededed`) for separating elements, `Stroke/Static/Neutral/Base` (`#f6f6f6`) for very subtle structural dividers.
+2. **Border:** `Stroke/Static/Neutral/Base` (`#e6e2dc`) for separating elements, `Stroke/Static/Neutral/Base` (`#e6e2dc`) for very subtle structural dividers.
 
 3. **Radius:** 8px (`Border/Radius/S`) for almost anything. 12px (`Border/Radius/M`) for cards. 64px+ for circles. Never invent radii.
 

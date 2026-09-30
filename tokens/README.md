@@ -1,6 +1,6 @@
 # Token architecture
 
-Design tokens are named design decisions stored as data. Instead of `color: #4b6ec3` scattered across dozens of components, you write `color: var(--semantic-color-foreground-action-primary-on-subtle-rest)`. The name carries the intent; the value is managed in one place.
+Design tokens are named design decisions stored as data. Instead of `color: #345499` scattered across dozens of components, you write `color: var(--semantic-color-foreground-action-primary-on-subtle-rest)`. The name carries the intent; the value is managed in one place.
 
 Pathway tokens have two layers: **primitive** and **semantic**.
 
@@ -11,11 +11,11 @@ Pathway tokens have two layers: **primitive** and **semantic**.
 Primitives are raw values. They define the full range of what's available: every shade of every colour, every spacing step, every type size. A primitive token doesn't say _when_ to use it; it says _what it is_.
 
 ```css
---primitive-color-brand-100: #4b6ec3
---primitive-color-brand-50:  #a0b5e6
+--primitive-color-brand-100: #a0b5e6
+--primitive-color-brand-50:  #ccd7f2
 --primitive-color-cool-neutral-0:   #ffffff
---primitive-color-cool-neutral-100: #1a1a1a
---primitive-color-red-100:   #d32f2f
+--primitive-color-cool-neutral-100: #d2d2d2
+--primitive-color-red-100:   #e9b7b7
 ```
 
 **Naming pattern:** `--primitive-[category]-[family]-[step]`

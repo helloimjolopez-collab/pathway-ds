@@ -98,41 +98,41 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `fill.static.brand.base` | `--semantic-color-fill-static-brand-base` | #ccd7f2 | Nav bar background |
+| `fill.static.brand.base` | `--semantic-color-fill-static-brand-base` | #4b6ec3 | Nav bar background |
 | `fill.action.primary.subtle.rest` (dark) | dark-mode | rgba(160,181,230,0.04) | OrgSwitcher resting fill |
 | `stroke.action.primary.strong.rest` (dark) | dark-mode | rgba(160,181,230,0.16) | OrgSwitcher border |
 | `fill.action.primary.subtle.hover` (dark) | dark-mode | rgba(10,18,35,0.16) | All nav controls hover |
 | `foreground.static.neutral.mono` (dark) | dark-mode | #ffffff | All text + icons on nav |
-| `fill.static.info.subtle` | `--semantic-color-fill-static-info-subtle` | #f4f2fa | Profile avatar bg |
-| `foreground.static.info.on-subtle` | `--semantic-color-foreground-static-info-on-subtle` | #464080 | Profile avatar initials |
+| `fill.static.info.subtle` | `--semantic-color-fill-static-info-subtle` | #dcd9ef | Profile avatar bg |
+| `foreground.static.info.on-subtle` | `--semantic-color-foreground-static-info-on-subtle` | #353063 | Profile avatar initials |
 
 ### SideNav surface (light mode)
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `surface.nav.light` | `--semantic-color-fill-static-neutral-mono` | #f9f9f9 | SideNav background |
-| `stroke.static.neutral.base` | `--semantic-color-stroke-static-neutral-faint` | #d8d3cd | Right border + section separators |
+| `surface.nav.light` | `--semantic-color-fill-static-neutral-mono` | #ffffff | SideNav background |
+| `stroke.static.neutral.base` | `--semantic-color-stroke-static-neutral-faint` | #f9f7f5 | Right border + section separators |
 | `fill.action.selection.hover` | `--semantic-color-fill-action-selection-hover` | rgba(69,77,94,0.06) | Nav item hover |
 | `fill.action.selection.selected` | `--semantic-color-fill-action-selection-selected` | #eef2fb | Active nav item fill |
 | `foreground.action.secondary.rest` | `--semantic-color-foreground-action-secondary-rest` | #3d3d3d | Nav item label |
-| `foreground.action.secondary.pressed` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #161616 | Active nav item label |
+| `foreground.action.secondary.pressed` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #345499 | Active nav item label |
 | `foreground.action.secondary.rest` | `--semantic-color-foreground-action-secondary-rest` | #3d3d3d | Nav item icon (resting) |
-| `foreground.action.secondary.pressed` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #161616 | Active nav item icon |
+| `foreground.action.secondary.pressed` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #345499 | Active nav item icon |
 
 ### ScreenTemplate surface (light mode)
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
 | `surface.canvas.light` | `--semantic-color-fill-surface-canvas` | #fafafa | Page background |
-| `fill.static.neutral.faint` | `--semantic-color-fill-static-neutral-faint` | #f9f7f5 | Card background |
-| `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` | #b0aaa2 | Card border + toolbar search border |
+| `fill.static.neutral.faint` | `--semantic-color-fill-static-neutral-faint` | #fdfdfd | Card background |
+| `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` | #77726b | Card border + toolbar search border |
 | `foreground.static.neutral.bold` | `--semantic-color-foreground-static-neutral-bold` | #202020 | Page heading, card title |
 | `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` | #313131 | Page subtitle |
 | `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` | #313131 | Section heading, card body, search placeholder |
 | `fill.action.primary.subtle.rest` | `--semantic-color-fill-action-primary-subtle-rest` | #eef2fb | Active filter chip bg |
 | `foreground.action.primary.on-subtle.rest` | `--semantic-color-foreground-action-primary-on-subtle-rest` | #345499 | Active tab, active filter chip text |
-| `fill.accent_amethyst.light` | `--semantic-color-fill-static-info-subtle` | #f4f2fa | Badge background |
-| `foreground.static.info.on-subtle` | `--semantic-color-foreground-static-info-on-subtle` | #464080 | Badge text |
+| `fill.accent_amethyst.light` | `--semantic-color-fill-static-info-subtle` | #dcd9ef | Badge background |
+| `foreground.static.info.on-subtle` | `--semantic-color-foreground-static-info-on-subtle` | #353063 | Badge text |
 
 ---
 
@@ -431,7 +431,7 @@ On mobile, the org trigger shows abbreviated text. The rules:
 
 ### 9.6 What to never do
 
-- Never hardcode `#2d4889` — always use `var(--semantic-color-fill-static-brand-base, #2d4889)`.
+- Never hardcode `#4b6ec3` — always use `var(--semantic-color-fill-static-brand-base, #4b6ec3)`.
 - Never hardcode `#fafafa` — always use `var(--semantic-color-fill-surface-canvas, #fafafa)`.
 - Never use `display: none` on the SideNav for any state — use `width: 0` with `overflow: hidden`.
 - Never set `border-radius: 8px` on the ToolBar search input — it is 6px (confirmed from Figma).
