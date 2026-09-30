@@ -30,20 +30,21 @@ export const SCROLL = {
   thumbMin:    28,                                                // px — min thumb length (grab-target floor); JS layout math
   gutter:      "var(--semantic-layout-units-padding-xxxtight)",   // 2px — inset from the right edge
   grabZone:    16,                                                // px — invisible mouse grab strip (wider than the 6px thumb so it's catchable)
-  // WHY THESE TWO RUNGS AND NOT THE FAINTER ONES (2026-09-16):
+  // THE LIGHT RUNGS ARE A DELIBERATE CHOICE BY THE DESIGN OWNER. Do not raise
+  // them again without asking Jo first.
   //
-  // Rest was Scrim/Faint (black 16%), which composites to 1.4:1 against both
-  // canvas and sheet. The AA floor for a non-text UI component is 3:1, so a 6px
-  // pill at 1.4:1 sat right at the threshold of perception: one person saw it
-  // and another, on a brighter display, reported the scrollbar as missing
-  // entirely. That was a real report, not a misconfiguration.
+  // These were briefly Subtle (50%) and Base (70%) to clear the 3:1 AA floor
+  // for a non-text UI component, after one person reported the scrollbar as
+  // missing while another saw it fine. Measured over #fafafa: Faint 16% =
+  // 1.4:1, Light 24% = 1.68:1, Subtle 50% = 3.4:1, Base 70% = 6.57:1.
   //
-  // Measured over #fafafa: Faint 16% = 1.4:1, Light 24% = 1.68:1,
-  // Subtle 50% = 3.4:1, Base 70% = 6.57:1. Subtle is the lightest rung that
-  // clears the floor, so rest takes it and hover takes Base, which keeps the
-  // hover step legible as a step.
-  thumbRest:   "var(--semantic-color-scrim-subtle)",   // black 50% — 3.4:1, the lightest rung clearing 3:1
-  thumbHover:  "var(--semantic-color-scrim-base)",     // black 70% — 6.57:1, hover/drag
+  // Jo reviewed that in Storybook and rejected it: the heavier thumb reads as
+  // a solid grey bar rather than the light warm overlay the design intends, and
+  // an overlay scrollbar is a redundant affordance (the content scrolls with or
+  // without it, and the OS bar remains). So contrast is bought back with SIZE
+  // and PRESENCE rather than with darkness: see thumbWidth and the grab strip.
+  thumbRest:   "var(--semantic-color-scrim-faint)",    // black 16% — faint overlay (rest)
+  thumbHover:  "var(--semantic-color-scrim-light)",    // black 24% — hover/drag
   thumbBlur:   "blur(8px) saturate(180%)",
   // Hairline glass edge: semantic white at 35% via color-mix.
   thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-fill-static-neutral-faint) 35%, transparent)",
@@ -51,8 +52,17 @@ export const SCROLL = {
   // multiplied the thumb's own alpha by the in-flight opacity, so during the
   // 200ms glide-in it rendered as low as 1.18:1 — below the floor at the exact
   // moment the user is looking for it. Only the fade-out is animated now.
-  fadeIn:      "background var(--motion-duration-3) var(--motion-easing-standard)",
-  fadeOut:     "opacity var(--motion-duration-5) var(--motion-easing-standard)",
+  // Asymmetric fade: snappy decelerate glide-IN, graceful fade-OUT. Each entry
+  // names every property it is responsible for, because the element swaps
+  // between them with `transition: active ? fadeIn : fadeOut`.
+  //
+  // fadeIn briefly listed only `background`, on the reasoning that animating
+  // opacity multiplies the thumb's own alpha by the in-flight opacity and dips
+  // the contrast mid-glide. The visible result was worse than the thing it
+  // avoided: the thumb POPPED into existence the instant you scrolled. The
+  // glide is the point, so opacity is back.
+  fadeIn:      "opacity var(--motion-duration-3) var(--motion-easing-decelerate), background var(--motion-duration-3) var(--motion-easing-standard)",
+  fadeOut:     "opacity var(--motion-duration-5) var(--motion-easing-standard), background var(--motion-duration-3) var(--motion-easing-standard)",
   idleHideMs:  500,                                               // hide the thumb this long after scrolling stops / mouse leaves the bar
 };
 
