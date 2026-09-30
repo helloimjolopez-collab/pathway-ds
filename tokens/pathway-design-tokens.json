@@ -3995,21 +3995,21 @@
     "fontstyle": {
       "normal": {
         "$type": "string",
-        "$value": "Normal"
+        "$value": "normal"
       },
       "italic": {
         "$type": "string",
-        "$value": "Italic"
+        "$value": "italic"
       }
     },
     "textdecoration": {
       "none": {
         "$type": "string",
-        "$value": "None"
+        "$value": "none"
       },
       "underline": {
         "$type": "string",
-        "$value": "Underline"
+        "$value": "underline"
       }
     },
     "size": {

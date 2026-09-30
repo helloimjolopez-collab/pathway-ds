@@ -5009,7 +5009,7 @@ const tokens = {
     ]
   },
   "primitive-type-fontstyle-normal": {
-    "value": "Normal",
+    "value": "normal",
     "type": "string",
     "path": [
       "primitive-type",
@@ -5018,7 +5018,7 @@ const tokens = {
     ]
   },
   "primitive-type-fontstyle-italic": {
-    "value": "Italic",
+    "value": "italic",
     "type": "string",
     "path": [
       "primitive-type",
@@ -5027,7 +5027,7 @@ const tokens = {
     ]
   },
   "primitive-type-textdecoration-none": {
-    "value": "None",
+    "value": "none",
     "type": "string",
     "path": [
       "primitive-type",
@@ -5036,7 +5036,7 @@ const tokens = {
     ]
   },
   "primitive-type-textdecoration-underline": {
-    "value": "Underline",
+    "value": "underline",
     "type": "string",
     "path": [
       "primitive-type",

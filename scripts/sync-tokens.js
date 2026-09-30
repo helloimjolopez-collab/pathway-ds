@@ -147,6 +147,36 @@ function processExport(data) {
  * Recursively walk the token tree. When we find a leaf (has $type and $value),
  * call the callback with the path and the DTCG token object.
  */
+/**
+ * Lower-case the four token values that are CSS KEYWORDS rather than labels.
+ *
+ * Figma stores them capitalised — FontStyle/Italic is "Italic",
+ * TextDecoration/Underline is "Underline" — because in the panel they read as
+ * labels. Emitted verbatim they become `font-style: Italic` and
+ * `text-decoration: Underline`. CSS keywords are case-insensitive so browsers
+ * accept it, but strict design-system linters reject it, and a consumer was
+ * hand-lowercasing them after every pull only for the next sync to put them
+ * back.
+ *
+ * Normalising HERE rather than in Style Dictionary is deliberate: this file
+ * feeds pathway-design-tokens.json, which is the single source for the CSS, for
+ * tokens.js AND for dist/tokens.json. Fixing it in a Style Dictionary transform
+ * would leave tokens.json still capitalised, because build-dist.js copies the
+ * tree directly.
+ *
+ * Scoped by PATH, not by value. A blanket toLowerCase would also destroy
+ * "Red Hat Text", which is a font family and must keep its casing.
+ */
+const CSS_KEYWORD_GROUPS = /^(fontstyle|textdecoration)$/;
+function normaliseCssKeyword(value, pathParts) {
+  if (typeof value !== "string") return value;
+  if (value.startsWith("{")) return value;            // an alias, not a keyword
+  // pathParts looks like ["primitive-type", "fontstyle", "italic"]
+  if (pathParts.length < 2) return value;
+  if (!CSS_KEYWORD_GROUPS.test(String(pathParts[pathParts.length - 2]))) return value;
+  return value.toLowerCase();
+}
+
 function processTokenGroup(obj, pathSoFar, callback, aliasCtx) {
   for (const [key, val] of Object.entries(obj)) {
     if (key.startsWith("$")) continue; // skip metadata keys at group level
@@ -166,10 +196,13 @@ function processTokenGroup(obj, pathSoFar, callback, aliasCtx) {
         // tokenPath is threaded through so a malformed alias can be reported by
         // the path a human can actually find in the export, rather than just by
         // its target.
-        $value: formatValue(val.$value, dtcgType, val.$collectionName, {
-          ...aliasCtx,
-          tokenPath: currentPath.join("."),
-        }),
+        $value: normaliseCssKeyword(
+          formatValue(val.$value, dtcgType, val.$collectionName, {
+            ...aliasCtx,
+            tokenPath: currentPath.join("."),
+          }),
+          currentPath,
+        ),
       };
 
       if (val.$description) {
