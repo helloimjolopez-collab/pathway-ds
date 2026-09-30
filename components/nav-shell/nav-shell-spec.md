@@ -124,7 +124,7 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
 | `surface.canvas.light` | `--semantic-color-fill-surface-canvas` | #fafafa | Page background |
-| `fill.static.neutral.faint` | `--semantic-color-fill-static-neutral-faint` | #fdfdfd | Card background |
+| `fill.static.neutral.faint` | `--semantic-color-fill-static-neutral-faint` | #fefefd | Card background |
 | `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` | #77726b | Card border + toolbar search border |
 | `foreground.static.neutral.bold` | `--semantic-color-foreground-static-neutral-bold` | #202020 | Page heading, card title |
 | `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` | #313131 | Page subtitle |

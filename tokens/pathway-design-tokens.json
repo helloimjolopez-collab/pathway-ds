@@ -4878,6 +4878,80 @@
             }
           }
         },
+        "chart": {
+          "sequential": {
+            "10": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.200}"
+            },
+            "11": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.150}"
+            },
+            "12": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.100}"
+            },
+            "13": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.75}"
+            },
+            "14": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.50}"
+            },
+            "15": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.25}"
+            },
+            "01": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.900}"
+            },
+            "02": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.800}"
+            },
+            "03": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.700}"
+            },
+            "04": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.600}"
+            },
+            "05": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.500}"
+            },
+            "06": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.400}"
+            },
+            "07": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.350}"
+            },
+            "08": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.300}"
+            },
+            "09": {
+              "$type": "color",
+              "$value": "{primitive-color.pathway.amethyst.250}"
+            },
+            "anchor": {
+              "end": {
+                "$type": "color",
+                "$value": "{primitive-color.pathway.amethyst.25}"
+              },
+              "start": {
+                "$type": "color",
+                "$value": "{primitive-color.pathway.amethyst.900}"
+              }
+            }
+          }
+        },
         "shadow": {
           "dropshadow": {
             "$type": "color",
@@ -5002,11 +5076,11 @@
           "neutral": {
             "base": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.25}"
+              "$value": "{primitive-color.pathway.warm-neutral.50}"
             },
             "faint": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.5}"
+              "$value": "{primitive-color.pathway.warm-neutral.0}"
             },
             "mono": {
               "$type": "color",
@@ -5014,11 +5088,11 @@
             },
             "strong": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.75}"
+              "$value": "{primitive-color.pathway.warm-neutral.75}"
             },
             "subtle": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.10}"
+              "$value": "{primitive-color.pathway.warm-neutral.25}"
             }
           },
           "positive": {
@@ -5058,80 +5132,6 @@
           "overlay": {
             "$type": "color",
             "$value": "{primitive-color.pathway.cool-neutral.0}"
-          }
-        },
-        "chart": {
-          "sequential": {
-            "10": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.200}"
-            },
-            "11": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.150}"
-            },
-            "12": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.100}"
-            },
-            "13": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.75}"
-            },
-            "14": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.50}"
-            },
-            "15": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.25}"
-            },
-            "01": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.900}"
-            },
-            "02": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.800}"
-            },
-            "03": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.700}"
-            },
-            "04": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.600}"
-            },
-            "05": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.500}"
-            },
-            "06": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.400}"
-            },
-            "07": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.350}"
-            },
-            "08": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.300}"
-            },
-            "09": {
-              "$type": "color",
-              "$value": "{primitive-color.pathway.amethyst.250}"
-            },
-            "anchor": {
-              "end": {
-                "$type": "color",
-                "$value": "{primitive-color.pathway.amethyst.25}"
-              },
-              "start": {
-                "$type": "color",
-                "$value": "{primitive-color.pathway.amethyst.900}"
-              }
-            }
           }
         }
       },
@@ -5508,11 +5508,11 @@
           "secondary": {
             "hover": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.warm-neutral.350}"
+              "$value": "{primitive-color.pathway.warm-neutral.450}"
             },
             "pressed": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.warm-neutral.450}"
+              "$value": "{primitive-color.pathway.warm-neutral.500}"
             },
             "rest": {
               "$type": "color",

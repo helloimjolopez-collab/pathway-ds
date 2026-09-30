@@ -142,7 +142,7 @@ TopNavSearch.Container               position relative, FIXED 48×48 footprint (
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `fill.static.neutral.faint` | `--semantic-color-fill-static-neutral-faint` | #fdfdfd | Bar background (all states except disabled) |
+| `fill.static.neutral.faint` | `--semantic-color-fill-static-neutral-faint` | #fefefd | Bar background (all states except disabled) |
 | `fill.action.primary.subtle.rest` | `--semantic-color-fill-action-primary-subtle-rest` | #eef2fb | Filter pill background when filter-active |
 | `fill.action.secondary.hover` | `--semantic-color-fill-action-secondary-hover` | rgba(17,17,17,0.02) | Icon pill hover state |
 | `fill.action.secondary.pressed` | `--semantic-color-fill-action-secondary-pressed` | #e6e2dc | Icon pill pressed state |

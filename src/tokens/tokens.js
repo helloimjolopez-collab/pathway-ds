@@ -6964,6 +6964,212 @@ const tokens = {
       "rest"
     ]
   },
+  "semantic-color-light-fill-chart-sequential-10": {
+    "value": "#a8a0d8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "10"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-11": {
+    "value": "#b9b3e0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "11"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-12": {
+    "value": "#cbc6e8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "12"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-13": {
+    "value": "#dcd9ef",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "13"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-14": {
+    "value": "#e8e6f5",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "14"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-15": {
+    "value": "#f4f2fa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "15"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-01": {
+    "value": "#110c2c",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "01"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-02": {
+    "value": "#221e3f",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "02"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-03": {
+    "value": "#353063",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "03"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-04": {
+    "value": "#464080",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "04"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-05": {
+    "value": "#5951a0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "05"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-06": {
+    "value": "#6e64b8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "06"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-07": {
+    "value": "#877ec8",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "07"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-08": {
+    "value": "#9a90d0",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "08"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-09": {
+    "value": "#a198d4",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "09"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-anchor-end": {
+    "value": "#f4f2fa",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "anchor",
+      "end"
+    ]
+  },
+  "semantic-color-light-fill-chart-sequential-anchor-start": {
+    "value": "#110c2c",
+    "type": "color",
+    "path": [
+      "semantic-color",
+      "pathway-light",
+      "fill",
+      "chart",
+      "sequential",
+      "anchor",
+      "start"
+    ]
+  },
   "semantic-color-light-fill-shadow-dropshadow": {
     "value": "#22386b14",
     "type": "color",
@@ -7264,7 +7470,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-fill-static-neutral-base": {
-    "value": "#f6f6f6",
+    "value": "#f3f0ec",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7276,7 +7482,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-fill-static-neutral-faint": {
-    "value": "#fdfdfd",
+    "value": "#fefefd",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7300,7 +7506,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-fill-static-neutral-strong": {
-    "value": "#e1e1e1",
+    "value": "#e6e2dc",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7312,7 +7518,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-fill-static-neutral-subtle": {
-    "value": "#fafafa",
+    "value": "#f9f7f5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -7413,212 +7619,6 @@ const tokens = {
       "fill",
       "surface",
       "overlay"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-10": {
-    "value": "#a8a0d8",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "10"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-11": {
-    "value": "#b9b3e0",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "11"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-12": {
-    "value": "#cbc6e8",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "12"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-13": {
-    "value": "#dcd9ef",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "13"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-14": {
-    "value": "#e8e6f5",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "14"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-15": {
-    "value": "#f4f2fa",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "15"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-01": {
-    "value": "#110c2c",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "01"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-02": {
-    "value": "#221e3f",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "02"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-03": {
-    "value": "#353063",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "03"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-04": {
-    "value": "#464080",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "04"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-05": {
-    "value": "#5951a0",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "05"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-06": {
-    "value": "#6e64b8",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "06"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-07": {
-    "value": "#877ec8",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "07"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-08": {
-    "value": "#9a90d0",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "08"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-09": {
-    "value": "#a198d4",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "09"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-anchor-end": {
-    "value": "#f4f2fa",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "anchor",
-      "end"
-    ]
-  },
-  "semantic-color-light-fill-chart-sequential-anchor-start": {
-    "value": "#110c2c",
-    "type": "color",
-    "path": [
-      "semantic-color",
-      "pathway-light",
-      "fill",
-      "chart",
-      "sequential",
-      "anchor",
-      "start"
     ]
   },
   "semantic-color-light-foreground-action-disabled": {
@@ -8549,7 +8549,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-stroke-action-secondary-hover": {
-    "value": "#87827b",
+    "value": "#67625c",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8561,7 +8561,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-stroke-action-secondary-pressed": {
-    "value": "#67625c",
+    "value": "#57534e",
     "type": "color",
     "path": [
       "semantic-color",

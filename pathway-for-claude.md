@@ -141,7 +141,7 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 --semantic-color-fill-static-brand-base    /* #4b6ec3  — TopNav background */
 --semantic-color-fill-surface-canvas      /* #fafafa  — Page background */
 --semantic-color-fill-static-neutral-mono         /* #ffffff  — SideNav background */
---semantic-color-fill-static-neutral-faint /* #fdfdfd  — Cards, inputs, white surfaces */
+--semantic-color-fill-static-neutral-faint /* #fefefd  — Cards, inputs, white surfaces */
 ```
 
 ### Text
