@@ -94,7 +94,7 @@ export const T = {
   // The active-item stripe takes the loud brand blue straight from the Action
   // tier rather than owning a token of its own.
   indicator: c("fill-action-primary-strong-pressed"),
-  radius:    u("cornerradius-medium", 8),
+  radius:    u("cornerradius-base", 8),
 };
 
 /*

@@ -41,7 +41,7 @@ Then use the names, never the values:
   background: var(--semantic-color-fill-static-neutral-mono);
   color: var(--semantic-color-foreground-static-neutral-bold);
   border: 0.5px solid var(--semantic-color-stroke-static-neutral-base);
-  border-radius: var(--semantic-layout-units-cornerradius-medium);
+  border-radius: var(--semantic-layout-units-cornerradius-base);
   padding: var(--semantic-layout-units-padding-base);
 }
 ```

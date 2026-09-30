@@ -20,6 +20,28 @@ copyFileSync("src/tokens/layout-contextual.css", "dist/layout-contextual.css");
 mkdirSync("dist/themes", { recursive: true });
 copyFileSync("src/tokens/themes/light.css", "dist/themes/light.css");
 copyFileSync("src/tokens/themes/midnight.css", "dist/themes/midnight.css");
+
+// NewCo ships in the PACKAGES ONLY — never in Storybook, never on GitHub Pages,
+// never referenced from a story or MDX page, because Pages is public and
+// indexable. It lives under brands/ so nothing can pick it up by globbing
+// dist/*.css or dist/themes/*.css, which is what the eight-file contract and
+// every demo's <link> list do.
+//
+// The shape mirrors the pathway files: primitives-newco.css redefines the SAME
+// property names under [data-brand="newco"], so a consumer loads the pathway
+// contract and then layers the brand on. That only works because both files
+// emit modeless names; see the css platform note in style-dictionary.config.js
+// for the day it did not.
+mkdirSync("dist/brands/newco/themes", { recursive: true });
+copyFileSync("src/tokens/primitives-newco.css", "dist/brands/newco/primitives.css");
+copyFileSync("src/tokens/layout-contextual-newco.css", "dist/brands/newco/layout-contextual.css");
+copyFileSync("src/tokens/themes/newco-light.css", "dist/brands/newco/themes/light.css");
+copyFileSync("src/tokens/themes/newco-dark.css", "dist/brands/newco/themes/dark.css");
+// The flat JS map, split from tokens.js so the public Storybook bundle cannot
+// pick NewCo up. Both files use the same modeless keys, which is exactly why
+// they have to be separate files rather than one merged map.
+copyFileSync("src/tokens/tokens-newco.js", "dist/brands/newco/tokens.js");
+
 copyFileSync("src/tokens/tokens.js", "dist/tokens.js");
 // dist/tokens.json must carry EVERY token, motion included.
 //

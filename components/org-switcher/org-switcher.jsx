@@ -53,9 +53,9 @@ const T = {
   fillAvatarPlaceholder: "var(--semantic-color-fill-action-secondary-rest, rgba(255,255,255,0.08))",
 
   // Borders
-  strokeBase:    "var(--semantic-color-stroke-action-primary-rest,    rgba(160,181,230,0.16))",
-  strokeHover:   "var(--semantic-color-stroke-action-primary-hover,   rgba(160,181,230,0.20))",
-  strokePressed: "var(--semantic-color-stroke-action-primary-pressed, rgba(160,181,230,0.30))",
+  strokeBase:    "var(--semantic-color-stroke-action-primary-strong-rest,    rgba(160,181,230,0.16))",
+  strokeHover:   "var(--semantic-color-stroke-action-primary-strong-hover,   rgba(160,181,230,0.20))",
+  strokePressed: "var(--semantic-color-stroke-action-primary-strong-pressed, rgba(160,181,230,0.30))",
 
   // Text — org name. Reconciled to Figma (Foreground/Static/Neutral/Bold, node
   // 40006819:14581). Static token — no per-state variants; the interactive
@@ -70,7 +70,7 @@ const T = {
   iconPressed: "var(--semantic-color-foreground-static-neutral-base, rgba(255,255,255,0.8))",
 
   // Geometry
-  radiusMedium: "var(--semantic-layout-units-cornerradius-medium, 8px)",
+  radiusMedium: "var(--semantic-layout-units-cornerradius-base, 8px)",
   radiusSmall:  "var(--semantic-layout-units-cornerradius-small,  4px)",
   borderWidth:  "var(--semantic-layout-units-borderwidth-base,    1px)",
   pXxtight:     "var(--semantic-layout-units-padding-xxtight,     4px)",
@@ -474,7 +474,7 @@ const PANEL_T = {
   border:    "var(--semantic-color-stroke-static-neutral-faint, #ededed)",
   name:      "var(--semantic-color-foreground-static-neutral-bold, #202020)",
   icon:      "var(--semantic-color-foreground-static-neutral-base, #949494)",
-  logoBg:    "var(--semantic-color-fill-static-brand-bold, #2d4889)",
+  logoBg:    "var(--semantic-color-fill-surface-chrome, #2d4889)",
   rowActive: "var(--semantic-color-fill-action-primary-subtle-rest, #eef2fb)",
 };
 

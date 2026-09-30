@@ -235,8 +235,30 @@ function liveDotNames() {
   const TREE = "tokens/pathway-design-tokens.json";
   if (!existsSync(TREE)) return { full: new Set(), groups: new Set() };
   const tree = JSON.parse(readFileSync(TREE, "utf8"));
-  const root = tree["semantic-color"] && tree["semantic-color"]["light-mode"];
-  if (!root) return { full: new Set(), groups: new Set() };
+  // Resolve the light mode by SEARCH, not by a hardcoded key. It was
+  // "light-mode", became "pathway-light" when the brand axis landed on
+  // 2026-09-29, and a missing key here fails OPEN in the worst way: `root`
+  // becomes undefined, the valid-name set comes back empty, and every single
+  // dotted token mention in every spec is reported stale. That is 620 false
+  // positives, which is indistinguishable from real debt and trains you to
+  // ignore the check.
+  const semantic = tree["semantic-color"] || {};
+  const modeKey =
+    Object.keys(semantic).find((k) => /^pathway[-_]?light$/i.test(k)) ??
+    Object.keys(semantic).find((k) => /^light([-_]mode)?$/i.test(k)) ??
+    Object.keys(semantic).find((k) => /light/i.test(k)) ??
+    Object.keys(semantic)[0];
+  const root = modeKey ? semantic[modeKey] : undefined;
+  if (!root) {
+    console.error(
+      "check-token-names: no light mode found under semantic-color in " +
+        TREE +
+        ". Modes present: " +
+        (Object.keys(semantic).join(", ") || "(none)") +
+        ". Refusing to run, because an empty valid set reports every name as stale."
+    );
+    process.exit(1);
+  }
   const full = new Set();
   (function walk(node, segs) {
     for (const [k, v] of Object.entries(node)) {

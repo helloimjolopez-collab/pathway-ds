@@ -157,8 +157,8 @@ Disabled background: `Fill/Action/Disabled` (`--semantic-color-fill-action-disab
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
 | `stroke.static.neutral.base` | `--semantic-color-stroke-static-neutral-faint` | #d8d3cd | Default border (0.75px) |
-| `stroke.action.primary.hover` | `--semantic-color-stroke-action-primary-hover` | #5475c6 | Hover border (1px) |
-| `stroke.action.primary.pressed` | `--semantic-color-stroke-action-primary-pressed` | #4b6ec3 | Focused / with-value / filter-active border (1px) |
+| `stroke.action.primary.strong.hover` | `--semantic-color-stroke-action-primary-strong-hover` | #5475c6 | Hover border (1px) |
+| `stroke.action.primary.strong.pressed` | `--semantic-color-stroke-action-primary-strong-pressed` | #4b6ec3 | Focused / with-value / filter-active border (1px) |
 | `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` | #b0aaa2 | Cancel–filter divider (0.75px) |
 | `stroke.action.status.negative.rest` | `--semantic-color-stroke-action-status-negative-rest` | #cf6e6e | Error state border (1px) |
 
@@ -277,10 +277,10 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 | State | Bar border | Bar bg | Icon colour | Text colour | Filter pip bg |
 |---|---|---|---|---|---|
 | **Idle** | `stroke.static.neutral.base` 0.75px | `fill.static.neutral.faint` | `foreground.action.secondary.rest` | placeholder: `foreground.static.neutral.base` | — |
-| **Hover** | `stroke.action.primary.hover` 1px | `fill.static.neutral.faint` | `foreground.action.secondary.hover` | (same) | — |
-| **Focused** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.faint` | (same as hover) | (same) | — |
-| **With-value** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.faint` | (base) | `foreground.static.neutral.bold` | — |
-| **Filter-active** | `stroke.action.primary.pressed` 1px | `fill.static.neutral.faint` | (base) | (placeholder or bold) | `fill.action.primary.subtle.rest` |
+| **Hover** | `stroke.action.primary.strong.hover` 1px | `fill.static.neutral.faint` | `foreground.action.secondary.hover` | (same) | — |
+| **Focused** | `stroke.action.primary.strong.pressed` 1px | `fill.static.neutral.faint` | (same as hover) | (same) | — |
+| **With-value** | `stroke.action.primary.strong.pressed` 1px | `fill.static.neutral.faint` | (base) | `foreground.static.neutral.bold` | — |
+| **Filter-active** | `stroke.action.primary.strong.pressed` 1px | `fill.static.neutral.faint` | (base) | (placeholder or bold) | `fill.action.primary.subtle.rest` |
 | **Disabled** | primitive fallback 1px | primitive fallback | `foreground.action.disabled` | (38% opacity) | — |
 | **Error** | `stroke.action.status.negative.rest` 1px | `fill.static.neutral.faint` | `foreground.action.status.negative.on-subtle.rest` | (placeholder) | — |
 

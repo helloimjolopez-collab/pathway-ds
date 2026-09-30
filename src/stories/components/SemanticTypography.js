@@ -198,7 +198,7 @@ export function createSemanticTypography() {
       "  font-size:       var(--semantic-type-font-size-m);",
       "  font-weight:     var(--semantic-type-weight-semibold);",
       "  line-height:     var(--semantic-type-line-height-m-single);",
-      "  letter-spacing:  var(--semantic-type-letter-spacing-compact);",
+      "  letter-spacing:  var(--semantic-type-letter-spacing-wide);",
       "}",
     ].join("\n")
   );

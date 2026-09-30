@@ -100,7 +100,7 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 |---|---|---|---|
 | `fill.static.brand.base` | `--semantic-color-fill-static-brand-base` | #ccd7f2 | Nav bar background |
 | `fill.action.primary.subtle.rest` (dark) | dark-mode | rgba(160,181,230,0.04) | OrgSwitcher resting fill |
-| `stroke.action.primary.rest` (dark) | dark-mode | rgba(160,181,230,0.16) | OrgSwitcher border |
+| `stroke.action.primary.strong.rest` (dark) | dark-mode | rgba(160,181,230,0.16) | OrgSwitcher border |
 | `fill.action.primary.subtle.hover` (dark) | dark-mode | rgba(10,18,35,0.16) | All nav controls hover |
 | `foreground.static.neutral.mono` (dark) | dark-mode | #ffffff | All text + icons on nav |
 | `fill.static.info.subtle` | `--semantic-color-fill-static-info-subtle` | #f4f2fa | Profile avatar bg |

@@ -12,7 +12,7 @@
  Breakpoints are handled by media query inside this file rather than by
  putting the breakpoint in the property name, so one name works responsively.
 
- Declares 40 custom properties.
+ Declares 76 custom properties.
  Generated — do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
@@ -31,9 +31,8 @@
   --semantic-layout-units-borderwidth-xthin: 0.5px;
   --semantic-layout-units-borderwidth-xxthick: 6px;
   --semantic-layout-units-cornerradius-base: 8px;
-  --semantic-layout-units-cornerradius-full: 64px;
+  --semantic-layout-units-cornerradius-full: 999px;
   --semantic-layout-units-cornerradius-large: 12px;
-  --semantic-layout-units-cornerradius-medium: 8px;
   --semantic-layout-units-cornerradius-small: 4px;
   --semantic-layout-units-cornerradius-xlarge: 16px;
   --semantic-layout-units-cornerradius-xsmall: 2px;
@@ -48,13 +47,50 @@
   --semantic-layout-units-padding-base: 16px;
   --semantic-layout-units-padding-collosal: 120px;
   --semantic-layout-units-padding-ginormous: 64px;
-  --semantic-layout-units-padding-medium: 12px;
+  --semantic-layout-units-padding-medium: 14px;
   --semantic-layout-units-padding-relaxed: 24px;
-  --semantic-layout-units-padding-tight: 8px;
+  --semantic-layout-units-padding-tight: 12px;
+  --semantic-layout-units-padding-tightest: 2px;
   --semantic-layout-units-padding-wide: 36px;
-  --semantic-layout-units-padding-xtight: 6px;
+  --semantic-layout-units-padding-xtight: 8px;
   --semantic-layout-units-padding-xwide: 48px;
-  --semantic-layout-units-padding-xxtight: 4px;
+  --semantic-layout-units-padding-xxtight: 6px;
   --semantic-layout-units-padding-xxwide: 56px;
-  --semantic-layout-units-padding-xxxtight: 2px;
+  --semantic-layout-units-padding-xxxtight: 4px;
+  --semantic-layout-units-shadow-card-hover-blur: 24px;
+  --semantic-layout-units-shadow-card-hover-spread: -3px;
+  --semantic-layout-units-shadow-card-hover-x: 0px;
+  --semantic-layout-units-shadow-card-hover-y: 8px;
+  --semantic-layout-units-shadow-card-pressed-blur: 8px;
+  --semantic-layout-units-shadow-card-pressed-spread: -1px;
+  --semantic-layout-units-shadow-card-pressed-x: 0px;
+  --semantic-layout-units-shadow-card-pressed-y: 2px;
+  --semantic-layout-units-shadow-card-rest-blur: 16px;
+  --semantic-layout-units-shadow-card-rest-spread: -2px;
+  --semantic-layout-units-shadow-card-rest-x: 0px;
+  --semantic-layout-units-shadow-card-rest-y: 4px;
+  --semantic-layout-units-shadow-lift-blur: 28px;
+  --semantic-layout-units-shadow-lift-spread: -4px;
+  --semantic-layout-units-shadow-lift-x: 0px;
+  --semantic-layout-units-shadow-lift-y: 10px;
+  --semantic-layout-units-shadow-overlay-blur: 48px;
+  --semantic-layout-units-shadow-overlay-spread: -8px;
+  --semantic-layout-units-shadow-overlay-x: 0px;
+  --semantic-layout-units-shadow-overlay-y: 20px;
+  --semantic-layout-units-shadow-sheet-blur: 32px;
+  --semantic-layout-units-shadow-sheet-spread: -6px;
+  --semantic-layout-units-shadow-sheet-x: 0px;
+  --semantic-layout-units-shadow-sheet-y: 4px;
+  --semantic-layout-units-shadow-widget-hover-blur: 12px;
+  --semantic-layout-units-shadow-widget-hover-spread: -2px;
+  --semantic-layout-units-shadow-widget-hover-x: 0px;
+  --semantic-layout-units-shadow-widget-hover-y: 4px;
+  --semantic-layout-units-shadow-widget-pressed-blur: 4px;
+  --semantic-layout-units-shadow-widget-pressed-spread: 0px;
+  --semantic-layout-units-shadow-widget-pressed-x: 0px;
+  --semantic-layout-units-shadow-widget-pressed-y: 1px;
+  --semantic-layout-units-shadow-widget-rest-blur: 8px;
+  --semantic-layout-units-shadow-widget-rest-spread: -1px;
+  --semantic-layout-units-shadow-widget-rest-x: 0px;
+  --semantic-layout-units-shadow-widget-rest-y: 2px;
 }

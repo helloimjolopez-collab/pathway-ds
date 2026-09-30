@@ -96,7 +96,7 @@ const SHADOW_CSS = `
   font-style: normal;
   font-variant: normal;
   line-height: var(--semantic-type-line-height-s-single);
-  letter-spacing: var(--semantic-type-letter-spacing-compact);
+  letter-spacing: var(--semantic-type-letter-spacing-wide);
   word-spacing: normal;
   color: var(--semantic-color-foreground-action-secondary-rest);
   text-align: start;

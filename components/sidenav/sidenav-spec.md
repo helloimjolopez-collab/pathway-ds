@@ -89,7 +89,7 @@ metrics live in `Contextual: Layout & Units` rather than `Responsive: Layout`:
 --contextual-layout-units-sidenav-padding-vertical                8px
 --contextual-layout-units-sidenav-gap-vertical                    6px
 --semantic-layout-units-padding-xxwide                           56px  menu bottom scroll clearance
---semantic-layout-units-cornerradius-medium
+--semantic-layout-units-cornerradius-base
 --semantic-layout-units-accessibility-touch-target-aa-height     44px
 ```
 
@@ -752,7 +752,7 @@ label, leading icon and chevron must not resolve through separate ramps that can
 
 | Semantic token | CSS custom property | Usage |
 |---|---|---|
-| `CornerRadius/Medium` | `--semantic-layout-units-cornerradius-medium` | Item `border-radius` |
+| `CornerRadius/Base` | `--semantic-layout-units-cornerradius-base` | Item `border-radius` |
 | `Accessibility/Touch Target/AA/Height` | `--semantic-layout-units-accessibility-touch-target-aa-height` | Item `min-height` |
 | `Padding/Base` | `--semantic-layout-units-padding-base` | Expanded container horizontal padding |
 | `Padding/Medium` | `--semantic-layout-units-padding-medium` | Collapsed rail horizontal padding |
@@ -778,7 +778,7 @@ All `SideNavItem` labels at all levels use **the same** text style. There is no 
 | Font weight | `--semantic-type-weight-medium` | `500` (Medium) |
 | Font size | `--semantic-type-font-size-s` | `14px` |
 | Line height | `--semantic-type-line-height-s-single` | `20px` |
-| Letter spacing | `--semantic-type-letter-spacing-compact` | `0.3px` |
+| Letter spacing | `--semantic-type-letter-spacing-wide` | `0.3px` |
 
 #### Implementation (CSS)
 
@@ -789,7 +789,7 @@ All `SideNavItem` labels at all levels use **the same** text style. There is no 
   font-weight: var(--semantic-type-weight-medium, 500);
   font-size: var(--semantic-type-font-size-s, 14px);
   line-height: var(--semantic-type-line-height-s-single, 20px);
-  letter-spacing: var(--semantic-type-letter-spacing-compact, 0.3px);
+  letter-spacing: var(--semantic-type-letter-spacing-wide, 0.3px);
 }
 
 /* Hard-coded fallback (no token system) */
@@ -1648,7 +1648,7 @@ A fifth value (>1900px) exists in the variables panel but is unused and unconfir
 
 ### 17.4 Global top nav (TopNav.Global): out of scope, Figma reference
 
-The global top navigation is a separate component not owned by this spec. The Pathway Design System has standardised on **TopNav.Global** (Figma node `40005504:55844`) — a **brand-blue (`Fill/Static/Brand/Bold` → `#2d4889`)** nav bar with a fixed height of **56 px**. Full component documentation is maintained on the [TopNav Figma page](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/%E2%9D%87%EF%B8%8F--Pathway-Design-System--Master-File--MB-2.0-?node-id=40005504-55844).
+The global top navigation is a separate component not owned by this spec. The Pathway Design System has standardised on **TopNav.Global** (Figma node `40005504:55844`) — a **brand-blue (`Fill/Surface/Chrome` → `#2d4889`)** nav bar with a fixed height of **56 px**. Full component documentation is maintained on the [TopNav Figma page](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/%E2%9D%87%EF%B8%8F--Pathway-Design-System--Master-File--MB-2.0-?node-id=40005504-55844).
 
 **TopNav.Global slot layout (left → right) — as read from Figma 2026-05-13:**
 - **Row Start:** SideNav control (mobile hamburger `menu`, hidden ≥768px via CSS) · ModuleSwitcher (Amplify Home icon + `expand_more` chevron, no text label) · OrgSwitcher (church logo 20×20 sq + "Sacred Heart Church-ITD | Knoxville" label + `expand_more` chevron; container has `stroke/action/tertiary/base` border)

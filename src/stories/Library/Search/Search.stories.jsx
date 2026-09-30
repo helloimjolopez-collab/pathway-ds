@@ -346,9 +346,9 @@ export const TokensStroke = () => (
     note="Borders. The disabled border no longer falls back to a primitive: product code must never name a --primitive-* (CLAUDE.md §6), so it reads the Static Neutral ladder."
     rows={[
       { token: "stroke.static.neutral.faint",        usage: "Bar border - idle (0.75px), and disabled" },
-      { token: "stroke.action.primary.rest",         usage: "Bar border - with-value / filter-active (1px)" },
-      { token: "stroke.action.primary.hover",        usage: "Bar border - hover (1px)" },
-      { token: "stroke.action.primary.pressed",      usage: "Bar border - focused (1px)" },
+      { token: "stroke.action.primary.strong.rest",         usage: "Bar border - with-value / filter-active (1px)" },
+      { token: "stroke.action.primary.strong.hover",        usage: "Bar border - hover (1px)" },
+      { token: "stroke.action.primary.strong.pressed",      usage: "Bar border - focused (1px)" },
       { token: "stroke.action.status.negative.rest", usage: "Bar border - error (1px). Negative moved under Status" },
       { token: "stroke.action.secondary.rest",       usage: "Cancel-filter divider (0.75px)" },
     ]}

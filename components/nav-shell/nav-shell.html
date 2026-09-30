@@ -42,7 +42,7 @@
     .shell { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
 
     /* ── TopNav ─────────────────────────────────────────────────────────────
-       Figma: background Fill/Static/Brand/Bold = #2d4889, height 56px
+       Figma: background Fill/Surface/Chrome = #2d4889, height 56px
        Slot.RowStart: gap 8px (ModuleSwitcher→OrgSwitcher: x gap = 171-163=8px)
        Slot.RowEnd: gap 8px (Search→Actions: 336-328=8px, Actions→Profile: 440-432=8px)
     ───────────────────────────────────────────────────────────────────────── */
@@ -300,7 +300,7 @@
       flex-shrink: 0;
     }
     .toolbar__search:focus-within {
-      border: 1px solid var(--semantic-color-stroke-action-primary-pressed, #6e8bd4);
+      border: 1px solid var(--semantic-color-stroke-action-primary-strong-pressed, #6e8bd4);
     }
     .toolbar__search input {
       flex: 1; border: none; outline: none; background: transparent;
@@ -376,7 +376,7 @@
     }
     .card:hover {
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      border-color: var(--semantic-color-stroke-action-primary-hover, #86a0dd);
+      border-color: var(--semantic-color-stroke-action-primary-strong-hover, #86a0dd);
     }
 
     /* CardHeading: height=32, gap=8 between icon(32px) and title */
@@ -665,10 +665,10 @@
 
       return (
         <nav ref={navRef} aria-label="Global navigation" style={{
-          background:`var(--semantic-color-fill-static-brand-bold, ${TN.navBg})`,
+          background:`var(--semantic-color-fill-surface-chrome, ${TN.navBg})`,
           display:"flex", alignItems:"center", justifyContent:"space-between",
-          maxHeight:"var(--responsive-layout-topnav-height, 56px)",
-          height:"var(--responsive-layout-topnav-height, 56px)",
+          maxHeight:"var(--contextual-layout-units-topnav-height, 56px)",
+          height:"var(--contextual-layout-units-topnav-height, 56px)",
           padding:"var(--responsive-layout-topnav-padding-vertical, 6px) var(--responsive-layout-topnav-padding-horizontal, 16px)",
           gap:"var(--responsive-layout-topnav-gap-horizontal, 8px)", position:"relative",
           overflow:"visible", zIndex:100, fontFamily:"'Red Hat Text',sans-serif", flexShrink:0,

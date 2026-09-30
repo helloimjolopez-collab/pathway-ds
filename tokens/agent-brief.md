@@ -10,11 +10,11 @@ If a documented component exists for what you're building, **use the component**
 
 1. **Every colour you use must come from a semantic token.** Never raw hex. Never primitive tokens (`Blue/180`, `Cool-Neutral/130`, etc.). Never invented token names.
 
-2. **Semantic colour token names follow `Role / Scope / Variant / State`.** Examples: `Fill/Static/Brand/Bold`, `Foreground/Action/Secondary/Pressed`, `Foreground/Action/Primary/On Subtle/Hover`. Type token names follow `Category/Subcategory/Size/Weight` (e.g. `Heading/Display/XL/Bold`, `Label/Button/Base`). Layout token names follow `Category/Size` (e.g. `BorderWidth/Base`, `CornerRadius/Medium`). If you propose a name that isn't in this file, it doesn't exist — look it up.
+2. **Semantic colour token names follow `Role / Scope / Variant / State`.** Examples: `Fill/Surface/Chrome`, `Foreground/Action/Secondary/Pressed`, `Foreground/Action/Primary/On Subtle/Hover`. Type token names follow `Category/Subcategory/Size/Weight` (e.g. `Heading/Display/XL/Bold`, `Label/Button/Base`). Layout token names follow `Category/Size` (e.g. `BorderWidth/Base`, `CornerRadius/Medium`). If you propose a name that isn't in this file, it doesn't exist — look it up.
 
 3. **There are three scopes:** `Static`, `Action`, and `Contextual`.
-   - `Static` — fixed meaning across the whole product, not tied to interaction state (e.g. `Fill/Static/Brand/Bold = #2d4889`, `Foreground/Static/Neutral/Mono = #ffffff`).
-   - `Action` — for interactive elements; always come with states (`Base`, `Hover`, `Pressed`, `Disabled`) and variants (`Primary`, `Secondary`, `Tertiary`). Use these on buttons, links, focus rings, and interactive controls (e.g. `Fill/Action/Primary/Strong/Rest`, `Fill/Action/Primary/Strong/Hover`, `Stroke/Action/Primary/Rest`).
+   - `Static` — fixed meaning across the whole product, not tied to interaction state (e.g. `Fill/Surface/Chrome = #2d4889`, `Foreground/Static/Neutral/Mono = #ffffff`).
+   - `Action` — for interactive elements; always come with states (`Base`, `Hover`, `Pressed`, `Disabled`) and variants (`Primary`, `Secondary`, `Tertiary`). Use these on buttons, links, focus rings, and interactive controls (e.g. `Fill/Action/Primary/Strong/Rest`, `Fill/Action/Primary/Strong/Hover`, `Stroke/Action/Primary/Strong/Rest`).
    - `Contextual` — scoped to a specific component family; they may share hex values with other scopes today but are kept separate so they can diverge independently (e.g. `Fill/Action/Selection/Selected`, `Foreground/Action/Secondary/Hover`).
 
 4. **Typography is `Red Hat Text`, weights 400/500/600/700.** No other font. No other weights. No display font.

@@ -13,7 +13,7 @@
     "all-controls.hover-fill": "rgba(10,18,35,0.16)",
     "all-controls.pressed-fill": "rgba(255,255,255,0.08)",
     "orgswitcher.resting-fill": "--semantic-color-fill-action-primary-subtle-rest",
-    "orgswitcher.border": "--semantic-color-stroke-action-primary-rest",
+    "orgswitcher.border": "--semantic-color-stroke-action-primary-strong-rest",
     "search.pill-fill": "rgba(160,181,230,0.08)",
     "profile.avatar-bg": "--semantic-color-fill-static-info-subtle",
     "profile.avatar-text": "--semantic-color-foreground-static-info-on-subtle",
@@ -80,7 +80,7 @@
     "_figma": "40006819-14583",
     "_warning": "TRIGGER TEXT ONLY. No avatar, no logo, no icon by default.",
     "container.fill.resting": "--semantic-color-fill-action-primary-subtle-rest",
-    "container.border.resting": "--semantic-color-stroke-action-primary-rest",
+    "container.border.resting": "--semantic-color-stroke-action-primary-strong-rest",
     "label.text": "--semantic-color-foreground-static-neutral-mono",
     "label.font-size": "--semantic-type-font-size-s (=14)"
   },
@@ -88,8 +88,8 @@
     "_figma": "40006978-23158",
     "bar.background": "--semantic-color-fill-static-neutral-faint",
     "bar.border.idle": "--semantic-color-stroke-static-neutral-base",
-    "bar.border.hover": "--semantic-color-stroke-action-primary-hover",
-    "bar.border.focused": "--semantic-color-stroke-action-primary-pressed",
+    "bar.border.hover": "--semantic-color-stroke-action-primary-strong-hover",
+    "bar.border.focused": "--semantic-color-stroke-action-primary-strong-pressed",
     "bar.border-radius": "9999px (pill)",
     "bar.toolbar-input-border-radius": "6px (NOT standard 8px — confirmed Figma)",
     "input.placeholder": "--semantic-color-foreground-static-neutral-base",
@@ -112,7 +112,7 @@
     "label.text": "--semantic-color-foreground-static-neutral-base",
     "label.font-size": "--semantic-type-font-size-m (=14)",
     "label.font-weight": "600",
-    "label.letter-spacing": "--semantic-type-letter-spacing-compact (=0.6px)"
+    "label.letter-spacing": "--semantic-type-letter-spacing-wide (=0.6px)"
   },
   "_known-gaps": {
     "font-size-unitless": "All --semantic-type-*-fontsize tokens resolve to unitless numbers (e.g. 14, not 14px). Wrap: calc(var(--semantic-type-...-fontsize) * 1px) in CSS, or hardcode px in JS.",

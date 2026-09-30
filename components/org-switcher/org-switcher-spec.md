@@ -196,9 +196,9 @@ All tokens confirmed from Figma node `40006819:14583`. This component uses **dar
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `stroke.action.primary.rest` | `--semantic-color-stroke-action-primary-rest` | `rgba(160,181,230,0.16)` | Trigger + avatar border — base |
-| `stroke.action.primary.hover` | `--semantic-color-stroke-action-primary-hover` | `rgba(160,181,230,0.20)` | Trigger + avatar border — hover |
-| `stroke.action.primary.pressed` | `--semantic-color-stroke-action-primary-pressed` | `rgba(160,181,230,0.30)` | Trigger + avatar border — pressed / open |
+| `stroke.action.primary.strong.rest` | `--semantic-color-stroke-action-primary-strong-rest` | `rgba(160,181,230,0.16)` | Trigger + avatar border — base |
+| `stroke.action.primary.strong.hover` | `--semantic-color-stroke-action-primary-strong-hover` | `rgba(160,181,230,0.20)` | Trigger + avatar border — hover |
+| `stroke.action.primary.strong.pressed` | `--semantic-color-stroke-action-primary-strong-pressed` | `rgba(160,181,230,0.30)` | Trigger + avatar border — pressed / open |
 
 ### 3.3 Text
 
@@ -220,7 +220,7 @@ All tokens confirmed from Figma node `40006819:14583`. This component uses **dar
 
 | Property | Value | CSS Variable |
 |---|---|---|
-| Trigger corner radius | 8px | `--semantic-layout-units-cornerradius-medium` |
+| Trigger corner radius | 8px | `--semantic-layout-units-cornerradius-base` |
 | Avatar corner radius | 4px | `--semantic-layout-units-cornerradius-small` |
 | Border width | 1px | `--semantic-layout-units-borderwidth-base` |
 | Avatar inner padding (xxxtight) | 2px | `--semantic-layout-units-padding-xxxtight` |
@@ -306,9 +306,9 @@ All confirmed from Figma. Six trigger variants: `State × Type = {Base, Hover, P
 
 | State | Fill | Stroke | Text | Chevron |
 |---|---|---|---|---|
-| **Base** | `fill.action.primary.subtle.rest` · `rgba(160,181,230,0.04)` | `stroke.action.primary.rest` · `rgba(160,181,230,0.16)` | `foreground.static.neutral.mono` · `#fbfbfb` | `foreground.static.neutral.mono` · `#fbfbfb` |
-| **Hover** | `fill.action.primary.subtle.hover` · `rgba(10,18,35,0.16)` | `stroke.action.primary.hover` · `rgba(160,181,230,0.20)` | `foreground.static.neutral.mono` · `#ffffff` | `foreground.static.neutral.mono` · `#ffffff` |
-| **Pressed / Open** | `fill.action.primary.subtle.pressed` · `rgba(255,255,255,0.08)` | `stroke.action.primary.pressed` · `rgba(160,181,230,0.30)` | `foreground.static.neutral.mono` · `#ffffff` | `foreground.static.neutral.mono` · `#ffffff` |
+| **Base** | `fill.action.primary.subtle.rest` · `rgba(160,181,230,0.04)` | `stroke.action.primary.strong.rest` · `rgba(160,181,230,0.16)` | `foreground.static.neutral.mono` · `#fbfbfb` | `foreground.static.neutral.mono` · `#fbfbfb` |
+| **Hover** | `fill.action.primary.subtle.hover` · `rgba(10,18,35,0.16)` | `stroke.action.primary.strong.hover` · `rgba(160,181,230,0.20)` | `foreground.static.neutral.mono` · `#ffffff` | `foreground.static.neutral.mono` · `#ffffff` |
+| **Pressed / Open** | `fill.action.primary.subtle.pressed` · `rgba(255,255,255,0.08)` | `stroke.action.primary.strong.pressed` · `rgba(160,181,230,0.30)` | `foreground.static.neutral.mono` · `#ffffff` | `foreground.static.neutral.mono` · `#ffffff` |
 | **Disabled** | Base fill at 50% opacity | Base stroke at 50% opacity | Base text at 50% opacity | Base icon at 50% opacity |
 | **Open** (additional) | Pressed styling | Pressed styling | Pressed styling | Rotated 180° |
 
@@ -507,7 +507,7 @@ All values below use token resolved values on the `TopNav` surface (which resolv
 | Trigger label, hover | `foreground.static.neutral.mono` → `#ffffff` | `#2d4889` under `rgba(10,18,35,0.16)` fill ≈ `#26396f` | ≈ 9.2:1 | ✅ Pass |
 | Trigger label, pressed / open | `foreground.static.neutral.mono` → `#ffffff` | `#2d4889` under `rgba(255,255,255,0.08)` ≈ `#3a548d` | ≈ 9.7:1 | ✅ Pass |
 | Chevron, base | `foreground.static.neutral.mono` → `#ffffff` | (as label, base) | ≈ 10.4:1 | ✅ Pass (non-text 3:1 minimum) |
-| Trigger border, base | `stroke.action.primary.rest` → `rgba(160,181,230,0.16)` | `#5d7cca` | ≈ 1.4:1 | ❌ Border alone fails 3:1 — relies on fill differentiation; acceptable per WCAG 1.4.11 because the button has a visible fill+text |
+| Trigger border, base | `stroke.action.primary.strong.rest` → `rgba(160,181,230,0.16)` | `#5d7cca` | ≈ 1.4:1 | ❌ Border alone fails 3:1 — relies on fill differentiation; acceptable per WCAG 1.4.11 because the button has a visible fill+text |
 | Focus outline | `rgba(255,255,255,0.9)` ≈ `#e6e6e6` | `#2d4889` | ≈ 8.8:1 | ✅ Pass (WCAG 2.4.11 minimum 3:1) |
 
 > ⚠ The trigger border alone is below the 3:1 non-text contrast threshold, but WCAG 1.4.11 only requires 3:1 for UI components that are "essential to understanding". The trigger is essential, but its fill + label + chevron provide sufficient identification at every state. The thin border is decorative.

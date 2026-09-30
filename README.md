@@ -87,7 +87,7 @@ as too granular to adopt. Retired 2026-09-03 and not coming back.
   color:      var(--semantic-color-foreground-static-neutral-strong);
   border:     var(--semantic-layout-units-borderwidth-base) solid
               var(--semantic-color-stroke-static-neutral-base);
-  border-radius: var(--semantic-layout-units-cornerradius-medium);
+  border-radius: var(--semantic-layout-units-cornerradius-base);
 }
 ```
 

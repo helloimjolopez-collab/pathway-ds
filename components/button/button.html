@@ -118,9 +118,9 @@ const ICON_T = FG;
 
 // No Primary Dim stroke ramp exists, so Tertiary borrows the Primary stroke.
 const STROKE = {
-  Primary:   { base: SC("stroke-action-primary-rest"),         hover: SC("stroke-action-primary-hover"),         pressed: SC("stroke-action-primary-pressed"),         disabled: SC("stroke-action-disabled") },
+  Primary:   { base: SC("stroke-action-primary-strong-rest"),         hover: SC("stroke-action-primary-strong-hover"),         pressed: SC("stroke-action-primary-strong-pressed"),         disabled: SC("stroke-action-disabled") },
   Secondary: { base: SC("stroke-action-secondary-rest"),       hover: SC("stroke-action-secondary-hover"),       pressed: SC("stroke-action-secondary-pressed"),       disabled: SC("stroke-action-disabled") },
-  Tertiary:  { base: SC("stroke-action-primary-rest"),         hover: SC("stroke-action-primary-hover"),         pressed: SC("stroke-action-primary-pressed"),         disabled: SC("stroke-action-disabled") },
+  Tertiary:  { base: SC("stroke-action-primary-strong-rest"),         hover: SC("stroke-action-primary-strong-hover"),         pressed: SC("stroke-action-primary-strong-pressed"),         disabled: SC("stroke-action-disabled") },
   Negative:  { base: SC("stroke-action-status-negative-rest"), hover: SC("stroke-action-status-negative-hover"), pressed: SC("stroke-action-status-negative-pressed"), disabled: SC("stroke-action-disabled") },
 };
 
@@ -129,8 +129,8 @@ const STROKE = {
 // Midnight Mode, and ignored the Focus Ring/Width and Focus Ring/Offset tokens
 // entirely. `outline` also inherits the element's border-radius, so the focus
 // shape cannot drift from the button's corner.
-const FOCUS_OUTLINE = `${CL("focus-ring-width")} solid ${SC("stroke-focusring-base")}`;
-const FOCUS_OFFSET = CL("focus-ring-offset");
+const FOCUS_OUTLINE = `${CL("focusring-width")} solid ${SC("stroke-focusring-base")}`;
+const FOCUS_OFFSET = CL("focusring-offset");
 
 // Type is a scale now, so each size composes its own five values. The px in
 // each comment is what the retired Label/Button composite resolved to.
@@ -139,7 +139,7 @@ const LABEL = (size, lineHeight) => ({
   fontSize:      ST(`font-size-${size}`),
   fontWeight:    ST("weight-medium"),
   lineHeight:    ST(`line-height-${lineHeight}`),
-  letterSpacing: ST("letter-spacing-compact"),
+  letterSpacing: "normal",   // Semantic: Type exposes only Wide/Spacious/ExtraSpacious; there is no neutral tracking token, and 0 tracking is the default
 });
 
 const SIZES = {
@@ -150,11 +150,11 @@ const SIZES = {
 };
 
 const T = {
-  radius: CL("button-corner-radius-radius"),
-  border: CL("button-border-width-rest"),
+  radius: CL("button-cornerradius"),
+  border: CL("button-borderwidth-rest"),
   // Matches button.jsx: Outlined thickens to 1.5px on hover, focus and pressed,
   // which is what Figma applies to 48 Outlined variants.
-  borderEmphasis: CL("button-border-width-selected"),
+  borderEmphasis: CL("button-borderwidth-selected"),
   gap:    CL("button-gap-horizontal"),
   touch:  { pad: 6, min: 48 },
   focusOutline: FOCUS_OUTLINE,

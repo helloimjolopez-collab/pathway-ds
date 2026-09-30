@@ -128,9 +128,9 @@ The TopNav.Global surface is always the brand-blue background. Because this back
 
 | Semantic Token | Primitive | Resolved | Usage |
 |---|---|---|---|
-| `semantic-color.dark-mode.stroke.action.primary.rest` | `primitive-color.brand-50-16` | `rgba(160,181,230,0.16)` | OrgSwitcher border base; avatar border |
-| `semantic-color.dark-mode.stroke.action.primary.hover` | `primitive-color.brand-50-20` | `rgba(160,181,230,0.20)` | OrgSwitcher border hover |
-| `semantic-color.dark-mode.stroke.action.primary.pressed` | `primitive-color.brand-50-30` | `rgba(160,181,230,0.30)` | OrgSwitcher border pressed/expanded |
+| `semantic-color.dark-mode.stroke.action.primary.strong.rest` | `primitive-color.brand-50-16` | `rgba(160,181,230,0.16)` | OrgSwitcher border base; avatar border |
+| `semantic-color.dark-mode.stroke.action.primary.strong.hover` | `primitive-color.brand-50-20` | `rgba(160,181,230,0.20)` | OrgSwitcher border hover |
+| `semantic-color.dark-mode.stroke.action.primary.strong.pressed` | `primitive-color.brand-50-30` | `rgba(160,181,230,0.30)` | OrgSwitcher border pressed/expanded |
 
 The Search pill uses a distinct border: `0.75px solid` at the `icon-action-mono-base` value (`#fbfbfb`), not the tertiary stroke token. This is a Figma-confirmed design decision.
 
@@ -190,7 +190,7 @@ All spacing values are in pixels (Figma-sourced). Where a semantic spacing token
 | 16 / 12 / 8px | Nav bar left/right padding, desktop / tablet / mobile | `--responsive-layout-topnav-padding-horizontal` |
 | 8px | Gap between nav bar start/end slot children | `--responsive-layout-topnav-gap-horizontal` |
 | 56px | Nav bar height, all breakpoints | `--responsive-layout-topnav-height` |
-| 8px | Panel and control corner radius | `--semantic-layout-units-cornerradius-medium` |
+| 8px | Panel and control corner radius | `--semantic-layout-units-cornerradius-base` |
 | 4px | Inner control corner radius | `--semantic-layout-units-cornerradius-small` |
 | 48px | All outer touch-target wrappers (min-h, min-w) | None — raw value |
 
@@ -265,7 +265,7 @@ States apply to the interactive inner controls (ModuleSwitcher.Inner, OrgSwitche
 | State | Fill | Stroke | Text/Icon |
 |---|---|---|---|
 | **Base (ModuleSwitcher)** | transparent | transparent | `dark-mode.foreground.static.neutral.mono` (#ffffff) |
-| **Base (OrgSwitcher)** | `dark-mode.fill.action.primary.subtle.rest` (rgba 160,181,230 / 0.04) | `dark-mode.stroke.action.primary.rest` (rgba 160,181,230 / 0.16) | `dark-mode.foreground.static.neutral.mono` (#fbfbfb) |
+| **Base (OrgSwitcher)** | `dark-mode.fill.action.primary.subtle.rest` (rgba 160,181,230 / 0.04) | `dark-mode.stroke.action.primary.strong.rest` (rgba 160,181,230 / 0.16) | `dark-mode.foreground.static.neutral.mono` (#fbfbfb) |
 | **Base (Search pill)** | `dark-mode.fill.action.primary.subtle.rest` (rgba 160,181,230 / 0.08) | `dark-mode.foreground.static.neutral.mono` (#fbfbfb), 0.75px | `dark-mode.foreground.static.neutral.mono` (#fbfbfb) |
 | **Base (ActionIcon)** | transparent | none | `dark-mode.foreground.static.neutral.mono` (#ffffff) |
 | **Hover (all controls)** | `dark-mode.fill.action.primary.subtle.hover` (rgba 10,18,35 / 0.16) | (tertiary hover for org/mod) | unchanged |
@@ -426,7 +426,7 @@ A circular pill button sits in the RowEnd slot.
 Clicking the collapsed pill opens the search as a **full-width takeover** of the entire TopNav (see "Search takeover" below). It stays open until the user closes it (leading search icon or Escape).
 
 **Focused-empty** (just opened, no text entered):
-- Container: white fill (`fill.static.neutral.faint`), 1px solid `#6e8bd4` (`stroke.action.primary.pressed`), `border-radius: 9999px`, 36px height, fills the bar width, `padding: 0 8px`
+- Container: white fill (`fill.static.neutral.faint`), 1px solid `#6e8bd4` (`stroke.action.primary.strong.pressed`), `border-radius: 9999px`, 36px height, fills the bar width, `padding: 0 8px`
 - Leading icon: search, 24px container, color `#313131` (`foreground.static.neutral.base`)
 - Placeholder text: "Search…", 14px/400, color `#606060`
 - **No trailing clear button** (none in Figma for this state)
@@ -863,7 +863,7 @@ deleted 2026-09-16. One doc per component, so there is no second file to drift.
 
 1. **Ship TopNav and SideNav together as a single shell.** Never produce a prototype with only one of them.
 
-2. **Use the brand-blue background.** `Fill/Static/Brand/Bold` → `#2d4889`. Not dark navy (`#0a1223`). Not custom.
+2. **Use the brand-blue background.** `Fill/Surface/Chrome` → `#2d4889`. Not dark navy (`#0a1223`). Not custom.
 
 3. **Slot layout (left → right) is fixed:**
    - **Row Start:** SideNav hamburger (mobile only, hidden ≥768px) · ModuleSwitcher (Amplify Home icon + `expand_more` chevron, NO text) · OrgSwitcher (church logo 20×20 + org name + `expand_more` chevron, with `stroke/action/tertiary/base` border)
