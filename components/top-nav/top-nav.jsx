@@ -74,8 +74,12 @@ export const T = {
   itemMeta:       SCL("foreground-static-neutral-base"),
   signOut:        SCL("foreground-action-status-negative-on-subtle-rest"),
   // Token gaps (no semantic token exists yet — flagged P2 in the pipeline report):
-  panelBorder:    "rgba(45,72,137,0.12)",
-  panelShadow:    "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
+  panelBorder:    SCL("stroke-static-neutral-base"),
+  // The dropdown panels are a LIFT, and Elevation already encodes the whole
+  // shadow per theme. The two-layer rgba stack it replaces was a light-mode
+  // value that stayed light-mode on a dark surface.
+  panelShadow:    "var(--elevation-lift)",
+  panelDivider:   SCL("stroke-static-neutral-faint"),
 };
 
 // ─── LAYOUT VALUES ─────────────────────────────────────────────────────────────
@@ -690,13 +694,13 @@ export function TopNav({
             style={{
               position: "absolute", top: "calc(100% + 4px)", right: L.navPadH,
               width: 200, background: T.panelBg,
-              border: `1px solid rgba(45,72,137,0.10)`, borderRadius: L.radius,
+              border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
               boxShadow: T.panelShadow, padding: 4, zIndex: 300,
               animation: "tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both",
             }}
           >
             <div style={{ padding: "10px 12px 8px",
-              borderBottom: "1px solid rgba(0,0,0,0.06)", marginBottom: 4 }}>
+              borderBottom: `1px solid ${T.panelDivider}`, marginBottom: 4 }}>
               <div style={{ fontSize: 13, fontWeight: 600, color: T.itemText }}>{user.name}</div>
               <div style={{ fontSize: 11, color: T.itemMeta, marginTop: 1 }}>{user.email}</div>
             </div>

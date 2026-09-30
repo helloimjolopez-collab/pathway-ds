@@ -248,7 +248,10 @@ export function Checkbox({
   // Error: spec defines a 3px rgba red shadow on the state-layer.
   // Standard: border colour change on the box is sufficient (above).
   const focusShadow = focused && error
-    ? "0 0 0 3px rgba(170, 54, 54, 0.1)"
+    ? "0 0 0 3px var(--semantic-color-fill-static-negative-subtle)"
+    // Was a hand-mixed red at 10 percent. Fill/Static/Negative/Subtle is the
+    // tone's own pale tint and it inverts with the theme, so the ring stays
+    // visible on a dark canvas instead of vanishing into it.
     : "none";
 
   // ─── Icon colour ──────────────────────────────────────────────────────────

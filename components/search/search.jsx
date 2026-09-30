@@ -33,8 +33,8 @@ export const T = {
   // on a white surface. fill.action.secondary.hover = warm-neutral-200 (#f7f5f3)
   // which creates a visible warm cream box — wrong. Using direct rgba values as a
   // token gap (see search-spec.md §17).
-  iconPillHover:   "rgba(0,0,0,0.06)",
-  iconPillPressed: "rgba(0,0,0,0.10)",
+  iconPillHover:   "var(--semantic-color-fill-action-secondary-hover)",
+  iconPillPressed: "var(--semantic-color-fill-action-secondary-pressed)",
   badgeFill:       "var(--semantic-color-fill-action-primary-strong-rest)",
   collapsedBtnFill:"var(--semantic-color-fill-action-primary-subtle-rest)",
   disabledBg:      "var(--primitive-color-cool-neutral-10)",      // token gap §17

@@ -484,10 +484,10 @@ function ModuleCluster() {
       {ORG_MODULES.map((m) => (
         <span key={m.key} style={{
           width: 18, height: 18, borderRadius: "50%", background: m.color,
-          marginRight: -4, border: "1.5px solid #fff", flexShrink: 0,
+          marginRight: -4, border: "1.5px solid var(--semantic-color-fill-static-neutral-mono)", flexShrink: 0,
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>
-          <Icon name={m.icon} size={11} style={{ color: "#fff" }} />
+          <Icon name={m.icon} size={11} style={{ color: "var(--semantic-color-foreground-static-neutral-mono)" }} />
         </span>
       ))}
     </div>
@@ -518,7 +518,7 @@ function OrgRow({ org, active, onSelect }) {
       }}>
         {org.logoUrl
           ? <img src={org.logoUrl} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-          : <span style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>{org.initials}</span>}
+          : <span style={{ fontSize: 13, fontWeight: 700, color: "var(--semantic-color-foreground-static-neutral-mono)" }}>{org.initials}</span>}
       </div>
       {/* Name + module cluster */}
       <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 6 }}>
@@ -555,7 +555,7 @@ export function OrgSwitcherPanel({
       aria-label="Switch organisation"
       style={{
         width: 360, boxSizing: "border-box", background: PANEL_T.bg,
-        borderRadius: 8, boxShadow: "0 8px 16px rgba(0,0,0,0.1)",
+        borderRadius: 8, boxShadow: "var(--elevation-lift)",
         padding: "18px 18px 24px", display: "flex", flexDirection: "column", gap: 12,
         fontFamily: "'Red Hat Text', sans-serif", ...style,
       }}

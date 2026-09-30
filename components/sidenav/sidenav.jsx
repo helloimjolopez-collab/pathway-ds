@@ -47,6 +47,11 @@ import ReactDOM from "react-dom";
  * Token names verified against the Figma Variables panel on 2026-09-02.
  */
 const c = (name) => `var(--semantic-color-${name})`;
+// Elevation is its own collection and already carries the whole shadow string,
+// theme-resolved: light casts rgba(24,27,43,0.08), midnight casts
+// rgba(0,1,19,0.70). A hand-written rgba(0,0,0,0.03) is invisible on a dark
+// canvas, which is exactly how dark mode ended up looking flat.
+const c2 = (name) => `var(${name})`;
 const u = (name) => `var(--semantic-layout-units-${name})`;
 // Component metrics live in the CONTEXTUAL collection, not the semantic one, so
 // they need their own prefix. SideNav's two widths moved there on 2026-09-16:
@@ -313,7 +318,7 @@ export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }
         top: anchorRect.top + anchorRect.height / 2,
         zIndex: 1000, backgroundColor: T.surface.navLight,
         border: `0.5px solid ${c("stroke-static-neutral-faint")}`, borderRadius: 8,
-        boxShadow: "2px 2px 8px 0px rgba(0,0,0,0.03)",
+        boxShadow: c2("--elevation-widget"),
         padding: "6px 8px", whiteSpace: "nowrap", pointerEvents: "auto",
         animation: "popoverInCentered var(--motion-duration-3) var(--motion-easing-spring) forwards" }}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
@@ -352,7 +357,7 @@ export function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMo
       style={{ position: "fixed", left: anchorRect.right + 8, top: anchorRect.top,
         zIndex: 1000, backgroundColor: T.surface.navElevated,
         border: `0.5px solid ${c("stroke-static-neutral-faint")}`, borderRadius: 8,
-        boxShadow: "2px 2px 8px 4px rgba(0,0,0,0.03)",
+        boxShadow: c2("--elevation-widget"),
         padding: 6, minWidth: 200, pointerEvents: "auto",
         animation: "popoverIn var(--motion-duration-3) var(--motion-easing-spring) forwards" }}>
       {/* Section label — Figma component 40006794-5977 */}
@@ -503,7 +508,7 @@ export function NavSectionLabel({ label }) {
       flexShrink: 0 }}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 600,
         fontSize: 11, lineHeight: "16px", letterSpacing: "0.6px",
-        textTransform: "uppercase", color: T.text.secondarySubtle || "#606060",
+        textTransform: "uppercase", color: T.text.secondarySubtle,
         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
         {label}
       </span>
