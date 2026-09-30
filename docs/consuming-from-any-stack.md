@@ -53,6 +53,85 @@ re-resolves.
 
 See `docs/governance.md` §2 for the full contract and the naming rules.
 
+## Choosing a token, and what the names do not promise
+
+Most of the cost of adopting a token library is not installing it. It is
+deciding which of 206 names belongs on the thing you already built. This
+section is the rule, and then the list of things the names are NOT telling you.
+
+### The one distinction that matters: emphasis or state
+
+Both tiers carry a variant (`neutral`, `brand`, `negative`) and an emphasis rung
+(`faint`, `subtle`, `base`, `bold`, `strong`). Only one of them carries state.
+
+| | what it means | example |
+|---|---|---|
+| **Emphasis** | how loud this element is. You choose once and it never changes. | a divider is `stroke-static-neutral-faint`, permanently |
+| **State** | where this element is in an interaction, right now. One element moves through all of them. | a button is `rest`, then `hover`, then `pressed` |
+
+So the question is not how many values exist. It is:
+
+> **Does this element's colour change because of something the user does to it?**
+
+Yes, it is an **Action** token, and you will need its whole state set. No, it is
+a **Static** token, and you pick one emphasis rung and stop.
+
+`Static` having six rungs does not make it "multi-value" in the way Action is.
+The rungs are a menu you choose from once. The states are a sequence one element
+walks through.
+
+### What the names do not promise
+
+The names are deliberately descriptive enough to help you map an existing
+codebase onto them. That legibility has a cost: a name can read like a promise
+it is not making. Specifically:
+
+**A token named `primary` is not your primary button.** It means *a* primary
+action. Pathway has no opinion about your button component, because Pathway
+ships no button. If your product's main call to action is visually quiet, the
+loud primary token is the wrong one for it, however well the words line up.
+
+**A component-shaped name is not a component contract.** `fill-action-field-*`
+describes a field-like surface. It does not specify a field, guarantee that your
+field will look like ours, or survive as a promise if your field is different.
+Nothing in this package constrains component anatomy.
+
+**Two tokens resolving to the same value are not interchangeable.** Several
+pairs currently resolve identically in at least one theme. They still mean
+different things, they are free to diverge in the next release, and if you pick
+the one that reads right but means wrong, the day they diverge is the day your
+UI changes and nobody can explain why. Where two names look equally correct,
+pick by the rule above (does it change under interaction) rather than by which
+value looks right today.
+
+**`-on-strong` and `-on-subtle` are pairing constraints, not shades.**
+`foreground-static-brand-on-strong` means "the foreground to use ON a strong
+fill." It is a contrast guarantee about a combination, not a lightness. Using it
+on a light surface is not a quiet variant, it is an accessibility failure. The
+`on-` prefix always tells you what must be behind it.
+
+**Absence is sometimes deliberate.** There is no foreground rung lighter than
+`#484848`, because everything lighter fails WCAG AA on white. If you cannot find
+a token for the grey you want, check whether the grey you want is legible before
+concluding the set is incomplete. Report the gap; do not reach for a primitive.
+
+### Where the boundary is
+
+`dist/contract.json` lists every name you are meant to use. Everything else in
+`dist/` is infrastructure that the consumable names resolve through, and it can
+be renamed without a major version. Primitives in particular are published so
+that bindings resolve, not so that you can apply them: every one of them carries
+"Do not apply directly" in its description. If you find yourself naming a
+`--primitive-color-*` in your own CSS, the token you actually want either exists
+under a semantic name or does not exist yet, and we would rather hear which.
+
+### If two names still look equally right
+
+Tell us which two. A name that cannot be chosen between is a defect in this
+library, not in your understanding of it, and it is the single most useful piece
+of feedback a consuming team can send: we cannot see your mapping from here, so
+a collision that confuses you is invisible to us until you say so.
+
 ## The side nav as a custom element
 
 ```html
@@ -111,14 +190,14 @@ Your own markup, in three places.
 ```
 
 **You do not need a module-specific nav.** `items` expresses everything
-item-shaped — labels, icons, nesting, disabled rows — so every module passes its
+item-shaped (labels, icons, nesting, disabled rows), so every module passes its
 own array and they all share one component. Ten modules, ten arrays, one
 component. Slots exist for the things `items` cannot express: a usage meter, a
 support button, a badge component you already own. Without them your only option
 would be to rebuild the nav, which is the drift this component exists to
 prevent.
 
-An empty slot renders nothing — no wrapper, no padding, no divider — so omitting
+An empty slot renders nothing at all, no wrapper, no padding, no divider, so omitting
 one costs you nothing.
 
 Slot content often arrives *after* the element upgrades, which is normal in
@@ -183,7 +262,7 @@ matters more than it sounds. Measured on 2026-09-10:
 The inheritance row is the one that bit us. A rule like `* { font-family: X
 !important }` matches the `<pathway-sidenav>` element itself, and inherited
 properties flow from there through the boundary. Because backgrounds and borders
-do *not* inherit, the layout stays intact and it looks fine — the nav just
+do *not* inherit, the layout stays intact and it looks fine. The nav just
 quietly renders in your font at your tracking. Our own hostile-CSS demo missed
 this for weeks because it was scoped to a sibling element and never actually
 pointed at the nav. The component now resets inherited properties on its
