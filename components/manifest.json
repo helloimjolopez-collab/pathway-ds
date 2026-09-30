@@ -949,6 +949,65 @@
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
         "nodeId": "40006538:43236"
       }
+    },
+    "module-icon": {
+      "displayName": "ModuleIcon",
+      "description": "The twelve Amplify module marks. One geometry, two colour variants: Full resolves the module identity palette, Mono inherits currentColor.",
+      "module": "components/module-icon/module-icon.jsx",
+      "moduleNote": "Identity colours are declared ON the component, not in the Variables panel: module identity is a brand axis rather than a semantic, and must not flip with the theme. Style=Rippled from the Figma set is not built yet.",
+      "exports": [
+        "ModuleIcon",
+        "MODULES",
+        "MODULE_LABELS",
+        "MODULE_IDENTITY"
+      ],
+      "spec": "components/module-icon/module-icon-spec.md",
+      "demo": "components/module-icon/module-icon.html",
+      "stories": "src/stories/Library/ModuleIcon/ModuleIcon.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40006876:42134"
+      },
+      "props": {
+        "ModuleIcon": {
+          "module": {
+            "type": "string",
+            "options": [
+              "people",
+              "giving",
+              "service-planning",
+              "streaming",
+              "safety",
+              "mobile",
+              "accounting",
+              "communications",
+              "home",
+              "websites",
+              "media",
+              "equip"
+            ],
+            "default": null,
+            "required": true
+          },
+          "size": {
+            "type": "number",
+            "default": 24
+          },
+          "color": {
+            "type": "string",
+            "options": [
+              "full",
+              "mono"
+            ],
+            "default": "full"
+          },
+          "title": {
+            "type": "string",
+            "default": null,
+            "note": "Sets role=img and aria-label. Omit for a decorative mark beside a visible label."
+          }
+        }
+      }
     }
   }
 }
