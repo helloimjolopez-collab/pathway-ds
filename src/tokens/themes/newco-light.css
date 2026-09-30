@@ -68,11 +68,11 @@
   --semantic-color-fill-static-info-subtle: var(--primitive-color-amethyst-50);
   --semantic-color-fill-static-negative-strong: var(--primitive-color-red-400);
   --semantic-color-fill-static-negative-subtle: var(--primitive-color-red-50);
-  --semantic-color-fill-static-neutral-base: var(--primitive-color-cool-neutral-25);
-  --semantic-color-fill-static-neutral-faint: var(--primitive-color-cool-neutral-5);
+  --semantic-color-fill-static-neutral-base: var(--primitive-color-warm-neutral-50);
+  --semantic-color-fill-static-neutral-faint: var(--primitive-color-warm-neutral-0);
   --semantic-color-fill-static-neutral-mono: var(--primitive-color-cool-neutral-0);
-  --semantic-color-fill-static-neutral-strong: var(--primitive-color-cool-neutral-150);
-  --semantic-color-fill-static-neutral-subtle: var(--primitive-color-cool-neutral-10);
+  --semantic-color-fill-static-neutral-strong: var(--primitive-color-warm-neutral-75);
+  --semantic-color-fill-static-neutral-subtle: var(--primitive-color-warm-neutral-25);
   --semantic-color-fill-static-positive-strong: var(--primitive-color-green-500);
   --semantic-color-fill-static-positive-subtle: var(--primitive-color-green-25);
   --semantic-color-fill-static-severe-strong: var(--primitive-color-orange-200);

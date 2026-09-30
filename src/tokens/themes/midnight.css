@@ -88,11 +88,11 @@
   --semantic-color-fill-static-info-subtle: var(--primitive-color-amethyst-350-16);
   --semantic-color-fill-static-negative-strong: var(--primitive-color-red-400);
   --semantic-color-fill-static-negative-subtle: var(--primitive-color-red-300-16);
-  --semantic-color-fill-static-neutral-base: var(--primitive-color-cool-neutral-600);
-  --semantic-color-fill-static-neutral-faint: var(--primitive-color-cool-neutral-800);
+  --semantic-color-fill-static-neutral-base: var(--primitive-color-midnight-800);
+  --semantic-color-fill-static-neutral-faint: var(--primitive-color-midnight-900);
   --semantic-color-fill-static-neutral-mono: var(--primitive-color-cool-neutral-0);
-  --semantic-color-fill-static-neutral-strong: var(--primitive-color-cool-neutral-400);
-  --semantic-color-fill-static-neutral-subtle: var(--primitive-color-cool-neutral-700);
+  --semantic-color-fill-static-neutral-strong: var(--primitive-color-midnight-350);
+  --semantic-color-fill-static-neutral-subtle: var(--primitive-color-midnight-850);
   --semantic-color-fill-static-positive-strong: var(--primitive-color-green-300);
   --semantic-color-fill-static-positive-subtle: var(--primitive-color-green-350-16);
   --semantic-color-fill-static-severe-strong: var(--primitive-color-orange-200);
@@ -189,9 +189,9 @@
   --semantic-color-stroke-action-primary-strong-hover: var(--primitive-color-brand-250);
   --semantic-color-stroke-action-primary-strong-pressed: var(--primitive-color-brand-200);
   --semantic-color-stroke-action-primary-strong-rest: var(--primitive-color-brand-300);
-  --semantic-color-stroke-action-primary-subtle-hover: var(--primitive-color-brand-250);
-  --semantic-color-stroke-action-primary-subtle-pressed: var(--primitive-color-brand-200);
-  --semantic-color-stroke-action-primary-subtle-rest: var(--primitive-color-brand-300);
+  --semantic-color-stroke-action-primary-subtle-hover: var(--primitive-color-brand-125);
+  --semantic-color-stroke-action-primary-subtle-pressed: var(--primitive-color-brand-100);
+  --semantic-color-stroke-action-primary-subtle-rest: var(--primitive-color-brand-150);
   --semantic-color-stroke-action-secondary-hover: var(--primitive-color-midnight-300);
   --semantic-color-stroke-action-secondary-pressed: var(--primitive-color-midnight-200);
   --semantic-color-stroke-action-secondary-rest: var(--primitive-color-midnight-400);

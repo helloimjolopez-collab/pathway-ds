@@ -5508,7 +5508,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-fill-static-neutral-base": {
-    "value": "#f6f6f6",
+    "value": "#f3f0ec",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5520,7 +5520,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-fill-static-neutral-faint": {
-    "value": "#fdfdfd",
+    "value": "#fefefd",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5544,7 +5544,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-fill-static-neutral-strong": {
-    "value": "#b5b5b5",
+    "value": "#e6e2dc",
     "type": "color",
     "path": [
       "semantic-color",
@@ -5556,7 +5556,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-fill-static-neutral-subtle": {
-    "value": "#fafafa",
+    "value": "#f9f7f5",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8092,7 +8092,7 @@ const tokens = {
     ]
   },
   "semantic-color-dark-fill-static-neutral-base": {
-    "value": "#313131",
+    "value": "#353a52",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8104,7 +8104,7 @@ const tokens = {
     ]
   },
   "semantic-color-dark-fill-static-neutral-faint": {
-    "value": "#161616",
+    "value": "#181b2b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8128,7 +8128,7 @@ const tokens = {
     ]
   },
   "semantic-color-dark-fill-static-neutral-strong": {
-    "value": "#606060",
+    "value": "#868bad",
     "type": "color",
     "path": [
       "semantic-color",
@@ -8140,7 +8140,7 @@ const tokens = {
     ]
   },
   "semantic-color-dark-fill-static-neutral-subtle": {
-    "value": "#202020",
+    "value": "#262a3e",
     "type": "color",
     "path": [
       "semantic-color",

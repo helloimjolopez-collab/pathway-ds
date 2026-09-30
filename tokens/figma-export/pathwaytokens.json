@@ -5934,7 +5934,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.500}"
+                  "$value": "{Cool Neutral.450}"
                 },
                 "Mono": {
                   "$type": "color",
@@ -6818,13 +6818,13 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.600}"
+                  "$value": "{Midnight.800}"
                 },
                 "Faint": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.800}"
+                  "$value": "{Midnight.900}"
                 },
                 "Mono": {
                   "$type": "color",
@@ -6836,13 +6836,13 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.400}"
+                  "$value": "{Midnight.350}"
                 },
                 "Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.700}"
+                  "$value": "{Midnight.850}"
                 }
               },
               "Positive": {
@@ -7511,19 +7511,19 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.250}"
+                    "$value": "{Brand.125}"
                   },
                   "Pressed": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.200}"
+                    "$value": "{Brand.100}"
                   },
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.300}"
+                    "$value": "{Brand.150}"
                   }
                 }
               },
@@ -8244,13 +8244,13 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.25}"
+                  "$value": "{Warm Neutral.50}"
                 },
                 "Faint": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.5}"
+                  "$value": "{Warm Neutral.0}"
                 },
                 "Mono": {
                   "$type": "color",
@@ -8262,13 +8262,13 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.150}"
+                  "$value": "{Warm Neutral.75}"
                 },
                 "Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.10}"
+                  "$value": "{Warm Neutral.25}"
                 }
               },
               "Positive": {
@@ -9670,13 +9670,13 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.600}"
+                  "$value": "{Midnight.800}"
                 },
                 "Faint": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.800}"
+                  "$value": "{Midnight.900}"
                 },
                 "Mono": {
                   "$type": "color",
@@ -9688,13 +9688,13 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.400}"
+                  "$value": "{Midnight.350}"
                 },
                 "Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Cool Neutral.700}"
+                  "$value": "{Midnight.850}"
                 }
               },
               "Positive": {

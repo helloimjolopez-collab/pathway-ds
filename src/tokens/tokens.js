@@ -8252,7 +8252,7 @@ const tokens = {
     ]
   },
   "semantic-color-light-foreground-static-neutral-faint": {
-    "value": "#484848",
+    "value": "#545454",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9848,7 +9848,7 @@ const tokens = {
     ]
   },
   "semantic-color-dark-fill-static-neutral-base": {
-    "value": "#313131",
+    "value": "#353a52",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9860,7 +9860,7 @@ const tokens = {
     ]
   },
   "semantic-color-dark-fill-static-neutral-faint": {
-    "value": "#161616",
+    "value": "#181b2b",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9884,7 +9884,7 @@ const tokens = {
     ]
   },
   "semantic-color-dark-fill-static-neutral-strong": {
-    "value": "#606060",
+    "value": "#868bad",
     "type": "color",
     "path": [
       "semantic-color",
@@ -9896,7 +9896,7 @@ const tokens = {
     ]
   },
   "semantic-color-dark-fill-static-neutral-subtle": {
-    "value": "#202020",
+    "value": "#262a3e",
     "type": "color",
     "path": [
       "semantic-color",
@@ -11094,7 +11094,7 @@ const tokens = {
     ]
   },
   "semantic-color-dark-stroke-action-primary-subtle-hover": {
-    "value": "#5d7cca",
+    "value": "#93aae2",
     "type": "color",
     "path": [
       "semantic-color",
@@ -11107,7 +11107,7 @@ const tokens = {
     ]
   },
   "semantic-color-dark-stroke-action-primary-subtle-pressed": {
-    "value": "#6e8bd4",
+    "value": "#a0b5e6",
     "type": "color",
     "path": [
       "semantic-color",
@@ -11120,7 +11120,7 @@ const tokens = {
     ]
   },
   "semantic-color-dark-stroke-action-primary-subtle-rest": {
-    "value": "#5475c6",
+    "value": "#86a0dd",
     "type": "color",
     "path": [
       "semantic-color",

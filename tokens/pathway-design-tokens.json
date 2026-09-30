@@ -5386,7 +5386,7 @@
             },
             "faint": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.500}"
+              "$value": "{primitive-color.pathway.cool-neutral.450}"
             },
             "mono": {
               "$type": "color",
@@ -6016,11 +6016,11 @@
           "neutral": {
             "base": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.600}"
+              "$value": "{primitive-color.pathway.midnight.800}"
             },
             "faint": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.800}"
+              "$value": "{primitive-color.pathway.midnight.900}"
             },
             "mono": {
               "$type": "color",
@@ -6028,11 +6028,11 @@
             },
             "strong": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.400}"
+              "$value": "{primitive-color.pathway.midnight.350}"
             },
             "subtle": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.700}"
+              "$value": "{primitive-color.pathway.midnight.850}"
             }
           },
           "positive": {
@@ -6507,15 +6507,15 @@
             "subtle": {
               "hover": {
                 "$type": "color",
-                "$value": "{primitive-color.pathway.brand.250}"
+                "$value": "{primitive-color.pathway.brand.125}"
               },
               "pressed": {
                 "$type": "color",
-                "$value": "{primitive-color.pathway.brand.200}"
+                "$value": "{primitive-color.pathway.brand.100}"
               },
               "rest": {
                 "$type": "color",
-                "$value": "{primitive-color.pathway.brand.300}"
+                "$value": "{primitive-color.pathway.brand.150}"
               }
             }
           },
@@ -7030,11 +7030,11 @@
           "neutral": {
             "base": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.25}"
+              "$value": "{primitive-color.pathway.warm-neutral.50}"
             },
             "faint": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.5}"
+              "$value": "{primitive-color.pathway.warm-neutral.0}"
             },
             "mono": {
               "$type": "color",
@@ -7042,11 +7042,11 @@
             },
             "strong": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.150}"
+              "$value": "{primitive-color.pathway.warm-neutral.75}"
             },
             "subtle": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.10}"
+              "$value": "{primitive-color.pathway.warm-neutral.25}"
             }
           },
           "positive": {
@@ -8044,11 +8044,11 @@
           "neutral": {
             "base": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.600}"
+              "$value": "{primitive-color.pathway.midnight.800}"
             },
             "faint": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.800}"
+              "$value": "{primitive-color.pathway.midnight.900}"
             },
             "mono": {
               "$type": "color",
@@ -8056,11 +8056,11 @@
             },
             "strong": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.400}"
+              "$value": "{primitive-color.pathway.midnight.350}"
             },
             "subtle": {
               "$type": "color",
-              "$value": "{primitive-color.pathway.cool-neutral.700}"
+              "$value": "{primitive-color.pathway.midnight.850}"
             }
           },
           "positive": {
