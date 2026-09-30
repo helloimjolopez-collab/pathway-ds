@@ -45,37 +45,37 @@ const CHURCH_ICON_PATH =
 // keep the file readable on its own.
 const T = {
   // Container fills
-  fillBase:    "var(--semantic-color-fill-action-primary-subtle-rest,    rgba(160,181,230,0.04))",
-  fillHover:   "var(--semantic-color-fill-action-primary-subtle-hover,   rgba(10,18,35,0.16))",
-  fillPressed: "var(--semantic-color-fill-action-primary-subtle-pressed, rgba(255,255,255,0.08))",
+  fillBase:    "var(--semantic-color-fill-action-primary-subtle-rest)",
+  fillHover:   "var(--semantic-color-fill-action-primary-subtle-hover)",
+  fillPressed: "var(--semantic-color-fill-action-primary-subtle-pressed)",
 
   // Avatar placeholder background (when no logo on file)
-  fillAvatarPlaceholder: "var(--semantic-color-fill-action-secondary-rest, rgba(255,255,255,0.08))",
+  fillAvatarPlaceholder: "var(--semantic-color-fill-action-secondary-rest)",
 
   // Borders
-  strokeBase:    "var(--semantic-color-stroke-action-primary-strong-rest,    rgba(160,181,230,0.16))",
-  strokeHover:   "var(--semantic-color-stroke-action-primary-strong-hover,   rgba(160,181,230,0.20))",
-  strokePressed: "var(--semantic-color-stroke-action-primary-strong-pressed, rgba(160,181,230,0.30))",
+  strokeBase:    "var(--semantic-color-stroke-action-primary-strong-rest)",
+  strokeHover:   "var(--semantic-color-stroke-action-primary-strong-hover)",
+  strokePressed: "var(--semantic-color-stroke-action-primary-strong-pressed)",
 
   // Text — org name. Reconciled to Figma (Foreground/Static/Neutral/Bold, node
   // 40006819:14581). Static token — no per-state variants; the interactive
   // feedback is carried by the fill/stroke, not the text colour.
-  textBase:    "var(--semantic-color-foreground-static-neutral-bold, #eceaf3)",
-  textHover:   "var(--semantic-color-foreground-static-neutral-bold, #eceaf3)",
-  textPressed: "var(--semantic-color-foreground-static-neutral-bold, #eceaf3)",
+  textBase:    "var(--semantic-color-foreground-static-neutral-bold)",
+  textHover:   "var(--semantic-color-foreground-static-neutral-bold)",
+  textPressed: "var(--semantic-color-foreground-static-neutral-bold)",
 
   // Chevron icon — reconciled to Figma (Foreground/Static/Neutral/Bold = white 80%).
-  iconBase:    "var(--semantic-color-foreground-static-neutral-base, rgba(255,255,255,0.8))",
-  iconHover:   "var(--semantic-color-foreground-static-neutral-base, rgba(255,255,255,0.8))",
-  iconPressed: "var(--semantic-color-foreground-static-neutral-base, rgba(255,255,255,0.8))",
+  iconBase:    "var(--semantic-color-foreground-static-neutral-base)",
+  iconHover:   "var(--semantic-color-foreground-static-neutral-base)",
+  iconPressed: "var(--semantic-color-foreground-static-neutral-base)",
 
   // Geometry
-  radiusMedium: "var(--semantic-layout-units-cornerradius-base, 8px)",
-  radiusSmall:  "var(--semantic-layout-units-cornerradius-small,  4px)",
-  borderWidth:  "var(--semantic-layout-units-borderwidth-base,    1px)",
-  pXxtight:     "var(--semantic-layout-units-padding-xxtight,     4px)",
-  pXxxtight:    "var(--semantic-layout-units-padding-xxxtight,    2px)",
-  gapXxtight:   "var(--semantic-layout-units-gap-xxtight,         4px)",
+  radiusMedium: "var(--semantic-layout-units-cornerradius-base)",
+  radiusSmall:  "var(--semantic-layout-units-cornerradius-small)",
+  borderWidth:  "var(--semantic-layout-units-borderwidth-base)",
+  pXxtight:     "var(--semantic-layout-units-padding-xxtight)",
+  pXxxtight:    "var(--semantic-layout-units-padding-xxxtight)",
+  gapXxtight:   "var(--semantic-layout-units-gap-xxtight)",
 };
 
 // ─── ICON HELPER ──────────────────────────────────────────────────────────────
@@ -469,13 +469,13 @@ export const DEMO_ORGS = [
 ];
 
 const PANEL_T = {
-  bg:        "var(--semantic-color-fill-static-neutral-faint, #ffffff)",
-  header:    "var(--semantic-color-foreground-static-neutral-base, #606060)",
-  border:    "var(--semantic-color-stroke-static-neutral-faint, #ededed)",
-  name:      "var(--semantic-color-foreground-static-neutral-bold, #202020)",
-  icon:      "var(--semantic-color-foreground-static-neutral-base, #949494)",
-  logoBg:    "var(--semantic-color-fill-surface-chrome, #2d4889)",
-  rowActive: "var(--semantic-color-fill-action-primary-subtle-rest, #eef2fb)",
+  bg:        "var(--semantic-color-fill-static-neutral-faint)",
+  header:    "var(--semantic-color-foreground-static-neutral-base)",
+  border:    "var(--semantic-color-stroke-static-neutral-faint)",
+  name:      "var(--semantic-color-foreground-static-neutral-bold)",
+  icon:      "var(--semantic-color-foreground-static-neutral-base)",
+  logoBg:    "var(--semantic-color-fill-surface-chrome)",
+  rowActive: "var(--semantic-color-fill-action-primary-subtle-rest)",
 };
 
 function ModuleCluster() {

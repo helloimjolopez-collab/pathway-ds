@@ -27,45 +27,45 @@ import React, { useState, useEffect, useRef } from "react";
 // the token contract — used only when Storybook has not loaded it yet.
 export const T = {
   // Bar fills
-  barBg:           "var(--semantic-color-fill-static-neutral-faint, #ffffff)",
-  filterActiveFill:"var(--semantic-color-fill-action-primary-subtle-rest, #eef2fb)",
+  barBg:           "var(--semantic-color-fill-static-neutral-faint)",
+  filterActiveFill:"var(--semantic-color-fill-action-primary-subtle-rest)",
   // Icon pill hover/pressed: no semantic token resolves to the correct subtle overlay
   // on a white surface. fill.action.secondary.hover = warm-neutral-200 (#f7f5f3)
   // which creates a visible warm cream box — wrong. Using direct rgba values as a
   // token gap (see search-spec.md §17).
   iconPillHover:   "rgba(0,0,0,0.06)",
   iconPillPressed: "rgba(0,0,0,0.10)",
-  badgeFill:       "var(--semantic-color-fill-action-primary-strong-rest, #3555a0)",
-  collapsedBtnFill:"var(--semantic-color-fill-action-primary-subtle-rest, rgba(160,181,230,0.08))",
-  disabledBg:      "var(--primitive-color-cool-neutral-10, #fbfbfb)",      // token gap §17
+  badgeFill:       "var(--semantic-color-fill-action-primary-strong-rest)",
+  collapsedBtnFill:"var(--semantic-color-fill-action-primary-subtle-rest)",
+  disabledBg:      "var(--primitive-color-cool-neutral-10)",      // token gap §17
 
   // Bar borders
-  borderIdle:     "var(--semantic-color-stroke-static-neutral-faint, #f6f6f6)",
-  borderHover:    "var(--semantic-color-stroke-action-primary-strong-hover, #86a0dd)",
-  borderActive:   "var(--semantic-color-stroke-action-primary-strong-pressed, #6e8bd4)",
-  borderError:    "var(--semantic-color-stroke-action-status-negative-rest, #b03a3a)",
-  borderDisabled: "var(--primitive-color-cool-neutral-25, #ededed)",       // token gap §17
-  divider:        "var(--semantic-color-stroke-action-secondary-rest, #d2d2d2)",
+  borderIdle:     "var(--semantic-color-stroke-static-neutral-faint)",
+  borderHover:    "var(--semantic-color-stroke-action-primary-strong-hover)",
+  borderActive:   "var(--semantic-color-stroke-action-primary-strong-pressed)",
+  borderError:    "var(--semantic-color-stroke-action-status-negative-rest)",
+  borderDisabled: "var(--primitive-color-cool-neutral-25)",       // token gap §17
+  divider:        "var(--semantic-color-stroke-action-secondary-rest)",
 
   // Text
-  textPlaceholder:"var(--semantic-color-foreground-static-neutral-base, #606060)",
-  textValue:      "var(--semantic-color-foreground-static-neutral-bold, #202020)",
+  textPlaceholder:"var(--semantic-color-foreground-static-neutral-base)",
+  textValue:      "var(--semantic-color-foreground-static-neutral-bold)",
 
   // Icons
-  iconIdle:    "var(--semantic-color-foreground-action-secondary-rest, #6b6b6b)",
-  iconHover:   "var(--semantic-color-foreground-action-secondary-hover, #545454)",
-  iconDisabled:"var(--semantic-color-foreground-action-disabled, #979797)",
-  iconError:   "var(--semantic-color-foreground-action-status-negative-on-subtle-rest, #b03a3a)",
+  iconIdle:    "var(--semantic-color-foreground-action-secondary-rest)",
+  iconHover:   "var(--semantic-color-foreground-action-secondary-hover)",
+  iconDisabled:"var(--semantic-color-foreground-action-disabled)",
+  iconError:   "var(--semantic-color-foreground-action-status-negative-on-subtle-rest)",
 
   // TopNav.Search collapsed control — sits on the dark brand-blue nav surface, so it
   // resolves through the DARK-MODE token set (per Figma node 40007095-4048). The
   // expanded bar itself stays white (light-mode SearchInput) — only the collapsed
   // icon button + its icon use the inverse/mono dark-mode tokens.
-  navIconFill:        "var(--semantic-color-foreground-static-neutral-mono, #fbfbfb)",
-  collapsedBtnFill:   "var(--semantic-color-fill-action-primary-subtle-rest, rgba(160,181,230,0.08))",
-  collapsedBtnHover:  "var(--semantic-color-fill-action-primary-subtle-hover, rgba(10,18,35,0.16))",
-  collapsedBtnBorder: "var(--semantic-color-stroke-action-primary-strong-rest, rgba(160,181,230,0.5))",
-  badgeBorderColor:   "var(--semantic-color-fill-static-neutral-faint, #ffffff)",
+  navIconFill:        "var(--semantic-color-foreground-static-neutral-mono)",
+  collapsedBtnFill:   "var(--semantic-color-fill-action-primary-subtle-rest)",
+  collapsedBtnHover:  "var(--semantic-color-fill-action-primary-subtle-hover)",
+  collapsedBtnBorder: "var(--semantic-color-stroke-action-primary-strong-rest)",
+  badgeBorderColor:   "var(--semantic-color-fill-static-neutral-faint)",
 };
 
 // ─── LAYOUT VALUES ─────────────────────────────────────────────────────────────

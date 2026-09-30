@@ -32,38 +32,47 @@ import { OrgSwitcherPanel, DEMO_ORGS } from "../org-switcher/org-switcher.jsx";
 // SCD and SCL are kept as separate names purely to document INTENT at each call
 // site: SCD marks "this sits on the dark bar", SCL marks "this sits on a light
 // panel". They resolve identically; the wrapper does the work.
-const TOK = (p, fb) => `var(--semantic-color-${p}, ${fb})`;
+const TOK = (p) => `var(--semantic-color-${p})`;
 const SCD = TOK;   // on the dark bar
 const SCL = TOK;   // on a light panel
 // Layout helpers. `r` reads Responsive: Layout, the only collection with
 // breakpoint modes: layout-responsive.css emits ONE property name and switches
 // its value by media query, so the chrome's padding no longer needs a JS
 // breakpoint branch. `u` reads the single-valued semantic scale.
-const r = (name, fb) => `var(--responsive-layout-${name}, ${fb}px)`;
-const u = (name, fb) => `var(--semantic-layout-units-${name}, ${fb}px)`;
+const r = (name) => `var(--responsive-layout-${name})`;
+const u = (name) => `var(--semantic-layout-units-${name})`;
+// Contextual: Layout & Units. TopNav/Height lives HERE, not in Responsive:
+// Layout, because the bar is the same height at every breakpoint — only its
+// padding and gap change. navH used to read the height through the RESPONSIVE
+// helper, asking for a property that no emitted file declares. The two-argument
+// helper form hid it, because the reference checker skips a call it cannot
+// evaluate statically: the height resolved to a hard-coded 60px fallback for as
+// long as that fallback existed, and would have painted nothing the moment it
+// was removed. Corrected 2026-09-30 while removing the fallbacks.
+const c = (name) => `var(--contextual-layout-units-${name})`;
 export const T = {
-  navBg:          SCL("fill-surface-chrome", "#4364b6"),
-  orgFill:        SCD("fill-action-primary-subtle-rest", "rgba(160,181,230,0.04)"),
-  orgStroke:      SCD("stroke-action-primary-strong-rest", "rgba(160,181,230,0.16)"),
-  orgStrokeHover: SCD("stroke-action-primary-strong-hover", "rgba(160,181,230,0.20)"),
-  searchFill:     SCD("fill-action-primary-subtle-rest", "rgba(160,181,230,0.08)"),
-  controlHover:   SCD("fill-action-primary-subtle-hover", "rgba(10,18,35,0.16)"),
-  controlPressed: SCD("fill-action-primary-subtle-pressed", "rgba(255,255,255,0.08)"),
-  noLogoBg:       SCD("fill-action-secondary-rest", "rgba(255,255,255,0.08)"),
-  monoBase:       SCD("foreground-static-neutral-mono", "#fbfbfb"),
+  navBg:          SCL("fill-surface-chrome"),
+  orgFill:        SCD("fill-action-primary-subtle-rest"),
+  orgStroke:      SCD("stroke-action-primary-strong-rest"),
+  orgStrokeHover: SCD("stroke-action-primary-strong-hover"),
+  searchFill:     SCD("fill-action-primary-subtle-rest"),
+  controlHover:   SCD("fill-action-primary-subtle-hover"),
+  controlPressed: SCD("fill-action-primary-subtle-pressed"),
+  noLogoBg:       SCD("fill-action-secondary-rest"),
+  monoBase:       SCD("foreground-static-neutral-mono"),
   // OrgSwitcher trigger (reconciled to Figma node 40006819:14581, 2026-08-06):
   // org name uses Foreground/Static/Neutral/Bold, chevron uses Foreground/Static/Neutral/Bold.
-  orgText:        SCD("foreground-static-neutral-bold", "#eceaf3"),
-  orgChevron:     SCD("foreground-static-neutral-base", "rgba(255,255,255,0.8)"),
-  avatarBg:       SCL("fill-static-info-subtle", "#f4f2fa"),
-  avatarText:     SCL("foreground-static-info-on-subtle", "#464080"),
+  orgText:        SCD("foreground-static-neutral-bold"),
+  orgChevron:     SCD("foreground-static-neutral-base"),
+  avatarBg:       SCL("fill-static-info-subtle"),
+  avatarText:     SCL("foreground-static-info-on-subtle"),
   // White dropdown-menu surface — tracks fill-neutral-light (now warm-neutral-0).
-  panelBg:        SCL("fill-static-neutral-faint", "#ffffff"),
-  activeItem:     SCL("fill-action-primary-subtle-rest", "#eef2fb"),
-  itemText:       SCL("foreground-static-neutral-bold", "#252525"),
-  itemTextBase:   SCL("foreground-static-neutral-base", "#484848"),
-  itemMeta:       SCL("foreground-static-neutral-base", "#6b6b6b"),
-  signOut:        SCL("foreground-action-status-negative-on-subtle-rest", "#c0392b"),
+  panelBg:        SCL("fill-static-neutral-faint"),
+  activeItem:     SCL("fill-action-primary-subtle-rest"),
+  itemText:       SCL("foreground-static-neutral-bold"),
+  itemTextBase:   SCL("foreground-static-neutral-base"),
+  itemMeta:       SCL("foreground-static-neutral-base"),
+  signOut:        SCL("foreground-action-status-negative-on-subtle-rest"),
   // Token gaps (no semantic token exists yet — flagged P2 in the pipeline report):
   panelBorder:    "rgba(45,72,137,0.12)",
   panelShadow:    "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
@@ -77,16 +86,16 @@ export const L = {
   // measured from Container.Main in Figma; vertical is 6 and the gap 8 at every
   // breakpoint. Before 2026-09-17 these were six hardcoded numbers here, and the
   // tablet height said 54 while the token said 56.
-  navPadH:     r("topnav-padding-horizontal", 16),
-  navPadV:     r("topnav-padding-vertical", 6),
-  navH:        r("topnav-height", 56),
-  navGap:      r("topnav-gap-horizontal", 8),
+  navPadH:     r("topnav-padding-horizontal"),
+  navPadV:     r("topnav-padding-vertical"),
+  navH:        c("topnav-height"),
+  navGap:      r("topnav-gap-horizontal"),
   deskOrgMax: 316, mobOrgMax: 120,
   touchTarget: 48, modInnerH: 36,
   orgAvatarNav: 20, orgAvatarSm: 24, orgAvatarPanel: 32,
   searchPill: 32, avatarSize: 32,
-  radius:      u("cornerradius-base", 8),
-  radiusSm:    u("cornerradius-small", 4),
+  radius:      u("cornerradius-base"),
+  radiusSm:    u("cornerradius-small"),
 };
 
 // ─── ABBREVIATION UTILITIES ────────────────────────────────────────────────────

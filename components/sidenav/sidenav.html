@@ -159,7 +159,7 @@
     display: flex; align-items: center; justify-content: center;
     height: 36px; min-height: 48px; padding: 4px 4px 4px 4px;
     gap: 2px;
-    border: none; border-radius: var(--tn-radius-md, 8px);
+    border: none; border-radius: var(--tn-radius-md);
     background: transparent; cursor: pointer;
     transition: background var(--motion-duration-3) var(--motion-easing-standard);
   }
@@ -179,7 +179,7 @@
     min-height: 36px; max-height: 36px; padding: 4px;
     background: var(--ptn-brand-50-4);
     border: 1px solid var(--ptn-brand-50-16);
-    border-radius: var(--tn-radius-md, 8px);
+    border-radius: var(--tn-radius-md);
     color: var(--tn-text-mono); cursor: pointer; font-family: inherit;
     transition: background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard);
   }
@@ -199,7 +199,7 @@
     font-family: 'Red Hat Text', sans-serif;
   }
   .tn-org-panel {
-    position: absolute; top: calc(100% + 8px); left: 0; min-width: var(--contextual-layout-units-sidenav-width-expanded, 250px);
+    position: absolute; top: calc(100% + 8px); left: 0; min-width: var(--contextual-layout-units-sidenav-width-expanded);
     background: #1e2d52; border: 1px solid rgba(160,181,230,0.14); border-radius: 10px;
     padding: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.30);
     z-index: 200; animation: tnDropdownIn var(--motion-duration-2) var(--motion-easing-decelerate) both;
@@ -221,7 +221,7 @@
     width: 32px; height: 32px; padding: 8px;
     background: rgba(160,181,230,0.08);
     border: 0.75px solid #fbfbfb;
-    border-radius: var(--tn-radius-full, 64px);
+    border-radius: var(--tn-radius-full);
   }
   .tn-search-inner .tn-ms { font-size: 18px; font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20; }
 
@@ -230,14 +230,14 @@
     display: flex; align-items: center; justify-content: center;
     width: 48px; height: 48px; padding: 6px;
     border: none; background: transparent; color: var(--tn-icon-mono);
-    cursor: pointer; border-radius: var(--tn-radius-md, 8px);
+    cursor: pointer; border-radius: var(--tn-radius-md);
     transition: background var(--motion-duration-3) var(--motion-easing-standard);
   }
   .tn-action-btn:hover { background: var(--tn-fill-hover); }
   .tn-action-btn:focus-visible { outline: 2px solid rgba(160,181,230,0.7); outline-offset: 2px; }
   .tn-action-inner {
     display: flex; align-items: center; justify-content: center;
-    width: 36px; height: 36px; border-radius: var(--tn-radius-md, 8px);
+    width: 36px; height: 36px; border-radius: var(--tn-radius-md);
     padding: 8px;
   }
   /* First bell has a highlight background per Figma */
@@ -473,9 +473,9 @@ function Scrollable({ children, style={}, viewStyle={} }) {
 // bogus colour whenever a name had been renamed in Figma. Referencing the custom
 // property lets the cascade resolve it, so [data-theme="midnight"] just works.
 const c = (name) => `var(--semantic-color-${name})`;
-const u = (name, fallback) => `var(--semantic-layout-units-${name}, ${fallback}px)`;
+const u = (name) => `var(--semantic-layout-units-${name})`;
 // Component metrics live in the CONTEXTUAL collection and need their own prefix.
-const x = (name, fallback) => `var(--contextual-layout-units-${name}, ${fallback}px)`;
+const x = (name) => `var(--contextual-layout-units-${name})`;
 
 const T = {
   fill: {
@@ -510,7 +510,7 @@ const T = {
   // The stripe takes the loud brand blue from the Action tier rather than owning
   // a token of its own.
   indicator: c("fill-action-primary-strong-pressed"),
-  radius:    u("cornerradius-base", 8),
+  radius:    u("cornerradius-base"),
 };
 
 // ─── LAYOUT VALUES (from Figma — no semantic token names found for these) ─────
@@ -524,8 +524,8 @@ const L = {
   navPadVb:    12,   // SideNav.Container pb-[12px] — bottom padding unchanged
   // Tokenised 2026-09-16. Read from SideNav.Container in Figma: every expanded
   // variant is 250 wide and every collapsed one is 72. Was 240.
-  navW:        x("sidenav-width-expanded", 250),
-  navWcol:     x("sidenav-width-collapsed", 72),
+  navW:        x("sidenav-width-expanded"),
+  navWcol:     x("sidenav-width-collapsed"),
   menuGap:     6,    // SideNavMenu gap — Gap/XTight 6px (updated from 0, 2026-05-13)
   menuPadT:    8,    // SideNavMenu paddingTop — gap between NavHeader divider and first item
   itemH:       44,   // Accessibility/Touch Target/AA → 44px (Figma 40005281:10058, updated 2026-06-08 from 48)

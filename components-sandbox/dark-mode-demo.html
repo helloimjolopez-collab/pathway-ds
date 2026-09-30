@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="midnight">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dark Mode — Pathway exploration</title>
+
+<!-- The live token contract, all nine files. Nothing in this demo invents a value. -->
+<link rel="stylesheet" href="../src/tokens/primitives.css" />
+<link rel="stylesheet" href="../src/tokens/themes/light.css" />
+<link rel="stylesheet" href="../src/tokens/themes/midnight.css" />
+<link rel="stylesheet" href="../src/tokens/layout.css" />
+<link rel="stylesheet" href="../src/tokens/layout-contextual.css" />
+<link rel="stylesheet" href="../src/tokens/layout-responsive.css" />
+<link rel="stylesheet" href="../src/tokens/type.css" />
+<link rel="stylesheet" href="../src/tokens/motion.css" />
+<link rel="stylesheet" href="../src/tokens/breakpoints.css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
+
+<style>
+  .material-symbols-rounded {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    font-size: 20px; line-height: 1; user-select: none;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: 'Red Hat Text', sans-serif;
+    background: var(--semantic-color-fill-surface-canvas);
+    color: var(--semantic-color-foreground-static-neutral-base);
+    -webkit-font-smoothing: antialiased;
+  }
+  .shell { display: flex; flex-direction: column; height: 100vh; }
+
+  /* ── Top nav ─────────────────────────────────────────────────────────── */
+  .topnav {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+    height: var(--responsive-layout-topnav-height);
+    padding: var(--responsive-layout-topnav-padding-vertical) var(--responsive-layout-topnav-padding-horizontal);
+    gap: var(--responsive-layout-topnav-gap-horizontal);
+    background: var(--semantic-color-fill-surface-top-nav);
+  }
+  .topnav-group { display: flex; align-items: center; gap: var(--responsive-layout-topnav-gap-horizontal); }
+  .module {
+    display: flex; align-items: center; gap: var(--semantic-layout-units-gap-xxtight);
+    padding: var(--semantic-layout-units-padding-xxtight) var(--semantic-layout-units-padding-xtight);
+    border-radius: var(--semantic-layout-units-cornerradius-base);
+    color: var(--semantic-color-foreground-static-neutral-mono);
+    font-size: var(--semantic-type-font-size-s); font-weight: var(--semantic-type-weight-medium);
+  }
+  .org {
+    display: flex; align-items: center; gap: var(--semantic-layout-units-gap-xxtight);
+    min-height: 36px;
+    padding: var(--semantic-layout-units-padding-xxtight) var(--semantic-layout-units-padding-tight);
+    border: var(--contextual-layout-units-button-borderwidth-rest) solid var(--semantic-color-stroke-action-primary-strong-rest);
+    border-radius: var(--semantic-layout-units-cornerradius-base);
+    color: var(--semantic-color-foreground-static-neutral-mono);
+    font-size: var(--semantic-type-font-size-s);
+  }
+  .iconbtn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border: none; background: transparent; cursor: pointer;
+    border-radius: var(--semantic-layout-units-cornerradius-base);
+    color: var(--semantic-color-foreground-static-neutral-mono);
+  }
+  .avatar {
+    width: 32px; height: 32px; border-radius: var(--semantic-layout-units-cornerradius-full);
+    display: grid; place-items: center;
+    background: var(--semantic-color-fill-static-info-subtle);
+    color: var(--semantic-color-foreground-static-info-on-subtle);
+    font-size: var(--semantic-type-font-size-xxs); font-weight: var(--semantic-type-weight-semibold);
+  }
+
+  /* ── Body: side nav + screen ─────────────────────────────────────────── */
+  .body { display: flex; flex: 1; min-height: 0; }
+  .sidenav {
+    width: var(--contextual-layout-units-sidenav-width-expanded);
+    flex-shrink: 0;
+    display: flex; flex-direction: column;
+    gap: var(--contextual-layout-units-sidenav-gap-vertical);
+    padding: var(--contextual-layout-units-sidenav-padding-vertical) var(--contextual-layout-units-sidenav-padding-horizontal-expanded);
+    background: var(--semantic-color-fill-surface-side-nav);
+    border-right: var(--semantic-layout-units-borderwidth-base) solid var(--semantic-color-stroke-static-neutral-faint);
+  }
+  .sectionlabel {
+    font-size: var(--semantic-type-font-size-xxs); font-weight: var(--semantic-type-weight-semibold);
+    letter-spacing: var(--semantic-type-letter-spacing-extraspacious);
+    text-transform: uppercase;
+    color: var(--semantic-color-foreground-static-neutral-faint);
+    padding: var(--semantic-layout-units-padding-tight) var(--semantic-layout-units-padding-xtight) var(--semantic-layout-units-padding-xxtight);
+  }
+  .navitem {
+    display: flex; align-items: center; gap: var(--semantic-layout-units-gap-tight);
+    min-height: var(--semantic-layout-units-accessibility-touch-target-aa-height);
+    padding: var(--contextual-layout-units-navitem-padding-vertical) var(--contextual-layout-units-navitem-padding-horizontal);
+    border-radius: var(--contextual-layout-units-navitem-corner-radius-radius);
+    color: var(--semantic-color-foreground-action-secondary-rest);
+    font-size: var(--semantic-type-font-size-s); cursor: pointer;
+    transition: background var(--motion-duration-3) var(--motion-easing-standard);
+  }
+  .navitem:hover { background: var(--semantic-color-fill-action-selection-hover);
+                   color: var(--semantic-color-foreground-action-secondary-hover); }
+  .navitem.active { background: var(--semantic-color-fill-action-selection-selected);
+                    color: var(--semantic-color-foreground-action-secondary-pressed); }
+
+  .screen { flex: 1; min-width: 0; overflow: auto;
+            padding: var(--responsive-layout-screen-padding-top, 0) var(--responsive-layout-screen-padding-horizontal, 0); }
+  .sheet {
+    min-height: 100%;
+    background: var(--semantic-color-fill-surface-sheet);
+    border-top-left-radius: var(--responsive-layout-sheet-cornerradius-top);
+    border-top-right-radius: var(--responsive-layout-sheet-cornerradius-top);
+    padding: var(--responsive-layout-sheet-padding-top) var(--responsive-layout-sheet-padding-horizontal);
+  }
+  .tabs { display: flex; gap: var(--semantic-layout-units-gap-relaxed);
+          border-bottom: var(--semantic-layout-units-borderwidth-base) solid var(--semantic-color-stroke-static-neutral-faint);
+          margin-bottom: var(--semantic-layout-units-padding-wide); }
+  .tab { padding: var(--semantic-layout-units-padding-tight) 0; font-size: var(--semantic-type-font-size-s);
+         color: var(--semantic-color-foreground-static-neutral-subtle); cursor: pointer; }
+  .tab.active { color: var(--semantic-color-foreground-static-neutral-bold);
+                box-shadow: inset 0 -2px 0 0 var(--semantic-color-fill-static-brand-bold); font-weight: var(--semantic-type-weight-medium); }
+
+  h1 { margin: 0 0 var(--semantic-layout-units-padding-xxtight);
+       font-size: var(--semantic-type-font-size-xl); font-weight: var(--semantic-type-weight-semibold);
+       color: var(--semantic-color-foreground-static-neutral-bold); }
+  .lede { margin: 0 0 var(--semantic-layout-units-padding-wide);
+          font-size: var(--semantic-type-font-size-s); color: var(--semantic-color-foreground-static-neutral-subtle); }
+  h2 { font-size: var(--semantic-type-font-size-xxs); font-weight: var(--semantic-type-weight-semibold);
+       letter-spacing: var(--semantic-type-letter-spacing-extraspacious); text-transform: uppercase;
+       color: var(--semantic-color-foreground-static-neutral-faint);
+       margin: var(--semantic-layout-units-padding-wide) 0 var(--semantic-layout-units-padding-tight); }
+
+  .toolbar { display: flex; align-items: center; gap: var(--semantic-layout-units-gap-tight);
+             margin-bottom: var(--semantic-layout-units-padding-medium); flex-wrap: wrap; }
+  .field { flex: 1; min-width: 220px; display: flex; align-items: center;
+           gap: var(--semantic-layout-units-gap-tight);
+           padding: var(--semantic-layout-units-padding-xtight) var(--semantic-layout-units-padding-tight);
+           border: var(--contextual-layout-units-field-borderwidth) solid var(--semantic-color-stroke-action-field-rest);
+           border-radius: var(--semantic-layout-units-cornerradius-full);
+           background: var(--semantic-color-fill-surface-elevated);
+           color: var(--semantic-color-foreground-static-neutral-subtle); font-size: var(--semantic-type-font-size-s); }
+
+  .btn { display: inline-flex; align-items: center; gap: var(--contextual-layout-units-button-gap-horizontal);
+         padding: var(--contextual-layout-units-button-padding-medium-vertical) var(--contextual-layout-units-button-padding-medium-horizontal);
+         border-radius: var(--contextual-layout-units-button-cornerradius);
+         font-size: var(--semantic-type-font-size-s); font-weight: var(--semantic-type-weight-medium);
+         cursor: pointer; border: none; transition: background var(--motion-duration-3) var(--motion-easing-standard); }
+  .btn-primary { background: var(--semantic-color-fill-action-primary-strong-rest);
+                 color: var(--semantic-color-foreground-action-primary-on-strong); }
+  .btn-primary:hover { background: var(--semantic-color-fill-action-primary-strong-hover); }
+  .btn-secondary { background: var(--semantic-color-fill-action-secondary-rest);
+                   color: var(--semantic-color-foreground-action-secondary-rest);
+                   border: var(--contextual-layout-units-button-borderwidth-rest) solid var(--semantic-color-stroke-action-secondary-rest); }
+  .btn-secondary:hover { background: var(--semantic-color-fill-action-secondary-hover);
+                         color: var(--semantic-color-foreground-action-secondary-hover);
+                         border-color: var(--semantic-color-stroke-action-secondary-hover); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+           gap: var(--contextual-layout-units-card-gap); }
+  .card { background: var(--semantic-color-fill-surface-elevated);
+          border: var(--contextual-layout-units-card-borderwidth-rest) solid var(--semantic-color-stroke-static-neutral-faint);
+          border-radius: var(--contextual-layout-units-card-cornerradius);
+          padding: var(--contextual-layout-units-card-padding-vertical) var(--contextual-layout-units-card-padding-horizontal); }
+  .card-head { display: flex; align-items: center; gap: var(--semantic-layout-units-gap-tight);
+               margin-bottom: var(--semantic-layout-units-padding-xtight); }
+  .card-title { font-size: var(--semantic-type-font-size-s); font-weight: var(--semantic-type-weight-semibold);
+                color: var(--semantic-color-foreground-static-neutral-bold); }
+  .card-body { font-size: var(--semantic-type-font-size-xs); line-height: var(--semantic-type-line-height-xs-single);
+               color: var(--semantic-color-foreground-static-neutral-subtle); }
+  .chip { width: 28px; height: 28px; border-radius: var(--semantic-layout-units-cornerradius-full);
+          display: grid; place-items: center; flex-shrink: 0; }
+  .chip .material-symbols-rounded { font-size: 16px; }
+
+  .tone-attention { background: var(--semantic-color-fill-static-attention-subtle); color: var(--semantic-color-foreground-static-attention-on-subtle); }
+  .tone-severe    { background: var(--semantic-color-fill-static-severe-subtle);    color: var(--semantic-color-foreground-static-severe-on-subtle); }
+  .tone-negative  { background: var(--semantic-color-fill-static-negative-subtle);  color: var(--semantic-color-foreground-static-negative-on-subtle); }
+  .tone-positive  { background: var(--semantic-color-fill-static-positive-subtle);  color: var(--semantic-color-foreground-static-positive-on-subtle); }
+  .tone-info      { background: var(--semantic-color-fill-static-info-subtle);      color: var(--semantic-color-foreground-static-info-on-subtle); }
+  .tone-jade      { background: var(--semantic-color-fill-static-accent-jade-subtle);      color: var(--semantic-color-foreground-static-accent-jade-on-subtle); }
+  .tone-mauve     { background: var(--semantic-color-fill-static-accent-mauve-subtle);     color: var(--semantic-color-foreground-static-accent-mauve-on-subtle); }
+  .tone-lagoon    { background: var(--semantic-color-fill-static-accent-lagoon-subtle);    color: var(--semantic-color-foreground-static-accent-lagoon-on-subtle); }
+  .tone-seabreeze { background: var(--semantic-color-fill-static-accent-seabreeze-subtle); color: var(--semantic-color-foreground-static-accent-seabreeze-on-subtle); }
+  .tone-brand     { background: var(--semantic-color-fill-static-brand-subtle);     color: var(--semantic-color-foreground-static-brand-on-subtle); }
+
+  .badge { display: inline-flex; align-items: center; gap: var(--semantic-layout-units-gap-xxtight);
+           padding: 2px var(--semantic-layout-units-padding-xtight);
+           border-radius: var(--semantic-layout-units-cornerradius-full);
+           font-size: var(--semantic-type-font-size-xxs); font-weight: var(--semantic-type-weight-medium); }
+
+  .rows { display: flex; flex-direction: column; gap: var(--semantic-layout-units-gap-tight); }
+  .row { display: flex; align-items: center; gap: var(--semantic-layout-units-gap-base);
+         background: var(--semantic-color-fill-surface-elevated);
+         border: var(--contextual-layout-units-card-borderwidth-rest) solid var(--semantic-color-stroke-static-neutral-faint);
+         border-radius: var(--contextual-layout-units-card-cornerradius);
+         padding: var(--semantic-layout-units-padding-tight) var(--semantic-layout-units-padding-medium); }
+  .row-main { flex: 1; min-width: 0; }
+  .row-title { font-size: var(--semantic-type-font-size-s); font-weight: var(--semantic-type-weight-medium);
+               color: var(--semantic-color-foreground-static-neutral-bold); }
+  .row-meta { font-size: var(--semantic-type-font-size-xs); color: var(--semantic-color-foreground-static-neutral-faint); }
+  .amount { font-size: var(--semantic-type-font-size-s); font-weight: var(--semantic-type-weight-semibold);
+            color: var(--semantic-color-foreground-static-neutral-bold); }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+              gap: var(--semantic-layout-units-gap-tight); }
+  .sw { border-radius: var(--semantic-layout-units-cornerradius-base);
+        padding: var(--semantic-layout-units-padding-tight) var(--semantic-layout-units-padding-medium);
+        font-size: var(--semantic-type-font-size-xs); font-weight: var(--semantic-type-weight-medium); }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- Top nav -->
+  <div class="topnav">
+    <div class="topnav-group">
+      <span class="module"><span class="material-symbols-rounded">groups</span> People <span class="material-symbols-rounded" style="font-size:16px">expand_more</span></span>
+      <span class="org">Grace Community Church <span class="material-symbols-rounded" style="font-size:16px">expand_more</span></span>
+    </div>
+    <div class="topnav-group">
+      <button class="iconbtn"><span class="material-symbols-rounded">search</span></button>
+      <button class="iconbtn"><span class="material-symbols-rounded">notifications</span></button>
+      <div class="avatar">JL</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <!-- Side nav -->
+    <nav class="sidenav" aria-label="Module navigation">
+      <div class="sectionlabel">Accounts payable</div>
+      <div class="navitem active"><span class="material-symbols-rounded">receipt_long</span> Accounts Payable</div>
+      <div class="navitem"><span class="material-symbols-rounded">request_quote</span> Accounts Receivable</div>
+      <div class="navitem"><span class="material-symbols-rounded">description</span> Invoices</div>
+      <div class="navitem"><span class="material-symbols-rounded">store</span> Vendors</div>
+      <div class="navitem"><span class="material-symbols-rounded">bar_chart</span> Reports</div>
+      <div class="sectionlabel">Setup</div>
+      <div class="navitem"><span class="material-symbols-rounded">tune</span> Preferences</div>
+      <div class="navitem"><span class="material-symbols-rounded">shield</span> Permissions</div>
+    </nav>
+
+    <!-- Screen + sheet -->
+    <div class="screen">
+      <div class="sheet">
+        <div class="tabs">
+          <div class="tab active">Overview</div>
+          <div class="tab">Bills</div>
+          <div class="tab">Vendors</div>
+          <div class="tab">Payments</div>
+        </div>
+
+        <h1>Accounts Payable</h1>
+        <p class="lede">Manage your bills, vendors, and payment schedules.</p>
+
+        <div class="toolbar">
+          <div class="field"><span class="material-symbols-rounded" style="font-size:18px">search</span> Search bills, vendors...</div>
+          <button class="btn btn-secondary"><span class="material-symbols-rounded" style="font-size:18px">download</span> Export report</button>
+          <button class="btn btn-primary"><span class="material-symbols-rounded" style="font-size:18px">add</span> New bill</button>
+        </div>
+
+        <h2>Overview</h2>
+        <div class="cards">
+          <div class="card">
+            <div class="card-head"><div class="chip tone-attention"><span class="material-symbols-rounded">schedule</span></div>
+              <div class="card-title">Outstanding Bills</div></div>
+            <div class="card-body">12 bills totalling $24,580 awaiting approval before the end of the month.</div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div class="chip tone-negative"><span class="material-symbols-rounded">error</span></div>
+              <div class="card-title">Overdue Payments</div></div>
+            <div class="card-body">3 vendor payments are past due. Oldest is 14 days overdue.</div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div class="chip tone-info"><span class="material-symbols-rounded">store</span></div>
+              <div class="card-title">Active Vendors</div></div>
+            <div class="card-body">47 approved vendors in your network. 2 pending new vendor applications.</div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div class="chip tone-positive"><span class="material-symbols-rounded">payments</span></div>
+              <div class="card-title">Paid This Month</div></div>
+            <div class="card-body">$186,410 in payments processed. On track with monthly budget of $200k.</div>
+          </div>
+        </div>
+
+        <h2>Recent invoices</h2>
+        <div class="rows">
+          <div class="row">
+            <div class="chip tone-brand"><span class="material-symbols-rounded">description</span></div>
+            <div class="row-main"><div class="row-title">Invoice #2847</div>
+              <div class="row-meta">Sacred Heart Supplies — due in 7 days</div></div>
+            <span class="badge tone-attention">Pending approval</span>
+            <div class="amount">$4,200</div>
+          </div>
+          <div class="row">
+            <div class="chip tone-brand"><span class="material-symbols-rounded">description</span></div>
+            <div class="row-main"><div class="row-title">Invoice #2831</div>
+              <div class="row-meta">Office Pro — 5 days overdue</div></div>
+            <span class="badge tone-negative">Overdue</span>
+            <div class="amount">$1,850</div>
+          </div>
+          <div class="row">
+            <div class="chip tone-brand"><span class="material-symbols-rounded">description</span></div>
+            <div class="row-main"><div class="row-title">Invoice #2845</div>
+              <div class="row-meta">Ministry Media — payment in progress</div></div>
+            <span class="badge tone-info">Processing</span>
+            <div class="amount">$8,900</div>
+          </div>
+          <div class="row">
+            <div class="chip tone-brand"><span class="material-symbols-rounded">description</span></div>
+            <div class="row-main"><div class="row-title">Invoice #2848</div>
+              <div class="row-meta">Church Supplies Co — paid 2 days ago</div></div>
+            <span class="badge tone-positive">Paid</span>
+            <div class="amount">$1,100</div>
+          </div>
+        </div>
+
+        <h2>Every tone, on the sheet</h2>
+        <div class="swatches">
+          <div class="sw tone-attention">Attention</div>
+          <div class="sw tone-severe">Severe</div>
+          <div class="sw tone-negative">Negative</div>
+          <div class="sw tone-positive">Positive</div>
+          <div class="sw tone-info">Info</div>
+          <div class="sw tone-brand">Brand</div>
+          <div class="sw tone-jade">Jade</div>
+          <div class="sw tone-mauve">Mauve</div>
+          <div class="sw tone-lagoon">Lagoon</div>
+          <div class="sw tone-seabreeze">Seabreeze</div>
+        </div>
+        <div style="height:40px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

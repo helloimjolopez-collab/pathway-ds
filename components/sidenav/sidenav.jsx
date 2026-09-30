@@ -47,12 +47,12 @@ import ReactDOM from "react-dom";
  * Token names verified against the Figma Variables panel on 2026-09-02.
  */
 const c = (name) => `var(--semantic-color-${name})`;
-const u = (name, fallback) => `var(--semantic-layout-units-${name}, ${fallback}px)`;
+const u = (name) => `var(--semantic-layout-units-${name})`;
 // Component metrics live in the CONTEXTUAL collection, not the semantic one, so
 // they need their own prefix. SideNav's two widths moved there on 2026-09-16:
 // they were numeric literals with a "no token in Figma" comment, which was true
 // until the tokens were created.
-const x = (name, fallback) => `var(--contextual-layout-units-${name}, ${fallback}px)`;
+const x = (name) => `var(--contextual-layout-units-${name})`;
 
 // Negate a length that may be either a number or a var() reference. Used for the
 // scroll-region edge bleed, where `-value` on a string would give NaN.
@@ -94,7 +94,7 @@ export const T = {
   // The active-item stripe takes the loud brand blue straight from the Action
   // tier rather than owning a token of its own.
   indicator: c("fill-action-primary-strong-pressed"),
-  radius:    u("cornerradius-base", 8),
+  radius:    u("cornerradius-base"),
 };
 
 /*
@@ -111,27 +111,27 @@ export const L = {
   // collapsed rail 12, vertical 8, item gap 6. These were on the generic
   // semantic scale until 2026-09-17, which meant a change to Padding/Base
   // would silently move the nav.
-  navPadH:     x("sidenav-padding-horizontal-expanded", 16),
-  navColPadH:  x("sidenav-padding-horizontal-collapsed", 12),
-  navPadTop:   x("sidenav-padding-vertical", 8),
+  navPadH:     x("sidenav-padding-horizontal-expanded"),
+  navColPadH:  x("sidenav-padding-horizontal-collapsed"),
+  navPadTop:   x("sidenav-padding-vertical"),
   // Read from SideNav.Container in Figma on 2026-09-16: every expanded variant
   // is 250 wide (Base, Stroked, Mobile.Base, Mobile.Stroked) and every
   // collapsed one is 72. Was 240, which no longer matched the component.
-  navW:        x("sidenav-width-expanded", 250),
-  navWcol:     x("sidenav-width-collapsed", 72),
-  menuGap:     x("sidenav-gap-vertical", 6),
-  menuPadT:    u("padding-tight", 8),
-  menuPadB:    u("padding-xxwide", 56),
-  itemH:       u("accessibility-touch-target-aa-height", 44),
+  navW:        x("sidenav-width-expanded"),
+  navWcol:     x("sidenav-width-collapsed"),
+  menuGap:     x("sidenav-gap-vertical"),
+  menuPadT:    u("padding-tight"),
+  menuPadB:    u("padding-xxwide"),
+  itemH:       u("accessibility-touch-target-aa-height"),
   iconWrap:    24,   // no token in Figma — leading icon wrapper
   iconInner:   16,   // Material Symbols Rounded frame size, per design-system-spec §7.2
-  rowPadH:     u("padding-tight", 8),
-  textPad:     u("padding-xtight", 6),
+  rowPadH:     u("padding-tight"),
+  textPad:     u("padding-xtight"),
   childIndent: 24,   // no token in Figma — level-1 left indent
   stripeW:     4,    // no token in Figma — indicator stripe width
-  colPadL:     u("padding-medium", 12),
-  colPadR:     u("padding-tight", 8),
-  collapseGap: u("padding-xxtight", 4),
+  colPadL:     u("padding-medium"),
+  colPadR:     u("padding-tight"),
+  collapseGap: u("padding-xxtight"),
 };
 
 // ─── IndicatorStripe ──────────────────────────────────────────────────────────
