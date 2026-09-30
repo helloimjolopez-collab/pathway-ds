@@ -78,6 +78,13 @@ jobs:
       - name: Build dist/
         run: node scripts/build-dist.js
 
+      # index.css is the single-entry-point contract: one @import that pulls the
+      # nine files in the right order, primitives first. package.json exports it
+      # as "./css", so omitting this step publishes a package whose advertised
+      # entry point 404s. It must run AFTER build-dist.js, which creates dist/.
+      - name: Build the CSS entry points
+        run: node scripts/build-index.js
+
       # contract.json states which emitted names are consumable. The NuGet
       # csproj ships it, so it has to exist before that workflow packs.
       - name: Build the contract manifest
