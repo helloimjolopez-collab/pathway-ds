@@ -129,8 +129,8 @@
 /* ── Storybook-only grid chrome for the multi-swatch stories ───────────────── */
 .sb-spinner-grid {
   display: flex; flex-wrap: wrap; gap: 24px 28px;
-  padding: 16px; background: #fff;
-  border: 1px solid #edf0f9; border-radius: 12px;
+  padding: 16px; background: var(--semantic-color-fill-surface-canvas);
+  border: 1px solid var(--semantic-color-stroke-static-neutral-faint); border-radius: 12px;
   font-family: 'Red Hat Text', sans-serif;
 }
 .sb-spinner-cell {
@@ -141,5 +141,5 @@
   display: flex; align-items: center; justify-content: center;
   min-height: 72px;
 }
-.sb-spinner-label { font-size: 11px; color: #202020; }
-.sb-spinner-token { font-size: 10px; color: #3555a0; font-family: monospace; }
+.sb-spinner-label { font-size: 11px; color: var(--semantic-color-foreground-static-neutral-bold); }
+.sb-spinner-token { font-size: 10px; color: var(--semantic-color-foreground-static-brand-on-subtle); font-family: monospace; }

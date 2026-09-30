@@ -34,7 +34,7 @@ const TOPNAV_SURFACE = "#2d4889";
 function DemoCard({ caption, children }) {
   return (
     <div style={{
-      background: "#fff",
+      background: "var(--semantic-color-fill-surface-canvas)",
       borderRadius: 10,
       boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
       overflow: "visible",
@@ -47,7 +47,7 @@ function DemoCard({ caption, children }) {
         letterSpacing: ".07em",
         textTransform: "uppercase",
         color: "#888",
-        borderBottom: "1px solid #f0f0f0",
+        borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)",
       }}>
         {caption}
       </div>
@@ -237,29 +237,29 @@ Mobile.storyName = "Mobile";
 
 function TokenRow({ token, hex, usage }) {
   return (
-    <tr style={{ borderBottom: "1px solid #f5f5f5" }}>
+    <tr style={{ borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>
       <td style={{ padding: 8 }}>
         <div style={{ width: 40, height: 40, borderRadius: 6, background: TOPNAV_SURFACE, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div style={{ width: 28, height: 28, background: hex, borderRadius: 4 }} />
         </div>
       </td>
-      <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#3555a0" }}>{token}</td>
+      <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "var(--semantic-color-foreground-static-brand-on-subtle)" }}>{token}</td>
       <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#71717a" }}>{hex}</td>
-      <td style={{ padding: 8, color: "#363636" }}>{usage}</td>
+      <td style={{ padding: 8, color: "var(--semantic-color-foreground-static-neutral-base)" }}>{usage}</td>
     </tr>
   );
 }
 
 function TokenTable({ title, rows, noteEmpty }) {
   return (
-    <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff", borderRadius: 8, marginBottom: 16 }}>
+    <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8, marginBottom: 16 }}>
       <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>{title}</h3>
       {rows.length === 0 ? (
         <p style={{ margin: 0, color: "#71717a", fontSize: 13 }}>{noteEmpty}</p>
       ) : (
         <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
           <thead>
-            <tr style={{ borderBottom: "2px solid #e5e7eb", color: "#71717a", textAlign: "left" }}>
+            <tr style={{ borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-base)", color: "#71717a", textAlign: "left" }}>
               <th style={{ padding: 8, width: 64 }}>Swatch</th>
               <th style={{ padding: 8 }}>Token</th>
               <th style={{ padding: 8 }}>Resolved</th>
@@ -334,11 +334,11 @@ TokensForeground.tags = ["!dev"];
 // ── 12. Tokens - Typography ─────────────────────────────────────────────────
 
 export const TokensTypography = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff", borderRadius: 8 }}>
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
     <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>Typography tokens</h3>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>
-        <tr style={{ borderBottom: "2px solid #e5e7eb", color: "#71717a", textAlign: "left" }}>
+        <tr style={{ borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-base)", color: "#71717a", textAlign: "left" }}>
           <th style={{ padding: 8 }}>Usage</th>
           <th style={{ padding: 8 }}>CSS variable prefix</th>
           <th style={{ padding: 8 }}>Size / Weight / LH / LS</th>
@@ -347,7 +347,7 @@ export const TokensTypography = () => (
       <tbody>
         <tr>
           <td style={{ padding: 8 }}>Trigger label - desktop AND mobile (both viewports use the same scale in v1)</td>
-          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#3555a0" }}>--semantic-type-desktop-label-button-s-</td>
+          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "var(--semantic-color-foreground-static-brand-on-subtle)" }}>--semantic-type-desktop-label-button-s-</td>
           <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12 }}>14 / 500 / 20 / 0.3</td>
         </tr>
       </tbody>
@@ -360,29 +360,29 @@ TokensTypography.tags = ["!dev"];
 // ── 13. Tokens - Spacing ────────────────────────────────────────────────────
 
 export const TokensSpacing = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff", borderRadius: 8 }}>
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
     <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>Spacing tokens</h3>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>
-        <tr style={{ borderBottom: "2px solid #e5e7eb", color: "#71717a", textAlign: "left" }}>
+        <tr style={{ borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-base)", color: "#71717a", textAlign: "left" }}>
           <th style={{ padding: 8 }}>Token</th>
           <th style={{ padding: 8 }}>Value</th>
           <th style={{ padding: 8 }}>Usage</th>
         </tr>
       </thead>
       <tbody>
-        <tr style={{ borderBottom: "1px solid #f5f5f5" }}>
-          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#3555a0" }}>--semantic-layout-units-padding-xxtight</td>
+        <tr style={{ borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>
+          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "var(--semantic-color-foreground-static-brand-on-subtle)" }}>--semantic-layout-units-padding-xxtight</td>
           <td style={{ padding: 8, fontFamily: "monospace" }}>4px</td>
           <td style={{ padding: 8 }}>Trigger inner padding (Container.Main)</td>
         </tr>
-        <tr style={{ borderBottom: "1px solid #f5f5f5" }}>
-          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#3555a0" }}>--semantic-layout-units-padding-xxxtight</td>
+        <tr style={{ borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>
+          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "var(--semantic-color-foreground-static-brand-on-subtle)" }}>--semantic-layout-units-padding-xxxtight</td>
           <td style={{ padding: 8, fontFamily: "monospace" }}>2px</td>
           <td style={{ padding: 8 }}>Avatar / RowEnd / IconTrailing inner padding</td>
         </tr>
         <tr>
-          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#3555a0" }}>--semantic-layout-units-gap-xxtight</td>
+          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "var(--semantic-color-foreground-static-brand-on-subtle)" }}>--semantic-layout-units-gap-xxtight</td>
           <td style={{ padding: 8, fontFamily: "monospace" }}>4px</td>
           <td style={{ padding: 8 }}>Container.RowStart inner gap</td>
         </tr>
@@ -396,23 +396,23 @@ TokensSpacing.tags = ["!dev"];
 // ── 14. Tokens - Motion ─────────────────────────────────────────────────────
 
 export const TokensMotion = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff", borderRadius: 8 }}>
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
     <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>Motion</h3>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>
-        <tr style={{ borderBottom: "2px solid #e5e7eb", color: "#71717a", textAlign: "left" }}>
+        <tr style={{ borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-base)", color: "#71717a", textAlign: "left" }}>
           <th style={{ padding: 8 }}>Property</th>
           <th style={{ padding: 8 }}>Value</th>
           <th style={{ padding: 8 }}>Notes</th>
         </tr>
       </thead>
       <tbody>
-        <tr style={{ borderBottom: "1px solid #f5f5f5" }}>
+        <tr style={{ borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>
           <td style={{ padding: 8 }}>Chevron rotation (open ↔ closed)</td>
           <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12 }}>transform --motion-duration-4 --motion-easing-standard</td>
           <td style={{ padding: 8 }}>System chevron rule (300ms standard)</td>
         </tr>
-        <tr style={{ borderBottom: "1px solid #f5f5f5" }}>
+        <tr style={{ borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>
           <td style={{ padding: 8 }}>State transition (fill + border)</td>
           <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12 }}>--motion-duration-2 --motion-easing-standard</td>
           <td style={{ padding: 8 }}>Snappy enough for hover</td>
@@ -435,24 +435,24 @@ TokensMotion.tags = ["!dev"];
 // ── 15. Tokens - Radius ─────────────────────────────────────────────────────
 
 export const TokensRadius = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff", borderRadius: 8 }}>
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
     <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>Corner radius tokens</h3>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>
-        <tr style={{ borderBottom: "2px solid #e5e7eb", color: "#71717a", textAlign: "left" }}>
+        <tr style={{ borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-base)", color: "#71717a", textAlign: "left" }}>
           <th style={{ padding: 8 }}>Token</th>
           <th style={{ padding: 8 }}>Value</th>
           <th style={{ padding: 8 }}>Usage</th>
         </tr>
       </thead>
       <tbody>
-        <tr style={{ borderBottom: "1px solid #f5f5f5" }}>
-          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#3555a0" }}>--semantic-layout-units-cornerradius-base</td>
+        <tr style={{ borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>
+          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "var(--semantic-color-foreground-static-brand-on-subtle)" }}>--semantic-layout-units-cornerradius-base</td>
           <td style={{ padding: 8, fontFamily: "monospace" }}>8px</td>
           <td style={{ padding: 8 }}>Container.Main (the trigger pill)</td>
         </tr>
         <tr>
-          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#3555a0" }}>--semantic-layout-units-cornerradius-small</td>
+          <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "var(--semantic-color-foreground-static-brand-on-subtle)" }}>--semantic-layout-units-cornerradius-small</td>
           <td style={{ padding: 8, fontFamily: "monospace" }}>4px</td>
           <td style={{ padding: 8 }}>Container.Avatar (inner avatar frame)</td>
         </tr>
@@ -471,7 +471,7 @@ TokensRadius.tags = ["!dev"];
 export const OpenPanel = () => {
   const [q, setQ] = useState("");
   return (
-    <div style={{ padding: 24, background: "#eef1f7", minHeight: 520 }}>
+    <div style={{ padding: 24, background: "var(--semantic-color-fill-static-neutral-base)", minHeight: 520 }}>
       <OrgSwitcherPanel
         orgs={DEMO_ORGS}
         activeOrgId="grace"

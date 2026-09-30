@@ -66,7 +66,7 @@ function TopNavStory({
       moduleSwitcherType={moduleSwitcherType}
       initialOpenPanel={initialOpenPanel}
       org={{ id: "org", name: orgName, campus: campusName || undefined,
-             initials: abbreviateOrg(orgName), logoUrl: logoUrl || undefined, bg: "#2d4889" }}
+             initials: abbreviateOrg(orgName), logoUrl: logoUrl || undefined, bg: "var(--semantic-color-fill-surface-chrome)" }}
       user={{ name: userName, initials: userInitials, email: userEmail }}
     />
   );
@@ -239,14 +239,14 @@ export const SingleOrg = {
 
 function TokenRow({ varName, fallback, label, type = "fill" }) {
   const swatch = type === "text"
-    ? { background: "#f0f2f5", color: `var(${varName}, ${fallback})`,
+    ? { background: "var(--semantic-color-fill-surface-canvas)", color: `var(${varName}, ${fallback})`,
         fontSize: 14, fontWeight: 600, padding: "0 12px",
         display: "flex", alignItems: "center", justifyContent: "center" }
     : type === "icon"
-    ? { background: "#2d4889", color: `var(${varName}, ${fallback})`,
+    ? { background: "var(--semantic-color-fill-surface-chrome)", color: `var(${varName}, ${fallback})`,
         display: "flex", alignItems: "center", justifyContent: "center" }
     : type === "stroke"
-    ? { background: "#2d4889",
+    ? { background: "var(--semantic-color-fill-surface-chrome)",
         border: `2px solid var(${varName}, ${fallback})`,
         borderRadius: 4 }
     : { background: `var(${varName}, ${fallback})` };
@@ -259,13 +259,13 @@ function TokenRow({ varName, fallback, label, type = "fill" }) {
           {type === "icon" && <Icon name="home" size={18} />}
         </div>
       </td>
-      <td style={{ padding: "8px 12px", fontFamily: "monospace", fontSize: 12, color: "#484848" }}>
+      <td style={{ padding: "8px 12px", fontFamily: "monospace", fontSize: 12, color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>
         {varName}
       </td>
       <td style={{ padding: "8px 12px", fontFamily: "monospace", fontSize: 12, color: "#888" }}>
         {fallback}
       </td>
-      <td style={{ padding: "8px 12px", fontSize: 12, color: "#313131" }}>{label}</td>
+      <td style={{ padding: "8px 12px", fontSize: 12, color: "var(--semantic-color-foreground-static-neutral-base)" }}>{label}</td>
     </tr>
   );
 }
@@ -273,10 +273,10 @@ function TokenRow({ varName, fallback, label, type = "fill" }) {
 function TokenTable({ title, rows }) {
   return (
     <div style={{ padding: 24, fontFamily: "'Red Hat Text', sans-serif" }}>
-      <h3 style={{ fontSize: 14, fontWeight: 600, color: "#252525", marginBottom: 16 }}>{title}</h3>
+      <h3 style={{ fontSize: 14, fontWeight: 600, color: "var(--semantic-color-foreground-static-neutral-bold)", marginBottom: 16 }}>{title}</h3>
       <table style={{ borderCollapse: "collapse", width: "100%" }}>
         <thead>
-          <tr style={{ borderBottom: "1px solid #e8e8e8" }}>
+          <tr style={{ borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-base)" }}>
             {["Swatch","Token","Value","Usage"].map(h => (
               <th key={h} style={{ padding: "6px 12px", textAlign: "left",
                 fontSize: 11, fontWeight: 600, color: "#888",
@@ -342,15 +342,15 @@ export const TokensTypography = {
   tags: ["!dev"],
   render: () => (
     <div style={{ padding: 24, fontFamily: "'Red Hat Text', sans-serif" }}>
-      <h3 style={{ fontSize:14, fontWeight:600, color:"#252525", marginBottom:16 }}>Typography tokens</h3>
+      <h3 style={{ fontSize:14, fontWeight:600, color:"var(--semantic-color-foreground-static-neutral-bold)", marginBottom:16 }}>Typography tokens</h3>
       {[
         { label: "Label/Button/S - module + org labels (desktop/tablet)", style: { fontSize:14, fontWeight:500, lineHeight:"20px", letterSpacing:"0.3px" }, example: "Amplify Home  |  Sacred Heart Church-ITD | Knoxville" },
         { label: "Label/Button/XS - org label mobile", style: { fontSize:12, fontWeight:500, lineHeight:"18px", letterSpacing:"0.3px" }, example: "SHC | KV" },
         { label: "Text/Supporting/Small/Semibold - profile initials mobile", style: { fontSize:11, fontWeight:600 }, example: "JL" },
       ].map(({ label, style, example }) => (
-        <div key={label} style={{ marginBottom:20, padding:"12px 16px", background:"#f8f8f8", borderRadius:8 }}>
+        <div key={label} style={{ marginBottom:20, padding:"12px 16px", background:"var(--semantic-color-fill-surface-canvas)", borderRadius:8 }}>
           <div style={{ fontSize:11, fontWeight:600, letterSpacing:".07em", textTransform:"uppercase", color:"#888", marginBottom:8 }}>{label}</div>
-          <div style={{ ...style, color:"#313131" }}>{example}</div>
+          <div style={{ ...style, color:"var(--semantic-color-foreground-static-neutral-base)" }}>{example}</div>
           <div style={{ marginTop:6, fontFamily:"monospace", fontSize:11, color:"#aaa" }}>
             {Object.entries(style).map(([k,v]) => `${k}: ${v}`).join("  ·  ")}
           </div>
@@ -365,18 +365,18 @@ export const TokensRadius = {
   tags: ["!dev"],
   render: () => (
     <div style={{ padding:24, fontFamily:"'Red Hat Text', sans-serif" }}>
-      <h3 style={{ fontSize:14, fontWeight:600, color:"#252525", marginBottom:16 }}>Corner radius tokens</h3>
+      <h3 style={{ fontSize:14, fontWeight:600, color:"var(--semantic-color-foreground-static-neutral-bold)", marginBottom:16 }}>Corner radius tokens</h3>
       {[
         { token:"CornerRadius/Base", value:"8px", label:"ModuleSwitcher, OrgSwitcher, icon buttons, dropdowns" },
         { token:"CornerRadius/Small",  value:"4px", label:"Org logo avatar (nav bar + panel)" },
         { token:"CornerRadius/Full",   value:"9999px", label:"Search pill" },
       ].map(({ token, value, label }) => (
         <div key={token} style={{ display:"flex", alignItems:"center", gap:16, marginBottom:16 }}>
-          <div style={{ width:48, height:48, background:"#2d4889",
+          <div style={{ width:48, height:48, background:"var(--semantic-color-fill-surface-chrome)",
             borderRadius: value === "9999px" ? 9999 : value === "8px" ? 8 : 4,
             flexShrink:0 }} />
           <div>
-            <div style={{ fontFamily:"monospace", fontSize:12, color:"#484848" }}>{token} - {value}</div>
+            <div style={{ fontFamily:"monospace", fontSize:12, color:"var(--semantic-color-foreground-static-neutral-subtle)" }}>{token} - {value}</div>
             <div style={{ fontSize:12, color:"#888", marginTop:2 }}>{label}</div>
           </div>
         </div>

@@ -43,7 +43,7 @@ html, body {
      to declare them itself. */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility; height: 100%; font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; }
+  text-rendering: optimizeLegibility; height: 100%; font-family: 'Red Hat Text', sans-serif; background: var(--semantic-color-fill-surface-canvas); }
 #root { height: 100%; }
 
 .material-symbols-rounded {
@@ -53,20 +53,20 @@ html, body {
 
 /* ── Demo chrome ─────────────────────────────────────────────────────────────── */
 .demo-wrap   { min-height: 100vh; display: flex; flex-direction: column; }
-.demo-toolbar { background: #1a1a2e; padding: 10px 20px; display: flex; align-items: center;
+.demo-toolbar { background: var(--semantic-color-fill-static-brand-strongest); padding: 10px 20px; display: flex; align-items: center;
   gap: 8px; font-family: 'Red Hat Text', sans-serif; flex-shrink: 0; }
-.demo-toolbar__label { color: #666; font-size: 11px; font-weight: 600;
+.demo-toolbar__label { color: var(--semantic-color-foreground-static-neutral-subtle); font-size: 11px; font-weight: 600;
   letter-spacing: .07em; text-transform: uppercase; margin-right: 4px; }
 .demo-toolbar__btn { padding: 5px 14px; border-radius: 6px; border: none; cursor: pointer;
   font-size: 12px; font-weight: 500; font-family: inherit; transition: background var(--motion-duration-2) var(--motion-easing-standard); }
-.demo-toolbar__btn--active   { background: #2d4889; color: #fff; }
+.demo-toolbar__btn--active   { background: var(--semantic-color-fill-surface-chrome); color: var(--semantic-color-foreground-static-neutral-mono); }
 .demo-toolbar__btn--inactive { background: rgba(255,255,255,0.06); color: #aaa; }
 .demo-page  { flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 24px; }
-.demo-section { background: #fff; border-radius: 10px; overflow: visible;
+.demo-section { background: var(--semantic-color-fill-surface-canvas); border-radius: 10px; overflow: visible;
   box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
 .demo-section__label { padding: 10px 16px; font-size: 11px; font-weight: 600;
   letter-spacing: .07em; text-transform: uppercase; color: #888;
-  border-bottom: 1px solid #f0f0f0; }
+  border-bottom: 1px solid var(--semantic-color-stroke-static-neutral-faint); }
 
 /* ── TopNav shell ─────────────────────────────────────────────────────────────── */
 .topnav {
@@ -87,7 +87,7 @@ html, body {
 .tn-iconbtn__inner {
   display: flex; align-items: center; justify-content: center;
   padding: 8px; border-radius: 8px; background: transparent;
-  border: none; cursor: pointer; color: #fbfbfb; transition: background var(--motion-duration-2) var(--motion-easing-standard);
+  border: none; cursor: pointer; color: var(--semantic-color-foreground-static-neutral-mono); transition: background var(--motion-duration-2) var(--motion-easing-standard);
 }
 .tn-iconbtn__inner:hover  { background: var(--semantic-color-fill-action-primary-subtle-hover); }
 .tn-iconbtn__inner:active { background: var(--semantic-color-fill-action-primary-subtle-pressed); }
@@ -98,7 +98,7 @@ html, body {
   display: flex; align-items: center;
   height: 36px; padding: 4px; border-radius: 8px;
   background: transparent; border: 1px solid transparent;
-  cursor: pointer; color: #fbfbfb; font-family: inherit;
+  cursor: pointer; color: var(--semantic-color-foreground-static-neutral-mono); font-family: inherit;
   transition: background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard);
 }
 .tn-mod__btn:hover              { background: var(--semantic-color-fill-action-primary-subtle-hover); border-color: var(--semantic-color-stroke-action-primary-strong-hover); }
@@ -106,12 +106,12 @@ html, body {
 /* Static (Amplify Dashboard): label only — no chevron, no hover, no pressed, not a control */
 .tn-mod__static { display: flex; align-items: center; height: 36px; padding: 4px;
   border-radius: 8px; background: transparent; border: 1px solid transparent;
-  color: #fbfbfb; font-family: inherit; cursor: default; }
+  color: var(--semantic-color-foreground-static-neutral-mono); font-family: inherit; cursor: default; }
 .tn-mod__icon-wrap { width: 30px; height: 30px; display: flex; align-items: center;
   justify-content: center; flex-shrink: 0; }
 .tn-mod__label { font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: 0.3px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  max-width: 160px; color: #fbfbfb; padding: 0 2px; }
+  max-width: 160px; color: var(--semantic-color-foreground-static-neutral-mono); padding: 0 2px; }
 .tn-mod__chev { width: 16px; height: 16px; display: flex; align-items: center;
   justify-content: center; margin-left: 2px; transition: transform var(--motion-duration-4) var(--motion-easing-standard); }
 .tn-mod__btn[aria-expanded="true"] .tn-mod__chev { transform: rotate(180deg); }
@@ -124,7 +124,7 @@ html, body {
   min-height: 36px; padding: 4px; border-radius: 8px;
   background: var(--semantic-color-fill-action-primary-subtle-rest);
   border: 1px solid var(--semantic-color-stroke-action-primary-strong-rest);
-  cursor: pointer; color: #fbfbfb; font-family: inherit;
+  cursor: pointer; color: var(--semantic-color-foreground-static-neutral-mono); font-family: inherit;
   transition: background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard);
 }
 .tn-org.is-mobile .tn-org__btn { padding: 4px 2px; }
@@ -160,7 +160,7 @@ html, body {
 /* Desktop/Tablet label: Label/Button/S 14px/500 */
 .tn-org__label { font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: 0.3px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  max-width: 248px; color: #fbfbfb; padding-right: 4px; }
+  max-width: 248px; color: var(--semantic-color-foreground-static-neutral-mono); padding-right: 4px; }
 /* Mobile label: Label/Button/XS 12px/500 (Figma) */
 .tn-org.is-mobile .tn-org__label { font-size: 12px; line-height: 18px; max-width: 70px; }
 .tn-org__chev { width: 16px; height: 16px; display: flex; align-items: center;
@@ -174,9 +174,9 @@ html, body {
   display: flex; align-items: center; justify-content: center;
   height: 32px; width: 32px;
   background: var(--semantic-color-fill-action-primary-subtle-rest);
-  border: 0.75px solid #fbfbfb;
+  border: 0.75px solid var(--semantic-color-stroke-static-neutral-faint);
   border-radius: 9999px; cursor: pointer; flex-shrink: 0;
-  color: #fbfbfb; transition: background var(--motion-duration-2) var(--motion-easing-standard);
+  color: var(--semantic-color-foreground-static-neutral-mono); transition: background var(--motion-duration-2) var(--motion-easing-standard);
 }
 .tn-search__pill:hover  { background: var(--semantic-color-fill-action-primary-subtle-hover); }
 .tn-search__pill:active { background: var(--semantic-color-fill-action-primary-subtle-pressed); }
@@ -191,16 +191,16 @@ html, body {
 }
 .tn-search__input {
   flex: 1; background: transparent; border: none; outline: none;
-  color: #252525; font-size: 14px; font-weight: 400;
+  color: var(--semantic-color-foreground-static-neutral-bold); font-size: 14px; font-weight: 400;
   line-height: 20px; letter-spacing: 0.3px; min-width: 0;
   font-family: 'Red Hat Text', sans-serif;
 }
-.tn-search__input::placeholder { color: #606060; }
+.tn-search__input::placeholder { color: var(--semantic-color-foreground-static-neutral-subtle); }
 .tn-search__close {
   display: flex; align-items: center; justify-content: center;
   background: transparent; border: none; cursor: pointer;
   padding: 0; border-radius: 9999px; flex-shrink: 0;
-  width: 24px; height: 24px; color: #606060;
+  width: 24px; height: 24px; color: var(--semantic-color-foreground-static-neutral-subtle);
 }
 
 /* ── Profile ─────────────────────────────────────────────────────────────────── */
@@ -214,17 +214,17 @@ html, body {
 /* Desktop/Tablet: Text/Body/Small/Semibold 14px/600 */
 .tn-profile__avatar {
   width: 32px; height: 32px; border-radius: 50%;
-  background: #dcd9ef;
+  background: var(--semantic-color-fill-static-info-subtle);
   display: flex; align-items: center; justify-content: center;
   font-size: 14px; font-weight: 600; letter-spacing: 0.3px;
-  color: #221e3f; line-height: 1; flex-shrink: 0;
+  color: var(--semantic-color-foreground-static-info-on-strong); line-height: 1; flex-shrink: 0;
 }
 /* Mobile: Text/Supporting/Small/Semibold 11px/600 (Figma) */
 .topnav.is-mobile .tn-profile__avatar { font-size: 11px; }
 
 /* ── Dropdowns ───────────────────────────────────────────────────────────────── */
 .tn-dropdown, .tn-panel, .tn-profile-menu {
-  position: absolute; background: #fff; border-radius: 8px;
+  position: absolute; background: var(--semantic-color-fill-surface-canvas); border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06);
   z-index: 300; animation: tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both;
 }
@@ -237,32 +237,32 @@ html, body {
 
 .tn-dropdown__item { width: 100%; display: flex; align-items: center; gap: 10px;
   padding: 9px 10px; border-radius: 6px; background: transparent;
-  border: none; font-family: inherit; font-size: 13px; color: #484848;
+  border: none; font-family: inherit; font-size: 13px; color: var(--semantic-color-foreground-static-neutral-subtle);
   text-align: left; cursor: pointer; }
-.tn-dropdown__item--active { color: #252525; font-weight: 500; background: #eef2fb; }
-.tn-dropdown__item:hover:not(.tn-dropdown__item--active) { background: #f5f6fa; }
+.tn-dropdown__item--active { color: var(--semantic-color-foreground-static-neutral-bold); font-weight: 500; background: var(--semantic-color-fill-static-brand-faint); }
+.tn-dropdown__item:hover:not(.tn-dropdown__item--active) { background: var(--semantic-color-fill-surface-canvas); }
 
 .tn-panel__heading { font-size: 11px; font-weight: 600; letter-spacing: .07em;
   text-transform: uppercase; padding: 4px 8px 6px; color: #b5b5b5; }
 .tn-panel__org { display: flex; align-items: center; gap: 10px; padding: 8px;
   border-radius: 6px; cursor: pointer; }
-.tn-panel__org--active { background: #eef2fb; }
-.tn-panel__org:hover:not(.tn-panel__org--active) { background: #f5f6fa; }
+.tn-panel__org--active { background: var(--semantic-color-fill-static-brand-faint); }
+.tn-panel__org:hover:not(.tn-panel__org--active) { background: var(--semantic-color-fill-surface-canvas); }
 .tn-panel__org-avatar { width: 32px; height: 32px; border-radius: 4px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.tn-panel__org-name   { font-size: 13px; font-weight: 500; color: #252525;
+.tn-panel__org-name   { font-size: 13px; font-weight: 500; color: var(--semantic-color-foreground-static-neutral-bold);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tn-panel__org-campus { font-size: 11px; color: #6b6b6b; margin-top: 1px; }
 
 .tn-profile-menu__header { padding: 10px 12px 8px;
   border-bottom: 1px solid rgba(0,0,0,0.06); margin-bottom: 4px; }
-.tn-profile-menu__name  { font-size: 13px; font-weight: 600; color: #252525; }
+.tn-profile-menu__name  { font-size: 13px; font-weight: 600; color: var(--semantic-color-foreground-static-neutral-bold); }
 .tn-profile-menu__email { font-size: 11px; color: #6b6b6b; margin-top: 1px; }
 .tn-profile-menu__item { width: 100%; display: flex; align-items: center; gap: 8px;
   padding: 8px 10px; border-radius: 6px; background: transparent;
-  border: none; font-family: inherit; font-size: 13px; color: #313131;
+  border: none; font-family: inherit; font-size: 13px; color: var(--semantic-color-foreground-static-neutral-base);
   text-align: left; cursor: pointer; }
-.tn-profile-menu__item:hover { background: #f5f6fa; }
+.tn-profile-menu__item:hover { background: var(--semantic-color-fill-surface-canvas); }
 .tn-profile-menu__item--danger { color: #c0392b; }
 
 @keyframes tnDropIn {
@@ -367,9 +367,9 @@ const MODULES = [
 
 // ORGS — no logoUrl so all show the church placeholder; demonstrates the no-logo state
 const ORGS = [
-  { id: "shc",        name: "Sacred Heart Church-ITD", campus: "Knoxville",   initials: "SH", bg: "#2d4889" },
+  { id: "shc",        name: "Sacred Heart Church-ITD", campus: "Knoxville",   initials: "SH", bg: "var(--semantic-color-fill-surface-chrome)" },
   { id: "fellowship", name: "Fellowship Church",        campus: "Main Campus", initials: "FC", bg: "#22386b" },
-  { id: "grace",      name: "Grace Community Church",   campus: "West Campus", initials: "GC", bg: "#345499" },
+  { id: "grace",      name: "Grace Community Church",   campus: "West Campus", initials: "GC", bg: "var(--semantic-color-fill-surface-chrome)" },
 ];
 
 // ─── TOPNAV ───────────────────────────────────────────────────────────────────
@@ -506,7 +506,7 @@ function TopNav({
                     {m.id === "home"
                       ? <HomeModuleIcon size={18} />
                       : <Icon name={m.icon} size={18}
-                          style={{ color: m.id === moduleId ? "#252525" : "#484848", opacity: 0.8 }} />
+                          style={{ color: m.id === moduleId ? "var(--semantic-color-foreground-static-neutral-bold)" : "#484848", opacity: 0.8 }} />
                     }
                     {m.label}
                   </button>
@@ -551,7 +551,7 @@ function TopNav({
                   onKeyDown={e => { if (e.key==="Enter"||e.key===" ") { setOrg(org); close(); } }}
                 >
                   <div className="tn-panel__org-avatar" style={{ background: org.bg }}>
-                    <span style={{ fontSize:9, fontWeight:700, color:"#fff" }}>{org.initials}</span>
+                    <span style={{ fontSize:9, fontWeight:700, color:"var(--semantic-color-foreground-static-neutral-mono)" }}>{org.initials}</span>
                   </div>
                   <div style={{ minWidth: 0 }}>
                     <div className="tn-panel__org-name">{org.name}</div>
@@ -572,7 +572,7 @@ function TopNav({
             overlay below (never an inline expand), so it can't overlap anything. */}
         <div className="tn-search">
           <button className="tn-search__pill" aria-label="Open search" onClick={openSearch}>
-            <Icon name="search" size={16} style={{ color: "#fbfbfb" }} />
+            <Icon name="search" size={16} style={{ color: "var(--semantic-color-foreground-static-neutral-mono)" }} />
           </button>
         </div>
 
@@ -643,7 +643,7 @@ function TopNav({
               style={{ display:"flex", alignItems:"center", justifyContent:"center",
                 width:24, height:24, flexShrink:0, background:"transparent",
                 border:"none", cursor:"pointer", borderRadius:"50%", padding:0 }}>
-              <Icon name="search" size={16} style={{ color:"#606060" }} />
+              <Icon name="search" size={16} style={{ color:"var(--semantic-color-foreground-static-neutral-subtle)" }} />
             </button>
             <input ref={searchInputRef} className="tn-search__input" value={searchQuery}
               onChange={e => setSearchQ(e.target.value)} placeholder="Search…" aria-label="Search" />
@@ -651,7 +651,7 @@ function TopNav({
               <button className="tn-search__close"
                 onClick={() => { setSearchQ(""); searchInputRef.current?.focus(); }}
                 aria-label="Clear search">
-                <Icon name="cancel" size={20} style={{ color:"#606060" }} />
+                <Icon name="cancel" size={20} style={{ color:"var(--semantic-color-foreground-static-neutral-subtle)" }} />
               </button>
             )}
           </div>
@@ -659,8 +659,8 @@ function TopNav({
           <button onClick={closeSearch} aria-label="Close search"
             style={{ display:"flex", alignItems:"center", justifyContent:"center",
               width:44, height:44, flexShrink:0, marginLeft:8, background:"transparent",
-              border:"none", cursor:"pointer", borderRadius:8, color:"#fbfbfb" }}>
-            <Icon name="close" size={24} style={{ color:"#fbfbfb" }} />
+              border:"none", cursor:"pointer", borderRadius:8, color:"var(--semantic-color-foreground-static-neutral-mono)" }}>
+            <Icon name="close" size={24} style={{ color:"var(--semantic-color-foreground-static-neutral-mono)" }} />
           </button>
         </div>
       )}

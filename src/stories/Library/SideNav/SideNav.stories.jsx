@@ -48,8 +48,8 @@ function Shell({ initialActiveId = "balance_sheet", collapsed: initialCollapsed 
   const [collapsed, setCollapsed] = useState(initialCollapsed);
 
   return (
-    <div style={{ display: "flex", height, background: "#fafafa",
-      border: "1px solid #edf0f9", borderRadius: 12, overflow: "hidden",
+    <div style={{ display: "flex", height, background: "var(--semantic-color-fill-surface-canvas)",
+      border: "1px solid var(--semantic-color-stroke-static-neutral-faint)", borderRadius: 12, overflow: "hidden",
       fontFamily: "'Red Hat Text', sans-serif" }}>
       <SideNav
         sections={NAV_SECTIONS}
@@ -64,14 +64,14 @@ function Shell({ initialActiveId = "balance_sheet", collapsed: initialCollapsed 
       <div style={{ flex: 1, padding: 24, overflow: "auto" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
           <div style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(160,181,230,0.16)" }} />
-          <h1 style={{ fontSize: 18, fontWeight: 600, color: "#02060d", margin: 0 }}>
+          <h1 style={{ fontSize: 18, fontWeight: 600, color: "var(--semantic-color-foreground-static-neutral-strong)", margin: 0 }}>
             {activeId.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
           </h1>
         </div>
         <div style={{ display: "flex", gap: 10, marginBottom: 10 }}>
           {["Summary", "Details", "History"].map(label => (
-            <div key={label} style={{ flex: 1, background: "#fff", borderRadius: 8,
-              border: "1px dashed #d8dce8", padding: 18, minHeight: 60,
+            <div key={label} style={{ flex: 1, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8,
+              border: "1px dashed var(--semantic-color-stroke-static-neutral-base)", padding: 18, minHeight: 60,
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 10, color: "#c4c8d8" }}>{label}</div>
           ))}
@@ -87,7 +87,7 @@ function ItemStage({ width = 280, children, caption, tokens }) {
     <div style={{ fontFamily: "'Red Hat Text', sans-serif",
       display: "flex", flexDirection: "column", gap: 8 }}>
       {caption && (
-        <span style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+        <span style={{ fontSize: 11, fontWeight: 600, color: "var(--semantic-color-foreground-static-neutral-subtle)",
           textTransform: "uppercase", letterSpacing: "0.06em" }}>{caption}</span>
       )}
       <div style={{ width, padding: "12px 12px", background: T.surface.navLight,
@@ -97,7 +97,7 @@ function ItemStage({ width = 280, children, caption, tokens }) {
       {tokens && (
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
           {tokens.map(t => (
-            <code key={t} style={{ fontSize: 10, color: "#2d4889",
+            <code key={t} style={{ fontSize: 10, color: "var(--semantic-color-foreground-static-brand-on-subtle)",
               background: "rgba(160,181,230,0.16)", padding: "2px 6px",
               borderRadius: 3, fontFamily: "monospace" }}>{t}</code>
           ))}
@@ -266,7 +266,7 @@ export const StateMatrix = () => {
       {rows.map(row => (
         <div key={row.name} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           <div>
-            <p style={{ fontSize: 13, fontWeight: 600, color: "#02060d", margin: "0 0 3px" }}>{row.name}</p>
+            <p style={{ fontSize: 13, fontWeight: 600, color: "var(--semantic-color-foreground-static-neutral-strong)", margin: "0 0 3px" }}>{row.name}</p>
             <p style={{ fontSize: 12, color: "#8890b0", margin: 0 }}>{row.when}</p>
           </div>
           <div style={{ padding: "10px 12px", background: T.surface.navLight,
@@ -275,7 +275,7 @@ export const StateMatrix = () => {
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
             {row.tokens.map(t => (
-              <code key={t} style={{ fontSize: 10, color: "#2d4889",
+              <code key={t} style={{ fontSize: 10, color: "var(--semantic-color-foreground-static-brand-on-subtle)",
                 background: "rgba(160,181,230,0.16)", padding: "2px 6px", borderRadius: 3,
                 fontFamily: "monospace" }}>{t}</code>
             ))}
@@ -370,18 +370,18 @@ const ICON_ROWS = [
   { token: "Foreground/Action/Secondary/Rest",           value: T.icon.navBase,          hex: "#484848", role: "Leading icon resting" },
   { token: "Foreground/Action/Secondary/Hover",          value: T.icon.navHover,         hex: "#313131", role: "Leading icon hovered" },
   { token: "Foreground/Action/Secondary/Pressed",         value: T.icon.navActive,        hex: "#2d4889", role: "Leading icon active - also indicator stripe" },
-  { token: "Foreground/Action/Secondary/Rest",     value: T.foreground.actionSecondary,  hex: "#6b6b6b", role: "CollapseButton action icon (right_panel_open / left_panel_open)" },
+  { token: "Foreground/Action/Secondary/Rest",     value: T.icon.actionSecondary,  hex: "#6b6b6b", role: "CollapseButton action icon (right_panel_open / left_panel_open)" },
 ];
 
 function TokenRow({ token, value, hex, role }) {
   return (
     <div style={{ display: "grid", gridTemplateColumns: "300px 80px 100px 1fr",
       gap: 12, alignItems: "center", padding: "10px 0",
-      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text',sans-serif" }}>
-      <code style={{ fontSize: 12, color: "#2d4889", fontFamily: "monospace" }}>{token}</code>
+      borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)", fontFamily: "'Red Hat Text',sans-serif" }}>
+      <code style={{ fontSize: 12, color: "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace" }}>{token}</code>
       <div style={{ width: 64, height: 28, borderRadius: 6,
         background: value, border: "1px solid rgba(0,0,0,0.07)" }} />
-      <code style={{ fontSize: 12, color: "#555", fontFamily: "monospace" }}>{hex}</code>
+      <code style={{ fontSize: 12, color: "var(--semantic-color-foreground-static-neutral-subtle)", fontFamily: "monospace" }}>{hex}</code>
       {role && <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>}
     </div>
   );
@@ -389,7 +389,7 @@ function TokenRow({ token, value, hex, role }) {
 
 export const TokensFill = () => (
   <div style={{ fontFamily: "'Red Hat Text',sans-serif" }}>
-    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 8px" }}>
+    <p style={{ fontSize: 13, color: "var(--semantic-color-foreground-static-neutral-subtle)", margin: "0 0 8px" }}>
       Five fill tokens applied to nav items and container surfaces.
       <code>Selection/Hover</code> and <code>Selection/Trail</code> currently resolve to the same value but are intentionally kept as separate tokens - they have diverged before and may again. (They were <code>NavItem/*</code> until the Contextual colour group was retired on 2026-09-03.)
       The last column in the row for <code>Stroke/Static/Neutral/Base</code> shows all three places it's used: container right border, section dividers, and popover borders.

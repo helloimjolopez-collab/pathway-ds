@@ -34,8 +34,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
     font-family: 'Red Hat Text', sans-serif;
-    background: #fafafa;
-    color: #363636;
+    background: var(--semantic-color-fill-surface-canvas);
+    color: var(--semantic-color-foreground-static-neutral-base);
     padding: 48px 40px;
     min-height: 100vh;
   }
@@ -46,7 +46,7 @@
   .demo-header h1 {
     font-size: 24px;
     font-weight: 600;
-    color: #111;
+    color: var(--semantic-color-foreground-static-neutral-strong);
     margin-bottom: 6px;
   }
   .demo-header p {
@@ -65,7 +65,7 @@
     color: #8b8b8b;
     margin-bottom: 20px;
     padding-bottom: 8px;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid var(--semantic-color-stroke-static-neutral-base);
   }
 
   .demo-row {
@@ -88,10 +88,10 @@
   }
 
   .demo-surface {
-    background: #fff;
+    background: var(--semantic-color-fill-surface-canvas);
     border-radius: 8px;
     padding: 24px;
-    border: 1px solid #e8e8e8;
+    border: 1px solid var(--semantic-color-stroke-static-neutral-base);
   }
   .demo-surface-label {
     font-size: 11px;
@@ -109,8 +109,8 @@
   <h1>Checkbox</h1>
   <p>
     Pathway Design System · Multi-select control ·
-    <a href="checkbox-spec.md" style="color:#3555a0">Spec</a> ·
-    <a href="https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40002324-54532" style="color:#3555a0" target="_blank">Figma</a>
+    <a href="checkbox-spec.md" style="color:var(--semantic-color-foreground-static-brand-on-subtle)">Spec</a> ·
+    <a href="https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40002324-54532" style="color:var(--semantic-color-foreground-static-brand-on-subtle)" target="_blank">Figma</a>
   </p>
 </div>
 
@@ -428,7 +428,7 @@ function Demo() {
             <Checkbox label="Error — indeterminate" error indeterminate onChange={() => {}} id="e3" />
             <Checkbox label="Error — disabled" error disabled id="e4" />
 
-            <div style={{ marginTop: 16, padding: "16px", background: "#fdf7f7", borderRadius: 8, width: "100%" }}>
+            <div style={{ marginTop: 16, padding: "16px", background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8, width: "100%" }}>
               <Checkbox
                 label="I agree to the terms and conditions"
                 checked={agreed}
@@ -447,7 +447,7 @@ function Demo() {
                 style={{
                   marginTop: 12, marginLeft: 44,
                   padding: "8px 16px", borderRadius: 6,
-                  background: "#3555a0", color: "#fff",
+                  background: "var(--semantic-color-fill-surface-chrome)", color: "var(--semantic-color-foreground-static-neutral-mono)",
                   border: "none", cursor: "pointer",
                   fontFamily: "inherit", fontSize: 14,
                 }}
@@ -474,13 +474,13 @@ function Demo() {
                 style={{
                   display: "flex", alignItems: "center",
                   padding: "12px 16px", gap: 12,
-                  background: "#fff",
-                  borderBottom: i < 2 ? "1px solid #f0f0f0" : "none",
+                  background: "var(--semantic-color-fill-surface-canvas)",
+                  borderBottom: i < 2 ? "1px solid var(--semantic-color-stroke-static-neutral-faint)" : "none",
                   borderRadius: i === 0 ? "8px 8px 0 0" : i === 2 ? "0 0 8px 8px" : 0,
                 }}
               >
                 <Checkbox highlight checked={row.checked} onChange={() => {}} id={`hl-${i}`} />
-                <span style={{ fontSize: 14, color: "#363636" }}>{row.label}</span>
+                <span style={{ fontSize: 14, color: "var(--semantic-color-foreground-static-neutral-base)" }}>{row.label}</span>
               </div>
             ))}
           </div>

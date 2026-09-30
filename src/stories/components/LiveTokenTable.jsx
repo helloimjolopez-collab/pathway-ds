@@ -50,7 +50,7 @@ export function LiveTokenRow({ token, cssVar, usage }) {
   const missing = resolved === "";
 
   return (
-    <tr style={{ borderBottom: "1px solid #f1f1f4" }}>
+    <tr style={{ borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>
       <td style={{ padding: 8 }}>
         <div
           style={{
@@ -76,7 +76,7 @@ export function LiveTokenRow({ token, cssVar, usage }) {
       >
         {resolved === null ? "resolving..." : missing ? "unresolved" : resolved}
       </td>
-      <td style={{ padding: 8, fontSize: 12.5, color: "#52525b" }}>{usage}</td>
+      <td style={{ padding: 8, fontSize: 12.5, color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>{usage}</td>
     </tr>
   );
 }
@@ -87,7 +87,7 @@ export function LiveTokenTable({ title, rows, note }) {
       style={{
         fontFamily: "'Red Hat Text', sans-serif",
         padding: 24,
-        background: "#fff",
+        background: "var(--semantic-color-fill-surface-canvas)",
         borderRadius: 8,
         marginBottom: 16,
       }}
@@ -100,7 +100,7 @@ export function LiveTokenTable({ title, rows, note }) {
       )}
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
         <thead>
-          <tr style={{ borderBottom: "2px solid #e5e7eb", color: "#71717a", textAlign: "left" }}>
+          <tr style={{ borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-base)", color: "#71717a", textAlign: "left" }}>
             <th style={{ padding: 8, width: 64 }}>Swatch</th>
             <th style={{ padding: 8 }}>Custom property</th>
             <th style={{ padding: 8, width: 130 }}>Resolved</th>

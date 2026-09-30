@@ -21,13 +21,13 @@ const TOPNAV_BG = "#2d4889";
 
 function LightCard({ caption, children }) {
   return (
-    <div style={{ background: "#fff", borderRadius: 10,
+    <div style={{ background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 10,
       boxShadow: "0 1px 3px rgba(0,0,0,0.07)", overflow: "hidden",
       fontFamily: "'Red Hat Text', sans-serif" }}>
       {caption && (
         <div style={{ padding: "10px 16px", fontSize: 11, fontWeight: 600,
           letterSpacing: ".07em", textTransform: "uppercase", color: "#888",
-          borderBottom: "1px solid #f0f0f0" }}>{caption}</div>
+          borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>{caption}</div>
       )}
       <div style={{ padding: "20px 16px", display: "flex", flexDirection: "column", gap: 12 }}>
         {children}
@@ -45,13 +45,13 @@ function LightCard({ caption, children }) {
  */
 function NavBar({ children, label }) {
   return (
-    <div style={{ background: "#fff", borderRadius: 10,
+    <div style={{ background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 10,
       boxShadow: "0 1px 3px rgba(0,0,0,0.07)", overflow: "hidden",
       fontFamily: "'Red Hat Text', sans-serif" }}>
       {label && (
         <div style={{ padding: "10px 16px", fontSize: 11, fontWeight: 600,
           letterSpacing: ".07em", textTransform: "uppercase", color: "#888",
-          borderBottom: "1px solid #f0f0f0" }}>{label}</div>
+          borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>{label}</div>
       )}
       {/* Simulated TopNav bar - full width, 56px tall, brand blue */}
       <div style={{
@@ -92,13 +92,13 @@ function NavBar({ children, label }) {
 
 function NavCard({ caption, children }) {
   return (
-    <div style={{ background: "#fff", borderRadius: 10,
+    <div style={{ background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 10,
       boxShadow: "0 1px 3px rgba(0,0,0,0.07)", overflow: "hidden",
       fontFamily: "'Red Hat Text', sans-serif" }}>
       {caption && (
         <div style={{ padding: "10px 16px", fontSize: 11, fontWeight: 600,
           letterSpacing: ".07em", textTransform: "uppercase", color: "#888",
-          borderBottom: "1px solid #f0f0f0" }}>{caption}</div>
+          borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>{caption}</div>
       )}
       <div style={{ background: TOPNAV_BG, padding: "20px 16px",
         display: "flex", flexDirection: "column", gap: 12 }}>{children}</div>
@@ -243,11 +243,11 @@ export const TopNavSearchStory = () => {
 
       {/* Behaviour notes */}
       <div style={{
-        background: "#fff", borderRadius: 8, padding: "16px 20px",
-        fontFamily: "'Red Hat Text', sans-serif", fontSize: 13, color: "#484848",
-        lineHeight: 1.6, border: "1px solid #e5e7eb",
+        background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8, padding: "16px 20px",
+        fontFamily: "'Red Hat Text', sans-serif", fontSize: 13, color: "var(--semantic-color-foreground-static-neutral-subtle)",
+        lineHeight: 1.6, border: "1px solid var(--semantic-color-stroke-static-neutral-base)",
       }}>
-        <strong style={{ color: "#252525" }}>How it works</strong>
+        <strong style={{ color: "var(--semantic-color-foreground-static-neutral-bold)" }}>How it works</strong>
         <ul style={{ margin: "8px 0 0", paddingLeft: 20 }}>
           <li>Collapsed: renders a 48×48 icon button on the dark nav surface</li>
           <li>Tap / click the icon: bar springs open to 320px with a spring animation (350ms, cubic-bezier overshoot)</li>
@@ -258,7 +258,7 @@ export const TopNavSearchStory = () => {
         <p style={{ margin: "12px 0 0" }}>
           Component: <code>TopNavSearch</code> from <code>components/search/search.jsx</code> -
           a nav-specific wrapper around <code>SearchInput</code>.
-          Spec: <a href="https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/search/search-spec.md" style={{ color: "#3555a0" }}>search-spec.md</a>
+          Spec: <a href="https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/search/search-spec.md" style={{ color: "var(--semantic-color-foreground-static-brand-on-subtle)" }}>search-spec.md</a>
         </p>
       </div>
     </Stack>
@@ -274,29 +274,29 @@ function TokenRow({ token, hex, usage }) {
     ? `linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%) 0 0/8px 8px, linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%) 4px 4px/8px 8px`
     : undefined;
   return (
-    <tr style={{ borderBottom: "1px solid #f5f5f5" }}>
+    <tr style={{ borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>
       <td style={{ padding: 8 }}>
         <div style={{ width: 40, height: 40, borderRadius: 6, background: isAlpha ? swatchBg : undefined,
           backgroundColor: isAlpha ? undefined : hex,
-          border: "1px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+          border: "1px solid var(--semantic-color-stroke-static-neutral-base)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
           {isAlpha && <div style={{ width: 28, height: 28, background: hex, borderRadius: 4 }} />}
         </div>
       </td>
-      <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#3555a0" }}>{token}</td>
+      <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "var(--semantic-color-foreground-static-brand-on-subtle)" }}>{token}</td>
       <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#71717a" }}>{hex}</td>
-      <td style={{ padding: 8, color: "#363636", fontSize: 13 }}>{usage}</td>
+      <td style={{ padding: 8, color: "var(--semantic-color-foreground-static-neutral-base)", fontSize: 13 }}>{usage}</td>
     </tr>
   );
 }
 
 function TokenTable({ title, rows }) {
   return (
-    <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff",
+    <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)",
       borderRadius: 8, marginBottom: 16 }}>
       <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>{title}</h3>
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
         <thead>
-          <tr style={{ borderBottom: "2px solid #e5e7eb", color: "#71717a", textAlign: "left" }}>
+          <tr style={{ borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-base)", color: "#71717a", textAlign: "left" }}>
             <th style={{ padding: 8, width: 64 }}>Swatch</th>
             <th style={{ padding: 8 }}>Token</th>
             <th style={{ padding: 8 }}>Resolved</th>
@@ -377,11 +377,11 @@ TokensForeground.tags = ["!dev"];
 // ── 8. Tokens - Spacing ───────────────────────────────────────────────────────
 
 export const TokensSpacing = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff", borderRadius: 8 }}>
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
     <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>Spacing tokens</h3>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>
-        <tr style={{ borderBottom: "2px solid #e5e7eb", color: "#71717a", textAlign: "left" }}>
+        <tr style={{ borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-base)", color: "#71717a", textAlign: "left" }}>
           <th style={{ padding: 8 }}>Token</th>
           <th style={{ padding: 8 }}>Value</th>
           <th style={{ padding: 8 }}>Usage</th>
@@ -394,8 +394,8 @@ export const TokensSpacing = () => (
           ["layout.units.padding.xxtight","4px",    "Icon pill padding + filter divider gap"],
           ["layout.units.padding.xxtight","4px",    "TopNavSearch container padding"],
         ].map(([tok, val, usage]) => (
-          <tr key={tok+val} style={{ borderBottom: "1px solid #f5f5f5" }}>
-            <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "#3555a0" }}>{tok}</td>
+          <tr key={tok+val} style={{ borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>
+            <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12, color: "var(--semantic-color-foreground-static-brand-on-subtle)" }}>{tok}</td>
             <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12 }}>{val}</td>
             <td style={{ padding: 8 }}>{usage}</td>
           </tr>
@@ -410,11 +410,11 @@ TokensSpacing.tags = ["!dev"];
 // ── 9. Tokens - Motion ────────────────────────────────────────────────────────
 
 export const TokensMotion = () => (
-  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "#fff", borderRadius: 8 }}>
+  <div style={{ fontFamily: "'Red Hat Text', sans-serif", padding: 24, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
     <h3 style={{ margin: "0 0 16px", fontSize: 16, fontWeight: 600 }}>Motion (TopNavSearch only)</h3>
     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
       <thead>
-        <tr style={{ borderBottom: "2px solid #e5e7eb", color: "#71717a", textAlign: "left" }}>
+        <tr style={{ borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-base)", color: "#71717a", textAlign: "left" }}>
           <th style={{ padding: 8 }}>Property</th>
           <th style={{ padding: 8 }}>Value</th>
           <th style={{ padding: 8 }}>Notes</th>
@@ -428,7 +428,7 @@ export const TokensMotion = () => (
           ["Focus delay", "120ms after expand starts (timer)", "Avoids input flashing in before animation starts"],
           ["Reduced motion", "opacity fade only, width instant", "prefers-reduced-motion: reduce"],
         ].map(([prop, val, note]) => (
-          <tr key={prop} style={{ borderBottom: "1px solid #f5f5f5" }}>
+          <tr key={prop} style={{ borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>
             <td style={{ padding: 8 }}>{prop}</td>
             <td style={{ padding: 8, fontFamily: "monospace", fontSize: 12 }}>{val}</td>
             <td style={{ padding: 8, color: "#71717a" }}>{note}</td>

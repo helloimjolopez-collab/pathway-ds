@@ -53,7 +53,7 @@
 
     .demo-section {
       margin-bottom: 32px;
-      background: #fff;
+      background: var(--semantic-color-fill-surface-canvas);
       border-radius: 10px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.07);
       overflow: hidden;
@@ -67,7 +67,7 @@
       letter-spacing: .07em;
       text-transform: uppercase;
       color: #888;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid var(--semantic-color-stroke-static-neutral-faint);
     }
 
     .demo-section__body {
@@ -78,11 +78,11 @@
     }
 
     .demo-section__body--nav {
-      background: #2d4889;
+      background: var(--semantic-color-fill-surface-chrome);
     }
 
-    h1 { font-size: 24px; font-weight: 600; color: #1a1a1a; margin: 0 0 4px; }
-    p.subtitle { font-size: 14px; color: #606060; margin: 0 0 32px; }
+    h1 { font-size: 24px; font-weight: 600; color: var(--semantic-color-foreground-static-neutral-bold); margin: 0 0 4px; }
+    p.subtitle { font-size: 14px; color: var(--semantic-color-foreground-static-neutral-subtle); margin: 0 0 32px; }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {

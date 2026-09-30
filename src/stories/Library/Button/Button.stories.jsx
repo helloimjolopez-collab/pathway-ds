@@ -63,7 +63,7 @@ function TokenRow({ name, value, description }) {
 
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "6px 0",
-      borderBottom: "1px solid #f0f1f5", fontFamily: "'Red Hat Text', sans-serif" }}>
+      borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)", fontFamily: "'Red Hat Text', sans-serif" }}>
       {/* Swatch */}
       <div style={{ width: 32, height: 32, borderRadius: 6, flexShrink: 0,
         background: `var(${cssVar})`, border: "1px solid rgba(0,0,0,0.08)" }} />
@@ -424,11 +424,11 @@ function TokenBlock({ table, styleName, type, describe }) {
             <div
               key={state}
               style={{ display: "flex", alignItems: "center", gap: 12, padding: "6px 0",
-                borderBottom: "1px solid #f0f1f5", fontFamily: "'Red Hat Text', sans-serif" }}
+                borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)", fontFamily: "'Red Hat Text', sans-serif" }}
             >
               <div style={{ width: 32, height: 32, borderRadius: 6, flexShrink: 0,
                 border: "1px dashed #c9cde0",
-                background: "repeating-conic-gradient(#f4f4f6 0% 25%, #fff 0% 50%) 50%/10px 10px" }} />
+                background: "repeating-conic-gradient(var(--semantic-color-fill-surface-canvas) 0% 25%, #fff 0% 50%) 50%/10px 10px" }} />
               <code style={{ fontSize: 12, color: "#3a3f5c", flex: "0 0 360px" }}>{String(value)}</code>
               <code style={{ fontSize: 12, color: "#8890b0", flex: "0 0 96px" }}>-</code>
               <span style={{ fontSize: 12, color: "#8890b0" }}>
@@ -594,7 +594,7 @@ function ResolvedType({ fontSize, fontWeight, lineHeight, letterSpacing }) {
     setVals([get(fontSize), get(fontWeight), get(lineHeight), get(letterSpacing)]);
   }, [fontSize, fontWeight, lineHeight, letterSpacing]);
   return (
-    <code style={{ fontSize: 11, color: "#555", fontFamily: "monospace" }}>
+    <code style={{ fontSize: 11, color: "var(--semantic-color-foreground-static-neutral-subtle)", fontFamily: "monospace" }}>
       {vals ? vals.join(" / ") : "resolving..."}
     </code>
   );
@@ -605,11 +605,11 @@ function TypographyRow({ size, typeTokens, fontSize, lineHeight, fontWeight, let
     <div style={{
       display: "grid", gridTemplateColumns: "90px 360px 1fr 130px",
       gap: 16, alignItems: "center", padding: "12px 0",
-      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text', sans-serif",
+      borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)", fontFamily: "'Red Hat Text', sans-serif",
     }}>
-      <span style={{ fontSize: 12, fontWeight: 600, color: "#313131" }}>{size}</span>
+      <span style={{ fontSize: 12, fontWeight: 600, color: "var(--semantic-color-foreground-static-neutral-base)" }}>{size}</span>
       <div>
-        <code style={{ fontSize: 11, color: "#2d4889", fontFamily: "monospace", display: "block" }}>
+        <code style={{ fontSize: 11, color: "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace", display: "block" }}>
           {typeTokens}
         </code>
         <code style={{ fontSize: 11, color: "#8890b0", fontFamily: "monospace", display: "block", marginTop: 2 }}>
@@ -618,8 +618,8 @@ function TypographyRow({ size, typeTokens, fontSize, lineHeight, fontWeight, let
       </div>
       <div style={{
         padding: "6px 12px",
-        background: "#f5f7fb",
-        border: "1px solid #edf0f9",
+        background: "var(--semantic-color-fill-surface-canvas)",
+        border: "1px solid var(--semantic-color-stroke-static-neutral-faint)",
         borderRadius: 6,
       }}>
         <span style={{
@@ -628,7 +628,7 @@ function TypographyRow({ size, typeTokens, fontSize, lineHeight, fontWeight, let
           fontSize,
           lineHeight,
           letterSpacing,
-          color: "#02060d",
+          color: "var(--semantic-color-foreground-static-neutral-strong)",
         }}>
           Save changes
         </span>
@@ -641,17 +641,17 @@ function TypographyRow({ size, typeTokens, fontSize, lineHeight, fontWeight, let
 
 export const TokensTypography = () => (
   <div style={{ fontFamily: "'Red Hat Text', sans-serif" }}>
-    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
+    <p style={{ fontSize: 13, color: "var(--semantic-color-foreground-static-neutral-subtle)", margin: "0 0 12px" }}>
       Three label type styles - one per size. All use Red Hat Text at weight 500 with{" "}
       <code style={{ fontSize: 12 }}>letter-spacing: 0.3px</code>. Only the font-size and
       line-height scale.
     </p>
     <div style={{
       display: "grid", gridTemplateColumns: "90px 360px 1fr 130px",
-      gap: 16, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4,
+      gap: 16, padding: "6px 0", borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-faint)", marginBottom: 4,
     }}>
       {["Size", "Token", "Sample", "Values"].map(h => (
-        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "var(--semantic-color-foreground-static-neutral-subtle)",
           textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
       ))}
     </div>
@@ -690,10 +690,10 @@ function SpacingRow({ name, value, token, role }) {
     <div style={{
       display: "grid", gridTemplateColumns: "200px 60px 360px 1fr",
       gap: 12, alignItems: "center", padding: "8px 0",
-      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text', sans-serif",
+      borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)", fontFamily: "'Red Hat Text', sans-serif",
     }}>
-      <span style={{ fontSize: 12, color: "#313131" }}>{name}</span>
-      <code style={{ fontSize: 12, fontWeight: 600, color: "#2d4889", fontFamily: "monospace" }}>{value}</code>
+      <span style={{ fontSize: 12, color: "var(--semantic-color-foreground-static-neutral-base)" }}>{name}</span>
+      <code style={{ fontSize: 12, fontWeight: 600, color: "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace" }}>{value}</code>
       <code style={{ fontSize: 11, color: noToken ? "#bbb" : "#2d4889", fontFamily: "monospace" }}>{token}</code>
       <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>
     </div>
@@ -702,16 +702,16 @@ function SpacingRow({ name, value, token, role }) {
 
 export const TokensSpacing = () => (
   <div style={{ fontFamily: "'Red Hat Text', sans-serif" }}>
-    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
+    <p style={{ fontSize: 13, color: "var(--semantic-color-foreground-static-neutral-subtle)", margin: "0 0 12px" }}>
       Padding, gap, border-width, and touch-target values. Grey token names have no
       design token yet - they are hardcoded in the component.
     </p>
     <div style={{
       display: "grid", gridTemplateColumns: "200px 60px 360px 1fr",
-      gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4,
+      gap: 12, padding: "6px 0", borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-faint)", marginBottom: 4,
     }}>
       {["Property", "Value", "Token", "Role"].map(h => (
-        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "var(--semantic-color-foreground-static-neutral-subtle)",
           textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
       ))}
     </div>
@@ -756,12 +756,12 @@ function MotionRow({ name, duration, curve, token, properties, rationale }) {
     <div style={{
       display: "grid", gridTemplateColumns: "160px 80px 200px 220px 1fr",
       gap: 12, alignItems: "center", padding: "10px 0",
-      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text', sans-serif",
+      borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)", fontFamily: "'Red Hat Text', sans-serif",
     }}>
-      <span style={{ fontSize: 12, color: "#313131", fontWeight: 500 }}>{name}</span>
-      <code style={{ fontSize: 12, fontWeight: 600, color: "#2d4889", fontFamily: "monospace" }}>{duration}</code>
-      <code style={{ fontSize: 11, color: hasToken ? "#2d4889" : "#bbb", fontFamily: "monospace" }}>{token}</code>
-      <code style={{ fontSize: 11, color: "#555", fontFamily: "monospace" }}>{curve}</code>
+      <span style={{ fontSize: 12, color: "var(--semantic-color-foreground-static-neutral-base)", fontWeight: 500 }}>{name}</span>
+      <code style={{ fontSize: 12, fontWeight: 600, color: "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace" }}>{duration}</code>
+      <code style={{ fontSize: 11, color: hasToken ? "var(--semantic-color-foreground-static-brand-on-subtle)" : "#bbb", fontFamily: "monospace" }}>{token}</code>
+      <code style={{ fontSize: 11, color: "var(--semantic-color-foreground-static-neutral-subtle)", fontFamily: "monospace" }}>{curve}</code>
       <span style={{ fontSize: 11, color: "#8890b0" }}>{rationale}</span>
     </div>
   );
@@ -769,7 +769,7 @@ function MotionRow({ name, duration, curve, token, properties, rationale }) {
 
 export const TokensMotion = () => (
   <div style={{ fontFamily: "'Red Hat Text', sans-serif" }}>
-    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
+    <p style={{ fontSize: 13, color: "var(--semantic-color-foreground-static-neutral-subtle)", margin: "0 0 12px" }}>
       Button motion is intentionally minimal. State transitions (hover, pressed, focus ring)
       use the system-standard 150 ms / ease - fast enough to feel instant. The spinner
       rotation is a continuous loop and not part of the interaction model.
@@ -778,10 +778,10 @@ export const TokensMotion = () => (
     </p>
     <div style={{
       display: "grid", gridTemplateColumns: "160px 80px 200px 220px 1fr",
-      gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4,
+      gap: 12, padding: "6px 0", borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-faint)", marginBottom: 4,
     }}>
       {["Property", "Duration", "Token", "Curve", "Rationale"].map(h => (
-        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "var(--semantic-color-foreground-static-neutral-subtle)",
           textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
       ))}
     </div>
@@ -823,9 +823,9 @@ function RadiusRow({ name, value, token, role }) {
     <div style={{
       display: "grid", gridTemplateColumns: "180px 80px 380px 1fr",
       gap: 12, alignItems: "center", padding: "10px 0",
-      borderBottom: "1px solid #f0f1f4", fontFamily: "'Red Hat Text', sans-serif",
+      borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)", fontFamily: "'Red Hat Text', sans-serif",
     }}>
-      <span style={{ fontSize: 12, color: "#313131" }}>{name}</span>
+      <span style={{ fontSize: 12, color: "var(--semantic-color-foreground-static-neutral-base)" }}>{name}</span>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
         <div style={{
           width: 32, height: 32,
@@ -833,7 +833,7 @@ function RadiusRow({ name, value, token, role }) {
           borderRadius: r,
           background: "rgba(160,181,230,0.12)",
         }} />
-        <code style={{ fontSize: 12, fontWeight: 600, color: "#2d4889", fontFamily: "monospace" }}>{value}</code>
+        <code style={{ fontSize: 12, fontWeight: 600, color: "var(--semantic-color-foreground-static-brand-on-subtle)", fontFamily: "monospace" }}>{value}</code>
       </div>
       <code style={{ fontSize: 11, color: noToken ? "#bbb" : "#2d4889", fontFamily: "monospace" }}>{token}</code>
       <span style={{ fontSize: 11, color: "#8890b0" }}>{role}</span>
@@ -843,7 +843,7 @@ function RadiusRow({ name, value, token, role }) {
 
 export const TokensRadius = () => (
   <div style={{ fontFamily: "'Red Hat Text', sans-serif" }}>
-    <p style={{ fontSize: 13, color: "#4b4b4b", margin: "0 0 12px" }}>
+    <p style={{ fontSize: 13, color: "var(--semantic-color-foreground-static-neutral-subtle)", margin: "0 0 12px" }}>
       The Button uses a single radius value (8px / Radius/M) on the visible{" "}
       <code style={{ fontSize: 12 }}>Container.Main</code>. The outer{" "}
       <code style={{ fontSize: 12 }}>&lt;button&gt;</code> touch-target wrapper is transparent
@@ -851,10 +851,10 @@ export const TokensRadius = () => (
     </p>
     <div style={{
       display: "grid", gridTemplateColumns: "180px 80px 380px 1fr",
-      gap: 12, padding: "6px 0", borderBottom: "2px solid #edf0f9", marginBottom: 4,
+      gap: 12, padding: "6px 0", borderBottom: "2px solid var(--semantic-color-stroke-static-neutral-faint)", marginBottom: 4,
     }}>
       {["Element", "Value", "Token", "Role"].map(h => (
-        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "#4b4b4b",
+        <span key={h} style={{ fontSize: 11, fontWeight: 600, color: "var(--semantic-color-foreground-static-neutral-subtle)",
           textTransform: "uppercase", letterSpacing: "0.06em" }}>{h}</span>
       ))}
     </div>

@@ -38,7 +38,7 @@
      to declare them itself. */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility; height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
+  text-rendering: optimizeLegibility; height: 100%; background: var(--semantic-color-fill-surface-canvas); font-family: 'Red Hat Text', sans-serif; }
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
@@ -180,9 +180,9 @@
   /* ── DEMO CHROME (not part of the component) ─────────────────────────────── */
   .demo-shell { max-width: 1100px; margin: 0 auto; padding: 48px 32px 72px; }
   .demo-title { font-family: 'Red Hat Text', sans-serif; font-weight: 600; font-size: 22px;
-    line-height: 28px; color: #02060d; margin: 0 0 6px; }
+    line-height: 28px; color: var(--semantic-color-foreground-static-neutral-strong); margin: 0 0 6px; }
   .demo-sub { font-family: 'Red Hat Text', sans-serif; font-size: 13px; color: #8890b0; margin: 0 0 28px; }
-  .demo-section { background: #fff; border: 1px solid #edf0f9; border-radius: 12px;
+  .demo-section { background: var(--semantic-color-fill-surface-canvas); border: 1px solid var(--semantic-color-stroke-static-neutral-faint); border-radius: 12px;
     padding: 24px 28px; margin-bottom: 20px; }
   .demo-section-label { font-family: 'Red Hat Text', sans-serif; font-size: 10px; font-weight: 700;
     color: #7880a0; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 16px; }
@@ -190,10 +190,10 @@
   .demo-cell { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 96px; }
   .demo-cell-label { font-family: 'Red Hat Text', sans-serif; font-size: 11px; color: #8890b0;
     font-variant-numeric: tabular-nums; text-align: center; }
-  .demo-cell-token { font-family: 'Red Hat Text', monospace; font-size: 10px; color: #3555a0;
+  .demo-cell-token { font-family: 'Red Hat Text', monospace; font-size: 10px; color: var(--semantic-color-foreground-static-brand-on-subtle);
     font-variant-numeric: tabular-nums; text-align: center; word-break: break-all; }
   .demo-swatch { display: flex; align-items: center; justify-content: center; min-height: 96px; }
-  .demo-inline { font-family: 'Red Hat Text', sans-serif; font-size: 16px; color: #3555a0;
+  .demo-inline { font-family: 'Red Hat Text', sans-serif; font-size: 16px; color: var(--semantic-color-foreground-static-brand-on-subtle);
     line-height: 22px; }
   .demo-inline .pds-spinner { vertical-align: -0.15em; margin: 0 4px; }
 </style>
@@ -391,8 +391,8 @@ function App() {
           </div>
           <div className="demo-cell" style={{ alignItems:"flex-start" }}>
             <div className="demo-swatch"
-                 style={{ width:160, height:120, border:"1px dashed #d8dce8",
-                          borderRadius:10, background:"#fff" }}>
+                 style={{ width:160, height:120, border:"1px dashed var(--semantic-color-stroke-static-neutral-base)",
+                          borderRadius:10, background:"var(--semantic-color-fill-surface-canvas)" }}>
               <Spinner size={48} tone="brand" label="Loading report" />
             </div>
             <span className="demo-cell-label">Empty-state placeholder · tone=&quot;brand&quot;</span>

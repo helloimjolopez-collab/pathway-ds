@@ -17,7 +17,7 @@ const Rows = ({ n = 40 }) => (
     {Array.from({ length: n }, (_, i) => (
       <div key={i} style={{
         padding: "10px 16px", fontFamily: "'Red Hat Text', sans-serif", fontSize: 14,
-        color: "#252525", borderBottom: "1px solid #f0f0f0", whiteSpace: "nowrap",
+        color: "var(--semantic-color-foreground-static-neutral-bold)", borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)", whiteSpace: "nowrap",
       }}>
         Row {i + 1} - scroll to see the overlay thumb
       </div>
@@ -26,8 +26,8 @@ const Rows = ({ n = 40 }) => (
 );
 
 const Frame = ({ children, w = 320, h = 300 }) => (
-  <div style={{ width: w, height: h, border: "1px solid #e4e4e4", borderRadius: 12,
-    overflow: "hidden", background: "#fff", fontFamily: "'Red Hat Text', sans-serif" }}>
+  <div style={{ width: w, height: h, border: "1px solid var(--semantic-color-stroke-static-neutral-base)", borderRadius: 12,
+    overflow: "hidden", background: "var(--semantic-color-fill-surface-canvas)", fontFamily: "'Red Hat Text', sans-serif" }}>
     {children}
   </div>
 );

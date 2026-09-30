@@ -55,18 +55,18 @@
      to declare them itself. */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility; font-family: "Red Hat Text", sans-serif; background: #f7f8fc; color: #02060d; }
+  text-rendering: optimizeLegibility; font-family: "Red Hat Text", sans-serif; background: var(--semantic-color-fill-surface-canvas); color: var(--semantic-color-foreground-static-neutral-strong); }
   .demo-shell  { max-width: 1100px; margin: 0 auto; padding: 48px 32px 80px; }
   .demo-title  { font-size: 22px; font-weight: 600; line-height: 28px; margin-bottom: 4px; }
   .demo-sub    { font-size: 13px; color: #7880a0; margin-bottom: 40px; }
-  .demo-section { background: #fff; border: 1px solid #edf0f9; border-radius: 12px;
+  .demo-section { background: var(--semantic-color-fill-surface-canvas); border: 1px solid var(--semantic-color-stroke-static-neutral-faint); border-radius: 12px;
                   padding: 24px 28px; margin-bottom: 20px; }
   .demo-section-label { font-size: 10px; font-weight: 700; color: #7880a0;
                         text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
   .demo-row    { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
   .demo-row:last-child { margin-bottom: 0; }
   .demo-row-label { font-size: 11px; color: #a0a8c0; width: 72px; flex-shrink: 0; }
-  .demo-dark   { background: #1b2544; }
+  .demo-dark   { background: var(--semantic-color-fill-static-brand-strongest); }
 </style>
 </head>
 <body>
@@ -335,7 +335,7 @@ function App() {
               <Button buttonStyle={style} type={type} size="M" loading />
             </DemoRow>
           ))}
-          <div style={{ borderTop: "1px solid #edf0f9", margin: "16px 0 16px" }} />
+          <div style={{ borderTop: "1px solid var(--semantic-color-stroke-static-neutral-faint)", margin: "16px 0 16px" }} />
           {/* Size comparison */}
           <DemoRow label="Sizes">
             {SIZES_LIST.map(sz => (

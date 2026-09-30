@@ -183,7 +183,7 @@
     .nav-tooltip {
       display: none; position: absolute; left: calc(100% + 8px); top: 50%;
       transform: translateY(-50%); z-index: 200;
-      background: #484848; color: #fff; font-size: 12px; font-weight: 500;
+      background: #484848; color: var(--semantic-color-foreground-static-neutral-mono); font-size: 12px; font-weight: 500;
       padding: 4px 8px; border-radius: 4px; white-space: nowrap; pointer-events: none;
     }
     .nav-tooltip::before {
@@ -280,7 +280,7 @@
     }
     .btn--filled {
       background: var(--semantic-color-fill-action-primary-strong-rest);
-      color: #ffffff; border: none;
+      color: var(--semantic-color-foreground-static-neutral-mono); border: none;
     }
     .btn--filled:hover {
       background: var(--semantic-color-fill-action-primary-strong-hover);
@@ -483,7 +483,7 @@
       org: {
         name:   "Sacred Heart Church-ITD",
         campus: "Knoxville",
-        bg:     "#2d4889",
+        bg:     "var(--semantic-color-fill-surface-chrome)",
         initials: "SH",
         // logoUrl: "" — omit for org-name-only trigger (DS default)
       },
@@ -523,7 +523,7 @@
 
     // Design tokens — from top-nav.jsx T constant
     const TN = {
-      navBg:         "#2d4889",
+      navBg:         "var(--semantic-color-fill-surface-chrome)",
       orgFill:       "rgba(160,181,230,0.04)",
       orgStroke:     "rgba(160,181,230,0.16)",
       orgStrokeHover:"rgba(160,181,230,0.20)",
@@ -531,12 +531,12 @@
       controlHover:  "rgba(10,18,35,0.16)",
       controlPressed:"rgba(255,255,255,0.08)",
       monoBase:      "#fbfbfb",
-      avatarBg:      "#dcd9ef",
-      avatarText:    "#221e3f",
+      avatarBg:      "var(--semantic-color-fill-static-info-subtle)",
+      avatarText:    "var(--semantic-color-foreground-static-info-on-strong)",
       panelBorder:   "rgba(45,72,137,0.12)",
       panelShadow:   "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
       activeItem:    "#eef2fb",
-      itemText:      "#252525",
+      itemText:      "var(--semantic-color-foreground-static-neutral-bold)",
       itemTextBase:  "#484848",
       itemMeta:      "#6b6b6b",
     };
@@ -619,7 +619,7 @@
             <input ref={inputRef} value={query} onChange={e => setQuery(e.target.value)}
               placeholder="Search…" aria-label="Search"
               style={{ flex:1, background:"transparent", border:"none", outline:"none",
-                color:"#252525", fontSize:14, fontWeight:400, lineHeight:"20px",
+                color:"var(--semantic-color-foreground-static-neutral-bold)", fontSize:14, fontWeight:400, lineHeight:"20px",
                 letterSpacing:"0.3px", minWidth:0, fontFamily:"'Red Hat Text',sans-serif" }} />
             {query.length > 0 && (
               <button onClick={() => { setQuery(""); inputRef.current?.focus(); }}
@@ -732,7 +732,7 @@
                   {openPanel==="module" && (
                     <ul role="listbox" aria-label="Switch module"
                       style={{ position:"absolute", top:"calc(100% + 4px)", left:0,
-                        width:243, background:"#fff",
+                        width:243, background:"var(--semantic-color-fill-surface-canvas)",
                         border:`1px solid ${TN.panelBorder}`, borderRadius:8,
                         boxShadow:TN.panelShadow, padding:4, zIndex:300, margin:0, listStyle:"none",
                         animation:"tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both" }}>
@@ -789,7 +789,7 @@
                   {openPanel==="org" && (
                     <div role="dialog" aria-label="Switch organisation"
                       style={{ position:"absolute", top:"calc(100% + 4px)", left:isMobile?0:40,
-                        width:280, background:"#fff",
+                        width:280, background:"var(--semantic-color-fill-surface-canvas)",
                         border:`1px solid ${TN.panelBorder}`, borderRadius:8,
                         boxShadow:TN.panelShadow, padding:8, zIndex:300,
                         animation:"tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both" }}>
@@ -803,7 +803,7 @@
                           background:org.bg||TN.navBg,
                           display:"flex", alignItems:"center", justifyContent:"center",
                           flexShrink:0, border:`1px solid ${TN.orgStroke}` }}>
-                          <span style={{ fontSize:9, fontWeight:700, color:"#fff" }}>{org.initials}</span>
+                          <span style={{ fontSize:9, fontWeight:700, color:"var(--semantic-color-foreground-static-neutral-mono)" }}>{org.initials}</span>
                         </div>
                         <div style={{ minWidth:0 }}>
                           <div style={{ fontSize:13, fontWeight:500, color:TN.itemText,
@@ -880,7 +880,7 @@
                   {openPanel==="profile" && (
                     <div role="menu"
                       style={{ position:"absolute", top:"calc(100% + 4px)", right:0,
-                        width:200, background:"#fff",
+                        width:200, background:"var(--semantic-color-fill-surface-canvas)",
                         border:`1px solid rgba(45,72,137,0.10)`, borderRadius:8,
                         boxShadow:TN.panelShadow, padding:4, zIndex:300,
                         animation:"tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both" }}>
@@ -922,8 +922,8 @@
 
     // Token values from sidenav.jsx T constant (resolved via resolve-tokens.js)
     const SN = {
-      surface:       "#fafafa",                     // Fill/Static/Neutral/Mono
-      border:        "#f6f6f6",                     // Stroke/Static/Neutral/Base
+      surface:       "var(--semantic-color-fill-surface-canvas)",                     // Fill/Static/Neutral/Mono
+      border:        "var(--semantic-color-stroke-static-neutral-faint)",                     // Stroke/Static/Neutral/Base
       fillBase:      "transparent",                 // no fill (rest paints nothing)
       fillHover:     "rgba(69,77,94,0.06)",         // Fill/Action/Selection/Hover
       fillActive:    "#eef2fb",                     // Fill/Action/Selection/Selected = a0b5e629
@@ -932,7 +932,7 @@
       iconBase:      "#606060",                     // Foreground/Action/Secondary/Rest
       iconActive:    "#3555a0",                     // Foreground/Action/Secondary/Pressed
       iconAction:    "#6b6b6b",                     // Foreground/Action/Secondary/Rest
-      sectionText:   "#606060",                     // Foreground/Static/Neutral/Base
+      sectionText:   "var(--semantic-color-foreground-static-neutral-subtle)",                     // Foreground/Static/Neutral/Base
     };
 
     // NavHeader collapse button SVG icons — exact from sidenav.jsx

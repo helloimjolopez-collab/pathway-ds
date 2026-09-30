@@ -22,20 +22,20 @@ In Figma an icon is three nested boxes, and only the middle one is the size you 
 
 Material Symbols are drawn to fill ~12 of a 16-unit grid; that ~2px of padding is baked into every glyph so wide and tall icons normalise to one consistent box. When you ask for `16`, the font reproduces that padding and the visible mark lands at ~12px - a pixel match to Figma. If you instead measure the **visible vector (~12)** and implement _that_, the padding is re-applied at a smaller scale and the icon ships too small.
 
-<div style={{ display: "flex", gap: 32, alignItems: "flex-end", flexWrap: "wrap", margin: "24px 0", padding: 24, border: "1px solid #ededed", borderRadius: 12, background: "#fafafa" }}>
+<div style={{ display: "flex", gap: 32, alignItems: "flex-end", flexWrap: "wrap", margin: "24px 0", padding: 24, border: "1px solid var(--semantic-color-stroke-static-neutral-base)", borderRadius: 12, background: "var(--semantic-color-fill-surface-canvas)" }}>
   <div style={{ textAlign: "center" }}>
     <div style={{ width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center", outline: "1px dashed #b9c4e0", margin: "0 auto 8px" }}>
-      <span className="material-symbols-rounded" style={{ fontSize: 16, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20", color: "#2d4889" }}>search</span>
+      <span className="material-symbols-rounded" style={{ fontSize: 16, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20", color: "var(--semantic-color-foreground-static-brand-on-subtle)" }}>search</span>
     </div>
-    <div style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 12, fontWeight: 600, color: "#202020" }}>✅ font-size: 16px</div>
-    <div style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 11, color: "#606060" }}>= the 16 frame · 24 wrapper</div>
+    <div style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 12, fontWeight: 600, color: "var(--semantic-color-foreground-static-neutral-bold)" }}>✅ font-size: 16px</div>
+    <div style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 11, color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>= the 16 frame · 24 wrapper</div>
   </div>
   <div style={{ textAlign: "center" }}>
     <div style={{ width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center", outline: "1px dashed #e0b9b9", margin: "0 auto 8px" }}>
       <span className="material-symbols-rounded" style={{ fontSize: 12, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20", color: "#b03a3a" }}>search</span>
     </div>
-    <div style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 12, fontWeight: 600, color: "#202020" }}>❌ font-size: 12px</div>
-    <div style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 11, color: "#606060" }}>= the vector - too small</div>
+    <div style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 12, fontWeight: 600, color: "var(--semantic-color-foreground-static-neutral-bold)" }}>❌ font-size: 12px</div>
+    <div style={{ fontFamily: "'Red Hat Text', sans-serif", fontSize: 11, color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>= the vector - too small</div>
   </div>
 </div>
 

@@ -17,10 +17,14 @@ import figma from "figma"
 // them.
 //
 // NODE CHOICE: 40007067-6508 is the TopNav.Global inside SECTION "Amplify",
-// which is the Pathway bar. There is a second TopNav.Global at 40016724-119035
-// inside SECTION "NewCo". Same name, same coordinates, different brand, so the
-// section is the only thing that tells them apart. This mapping is the Pathway
-// one on purpose.
+// which is the Pathway bar. A second TopNav.Global exists at 40016724-119035
+// inside the other brand's section. Same name, same coordinates, different
+// brand, so the section is the only thing that tells them apart. This mapping
+// is the Pathway one on purpose.
+//
+// The other brand is NOT named here. Storybook publishes components/ to public
+// GitHub Pages, so this file is served; the unannounced brand must not appear
+// in it. See .storybook/preview.js for the same rule on token imports.
 
 // Figma spells the desktop value "Destkop". That typo is the real variant value,
 // so it has to be matched verbatim or the enum silently misses and breakpoint

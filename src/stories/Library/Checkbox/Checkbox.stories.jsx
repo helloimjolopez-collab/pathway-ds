@@ -96,7 +96,7 @@ export const StateMatrix = () => {
   const toggle = (key) => setStates(s => ({ ...s, [key]: !s[key] }));
 
   return (
-    <div style={{ padding: 16, background: "#fafafa", borderRadius: 8 }}>
+    <div style={{ padding: 16, background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8 }}>
       <Row label="Unselected">
         <Checkbox checked={states.unselected} onChange={() => toggle("unselected")} id="sm1" />
         <Checkbox label="With label" checked={states.unselected} onChange={() => toggle("unselected")} id="sm1l" />
@@ -115,7 +115,7 @@ export const StateMatrix = () => {
         <Checkbox disabled indeterminate onChange={() => {}} id="sm3d" />
         <span style={{ fontSize: 12, color: "#aaa" }}>← disabled</span>
       </Row>
-      <div style={{ borderTop: "1px solid #e8e8e8", margin: "12px 0" }} />
+      <div style={{ borderTop: "1px solid var(--semantic-color-stroke-static-neutral-base)", margin: "12px 0" }} />
       <Row label="Error unselected">
         <Checkbox error checked={states.errorUnselected} onChange={() => toggle("errorUnselected")} id="sm4" />
         <Checkbox error label="Agree to terms" checked={states.errorUnselected} onChange={() => toggle("errorUnselected")} id="sm4l" />
@@ -220,7 +220,7 @@ export const ErrorWithMessage = () => {
           onClick={() => setSubmitted(true)}
           style={{
             padding: "8px 16px", borderRadius: 6,
-            background: "#3555a0", color: "#fff",
+            background: "var(--semantic-color-fill-surface-chrome)", color: "var(--semantic-color-foreground-static-neutral-mono)",
             border: "none", cursor: "pointer",
             fontFamily: "inherit", fontSize: 14,
           }}
@@ -255,14 +255,14 @@ export const HighlightVariant = () => {
     setRows(rows.map(r => r.id === id ? { ...r, checked: !r.checked } : r));
 
   return (
-    <div style={{ background: "#fff", borderRadius: 8, border: "1px solid #e8e8e8", overflow: "hidden", fontFamily: "'Red Hat Text',sans-serif" }}>
+    <div style={{ background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8, border: "1px solid var(--semantic-color-stroke-static-neutral-base)", overflow: "hidden", fontFamily: "'Red Hat Text',sans-serif" }}>
       {rows.map((row, i) => (
         <div
           key={row.id}
           style={{
             display: "flex", alignItems: "center", gap: 12,
             padding: "12px 16px",
-            borderBottom: i < rows.length - 1 ? "1px solid #f0f0f0" : "none",
+            borderBottom: i < rows.length - 1 ? "1px solid var(--semantic-color-stroke-static-neutral-faint)" : "none",
           }}
         >
           <Checkbox
@@ -271,7 +271,7 @@ export const HighlightVariant = () => {
             checked={row.checked}
             onChange={() => toggle(row.id)}
           />
-          <span style={{ fontSize: 14, color: "#363636" }}>{row.label}</span>
+          <span style={{ fontSize: 14, color: "var(--semantic-color-foreground-static-neutral-base)" }}>{row.label}</span>
         </div>
       ))}
     </div>
