@@ -4004,7 +4004,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-0": {
-    "value": "#f9fafc",
+    "value": "#f9fafd",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4014,7 +4014,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-25": {
-    "value": "#f1f3fd",
+    "value": "#f2f3fb",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4024,7 +4024,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-50": {
-    "value": "#e8ecfd",
+    "value": "#eaecf8",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4034,7 +4034,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-75": {
-    "value": "#dfe6fd",
+    "value": "#e3e6f5",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4044,7 +4044,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-100": {
-    "value": "#d4ddfd",
+    "value": "#d9ddf1",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4054,7 +4054,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-150": {
-    "value": "#c0cefd",
+    "value": "#c8ceec",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4064,7 +4064,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-200": {
-    "value": "#a9bdfd",
+    "value": "#b4bde6",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4074,7 +4074,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-250": {
-    "value": "#8dabfc",
+    "value": "#9eabdf",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4084,7 +4084,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-300": {
-    "value": "#6997fd",
+    "value": "#8598d7",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4094,7 +4094,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-350": {
-    "value": "#518cfd",
+    "value": "#768dd2",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4104,7 +4104,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-400": {
-    "value": "#3b70d5",
+    "value": "#4971c5",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4114,7 +4114,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-500": {
-    "value": "#30519f",
+    "value": "#25539d",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4124,7 +4124,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-600": {
-    "value": "#274286",
+    "value": "#204482",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4134,7 +4134,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-700": {
-    "value": "#1e346d",
+    "value": "#183669",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4144,7 +4144,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-800": {
-    "value": "#13224f",
+    "value": "#132446",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4154,7 +4154,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-900": {
-    "value": "#081132",
+    "value": "#021330",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4164,7 +4164,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-300-16": {
-    "value": "#6997fd29",
+    "value": "#8598d729",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4174,7 +4174,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-300-24": {
-    "value": "#6997fd3d",
+    "value": "#8598d73d",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4184,7 +4184,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-300-36": {
-    "value": "#6997fd5c",
+    "value": "#8598d75c",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4194,7 +4194,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-300-4": {
-    "value": "#6997fd0a",
+    "value": "#8598d70a",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4204,7 +4204,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-300-50": {
-    "value": "#6997fd80",
+    "value": "#8598d780",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4214,7 +4214,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-300-70": {
-    "value": "#6997fdb2",
+    "value": "#8598d7b2",
     "type": "color",
     "path": [
       "primitive-color",
@@ -4224,7 +4224,7 @@ const tokens = {
     ]
   },
   "primitive-color-seabreeze-300-8": {
-    "value": "#6997fd14",
+    "value": "#8598d714",
     "type": "color",
     "path": [
       "primitive-color",

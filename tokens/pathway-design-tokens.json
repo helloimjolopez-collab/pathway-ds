@@ -3718,95 +3718,95 @@
       "seabreeze": {
         "0": {
           "$type": "color",
-          "$value": "#f9fafc"
+          "$value": "#f9fafd"
         },
         "25": {
           "$type": "color",
-          "$value": "#f1f3fd"
+          "$value": "#f2f3fb"
         },
         "50": {
           "$type": "color",
-          "$value": "#e8ecfd"
+          "$value": "#eaecf8"
         },
         "75": {
           "$type": "color",
-          "$value": "#dfe6fd"
+          "$value": "#e3e6f5"
         },
         "100": {
           "$type": "color",
-          "$value": "#d4ddfd"
+          "$value": "#d9ddf1"
         },
         "150": {
           "$type": "color",
-          "$value": "#c0cefd"
+          "$value": "#c8ceec"
         },
         "200": {
           "$type": "color",
-          "$value": "#a9bdfd"
+          "$value": "#b4bde6"
         },
         "250": {
           "$type": "color",
-          "$value": "#8dabfc"
+          "$value": "#9eabdf"
         },
         "300": {
           "$type": "color",
-          "$value": "#6997fd"
+          "$value": "#8598d7"
         },
         "350": {
           "$type": "color",
-          "$value": "#518cfd"
+          "$value": "#768dd2"
         },
         "400": {
           "$type": "color",
-          "$value": "#3b70d5"
+          "$value": "#4971c5"
         },
         "500": {
           "$type": "color",
-          "$value": "#30519f"
+          "$value": "#25539d"
         },
         "600": {
           "$type": "color",
-          "$value": "#274286"
+          "$value": "#204482"
         },
         "700": {
           "$type": "color",
-          "$value": "#1e346d"
+          "$value": "#183669"
         },
         "800": {
           "$type": "color",
-          "$value": "#13224f"
+          "$value": "#132446"
         },
         "900": {
           "$type": "color",
-          "$value": "#081132"
+          "$value": "#021330"
         },
         "300-16": {
           "$type": "color",
-          "$value": "#6997fd29"
+          "$value": "#8598d729"
         },
         "300-24": {
           "$type": "color",
-          "$value": "#6997fd3d"
+          "$value": "#8598d73d"
         },
         "300-36": {
           "$type": "color",
-          "$value": "#6997fd5c"
+          "$value": "#8598d75c"
         },
         "300-4": {
           "$type": "color",
-          "$value": "#6997fd0a"
+          "$value": "#8598d70a"
         },
         "300-50": {
           "$type": "color",
-          "$value": "#6997fd80"
+          "$value": "#8598d780"
         },
         "300-70": {
           "$type": "color",
-          "$value": "#6997fdb2"
+          "$value": "#8598d7b2"
         },
         "300-8": {
           "$type": "color",
-          "$value": "#6997fd14"
+          "$value": "#8598d714"
         }
       },
       "warm-neutral": {
