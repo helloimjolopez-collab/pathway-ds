@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard &amp; Widget — Pathway Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<!-- Pathway tokens: the real built CSS, in load order. primitives.css MUST come
+     first; every semantic token resolves through it and an unresolved var()
+     paints nothing with no console error. Never inline a hand-copied subset. -->
+<link rel="stylesheet" href="../../src/tokens/primitives.css" />
+<link rel="stylesheet" href="../../src/tokens/themes/light.css" />
+<link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
+<link rel="stylesheet" href="../../src/tokens/layout.css" />
+<link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
+<link rel="stylesheet" href="../../src/tokens/layout-responsive.css" />
+<link rel="stylesheet" href="../../src/tokens/type.css" />
+<link rel="stylesheet" href="../../src/tokens/motion.css" />
+<link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--semantic-type-family-brand), sans-serif;
+    background: var(--semantic-color-fill-static-neutral-base);
+    color: var(--semantic-color-foreground-static-neutral-base);
+    -webkit-font-smoothing: antialiased;
+  }
+  button { font-family: inherit; }
+  /* Do NOT redeclare font-family or font-weight here. The Google Fonts
+     stylesheet already ships a .material-symbols-rounded rule carrying the
+     family AND font-feature-settings: 'liga', which is what turns the glyph
+     name into a glyph. Overriding the family in a later rule dropped the liga
+     setting, and the icons rendered blank or as their literal names depending
+     on cache timing. Only the variation settings belong here. */
+  .material-symbols-rounded {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    line-height: 1; display: block; user-select: none;
+  }
+
+  /* Demo chrome only. Not part of the component. */
+  .demo-bar {
+    display: flex; align-items: center; gap: var(--semantic-layout-units-gap-tight);
+    padding: var(--semantic-layout-units-padding-xtight) var(--semantic-layout-units-padding-base);
+    background: var(--semantic-color-fill-surface-overlay);
+    border-bottom: var(--semantic-layout-units-borderwidth-base) solid var(--semantic-color-stroke-static-neutral-base);
+  }
+  .demo-bar__lbl {
+    font-size: var(--semantic-type-font-size-xxs); font-weight: var(--semantic-type-weight-semibold);
+    letter-spacing: var(--semantic-type-letter-spacing-extraspacious); text-transform: uppercase;
+    color: var(--semantic-color-foreground-static-neutral-faint);
+  }
+  .demo-bar__btn {
+    min-height: var(--semantic-layout-units-accessibility-touch-target-desktop-only-height);
+    padding: var(--semantic-layout-units-padding-xxtight) var(--semantic-layout-units-padding-tight);
+    font-size: var(--semantic-type-font-size-s); font-weight: var(--semantic-type-weight-medium);
+    background: transparent; color: var(--semantic-color-foreground-action-secondary-rest);
+    border: var(--semantic-layout-units-borderwidth-base) solid var(--semantic-color-stroke-static-neutral-base);
+    border-radius: var(--semantic-layout-units-cornerradius-base); cursor: pointer;
+    transition: background var(--motion-duration-2) var(--motion-easing-standard),
+                color var(--motion-duration-2) var(--motion-easing-standard);
+  }
+  .demo-bar__btn:hover { background: var(--semantic-color-fill-static-neutral-subtle); color: var(--semantic-color-foreground-static-neutral-base); }
+  .demo-bar__btn[aria-pressed="true"] {
+    background: var(--semantic-color-fill-static-brand-subtle);
+    color: var(--semantic-color-foreground-static-brand-on-subtle);
+    border-color: var(--semantic-color-foreground-static-brand-on-subtle);
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useMemo, useRef } = React;
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   This demo mirrors components/widget/widget.jsx and
+   components/dashboard/dashboard.jsx. Those modules are the shipped source; a
+   Babel-in-the-browser page cannot resolve bare imports, so the structure is
+   reproduced here. Every value is a token, exactly as in the modules.
+   ────────────────────────────────────────────────────────────────────────── */
+
+const SC = (n) => `var(--semantic-color-${n})`;
+const SU = (n) => `var(--semantic-layout-units-${n})`;
+const ST = (n) => `var(--semantic-type-${n})`;
+const MO = (n) => `var(--motion-${n})`;
+
+const T = {
+  canvas: SC("fill-static-neutral-base"),
+  card: SC("fill-static-neutral-base"),
+  panel: SC("fill-static-neutral-faint"),
+  surface: SC("fill-surface-overlay"),
+  hover: SC("fill-static-neutral-subtle"),
+  pressed: SC("fill-static-neutral-strong"),
+  border: SC("stroke-static-neutral-base"),
+  borderManage: SC("stroke-static-neutral-strong"),
+  divider: SC("stroke-static-neutral-faint"),
+  title: SC("foreground-static-neutral-strong"),
+  body: SC("foreground-static-neutral-base"),
+  subtle: SC("foreground-static-neutral-subtle"),
+  faint: SC("foreground-static-neutral-faint"),
+  quiet: SC("foreground-action-secondary-rest"),
+  accent: SC("foreground-static-brand-on-subtle"),
+  accentFill: SC("fill-static-brand-subtle"),
+  primaryFill: SC("fill-action-primary-strong-rest"),
+  primaryHover: SC("fill-action-primary-strong-hover"),
+  primaryFg: SC("foreground-action-primary-on-strong"),
+  danger: SC("foreground-static-negative-on-subtle"),
+  dangerFill: SC("fill-static-negative-subtle"),
+  posFg: SC("foreground-static-positive-on-subtle"),
+  posFill: SC("fill-static-positive-subtle"),
+  negFg: SC("foreground-static-negative-on-subtle"),
+  negFill: SC("fill-static-negative-subtle"),
+  focus: SC("stroke-action-primary-strong-rest"),
+  badge: SC("fill-static-neutral-strong"),
+  scrim: SC("scrim-base"),
+};
+
+const L = {
+  radius: SU("cornerradius-large"), radiusP: SU("cornerradius-base"),
+  radiusSm: SU("cornerradius-small"), radiusFull: SU("cornerradius-full"),
+  border: SU("borderwidth-base"), borderManage: SU("borderwidth-medium"),
+  target: SU("accessibility-touch-target-desktop-only-width"),
+  targetAA: SU("accessibility-touch-target-aa-width"),
+  headPadV: SU("padding-xxtight"), headPadL: SU("padding-tight"), headPadR: SU("padding-xxxtight"),
+  pad: SU("padding-medium"), padTight: SU("padding-xtight"), padBase: SU("padding-base"),
+  gapBase: SU("gap-base"), gapMed: SU("gap-medium"), gapTight: SU("gap-tight"),
+  gapX: SU("gap-xtight"), gapXX: SU("gap-xxtight"), gapXXX: SU("gap-xxxtight"),
+  rowUnit: 48, glyph: 16, glyphSm: 14, glyphLg: 20, glyphState: 28,
+};
+
+const TY = {
+  title:  { fontWeight: ST("weight-semibold"), fontSize: ST("font-size-s"),  lineHeight: ST("line-height-s-single"),  letterSpacing: ST("letter-spacing-wide") },
+  page:   { fontWeight: ST("weight-medium"),   fontSize: ST("font-size-xl"), lineHeight: ST("line-height-xl-single"), letterSpacing: ST("letter-spacing-wide") },
+  dialog: { fontWeight: ST("weight-semibold"), fontSize: ST("font-size-l"),  lineHeight: ST("line-height-l-single"),  letterSpacing: ST("letter-spacing-wide") },
+  ctrl:   { fontWeight: ST("weight-medium"),   fontSize: ST("font-size-s"),  lineHeight: ST("line-height-s-single"),  letterSpacing: ST("letter-spacing-wide") },
+  body:   { fontWeight: ST("weight-regular"),  fontSize: ST("font-size-s"),  lineHeight: ST("line-height-s-single"),  letterSpacing: ST("letter-spacing-wide") },
+  cap:    { fontWeight: ST("weight-regular"),  fontSize: ST("font-size-xs"), lineHeight: ST("line-height-xs-single"), letterSpacing: ST("letter-spacing-extraspacious") },
+  eyebrow:{ fontWeight: ST("weight-semibold"), fontSize: ST("font-size-xs"), lineHeight: ST("line-height-xs-single"), letterSpacing: ST("letter-spacing-extraspacious"), textTransform: "uppercase" },
+  metric: { fontWeight: ST("weight-semibold"), fontSize: ST("font-size-xxl"),lineHeight: ST("line-height-xxl-single"),letterSpacing: ST("letter-spacing-spacious") },
+  num:    { fontWeight: ST("weight-medium"),   fontSize: ST("font-size-s"),  lineHeight: ST("line-height-s-single"),  letterSpacing: ST("letter-spacing-wide"), fontVariantNumeric: "tabular-nums" },
+};
+
+const SIZES = ["glance","explore","detail","full"];
+const SIZE_LABEL = { glance:"Glance", explore:"Explore", detail:"Detail", full:"Full" };
+const SIZE_GRID = {
+  glance:  { rows: 3 },
+  explore: { rows: 5 },
+  detail:  { rows: 9 },
+  full:    { rows: 9 },
+};
+const CONTENT_COLS = { glance: 0, explore: 2, detail: 1, full: 2 };
+const isFlat = (s) => s === "glance";
+
+function G({ name, size = L.glyph, color, style }) {
+  return <span className="material-symbols-rounded" aria-hidden="true" style={{
+    fontSize: size, lineHeight: 1, display: "block", userSelect: "none",
+    fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20", color, ...style }}>{name}</span>;
+}
+
+function IconBtn({ name, label, onClick, glyph = L.glyph, target = L.target, active, danger, reveal, revealed, ariaExpanded, ariaHasPopup }) {
+  const [hov, setHov] = useState(false);
+  const fg = danger ? T.danger : active ? T.accent : hov ? T.body : T.quiet;
+  return (
+    <button type="button" aria-label={label} onClick={onClick}
+      aria-expanded={ariaExpanded} aria-haspopup={ariaHasPopup}
+      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      style={{ display:"flex", alignItems:"center", justifyContent:"center",
+        width: target, height: target, flex:"0 0 auto", padding: 0,
+        background: hov ? SC("fill-action-secondary-hover") : "transparent",
+        border:"none", borderRadius: L.radiusSm, cursor:"pointer", color: fg,
+        opacity: reveal && !revealed ? 0 : 1,
+        pointerEvents: reveal && !revealed ? "none" : "auto",
+        transition: `background ${MO("duration-2")} ${MO("easing-standard")}, color ${MO("duration-2")} ${MO("easing-standard")}, opacity ${MO("duration-2")} ${MO("easing-standard")}` }}>
+      <G name={name} size={glyph} color={fg} />
+    </button>
+  );
+}
+
+function Btn({ children, tone = "naked", icon, onClick, disabled, danger, ariaExpanded, ariaHasPopup, srOnly }) {
+  const [hov, setHov] = useState(false);
+  const [down, setDown] = useState(false);
+  const look = tone === "primary"
+    ? { background: hov ? T.primaryHover : T.primaryFill, color: T.primaryFg, border: `${L.border} solid transparent` }
+    : tone === "secondary"
+    ? { background: hov ? T.hover : "transparent", color: danger ? T.danger : T.body, border: `${L.border} solid ${T.border}` }
+    : { background: down ? T.pressed : hov ? T.hover : "transparent", color: danger ? T.danger : T.quiet, border: `${L.border} solid transparent` };
+  return (
+    <button type="button" onClick={onClick} disabled={disabled}
+      aria-expanded={ariaExpanded} aria-haspopup={ariaHasPopup} aria-label={srOnly}
+      onMouseEnter={() => setHov(true)} onMouseLeave={() => { setHov(false); setDown(false); }}
+      onMouseDown={() => setDown(true)} onMouseUp={() => setDown(false)}
+      style={{ ...TY.ctrl, ...look, display:"inline-flex", alignItems:"center", gap: L.gapXX,
+        minHeight: L.target, padding: `${L.headPadV} ${SU("padding-tight")}`,
+        borderRadius: L.radiusP, cursor: disabled ? "default" : "pointer",
+        opacity: disabled ? 0.38 : 1, whiteSpace:"nowrap",
+        transition: `background ${MO("duration-2")} ${MO("easing-standard")}, color ${MO("duration-2")} ${MO("easing-standard")}, border-color ${MO("duration-2")} ${MO("easing-standard")}, opacity ${MO("duration-2")} ${MO("easing-standard")}` }}>
+      {icon && <G name={icon} size={L.glyph} color="currentColor" />}
+      {children}
+    </button>
+  );
+}
+
+function Pop({ children, align = "left", minWidth = 240, onClose, label }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const away = (e) => { if (!ref.current || !ref.current.contains(e.target)) onClose && onClose(); };
+    const esc = (e) => { if (e.key === "Escape") onClose && onClose(); };
+    document.addEventListener("mousedown", away);
+    document.addEventListener("keydown", esc);
+    return () => { document.removeEventListener("mousedown", away); document.removeEventListener("keydown", esc); };
+  }, [onClose]);
+  const pos = align === "right" ? { right: 0 } : { left: 0 };
+  return <div ref={ref} role="menu" aria-label={label} style={{
+    position:"absolute", top:"100%", ...pos, zIndex: 60, minWidth, marginTop: L.gapXX,
+    background: T.surface, border: `${L.border} solid ${T.border}`, borderRadius: L.radiusP,
+    boxShadow:"var(--elevation-lift)", padding: `${SU("padding-xxxtight")} 0`,
+    animation: `pwMenu ${MO("duration-3")} ${MO("easing-decelerate")} both` }}>{children}</div>;
+}
+
+function Row({ label, meta, leading, trailing, onClick, danger, checked, role = "menuitem", disabled }) {
+  const [hov, setHov] = useState(false);
+  const fg = disabled ? T.faint : danger ? T.danger : checked ? T.accent : T.body;
+  return (
+    <button type="button" role={role} disabled={disabled} onClick={onClick}
+      aria-checked={role === "menuitemradio" ? checked : undefined}
+      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      style={{ ...TY.ctrl, color: fg, display:"flex", alignItems:"center", gap: L.gapTight,
+        width:"100%", minHeight: L.target, padding: `${L.headPadV} ${SU("padding-tight")}`,
+        background: hov && !disabled ? (danger ? T.dangerFill : T.hover) : "transparent",
+        border:"none", cursor: disabled ? "default" : "pointer", textAlign:"left",
+        transition: `background ${MO("duration-2")} ${MO("easing-standard")}, color ${MO("duration-2")} ${MO("easing-standard")}` }}>
+      {leading}
+      <span style={{ flex:1, minWidth:0, display:"flex", flexDirection:"column" }}>
+        <span style={{ whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{label}</span>
+        {meta && <span style={{ ...TY.cap, color: T.faint }}>{meta}</span>}
+      </span>
+      {trailing}
+    </button>
+  );
+}
+
+function Badge({ label, tone }) {
+  const bg = tone === "accent" ? T.accentFill : T.badge;
+  const fg = tone === "accent" ? T.accent : T.subtle;
+  return <span style={{ ...TY.cap, fontWeight: ST("weight-medium"), color: fg, background: bg,
+    borderRadius: L.radiusFull, padding: `0 ${SU("padding-tight")}`, flex:"0 0 auto" }}>{label}</span>;
+}
+
+/* ─── SKELETON ─────────────────────────────────────────────────────────────── */
+function Skel({ w = "100%", h = 12 }) {
+  return <div style={{ position:"relative", overflow:"hidden", width: w, height: h,
+    borderRadius: L.radiusSm, background: SC("fill-static-neutral-strong") }}>
+    <div style={{ position:"absolute", inset:"-80%", backgroundImage:
+      `linear-gradient(45deg, transparent 35%, color-mix(in srgb, ${SC("foreground-static-brand-on-subtle")} 22%, transparent) 50%, transparent 65%)`,
+      animation: `pwSheen var(--motion-duration-7, 3800ms) var(--motion-easing-breath, ease-in-out) infinite -1600ms` }} />
+  </div>;
+}
+
+/* ─── CHARTS, on the real sequential tokens ───────────────────────────────── */
+const SEQ = (i) => SC(`fill-chart-sequential-${String(i).padStart(2,"0")}`);
+
+function Donut({ slices, total, size = 132, label }) {
+  const r = size / 2 - 11, C = 2 * Math.PI * r;
+  let off = 0;
+  const sum = slices.reduce((s, x) => s + x.v, 0) || 1;
+  return (
+    <div style={{ position:"relative", width: size, height: size, flex:"0 0 auto" }}>
+      <svg viewBox={`0 0 ${size} ${size}`} width={size} height={size} role="img" aria-label={label}>
+        {slices.map((s, i) => {
+          const dash = (s.v / sum) * C;
+          const el = <circle key={i} cx={size/2} cy={size/2} r={r} fill="none"
+            stroke={SEQ(s.seq)} strokeWidth={20}
+            strokeDasharray={`${dash.toFixed(2)} ${C.toFixed(2)}`}
+            strokeDashoffset={(-off).toFixed(2)}
+            transform={`rotate(-90 ${size/2} ${size/2})`} />;
+          off += dash; return el;
+        })}
+      </svg>
+      {/* The centre total is the content's natural total, which is exactly why
+          this widget carries no top-metric strip: no duplication. */}
+      <div style={{ position:"absolute", inset:0, display:"flex", flexDirection:"column",
+        alignItems:"center", justifyContent:"center", gap: 0 }}>
+        <span style={{ ...TY.ctrl, color: T.title, fontSize: ST("font-size-m") }}>{total}</span>
+        <span style={{ ...TY.cap, color: T.faint }}>total</span>
+      </div>
+    </div>
+  );
+}
+
+function Legend({ slices }) {
+  return <div style={{ display:"flex", flexDirection:"column", gap: L.gapXX, minWidth: 0, flex: 1 }}>
+    {slices.map((s, i) => (
+      <div key={i} style={{ display:"flex", alignItems:"center", gap: L.gapTight, minWidth: 0 }}>
+        <span style={{ width: 10, height: 10, borderRadius: L.radiusSm, background: SEQ(s.seq), flex:"0 0 auto" }} />
+        <span style={{ ...TY.cap, color: T.body, flex:1, minWidth:0, whiteSpace:"nowrap",
+          overflow:"hidden", textOverflow:"ellipsis" }}>{s.label}</span>
+        <span style={{ ...TY.num, color: T.title, fontSize: ST("font-size-xs"), flex:"0 0 auto" }}>{s.display}</span>
+      </div>
+    ))}
+  </div>;
+}
+
+function Bars({ series, max }) {
+  const [hov, setHov] = useState(-1);
+  return (
+    <div style={{ display:"flex", alignItems:"flex-end", gap: L.gapXX, flex: 1, minHeight: 0, minWidth: 0,
+      padding: `${L.padTight} 0 0` }}>
+      {series.map((b, i) => (
+        <div key={i} onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(-1)}
+          title={`${b.label}: ${b.display}`}
+          style={{ flex:1, minWidth:0, display:"flex", flexDirection:"column",
+            alignItems:"center", gap: L.gapXXX, height:"100%", justifyContent:"flex-end" }}>
+          <div style={{ width:"100%", height: `${Math.max(4, (b.v / max) * 100)}%`,
+            background: SEQ(b.seq),
+            opacity: hov === -1 || hov === i ? 1 : 0.55,
+            borderRadius: `${L.radiusSm} ${L.radiusSm} 0 0`,
+            transition: `opacity ${MO("duration-2")} ${MO("easing-standard")}` }} />
+          <span style={{ ...TY.cap, color: T.faint, fontSize: ST("font-size-xxs") }}>{b.label}</span>
+          {/* Values live in the DOM, not hover-only, per the charts convention */}
+          <span className="pw-sr-only">{b.display}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Table({ cols, rows, totalRow }) {
+  return (
+    <div style={{ display:"flex", flexDirection:"column", minHeight:0, flex:1, minWidth:0 }}>
+      <div style={{ display:"flex", gap: L.gapTight, padding: `${L.gapXX} ${L.pad}`,
+        borderBottom: `${L.border} solid ${T.divider}` }}>
+        {cols.map((c, i) => (
+          <span key={i} style={{ ...TY.cap, fontWeight: ST("weight-medium"), color: T.faint,
+            flex: i === 0 ? "1 1 auto" : "0 0 92px", minWidth: 0,
+            textAlign: i === 0 ? "left" : "right" }}>{c}</span>
+        ))}
+      </div>
+      <div style={{ flex:1, minHeight:0, overflowY:"auto" }}>
+        {rows.map((r, i) => (
+          <div key={i} style={{ display:"flex", gap: L.gapTight, padding: `${L.gapXX} ${L.pad}` }}>
+            <span style={{ ...TY.body, color: T.body, flex:"1 1 auto", minWidth:0,
+              whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{r.name}</span>
+            {r.cells.map((c, j) => (
+              <span key={j} style={{ ...TY.num, color: T.title, flex:"0 0 92px", textAlign:"right" }}>{c}</span>
+            ))}
+          </div>
+        ))}
+      </div>
+      {totalRow && (
+        <div style={{ display:"flex", gap: L.gapTight, padding: `${L.gapXX} ${L.pad}`,
+          borderTop: `${L.border} solid ${T.divider}` }}>
+          <span style={{ ...TY.ctrl, color: T.title, flex:"1 1 auto" }}>{totalRow.name}</span>
+          {totalRow.cells.map((c, j) => (
+            <span key={j} style={{ ...TY.num, fontWeight: ST("weight-semibold"), color: T.title,
+              flex:"0 0 92px", textAlign:"right" }}>{c}</span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─── METRIC ───────────────────────────────────────────────────────────────── */
+function DeltaPill({ up = true, label, note }) {
+  const fg = up ? T.posFg : T.negFg, bg = up ? T.posFill : T.negFill;
+  return (
+    <span style={{ display:"inline-flex", alignItems:"center", gap: L.gapXX, minWidth: 0 }}>
+      <span style={{ display:"inline-flex", alignItems:"center", gap: 2, padding: `0 ${L.headPadR}`,
+        background: bg, color: fg, borderRadius: L.radiusFull, ...TY.cap, fontWeight: ST("weight-medium") }}>
+        <G name={up ? "arrow_upward" : "arrow_downward"} size={12} color={fg} />{label}
+      </span>
+      {note && <span style={{ ...TY.cap, color: T.faint, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{note}</span>}
+    </span>
+  );
+}
+
+function Alarm({ label }) {
+  return <span style={{ display:"inline-flex", alignItems:"center", gap: 2,
+    padding: `0 ${L.headPadR}`, background: T.dangerFill, color: T.danger,
+    borderRadius: L.radiusFull, ...TY.cap, fontWeight: ST("weight-medium") }}>
+    <G name="warning" size={12} color={T.danger} />{label}</span>;
+}
+
+function Spark({ points, up = true }) {
+  const w = 72, h = 28;
+  const max = Math.max(...points), min = Math.min(...points);
+  const span = (max - min) || 1;
+  const d = points.map((p, i) =>
+    `${i === 0 ? "M" : "L"}${((i / (points.length - 1)) * w).toFixed(1)},${(h - ((p - min) / span) * h).toFixed(1)}`).join(" ");
+  return <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} aria-hidden="true" style={{ display:"block" }}>
+    <path d={d} fill="none" stroke={up ? T.posFg : T.negFg} strokeWidth="1.5"
+      strokeLinecap="round" strokeLinejoin="round" />
+  </svg>;
+}
+
+function Metric({ value, delta, up, note, alarm, spark }) {
+  return (
+    <div style={{ display:"flex", alignItems:"center", gap: L.gapMed,
+      padding: `0 ${L.pad} ${L.padTight}`, flex:1, minWidth:0 }}>
+      <div style={{ display:"flex", flexDirection:"column", gap: L.gapXXX, minWidth:0, flex:1 }}>
+        <span style={{ ...TY.metric, color: T.title, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{value}</span>
+        {(delta || alarm) && (
+          <div style={{ display:"flex", alignItems:"center", gap: L.gapTight, minWidth:0 }}>
+            {delta && <DeltaPill up={up} label={delta} note={note} />}
+            {alarm && <Alarm label={alarm} />}
+          </div>
+        )}
+      </div>
+      {spark && <div style={{ flex:"0 0 auto" }}>{spark}</div>}
+    </div>
+  );
+}
+
+/* ─── WIDGET CHROME ────────────────────────────────────────────────────────── */
+const TITLE_MAX = { glance: 150, explore: 300, detail: 300, full: 560 };
+
+function SizePicker({ value, supported, onPick, onClose }) {
+  const SHAPE = { glance:{w:18,h:10}, explore:{w:26,h:12}, detail:{w:18,h:20}, full:{w:30,h:20} };
+  return (
+    <Pop label="Widget size" minWidth={176} align="right" onClose={onClose}>
+      {SIZES.map((s) => {
+        const ok = supported.includes(s), on = s === value;
+        return <Row key={s} role="menuitemradio" checked={on} disabled={!ok}
+          onClick={() => { if (ok) { onPick(s); onClose(); } }}
+          label={SIZE_LABEL[s]}
+          leading={<span style={{ display:"flex", width:30, height:20, alignItems:"center", justifyContent:"center" }}>
+            <span style={{ width:SHAPE[s].w, height:SHAPE[s].h, borderRadius:L.radiusSm,
+              background: on ? T.accent : "transparent",
+              border: `${L.border} solid ${on ? T.accent : T.border}` }} /></span>}
+          trailing={on ? <G name="check" size={L.glyphSm} color={T.accent} /> : null} />;
+      })}
+    </Pop>
+  );
+}
+
+function WMenu({ manage, onRefresh, onExport, onGoTo, onResize, onDuplicate, onRemove, onClose }) {
+  const rows = manage
+    ? [{ k:"resize", i:"aspect_ratio", l:"Resize", f:onResize },
+       { k:"dup", i:"content_copy", l:"Duplicate", f:onDuplicate },
+       { k:"rm", i:"delete", l:"Remove", f:onRemove, danger:true, sep:true }]
+    : [{ k:"ref", i:"refresh", l:"Refresh now", f:onRefresh },
+       { k:"exp", i:"download", l:"Export", f:onExport },
+       { k:"go", i:"open_in_new", l:"View full", f:onGoTo }];
+  return (
+    <Pop label="Widget actions" minWidth={184} align="right" onClose={onClose}>
+      {rows.filter(r => r.f).map((r) => (
+        <React.Fragment key={r.k}>
+          {r.sep && <span role="separator" style={{ display:"block", height:L.border, background:T.divider, margin:`${SU("padding-xxxtight")} 0` }} />}
+          <Row label={r.l} danger={r.danger} onClick={() => { r.f(); onClose(); }}
+            leading={<G name={r.i} size={L.glyph} color={r.danger ? T.danger : T.quiet} />} />
+        </React.Fragment>
+      ))}
+    </Pop>
+  );
+}
+
+function WHeader({ title, size, manage, updatedLabel, onRefresh, onMenu, menuOpen, onInfo, onGoTo, onRename }) {
+  const [hov, setHov] = useState(false);
+  const [fw, setFw] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(title);
+  useEffect(() => setDraft(title), [title]);
+  const revealed = hov || fw;
+  const max = TITLE_MAX[size];
+  // At Glance the hover icons' 36px targets hold layout even at opacity 0 and
+  // would eat most of a ~130px title, so Glance does without them.
+  const leadingIcons = size !== "glance" && (onInfo || onGoTo);
+  const commit = () => { setEditing(false); const v = draft.trim(); if (v && v !== title) onRename(v); else setDraft(title); };
+  return (
+    <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      onFocus={() => setFw(true)} onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setFw(false); }}
+      style={{ display:"flex", alignItems:"center", gap: L.gapX,
+        padding: `${L.headPadV} ${L.headPadR} ${L.headPadV} ${L.headPadL}`, flex:"0 0 auto" }}>
+      {manage && <span aria-hidden="true" style={{ display:"inline-flex", color:T.faint, cursor:"grab" }}>
+        <G name="drag_indicator" size={L.glyph} color={T.faint} /></span>}
+      <div style={{ display:"flex", alignItems:"center", minWidth:0, flex:"0 1 auto", maxWidth: max + 56 }}>
+        <div style={{ display:"flex", flexDirection:"column", gap:L.gapXXX, minWidth:0, flex:"0 1 auto" }}>
+          {editing ? (
+            <input autoFocus value={draft} aria-label="Widget title"
+              onChange={(e) => setDraft(e.target.value)} onBlur={commit}
+              onKeyDown={(e) => { if (e.key === "Enter") commit(); if (e.key === "Escape") { setDraft(title); setEditing(false); } }}
+              style={{ ...TY.title, color:T.title, width:"100%", minWidth:0, background:T.panel,
+                border:`${L.border} solid ${T.focus}`, borderRadius:L.radiusSm,
+                padding:`0 ${L.headPadR}`, outline:"none" }} />
+          ) : (
+            <span onClick={manage ? () => setEditing(true) : undefined} title={title}
+              style={{ ...TY.title, color:T.title, maxWidth:max, minWidth:0, whiteSpace:"nowrap",
+                overflow:"hidden", textOverflow:"ellipsis", cursor: manage ? "text" : "default",
+                borderRadius:L.radiusSm }}>{title}</span>
+          )}
+          {updatedLabel && <span style={{ ...TY.cap, color:T.faint, whiteSpace:"nowrap" }}>{updatedLabel}</span>}
+        </div>
+        {leadingIcons && <span style={{ display:"inline-flex", alignItems:"center", flex:"0 0 auto" }}>
+          {onInfo && <IconBtn name="info" label="About this widget" onClick={onInfo} glyph={L.glyphSm} reveal revealed={revealed} />}
+          {onGoTo && <IconBtn name="open_in_new" label="Open the full view" onClick={onGoTo} glyph={L.glyphSm} reveal revealed={revealed} />}
+        </span>}
+      </div>
+      <span style={{ flex:1, minWidth:L.gapX }} />
+      <div style={{ display:"flex", alignItems:"center", gap:0, flexShrink:0 }}>
+        {onRefresh && <IconBtn name="refresh" label="Refresh" onClick={onRefresh} glyph={L.glyphSm} reveal revealed={revealed} />}
+        <IconBtn name="aspect_ratio" label="Widget actions" onClick={onMenu} active={menuOpen}
+          ariaHasPopup="menu" ariaExpanded={menuOpen} />
+      </div>
+    </div>
+  );
+}
+
+function WToolbar({ identity, actions }) {
+  return <div style={{ display:"flex", alignItems:"center", gap:L.gapTight,
+    padding:`${L.padTight} ${L.padTight} 0`, flex:"0 0 auto", minWidth:0,
+    flexWrap:"nowrap", overflow:"hidden" }}>
+    <div style={{ display:"flex", alignItems:"center", gap:L.gapXX, minWidth:0, flex:"0 1 auto", overflow:"hidden" }}>{identity}</div>
+    <span style={{ flex:1, minWidth:0 }} />
+    <div style={{ display:"flex", alignItems:"center", gap:L.gapXX, flex:"0 0 auto" }}>{actions}</div>
+  </div>;
+}
+
+function WTopMetric({ eyebrow, value, signal }) {
+  return <div style={{ display:"flex", flexDirection:"column", gap:L.gapXXX,
+    padding:`${L.padTight} ${L.pad} 0`, flex:"0 0 auto" }}>
+    {eyebrow && <span style={{ ...TY.eyebrow, color:T.faint }}>{eyebrow}</span>}
+    <div style={{ display:"flex", alignItems:"baseline", gap:L.gapXX, minWidth:0 }}>
+      <span style={{ ...TY.ctrl, color:T.title, fontSize:ST("font-size-l") }}>{value}</span>{signal}
+    </div>
+  </div>;
+}
+
+/* an identity selector: it doubles as the heading, which is why it sits left */
+function ScopeChip({ value, options, onPick }) {
+  const [open, setOpen] = useState(false);
+  const [hov, setHov] = useState(false);
+  return (
+    <div style={{ position:"relative", display:"inline-flex", minWidth:0 }}>
+      <button type="button" onClick={() => setOpen(v => !v)}
+        aria-haspopup="menu" aria-expanded={open}
+        onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+        style={{ ...TY.ctrl, display:"inline-flex", alignItems:"center", gap:L.gapXXX,
+          minHeight:L.target, padding:`${L.headPadV} ${SU("padding-xtight")}`, minWidth:0,
+          background: hov || open ? T.hover : "transparent", color:T.title,
+          border:`${L.border} solid ${T.border}`, borderRadius:L.radiusP, cursor:"pointer",
+          transition:`background ${MO("duration-2")} ${MO("easing-standard")}` }}>
+        <G name="filter_list" size={L.glyphSm} color={T.quiet} />
+        <span style={{ whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", minWidth:0 }}>{value}</span>
+        <G name="expand_more" size={L.glyphSm} color={T.quiet} />
+      </button>
+      {open && <Pop label="Scope" minWidth={200} onClose={() => setOpen(false)}>
+        {options.map(o => <Row key={o} role="menuitemradio" checked={o === value} label={o}
+          trailing={o === value ? <G name="check" size={L.glyphSm} color={T.accent} /> : null}
+          onClick={() => { onPick(o); setOpen(false); }} />)}
+      </Pop>}
+    </div>
+  );
+}
+
+function ViewToggle({ value, options, onPick }) {
+  return <div role="group" aria-label="View" style={{ display:"inline-flex", alignItems:"center",
+    background: T.badge, borderRadius: L.radiusP, padding: 2, flex:"0 0 auto" }}>
+    {options.map(o => {
+      const on = o.v === value;
+      return <button key={o.v} type="button" onClick={() => onPick(o.v)}
+        aria-pressed={on} title={o.title} aria-label={o.title}
+        style={{ ...TY.cap, fontWeight: ST("weight-medium"),
+          display:"inline-flex", alignItems:"center", justifyContent:"center",
+          minWidth: 28, height: 24, padding: `0 ${L.gapXX}`,
+          background: on ? T.surface : "transparent", color: on ? T.title : T.quiet,
+          border:"none", borderRadius: L.radiusSm, cursor:"pointer",
+          transition:`background ${MO("duration-2")} ${MO("easing-standard")}, color ${MO("duration-2")} ${MO("easing-standard")}` }}>
+        <G name={o.icon} size={L.glyphSm} color="currentColor" />
+      </button>;
+    })}
+  </div>;
+}
+
+/* ─── WIDGET ───────────────────────────────────────────────────────────────── */
+function Widget(p) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [picker, setPicker] = useState(false);
+  const [hov, setHov] = useState(false);
+  const flat = isFlat(p.size);
+  const grid = SIZE_GRID[p.size];
+
+  const body = (() => {
+    if (p.state === "loading") {
+      const n = p.size === "glance" ? 2 : p.size === "explore" ? 4 : 6;
+      return <div aria-busy="true" style={{ display:"flex", flexDirection:"column", gap:L.gapXX,
+        padding:L.pad, flex:1, minWidth:0, justifyContent:"center" }}>
+        {p.size !== "glance" && <Skel w="42%" h={10} />}
+        <Skel w="68%" h={p.size === "glance" ? 26 : 18} />
+        {Array.from({ length: n - 2 }).map((_, i) => <Skel key={i} w={`${92 - i * 11}%`} h={10} />)}
+      </div>;
+    }
+    if (p.state === "error") return <EndState size={p.size} icon="error" title="Could not load" action={
+      <Btn tone="secondary" onClick={p.onRetry}>Retry</Btn>} />;
+    if (p.state === "empty") return <EndState size={p.size} icon="inbox" title="No data yet"
+      line={p.emptyLine} action={p.emptyAction} />;
+    return <>
+      {!flat && p.toolbar}
+      {!flat && p.topMetric}
+      <div style={{ flex:1, minHeight:0, display:"flex", flexDirection:"column", minWidth:0 }}>{p.children}</div>
+    </>;
+  })();
+
+  return (
+    <section className="pw-widget" data-size={p.size} data-state={p.state} aria-label={p.title}
+      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      draggable={p.manage}
+      onDragStart={p.onDragStart} onDragOver={p.onDragOver} onDrop={p.onDrop} onDragEnd={p.onDragEnd}
+      style={{ position:"relative", display:"flex", flexDirection:"column", minWidth:0, overflow:"visible",
+        gridColumn:`span var(--pw-widget-cols-${p.size})`, gridRow:`span ${grid.rows}`,
+        background: flat ? T.panel : T.card,
+        border:`${p.manage ? L.borderManage : L.border} ${p.manage ? "dashed" : "solid"} ${p.manage ? T.borderManage : T.border}`,
+        borderRadius:L.radius,
+        boxShadow: hov && !p.manage ? "var(--elevation-lift)" : "var(--elevation-widget)",
+        opacity: p.dragging ? 0.5 : 1, cursor: p.manage ? "grab" : "default",
+        animation: p.flash ? `pwFlash ${MO("duration-5")} ${MO("easing-standard")}` : undefined,
+        transition:`box-shadow ${MO("duration-2")} ${MO("easing-standard")}, border-color ${MO("duration-2")} ${MO("easing-standard")}, opacity ${MO("duration-2")} ${MO("easing-standard")}, background ${MO("duration-2")} ${MO("easing-standard")}` }}>
+      <div style={{ position:"relative" }}>
+        <WHeader title={p.title} size={p.size} manage={p.manage} updatedLabel={p.updatedLabel}
+          onRefresh={p.onRefresh} onInfo={p.onInfo} onGoTo={p.onGoTo} onRename={p.onRename}
+          menuOpen={menuOpen || picker}
+          onMenu={() => { setMenuOpen(v => !v); setPicker(false); }} />
+        {menuOpen && <WMenu manage={p.manage} onRefresh={p.onRefresh} onExport={p.onExport}
+          onGoTo={p.onGoTo} onResize={p.manage ? () => setPicker(true) : undefined}
+          onDuplicate={p.onDuplicate} onRemove={p.onRemove} onClose={() => setMenuOpen(false)} />}
+        {picker && <SizePicker value={p.size} supported={p.supportedSizes || SIZES}
+          onPick={p.onResize} onClose={() => setPicker(false)} />}
+      </div>
+      <div style={{ flex:1, minHeight:0, display:"flex", flexDirection:"column", minWidth:0,
+        background: flat ? "transparent" : T.panel,
+        borderRadius: flat ? 0 : `${L.radiusP} ${L.radiusP} 0 0`,
+        boxShadow: flat ? "none" : "var(--elevation-widget)",
+        overflow:"hidden", paddingBottom: flat ? 0 : L.padTight }}>{body}</div>
+    </section>
+  );
+}
+
+function EndState({ size, icon, title, line, action }) {
+  const compact = size === "glance";
+  return <div role="status" style={{ display:"flex", flexDirection:"column", alignItems:"center",
+    justifyContent:"center", gap: compact ? L.gapXXX : L.gapXX,
+    padding: compact ? L.padTight : L.pad, flex:1, minWidth:0, textAlign:"center" }}>
+    <G name={icon} size={compact ? L.glyphLg : L.glyphState} color={T.faint} />
+    <span style={{ ...TY.ctrl, color:T.body, fontSize: compact ? ST("font-size-xs") : undefined }}>{title}</span>
+    {line && !compact && <span style={{ ...TY.cap, color:T.faint, maxWidth:280 }}>{line}</span>}
+    {action}
+  </div>;
+}
+
+/* ─── DATA. Illustrative figures, real structure. ──────────────────────────── */
+const FUNDS = [
+  { label:"General", v:21400, display:"$21,400", seq:4 },
+  { label:"Missions", v:9100,  display:"$9,100",  seq:6 },
+  { label:"Building", v:7300,  display:"$7,300",  seq:8 },
+  { label:"Youth",    v:5200,  display:"$5,200",  seq:10 },
+  { label:"Benevolence", v:3100, display:"$3,100", seq:12 },
+  { label:"Other",    v:2110,  display:"$2,110",  seq:14 },
+];
+const MONTHS = ["Apr","May","Jun","Jul","Aug","Sep"].map((m, i) => ({
+  label:m, v:[31,34,38,41,45,48][i]*1000,
+  display:`$${[31,34,38,41,45,48][i]},000`, seq:[12,10,8,6,5,4][i],
+}));
+const ACCOUNTS = [
+  { name:"Operating", cells:["$128,410","+4.2%"] },
+  { name:"Payroll",   cells:["$46,900","-1.1%"] },
+  { name:"Missions",  cells:["$22,180","+9.4%"] },
+  { name:"Building",  cells:["$71,320","+0.6%"] },
+  { name:"Reserve",   cells:["$210,000","0.0%"] },
+];
+
+const CATALOGUE = [
+  { id:"given",     name:"Given this month",     group:"Giving",     defaultSize:"glance",  supportedSizes:["glance","explore"] },
+  { id:"donors",    name:"Active donors",        group:"Giving",     defaultSize:"glance",  supportedSizes:["glance","explore"] },
+  { id:"pending",   name:"Pending deposits",     group:"Giving",     defaultSize:"glance",  supportedSizes:["glance"] },
+  { id:"byfund",    name:"Giving by fund",       group:"Giving",     defaultSize:"detail",  supportedSizes:["explore","detail","full"] },
+  { id:"trend",     name:"Giving trend",         group:"Giving",     defaultSize:"explore", supportedSizes:["explore","detail","full"] },
+  { id:"balances",  name:"Account balances",     group:"Accounting", defaultSize:"detail",  supportedSizes:["detail","full"] },
+  { id:"payroll",   name:"Payroll distributions",group:"Accounting", defaultSize:"explore", supportedSizes:["explore","detail"] },
+  { id:"signups",   name:"Recent sign-ups",      group:"People",     defaultSize:"detail",  supportedSizes:["detail"] },
+];
+
+const SYSTEM_WIDGETS = [
+  { id:"w1", catalogueId:"given",    title:"Given this month",  size:"glance",  updatedLabel:"Updated just now" },
+  { id:"w2", catalogueId:"donors",   title:"Active donors",     size:"glance" },
+  { id:"w3", catalogueId:"pending",  title:"Pending deposits",  size:"glance" },
+  { id:"w4", catalogueId:"byfund",   title:"Giving by fund",    size:"detail" },
+  { id:"w5", catalogueId:"trend",    title:"Giving trend",      size:"explore" },
+  { id:"w6", catalogueId:"balances", title:"Account balances",  size:"detail" },
+];
+
+/* ─── DASHBOARD ────────────────────────────────────────────────────────────── */
+function DashSelector({ dashboard, dashboards, manage, onRename, onSwitch, onManage }) {
+  const [open, setOpen] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(dashboard.name);
+  const [hov, setHov] = useState(false);
+  useEffect(() => setDraft(dashboard.name), [dashboard.name]);
+  const can = manage && dashboard.type !== "system";
+  const commit = () => { setEditing(false); const v = draft.trim(); if (v && v !== dashboard.name) onRename(v); else setDraft(dashboard.name); };
+  return (
+    <div style={{ position:"relative", display:"inline-flex", alignItems:"center", minWidth:0 }}>
+      {editing ? (
+        <input autoFocus value={draft} aria-label="Dashboard name"
+          onChange={(e) => setDraft(e.target.value)} onBlur={commit}
+          onKeyDown={(e) => { if (e.key === "Enter") commit(); if (e.key === "Escape") { setDraft(dashboard.name); setEditing(false); } }}
+          style={{ ...TY.page, color:T.title, background:T.surface,
+            border:`${L.border} solid ${T.focus}`, borderRadius:L.radiusP,
+            padding:`0 ${SU("padding-tight")}`, outline:"none" }} />
+      ) : (
+        <span onClick={can ? () => setEditing(true) : undefined} title={dashboard.name}
+          onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+          style={{ ...TY.page, color:T.title, whiteSpace:"nowrap", overflow:"hidden",
+            textOverflow:"ellipsis", maxWidth:420, minWidth:0, borderRadius:L.radiusSm,
+            padding:`0 ${L.gapXX}`, background: can && hov ? T.hover : "transparent",
+            cursor: can ? "text" : "default",
+            transition:`background ${MO("duration-2")} ${MO("easing-standard")}` }}>{dashboard.name}</span>
+      )}
+      {dashboard.type === "system" && <Badge label="System" />}
+      {dashboard.isDefault && <Badge label="Default" tone="accent" />}
+      <Btn icon="expand_more" srOnly="Switch dashboard" ariaHasPopup="menu" ariaExpanded={open}
+        onClick={() => setOpen(v => !v)} />
+      {open && <Pop label="Saved dashboards" minWidth={260} onClose={() => setOpen(false)}>
+        {dashboards.map(d => <Row key={d.id} role="menuitemradio" checked={d.id === dashboard.id}
+          label={d.name} meta={d.isDefault ? "Default" : d.type === "system" ? "System" : undefined}
+          leading={<G name={d.type === "system" ? "dashboard" : "dashboard_customize"} size={L.glyph}
+            color={d.id === dashboard.id ? T.accent : T.faint} />}
+          trailing={d.id === dashboard.id ? <G name="check" size={L.glyphSm} color={T.accent} /> : null}
+          onClick={() => { onSwitch(d.id); setOpen(false); }} />)}
+        <span role="separator" style={{ display:"block", height:L.border, background:T.divider, margin:`${SU("padding-xxxtight")} 0` }} />
+        <Row label="Manage dashboards" leading={<G name="settings" size={L.glyph} color={T.faint} />}
+          onClick={() => { setOpen(false); onManage(); }} />
+      </Pop>}
+    </div>
+  );
+}
+
+function AddPanel({ presentIds, onAdd, onClose }) {
+  const [q, setQ] = useState("");
+  const ref = useRef(null);
+  useEffect(() => { ref.current && ref.current.focus(); }, []);
+  const results = useMemo(() => {
+    const n = q.trim().toLowerCase();
+    return !n ? CATALOGUE : CATALOGUE.filter(c =>
+      c.name.toLowerCase().includes(n) || c.group.toLowerCase().includes(n));
+  }, [q]);
+  return (
+    <Pop label="Add widget" minWidth={312} align="right" onClose={onClose}>
+      <div style={{ padding:`${SU("padding-xxxtight")} ${SU("padding-tight")} ${L.headPadV}` }}>
+        <div style={{ display:"flex", alignItems:"center", gap:L.gapXX, height:L.target,
+          padding:`0 ${L.headPadV}`, background:T.surface,
+          border:`${L.border} solid ${T.border}`, borderRadius:L.radiusFull }}>
+          <G name="search" size={L.glyphSm} color={T.faint} />
+          <input ref={ref} value={q} onChange={(e) => setQ(e.target.value)}
+            placeholder="Find a widget" aria-label="Find a widget"
+            style={{ ...TY.body, flex:1, minWidth:0, color:T.body, background:"transparent",
+              border:"none", outline:"none" }} />
+        </div>
+      </div>
+      <div style={{ maxHeight:320, overflowY:"auto", minWidth:0 }}>
+        {results.length === 0
+          ? <div style={{ ...TY.cap, color:T.faint, padding:`${L.headPadV} ${SU("padding-tight")} ${L.padBase}` }}>Nothing matches that name.</div>
+          : results.map(c => {
+              const added = presentIds.includes(c.id);
+              return <Row key={c.id} label={c.name} meta={c.group} disabled={added}
+                leading={<G name={added ? "check_circle" : "add"} size={L.glyph} color={T.accent} />}
+                trailing={<Badge label={SIZE_LABEL[c.defaultSize]} />}
+                onClick={() => { if (!added) { onAdd(c); onClose(); } }} />;
+            })}
+      </div>
+    </Pop>
+  );
+}
+
+function AddTile({ onClick }) {
+  const [hov, setHov] = useState(false);
+  return <button type="button" onClick={onClick}
+    onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+    style={{ ...TY.ctrl, gridColumn:"span var(--pw-dash-add-cols)", gridRow:"span 3",
+      display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",
+      gap:L.gapXX, background: hov ? T.hover : "transparent",
+      color: hov ? T.body : T.subtle, border:`${L.border} dashed ${T.border}`,
+      borderRadius:L.radius, cursor:"pointer",
+      transition:`background ${MO("duration-2")} ${MO("easing-standard")}, color ${MO("duration-2")} ${MO("easing-standard")}` }}>
+    <G name="add" size={24} color="currentColor" />Add widget</button>;
+}
+
+function Modal({ children, label, onClose, maxWidth = 480 }) {
+  useEffect(() => {
+    const esc = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", esc);
+    return () => document.removeEventListener("keydown", esc);
+  }, [onClose]);
+  return <div role="dialog" aria-modal="true" aria-label={label}
+    onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    style={{ position:"fixed", inset:0, zIndex:300, display:"flex", alignItems:"center",
+      justifyContent:"center", padding:L.padBase, background:T.scrim,
+      animation:`pwScrim ${MO("duration-3")} ${MO("easing-decelerate")} both` }}>
+    <div style={{ width:"100%", maxWidth, maxHeight:"80vh", display:"flex", flexDirection:"column",
+      background:T.surface, border:`${L.border} solid ${T.border}`, borderRadius:L.radius,
+      boxShadow:"var(--elevation-overlay)", overflow:"hidden",
+      animation:`pwDialog ${MO("duration-4")} ${MO("easing-decelerate")} both` }}>{children}</div>
+  </div>;
+}
+
+function ManageDashboards({ dashboards, activeId, onSwitch, onSetDefault, onRename, onDelete, onClose }) {
+  const [renaming, setRenaming] = useState(null);
+  const [draft, setDraft] = useState("");
+  return (
+    <Modal label="Manage dashboards" onClose={onClose}>
+      <div style={{ display:"flex", alignItems:"center", gap:L.gapXX,
+        padding:`${L.headPadV} ${L.headPadV} ${L.headPadV} ${L.padBase}`,
+        borderBottom:`${L.border} solid ${T.divider}` }}>
+        <span style={{ ...TY.dialog, color:T.title, flex:1 }}>Dashboards</span>
+        <Btn icon="close" srOnly="Close" onClick={onClose} />
+      </div>
+      <div style={{ overflowY:"auto", padding:`${SU("padding-xxxtight")} 0` }}>
+        {dashboards.map(d => {
+          const sys = d.type === "system";
+          return <div key={d.id} style={{ display:"flex", alignItems:"center", gap:L.gapXXX,
+            padding:`${SU("padding-xxxtight")} ${SU("padding-tight")}` }}>
+            {renaming === d.id ? (
+              <input autoFocus value={draft} aria-label={`Rename ${d.name}`}
+                onChange={(e) => setDraft(e.target.value)}
+                onBlur={() => { const v = draft.trim(); if (v) onRename(d.id, v); setRenaming(null); }}
+                onKeyDown={(e) => { if (e.key === "Enter") { const v = draft.trim(); if (v) onRename(d.id, v); setRenaming(null); } if (e.key === "Escape") setRenaming(null); }}
+                style={{ ...TY.ctrl, flex:1, minWidth:0, color:T.body, background:T.surface,
+                  border:`${L.border} solid ${T.focus}`, borderRadius:L.radiusSm,
+                  padding:`${L.headPadV} ${L.gapXX}`, outline:"none" }} />
+            ) : (
+              <button type="button" onClick={() => onSwitch(d.id)}
+                style={{ ...TY.ctrl, flex:1, minWidth:0, textAlign:"left", display:"flex",
+                  alignItems:"center", gap:L.gapXX, minHeight:L.target,
+                  padding:`${L.headPadV} ${L.gapXX}`, background:"transparent", border:"none",
+                  cursor:"pointer", color: d.id === activeId ? T.accent : T.body }}>
+                <G name={sys ? "dashboard" : "dashboard_customize"} size={L.glyph}
+                  color={d.id === activeId ? T.accent : T.faint} />
+                <span style={{ whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{d.name}</span>
+                {sys && <Badge label="System" />}
+                {d.isDefault && <Badge label="Default" tone="accent" />}
+              </button>
+            )}
+            <Btn icon="star" srOnly={`Set ${d.name} as default`} disabled={d.isDefault} onClick={() => onSetDefault(d.id)} />
+            <Btn icon="edit" srOnly={`Rename ${d.name}`} disabled={sys} onClick={() => { setDraft(d.name); setRenaming(d.id); }} />
+            <Btn icon="delete" srOnly={`Delete ${d.name}`} danger disabled={sys} onClick={() => onDelete(d.id)} />
+          </div>;
+        })}
+      </div>
+    </Modal>
+  );
+}
+
+function SaveAs({ initialName, onSave, onClose }) {
+  const [name, setName] = useState(initialName);
+  const ref = useRef(null);
+  useEffect(() => { if (ref.current) { ref.current.focus(); ref.current.select(); } }, []);
+  const ok = name.trim().length > 0;
+  return (
+    <Modal label="Save dashboard" onClose={onClose} maxWidth={420}>
+      <div style={{ display:"flex", flexDirection:"column", gap:L.gapXX, padding:L.padBase }}>
+        <span style={{ ...TY.dialog, color:T.title }}>Save dashboard</span>
+        <input ref={ref} value={name} onChange={(e) => setName(e.target.value)}
+          onKeyDown={(e) => { if (e.key === "Enter" && ok) onSave(name.trim()); }}
+          aria-label="Dashboard name" placeholder="Dashboard name"
+          style={{ ...TY.body, color:T.body, minHeight:L.targetAA, background:T.surface,
+            border:`${L.border} solid ${T.border}`, borderRadius:L.radiusP,
+            padding:`0 ${SU("padding-tight")}`, outline:"none" }} />
+        <div style={{ display:"flex", justifyContent:"flex-end", gap:L.gapXXX }}>
+          <Btn tone="secondary" onClick={onClose}>Cancel</Btn>
+          <Btn tone="primary" disabled={!ok} onClick={() => ok && onSave(name.trim())}>Save</Btn>
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
+/* ─── CONTENT per widget ───────────────────────────────────────────────────── */
+function WidgetContent({ w, scope, setScope, view, setView }) {
+  const id = w.catalogueId;
+  const cols = CONTENT_COLS[w.size];
+
+  if (id === "given")
+    return <Metric value="$48,210" delta="12.4%" up note="vs last month"
+      spark={w.size !== "glance" ? null : <Spark points={[31,34,33,38,41,45,48]} />} />;
+  if (id === "donors")
+    return <Metric value="1,284" delta="38" up note="new this month" />;
+  if (id === "pending")
+    return <Metric value="$3,940" delta="2 days" up={false} note="oldest" alarm="7 gifts" />;
+
+  if (id === "byfund") {
+    const total = "$48,210";
+    const side = cols === 2;
+    return <div style={{ display:"flex", flexDirection: side ? "row" : "column",
+      alignItems: side ? "center" : "stretch", gap:L.gapMed, padding:L.pad, flex:1, minHeight:0 }}>
+      <Donut slices={FUNDS} total={total} label="Giving by fund" size={side ? 132 : 148} />
+      <Legend slices={FUNDS} />
+    </div>;
+  }
+
+  if (id === "trend") {
+    if (view === "table")
+      return <Table cols={["Month","Given"]} rows={MONTHS.map(m => ({ name:m.label, cells:[m.display] }))}
+        totalRow={{ name:"Total", cells:["$237,000"] }} />;
+    return <div style={{ display:"flex", flex:1, minHeight:0, padding:`0 ${L.pad} ${L.padTight}` }}>
+      <Bars series={MONTHS} max={50000} />
+    </div>;
+  }
+
+  if (id === "balances")
+    return <Table cols={["Account","Balance","Change"]} rows={ACCOUNTS}
+      totalRow={{ name:"Total", cells:["$478,810",""] }} />;
+
+  if (id === "payroll")
+    return <div style={{ display:"flex", flex:1, minHeight:0, padding:`0 ${L.pad} ${L.padTight}` }}>
+      <Bars series={MONTHS.slice(0,5)} max={50000} />
+    </div>;
+
+  return null;
+}
+
+/* ─── APP ──────────────────────────────────────────────────────────────────── */
+function App() {
+  const [dashboards, setDashboards] = useState([
+    { id:"sys", name:"Accounting home", type:"system", isDefault:true, widgets:SYSTEM_WIDGETS },
+    { id:"c1",  name:"Month end", type:"custom", isDefault:false, widgets:[
+      { id:"m1", catalogueId:"balances", title:"Account balances", size:"full" },
+      { id:"m2", catalogueId:"pending",  title:"Pending deposits", size:"glance" },
+      { id:"m3", catalogueId:"signups",  title:"Recent sign-ups",  size:"detail", state:"empty",
+        emptyLine:"No one has signed up in this period. Widen the period to see earlier sign-ups." },
+    ]},
+  ]);
+  const [activeId, setActiveId] = useState("sys");
+  const [manage, setManage] = useState(false);
+  const [draft, setDraft] = useState(null);
+  const [draftName, setDraftName] = useState("");
+  const [addOpen, setAddOpen] = useState(false);
+  const [mgrOpen, setMgrOpen] = useState(false);
+  const [saveOpen, setSaveOpen] = useState(false);
+  const [dragId, setDragId] = useState(null);
+  const [flashId, setFlashId] = useState(null);
+  const [theme, setTheme] = useState("light");
+  const [scope, setScope] = useState("All funds");
+  const [view, setView] = useState("chart");
+  const [busyId, setBusyId] = useState(null);
+
+  const active = dashboards.find(d => d.id === activeId);
+  const widgets = draft || active.widgets;
+  const presentIds = widgets.map(w => w.catalogueId);
+  const dirty = draft !== null &&
+    (JSON.stringify(draft) !== JSON.stringify(active.widgets) || draftName !== active.name);
+
+  useEffect(() => { document.documentElement.setAttribute("data-theme", theme); }, [theme]);
+  useEffect(() => { if (!flashId) return; const t = setTimeout(() => setFlashId(null), 1400); return () => clearTimeout(t); }, [flashId]);
+  useEffect(() => { if (!busyId) return; const t = setTimeout(() => setBusyId(null), 1200); return () => clearTimeout(t); }, [busyId]);
+
+  const mutate = (fn) => setDraft(prev => fn([...(prev || active.widgets)]));
+  const enter = () => { setDraft(active.widgets.map(w => ({ ...w }))); setDraftName(active.name); setManage(true); };
+  const exit  = () => { setManage(false); setDraft(null); setAddOpen(false); };
+
+  const commit = (name) => {
+    setDashboards(ds => {
+      if (active.type === "system" || name) {
+        const id = `c${Date.now()}`;
+        setActiveId(id);
+        return [...ds, { id, name: name || draftName, type:"custom", isDefault:false, widgets }];
+      }
+      return ds.map(d => d.id === active.id ? { ...d, name: draftName, widgets } : d);
+    });
+    exit();
+  };
+  const done = () => { if (active.type === "system") setSaveOpen(true); else commit(null); };
+
+  const onDrop = (overId) => {
+    if (!dragId || dragId === overId) { setDragId(null); return; }
+    mutate(ws => {
+      const from = ws.findIndex(w => w.id === dragId), to = ws.findIndex(w => w.id === overId);
+      if (from < 0 || to < 0) return ws;
+      const [m] = ws.splice(from, 1); ws.splice(to, 0, m); return ws;
+    });
+    setDragId(null);
+  };
+
+  return (
+    <>
+      <div className="demo-bar">
+        <span className="demo-bar__lbl">Theme</span>
+        {["light","midnight"].map(t => (
+          <button key={t} className="demo-bar__btn" aria-pressed={theme === t}
+            onClick={() => setTheme(t)}>{t === "light" ? "Light" : "Midnight"}</button>
+        ))}
+        <span style={{ flex:1 }} />
+        <span className="demo-bar__lbl">Try</span>
+        <button className="demo-bar__btn" onClick={() => setBusyId(widgets[0] && widgets[0].id)}>Loading state</button>
+        <button className="demo-bar__btn" onClick={() => setActiveId("c1")}>Empty &amp; error states</button>
+      </div>
+
+      <div className="pw-dashboard-page" style={{ background:T.canvas, minHeight:"100%",
+        padding:`${L.padBase} ${L.padBase}`, display:"flex", flexDirection:"column", gap:L.gapBase }}>
+
+        <div style={{ display:"flex", alignItems:"center", gap:L.gapMed,
+          minHeight:L.targetAA, flexWrap:"wrap" }}>
+          <DashSelector
+            dashboard={{ ...active, name: manage ? draftName : active.name }}
+            dashboards={dashboards} manage={manage}
+            onRename={setDraftName}
+            onSwitch={(id) => { if (!dirty) { exit(); setActiveId(id); } }}
+            onManage={() => setMgrOpen(true)} />
+          <span style={{ flex:1, minWidth:0 }} />
+          {!manage ? (
+            <Btn tone="secondary" icon="tune" onClick={enter}>Manage</Btn>
+          ) : (
+            <>
+              <div style={{ position:"relative", display:"inline-flex" }}>
+                <Btn tone="secondary" icon="add" ariaHasPopup="menu" ariaExpanded={addOpen}
+                  onClick={() => setAddOpen(v => !v)}>Add widget</Btn>
+                {addOpen && <AddPanel presentIds={presentIds}
+                  onAdd={(c) => { const id = `${c.id}-${Date.now()}`;
+                    mutate(ws => [...ws, { id, catalogueId:c.id, title:c.name, size:c.defaultSize }]);
+                    setFlashId(id); }}
+                  onClose={() => setAddOpen(false)} />}
+              </div>
+              <Btn icon="undo" disabled={!dirty}
+                onClick={() => { setDraft(active.widgets.map(w => ({ ...w }))); setDraftName(active.name); }}>Discard changes</Btn>
+              <Btn tone="secondary" onClick={() => setSaveOpen(true)}>Save as</Btn>
+              <Btn onClick={exit}>Cancel</Btn>
+              <Btn tone="primary" onClick={done}>Done</Btn>
+            </>
+          )}
+        </div>
+
+        <div className="pw-dashboard-grid" style={{ display:"grid",
+          gridTemplateColumns:"repeat(var(--pw-dash-cols), minmax(0, 1fr))",
+          gridAutoRows:`${L.rowUnit}px`, gridAutoFlow:"row dense", gap:L.gapBase, alignContent:"start" }}>
+          {widgets.map(w => {
+            const entry = CATALOGUE.find(c => c.id === w.catalogueId) || {};
+            const flat = isFlat(w.size);
+            const hasToolbar = !flat && (w.catalogueId === "byfund" || w.catalogueId === "trend" || w.catalogueId === "balances");
+            const toolbar = hasToolbar ? (
+              <WToolbar
+                identity={<ScopeChip value={scope} options={["All funds","Gift funds","Restricted"]} onPick={setScope} />}
+                actions={w.catalogueId === "trend"
+                  ? <ViewToggle value={view} options={[
+                      { v:"chart", icon:"bar_chart", title:"Bar chart" },
+                      { v:"table", icon:"table_rows", title:"Table" }]} onPick={setView} />
+                  : null} />
+            ) : null;
+            // Top metric only where the content has no natural total of its own.
+            const topMetric = (!flat && w.catalogueId === "trend")
+              ? <WTopMetric eyebrow="Last 6 months" value="$237,000"
+                  signal={<DeltaPill up label="18.2%" note="vs prior 6" />} />
+              : null;
+            return (
+              <Widget key={w.id}
+                title={w.title} size={w.size} manage={manage}
+                supportedSizes={entry.supportedSizes}
+                state={busyId === w.id ? "loading" : (w.state || "ready")}
+                emptyLine={w.emptyLine}
+                emptyAction={w.state === "empty" ? <Btn tone="secondary" icon="date_range">Widen the period</Btn> : null}
+                updatedLabel={w.updatedLabel}
+                dragging={dragId === w.id} flash={flashId === w.id}
+                onRefresh={() => setBusyId(w.id)}
+                onExport={() => {}}
+                onGoTo={() => {}}
+                onInfo={() => {}}
+                onRetry={() => setBusyId(w.id)}
+                onResize={manage ? (size) => mutate(ws => ws.map(x => x.id === w.id ? { ...x, size } : x)) : undefined}
+                onDuplicate={manage ? () => mutate(ws => {
+                  const i = ws.findIndex(x => x.id === w.id);
+                  const copy = { ...ws[i], id:`${w.id}-c${Date.now()}` };
+                  ws.splice(i + 1, 0, copy); setFlashId(copy.id); return ws; }) : undefined}
+                onRemove={manage ? () => mutate(ws => ws.filter(x => x.id !== w.id)) : undefined}
+                onRename={manage ? (title) => mutate(ws => ws.map(x => x.id === w.id ? { ...x, title } : x)) : undefined}
+                onDragStart={() => setDragId(w.id)}
+                onDragOver={(e) => { if (manage) e.preventDefault(); }}
+                onDrop={() => onDrop(w.id)}
+                onDragEnd={() => setDragId(null)}
+                toolbar={toolbar} topMetric={topMetric}>
+                <WidgetContent w={w} scope={scope} setScope={setScope} view={view} setView={setView} />
+              </Widget>
+            );
+          })}
+          {manage && widgets.length <= 1 && <AddTile onClick={() => setAddOpen(true)} />}
+        </div>
+      </div>
+
+      {mgrOpen && <ManageDashboards dashboards={dashboards} activeId={activeId}
+        onSwitch={(id) => { setMgrOpen(false); exit(); setActiveId(id); }}
+        onSetDefault={(id) => setDashboards(ds => ds.map(d => ({ ...d, isDefault: d.id === id })))}
+        onRename={(id, name) => setDashboards(ds => ds.map(d => d.id === id ? { ...d, name } : d))}
+        onDelete={(id) => { setDashboards(ds => ds.filter(d => d.id !== id)); if (activeId === id) setActiveId("sys"); }}
+        onClose={() => setMgrOpen(false)} />}
+
+      {saveOpen && <SaveAs initialName={active.type === "system" ? `${draftName} (copy)` : draftName}
+        onSave={(n) => { setSaveOpen(false); commit(n); }} onClose={() => setSaveOpen(false)} />}
+    </>
+  );
+}
+
+const style = document.createElement("style");
+style.textContent = `
+@keyframes pwMenu { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+@keyframes pwScrim { from { opacity:0; } to { opacity:1; } }
+@keyframes pwDialog { from { opacity:0; transform:scale(.98); } to { opacity:1; transform:none; } }
+@keyframes pwSheen { 0%,100% { transform:translate3d(-36%,36%,0); } 50% { transform:translate3d(36%,-36%,0); } }
+@keyframes pwFlash {
+  0% { box-shadow:0 0 0 0 ${T.focus}; }
+  40% { box-shadow:0 0 0 3px ${T.focus}; }
+  100% { box-shadow:var(--elevation-widget); }
+}
+.pw-sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+:root { --pw-dash-cols:4; --pw-dash-add-cols:4; --pw-widget-cols-glance:4; --pw-widget-cols-explore:4; --pw-widget-cols-detail:4; --pw-widget-cols-full:4; }
+@media (min-width:768px) { :root { --pw-dash-cols:8; --pw-dash-add-cols:4; --pw-widget-cols-glance:4; --pw-widget-cols-explore:8; --pw-widget-cols-detail:8; --pw-widget-cols-full:8; } }
+@media (min-width:1024px) { :root { --pw-dash-cols:12; --pw-dash-add-cols:3; --pw-widget-cols-glance:3; --pw-widget-cols-explore:6; --pw-widget-cols-detail:6; --pw-widget-cols-full:12; } }
+@media (prefers-reduced-motion:reduce) { .pw-widget, .pw-widget *, .pw-dashboard-page * { animation:none !important; } }
+`;
+document.head.appendChild(style);
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

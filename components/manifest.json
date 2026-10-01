@@ -48,12 +48,12 @@
           "items": {
             "type": "Array<NavItem>",
             "required": false,
-            "description": "Flat navigation tree \u2014 use this OR `sections`, not both. Each item: { id, label, icon?, children? }"
+            "description": "Flat navigation tree — use this OR `sections`, not both. Each item: { id, label, icon?, children? }"
           },
           "sections": {
             "type": "Array<{ section: string, items: NavItem[] }>",
             "required": false,
-            "description": "Sectioned navigation \u2014 renders NavSectionLabel headings between groups (or rail dividers in collapsed mode). Use this OR `items`."
+            "description": "Sectioned navigation — renders NavSectionLabel headings between groups (or rail dividers in collapsed mode). Use this OR `items`."
           },
           "listSection": {
             "type": "{ label: string, items: Array<{id,label}> }",
@@ -163,7 +163,7 @@
     },
     "checkbox": {
       "displayName": "Checkbox",
-      "description": "Multi-select selection control. Three states: unchecked, checked, indeterminate. Supports error, highlight, and secondary indeterminate variants. Two sizes. 44\u00d744px touch target always.",
+      "description": "Multi-select selection control. Three states: unchecked, checked, indeterminate. Supports error, highlight, and secondary indeterminate variants. Two sizes. 44×44px touch target always.",
       "module": "components/checkbox/checkbox.jsx",
       "exports": [
         "Checkbox",
@@ -196,17 +196,17 @@
           "error": {
             "type": "boolean",
             "default": false,
-            "description": "Error / negative styling \u2014 fill and border switch to negative token family"
+            "description": "Error / negative styling — fill and border switch to negative token family"
           },
           "highlight": {
             "type": "boolean",
             "default": false,
-            "description": "Tinted background on the state-layer at rest \u2014 for selectable rows"
+            "description": "Tinted background on the state-layer at rest — for selectable rows"
           },
           "secondary": {
             "type": "boolean",
             "default": false,
-            "description": "Secondary indeterminate variant (muted colour) \u2014 use with indeterminate only"
+            "description": "Secondary indeterminate variant (muted colour) — use with indeterminate only"
           },
           "disabled": {
             "type": "boolean",
@@ -216,7 +216,7 @@
           "size": {
             "type": "\"default\" | \"s\"",
             "default": "\"default\"",
-            "description": "Visual size of the control. Touch target is always 44\u00d744px."
+            "description": "Visual size of the control. Touch target is always 44×44px."
           },
           "label": {
             "type": "string",
@@ -298,9 +298,9 @@
         ]
       },
       "gaps": [
-        "8 tokens missing from token file \u2014 see spec \u00a75.3. fill.action.secondary.* affects highlight variant resting state (HIGH priority).",
-        "Secondary Indeterminate use case TBD \u2014 confirm with design before shipping.",
-        "Highlight variant resting-state token (fill.action.secondary.rest) missing \u2014 fallback in use."
+        "8 tokens missing from token file — see spec §5.3. fill.action.secondary.* affects highlight variant resting state (HIGH priority).",
+        "Secondary Indeterminate use case TBD — confirm with design before shipping.",
+        "Highlight variant resting-state token (fill.action.secondary.rest) missing — fallback in use."
       ]
     },
     "org-switcher": {
@@ -308,7 +308,7 @@
       "description": "Organisation context switcher trigger in the brand-blue top nav. Renders the active org name (truncated with ellipsis at 180px desktop / 50px mobile). For Catholic organisations only, a second container after the org name shows the city or diocese. The trigger opens a drop panel listing accessible orgs.",
       "status": "REVIEWED",
       "version": "v1",
-      "v1Scope": "Trigger only. Drop panel is a non-normative placeholder in v1 \u2014 see spec \u00a70.",
+      "v1Scope": "Trigger only. Drop panel is a non-normative placeholder in v1 — see spec §0.",
       "module": "components/org-switcher/org-switcher.jsx",
       "exports": [
         "OrgSwitcher"
@@ -346,20 +346,20 @@
           "cityName": {
             "type": "string",
             "default": "\"\"",
-            "description": "City or diocese name. RENDERED ONLY when orgType === \"catholic\" (spec \u00a70.1). Ignored for Protestant orgs even if supplied. NOT a campus/suborg/region name."
+            "description": "City or diocese name. RENDERED ONLY when orgType === \"catholic\" (spec §0.1). Ignored for Protestant orgs even if supplied. NOT a campus/suborg/region name."
           },
           "logoUrl": {
             "type": "string",
-            "description": "Org logo URL. Empty or omitted \u2192 church SVG placeholder (never text initials)."
+            "description": "Org logo URL. Empty or omitted → church SVG placeholder (never text initials)."
           },
           "open": {
             "type": "boolean",
             "default": false,
-            "description": "Controlled open state \u2014 flips the chevron icon 180\u00b0."
+            "description": "Controlled open state — flips the chevron icon 180°."
           },
           "onClick": {
             "type": "function",
-            "description": "() => void \u2014 fired when the trigger is activated. Caller toggles the open state."
+            "description": "() => void — fired when the trigger is activated. Caller toggles the open state."
           },
           "disabled": {
             "type": "boolean",
@@ -373,15 +373,15 @@
           },
           "orgs": {
             "type": "array",
-            "description": "(Panel only \u2014 out of scope in v1.) Array of org records for the placeholder panel."
+            "description": "(Panel only — out of scope in v1.) Array of org records for the placeholder panel."
           },
           "activeOrgId": {
             "type": "string",
-            "description": "(Panel only \u2014 out of scope in v1.) Highlights the active org in the panel."
+            "description": "(Panel only — out of scope in v1.) Highlights the active org in the panel."
           },
           "onOrgSelect": {
             "type": "function",
-            "description": "(Panel only \u2014 out of scope in v1.) (orgId) => void when a panel row is clicked."
+            "description": "(Panel only — out of scope in v1.) (orgId) => void when a panel row is clicked."
           },
           "className": {
             "type": "string",
@@ -419,19 +419,19 @@
       },
       "motion": {
         "pillButtonBackground": "--motion-duration-2 / --motion-easing-standard",
-        "panelEnter": "--motion-duration-3 / --motion-easing-decelerate \u2014 keyframe orgPanelIn (opacity 0\u21921, translateY -6px \u2192 0)",
+        "panelEnter": "--motion-duration-3 / --motion-easing-decelerate — keyframe orgPanelIn (opacity 0→1, translateY -6px → 0)",
         "listItemHover": "--motion-duration-2 / --motion-easing-standard (background + border-color)",
         "caretRotation": "--motion-duration-4 / --motion-easing-standard (transform)"
       },
       "accessibility": {
         "ariaPattern": "Disclosure (button with aria-haspopup + aria-expanded)",
-        "touchTarget": "48\u00d748 (WCAG 2.5.5)",
+        "touchTarget": "48×48 (WCAG 2.5.5)",
         "ariaLabel": "Always includes the full org name (and city for Catholic orgs), regardless of visible truncation"
       },
       "gaps": [
-        "Panel (dropdown / bottom sheet) not yet designed in Figma \u2014 trigger only ships.",
+        "Panel (dropdown / bottom sheet) not yet designed in Figma — trigger only ships.",
         "ARIA pattern choice (Disclosure+listbox vs Combobox) deferred until panel is designed.",
-        "logoUrl placeholder tint (rgba(53,85,160,0.25)) is not a semantic token \u2014 TBD once brand-avatar token is added to Figma.",
+        "logoUrl placeholder tint (rgba(53,85,160,0.25)) is not a semantic token — TBD once brand-avatar token is added to Figma.",
         "Panel mobile behaviour (dropdown vs bottom sheet) not yet decided."
       ]
     },
@@ -495,7 +495,7 @@
       "motion": {
         "searchFieldFocus": "--motion-duration-3 / --motion-easing-standard (min-width expansion on focus)",
         "iconButtonHover": "--motion-duration-2 / --motion-easing-standard (background + border-color)",
-        "dropdownEnter": "--motion-duration-4 / --motion-easing-spring \u2014 keyframe tnDropIn",
+        "dropdownEnter": "--motion-duration-4 / --motion-easing-spring — keyframe tnDropIn",
         "iconRotation": "--motion-duration-4 / --motion-easing-standard (transform)"
       },
       "tokens": [
@@ -513,10 +513,10 @@
         "light-mode.foreground.static.info.on-subtle"
       ],
       "gaps": [
-        "Active item token in dropdowns: uses raw #eef2fb \u2014 no semantic token exists yet (HIGH).",
+        "Active item token in dropdowns: uses raw #eef2fb — no semantic token exists yet (HIGH).",
         "Notification badge / dot on bell icon not yet designed (HIGH).",
         "Mobile profile tap behavior not specified (HIGH).",
-        "Destructive item (Sign out) uses raw red \u2014 no semantic danger token (MEDIUM).",
+        "Destructive item (Sign out) uses raw red — no semantic danger token (MEDIUM).",
         "TopNav position sticky vs fixed not resolved (MEDIUM).",
         "Logo crop parameters tuned for Sacred Heart logo only (MEDIUM)."
       ]
@@ -605,7 +605,7 @@
     },
     "button": {
       "displayName": "Button",
-      "description": "Primary action trigger. Three styles (Fill / Outlined / Naked), four semantic types (Primary / Secondary / Tertiary / Negative), four sizes (L / M / S / XS). Supports leading icon, trailing icon, icon-only, and loading states. 48\u00d748px touch target always.",
+      "description": "Primary action trigger. Three styles (Fill / Outlined / Naked), four semantic types (Primary / Secondary / Tertiary / Negative), four sizes (L / M / S / XS). Supports leading icon, trailing icon, icon-only, and loading states. 48×48px touch target always.",
       "status": "REVIEWED",
       "version": "v1",
       "module": "components/button/button.jsx",
@@ -633,7 +633,7 @@
           "size": {
             "type": "\"L\" | \"M\" | \"S\" | \"XS\"",
             "default": "\"M\"",
-            "description": "L = 18px label, M = 16px label, S = 14px label, XS = 12px label (8/6 padding, 16px icon wrap). Touch target is always 48\u00d748px minimum. XS is defined in Figma for Primary/Secondary/Negative only (not Tertiary)."
+            "description": "L = 18px label, M = 16px label, S = 14px label, XS = 12px label (8/6 padding, 16px icon wrap). Touch target is always 48×48px minimum. XS is defined in Figma for Primary/Secondary/Negative only (not Tertiary)."
           },
           "type": {
             "type": "\"Primary\" | \"Secondary\" | \"Tertiary\" | \"Negative\"",
@@ -824,7 +824,7 @@
       "gaps": [],
       "accessibility": {
         "ariaPattern": "Native <button type='button'>",
-        "touchTarget": "48\u00d748px minimum (WCAG 2.5.5)",
+        "touchTarget": "48×48px minimum (WCAG 2.5.5)",
         "focusRing": "6px white halo + 2px brand ring via box-shadow on Container.Main",
         "loadingState": "aria-busy='true' + disabled attribute",
         "iconOnly": "ariaLabel prop required when showText=false"
@@ -953,7 +953,7 @@
     },
     "nav-shell": {
       "displayName": "NavShell",
-      "description": "Application shell \u2014 TopNav + SideNav + content area. The outermost layout wrapping every Amplify page. Compose from top-nav.jsx and sidenav.jsx \u2014 do not reimplement.",
+      "description": "Application shell — TopNav + SideNav + content area. The outermost layout wrapping every Amplify page. Compose from top-nav.jsx and sidenav.jsx — do not reimplement.",
       "module": "components/nav-shell/nav-shell-spec.md",
       "spec": "components/nav-shell/nav-shell-spec.md",
       "stories": "src/stories/Library/NavShell/NavShell.stories.jsx",
@@ -1075,6 +1075,80 @@
           }
         }
       }
+    },
+    "widget": {
+      "displayName": "Widget",
+      "description": "The resizable dashboard building block. A header carrying the title, refresh and resize, plus a content slot. Size is depth: Glance, Explore, Detail, Full.",
+      "module": "components/widget/widget.jsx",
+      "moduleNote": "Size is depth, not scale: resizing changes what the content shows. Flat at Glance (one surface, no content toolbar) and layered everywhere else, driven by the presence of content controls rather than by size directly. A KPI tile is not a separate component: it is Widget at Glance holding a Metric. Hover-revealed info and go-to icons are suppressed at Glance because their 36px targets hold layout even at opacity 0 and would eat most of a 130px title. WidgetKeyframes must be mounted once per document and also declares the --pw-widget-cols-* spans, so the breakpoint lives in a media query rather than a JS branch.",
+      "exports": [
+        "Widget",
+        "WidgetMenu",
+        "SizePicker",
+        "WidgetToolbar",
+        "WidgetTopMetric",
+        "Metric",
+        "DeltaPill",
+        "WidgetKeyframes",
+        "SIZES",
+        "SIZE_LABEL",
+        "SIZE_GRID",
+        "CONTENT_COLS",
+        "isFlat",
+        "T",
+        "L"
+      ],
+      "spec": null,
+      "specNote": "The authoritative spec is widget-container-spec.md in the working folder, not in this repo. Its sections 3.1, 4 and 8.3 predate the token families that now exist (warm surfaces, radius, spacing, motion, elevation, touch targets) and describe them as raw values; the implementation binds all of them. Its section 5.1 names four sizes Small/Wide/Tall/Large, which section 0 supersedes with Glance/Explore/Detail/Full.",
+      "demo": "components/dashboard/dashboard.html",
+      "demoNote": "Shares the dashboard demo, because a widget on its own cannot show the grid, the manage mode or the resize flow.",
+      "stories": null,
+      "storiesNote": "Not yet written.",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40009622:39702",
+        "variants": {
+          "glance": "Size=Glance",
+          "explore": "Size=Explore",
+          "detail": "Size=Detail"
+        },
+        "additionalNodes": {
+          "newcoMirror": "40016737:144022",
+          "focusFull": "40010500:6815",
+          "page": "40009415:21911"
+        }
+      },
+      "figmaNote": "The component set carries three Size variants (Glance, Detail, Explore). Full is a separate Widget.Focus frame, not a variant. The NewCo section is a mirror and is read-only."
+    },
+    "dashboard": {
+      "displayName": "Dashboard",
+      "description": "The dashboard page template: the toolbar, the widget grid, and the templated flow for managing a dashboard and adding widgets.",
+      "module": "components/dashboard/dashboard.jsx",
+      "moduleNote": "Owns the grid (4/8/12 columns by breakpoint, 48px row unit, dense row flow so widgets pull up and leftover space collects at the bottom) and the two modes. The save matrix is the part that is easy to get wrong: editing the System dashboard always names and creates a NEW custom dashboard, so the shipped baseline is never overwritten, while editing a custom dashboard saves back to it. There is no drag-to-pixel-position and no drag-to-resize; size is picked from the widget's own menu and compaction is always on.",
+      "exports": [
+        "Dashboard",
+        "AddWidgetPanel",
+        "ManageDashboardsDialog",
+        "SaveAsDialog",
+        "Button",
+        "DashboardKeyframes",
+        "T",
+        "L"
+      ],
+      "spec": null,
+      "specNote": "dashboard-shell-spec.md in the working folder, still marked DRAFT. Its four open questions are unresolved: the meaning of 'Reset to default' (implemented here as 'Discard changes', which is reading (a) only), whether a first save of an edited System dashboard should also offer to make it the default, what the real view-mode widget actions are besides Refresh, and what the unsaved-changes guard should do when switching dashboards (implemented here as: the switcher simply does not act while there are unsaved changes).",
+      "demo": "components/dashboard/dashboard.html",
+      "stories": null,
+      "storiesNote": "Not yet written.",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40009417:19915",
+        "additionalNodes": {
+          "templatedFlow": "40016300:28543",
+          "addAndManageFlowsV2": "40016303:38002"
+        }
+      },
+      "figmaNote": "The organism page is 'Dashboards'. The add-widget and manage flows live on the templated-flow page 'Dashboards: Add Widgets, Edit Dashboards', section 'Add Widget & Manage Flows v2'."
     }
   }
 }
