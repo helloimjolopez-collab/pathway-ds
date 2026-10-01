@@ -122,6 +122,16 @@
         "foreground.action.secondary.hover",
         "foreground.action.secondary.pressed",
         "foreground.action.secondary.rest"
+      ],
+      "codeConnect": [
+        "components/sidenav/sidenav-container-html.figma.ts",
+        "components/sidenav/sidenav-container.figma.ts",
+        "components/sidenav/sidenav-indicator-stripe.figma.ts",
+        "components/sidenav/sidenav-item-collapsed.figma.ts",
+        "components/sidenav/sidenav-item-list.figma.ts",
+        "components/sidenav/sidenav-item.figma.ts",
+        "components/sidenav/sidenav-list-section.figma.ts",
+        "components/sidenav/sidenav-section-label.figma.ts"
       ]
     },
     "scrollbar": {
@@ -159,7 +169,8 @@
           }
         }
       },
-      "tokens": []
+      "tokens": [],
+      "codeConnect": null
     },
     "checkbox": {
       "displayName": "Checkbox",
@@ -301,7 +312,8 @@
         "8 tokens missing from token file — see spec §5.3. fill.action.secondary.* affects highlight variant resting state (HIGH priority).",
         "Secondary Indeterminate use case TBD — confirm with design before shipping.",
         "Highlight variant resting-state token (fill.action.secondary.rest) missing — fallback in use."
-      ]
+      ],
+      "codeConnect": "components/checkbox/checkbox.figma.ts"
     },
     "org-switcher": {
       "displayName": "OrgSwitcher",
@@ -433,7 +445,8 @@
         "ARIA pattern choice (Disclosure+listbox vs Combobox) deferred until panel is designed.",
         "logoUrl placeholder tint (rgba(53,85,160,0.25)) is not a semantic token — TBD once brand-avatar token is added to Figma.",
         "Panel mobile behaviour (dropdown vs bottom sheet) not yet decided."
-      ]
+      ],
+      "codeConnect": "components/org-switcher/org-switcher.figma.ts"
     },
     "top-nav": {
       "displayName": "TopNav.Global",
@@ -520,7 +533,8 @@
         "TopNav position sticky vs fixed not resolved (MEDIUM).",
         "Logo crop parameters tuned for Sacred Heart logo only (MEDIUM)."
       ],
-      "moduleNote": "CHANGED 2026-10-01: the bar is 60px at every breakpoint, not 56/54. top-nav.jsx already read --contextual-layout-units-topnav-height so it was correct, but top-nav.html hand-copied 56 and 54 with 4px/16px and 4px/12px padding, and nav-shell-spec.md said 56 in twelve places. The demo now reads the height, padding and gap tokens and the breakpoint classes carry no metrics at all, so there is nothing left to drift. The spec's collapsed SideNav rail also said 72px in eleven places; the real value is 84 (contextual SideNav/Width/Collapsed = Unit/84) and the repo has had it right for months."
+      "moduleNote": "CHANGED 2026-10-01: the bar is 60px at every breakpoint, not 56/54. top-nav.jsx already read --contextual-layout-units-topnav-height so it was correct, but top-nav.html hand-copied 56 and 54 with 4px/16px and 4px/12px padding, and nav-shell-spec.md said 56 in twelve places. The demo now reads the height, padding and gap tokens and the breakpoint classes carry no metrics at all, so there is nothing left to drift. The spec's collapsed SideNav rail also said 72px in eleven places; the real value is 84 (contextual SideNav/Width/Collapsed = Unit/84) and the repo has had it right for months.",
+      "codeConnect": "components/top-nav/top-nav.figma.ts"
     },
     "spinner": {
       "displayName": "Spinner",
@@ -602,7 +616,8 @@
         "foreground.static.info.*",
         "foreground.static.accent.jade.*",
         "foreground.static.accent.seabreeze.*"
-      ]
+      ],
+      "codeConnect": null
     },
     "button": {
       "displayName": "Button",
@@ -829,7 +844,8 @@
         "focusRing": "6px white halo + 2px brand ring via box-shadow on Container.Main",
         "loadingState": "aria-busy='true' + disabled attribute",
         "iconOnly": "ariaLabel prop required when showText=false"
-      }
+      },
+      "codeConnect": "components/button/button.figma.ts"
     },
     "search": {
       "displayName": "Search",
@@ -950,7 +966,8 @@
           "foreground.action.disabled",
           "foreground.action.status.negative.on-subtle.rest"
         ]
-      }
+      },
+      "codeConnect": null
     },
     "nav-shell": {
       "displayName": "NavShell",
@@ -962,7 +979,8 @@
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
         "nodeId": "40006538:43236"
-      }
+      },
+      "codeConnect": null
     },
     "module-icon": {
       "displayName": "ModuleIcon",
@@ -1095,7 +1113,8 @@
             "default": null
           }
         }
-      }
+      },
+      "codeConnect": null
     },
     "widget": {
       "displayName": "Widget",
@@ -1404,6 +1423,18 @@
       "figmaNote": "25 variants, not 40: the Base size is complete at 20, and Large has only 5. See figmaDefect.",
       "codeConnect": "components/radio/radio.figma.ts",
       "figmaDefect": "TWO defects, reported rather than copied. (1) Size=Large exists for Unselected ONLY: five variants out of a possible twenty, with no Large Selected and no Large Error at all, so a Large selected radio cannot be made in Figma. The component renders Large for every combination, scaling the ring from 20 to 22 and leaving the dot, halo and hit area as drawn, because a size that only works unselected is not a size. (2) The label NEVER dims when disabled: all twenty variants bind foreground-static-neutral-base, including the Disabled ones, so in Figma a disabled radio's only cue is its ring and dot. The component dims the label to foreground-action-disabled, because a disabled control whose label looks enabled reads as a bug. Both shown in the Storybook stories with the explanation on screen."
+    },
+    "top-nav-actions": {
+      "displayName": "TopNav.Actions",
+      "description": "The action icons that sit at the right-hand end of the TopNav bar.",
+      "module": null,
+      "moduleNote": "Belongs to the nav-shell family rather than to TopNav: top-nav.figma.ts maps the BAR only, and the panels and icons that open out of it are separate patterns. Has no story and no Code Connect yet.",
+      "spec": null,
+      "demo": null,
+      "stories": null,
+      "storiesNote": "Not yet written.",
+      "figma": null,
+      "codeConnect": null
     }
   }
 }
