@@ -524,9 +524,14 @@
     "spinner": {
       "displayName": "Spinner",
       "description": "Indeterminate activity indicator. 8-spoke sunburst, arbitrary size, semantic-token-only colour via tone + emphasis.",
-      "module": null,
-      "moduleNote": "Spinner ships HTML/SVG/CSS only \u2014 no React module today. Inline the SVG from spinner.html, or copy markup from the spec. A .jsx wrapper is on the pipeline backlog.",
-      "exports": [],
+      "module": "components/spinner/spinner.jsx",
+      "moduleNote": "React module added 2026-10-01 with NewCo's RING loader alongside Amplify's sunburst, as a `variant` prop. The ring's three arcs are currentColor at three stroke opacities rather than the concept's hardcoded purples, so it answers every tone and both brand themes. spinner.html remains the standalone demo for the sunburst. SpinnerKeyframes must be mounted once per document.",
+      "exports": [
+        "Spinner",
+        "SpinnerKeyframes",
+        "TONES",
+        "EMPHASES"
+      ],
       "spec": "components/spinner/spinner-spec.md",
       "demo": "components/spinner/spinner.html",
       "stories": "src/stories/Library/Spinner/Spinner.stories.jsx",
@@ -574,6 +579,14 @@
             "type": "string",
             "default": "Loading",
             "description": "Accessible name announced by screen readers"
+          },
+          "variant": {
+            "type": "string",
+            "options": [
+              "ring",
+              "sunburst"
+            ],
+            "default": "ring"
           }
         }
       },
@@ -1005,6 +1018,60 @@
             "type": "string",
             "default": null,
             "note": "Sets role=img and aria-label. Omit for a decorative mark beside a visible label."
+          }
+        }
+      }
+    },
+    "skeleton": {
+      "displayName": "Skeleton",
+      "description": "Loading placeholder. A block the shape of the content it replaces, with a 45 degree band sweeping bottom-left to top-right.",
+      "module": "components/skeleton/skeleton.jsx",
+      "moduleNote": "Brought across from the NewCo and Spired design concept, token-pure. The concept hardcoded a rung of a `warm` primitive ramp that Pathway does not have, plus two literal rgba() stops; here the base is a semantic fill and the band is color-mix over tokens, so it inherits the brand theme and inverts in Midnight. SkeletonKeyframes must be mounted once per document: a module that injects CSS on import cannot be tree-shaken.",
+      "exports": [
+        "Skeleton",
+        "SkeletonText",
+        "SkeletonKeyframes"
+      ],
+      "spec": null,
+      "specNote": "No spec yet. Transcribed from the design concept rather than from a Figma component; there is no Figma node for it.",
+      "demo": "components/skeleton/skeleton.html",
+      "stories": "src/stories/Library/Skeleton/Skeleton.stories.jsx",
+      "figma": null,
+      "figmaNote": "No Figma component. The design lives in the NewCo and Spired concept, not in the Figma library.",
+      "props": {
+        "Skeleton": {
+          "width": {
+            "type": "string|number",
+            "default": "100%"
+          },
+          "height": {
+            "type": "string|number",
+            "default": 12
+          },
+          "radius": {
+            "type": "string|number",
+            "default": null,
+            "note": "defaults to cornerradius-base"
+          },
+          "circle": {
+            "type": "boolean",
+            "default": false,
+            "note": "squares the box and fully rounds it, for avatars"
+          }
+        },
+        "SkeletonText": {
+          "lines": {
+            "type": "number",
+            "default": 3
+          },
+          "lastLineWidth": {
+            "type": "string",
+            "default": "45%",
+            "note": "short on purpose: equal-length bars read as a table, not prose"
+          },
+          "gap": {
+            "type": "string|number",
+            "default": null
           }
         }
       }
