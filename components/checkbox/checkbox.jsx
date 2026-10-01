@@ -345,8 +345,8 @@ export function Checkbox({
       {label && (
         <span
           style={{
-            fontSize:   14,
-            lineHeight: "20px",
+            fontSize: "var(--semantic-type-font-size-s)",
+            lineHeight: "var(--semantic-type-line-height-s-single)",
             fontWeight: 400,
             color:      disabled
               ? "var(--semantic-color-foreground-static-neutral-base)"

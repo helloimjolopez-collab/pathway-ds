@@ -267,7 +267,7 @@ export function SideNavItem({
           pointerEvents: isSidebarCollapsed ? "none" : "auto",
           transition: "max-width var(--motion-duration-6) var(--motion-easing-emphasized), opacity var(--motion-duration-3) var(--motion-easing-standard)" }}>
           <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500,
-            fontSize: 14, lineHeight: "20px", letterSpacing: "0.3px", color: textColor, margin: 0,
+            fontSize: "var(--semantic-type-font-size-s)", lineHeight: "var(--semantic-type-line-height-s-single)", letterSpacing: "var(--semantic-type-letter-spacing-spacious)", color: textColor, margin: 0,
             whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
             transition: "color var(--motion-duration-3) var(--motion-easing-standard)" }}>
             {item.label}
@@ -334,12 +334,12 @@ export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }
         left: anchorRect.right + 8,
         top: anchorRect.top + anchorRect.height / 2,
         zIndex: 1000, backgroundColor: T.surface.navLight,
-        border: `0.5px solid ${c("stroke-static-neutral-faint")}`, borderRadius: 8,
+        border: `0.5px solid ${c("stroke-static-neutral-faint")}`, borderRadius: "var(--semantic-layout-units-cornerradius-base)",
         boxShadow: c2("--elevation-widget"),
         padding: "6px 8px", whiteSpace: "nowrap", pointerEvents: "auto",
         animation: "popoverInCentered var(--motion-duration-3) var(--motion-easing-spring) forwards" }}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
-        fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px", color: T.text.secondary }}>
+        fontSize: "var(--semantic-type-font-size-s)", lineHeight: "var(--semantic-type-line-height-s-single)", letterSpacing: "0.02px", color: T.text.secondary }}>
         {label}
       </span>
     </div>,
@@ -355,9 +355,9 @@ export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }
 export function SectionLabel({ label }) {
   return (
     <div style={{ display: "flex", alignItems: "center", width: "100%",
-      paddingLeft: 12, paddingTop: 8, paddingBottom: 8 }}>
+      paddingLeft: "var(--semantic-layout-units-padding-tight)", paddingTop: "var(--semantic-layout-units-padding-xtight)", paddingBottom: "var(--semantic-layout-units-padding-xtight)"}}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 600,
-        fontSize: 11, lineHeight: "16px", letterSpacing: "0.6px",
+        fontSize: "var(--semantic-type-font-size-xxs)", lineHeight: "16px", letterSpacing: "var(--semantic-type-letter-spacing-extraspacious)",
         color: T.text.secondary, textTransform: "uppercase",
         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
         {label}
@@ -373,9 +373,9 @@ export function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMo
     <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
       style={{ position: "fixed", left: anchorRect.right + 8, top: anchorRect.top,
         zIndex: 1000, backgroundColor: T.surface.navElevated,
-        border: `0.5px solid ${c("stroke-static-neutral-faint")}`, borderRadius: 8,
+        border: `0.5px solid ${c("stroke-static-neutral-faint")}`, borderRadius: "var(--semantic-layout-units-cornerradius-base)",
         boxShadow: c2("--elevation-widget"),
-        padding: 6, minWidth: 200, pointerEvents: "auto",
+        padding: "var(--semantic-layout-units-padding-xxtight)", minWidth: 200, pointerEvents: "auto",
         animation: "popoverIn var(--motion-duration-3) var(--motion-easing-spring) forwards" }}>
       {/* Section label — Figma component 40006794-5977 */}
       <div style={{ borderBottom: `0.5px solid ${c("stroke-static-neutral-faint")}` }}>
@@ -398,14 +398,14 @@ export function PopoverRow({ item, onClick, activeId }) {
   return (
     <div onClick={() => onClick(item.id)}
       onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
-      style={{ display: "flex", alignItems: "center", minHeight: 40, borderRadius: 8,
+      style={{ display: "flex", alignItems: "center", minHeight: 40, borderRadius: "var(--semantic-layout-units-cornerradius-base)",
         overflow: "hidden", backgroundColor: bg, cursor: "pointer",
         transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)" }}>
       <div style={{ width: 4, alignSelf: "stretch", borderRadius: "0 4px 4px 0",
         backgroundColor: isActive ? T.indicator : "transparent",
         flexShrink: 0, transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)" }} />
       <span style={{ padding: "0 8px", fontFamily: "'Red Hat Text',sans-serif",
-        fontWeight: 400, fontSize: 14, lineHeight: "20px", letterSpacing: "0.02px",
+        fontWeight: 400, fontSize: "var(--semantic-type-font-size-s)", lineHeight: "var(--semantic-type-line-height-s-single)", letterSpacing: "0.02px",
         color, transition: "color var(--motion-duration-3) var(--motion-easing-standard)", flex: 1 }}>
         {item.label}
       </span>
@@ -442,8 +442,8 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
           overflow: "hidden",
           transition: "max-width var(--motion-duration-5) var(--motion-easing-standard), opacity var(--motion-duration-3) var(--motion-easing-standard)",
           pointerEvents: isSidebarCollapsed ? "none" : "auto" }}>
-          <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500, fontSize: 14,
-            lineHeight: "20px", letterSpacing: "0.3px", color: labelColor,
+          <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 500, fontSize: "var(--semantic-type-font-size-s)",
+            lineHeight: "var(--semantic-type-line-height-s-single)", letterSpacing: "var(--semantic-type-letter-spacing-spacious)", color: labelColor,
             transition: "color var(--motion-duration-3) var(--motion-easing-standard)", whiteSpace: "nowrap" }}>
             Collapse
           </span>
@@ -521,10 +521,10 @@ export function NavHeader({ isSidebarCollapsed, onToggle, collapseIcon, expandIc
 export function NavSectionLabel({ label }) {
   return (
     <div style={{ display: "flex", alignItems: "center", height: 40, width: "100%",
-      paddingLeft: 4, paddingRight: 4, paddingTop: 8, paddingBottom: 8,
+      paddingLeft: "var(--semantic-layout-units-padding-xxxtight)", paddingRight: "var(--semantic-layout-units-padding-xxxtight)", paddingTop: "var(--semantic-layout-units-padding-xtight)", paddingBottom: "var(--semantic-layout-units-padding-xtight)",
       flexShrink: 0 }}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 600,
-        fontSize: 11, lineHeight: "16px", letterSpacing: "0.6px",
+        fontSize: "var(--semantic-type-font-size-xxs)", lineHeight: "16px", letterSpacing: "var(--semantic-type-letter-spacing-extraspacious)",
         textTransform: "uppercase", color: T.text.secondarySubtle,
         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
         {label}
@@ -569,7 +569,7 @@ export function ListItem({ item, isActive, onClick }) {
       </div>
       <div style={{ flex: 1, minWidth: 0, paddingLeft: L.textPad, paddingRight: L.rowPadH }}>
         <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
-          fontSize: 12, lineHeight: "18px", letterSpacing: "0.6px", color,
+          fontSize: "var(--semantic-type-font-size-xs)", lineHeight: "18px", letterSpacing: "var(--semantic-type-letter-spacing-extraspacious)", color,
           margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
           transition: "color var(--motion-duration-3) var(--motion-easing-standard)" }}>
           {item.label}
@@ -585,7 +585,7 @@ export function ListItem({ item, isActive, onClick }) {
 // link lists (Recent Content, Pinned, Bookmarks). Only shown in expanded sidebar.
 export function SideNavListSection({ label, items, activeId, onNavigate }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 6, width: "100%", flexShrink: 0 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--semantic-layout-units-gap-xtight)", width: "100%", flexShrink: 0 }}>
       <NavSectionLabel label={label} />
       <div style={{ display: "flex", flexDirection: "column" }}>
         {items.map(item => (

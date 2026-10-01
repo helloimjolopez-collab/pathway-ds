@@ -168,9 +168,9 @@ const TYPE_S = {
   // --semantic-type-desktop-label-button-s-*
   fontFamily: "'Red Hat Text', sans-serif",
   fontWeight: 500,
-  fontSize: 14,
-  lineHeight: "20px",
-  letterSpacing: "0.3px",
+  fontSize: "var(--semantic-type-font-size-s)",
+  lineHeight: "var(--semantic-type-line-height-s-single)",
+  letterSpacing: "var(--semantic-type-letter-spacing-spacious)",
   WebkitFontSmoothing: "antialiased",
   MozOsxFontSmoothing: "grayscale",
   textAlign: "left",
@@ -289,8 +289,8 @@ export function OrgSwitcher({
           opacity: disabled ? 0.5 : 1,
           cursor: disabled ? "not-allowed" : "pointer",
           // Figma: Container.Main — pl-12px pr-6px py-4px (Padding/Medium, XTight, XXTight)
-          paddingLeft:   12,
-          paddingRight:  6,
+          paddingLeft: "var(--semantic-layout-units-padding-tight)",
+          paddingRight: "var(--semantic-layout-units-padding-xxtight)",
           paddingTop:    T.pXxtight,
           paddingBottom: T.pXxtight,
           // Desktop: 2px gap between RowStart and RowEnd. Mobile: no gap.
@@ -365,7 +365,7 @@ export function OrgSwitcher({
                   <div style={{
                     display: "flex", alignItems: "center", height: "100%",
                     maxWidth: 78, flexShrink: 0, minWidth: 0,
-                    paddingLeft: 6,
+                    paddingLeft: "var(--semantic-layout-units-padding-xxtight)",
                   }}>
                     <p style={{
                       ...TYPE_S,
@@ -555,17 +555,17 @@ export function OrgSwitcherPanel({
       aria-label="Switch organisation"
       style={{
         width: 360, boxSizing: "border-box", background: PANEL_T.bg,
-        borderRadius: 8, boxShadow: "var(--elevation-lift)",
-        padding: "18px 18px 24px", display: "flex", flexDirection: "column", gap: 12,
+        borderRadius: "var(--semantic-layout-units-cornerradius-base)", boxShadow: "var(--elevation-lift)",
+        padding: "18px 18px 24px", display: "flex", flexDirection: "column", gap: "var(--semantic-layout-units-gap-medium)",
         fontFamily: "'Red Hat Text', sans-serif", ...style,
       }}
     >
-      <div style={{ padding: "4px 10px", fontSize: 14, fontWeight: 600, lineHeight: "20px", color: PANEL_T.header }}>
+      <div style={{ padding: "4px 10px", fontSize: "var(--semantic-type-font-size-s)", fontWeight: 600, lineHeight: "var(--semantic-type-line-height-s-single)", color: PANEL_T.header }}>
         My Organizations
       </div>
       {/* Search */}
       <div style={{
-        display: "flex", alignItems: "center", gap: 8, padding: 8, borderRadius: 8,
+        display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)", padding: "var(--semantic-layout-units-padding-xtight)", borderRadius: "var(--semantic-layout-units-cornerradius-base)",
         border: `1px solid ${PANEL_T.border}`,
       }}>
         <Icon name="search" size={20} style={{ color: PANEL_T.icon }} />
@@ -578,12 +578,12 @@ export function OrgSwitcherPanel({
           onKeyDown={(e) => { if (e.key === "Enter" && onSearch) onSearch(query); }}
           style={{
             flex: 1, minWidth: 0, border: "none", outline: "none", background: "transparent",
-            fontFamily: "inherit", fontSize: 14, lineHeight: "20px", color: PANEL_T.name,
+            fontFamily: "inherit", fontSize: "var(--semantic-type-font-size-s)", lineHeight: "var(--semantic-type-line-height-s-single)", color: PANEL_T.name,
           }}
         />
       </div>
       {/* Org list */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 2, maxHeight: 320, overflowY: "auto", overflowX: "hidden" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--semantic-layout-units-gap-xxxtight)", maxHeight: 320, overflowY: "auto", overflowX: "hidden" }}>
         {orgs.map((o) => (
           <OrgRow key={o.id} org={o} active={o.id === activeOrgId} onSelect={onSelect} />
         ))}

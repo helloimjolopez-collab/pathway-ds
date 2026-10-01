@@ -36,7 +36,6 @@ export const T = {
   iconPillHover:   "var(--semantic-color-fill-action-secondary-hover)",
   iconPillPressed: "var(--semantic-color-fill-action-secondary-pressed)",
   badgeFill:       "var(--semantic-color-fill-action-primary-strong-rest)",
-  collapsedBtnFill:"var(--semantic-color-fill-action-primary-subtle-rest)",
   disabledBg:      "var(--primitive-color-cool-neutral-10)",      // token gap §17
 
   // Bar borders
@@ -89,10 +88,10 @@ export const L = {
 // ─── TYPOGRAPHY ────────────────────────────────────────────────────────────────
 const TYPE_INPUT = {
   fontFamily: "'Red Hat Text', sans-serif",
-  fontSize:    14,
+  fontSize: "var(--semantic-type-font-size-s)",
   fontWeight:  400,
-  lineHeight:  "20px",
-  letterSpacing: "0.3px",
+  lineHeight: "var(--semantic-type-line-height-s-single)",
+  letterSpacing: "var(--semantic-type-letter-spacing-spacious)",
   WebkitFontSmoothing: "antialiased",
   MozOsxFontSmoothing: "grayscale",
 };

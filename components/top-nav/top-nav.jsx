@@ -227,7 +227,7 @@ export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore 
 
   const btnStyle = (hov) => ({
     display: "flex", alignItems: "center", justifyContent: "center",
-    width: "100%", height: "100%", padding: 8, borderRadius: L.radius,
+    width: "100%", height: "100%", padding: "var(--semantic-layout-units-padding-xtight)", borderRadius: L.radius,
     background: hov ? T.controlHover : "transparent",
     border: "none", cursor: "pointer",
     transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
@@ -241,7 +241,7 @@ export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore 
           { hov: hov1, setHov: setHov1, label: "Alerts" },
         ].map(({ hov, setHov, label }, idx) => (
           <div key={idx} style={{ display: "flex", alignItems: "center", justifyContent: "center",
-            minHeight: L.touchTarget, minWidth: L.touchTarget, padding: 6 }}>
+            minHeight: L.touchTarget, minWidth: L.touchTarget, padding: "var(--semantic-layout-units-padding-xxtight)"}}>
             <button
               onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
               onClick={onNotifications} aria-label={label}
@@ -274,7 +274,7 @@ export function TopNavProfile({ user, open, onToggle, mobile = false }) {
   const [hov, setHov] = useState(false);
   return (
     <div style={{ position: "relative", display: "flex", alignItems: "center",
-      justifyContent: "center", minHeight: L.touchTarget, minWidth: L.touchTarget, padding: 2 }}>
+      justifyContent: "center", minHeight: L.touchTarget, minWidth: L.touchTarget, padding: "var(--semantic-layout-units-padding-tightest)"}}>
       <button
         onClick={onToggle}
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
@@ -284,7 +284,7 @@ export function TopNavProfile({ user, open, onToggle, mobile = false }) {
           display: "flex", alignItems: "center", justifyContent: "center",
           width: 44, height: 44,
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
-          border: "none", borderRadius: "50%", cursor: "pointer", padding: 6,
+          border: "none", borderRadius: "50%", cursor: "pointer", padding: "var(--semantic-layout-units-padding-xxtight)",
           transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
         }}
       >
@@ -293,7 +293,7 @@ export function TopNavProfile({ user, open, onToggle, mobile = false }) {
           background: T.avatarBg, display: "flex", alignItems: "center", justifyContent: "center",
           // Desktop/Tablet: Text/Body/Small/Semibold 14px/600
           // Mobile: Text/Supporting/Small/Semibold 11px/600 (Figma)
-          fontSize: mobile ? 11 : 14, fontWeight: 600, letterSpacing: "0.3px",
+          fontSize: mobile ? 11 : 14, fontWeight: 600, letterSpacing: "var(--semantic-type-letter-spacing-spacious)",
           color: T.avatarText, lineHeight: 1, flexShrink: 0, overflow: "hidden",
         }}>
           {user.avatarUrl
@@ -320,8 +320,8 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
   // Desktop/Tablet: Label/Button/S — 14px/500/20px
   // Mobile: Label/Button/XS — 12px/500/18px (Figma annotation)
   const labelStyle = mobile
-    ? { fontSize: 12, fontWeight: 500, lineHeight: "18px", letterSpacing: "0.3px" }
-    : { fontSize: 14, fontWeight: 500, lineHeight: "20px", letterSpacing: "0.3px" };
+    ? { fontSize: "var(--semantic-type-font-size-xs)", fontWeight: 500, lineHeight: "18px", letterSpacing: "var(--semantic-type-letter-spacing-spacious)"}
+    : { fontSize: "var(--semantic-type-font-size-s)", fontWeight: 500, lineHeight: "var(--semantic-type-line-height-s-single)", letterSpacing: "var(--semantic-type-letter-spacing-spacious)"};
 
   return (
     <div style={{ position: "relative", padding: mobile ? "4px 2px" : 4,
@@ -332,7 +332,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
         aria-haspopup="true" aria-expanded={open}
         aria-label={`Switch organisation — ${org.name}${org.campus ? ", "+org.campus : ""}`}
         style={{
-          display: "flex", alignItems: "center", gap: 4,
+          display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-xxtight)",
           minHeight: 36,
           // Figma OrgSwitcher Container.Main: pl-12 pr-6 py-4 (updated 2026-06-08 from uniform 4px)
           padding: mobile ? "4px 2px" : "4px 6px 4px 12px", borderRadius: L.radius,
@@ -345,11 +345,11 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
         {/* RowStart — org name label only. No avatar or logo displayed in the
             nav trigger per Figma (showOrgAvatar = false by default).
             If org.logoUrl is provided it is still used in the org panel below. */}
-        <div style={{ display: "flex", alignItems: "center", gap: 4,
+        <div style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-xxtight)",
           height: 20, padding: "0 2px" }}>
           {/* Logo avatar — only rendered when a URL is explicitly provided */}
           {hasLogo && (
-            <div style={{ width: L.orgAvatarSm, height: L.orgAvatarSm, padding: 2,
+            <div style={{ width: L.orgAvatarSm, height: L.orgAvatarSm, padding: "var(--semantic-layout-units-padding-tightest)",
               display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
               <div style={{
                 width: L.orgAvatarNav, height: L.orgAvatarNav, borderRadius: L.radiusSm,
@@ -372,7 +372,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
             style={{
               ...labelStyle,
               whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-              maxWidth: mobile ? 70 : 248, color: T.orgText, paddingRight: 4,
+              maxWidth: mobile ? 70 : 248, color: T.orgText, paddingRight: "var(--semantic-layout-units-padding-xxxtight)",
             }}
           >
             {label}
@@ -418,7 +418,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
 
   // Icon + label — identical in both variants.
   const inner = (
-    <div style={{ display: "flex", alignItems: "center", gap: 4,
+    <div style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-xxtight)",
       paddingRight: showLabel && !isStatic ? 2 : 0 }}>
       {/* The module mark. Mono on the bar: the chrome is brand blue, so the
           mark inherits currentColor and reads as near-white, which is what the
@@ -429,8 +429,8 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
       </div>
       {/* Label — desktop only */}
       {showLabel && (
-        <span style={{ fontSize: 14, fontWeight: 500, lineHeight: "20px",
-          letterSpacing: "0.3px", whiteSpace: "nowrap", overflow: "hidden",
+        <span style={{ fontSize: "var(--semantic-type-font-size-s)", fontWeight: 500, lineHeight: "var(--semantic-type-line-height-s-single)",
+          letterSpacing: "var(--semantic-type-letter-spacing-spacious)", whiteSpace: "nowrap", overflow: "hidden",
           textOverflow: "ellipsis", maxWidth: 160, color: T.monoBase }}>
           {active.label}
         </span>
@@ -447,7 +447,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           aria-label={`Current module — ${active.label}`}
           style={{
             display: "flex", alignItems: "center",
-            maxHeight: L.modInnerH, minHeight: L.modInnerH, padding: 4, borderRadius: L.radius,
+            maxHeight: L.modInnerH, minHeight: L.modInnerH, padding: "var(--semantic-layout-units-padding-xxxtight)", borderRadius: L.radius,
             background: "transparent", border: "1px solid transparent",
             color: T.monoBase, fontFamily: "inherit", cursor: "default",
           }}
@@ -468,7 +468,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
         aria-label={`Switch module — ${active.label}`}
         style={{
           display: "flex", alignItems: "center",
-          maxHeight: L.modInnerH, minHeight: L.modInnerH, padding: 4, borderRadius: L.radius,
+          maxHeight: L.modInnerH, minHeight: L.modInnerH, padding: "var(--semantic-layout-units-padding-xxxtight)", borderRadius: L.radius,
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
           border: `1px solid ${open ? T.orgStrokeHover : "transparent"}`,
           cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
@@ -601,7 +601,7 @@ export function TopNav({
       }}
     >
       {/* ── Slot.RowStart ── */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)", flexShrink: 0 }}>
 
         {/* Hamburger — mobile only */}
         {isMobile && (
@@ -635,7 +635,7 @@ export function TopNav({
               position: "absolute", top: "calc(100% + 4px)", left: L.navPadH,
               width: 243, background: T.panelBg,
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
-              boxShadow: T.panelShadow, padding: 4, zIndex: 300,
+              boxShadow: T.panelShadow, padding: "var(--semantic-layout-units-padding-xxxtight)", zIndex: 300,
               margin: 0, listStyle: "none",
               animation: "tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both",
             }}
@@ -688,7 +688,7 @@ export function TopNav({
       </div>
 
       {/* ── Slot.RowEnd ── */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)", flexShrink: 0 }}>
 
         {/* Collapsed search pill. Opening it triggers the full-bar takeover
             overlay below (never an inline expand), so it cannot overlap the
@@ -717,18 +717,18 @@ export function TopNav({
               position: "absolute", top: "calc(100% + 4px)", right: L.navPadH,
               width: 200, background: T.panelBg,
               border: `1px solid ${T.panelBorder}`, borderRadius: L.radius,
-              boxShadow: T.panelShadow, padding: 4, zIndex: 300,
+              boxShadow: T.panelShadow, padding: "var(--semantic-layout-units-padding-xxxtight)", zIndex: 300,
               animation: "tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both",
             }}
           >
             <div style={{ padding: "10px 12px 8px",
               borderBottom: `1px solid ${T.panelDivider}`, marginBottom: 4 }}>
               <div style={{ fontSize: 13, fontWeight: 600, color: T.itemText }}>{user.name}</div>
-              <div style={{ fontSize: 11, color: T.itemMeta, marginTop: 1 }}>{user.email}</div>
+              <div style={{ fontSize: "var(--semantic-type-font-size-xxs)", color: T.itemMeta, marginTop: 1 }}>{user.email}</div>
             </div>
             {["Profile settings", "Settings"].map(label => (
               <button key={label} role="menuitem"
-                style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 10px",
+                style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)", padding: "8px 10px",
                   borderRadius: 6, fontFamily: "inherit", fontSize: 13,
                   color: T.itemTextBase, background: "transparent",
                   border: "none", width: "100%", textAlign: "left", cursor: "pointer" }}>
@@ -736,7 +736,7 @@ export function TopNav({
               </button>
             ))}
             <button role="menuitem"
-              style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 10px",
+              style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)", padding: "8px 10px",
                 borderRadius: 6, fontFamily: "inherit", fontSize: 13,
                 color: T.signOut, background: "transparent",
                 border: "none", width: "100%", textAlign: "left", cursor: "pointer" }}>
@@ -755,7 +755,7 @@ export function TopNav({
           style={{
             position: "absolute", inset: 0, zIndex: 200,
             background: `var(--semantic-color-fill-surface-chrome, ${T.navBg})`,
-            display: "flex", alignItems: "center", gap: 8,
+            display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)",
             padding: `0 ${L.navPadH}`,
           }}
         >
