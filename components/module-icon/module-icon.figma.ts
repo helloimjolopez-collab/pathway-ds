@@ -35,15 +35,22 @@ const color = figma.selectedInstance.getEnum("Color", {
   Mono: "mono",
 })
 
-// Style=Rippled is NOT mapped, deliberately.
+// Figma's Style axis maps onto the prop `treatment`, NOT `style`.
 //
-// Rippled is a second, genuinely different artwork set, not a modifier: 7 to 10
-// paths per module against Base's 1 to 8, and it exists in Two Color and Mono
-// only. module-icon.jsx implements Style=Base, so a Rippled instance yields
-// undefined here, renderProp omits the prop, and the snippet falls back to the
-// Base artwork rather than naming a variant the code does not have. Tracked as
-// a gap in the manifest.
+// `style` is already the CSS style object on every React component and cannot
+// be taken, so the component renames the axis rather than shadowing a DOM prop.
+// Both treatments now have artwork: Base is 1 to 8 paths per module, Rippled is
+// 1 to 10, and they are genuinely different geometry rather than a modifier.
 //
+// Rippled exists in Two Color and Mono only, with no One Color. Asking the
+// component for rippled plus one-color gets Two Color back rather than a flat
+// Rippled the design does not define, so no Figma instance can produce a
+// snippet the component would render differently.
+const treatment = figma.selectedInstance.getEnum("Style", {
+  Base: "base",
+  Rippled: "rippled",
+})
+
 // SIZE: the canvas moved from 24x24 to 16x16 on 2026-10-01 and every path
 // coordinate is re-exported, not rescaled. The default size follows the canvas,
 // so the snippet no longer passes size at all; a consumer who wants the old
@@ -54,5 +61,8 @@ export default {
   example: figma.code`<ModuleIcon${figma.helpers.react.renderProp(
     "module",
     module_,
-  )}${figma.helpers.react.renderProp("color", color)}/>`,
+  )}${figma.helpers.react.renderProp(
+    "color",
+    color,
+  )}${figma.helpers.react.renderProp("treatment", treatment)}/>`,
 }

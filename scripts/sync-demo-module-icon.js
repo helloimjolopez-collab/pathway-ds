@@ -65,7 +65,21 @@ const modulesList = (() => {
 })();
 const viewbox = /export const VIEWBOX = (\d+);/.exec(src)?.[1];
 if (!viewbox) throw new Error("VIEWBOX not found");
-const grad = /const EQUIP_GRADIENT = (\{[^}]*\});/.exec(src)?.[1];
+// EQUIP_GRADIENT is now nested per treatment, so the brace matcher is needed.
+const grad = (() => {
+  const at = src.indexOf("const EQUIP_GRADIENT = {");
+  if (at < 0) throw new Error("EQUIP_GRADIENT not found");
+  const open = src.indexOf("{", at);
+  let depth = 0;
+  for (let i = open; i < src.length; i++) {
+    if (src[i] === "{") depth++;
+    else if (src[i] === "}") {
+      depth--;
+      if (depth === 0) return src.slice(open, i + 1);
+    }
+  }
+  throw new Error("unbalanced braces in EQUIP_GRADIENT");
+})();
 if (!grad) throw new Error("EQUIP_GRADIENT not found");
 
 // The demo copy is the same logic as the module, written against React from the
@@ -86,14 +100,17 @@ function moduleFill(module, role, color, gradId) {
   return "var(--module-" + module + "-" + key + ", var(--module-" + module + "-base))";
 }
 
-function ModuleIcon({ module, size = VIEWBOX, color = "two-color", title, style, ...rest }) {
+function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "base", title, style, ...rest }) {
   const uid = React.useId().replace(/[^a-zA-Z0-9_-]/g, "");
   const gradId = "pw-equip-" + uid;
-  const paths = ART[module];
+  const set = ART[treatment] || ART.base;
+  const paths = set[module];
   if (!paths) return null;
-  const resolved = color === "full" ? "two-color" : color;
+  let resolved = color === "full" ? "two-color" : color;
+  if (treatment === "rippled" && resolved === "one-color") resolved = "two-color";
   const needsGradient = resolved !== "mono" && paths.some(([role]) => role === "g");
   const vars = resolved === "mono" ? {} : MODULE_IDENTITY;
+  const grad = EQUIP_GRADIENT[treatment] || EQUIP_GRADIENT.base;
   return (
     <svg width={size} height={size} viewBox={"0 0 " + VIEWBOX + " " + VIEWBOX}
       fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -106,8 +123,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", title, style,
       {needsGradient && (
         <defs>
           <linearGradient id={gradId}
-            x1={EQUIP_GRADIENT.x1} y1={EQUIP_GRADIENT.y1}
-            x2={EQUIP_GRADIENT.x2} y2={EQUIP_GRADIENT.y2}
+            x1={grad.x1} y1={grad.y1} x2={grad.x2} y2={grad.y2}
             gradientUnits="userSpaceOnUse">
             <stop stopColor="var(--module-equip-from)" />
             <stop offset="1" stopColor="var(--module-equip-to)" />
@@ -153,9 +169,10 @@ for (const target of TARGETS) {
 }
 // Counted by scanning the literal rather than JSON.parse: the lifted source is
 // JavaScript with trailing commas, which is not valid JSON.
-const moduleCount = (art.match(/^\s{2}"[a-z-]+": \[/gm) || []).length;
-const pathCount = (art.match(/^\s{4}\["[bsg]",/gm) || []).length;
+const treatments = (art.match(/^\s{2}[a-z]+: \{/gm) || []).length;
+const moduleCount = (art.match(/^\s{4}"[a-z-]+": \[/gm) || []).length;
+const pathCount = (art.match(/^\s{6}\["[bsg]",/gm) || []).length;
 console.log(
   `module-icon: ${written} demos regenerated from ${SRC} ` +
-    `(viewBox ${viewbox}, ${moduleCount} modules, ${pathCount} paths).`,
+    `(viewBox ${viewbox}, ${treatments} treatments, ${moduleCount} module entries, ${pathCount} paths).`,
 );

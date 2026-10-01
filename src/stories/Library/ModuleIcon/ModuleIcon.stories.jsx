@@ -1,5 +1,5 @@
 import React from "react";
-import { ModuleIcon, MODULES, MODULE_LABELS, MODULE_IDENTITY, COLORS, VIEWBOX } from "../../../../components/module-icon/module-icon.jsx";
+import { ModuleIcon, MODULES, MODULE_LABELS, MODULE_IDENTITY, COLORS, TREATMENTS, VIEWBOX } from "../../../../components/module-icon/module-icon.jsx";
 
 /**
  * Module.Icon — the twelve Amplify module marks.
@@ -49,6 +49,16 @@ export default {
       control: "inline-radio",
       options: COLORS,
     },
+    treatment: {
+      name: "Treatment",
+      description:
+        "Figma's Style axis. Base is the mark alone; Rippled sets it inside concentric arcs and is " +
+        "genuinely different geometry, not a modifier. The prop is not called `style` because that " +
+        "is already the CSS style object. Rippled has no One Color in Figma, so asking for both " +
+        "returns Two Color.",
+      control: "inline-radio",
+      options: TREATMENTS,
+    },
     title: {
       name: "Accessible name",
       description:
@@ -56,7 +66,7 @@ export default {
       control: "text",
     },
   },
-  args: { module: "people", size: 48, color: "two-color", title: "" },
+  args: { module: "people", size: 48, color: "two-color", treatment: "base", title: "" },
 };
 
 const CARD = {
@@ -142,6 +152,29 @@ export const MonoOnAnySurface = () => (
   </div>
 );
 MonoOnAnySurface.storyName = "Mono follows currentColor";
+
+export const RippledTreatment = () => (
+  <div style={GRID}>
+    {MODULES.map((m) => (
+      <div key={m} style={CARD}>
+        <ModuleIcon module={m} size={40} treatment="rippled" />
+        <span style={LABEL}>{MODULE_LABELS[m]}</span>
+      </div>
+    ))}
+  </div>
+);
+RippledTreatment.parameters = {
+  docs: {
+    description: {
+      story:
+        "Figma's Style=Rippled. The mark sits inside concentric arcs radiating out from it, so it " +
+        "is its own artwork rather than Base with something added: 66 paths across the twelve " +
+        "modules against Base's 38. Home is the one module where the two treatments are identical, " +
+        "because its mark already fills the canvas. Equip's gradient runs on different coordinates " +
+        "here than in Base, since the Rippled artwork reaches further across the frame.",
+    },
+  },
+};
 
 export const Sizes = () => (
   <div style={{ padding: 24, display: "flex", alignItems: "flex-end", gap: 12 }}>
