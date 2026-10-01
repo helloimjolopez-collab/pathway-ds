@@ -1138,7 +1138,8 @@
           "page": "40009415:21911"
         }
       },
-      "figmaNote": "The component set carries three Size variants (Glance, Detail, Explore). Full is a separate Widget.Focus frame, not a variant. The NewCo section is a mirror and is read-only."
+      "figmaNote": "The component set carries three Size variants (Glance, Detail, Explore). Full is a separate Widget.Focus FRAME (40010500:6815), not a variant, so no Figma instance can emit size=\"full\"; a consumer picks it explicitly. The NewCo section is a mirror and is read-only.",
+      "codeConnect": "components/widget/widget.figma.ts"
     },
     "dashboard": {
       "displayName": "Dashboard",
@@ -1167,7 +1168,9 @@
           "addAndManageFlowsV2": "40016303:38002"
         }
       },
-      "figmaNote": "The organism page is 'Dashboards'. The add-widget and manage flows live on the templated-flow page 'Dashboards: Add Widgets, Edit Dashboards', section 'Add Widget & Manage Flows v2'."
+      "figmaNote": "The organism page is 'Dashboards'. The add-widget and manage flows live on the templated-flow page 'Dashboards: Add Widgets, Edit Dashboards', section 'Add Widget & Manage Flows v2'.",
+      "codeConnect": null,
+      "codeConnectNote": "NOT code connected, and cannot be. The 'Dashboards' organism page is screen frames and the templated-flow page is spec panels and annotated deep-dives; neither contains a COMPONENT or COMPONENT_SET, so there is no node to map. Code Connect binds code to a component, not to a screen. If the dashboard shell is ever built as a Figma component, map it then."
     },
     "page-template": {
       "displayName": "PageTemplate",
