@@ -1356,6 +1356,54 @@
       "figmaNote": "The page carries FOUR older 63-variant Badge sets that still report variant conflicts, alongside the clean 96-variant sets, two per brand. The node id is the only thing that picks the right one; this maps the clean Amplify set.",
       "codeConnect": "components/badge/badge.figma.ts",
       "figmaDefect": "Style=Naked is not systematic in Figma and the component deliberately does NOT copy it. Across its eight variants: a FILL on five of eight (Attention, Negative, Info, Accent 2, Accent 3), which contradicts the name; a BORDER on three of eight (Neutral, Severe, Positive); and four different text colours, so five of the eight lose their status colour entirely. Neutral uses foreground-static-neutral-bold, Severe/Negative/Info/Accent 2 use neutral-base, Positive uses neutral-strong, and only Attention and Accent 3 use their own on-subtle. Accent 3 also binds the PRIMITIVE Mauve/25 directly instead of the semantic fill-static-accent-mauve-subtle. By name, and by the Button precedent where Naked is the quietest style, Naked means no fill and no border carrying only the status foreground, and that is what renders for all eight. The eight real bindings are shown side by side with the rendered result in the NakedDivergesFromFigma story so the gap is checkable. Needs a fix in Figma."
+    },
+    "radio": {
+      "displayName": "Radio",
+      "description": "A radio option and the group it belongs in. Checked and error are booleans; state is derived from interaction.",
+      "module": "components/radio/radio.jsx",
+      "moduleNote": "RadioGroup ships WITH Radio, because a radio is never alone: a lone radio cannot be unselected by the user, has no arrow-key behaviour, and has nothing for its label to describe. The group owns the name, the value, roving tabindex (one tab stop for the whole group, skipping disabled options) and arrow-key navigation. Figma's State axis is a drawing convenience and is NOT a prop: hover, focus and pressed are things the browser already knows, so they are derived, and forceState exists for the Storybook matrix only. Figma's four-value Type axis collapses into two booleans, checked and error, because Selected and Error Selected are the same selection in different validity. Geometry from the variants: ring 20 at Base and 22 at Large, dot 10 shown only when checked, hover halo 42 painted only on hover and focus, hit area 44 which is the AA touch target. The halo is what makes a 20px ring meet a 44px target without the ring growing.",
+      "exports": [
+        "Radio",
+        "RadioGroup",
+        "RadioKeyframes",
+        "SIZES",
+        "STATES",
+        "L"
+      ],
+      "spec": null,
+      "demo": null,
+      "demoNote": "No standalone demo: the stories cover all 20 Base combinations, both sizes, the disabled label, and a live keyboard-navigable group.",
+      "stories": "src/stories/Library/Radio/Radio.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40002974:83004",
+        "variantAxes": {
+          "Type": [
+            "Selected",
+            "Unselected",
+            "Error Selected",
+            "Error Unselected"
+          ],
+          "State": [
+            "Active",
+            "Hover",
+            "Focused",
+            "Pressed",
+            "Disabled"
+          ],
+          "Size": [
+            "Base",
+            "Large"
+          ]
+        },
+        "variants": 25,
+        "additionalNodes": {
+          "page": "9709:78973"
+        }
+      },
+      "figmaNote": "25 variants, not 40: the Base size is complete at 20, and Large has only 5. See figmaDefect.",
+      "codeConnect": "components/radio/radio.figma.ts",
+      "figmaDefect": "TWO defects, reported rather than copied. (1) Size=Large exists for Unselected ONLY: five variants out of a possible twenty, with no Large Selected and no Large Error at all, so a Large selected radio cannot be made in Figma. The component renders Large for every combination, scaling the ring from 20 to 22 and leaving the dot, halo and hit area as drawn, because a size that only works unselected is not a size. (2) The label NEVER dims when disabled: all twenty variants bind foreground-static-neutral-base, including the Disabled ones, so in Figma a disabled radio's only cue is its ring and dot. The component dims the label to foreground-action-disabled, because a disabled control whose label looks enabled reads as a bug. Both shown in the Storybook stories with the explanation on screen."
     }
   }
 }
