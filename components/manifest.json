@@ -1209,6 +1209,44 @@
       "figmaNote": "The component set is called ScreenTemplate, not Page Template; Page Template is the page it sits on. Its third breakpoint variant value is literally 'Breakpoint3', not 'Mobile', and the Code Connect enum has to match that verbatim or the prop comes back undefined for every mobile instance. Worth renaming in Figma.",
       "codeConnect": "components/page-template/page-template.figma.ts",
       "tokenGap": "The Figma component binds six contextual gaps that are NOT in the Pathway Variables panel: Contextual/Page/Gap/Horizontal and /Vertical, Contextual/Page Heading/Gap/Vertical, Contextual/Section/Gap/Horizontal and /Vertical, and Contextual/ToolBar/Gap/Vertical. They resolve through a published library rather than locally, so they are absent from the export and the repo has no name for them. Each resolves to a semantic gap that does exist (16 is Gap/Base, 8 is Gap/Tight) and the module binds those. Either add the six to the panel's Contextual collection, or accept the semantic bindings and drop them from the Figma component."
+    },
+    "card": {
+      "displayName": "Card",
+      "description": "A surface holding a heading, a subtitle, a body and a supporting-content slot, optionally with a leading icon, and optionally a target.",
+      "module": "components/card/card.jsx",
+      "moduleNote": "Figma gives Card five States, which only make sense if the whole surface is a target, so onClick decides: with it the card renders as a button and carries hover, active and focus; without it the card is a plain div and those states are unreachable. A card that looks pressable and is not is worse than either. Figma's four content toggles (ShowHeading, Show CardSubtitle, ShowCardBody, ShowIconLeading, ShowCardSupportingContent) collapse into the presence of the content props themselves, because a boolean that only means \"is the next prop set\" is a Figma limitation rather than an API. States are distinguished by border width AND colour plus shadow depth, never by colour alone, and nothing translates on hover.",
+      "exports": [
+        "Card",
+        "CardKeyframes",
+        "STATES",
+        "T",
+        "L"
+      ],
+      "spec": null,
+      "specNote": "No spec in this repo. The Figma component set is the source.",
+      "demo": null,
+      "demoNote": "No standalone demo: the Storybook stories cover the state matrix, the container-versus-target distinction and the content combinations, which is everything the component does.",
+      "stories": "src/stories/Library/Card/Card.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40006608:49667",
+        "variants": {
+          "state": [
+            "Default",
+            "Hover",
+            "Focus",
+            "Active",
+            "Disabled"
+          ]
+        },
+        "additionalNodes": {
+          "newcoMirror": "40016724:103731",
+          "page": "40006524:26922"
+        }
+      },
+      "figmaNote": "Four identical Card sets exist across the page, two per brand section, so the section is the only thing that tells them apart. This maps the Amplify one.",
+      "codeConnect": "components/card/card.figma.ts",
+      "tokenGap": "Figma binds Elevation/Card/Rest, /Hover and /Pressed as effect variables, but the panel's Elevation collection holds only Lift, Overlay, Sheet and Widget, so those three resolve through a published library and never reach the export. Their COMPONENTS are in the panel though: shadow-card-rest|hover|pressed x/y/blur/spread plus fill-shadow-dropshadow. The shadows are composed from those exactly as the Figma effect composes them. Either add the three to the Elevation collection, or treat this composition as the contract."
     }
   }
 }
