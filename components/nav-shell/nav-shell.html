@@ -821,15 +821,30 @@ function ModuleIcon({ module, size = 24, color = "full", title, style, ...rest }
         return () => document.removeEventListener("keydown", h);
       }, [expanded]);
       if (expanded) return (
-        <div style={{ display:"flex", alignItems:"center", minHeight:48, minWidth:48 }}>
-          <div style={{ display:"flex", alignItems:"center", gap:8, height:36, padding:"0 8px",
-            background:"white", border:"1px solid #6e8bd4", borderRadius:9999, width:320 }}>
-            <button onClick={close} aria-label="Collapse search"
-              style={{ display:"flex", alignItems:"center", justifyContent:"center",
-                width:24, height:24, flexShrink:0, background:"transparent",
-                border:"none", cursor:"pointer", borderRadius:"50%", padding:0 }}>
-              <Icon name="search" size={16} fill={1} color="var(--semantic-color-stroke-action-field-pressed)" />
-            </button>
+        <div style={{ display:"flex", alignItems:"center", minHeight:48, minWidth:48,
+          gap:"var(--semantic-layout-units-gap-xtight)" }}>
+          {/* Exit, OUTSIDE the field and to its LEFT. It used to be the field's
+              own leading search glyph, which put a "throw the whole search away"
+              control inches from the trailing ✕ that only clears typed text.
+              A back arrow is a different shape on the other side. Matches
+              TopNav's takeover so there is one way out of search everywhere. */}
+          <button onClick={close} aria-label="Back"
+            style={{ display:"flex", alignItems:"center", justifyContent:"center",
+              width:"var(--semantic-layout-units-accessibility-touch-target-aa-width)",
+              height:"var(--semantic-layout-units-accessibility-touch-target-aa-height)",
+              flexShrink:0, background:"transparent", border:"none", cursor:"pointer",
+              borderRadius:"var(--semantic-layout-units-cornerradius-base)", padding:0,
+              color:"var(--semantic-color-foreground-static-neutral-mono)" }}>
+            <Icon name="arrow_back" size={20} fill={1} color="var(--semantic-color-foreground-static-neutral-mono)" />
+          </button>
+          <div style={{ display:"flex", alignItems:"center",
+            gap:"var(--semantic-layout-units-gap-xtight)",
+            height:"var(--semantic-layout-units-accessibility-touch-target-desktop-only-height)",
+            padding:"0 var(--semantic-layout-units-padding-xtight)",
+            background:"var(--semantic-color-fill-surface-elevated)",
+            border:"var(--contextual-layout-units-field-borderwidth) solid var(--semantic-color-stroke-action-primary-subtle-rest)",
+            borderRadius:"var(--contextual-layout-units-field-cornerradius)", width:320 }}>
+            <Icon name="search" size={16} fill={1} color="var(--semantic-color-stroke-action-field-pressed)" />
             <input ref={inputRef} value={query} onChange={e => setQuery(e.target.value)}
               placeholder="Search…" aria-label="Search"
               style={{ flex:1, background:"transparent", border:"none", outline:"none",

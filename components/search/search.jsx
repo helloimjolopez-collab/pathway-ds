@@ -70,6 +70,10 @@ export const T = {
 // ─── LAYOUT VALUES ─────────────────────────────────────────────────────────────
 export const L = {
   touchTarget:    48,
+  // The expanded bar's exit control. AA touch target rather than the nav's own
+  // 48, because it sits inside the bar's own run and 48 would crowd the field.
+  exitTarget:     "var(--semantic-layout-units-accessibility-touch-target-aa-width)",
+  exitGlyph:      20,
   pillHeight:     36,
   barRadius:      64,   // cornerradius.full
   iconBtnRadius:  12,   // cornerradius.focused-element
@@ -191,11 +195,14 @@ function IconPillButton({ iconName, iconSize = L.iconSize, iconColor, label, onC
  *   onClear        — () => void — fired when clear button clicked
  *   className      — additional class on root element
  *   id             — for label association
- *   searchIconAriaLabel — override the search icon button label (used by TopNavSearch
- *                         to make it "Collapse search")
+ *   searchIconAriaLabel — override the leading search icon button label
  *   onSearchIconClick  — when provided, REPLACES the default onSearch behaviour of the
- *                         leading search icon button. TopNavSearch passes `collapse` here
- *                         so tapping the icon inside the expanded bar collapses it.
+ *                         leading search icon button.
+ *                         DEPRECATED for the expand/collapse job: the expanded bar and
+ *                         TopNav's takeover both exit via a back arrow placed OUTSIDE
+ *                         the field, to the left, so the leading glyph is never a second
+ *                         exit sitting beside the trailing clear ✕. Still available for
+ *                         a genuinely different leading action.
  */
 export function SearchInput({
   value = "",
@@ -575,19 +582,42 @@ export function TopNavSearch({
             width: L.expandedWidth,
             display: "flex",
             alignItems: "center",
+            gap: "var(--semantic-layout-units-gap-xtight)",
             zIndex: 50,
             animation: "pwSearchExpand var(--motion-duration-4) var(--motion-easing-spring) both",
           }}
         >
-          <SearchInput
-            {...searchProps}
-            value={query}
-            onChange={setQuery}
-            inputRef={inputRef}
-            searchIconAriaLabel="Collapse search"
-            onSearchIconClick={collapse}
-            onSearch={(v) => searchProps.onSearch?.(v)}
-          />
+          {/* Exit, to the LEFT and OUTSIDE the field. It used to be the field's
+              own leading search glyph, which meant the expanded bar carried two
+              controls of similar weight inches apart: the leading glyph threw
+              the whole search away and the trailing ✕ threw only the typed text
+              away. A back arrow outside the field is a different shape, on the
+              other side, and reads as "go back" rather than "close". The
+              leading glyph is now a plain search mark with no action.
+              TopNav's full-bar takeover uses the identical affordance, so there
+              is one way out of search everywhere. */}
+          <button
+            type="button"
+            aria-label="Back"
+            onClick={collapse}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: L.exitTarget, height: L.exitTarget, flexShrink: 0,
+              background: "transparent", border: "none", cursor: "pointer",
+              borderRadius: L.iconBtnRadius, color: T.navIconFill,
+            }}
+          >
+            <Icon name="arrow_back" size={L.exitGlyph} color={T.navIconFill} />
+          </button>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <SearchInput
+              {...searchProps}
+              value={query}
+              onChange={setQuery}
+              inputRef={inputRef}
+              onSearch={(v) => searchProps.onSearch?.(v)}
+            />
+          </div>
         </div>
       )}
     </div>

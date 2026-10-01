@@ -112,6 +112,11 @@ export const L = {
   touchTarget: 48, modInnerH: 36,
   orgAvatarNav: 20, orgAvatarSm: 24, orgAvatarPanel: 32,
   searchPill: 32, avatarSize: 32,
+  // The search takeover's back arrow. AA touch target (44) rather than the
+  // nav's own 48, because it sits inside the bar's padding and 48 would crowd
+  // the field; the glyph is sized independently and centred in the target.
+  takeoverExit:      u("accessibility-touch-target-aa-width"),
+  takeoverExitGlyph: 24,
   radius:      u("cornerradius-base"),
   radiusSm:    u("cornerradius-small"),
 };
@@ -748,8 +753,15 @@ export function TopNav({
 
       {/* Full-width search takeover — shown whenever search is open, on every
           breakpoint. Fills the entire bar (absolute inset:0) so it can never
-          collide with the OrgSwitcher. Closed via the trailing ✕ button, the
-          leading search icon, or Escape. */}
+          collide with the OrgSwitcher.
+          Exit is a BACK ARROW to the LEFT of the field, outside it. It used to
+          be a ✕ to the right, which sat beside the field's own ✕ for clearing
+          typed text: two glyphs of the same shape, inches apart, one throwing
+          the query away and one throwing the whole search away. The arrow is a
+          different shape, on the opposite side, and says "go back" rather than
+          "close". The field's leading glyph is now a plain search mark with no
+          action, because giving it a second exit was the same confusion again.
+          Escape still closes. */}
       {useTakeover && (
         <div
           style={{
@@ -759,6 +771,21 @@ export function TopNav({
             padding: `0 ${L.navPadH}`,
           }}
         >
+          {/* Exit, to the LEFT and outside the field, so it can never be read
+              as the field's own clear control */}
+          <button
+            type="button"
+            aria-label="Back"
+            onClick={() => setSearchExpanded(false)}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: L.takeoverExit, height: L.takeoverExit, flexShrink: 0,
+              background: "transparent", border: "none", cursor: "pointer",
+              borderRadius: L.radius, color: T.monoBase,
+            }}
+          >
+            <Icon name="arrow_back" size={L.takeoverExitGlyph} style={{ color: T.monoBase }} />
+          </button>
           <div style={{ flex: 1, minWidth: 0 }}>
             <SearchInput
               value={searchQuery}
@@ -766,24 +793,8 @@ export function TopNav({
               onClear={() => setSearchQuery("")}
               inputRef={(el) => el && el.focus()}
               placeholder="Search…"
-              searchIconAriaLabel="Close search"
-              onSearchIconClick={() => setSearchExpanded(false)}
             />
           </div>
-          {/* Explicit close — obvious way out of the takeover */}
-          <button
-            type="button"
-            aria-label="Close search"
-            onClick={() => setSearchExpanded(false)}
-            style={{
-              display: "flex", alignItems: "center", justifyContent: "center",
-              width: 44, height: 44, flexShrink: 0,
-              background: "transparent", border: "none", cursor: "pointer",
-              borderRadius: L.radius, color: T.monoBase,
-            }}
-          >
-            <Icon name="close" size={24} style={{ color: T.monoBase }} />
-          </button>
         </div>
       )}
     </nav>

@@ -157,8 +157,12 @@ letting a control's label and its icon differ.
       <td><code>role="search"</code> on pill container, <code>role="searchbox"</code> on the <code>{'<input type="text">'}</code></td>
     </tr>
     <tr>
-      <td>Search icon button</td>
-      <td><code>aria-label="Search"</code> (or <code>"Collapse search"</code> when inside TopNavSearch)</td>
+      <td>Leading search icon</td>
+      <td><code>aria-label="Search"</code>. Inside an expanded TopNavSearch it carries no action at all, because the way out is the back arrow outside the field.</td>
+    </tr>
+    <tr>
+      <td>Exit button (expanded TopNavSearch)</td>
+      <td><code>aria-label="Back"</code> on an <code>arrow_back</code> button placed outside the field, to its left. Deliberately a different shape, on the opposite side from the trailing clear control.</td>
     </tr>
     <tr>
       <td>Clear button</td>

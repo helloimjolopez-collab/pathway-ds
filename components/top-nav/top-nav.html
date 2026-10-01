@@ -837,19 +837,37 @@ function TopNav({
       </div>
 
       {/* Full-width search takeover — shown whenever search is open, on every
-          breakpoint, so it can never overlap the OrgSwitcher or other controls. */}
+          breakpoint, so it can never overlap the OrgSwitcher or other controls.
+          Exit is a BACK ARROW to the LEFT of the field, outside it. It used to
+          be a close ✕ to the right, which sat beside the field's own ✕ for
+          clearing typed text: two glyphs of the same shape, inches apart, one
+          throwing the query away and one throwing the whole search away. The
+          arrow is a different shape, on the opposite side, and reads as "go
+          back". The field's leading glyph is now a plain search mark with no
+          action, because giving it a second exit was the same confusion. */}
       {useTakeover && (
         <div style={{ position:"absolute", inset:0, zIndex:200,
           background:"var(--semantic-color-fill-surface-chrome)",
-          display:"flex", alignItems:"center", padding:"0 16px" }}>
-          <div style={{ flex:1, minWidth:0, display:"flex", alignItems:"center", gap:8,
-            height:36, padding:"0 8px", background:"white", border:"1px solid #6e8bd4", borderRadius:9999 }}>
-            <button onClick={closeSearch} aria-label="Collapse search"
-              style={{ display:"flex", alignItems:"center", justifyContent:"center",
-                width:24, height:24, flexShrink:0, background:"transparent",
-                border:"none", cursor:"pointer", borderRadius:"50%", padding:0 }}>
-              <Icon name="search" size={16} style={{ color:"var(--semantic-color-foreground-static-neutral-subtle)" }} />
-            </button>
+          display:"flex", alignItems:"center",
+          gap:"var(--semantic-layout-units-gap-tight)",
+          padding:"0 var(--responsive-layout-topnav-padding-horizontal)" }}>
+          <button onClick={closeSearch} aria-label="Back"
+            style={{ display:"flex", alignItems:"center", justifyContent:"center",
+              width:"var(--semantic-layout-units-accessibility-touch-target-aa-width)",
+              height:"var(--semantic-layout-units-accessibility-touch-target-aa-height)",
+              flexShrink:0, background:"transparent", border:"none", cursor:"pointer",
+              borderRadius:"var(--semantic-layout-units-cornerradius-base)",
+              color:"var(--semantic-color-foreground-static-neutral-base)" }}>
+            <Icon name="arrow_back" size={24} style={{ color:"var(--semantic-color-foreground-static-neutral-base)" }} />
+          </button>
+          <div style={{ flex:1, minWidth:0, display:"flex", alignItems:"center",
+            gap:"var(--semantic-layout-units-gap-tight)",
+            height:"var(--semantic-layout-units-accessibility-touch-target-desktop-only-height)",
+            padding:"0 var(--semantic-layout-units-padding-xtight)",
+            background:"var(--semantic-color-fill-surface-elevated)",
+            border:"var(--contextual-layout-units-field-borderwidth) solid var(--semantic-color-stroke-action-primary-subtle-rest)",
+            borderRadius:"var(--contextual-layout-units-field-cornerradius)" }}>
+            <Icon name="search" size={16} style={{ color:"var(--semantic-color-foreground-static-neutral-subtle)" }} />
             <input ref={searchInputRef} className="tn-search__input" value={searchQuery}
               onChange={e => setSearchQ(e.target.value)} placeholder="Search…" aria-label="Search" />
             {searchQuery.length > 0 && (
@@ -860,13 +878,6 @@ function TopNav({
               </button>
             )}
           </div>
-          {/* Explicit close — obvious way out of the takeover */}
-          <button onClick={closeSearch} aria-label="Close search"
-            style={{ display:"flex", alignItems:"center", justifyContent:"center",
-              width:44, height:44, flexShrink:0, marginLeft:8, background:"transparent",
-              border:"none", cursor:"pointer", borderRadius:8, color:"var(--semantic-color-foreground-static-neutral-base)" }}>
-            <Icon name="close" size={24} style={{ color:"var(--semantic-color-foreground-static-neutral-base)" }} />
-          </button>
         </div>
       )}
     </nav>

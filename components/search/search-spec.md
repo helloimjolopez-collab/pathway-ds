@@ -242,7 +242,7 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 | `disabled` | `boolean` | `false` | Disables the component |
 | `error` | `boolean` | `false` | Error visual state |
 | `onSearch` | `(value: string) => void` | — | Called on Enter or search icon click (standalone use) |
-| `onSearchIconClick` | `() => void` | — | When provided, overrides the search icon button's onClick. TopNavSearch passes `collapse` here so tapping the icon inside the expanded bar collapses it instead of firing a search. |
+| `onSearchIconClick` | `() => void` | — | When provided, overrides the leading search icon button's onClick. **Deprecated for the expand/collapse job.** The expanded bar and TopNav's takeover now exit via a back arrow placed outside the field, to its left, so the leading glyph is never a second exit sitting beside the trailing clear control. Still available for a genuinely different leading action. |
 | `onFilterClick` | `() => void` | — | Called when filter button tapped |
 | `onChange` | `(value: string) => void` | — | Called on every keystroke |
 | `onClear` | `() => void` | — | Called when clear (X) button tapped |
@@ -475,7 +475,8 @@ SearchInput uses the [Searchbox pattern](https://www.w3.org/WAI/ARIA/apg/pattern
   </button>
   <!-- expanded state: -->
   <div class="topnav-search__bar" aria-hidden="true">  <!-- hidden when collapsed -->
-    <!-- SearchInput with search icon aria-label="Collapse search" -->
+    <button aria-label="Back"><!-- arrow_back, OUTSIDE the field, to its left --></button>
+    <!-- SearchInput; its leading glyph is a plain search mark with no action -->
   </div>
 </div>
 ```
@@ -598,7 +599,7 @@ deleted 2026-09-16. One doc per component, so there is no second file to drift.
 
 1. `SearchInput` is controlled — always supply `value` + `onChange`.
 2. `TopNavSearch` is specifically for TopNav. Do not use it as a generic expandable search.
-3. The search icon inside the expanded `TopNavSearch` bar **collapses** the bar (calls `collapse()`). Wire `onSearchIconClick={collapse}` on the `SearchInput`.
+3. The expanded `TopNavSearch` bar exits via a **back arrow outside the field, to its left** (`aria-label="Back"`, calls `collapse()`). Do **not** wire the exit onto the field's leading search glyph, and do not put a close control to the field's right: the field's own trailing clear control is already there, and two similar glyphs inches apart, one discarding the query and the other discarding the whole search, is the confusion this replaced. TopNav's full-bar takeover uses the identical affordance, so there is one way out of search everywhere.
 4. Escape key collapses `TopNavSearch`. This is already implemented in the component.
 5. The input uses `type="text" role="searchbox"` — not `type="search"` (which triggers browser native clear button).
 6. v1: Open state (dropdown results) is deferred. Use Radix `Combobox` for that.
