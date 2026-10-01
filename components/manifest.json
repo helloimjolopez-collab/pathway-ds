@@ -1247,6 +1247,62 @@
       "figmaNote": "Four identical Card sets exist across the page, two per brand section, so the section is the only thing that tells them apart. This maps the Amplify one.",
       "codeConnect": "components/card/card.figma.ts",
       "tokenGap": "Figma binds Elevation/Card/Rest, /Hover and /Pressed as effect variables, but the panel's Elevation collection holds only Lift, Overlay, Sheet and Widget, so those three resolve through a published library and never reach the export. Their COMPONENTS are in the panel though: shadow-card-rest|hover|pressed x/y/blur/spread plus fill-shadow-dropshadow. The shadows are composed from those exactly as the Figma effect composes them. Either add the three to the Elevation collection, or treat this composition as the contract."
+    },
+    "heading": {
+      "displayName": "Heading",
+      "description": "A heading. `level` picks the tag, `context`/`size`/`weight` pick the appearance, and the two are independent.",
+      "module": "components/heading/heading.jsx",
+      "moduleNote": "Figma has TWO orthogonal sets and this keeps them orthogonal. `Heading` (40004143:1824) carries Level H1 to H6 and all six render identically at 24/30 Bold, so Level is the semantic level and nothing more; `Heading.Style` (40004024:31157) carries the appearance. A page's h1 can be Section/Small if the layout wants that, and a visually huge heading can be an h2. Only 27 of the 72 Context x Size x Weight combinations exist, and they are listed EXPLICITLY rather than derived as a cross product, because the grid is sparse in both directions: Section defines XSmall in Medium and Semibold but not Bold, and XXS in Medium only, while Local defines Base in Bold and Semibold but Small in Semibold only. A cross product gives 31, four of which Figma does not draw. An undrawn size falls back to the nearest defined one in its context, and an undrawn weight falls back to one that context and size actually define. Figma's heading styles are TEXT STYLES, not variables, so they do not export and there is no composite token to bind; every value is composed from the panel's type pieces. Section/Base is 18/30, which is line-height-m-RELAXED rather than the single 24, and that is a real pairing because a section heading sits over body copy.",
+      "exports": [
+        "Heading",
+        "CONTEXTS",
+        "SIZES",
+        "WEIGHTS",
+        "LEVELS",
+        "CONTEXT_SIZES",
+        "CONTEXT_WEIGHTS",
+        "DEFINED_COMBINATIONS",
+        "weightsFor",
+        "TONES",
+        "T"
+      ],
+      "spec": null,
+      "demo": null,
+      "demoNote": "No standalone demo: the stories render every one of the 27 defined combinations, which is the whole component.",
+      "stories": "src/stories/Library/Heading/Heading.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40004024:31157",
+        "variantAxes": {
+          "Context": [
+            "Display",
+            "Page",
+            "Section",
+            "Local"
+          ],
+          "Size": [
+            "XL",
+            "L",
+            "Base",
+            "Small",
+            "XSmall",
+            "XXS"
+          ],
+          "Weight": [
+            "Bold",
+            "Semibold",
+            "Medium"
+          ]
+        },
+        "variants": 27,
+        "additionalNodes": {
+          "levelSet": "40004143:1824",
+          "page": "40004024:31044"
+        }
+      },
+      "figmaNote": "Heading.Style is the appearance set and is what Code Connect maps. The Level set is deliberately unmapped: a snippet from it could only say level={n} with no style, which is less useful than nothing.",
+      "codeConnect": "components/heading/heading.figma.ts",
+      "figmaDefect": "Three Heading.Style variants have their Weight label inverted against what they render: Section/XSmall/Weight=Medium renders SemiBold, Section/XSmall/Weight=Semibold renders Medium, and Section/XXS/Weight=Medium renders SemiBold. The component honours the LABEL, because weight=\"medium\" has to give 500, so those three render differently here than in Figma until the file is corrected. Needs a fix in Figma, not in code."
     }
   }
 }
