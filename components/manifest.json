@@ -1303,6 +1303,59 @@
       "figmaNote": "Heading.Style is the appearance set and is what Code Connect maps. The Level set is deliberately unmapped: a snippet from it could only say level={n} with no style, which is less useful than nothing.",
       "codeConnect": "components/heading/heading.figma.ts",
       "figmaDefect": "Three Heading.Style variants have their Weight label inverted against what they render: Section/XSmall/Weight=Medium renders SemiBold, Section/XSmall/Weight=Semibold renders Medium, and Section/XXS/Weight=Medium renders SemiBold. The component honours the LABEL, because weight=\"medium\" has to give 500, so those three render differently here than in Figma until the file is corrected. Needs a fix in Figma, not in code."
+    },
+    "badge": {
+      "displayName": "Badge",
+      "description": "A status pill. Eight statuses, three sizes, four styles, with optional leading and trailing icons.",
+      "module": "components/badge/badge.jsx",
+      "moduleNote": "Three of the four Figma styles are systematic: outline-fill, fill and outline each read the same three tokens per status (fill, stroke, foreground) and differ only in which of the three they apply, so STATUS is the whole colour story and `style` is a switch. The border is always declared and goes transparent when a style has none, so a badge does not change size between styles. Accent 2 is Jade and Accent 3 is Mauve, which is what those variants bind, and the props are named for the colour rather than the number because a number that only means \"the next accent we added\" tells a consumer nothing. There is no Accent 1: Info already resolves to the Amethyst ramp. Three statuses do not follow the obvious token pattern and the table records what they actually bind: Neutral uses the neutral BOLD stroke and foreground rather than an on-subtle, Attention uses the STRONG stroke rather than subtle, and the two accents use an unsuffixed stroke because that is the only one those families have. The prop is `badgeStyle`, not `style`, because `style` is the CSS style object.",
+      "exports": [
+        "Badge",
+        "STATUSES",
+        "SIZES",
+        "STYLES",
+        "STATUS",
+        "FIGMA_STATUS",
+        "L"
+      ],
+      "spec": null,
+      "demo": null,
+      "demoNote": "No standalone demo: the stories cover all 96 combinations plus the Naked divergence side by side.",
+      "stories": "src/stories/Library/Badge/Badge.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40011003:15892",
+        "variantAxes": {
+          "Status": [
+            "Neutral",
+            "Severe",
+            "Negative",
+            "Positive",
+            "Attention",
+            "Info",
+            "Accent 2",
+            "Accent 3"
+          ],
+          "Size": [
+            "Small",
+            "Medium",
+            "Large"
+          ],
+          "Style": [
+            "Outline & Fill",
+            "Fill",
+            "Outline",
+            "Naked"
+          ]
+        },
+        "variants": 96,
+        "additionalNodes": {
+          "page": "1673:3961"
+        }
+      },
+      "figmaNote": "The page carries FOUR older 63-variant Badge sets that still report variant conflicts, alongside the clean 96-variant sets, two per brand. The node id is the only thing that picks the right one; this maps the clean Amplify set.",
+      "codeConnect": "components/badge/badge.figma.ts",
+      "figmaDefect": "Style=Naked is not systematic in Figma and the component deliberately does NOT copy it. Across its eight variants: a FILL on five of eight (Attention, Negative, Info, Accent 2, Accent 3), which contradicts the name; a BORDER on three of eight (Neutral, Severe, Positive); and four different text colours, so five of the eight lose their status colour entirely. Neutral uses foreground-static-neutral-bold, Severe/Negative/Info/Accent 2 use neutral-base, Positive uses neutral-strong, and only Attention and Accent 3 use their own on-subtle. Accent 3 also binds the PRIMITIVE Mauve/25 directly instead of the semantic fill-static-accent-mauve-subtle. By name, and by the Button precedent where Naked is the quietest style, Naked means no fill and no border carrying only the status foreground, and that is what renders for all eight. The eight real bindings are shown side by side with the rendered result in the NakedDivergesFromFigma story so the gap is checkable. Needs a fix in Figma."
     }
   }
 }
