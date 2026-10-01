@@ -62,7 +62,7 @@ The NavShell never changes between pages. The SideNav items change per module. T
 
 ```
 NavShell
-├── TopNav (fixed, full width, 56px tall)
+├── TopNav (fixed, full width, 60px tall)
 │   ├── Slot.RowStart
 │   │   ├── [Hamburger button]       ← mobile only
 │   │   ├── ModuleSwitcher           ← always present
@@ -142,11 +142,11 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│ TopNav (position: fixed, height: 56px, z-index: 100)            │
+│ TopNav (position: fixed, height: 60px, z-index: 100)            │
 ├─────────┬───────────────────────────────────────────────────────┤
 │ SideNav │ Shell.Main (overflow-y: auto)                         │
 │ fixed   │  └── ScreenTemplate                                   │
-│ top:56px│       px:36, pt:12, pb:56, gap:24                     │
+│ top:60px│       px:36, pt:12, pb:56, gap:24                     │
 │         │                                                       │
 └─────────┴───────────────────────────────────────────────────────┘
 ```
@@ -182,8 +182,8 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 
 | Breakpoint | Width | SideNav state | Content margin | TopNav changes |
 |---|---|---|---|---|
-| **Desktop** | ≥1024px | Expanded (240px) or Collapsed (72px rail) — user controls | 240px or 72px | Full labels, 2× notification bells |
-| **Tablet** | 768–1023px | Always collapsed rail (72px, no labels) | 72px fixed | Module label hidden, bells → more_vert |
+| **Desktop** | ≥1024px | Expanded (240px) or Collapsed (84px rail) — user controls | 240px or 84px | Full labels, 2× notification bells |
+| **Tablet** | 768–1023px | Always collapsed rail (84px, no labels) | 84px fixed | Module label hidden, bells → more_vert |
 | **Mobile** | <768px | Hidden by default, overlay on hamburger tap | 0 | Hamburger visible, org label abbreviated, initials 11px |
 
 ### Desktop SideNav states
@@ -191,7 +191,7 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 The desktop SideNav has two user-controlled states:
 
 - **Expanded (240px):** labels + icons visible. Push layout — content area shifts right.
-- **Collapsed (72px):** icons only, labels hidden. Tooltip shown on hover. Push layout — content shifts to 72px.
+- **Collapsed (84px):** icons only, labels hidden. Tooltip shown on hover. Push layout — content shifts to 84px.
 
 The user can toggle between these by clicking the collapse button at the bottom of the SideNav, or the `left_panel_close` / `right_panel_close` icon in the nav header.
 
@@ -398,23 +398,23 @@ const SHELL_CONFIG = {
 
 ### 9.3 Layout rules — never break these
 
-1. The TopNav is always `position: fixed; top: 0; z-index: 100; height: 56px`. Never change height.
-2. The SideNav is always `position: fixed; top: 56px; left: 0; bottom: 0`. Never absolute.
+1. The TopNav is always `position: fixed; top: 0; z-index: 100; height: 60px`. Never change height.
+2. The SideNav is always `position: fixed; top: 60px; left: 0; bottom: 0`. Never absolute.
 3. The Shell.Main always has `margin-left` equal to the current SideNav width. This creates the push layout.
 4. At mobile (<768px), margin-left is 0 and the SideNav is an overlay (z-index > 50).
-5. The SideNav uses width transitions, never display:none. States: 240px (expanded), 72px (collapsed), 0px (mobile hidden).
+5. The SideNav uses width transitions, never display:none. States: 240px (expanded), 84px (collapsed), 0px (mobile hidden).
 
 ### 9.4 Breakpoint behaviour — exactly as designed
 
 **Desktop (≥1024px):**
-- SideNav: 240px expanded OR 72px collapsed (user toggles)
+- SideNav: 240px expanded OR 84px collapsed (user toggles)
 - TopNav: full module label, 2× notification bells, no hamburger
 - Content: margin-left matches SideNav width
 
 **Tablet (768–1023px):**
-- SideNav: always 72px rail (no labels, no collapse button action)
+- SideNav: always 84px rail (no labels, no collapse button action)
 - TopNav: module icon only (label hidden), bells → more_vert, no hamburger
-- Content: margin-left always 72px
+- Content: margin-left always 84px
 
 **Mobile (<768px):**
 - SideNav: 0px default, 240px overlay on hamburger tap
@@ -506,23 +506,23 @@ Detailed per-breakpoint layout values (pixel-accurate from Figma and implementat
 ### Desktop (≥1024px)
 
 ```
-┌── TopNav: 100vw × 56px, px:16 ──────────────────────────────────┐
+┌── TopNav: 100vw × 60px, px:16 ──────────────────────────────────┐
 │ [ModuleSwitcher + label] [OrgSwitcher]       [Search][Bell×2][Avatar] │
-├── SideNav: 240px × (100vh-56px) ───┬── Shell.Main: (100vw-240px) ┤
+├── SideNav: 240px × (100vh-60px) ───┬── Shell.Main: (100vw-240px) ┤
 │ NavHeader: 48px                    │ ScreenTemplate: px:36 pt:12  │
 │ NavMenu: flex-1, overflow-y: auto  │                              │
 │ NavItem: 48px min-height           │                              │
 │ NavFooter: 48px                    │                              │
 └────────────────────────────────────┴──────────────────────────────┘
-Collapsed rail: SideNav = 72px, Shell.Main = (100vw-72px)
+Collapsed rail: SideNav = 84px, Shell.Main = (100vw-84px)
 ```
 
 ### Tablet (768–1023px)
 
 ```
-┌── TopNav: 100vw × 56px ─────────────────────────────────────────┐
+┌── TopNav: 100vw × 60px ─────────────────────────────────────────┐
 │ [ModuleIcon only] [OrgSwitcher]              [Search][more_vert][Avatar] │
-├── SideNav: 72px × (100vh-56px) ────┬── Shell.Main: (100vw-72px) ┤
+├── SideNav: 84px × (100vh-60px) ────┬── Shell.Main: (100vw-84px) ┤
 │ Icons only, no labels              │ ScreenTemplate: px:36 pt:12 │
 └────────────────────────────────────┴─────────────────────────────┘
 ```
@@ -530,13 +530,13 @@ Collapsed rail: SideNav = 72px, Shell.Main = (100vw-72px)
 ### Mobile (<768px)
 
 ```
-┌── TopNav: 100vw × 56px ─────────────────────────────────────────┐
+┌── TopNav: 100vw × 60px ─────────────────────────────────────────┐
 │ [Hamburger][ModuleIcon][OrgSwitcher abbr]  [Search][more_vert][Avatar 11px] │
 ├── Shell.Main: 100vw ────────────────────────────────────────────┤
 │ ScreenTemplate: px:16 pt:8                                       │
 │ Card grid: 1 column                                              │
 └─────────────────────────────────────────────────────────────────┘
-SideNav: 240px overlay (z:50), positioned fixed top:56px, slides in from left
+SideNav: 240px overlay (z:50), positioned fixed top:60px, slides in from left
 Scrim: rgba(0,0,0,0.32), covers full content area below TopNav
 ```
 

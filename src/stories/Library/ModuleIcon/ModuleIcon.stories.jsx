@@ -1,11 +1,15 @@
 import React from "react";
-import { ModuleIcon, MODULES, MODULE_LABELS, MODULE_IDENTITY } from "../../../../components/module-icon/module-icon.jsx";
+import { ModuleIcon, MODULES, MODULE_LABELS, MODULE_IDENTITY, COLORS, VIEWBOX } from "../../../../components/module-icon/module-icon.jsx";
 
 /**
  * Module.Icon — the twelve Amplify module marks.
  *
  * Generated from the Figma component set Module.Icon (40006876:42134). One
- * geometry serves both colour variants; see the module header for why.
+ * geometry serves all three colour variants; see the module header for why.
+ *
+ * On 2026-10-01 the canvas moved from 24x24 to 16x16 and Figma's single `Full`
+ * colour became `Two Color` plus `One Color`, so the artwork is re-exported
+ * rather than rescaled. `full` still works as a deprecated alias.
  */
 export default {
   title: "Library/ModuleIcon",
@@ -14,9 +18,11 @@ export default {
     docs: {
       description: {
         component:
-          "The twelve module marks, from the Figma component set Module.Icon. Full resolves the " +
-          "module identity palette; Mono redefines those same custom properties to currentColor so " +
-          "the mark tracks its surrounding text. The identity colours are declared on the component " +
+          "The twelve module marks, from the Figma component set Module.Icon, on a 16 canvas. " +
+          "Two Color resolves the module's base and subtle identity colours; One Color draws the " +
+          "whole mark in the base colour, which Figma treats as its own variant rather than a tint; " +
+          "Mono resolves every path to currentColor so the mark tracks its surrounding text. " +
+          "The identity colours are declared on the component " +
           "rather than in the Variables panel, because module identity is not a semantic: nothing in " +
           "the system means \"people are blue\". It is a brand axis, like a logo, and it must not flip " +
           "with the theme.",
@@ -32,15 +38,16 @@ export default {
     },
     size: {
       name: "Size (px)",
-      description: "The artwork is a 24x24 viewBox and scales cleanly to any size.",
+      description: `The artwork is a ${VIEWBOX}x${VIEWBOX} viewBox and scales cleanly to any size. Was 24 until 2026-10-01.`,
       control: { type: "range", min: 12, max: 128, step: 2 },
     },
     color: {
       name: "Colour",
       description:
-        "Full uses the module identity palette. Mono inherits currentColor, for use on a coloured or dark surface.",
+        "Two Color uses the module's base and subtle identity colours. One Color draws the whole " +
+        "mark in the base colour. Mono inherits currentColor, for a coloured or dark surface.",
       control: "inline-radio",
-      options: ["full", "mono"],
+      options: COLORS,
     },
     title: {
       name: "Accessible name",
@@ -49,7 +56,7 @@ export default {
       control: "text",
     },
   },
-  args: { module: "people", size: 48, color: "full", title: "" },
+  args: { module: "people", size: 48, color: "two-color", title: "" },
 };
 
 const CARD = {
@@ -91,6 +98,29 @@ export const AllModules = () => (
   </div>
 );
 AllModules.storyName = "All twelve";
+
+export const OneColour = () => (
+  <div style={GRID}>
+    {MODULES.map((m) => (
+      <div key={m} style={CARD}>
+        <ModuleIcon module={m} size={40} color="one-color" />
+        <span style={LABEL}>{MODULE_LABELS[m]}</span>
+      </div>
+    ))}
+  </div>
+);
+OneColour.parameters = {
+  docs: {
+    description: {
+      story:
+        "Figma's One Color value, added 2026-10-01. The same geometry as Two Color, with every " +
+        "path taking the module's base colour instead of base plus subtle. It is its own variant, " +
+        "not a tint or an opacity: compare it against All Modules above and the internal shapes " +
+        "flatten into one silhouette. Equip stays a gradient here, because its artwork has no flat " +
+        "base colour to fall back to.",
+    },
+  },
+};
 
 export const MonoOnAnySurface = () => (
   <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 16 }}>
