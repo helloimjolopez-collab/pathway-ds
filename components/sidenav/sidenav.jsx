@@ -339,7 +339,7 @@ export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }
         padding: "6px 8px", whiteSpace: "nowrap", pointerEvents: "auto",
         animation: "popoverInCentered var(--motion-duration-3) var(--motion-easing-spring) forwards" }}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
-        fontSize: "var(--semantic-type-font-size-s)", lineHeight: "var(--semantic-type-line-height-s-single)", letterSpacing: "0.02px", color: T.text.secondary }}>
+        fontSize: "var(--semantic-type-font-size-s)", lineHeight: "var(--semantic-type-line-height-s-single)", letterSpacing: "var(--semantic-type-letter-spacing-wide)", color: T.text.secondary }}>
         {label}
       </span>
     </div>,
@@ -357,7 +357,7 @@ export function SectionLabel({ label }) {
     <div style={{ display: "flex", alignItems: "center", width: "100%",
       paddingLeft: "var(--semantic-layout-units-padding-tight)", paddingTop: "var(--semantic-layout-units-padding-xtight)", paddingBottom: "var(--semantic-layout-units-padding-xtight)"}}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 600,
-        fontSize: "var(--semantic-type-font-size-xxs)", lineHeight: "16px", letterSpacing: "var(--semantic-type-letter-spacing-extraspacious)",
+        fontSize: "var(--semantic-type-font-size-xxs)", lineHeight: "var(--semantic-type-line-height-xxs-single)", letterSpacing: "var(--semantic-type-letter-spacing-extraspacious)",
         color: T.text.secondary, textTransform: "uppercase",
         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
         {label}
@@ -405,7 +405,7 @@ export function PopoverRow({ item, onClick, activeId }) {
         backgroundColor: isActive ? T.indicator : "transparent",
         flexShrink: 0, transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)" }} />
       <span style={{ padding: "0 8px", fontFamily: "'Red Hat Text',sans-serif",
-        fontWeight: 400, fontSize: "var(--semantic-type-font-size-s)", lineHeight: "var(--semantic-type-line-height-s-single)", letterSpacing: "0.02px",
+        fontWeight: 400, fontSize: "var(--semantic-type-font-size-s)", lineHeight: "var(--semantic-type-line-height-s-single)", letterSpacing: "var(--semantic-type-letter-spacing-wide)",
         color, transition: "color var(--motion-duration-3) var(--motion-easing-standard)", flex: 1 }}>
         {item.label}
       </span>
@@ -524,7 +524,7 @@ export function NavSectionLabel({ label }) {
       paddingLeft: "var(--semantic-layout-units-padding-xxxtight)", paddingRight: "var(--semantic-layout-units-padding-xxxtight)", paddingTop: "var(--semantic-layout-units-padding-xtight)", paddingBottom: "var(--semantic-layout-units-padding-xtight)",
       flexShrink: 0 }}>
       <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 600,
-        fontSize: "var(--semantic-type-font-size-xxs)", lineHeight: "16px", letterSpacing: "var(--semantic-type-letter-spacing-extraspacious)",
+        fontSize: "var(--semantic-type-font-size-xxs)", lineHeight: "var(--semantic-type-line-height-xxs-single)", letterSpacing: "var(--semantic-type-letter-spacing-extraspacious)",
         textTransform: "uppercase", color: T.text.secondarySubtle,
         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
         {label}
@@ -569,7 +569,7 @@ export function ListItem({ item, isActive, onClick }) {
       </div>
       <div style={{ flex: 1, minWidth: 0, paddingLeft: L.textPad, paddingRight: L.rowPadH }}>
         <p style={{ fontFamily: "'Red Hat Text',sans-serif", fontWeight: 400,
-          fontSize: "var(--semantic-type-font-size-xs)", lineHeight: "18px", letterSpacing: "var(--semantic-type-letter-spacing-extraspacious)", color,
+          fontSize: "var(--semantic-type-font-size-xs)", lineHeight: "var(--semantic-type-line-height-xs-single)", letterSpacing: "var(--semantic-type-letter-spacing-extraspacious)", color,
           margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
           transition: "color var(--motion-duration-3) var(--motion-easing-standard)" }}>
           {item.label}

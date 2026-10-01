@@ -320,7 +320,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
   // Desktop/Tablet: Label/Button/S — 14px/500/20px
   // Mobile: Label/Button/XS — 12px/500/18px (Figma annotation)
   const labelStyle = mobile
-    ? { fontSize: "var(--semantic-type-font-size-xs)", fontWeight: 500, lineHeight: "18px", letterSpacing: "var(--semantic-type-letter-spacing-spacious)"}
+    ? { fontSize: "var(--semantic-type-font-size-xs)", fontWeight: 500, lineHeight: "var(--semantic-type-line-height-xs-single)", letterSpacing: "var(--semantic-type-letter-spacing-spacious)"}
     : { fontSize: "var(--semantic-type-font-size-s)", fontWeight: 500, lineHeight: "var(--semantic-type-line-height-s-single)", letterSpacing: "var(--semantic-type-letter-spacing-spacious)"};
 
   return (
@@ -645,10 +645,10 @@ export function TopNav({
                 <button
                   onClick={() => handleModuleSelect(m.id)}
                   style={{
-                    display: "flex", alignItems: "center", gap: 10,
-                    padding: "9px 10px", borderRadius: 6, width: "100%", textAlign: "left",
+                    display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-medium)",
+                    padding: "9px 10px", borderRadius: "var(--semantic-layout-units-cornerradius-base)", width: "100%", textAlign: "left",
                     color: m.id === currentModuleId ? T.itemText : T.itemTextBase,
-                    fontSize: 13, fontWeight: m.id === currentModuleId ? 500 : 400,
+                    fontSize: "var(--semantic-type-font-size-s)", fontWeight: m.id === currentModuleId ? 500 : 400,
                     background: m.id === currentModuleId ? T.activeItem : "transparent",
                     border: "none", fontFamily: "inherit", cursor: "pointer",
                   }}
@@ -723,13 +723,13 @@ export function TopNav({
           >
             <div style={{ padding: "10px 12px 8px",
               borderBottom: `1px solid ${T.panelDivider}`, marginBottom: 4 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: T.itemText }}>{user.name}</div>
+              <div style={{ fontSize: "var(--semantic-type-font-size-s)", fontWeight: 600, color: T.itemText }}>{user.name}</div>
               <div style={{ fontSize: "var(--semantic-type-font-size-xxs)", color: T.itemMeta, marginTop: 1 }}>{user.email}</div>
             </div>
             {["Profile settings", "Settings"].map(label => (
               <button key={label} role="menuitem"
                 style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)", padding: "8px 10px",
-                  borderRadius: 6, fontFamily: "inherit", fontSize: 13,
+                  borderRadius: "var(--semantic-layout-units-cornerradius-base)", fontFamily: "inherit", fontSize: "var(--semantic-type-font-size-s)",
                   color: T.itemTextBase, background: "transparent",
                   border: "none", width: "100%", textAlign: "left", cursor: "pointer" }}>
                 {label}
@@ -737,7 +737,7 @@ export function TopNav({
             ))}
             <button role="menuitem"
               style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)", padding: "8px 10px",
-                borderRadius: 6, fontFamily: "inherit", fontSize: 13,
+                borderRadius: "var(--semantic-layout-units-cornerradius-base)", fontFamily: "inherit", fontSize: "var(--semantic-type-font-size-s)",
                 color: T.signOut, background: "transparent",
                 border: "none", width: "100%", textAlign: "left", cursor: "pointer" }}>
               Sign out

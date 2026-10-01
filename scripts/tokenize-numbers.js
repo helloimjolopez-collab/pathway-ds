@@ -82,6 +82,31 @@ for (const [name, raw] of Object.entries(vars)) {
 }
 
 const SKIP_VALUES = new Set([0, 1, 100]);
+const ROUND = process.argv.includes("--round");
+/**
+ * Snap an off-scale value to the nearest rung of its own family.
+ *
+ * Only with --round, and only for families that ARE a scale. Ties round UP:
+ * rounding down tightens a layout and risks collisions, rounding up only ever
+ * adds air. fontSize 13 is exactly between 12 and 14 and becomes 14, which is
+ * also the system's body size.
+ *
+ * The panel is not touched. Jo's call: an off-scale value in a demo is not a
+ * reason to add a rung.
+ */
+function roundToScale(fam, v) {
+  const scale = Object.keys(byFamily[fam] || {}).map(Number).sort((a, b) => a - b);
+  if (!scale.length) return null;
+  let best = null;
+  for (const s of scale) {
+    const d = Math.abs(s - v);
+    if (!best || d < best.d - 1e-9 || (Math.abs(d - best.d) < 1e-9 && s > best.s)) best = { s, d };
+  }
+  // A value more than a third away from any rung is not a rounding error, it is
+  // a different value, and forcing it would be a visible change nobody asked for.
+  if (!best || best.d > Math.max(2, v * 0.34)) return null;
+  return best.s;
+}
 const EXTS = [".jsx", ".html", ".css", ".mdx"];
 function files(d, out = []) {
   for (const e of readdirSync(d)) {
@@ -142,7 +167,31 @@ for (const root of roots) {
         const v = parseFloat(sole[2]);
         if (SKIP_VALUES.has(v)) return whole;
         for (const f of fams) {
-          const hits = byFamily[f]?.[v];
+          let hits = byFamily[f]?.[v];
+          // A tight line-height at one size equals the single line-height one
+          // size down, so 14/16/18/30px each have two tokens. That is the scale
+          // working, not duplication. Resolve it with the FONT SIZE on the same
+          // element: at fontSize 14 (font-size-s), 20px is s-single.
+          if (hits && hits.length > 1 && prop === "lineHeight") {
+            // The font size may be a raw number OR already tokenised, since this
+            // script runs after itself. Read the step from either spelling.
+            let step = null;
+            const tokenised = /font-size-([a-z0-9]+)\)/.exec(line);
+            if (tokenised) {
+              step = tokenised[1];
+            } else {
+              const fs = /\bfont-?[Ss]ize\s*:\s*"?(\d+)/.exec(line);
+              if (fs) {
+                const sizeTok = Object.entries(byFamily["semantic-type-font-size-"] || {})
+                  .find(([val]) => Number(val) === Number(fs[1]));
+                if (sizeTok) step = sizeTok[1][0].replace("--semantic-type-font-size-", "");
+              }
+            }
+            if (step) {
+              const sized = hits.filter((h) => h.includes(`-line-height-${step}-`));
+              if (sized.length === 1) hits = sized;
+            }
+          }
           if (!hits) continue;
           if (hits.length > 1) {
             const k = `${prop} ${v} -> ${hits.join(" OR ")}`;
@@ -156,6 +205,19 @@ for (const root of roots) {
           // style object, where it must be a string.
           const q = term === ";" ? "" : '"';
           return `${rawProp}: ${q}var(${hits[0]})${q}${term}`;
+        }
+        if (ROUND) {
+          for (const f of fams) {
+            const r = roundToScale(f, v);
+            if (r === null) continue;
+            const hits = byFamily[f][r];
+            if (!hits || hits.length !== 1) continue;
+            changed++; fileChanged = true;
+            const k = `${prop.padEnd(14)} ${String(v).padEnd(5)} ROUNDED to ${r} -> ${hits[0]}`;
+            applied.set(k, (applied.get(k) || 0) + 1);
+            const q = term === ";" ? "" : '"';
+            return `${rawProp}: ${q}var(${hits[0]})${q}${term}`;
+          }
         }
         const k = `${prop} ${v}`;
         unmatched.set(k, (unmatched.get(k) || 0) + 1);
