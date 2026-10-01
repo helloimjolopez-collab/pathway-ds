@@ -835,7 +835,11 @@ export function Widget({
       style={{
         position: "relative",
         display: "flex", flexDirection: "column", minWidth: 0, overflow: "visible",
-        gridColumn: `span var(--pw-widget-cols-${size})`,
+        // Falls back to one track when the Widget is NOT inside a dashboard
+        // grid. The span properties are declared on .pw-dashboard-grid, not on
+        // :root, so a Widget dropped into a page section or any other grid asks
+        // for one track instead of three and tiles with its siblings.
+        gridColumn: `span var(--pw-widget-cols-${size}, 1)`,
         gridRow: `span ${grid.rows}`,
         background: flat ? T.flatSurface : T.cardSurface,
         border: `${manage ? L.borderManage : L.border} ${manage ? "dashed" : "solid"} ${manage ? T.borderManage : T.border}`,
@@ -944,14 +948,14 @@ export const WidgetKeyframes = () => (
   40%  { box-shadow: 0 0 0 3px ${T.focusRing}; }
   100% { box-shadow: var(--elevation-widget); }
 }
-:root {
+.pw-dashboard-grid {
   --pw-widget-cols-glance: ${SIZE_GRID.glance.cols[0]};
   --pw-widget-cols-explore: ${SIZE_GRID.explore.cols[0]};
   --pw-widget-cols-detail: ${SIZE_GRID.detail.cols[0]};
   --pw-widget-cols-full: ${SIZE_GRID.full.cols[0]};
 }
 @media (min-width: 768px) {
-  :root {
+  .pw-dashboard-grid {
     --pw-widget-cols-glance: ${SIZE_GRID.glance.cols[1]};
     --pw-widget-cols-explore: ${SIZE_GRID.explore.cols[1]};
     --pw-widget-cols-detail: ${SIZE_GRID.detail.cols[1]};
@@ -959,7 +963,7 @@ export const WidgetKeyframes = () => (
   }
 }
 @media (min-width: 1024px) {
-  :root {
+  .pw-dashboard-grid {
     --pw-widget-cols-glance: ${SIZE_GRID.glance.cols[2]};
     --pw-widget-cols-explore: ${SIZE_GRID.explore.cols[2]};
     --pw-widget-cols-detail: ${SIZE_GRID.detail.cols[2]};

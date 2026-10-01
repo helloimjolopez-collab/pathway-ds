@@ -1102,8 +1102,7 @@
       "specNote": "The authoritative spec is widget-container-spec.md in the working folder, not in this repo. Its sections 3.1, 4 and 8.3 predate the token families that now exist (warm surfaces, radius, spacing, motion, elevation, touch targets) and describe them as raw values; the implementation binds all of them. Its section 5.1 names four sizes Small/Wide/Tall/Large, which section 0 supersedes with Glance/Explore/Detail/Full.",
       "demo": "components/dashboard/dashboard.html",
       "demoNote": "Shares the dashboard demo, because a widget on its own cannot show the grid, the manage mode or the resize flow.",
-      "stories": null,
-      "storiesNote": "Not yet written.",
+      "stories": "src/stories/Library/Widget/Widget.stories.jsx",
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
         "nodeId": "40009622:39702",
@@ -1138,8 +1137,7 @@
       "spec": null,
       "specNote": "dashboard-shell-spec.md in the working folder, still marked DRAFT. Its four open questions are unresolved: the meaning of 'Reset to default' (implemented here as 'Discard changes', which is reading (a) only), whether a first save of an edited System dashboard should also offer to make it the default, what the real view-mode widget actions are besides Refresh, and what the unsaved-changes guard should do when switching dashboards (implemented here as: the switcher simply does not act while there are unsaved changes).",
       "demo": "components/dashboard/dashboard.html",
-      "stories": null,
-      "storiesNote": "Not yet written.",
+      "stories": "src/stories/Library/Dashboard/Dashboard.stories.jsx",
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
         "nodeId": "40009417:19915",
@@ -1149,6 +1147,44 @@
         }
       },
       "figmaNote": "The organism page is 'Dashboards'. The add-widget and manage flows live on the templated-flow page 'Dashboards: Add Widgets, Edit Dashboards', section 'Add Widget & Manage Flows v2'."
+    },
+    "page-template": {
+      "displayName": "PageTemplate",
+      "description": "The screen template every Amplify page is built on: the top-navigation region, the page-navigation region, and a responsive sheet holding the page heading, tabs, toolbar and sections.",
+      "module": "components/page-template/page-template.jsx",
+      "moduleNote": "Owns the regions, the sheet and the four page-level compositions that only ever appear inside a page (PageHeading, PageTabs, PageToolbar, PageSection). It does NOT own what goes in the slots: TopNav and SideNav are passed in, and Card, Input, FilterChip, Heading, Button and the Tabs atoms are separate library components that do not exist in this repo yet. The sheet is the one responsive piece: its padding and corner radius resolve through Responsive: Layout by media query, so there is no JS branch for them.",
+      "exports": [
+        "PageTemplate",
+        "PageHeading",
+        "PageTabs",
+        "PageToolbar",
+        "PageSection",
+        "PageTemplateKeyframes",
+        "BREAKPOINTS",
+        "T",
+        "L"
+      ],
+      "spec": null,
+      "specNote": "No spec in this repo. The Figma component set is the source.",
+      "demo": null,
+      "demoNote": "No standalone demo: the Storybook stories compose it with the real TopNav, SideNav and Widget, which a self-contained CDN page cannot do without duplicating all three.",
+      "stories": "src/stories/Library/PageTemplate/PageTemplate.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40009709:26016",
+        "variants": {
+          "desktop": "Breakpoint=Desktop",
+          "tablet": "Breakpoint=Tablet",
+          "mobile": "Breakpoint=Breakpoint3"
+        },
+        "additionalNodes": {
+          "page": "40006526:38830",
+          "pageSection": "40006528:39636"
+        }
+      },
+      "figmaNote": "The component set is called ScreenTemplate, not Page Template; Page Template is the page it sits on. Its third breakpoint variant value is literally 'Breakpoint3', not 'Mobile', and the Code Connect enum has to match that verbatim or the prop comes back undefined for every mobile instance. Worth renaming in Figma.",
+      "codeConnect": "components/page-template/page-template.figma.ts",
+      "tokenGap": "The Figma component binds six contextual gaps that are NOT in the Pathway Variables panel: Contextual/Page/Gap/Horizontal and /Vertical, Contextual/Page Heading/Gap/Vertical, Contextual/Section/Gap/Horizontal and /Vertical, and Contextual/ToolBar/Gap/Vertical. They resolve through a published library rather than locally, so they are absent from the export and the repo has no name for them. Each resolves to a semantic gap that does exist (16 is Gap/Base, 8 is Gap/Tight) and the module binds those. Either add the six to the panel's Contextual collection, or accept the semantic bindings and drop them from the Figma component."
     }
   }
 }
