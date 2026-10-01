@@ -3880,91 +3880,91 @@
             },
             "25": {
               "$type": "color",
-              "$value": "#eff4fc"
+              "$value": "#f1f3fd"
             },
             "50": {
               "$type": "color",
-              "$value": "#e5edfc"
+              "$value": "#e8ecfd"
             },
             "75": {
               "$type": "color",
-              "$value": "#dbe7fc"
+              "$value": "#dfe6fd"
             },
             "100": {
               "$type": "color",
-              "$value": "#cddfff"
+              "$value": "#d4ddfd"
             },
             "150": {
               "$type": "color",
-              "$value": "#b8d0fc"
+              "$value": "#c0cefd"
             },
             "200": {
               "$type": "color",
-              "$value": "#9ec0fd"
+              "$value": "#a9bdfd"
             },
             "250": {
               "$type": "color",
-              "$value": "#82adfd"
+              "$value": "#8dabfc"
             },
             "300": {
               "$type": "color",
-              "$value": "#6398fd"
+              "$value": "#6997fd"
             },
             "350": {
               "$type": "color",
-              "$value": "#508cff"
+              "$value": "#518cfd"
             },
             "400": {
               "$type": "color",
-              "$value": "#4571c9"
+              "$value": "#3b70d5"
             },
             "500": {
               "$type": "color",
-              "$value": "#35509e"
+              "$value": "#30519f"
             },
             "600": {
               "$type": "color",
-              "$value": "#2e4185"
+              "$value": "#274286"
             },
             "700": {
               "$type": "color",
-              "$value": "#27326d"
+              "$value": "#1e346d"
             },
             "800": {
               "$type": "color",
-              "$value": "#1a2249"
+              "$value": "#13224f"
             },
             "900": {
               "$type": "color",
-              "$value": "#091132"
+              "$value": "#081132"
             },
             "300 @ 16%": {
               "$type": "color",
-              "$value": "#6398fd29"
+              "$value": "#6997fd29"
             },
             "300 @ 24%": {
               "$type": "color",
-              "$value": "#6398fd3d"
+              "$value": "#6997fd3d"
             },
             "300 @ 36%": {
               "$type": "color",
-              "$value": "#6398fd5c"
+              "$value": "#6997fd5c"
             },
             "300 @ 4%": {
               "$type": "color",
-              "$value": "#6398fd0a"
+              "$value": "#6997fd0a"
             },
             "300 @ 50%": {
               "$type": "color",
-              "$value": "#6398fd80"
+              "$value": "#6997fd80"
             },
             "300 @ 70%": {
               "$type": "color",
-              "$value": "#6398fdb3"
+              "$value": "#6997fdb2"
             },
             "300 @ 8%": {
               "$type": "color",
-              "$value": "#6398fd14"
+              "$value": "#6997fd14"
             }
           },
           "Warm Neutral": {
@@ -7906,19 +7906,19 @@
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.600}"
+                      "$value": "{Seabreeze.600}"
                     },
                     "Pressed": {
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.700}"
+                      "$value": "{Seabreeze.700}"
                     },
                     "Rest": {
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.500}"
+                      "$value": "{Seabreeze.500}"
                     }
                   },
                   "Subtle": {
@@ -7926,19 +7926,19 @@
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.75}"
+                      "$value": "{Seabreeze.75}"
                     },
                     "Pressed": {
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.100}"
+                      "$value": "{Seabreeze.100}"
                     },
                     "Rest": {
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.50}"
+                      "$value": "{Seabreeze.50}"
                     }
                   }
                 },
@@ -8216,13 +8216,13 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.500}"
+                  "$value": "{Seabreeze.500}"
                 },
                 "Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.50}"
+                  "$value": "{Seabreeze.50}"
                 }
               },
               "Negative": {
@@ -8332,104 +8332,104 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.200}"
+                  "$value": "{Seabreeze.200}"
                 },
                 "11": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.175}"
+                  "$value": "{Seabreeze.150}"
                 },
                 "12": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.150}"
+                  "$value": "{Seabreeze.100}"
                 },
                 "13": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.125}"
+                  "$value": "{Seabreeze.75}"
                 },
                 "14": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.100}"
+                  "$value": "{Seabreeze.50}"
                 },
                 "15": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Midnight.100}"
+                  "$value": "{Seabreeze.25}"
                 },
                 "01": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.650}"
+                  "$value": "{Seabreeze.900}"
                 },
                 "02": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.600}"
+                  "$value": "{Seabreeze.800}"
                 },
                 "03": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.550}"
+                  "$value": "{Seabreeze.700}"
                 },
                 "04": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.500}"
+                  "$value": "{Seabreeze.600}"
                 },
                 "05": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.450}"
+                  "$value": "{Seabreeze.500}"
                 },
                 "06": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.400}"
+                  "$value": "{Seabreeze.400}"
                 },
                 "07": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.350}"
+                  "$value": "{Seabreeze.350}"
                 },
                 "08": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.300}"
+                  "$value": "{Seabreeze.300}"
                 },
                 "09": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.250}"
+                  "$value": "{Seabreeze.250}"
                 },
                 "Anchor": {
                   "End": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Midnight.100}"
+                    "$value": "{Seabreeze.25}"
                   },
                   "Start": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.650}"
+                    "$value": "{Seabreeze.900}"
                   }
                 }
               }
@@ -8524,19 +8524,19 @@
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.700}"
+                      "$value": "{Seabreeze.700}"
                     },
                     "Pressed": {
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.800}"
+                      "$value": "{Seabreeze.800}"
                     },
                     "Rest": {
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.600}"
+                      "$value": "{Seabreeze.600}"
                     }
                   }
                 },
@@ -8752,7 +8752,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.600}"
+                  "$value": "{Seabreeze.600}"
                 }
               },
               "Negative": {
@@ -8979,19 +8979,19 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Amethyst.600}"
+                    "$value": "{Seabreeze.600}"
                   },
                   "Pressed": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Amethyst.700}"
+                    "$value": "{Seabreeze.700}"
                   },
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Amethyst.500}"
+                    "$value": "{Seabreeze.500}"
                   }
                 },
                 "Negative": {
@@ -9122,13 +9122,13 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.350}"
+                  "$value": "{Seabreeze.350}"
                 },
                 "Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.150}"
+                  "$value": "{Seabreeze.150}"
                 }
               },
               "Negative": {
@@ -9332,19 +9332,19 @@
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.600}"
+                      "$value": "{Seabreeze.600}"
                     },
                     "Pressed": {
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.700}"
+                      "$value": "{Seabreeze.700}"
                     },
                     "Rest": {
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.500}"
+                      "$value": "{Seabreeze.500}"
                     }
                   },
                   "Subtle": {
@@ -9352,19 +9352,19 @@
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.350 @ 24%}"
+                      "$value": "{Seabreeze.300 @ 24%}"
                     },
                     "Pressed": {
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.350 @ 36%}"
+                      "$value": "{Seabreeze.300 @ 36%}"
                     },
                     "Rest": {
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.350 @ 16%}"
+                      "$value": "{Seabreeze.300 @ 16%}"
                     }
                   }
                 },
@@ -9642,13 +9642,13 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.500}"
+                  "$value": "{Seabreeze.500}"
                 },
                 "Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.350 @ 16%}"
+                  "$value": "{Seabreeze.300 @ 16%}"
                 }
               },
               "Negative": {
@@ -9758,104 +9758,104 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.400}"
+                  "$value": "{Seabreeze.400}"
                 },
                 "11": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.450}"
+                  "$value": "{Seabreeze.500}"
                 },
                 "12": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.500}"
+                  "$value": "{Seabreeze.600}"
                 },
                 "13": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.550}"
+                  "$value": "{Seabreeze.700}"
                 },
                 "14": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.600}"
+                  "$value": "{Seabreeze.800}"
                 },
                 "15": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.650}"
+                  "$value": "{Seabreeze.900}"
                 },
                 "01": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Midnight.100}"
+                  "$value": "{Seabreeze.25}"
                 },
                 "02": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.100}"
+                  "$value": "{Seabreeze.50}"
                 },
                 "03": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.125}"
+                  "$value": "{Seabreeze.75}"
                 },
                 "04": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.150}"
+                  "$value": "{Seabreeze.100}"
                 },
                 "05": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.175}"
+                  "$value": "{Seabreeze.150}"
                 },
                 "06": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.200}"
+                  "$value": "{Seabreeze.200}"
                 },
                 "07": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.250}"
+                  "$value": "{Seabreeze.250}"
                 },
                 "08": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.300}"
+                  "$value": "{Seabreeze.300}"
                 },
                 "09": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Brand.350}"
+                  "$value": "{Seabreeze.350}"
                 },
                 "Anchor": {
                   "End": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Brand.650}"
+                    "$value": "{Seabreeze.900}"
                   },
                   "Start": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Midnight.100}"
+                    "$value": "{Seabreeze.25}"
                   }
                 }
               }
@@ -9950,19 +9950,19 @@
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.150}"
+                      "$value": "{Seabreeze.150}"
                     },
                     "Pressed": {
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.100}"
+                      "$value": "{Seabreeze.100}"
                     },
                     "Rest": {
                       "$type": "color",
                       "$collectionName": "Primitive: Color",
                       "$libraryName": "",
-                      "$value": "{Amethyst.200}"
+                      "$value": "{Seabreeze.200}"
                     }
                   }
                 },
@@ -10178,7 +10178,7 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.150}"
+                  "$value": "{Seabreeze.150}"
                 }
               },
               "Negative": {
@@ -10405,19 +10405,19 @@
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Amethyst.150}"
+                    "$value": "{Seabreeze.150}"
                   },
                   "Pressed": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Amethyst.100}"
+                    "$value": "{Seabreeze.100}"
                   },
                   "Rest": {
                     "$type": "color",
                     "$collectionName": "Primitive: Color",
                     "$libraryName": "",
-                    "$value": "{Amethyst.200}"
+                    "$value": "{Seabreeze.200}"
                   }
                 },
                 "Negative": {
@@ -10548,13 +10548,13 @@
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.150}"
+                  "$value": "{Seabreeze.150}"
                 },
                 "Subtle": {
                   "$type": "color",
                   "$collectionName": "Primitive: Color",
                   "$libraryName": "",
-                  "$value": "{Amethyst.300}"
+                  "$value": "{Seabreeze.300}"
                 }
               },
               "Negative": {
