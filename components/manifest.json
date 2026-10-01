@@ -1435,6 +1435,51 @@
       "storiesNote": "Not yet written.",
       "figma": null,
       "codeConnect": null
+    },
+    "alert": {
+      "displayName": "Alert",
+      "description": "An inline message: heading, body, optional icon, optional action, optional dismiss. Six types.",
+      "module": "components/alert/alert.jsx",
+      "moduleNote": "FIGMA'S TYPE NAMES AND THE TOKEN FAMILIES THEY RESOLVE TO DISAGREE, and the props keep Figma's names so a designer and a developer are talking about the same thing: Success is positive, Alert is severe, Warning is attention, Error is negative, Tertiary is info, Neutral is neutral. `Alert` as a Type inside a component called Alert means the severe level, not \"an alert\". TYPE_FAMILY records the real mapping. Role is chosen by type rather than passed: error and alert get role=alert with aria-live assertive, the other four get role=status with polite, because a screen reader should not be made to announce a success message over whatever the user is doing. That is an accessibility decision, not a design one, so Code Connect does not emit it. The heading icon has no bound fill in Figma, so it and the dismiss control both inherit currentColor and neither is a second colour decision per type. The text ban does not apply to this component: an Alert's job IS a sentence, so heading and body are content rather than explanation.",
+      "exports": [
+        "Alert",
+        "AlertKeyframes",
+        "TYPES",
+        "TYPE",
+        "FIGMA_TYPE",
+        "TYPE_FAMILY",
+        "L"
+      ],
+      "spec": null,
+      "demo": null,
+      "demoNote": "No standalone demo: the stories cover all six types, the content combinations, live dismissal and the Tertiary border gap side by side.",
+      "stories": "src/stories/Library/Alert/Alert.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40002171:5031",
+        "variantAxes": {
+          "Type": [
+            "Success",
+            "Alert",
+            "Error",
+            "Warning",
+            "Neutral",
+            "Tertiary"
+          ]
+        },
+        "variants": 6,
+        "additionalNodes": {
+          "page": "40002171:4804",
+          "duplicates": [
+            "40016675:78998",
+            "40016675:81150",
+            "40016675:81254"
+          ]
+        }
+      },
+      "figmaNote": "Four identical Alert sets exist on the page, so the node id is the only thing that picks the right one. This maps the Amplify one.",
+      "codeConnect": "components/alert/alert.figma.ts",
+      "figmaDefect": "Five of the six types take their family's STRONG stroke; Tertiary takes stroke-static-info-SUBTLE, so at the same 1.5 border width its border is far fainter than the other five. Rendered as drawn rather than smoothed, because an alert border is a deliberate loudness choice and guessing at it would be worse than showing it. Shown side by side against Success in the BordersAndTheTertiaryGap story. If Tertiary is meant to be the quiet one that is fine; if not, it needs stroke-static-info-strong."
     }
   }
 }
