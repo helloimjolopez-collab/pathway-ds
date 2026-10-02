@@ -154,14 +154,26 @@ export const NakedDivergesFromFigma = () => (
       </thead>
       <tbody>
         {[
-          ["Neutral", "none", "stroke-static-neutral-base", "foreground-static-neutral-bold"],
-          ["Severe", "none", "stroke-static-neutral-base", "foreground-static-neutral-base"],
-          ["Positive", "none", "stroke-static-neutral-base", "foreground-static-neutral-strong"],
-          ["Attention", "fill-static-attention-subtle", "none", "foreground-static-attention-on-subtle"],
-          ["Negative", "fill-static-negative-subtle", "none", "foreground-static-neutral-base"],
-          ["Info", "fill-static-info-subtle", "none", "foreground-static-neutral-base"],
-          ["Accent 2", "fill-static-accent-jade-subtle", "none", "foreground-static-neutral-base"],
-          ["Accent 3", "Mauve/25 (a PRIMITIVE)", "none", "foreground-static-accent-mauve-on-subtle"],
+          ["Neutral / Large", "fill-static-neutral-base", "stroke-static-neutral-bold", "foreground-static-neutral-base"],
+          ["Neutral / Medium", "none", "stroke-static-neutral-base", "foreground-static-neutral-base"],
+          ["Neutral / Small", "none", "stroke-static-neutral-base", "foreground-static-neutral-base"],
+          ["Severe / Large", "fill-static-severe-subtle", "stroke-static-severe-subtle", "foreground-static-neutral-base"],
+          ["Severe / Medium", "none", "stroke-static-neutral-base", "foreground-static-neutral-base"],
+          ["Severe / Small", "none", "none", "foreground-static-severe-on-subtle"],
+          ["Negative / Large", "fill-static-negative-subtle", "stroke-static-negative-subtle", "foreground-static-negative-on-subtle"],
+          ["Negative / Medium", "fill-static-negative-subtle", "none", "foreground-static-negative-on-subtle"],
+          ["Negative / Small", "none", "none", "foreground-static-negative-on-subtle"],
+          ["Positive / Large", "none", "stroke-static-positive-subtle", "foreground-static-positive-on-subtle"],
+          ["Positive / Medium", "none", "stroke-static-neutral-base", "foreground-static-positive-on-subtle"],
+          ["Positive / Small", "none", "none", "foreground-static-SEVERE-on-subtle  <- wrong status"],
+          ["Attention / Large", "fill-static-attention-subtle", "stroke-static-attention-strong", "foreground-static-attention-on-subtle"],
+          ["Attention / Medium", "fill-static-attention-subtle", "none", "foreground-static-attention-on-subtle"],
+          ["Attention / Small", "none", "none", "foreground-static-attention-on-subtle"],
+          ["Info / Large", "fill-static-info-subtle", "none", "foreground-static-info-on-subtle"],
+          ["Info / Medium", "fill-static-info-subtle", "none", "foreground-static-info-on-subtle"],
+          ["Info / Small", "none", "none", "foreground-static-info-on-subtle"],
+          ["Accent 2 / all three", "none", "none", "foreground-static-accent-jade-on-subtle"],
+          ["Accent 3 / all three", "none", "none", "foreground-static-accent-mauve-on-subtle"],
         ].map((r) => (
           <tr key={r[0]}>
             {r.map((cell, i) => (
