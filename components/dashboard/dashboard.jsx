@@ -983,15 +983,21 @@ export function Dashboard({
         )}
       </div>
 
-      {/* THE GRID. Dense row flow, so widgets pull up and leftover space
-          collects at the bottom rather than between tiles. */}
+      {/* THE GRID. 12 columns at desktop, 8 at tablet, 4 on mobile, 48px rows,
+          16px gap, authored order preserved. Measured off the canonical demo;
+          see SIZE_GRID in widget.jsx for the per-size spans. */}
       <div
         className="pw-dashboard-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(var(--pw-dash-cols), minmax(0, 1fr))",
           gridAutoRows: `${L.rowUnit}px`,
-          gridAutoFlow: "row dense",
+          // ROW, NOT ROW DENSE. Dense backfills gaps by pulling later widgets
+          // up into them, so the board silently reorders itself and a widget
+          // the reader placed third can end up first. The canonical demo uses
+          // plain row flow and keeps authored order; the comment below used to
+          // describe the backfill as a feature. Corrected 2026-10-02.
+          gridAutoFlow: "row",
           gap: L.gap,
           alignContent: "start",
         }}

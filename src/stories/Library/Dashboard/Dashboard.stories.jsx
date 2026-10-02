@@ -41,6 +41,7 @@ const ACCOUNTS = [
 ];
 
 const CATALOGUE = [
+  { id: "finkpi", name: "Financial KPIs", group: "Accounting", app: { short: "GL", name: "General Ledger" }, defaultSize: "band", supportedSizes: ["band", "detail"] },
   { id: "given", name: "Given this month", group: "Giving", app: { short: "GV", name: "Giving" }, defaultSize: "glance", supportedSizes: ["glance", "explore"] },
   { id: "donors", name: "Active donors", group: "Giving", app: { short: "GV", name: "Giving" }, defaultSize: "glance", supportedSizes: ["glance", "explore"] },
   { id: "pending", name: "Pending deposits", group: "Giving", app: { short: "GV", name: "Giving" }, defaultSize: "glance", supportedSizes: ["glance"] },
@@ -53,6 +54,7 @@ const CATALOGUE = [
 
 const INITIAL = [
   { id: "sys", name: "Accounting home", type: "system", isDefault: true, widgets: [
+    { id: "w0", catalogueId: "finkpi", title: "Financial KPIs", size: "band", updatedLabel: "Updated just now" },
     { id: "w1", catalogueId: "given", title: "Given this month", size: "glance", updatedLabel: "Updated just now" },
     { id: "w2", catalogueId: "donors", title: "Active donors", size: "glance" },
     { id: "w3", catalogueId: "pending", title: "Pending deposits", size: "glance" },
@@ -191,8 +193,64 @@ function Chip({ children }) {
 
 /** The content each catalogue entry renders. Passed to Dashboard as
  *  renderWidget, which is how a real host supplies its own content. */
+/** A row of KPI tiles inside one band, the way the demo's Financial KPIs works. */
+const KPI_BAND = [
+  { label: "Total income",   value: "$1,284,500", period: "YTD", delta: "6.2%",  dir: "up",   note: "vs previous yr" },
+  { label: "Total expenses", value: "$1,097,800", period: "YTD", delta: "4.1%",  dir: "down", note: "vs previous yr" },
+  { label: "Net income",     value: "$186,700",   period: "YTD", delta: "21.3%", dir: "up",   note: "vs previous yr" },
+];
+
+function KpiBand() {
+  return (
+    <div style={{
+      display: "grid", gridTemplateColumns: `repeat(${KPI_BAND.length}, minmax(0, 1fr))`,
+      // A band is 3 rows, 176px, and the widget header takes a third of that.
+      // The first version of this used the Glance-sized Metric inside a padded,
+      // bordered tile, which needed 196px of content in a 122px box: the values
+      // were clipped clean off and only the labels showed. The tile is compact
+      // on purpose, not styled down for taste.
+      gap: SU("gap-xtight"), padding: `0 ${SU("padding-tight")} ${SU("padding-tight")}`,
+      flex: 1, minHeight: 0,
+    }}>
+      {KPI_BAND.map((k) => (
+        <div key={k.label} style={{
+          display: "flex", flexDirection: "column", gap: SU("gap-xxtight"),
+          padding: SU("padding-xtight"), minWidth: 0,
+          border: `1px solid var(--semantic-color-stroke-static-neutral-faint)`,
+          borderRadius: "var(--semantic-layout-units-cornerradius-base)",
+          justifyContent: "center",
+        }}>
+          <span style={{ display: "flex", alignItems: "center", gap: SU("gap-xtight"), minWidth: 0 }}>
+            <span style={{ fontSize: "var(--semantic-type-font-size-xs)",
+              lineHeight: "var(--semantic-type-line-height-xs-single)",
+              color: "var(--semantic-color-foreground-static-neutral-base)",
+              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{k.label}</span>
+            <Chip>{k.period}</Chip>
+          </span>
+          <span style={{ fontSize: "var(--semantic-type-font-size-xl)",
+            lineHeight: "var(--semantic-type-line-height-xl-single)",
+            color: "var(--semantic-color-foreground-static-neutral-bold)",
+            whiteSpace: "nowrap" }}>{k.value}</span>
+          <span style={{ display: "flex", alignItems: "baseline", gap: SU("gap-xtight"),
+            fontSize: "var(--semantic-type-font-size-xxs)",
+            lineHeight: "var(--semantic-type-line-height-xxs-single)" }}>
+            <span style={{ color: k.dir === "up"
+              ? "var(--semantic-color-foreground-static-positive-on-subtle)"
+              : "var(--semantic-color-foreground-static-negative-on-subtle)" }}>
+              {k.dir === "up" ? "\u2197" : "\u2198"} {k.delta}
+            </span>
+            <span style={{ color: "var(--semantic-color-foreground-static-neutral-base)",
+              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{k.note}</span>
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function renderWidget(w) {
   const id = w.catalogueId;
+  if (id === "finkpi") return <KpiBand />;
   if (id === "given") return <Metric value="$48,210" delta="12.4%" deltaDirection="up" deltaNote="vs last month" />;
   if (id === "donors") return <Metric value="1,284" delta="38" deltaDirection="up" deltaNote="new this month" />;
   if (id === "pending") return <Metric value="$3,940" delta="2 days" deltaDirection="down" deltaNote="oldest" />;
@@ -213,7 +271,11 @@ function renderWidget(w) {
 }
 
 function withToolbar(ws) {
-  return ws.map((w) => (isFlat(w.size) || w.catalogueId === "signups")
+  // A band gets no toolbar. It is 3 rows, 176px, and a toolbar row costs about
+  // 34 of them: with one in place the KPI deltas were clipped off the bottom.
+  // The demo's Financial KPIs band carries no toolbar either, for the same
+  // reason, so this is the pattern rather than a workaround.
+  return ws.map((w) => (isFlat(w.size) || w.size === "band" || w.catalogueId === "signups")
     ? w
     : { ...w, toolbar: <WidgetToolbar identity={<Chip>All funds</Chip>} /> });
 }

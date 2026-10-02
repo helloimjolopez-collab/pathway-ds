@@ -186,13 +186,14 @@ const TYPE = {
  * dashboard grid: 4 / 8 / 12 columns by breakpoint, 48px auto-rows, dense flow.
  * A widget never grows to fit its content; depth is chosen by size.
  */
-export const SIZES = ["glance", "explore", "detail", "full"];
+export const SIZES = ["glance", "detail", "explore", "full"];
 
 export const SIZE_LABEL = {
   glance:  "Glance",
-  explore: "Explore",
   detail:  "Detail",
+  explore: "Explore",
   full:    "Full",
+  band:    "Band",
 };
 
 /**
@@ -210,13 +211,46 @@ export const SIZE_MIN_WIDTH = {
   glance:  "var(--contextual-layout-units-widget-minwidth-glance)",
   explore: "var(--contextual-layout-units-widget-minwidth-explore)",
   detail:  "var(--contextual-layout-units-widget-minwidth-detail)",
+  // band and full span every track, so their floor is the grid's rather than
+  // their own, the same reasoning as Full had when these were added.
 };
 
+/**
+ * SPANS, MEASURED OFF THE CANONICAL DEMO, not inferred.
+ * https://helloimjolopez-collab.github.io/design-sandbox/phase-2/Widget%20Container%20Demo/
+ *
+ * The demo's board is 12 columns at desktop and 8 at tablet, 48px auto-rows,
+ * 16px gap, and it carries four sizes. Read at 1600px and again at 800px:
+ *
+ *   demo size   desktop(12)        tablet(8)     rows
+ *   kpi         span 3             span 4        3
+ *   wide        span 6             span 8        8
+ *   xwide       span 12            span 8        9
+ *   band        1 / -1 (full)      1 / -1        3
+ *
+ * DETAIL AND EXPLORE WERE THE WRONG WAY ROUND. Figma's Widget set gives
+ * Detail 566x416 and Explore 1148x416: the SAME height, differing in WIDTH.
+ * This table gave them the same width, 6 columns each, and differentiated them
+ * by height instead, 5 rows against 9. So an Explore widget, the widest size in
+ * the design, was rendering at half the width of the board and shorter than a
+ * Detail. That is the bulk of why the dashboard did not read like the demo.
+ * Corrected 2026-10-02: Detail is the demo's `wide` and Explore is its `xwide`.
+ *
+ * BAND is new. It is the demo's full-width strip at 3 rows, which is what holds
+ * a row of KPI tiles under one heading, like Financial KPIs at the top of the
+ * demo. There was no size for it, so that whole band had nowhere to live.
+ * It is deliberately NOT in the SIZES ladder above: a widget opts into it
+ * through supportedSizes, because most widgets have no business spanning the
+ * board at 144px tall.
+ */
 export const SIZE_GRID = {
   //            mobile(4)  tablet(8)  desktop(12)   rows of 48px
-  glance:  { cols: [4, 4, 3],  rows: 3 },
-  explore: { cols: [4, 8, 6],  rows: 5 },
-  detail:  { cols: [4, 8, 6],  rows: 9 },
+  glance:  { cols: [4, 4, 3],  rows: 3 },   // demo kpi
+  detail:  { cols: [4, 8, 6],  rows: 8 },   // demo wide
+  explore: { cols: [4, 8, 12], rows: 9 },   // demo xwide
+  band:    { cols: [4, 8, 12], rows: 3 },   // demo band
+  // `full` now resolves to the same box as explore. Kept as a name because it
+  // is exported and consumers bind to it; it is an alias, not a fifth size.
   full:    { cols: [4, 8, 12], rows: 9 },
 };
 
@@ -1152,6 +1186,20 @@ function RetryButton({ onClick }) {
  * query rather than in a JS branch, the way TopNav's responsive chrome does.
  * 4 / 8 / 12 columns at mobile / tablet / desktop, from the canonical demo.
  */
+/**
+ * Emits one --pw-widget-cols-<size> per entry in SIZE_GRID, for one breakpoint.
+ *
+ * This list used to be written out by hand, one line per size per breakpoint,
+ * twelve lines for four sizes. Adding `band` to SIZE_GRID therefore did nothing
+ * at all: no property was emitted for it, the span fell back to the `, 1`
+ * default in the Widget, and a full-width band rendered 116px wide. Generating
+ * it means a size cannot be added to the table and silently fail to span again.
+ */
+const spanRule = (bp, indent = "") =>
+  Object.entries(SIZE_GRID)
+    .map(([size, g]) => `${indent}  --pw-widget-cols-${size}: ${g.cols[bp]};\n`)
+    .join("");
+
 export const WidgetKeyframes = () => (
   <style>{`
 @keyframes pwWidgetMenu { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
@@ -1161,26 +1209,14 @@ export const WidgetKeyframes = () => (
   100% { box-shadow: var(--elevation-widget); }
 }
 .pw-dashboard-grid {
-  --pw-widget-cols-glance: ${SIZE_GRID.glance.cols[0]};
-  --pw-widget-cols-explore: ${SIZE_GRID.explore.cols[0]};
-  --pw-widget-cols-detail: ${SIZE_GRID.detail.cols[0]};
-  --pw-widget-cols-full: ${SIZE_GRID.full.cols[0]};
-}
+${spanRule(0)}}
 @media (min-width: 768px) {
   .pw-dashboard-grid {
-    --pw-widget-cols-glance: ${SIZE_GRID.glance.cols[1]};
-    --pw-widget-cols-explore: ${SIZE_GRID.explore.cols[1]};
-    --pw-widget-cols-detail: ${SIZE_GRID.detail.cols[1]};
-    --pw-widget-cols-full: ${SIZE_GRID.full.cols[1]};
-  }
+${spanRule(1, "  ")}  }
 }
 @media (min-width: 1024px) {
   .pw-dashboard-grid {
-    --pw-widget-cols-glance: ${SIZE_GRID.glance.cols[2]};
-    --pw-widget-cols-explore: ${SIZE_GRID.explore.cols[2]};
-    --pw-widget-cols-detail: ${SIZE_GRID.detail.cols[2]};
-    --pw-widget-cols-full: ${SIZE_GRID.full.cols[2]};
-  }
+${spanRule(2, "  ")}  }
 }
 @media (prefers-reduced-motion: reduce) {
   .pw-widget, .pw-widget * { animation: none !important; }
