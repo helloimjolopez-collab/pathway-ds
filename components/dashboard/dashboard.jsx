@@ -90,6 +90,13 @@ export const L = {
   radius:       SU("cornerradius-base"),
   radiusSm:     SU("cornerradius-small"),
   radiusLg:     SU("cornerradius-large"),
+  // Widget finder. The icon inset and the left padding are the same rung, so
+  // the glyph sits in the padding rather than beside it.
+  finderWidth:     220,
+  finderIcon:      18,
+  finderIconInset: SU("padding-xxtight"),
+  finderPadLeft:   SU("padding-wide"),
+  finderPadRight:  SU("padding-wide"),
   radiusFull:   SU("cornerradius-full"),
   border:       SU("borderwidth-base"),
 
@@ -398,6 +405,68 @@ function SizeBadgeLike({ label }) {
  * already on the dashboard are shown as added rather than hidden, so the list
  * does not shuffle under the user between visits.
  */
+/**
+ * Filters the widgets already on the dashboard. NOT the catalogue search: that
+ * is AddWidgetPanel below, and the two answer different questions. "Where is my
+ * cash widget" is this one; "what widgets exist" is that one.
+ *
+ * The clear button is always rendered once there is a query, rather than on
+ * hover or focus, because the field is a FILTER: a dashboard showing three of
+ * its eleven widgets needs a visible way back whether or not the box has focus.
+ */
+export function WidgetFinder({ value, onChange }) {
+  return (
+    <div style={{ position: "relative", display: "inline-flex", alignItems: "center" }}>
+      <span className="material-symbols-rounded" aria-hidden="true" style={{
+        position: "absolute", left: L.finderIconInset, fontSize: L.finderIcon,
+        color: T.subtle, pointerEvents: "none",
+        fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' ${L.finderIcon}`,
+      }}>search</span>
+      <input
+        type="search"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="Find a widget"
+        aria-label="Find a widget"
+        style={{
+          minHeight: L.toolbarMinH,
+          width: L.finderWidth,
+          paddingLeft: L.finderPadLeft,
+          paddingRight: L.finderPadRight,
+          background: T.canvas,
+          border: `${L.border} solid ${T.border}`,
+          borderRadius: L.radius,
+          color: T.title,
+          fontFamily: "inherit",
+          fontSize: ST("font-size-s"),
+          letterSpacing: ST("letter-spacing-spacious"),
+          // The native clear affordance is suppressed so there is one clear
+          // control rather than two of different shapes in the same field.
+          appearance: "none", WebkitAppearance: "none", outlineOffset: 2,
+        }}
+      />
+      {value && (
+        <button
+          type="button"
+          aria-label="Clear widget search"
+          onClick={() => onChange("")}
+          style={{
+            position: "absolute", right: L.finderIconInset,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            background: "transparent", border: "none", cursor: "pointer",
+            padding: 0, color: T.subtle,
+          }}
+        >
+          <span className="material-symbols-rounded" aria-hidden="true" style={{
+            fontSize: L.finderIcon,
+            fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' ${L.finderIcon}`,
+          }}>close</span>
+        </button>
+      )}
+    </div>
+  );
+}
+
 export function AddWidgetPanel({ catalogue, presentIds, onAdd, onClose }) {
   const [q, setQ] = useState("");
   const inputRef = useRef(null);
@@ -691,6 +760,10 @@ export function Dashboard({
   onSetDefault,
   onRenameDashboard,
   onDeleteDashboard,
+  /** Refresh every widget at once. The toolbar button is drawn only when a
+   *  consumer supplies this, because a board whose widgets do not fetch has
+   *  nothing to refresh and the button would be a lie. */
+  onRefreshAll,
 }) {
   const active = dashboards.find((d) => d.id === activeId) || dashboards[0];
 
@@ -699,12 +772,26 @@ export function Dashboard({
   const [draftName, setDraftName] = useState(active?.name || "");
   const [addOpen, setAddOpen] = useState(false);
   const [manageOpen, setManageOpen] = useState(false);
+  // THE WIDGET FINDER IS PART OF THE TOOLBAR, not of the add-widget panel. In
+  // the canonical demo it is a standing input that filters the widgets ALREADY
+  // on the dashboard, with its own clear button, and it is available without
+  // entering manage mode. Here it only existed inside the Add widget panel,
+  // where it searched the catalogue instead: a different question, answered in
+  // a place you had to open a panel to reach. Reported 2026-10-02.
+  const [find, setFind] = useState("");
   const [saveAsOpen, setSaveAsOpen] = useState(false);
   const [dragId, setDragId] = useState(null);
   const [flashId, setFlashId] = useState(null);
 
-  const widgets = draftWidgets ?? active?.widgets ?? [];
-  const presentIds = widgets.map((w) => w.catalogueId);
+  const allWidgets = draftWidgets ?? active?.widgets ?? [];
+  // Filtering is presentational only: it never touches the draft, so finding a
+  // widget cannot accidentally become an edit, and clearing the box always
+  // brings the dashboard back whole.
+  const q = find.trim().toLowerCase();
+  const widgets = q
+    ? allWidgets.filter((w) => String(w.title || "").toLowerCase().includes(q))
+    : allWidgets;
+  const presentIds = allWidgets.map((w) => w.catalogueId);
   const dirty = draftWidgets !== null &&
     (JSON.stringify(draftWidgets) !== JSON.stringify(active?.widgets) || draftName !== active?.name);
 
@@ -810,6 +897,35 @@ export function Dashboard({
         />
 
         <span style={{ flex: 1, minWidth: 0 }} />
+
+        {/* THE STANDING TOOLBAR, matching the canonical demo: find a widget,
+            Add widget, Refresh all. None of these used to be reachable without
+            entering manage mode first, which made adding a widget a three-step
+            errand and refreshing the board impossible. Manage mode is still
+            where REARRANGING lives, because that is the destructive part. */}
+        {!manage && (
+          <>
+            <WidgetFinder value={find} onChange={setFind} />
+            <div style={{ position: "relative", display: "inline-flex" }}>
+              <Button
+                tone="secondary" icon="add"
+                ariaHasPopup="menu" ariaExpanded={addOpen}
+                onClick={() => setAddOpen((v) => !v)}
+              >Add widget</Button>
+              {addOpen && (
+                <AddWidgetPanel
+                  catalogue={catalogue}
+                  presentIds={presentIds}
+                  onAdd={(c) => { enterManage(); add(c); }}
+                  onClose={() => setAddOpen(false)}
+                />
+              )}
+            </div>
+            {onRefreshAll && (
+              <Button icon="refresh" onClick={onRefreshAll}>Refresh all</Button>
+            )}
+          </>
+        )}
 
         {!manage ? (
           <Button tone="secondary" icon="tune" onClick={enterManage}>Manage</Button>

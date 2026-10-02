@@ -1209,7 +1209,8 @@
       },
       "figmaNote": "The organism page is 'Dashboards'. The add-widget and manage flows live on the templated-flow page 'Dashboards: Add Widgets, Edit Dashboards', section 'Add Widget & Manage Flows v2'.",
       "codeConnect": null,
-      "codeConnectNote": "NOT code connected, and cannot be. The 'Dashboards' organism page is screen frames and the templated-flow page is spec panels and annotated deep-dives; neither contains a COMPONENT or COMPONENT_SET, so there is no node to map. Code Connect binds code to a component, not to a screen. If the dashboard shell is ever built as a Figma component, map it then."
+      "codeConnectNote": "NOT code connected, and cannot be. The 'Dashboards' organism page is screen frames and the templated-flow page is spec panels and annotated deep-dives; neither contains a COMPONENT or COMPONENT_SET, so there is no node to map. Code Connect binds code to a component, not to a screen. If the dashboard shell is ever built as a Figma component, map it then.",
+      "figmaOpen": "Compared against the canonical Widget Container Demo on 2026-10-02: https://helloimjolopez-collab.github.io/design-sandbox/phase-2/Widget%20Container%20Demo/ . Brought to parity: the standing toolbar now carries Find a widget, Add widget and Refresh all without entering manage mode, which is how the demo works. STILL MISSING: the demo gives every widget TITLE a swap control (data-action wswap, aria-haspopup listbox, with an expand_more chevron, 162 instances) so a widget can be exchanged for another in place. The repo uses the title for rename-in-manage-mode instead, so swap has no home yet and needs a design call on which behaviour the title carries."
     },
     "page-template": {
       "displayName": "PageTemplate",

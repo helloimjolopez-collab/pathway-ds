@@ -221,7 +221,17 @@ function withToolbar(ws) {
 function Host({ activeId: initialActive = "sys" }) {
   const [dashboards, setDashboards] = useState(INITIAL);
   const [activeId, setActiveId] = useState(initialActive);
-  const prepared = dashboards.map((d) => ({ ...d, widgets: withToolbar(d.widgets) }));
+  // Refresh all is observable rather than asserted: every widget's own
+  // "updated" line is restamped, which is what the real fan-out would do.
+  const [refreshedAt, setRefreshedAt] = useState(null);
+  const stamp = refreshedAt
+    ? `Updated ${new Date(refreshedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}`
+    : null;
+  const prepared = dashboards.map((d) => ({
+    ...d,
+    widgets: withToolbar(d.widgets).map((w) =>
+      stamp && w.updatedLabel ? { ...w, updatedLabel: stamp } : w),
+  }));
   return (
     <>
       <WidgetKeyframes />
@@ -232,6 +242,9 @@ function Host({ activeId: initialActive = "sys" }) {
         catalogue={CATALOGUE}
         renderWidget={renderWidget}
         onSwitch={setActiveId}
+        // Supplying this is what draws the Refresh all button. The story flashes
+        // every widget so the fan-out is visible rather than claimed.
+        onRefreshAll={() => setRefreshedAt(Date.now())}
         onCommit={({ mode, dashboard, name }) => {
           setDashboards((ds) => {
             if (mode === "create") {
