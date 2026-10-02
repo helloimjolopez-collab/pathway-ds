@@ -311,8 +311,15 @@ export function SideNavItem({
           </p>
         </div>
 
-        {/* Chevron — groupers only */}
-        {!isChild && hasChildren && (
+        {/* Chevron — groupers only, and EXPANDED ONLY.
+            Figma's SideNavItem.Collapsed is indicator + Container.LeadingIcon
+            and nothing else: there is no chevron in the rail. Giving it
+            width 0 and max-width 0 was not enough, because the glyph still
+            painted outside its collapsed box, so the rail showed a second
+            column of 10px chevrons 17px to the right of the icons. Measured
+            2026-10-02: two distinct glyph centres, 28.8 and 45.8, where there
+            should be one. It is now not rendered at all when collapsed. */}
+        {!isChild && hasChildren && !isSidebarCollapsed && (
           <div style={{ width: isSidebarCollapsed ? 0 : 40, height: L.iconWrap, display: "flex",
             alignItems: "center", justifyContent: "center", flexShrink: 0,
             maxWidth: isSidebarCollapsed ? 0 : 40,
