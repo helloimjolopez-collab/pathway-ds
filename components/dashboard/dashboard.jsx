@@ -792,6 +792,10 @@ export function Dashboard({
     ? allWidgets.filter((w) => String(w.title || "").toLowerCase().includes(q))
     : allWidgets;
   const presentIds = allWidgets.map((w) => w.catalogueId);
+  // Every catalogue entry is swappable in, including ones already on the board:
+  // two Bank Balances widgets scoped differently is a legitimate dashboard, and
+  // the picker checks the current one rather than hiding its own neighbours.
+  const swapOptions = catalogue.map((c) => ({ id: c.id, name: c.name, app: c.app }));
   const dirty = draftWidgets !== null &&
     (JSON.stringify(draftWidgets) !== JSON.stringify(active?.widgets) || draftName !== active?.name);
 
@@ -835,6 +839,23 @@ export function Dashboard({
     }),
     remove: (id) => mutate((ws) => ws.filter((w) => w.id !== id)),
     rename: (id, title) => mutate((ws) => ws.map((w) => (w.id === id ? { ...w, title } : w))),
+    /**
+     * SWAP a slot for a different widget, keeping its POSITION. The size is
+     * kept too when the incoming widget supports it, and otherwise falls back
+     * to that widget's own default: a Glance-only widget dropped into a Detail
+     * slot would otherwise be asked to render at a size it has no layout for.
+     *
+     * A new widget id is minted rather than reused, because the slot now holds
+     * a different widget and any per-widget state keyed on the old id belongs
+     * to the widget that left.
+     */
+    swap: (id, option) => mutate((ws) => ws.map((w) => {
+      if (w.id !== id) return w;
+      const entry = catalogue.find((c) => c.id === option.id);
+      const supported = entry?.supportedSizes || SIZES;
+      const size = supported.includes(w.size) ? w.size : (entry?.defaultSize || supported[0]);
+      return { id: `w${Date.now()}`, catalogueId: option.id, title: entry?.name || option.name, size };
+    })),
   };
 
   const add = (entry) => {
@@ -1005,7 +1026,14 @@ export function Dashboard({
                 onResize={manage ? (size) => api.resize(w.id, size) : undefined}
                 onDuplicate={manage ? () => api.duplicate(w.id) : undefined}
                 onRemove={manage ? () => api.remove(w.id) : undefined}
-                onRename={manage ? (title) => api.rename(w.id, title) : undefined}
+                onRename={undefined}
+                // Swap is available WITHOUT manage mode, the way it is in the
+                // demo: exchanging one widget for another in the same slot is
+                // not a layout edit. It still goes through the draft, so Cancel
+                // puts the original widget back.
+                swapOptions={swapOptions}
+                catalogueId={w.catalogueId}
+                onSwap={(option) => { if (!manage) enterManage(); api.swap(w.id, option); }}
                 onRetry={w.onRetry}
                 emptyLine={w.emptyLine}
                 toolbar={w.toolbar}

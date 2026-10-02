@@ -76,6 +76,9 @@ export const T = {
   dangerFill:     SC("fill-static-negative-subtle"),
 
   menuSurface:    SC("fill-surface-overlay"),
+  // App badge in the swap picker: which product a widget comes from.
+  badgeFill:      SC("fill-static-brand-subtle"),
+  badgeText:      SC("foreground-static-brand-on-subtle"),
   menuBorder:     SC("stroke-static-neutral-base"),
   menuHover:      SC("fill-static-neutral-subtle"),
   selectedFill:   SC("fill-static-brand-subtle"),
@@ -116,6 +119,12 @@ export const L = {
   menuItemPadV:   SU("padding-xxtight"),
   menuItemPadH:   SU("padding-tight"),
   menuGap:        SU("gap-tight"),
+  // Swap picker. The width floor keeps the longest widget name on one line at
+  // the common lengths; the ceiling stops it growing past the widget itself.
+  swapWidth:      260,
+  swapWidthMax:   360,
+  swapFieldH:     SU("accessibility-touch-target-aa-height"),
+  swapMaxH:       280,
 
   // Glyph sizes. Pathway has no icon-size token family, so these stay numbers,
   // on the 2/4/6/8/12/16/20/24 scale the rest of the repo uses.
@@ -290,11 +299,17 @@ const TITLE_MAX = { glance: 150, explore: 300, detail: 300, full: 560 };
 function Header({
   title, size, manage, updatedLabel,
   onRefresh, onResize, onInfo, onGoTo, onRename,
+  // Swap: the options a consumer offers and the id of the widget in this slot.
+  swapOptions, catalogueId, onSwap,
   refreshing, resizeOpen, resizeRef,
 }) {
   const [hov, setHov] = useState(false);
   const [focusWithin, setFocusWithin] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [swapOpen, setSwapOpen] = useState(false);
+  // Swap is offered whenever there is somewhere to swap TO. One option, the
+  // widget already in the slot, is not a choice.
+  const swappable = Array.isArray(swapOptions) && swapOptions.length > 1 && !!onSwap;
   const [draft, setDraft] = useState(title);
   const touch = useTouch();
   const revealed = hov || focusWithin || touch;
@@ -363,21 +378,57 @@ function Header({
               }}
             />
           ) : (
+            // THE TITLE IS THE SWAP CONTROL when a consumer supplies
+            // swapOptions. That is what the canonical demo puts here, and it is
+            // why the title is not a rename target: a renamed widget shows the
+            // same data under a different name, which is the opposite of what
+            // someone clicking a widget's title is asking for. Confirmed by the
+            // design owner 2026-10-02. Rename survives only as `onRename` for a
+            // consumer that still wants it, and is no longer wired to the title.
+            swappable ? (
+              <span style={{ position: "relative", display: "inline-flex", minWidth: 0 }}>
+                <button
+                  type="button"
+                  onClick={() => setSwapOpen((v) => !v)}
+                  aria-haspopup="listbox"
+                  aria-expanded={swapOpen}
+                  aria-label={`${title} — swap this widget for another`}
+                  title={`${title} — swap this widget for another`}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: L.rowGap,
+                    minWidth: 0, maxWidth: max,
+                    background: "transparent", border: "none", padding: 0,
+                    borderRadius: L.radiusSm, cursor: "pointer",
+                    color: T.title, fontFamily: "inherit", ...TYPE.title,
+                  }}
+                >
+                  <span style={{ minWidth: 0, whiteSpace: "nowrap", overflow: "hidden",
+                    textOverflow: "ellipsis" }}>{title}</span>
+                  <Glyph name="expand_more" size={L.glyph} color={T.title} />
+                </button>
+                {swapOpen && (
+                  <SwapPicker
+                    options={swapOptions}
+                    currentId={catalogueId}
+                    onPick={(o) => onSwap?.(o)}
+                    onClose={() => setSwapOpen(false)}
+                  />
+                )}
+              </span>
+            ) : (
             <span
-              // Rename is manage-mode only. In view mode the title is a plain
-              // label, not a link: no hover underline, no pointer.
-              onClick={manage ? () => setEditing(true) : undefined}
               title={title}
               style={{
                 ...TYPE.title, color: T.title,
                 maxWidth: max, minWidth: 0,
                 whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-                cursor: manage ? "text" : "default",
+                cursor: "default",
                 borderRadius: L.radiusSm,
               }}
             >
               {title}
             </span>
+            )
           )}
           {updatedLabel && (
             <span style={{ ...TYPE.caption, color: T.faint, whiteSpace: "nowrap" }}>
@@ -441,6 +492,133 @@ function useTouch() {
  * Proportional glyphs, not words alone: the shape tells you what you get. Sizes
  * the content does not support are disabled rather than reflowed.
  */
+/**
+ * SWAP PICKER. The widget title is a swap control: it exchanges this widget for
+ * another in the same slot, keeping its position on the board.
+ *
+ * This is what the canonical demo puts on the title, in all 162 of its widgets,
+ * and it is why the title is NOT a rename target: a renamed widget still shows
+ * the same data under a different name, which is the opposite of what a reader
+ * clicking a title expects. Confirmed by the design owner 2026-10-02.
+ *
+ * The current widget is listed first, checked and aria-selected, rather than
+ * omitted. A picker that hides the thing you already have gives you no way to
+ * confirm what you are looking at or to back out of the decision.
+ */
+export function SwapPicker({ options = [], currentId, onPick, onClose }) {
+  const [q, setQ] = useState("");
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose?.(); };
+    const onDown = (e) => { if (ref.current && !ref.current.contains(e.target)) onClose?.(); };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onDown);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onDown);
+    };
+  }, [onClose]);
+
+  const needle = q.trim().toLowerCase();
+  // The current widget is pinned to the top and is never filtered out, so the
+  // check mark stays visible as a reference while you search past it.
+  const sorted = [...options].sort((a, b) =>
+    (a.id === currentId ? -1 : b.id === currentId ? 1 : 0));
+  const shown = needle
+    ? sorted.filter((o) => o.id === currentId || String(o.name).toLowerCase().includes(needle))
+    : sorted;
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        position: "absolute", top: "100%", left: 0, zIndex: 60, marginTop: L.titleGap,
+        minWidth: L.swapWidth, maxWidth: L.swapWidthMax,
+        background: T.panelSurface,
+        border: `${L.border} solid ${T.menuBorder}`,
+        borderRadius: L.radius,
+        boxShadow: "var(--elevation-lift)",
+        overflow: "hidden",
+      }}
+    >
+      <div style={{ padding: L.menuItemPadH, borderBottom: `${L.border} solid ${T.menuBorder}` }}>
+        <input
+          autoFocus
+          type="search"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="Swap for another widget..."
+          aria-label="Swap for another widget"
+          style={{
+            width: "100%", boxSizing: "border-box",
+            minHeight: L.swapFieldH,
+            padding: `0 ${L.menuItemPadH}`,
+            background: T.panelSurface, color: T.title,
+            border: `${L.border} solid ${T.menuBorder}`,
+            borderRadius: L.radiusSm,
+            fontFamily: "inherit", ...TYPE.caption,
+            appearance: "none", WebkitAppearance: "none",
+          }}
+        />
+      </div>
+
+      <div role="listbox" aria-label="Choose a widget to swap in"
+        style={{ maxHeight: L.swapMaxH, overflowY: "auto", padding: L.menuPadV }}>
+        {shown.length === 0 ? (
+          <p style={{ margin: 0, padding: L.menuItemPadH, ...TYPE.caption, color: T.faint }}>
+            No widget matches that name.
+          </p>
+        ) : shown.map((o) => {
+          const current = o.id === currentId;
+          return (
+            <button
+              key={o.id}
+              type="button"
+              role="option"
+              aria-selected={current}
+              onClick={() => { if (!current) onPick?.(o); onClose?.(); }}
+              style={{
+                display: "flex", alignItems: "center", gap: L.headGap, width: "100%",
+                padding: `${L.menuItemPadV} ${L.menuItemPadH}`,
+                background: "transparent", border: "none", borderRadius: L.radiusSm,
+                textAlign: "left", cursor: current ? "default" : "pointer",
+                color: T.title, fontFamily: "inherit", ...TYPE.caption,
+              }}
+              onMouseEnter={(e) => { if (!current) e.currentTarget.style.background = T.menuHover; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
+            >
+              {/* The check column is always reserved, whether or not this row is
+                  the current one, so the names stay on one left edge. */}
+              <span aria-hidden="true" style={{ width: L.glyph, flex: "0 0 auto",
+                display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+                {current && <Glyph name="check" size={L.glyph} color={T.title} />}
+              </span>
+              <span style={{ flex: 1, minWidth: 0, whiteSpace: "nowrap",
+                overflow: "hidden", textOverflow: "ellipsis" }}>{o.name}</span>
+              {/* App badge. Rendered only when the catalogue says which app the
+                  widget comes from; no code is invented from the group name. */}
+              {o.app && (
+                <span
+                  role="img"
+                  aria-label={o.app.name || o.app.short}
+                  title={o.app.name || o.app.short}
+                  style={{
+                    flex: "0 0 auto", padding: `0 ${L.menuItemPadV}`,
+                    borderRadius: L.radiusSm,
+                    background: T.badgeFill, color: T.badgeText,
+                    ...TYPE.caption, fontWeight: 600, letterSpacing: "0.04em",
+                  }}
+                >{o.app.short}</span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export function SizePicker({ value, supported = SIZES, onPick, onClose }) {
   const ref = useRef(null);
   useEffect(() => {
@@ -794,6 +972,14 @@ export function Widget({
   onRename,
   onInfo,
   onGoTo,
+  /** Every widget this slot could hold: [{ id, name, app?: { short, name } }].
+   *  The title becomes a swap control as soon as there is more than one. */
+  swapOptions,
+  /** The catalogue id of the widget currently in this slot, so the picker can
+   *  check it and refuse to swap it for itself. */
+  catalogueId,
+  /** Called with the chosen option when the reader swaps this slot. */
+  onSwap,
   toolbar,
   topMetric,
   children,
@@ -880,6 +1066,9 @@ export function Widget({
           updatedLabel={updatedLabel}
           refreshing={refreshing}
           onRefresh={onRefresh ? handleRefresh : undefined}
+          swapOptions={swapOptions}
+          catalogueId={catalogueId}
+          onSwap={onSwap}
           onResize={(onResize || onDuplicate || onRemove || onExport || onGoTo)
             ? () => { setMenuOpen((v) => !v); setPickerOpen(false); }
             : undefined}
@@ -893,6 +1082,9 @@ export function Widget({
           <WidgetMenu
             manage={manage}
             onRefresh={onRefresh ? handleRefresh : undefined}
+          swapOptions={swapOptions}
+          catalogueId={catalogueId}
+          onSwap={onSwap}
             onExport={onExport}
             onGoTo={onGoTo}
             onResize={onResize ? () => { setPickerOpen(true); } : undefined}

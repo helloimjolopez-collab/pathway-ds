@@ -41,14 +41,14 @@ const ACCOUNTS = [
 ];
 
 const CATALOGUE = [
-  { id: "given", name: "Given this month", group: "Giving", defaultSize: "glance", supportedSizes: ["glance", "explore"] },
-  { id: "donors", name: "Active donors", group: "Giving", defaultSize: "glance", supportedSizes: ["glance", "explore"] },
-  { id: "pending", name: "Pending deposits", group: "Giving", defaultSize: "glance", supportedSizes: ["glance"] },
-  { id: "byfund", name: "Giving by fund", group: "Giving", defaultSize: "detail", supportedSizes: ["explore", "detail", "full"] },
-  { id: "trend", name: "Giving trend", group: "Giving", defaultSize: "explore", supportedSizes: ["explore", "detail", "full"] },
-  { id: "balances", name: "Account balances", group: "Accounting", defaultSize: "detail", supportedSizes: ["detail", "full"] },
-  { id: "payroll", name: "Payroll distributions", group: "Accounting", defaultSize: "explore", supportedSizes: ["explore", "detail"] },
-  { id: "signups", name: "Recent sign-ups", group: "People", defaultSize: "detail", supportedSizes: ["detail"] },
+  { id: "given", name: "Given this month", group: "Giving", app: { short: "GV", name: "Giving" }, defaultSize: "glance", supportedSizes: ["glance", "explore"] },
+  { id: "donors", name: "Active donors", group: "Giving", app: { short: "GV", name: "Giving" }, defaultSize: "glance", supportedSizes: ["glance", "explore"] },
+  { id: "pending", name: "Pending deposits", group: "Giving", app: { short: "GV", name: "Giving" }, defaultSize: "glance", supportedSizes: ["glance"] },
+  { id: "byfund", name: "Giving by fund", group: "Giving", app: { short: "GV", name: "Giving" }, defaultSize: "detail", supportedSizes: ["explore", "detail", "full"] },
+  { id: "trend", name: "Giving trend", group: "Giving", app: { short: "GV", name: "Giving" }, defaultSize: "explore", supportedSizes: ["explore", "detail", "full"] },
+  { id: "balances", name: "Account balances", group: "Accounting", app: { short: "GL", name: "General Ledger" }, defaultSize: "detail", supportedSizes: ["detail", "full"] },
+  { id: "payroll", name: "Payroll distributions", group: "Accounting", app: { short: "GL", name: "General Ledger" }, defaultSize: "explore", supportedSizes: ["explore", "detail"] },
+  { id: "signups", name: "Recent sign-ups", group: "People", app: { short: "PR", name: "People" }, defaultSize: "detail", supportedSizes: ["detail"] },
 ];
 
 const INITIAL = [
