@@ -279,7 +279,7 @@ export function TopNavProfile({ user, open, onToggle, mobile = false }) {
   const [hov, setHov] = useState(false);
   return (
     <div style={{ position: "relative", display: "flex", alignItems: "center",
-      justifyContent: "center", minHeight: L.touchTarget, minWidth: L.touchTarget, padding: "var(--semantic-layout-units-padding-tightest)"}}>
+      justifyContent: "center", minHeight: L.touchTarget, minWidth: L.touchTarget, padding: "var(--semantic-layout-units-padding-xxxxtight)"}}>
       <button
         onClick={onToggle}
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
@@ -354,7 +354,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           height: 20, padding: "0 2px" }}>
           {/* Logo avatar — only rendered when a URL is explicitly provided */}
           {hasLogo && (
-            <div style={{ width: L.orgAvatarSm, height: L.orgAvatarSm, padding: "var(--semantic-layout-units-padding-tightest)",
+            <div style={{ width: L.orgAvatarSm, height: L.orgAvatarSm, padding: "var(--semantic-layout-units-padding-xxxxtight)",
               display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
               <div style={{
                 width: L.orgAvatarNav, height: L.orgAvatarNav, borderRadius: L.radiusSm,

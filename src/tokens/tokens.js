@@ -11896,13 +11896,13 @@ const tokens = {
       "tight"
     ]
   },
-  "semantic-layout-units-padding-tightest": {
+  "semantic-layout-units-padding-xxxxtight": {
     "value": 2,
     "type": "number",
     "path": [
       "semantic-layout-units",
       "padding",
-      "tightest"
+      "xxxxtight"
     ]
   },
   "semantic-layout-units-padding-wide": {

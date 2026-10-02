@@ -8879,7 +8879,7 @@
         "$type": "number",
         "$value": "{primitive-unit.unit.12}"
       },
-      "tightest": {
+      "xxxxtight": {
         "$type": "number",
         "$value": "{primitive-unit.unit.2}"
       },
