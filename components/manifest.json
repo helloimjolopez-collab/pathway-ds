@@ -318,7 +318,21 @@
       "figmaDefect": "The checked glyph binds Foreground/Static/Neutral/Mono. That is correct in Light (#ffffff) and wrong in Midnight: mono is an inversion anchor, not a rung, so it resolves to #181b2b and puts a near-black tick on a blue box (3.04:1). It should be Foreground/Action/Primary/On Strong, which is #ffffff in both modes. The same applies to the error variants, which should use Foreground/Action/Status/Negative/On Strong. The repo already uses the on-strong tokens.",
       "patterns": [
         "components/checkbox/scroll-to-enable.jsx"
-      ]
+      ],
+      "relatedPatterns": {
+        "scroll-to-enable": {
+          "module": "components/checkbox/scroll-to-enable.jsx",
+          "stories": "src/stories/Library/Checkbox/ScrollToEnable.stories.jsx",
+          "figma": {
+            "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+            "desktop": "Scroll-to-Enable",
+            "mobile": "Scroll-to-Enable (Mobile)",
+            "page": "\u21b3 \u2747\ufe0f Scroll to Enable Checkbox"
+          },
+          "demo": "https://quilt-clump-68826624.figma.site/",
+          "note": "Rebuilt 2026-10-02 against the Figma component sets and the interactive demo linked from that page. The previous version was reasoned from first principles and was missing the progress bar, the percentage, the agreement heading, the Continue button, the scrim and scroll pill, the success state, the error state and the whole mobile drawer mode. Breakpoint 768; bottom threshold 10px; progress debounced 120ms while the read flag is synchronous; read is one-way; content shorter than its box counts as read and is re-measured on resize. The checkbox never moves into the sheet. The error is raised by reaching for the checkbox before finishing, which is what the Figma Error message names, and it clears itself once the text has been read."
+        }
+      }
     },
     "org-switcher": {
       "displayName": "OrgSwitcher",
