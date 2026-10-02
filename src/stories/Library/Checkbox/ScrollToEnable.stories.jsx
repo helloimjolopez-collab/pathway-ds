@@ -1,161 +1,147 @@
-// Scroll-to-Enable — Storybook stories (React framework)
-//
-// Module is components/checkbox/scroll-to-enable.jsx; nothing is redefined
-// here. It lives in the checkbox folder because it is not a new control: it is
-// the Checkbox plus a precondition, and it composes the real Checkbox.
-//
-// Figma reference: page '↳ ❇️ Scroll to Enable Checkbox' (40003300:17495),
-// which is documentation and screenshots rather than a component set.
+/**
+ * Responsive Scroll-to-Enable.
+ *
+ * Built from Figma's Scroll-to-Enable and Scroll-to-Enable (Mobile) component
+ * sets plus the interactive demo linked from that page:
+ * https://quilt-clump-68826624.figma.site/
+ *
+ * Playground is the desktop mode. Drawer forces the narrow mode so the bottom
+ * sheet can be exercised without resizing the window, because the real switch
+ * is a 768px media query and a story cannot resize the viewport for you.
+ */
+import React from "react";
+import {
+  ScrollToEnable,
+  DRAWER_BREAKPOINT,
+  BOTTOM_THRESHOLD,
+  BOX_HEIGHT,
+} from "../../../../components/checkbox/scroll-to-enable.jsx";
 
-import React, { useState } from "react";
-import { ScrollToEnableCheckbox, ScrollToEnableKeyframes } from "../../../../components/checkbox/scroll-to-enable.jsx";
-
-const SC = (n) => `var(--semantic-color-${n})`;
-const SU = (n) => `var(--semantic-layout-units-${n})`;
-const ST = (n) => `var(--semantic-type-${n})`;
-
-const PAGE = { padding: SU("padding-base"), background: SC("fill-surface-canvas"), maxWidth: 560 };
-const EYEBROW = {
-  fontFamily: ST("family-brand"), fontWeight: ST("weight-semibold"),
-  fontSize: ST("font-size-xs"), letterSpacing: ST("letter-spacing-extraspacious"),
-  textTransform: "uppercase", color: SC("foreground-static-neutral-faint"),
-  margin: `${SU("gap-relaxed")} 0 ${SU("gap-tight")}`,
-};
-const META = {
-  fontFamily: ST("family-brand"), fontSize: ST("font-size-xs"),
-  color: SC("foreground-static-neutral-faint"), margin: 0,
-};
-const P = { margin: `0 0 ${SU("gap-tight")}` };
-
-const TERMS = [
-  "These terms govern your use of the giving and accounting services provided to your organisation.",
-  "Payouts settle to the bank account on file. Where a payout fails, the funds are returned to the originating batch and the batch is reopened for correction.",
-  "Fees are deducted before settlement. A statement of fees is available for every batch and is retained for seven years.",
-  "You are responsible for the accuracy of the donor records you import. Records that cannot be matched are held in a review queue rather than being discarded.",
-  "Refunds issued more than one hundred and twenty days after the original gift are processed as a separate disbursement and appear on the following statement.",
-  "Either party may end this agreement with thirty days written notice. Outstanding payouts complete after termination.",
-  "By continuing you confirm you have authority to accept these terms on behalf of your organisation.",
+/** The real agreement text from the demo, so the scroll length is realistic. */
+const CLAUSES = [
+  ["", "Welcome to our service. By using this application, you agree to be bound by the following terms and conditions. Please read these terms carefully before proceeding."],
+  ["1. Acceptance of Terms", "By accessing and using this service, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service."],
+  ["2. Use License", "Permission is granted to temporarily download one copy of the materials on our service for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title."],
+  ["3. Disclaimer", "The materials on our service are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim and negate all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement."],
+  ["4. Limitations", "In no event shall our company or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on our service."],
+  ["5. Privacy Policy", "Your privacy is important to us. Our privacy policy explains how we collect, use, and protect your personal information. By using this service, you consent to our privacy practices."],
+  ["6. Modifications", "We may revise these terms of service at any time without notice. By using this service, you are agreeing to be bound by the then-current version of these terms and conditions."],
 ];
+
+const Agreement = () => (
+  <>
+    {CLAUSES.map(([h, p], i) => (
+      <div key={i} style={{ display: "flex", flexDirection: "column",
+        gap: "var(--semantic-layout-units-gap-xtight)" }}>
+        {h && (
+          <strong style={{ color: "var(--semantic-color-foreground-static-neutral-bold)",
+            fontSize: "var(--semantic-type-font-size-s)",
+            fontWeight: "var(--semantic-type-weight-semibold)" }}>{h}</strong>
+        )}
+        <p style={{ margin: 0 }}>{p}</p>
+      </div>
+    ))}
+    <p style={{ margin: 0, color: "var(--semantic-color-foreground-static-neutral-bold)",
+      fontWeight: "var(--semantic-type-weight-semibold)" }}>
+      End of Agreement - Thank you for reading to the bottom.
+    </p>
+  </>
+);
+
+const frame = (children, width = 560) => (
+  <div style={{ maxWidth: width, padding: "var(--semantic-layout-units-padding-relaxed)" }}>
+    {children}
+  </div>
+);
 
 export default {
   title: "Library/Checkbox/Scroll to Enable",
-  component: ScrollToEnableCheckbox,
-  argTypes: {
-    label: { name: "Label", control: "text" },
-    hint: { name: "Locked hint", control: "text" },
-    readyHint: { name: "Unlocked hint", control: "text" },
-    height: { name: "Box height (px)", control: { type: "range", min: 80, max: 420, step: 10 } },
-    tolerance: { name: "Bottom tolerance (px)", control: { type: "range", min: 0, max: 16, step: 1 } },
-    error: { name: "Error", control: "boolean" },
-  },
-  args: {
-    label: "I have read and agree to the above",
-    hint: "Scroll to the end to continue",
-    readyHint: "",
-    height: 220,
-    tolerance: 2,
-    error: false,
-  },
+  component: ScrollToEnable,
   parameters: {
     layout: "fullscreen",
-    docs: {
-      description: {
-        component:
-          "A block of content the user must actually reach the end of before the checkbox beneath it " +
-          "can be ticked. It lives in the checkbox folder because it is not a new control. " +
-          "Four decisions make or break it. " +
-          "Once the end is reached the checkbox STAYS enabled: scrolling up to re-read a clause must " +
-          "not punish the careful reader, and re-locking would let the control flicker as the page " +
-          "moves. " +
-          "The scroll region is KEYBOARD OPERABLE, with tabIndex 0 and a real overflow container, so " +
-          "arrow keys, Page Down and End all reach the end. Without that a keyboard-only or switch " +
-          "user could never satisfy the precondition and could never submit, which turns a gate into " +
-          "a hard block; this is the part implementations usually miss. " +
-          "Content SHORTER than its box counts as read, because a box with no bottom to reach would " +
-          "otherwise lock the form forever on a tall screen. " +
-          "And it RE-MEASURES on resize, because a font loading, a window resize or late content all " +
-          "change whether the end has been reached, and measuring once on mount is how this breaks " +
-          "in production.",
-      },
-    },
+    docs: { description: { component:
+      "A legal agreement that enables its own checkbox once the reader has " +
+      "demonstrably reached the end of the text. Above " + DRAWER_BREAKPOINT +
+      "px the text sits in an inline scroll box; below it, the box is replaced " +
+      "by a bottom sheet, because an inline scroll container on a phone is a " +
+      "scroll-within-scroll and, inside a modal, a dialog on a dialog. The " +
+      "checkbox never moves into the sheet. Reaching the end is a one-way " +
+      "change, the bottom threshold is " + BOTTOM_THRESHOLD + "px to survive " +
+      "sub-pixel rounding, and content shorter than its box counts as read." } },
   },
 };
 
-export const Playground = (args) => {
-  const [checked, setChecked] = useState(false);
-  return (
-    <div style={PAGE}>
-      <ScrollToEnableKeyframes />
-      <ScrollToEnableCheckbox {...args} checked={checked} onChange={setChecked}>
-        {TERMS.map((t, i) => <p key={i} style={P}>{t}</p>)}
-      </ScrollToEnableCheckbox>
-      <p style={{ ...META, marginTop: SU("padding-base") }}>
-        Checked: {String(checked)}. Try it with the keyboard: Tab into the box, then End.
-      </p>
-    </div>
-  );
+/** Desktop: inline scroll box, progress bar, scrim, success state. */
+export const Playground = {
+  args: {
+    title: "User Agreement",
+    contentTitle: "Terms and Conditions",
+    boxHeight: BOX_HEIGHT,
+    size: "default",
+  },
+  argTypes: {
+    title:        { name: "Card heading", control: "text" },
+    contentTitle: { name: "Agreement heading", control: "text",
+                    description: "Also names the scroll region and the sheet for a screen reader." },
+    boxHeight:    { name: "Inline box height (px)", control: { type: "range", min: 160, max: 420, step: 20 },
+                    description: "The specification's range is 240 to 320." },
+    size:         { name: "Checkbox size", control: "inline-radio", options: ["default", "s"] },
+    forceNarrow:  { table: { disable: true } },
+  },
+  render: (args) => frame(
+    <ScrollToEnable {...args} forceNarrow={false}>
+      <Agreement />
+    </ScrollToEnable>
+  ),
 };
 
-export const KeyboardOnly = () => {
-  const [checked, setChecked] = useState(false);
-  const [reached, setReached] = useState(false);
-  return (
-    <div style={PAGE}>
-      <ScrollToEnableKeyframes />
-      <p style={EYEBROW}>Reach the end without a mouse</p>
-      <ScrollToEnableCheckbox
-        checked={checked}
-        onChange={setChecked}
-        onReachEnd={() => setReached(true)}
-        readyHint="You can now agree"
-      >
-        {TERMS.map((t, i) => <p key={i} style={P}>{t}</p>)}
-      </ScrollToEnableCheckbox>
-      <p style={{ ...META, marginTop: SU("padding-base") }}>
-        Reached the end: {String(reached)}. Tab focuses the scroll region, then End jumps to the
-        bottom and the checkbox unlocks. If this did not work the pattern would be a hard block for
-        anyone not using a mouse.
-      </p>
-    </div>
-  );
+/**
+ * Narrow mode, forced. Tap Read Agreement to open the sheet; the checkbox stays
+ * out here, which is the point of the pattern.
+ */
+export const Drawer = {
+  name: "Drawer (narrow)",
+  render: () => frame(
+    <ScrollToEnable forceNarrow>
+      <Agreement />
+    </ScrollToEnable>,
+    380
+  ),
+  parameters: { docs: { description: { story:
+    "Forced into sheet mode so it can be exercised at any window width. The " +
+    "sheet traps focus, closes on Escape or on the backdrop, locks body " +
+    "scroll, and returns focus to the trigger. Done Reading stays disabled " +
+    "until the end of the text is reached, and the enabled state survives " +
+    "closing and re-opening the sheet." } } },
 };
 
-export const ShortContentIsAlreadyRead = () => {
-  const [checked, setChecked] = useState(false);
-  return (
-    <div style={PAGE}>
-      <ScrollToEnableKeyframes />
-      <p style={EYEBROW}>Nothing to scroll, so enabled immediately</p>
-      <ScrollToEnableCheckbox checked={checked} onChange={setChecked} height={220}>
-        <p style={P}>
-          By continuing you confirm you have authority to accept these terms on behalf of your
-          organisation.
-        </p>
-      </ScrollToEnableCheckbox>
-      <p style={{ ...META, marginTop: SU("padding-base") }}>
-        The content is shorter than its box, so there is no end to reach and the checkbox is enabled
-        on mount. A box that can never be scrolled to the bottom because it has no bottom would
-        otherwise lock the form forever, which is exactly what happens on a tall screen.
+/**
+ * The edge case the specification calls out: there is nothing to scroll, so
+ * requiring a scroll would be an unsatisfiable condition. Enabled on mount.
+ */
+export const ShortContentIsAlreadyRead = {
+  name: "Short content is already read",
+  render: () => frame(
+    <ScrollToEnable forceNarrow={false} boxHeight={BOX_HEIGHT}>
+      <p style={{ margin: 0 }}>
+        This agreement is shorter than its own box, so there is nothing to
+        scroll and the checkbox is enabled immediately.
       </p>
-    </div>
-  );
+    </ScrollToEnable>
+  ),
 };
 
-export const ErrorState = () => {
-  const [checked, setChecked] = useState(false);
-  return (
-    <div style={PAGE}>
-      <ScrollToEnableKeyframes />
-      <p style={EYEBROW}>Submitted without agreeing</p>
-      <ScrollToEnableCheckbox
-        checked={checked}
-        onChange={setChecked}
-        error
-        height={160}
-        readyHint="You must agree before continuing"
-      >
-        {TERMS.slice(0, 5).map((t, i) => <p key={i} style={P}>{i + 1}. {t}</p>)}
-      </ScrollToEnableCheckbox>
-    </div>
-  );
+/** Keyboard only: Tab to the region, then arrow keys. */
+export const KeyboardOnly = {
+  name: "Keyboard only",
+  tags: ["!dev"],
+  render: () => frame(
+    <ScrollToEnable forceNarrow={false}>
+      <Agreement />
+    </ScrollToEnable>
+  ),
+  parameters: { docs: { description: { story:
+    "The scroll region carries tabIndex 0, which is what makes the arrow keys " +
+    "scroll it. Without that the pattern would be completable by pointer " +
+    "only and the agreement impossible to accept with a keyboard." } } },
 };
