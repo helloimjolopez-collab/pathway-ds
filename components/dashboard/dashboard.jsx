@@ -49,7 +49,12 @@ const ST = (n) => `var(--semantic-type-${n})`;
 const MO = (n) => `var(--motion-${n})`;
 
 export const T = {
-  canvas:        SC("fill-static-neutral-base"),
+  // The PAGE, not a card. It was Fill/Static/Neutral/Base, #f3f0ec, the same
+  // value the widget card was using, so widgets had no edge against the page
+  // and the dashboard read as one flat sheet. The demo's page is #fafafa,
+  // which is Fill/Surface/Canvas, and that is what a page surface is for.
+  // Reported and measured 2026-10-02.
+  canvas:        SC("fill-surface-canvas"),
   surface:       SC("fill-surface-overlay"),
   hoverFill:     SC("fill-static-neutral-subtle"),
   pressedFill:   SC("fill-static-neutral-strong"),

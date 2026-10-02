@@ -55,9 +55,18 @@ const MO = (n) => `var(--motion-${n})`;
 export const T = {
   // The two-layer card. The outer surface is the header tint; the content panel
   // is lighter, so the panel reads as sitting over the header.
-  cardSurface:    SC("fill-static-neutral-base"),
+  // THE CARD AND THE CANVAS WERE THE SAME COLOUR. Both resolved to
+  // Fill/Static/Neutral/Base, #f3f0ec, so a widget had no edge against the page
+  // it sat on and nothing on the dashboard read as a card. Reported
+  // 2026-10-02. Measured against the canonical demo the same day: the page is
+  // #fafafa (Fill/Surface/Canvas) and a widget is #fefefd
+  // (Fill/Static/Neutral/Faint), a near-white card on a warm grey page.
+  cardSurface:    SC("fill-static-neutral-faint"),
   panelSurface:   SC("fill-static-neutral-faint"),
-  flatSurface:    SC("fill-static-neutral-faint"),
+  // Glance is flat: it takes the page's own colour and carries no card edge,
+  // which is what "flat" means here. It used to take the card colour and the
+  // card took the page's, so the two were swapped as well as identical.
+  flatSurface:    SC("fill-surface-canvas"),
   border:         SC("stroke-static-neutral-base"),
   borderManage:   SC("stroke-static-neutral-strong"),
   divider:        SC("stroke-static-neutral-faint"),
@@ -88,7 +97,9 @@ export const T = {
 };
 
 export const L = {
-  radius:         SU("cornerradius-large"),
+  // 16, not 12. The demo's widget card is 16px; cornerradius-large is 12 and
+  // cornerradius-xlarge is 16. Measured 2026-10-02.
+  radius:         SU("cornerradius-xlarge"),
   radiusPanel:    SU("cornerradius-base"),
   radiusSm:       SU("cornerradius-small"),
   radiusFull:     SU("cornerradius-full"),

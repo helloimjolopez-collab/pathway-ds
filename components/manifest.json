@@ -1078,7 +1078,9 @@
         }
       },
       "figmaNote": "60 variants: 12 modules x (Base in all three Colors + Rippled in Two Color and Mono). Both Styles are implemented and Code Connect maps the axis onto `treatment`. Home is the one module whose two treatments are identical, because its mark already fills the canvas.",
-      "codeConnect": "components/module-icon/module-icon.figma.ts"
+      "codeConnect": "components/module-icon/module-icon.figma.ts",
+      "internal": true,
+      "internalNote": "No Storybook entry: removed from the sidebar on 2026-10-02 at the owner's request because what it showed was wrong. The MODULE stays because top-nav.jsx imports it and scripts/sync-demo-module-icon.js generates the inline block in three demos from it, so deleting it would break the nav. It is a dependency of TopNav, not a component a consumer picks up on its own, until it is rebuilt from Figma."
     },
     "skeleton": {
       "displayName": "Skeleton",
@@ -1213,45 +1215,6 @@
       "codeConnect": null,
       "codeConnectNote": "NOT code connected, and cannot be. The 'Dashboards' organism page is screen frames and the templated-flow page is spec panels and annotated deep-dives; neither contains a COMPONENT or COMPONENT_SET, so there is no node to map. Code Connect binds code to a component, not to a screen. If the dashboard shell is ever built as a Figma component, map it then.",
       "figmaOpen": "At parity with the canonical demo as of 2026-10-02, verified by measurement: 12 columns at desktop and 8 at tablet, 48px rows, 16px gap, grid-auto-flow row (was row dense, which reordered the board), and every per-size span matching the demo. Toolbar carries Find a widget, Add widget and Refresh all without manage mode; every widget title is a swap control."
-    },
-    "page-template": {
-      "displayName": "PageTemplate",
-      "description": "The screen template every Amplify page is built on: the top-navigation region, the page-navigation region, and a responsive sheet holding the page heading, tabs, toolbar and sections.",
-      "module": "components/page-template/page-template.jsx",
-      "moduleNote": "Owns the regions, the sheet and the four page-level compositions that only ever appear inside a page (PageHeading, PageTabs, PageToolbar, PageSection). It does NOT own what goes in the slots: TopNav and SideNav are passed in, and Card, Input, FilterChip, Heading, Button and the Tabs atoms are separate library components that do not exist in this repo yet. The sheet is the one responsive piece: its padding and corner radius resolve through Responsive: Layout by media query, so there is no JS branch for them.",
-      "exports": [
-        "PageTemplate",
-        "PageHeading",
-        "PageTabs",
-        "PageToolbar",
-        "PageSection",
-        "PageTemplateKeyframes",
-        "BREAKPOINTS",
-        "T",
-        "L"
-      ],
-      "spec": null,
-      "specNote": "No spec in this repo. The Figma component set is the source.",
-      "demo": null,
-      "demoNote": "No standalone demo: the Storybook stories compose it with the real TopNav, SideNav and Widget, which a self-contained CDN page cannot do without duplicating all three.",
-      "stories": "src/stories/Library/PageTemplate/PageTemplate.stories.jsx",
-      "figma": {
-        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
-        "nodeId": "40009709:26016",
-        "variants": {
-          "desktop": "Breakpoint=Desktop",
-          "tablet": "Breakpoint=Tablet",
-          "mobile": "Breakpoint=Breakpoint3"
-        },
-        "additionalNodes": {
-          "page": "40006526:38830",
-          "pageSection": "40006528:39636"
-        }
-      },
-      "figmaNote": "The component set is called ScreenTemplate, not Page Template; Page Template is the page it sits on. Its third breakpoint variant value is literally 'Breakpoint3', not 'Mobile', and the Code Connect enum has to match that verbatim or the prop comes back undefined for every mobile instance. Worth renaming in Figma.",
-      "codeConnect": "components/page-template/page-template.figma.ts",
-      "tokenGap": "RESOLVED 2026-10-02 and it was not what I first reported. The six Contextual/Page*, Contextual/Section/* and Contextual/ToolBar/* gap variables were not library-resolved at all: they were DELETED variables. A deleted variable still resolves by id, so the bindings rendered, but it is absent from the local list and from the export, so the Page Template was bound to six dangling references that could never be exported, synced or maintained. They aliased Unit/8 and Unit/16 directly, reaching past the semantic layer into primitives. All 48 affected bindings in the ScreenTemplate set were rebound onto the live semantic tokens of the SAME value, Gap/Tight (8) x26 and Gap/Base (16) x22, guarded so a value change would have rolled the whole call back. No new tokens were created. ScreenTemplate's own nodes now carry zero dangling bindings.",
-      "figmaOpen": "Still outstanding, and all of it belongs to NESTED components rather than to ScreenTemplate: 87 bindings still point at deleted variables (FilterChip 84 across three deleted ids, Input 3), and 53 bindings use the primitive Unit/10 directly for spacing (Card 20, FilterChip 12, Heading 9, PW_Button 6, Page Heading 3, Heading.Style 3). Unit/10 has NO semantic equivalent: the Gap scale is 2, 4, 6, 8, 12, 16, 24, 36, so mapping it means moving the value to 8 or 12, which is a design decision rather than a mapping and is Jo's call."
     },
     "card": {
       "displayName": "Card",
