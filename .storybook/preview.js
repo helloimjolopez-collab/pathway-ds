@@ -11,12 +11,19 @@ import "../src/tokens/type.css";
 import "../src/tokens/motion.css";
 import "../src/tokens/breakpoints.css";
 
-// NewCo is deliberately absent. `primitives-newco.css`, `themes/newco-light.css`
-// and `themes/newco-dark.css` are built and shipped in the npm and NuGet
-// packages, but they are NOT imported here and must not be referenced by any
-// story or MDX page: Storybook deploys to GitHub Pages, which is public and
-// indexable. Adding a NewCo import or a brand toolbar item would publish an
-// unannounced brand. Keep the brand axis out of this file.
+// NEWCO IS OPT-IN AT BUILD TIME, AND NOT FROM THIS FILE.
+//
+// Storybook deploys to GitHub Pages, which is public and indexable, and NewCo is
+// unannounced, so the published build must contain neither the brand's token
+// values nor a toolbar that reveals it exists. The axis therefore lives in
+// .storybook/brand-axis.js and is attached by main.js as a preview annotation
+// only when PATHWAY_BRAND_AXIS is set.
+//
+// It is NOT gated with an `if` in here. That was tried: a dynamic import()
+// emits its chunk whether or not the branch runs, so the published bundle still
+// carried [data-brand="newco"] and NewCo's primitives. The gate has to sit
+// before the bundler. Do not add a NewCo import or a brand toolbar item to this
+// file.
 
 /**
  * Theme toggle. `themes/midnight.css` matches
