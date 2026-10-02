@@ -413,6 +413,39 @@ const tokens = {
       "height"
     ]
   },
+  "contextual-layout-units-widget-minwidth-glance": {
+    "value": 275,
+    "type": "number",
+    "path": [
+      "contextual-layout-units",
+      "amplify",
+      "widget",
+      "minwidth",
+      "glance"
+    ]
+  },
+  "contextual-layout-units-widget-minwidth-detail": {
+    "value": 515,
+    "type": "number",
+    "path": [
+      "contextual-layout-units",
+      "amplify",
+      "widget",
+      "minwidth",
+      "detail"
+    ]
+  },
+  "contextual-layout-units-widget-minwidth-explore": {
+    "value": 1050,
+    "type": "number",
+    "path": [
+      "contextual-layout-units",
+      "amplify",
+      "widget",
+      "minwidth",
+      "explore"
+    ]
+  },
   "elevation-light-lift": {
     "value": "0 10px 28px -6px rgba(24,27,43,0.08)",
     "type": "string",

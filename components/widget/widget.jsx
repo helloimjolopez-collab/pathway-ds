@@ -186,6 +186,23 @@ export const SIZE_LABEL = {
   full:    "Full",
 };
 
+/**
+ * MINIMUM WIDTH per size, from Figma Widget 40009622:39702 where each variant
+ * carries its own minWidth: Glance 275, Detail 515, Explore 1050. Added to the
+ * Contextual collection on request 2026-10-02, because a column span alone does
+ * not say how narrow a widget may get: on a 4-column mobile grid a Detail
+ * widget spanning all four tracks can still be squeezed below the width its
+ * content needs, and nothing in the span notation catches that.
+ *
+ * Full has no entry on purpose. It spans every track by definition, so its
+ * floor is the grid's, not its own.
+ */
+export const SIZE_MIN_WIDTH = {
+  glance:  "var(--contextual-layout-units-widget-minwidth-glance)",
+  explore: "var(--contextual-layout-units-widget-minwidth-explore)",
+  detail:  "var(--contextual-layout-units-widget-minwidth-detail)",
+};
+
 export const SIZE_GRID = {
   //            mobile(4)  tablet(8)  desktop(12)   rows of 48px
   glance:  { cols: [4, 4, 3],  rows: 3 },
@@ -834,7 +851,10 @@ export function Widget({
       onMouseLeave={() => setHov(false)}
       style={{
         position: "relative",
-        display: "flex", flexDirection: "column", minWidth: 0, overflow: "visible",
+        display: "flex", flexDirection: "column", overflow: "visible",
+        // minWidth was 0 so the flex column could shrink. It still may, down to
+        // the size's own floor and no further. Full has no floor of its own.
+        minWidth: SIZE_MIN_WIDTH[size] ?? 0,
         // Falls back to one track when the Widget is NOT inside a dashboard
         // grid. The span properties are declared on .pw-dashboard-grid, not on
         // :root, so a Widget dropped into a page section or any other grid asks

@@ -278,6 +278,28 @@
               "$libraryName": "",
               "$value": "{Unit.60}"
             }
+          },
+          "Widget": {
+            "MinWidth": {
+              "Glance": {
+                "$type": "float",
+                "$collectionName": "Contextual: Layout & Units",
+                "$libraryName": "",
+                "$value": 275
+              },
+              "Detail": {
+                "$type": "float",
+                "$collectionName": "Contextual: Layout & Units",
+                "$libraryName": "",
+                "$value": 515
+              },
+              "Explore": {
+                "$type": "float",
+                "$collectionName": "Contextual: Layout & Units",
+                "$libraryName": "",
+                "$value": 1050
+              }
+            }
           }
         },
         "NewCo": {

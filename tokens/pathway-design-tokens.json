@@ -202,6 +202,22 @@
           "$type": "number",
           "$value": "{primitive-unit.unit.60}"
         }
+      },
+      "widget": {
+        "minwidth": {
+          "glance": {
+            "$type": "number",
+            "$value": 275
+          },
+          "detail": {
+            "$type": "number",
+            "$value": 515
+          },
+          "explore": {
+            "$type": "number",
+            "$value": 1050
+          }
+        }
       }
     },
     "newco": {
