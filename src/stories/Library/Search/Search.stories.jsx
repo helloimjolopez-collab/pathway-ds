@@ -8,7 +8,7 @@
  * v1 scope: SearchInput + TopNavSearch collapsed/expanded. Open state deferred.
  *
  * Story set:
- *   Playground, StateMatrix, TopNavSearchStory, TokensFill, TokensStroke,
+ *   Playground, Field, StateMatrix, TokensFill, TokensStroke,
  *   TokensForeground, TokensSpacing, TokensMotion, StandaloneDemo
  */
 import { LiveTokenTable } from "../../components/LiveTokenTable.jsx";
@@ -270,7 +270,13 @@ export const Playground = () => {
     </Stack>
   );
 };
-TopNavSearchStory.storyName = "TopNavSearch - nav bar search (collapsed + expanded)";
+// Renaming TopNavSearchStory to Playground left this assignment behind,
+// pointing at an export that no longer existed. A ReferenceError at module
+// scope takes the whole CSF file down, so all nine stories in this group
+// rendered empty, and `storybook build` still passed because the throw only
+// happens when the module is evaluated in the browser. Caught 2026-10-02 by
+// loading every story and checking it rendered.
+Playground.storyName = "Playground";
 
 // ── Token helpers ─────────────────────────────────────────────────────────────
 

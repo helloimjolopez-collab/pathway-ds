@@ -145,15 +145,40 @@ function ScreenContent({ title, subtitle }) {
           }}>{subtitle}</p>
         )}
       </div>
-      <div style={{
-        padding: "8px 0",
-        borderTop: "1px solid var(--semantic-color-stroke-static-neutral-faint)",
-        marginTop: 16,
-        color: "var(--semantic-color-foreground-static-neutral-base)",
-        fontSize: 13, lineHeight: "20px",
-      }}>
-        Page content area - replace with real ScreenTemplate content.
-        See <code>components/nav-shell/nav-shell-spec.md §7</code> for the full layout spec.
+      {/* WHAT THE SHELL IS FOR: holding a page. This slot used to contain the
+          sentence "Page content area - replace with real ScreenTemplate
+          content", plus a pointer to a spec section, rendered into the story
+          itself. A note-to-self is not page content, and it made the shell look
+          like it had nothing in it. Reported 2026-10-02.
+
+          What replaces it is deliberately plain. The shell's job is the frame:
+          the top nav, the side nav, the page inset and the scroll boundary.
+          Inventing a dashboard in here is what produced content in other
+          stories that did not exist in the design, so this is a few rows of
+          ordinary page furniture and nothing more. */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 8 }}>
+        {[
+          ["Weekly giving", "$48,210", "Processed through Sunday"],
+          ["New households", "38", "Added this month"],
+          ["Open approvals", "4", "Waiting on you"],
+        ].map(([label, value, note]) => (
+          <div key={label} style={{
+            display: "flex", alignItems: "baseline", justifyContent: "space-between",
+            gap: 16, padding: "12px 14px",
+            background: "var(--semantic-color-fill-static-neutral-faint)",
+            border: "1px solid var(--semantic-color-stroke-static-neutral-faint)",
+            borderRadius: "var(--semantic-layout-units-cornerradius-base)",
+          }}>
+            <span style={{ display: "flex", flexDirection: "column", gap: 2, minWidth: 0 }}>
+              <span style={{ fontSize: 13, fontWeight: 600,
+                color: "var(--semantic-color-foreground-static-neutral-bold)" }}>{label}</span>
+              <span style={{ fontSize: 12,
+                color: "var(--semantic-color-foreground-static-neutral-base)" }}>{note}</span>
+            </span>
+            <span style={{ fontSize: 20, fontWeight: 700, whiteSpace: "nowrap",
+              color: "var(--semantic-color-foreground-static-neutral-bold)" }}>{value}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -175,13 +200,29 @@ function NavShellRender({
   const [sideNavCollapsed, setSideNavCollapsed] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  // SideNav width: 220px expanded, 72px collapsed rail, 0 hidden (mobile)
+  // THE WIDTHS COME FROM THE TOKENS, not from numbers typed here. They were
+  // hard-coded 220 expanded and 72 collapsed while SideNav/Width/Expanded is
+  // 256 and SideNav/Width/Collapsed is 84, so the shell squeezed the side nav
+  // 36px narrower than it is built for. Because .pds-scrollable__view clips
+  // horizontally, the result was a rail with its active item's rounded right
+  // edge and every chevron sliced off. Reported 2026-10-02.
+  //
+  // sidenav.jsx's own comment already recorded that these numbers had moved
+  // ("collapsed one is 84. Was 240, which no longer matched the component"),
+  // which is exactly the drift a hard-coded copy produces: the component moved
+  // and the shell did not.
+  const NAV_W = {
+    expanded:  "var(--contextual-layout-units-sidenav-width-expanded)",
+    collapsed: "var(--contextual-layout-units-sidenav-width-collapsed)",
+  };
   const sideNavWidth = isMobile
-    ? (mobileNavOpen ? 220 : 0)
+    ? (mobileNavOpen ? NAV_W.expanded : 0)
     : isTablet
-    ? 72
-    : sideNavCollapsed ? 72 : 220;
+    ? NAV_W.collapsed
+    : sideNavCollapsed ? NAV_W.collapsed : NAV_W.expanded;
 
+  // Mobile overlays the nav rather than insetting the page, so the page keeps
+  // the full width there and matches the nav's own width everywhere else.
   const mainMarginLeft = isMobile ? 0 : sideNavWidth;
 
   const modules = DEFAULT_MODULES.map(m =>
@@ -226,7 +267,10 @@ function NavShellRender({
         )}
 
         {/* SideNav - importing the validated component directly */}
-        {(sideNavWidth > 0 || !isMobile) && (
+        {/* Was `sideNavWidth > 0`, which only worked while the width was a
+            number. It is a CSS length now, so the test is on the state that
+            decides it: on mobile the nav exists only while the drawer is open. */}
+        {(!isMobile || mobileNavOpen) && (
           <div style={{
             position: "fixed", top: 56, left: 0, bottom: 0,
             width: sideNavWidth, zIndex: 50, flexShrink: 0,
