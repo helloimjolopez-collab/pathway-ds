@@ -67,10 +67,14 @@ function Element({ items = ITEMS, activeId, collapsed, hideCollapseButton, onNav
 }
 
 export default {
-  title: "Library/SideNav/Custom Element",
+  // Was "Custom Element", which told a reader in the sidebar nothing about what
+  // it was or why it sat under SideNav. The title now names the tag, because the
+  // tag is the thing these stories exist to show.
+  title: "Library/SideNav/Web Component (pathway-sidenav)",
   parameters: {
     docs: { description: { component:
-      "The side nav as `<pathway-sidenav>`, a framework-agnostic custom element. " +
+      "The side nav as `<pathway-sidenav>`, one HTML tag for a host page that does " +
+      "not run React: Radzen, Blazor, Angular, or plain server-rendered markup. " +
       "One HTML tag, no React on the host page, Shadow DOM for style isolation. " +
       "It wraps `components/sidenav/sidenav.jsx` rather than reimplementing it, so " +
       "there is no second implementation to drift." } },
@@ -127,7 +131,10 @@ export const Collapsed = {
  * a host stylesheet that forces Comic Sans, magenta and dashed borders on `*`
  * with `!important`. The nav is untouched.
  */
+// Tagged !dev: a proof, not a thing to browse. It stays in the file because it
+// is the evidence Shadow DOM isolation actually holds.
 export const SurvivesHostileHostCSS = {
+  tags: ["!dev"],
   name: "Survives hostile host CSS",
   render: () => (
     <>

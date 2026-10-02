@@ -53,33 +53,73 @@ const u = (name) => `var(--semantic-layout-units-${name})`;
 const c = (name) => `var(--contextual-layout-units-${name})`;
 export const T = {
   navBg:          SCL("fill-surface-chrome"),
-  orgFill:        SCD("fill-action-primary-subtle-rest"),
-  orgStroke:      SCD("stroke-action-primary-strong-rest"),
-  orgStrokeHover: SCD("stroke-action-primary-strong-hover"),
-  searchFill:     SCD("fill-action-primary-subtle-rest"),
-  controlHover:   SCD("fill-action-primary-subtle-hover"),
-  controlPressed: SCD("fill-action-primary-subtle-pressed"),
+  // GHOST IS THIS BAR'S FAMILY. Everything that sits on the brand chrome and
+  // answers a pointer is Action/Ghost: the org switcher, the module switcher,
+  // the collapsed search, the side nav control, the action icons, the avatar
+  // button. All of it was Action/Primary/Subtle, which is a family for LIGHT
+  // surfaces, so the whole bar was quietly wearing the wrong tier. Reported
+  // 2026-10-02. Measured against Figma the same day:
+  //
+  //   Fill/Action/Ghost/Rest      #b6c6ec @  8%
+  //   Fill/Action/Ghost/Hover     #b6c6ec @ 16%
+  //   Fill/Action/Ghost/Pressed   #22386b @ 70%
+  //   Stroke/Action/Ghost/Rest    #b6c6ec @ 36%
+  //   Stroke/Action/Ghost/Hover   #b6c6ec @ 50%
+  //   Stroke/Action/Ghost/Pressed #b6c6ec @ 70%
+  //
+  // Ghost is the right family here for the reason it is the WRONG family on a
+  // light page: its foreground is near-white in both modes, which is exactly
+  // what a control on a permanently dark bar needs.
+  //
+  // The AVATAR is the single exception and stays Action/Primary/Subtle: it is a
+  // filled identity chip, not a ghost control. See avatarBg/avatarText below.
+  //
+  // THERE IS NO RESTING FILL on the org switcher or the module switcher. Figma's
+  // State=Base has no fill on Container.Main at all, for either of them; the
+  // fill arrives on Hover and stays through Pressed and Open. The org switcher
+  // does carry a resting STROKE; the module switcher carries nothing at rest.
+  // The collapsed search is different again: it is the one control with a
+  // resting ghost fill, because it reads as a field rather than a label.
+  orgStroke:        SCD("stroke-action-ghost-rest"),
+  orgStrokeHover:   SCD("stroke-action-ghost-hover"),
+  orgStrokePressed: SCD("stroke-action-ghost-pressed"),
+  searchFill:       SCD("fill-action-ghost-rest"),
+  controlHover:     SCD("fill-action-ghost-hover"),
+  controlPressed:   SCD("fill-action-ghost-pressed"),
   noLogoBg:       SCD("fill-action-secondary-rest"),
-  // NOT foreground-static-neutral-mono. Mono is an INVERSION ANCHOR, not a
-  // rung on the ladder: it is #ffffff in Light and #181b2b in Midnight. The bar
-  // carries data-theme="midnight" permanently (see the note above), so mono
-  // resolved to near-black ON a dark navy bar, and the label, the notification
-  // icons and the more-actions icon were all painting #181b2b on #2d4889.
+  // FOREGROUNDS ARE GHOST TOO. Every glyph and label on the bar is
+  // Foreground/Action/Ghost: #e2e9f7 rest, #eef2fb hover, #f9fafd pressed in
+  // Light, and #e8eafe / #f0f1ff / #f8f9ff in Midnight. Reported 2026-10-02.
   //
-  // It went unnoticed because the one element anybody looked at, the Home module
-  // mark, was a hand-drawn SVG with fill="white" baked in, so exactly one thing
-  // on the bar was legible and it was legible for the wrong reason. Replacing it
-  // with ModuleIcon made the real state visible.
+  // They were Foreground/Static/Neutral/Base and /Bold. On screen that looked
+  // acceptable, which is exactly why it survived: the bar carries
+  // data-theme="midnight" permanently, and inside a midnight region the neutral
+  // ladder resolves LIGHT (base is #e8eafe), so a near-black Light-mode value
+  // came out near-white by accident. The colour was right by side effect and the
+  // token was wrong on its face. Ghost names the thing directly: a control
+  // foreground for a dark, on-brand surface, near-white in BOTH modes, so it no
+  // longer depends on the data-theme trick to be legible.
   //
-  // Inside the midnight region the neutral foreground ladder already resolves
-  // light (base is #e8eafe), which is what foreground on a dark surface wants.
-  monoBase:       SCD("foreground-static-neutral-base"),
-  // OrgSwitcher trigger (reconciled to Figma node 40006819:14581, 2026-08-06):
-  // org name uses Foreground/Static/Neutral/Bold, chevron uses Foreground/Static/Neutral/Bold.
-  orgText:        SCD("foreground-static-neutral-bold"),
-  orgChevron:     SCD("foreground-static-neutral-base"),
-  avatarBg:       SCL("fill-static-info-subtle"),
-  avatarText:     SCL("foreground-static-info-on-subtle"),
+  // Before that it was foreground-static-neutral-MONO, which is an inversion
+  // anchor rather than a rung: #ffffff in Light and #181b2b in Midnight, so the
+  // label, the notification icons and the more-actions icon were all painting
+  // #181b2b on #2d4889. It went unnoticed because the one element anybody
+  // looked at, the Home module mark, was a hand-drawn SVG with fill="white"
+  // baked in, so exactly one thing on the bar was legible and it was legible
+  // for the wrong reason.
+  //
+  // Code Connect does not protect against any of this: it publishes a code
+  // snippet from this repo into Figma's dev panel, one way, and never compares
+  // a token value in the file against a token value in the design.
+  monoBase:       SCD("foreground-action-ghost-rest"),
+  monoHover:      SCD("foreground-action-ghost-hover"),
+  monoPressed:    SCD("foreground-action-ghost-pressed"),
+  // Org switcher label and chevron. Ghost has no weight axis, so the label's
+  // emphasis comes from font-weight at the call site, not from a bolder colour.
+  orgText:        SCD("foreground-action-ghost-rest"),
+  orgChevron:     SCD("foreground-action-ghost-rest"),
+  avatarBg:       SCD("fill-action-primary-subtle-rest"),
+  avatarText:     SCD("foreground-action-primary-on-subtle-rest"),
   // White dropdown-menu surface — tracks fill-neutral-light (now warm-neutral-0).
   panelBg:        SCL("fill-static-neutral-faint"),
   activeItem:     SCL("fill-action-primary-subtle-rest"),
@@ -341,8 +381,9 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           minHeight: 36,
           // Figma OrgSwitcher Container.Main: pl-12 pr-6 py-4 (updated 2026-06-08 from uniform 4px)
           padding: mobile ? "4px 2px" : "4px 6px 4px 12px", borderRadius: L.radius,
-          background: open ? T.controlPressed : hov ? T.controlHover : T.orgFill,
-          border: `1px solid ${open || hov ? T.orgStrokeHover : T.orgStroke}`,
+          // Rest is bare: stroke only, no fill. See the Ghost note in T.
+          background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
+          border: `1px solid ${open ? T.orgStrokePressed : hov ? T.orgStrokeHover : T.orgStroke}`,
           cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
           transition: "background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard)",
         }}
@@ -475,7 +516,10 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           display: "flex", alignItems: "center",
           maxHeight: L.modInnerH, minHeight: L.modInnerH, padding: "var(--semantic-layout-units-padding-xxxtight)", borderRadius: L.radius,
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
-          border: `1px solid ${open ? T.orgStrokeHover : "transparent"}`,
+          // No stroke in any state — Figma's ModuleSwitcher has none, unlike the
+          // org switcher next to it. Transparent rather than none so the two
+          // controls keep the same box height.
+          border: "1px solid transparent",
           cursor: "pointer", color: T.monoBase, fontFamily: "inherit",
           transition: "background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard)",
         }}
@@ -651,7 +695,7 @@ export function TopNav({
                   onClick={() => handleModuleSelect(m.id)}
                   style={{
                     display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-medium)",
-                    padding: "9px 10px", borderRadius: "var(--semantic-layout-units-cornerradius-base)", width: "100%", textAlign: "left",
+                    padding: "", borderRadius: "var(--semantic-layout-units-cornerradius-base)", width: "100%", textAlign: "left",
                     color: m.id === currentModuleId ? T.itemText : T.itemTextBase,
                     fontSize: "var(--semantic-type-font-size-s)", fontWeight: m.id === currentModuleId ? 500 : 400,
                     background: m.id === currentModuleId ? T.activeItem : "transparent",
@@ -726,14 +770,14 @@ export function TopNav({
               animation: "tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both",
             }}
           >
-            <div style={{ padding: "10px 12px 8px",
+            <div style={{ padding: " ",
               borderBottom: `1px solid ${T.panelDivider}`, marginBottom: 4 }}>
               <div style={{ fontSize: "var(--semantic-type-font-size-s)", fontWeight: 600, color: T.itemText }}>{user.name}</div>
               <div style={{ fontSize: "var(--semantic-type-font-size-xxs)", color: T.itemMeta, marginTop: 1 }}>{user.email}</div>
             </div>
             {["Profile settings", "Settings"].map(label => (
               <button key={label} role="menuitem"
-                style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)", padding: "8px 10px",
+                style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)", padding: "",
                   borderRadius: "var(--semantic-layout-units-cornerradius-base)", fontFamily: "inherit", fontSize: "var(--semantic-type-font-size-s)",
                   color: T.itemTextBase, background: "transparent",
                   border: "none", width: "100%", textAlign: "left", cursor: "pointer" }}>
@@ -741,7 +785,7 @@ export function TopNav({
               </button>
             ))}
             <button role="menuitem"
-              style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)", padding: "8px 10px",
+              style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)", padding: "",
                 borderRadius: "var(--semantic-layout-units-cornerradius-base)", fontFamily: "inherit", fontSize: "var(--semantic-type-font-size-s)",
                 color: T.signOut, background: "transparent",
                 border: "none", width: "100%", textAlign: "left", cursor: "pointer" }}>
@@ -764,9 +808,16 @@ export function TopNav({
           Escape still closes. */}
       {useTakeover && (
         <div
+          // data-theme="light" because the takeover IS the bar, and the bar
+          // resolves its chrome in light. Without it the takeover sat inside the
+          // bar's own data-theme="midnight" region, where Fill/Surface/Chrome is
+          // #152343 rather than #2d4889 — so opening search visibly darkened the
+          // whole bar. Measured 2026-10-02: bar rgb(45,72,137), takeover
+          // rgb(21,35,67).
+          data-theme="light"
           style={{
             position: "absolute", inset: 0, zIndex: 200,
-            background: `var(--semantic-color-fill-surface-chrome, ${T.navBg})`,
+            background: "var(--semantic-color-fill-surface-chrome)",
             display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)",
             padding: `0 ${L.navPadH}`,
           }}

@@ -100,8 +100,8 @@ html, body {
   padding: 8px; border-radius: 8px; background: transparent;
   border: none; cursor: pointer; color: var(--semantic-color-foreground-static-neutral-base); transition: background var(--motion-duration-2) var(--motion-easing-standard);
 }
-.tn-iconbtn__inner:hover  { background: var(--semantic-color-fill-action-primary-subtle-hover); }
-.tn-iconbtn__inner:active { background: var(--semantic-color-fill-action-primary-subtle-pressed); }
+.tn-iconbtn__inner:hover  { background: var(--semantic-color-fill-action-ghost-hover); }
+.tn-iconbtn__inner:active { background: var(--semantic-color-fill-action-ghost-pressed); }
 
 /* ── Module Switcher ─────────────────────────────────────────────────────────── */
 .tn-mod { position: relative; padding: 4px 2px; }
@@ -112,8 +112,8 @@ html, body {
   cursor: pointer; color: var(--semantic-color-foreground-static-neutral-base); font-family: inherit;
   transition: background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard);
 }
-.tn-mod__btn:hover              { background: var(--semantic-color-fill-action-primary-subtle-hover); border-color: var(--semantic-color-stroke-action-primary-strong-hover); }
-.tn-mod__btn[aria-expanded="true"] { background: var(--semantic-color-fill-action-primary-subtle-pressed); border-color: var(--semantic-color-stroke-action-primary-strong-pressed); }
+.tn-mod__btn:hover              { background: var(--semantic-color-fill-action-ghost-hover); border-color: var(--semantic-color-stroke-action-ghost-hover); }
+.tn-mod__btn[aria-expanded="true"] { background: var(--semantic-color-fill-action-ghost-pressed); border-color: var(--semantic-color-stroke-action-ghost-pressed); }
 /* Static (Amplify Dashboard): label only — no chevron, no hover, no pressed, not a control */
 .tn-mod__static { display: flex; align-items: center; height: 36px; padding: 4px;
   border-radius: 8px; background: transparent; border: 1px solid transparent;
@@ -139,8 +139,8 @@ html, body {
   transition: background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard);
 }
 .tn-org.is-mobile .tn-org__btn { padding: 4px 2px; }
-.tn-org__btn:hover              { background: var(--semantic-color-fill-action-primary-subtle-hover); border-color: var(--semantic-color-stroke-action-primary-strong-hover); }
-.tn-org__btn[aria-expanded="true"] { background: var(--semantic-color-fill-action-primary-subtle-pressed); border-color: var(--semantic-color-stroke-action-primary-strong-pressed); }
+.tn-org__btn:hover              { background: var(--semantic-color-fill-action-ghost-hover); border-color: var(--semantic-color-stroke-action-ghost-hover); }
+.tn-org__btn[aria-expanded="true"] { background: var(--semantic-color-fill-action-ghost-pressed); border-color: var(--semantic-color-stroke-action-ghost-pressed); }
 .tn-org__avatar-row { display: flex; align-items: center; gap: 4px; height: 20px; padding: 0 2px; }
 .tn-org__avatar-pad { width: 24px; height: 24px; padding: 2px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -155,7 +155,7 @@ html, body {
 /* With logo: transparent bg */
 .tn-org__avatar { background: transparent; }
 /* No logo: Fill/Action/Secondary/Rest (Figma) */
-.tn-org__avatar.no-logo { background: var(--semantic-color-fill-action-primary-subtle-pressed); }
+.tn-org__avatar.no-logo { background: var(--semantic-color-fill-action-ghost-pressed); }
 
 /* Org logo image: scale to fill proportionally (Figma annotation) */
 .tn-org__avatar img {
@@ -189,8 +189,8 @@ html, body {
   border-radius: 9999px; cursor: pointer; flex-shrink: 0;
   color: var(--semantic-color-foreground-static-neutral-base); transition: background var(--motion-duration-2) var(--motion-easing-standard);
 }
-.tn-search__pill:hover  { background: var(--semantic-color-fill-action-primary-subtle-hover); }
-.tn-search__pill:active { background: var(--semantic-color-fill-action-primary-subtle-pressed); }
+.tn-search__pill:hover  { background: var(--semantic-color-fill-action-ghost-hover); }
+.tn-search__pill:active { background: var(--semantic-color-fill-action-ghost-pressed); }
 
 /* Expanded search — white pill, blue border (Figma State=Focused / with-value) */
 .tn-search__expanded {
@@ -220,8 +220,8 @@ html, body {
 .tn-profile__btn { display: flex; align-items: center; justify-content: center;
   width: 44px; height: 44px; background: transparent; border: none;
   border-radius: 50%; cursor: pointer; padding: 6px; transition: background var(--motion-duration-2) var(--motion-easing-standard); }
-.tn-profile__btn:hover              { background: var(--semantic-color-fill-action-primary-subtle-hover); }
-.tn-profile__btn[aria-expanded="true"] { background: var(--semantic-color-fill-action-primary-subtle-pressed); }
+.tn-profile__btn:hover              { background: var(--semantic-color-fill-action-ghost-hover); }
+.tn-profile__btn[aria-expanded="true"] { background: var(--semantic-color-fill-action-ghost-pressed); }
 /* Desktop/Tablet: Text/Body/Small/Semibold 14px/600 */
 .tn-profile__avatar {
   width: 32px; height: 32px; border-radius: 50%;
@@ -246,8 +246,8 @@ html, body {
 .tn-profile-menu { top: calc(100% + 4px); right: 0; width: 200px;
   border: 1px solid rgba(45,72,137,0.10); padding: 4px; }
 
-.tn-dropdown__item { width: 100%; display: flex; align-items: center; gap: 10px;
-  padding: 9px 10px; border-radius: 6px; background: transparent;
+.tn-dropdown__item { width: 100%; display: flex; align-items: center; gap: var(--semantic-layout-units-gap-tight);
+  padding: var(--semantic-layout-units-padding-xtight); border-radius: 6px; background: transparent;
   border: none; font-family: inherit; font-size: 13px; color: var(--semantic-color-foreground-static-neutral-subtle);
   text-align: left; cursor: pointer; }
 .tn-dropdown__item--active { color: var(--semantic-color-foreground-static-neutral-bold); font-weight: 500; background: var(--semantic-color-fill-static-brand-faint); }
@@ -255,7 +255,7 @@ html, body {
 
 .tn-panel__heading { font-size: 11px; font-weight: 600; letter-spacing: .07em;
   text-transform: uppercase; padding: 4px 8px 6px; color: #b5b5b5; }
-.tn-panel__org { display: flex; align-items: center; gap: 10px; padding: 8px;
+.tn-panel__org { display: flex; align-items: center; gap: var(--semantic-layout-units-gap-tight); padding: 8px;
   border-radius: 6px; cursor: pointer; }
 .tn-panel__org--active { background: var(--semantic-color-fill-static-brand-faint); }
 .tn-panel__org:hover:not(.tn-panel__org--active) { background: var(--semantic-color-fill-surface-canvas); }
@@ -265,12 +265,12 @@ html, body {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tn-panel__org-campus { font-size: 11px; color: var(--semantic-color-stroke-action-field-hover); margin-top: 1px; }
 
-.tn-profile-menu__header { padding: 10px 12px 8px;
+.tn-profile-menu__header { padding: var(--semantic-layout-units-padding-xtight) var(--semantic-layout-units-padding-tight);
   border-bottom: 1px solid rgba(0,0,0,0.06); margin-bottom: 4px; }
 .tn-profile-menu__name  { font-size: 13px; font-weight: 600; color: var(--semantic-color-foreground-static-neutral-bold); }
 .tn-profile-menu__email { font-size: 11px; color: var(--semantic-color-stroke-action-field-hover); margin-top: 1px; }
 .tn-profile-menu__item { width: 100%; display: flex; align-items: center; gap: 8px;
-  padding: 8px 10px; border-radius: 6px; background: transparent;
+  padding: var(--semantic-layout-units-padding-xtight); border-radius: 6px; background: transparent;
   border: none; font-family: inherit; font-size: 13px; color: var(--semantic-color-foreground-static-neutral-base);
   text-align: left; cursor: pointer; }
 .tn-profile-menu__item:hover { background: var(--semantic-color-fill-surface-canvas); }

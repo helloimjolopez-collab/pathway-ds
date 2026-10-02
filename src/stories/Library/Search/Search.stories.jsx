@@ -129,7 +129,9 @@ function ControlledSearch(props) {
 // ── Meta ──────────────────────────────────────────────────────────────────────
 
 export default {
-  title: "Library/Search",
+  // Retitled: this is not a general-purpose search. It is the global search,
+  // and today it lives only in the top nav, so that is what the page shows.
+  title: "Library/Global Search (Top Nav)",
   component: SearchInput,
   parameters: {
     layout: "padded",
@@ -159,7 +161,10 @@ export default {
 // CSF3 render function - required for Storybook 7 args to propagate correctly
 // when the story also manages local React state (value).
 
-export const Playground = {
+// The expanded field on its own. Reference only: it is a PART of the global
+// search, not a component a consumer picks up by itself.
+export const Field = {
+  tags: ["!dev"],
   args: {
     placeholder:  "Search...",
     showFilter:   false,
@@ -207,7 +212,8 @@ StateMatrix.tags = ["!dev"];
 
 // ── 3. TopNavSearch ───────────────────────────────────────────────────────────
 
-export const TopNavSearchStory = () => {
+/** The component itself: collapsed control, full-bar takeover, results menu. */
+export const Playground = () => {
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState("");
   return (
@@ -447,3 +453,15 @@ TokensMotion.tags = ["!dev"];
 // Note: StandaloneDemo intentionally removed - the iframe path does not work
 // on GitHub Pages. Open the HTML demo directly:
 // https://helloimjolopez-collab.github.io/pathway-ds/components/search/search.html
+
+// Sidebar discipline: the global search has ONE browsable page, its Playground.
+// The state matrix and the token tables are evidence for a reviewer, not pages
+// to wander into, and the bare field is a part rather than a component — so all
+// of them are reference-only. This is what stopped the page reading as a pile
+// of unfinished search variants.
+StateMatrix.tags      = ["!dev"];
+TokensFill.tags       = ["!dev"];
+TokensStroke.tags     = ["!dev"];
+TokensForeground.tags = ["!dev"];
+TokensSpacing.tags    = ["!dev"];
+TokensMotion.tags     = ["!dev"];

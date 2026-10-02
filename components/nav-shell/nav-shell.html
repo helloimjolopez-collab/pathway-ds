@@ -280,7 +280,7 @@
     }
     .btn--filled {
       background: var(--semantic-color-fill-action-primary-strong-rest);
-      color: var(--semantic-color-foreground-static-neutral-mono); border: none;
+      color: var(--semantic-color-foreground-action-ghost-rest); border: none;
     }
     .btn--filled:hover {
       background: var(--semantic-color-fill-action-primary-strong-hover);
@@ -535,7 +535,7 @@
       // TopNav.Global is, so mono is correct here: it is #ffffff in Light. If this
       // demo ever gains a theme toggle, the bar should become a midnight region and
       // move to foreground-static-neutral-base, as top-nav.jsx does.
-      monoBase:      "var(--semantic-color-foreground-static-neutral-mono)",
+      monoBase:      "var(--semantic-color-foreground-action-ghost-rest)",
       avatarBg:      "var(--semantic-color-fill-static-info-subtle)",
       avatarText:    "var(--semantic-color-foreground-static-info-on-strong)",
       panelBorder:   "rgba(45,72,137,0.12)",
@@ -914,8 +914,8 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
               height:"var(--semantic-layout-units-accessibility-touch-target-aa-height)",
               flexShrink:0, background:"transparent", border:"none", cursor:"pointer",
               borderRadius:"var(--semantic-layout-units-cornerradius-base)", padding:0,
-              color:"var(--semantic-color-foreground-static-neutral-mono)" }}>
-            <Icon name="arrow_back" size={20} fill={1} color="var(--semantic-color-foreground-static-neutral-mono)" />
+              color:"var(--semantic-color-foreground-action-ghost-rest)" }}>
+            <Icon name="arrow_back" size={20} fill={1} color="var(--semantic-color-foreground-action-ghost-rest)" />
           </button>
           <div style={{ display:"flex", alignItems:"center",
             gap:"var(--semantic-layout-units-gap-xtight)",
@@ -1049,7 +1049,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                         <li key={m.id} role="option">
                           <button onClick={() => close()}
                             style={{ display:"flex", alignItems:"center", gap:10,
-                              padding:"9px 10px", borderRadius:6, width:"100%",
+                              padding:"var(--semantic-layout-units-padding-xtight)", borderRadius:6, width:"100%",
                               color:TN.itemTextBase, fontSize:13, fontWeight:400,
                               background:"transparent", border:"none", fontFamily:"inherit", cursor:"pointer" }}>
                             {/* Full: the panel is a light surface and the identity
@@ -1112,7 +1112,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                           background:org.bg||TN.navBg,
                           display:"flex", alignItems:"center", justifyContent:"center",
                           flexShrink:0, border:`1px solid ${TN.orgStroke}` }}>
-                          <span style={{ fontSize:9, fontWeight:700, color:"var(--semantic-color-foreground-static-neutral-mono)" }}>{org.initials}</span>
+                          <span style={{ fontSize:9, fontWeight:700, color:"var(--semantic-color-foreground-action-ghost-rest)" }}>{org.initials}</span>
                         </div>
                         <div style={{ minWidth:0 }}>
                           <div style={{ fontSize:13, fontWeight:500, color:TN.itemText,
@@ -1193,14 +1193,14 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                         border:`1px solid rgba(45,72,137,0.10)`, borderRadius:8,
                         boxShadow:TN.panelShadow, padding:4, zIndex:300,
                         animation:"tnDropIn var(--motion-duration-4) var(--motion-easing-spring) both" }}>
-                      <div style={{ padding:"10px 12px 8px",
+                      <div style={{ padding:"var(--semantic-layout-units-padding-xtight) var(--semantic-layout-units-padding-tight)",
                         borderBottom:"1px solid rgba(0,0,0,0.06)", marginBottom:4 }}>
                         <div style={{ fontSize:13, fontWeight:600, color:TN.itemText }}>{user.name}</div>
                         <div style={{ fontSize:11, color:TN.itemMeta, marginTop:1 }}>{user.email}</div>
                       </div>
                       {["Profile settings","Settings"].map(lbl => (
                         <button key={lbl} role="menuitem"
-                          style={{ display:"flex", alignItems:"center", gap:8, padding:"8px 10px",
+                          style={{ display:"flex", alignItems:"center", gap:8, padding:"var(--semantic-layout-units-padding-xtight)",
                             borderRadius:6, fontFamily:"inherit", fontSize:13,
                             color:TN.itemTextBase, background:"transparent",
                             border:"none", width:"100%", textAlign:"left", cursor:"pointer" }}>
@@ -1208,7 +1208,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                         </button>
                       ))}
                       <button role="menuitem"
-                        style={{ display:"flex", alignItems:"center", gap:8, padding:"8px 10px",
+                        style={{ display:"flex", alignItems:"center", gap:8, padding:"var(--semantic-layout-units-padding-xtight)",
                           borderRadius:6, fontFamily:"inherit", fontSize:13,
                           color:"#c0392b", background:"transparent",
                           border:"none", width:"100%", textAlign:"left", cursor:"pointer" }}>

@@ -76,15 +76,24 @@ const V = {
   // State-layer — error hover (both unchecked and checked)
   stateLayerErrorHover: "var(--semantic-color-fill-action-status-negative-subtle-hover)",
 
-  // Highlight resting state.
+  // Highlight.
   //
-  // This was flagged as a FALLBACK against a missing token
-  // (fill.action.secondaryinverse.base, spec §5.3 HIGH). That gap is closed:
-  // the *inverse families were deleted outright on 2026-09-03, because an
-  // inverted control is the same control inside a [data-theme="midnight"]
-  // region rather than a second set of tokens. fill.action.secondary.rest is
-  // the real token for this state, not a stand-in.
-  highlightResting: "var(--semantic-color-fill-action-secondary-rest)",
+  // THIS IS NOT A RESTING TINT. It used to be one here, and that was wrong in
+  // both directions: it painted a background the Figma variant does not have,
+  // and it did nothing on hover, which is the only place the variant actually
+  // differs. Reported 2026-10-02.
+  //
+  // Figma has three Highlight variants, all Unselected:
+  //   Type=Highlight Unselected, State=Active   no state layer at all
+  //   Type=Highlight Hovered,    State=Hovered  state layer #e2e9f7
+  //   Type=Hhighlight Focused,   State=Focused  state layer #e2e9f7  (sic)
+  // The box fill and both border colours are IDENTICAL to the standard
+  // unselected variants (#77726b rest, #67625c hover). So the entire meaning of
+  // Highlight is one swap: the unchecked hover/focus state layer goes from the
+  // warm grey Fill/Action/Secondary/Hover (#f3f0ec) to the pale blue
+  // Fill/Action/Primary/Subtle/Hover (#e2e9f7). It marks a row as brand-live on
+  // interaction; it does not mark it at rest.
+  stateLayerHighlightHover: "var(--semantic-color-fill-action-primary-subtle-hover)",
 
   // Label text
   labelColor: "var(--semantic-color-foreground-static-neutral-base)",
@@ -155,7 +164,8 @@ export function IconDash({ color, size }) {
  * @param {boolean}  checked        - Whether the checkbox is checked
  * @param {boolean}  indeterminate  - Shows dash icon; overrides checked visually
  * @param {boolean}  error          - Error / negative styling
- * @param {boolean}  highlight      - Tinted resting background on the state-layer
+ * @param {boolean}  highlight      - Brand-tinted hover/focus state-layer for selectable
+ *                                   rows. Unchecked only, and no effect at rest.
  * @param {boolean}  secondary      - Secondary indeterminate (muted colour) — use with indeterminate only
  * @param {boolean}  disabled       - Non-interactive
  * @param {"default"|"s"} size      - Visual size of the control
@@ -249,12 +259,16 @@ export function Checkbox({
           ? V.stateLayerErrorHover
           : (focused ? V.stateLayerCheckedFocused : V.stateLayerCheckedHover);
       } else {
-        stateLayerBg = error ? V.stateLayerErrorHover : V.stateLayerUncheckedHover;
+        // Unchecked hover/focus. Highlight swaps the warm grey layer for the
+        // pale blue one; error still wins over both. See V.stateLayerHighlightHover.
+        stateLayerBg = error
+          ? V.stateLayerErrorHover
+          : (highlight ? V.stateLayerHighlightHover : V.stateLayerUncheckedHover);
       }
-    } else if (highlight) {
-      // Resting highlight tint (fallback token — see V.highlightResting note above)
-      stateLayerBg = V.highlightResting;
     }
+    // No `else if (highlight)` branch: Figma's highlight variant has no resting
+    // state layer, so at rest a highlighted checkbox is indistinguishable from
+    // a standard one. That is the design.
   }
 
   // ─── Focus ring ───────────────────────────────────────────────────────────

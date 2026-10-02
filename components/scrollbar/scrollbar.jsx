@@ -43,8 +43,19 @@ export const SCROLL = {
   // an overlay scrollbar is a redundant affordance (the content scrolls with or
   // without it, and the OS bar remains). So contrast is bought back with SIZE
   // and PRESENCE rather than with darkness: see thumbWidth and the grab strip.
-  thumbRest:   "var(--semantic-color-scrim-faint)",    // black 16% — faint overlay (rest)
-  thumbHover:  "var(--semantic-color-scrim-light)",    // black 24% — hover/drag
+  // Scrim/Faint and Scrim/Light resolve to Cool Neutral 800, so the thumb was
+  // drawing a COOL grey over warm surfaces and reading as a cold bar against
+  // them. Reported 2026-10-02. The comment below has always said "light warm
+  // overlay" — the value simply did not match it.
+  //
+  // Scrim is also the wrong family: it is the modal backdrop, where a cool
+  // near-black is right. The thumb is an overlay on a surface, and under the
+  // alpha rule surfaces and fills are WARM. So the thumb now resolves through
+  // its own themed custom properties, set in the injected sheet below off the
+  // warm neutral alpha primitives. No new design token: a component-local
+  // property, the same mechanism the Widget uses for its column spans.
+  thumbRest:   "var(--pw-scrollbar-thumb-rest)",    // warm neutral 16%
+  thumbHover:  "var(--pw-scrollbar-thumb-hover)",   // warm neutral 24%
   thumbBlur:   "blur(8px) saturate(180%)",
   // Hairline glass edge: semantic white at 35% via color-mix.
   thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-fill-static-neutral-faint) 35%, transparent)",
@@ -72,6 +83,16 @@ if (typeof document !== "undefined" && !document.getElementById("pds-scrollable-
   const s = document.createElement("style");
   s.id = "pds-scrollable-base";
   s.textContent =
+    // Warm neutral, and it has to INVERT: 500 is the dark warm grey for a light
+    // surface, 100 the light warm grey for a dark one. An inline style cannot
+    // branch on [data-theme], which is why these live here rather than in the
+    // SCROLL map above.
+    ":root,[data-theme=\"light\"]{" +
+      "--pw-scrollbar-thumb-rest:var(--primitive-color-warm-neutral-500-16);" +
+      "--pw-scrollbar-thumb-hover:var(--primitive-color-warm-neutral-500-24)}" +
+    "[data-theme=\"midnight\"],[data-theme=\"dark\"]{" +
+      "--pw-scrollbar-thumb-rest:var(--primitive-color-warm-neutral-100-16);" +
+      "--pw-scrollbar-thumb-hover:var(--primitive-color-warm-neutral-100-24)}" +
     ".pds-scrollable__view{scrollbar-width:none;-ms-overflow-style:none}" +
     ".pds-scrollable__view::-webkit-scrollbar{width:0;height:0;display:none}" +
     "@media (hover: none){.pds-scrollable__grab{pointer-events:none!important}}";

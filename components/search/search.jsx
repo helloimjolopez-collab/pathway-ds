@@ -26,8 +26,24 @@ import React, { useState, useEffect, useRef } from "react";
 // Every value is a semantic CSS variable. Fallbacks are the resolved values from
 // the token contract — used only when Storybook has not loaded it yet.
 export const T = {
-  // Bar fills
-  barBg:           "var(--semantic-color-fill-static-neutral-faint)",
+  // THIS IS THE GLOBAL SEARCH, AND IT IS A TOP NAV COMPONENT.
+  //
+  // There is no separate "generic search field" in this system. The field below
+  // and the control in the nav are one component with one set of tokens and one
+  // behaviour; the field is simply the part of it that is visible once it is
+  // expanded. It is scoped to the top nav because that is the only place it
+  // appears today. Treating it as a general-purpose search is what produced a
+  // Storybook page showing a mix of half-finished field variants out of
+  // context. Reported 2026-10-02.
+  //
+  // The FIELD's own values come from Figma node 40007095:4048:
+  //   State=Expanded  fill #ffffff, stroke #f9f7f5
+  //   State=Open      fill #ffffff, stroke #4b6ec3, plus the results menu
+  // White in both modes on purpose: the bar it sits on is the brand chrome in
+  // both modes, so the field does not invert with the theme. It was
+  // Fill/Static/Neutral/Faint with Action/Primary/Strong borders, a light-page
+  // field dropped onto brand chrome.
+  barBg:           "var(--semantic-color-fill-static-neutral-mono)",
   filterActiveFill:"var(--semantic-color-fill-action-primary-subtle-rest)",
   // Icon pill hover/pressed: no semantic token resolves to the correct subtle overlay
   // on a white surface. fill.action.secondary.hover = warm-neutral-200 (#f7f5f3)
@@ -39,9 +55,9 @@ export const T = {
   disabledBg:      "var(--primitive-color-cool-neutral-10)",      // token gap §17
 
   // Bar borders
-  borderIdle:     "var(--semantic-color-stroke-static-neutral-faint)",
+  borderIdle:     "var(--semantic-color-stroke-static-neutral-faint)",      // #f9f7f5 — State=Expanded
   borderHover:    "var(--semantic-color-stroke-action-primary-strong-hover)",
-  borderActive:   "var(--semantic-color-stroke-action-primary-strong-pressed)",
+  borderActive:   "var(--semantic-color-stroke-action-primary-strong-pressed)", // #4b6ec3 — State=Open
   borderError:    "var(--semantic-color-stroke-action-status-negative-rest)",
   borderDisabled: "var(--primitive-color-cool-neutral-25)",       // token gap §17
   divider:        "var(--semantic-color-stroke-action-secondary-rest)",
@@ -56,14 +72,34 @@ export const T = {
   iconDisabled:"var(--semantic-color-foreground-action-disabled)",
   iconError:   "var(--semantic-color-foreground-action-status-negative-on-subtle-rest)",
 
-  // TopNav.Search collapsed control — sits on the dark brand-blue nav surface, so it
-  // resolves through the DARK-MODE token set (per Figma node 40007095-4048). The
-  // expanded bar itself stays white (light-mode SearchInput) — only the collapsed
-  // icon button + its icon use the inverse/mono dark-mode tokens.
-  navIconFill:        "var(--semantic-color-foreground-static-neutral-mono)",
-  collapsedBtnFill:   "var(--semantic-color-fill-action-primary-subtle-rest)",
-  collapsedBtnHover:  "var(--semantic-color-fill-action-primary-subtle-hover)",
-  collapsedBtnBorder: "var(--semantic-color-stroke-action-primary-strong-rest)",
+  // TOPNAV.SEARCH — its own control, not a generic field on a nav.
+  //
+  // It sits on the brand bar, so every part of the collapsed state is
+  // Action/Ghost. Measured against Figma node 40007095:4048, Platform=Desktop:
+  //   State=Collapsed  Container.Icon  fill #b6c6ec @8%, stroke #b6c6ec @36%
+  //   State=Expanded   field           fill #ffffff, stroke #f9f7f5
+  //   State=Open       field           fill #ffffff, stroke #4b6ec3, + results menu
+  //
+  // This was Action/Primary/Subtle for the fill, Action/Primary/Strong for the
+  // border and Foreground/Static/Neutral/MONO for the glyph. Mono is an
+  // inversion anchor (#ffffff Light, #181b2b Midnight), so the magnifier went
+  // near-black on the navy bar in Midnight. Reported 2026-10-02.
+  navIconFill:          "var(--semantic-color-foreground-action-ghost-rest)",
+  navIconHover:         "var(--semantic-color-foreground-action-ghost-hover)",
+  collapsedBtnFill:     "var(--semantic-color-fill-action-ghost-rest)",
+  collapsedBtnHover:    "var(--semantic-color-fill-action-ghost-hover)",
+  collapsedBtnPressed:  "var(--semantic-color-fill-action-ghost-pressed)",
+  collapsedBtnBorder:   "var(--semantic-color-stroke-action-ghost-rest)",
+  collapsedBtnBorderHov:"var(--semantic-color-stroke-action-ghost-hover)",
+  // Expanded field. White in both modes on purpose: the bar it sits on is the
+  // brand chrome in both modes, so the field does not invert with the theme.
+  navFieldFill:         "var(--semantic-color-fill-static-neutral-mono)",
+  navFieldBorder:       "var(--semantic-color-stroke-static-neutral-faint)",
+  navFieldBorderOpen:   "var(--semantic-color-stroke-action-primary-strong-pressed)",
+  // Results menu under the expanded field: an elevated popover, so it DOES
+  // invert with the theme.
+  navMenuFill:          "var(--semantic-color-fill-surface-elevated)",
+  navMenuBorder:        "var(--semantic-color-stroke-static-neutral-faint)",
   badgeBorderColor:   "var(--semantic-color-fill-static-neutral-faint)",
 };
 
@@ -508,7 +544,13 @@ export function TopNavSearch({
     <div
       className={className}
       style={{
-        position: "relative",
+        // While expanded the wrapper deliberately stops being a positioning
+        // context. The takeover below is absolute, so with the wrapper relative
+        // it could only ever be as wide as this 48px slot — which is how the
+        // expanded search ended up as a strip on the right-hand side of the bar
+        // instead of taking the bar over. Static hands the takeover up to the
+        // nav itself, which is the element that should be covered.
+        position: expanded ? "static" : "relative",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
@@ -531,9 +573,10 @@ export function TopNavSearch({
         onMouseEnter={() => setHov(true)}
         onMouseLeave={() => setHov(false)}
         style={{
-          // On desktop the icon hides when expanded (the inline bar replaces it). On
-          // narrow, the collapsed icon stays — TopNav's full-width takeover overlays it.
-          display: (expanded && breakpoint === "desktop") ? "none" : "flex",
+          // Always rendered. The takeover covers the whole bar now, so there is
+          // nothing to hide from: the old breakpoint branch existed only because
+          // the desktop expansion was an inline bar that sat beside this button.
+          display: "flex",
           alignItems: "center",
           justifyContent: "center",
           width: L.touchTarget,
@@ -556,34 +599,46 @@ export function TopNavSearch({
             height: 32,
             borderRadius: "50%",
             background: hov ? T.collapsedBtnHover : T.collapsedBtnFill,
-            border: `0.5px solid ${T.collapsedBtnBorder}`,
-            transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
+            border: `0.5px solid ${hov ? T.collapsedBtnBorderHov : T.collapsedBtnBorder}`,
+            transition: "background var(--motion-duration-2) var(--motion-easing-standard), border-color var(--motion-duration-2) var(--motion-easing-standard)",
           }}
         >
           <Icon
             name="search"
             size={L.iconSizeCollapsed}
-            color={T.navIconFill}
+            color={hov ? T.navIconHover : T.navIconFill}
           />
         </div>
       </button>
 
-      {/* Expanded bar — absolutely positioned, RIGHT-anchored so it grows LEFTWARD and
-          NEVER pushes the elements to its right. It overlays the nav space to its left.
-          Desktop only: on narrow widths TopNav renders a full-width takeover instead. */}
-      {expanded && breakpoint === "desktop" && (
+      {/* EXPANDED: a takeover of the whole nav, not a bar on the right.
+          It used to be absolutely positioned at `right: 0` with a fixed
+          `L.expandedWidth`, which made the expanded search a 332px strip over
+          the right-hand end of the bar while the org switcher and module
+          switcher stayed visible beside it. Reported 2026-10-02.
+
+          `inset: 0` against the nav (the wrapper goes position:static while
+          expanded, so this anchors to the nav, see above) means search owns the
+          bar for as long as it is open, on every breakpoint. The only way out
+          is the back arrow or Escape, which is why both exist.
+
+          A consumer that is not the TopNav only has to be position:relative for
+          this to cover it. */}
+      {expanded && (
         <div
           aria-hidden={false}
           style={{
             position: "absolute",
-            top: 0,
-            bottom: 0,
-            right: 0,
-            width: L.expandedWidth,
+            inset: 0,
             display: "flex",
             alignItems: "center",
             gap: "var(--semantic-layout-units-gap-xtight)",
-            zIndex: 50,
+            // The bar's own chrome, so the takeover hides what it covers rather
+            // than floating over it.
+            background: "var(--semantic-color-fill-surface-chrome)",
+            padding: "var(--semantic-layout-units-padding-xxtight) var(--semantic-layout-units-padding-base)",
+            boxSizing: "border-box",
+            zIndex: 60,
             animation: "pwSearchExpand var(--motion-duration-4) var(--motion-easing-spring) both",
           }}
         >
@@ -593,9 +648,7 @@ export function TopNavSearch({
               the whole search away and the trailing ✕ threw only the typed text
               away. A back arrow outside the field is a different shape, on the
               other side, and reads as "go back" rather than "close". The
-              leading glyph is now a plain search mark with no action.
-              TopNav's full-bar takeover uses the identical affordance, so there
-              is one way out of search everywhere. */}
+              leading glyph is now a plain search mark with no action. */}
           <button
             type="button"
             aria-label="Back"

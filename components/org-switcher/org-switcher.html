@@ -134,18 +134,18 @@ const { useState, useRef, useEffect } = React;
 
 // ── Tokens ──────────────────────────────────────────────────────────────────
 const T = {
-  fillBase:    "var(--semantic-color-fill-action-primary-subtle-rest)",
-  fillHover:   "var(--semantic-color-fill-action-primary-subtle-hover)",
-  fillPressed: "var(--semantic-color-fill-action-primary-subtle-pressed)",
-  strokeBase:    "var(--semantic-color-stroke-action-primary-strong-rest)",
-  strokeHover:   "var(--semantic-color-stroke-action-primary-strong-hover)",
-  strokePressed: "var(--semantic-color-stroke-action-primary-strong-pressed)",
-  textBase:    "var(--semantic-color-foreground-static-neutral-mono)",
-  textHover:   "var(--semantic-color-foreground-static-neutral-mono)",
-  textPressed: "var(--semantic-color-foreground-static-neutral-mono)",
-  iconBase:    "var(--semantic-color-foreground-static-neutral-mono)",
-  iconHover:   "var(--semantic-color-foreground-static-neutral-mono)",
-  iconPressed: "var(--semantic-color-foreground-static-neutral-mono)",
+  fillBase:    "transparent",   /* Figma State=Base has no fill */
+  fillHover:   "var(--semantic-color-fill-action-ghost-hover)",
+  fillPressed: "var(--semantic-color-fill-action-ghost-pressed)",
+  strokeBase:    "var(--semantic-color-stroke-action-ghost-rest)",
+  strokeHover:   "var(--semantic-color-stroke-action-ghost-hover)",
+  strokePressed: "var(--semantic-color-stroke-action-ghost-pressed)",
+  textBase:    "var(--semantic-color-foreground-action-ghost-rest)",
+  textHover:   "var(--semantic-color-foreground-action-ghost-rest)",
+  textPressed: "var(--semantic-color-foreground-action-ghost-rest)",
+  iconBase:    "var(--semantic-color-foreground-action-ghost-rest)",
+  iconHover:   "var(--semantic-color-foreground-action-ghost-rest)",
+  iconPressed: "var(--semantic-color-foreground-action-ghost-rest)",
   fillAvatarPlaceholder: "var(--semantic-color-fill-action-secondary-rest)",
   // Typography (Figma: Label/Button/S and Label/Button/XS).
   // Composed from the Semantic: Type SCALE. The composite text styles live only as
@@ -344,7 +344,7 @@ function ModuleIconsRow({ modules=[] }) {
         return (
           <div key={`${m}-${i}`} title={m.replace(/-/g," ")}
             style={{ width:18, height:18, borderRadius:9999, background:def.bg, display:"flex", alignItems:"center", justifyContent:"center", marginRight:-2, flexShrink:0, overflow:"hidden", border:"1.5px solid var(--semantic-color-stroke-static-neutral-mono)", boxSizing:"border-box" }}>
-            <Icon name={def.icon} size={10} style={{ color:"var(--semantic-color-foreground-static-neutral-mono)" }} />
+            <Icon name={def.icon} size={10} style={{ color:"var(--semantic-color-foreground-action-ghost-rest)" }} />
           </div>
         );
       })}

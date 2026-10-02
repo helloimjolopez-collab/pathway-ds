@@ -44,30 +44,43 @@ const CHURCH_ICON_PATH =
 // — they're never used at runtime when Storybook loads the token contract, but they
 // keep the file readable on its own.
 const T = {
-  // Container fills
-  fillBase:    "var(--semantic-color-fill-action-primary-subtle-rest)",
-  fillHover:   "var(--semantic-color-fill-action-primary-subtle-hover)",
-  fillPressed: "var(--semantic-color-fill-action-primary-subtle-pressed)",
+  // ACTION/GHOST, the whole way through. This component sits on the brand bar,
+  // and Ghost is the family for a control on a dark on-brand surface: near-white
+  // foreground in both modes, translucent brand fill, translucent brand stroke.
+  // It was Action/Primary/Subtle for the fills and Action/Primary/Strong for the
+  // strokes, both LIGHT-surface families, with Static/Neutral foregrounds that
+  // only read correctly because the bar carries data-theme="midnight".
+  // Reported 2026-10-02 and measured against Figma node 40006819:14583.
+  //
+  // THE REST STATE HAS NO FILL. Figma's State=Base, Type=Desktop has no fill on
+  // Container.Main at all — only the stroke. The fill appears on Hover
+  // (#b6c6ec @16%) and deepens on Pressed and Open (#22386b @70%). fillBase is
+  // kept as a name so the call site still reads in three states, but it is
+  // transparent on purpose.
+  fillBase:    "transparent",
+  fillHover:   "var(--semantic-color-fill-action-ghost-hover)",
+  fillPressed: "var(--semantic-color-fill-action-ghost-pressed)",
 
-  // Avatar placeholder background (when no logo on file)
-  fillAvatarPlaceholder: "var(--semantic-color-fill-action-secondary-rest)",
+  // Avatar placeholder background (when no logo on file). The avatar is the one
+  // element on this bar that is NOT ghost — it is a filled identity chip — so it
+  // takes Action/Primary/Subtle.
+  fillAvatarPlaceholder: "var(--semantic-color-fill-action-primary-subtle-rest)",
 
-  // Borders
-  strokeBase:    "var(--semantic-color-stroke-action-primary-strong-rest)",
-  strokeHover:   "var(--semantic-color-stroke-action-primary-strong-hover)",
-  strokePressed: "var(--semantic-color-stroke-action-primary-strong-pressed)",
+  // Borders — Stroke/Action/Ghost at 36 / 50 / 70 percent.
+  strokeBase:    "var(--semantic-color-stroke-action-ghost-rest)",
+  strokeHover:   "var(--semantic-color-stroke-action-ghost-hover)",
+  strokePressed: "var(--semantic-color-stroke-action-ghost-pressed)",
 
-  // Text — org name. Reconciled to Figma (Foreground/Static/Neutral/Bold, node
-  // 40006819:14581). Static token — no per-state variants; the interactive
-  // feedback is carried by the fill/stroke, not the text colour.
-  textBase:    "var(--semantic-color-foreground-static-neutral-bold)",
-  textHover:   "var(--semantic-color-foreground-static-neutral-bold)",
-  textPressed: "var(--semantic-color-foreground-static-neutral-bold)",
+  // Text — org name. Ghost has no weight axis, so emphasis is font-weight at the
+  // call site rather than a bolder colour token.
+  textBase:    "var(--semantic-color-foreground-action-ghost-rest)",
+  textHover:   "var(--semantic-color-foreground-action-ghost-hover)",
+  textPressed: "var(--semantic-color-foreground-action-ghost-pressed)",
 
-  // Chevron icon — reconciled to Figma (Foreground/Static/Neutral/Bold = white 80%).
-  iconBase:    "var(--semantic-color-foreground-static-neutral-base)",
-  iconHover:   "var(--semantic-color-foreground-static-neutral-base)",
-  iconPressed: "var(--semantic-color-foreground-static-neutral-base)",
+  // Chevron icon.
+  iconBase:    "var(--semantic-color-foreground-action-ghost-rest)",
+  iconHover:   "var(--semantic-color-foreground-action-ghost-hover)",
+  iconPressed: "var(--semantic-color-foreground-action-ghost-pressed)",
 
   // Geometry
   radiusMedium: "var(--semantic-layout-units-cornerradius-base)",
