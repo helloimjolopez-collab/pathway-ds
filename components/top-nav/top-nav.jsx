@@ -688,10 +688,28 @@ export function TopNav({
     >
     <nav
       ref={navRef}
-      // Every CONTROL on the bar resolves through the Midnight values, which is
-      // why the token names in T are modeless. The floating dropdown panels opt
-      // back out with data-theme="light": they are white by design.
-      data-theme="midnight"
+      // NO data-theme HERE, AND THAT IS THE FIX FOR THE WHOLE BAR.
+      //
+      // This carried data-theme="midnight", on the reasoning that a dark bar is
+      // a dark region. It is not. Figma renders this bar in LIGHT, and the bar
+      // is dark because Fill/Surface/Chrome is itself a dark navy in Light, not
+      // because the region is inverted. Measured off node 40007067:6508 on
+      // 2026-10-02, reading the resolved paints as the file renders them:
+      //
+      //   bar       Container.Main   #2d4889   Fill/Surface/Chrome, LIGHT
+      //   avatar    Avatar           #eef2fb   Fill/Action/Primary/Subtle/Rest, LIGHT
+      //   initials  "JL"             #345499   Foreground/Action/Primary/On Subtle/Rest, LIGHT
+      //
+      // Forcing midnight made every token on the bar resolve to its Midnight
+      // value while the bar's own background, which sits outside this element,
+      // resolved Light. So the avatar came out #22386b instead of #eef2fb, and
+      // the initials with it. It stayed hidden on the Ghost tokens only because
+      // those are near-white in both modes, which is also why fixing the tier
+      // earlier today did not fix the colours: the tier was right and the mode
+      // was wrong.
+      //
+      // The dropdown panels keep their own data-theme="light" and are unaffected,
+      // since light is now the ambient mode rather than an opt-out.
       aria-label="Global navigation"
       className={className}
       style={{
