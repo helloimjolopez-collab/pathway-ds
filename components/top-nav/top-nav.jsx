@@ -191,6 +191,8 @@ export const L = {
   // The chevron glyph is the SAME 12 in both switchers; only the box differs,
   // which is why one constant serves both.
   // Org Switcher Container.Main padding, Figma 6,6,6,12.
+  modPadL: u("padding-xxtight"),        // 6  ModuleSwitcher Container.Main, left only
+  profilePad: u("padding-xxxtight"),    // 4  TopNav.Profile
   orgPadV: u("padding-xxtight"),        // 6
   orgPadL: u("padding-tight"),          // 12
   orgPadMobileH: u("padding-xxxxtight"),// 2
@@ -403,9 +405,10 @@ export function TopNavProfile({ user, open, onToggle, mobile = false }) {
         aria-label={`Account — ${user.name}`}
         style={{
           display: "flex", alignItems: "center", justifyContent: "center",
-          width: 44, height: 44,
+          // Figma TopNav.Profile is 48x48 with pad 4,4,4,4. This was 44 with 6.
+          width: L.touchTarget, height: L.touchTarget, boxSizing: "border-box",
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
-          border: "none", borderRadius: "50%", cursor: "pointer", padding: "var(--semantic-layout-units-padding-xxtight)",
+          border: "none", borderRadius: "50%", cursor: "pointer", padding: L.profilePad,
           transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
         }}
       >
@@ -606,7 +609,10 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           aria-label={`Current module — ${active.label}`}
           style={{
             display: "flex", alignItems: "center",
-            maxHeight: L.modInnerH, minHeight: L.modInnerH, padding: "var(--semantic-layout-units-padding-xxxtight)", borderRadius: L.radius,
+            maxHeight: L.modInnerH, minHeight: L.modInnerH,
+          // Figma ModuleSwitcher Container.Main is pad 0,0,0,6: left only.
+          // This was a uniform 4 on all four sides.
+          padding: `0 0 0 ${L.modPadL}`, borderRadius: L.radius,
             background: "transparent", border: "1px solid transparent",
             color: T.monoBase, fontFamily: "inherit", cursor: "default",
           }}
@@ -627,7 +633,10 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
         aria-label={`Switch module — ${active.label}`}
         style={{
           display: "flex", alignItems: "center",
-          maxHeight: L.modInnerH, minHeight: L.modInnerH, padding: "var(--semantic-layout-units-padding-xxxtight)", borderRadius: L.radius,
+          maxHeight: L.modInnerH, minHeight: L.modInnerH,
+          // Figma ModuleSwitcher Container.Main is pad 0,0,0,6: left only.
+          // This was a uniform 4 on all four sides.
+          padding: `0 0 0 ${L.modPadL}`, borderRadius: L.radius,
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
           // No stroke in any state — Figma's ModuleSwitcher has none, unlike the
           // org switcher next to it. Transparent rather than none so the two
@@ -777,7 +786,11 @@ export function TopNav({
       style={{
         background: "transparent",
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        maxHeight: L.navH, padding: `${L.navPadV} ${L.navPadH}`, gap: L.navGap,
+        // Figma TopNav.Global is 60 TALL, full stop. maxHeight alone let the
+        // vertical padding add to the box, so the bar rendered 64. Measured
+        // 2026-10-02. height + border-box makes 60 mean 60.
+        height: L.navH, maxHeight: L.navH, boxSizing: "border-box",
+        padding: `${L.navPadV} ${L.navPadH}`, gap: L.navGap,
         position: "relative", overflow: "visible",
         fontFamily: "'Red Hat Text', sans-serif",
       }}
