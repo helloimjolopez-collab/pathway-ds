@@ -115,7 +115,9 @@ export const L = {
   iconBtnRadius:  12,   // cornerradius.focused-element
   iconBtnSize:    24,
   iconSize:       16,
-  iconSizeCollapsed: 20,
+  // 16, not 20. Figma TopNav.Search Container.Icon is a 32x32 box holding a
+  // 16x16 search instance, read off the leaf on 2026-10-02.
+  iconSizeCollapsed: 16,
   barPadH:        8,    // layout.units.padding.xtight
   barGap:         8,    // layout.units.gap.xtight
   iconPillPad:    4,    // layout.units.padding.xxtight
@@ -485,7 +487,23 @@ export function SearchInput({
 if (typeof document !== "undefined" && !document.getElementById("pds-topnavsearch-anim")) {
   const s = document.createElement("style");
   s.id = "pds-topnavsearch-anim";
-  s.textContent = "@keyframes pwSearchExpand{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}";
+    // THE BAR EXPANDS FROM THE CONTROL IT REPLACES. This was
+  // `translateX(16px)` plus a fade, which is a nudge: the takeover appeared
+  // full-width and then shuffled 16px sideways, so nothing ever looked like it
+  // grew out of the search icon. Reported 2026-10-02.
+  //
+  // clip-path reveals the bar leftward from the right-hand edge, where the
+  // collapsed control sits, so the field is uncovered rather than moved. The
+  // content inside never translates or scales, so the label and the back arrow
+  // stay sharp and legible for the whole transition, which a scaleX would not
+  // manage. The inset starts at the collapsed control's own width so the reveal
+  // begins exactly where the icon was.
+  s.textContent =
+    "@keyframes pwSearchExpand{" +
+      "from{clip-path:inset(0 0 0 calc(100% - 48px));opacity:.6}" +
+      "to{clip-path:inset(0 0 0 0);opacity:1}}" +
+    "@media (prefers-reduced-motion: reduce){" +
+      "@keyframes pwSearchExpand{from{clip-path:inset(0);opacity:1}to{clip-path:inset(0);opacity:1}}}";
   document.head.appendChild(s);
 }
 

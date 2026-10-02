@@ -33,6 +33,29 @@ import { ModuleIcon, MODULE_LABELS, MODULES } from "../module-icon/module-icon.j
 // SCD and SCL are kept as separate names purely to document INTENT at each call
 // site: SCD marks "this sits on the dark bar", SCL marks "this sits on a light
 // panel". They resolve identically; the wrapper does the work.
+// MOTION THE COMPONENT OWNS. The dropdown keyframe tnDropIn is defined in the
+// STORY file, not here, which is why the search takeover had no motion at all:
+// nothing had ever defined one for it, and a component cannot rely on its
+// consumer to supply a keyframe it needs. Reported 2026-10-02.
+//
+// The bar EXPANDS from the control it replaces. clip-path reveals it leftward
+// from the right-hand edge, where the collapsed search icon sits, so the field
+// is uncovered rather than slid into place. Nothing inside translates or
+// scales, so the placeholder and the back arrow stay sharp for the whole
+// transition, which a scaleX would smear. The inset starts at the collapsed
+// control's own width, 48, so the reveal begins exactly where the icon was.
+if (typeof document !== "undefined" && !document.getElementById("pds-topnav-motion")) {
+  const el = document.createElement("style");
+  el.id = "pds-topnav-motion";
+  el.textContent =
+    "@keyframes tnSearchExpand{" +
+      "from{clip-path:inset(0 0 0 calc(100% - 48px));opacity:.6}" +
+      "to{clip-path:inset(0 0 0 0);opacity:1}}" +
+    "@media (prefers-reduced-motion: reduce){" +
+      "@keyframes tnSearchExpand{from{clip-path:inset(0);opacity:1}to{clip-path:inset(0);opacity:1}}}";
+  document.head.appendChild(el);
+}
+
 const TOK = (p) => `var(--semantic-color-${p})`;
 const SCD = TOK;   // on the dark bar
 const SCL = TOK;   // on a light panel
@@ -152,6 +175,18 @@ export const L = {
   touchTarget: 48, modInnerH: 36,
   orgAvatarNav: 20, orgAvatarSm: 24, orgAvatarPanel: 32,
   searchPill: 32, avatarSize: 32,
+  // ICON GEOMETRY, read off the leaf nodes of Figma TopNav.Global 40007067:6508
+  // on 2026-10-02 rather than inferred from container padding:
+  //   ModuleSwitcher Container.RowEnd       20x20 box, expand_more  12x12
+  //   Org Switcher   Container.RowEnd       24x24 box, expand_more  12x12
+  //   TopNav.Actions Container.Icon         28x28 box, glyph        14x14
+  //   TopNav.Search  Container.Icon         32x32 box, search       16x16
+  // The chevron glyph is the SAME 12 in both switchers; only the box differs,
+  // which is why one constant serves both.
+  chevronGlyph: 12,
+  modChevronBox: 20,
+  orgChevronBox: 24,
+  actionIconBox: 28, actionIconGlyph: 14,
   // The search takeover's back arrow. AA touch target (44) rather than the
   // nav's own 48, because it sits inside the bar's padding and 48 would crowd
   // the field; the glyph is sized independently and centred in the target.
@@ -292,7 +327,13 @@ export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore 
               onClick={onNotifications} aria-label={label}
               style={btnStyle(hov)}
             >
-              <Icon name="notifications" size={20} style={{ color: T.monoBase }} />
+              {/* Figma TopNav.Actions Container.Icon is 28x28 holding a 14x14
+                  instance. This was a bare 20px glyph, so every action icon on
+                  the bar rendered noticeably larger than the design. */}
+              <span style={{ width: L.actionIconBox, height: L.actionIconBox, display: "inline-flex",
+                alignItems: "center", justifyContent: "center" }}>
+                <Icon name="notifications" size={L.actionIconGlyph} style={{ color: T.monoBase }} />
+              </span>
             </button>
           </div>
         ))}
@@ -308,7 +349,10 @@ export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore 
         onClick={onMore} aria-label="More actions"
         style={btnStyle(hovMore)}
       >
-        <Icon name="more_vert" size={20} style={{ color: T.monoBase }} />
+        <span style={{ width: L.actionIconBox, height: L.actionIconBox, display: "inline-flex",
+          alignItems: "center", justifyContent: "center" }}>
+          <Icon name="more_vert" size={L.actionIconGlyph} style={{ color: T.monoBase }} />
+        </span>
       </button>
     </div>
   );
@@ -436,7 +480,14 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           transform: open ? "rotate(180deg)" : "none",
           transition: "transform var(--motion-duration-4) var(--motion-easing-standard)",
         }}>
-          <Icon name="expand_more" size={16} style={{ color: T.orgChevron }} />
+          {/* Figma Org Switcher Container.RowEnd is a 24x24 box holding a 12x12
+              expand_more. This was a bare 16px glyph with no box, so the
+              chevron was both too large and unaligned with the module
+              switcher's, which sits in a 20 box. */}
+          <span style={{ width: L.orgChevronBox, height: L.orgChevronBox, display: "inline-flex",
+            alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <Icon name="expand_more" size={L.chevronGlyph} style={{ color: T.orgChevron }} />
+          </span>
         </div>
       </button>
     </div>
@@ -525,9 +576,11 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
         }}
       >
         {inner}
-        {/* Chevron — 12px glyph in a 16px box, gap 2 from the label group (Figma: Container.RowEnd) */}
+        {/* Chevron. Figma ModuleSwitcher Container.RowEnd is a 20x20 box holding a
+            12x12 expand_more instance, read off node 40007067:6508 on
+            2026-10-02. The glyph was right at 12; the box said 16. */}
         <div style={{
-          width: 16, height: 16, display: "flex", alignItems: "center",
+          width: L.modChevronBox, height: L.modChevronBox, display: "flex", alignItems: "center",
           justifyContent: "center", marginLeft: 2,
           transform: open ? "rotate(180deg)" : "none",
           transition: "transform var(--motion-duration-4) var(--motion-easing-standard)",
@@ -818,6 +871,7 @@ export function TopNav({
           style={{
             position: "absolute", inset: 0, zIndex: 200,
             background: "var(--semantic-color-fill-surface-chrome)",
+            animation: "tnSearchExpand var(--motion-duration-4) var(--motion-easing-emphasized) both",
             display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)",
             padding: `0 ${L.navPadH}`,
           }}
