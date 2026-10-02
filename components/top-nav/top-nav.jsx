@@ -141,6 +141,13 @@ export const T = {
   // emphasis comes from font-weight at the call site, not from a bolder colour.
   orgText:        SCD("foreground-action-ghost-rest"),
   orgChevron:     SCD("foreground-action-ghost-rest"),
+  // SubOrgName, the campus line. Figma binds Foreground/Static/Neutral/Mono
+  // here rather than a Ghost rung, so it stays put while OrgName tracks hover.
+  // Mono is safe on this bar now that the bar renders Light, where it is
+  // #ffffff; it would be wrong the moment anything inverted the bar, which is
+  // recorded in the manifest as a Figma-side fragility rather than copied as a
+  // pattern.
+  orgSubText:     SCD("foreground-static-neutral-mono"),
   avatarBg:       SCD("fill-action-primary-subtle-rest"),
   avatarText:     SCD("foreground-action-primary-on-subtle-rest"),
   // White dropdown-menu surface — tracks fill-neutral-light (now warm-neutral-0).
@@ -183,6 +190,10 @@ export const L = {
   //   TopNav.Search  Container.Icon         32x32 box, search       16x16
   // The chevron glyph is the SAME 12 in both switchers; only the box differs,
   // which is why one constant serves both.
+  // Org Switcher Container.Main padding, Figma 6,6,6,12.
+  orgPadV: u("padding-xxtight"),        // 6
+  orgPadL: u("padding-tight"),          // 12
+  orgPadMobileH: u("padding-xxxxtight"),// 2
   chevronGlyph: 12,
   modChevronBox: 20,
   orgChevronBox: 24,
@@ -402,9 +413,16 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
 
   const hasLogo = org.logoUrl && !imgFailed;
 
-  const label = mobile
-    ? mobileLabel(org.name, org.campus)
-    : org.name + (org.campus ? " | " + org.campus : "");
+  // FIGMA HAS TWO TEXT NODES, NOT ONE STRING. OrgName takes
+  // Foreground/Action/Ghost/* and follows the hover state; SubOrgName takes
+  // Foreground/Static/Neutral/Mono and does not. Concatenating them into
+  // "name | campus" gave the campus the org name's colour and made it track
+  // hover, which the design does not. Read off set 40006819:14583, 2026-10-02.
+  //
+  // Mobile still abbreviates into one string, because the mobile variant has a
+  // single label with no room for two.
+  const label = mobile ? mobileLabel(org.name, org.campus) : org.name;
+  const subLabel = mobile ? null : (org.campus || null);
 
   // Desktop/Tablet: Label/Button/S — 14px/500/20px
   // Mobile: Label/Button/XS — 12px/500/18px (Figma annotation)
@@ -424,7 +442,12 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-xxtight)",
           minHeight: 36,
           // Figma OrgSwitcher Container.Main: pl-12 pr-6 py-4 (updated 2026-06-08 from uniform 4px)
-          padding: mobile ? "4px 2px" : "4px 6px 4px 12px", borderRadius: L.radius,
+          // Figma Org Switcher Container.Main is pad 6,6,6,12 on desktop, read
+          // off set 40006819:14583 on 2026-10-02. The vertical was 4 here, so
+          // the trigger sat 4px shorter than the design and out of step with
+          // the module switcher beside it.
+          padding: mobile ? `${L.orgPadV} ${L.orgPadMobileH}` : `${L.orgPadV} ${L.orgPadV} ${L.orgPadV} ${L.orgPadL}`,
+          borderRadius: L.radius,
           // Rest is bare: stroke only, no fill. See the Ghost note in T.
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
           border: `1px solid ${open ? T.orgStrokePressed : hov ? T.orgStrokeHover : T.orgStroke}`,
@@ -467,6 +490,24 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           >
             {label}
           </span>
+          {/* SubOrgName. Its own node in Figma with its own token,
+              Foreground/Static/Neutral/Mono, which on this bar resolves to
+              #ffffff and does NOT follow the hover state the way OrgName does.
+              Figma puts it in Container.CityName.Catholic beside the org name
+              with gap 8. */}
+          {subLabel && (
+            <span
+              style={{
+                ...labelStyle,
+                whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                maxWidth: 110, flexShrink: 0,
+                color: T.orgSubText,
+                marginLeft: "var(--semantic-layout-units-gap-tight)",
+              }}
+            >
+              {subLabel}
+            </span>
+          )}
           {mobile && (
             <span style={{ position: "absolute", left: -9999, width: 1, height: 1, overflow: "hidden" }}>
               {org.name}{org.campus ? ", "+org.campus : ""}

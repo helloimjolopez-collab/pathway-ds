@@ -41,7 +41,21 @@
       ],
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
-        "nodeId": "40003951:2927"
+        "page": "5469:7546",
+        "section": "Amplify (40016675:85986)",
+        "nodeId": "40004059:1375",
+        "sets": {
+          "SideNav.Container": "40004059:1375",
+          "SideNavItem": "40003954:284",
+          "SideNavItem.Collapsed": "40005607:25240",
+          "SideNavItem.List": "40007332:6995",
+          "SideNav.ListSection": "40007332:8034",
+          "SideBar Expand/Collapse": "40006793:3783",
+          "indicator.stripe": "40004035:27057",
+          "SectionLabel": "40006794:5975",
+          "Divider": "40006793:4191"
+        },
+        "note": "The old nodeId 40003951:2927 did not exist. The page carries two SECTIONS, Amplify (40016675:85986) and NewCo (40016675:93731), and the apparent duplicate sets are the NewCo mirrors on the 40016675:* ids. AMPLIFY IS CANONICAL for this repo; NewCo is read-only and values flow NewCo to Pathway only, never the reverse. The same Amplify/NewCo doubling explains the duplicate TopNav, Badge and Widget sets."
       },
       "props": {
         "SideNav": {
@@ -346,7 +360,9 @@
           "hoverMobile": "40006820:14772",
           "pressedMobile": "40006933:15766",
           "openMobile": "40007336:17470"
-        }
+        },
+        "section": "Amplify",
+        "docFrame": "40007244:74063"
       },
       "props": {
         "OrgSwitcher": {
@@ -451,7 +467,8 @@
         "logoUrl placeholder tint (rgba(53,85,160,0.25)) is not a semantic token \u2014 TBD once brand-avatar token is added to Figma.",
         "Panel mobile behaviour (dropdown vs bottom sheet) not yet decided."
       ],
-      "codeConnect": "components/org-switcher/org-switcher.figma.ts"
+      "codeConnect": "components/org-switcher/org-switcher.figma.ts",
+      "figmaOpen": "TRIGGER IS FULLY TOKENISED. An earlier audit reported this component as mostly raw hex; that was wrong and came from walking the whole node including the open dropdown panel, whose 1,321 raw #ffffff fills and Module Colors/* belong to the panel, not the trigger. The trigger binds Stroke/Action/Ghost/* and Fill/Action/Ghost/* per state, Foreground/Action/Ghost/* on OrgName, and Foreground/Static/Neutral/Mono on SubOrgName. The open PANEL is not tokenised and is out of scope for now by the owner's instruction."
     },
     "top-nav": {
       "displayName": "TopNav.Global",
