@@ -32,11 +32,24 @@ const V = {
   borderPressed:  "var(--semantic-color-stroke-action-secondary-pressed)",
   borderDisabled: "var(--semantic-color-stroke-action-disabled)",
 
-  // Checkmark / dash icon — standard
-  iconPrimary: "var(--semantic-color-foreground-action-primary-on-subtle-rest)",
+  // Checkmark / dash icon — standard.
+  //
+  // MUST be an ON-STRONG foreground, because the box it sits in is filled with
+  // fill-action-primary-strong-*. This was foreground-action-primary-ON-SUBTLE-rest,
+  // which is #345499 sitting on #3a5aaa: the same blue, so the whole square
+  // read as a solid blue block with no visible tick. Reported 2026-10-02.
+  //
+  // Figma binds Foreground/Static/Neutral/MONO here instead, which is correct
+  // in Light (#ffffff) and wrong in Midnight: mono is an INVERSION ANCHOR, not
+  // a rung, so it flips to #181b2b and would put a near-black tick on a blue
+  // box. on-strong is #ffffff in both modes, which is what a foreground on a
+  // strong fill is for. Recorded in the manifest as a Figma defect.
+  iconPrimary: "var(--semantic-color-foreground-action-primary-on-strong)",
 
-  // Checkmark / dash icon — error
-  iconError: "var(--semantic-color-foreground-action-status-negative-on-subtle-rest)",
+  // Checkmark / dash icon — error. Same fix: the error box is filled with
+  // fill-action-status-negative-strong-*, so the tick needs the on-strong
+  // foreground. Was on-subtle-rest: #722121 on #b03a3a.
+  iconError: "var(--semantic-color-foreground-action-status-negative-on-strong)",
 
   // State-layer — unchecked hover / focused
   stateLayerUncheckedHover: "var(--semantic-color-fill-action-secondary-hover)",

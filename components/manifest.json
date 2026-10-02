@@ -313,7 +313,12 @@
         "Secondary Indeterminate use case TBD — confirm with design before shipping.",
         "Highlight variant resting-state token (fill.action.secondary.rest) missing — fallback in use."
       ],
-      "codeConnect": "components/checkbox/checkbox.figma.ts"
+      "codeConnect": "components/checkbox/checkbox.figma.ts",
+      "moduleNote": "FIXED 2026-10-02: the checked glyph was bound to foreground-action-primary-ON-SUBTLE-rest while the box is filled with fill-action-primary-strong-*, so the tick was #345499 on #3a5aaa, a 1.12:1 contrast, and the whole square read as a solid blue block with no visible tick. Same bug on the error variant: #722121 on #b03a3a at 1.80:1. Both now use the ON-STRONG foreground, which is #ffffff in BOTH modes: 6.52:1 and 5.98:1 in Light, 5.62:1 and 5.98:1 in Midnight. Figma binds Foreground/Static/Neutral/MONO for the tick, which is correct in Light but wrong in Midnight, because mono is an INVERSION ANCHOR rather than a rung and flips to #181b2b, putting a near-black tick on a blue box at 3.04:1. on-strong is the right token for a foreground on a strong fill. See figmaDefect.",
+      "figmaDefect": "The checked glyph binds Foreground/Static/Neutral/Mono. That is correct in Light (#ffffff) and wrong in Midnight: mono is an inversion anchor, not a rung, so it resolves to #181b2b and puts a near-black tick on a blue box (3.04:1). It should be Foreground/Action/Primary/On Strong, which is #ffffff in both modes. The same applies to the error variants, which should use Foreground/Action/Status/Negative/On Strong. The repo already uses the on-strong tokens.",
+      "patterns": [
+        "components/checkbox/scroll-to-enable.jsx"
+      ]
     },
     "org-switcher": {
       "displayName": "OrgSwitcher",
@@ -1227,7 +1232,8 @@
       },
       "figmaNote": "The component set is called ScreenTemplate, not Page Template; Page Template is the page it sits on. Its third breakpoint variant value is literally 'Breakpoint3', not 'Mobile', and the Code Connect enum has to match that verbatim or the prop comes back undefined for every mobile instance. Worth renaming in Figma.",
       "codeConnect": "components/page-template/page-template.figma.ts",
-      "tokenGap": "The Figma component binds six contextual gaps that are NOT in the Pathway Variables panel: Contextual/Page/Gap/Horizontal and /Vertical, Contextual/Page Heading/Gap/Vertical, Contextual/Section/Gap/Horizontal and /Vertical, and Contextual/ToolBar/Gap/Vertical. They resolve through a published library rather than locally, so they are absent from the export and the repo has no name for them. Each resolves to a semantic gap that does exist (16 is Gap/Base, 8 is Gap/Tight) and the module binds those. Either add the six to the panel's Contextual collection, or accept the semantic bindings and drop them from the Figma component."
+      "tokenGap": "RESOLVED 2026-10-02 and it was not what I first reported. The six Contextual/Page*, Contextual/Section/* and Contextual/ToolBar/* gap variables were not library-resolved at all: they were DELETED variables. A deleted variable still resolves by id, so the bindings rendered, but it is absent from the local list and from the export, so the Page Template was bound to six dangling references that could never be exported, synced or maintained. They aliased Unit/8 and Unit/16 directly, reaching past the semantic layer into primitives. All 48 affected bindings in the ScreenTemplate set were rebound onto the live semantic tokens of the SAME value, Gap/Tight (8) x26 and Gap/Base (16) x22, guarded so a value change would have rolled the whole call back. No new tokens were created. ScreenTemplate's own nodes now carry zero dangling bindings.",
+      "figmaOpen": "Still outstanding, and all of it belongs to NESTED components rather than to ScreenTemplate: 87 bindings still point at deleted variables (FilterChip 84 across three deleted ids, Input 3), and 53 bindings use the primitive Unit/10 directly for spacing (Card 20, FilterChip 12, Heading 9, PW_Button 6, Page Heading 3, Heading.Style 3). Unit/10 has NO semantic equivalent: the Gap scale is 2, 4, 6, 8, 12, 16, 24, 36, so mapping it means moving the value to 8 or 12, which is a design decision rather than a mapping and is Jo's call."
     },
     "card": {
       "displayName": "Card",
@@ -1265,7 +1271,7 @@
       },
       "figmaNote": "Four identical Card sets exist across the page, two per brand section, so the section is the only thing that tells them apart. This maps the Amplify one.",
       "codeConnect": "components/card/card.figma.ts",
-      "tokenGap": "Figma binds Elevation/Card/Rest, /Hover and /Pressed as effect variables, but the panel's Elevation collection holds only Lift, Overlay, Sheet and Widget, so those three resolve through a published library and never reach the export. Their COMPONENTS are in the panel though: shadow-card-rest|hover|pressed x/y/blur/spread plus fill-shadow-dropshadow. The shadows are composed from those exactly as the Figma effect composes them. Either add the three to the Elevation collection, or treat this composition as the contract."
+      "tokenGap": "RESOLVED 2026-10-02: no new tokens needed. Figma binds Elevation/Card/Rest, /Hover and /Pressed, which are not in the panel's Elevation collection (it holds Lift, Overlay, Sheet and Widget), but their COMPONENTS are all semantic and present: shadow-card-rest|hover|pressed x/y/blur/spread plus fill-shadow-dropshadow. The component composes the shadows from those exactly as the Figma effect does, so it is already semantic-only and no contextual card elevation tokens are required."
     },
     "heading": {
       "displayName": "Heading",
@@ -1374,7 +1380,7 @@
       },
       "figmaNote": "The page carries FOUR older 63-variant Badge sets that still report variant conflicts, alongside the clean 96-variant sets, two per brand. The node id is the only thing that picks the right one; this maps the clean Amplify set.",
       "codeConnect": "components/badge/badge.figma.ts",
-      "figmaDefect": "Style=Naked is not systematic in Figma and the component deliberately does NOT copy it. Across its eight variants: a FILL on five of eight (Attention, Negative, Info, Accent 2, Accent 3), which contradicts the name; a BORDER on three of eight (Neutral, Severe, Positive); and four different text colours, so five of the eight lose their status colour entirely. Neutral uses foreground-static-neutral-bold, Severe/Negative/Info/Accent 2 use neutral-base, Positive uses neutral-strong, and only Attention and Accent 3 use their own on-subtle. Accent 3 also binds the PRIMITIVE Mauve/25 directly instead of the semantic fill-static-accent-mauve-subtle. By name, and by the Button precedent where Naked is the quietest style, Naked means no fill and no border carrying only the status foreground, and that is what renders for all eight. The eight real bindings are shown side by side with the rendered result in the NakedDivergesFromFigma story so the gap is checkable. Needs a fix in Figma."
+      "figmaDefect": "Style=Naked is not systematic and the component deliberately does not copy it. CORRECTED 2026-10-02: my first report sampled Size=Medium only and said five of eight statuses carry a fill. Across all three sizes, EVERY one of the eight carries a fill in at least one size, and seven carry a border. It degrades by size: at Small only Accent 2 and Accent 3 have a fill and none has a border, so six of eight are genuinely bare; at Medium five have a fill and three a border; at Large ALL EIGHT have a fill and seven a border, making Naked indistinguishable from Outline & Fill. No status is consistent across its own three sizes, and Accent 3 binds the primitive Mauve/25 at all three sizes instead of fill-static-accent-mauve-subtle. The component renders no fill, no border and the status foreground for all eight, which is what Small nearly already does and what the name means."
     },
     "radio": {
       "displayName": "Radio",
@@ -1422,7 +1428,7 @@
       },
       "figmaNote": "25 variants, not 40: the Base size is complete at 20, and Large has only 5. See figmaDefect.",
       "codeConnect": "components/radio/radio.figma.ts",
-      "figmaDefect": "TWO defects, reported rather than copied. (1) Size=Large exists for Unselected ONLY: five variants out of a possible twenty, with no Large Selected and no Large Error at all, so a Large selected radio cannot be made in Figma. The component renders Large for every combination, scaling the ring from 20 to 22 and leaving the dot, halo and hit area as drawn, because a size that only works unselected is not a size. (2) The label NEVER dims when disabled: all twenty variants bind foreground-static-neutral-base, including the Disabled ones, so in Figma a disabled radio's only cue is its ring and dot. The component dims the label to foreground-action-disabled, because a disabled control whose label looks enabled reads as a bug. Both shown in the Storybook stories with the explanation on screen."
+      "figmaDefect": "TWO defects. (1) Size=Large exists for Unselected ONLY, five variants of a possible twenty. CONFIRMED 2026-10-02 as unfinished Figma rather than intent: Selected and Error should get a Large, which is what the component already renders, scaling the ring from 20 to 22 and leaving the dot, halo and hit area as drawn. Needs finishing in Figma. (2) The label never dims when disabled: all twenty variants bind foreground-static-neutral-base including the Disabled ones. The component dims it to foreground-action-disabled, because a disabled control whose label looks enabled reads as a bug."
     },
     "top-nav-actions": {
       "displayName": "TopNav.Actions",
@@ -1479,7 +1485,30 @@
       },
       "figmaNote": "Four identical Alert sets exist on the page, so the node id is the only thing that picks the right one. This maps the Amplify one.",
       "codeConnect": "components/alert/alert.figma.ts",
-      "figmaDefect": "Five of the six types take their family's STRONG stroke; Tertiary takes stroke-static-info-SUBTLE, so at the same 1.5 border width its border is far fainter than the other five. Rendered as drawn rather than smoothed, because an alert border is a deliberate loudness choice and guessing at it would be worse than showing it. Shown side by side against Success in the BordersAndTheTertiaryGap story. If Tertiary is meant to be the quiet one that is fine; if not, it needs stroke-static-info-strong."
+      "figmaDefect": "Type=Tertiary (node 40002916:13041) is a variant name nobody recognises, and the set itself sits on the 'Progress bar' page rather than on Alerts & Toasts. It is the sixth of six Type variants and it is the only one whose border uses its family's SUBTLE stroke rather than STRONG, so it is visually the odd one out as well as the unexplained one. The question is not its border: it is whether the variant should exist. Rendered as drawn until that is decided."
+    },
+    "scroll-to-enable": {
+      "displayName": "Scroll to Enable",
+      "description": "A block of content the user must reach the end of before the checkbox beneath it can be ticked.",
+      "module": "components/checkbox/scroll-to-enable.jsx",
+      "moduleNote": "Lives in components/checkbox/ rather than its own folder because it is not a new control: it is the Checkbox plus a precondition, and it composes the real Checkbox rather than restyling one. FOUR DECISIONS MAKE OR BREAK IT. (1) Once the end is reached the checkbox STAYS enabled; re-locking would punish a user who scrolls up to re-read a clause and would let the control flicker as the page moves. (2) The scroll region is KEYBOARD OPERABLE, tabIndex 0 on a real overflow container, so arrow keys, Page Down and End all reach the end. Without that a keyboard-only or switch user could never satisfy the precondition and could never submit, which turns a gate into a hard block; this is the part implementations usually miss. (3) Content SHORTER than its box counts as read, because a box with no bottom to reach would otherwise lock the form forever on a tall screen. (4) It RE-MEASURES via ResizeObserver, because a font loading, a window resize or late content all change whether the end has been reached, and measuring once on mount is how this breaks in production. The bottom fade is decorative and aria-hidden: the hint line carries the same information as text, so the fade is never the only cue. The readiness change is announced through a polite live region. The locked hint is the only prose the component renders and it earns its place: a disabled checkbox with no stated reason looks broken.",
+      "exports": [
+        "ScrollToEnableCheckbox",
+        "ScrollToEnableKeyframes",
+        "T",
+        "L"
+      ],
+      "spec": null,
+      "demo": null,
+      "demoNote": "No standalone demo: the stories cover the keyboard path, the short-content case and the error state, which is everything the pattern decides.",
+      "stories": "src/stories/Library/Checkbox/ScrollToEnable.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40003300:17495"
+      },
+      "figmaNote": "The Figma page is DOCUMENTATION and screenshots: it contains no COMPONENT or COMPONENT_SET, so there was nothing to transcribe variant by variant. The behaviour comes from the pattern and from the Checkbox it wraps, and the page is a reference rather than a source. If it is ever built as a component, map it then.",
+      "codeConnect": null,
+      "codeConnectNote": "Nothing to bind: the Figma page has no component."
     }
   }
 }
