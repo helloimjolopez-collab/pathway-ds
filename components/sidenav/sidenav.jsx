@@ -139,6 +139,10 @@ export const L = {
   iconWrap:    24,   // no token in Figma — leading icon wrapper
   iconInner:   16,   // Material Symbols Rounded frame size, per design-system-spec §7.2
   rowPadH:     u("padding-tight"),
+  // Collapsed rail: container.rowStart's padding-right in Figma. It is what
+  // keeps the centred icon a hair left of the square's true centre, the same as
+  // the design.
+  railIconInset: u("padding-xxtight"),
   textPad:     u("padding-xtight"),
   childIndent: 24,   // no token in Figma — level-1 left indent
   stripeW:     4,    // no token in Figma — indicator stripe width
@@ -234,6 +238,13 @@ export function SideNavItem({
           width: isSidebarCollapsed ? L.itemH : "100%",
           marginLeft: isSidebarCollapsed ? "auto" : undefined,
           marginRight: isSidebarCollapsed ? "auto" : undefined,
+          // Figma's container.rowStart is 40 wide inside the 44 square with
+          // padding-right 6 and primary=CENTER, so the icon centres in the 34
+          // that is left after the 4px indicator column. See the icon wrap below.
+          paddingRight: isSidebarCollapsed ? L.railIconInset : undefined,
+          // border-box or the 6px padding is ADDED to the 44, which made the rail
+          // item 50 wide and no longer a square.
+          boxSizing: "border-box",
           borderRadius: T.radius, backgroundColor: fillBg,
           cursor: isDisabled ? "not-allowed" : "pointer",
           overflow: "hidden", transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)", userSelect: "none" }}>
@@ -244,13 +255,29 @@ export function SideNavItem({
         {!isChild && item.icon && (
           <div style={{ width: L.iconWrap, height: L.iconWrap, display: "flex",
             alignItems: "center", justifyContent: "center", flexShrink: 0,
-            marginLeft: L.rowPadH, color: iconColor }}>
+            // COLLAPSED CENTRES, EXPANDED INDENTS. The fixed 12px left margin
+            // applied in both states, so on the rail the 24px icon sat at
+            // x 16..40 of the 44 square: 6px right of centre, in every state.
+            // Reported 2026-10-02. Auto margins hand the free space back to
+            // both sides, which with the 6px right padding above reproduces
+            // Figma's x=9 exactly.
+            marginLeft:  isSidebarCollapsed ? "auto" : L.rowPadH,
+            marginRight: isSidebarCollapsed ? "auto" : undefined,
+            color: iconColor }}>
             {typeof item.icon === "function"
               ? item.icon({ size: L.iconInner, color: iconColor })
               : typeof item.icon === "string"
               ? <span className="material-symbols-rounded" aria-hidden="true"
                   style={{ fontSize: L.iconInner, lineHeight: 1, color: iconColor,
-                    fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}>
+                    // display:block so the glyph is laid out as a box rather than
+                    // on a text baseline — an inline glyph in a flex-centred
+                    // parent is centred by its line box, not by its own art, so
+                    // it rode high inside the 24px wrap.
+                    display: "block",
+                    // opsz MUST match fontSize. It said 20 against a 16px size,
+                    // so the glyph was drawn on a 20px grid and scaled down into
+                    // a 16px box, which shifts the art off centre.
+                    fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' ${L.iconInner}` }}>
                   {item.icon}
                 </span>
               : React.cloneElement(item.icon, { style: { color: iconColor } })}
@@ -258,9 +285,19 @@ export function SideNavItem({
         )}
 
         {/* Label */}
-        <div style={{ flex: 1, minWidth: 0,
-          paddingLeft: isChild ? 32 : L.textPad,
-          paddingRight: (!isChild && hasChildren) ? 0 : L.rowPadH,
+        <div style={{
+          // Collapsed, the label must take NO part in the flex distribution.
+          // With flex:1 it still claimed the free space even though max-width
+          // clamped it to zero, so the icon's auto margins had nothing left to
+          // centre with and the icon stayed hard left.
+          flex: isSidebarCollapsed ? "0 0 0px" : 1,
+          minWidth: 0,
+          // Collapsed, the padding has to go too. max-width clamps the CONTENT
+          // box, so the label still occupied 8px of padding on the rail and ate
+          // most of the free space the icon's auto margins needed: the icon
+          // landed at x=5 instead of Figma's x=9.
+          paddingLeft:  isSidebarCollapsed ? 0 : (isChild ? 32 : L.textPad),
+          paddingRight: isSidebarCollapsed ? 0 : ((!isChild && hasChildren) ? 0 : L.rowPadH),
           maxWidth: isSidebarCollapsed ? 0 : 200,
           opacity: isSidebarCollapsed ? 0 : 1,
           overflow: "hidden",
@@ -276,7 +313,7 @@ export function SideNavItem({
 
         {/* Chevron — groupers only */}
         {!isChild && hasChildren && (
-          <div style={{ width: 40, height: L.iconWrap, display: "flex",
+          <div style={{ width: isSidebarCollapsed ? 0 : 40, height: L.iconWrap, display: "flex",
             alignItems: "center", justifyContent: "center", flexShrink: 0,
             maxWidth: isSidebarCollapsed ? 0 : 40,
             opacity: isSidebarCollapsed ? 0 : 1,
