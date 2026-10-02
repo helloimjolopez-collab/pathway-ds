@@ -63,10 +63,25 @@ FILL.Naked = FILL.Outlined;
 // stays white through hover and pressed, so all three states share it.
 export const FG = {
   Fill: {
-    Primary:   { base: SC("foreground-static-neutral-mono"),             hover: SC("foreground-static-neutral-mono"),             pressed: SC("foreground-static-neutral-mono"),             disabled: SC("foreground-action-disabled") },
+    // READ OFF FIGMA 2026-10-02, node 40003293:93741. Every Fill/Primary variant
+    // binds the paint style Foreground/Action/Primary/On Strong on the label AND
+    // on both icon vectors, in Active, Hover, Focused and Pressed alike, which is
+    // why there is one token here rather than three.
+    //
+    // This said foreground-static-neutral-MONO, and had since before the
+    // September tier rename carried it forward unexamined. Mono is an inversion
+    // anchor, not a rung: #ffffff in Light but #181b2b in Midnight. So a primary
+    // button's label went near-black on a brand fill in Midnight, 3.04:1, under
+    // the 4.5 floor. It survived because both tokens are #ffffff in Light, so
+    // every screenshot looked right, and because the token gates check that a
+    // name RESOLVES, never that it is the right name.
+    Primary:   { base: SC("foreground-action-primary-on-strong"),        hover: SC("foreground-action-primary-on-strong"),        pressed: SC("foreground-action-primary-on-strong"),        disabled: SC("foreground-action-disabled") },
     Secondary: { base: SC("foreground-action-secondary-rest"),        hover: SC("foreground-action-secondary-hover"),        pressed: SC("foreground-action-secondary-pressed"),        disabled: SC("foreground-action-disabled") },
     Tertiary:  { base: SC("foreground-action-primary-on-subtle-rest"),          hover: SC("foreground-action-primary-on-subtle-hover"),          pressed: SC("foreground-action-primary-on-subtle-pressed"),          disabled: SC("foreground-action-disabled") },
-    Negative:  { base: SC("foreground-static-neutral-mono"),             hover: SC("foreground-static-neutral-mono"),             pressed: SC("foreground-static-neutral-mono"),             disabled: SC("foreground-action-disabled") },
+    // Same correction, same reason. Figma binds
+    // Foreground/Action/Status/Negative/On Strong here. Mono measured 2.85:1 on
+    // the negative fill in Midnight, which fails even the 3:1 non-text floor.
+    Negative:  { base: SC("foreground-action-status-negative-on-strong"), hover: SC("foreground-action-status-negative-on-strong"), pressed: SC("foreground-action-status-negative-on-strong"), disabled: SC("foreground-action-disabled") },
   },
   Outlined: {
     Primary:   { base: SC("foreground-action-primary-on-subtle-rest"),          hover: SC("foreground-action-primary-on-subtle-hover"),          pressed: SC("foreground-action-primary-on-subtle-pressed"),          disabled: SC("foreground-action-disabled") },
