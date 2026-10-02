@@ -184,7 +184,10 @@
         }
       },
       "tokens": [],
-      "codeConnect": null
+      "codeConnect": null,
+      "figma": null,
+      "repoOnly": true,
+      "repoOnlyNote": "REPO ONLY. The Scrollbar does not exist in Figma and never has. Do not look for a node, do not add one to this entry, and do not raise it as a missing-node finding: the owner has stated this more than once. Its design authority is components/scrollbar/scrollbar-spec.md plus the owner directly, not the Figma file."
     },
     "checkbox": {
       "displayName": "Checkbox",
@@ -1094,7 +1097,13 @@
       "demo": null,
       "stories": null,
       "storiesNote": "Not yet written.",
-      "figma": null,
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40007082:7313",
+        "section": "Amplify",
+        "page": "\u2747\ufe0f \u21b3 Navigation: Top Nav ",
+        "spec": "component 132x48 horizontal gap 0; Action Icon 44x44 x3; Container.Icon 28x28 r=8 with no rest fill, Fill/Action/Ghost/Hover on hover and Fill/Action/Ghost/Pressed on press; glyph 14x14 on Foreground/Action/Ghost/Rest going to /Hover."
+      },
       "codeConnect": null
     }
   }

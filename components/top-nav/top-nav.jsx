@@ -198,6 +198,9 @@ export const L = {
   modChevronBox: 20,
   orgChevronBox: 24,
   actionIconBox: 28, actionIconGlyph: 14,
+  // Figma's Action Icon is 44, not the bar's 48. It is the one control on the
+  // bar whose touch target is the AA minimum rather than the nav's own height.
+  actionTarget: u("accessibility-touch-target-aa-width"),
   // The search takeover's back arrow. AA touch target (44) rather than the
   // nav's own 48, because it sits inside the bar's padding and 48 would crowd
   // the field; the glyph is sized independently and centred in the target.
@@ -316,11 +319,28 @@ export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore 
   const [hov1, setHov1]       = useState(false);
   const [hovMore, setHovMore] = useState(false);
 
-  const btnStyle = (hov) => ({
+  // Figma TopNav.Actions, node 40007082:7313, Amplify section, read 2026-10-02:
+  //
+  //   component        132x48  horizontal, gap 0
+  //   Action Icon      44x44   three of them, 3 x 44 = 132
+  //   Container.Icon   28x28   r=8   rest no fill, hover Fill/Action/Ghost/Hover,
+  //                                  pressed Fill/Action/Ghost/Pressed
+  //   glyph            14x14   rest Foreground/Action/Ghost/Rest,
+  //                                  hover Foreground/Action/Ghost/Hover
+  //
+  // THE HOVER FILL BELONGS ON THE 28px BOX, not on the touch target. It was on
+  // a 48px button, so the hover state painted a box nearly twice the size of
+  // the one in the design. The target is also 44 in Figma, not 48.
+  const btnStyle = () => ({
     display: "flex", alignItems: "center", justifyContent: "center",
-    width: "100%", height: "100%", padding: "var(--semantic-layout-units-padding-xtight)", borderRadius: L.radius,
+    width: "100%", height: "100%", padding: 0,
+    background: "transparent", border: "none", cursor: "pointer",
+  });
+  // The box that actually carries the state.
+  const iconBoxStyle = (hov) => ({
+    display: "flex", alignItems: "center", justifyContent: "center",
+    width: L.actionIconBox, height: L.actionIconBox, borderRadius: L.radius,
     background: hov ? T.controlHover : "transparent",
-    border: "none", cursor: "pointer",
     transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
   });
 
@@ -332,18 +352,18 @@ export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore 
           { hov: hov1, setHov: setHov1, label: "Alerts" },
         ].map(({ hov, setHov, label }, idx) => (
           <div key={idx} style={{ display: "flex", alignItems: "center", justifyContent: "center",
-            minHeight: L.touchTarget, minWidth: L.touchTarget, padding: "var(--semantic-layout-units-padding-xxtight)"}}>
+            minHeight: L.actionTarget, minWidth: L.actionTarget, padding: 0}}>
             <button
               onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
               onClick={onNotifications} aria-label={label}
-              style={btnStyle(hov)}
+              style={btnStyle()}
             >
-              {/* Figma TopNav.Actions Container.Icon is 28x28 holding a 14x14
-                  instance. This was a bare 20px glyph, so every action icon on
-                  the bar rendered noticeably larger than the design. */}
-              <span style={{ width: L.actionIconBox, height: L.actionIconBox, display: "inline-flex",
-                alignItems: "center", justifyContent: "center" }}>
-                <Icon name="notifications" size={L.actionIconGlyph} style={{ color: T.monoBase }} />
+              <span style={iconBoxStyle(hov)}>
+                {/* The glyph tracks hover too: Figma moves it from
+                    Foreground/Action/Ghost/Rest to /Hover. It used to stay put. */}
+                <Icon name="notifications" size={L.actionIconGlyph}
+                  style={{ color: hov ? T.monoHover : T.monoBase,
+                    transition: "color var(--motion-duration-2) var(--motion-easing-standard)" }} />
               </span>
             </button>
           </div>
@@ -354,15 +374,16 @@ export function TopNavActions({ breakpoint = "desktop", onNotifications, onMore 
 
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center",
-      minHeight: L.touchTarget, minWidth: L.touchTarget }}>
+      minHeight: L.actionTarget, minWidth: L.actionTarget }}>
       <button
         onMouseEnter={() => setHovMore(true)} onMouseLeave={() => setHovMore(false)}
         onClick={onMore} aria-label="More actions"
-        style={btnStyle(hovMore)}
+        style={btnStyle()}
       >
-        <span style={{ width: L.actionIconBox, height: L.actionIconBox, display: "inline-flex",
-          alignItems: "center", justifyContent: "center" }}>
-          <Icon name="more_vert" size={L.actionIconGlyph} style={{ color: T.monoBase }} />
+        <span style={iconBoxStyle(hovMore)}>
+          <Icon name="more_vert" size={L.actionIconGlyph}
+            style={{ color: hovMore ? T.monoHover : T.monoBase,
+              transition: "color var(--motion-duration-2) var(--motion-easing-standard)" }} />
         </span>
       </button>
     </div>
