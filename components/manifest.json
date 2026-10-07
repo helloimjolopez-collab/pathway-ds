@@ -1128,10 +1128,11 @@
         "hoverIcons": "Slot.HoverIcons 72x36 hug, three Action.Icon 36x36",
         "grid": "demo measured at 1600 and 800: 12/8/4 cols, 48px rows, 16px gap, flow row. glance=kpi 3x3, detail=wide 6x8, explore=xwide 12x9, band=full x3"
       },
-      "figmaBlocker": "THE SET REPORTS ERRORS IN FIGMA. 40009622:39702 has a new Configuration axis (01/02/03) and TWO variants both named 'Size=Glance, Configuration=01', a duplicate combination. Figma itself refuses to return componentPropertyDefinitions for the set. Code Connect cannot map a set in that state, so the Widget mapping is held until the duplicate is removed or renamed. Read-only here: the fix is in the file.",
-      "codeConnect": null,
+      "codeConnect": "components/widget/widget.figma.ts",
       "figmaFixed": "Detail and Explore root fills were unbound #fefefd; bound to Fill/Static/Neutral/Faint in Figma on 2026-10-07.",
-      "spec": "components/widget/widget-spec.md"
+      "spec": "components/widget/widget-spec.md",
+      "figmaResolved": "The duplicate Size=Glance, Configuration=01 variant was removed on 2026-10-07. The set now reports Size=[Glance|Detail|Explore] and Configuration=[01|02|03|04] cleanly.",
+      "configurationAxis": "NOT mapped to a prop, deliberately. Configuration does not change the container at all: every variant has the identical widget and differs only in the variant of the nested KPI Number & Trend instance. 01 is Chart Right with no filters, 02 is Chart Bottom with filters, and 03 and 04 are currently identical to 01. In code that content is children, so there is no prop to map to. Worth a look in the file: three of the four options render the same."
     },
     "kpi-tile": {
       "displayName": "KPI Tile",
@@ -1164,7 +1165,10 @@
         "change": "55x20, gap 6 outer / 2 inner, icon 16, fs 14; arrow_upward|arrow_downward on Type 01, moving on Type 02",
         "filterControl": "26 tall pill, r=8, Stroke/Action/Secondary/Rest"
       },
-      "codeConnect": null,
+      "codeConnect": [
+        "components/kpi-tile/kpi-tile.figma.ts",
+        "components/kpi-tile/change.figma.ts"
+      ],
       "figmaFixed": "_Change bound Stroke/Static/{Positive,Negative}/Strong as TEXT fills, a tier violation that also failed contrast: #358d4b on the white card is 4.15:1 against a 4.5 floor for 14px text. Fixed in Figma on 2026-10-07, 10 fills across the 8 variants moved to Foreground/Static/{Positive,Negative}/On Subtle, measuring 13.62:1 and 10.74:1. The mini chart's Line vectors genuinely stroke with Stroke/Static/Positive/Strong and were left alone.",
       "spec": "components/kpi-tile/kpi-tile-spec.md",
       "modules": [
