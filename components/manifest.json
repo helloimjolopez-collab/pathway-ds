@@ -1234,9 +1234,10 @@
         "numberAndTrend": "VERTICAL pad 0,12,0,12; Chart & Trend HORIZONTAL gap 24; Chart.Container pad 8,0,8,4",
         "eyebrow": "fs 10, Foreground/Static/Neutral/Subtle",
         "number": "fs 32, Foreground/Static/Neutral/Strong",
-        "change": "55x20, gap 6 outer / 2 inner, icon 16, fs 14; arrow_upward|arrow_downward on Type 01, moving on Type 02",
+        "change": "_Change is ONE set with FOUR types: 01 arrow_upward/arrow_downward 55x20 naked; 02 moving/trending_down 55x20 naked; 03 north_east/south_east in a 73x28 bordered pill r=6 with the GLYPH in the trend and the text Neutral/Strong; 04 a 52x16 tinted Badge r=12 on Fill/Static/{tone}/Subtle with its Subtle stroke. Trend.ComparisonControl (40017320:361) is a SIBLING of all four: fs 10 text plus an expand_more at 12. Glance uses type 04, Detail and Explore use type 02.",
         "filterControl": "26 tall pill, r=8, Stroke/Action/Secondary/Rest",
-        "barChart": "The Detail variant's _Chart data instance (Chart type=Bar 01 desktop) counts FIFTEEN Bar frames at 27x286. SAMPLE_STACKS had twelve, taken from the months of a year rather than from the drawing, which made the bars wider than the design."
+        "barChart": "Each column is THREE OVERLAPPING bands, each running to the baseline with a rounded cap, in TWO alternating colours: Series 1 and 3 bind Fill/Chart/Sequential/09 and Series 2 binds /11. Measured from one Bar: a 27x286 wrapper holding a 27x243 Bars frame with vectors 27x243@0, 27x179@64 and 27x115@128. Bar width 27, gap 8, 15 bars in a 526 chart. The previous version drew three flat boxes in three colours with a 2px radius on the topmost only.",
+        "miniChart": "SAMPLE_SERIES is the REAL Figma geometry: each of the twelve arrays is the Chart.Line path of one variant of 40009415:27919, flattened and sampled at 40 x positions in its 112x56 space, extracted 2026-10-07 from vectorPaths[0].data. It held eight hand-written points before, so every chart was a blocky stand-in; Realistic 01 has 83 points and Wavy 03 has 133. Curve is read from whether the path uses C commands, because Realistic 01 is a bezier while 02 and 03 are polylines. SAMPLE_MARKERS holds each shape's real marker index, 50% to 82% of the width with the line running past it; Straight has two markers and Layers none. Line 2px round cap, area 0.10 masked by a vertical fade, ring 19 at 0.20, dot 11 on Fill/Surface/Elevated at full opacity."
       },
       "codeConnect": [
         "components/kpi-tile/change.figma.ts",

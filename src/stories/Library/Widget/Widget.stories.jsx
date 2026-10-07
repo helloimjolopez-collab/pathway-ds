@@ -9,7 +9,7 @@
 import React from "react";
 import { Widget, WidgetKeyframes, SIZES, SIZE_LABEL, isFlat } from "../../../../components/widget/widget.jsx";
 import { KpiNumberAndTrend, Change } from "../../../../components/kpi-tile/kpi-number-trend.jsx";
-import { MiniChart, SAMPLE_SERIES } from "../../../../components/kpi-tile/mini-chart.jsx";
+import { MiniChart, SAMPLE_SERIES, SAMPLE_MARKERS, curveFor } from "../../../../components/kpi-tile/mini-chart.jsx";
 import { BarChart, SAMPLE_STACKS } from "../../../../components/kpi-tile/bar-chart.jsx";
 import { TokenTables } from "../_shared/TokenTable.jsx";
 
@@ -28,8 +28,15 @@ const board = (children, cols = 12) => (
   </div>
 );
 
-/** Glance: the number and a sparkline beside it, which is what Figma shows. */
-const glanceBody = (series = "wavy-01", dir = "up", fav) => (
+/**
+ * Glance: the number and a sparkline beside it.
+ *
+ * `realistic-01` is the default because that is the shape Figma's
+ * `Size=Glance, Configuration=01` actually nests: its `_Chart mini` instance is
+ * `Type=Realistic 01, Trend=Positive`. This defaulted to `wavy-01`, which is a
+ * different drawing.
+ */
+const glanceBody = (series = "realistic-01", dir = "up", fav) => (
   <KpiNumberAndTrend
     eyebrow="Views per month" value="2,000"
     /* Figma's Glance draws _Change TYPE 04, the tinted pill, with the
@@ -37,7 +44,11 @@ const glanceBody = (series = "wavy-01", dir = "up", fav) => (
        arrow, which is what Detail uses. */
     change={<Change type="04" value="100%" direction={dir} favourable={fav}
       note="vs last month" onCompareClick={() => {}} />}
-    chart={<MiniChart series={SAMPLE_SERIES[series]} direction={dir} favourable={fav} />}
+    /* curve and marker position both come from the Figma shape, not from a
+       default: SAMPLE_MARKERS holds the real index per type and Figma marks an
+       INTERIOR point, letting the line run past it to the edge. */
+    chart={<MiniChart series={SAMPLE_SERIES[series]} direction={dir} favourable={fav}
+      curve={curveFor(series)} markerIndex={SAMPLE_MARKERS[series]} />}
   />
 );
 
@@ -154,8 +165,10 @@ export const GlanceConfigurations = {
             eyebrow="Views per month" value="2,000"
             numberStyle={numberStyle} layout={layout}
             filter={filter} filterLayout={filterLayout}
-            change={<Change value="100%" direction="up" note="vs last month" />}
-            chart={<MiniChart series={SAMPLE_SERIES[series] || SAMPLE_SERIES["wavy-01"]} direction="up" />}
+            change={<Change type="04" value="100%" direction="up"
+              note="vs last month" onCompareClick={() => {}} />}
+            chart={<MiniChart series={SAMPLE_SERIES[series]} direction="up"
+              curve={curveFor(series)} markerIndex={SAMPLE_MARKERS[series]} />}
           />
         </Widget>
       ))}

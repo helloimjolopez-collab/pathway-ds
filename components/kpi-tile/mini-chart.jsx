@@ -60,34 +60,137 @@ export const L = {
 };
 
 /**
- * The twelve Figma shapes as series, so the stories show the real range.
+ * THE TWELVE FIGMA SHAPES, TAKEN OUT OF THE FIGMA VECTORS. Not approximations.
  *
- * CURVE IS PART OF THE SHAPE, not a style. Reading the vector paths on
- * 2026-10-07: `Realistic 01` is a POLYLINE, every segment an `L` command with
- * sharp corners, and `Wavy 01` and `Layers` are BEZIERS, `C` commands with
- * smooth joins. Drawing all twelve as polylines, which is what this file did,
- * makes every Wavy variant look like a Realistic one, and Wavy is what the
- * Glance widget uses.
+ * Each array is the real `Chart.Line` path of one variant of set
+ * 40009415:27919, flattened and sampled at 40 evenly spaced x positions in its
+ * own 112x56 coordinate space, so the value IS the height in that space.
+ * Extracted 2026-10-07 by parsing `vectorPaths[0].data` in the file: M, L and C
+ * commands, beziers subdivided, then sampled by x.
+ *
+ * WHY THIS REPLACED HAND-WRITTEN DATA. The previous version carried eight
+ * invented points per shape, so every chart in Storybook was a blocky
+ * stand-in that read nothing like the frame it was supposed to be. Figma's
+ * Realistic 01 has 83 points on its path and Wavy 03 has 133. A shape is not
+ * "roughly rising", it is a specific line, and a sparkline with a fifth of the
+ * detail is a different drawing.
+ *
+ * These are still SAMPLE DATA, in that a real widget plots real numbers
+ * through the same component. What they are not any more is a guess at what
+ * the design looks like.
  */
 export const SAMPLE_SERIES = {
-  "wavy-01":      [18, 26, 20, 34, 28, 42, 36, 50],
-  "wavy-02":      [30, 22, 34, 26, 40, 32, 46, 38],
-  "wavy-03":      [20, 34, 24, 40, 30, 44, 34, 48],
-  "wavy-04":      [36, 28, 40, 30, 44, 34, 48, 38],
-  "wavy-05":      [22, 38, 26, 30, 42, 34, 46, 52],
-  "wavy-06":      [28, 20, 36, 26, 44, 32, 40, 50],
-  "wavy-07":      [16, 30, 22, 38, 28, 46, 34, 52],
-  "realistic-01": [12, 20, 17, 29, 24, 33, 41, 48],
-  "realistic-02": [26, 18, 32, 22, 38, 28, 34, 44],
-  "realistic-03": [40, 34, 38, 28, 31, 22, 25, 14],
-  straight:       [10, 16, 22, 28, 34, 40, 46, 52],
-  layers:         [24, 24, 30, 30, 38, 38, 46, 46],
+  "wavy-01": [
+    0, 1.2, 2.9, 4.9, 7.5, 10.4, 13.6, 16.9, 19.9, 22.5, 24.6, 26.2, 27.3,
+    28, 28.1, 27.7, 26.8, 25.4, 23.6, 21.6, 19.5, 17.5, 15.8, 14.6, 13.9,
+    13.7, 14, 15.2, 16.9, 19.5, 23.1, 27.7, 33.2, 39, 44.3, 48.7, 51.8, 54,
+    55.3, 56
+  ],
+  "wavy-02": [
+    56, 55.4, 54.6, 54.1, 53.5, 52.5, 50.7, 47.8, 44.4, 41.2, 38.9, 38,
+    38.2, 38.4, 37.5, 34.7, 30.6, 26.5, 24.2, 25, 28.8, 34.3, 40, 44.4,
+    46.9, 47.7, 47.2, 45.5, 43.1, 40.8, 39, 38.6, 39.7, 41.9, 44.6, 47.2,
+    49.4, 51.1, 52.5, 53.8
+  ],
+  "wavy-03": [
+    56, 50.5, 48.8, 48.5, 48.8, 49.4, 49, 46.7, 44, 42.2, 42.8, 45.4, 48.7,
+    51.4, 52.3, 51.5, 50.1, 48.9, 48.9, 50.3, 52.4, 54.4, 55.6, 56, 55.6,
+    54.9, 54.3, 53.8, 53.1, 51.9, 49.8, 46.9, 43.5, 40.6, 38.8, 38.4, 38.6,
+    38.6, 37.3, 34
+  ],
+  "wavy-04": [
+    34.4, 31.8, 29.3, 27.4, 26.2, 26.2, 27.5, 29.8, 32.9, 36.3, 39.8, 43.1,
+    45.8, 47.8, 49.1, 49.8, 49.9, 49.5, 48.8, 47.7, 46.3, 44.8, 43.3, 42.1,
+    41.1, 40.7, 40.8, 41.4, 42.6, 44, 45.6, 47.3, 48.9, 50.3, 51.6, 52.7,
+    53.6, 54.5, 55.2, 56
+  ],
+  "wavy-05": [
+    24.1, 21, 18.9, 18, 18.6, 20.7, 24, 27.8, 31.6, 34.6, 36.2, 36.5, 35.6,
+    34.1, 32.3, 30.5, 29.1, 28.2, 27.8, 28.1, 29.4, 31.7, 34.6, 37.4, 39.6,
+    40.6, 39.8, 37.5, 34.5, 31.8, 30.2, 29.8, 30.7, 32.7, 35.4, 38.8, 42.6,
+    46.8, 51.3, 56
+  ],
+  "wavy-06": [
+    20, 20.9, 21.8, 22.5, 23.2, 23.8, 24.3, 24.7, 25, 25.3, 25.7, 26.3, 27,
+    28, 29.2, 30.4, 31.6, 32.5, 33.2, 33.4, 33.1, 32.5, 31.7, 31.1, 30.8,
+    31, 31.9, 33.6, 35.8, 38.5, 41.4, 44.4, 47.3, 50, 52.3, 54.1, 55.4, 56,
+    55.7, 54.6
+  ],
+  "wavy-07": [
+    34, 34.5, 34.8, 35, 35.2, 35.6, 36.2, 37.2, 38.8, 40.9, 43.3, 45.8,
+    48.2, 50.4, 52.1, 53, 53.1, 52.5, 51.3, 49.8, 48.3, 46.9, 46, 45.7,
+    46.2, 47.4, 48.9, 50.7, 52.5, 54.1, 55.3, 55.9, 55.9, 55.5, 54.8, 54,
+    53.2, 52.6, 52.3, 52.6
+  ],
+  "realistic-01": [
+    0, 4.8, 5.1, 5.3, 7.9, 8.9, 6.9, 9.4, 15.1, 19.7, 23.7, 26.1, 26.2,
+    28.3, 26.8, 25.1, 19.5, 14.4, 14.9, 19.6, 25.1, 28.8, 30.6, 35.4, 40.4,
+    42.6, 44.4, 42.4, 39.7, 34.7, 31.9, 34.7, 37.3, 34.2, 32.3, 36, 37.9,
+    41.4, 46.3, 56
+  ],
+  "realistic-02": [
+    0, 10.1, 11.8, 9.5, 11.6, 14.4, 15.7, 15.3, 23.9, 21.9, 17.1, 21.4,
+    20.8, 23, 28.2, 17.5, 17.9, 19.7, 11.8, 30.2, 39.6, 38, 47.2, 47.9,
+    48.3, 55.5, 50.7, 47.2, 46.4, 49.2, 47.2, 46.2, 49.7, 37.5, 35.3, 39.6,
+    37.5, 43.8, 46.2, 39
+  ],
+  "realistic-03": [
+    12, 12.4, 12.8, 13.2, 13.6, 14.7, 16, 17.3, 18.5, 21.3, 24.9, 28.5,
+    32.1, 34.6, 35.8, 36.9, 38.1, 38.8, 38.1, 37.4, 36.6, 36.2, 38.1, 40,
+    41.9, 43.9, 44.7, 45.4, 46.1, 46.8, 48.6, 50.8, 52.9, 55.1, 55.2, 53.7,
+    52.3, 50.9, 50, 50
+  ],
+  "straight": [
+    0, 3.2, 6.4, 9.6, 12.8, 16, 19.3, 22.5, 25.7, 28.9, 32.1, 32.9, 32.3,
+    31.7, 31.1, 30.5, 30, 29.4, 28.8, 28.2, 27.6, 27, 26.5, 25.9, 25.3,
+    24.7, 24.1, 23.5, 22.9, 24.8, 27.9, 31.1, 34.2, 37.3, 40.4, 43.5, 46.6,
+    49.8, 52.9, 56
+  ],
+  "layers": [
+    10.2, 10.5, 11.5, 12.8, 14.6, 16.8, 19.4, 22.2, 25.3, 28.6, 32, 35.3,
+    38.4, 41.1, 43.3, 44.6, 45.1, 44.5, 42.9, 40.6, 37.9, 34.9, 32, 29.3,
+    27.1, 25.5, 24.7, 24.4, 24.8, 25.7, 27.1, 29, 31.4, 34.1, 37.2, 40.6,
+    44.2, 48, 40.3, 0
+  ],
 };
 
-/** Which Figma types are drawn as a smooth curve rather than a polyline. */
-export const SMOOTH_TYPES = new Set([
-  "wavy-01", "wavy-02", "wavy-03", "wavy-04", "wavy-05", "wavy-06", "wavy-07", "layers",
-]);
+/**
+ * Where Figma puts the marker on each shape, as an index into the 40-point
+ * series above. Measured from each variant's `Marker` frame centre on
+ * 2026-10-07.
+ *
+ * THE MARKER IS NOT AT THE END, which is the thing to know. Figma highlights an
+ * INTERIOR point, between 50% and 82% of the width depending on the shape, and
+ * lets the line carry on past it to the right edge. `Straight` carries TWO
+ * markers and `Layers` carries NONE.
+ *
+ * So it is a highlighted observation rather than "the latest value", and which
+ * point is highlighted is data. A chart given no `markerIndex` still marks its
+ * last point, because that is the sparkline convention and what a KPI tile
+ * wants.
+ */
+export const SAMPLE_MARKERS = {
+  "wavy-01": [32],                     // Figma 82%
+  "wavy-02": [25],                     // Figma 65%
+  "wavy-03": [21],                     // Figma 53%
+  "wavy-04": [32],                     // Figma 82%
+  "wavy-05": [25],                     // Figma 64%
+  "wavy-06": [30],                     // Figma 77%
+  "wavy-07": [29],                     // Figma 74%
+  "realistic-01": [26],                // Figma 66%
+  "realistic-02": [20],                // Figma 50%
+  "realistic-03": [25],                // Figma 65%
+  "straight": [28, 11],                    // Figma 73%, 27%
+  "layers": [],                      // Figma no marker
+};
+
+/**
+ * Which shapes are drawn as a curve, read from whether the Figma path uses
+ * bezier commands rather than assumed from the name. Note that Realistic 01 IS
+ * smooth and Realistic 02 and 03 are not, so the family name does not predict
+ * it: guessing from the name would have got one of the three wrong.
+ */
+export const SMOOTH_TYPES = new Set(["layers", "realistic-01", "wavy-01", "wavy-02", "wavy-03", "wavy-04", "wavy-05", "wavy-06", "wavy-07"]);
 
 /** The curve a named sample uses, so a story never has to say it twice. */
 export const curveFor = (name) => (SMOOTH_TYPES.has(name) ? "smooth" : "linear");
@@ -98,9 +201,12 @@ export const curveFor = (name) => (SMOOTH_TYPES.has(name) ? "smooth" : "linear")
  * @param {boolean} favourable   Whether the movement is good. Defaults to
  *                               up-is-good, which is wrong for costs.
  * @param {boolean} markerBothEnds  Figma's Straight variant marks both ends.
- * @param {number} markerIndex   Which point carries the marker. Figma marks an
- *                               INTERIOR point and lets the line run past it.
- *                               Defaults to the last point.
+ * @param {number|number[]} markerIndex  Which point or points carry a marker.
+ *                               Figma marks an INTERIOR point and lets the
+ *                               line run past it; `SAMPLE_MARKERS` has the real
+ *                               index per shape. An empty array draws none,
+ *                               which is what `Layers` does. Defaults to the
+ *                               last point.
  * @param {boolean} markers      Figma's `Marker(s)` boolean. False draws the
  *                               line with no end marker at all.
  * @param {boolean} area         Figma's `Background` boolean: the fill under
@@ -185,9 +291,13 @@ export function MiniChart({
    * a KPI tile wants: here is where we are now.
    */
   const lastIdx = pts.length - 1;
-  const markIdx = markerIndex == null ? lastIdx
-    : Math.max(0, Math.min(lastIdx, markerIndex));
-  const marks = !markers ? [] : (markerBothEnds ? [0, lastIdx] : [markIdx]);
+  const clamp = (i) => Math.max(0, Math.min(lastIdx, i));
+  // An ARRAY because Figma's `Straight` carries two markers and `Layers`
+  // carries none, so the count is per shape, not a boolean.
+  const chosen = markerIndex == null ? [lastIdx]
+    : Array.isArray(markerIndex) ? markerIndex.map(clamp)
+    : [clamp(markerIndex)];
+  const marks = !markers ? [] : (markerBothEnds ? [0, lastIdx] : chosen);
 
   const svg = (
     <svg

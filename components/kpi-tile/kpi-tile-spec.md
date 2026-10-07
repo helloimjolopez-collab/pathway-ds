@@ -279,6 +279,35 @@ Material Symbols Rounded, `FILL 0`, `wght 400`, `opsz` matched to size.
 - Markers are `aria-hidden` and `pointer-events: none`.
 - The menu control and the period filter are real buttons with labels.
 
+## 13.1 The mini chart's sample shapes are the Figma vectors
+
+`SAMPLE_SERIES` in `mini-chart.jsx` is not approximate data. Each of the twelve
+arrays is the real `Chart.Line` path of one variant of set `40009415:27919`,
+flattened and sampled at 40 x positions in its own 112x56 space, extracted on
+2026-10-07 by parsing `vectorPaths[0].data` in the file.
+
+It held EIGHT hand-written points per shape before that, so every chart in
+Storybook was a blocky stand-in. Figma's `Realistic 01` has 83 points on its
+path and `Wavy 03` has 133; a shape is a specific line, not a direction of
+travel, and a fifth of the detail is a different drawing.
+
+Two things came out of reading the paths rather than assuming:
+
+- **The curve does not follow the family name.** `Realistic 01` is a BEZIER and
+  `Realistic 02` and `03` are polylines, so `SMOOTH_TYPES` is read from whether
+  the path uses `C` commands. Guessing from the name gets one of the three
+  wrong.
+- **The marker is not at the end.** `SAMPLE_MARKERS` holds each shape's real
+  marker index, measured from its `Marker` frame centre: between 50% and 82% of
+  the width, with the line carrying on past it to the right edge. `Straight`
+  carries TWO markers and `Layers` carries NONE.
+
+The one place the code departs from the file is the line's stroke, which uses
+`vectorEffect="non-scaling-stroke"` so it stays 2px at any box size. Figma's 2
+is relative to a 112x56 artboard and would scale to 4 in a chart rendered at
+double that, which is too heavy for a sparkline. Recorded here because it is a
+deliberate departure rather than a mismatch.
+
 ## 14. Storybook
 
 Sidebar-visible, matching the untagged exports in `KPITile.stories.jsx` exactly:

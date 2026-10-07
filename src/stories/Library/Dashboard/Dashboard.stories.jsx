@@ -15,7 +15,7 @@ import { WidgetKeyframes, SIZES } from "../../../../components/widget/widget.jsx
 // a card inside a card.
 import { KpiNumberAndTrend, Change } from "../../../../components/kpi-tile/kpi-number-trend.jsx";
 import { BarChart, SAMPLE_STACKS } from "../../../../components/kpi-tile/bar-chart.jsx";
-import { MiniChart, SAMPLE_SERIES } from "../../../../components/kpi-tile/mini-chart.jsx";
+import { MiniChart, SAMPLE_SERIES, SAMPLE_MARKERS, curveFor } from "../../../../components/kpi-tile/mini-chart.jsx";
 import { TokenTables } from "../_shared/TokenTable.jsx";
 
 const U = (n) => `var(--semantic-layout-units-${n})`;
@@ -92,7 +92,8 @@ function renderWidget(w) {
     return (
       <KpiNumberAndTrend eyebrow="Undeposited" value="$3,940"
         change={<Change type="04" value="2 days" direction="down" favourable={false} note="oldest" />}
-        chart={<MiniChart series={SAMPLE_SERIES["realistic-01"]} direction="up" />} />
+        chart={<MiniChart series={SAMPLE_SERIES["realistic-01"]} direction="up"
+          curve={curveFor("realistic-01")} markerIndex={SAMPLE_MARKERS["realistic-01"]} />} />
     );
   }
   // Detail and Explore are mostly chart by area, so they get a real one.

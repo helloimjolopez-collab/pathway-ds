@@ -7,7 +7,7 @@
  */
 import React from "react";
 import { KpiTile, ChangeChip, KPI_TILE_TYPES } from "../../../../components/kpi-tile/kpi-tile.jsx";
-import { MiniChart, SAMPLE_SERIES, curveFor } from "../../../../components/kpi-tile/mini-chart.jsx";
+import { MiniChart, SAMPLE_SERIES, SAMPLE_MARKERS, curveFor } from "../../../../components/kpi-tile/mini-chart.jsx";
 import { KpiNumberAndTrend, Change, CHANGE_TYPES } from "../../../../components/kpi-tile/kpi-number-trend.jsx";
 import { TokenTables } from "../_shared/TokenTable.jsx";
 
@@ -307,7 +307,7 @@ export const ChartShapes = {
             {["up", "down"].map((d) => (
               <div key={d} style={{ width: 112, height: 56 }}>
                 <MiniChart series={SAMPLE_SERIES[k]} direction={d} curve={curveFor(k)}
-                  markerIndex={k === "straight" ? undefined : 5} />
+                  markerIndex={SAMPLE_MARKERS[k]} />
               </div>
             ))}
           </div>
