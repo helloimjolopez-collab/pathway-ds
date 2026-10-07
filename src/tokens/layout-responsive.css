@@ -1,6 +1,6 @@
 /*
  ==========================================================================
- PATHWAY DESIGN TOKENS — CONTRACT
+ PATHWAY DESIGN TOKENS, CONTRACT
  ==========================================================================
 
  The only layout tokens that change by breakpoint. Name these freely.
@@ -15,7 +15,7 @@
  columns; it says nothing about the chrome's padding.
 
  Declares 23 custom properties.
- Generated — do not edit. Run `npm run build-tokens`.
+ Generated: do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
 :root {

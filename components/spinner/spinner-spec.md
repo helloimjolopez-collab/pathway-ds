@@ -77,7 +77,7 @@ When a new style is added (for example `dots` or `bar`), the change is:
 1. **Figma:** Add a new variant to the Spinner component, author its geometry, and publish.
 2. **Token mapping:** If the new style needs tokens that don't already exist (e.g. a stroke width for a `bar` variant), add them to the token file and document them in §7 of this spec.
 3. **Spec:** Add a row to the §2.1 table and, if the new style has structural differences (multiple elements, different animation), add a §2.4 subsection describing them.
-4. **Implementation:** Add the new value as a branch in the component's render — but keep every other part of the API identical (same `size`, `color`, `label` props, same `role="status"` wrapper, same reduced-motion handling).
+4. **Implementation:** Add the new value as a branch in the component's render, but keep every other part of the API identical (same `size`, `color`, `label` props, same `role="status"` wrapper, same reduced-motion handling).
 
 A new style **must not** introduce size-specific variants, size props with limited values, or style-specific colour props. Those are properties of the Spinner as a whole, not of a given style.
 
@@ -96,7 +96,7 @@ A new style **must not** introduce size-specific variants, size props with limit
 Use a Spinner for **short, indeterminate waits** where:
 
 - The task duration is unknown or highly variable
-- The expected wait is roughly **1–10 seconds**
+- The expected wait is roughly **1-10 seconds**
 - The user's attention is already on the component that's loading (in-button, in-card, in-row)
 - No percentage, step count, or meaningful status text is available
 
@@ -108,9 +108,9 @@ Do **not** use a Spinner for:
 |---|---|
 | Progress is measurable (upload %, step 3 of 5) | `ProgressBar` (determinate) |
 | Wait is expected to exceed ~10 seconds | Skeleton state, progress bar, or a status message with ETA |
-| Nothing is actually in flight (resting idle state) | Nothing — remove the UI entirely |
+| Nothing is actually in flight (resting idle state) | Nothing, remove the UI entirely |
 | Page-level initial load of content | Skeleton of the final content shape (reduces perceived latency) |
-| The trigger was a user action that could fail quickly (click a button and 50 ms later show a result) | Nothing — 50 ms is too short to show a spinner; flashing one in and out is worse than no feedback |
+| The trigger was a user action that could fail quickly (click a button and 50 ms later show a result) | Nothing, 50 ms is too short to show a spinner; flashing one in and out is worse than no feedback |
 | Error, success, or empty state | `EmptyState`, status icon, or toast (spinners imply *still working*) |
 
 ### 3.3 Decision tree
@@ -163,7 +163,7 @@ All three routes resolve to the same internal CSS variable (`--pds-spinner-size`
 
 ### 4.2 Output
 
-The SVG is drawn in a `12×12` viewBox (the Figma source unit) but rendered at `width: 100%; height: 100%` of its wrapper. Scaling is therefore vector-smooth at every size — no blur at large sizes, no clipping at small ones. The stroke width is authored in viewBox units (1 out of 12), so it scales proportionally with the overall size: at 24 px the strokes render at ~2 px; at 96 px they render at ~8 px. This proportional scaling is correct for the sunburst form — fixed-px strokes would look chunky at small sizes and hairline at large ones.
+The SVG is drawn in a `12×12` viewBox (the Figma source unit) but rendered at `width: 100%; height: 100%` of its wrapper. Scaling is therefore vector-smooth at every size: no blur at large sizes, no clipping at small ones. The stroke width is authored in viewBox units (1 out of 12), so it scales proportionally with the overall size: at 24 px the strokes render at ~2 px; at 96 px they render at ~8 px. This proportional scaling is correct for the sunburst form, fixed-px strokes would look chunky at small sizes and hairline at large ones.
 
 ### 4.3 Recommended sizes
 
@@ -173,16 +173,16 @@ These are **recommendations**, not enforced variants. Pick whichever is appropri
 |---|---|
 | Inside body copy (inline) | `1em` (inherits) |
 | Inside a small button or input | `16px` |
-| Inside a standard button | `16–20px` |
+| Inside a standard button | `16-20px` |
 | Card or row loading indicator | `24px` |
-| Empty-state centrepiece in a card | `40–64px` |
-| Page-level loader (rare — prefer skeletons) | `64–96px` |
+| Empty-state centrepiece in a card | `40-64px` |
+| Page-level loader (rare, prefer skeletons) | `64-96px` |
 
 ### 4.4 Minimum and maximum
 
 There is **no hard minimum** below which the spinner breaks, but below `12px` the rotation becomes hard to perceive and the shape flattens visually. Avoid sizes smaller than `12px` unless the context demands it (e.g. dense tables) and reduced-motion users are explicitly handled (see §8.4).
 
-There is **no hard maximum**. At very large sizes (>128px) consider whether a spinner is still the right pattern — at that scale the user is probably looking at a full page load, which usually wants a skeleton instead (see §3.2).
+There is **no hard maximum**. At very large sizes (>128px) consider whether a spinner is still the right pattern, at that scale the user is probably looking at a full page load, which usually wants a skeleton instead (see §3.2).
 
 ---
 
@@ -191,22 +191,22 @@ There is **no hard maximum**. At very large sizes (>128px) consider whether a sp
 ```
 Spinner (role="status", aria-live="polite", aria-label="{label}")
 ├── <svg> viewBox="0 0 12 12"                   ← the rotating element (animation lives here)
-│   ├── <path d="M6 1V3"          opacity=1.00 >  ← 12 o'clock  — leading "head"
+│   ├── <path d="M6 1V3"          opacity=1.00 >  ← 12 o'clock, leading "head"
 │   ├── <path d="M8.1 3.9L9.55 2.45" opacity=0.87 > ← 1:30
 │   ├── <path d="M9 6H11"         opacity=0.75 >  ← 3 o'clock
 │   ├── <path d="M8.1 8.1L9.55 9.55" opacity=0.62 > ← 4:30
 │   ├── <path d="M6 9V11"         opacity=0.50 >  ← 6 o'clock
 │   ├── <path d="M2.45 9.55L3.9 8.1" opacity=0.37 > ← 7:30
 │   ├── <path d="M1 6H3"          opacity=0.25 >  ← 9 o'clock
-│   └── <path d="M2.45 2.45L3.9 3.9" opacity=0.12 > ← 10:30 — fading "tail"
+│   └── <path d="M2.45 2.45L3.9 3.9" opacity=0.12 > ← 10:30, fading "tail"
 └── <span class="pds-spinner__sr-only">{label}</span>   ← visually-hidden copy of the label
 ```
 
-All eight spokes share these stroke attributes (authored in Figma): `stroke: currentColor`, `stroke-width: 1`, `stroke-linecap: round`, `stroke-linejoin: round`, `fill: none`. The coordinates above are **exact** — lifted verbatim from the Figma export (node `40006622:50026`, `progress-activity-animated`). Do not round, re-project, or "clean up" these numbers; the spokes are intentionally positioned at analytic 45° offsets from a centre of `(6, 6)` with an inner radius of `~1` and an outer radius of `~3` viewBox units.
+All eight spokes share these stroke attributes (authored in Figma): `stroke: currentColor`, `stroke-width: 1`, `stroke-linecap: round`, `stroke-linejoin: round`, `fill: none`. The coordinates above are **exact**, lifted verbatim from the Figma export (node `40006622:50026`, `progress-activity-animated`). Do not round, re-project, or "clean up" these numbers; the spokes are intentionally positioned at analytic 45° offsets from a centre of `(6, 6)` with an inner radius of `~1` and an outer radius of `~3` viewBox units.
 
 ### 5.1 Why the SVG rotates (not the spokes individually)
 
-The `animation: spin var(--motion-duration-loop) var(--motion-easing-linear) infinite` declaration is applied to the `<svg>` element, not to each `<path>`. This keeps every spoke's coordinates static in the 12×12 space and means the SVG element is the single transform origin. Rotating each spoke individually would require setting transform-box and origin per path, and risks sub-pixel drift at small sizes — as well as multiplying the number of composited layers the browser has to keep.
+The `animation: spin var(--motion-duration-loop) var(--motion-easing-linear) infinite` declaration is applied to the `<svg>` element, not to each `<path>`. This keeps every spoke's coordinates static in the 12×12 space and means the SVG element is the single transform origin. Rotating each spoke individually would require setting transform-box and origin per path, and risks sub-pixel drift at small sizes, as well as multiplying the number of composited layers the browser has to keep.
 
 ### 5.2 Why the opacity ladder
 
@@ -214,7 +214,7 @@ Eight identical spokes at exactly 45° intervals are rotationally symmetric: rot
 
 ### 5.3 Why `currentColor` on the spokes (and why it does NOT leak to arbitrary parents)
 
-The spokes declare `stroke: currentColor`. `currentColor` resolves to the `color` property on the nearest ancestor that sets it. **Crucially, the nearest ancestor that sets `color` is the spinner wrapper itself** — `.pds-spinner[data-tone="…"][data-emphasis="…"]` sets `color` to the appropriate `--semantic-color-light-mode-icon-static-*` variable. So the stroke always resolves to the chosen semantic token, never to whatever `color` the surrounding button or paragraph happens to use. The `currentColor` mechanism here is an internal implementation detail, not a public inheritance path.
+The spokes declare `stroke: currentColor`. `currentColor` resolves to the `color` property on the nearest ancestor that sets it. **Crucially, the nearest ancestor that sets `color` is the spinner wrapper itself**, `.pds-spinner[data-tone="…"][data-emphasis="…"]` sets `color` to the appropriate `--semantic-color-light-mode-icon-static-*` variable. So the stroke always resolves to the chosen semantic token, never to whatever `color` the surrounding button or paragraph happens to use. The `currentColor` mechanism here is an internal implementation detail, not a public inheritance path.
 
 ### 5.4 Why two labels
 
@@ -243,7 +243,7 @@ Spinner motion is intentionally **boring**: one keyframe, one duration, one timi
 }
 ```
 
-The declaration uses the loop-duration family from design-system-spec §2.1 — `--motion-duration-loop` (1000 ms) + `--motion-easing-linear`, not hardcoded values. Implementations must not change the duration, timing function, or iteration count without a spec amendment.
+The declaration uses the loop-duration family from design-system-spec §2.1, `--motion-duration-loop` (1000 ms) + `--motion-easing-linear`, not hardcoded values. Implementations must not change the duration, timing function, or iteration count without a spec amendment.
 
 ### 6.3 Properties
 
@@ -254,7 +254,7 @@ The declaration uses the loop-duration family from design-system-spec §2.1 — 
 | Iteration count | `infinite` | The spinner runs until the consumer unmounts it. Spinners do not stop on their own. |
 | Direction | `normal` (clockwise) | Matches the Figma source. Reversing direction is not a supported variant. |
 | Delay | `0s` | No fade-in. The spinner is shown at full opacity as soon as it mounts; the consumer controls when to mount it. |
-| Fill mode | (default) | No fill mode needed — the spinner is either animating or unmounted. |
+| Fill mode | (default) | No fill mode needed: the spinner is either animating or unmounted. |
 
 ### 6.4 Reduced motion
 
@@ -265,14 +265,14 @@ The declaration uses the loop-duration family from design-system-spec §2.1 — 
 }
 ```
 
-When the user requests reduced motion, the rotation is removed **and** the opacity ladder is flattened so every spoke shares the same 0.6 opacity. The flattening is important: if the staggered opacities were left in place without rotation, the static graphic would look like a paused animation (frozen "head at 12 o'clock, tail at 10:30"). Equal opacity across all eight spokes reads as a neutral indicator glyph instead — a recognisable "in progress" mark that has no implied direction of motion. The `role="status"` and `aria-label` are unaffected, so assistive tech announces the activity exactly the same way.
+When the user requests reduced motion, the rotation is removed **and** the opacity ladder is flattened so every spoke shares the same 0.6 opacity. The flattening is important: if the staggered opacities were left in place without rotation, the static graphic would look like a paused animation (frozen "head at 12 o'clock, tail at 10:30"). Equal opacity across all eight spokes reads as a neutral indicator glyph instead: a recognisable "in progress" mark that has no implied direction of motion. The `role="status"` and `aria-label` are unaffected, so assistive tech announces the activity exactly the same way.
 
 **Do not:**
 
-- Hide the spinner entirely under reduced motion — that strips the "loading" signal from users who still want to know *that* something is happening, just not *watch* it happening.
-- Keep the opacity ladder without the rotation — a static "head + tail" reads as a stalled spinner.
-- Replace the static glyph with text like "Loading…" — the same label text is already being announced via `aria-label`.
-- Slow the animation as a compromise — the reduced-motion media query is a binary contract.
+- Hide the spinner entirely under reduced motion: that strips the "loading" signal from users who still want to know *that* something is happening, just not *watch* it happening.
+- Keep the opacity ladder without the rotation: a static "head + tail" reads as a stalled spinner.
+- Replace the static glyph with text like "Loading…": the same label text is already being announced via `aria-label`.
+- Slow the animation as a compromise: the reduced-motion media query is a binary contract.
 
 ---
 
@@ -287,7 +287,7 @@ Spinner's colour API is **locked to the `foreground.*` semantic family**. The co
 1. The spinner accepts **only** semantic tokens from `foreground.<tone>.<emphasis>`.
 2. It does **not** accept raw hex, RGB, or named CSS colours (no `color="#3555a0"`, no `color="red"`).
 3. It does **not** accept primitive tokens (no `color="brand.300"`, no `var(--primitive-color-brand-300)`).
-4. It does **not** accept made-up token names (no `icon/semantic/success`, no `semantic.error` — those categories do not exist in `tokens/pathway-design-tokens.json`).
+4. It does **not** accept made-up token names (no `icon/semantic/success`, no `semantic.error`: those categories do not exist in `tokens/pathway-design-tokens.json`).
 5. It does **not** use `currentColor` inheritance from arbitrary parents. The colour comes from the named token only.
 6. There is no `color` prop. There never will be.
 
@@ -329,7 +329,7 @@ every row below is the token the spinner CSS actually binds at
 
 > **Note on "accent":** there is no single `accent` tone in the token file. Under `Static` the decorative hues sit beneath `Accent` (`Accent/Jade`, `Accent/Mauve`, `Accent/Lagoon`, `Accent/Seabreeze`) precisely because they carry no meaning. The spinner exposes `accent-jade` and `accent-seabreeze`; its third, `accent-amethyst`, is now the same colour as `info`, because Amethyst is what `Info` resolves to.
 
-> **Note on the status tones:** the token library defines exactly four status intents, each bound to one primitive family — `negative` (red), `alert` (orange), `warning` (saffron), `positive` (green). Use `warning` to prompt the user to stop and look, `alert` when something is failing but recoverable, and `negative` when something has already failed. The spinner accepts all of them for completeness; most product uses will only ever need `neutral` or `brand`.
+> **Note on the status tones:** the token library defines exactly four status intents, each bound to one primitive family, `negative` (red), `alert` (orange), `warning` (saffron), `positive` (green). Use `warning` to prompt the user to stop and look, `alert` when something is failing but recoverable, and `negative` when something has already failed. The spinner accepts all of them for completeness; most product uses will only ever need `neutral` or `brand`.
 >
 > **Resolved 2026-09-07:** the token library renamed Status/Alert to Status/Severe, so `tone="danger"` now matches its token family exactly. No mismatch remains.
 
@@ -393,7 +393,7 @@ The token file also emits `--semantic-color-dark-mode-icon-static-*` for every c
 If `tone` or `emphasis` is passed a value not in the enum:
 
 - The component logs `console.error("[Spinner] Invalid tone …")` / `Invalid emphasis …`.
-- The CSS attribute selector does not match any rule, so the spinner's `color` resolves to `unset` (inherits from the parent or defaults to browser black). This is an intentionally broken render — the spinner is meant to stand out in QA, not silently pick a "reasonable" fallback.
+- The CSS attribute selector does not match any rule, so the spinner's `color` resolves to `unset` (inherits from the parent or defaults to browser black). This is an intentionally broken render: the spinner is meant to stand out in QA, not silently pick a "reasonable" fallback.
 
 Do not add fuzzy matching, string coercion, or "did you mean" fallbacks. A typo in a token name is a bug; catching it at authoring time is the point.
 
@@ -407,7 +407,7 @@ No sizing tokens exist or are needed. The size input is a CSS length chosen by t
 
 The spinner loop is token-driven: `--motion-duration-loop` (1000ms) paired with `--motion-easing-linear` (continuous rotation, no easing). The in-button spinner uses the tighter `--motion-duration-loop-fast` (750ms).
 
-> **✓ Resolved:** A motion token scale now exists. `docs/design-system-spec.md` §2 is the source of truth; `scripts/sync-motion-tokens.js` emits the `--motion-*` CSS variables (an 8-step duration ladder, a dedicated loop-duration family, and seven easings). Every component — including this spinner — now references those tokens rather than hard-coding durations or cubic-bezier curves.
+> **✓ Resolved:** A motion token scale now exists. `docs/design-system-spec.md` §2 is the source of truth; `scripts/sync-motion-tokens.js` emits the `--motion-*` CSS variables (an 8-step duration ladder, a dedicated loop-duration family, and seven easings). Every component, including this spinner, now references those tokens rather than hard-coding durations or cubic-bezier curves.
 
 ### 7.2 Sizing
 
@@ -445,10 +445,10 @@ Spinner uses the **live-region status pattern**:
 | Attribute | Value | Why |
 |---|---|---|
 | `role="status"` | on the wrapper | Tells AT this region announces status updates. Equivalent to `aria-live="polite"` but with a well-known semantic. ✅ |
-| `aria-live="polite"` | on the wrapper | Explicit announcement channel. `polite` (not `assertive`) because a spinner is not urgent — it should not interrupt the user's current announcement. ✅ |
+| `aria-live="polite"` | on the wrapper | Explicit announcement channel. `polite` (not `assertive`) because a spinner is not urgent: it should not interrupt the user's current announcement. ✅ |
 | `aria-label="{label}"` | on the wrapper | The accessible name. Default `"Loading"`; consumers override with the task being performed (e.g. `"Saving report"`). ✅ |
 | `aria-hidden="true"` | on the `<svg>` | Hides the graphic from AT so it is not announced as a separate unlabelled image. ✅ |
-| `focusable="false"` | on the `<svg>` | IE11 compat — prevents the SVG becoming a tab stop in legacy browsers. Harmless in modern browsers. ✅ |
+| `focusable="false"` | on the `<svg>` | IE11 compat, prevents the SVG becoming a tab stop in legacy browsers. Harmless in modern browsers. ✅ |
 
 ### 8.2 Visually-hidden label
 
@@ -468,7 +468,7 @@ The wrapper contains a `<span class="pds-spinner__sr-only">{label}</span>` that 
 
 This is a belt-and-braces fallback: most screen readers read the `aria-label`, but a few configurations (VoiceOver + Safari in certain verbosity modes) prefer in-DOM text. Including both costs one hidden `<span>` and covers all cases.
 
-### 8.3 Labels — required, not optional
+### 8.3 Labels: required, not optional
 
 Every Spinner instance in production code **must** have a meaningful label. `"Loading"` is a last-resort default; it is acceptable for a generic page-level loader but not for in-context spinners.
 
@@ -485,7 +485,7 @@ See §6.4. The rotation is removed under `prefers-reduced-motion: reduce`; the s
 
 ### 8.5 `aria-busy` on the surrounding region
 
-Spinner itself does not set `aria-busy`. That attribute is owned by the region whose content is loading — a button, a card, a form. Consumers should set `aria-busy="true"` on that region while the spinner is visible and remove it (or set `"false"`) when content is ready.
+Spinner itself does not set `aria-busy`. That attribute is owned by the region whose content is loading: a button, a card, a form. Consumers should set `aria-busy="true"` on that region while the spinner is visible and remove it (or set `"false"`) when content is ready.
 
 ```html
 <button type="button" aria-busy="true" disabled>
@@ -500,7 +500,7 @@ Spinner is not focusable. It has no interactive behaviour. The consumer should e
 
 ### 8.7 Colour contrast
 
-Spinner is a non-text UI component. WCAG 1.4.11 requires a `3:1` ratio between the spinner paint and its background. Using `Foreground/Action/Primary/On Subtle/Rest` (`#3555a0`) on `Fill/Surface/Canvas` (`#fafafa`) gives `~6.5:1` — comfortably passing. Consumers placing the spinner on a coloured surface (brand-filled button, dark background, coloured card) must verify contrast against the specific background.
+Spinner is a non-text UI component. WCAG 1.4.11 requires a `3:1` ratio between the spinner paint and its background. Using `Foreground/Action/Primary/On Subtle/Rest` (`#3555a0`) on `Fill/Surface/Canvas` (`#fafafa`) gives `~6.5:1`, comfortably passing. Consumers placing the spinner on a coloured surface (brand-filled button, dark background, coloured card) must verify contrast against the specific background.
 
 ### 8.8 Screen reader announcements
 
@@ -510,8 +510,8 @@ Approximate strings; exact wording varies by screen reader and browser.
 |---|---|
 | Spinner appears with default label | *"Loading"* |
 | Spinner appears with custom label | *"Saving report"* |
-| Spinner is unmounted (task complete) | *(nothing — the region simply stops announcing)* |
-| Spinner in a region with `aria-busy="true"` | *"busy, Saving"* — the busy state is a separate announcement from the status |
+| Spinner is unmounted (task complete) | *(nothing: the region simply stops announcing)* |
+| Spinner in a region with `aria-busy="true"` | *"busy, Saving"*: the busy state is a separate announcement from the status |
 
 ---
 
@@ -519,7 +519,7 @@ Approximate strings; exact wording varies by screen reader and browser.
 
 The full spoke markup is repetitive. For brevity the examples below abbreviate the eight `<path>` elements as `<!-- 8 spokes -->`; the real markup is shown once, in §9.1.
 
-### 9.1 Full markup — all eight spokes
+### 9.1 Full markup: all eight spokes
 
 Inherits size from the surrounding font-size (`1em`), inherits colour from the parent's `color`, and uses the default `"Loading"` label.
 
@@ -574,8 +574,7 @@ The `data-tone`/`data-emphasis` attributes are what CSS uses to resolve the corr
 ```
 
 > **⚠ Gap, now half closed:** a brand-filled primary button wants a white
-> spinner. The token for that exists as of 2026-09-14 —
-> `foreground.static.neutral.mono` is `#ffffff` in both Light and Midnight, which is
+> spinner. The token for that exists as of 2026-09-14, > `foreground.static.neutral.mono` is `#ffffff` in both Light and Midnight, which is
 > exactly an inverse track. What is still missing is a way to *reach* it: the
 > `neutral` tone's emphasis ramp runs `faint → base → bold → strong` and never
 > touches `mono`. Adding a `mono` tone is five CSS rules plus an argType; until
@@ -599,7 +598,7 @@ The `data-tone`/`data-emphasis` attributes are what CSS uses to resolve the corr
 </p>
 ```
 
-Size (`1em` = 16px) is inherited from the paragraph's font-size. The paragraph's `color` is **not** used by the spinner — the spinner is painted by `foreground.action.primary.on-subtle.rest` regardless of what colour the surrounding text is.
+Size (`1em` = 16px) is inherited from the paragraph's font-size. The paragraph's `color` is **not** used by the spinner: the spinner is painted by `foreground.action.primary.on-subtle.rest` regardless of what colour the surrounding text is.
 
 ### 9.5 Explicit variant via `style` prop (forward-compat)
 
@@ -618,9 +617,9 @@ Hard rules. Breaking any of these breaks the component's contract.
 
 2. **No motion variants.** All styles animate at `1s linear infinite`. Do not expose a `speed` prop, a `paused` prop, or a "slow" variant. If a use case seems to need a slower spinner, the use case actually needs a different component (progress bar, skeleton, static icon).
 
-3. **No `style` prop for visual overrides.** The `style` prop on this component is the variant selector (`progress-activity`, etc.) — **not** the HTML `style` attribute. Do not repurpose it for inline CSS. If a consumer wants to style the spinner, they use `color`, the `size` prop, or a wrapping element. In raw HTML usage, the component's root is still a regular element and accepts a regular `style` attribute, but the component API does not expose one.
+3. **No `style` prop for visual overrides.** The `style` prop on this component is the variant selector (`progress-activity`, etc.), **not** the HTML `style` attribute. Do not repurpose it for inline CSS. If a consumer wants to style the spinner, they use `color`, the `size` prop, or a wrapping element. In raw HTML usage, the component's root is still a regular element and accepts a regular `style` attribute, but the component API does not expose one.
 
-4. **No `pause on hover`.** The spinner runs until unmounted. Pausing on hover implies the animation is decorative; it isn't — it is the affordance that communicates "still working".
+4. **No `pause on hover`.** The spinner runs until unmounted. Pausing on hover implies the animation is decorative; it isn't: it is the affordance that communicates "still working".
 
 5. **No fade-in.** The spinner appears at full opacity when mounted. Any entrance animation (opacity fade, scale-in) delays the user's understanding that something is happening. The consumer controls *when* to mount the spinner; that is the only timing concern.
 
@@ -628,7 +627,7 @@ Hard rules. Breaking any of these breaks the component's contract.
 
 7. **SVG must be inline.** Do not source the spinner from an external `.svg` file via `<img>` or `background-image`. External images cannot use `currentColor`, cannot be animated via CSS on the path, and add a network round-trip for a handful of bytes of markup.
 
-8. **Exactly eight spokes (for `progress-activity`).** The `progress-activity` style is eight `<path>` elements inside one `<svg>` with a `12×12` viewBox. Do not add a background ring, do not add a centre dot, do not change the spoke count, do not animate the opacities individually, do not swap strokes for fills. The opacity ladder (`1.00` → `0.12`) is the structural part of the design, not a theme — keep it exactly as authored. Other styles (future) may have different structure, but `progress-activity` is fixed.
+8. **Exactly eight spokes (for `progress-activity`).** The `progress-activity` style is eight `<path>` elements inside one `<svg>` with a `12×12` viewBox. Do not add a background ring, do not add a centre dot, do not change the spoke count, do not animate the opacities individually, do not swap strokes for fills. The opacity ladder (`1.00` → `0.12`) is the structural part of the design, not a theme, keep it exactly as authored. Other styles (future) may have different structure, but `progress-activity` is fixed.
 
 9. **Reduced motion is mandatory, not optional.** Every build must ship the `@media (prefers-reduced-motion: reduce)` rule from §6.4. Skipping it is a WCAG 2.3.3 failure.
 
@@ -641,21 +640,33 @@ Hard rules. Breaking any of these breaks the component's contract.
 | Gap | Priority | Notes |
 |---|---|---|
 | ~~`tone="danger"` no longer matches its token family~~ | RESOLVED 2026-09-07 | Status/Alert was renamed to Status/Severe, so the tone and the token family agree. |
-| `spinner.html` redeclares semantic tokens from primitives | MEDIUM (superseded: the demo now links the contract, verified by `scripts/check-demo-tokens.js`) | Lines ~98–102 define `--semantic-color-light-mode-icon-static-*` locally as `var(--primitive-color-orange-*)` rather than consuming `tokens.css`. That is a §6 violation and it means the demo does not track token changes. It also masked the `danger` rename, since the demo defines its own copies. |
+| `spinner.html` redeclares semantic tokens from primitives | MEDIUM (superseded: the demo now links the contract, verified by `scripts/check-demo-tokens.js`) | Lines ~98-102 define `--semantic-color-light-mode-icon-static-*` locally as `var(--primitive-color-orange-*)` rather than consuming `tokens.css`. That is a §6 violation and it means the demo does not track token changes. It also masked the `danger` rename, since the demo defines its own copies. |
 | No `motion` tokens in `pathway-design-tokens.json` | MEDIUM | Duration (`1s`) and easing (`linear`) are hard-coded. Recommend adding a motion token category (see §7.3). Blocks cross-component consistency, not this component's ship. |
 | No `mono` tone on the spinner | MEDIUM | The inverse *token* now exists: `foreground.static.neutral.mono` is `#ffffff` in both modes. The spinner cannot reach it, because the `neutral` emphasis ramp runs `faint → base → bold → strong`. Fix is a `mono` tone: five CSS rules plus an argType. See §9.3. |
 | `warning` `base` is nearly black | LOW | `foreground.static.attention.on-subtle` is `saffron-600` (`#51432c`). That rung is built for *text* on a pale fill, so as a graphic a "warning" spinner reads as dark brown rather than amber. Retuning it means picking a different rung, not a different token. |
-| ~~`warning`, `danger`, `negative`, `positive` bind static `Foreground/Status/*`~~ | RESOLVED 2026-09-15 | The Foreground and Stroke halves of that group are gone. Attention and Severe folded onto the Accent ladders they duplicated (`foreground.static.attention.*`, `foreground.static.severe.*` — 5 of 10 were value-identical), and Negative and Positive were promoted to sit beside Neutral (`foreground.static.negative.*`, `foreground.static.positive.*`). All four tones now name live tokens. |
+| ~~`warning`, `danger`, `negative`, `positive` bind static `Foreground/Status/*`~~ | RESOLVED 2026-09-15 | The Foreground and Stroke halves of that group are gone. Attention and Severe folded onto the Accent ladders they duplicated (`foreground.static.attention.*`, `foreground.static.severe.*`, 5 of 10 were value-identical), and Negative and Positive were promoted to sit beside Neutral (`foreground.static.negative.*`, `foreground.static.positive.*`). All four tones now name live tokens. |
 | No dark-mode runtime switch | MEDIUM | The token file emits `dark-mode` variables but no theme-switching mechanism exists yet. Spinner binds `light-mode` only. Revisit when the broader DS picks a theme-switching strategy (`[data-theme="dark"]`, `prefers-color-scheme`, …). |
 | No semantic `Component/Spinner/Size/*` scale | LOW | Sizes in §4.3 are advisory only. Adding named sizes would let teams reference `var(--component-spinner-size-s)` etc. Not a blocker. |
-| Only one `style` value exists | LOW | `progress-activity` is the only style today. Add more only when a real use case appears — don't speculate. |
+| Only one `style` value exists | LOW | `progress-activity` is the only style today. Add more only when a real use case appears: don't speculate. |
 | No determinate-progress companion | MEDIUM | This spec covers indeterminate progress only. A `ProgressBar` spec (determinate) is out of scope here and should be authored separately when the component is introduced. |
 
 ---
 
 ## 12. Storybook
 
-> **Note for the team:** this component should be added to Storybook once component stories are being introduced. Right now the repo's Storybook build contains tokens only — no component stories have been authored yet. When that work begins, Spinner is a good first candidate: it has a single narrow API surface (`style`, `size`, `color`, `label`), a clean set of story permutations (default, in-button, inline, reduced-motion, custom colour, large/small), and no external dependencies. The `spinner.html` demo in this repo can be lifted almost directly into stories.
+Sidebar-visible, matching the untagged exports in `Spinner.stories.jsx` exactly:
+
+| Export | Name |
+|---|---|
+| `FluidSizes` | FluidSizes |
+| `AllTones` | AllTones |
+| `EmphasisLadder` | EmphasisLadder |
+| `ReducedMotion` | ReducedMotion |
+
+Deployed at `https://helloimjolopez-collab.github.io/pathway-ds/storybook/`.
+
+> Corrected 2026-10-07. This section said the component "should be added to Storybook once component stories are being introduced" and that the build "contains tokens only". Both had been untrue for a long time. `npm run check-spec-stories` now fails
+> on a spec that disagrees with its stories file.
 
 ---
 
@@ -669,13 +680,13 @@ deleted 2026-09-16. One doc per component, so there is no second file to drift.
 
 1. **Use the documented semantic icon tokens.** The spinner's colour comes from `Foreground/*` or `Foreground/Action/*` semantic tokens (Icon was merged into Foreground). Never raw hex, never a primitive. Allowed tones are listed in §7.1 of the spec.
 
-2. **The geometry is fixed.** Don't reinvent the sunburst — it's an 8-spoke rotating SVG with specific path data. Copy from [spinner.html](./spinner.html).
+2. **The geometry is fixed.** Don't reinvent the sunburst: it's an 8-spoke rotating SVG with specific path data. Copy from [spinner.html](./spinner.html).
 
-3. **Animation: smooth continuous rotation, no easing.** `animation: rotate var(--motion-duration-loop) var(--motion-easing-linear) infinite` is the canonical value. Don't ease in/out — it must feel mechanical and constant or it looks like it's stopping.
+3. **Animation: smooth continuous rotation, no easing.** `animation: rotate var(--motion-duration-loop) var(--motion-easing-linear) infinite` is the canonical value. Don't ease in/out: it must feel mechanical and constant or it looks like it's stopping.
 
 4. **Respect `prefers-reduced-motion: reduce`.** Replace the rotation with a static dot pulse or simply a static icon. Never strip the wait signal entirely.
 
-5. **The spinner is a primitive — it doesn't own the wait state.** The consuming component is responsible for the surrounding label ("Loading..."), the network request, and the announce-to-screen-reader logic. The spinner just spins.
+5. **The spinner is a primitive: it doesn't own the wait state.** The consuming component is responsible for the surrounding label ("Loading..."), the network request, and the announce-to-screen-reader logic. The spinner just spins.
 
 6. **Sizes come from `Accessibility/Icon Wrapping/*` tokens.** Don't pick arbitrary px values.
 

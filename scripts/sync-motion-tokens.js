@@ -9,7 +9,7 @@
  * Run automatically as part of `npm run sync-tokens`. Also run standalone via
  * `npm run sync-motion-tokens` after editing motion values in design-system-spec.md.
  *
- * Never edit tokens/motion-tokens.json directly — it is derived from the spec.
+ * Never edit tokens/motion-tokens.json directly: it is derived from the spec.
  */
 
 import { readFileSync, writeFileSync } from "node:fs";

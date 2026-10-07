@@ -1,16 +1,16 @@
 /**
- * Scrollable — Pathway Design System
+ * Scrollable, Pathway Design System
  *
  * A reusable overlay-scrollbar wrapper. Hides the native OS scrollbar entirely and renders
  * one custom liquid-glass thumb so scrolling looks and behaves IDENTICALLY on macOS, Windows,
- * iOS, and Android (native scrollbars can't be made consistent — this sidesteps them).
+ * iOS, and Android (native scrollbars can't be made consistent: this sidesteps them).
  *
  * Behaviour (see components/scrollbar/scrollbar-spec.md):
  *   - Thumb height is PROPORTIONAL to content: (viewport / total) × track, floored at 28px.
  *   - Reveal: appears while scrolling, fades ~900ms after; also appears when the MOUSE is near
  *     the right-edge bar (so it can be grabbed). It does NOT appear from hovering the panel.
  *   - Drag: MOUSE only, via a wider invisible grab strip (the 6px thumb alone is hard to hit).
- *   - Touch: passive — the bar just shows position; you scroll by swiping content. The grab
+ *   - Touch: passive: the bar just shows position; you scroll by swiping content. The grab
  *     strip is disabled on touch devices via a `(hover: none)` rule.
  *   - Keyboard / a11y: the content scrolls natively (arrows, PageUp/Down, Home/End, Space); the
  *     thumb is decorative (`aria-hidden`) and never the only scroll mechanism.
@@ -22,14 +22,14 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 
 // ─── TOKENS ──────────────────────────────────────────────────────────────────
-// Every colour + unit resolves through a SEMANTIC Pathway token — no primitives,
+// Every colour + unit resolves through a SEMANTIC Pathway token: no primitives,
 // no hardcoded hex/px. Motion uses the --motion-* tokens (durations/easings from design-system-spec §2).
 export const SCROLL = {
-  thumbWidth:  "var(--semantic-layout-units-padding-xtight)",     // 6px — visible thumb thickness
+  thumbWidth:  "var(--semantic-layout-units-padding-xtight)",     // 6px: visible thumb thickness
   thumbRadius: "var(--semantic-layout-units-cornerradius-full)",  // fully-rounded pill
-  thumbMin:    28,                                                // px — min thumb length (grab-target floor); JS layout math
-  gutter:      "var(--semantic-layout-units-padding-xxxtight)",   // 2px — inset from the right edge
-  grabZone:    16,                                                // px — invisible mouse grab strip (wider than the 6px thumb so it's catchable)
+  thumbMin:    28,                                                // px, min thumb length (grab-target floor); JS layout math
+  gutter:      "var(--semantic-layout-units-padding-xxxtight)",   // 2px, inset from the right edge
+  grabZone:    16,                                                // px, invisible mouse grab strip (wider than the 6px thumb so it's catchable)
   // THE LIGHT RUNGS ARE A DELIBERATE CHOICE BY THE DESIGN OWNER. Do not raise
   // them again without asking Jo first.
   //
@@ -46,7 +46,7 @@ export const SCROLL = {
   // Scrim/Faint and Scrim/Light resolve to Cool Neutral 800, so the thumb was
   // drawing a COOL grey over warm surfaces and reading as a cold bar against
   // them. Reported 2026-10-02. The comment below has always said "light warm
-  // overlay" — the value simply did not match it.
+  // overlay": the value simply did not match it.
   //
   // Scrim is also the wrong family: it is the modal backdrop, where a cool
   // near-black is right. The thumb is an overlay on a surface, and under the
@@ -61,7 +61,7 @@ export const SCROLL = {
   thumbEdge:   "inset 0 0 0 0.5px color-mix(in srgb, var(--semantic-color-fill-static-neutral-faint) 35%, transparent)",
   // Fade OUT gracefully, but appear INSTANTLY. Animating opacity on the way in
   // multiplied the thumb's own alpha by the in-flight opacity, so during the
-  // 200ms glide-in it rendered as low as 1.18:1 — below the floor at the exact
+  // 200ms glide-in it rendered as low as 1.18:1, below the floor at the exact
   // moment the user is looking for it. Only the fade-out is animated now.
   // Asymmetric fade: snappy decelerate glide-IN, graceful fade-OUT. Each entry
   // names every property it is responsible for, because the element swaps
@@ -94,7 +94,7 @@ if (typeof document !== "undefined" && !document.getElementById("pds-scrollable-
       "--pw-scrollbar-thumb-rest:var(--primitive-color-warm-neutral-100-16);" +
       "--pw-scrollbar-thumb-hover:var(--primitive-color-warm-neutral-100-24)}" +
     ".pds-scrollable__view{scrollbar-width:none;-ms-overflow-style:none}" +
-    ".pds-scrollable__view::-webkit-scrollbar{width:0;height:0;display:none}" +
+    ".pds-scrollable__view:-webkit-scrollbar{width:0;height:0;display:none}" +
     "@media (hover: none){.pds-scrollable__grab{pointer-events:none!important}}";
   document.head.appendChild(s);
 }
@@ -140,7 +140,7 @@ export function Scrollable({ children, className = "", style = {}, viewClassName
   const onScroll = () => { recompute(); wake(); };
 
   // Edge-proximity reveal (mouse): show the bar when the cursor is within grabZone of the right
-  // edge, so it can be grabbed — but NOT from hovering the rest of the panel.
+  // edge, so it can be grabbed: but NOT from hovering the rest of the panel.
   const onMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     if (rect.right - e.clientX <= SCROLL.grabZone) {
@@ -194,7 +194,7 @@ export function Scrollable({ children, className = "", style = {}, viewClassName
 
       {thumb.show && (
         <>
-          {/* Visual thumb — decorative, never intercepts pointer events. */}
+          {/* Visual thumb, decorative, never intercepts pointer events. */}
           <div
             aria-hidden="true"
             style={{
@@ -207,7 +207,7 @@ export function Scrollable({ children, className = "", style = {}, viewClassName
               pointerEvents: "none", zIndex: 5,
             }}
           />
-          {/* Invisible mouse grab strip — wider than the thumb so it's catchable; disabled on
+          {/* Invisible mouse grab strip, wider than the thumb so it's catchable; disabled on
               touch via the (hover:none) rule so finger-swipes scroll the content beneath. */}
           <div
             aria-hidden="true"

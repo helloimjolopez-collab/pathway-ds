@@ -467,7 +467,7 @@ TokensRadius.tags = ["!dev"];
 // The "Open" state from Figma (node 40007336:9453): My Organizations header,
 // search, and a scrollable org list (logo + name + module-colour cluster +
 // chevron). Rebuilt with Red Hat Text + Material Symbols + light-mode tokens
-// (the Figma node bound dark-mode tokens onto a white surface — corrected).
+// (the Figma node bound dark-mode tokens onto a white surface, corrected).
 export const OpenPanel = () => {
   const [q, setQ] = useState("");
   return (

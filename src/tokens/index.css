@@ -1,7 +1,7 @@
 /*
- Pathway design tokens — single entry point.
+ Pathway design tokens, single entry point.
  @imports every token file in load order (primitives first, so the themes that
- reference it resolve). Generated — do not edit. Run `npm run build-dist`.
+ reference it resolve). Generated: do not edit. Run `npm run build-dist`.
 */
 @import "./primitives.css";
 @import "./themes/light.css";

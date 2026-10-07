@@ -1,11 +1,10 @@
 /**
- * check-story-yield.js — fail the build when a token docs page renders NOTHING.
+ * check-story-yield.js, fail the build when a token docs page renders NOTHING.
  *
  * WHY THIS EXISTS:
  *
  * On 2026-09-09 the user found three of the token documentation pages in the
- * deployed Storybook rendering blank. The cause was not a stale token name —
- * it was a stale token SHAPE:
+ * deployed Storybook rendering blank. The cause was not a stale token name, * it was a stale token SHAPE:
  *
  *   - SemanticTypography.js filtered on `token.props.fontsize`. Semantic Type
  *     went from 554 composite variables to a flat 41-token scale on
@@ -22,14 +21,14 @@
  *   check-token-names.js   checks token names written as prose
  *
  * All three verify that a token NAME resolves. These generator files name no
- * tokens at all — they ITERATE the token set and filter it. A filter that
+ * tokens at all: they ITERATE the token set and filter it. A filter that
  * matches nothing produces an empty container, which is valid JS, valid DOM,
  * and a clean Storybook build. The failure was invisible from the inside and
  * obvious from the outside, which is the worst combination: the user found it,
  * not CI.
  *
  * So this check renders each generator for real, under jsdom, and asserts a
- * minimum row count. It does NOT check that the content is correct — it checks
+ * minimum row count. It does NOT check that the content is correct: it checks
  * that content exists at all. That is a low bar deliberately: a low bar that
  * runs beats a high bar that does not.
  *
@@ -142,7 +141,7 @@ const PAGES = [
  * `elements` is the structural measure and the one the floor is set against: a
  * generator whose filter matches nothing returns a container with a handful of
  * children at most, while a working page returns hundreds. It is
- * shape-independent, which matters — the whole failure being guarded against
+ * shape-independent, which matters: the whole failure being guarded against
  * was a token SHAPE change, so a measure that assumes a shape is the wrong
  * tool.
  *
@@ -188,7 +187,7 @@ function measure(node) {
  * Checking one well-populated ladder is enough. If the comparator regresses it
  * regresses for all of them.
  */
-// Must stay in step with LADDER in src/stories/components/tokenOrder.js — that
+// Must stay in step with LADDER in src/stories/components/tokenOrder.js: that
 // module decides the order, this list only asserts it was applied. The ladder
 // was simplified to six rungs across 2026-09-14/15: white -> mono,
 // subtle -> dim, medium -> subtle, and light and xlight deleted outright.

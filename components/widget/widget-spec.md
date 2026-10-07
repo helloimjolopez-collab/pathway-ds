@@ -1,4 +1,4 @@
-# Widget — Pathway Design System Component Spec
+# Widget: Pathway Design System Component Spec
 
 Status: REVIEWED
 Reviewed: 2026-10-07, measured against Figma and the canonical demo
@@ -10,7 +10,8 @@ Reviewed: 2026-10-07, measured against Figma and the canonical demo
 | Figma source | `3sw45aVcngFAmpbP6cfrXP` node `40009622:39702`, Amplify section of page `40009415:21911` |
 | NewCo mirror | `40016737:144022`, read-only, values flow NewCo to Pathway only |
 | Canonical demo | https://helloimjolopez-collab.github.io/design-sandbox/phase-2/Widget%20Container%20Demo/ |
-| Storybook | `Library/Widget` |
+| Storybook | [Library/Widget](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-widget--docs) |
+| Code Connect | `components/widget/widget.figma.ts`, `components/widget/widget-heading.figma.ts` |
 | Component module | `components/widget/widget.jsx` |
 | Dashboard spec | `components/dashboard/dashboard-spec.md` |
 | KPI tile spec | `components/kpi-tile/kpi-tile-spec.md` |
@@ -29,11 +30,21 @@ the component and the thing most often got wrong.
 
 Set `40009622:39702`, six variants on two axes, `Size` and `Configuration`.
 
-> **Known Figma defect, 2026-10-07.** The set reports errors: two variants are
-> both named `Size=Glance, Configuration=01`. Figma refuses to return
-> `componentPropertyDefinitions` for a set in that state, and Code Connect
-> cannot map it. The duplicate must be removed or renamed in the file. Until
-> then the `Configuration` axis is not represented in code.
+> **Resolved 2026-10-07.** The set briefly reported errors: two variants were
+> both named `Size=Glance, Configuration=01`, and Figma refuses to return
+> `componentPropertyDefinitions` for a set in that state. The duplicate was
+> removed in the file. Re-read the same day: six variants, no duplicates, and
+> the properties read cleanly, so `Configuration` is now legible.
+>
+> | Axis | Values |
+> |---|---|
+> | `Size` | Glance, Detail, Explore |
+> | `Configuration` | 01, 02, 03, 04 |
+>
+> `Configuration` still takes no prop, and that is a decision rather than a
+> gap: it varies the CONTENT (whether there is a filter control, whether the
+> number is tall or wide, which sample line is drawn), and the content is
+> `children`. See the Glance configurations story.
 
 ## 1.1 Governance: where things live
 
@@ -53,15 +64,23 @@ here rather than resolved silently.
 ## 2. Component Anatomy
 
 ```
-root                      r=16, stroke Stroke/Static/Neutral/Base, VERTICAL
-  Container.WidgetHeading 44 tall, HORIZONTAL, gap 2
-    title                 20 tall
-    Slot.HoverIcons       72x36 hug, three Action.Icon 36x36
+root                        r=16, stroke Stroke/Static/Neutral/Base, VERTICAL
+  Container.WidgetHeading   44 tall, HORIZONTAL, gap 2
+    Container.RowStart      109x20
+      Heading               the title, 20 tall
+      Slot.HoverIcons       72x36, HIDDEN, TWO Action.Icon 36x36
+    Slot.RowEnd             433x36, THREE Action.Icon 36x36, VISIBLE at rest
   content
-    Glance                direct child, inset 0,12,0,12, no inner card
-    Detail / Explore      MainContent.Slot, VERTICAL gap 8, pad 12,16,12,16,
-                          with its OWN fill and stroke
+    Glance                  direct child, inset 0,12,0,12, no inner card
+    Detail / Explore        MainContent.Slot, VERTICAL gap 8, pad 12,16,12,16,
+                            with its OWN fill and stroke
 ```
+
+**There are TWO icon slots and they are not the same thing.** `Slot.RowEnd`
+holds the three icons a reader sees at rest. `Slot.HoverIcons` is a separate
+72x36 slot inside `Container.RowStart`, beside the title, holding TWO more
+icons, hidden, gated by the set's `Show Hover Actions` boolean whose default is
+false. Measured by walking the tree on 2026-10-07.
 
 **Detail and Explore are a card inside a card.** `MainContent.Slot` carries a
 fill and a stroke of its own inside a root that already has both. Glance has no
@@ -179,20 +198,30 @@ larger chart, or a wide table.
 
 ## 6. State Matrix
 
-| State | Root | Header icons |
-|---|---|---|
-| Rest | as above | **visible** |
-| Hover | unchanged | visible |
-| Manage | dashed outline, grab cursor | menu suppressed |
-| Dragging | 50% opacity | visible |
+| State | Root | `Slot.RowEnd` (3 icons) | `Slot.HoverIcons` (2 icons) |
+|---|---|---|---|
+| Rest | as above | **visible** | hidden, `pointer-events: none` |
+| Hover | unchanged | visible | **visible** |
+| Focus within | unchanged | visible | **visible** |
+| Manage | dashed outline, grab cursor | menu suppressed | hidden |
+| Dragging | 50% opacity | visible | hidden |
 
 ### State logic rules
 
-**The header icons are visible at rest.** The Figma slot is named
-`Slot.HoverIcons` and the first implementation read that name as the behaviour
-and hid them until hover. Looking at the rendered component, all three are on
-every widget at all times: the name describes where they sit, not when they
-appear. Corrected 2026-10-07.
+**The three row-end icons are visible at rest. The two hover icons are not.**
+
+This took two corrections to get right, so both are recorded.
+
+1. The first implementation read the name `Slot.HoverIcons` as the behaviour of
+   the three visible icons and hid them until hover.
+2. The correction over-swung: it claimed the slot simply held those three and
+   that its name described position rather than timing.
+
+Walking the tree settles it. The three are in `Slot.RowEnd` and are visible in
+all six variants as drawn. `Slot.HoverIcons` is a different slot, two icons,
+beside the title, hidden, gated by a boolean defaulting to false. In code that
+is the `hoverActions` prop, which is empty unless a consumer passes it, and
+which reveals on `:hover` or `:focus-within` so it is reachable by keyboard.
 
 ## 7. Sub-components / Decorations
 
@@ -239,7 +268,7 @@ None. The widget has no collapsed state; depth is chosen by size.
 Material Symbols Rounded throughout, `FILL 0`, `wght 400`, `opsz` matched to
 the font size.
 
-Exactly three actions, in Figma's order, at 12px in 36px boxes.
+`Slot.RowEnd` draws exactly three actions, in Figma's order, at 12px in 36px boxes.
 
 | Action | Ligature |
 |---|---|
@@ -247,6 +276,10 @@ Exactly three actions, in Figma's order, at 12px in 36px boxes.
 | Open the full view | `open_in_full` |
 | More actions | `more_vert` |
 | Swap chevron | `expand_more` |
+
+`Slot.HoverIcons` holds two Action.Icons in Figma with no ligature decided, so
+the consumer names them. The Header actions story uses `push_pin` and
+`download` as an illustration, not as a specification.
 
 There is no `info` icon on the widget; an earlier version invented one, and used
 `open_in_new` where Figma has `open_in_full`.
@@ -268,9 +301,20 @@ Standard Pathway patterns only, plus §9.
 
 ## 14. Storybook
 
-Sidebar-visible: `Playground`, `Size ladder`, `Title is a swap control`,
-`Trend: direction vs sentiment`.
+Sidebar-visible, matching the untagged exports in `Widget.stories.jsx` exactly:
 
-Reference, `!dev`-tagged: `Header actions`.
+| Export | Name |
+|---|---|
+| `Playground` | Playground |
+| `SizeLadder` | Size ladder |
+| `GlanceConfigurations` | Glance configurations |
+| `TrendDirectionVersusSentiment` | Trend: direction vs sentiment |
+| `HeaderActions` | Header actions: two slots |
 
-No `StandaloneDemo` story.
+Reference, `!dev`-tagged: `TokensColour` (Tokens: colour) and `TokensGeometry`
+(Tokens: geometry and motion). Both resolve every token name against the live
+document rather than restating a hex, so a row reads `unresolved` only when the
+token itself is wrong.
+
+No `StandaloneDemo` story, and no `widget.html`: the Widget is only meaningful
+on a board, so the Dashboard page is where it is demonstrated in context.

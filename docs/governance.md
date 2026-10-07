@@ -223,7 +223,7 @@ reading the frame. All three numbers are visible in Figma and only one is right.
 | XS | 16 | 12 |
 
 Always Material Symbols **Rounded**, with `'wght' 400, 'GRAD' 0, 'opsz' 20`.
-**Read `FILL` from Figma per component, never assume it** — 0 is outlined, 1 is
+**Read `FILL` from Figma per component, never assume it**, 0 is outlined, 1 is
 filled. `opsz` must match the rendered size band or the strokes render wrong; all
 button icon sizes sit below the axis minimum of 20, so 20 is correct there.
 

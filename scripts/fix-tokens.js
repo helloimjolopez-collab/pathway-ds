@@ -86,7 +86,7 @@ function normalizeAliasValues(obj) {
 }
 
 if (fixNames) {
-  console.log(dryRun ? "PREVIEW — Naming fixes:" : "Fixing naming inconsistencies…");
+  console.log(dryRun ? "PREVIEW, Naming fixes:" : "Fixing naming inconsistencies…");
   const before = changeCount;
   data = normalizeKeys(data);
   normalizeAliasValues(data);
@@ -169,7 +169,7 @@ function fixBrokenAliases(obj, allPaths) {
             obj[key] = `{${match}}`;
           }
         } else {
-          console.log(`  ⚠ Cannot auto-fix: {${ref}} — no close match found. Needs manual review.`);
+          console.log(`  ⚠ Cannot auto-fix: {${ref}}: no close match found. Needs manual review.`);
         }
       }
     } else if (typeof val === "object" && !Array.isArray(val)) {
@@ -179,7 +179,7 @@ function fixBrokenAliases(obj, allPaths) {
 }
 
 if (fixAliases) {
-  console.log(dryRun ? "PREVIEW — Alias fixes:" : "Fixing broken aliases…");
+  console.log(dryRun ? "PREVIEW, Alias fixes:" : "Fixing broken aliases…");
   const allPaths = collectAllPaths(data);
   const before = changeCount;
   fixBrokenAliases(data, allPaths);
@@ -188,10 +188,10 @@ if (fixAliases) {
 }
 
 // ---------------------------------------------------------------------------
-// List unused primitives (informational only — does not delete)
+// List unused primitives (informational only, does not delete)
 // ---------------------------------------------------------------------------
 if (listUnused) {
-  console.log("Unused primitives (for your review — not auto-deleted):\n");
+  console.log("Unused primitives (for your review: not auto-deleted):\n");
 
   const allPaths = collectAllPaths(data);
   const referenced = new Set();
@@ -211,7 +211,7 @@ if (listUnused) {
   const unused = allPaths.filter((p) => primCollections.includes(p.split(".")[0]) && !referenced.has(p));
 
   if (unused.length === 0) {
-    console.log("  None — all primitives are in use.\n");
+    console.log("  None: all primitives are in use.\n");
   } else {
     const byCollection = {};
     for (const u of unused) {
@@ -243,9 +243,9 @@ if (listUnused) {
 if (!dryRun && changeCount > 0) {
   const output = JSON.stringify(data, null, 2) + "\n";
   writeFileSync(TOKEN_PATH, output, "utf-8");
-  console.log(`Done — ${changeCount} change(s) written to ${TOKEN_PATH}`);
+  console.log(`Done, ${changeCount} change(s) written to ${TOKEN_PATH}`);
 } else if (dryRun) {
-  console.log(`Dry run complete — ${changeCount} change(s) would be made. Run without --dry-run to apply.`);
+  console.log(`Dry run complete, ${changeCount} change(s) would be made. Run without --dry-run to apply.`);
 } else {
   console.log("No changes needed.");
 }

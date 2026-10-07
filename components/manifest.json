@@ -62,12 +62,12 @@
           "items": {
             "type": "Array<NavItem>",
             "required": false,
-            "description": "Flat navigation tree \u2014 use this OR `sections`, not both. Each item: { id, label, icon?, children? }"
+            "description": "Flat navigation tree, use this OR `sections`, not both. Each item: { id, label, icon?, children? }"
           },
           "sections": {
             "type": "Array<{ section: string, items: NavItem[] }>",
             "required": false,
-            "description": "Sectioned navigation \u2014 renders NavSectionLabel headings between groups (or rail dividers in collapsed mode). Use this OR `items`."
+            "description": "Sectioned navigation, renders NavSectionLabel headings between groups (or rail dividers in collapsed mode). Use this OR `items`."
           },
           "listSection": {
             "type": "{ label: string, items: Array<{id,label}> }",
@@ -138,6 +138,7 @@
         "foreground.action.secondary.rest"
       ],
       "codeConnect": [
+        "components/sidenav/sidebar-expand-collapse.figma.ts",
         "components/sidenav/sidenav-container-html.figma.ts",
         "components/sidenav/sidenav-container.figma.ts",
         "components/sidenav/sidenav-indicator-stripe.figma.ts",
@@ -184,14 +185,14 @@
         }
       },
       "tokens": [],
-      "codeConnect": null,
+      "codeConnect": [],
       "figma": null,
       "repoOnly": true,
       "repoOnlyNote": "REPO ONLY. The Scrollbar does not exist in Figma and never has. Do not look for a node, do not add one to this entry, and do not raise it as a missing-node finding: the owner has stated this more than once. Its design authority is components/scrollbar/scrollbar-spec.md plus the owner directly, not the Figma file."
     },
     "checkbox": {
       "displayName": "Checkbox",
-      "description": "Multi-select selection control. Three states: unchecked, checked, indeterminate. Supports error, highlight, and secondary indeterminate variants. Two sizes. 44\u00d744px touch target always.",
+      "description": "Multi-select selection control. Three states: unchecked, checked, indeterminate. Supports error, highlight, and secondary indeterminate variants. Two sizes. 44×44px touch target always.",
       "module": "components/checkbox/checkbox.jsx",
       "exports": [
         "Checkbox",
@@ -224,17 +225,17 @@
           "error": {
             "type": "boolean",
             "default": false,
-            "description": "Error / negative styling \u2014 fill and border switch to negative token family"
+            "description": "Error / negative styling, fill and border switch to negative token family"
           },
           "highlight": {
             "type": "boolean",
             "default": false,
-            "description": "Tinted background on the state-layer at rest \u2014 for selectable rows"
+            "description": "Tinted background on the state-layer at rest: for selectable rows"
           },
           "secondary": {
             "type": "boolean",
             "default": false,
-            "description": "Secondary indeterminate variant (muted colour) \u2014 use with indeterminate only"
+            "description": "Secondary indeterminate variant (muted colour), use with indeterminate only"
           },
           "disabled": {
             "type": "boolean",
@@ -244,7 +245,7 @@
           "size": {
             "type": "\"default\" | \"s\"",
             "default": "\"default\"",
-            "description": "Visual size of the control. Touch target is always 44\u00d744px."
+            "description": "Visual size of the control. Touch target is always 44×44px."
           },
           "label": {
             "type": "string",
@@ -326,23 +327,22 @@
         ]
       },
       "gaps": [
-        "8 tokens missing from token file \u2014 see spec \u00a75.3. fill.action.secondary.* affects highlight variant resting state (HIGH priority).",
-        "Secondary Indeterminate use case TBD \u2014 confirm with design before shipping.",
-        "Highlight variant resting-state token (fill.action.secondary.rest) missing \u2014 fallback in use."
+        "8 tokens missing from token file, see spec §5.3. fill.action.secondary.* affects highlight variant resting state (HIGH priority).",
+        "Secondary Indeterminate use case TBD, confirm with design before shipping.",
+        "Highlight variant resting-state token (fill.action.secondary.rest) missing, fallback in use."
       ],
-      "codeConnect": "components/checkbox/checkbox.figma.ts",
+      "codeConnect": [
+        "components/checkbox/checkbox.figma.ts"
+      ],
       "moduleNote": "FIXED 2026-10-02: the checked glyph was bound to foreground-action-primary-ON-SUBTLE-rest while the box is filled with fill-action-primary-strong-*, so the tick was #345499 on #3a5aaa, a 1.12:1 contrast, and the whole square read as a solid blue block with no visible tick. Same bug on the error variant: #722121 on #b03a3a at 1.80:1. Both now use the ON-STRONG foreground, which is #ffffff in BOTH modes: 6.52:1 and 5.98:1 in Light, 5.62:1 and 5.98:1 in Midnight. Figma binds Foreground/Static/Neutral/MONO for the tick, which is correct in Light but wrong in Midnight, because mono is an INVERSION ANCHOR rather than a rung and flips to #181b2b, putting a near-black tick on a blue box at 3.04:1. on-strong is the right token for a foreground on a strong fill. See figmaDefect.",
-      "figmaDefect": "The checked glyph binds Foreground/Static/Neutral/Mono. That is correct in Light (#ffffff) and wrong in Midnight: mono is an inversion anchor, not a rung, so it resolves to #181b2b and puts a near-black tick on a blue box (3.04:1). It should be Foreground/Action/Primary/On Strong, which is #ffffff in both modes. The same applies to the error variants, which should use Foreground/Action/Status/Negative/On Strong. The repo already uses the on-strong tokens.",
-      "patterns": [
-        "components/checkbox/scroll-to-enable.jsx"
-      ]
+      "figmaDefect": "The checked glyph binds Foreground/Static/Neutral/Mono. That is correct in Light (#ffffff) and wrong in Midnight: mono is an inversion anchor, not a rung, so it resolves to #181b2b and puts a near-black tick on a blue box (3.04:1). It should be Foreground/Action/Primary/On Strong, which is #ffffff in both modes. The same applies to the error variants, which should use Foreground/Action/Status/Negative/On Strong. The repo already uses the on-strong tokens."
     },
     "org-switcher": {
       "displayName": "OrgSwitcher",
       "description": "Organisation context switcher trigger in the brand-blue top nav. Renders the active org name (truncated with ellipsis at 180px desktop / 50px mobile). For Catholic organisations only, a second container after the org name shows the city or diocese. The trigger opens a drop panel listing accessible orgs.",
       "status": "REVIEWED",
       "version": "v1",
-      "v1Scope": "Trigger only. Drop panel is a non-normative placeholder in v1 \u2014 see spec \u00a70.",
+      "v1Scope": "Trigger only. Drop panel is a non-normative placeholder in v1, see spec §0.",
       "module": "components/org-switcher/org-switcher.jsx",
       "exports": [
         "OrgSwitcher"
@@ -382,20 +382,20 @@
           "cityName": {
             "type": "string",
             "default": "\"\"",
-            "description": "City or diocese name. RENDERED ONLY when orgType === \"catholic\" (spec \u00a70.1). Ignored for Protestant orgs even if supplied. NOT a campus/suborg/region name."
+            "description": "City or diocese name. RENDERED ONLY when orgType === \"catholic\" (spec §0.1). Ignored for Protestant orgs even if supplied. NOT a campus/suborg/region name."
           },
           "logoUrl": {
             "type": "string",
-            "description": "Org logo URL. Empty or omitted \u2192 church SVG placeholder (never text initials)."
+            "description": "Org logo URL. Empty or omitted → church SVG placeholder (never text initials)."
           },
           "open": {
             "type": "boolean",
             "default": false,
-            "description": "Controlled open state \u2014 flips the chevron icon 180\u00b0."
+            "description": "Controlled open state, flips the chevron icon 180°."
           },
           "onClick": {
             "type": "function",
-            "description": "() => void \u2014 fired when the trigger is activated. Caller toggles the open state."
+            "description": "() => void, fired when the trigger is activated. Caller toggles the open state."
           },
           "disabled": {
             "type": "boolean",
@@ -409,15 +409,15 @@
           },
           "orgs": {
             "type": "array",
-            "description": "(Panel only \u2014 out of scope in v1.) Array of org records for the placeholder panel."
+            "description": "(Panel only, out of scope in v1.) Array of org records for the placeholder panel."
           },
           "activeOrgId": {
             "type": "string",
-            "description": "(Panel only \u2014 out of scope in v1.) Highlights the active org in the panel."
+            "description": "(Panel only, out of scope in v1.) Highlights the active org in the panel."
           },
           "onOrgSelect": {
             "type": "function",
-            "description": "(Panel only \u2014 out of scope in v1.) (orgId) => void when a panel row is clicked."
+            "description": "(Panel only, out of scope in v1.) (orgId) => void when a panel row is clicked."
           },
           "className": {
             "type": "string",
@@ -455,22 +455,25 @@
       },
       "motion": {
         "pillButtonBackground": "--motion-duration-2 / --motion-easing-standard",
-        "panelEnter": "--motion-duration-3 / --motion-easing-decelerate \u2014 keyframe orgPanelIn (opacity 0\u21921, translateY -6px \u2192 0)",
+        "panelEnter": "--motion-duration-3 / --motion-easing-decelerate, keyframe orgPanelIn (opacity 0→1, translateY -6px → 0)",
         "listItemHover": "--motion-duration-2 / --motion-easing-standard (background + border-color)",
         "caretRotation": "--motion-duration-4 / --motion-easing-standard (transform)"
       },
       "accessibility": {
         "ariaPattern": "Disclosure (button with aria-haspopup + aria-expanded)",
-        "touchTarget": "48\u00d748 (WCAG 2.5.5)",
+        "touchTarget": "48×48 (WCAG 2.5.5)",
         "ariaLabel": "Always includes the full org name (and city for Catholic orgs), regardless of visible truncation"
       },
       "gaps": [
-        "Panel (dropdown / bottom sheet) not yet designed in Figma \u2014 trigger only ships.",
+        "Panel (dropdown / bottom sheet) not yet designed in Figma, trigger only ships.",
         "ARIA pattern choice (Disclosure+listbox vs Combobox) deferred until panel is designed.",
-        "logoUrl placeholder tint (rgba(53,85,160,0.25)) is not a semantic token \u2014 TBD once brand-avatar token is added to Figma.",
+        "logoUrl placeholder tint (rgba(53,85,160,0.25)) is not a semantic token, TBD once brand-avatar token is added to Figma.",
         "Panel mobile behaviour (dropdown vs bottom sheet) not yet decided."
       ],
-      "codeConnect": "components/org-switcher/org-switcher.figma.ts",
+      "codeConnect": [
+        "components/org-switcher/avatar.figma.ts",
+        "components/org-switcher/org-switcher.figma.ts"
+      ],
       "figmaOpen": "TRIGGER IS FULLY TOKENISED. An earlier audit reported this component as mostly raw hex; that was wrong and came from walking the whole node including the open dropdown panel, whose 1,321 raw #ffffff fills and Module Colors/* belong to the panel, not the trigger. The trigger binds Stroke/Action/Ghost/* and Fill/Action/Ghost/* per state, Foreground/Action/Ghost/* on OrgName, and Foreground/Static/Neutral/Mono on SubOrgName. The open PANEL is not tokenised and is out of scope for now by the owner's instruction."
     },
     "top-nav": {
@@ -533,7 +536,7 @@
       "motion": {
         "searchFieldFocus": "--motion-duration-3 / --motion-easing-standard (min-width expansion on focus)",
         "iconButtonHover": "--motion-duration-2 / --motion-easing-standard (background + border-color)",
-        "dropdownEnter": "--motion-duration-4 / --motion-easing-spring \u2014 keyframe tnDropIn",
+        "dropdownEnter": "--motion-duration-4 / --motion-easing-spring, keyframe tnDropIn",
         "iconRotation": "--motion-duration-4 / --motion-easing-standard (transform)"
       },
       "tokens": [
@@ -551,15 +554,20 @@
         "light-mode.foreground.static.info.on-subtle"
       ],
       "gaps": [
-        "Active item token in dropdowns: uses raw #eef2fb \u2014 no semantic token exists yet (HIGH).",
+        "Active item token in dropdowns: uses raw #eef2fb: no semantic token exists yet (HIGH).",
         "Notification badge / dot on bell icon not yet designed (HIGH).",
         "Mobile profile tap behavior not specified (HIGH).",
-        "Destructive item (Sign out) uses raw red \u2014 no semantic danger token (MEDIUM).",
+        "Destructive item (Sign out) uses raw red: no semantic danger token (MEDIUM).",
         "TopNav position sticky vs fixed not resolved (MEDIUM).",
         "Logo crop parameters tuned for Sacred Heart logo only (MEDIUM)."
       ],
       "moduleNote": "CHANGED 2026-10-01: the bar is 60px at every breakpoint, not 56/54. top-nav.jsx already read --contextual-layout-units-topnav-height so it was correct, but top-nav.html hand-copied 56 and 54 with 4px/16px and 4px/12px padding, and nav-shell-spec.md said 56 in twelve places. The demo now reads the height, padding and gap tokens and the breakpoint classes carry no metrics at all, so there is nothing left to drift. The spec's collapsed SideNav rail also said 72px in eleven places; the real value is 84 (contextual SideNav/Width/Collapsed = Unit/84) and the repo has had it right for months.",
-      "codeConnect": "components/top-nav/top-nav.figma.ts"
+      "codeConnect": [
+        "components/top-nav/module-switcher.figma.ts",
+        "components/top-nav/sidenav-control.figma.ts",
+        "components/top-nav/top-nav-profile.figma.ts",
+        "components/top-nav/top-nav.figma.ts"
+      ]
     },
     "spinner": {
       "displayName": "Spinner",
@@ -642,11 +650,12 @@
         "foreground.static.accent.jade.*",
         "foreground.static.accent.seabreeze.*"
       ],
-      "codeConnect": null
+      "codeConnect": [],
+      "figmaNote": "Read 2026-10-07: node 40006622:50003 is a COMPONENT named 'Animated Spinner/Progress-Activity/Step 1' with NO properties and NO parent page in this file, so it is one frame of an animation sequence rather than a component with the spinner's API. There is nothing here to Code Connect: a mapping would attach the React spinner to a single 12x12 animation still. Recorded as a gap rather than mapped to the wrong thing."
     },
     "button": {
       "displayName": "Button",
-      "description": "Primary action trigger. Three styles (Fill / Outlined / Naked), four semantic types (Primary / Secondary / Tertiary / Negative), four sizes (L / M / S / XS). Supports leading icon, trailing icon, icon-only, and loading states. 48\u00d748px touch target always.",
+      "description": "Primary action trigger. Three styles (Fill / Outlined / Naked), four semantic types (Primary / Secondary / Tertiary / Negative), four sizes (L / M / S / XS). Supports leading icon, trailing icon, icon-only, and loading states. 48×48px touch target always.",
       "status": "REVIEWED",
       "version": "v1",
       "module": "components/button/button.jsx",
@@ -674,7 +683,7 @@
           "size": {
             "type": "\"L\" | \"M\" | \"S\" | \"XS\"",
             "default": "\"M\"",
-            "description": "L = 18px label, M = 16px label, S = 14px label, XS = 12px label (8/6 padding, 16px icon wrap). Touch target is always 48\u00d748px minimum. XS is defined in Figma for Primary/Secondary/Negative only (not Tertiary)."
+            "description": "L = 18px label, M = 16px label, S = 14px label, XS = 12px label (8/6 padding, 16px icon wrap). Touch target is always 48×48px minimum. XS is defined in Figma for Primary/Secondary/Negative only (not Tertiary)."
           },
           "type": {
             "type": "\"Primary\" | \"Secondary\" | \"Tertiary\" | \"Negative\"",
@@ -865,12 +874,16 @@
       "gaps": [],
       "accessibility": {
         "ariaPattern": "Native <button type='button'>",
-        "touchTarget": "48\u00d748px minimum (WCAG 2.5.5)",
+        "touchTarget": "48×48px minimum (WCAG 2.5.5)",
         "focusRing": "6px white halo + 2px brand ring via box-shadow on Container.Main",
         "loadingState": "aria-busy='true' + disabled attribute",
         "iconOnly": "ariaLabel prop required when showText=false"
       },
-      "codeConnect": "components/button/button.figma.ts"
+      "codeConnect": [
+        "components/button/button-icon.figma.ts",
+        "components/button/button.figma.ts",
+        "components/button/loading-animation.figma.ts"
+      ]
     },
     "search": {
       "displayName": "Search",
@@ -885,11 +898,23 @@
       "stories": "src/stories/Library/Search/Search.stories.jsx",
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
-        "nodeId": "40006978:23158",
+        "nodeId": "40007095:4048",
+        "setName": "TopNav.Search",
+        "page": "Navigation: Top Nav",
+        "axes": {
+          "Platform": [
+            "Desktop"
+          ],
+          "State": [
+            "Collapsed",
+            "Expanded",
+            "Open"
+          ]
+        },
         "additionalNodes": {
-          "filterSelected": "40007351:13533",
-          "topNavSearch": "40007095:4048"
-        }
+          "filterSelectedInstance": "40007351:13533"
+        },
+        "correctedOn": "2026-10-07"
       },
       "props": {
         "SearchInput": {
@@ -992,20 +1017,48 @@
           "foreground.action.status.negative.on-subtle.rest"
         ]
       },
-      "codeConnect": null
+      "codeConnect": [
+        "components/search/top-nav-search.figma.ts"
+      ],
+      "figmaNote": "nodeId was 40006978:23158 until 2026-10-07, which reads as a 2594x1680 FRAME named 'Frame 633379' on the general Search page: a layout frame, not a component. The repo implements the TOPNAV search bar, so the set is TopNav.Search 40007095:4048. A separate, different component exists at 40006978:23446, an 11-variant general search field on State x Has Filter, which this repo does NOT implement and must not be mapped to. 40007351:13533 is an INSTANCE showing the filter-selected state, not a component."
     },
     "nav-shell": {
       "displayName": "NavShell",
-      "description": "Application shell \u2014 TopNav + SideNav + content area. The outermost layout wrapping every Amplify page. Compose from top-nav.jsx and sidenav.jsx \u2014 do not reimplement.",
-      "module": "components/nav-shell/nav-shell-spec.md",
+      "description": "Application shell, TopNav + SideNav + content area. The outermost layout wrapping every Amplify page. Compose from top-nav.jsx and sidenav.jsx: do not reimplement.",
+      "module": null,
       "spec": "components/nav-shell/nav-shell-spec.md",
       "stories": "src/stories/Library/NavShell/NavShell.stories.jsx",
       "demo": "components/nav-shell/nav-shell.html",
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
-        "nodeId": "40006538:43236"
+        "nodeId": "40009709:26016",
+        "setName": "ScreenTemplate",
+        "page": "↳ ❇️ Page Template",
+        "axes": {
+          "Breakpoint": [
+            "Desktop",
+            "Tablet",
+            "Breakpoint3"
+          ]
+        },
+        "variants": {
+          "Desktop": "40006538:43236",
+          "Tablet": "40009709:26017",
+          "Breakpoint3": "40009709:26310"
+        },
+        "slots": [
+          "Container.ScreenContent",
+          "Slot.PageNavigation"
+        ],
+        "booleans": [
+          "Show PageTopNavigation"
+        ],
+        "correctedOn": "2026-10-07"
       },
-      "codeConnect": null
+      "codeConnect": [],
+      "moduleNote": "No module of its own, by design: NavShell is a COMPOSITION of TopNav, SideNav and a page, assembled in src/stories/Library/NavShell/NavShell.stories.jsx and in nav-shell.html. The manifest previously pointed `module` at nav-shell-spec.md, which is a spec, so every reader of the registry was told there was an implementation file to open and there is not.",
+      "figmaNote": "nodeId was 40006538:43236 until 2026-10-07, which is a VARIANT of the set and so cannot be read for properties. The set is ScreenTemplate 40009709:26016. It sits on the Page Template Figma page: the PageTemplate component was removed from this repo because the implementation was wrong, and NavShell kept, so NavShell is the only thing here corresponding to that page.",
+      "gaps": "No Code Connect mapping, and this is a real gap rather than an oversight: ScreenTemplate is a Figma component but the repo has no NavShell module to point a mapping at. NavShell is assembled in its stories out of TopNav, SideNav and a page area. Mapping it would mean attaching a Figma component to a story, which is not an importable thing a consumer can use. Closing it means writing nav-shell.jsx first."
     },
     "module-icon": {
       "displayName": "ModuleIcon",
@@ -1025,7 +1078,6 @@
       ],
       "spec": "components/module-icon/module-icon-spec.md",
       "demo": "components/module-icon/module-icon.html",
-      "stories": "src/stories/Library/ModuleIcon/ModuleIcon.stories.jsx",
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
         "nodeId": "40006876:42134",
@@ -1084,27 +1136,34 @@
         }
       },
       "figmaNote": "60 variants: 12 modules x (Base in all three Colors + Rippled in Two Color and Mono). Both Styles are implemented and Code Connect maps the axis onto `treatment`. Home is the one module whose two treatments are identical, because its mark already fills the canvas.",
-      "codeConnect": "components/module-icon/module-icon.figma.ts",
+      "codeConnect": [
+        "components/module-icon/module-icon.figma.ts"
+      ],
       "internal": true,
       "internalNote": "No Storybook entry: removed from the sidebar on 2026-10-02 at the owner's request because what it showed was wrong. The MODULE stays because top-nav.jsx imports it and scripts/sync-demo-module-icon.js generates the inline block in three demos from it, so deleting it would break the nav. It is a dependency of TopNav, not a component a consumer picks up on its own, until it is rebuilt from Figma."
     },
     "top-nav-actions": {
       "displayName": "TopNav.Actions",
       "description": "The action icons that sit at the right-hand end of the TopNav bar.",
-      "module": null,
-      "moduleNote": "Belongs to the nav-shell family rather than to TopNav: top-nav.figma.ts maps the BAR only, and the panels and icons that open out of it are separate patterns. Has no story and no Code Connect yet.",
-      "spec": null,
+      "module": "components/top-nav/top-nav.jsx",
+      "moduleNote": "Lives in top-nav.jsx as the exported TopNavActions, beside the bar it belongs to, because it only ever exists as a nested instance. It has no component page and no HTML demo of its own by design; the collapse to the more_vert trigger is shown by the TopNav Tablet and Mobile stories. An earlier version of this note said it had no story and no implementation yet, which was already untrue when written.",
+      "spec": "components/top-nav-actions/top-nav-actions-spec.md",
       "demo": null,
-      "stories": null,
-      "storiesNote": "Not yet written.",
+      "stories": "src/stories/Library/TopNav/TopNav.stories.jsx",
+      "storiesNote": "Shown inside the TopNav page: Playground (inline, desktop) and Tablet/Mobile (collapsed).",
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
         "nodeId": "40007082:7313",
         "section": "Amplify",
-        "page": "\u2747\ufe0f \u21b3 Navigation: Top Nav ",
+        "page": "❇️ ↳ Navigation: Top Nav ",
         "spec": "component 132x48 horizontal gap 0; Action Icon 44x44 x3; Container.Icon 28x28 r=8 with no rest fill, Fill/Action/Ghost/Hover on hover and Fill/Action/Ghost/Pressed on press; glyph 14x14 on Foreground/Action/Ghost/Rest going to /Hover."
       },
-      "codeConnect": null
+      "codeConnect": [
+        "components/top-nav-actions/top-nav-actions.figma.ts"
+      ],
+      "internal": true,
+      "internalNote": "No Storybook page: it is the action-icon group INSIDE the TopNav and is exercised there. Its Figma node is 40007082:7313 in the Amplify section.",
+      "figmaNote": "Read 2026-10-07: node 40007082:7313 is a single COMPONENT, 132x48, with exactly one property, a SLOT named Slot.Actions, and NO variant axis. The collapse to more_vert is not a variant of this node; Figma draws it in the mobile TopNav variant instead, while code drives both from one breakpoint prop."
     },
     "widget": {
       "displayName": "Widget",
@@ -1134,25 +1193,28 @@
       ],
       "figmaFixed": "Detail and Explore root fills were unbound #fefefd; bound to Fill/Static/Neutral/Faint in Figma on 2026-10-07.",
       "spec": "components/widget/widget-spec.md",
-      "figmaResolved": "The duplicate Size=Glance, Configuration=01 variant was removed on 2026-10-07. The set now reports Size=[Glance|Detail|Explore] and Configuration=[01|02|03|04] cleanly.",
-      "headerIcons": "refresh, open_in_full and more_vert at 12px in 36px boxes, VISIBLE AT REST. The Figma slot is named Slot.HoverIcons and that name was first read as the behaviour; the rendered component shows all three at all times.",
-      "configurationAxis": "Resolves to props on the nested KPI Number & Trend, not to anything on the container, which is why the Widget maps Size only. 01 is tall with the filter stacked and the chart right; 02 is wide with the filter on the toolbar and the chart bottom; 03 and 04 share a structure and differ only in the sample line. An earlier note claimed 01, 03 and 04 render identically, which was wrong: that comparison looked at the nested instance variant and not at its content."
+      "figmaResolved": "The duplicate Size=Glance, Configuration=01 variant was removed in the file. Re-read 2026-10-07: six variants, no duplicates, componentPropertyDefinitions reads cleanly. Axes are Size (Glance/Detail/Explore) and Configuration (01/02/03/04). Configuration still takes no prop by design: it varies the CONTENT, which is children.",
+      "headerIcons": "TWO SLOTS, not one. Container.WidgetHeading holds Container.RowStart (the title plus a HIDDEN 72x36 Slot.HoverIcons with TWO Action.Icons) beside Slot.RowEnd (433x36, THREE Action.Icons: refresh, open_in_full, more_vert, VISIBLE in all six variants as drawn). The set also carries a 'Show Hover Actions' BOOLEAN defaulting to false, which gates the hidden pair. In code the three are the onRefresh/onGoTo/onMenu handlers and the two are the hoverActions prop, empty by default, revealed on :hover or :focus-within. Two earlier readings were wrong: the first hid the visible three until hover; the second claimed Slot.HoverIcons simply held those three and that its name described position rather than timing.",
+      "configurations": "Read per variant 2026-10-07. 01: KPI N&T Type=01 Chart Right, Number Style=Tall, Show Trend Filter=YES, Layout=Stacked with KPI Number, chart Realistic 01. 02: Type=02 Chart Bottom, Style=Wide, filter=No, Layout=On Filter Toolbar, Wavy 01. 03: as 01 but filter=No, Layout=On Filter Toolbar, Realistic 01. 04: as 03 with Wavy 05. So 01 is the only one with a trend-filter pill; the other three carry an Outlined/XS/Secondary PW_Button on the filter toolbar row INSIDE the KPI Number block.",
+      "demoHtml": null,
+      "demoHtmlNote": "No standalone .html demo, deliberately. Every older component carries one; Widget, KPI Tile and Dashboard do not, because all three are only meaningful on a board and the Dashboard Storybook page plus the canonical demo already are one. A static copy would be a second implementation to keep in step."
     },
     "kpi-tile": {
       "displayName": "KPI Tile",
       "module": "components/kpi-tile/kpi-tile.jsx",
       "exports": [
-        "KpiTile",
-        "ChangeChip",
-        "KPI_TILE_TYPES",
-        "KpiNumberAndTrend",
-        "KpiNumber",
+        "BarChart",
         "Change",
-        "TrendFilter",
+        "ChangeChip",
+        "FilterToolbarButton",
+        "KPI_TILE_TYPES",
+        "KpiNumber",
+        "KpiNumberAndTrend",
+        "KpiTile",
         "MiniChart",
         "SAMPLE_SERIES",
-        "BarChart",
-        "SAMPLE_STACKS"
+        "SAMPLE_STACKS",
+        "TrendFilter"
       ],
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
@@ -1173,17 +1235,21 @@
         "eyebrow": "fs 10, Foreground/Static/Neutral/Subtle",
         "number": "fs 32, Foreground/Static/Neutral/Strong",
         "change": "55x20, gap 6 outer / 2 inner, icon 16, fs 14; arrow_upward|arrow_downward on Type 01, moving on Type 02",
-        "filterControl": "26 tall pill, r=8, Stroke/Action/Secondary/Rest"
+        "filterControl": "26 tall pill, r=8, Stroke/Action/Secondary/Rest",
+        "barChart": "The Detail variant's _Chart data instance (Chart type=Bar 01 desktop) counts FIFTEEN Bar frames at 27x286. SAMPLE_STACKS had twelve, taken from the months of a year rather than from the drawing, which made the bars wider than the design."
       },
       "codeConnect": [
-        "components/kpi-tile/kpi-tile.figma.ts",
+        "components/kpi-tile/change.figma.ts",
+        "components/kpi-tile/chart-data.figma.ts",
         "components/kpi-tile/kpi-number-trend.figma.ts",
         "components/kpi-tile/kpi-number.figma.ts",
-        "components/kpi-tile/change.figma.ts",
+        "components/kpi-tile/kpi-tile.figma.ts",
+        "components/kpi-tile/legend.figma.ts",
         "components/kpi-tile/mini-chart.figma.ts",
-        "components/kpi-tile/trend-comparison.figma.ts"
+        "components/kpi-tile/trend-comparison.figma.ts",
+        "components/kpi-tile/x-axis.figma.ts"
       ],
-      "figmaFixed": "_Change bound Stroke/Static/{Positive,Negative}/Strong as TEXT fills, a tier violation that also failed contrast: #358d4b on the white card is 4.15:1 against a 4.5 floor for 14px text. Fixed in Figma on 2026-10-07, 10 fills across the 8 variants moved to Foreground/Static/{Positive,Negative}/On Subtle, measuring 13.62:1 and 10.74:1. The mini chart's Line vectors genuinely stroke with Stroke/Static/Positive/Strong and were left alone. ALSO: 19 gap and padding bindings across KPI Tiles pointed straight at the Unit/20 PRIMITIVE, the same defect class as the Unit/10 bindings. There is no semantic rung at 20, the ladder goes 16 then 24, so all 19 were rebound on 2026-10-07 to Padding/Relaxed and Gap/Relaxed, both 24, the nearest rung that keeps Chart roomier than the other Types. Chart is now 144 tall rather than 136. Zero gap or padding bindings remain on Unit/20.",
+      "figmaFixed": "_Change bound Stroke/Static/{Positive,Negative}/Strong as TEXT fills, a tier violation that also failed contrast: #358d4b on the white card is 4.15:1 against a 4.5 floor for 14px text. Fixed in Figma on 2026-10-07, 10 fills across the 8 variants moved to Foreground/Static/{Positive,Negative}/On Subtle, measuring 13.62:1 and 10.74:1. The mini chart's Line vectors genuinely stroke with Stroke/Static/Positive/Strong and were left alone. ALSO: 19 gap and padding bindings across KPI Tiles pointed straight at the Unit/20 PRIMITIVE, the same defect class as the Unit/10 bindings. There is no semantic rung at 20, the ladder goes 16 then 24, so all 19 were rebound on 2026-10-07 to Padding/Relaxed and Gap/Relaxed, both 24, the nearest rung that keeps Chart roomier than the other Types. Chart is now 144 tall rather than 136. Zero gap or padding bindings remain on Unit/20. ALSO: KpiNumber's filterLayout=\"toolbar\" drew NOTHING, on the reading that the control lived on the widget's own toolbar. Walking the four Glance Configurations on 2026-10-07 disproves that: 02, 03 and 04 all carry Trend Filter Layout=On Filter Toolbar AND a PW_Button inside the KPI Number block, above the eyebrow. The three layouts differ in WHICH control sits on that row, not whether one does. FilterToolbarButton added.",
       "spec": "components/kpi-tile/kpi-tile-spec.md",
       "modules": [
         "components/kpi-tile/kpi-tile.jsx",
@@ -1193,7 +1259,9 @@
       ],
       "stories": "src/stories/Library/KPITile/KPITile.stories.jsx",
       "model": "A KPI Tile IS a card: all 18 variants have their own surface, border, radius and padding, and it gets a Storybook page. The cardless thing is KPI Number & Trend, a BUILDING BLOCK nested inside both a KPI Tile and a Widget, which is mapped but has no page. A KPI Tile and a Widget are two different components that share that block, not two framings of one thing. Corrected 2026-10-07: the block was previously named KpiTile and wrongly described as a cardless tile.",
-      "buildingBlocks": "Mapped, no Storybook page, because each only appears as a nested instance: KpiNumberAndTrend 40017320:247, KpiNumber 40017333:37612, Change 40009415:28112, MiniChart 40009415:27919, TrendComparisonControl 40017320:361, WidgetHeading 40017333:34481."
+      "buildingBlocks": "Mapped, no Storybook page, because each only appears as a nested instance: KpiNumberAndTrend 40017320:247, KpiNumber 40017333:37612, Change 40009415:28112, MiniChart 40009415:27919, TrendComparisonControl 40017320:361, WidgetHeading 40017333:34481.",
+      "demoHtml": null,
+      "demoHtmlNote": "No standalone .html demo, deliberately. Every older component carries one; Widget, KPI Tile and Dashboard do not, because all three are only meaningful on a board and the Dashboard Storybook page plus the canonical demo already are one. A static copy would be a second implementation to keep in step."
     },
     "dashboard": {
       "displayName": "Dashboard",
@@ -1216,7 +1284,67 @@
         "card": "app badge + name + description + Add button; whole card role=button tabindex=0"
       },
       "note": "No Figma component exists for the dashboard; the canonical demo is the behavioural source of truth and was read by driving it. Verified 2026-10-07: grid and all four spans equal to the demo, dialog 900x660 with a 186 rail, and the add flow taking the board from 4 widgets to 5.",
-      "codeConnect": null
+      "codeConnect": [],
+      "demoHtml": null,
+      "demoHtmlNote": "No standalone .html demo, deliberately. Every older component carries one; Widget, KPI Tile and Dashboard do not, because all three are only meaningful on a board and the Dashboard Storybook page plus the canonical demo already are one. A static copy would be a second implementation to keep in step."
+    },
+    "icon": {
+      "displayName": "Icon",
+      "description": "The one place Pathway renders an icon, plus the two wrappers Figma nests around it.",
+      "modules": [
+        "components/icon/icon.jsx",
+        "components/icon/action-icon.jsx",
+        "components/icon/display-icon.jsx"
+      ],
+      "module": "components/icon/icon.jsx",
+      "spec": "components/icon/icon-spec.md",
+      "stories": "src/stories/Library/Icon/Icon.stories.jsx",
+      "exports": [
+        "Icon",
+        "IconBox",
+        "IconFont",
+        "SIZES",
+        "AXES",
+        "MATERIAL_SYMBOLS_HREF",
+        "ICON_SOURCES",
+        "ActionIcon",
+        "ACTION_ICON_SIZES",
+        "DisplayIcon",
+        "DISPLAY_ICON_SIZES",
+        "DISPLAY_ICON_COLORS"
+      ],
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "48:1153",
+        "setName": "Iconography page",
+        "sets": {
+          "Action Icon": "40006794:19891",
+          "DisplayIcon": "40006522:26547",
+          "Button Icon": "1884:5171"
+        }
+      },
+      "font": {
+        "family": "Material Symbols Rounded",
+        "stylesheet": "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200",
+        "catalogue": "https://fonts.google.com/icons",
+        "sourceRepo": "https://github.com/google/material-design-icons",
+        "webSymbols": "https://github.com/google/material-design-icons/tree/master/symbols/web",
+        "note": "A Pathway icon is a FONT, not a file. There is no per-icon asset: one variable font carries every glyph and an icon is its NAME written as text. The name is the folder name in the source repo."
+      },
+      "measured": {
+        "actionIcon": "Small 36x36 box / 24 state layer / 12 glyph; Base 44 / 28 / 14; Large 48 / 32 / 16. The fill belongs on the LAYER, which is smaller than the target.",
+        "displayIcon": "Small 24x24 / glyph 12; Medium 32 / 16; Large 40 / 20.",
+        "sizeRule": "Size is the FRAME, never the drawn vector. Figma nests a 24 wrapper, a 16 frame and a ~12 vector; size={16} reproduces the 16.",
+        "axes": "FILL 0 or 1, READ FROM FIGMA per component. wght 400 and GRAD 0 everywhere. opsz matched to the font size."
+      },
+      "codeConnect": [
+        "components/icon/action-icon.figma.ts",
+        "components/icon/display-icon.figma.ts",
+        "components/icon/icon.figma.ts"
+      ],
+      "gaps": "DisplayIcon's Color axis has NO tokens behind it in Figma: the variant binds no fill and the nested glyph's fill is unbound, so the seven colours are unbound in the file. The code's mapping is derived from the tone names and the Figma side needs binding. Also: the glyph components nested in Pathway components (add, search, expand_more, expand_less, moving) are REMOTE library components, so there is nothing per glyph to map; in code they are a name string.",
+      "note": "Created 2026-10-07 because every Figma icon component had NO code to point at: Code Connect listed them with no path and no link, and six components each carried a private Icon or Glyph helper that nothing could import. ActionIcon moved here out of widget.jsx, where it was private despite being nested 30 times in that very Figma set."
     }
-  }
+  },
+  "codeConnectCoverage": "components/code-connect-coverage.md"
 }

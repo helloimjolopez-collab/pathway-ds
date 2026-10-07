@@ -1,6 +1,6 @@
 /*
  ==========================================================================
- PATHWAY DESIGN TOKENS — CONTRACT
+ PATHWAY DESIGN TOKENS, CONTRACT
  ==========================================================================
 
  The colour contract, Midnight Mode. Identical names to themes/light.css.
@@ -15,7 +15,7 @@
  White, XLight and Black are inversion anchors and keep their value.
 
  Declares 210 custom properties.
- Generated — do not edit. Run `npm run build-tokens`.
+ Generated: do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
 [data-theme="dark"], [data-theme="midnight"] {

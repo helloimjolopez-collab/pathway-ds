@@ -13,6 +13,17 @@ import figma from "figma"
 // value, so it maps to the same fallback the component uses when there is
 // nothing to place beside the number. 01 and 03 are both "Chart Right" and
 // differ in the number's own size, not the layout.
+//
+// ON LIGHT AND MIDNIGHT: this is a code snippet, not a render, so flipping the
+// mode in Figma cannot change it, and nothing is wrong when it does not. What
+// responds at runtime is that every colour resolves through a MODE-AGNOSTIC
+// token name, switched by a `data-theme` ancestor rather than by a different
+// token:
+//
+//   <div data-theme="midnight">  ...the same markup, Midnight values...
+//
+// No component names a mode. `--semantic-color-light-mode-*` is the retired
+// form and resolves to nothing. See src/tokens/themes/.
 const layout = figma.selectedInstance.getEnum("Type", {
   "01 Chart Right": "right",
   "03 Chart Right": "right",

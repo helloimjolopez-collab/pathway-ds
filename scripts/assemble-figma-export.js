@@ -4,7 +4,7 @@
  * assemble-figma-export.js
  *
  * Turns a paged dump read out of Figma through the MCP server into
- * tokens/figma-export/pathwaytokens.json — the exact shape the
+ * tokens/figma-export/pathwaytokens.json: the exact shape the
  * "Variables Import Export" plugin produces.
  *
  * WHY THIS EXISTS
@@ -18,8 +18,7 @@
  *
  * WHY THE INPUT IS PAGED
  * MCP tool responses are capped at roughly 20KB. The panel is ~2,300
- * variable-mode rows, so a single read truncates silently at around 350 rows —
- * which is the dangerous failure, because a truncated page produces a token file
+ * variable-mode rows, so a single read truncates silently at around 350 rows, * which is the dangerous failure, because a truncated page produces a token file
  * that looks plausible and is quietly missing hundreds of tokens. The agent
  * therefore reads in pages and appends each to a directory of .tsv files, and
  * this script assembles them. It REFUSES to run when the row count does not
@@ -39,14 +38,14 @@
  *   Fill/Action/Primary/Strong/Rest|@Brand/450       alias, @-prefixed
  *   Unit/16|16                                       number
  *   Family/Brand|Red Hat Text                        string
- *   Font Size/R|@Primitive: Type::Size/16            alias, collection-qualified
+ *   Font Size/R|@Primitive: Type:Size/16            alias, collection-qualified
  *   ~FLOAT|Weight/400|400                            per-row type, MIXED collections
  *
  * WHY A COLLECTION MAY NEED PER-ROW TYPES
  * `#M` used to give a whole collection one type, taken from its first variable.
  * Two collections are not homogeneous: `Primitive: Type` is 5 STRING and 74
  * FLOAT, `Semantic: Type` is 1 STRING and 40 FLOAT. In both, the first variable
- * happens to be `Family/Brand` — a STRING — so all 114 numbers were typed as
+ * happens to be `Family/Brand`, a STRING, so all 114 numbers were typed as
  * strings, and Style Dictionary's px transform skips strings. The emitted CSS
  * read `letter-spacing: 0.3` and `line-height: 48`, unitless, which a browser
  * drops for letter-spacing and reinterprets as a ratio for line-height. It
@@ -71,13 +70,13 @@
  *   - `Letter Spacing/Spacious -> @Letter Spacing/Wide` resolved to the SEMANTIC
  *     Wide (0.1) instead of the PRIMITIVE Wide (0.3). No error, no warning, just
  *     a wrong number. That is the one worth this comment. It was caught before
- *     release rather than after — the previous export, produced by the retired
- *     plugin, carried `$collectionName` per alias and so got it right — but only
+ *     release rather than after: the previous export, produced by the retired
+ *     plugin, carried `$collectionName` per alias and so got it right: but only
  *     because the circular pair above stopped the build hard enough to look at
  *     the type output at all.
  *
  * So an ambiguous bare alias is now a hard error naming the collections it could
- * mean, and `@<collection>::<name>` is the form that disambiguates it. The dumper
+ * mean, and `@<collection>:<name>` is the form that disambiguates it. The dumper
  * should emit the qualified form whenever the target name lives in more than one
  * collection; unambiguous aliases stay bare so existing dumps keep working.
  *
@@ -147,7 +146,7 @@ for (const page of pages) {
       continue;
     }
 
-    // #R|<collection>|<mode>|<rows>|<fnv> — reuse an unchanged branch from the
+    // #R|<collection>|<mode>|<rows>|<fnv>, reuse an unchanged branch from the
     // PREVIOUS export instead of re-reading it. Roughly half the panel is type,
     // which changes far less often than colour, so re-transcribing it through an
     // agent session every time is pure waste. The row count and hash are taken
@@ -172,7 +171,7 @@ for (const page of pages) {
     if (!currentCollection) die(`${where}: a data row appeared before any #G group marker`);
 
     // A row may open with "~TYPE|" to carry its own type. Strip that first, so
-    // the name/value split below still only has to honour the FIRST pipe — a
+    // the name/value split below still only has to honour the FIRST pipe: a
     // value can legitimately contain one.
     let body = line;
     let rowType = null;
@@ -208,8 +207,8 @@ for (const page of pages) {
   }
 }
 
-if (declaredTotal === null) die("no #T line found — the first page must declare the row total");
-if (!meta.size) die("no #M lines found — the first page must declare the collections");
+if (declaredTotal === null) die("no #T line found: the first page must declare the row total");
+if (!meta.size) die("no #M lines found: the first page must declare the collections");
 
 // The check that makes paging safe. A dropped or truncated page shows up here as
 // a count mismatch instead of as a silently short token file.
@@ -228,7 +227,7 @@ for (const r of rows) {
 const repeated = [...dupes.entries()].filter(([, n]) => n > 1);
 if (repeated.length) {
   die(
-    `${repeated.length} duplicated (collection, mode, name) rows — a page was appended twice. ` +
+    `${repeated.length} duplicated (collection, mode, name) rows: a page was appended twice. ` +
     `First: ${repeated[0][0].split(" ").join(" / ")}`
   );
 }
@@ -237,7 +236,7 @@ if (repeated.length) {
  * Resolve every #R branch against the PREVIOUS export, verifying as we go.
  *
  * The hash must be computed identically on both sides: "name|value" lines,
- * sorted, joined with "\n". Use Math.imul for the FNV multiply — a plain
+ * sorted, joined with "\n". Use Math.imul for the FNV multiply: a plain
  * `h * 0x01000193` overflows 2^53 in a double and silently loses precision.
  */
 function fnv1a(str) {
@@ -254,7 +253,7 @@ function fnv1a(str) {
  *
  * `ambiguous` is the set of variable names that exist in more than one
  * collection. Those must come back out in the collection-qualified alias form,
- * because that is what the dumper emits for them — and this function's output is
+ * because that is what the dumper emits for them: and this function's output is
  * hashed against the dumper's, so the two spellings have to agree or every #R
  * reuse of a type branch fails with a bogus "this branch changed".
  */
@@ -274,7 +273,7 @@ function flattenBranch(tree, prefix = "", ambiguous = new Set(), mixed = false) 
       }
       const target = v.slice(1, -1).split(".").join("/");
       const qualify = ambiguous.has(target) && node.$collectionName;
-      lines.push(`${tp}${prefix}${key}|@${qualify ? node.$collectionName + "::" : ""}${target}`);
+      lines.push(`${tp}${prefix}${key}|@${qualify ? node.$collectionName + ":" : ""}${target}`);
     } else if (node && typeof node === "object") {
       lines.push(...flattenBranch(node, `${prefix}${key}/`, ambiguous, mixed));
     }
@@ -356,9 +355,9 @@ function leafFor(value, resolvedType) {
     const body = value.slice(1);
     if (body === "MISSING") return null;            // alias to a deleted variable
 
-    // "@<collection>::<name>" pins the target collection explicitly. Required
+    // "@<collection>:<name>" pins the target collection explicitly. Required
     // when the target name exists in more than one collection, optional otherwise.
-    const qualified = body.indexOf("::");
+    const qualified = body.indexOf(":");
     let target, collection;
     if (qualified > 0) {
       collection = body.slice(0, qualified);
@@ -383,7 +382,7 @@ function leafFor(value, resolvedType) {
         die(
           `alias "@${target}" is ambiguous: "${target}" exists in ` +
           `${[...candidates].map((c) => `"${c}"`).join(" and ")}. ` +
-          `Re-dump it as "@<collection>::${target}" so the target is unambiguous. ` +
+          `Re-dump it as "@<collection>:${target}" so the target is unambiguous. ` +
           `Guessing here is what would have given Letter Spacing/Spacious the wrong value.`
         );
       }
@@ -451,10 +450,10 @@ for (const [collection, info] of meta) {
 const leaves = rows.length - dropped.length;
 console.log(`pages read      : ${pages.length} (${pages.join(", ")})`);
 console.log(`collections     : ${meta.size}`);
-console.log(`rows dumped     : ${rows.length} — matches the declared total`);
+console.log(`rows dumped     : ${rows.length}, matches the declared total`);
 if (reuse.length) {
   const reusedRows = reuse.reduce((n, r) => n + r.rows, 0);
-  console.log(`branches reused : ${reuse.length} (${reusedRows} rows) — row count AND hash verified against Figma`);
+  console.log(`branches reused : ${reuse.length} (${reusedRows} rows), row count AND hash verified against Figma`);
   for (const r of reuse) console.log(`    ${r.coll} / ${r.mode}  ${r.rows} rows  ${r.hash}`);
 }
 console.log(`leaves written  : ${leaves}`);

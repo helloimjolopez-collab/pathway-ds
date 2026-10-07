@@ -1,4 +1,4 @@
-# Dashboard — Pathway Design System Component Spec
+# Dashboard: Pathway Design System Component Spec
 
 Status: REVIEWED
 Reviewed: 2026-10-07, measured by driving the canonical demo
@@ -9,7 +9,8 @@ Reviewed: 2026-10-07, measured by driving the canonical demo
 |---|---|
 | Canonical demo | https://helloimjolopez-collab.github.io/design-sandbox/phase-2/Widget%20Container%20Demo/ |
 | Figma, widgets | `3sw45aVcngFAmpbP6cfrXP` node `40009622:39702` |
-| Storybook | `Library/Dashboard` |
+| Storybook | [Library/Dashboard](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-dashboard--docs) |
+| Code Connect | none, and that is a gap: no Figma component exists for the dashboard, so there is nothing to map to. See the note below. |
 | Component module | `components/dashboard/dashboard.jsx` |
 | Widget spec | `components/widget/widget-spec.md` |
 
@@ -246,6 +247,23 @@ widget-level action.
 
 ## 14. Storybook
 
-Sidebar-visible: `Playground`, `Add widget flow`, `Swap and manage`.
+Sidebar-visible, matching the untagged exports in `Dashboard.stories.jsx`
+exactly:
 
-No `StandaloneDemo` story.
+| Export | Name |
+|---|---|
+| `Playground` | Playground |
+| `AddWidgetFlow` | Add widget flow |
+| `SwapAndManage` | Swap and manage |
+
+Reference, `!dev`-tagged: `TokensColour` (Tokens: colour) and `TokensGeometry`
+(Tokens: geometry and motion).
+
+The board in every story puts `KpiNumberAndTrend` and a real bar chart inside
+its widgets, never a `KpiTile`: a KPI Tile is itself a card, so a KPI Tile
+inside a widget would be a card inside a card inside a card.
+
+No `StandaloneDemo` story and no `dashboard.html`. The canonical demo linked at
+the top of this spec is the behavioural source of truth and already serves that
+purpose, so a static copy in this repo would be a second implementation to keep
+in step. Widget and KPI Tile omit theirs for the same reason.

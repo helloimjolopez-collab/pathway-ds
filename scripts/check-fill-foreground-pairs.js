@@ -1,5 +1,5 @@
 /**
- * check-fill-foreground-pairs.js — fail the build when a fill offers a variant its
+ * check-fill-foreground-pairs.js, fail the build when a fill offers a variant its
  * paired foreground does not, or a foreground claims a pairing no fill offers.
  *
  * THE RULE (it must always be true, which is why the build checks it):
@@ -21,7 +21,7 @@
  *   destructive button had no token for its own label.
  *
  *   Action/Status/Attention, Severe and Info each had a foreground named
- *   On Subtle over a fill with no Subtle variant at all — a name promising a
+ *   On Subtle over a fill with no Subtle variant at all: a name promising a
  *   pair that did not exist.
  *
  * Neither is visible to any other checker, because every name involved resolves
@@ -37,7 +37,7 @@
  *
  *   Action's On Strong is ONE token, not a per-state set, while On Subtle is
  *   per-state. A label on a solid fill does not change as the fill darkens, so
- *   three identical tokens would be a no-op variant — exactly what
+ *   three identical tokens would be a no-op variant, exactly what
  *   check-variant-distinctness.js exists to catch. On a pale fill the contrast
  *   genuinely shifts per state, so that half stays per-state.
  *

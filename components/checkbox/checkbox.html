@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkbox — Pathway Design System</title>
+<title>Checkbox, Pathway Design System</title>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -21,7 +21,7 @@
 <style>
 
   /* ── Demo page chrome ─────────────────────────────────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
   /* Match Figma's text rendering. Without these, Medium (500) renders visibly
@@ -349,7 +349,7 @@ function DemoSection({ title, children }) {
 }
 
 function Demo() {
-  // State matrix — individual controls
+  // State matrix, individual controls
   const [c1, setC1] = useState(false);
   const [c2, setC2] = useState(true);
   const [c3, setC3] = useState(false);
@@ -379,14 +379,14 @@ function Demo() {
   return (
     <div>
       {/* ── Standard states ──────────────────────────────────────────────── */}
-      <DemoSection title="Standard — all states">
+      <DemoSection title="Standard: all states">
         <div className="demo-surface">
-          <p className="demo-surface-label">Interactive — try hovering, clicking, tabbing</p>
+          <p className="demo-surface-label">Interactive: try hovering, clicking, tabbing</p>
           <div className="demo-row" style={{ flexDirection: "column", alignItems: "flex-start" }}>
             <Checkbox label="Unselected" checked={c1} onChange={setC1} id="s1" />
             <Checkbox label="Selected"   checked={c2} onChange={setC2} id="s2" />
-            <Checkbox label="Disabled — unchecked" disabled id="s3" />
-            <Checkbox label="Disabled — checked"   disabled checked id="s4" />
+            <Checkbox label="Disabled, unchecked" disabled id="s3" />
+            <Checkbox label="Disabled, checked"   disabled checked id="s4" />
           </div>
         </div>
       </DemoSection>
@@ -394,7 +394,7 @@ function Demo() {
       {/* ── Indeterminate ────────────────────────────────────────────────── */}
       <DemoSection title="Indeterminate / Select all">
         <div className="demo-surface">
-          <p className="demo-surface-label">Parent drives children — all ↔ some ↔ none</p>
+          <p className="demo-surface-label">Parent drives children: all ↔ some ↔ none</p>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
             <Checkbox
               label="Select all"
@@ -423,10 +423,10 @@ function Demo() {
         <div className="demo-surface">
           <p className="demo-surface-label">Error unchecked, error checked, error disabled, form example</p>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 4 }}>
-            <Checkbox label="Error — unchecked" error checked={c3} onChange={setC3} id="e1" />
-            <Checkbox label="Error — checked"   error checked onChange={() => {}} id="e2" />
-            <Checkbox label="Error — indeterminate" error indeterminate onChange={() => {}} id="e3" />
-            <Checkbox label="Error — disabled" error disabled id="e4" />
+            <Checkbox label="Error, unchecked" error checked={c3} onChange={setC3} id="e1" />
+            <Checkbox label="Error, checked"   error checked onChange={() => {}} id="e2" />
+            <Checkbox label="Error, indeterminate" error indeterminate onChange={() => {}} id="e3" />
+            <Checkbox label="Error, disabled" error disabled id="e4" />
 
             <div style={{ marginTop: 16, padding: "16px", background: "var(--semantic-color-fill-surface-canvas)", borderRadius: 8, width: "100%" }}>
               <Checkbox
@@ -462,12 +462,12 @@ function Demo() {
       {/* ── Highlight variant ────────────────────────────────────────────── */}
       <DemoSection title="Highlight variant">
         <div className="demo-surface">
-          <p className="demo-surface-label">State-layer tinted at rest — for selectable rows</p>
+          <p className="demo-surface-label">State-layer tinted at rest: for selectable rows</p>
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {[
-              { label: "Staff meeting — Thursday 9am",  checked: true  },
-              { label: "Volunteer orientation — Friday", checked: false },
-              { label: "Board prep call — Monday",       checked: true  },
+              { label: "Staff meeting, Thursday 9am",  checked: true  },
+              { label: "Volunteer orientation, Friday", checked: false },
+              { label: "Board prep call, Monday",       checked: true  },
             ].map((row, i) => (
               <div
                 key={i}

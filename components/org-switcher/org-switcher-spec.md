@@ -4,7 +4,7 @@
 **Version:** `v1` trigger + `v2` Open panel (see §0)
 **Reviewed:** 2026-05-21
 
-> **Update 2026-08-06 — the Open dropdown panel is now implemented.** Built from
+> **Update 2026-08-06: the Open dropdown panel is now implemented.** Built from
 > Figma node `40007336:9453` as `OrgSwitcherPanel` (exported from
 > `org-switcher.jsx`): "My Organizations" header, search field, and a scrollable
 > org list (brand logo tile + org name + Ministry Brands module-colour cluster +
@@ -12,15 +12,15 @@
 > Deviations from the raw Figma export, both Figma-side artifacts: Red Hat Text
 > (Figma reported "Google Sans Flex") and light-mode tokens (Figma bound
 > dark-mode tokens onto the white panel → invisible borders). Module colours are
-> hardcoded brand values (**token gap** — not yet in the token system). The
+> hardcoded brand values (**token gap**, not yet in the token system). The
 > "out of scope in v1" language below is retained for history; a full panel spec
 > section (keyboard nav, ARIA, mobile, per-org module data) still needs a
 > `spec-review` pass.
-**Previously reviewed:** 2026-05-18 (v1 first pass — required deepening to reach sidenav-spec parity per CLAUDE.md §5)
+**Previously reviewed:** 2026-05-18 (v1 first pass, required deepening to reach sidenav-spec parity per CLAUDE.md §5)
 
-## TL;DR — what this component is, in one paragraph
+## TL;DR: what this component is, in one paragraph
 
-The OrgSwitcher is the contextual navigation control that lives inside the `TopNav` component (see `components/top-nav/`) of every signed-in, multi-org Ministry Brands product. It always shows the user's active organisation. Clicking it is meant to open a panel that lets the user switch between orgs they have access to. **This spec covers v1, which is the trigger button only.** The dropdown menu / panel that opens below the trigger is **out of scope for v1 and remains as it is today in production until further notice** — a future version will give it its own design pass, spec, and release. The trigger is, however, fully spec'd here: pixel-accurate against Figma, with a clean Catholic-vs-Protestant rule, full state matrix, dark-mode tokens, mobile compact mode, and the church SVG placeholder for orgs that have no logo on file.
+The OrgSwitcher is the contextual navigation control that lives inside the `TopNav` component (see `components/top-nav/`) of every signed-in, multi-org Ministry Brands product. It always shows the user's active organisation. Clicking it is meant to open a panel that lets the user switch between orgs they have access to. **This spec covers v1, which is the trigger button only.** The dropdown menu / panel that opens below the trigger is **out of scope for v1 and remains as it is today in production until further notice**: a future version will give it its own design pass, spec, and release. The trigger is, however, fully spec'd here: pixel-accurate against Figma, with a clean Catholic-vs-Protestant rule, full state matrix, dark-mode tokens, mobile compact mode, and the church SVG placeholder for orgs that have no logo on file.
 
 ## Resources
 
@@ -46,21 +46,21 @@ Every artefact you might need is linked here. If something isn't in this table o
 
 **This release covers the trigger control in the top nav only.**
 
-The dropdown menu / panel that opens beneath the trigger is **out of scope for v1 and remains as it is today in production until further notice.** A future version (v2 or later) will design, spec, and release the panel separately. Until then, treat any panel code in this repo as non-normative scaffolding — it exists so the trigger has something to open against in demos and dev tooling, but it is not part of the design system.
+The dropdown menu / panel that opens beneath the trigger is **out of scope for v1 and remains as it is today in production until further notice.** A future version (v2 or later) will design, spec, and release the panel separately. Until then, treat any panel code in this repo as non-normative scaffolding: it exists so the trigger has something to open against in demos and dev tooling, but it is not part of the design system.
 
 | Sub-component | Scope in v1 | Notes |
 |---|---|---|
-| **Trigger button** (Base / Hover / Pressed / Open × Desktop / Mobile — 8 variants total) | ✅ IN SCOPE | Visual + interaction spec is normative. Pixel-accurate against Figma. |
+| **Trigger button** (Base / Hover / Pressed / Open × Desktop / Mobile, 8 variants total) | ✅ IN SCOPE | Visual + interaction spec is normative. Pixel-accurate against Figma. |
 | **Avatar** (logo image / church placeholder) | ✅ IN SCOPE | Logo: `object-fit: cover` proportional fill. Placeholder: church SVG. |
 | **Container.CityName.Catholic** | ✅ IN SCOPE | Catholic orgs only (see §0.1). |
 | **Chevron rotation** (open ↔ closed) | ✅ IN SCOPE | `--motion-duration-4` + `--motion-easing-standard`. |
 | **Dropdown menu / panel** (open state) | ⚠️ **OUT OF SCOPE** in v1. **Remains as it is in production until further notice.** | A working placeholder lives in the repo so the trigger has something to open against, but it is **non-normative** and **will be replaced** when the panel gets its own design pass. Do not treat any of its visuals or interactions as authoritative. |
 
-### 0.1 CityName is Catholic-only — never Protestant
+### 0.1 CityName is Catholic-only: never Protestant
 
 `Container.CityName.Catholic` (the second text container after the org name, separated by ` | `) is **only ever shown for Catholic organisations**.
 
-- It carries the **city or diocese** name — never a campus, suborg, region, or other identifier.
+- It carries the **city or diocese** name: never a campus, suborg, region, or other identifier.
 - Protestant organisations render the trigger with `orgName` only. No pipe. No second container. The Catholic city container is not rendered at all (not just hidden) for Protestant orgs.
 - The component reads `orgType` and renders `Container.CityName.Catholic` **only when** `orgType === "catholic"`. Even if a `cityName` string is supplied, it is ignored for non-Catholic orgs.
 
@@ -70,14 +70,14 @@ The dropdown menu / panel that opens beneath the trigger is **out of scope for v
 
 ## 1. Component Overview
 
-`OrgSwitcher` is a contextual navigation control that shows the user's current organisation and lets them switch to another. It renders inside the `TopNav` component and is visible at all times while signed in to a multi-org context. The OrgSwitcher does not own or define the TopNav surface — see `components/top-nav/top-nav-spec.md` for the TopNav's own surface tokens.
+`OrgSwitcher` is a contextual navigation control that shows the user's current organisation and lets them switch to another. It renders inside the `TopNav` component and is visible at all times while signed in to a multi-org context. The OrgSwitcher does not own or define the TopNav surface, see `components/top-nav/top-nav-spec.md` for the TopNav's own surface tokens.
 
-It is **not** used for module-level navigation (that is SideNav's job), for settings access, or for user-profile actions. It is not a generic dropdown or select control — it is specifically scoped to org-and-city/diocese switching.
+It is **not** used for module-level navigation (that is SideNav's job), for settings access, or for user-profile actions. It is not a generic dropdown or select control: it is specifically scoped to org-and-city/diocese switching.
 
 The trigger has two display modes driven by viewport:
 
 - **Desktop** (`≥ 768 px`): renders the full organisation name in `Container.OrgName` (max-width 180px, content-sized, truncates with ellipsis at 180px). For **Catholic organisations only**, a second `Container.CityName.Catholic` (max 72px) follows after a pipe: `Sacred Heart Church-ITD  |  Knoxville`. Protestant orgs render the org name on its own.
-- **Mobile** (`< 768 px`): renders inside a fixed 108px-wide pill. The label container is a fixed 50px and the full `orgName` is truncated by `text-overflow: ellipsis`. **No abbreviation** — "Grace Community Church" displays visually as "Grace Comm…". Typography is the same `Label/Button/S` (14px) used on desktop.
+- **Mobile** (`< 768 px`): renders inside a fixed 108px-wide pill. The label container is a fixed 50px and the full `orgName` is truncated by `text-overflow: ellipsis`. **No abbreviation**, "Grace Community Church" displays visually as "Grace Comm…". Typography is the same `Label/Button/S` (14px) used on desktop.
 
 ### Figma source
 
@@ -117,14 +117,14 @@ Use this table to find the owner of any decision. Every row points to the single
 | Accessibility (ARIA, focus, reduced motion) | This spec | §11 |
 | Touch target size, contrast ratios, SR announcements | This spec | §11.1, §11.6, §11.5 |
 | Responsive breakpoint | This spec | §12 + `docs/design-system-spec.md` §Breakpoints |
-| Dropdown menu / panel design | **DEFERRED to next version** | §0 — out of scope in v1, remains as in production until further notice |
+| Dropdown menu / panel design | **DEFERRED to next version** | §0, out of scope in v1, remains as in production until further notice |
 | Live HTML demo | This spec § 15 + [`org-switcher.html`](https://helloimjolopez-collab.github.io/pathway-ds/components/org-switcher/org-switcher.html) | §15 |
 | Storybook stories + docs page | This spec § 19 + `src/stories/Library/OrgSwitcher/` | §19 |
 | Manifest entry | `components/manifest.json` | row keyed by `"org-switcher"` |
-| TopNav surface colour / chrome | `TopNav` component spec | `components/top-nav/top-nav-spec.md` — OrgSwitcher does NOT own or define the TopNav background |
+| TopNav surface colour / chrome | `TopNav` component spec | `components/top-nav/top-nav-spec.md`, OrgSwitcher does NOT own or define the TopNav background |
 | Known design gaps | This spec | §16 (Figma-side) + §17 (deferred decisions) |
 
-**Rule:** if a decision isn't in the table above, check §16 / §17 (gaps). If it's not there either, it hasn't been specified yet — add it to the spec before implementing.
+**Rule:** if a decision isn't in the table above, check §16 / §17 (gaps). If it's not there either, it hasn't been specified yet, add it to the spec before implementing.
 
 ---
 
@@ -152,7 +152,7 @@ OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 f
                                          rotates 180° when open
 ```
 
-### 2.1 Container.Avatar — sub-component anatomy
+### 2.1 Container.Avatar: sub-component anatomy
 
 - **Frame:** 24×24px (desktop) / 20×20px (mobile) outer, with 2px inner padding (`padding-xxxtight`)
 - **Inner avatar:** content area = outer − 2×padding = 20×20 (desktop) / 16×16 (mobile)
@@ -162,7 +162,7 @@ OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 f
   - **Logo present** (`logoUrl` truthy): `<img>` with `object-fit: cover` filling 100% × 100%. Background transparent.
   - **No logo** (`logoUrl` empty/missing): church SVG icon (see §2.2) on `fill.action.secondary.rest` background (`rgba(255,255,255,0.08)`)
 
-### 2.2 Church placeholder SVG — sub-component anatomy
+### 2.2 Church placeholder SVG: sub-component anatomy
 
 - **Source:** Figma node `40007243:73426`. Path data lives in `org-switcher.jsx` as `CHURCH_ICON_PATH`.
 - **viewBox:** `0 0 13.3333 14`
@@ -170,7 +170,7 @@ OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 f
 - **Fill:** `white` with `fill-opacity: 0.7`
 - **Never replaced with text initials.** This is a hard constraint (§16 #2).
 
-### 2.3 Container.IconTrailing (Chevron) — sub-component anatomy
+### 2.3 Container.IconTrailing (Chevron): sub-component anatomy
 
 - **Frame:** 16×16, 2px inner padding → 12×12 effective icon area
 - **Icon:** Material Symbols Rounded `expand_more`
@@ -181,40 +181,40 @@ OrgSwitcher.Root                       desktop: content-sized · mobile: w-108 f
 
 ## 3. Design Tokens
 
-All tokens confirmed from Figma node `40006819:14583`. This component uses **dark-mode tokens** — it is designed for the dark/brand-coloured nav surface.
+All tokens confirmed from Figma node `40006819:14583`. This component uses **dark-mode tokens**: it is designed for the dark/brand-coloured nav surface.
 
 ### 3.1 Fill
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `fill.action.primary.subtle.rest` | `--semantic-color-fill-action-primary-subtle-rest` | `rgba(160,181,230,0.04)` | Trigger background — base |
-| `fill.action.primary.subtle.hover` | `--semantic-color-fill-action-primary-subtle-hover` | `rgba(10,18,35,0.16)` | Trigger background — hover |
-| `fill.action.primary.subtle.pressed` | `--semantic-color-fill-action-primary-subtle-pressed` | `rgba(255,255,255,0.08)` | Trigger background — pressed / open |
+| `fill.action.primary.subtle.rest` | `--semantic-color-fill-action-primary-subtle-rest` | `rgba(160,181,230,0.04)` | Trigger background, base |
+| `fill.action.primary.subtle.hover` | `--semantic-color-fill-action-primary-subtle-hover` | `rgba(10,18,35,0.16)` | Trigger background: hover |
+| `fill.action.primary.subtle.pressed` | `--semantic-color-fill-action-primary-subtle-pressed` | `rgba(255,255,255,0.08)` | Trigger background, pressed / open |
 | `fill.action.secondary.rest` | `--semantic-color-fill-action-secondary-rest` | `rgba(255,255,255,0.08)` | Avatar placeholder background (no logo) |
 
 ### 3.2 Stroke
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `stroke.action.primary.strong.rest` | `--semantic-color-stroke-action-primary-strong-rest` | `rgba(160,181,230,0.16)` | Trigger + avatar border — base |
-| `stroke.action.primary.strong.hover` | `--semantic-color-stroke-action-primary-strong-hover` | `rgba(160,181,230,0.20)` | Trigger + avatar border — hover |
-| `stroke.action.primary.strong.pressed` | `--semantic-color-stroke-action-primary-strong-pressed` | `rgba(160,181,230,0.30)` | Trigger + avatar border — pressed / open |
+| `stroke.action.primary.strong.rest` | `--semantic-color-stroke-action-primary-strong-rest` | `rgba(160,181,230,0.16)` | Trigger + avatar border, base |
+| `stroke.action.primary.strong.hover` | `--semantic-color-stroke-action-primary-strong-hover` | `rgba(160,181,230,0.20)` | Trigger + avatar border: hover |
+| `stroke.action.primary.strong.pressed` | `--semantic-color-stroke-action-primary-strong-pressed` | `rgba(160,181,230,0.30)` | Trigger + avatar border, pressed / open |
 
 ### 3.3 Text
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Label text — base |
-| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Label text — hover |
-| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Label text — pressed / open |
+| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Label text, base |
+| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Label text: hover |
+| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Label text, pressed / open |
 
 ### 3.4 Icon
 
 | Semantic Token | CSS Variable | Resolved Value | Usage |
 |---|---|---|---|
-| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Chevron — base |
-| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Chevron — hover |
-| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Chevron — pressed / open |
+| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Chevron, base |
+| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Chevron: hover |
+| `foreground.static.neutral.mono` | `--semantic-color-foreground-static-neutral-mono` | `#ffffff` | Chevron, pressed / open |
 
 ### 3.5 Geometry
 
@@ -232,9 +232,9 @@ All tokens confirmed from Figma node `40006819:14583`. This component uses **dar
 | Usage | CSS Variable prefix | Weight | Size | Line-height | Letter-spacing |
 |---|---|---|---|---|---|
 | Trigger label (desktop + mobile, v1) | `--semantic-type-desktop-label-button-s-` | 500 | 14px | 20px | 0.3px |
-| Font family | `--semantic-type-family-brand` | — | Red Hat Text | — | — |
+| Font family | `--semantic-type-family-brand` | - | Red Hat Text | - | - |
 
-> v1 uses the same `Label/Button/S` size on desktop and mobile. Earlier drafts used `Label/Button/XS` (12px) on mobile — Figma was updated to a uniform 14px in 2026-05.
+> v1 uses the same `Label/Button/S` size on desktop and mobile. Earlier drafts used `Label/Button/XS` (12px) on mobile, Figma was updated to a uniform 14px in 2026-05.
 
 ---
 
@@ -272,7 +272,7 @@ All values confirmed from Figma (Base × Desktop = `40006819:14581` and Base × 
 
 - Renders the full legal org name in `Container.OrgName`. Container is content-sized with `max-width: 180px`. Long names truncate with `text-overflow: ellipsis` at 180px.
 - For Catholic organisations (`orgType === "catholic"`), appends `Container.CityName.Catholic` (max-width 72px, with 6px `paddingLeft` so the pipe has visual breathing room) after a ` | ` separator with the city or diocese name.
-- Protestant organisations render no pipe and no second container — the org name alone.
+- Protestant organisations render no pipe and no second container: the org name alone.
 - Chevron trails the text on the right; rotates 180° when the panel is open.
 
 ### 5.2 Mobile trigger
@@ -283,13 +283,13 @@ All values confirmed from Figma (Base × Desktop = `40006819:14581` and Base × 
 - The CityName container is not rendered on mobile, even for Catholic orgs.
 - Chevron trails the label on the right.
 
-### 5.3 Avatar — logo present
+### 5.3 Avatar: logo present
 
-When `logoUrl` is provided, the avatar renders the org's logo image with `object-fit: cover` inside the bordered rounded container. The image always scales to fill the frame proportionally — no hardcoded crop offsets.
+When `logoUrl` is provided, the avatar renders the org's logo image with `object-fit: cover` inside the bordered rounded container. The image always scales to fill the frame proportionally: no hardcoded crop offsets.
 
 > **Figma annotation:** "Logo must always scale to fill frame proportionally."
 
-### 5.4 Avatar — no logo (church placeholder)
+### 5.4 Avatar: no logo (church placeholder)
 
 When `logoUrl` is absent (or fails to load), the avatar renders the **church/building SVG icon** on a `fill.action.secondary.rest` (`rgba(255,255,255,0.08)`) background.
 
@@ -338,14 +338,14 @@ See §2.1, §2.2, §2.3 for full anatomy. Brief summary:
 ## 8. Iconography
 
 - **Chevron:** Material Symbols Rounded `expand_more`. 12×12 effective. Colour: `foreground.static.neutral.mono`.
-- **Avatar (logo):** product-supplied image — sourced from the org record. `object-fit: cover`.
+- **Avatar (logo):** product-supplied image, sourced from the org record. `object-fit: cover`.
 - **Avatar (no logo):** church/building SVG embedded in `org-switcher.jsx` as `CHURCH_ICON_PATH`. Never replace with text initials.
 
 ---
 
 ## 9. Motion
 
-All motion resolves through `--motion-*` tokens — no hardcoded ms/curves.
+All motion resolves through `--motion-*` tokens: no hardcoded ms/curves.
 
 | Property | Token | Notes |
 |---|---|---|
@@ -378,7 +378,7 @@ See `docs/design-system-spec.md` §Motion for the system-wide motion ladder.
 
 ### 11.0 ARIA Pattern
 
-The OrgSwitcher uses the [Disclosure (Show/Hide) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/) with `aria-haspopup="true"` and `aria-expanded` on the trigger button. The trigger is a real `<button type="button">` — never a `<div>` with `role="button"`.
+The OrgSwitcher uses the [Disclosure (Show/Hide) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/) with `aria-haspopup="true"` and `aria-expanded` on the trigger button. The trigger is a real `<button type="button">`: never a `<div>` with `role="button"`.
 
 The panel (when designed in v2) will follow either the Disclosure or the Combobox pattern depending on whether it supports text filtering. That decision is deferred to the panel spec.
 
@@ -392,7 +392,7 @@ The panel (when designed in v2) will follow either the Disclosure or the Combobo
 | `Accessibility/Icon Wrapping/Large/Size` | `24×24px` (desktop avatar) | Figma ✅ |
 | `Accessibility/Icon Wrapping/Small/Size` | `20×20px` (mobile avatar) | Figma ✅ |
 
-Both viewport modes wrap the trigger in a 48×48 minimum outer wrapper — desktop adds it as `min-width / min-height`; mobile satisfies it via the 108×48 pill. Either way, WCAG 2.5.5 Target Size (`Level AAA`, but also our org-wide minimum) is met.
+Both viewport modes wrap the trigger in a 48×48 minimum outer wrapper, desktop adds it as `min-width / min-height`; mobile satisfies it via the 108×48 pill. Either way, WCAG 2.5.5 Target Size (`Level AAA`, but also our org-wide minimum) is met.
 
 ---
 
@@ -438,9 +438,9 @@ Both viewport modes wrap the trigger in a 48×48 minimum outer wrapper — deskt
 
 **Key rules:**
 - `aria-label` always carries the full org name (and city name for Catholic orgs), regardless of visible truncation.
-- The visible label is `aria-hidden="true"` — screen readers rely on the `aria-label`, not the truncated text.
+- The visible label is `aria-hidden="true"`, screen readers rely on the `aria-label`, not the truncated text.
 - `aria-expanded` reflects panel open/closed state.
-- `aria-haspopup="true"` (not `"menu"` or `"listbox"`) — the panel pattern is not yet specced, and `true` is the safe generic value.
+- `aria-haspopup="true"` (not `"menu"` or `"listbox"`): the panel pattern is not yet specced, and `true` is the safe generic value.
 - `disabled` (the native attribute) implicitly sets `aria-disabled`. Do not add `aria-disabled` separately.
 
 ---
@@ -455,7 +455,7 @@ Both viewport modes wrap the trigger in a 48×48 minimum outer wrapper — deskt
 | `Escape` | When the panel is open, closes the panel and returns focus to the trigger | 📋 Wired in the shell that mounts the panel |
 | Arrow keys within panel | Defined by panel spec (deferred) | ❓ v2 |
 
-There is no roving tabindex — the trigger is a single Tab stop. Once the panel ships in v2, it will have its own focus management spec.
+There is no roving tabindex: the trigger is a single Tab stop. Once the panel ships in v2, it will have its own focus management spec.
 
 ---
 
@@ -465,7 +465,7 @@ There is no roving tabindex — the trigger is a single Tab stop. Once the panel
 |---|---|
 | Visible focus ring on the trigger | ✅ `2px solid rgba(255,255,255,0.9)` on `:focus-visible` |
 | Focus ring uses `:focus-visible` (not `:focus`) to avoid painting on mouse click | ✅ Implemented in `org-switcher.jsx` via `onFocus` handler |
-| Focus ring contrast against TopNav surface | ✅ White outline on the TopNav background (`#2d4889`, owned by TopNav) ≈ 8.8:1 — passes WCAG 1.4.11 (3:1) |
+| Focus ring contrast against TopNav surface | ✅ White outline on the TopNav background (`#2d4889`, owned by TopNav) ≈ 8.8:1, passes WCAG 1.4.11 (3:1) |
 | Focus visible in pressed / open states | ✅ Outline overlays the pressed-state fill |
 
 > Figma does **not** ship a focused-state variant of the trigger. Focus styling is documented and implemented in this spec / `org-switcher.jsx`, but a Figma variant for the focused state would close the loop. See §16.
@@ -493,7 +493,7 @@ These are approximate strings. Exact wording varies by screen reader and browser
 | Tab to trigger, Catholic org | *"Current organisation: Sacred Heart Church-ITD, Knoxville. Activate to switch. Pop-up button, collapsed."* |
 | Trigger opened (panel mounted) | *"Pop-up button, expanded."* |
 | Tab to disabled trigger | *"Current organisation: Grace Community Church. Only organisation available. Pop-up button, dimmed."* |
-| Focus on truncated mobile label | (Same as above — the visible "Grace Comm…" is `aria-hidden`; SR reads the full `aria-label`.) |
+| Focus on truncated mobile label | (Same as above: the visible "Grace Comm…" is `aria-hidden`; SR reads the full `aria-label`.) |
 
 ---
 
@@ -507,7 +507,7 @@ All values below use token resolved values on the `TopNav` surface (which resolv
 | Trigger label, hover | `foreground.static.neutral.mono` → `#ffffff` | `#2d4889` under `rgba(10,18,35,0.16)` fill ≈ `#26396f` | ≈ 9.2:1 | ✅ Pass |
 | Trigger label, pressed / open | `foreground.static.neutral.mono` → `#ffffff` | `#2d4889` under `rgba(255,255,255,0.08)` ≈ `#3a548d` | ≈ 9.7:1 | ✅ Pass |
 | Chevron, base | `foreground.static.neutral.mono` → `#ffffff` | (as label, base) | ≈ 10.4:1 | ✅ Pass (non-text 3:1 minimum) |
-| Trigger border, base | `stroke.action.primary.strong.rest` → `rgba(160,181,230,0.16)` | `#5d7cca` | ≈ 1.4:1 | ❌ Border alone fails 3:1 — relies on fill differentiation; acceptable per WCAG 1.4.11 because the button has a visible fill+text |
+| Trigger border, base | `stroke.action.primary.strong.rest` → `rgba(160,181,230,0.16)` | `#5d7cca` | ≈ 1.4:1 | ❌ Border alone fails 3:1, relies on fill differentiation; acceptable per WCAG 1.4.11 because the button has a visible fill+text |
 | Focus outline | `rgba(255,255,255,0.9)` ≈ `#e6e6e6` | `#2d4889` | ≈ 8.8:1 | ✅ Pass (WCAG 2.4.11 minimum 3:1) |
 
 > ⚠ The trigger border alone is below the 3:1 non-text contrast threshold, but WCAG 1.4.11 only requires 3:1 for UI components that are "essential to understanding". The trigger is essential, but its fill + label + chevron provide sufficient identification at every state. The thin border is decorative.
@@ -516,13 +516,13 @@ All values below use token resolved values on the `TopNav` surface (which resolv
 
 ### 11.7 Reduced motion
 
-When `prefers-reduced-motion: reduce` is set at the shell level, chevron rotation and state transitions render instantly. The reduced-motion behaviour is honoured by the shell's global CSS in `docs/design-system-spec.md` §Motion, not by the component itself — the component just declares the transitions.
+When `prefers-reduced-motion: reduce` is set at the shell level, chevron rotation and state transitions render instantly. The reduced-motion behaviour is honoured by the shell's global CSS in `docs/design-system-spec.md` §Motion, not by the component itself: the component just declares the transitions.
 
 ---
 
 ### 11.8 Figma Accessibility Gaps
 
-The ARIA pattern, keyboard tables, screen reader strings, and contrast ratios all live in this spec (single source of truth). Figma does not need to duplicate them. The items below are genuine Figma gaps — design work that must happen in Figma before production.
+The ARIA pattern, keyboard tables, screen reader strings, and contrast ratios all live in this spec (single source of truth). Figma does not need to duplicate them. The items below are genuine Figma gaps, design work that must happen in Figma before production.
 
 | Gap | Priority | Action needed in Figma |
 |---|---|---|
@@ -570,10 +570,10 @@ Test the trigger at these widths to confirm correct rendering:
 
 ### 12.4 What does NOT change at the breakpoint
 
-- Typography (`Label/Button/S` 14px) — same on both viewports in v1
-- All colour tokens — same dark-mode token set on both viewports
-- Avatar shape (square 4px-radius) — only the dimension changes (24 → 20)
-- Chevron behaviour (rotates 180° on open) — same on both viewports
+- Typography (`Label/Button/S` 14px), same on both viewports in v1
+- All colour tokens, same dark-mode token set on both viewports
+- Avatar shape (square 4px-radius), only the dimension changes (24 → 20)
+- Chevron behaviour (rotates 180° on open), same on both viewports
 
 ### 12.5 Container queries
 
@@ -581,7 +581,7 @@ The trigger does **not** respond to container queries. It responds to viewport w
 
 ---
 
-## 13. Decision tree — when to use / when not to use
+## 13. Decision tree: when to use / when not to use
 
 Use OrgSwitcher when:
 - The signed-in user has access to **more than one** organisation, and the UI needs to make the active org visible and switchable.
@@ -596,7 +596,7 @@ Do NOT use OrgSwitcher when:
 
 ## 14. Usage examples
 
-### Basic — Protestant org with logo
+### Basic: Protestant org with logo
 ```jsx
 <OrgSwitcher
   orgName="Grace Community Church"
@@ -636,7 +636,7 @@ Do NOT use OrgSwitcher when:
 <OrgSwitcher orgName="Grace Community Church" disabled />
 ```
 
-### In context — top-nav shell
+### In context: top-nav shell
 ```jsx
 <header className="top-nav">
   <Logo />
@@ -661,19 +661,19 @@ Do NOT use OrgSwitcher when:
 If you are pointing Claude (or any agent) at this component, hand it:
 
 1. **This spec.** Full path: `components/org-switcher/org-switcher-spec.md`.
-2. **The reference module.** `components/org-switcher/org-switcher.jsx` — the source of truth for implementation.
-3. **The standalone HTML demo.** `components/org-switcher/org-switcher.html` — shows every state in context.
-4. **Storybook stories.** `src/stories/Library/OrgSwitcher/OrgSwitcher.stories.jsx` — shows the component-property surface area.
+2. **The reference module.** `components/org-switcher/org-switcher.jsx`: the source of truth for implementation.
+3. **The standalone HTML demo.** `components/org-switcher/org-switcher.html`, shows every state in context.
+4. **Storybook stories.** `src/stories/Library/OrgSwitcher/OrgSwitcher.stories.jsx`, shows the component-property surface area.
 5. **Figma file key + node ID.** File `3sw45aVcngFAmpbP6cfrXP`, root node `40006819:14583`. The 8 variant node IDs are in §1's table.
 6. **Token files.** The contract is `themes/light.css` + `themes/midnight.css` (colour), `layout.css` (spacing), `type.css` (the type scale), `motion.css`, `breakpoints.css`; `tokens/pathway-design-tokens.json` is the source-of-truth DTCG JSON. `tokens.css` was retired 2026-09-03.
-7. **System-wide spec.** `docs/design-system-spec.md` — defines motion, breakpoints, accessibility minimums.
+7. **System-wide spec.** `docs/design-system-spec.md`, defines motion, breakpoints, accessibility minimums.
 8. **The icon system rule.** All Pathway icons are Material Symbols Rounded. The component already uses `expand_more`. Never look for a custom SVG file for icons.
 
-If the agent is building a downstream consumer (a top-nav shell, a settings page mock), hand it just this spec plus the manifest entry — the component is published as part of `@helloimjolopez-pathway/pathway-tokens` and can be imported.
+If the agent is building a downstream consumer (a top-nav shell, a settings page mock), hand it just this spec plus the manifest entry: the component is published as part of `@helloimjolopez-pathway/pathway-tokens` and can be imported.
 
 ---
 
-## 16. Figma gaps — needs design work in Figma
+## 16. Figma gaps: needs design work in Figma
 
 Items here require action in Figma (not the repo) before production. Separate from §17 (deferred decisions).
 
@@ -690,8 +690,8 @@ Items here require action in Figma (not the repo) before production. Separate fr
 
 | Item | Priority | Notes |
 |---|---|---|
-| **Dropdown menu / panel — entire sub-component** | DEFERRED to next version | Out of scope in v1. Remains as it is in production until further notice. The whole panel design (header, search, row layout, module icons, mobile bottom-sheet vs dropdown, dimensions, ARIA pattern, keyboard nav within panel) lands in v2. Placeholder lives in the repo so the trigger is testable end-to-end. |
-| CityName.Catholic — product data mapping | HIGH | The product database / API must supply `cityName` AND an `orgType: "catholic"` discriminant. Component renders the CityName container ONLY when `orgType === "catholic"` (see §0.1). Confirm data model with backend. |
+| **Dropdown menu / panel, entire sub-component** | DEFERRED to next version | Out of scope in v1. Remains as it is in production until further notice. The whole panel design (header, search, row layout, module icons, mobile bottom-sheet vs dropdown, dimensions, ARIA pattern, keyboard nav within panel) lands in v2. Placeholder lives in the repo so the trigger is testable end-to-end. |
+| CityName.Catholic, product data mapping | HIGH | The product database / API must supply `cityName` AND an `orgType: "catholic"` discriminant. Component renders the CityName container ONLY when `orgType === "catholic"` (see §0.1). Confirm data model with backend. |
 | Single-org disabled state visual | MEDIUM | Current implementation: trigger at 50% opacity, inert. Confirm this matches design intent or whether a dedicated treatment is wanted. |
 | Org switch confirmation toast / live region | MEDIUM | When the panel ships, decide whether selecting a new org fires a toast/live-region announcement. Affects §11.5. |
 
@@ -702,11 +702,11 @@ Items here require action in Figma (not the repo) before production. Separate fr
 A condensed playbook for an AI agent asked to implement (or re-implement) this component from scratch.
 
 1. **Read this spec end-to-end** before opening any file. Especially §0 (scope), §0.1 (Catholic rule), §11 (a11y), §16 (Figma gaps that mean Figma may not match this spec yet).
-2. **Read `docs/design-system-spec.md`** for system-wide motion, breakpoints, a11y minimums. Inherit those — don't redefine.
+2. **Read `docs/design-system-spec.md`** for system-wide motion, breakpoints, a11y minimums. Inherit those: don't redefine.
 3. **Pull live Figma context.** Use `mcp__c5ffa7b0__get_design_context`, `get_metadata`, `get_variable_defs`, `get_screenshot` for every variant node listed in §1. **Never implement from memory or a sandbox prototype** (CLAUDE.md §10 rule #15).
 4. **Confirm the token set is current** by running `/pathway:tokens-sync` first. Stale tokens make every visual wrong.
 5. **Implement the trigger only.** Do NOT design or implement the panel. If a panel placeholder is needed for demo purposes, make it visibly non-normative (label it "placeholder, out of scope in v1").
-6. **Enforce the Catholic rule in code,** not in data validation: `const showCityName = orgType === "catholic" && Boolean(cityName);` — the gate must live in the component, not in the consumer.
+6. **Enforce the Catholic rule in code,** not in data validation: `const showCityName = orgType === "catholic" && Boolean(cityName);`: the gate must live in the component, not in the consumer.
 7. **`mobile` is tristate.** `true` forces mobile, `false` forces desktop, `undefined` auto-detects.
 8. **Use `box-sizing: border-box` on every nested container.** Padding inside declared dimensions, not added to them. Avoids the avatar-overflow bug that bit v1's first pass.
 9. **Add the intermediate `flex flex-row items-center self-stretch` wrapper** around `Container.RowStart`. Figma autolayout has this; it's easy to skip in code and the layout subtly breaks.
@@ -718,32 +718,29 @@ A condensed playbook for an AI agent asked to implement (or re-implement) this c
 
 ## 19. Storybook
 
-Stories at `src/stories/Library/OrgSwitcher/`. Canonical structure mirrors `src/stories/Library/SideNav/SideNav.stories.jsx`: only a handful of interactive stories appear in the left sidebar, and all reference/documentation stories use `tags: ["!dev"]` to hide from the sidebar while remaining embeddable in the Docs MDX page via `<Canvas of={Stories.X} />`.
+Sidebar-visible, matching the untagged exports in `OrgSwitcher.stories.jsx` exactly:
 
-### Sidebar entries (4 total — matches SideNav's pattern)
+| Export | Name |
+|---|---|
+| `StateMatrix` | StateMatrix |
+| `AvatarExplorer` | AvatarExplorer |
+| `DesktopVariants` | DesktopVariants |
+| `CatholicVsProtestant` | CatholicVsProtestant |
+| `Truncation` | Truncation |
+| `Mobile` | Mobile |
+| `TokensFill` | TokensFill |
+| `TokensStroke` | TokensStroke |
+| `TokensForeground` | TokensForeground |
+| `TokensTypography` | TokensTypography |
+| `TokensSpacing` | TokensSpacing |
+| `TokensMotion` | TokensMotion |
+| `TokensRadius` | TokensRadius |
+| `OpenPanel` | OpenPanel |
 
-| Story | Story ID | What it demonstrates |
-|---|---|---|
-| Docs | `library-orgswitcher--docs` | The MDX docs page — contains the spec content, all tokens, accessibility, responsive behaviour |
-| Playground | `library-orgswitcher--playground` | Full Controls panel — every prop interactive |
-| Mobile | `library-orgswitcher--mobile` | 108px-fixed pills with truncated labels — logo + no-logo |
-| Avatar Explorer | `library-orgswitcher--avatar-explorer` | Logo on file vs church SVG placeholder, isolated |
+Deployed at `https://helloimjolopez-collab.github.io/pathway-ds/storybook/`.
 
-### Hidden stories — referenced from the Docs MDX page only (`tags: ["!dev"]`)
-
-These exist as exports so the Docs MDX page can embed them with `<Canvas of={Stories.X} />`, but they do not clutter the sidebar.
-
-- `StateMatrix` — all interaction states on desktop + mobile
-- `DesktopVariants` — captions mirror HTML demo: logo on file / no logo / open
-- `CatholicVsProtestant` — Catholic shows `| Knoxville`; Protestant with `cityName="Atlanta"` shows NO city container (spec §0.1)
-- `Truncation` — short / medium / long
-- `TokensFill`, `TokensStroke`, `TokensText`, `TokensIcon`, `TokensTypography`, `TokensSpacing`, `TokensMotion`, `TokensRadius` — one per token category used by the component
-
-### Standalone HTML demo — not a story
-
-The standalone HTML demo (`components/org-switcher/org-switcher.html`) is **NOT** exported as a story. It lives only as a link in the Resources table at the top of the Docs MDX page (and in the Resources table at the top of this spec). Embedding it as a story added noise to the sidebar with no value.
-
-MDX docs page: `library-orgswitcher--docs`. Live URL: [storybook?path=/docs/library-orgswitcher--docs](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-orgswitcher--docs).
+> Corrected 2026-10-07. The previous version described a four-entry sidebar and listed the hidden stories in prose. It omitted `AvatarExplorer`, `TokensForeground` and `OpenPanel`, and counted the Docs page as a story. `npm run check-spec-stories` now fails
+> on a spec that disagrees with its stories file.
 
 ---
 
@@ -755,7 +752,7 @@ Hard rules that must not be broken:
 2. **No text initials in the placeholder.** Always use the church SVG (`CHURCH_ICON_PATH`).
 3. **`Container.OrgName` max-width is 180px (max), not fixed.** The container shrinks to fit short org names; long names truncate with ellipsis. Never apply `width: 180px`.
 4. **Mobile root is fixed `width: 108px`.** Outer wrapper has asymmetric padding (`px:2 py:4`).
-5. **Mobile label container is fixed `width: 50px`.** The full org name truncates inside it visually — never abbreviate.
+5. **Mobile label container is fixed `width: 50px`.** The full org name truncates inside it visually: never abbreviate.
 6. **No raw hex or primitive token references** in component code. Every colour resolves through a semantic token (CLAUDE.md §6).
 7. **Mobile and desktop use the same `Label/Button/S` (14px) typography in v1.**
 8. **`mobile` prop is tristate.** `true` forces mobile, `false` forces desktop, `undefined` auto-detects. Never coerce to a plain boolean.

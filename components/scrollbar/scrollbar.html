@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Pathway — Scrollable (overlay scrollbar)</title>
+<title>Pathway, Scrollable (overlay scrollbar)</title>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 <!-- Proven CDN setup (matches sidenav.html): cdnjs React 18 + babel-standalone 7.23.2.
      The unpkg @babel/standalone "latest" build does not reliably auto-run text/babel here. -->
@@ -41,9 +41,9 @@
            /* elevated, NOT canvas: this is a surface sitting on the page. */
            overflow: hidden; background: var(--semantic-color-fill-surface-elevated); }
   .item { padding: 10px 16px; font-size: 14px; border-bottom: 1px solid var(--semantic-color-stroke-static-neutral-faint); white-space: nowrap; }
-  /* The one rule the overlay scrollbar relies on — hide the native bar on the scroll view. */
+  /* The one rule the overlay scrollbar relies on, hide the native bar on the scroll view. */
   .pds-scrollable__view { scrollbar-width: none; -ms-overflow-style: none; }
-  .pds-scrollable__view::-webkit-scrollbar { width: 0; height: 0; display: none; }
+  .pds-scrollable__view:-webkit-scrollbar { width: 0; height: 0; display: none; }
   /* Touch: disable the mouse grab strip so finger-swipes scroll the content (passive bar). */
   @media (hover: none) { .pds-scrollable__grab { pointer-events: none !important; } }
 </style>
@@ -134,20 +134,20 @@ function Scrollable({ children, style = {}, viewStyle = {} }) {
 }
 
 const Rows = ({ n }) => Array.from({ length:n }, (_, i) =>
-  <div className="item" key={i}>Row {i+1} — scroll to see the overlay thumb</div>);
+  <div className="item" key={i}>Row {i+1}: scroll to see the overlay thumb</div>);
 
 function App() {
   return (
     <div className="wrap">
-      <div className="title">Scrollable — overlay scrollbar</div>
-      <div className="sub">Hidden native bar + liquid-glass thumb (tokenised colour + units). Identical on macOS, Windows, iOS, Android. Overlay — never takes layout width.</div>
+      <div className="title">Scrollable: overlay scrollbar</div>
+      <div className="sub">Hidden native bar + liquid-glass thumb (tokenised colour + units). Identical on macOS, Windows, iOS, Android. Overlay: never takes layout width.</div>
       <div className="row">
         <div>
           <p className="label">Overflowing (hover / scroll to reveal)</p>
           <div className="frame"><Scrollable style={{ height:"100%" }}><Rows n={40} /></Scrollable></div>
         </div>
         <div>
-          <p className="label">Not overflowing — same padding, no shift</p>
+          <p className="label">Not overflowing: same padding, no shift</p>
           <div className="frame"><Scrollable style={{ height:"100%" }}><Rows n={4} /></Scrollable></div>
         </div>
       </div>

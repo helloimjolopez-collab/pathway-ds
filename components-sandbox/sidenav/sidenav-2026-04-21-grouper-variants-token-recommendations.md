@@ -1,4 +1,4 @@
-# SideNav Grouper Variants — Token Recommendations
+# SideNav Grouper Variants, Token Recommendations
 
 **Prototype:** `sidenav-2026-04-21-grouper-variants.html`
 **Grounding:** `tokens/pathway-design-tokens.json` @ `98ee386`
@@ -24,14 +24,14 @@ text.contextual.section-label.base   → {primitive-color.cool-neutral.150}  (#4
 text.contextual.section-label.hover  → {primitive-color.cool-neutral.170}  (#363636)
 ```
 
-Naming is open — `section-label` matches what the prototype renders; `eyebrow` is a common alternative used in other design systems.
+Naming is open, `section-label` matches what the prototype renders; `eyebrow` is a common alternative used in other design systems.
 
 ### Why add it
 
 The prototype currently uses `text.static.secondary.base` for the grouper label. That works visually (correct muted gray), but the semantic is a loose match:
 
 - `text.static.secondary.*` is a **tonal role** (secondary vs. primary vs. tertiary emphasis). It tells you *how loud* the text is relative to other text.
-- A section label is a **use-case role**. It tells you *what the text is for* — a category header introducing a group of items.
+- A section label is a **use-case role**. It tells you *what the text is for*: a category header introducing a group of items.
 
 A component author reading `text.static.secondary.base` on a grouper cannot tell whether that was a deliberate choice or the closest-available token. A dedicated `text.contextual.section-label.base` removes that ambiguity and lets section labels evolve independently of "secondary body text" if the system ever needs to pull them apart (e.g. change section-label color in dark mode without changing all secondary body text).
 
@@ -41,8 +41,8 @@ A component author reading `text.static.secondary.base` on a grouper cannot tell
 
 The system already distinguishes two branches under each color family:
 
-- `text.static.*` — tonal roles (primary, secondary, info, warning, neutral, etc.). Values are role-based and component-agnostic.
-- `text.contextual.*` — use-case semantics tied to specific components or contexts (navitem is the only existing example).
+- `text.static.*`, tonal roles (primary, secondary, info, warning, neutral, etc.). Values are role-based and component-agnostic.
+- `text.contextual.*`, use-case semantics tied to specific components or contexts (navitem is the only existing example).
 
 A `section-label` semantic belongs under `contextual`, not `static`, because it is a use-case (a specific element type in a specific layout pattern), not a tonal role. The existing `text.contextual.navitem.*` family is the closest precedent.
 
@@ -77,7 +77,7 @@ The prototype currently uses `semantic-type.desktop.label.dense.s.semibold`. The
 - `semantic-type.desktop.label.*` in the current system covers **form-field labels, button labels, and input labels**. It is a family of semantics for *controls*.
 - A section label is a **structural element**, not a control label. It introduces and groups controls; it is not one.
 
-A `section-label` typography family makes the distinction explicit and lets the two evolve independently. If the design system ever increases the density or weight of form-field labels (a very common evolution — think shrinking label sizes as forms get denser), section labels should not change in lockstep.
+A `section-label` typography family makes the distinction explicit and lets the two evolve independently. If the design system ever increases the density or weight of form-field labels (a very common evolution, think shrinking label sizes as forms get denser), section labels should not change in lockstep.
 
 ### Does this match the current token architecture?
 
@@ -109,7 +109,7 @@ If `section-label` ends up duplicating something that already exists under `sect
 ### Proposed token
 
 ```
-primitive-type.letter-spacing.caps  → 0.3   (or 0.4 — to be tuned against a specimen)
+primitive-type.letter-spacing.caps  → 0.3   (or 0.4, to be tuned against a specimen)
 ```
 
 ### Why add it
@@ -123,7 +123,7 @@ The system has four letter-spacing primitives today:
 | `wide` | 0.1 |
 | `extrawide` | 0.6 |
 
-The gap between `wide` (0.1) and `extrawide` (0.6) is six times the size of the gap between `standard` and `wide`. For all-caps text at 10–12px, typographic convention calls for ~0.3–0.5px of tracking to improve legibility (letters crowd visually when their space is inherited from proportional lowercase defaults). Today the prototype uses `wide` because `extrawide` is visibly too loose.
+The gap between `wide` (0.1) and `extrawide` (0.6) is six times the size of the gap between `standard` and `wide`. For all-caps text at 10 to 12px, typographic convention calls for ~0.3 to 0.5px of tracking to improve legibility (letters crowd visually when their space is inherited from proportional lowercase defaults). Today the prototype uses `wide` because `extrawide` is visibly too loose.
 
 Adding a mid-tier value closes the gap without forcing designers to choose between under-tuned and over-tuned.
 
@@ -152,7 +152,7 @@ component.sidenav.grouper-row.min-height  → 32  (composed from 8 + 16 + 8)
 OR
 
 ```
-layout.row.compact.height  → 32  (generic — usable by any non-interactive compact row)
+layout.row.compact.height  → 32  (generic, usable by any non-interactive compact row)
 ```
 
 Either location works. The second is more reusable. The first is more discoverable if a future reader is looking at SideNav-specific tokens.
@@ -174,13 +174,13 @@ Using `touchtarget.optimal` for a grouper would be wrong (it inflates a visual s
 
 The current token file has three spacing-adjacent namespaces:
 
-- `primitive-unit.unit.*` — raw spacing scale (4, 8, 12, 16, 24, 32, …). This is a pure numeric scale, no semantics.
-- `accessibility.touchtarget.*` — touch-target sizes (optimal, minimum). Semantic, accessibility-driven.
-- Component-specific constants live in `<component>.jsx` files as `L.*` layout constants — not tokens.
+- `primitive-unit.unit.*`, raw spacing scale (4, 8, 12, 16, 24, 32, …). This is a pure numeric scale, no semantics.
+- `accessibility.touchtarget.*`, touch-target sizes (optimal, minimum). Semantic, accessibility-driven.
+- Component-specific constants live in `<component>.jsx` files as `L.*` layout constants: not tokens.
 
 There is **no existing "layout row height" semantic** in the token file. Layout constants today are all per-component JavaScript constants. Adopting a `component.sidenav.grouper-row.min-height` or `layout.row.compact.height` token would establish a new pattern in the token file.
 
-This is neither aligned nor misaligned with the current architecture — it is additive to a pattern that does not yet exist.
+This is neither aligned nor misaligned with the current architecture: it is additive to a pattern that does not yet exist.
 
 ### Does it contradict?
 

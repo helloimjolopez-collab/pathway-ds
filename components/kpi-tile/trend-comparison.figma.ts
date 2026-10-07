@@ -15,6 +15,17 @@ import figma from "figma"
 // Mapping it to Change rather than leaving it unmapped means a designer who
 // selects this in the dev panel gets the code that produces it, instead of
 // nothing.
+//
+// ON LIGHT AND MIDNIGHT: this is a code snippet, not a render, so flipping the
+// mode in Figma cannot change it, and nothing is wrong when it does not. What
+// responds at runtime is that every colour resolves through a MODE-AGNOSTIC
+// token name, switched by a `data-theme` ancestor rather than by a different
+// token:
+//
+//   <div data-theme="midnight">  ...the same markup, Midnight values...
+//
+// No component names a mode. `--semantic-color-light-mode-*` is the retired
+// form and resolves to nothing. See src/tokens/themes/.
 
 export default {
   id: "TrendComparisonControl",

@@ -1,5 +1,5 @@
 /**
- * <pathway-sidenav> — the Pathway side nav as a framework-agnostic custom element.
+ * <pathway-sidenav>: the Pathway side nav as a framework-agnostic custom element.
  *
  * WHY THIS EXISTS
  *
@@ -65,7 +65,7 @@ const SHADOW_CSS = `
 :host { display: block; height: 100%; }
 :host([hidden]) { display: none; }
 
-/* INHERITANCE FIREWALL — do not remove.
+/* INHERITANCE FIREWALL: do not remove.
    Added 2026-09-10 after measuring, not assuming.
 
    Shadow DOM blocks SELECTORS from reaching in. It does NOT block INHERITANCE.
@@ -134,7 +134,7 @@ const SHADOW_CSS = `
 
    Only inherited properties are set below. Setting anything else would be this
    component reaching into markup it does not own. */
-::slotted(*) {
+:slotted(*) {
   font-family: var(--semantic-type-family-brand), system-ui, sans-serif;
   font-size: var(--semantic-type-font-size-s);
   line-height: var(--semantic-type-line-height-s-single);

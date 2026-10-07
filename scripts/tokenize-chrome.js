@@ -1,5 +1,5 @@
 /**
- * tokenize-chrome.js — replace raw colour values in demo and story CHROME with
+ * tokenize-chrome.js, replace raw colour values in demo and story CHROME with
  * semantic tokens, choosing the token by ROLE and then snapping to the nearest
  * rung of the ladder that role selects.
  *

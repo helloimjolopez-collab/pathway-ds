@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NavShell — Pathway Design System</title>
+  <title>NavShell, Pathway Design System</title>
 
-  <!-- Pathway tokens — all semantic CSS variables -->
+  <!-- Pathway tokens: all semantic CSS variables -->
   <link rel="stylesheet" href="../../src/tokens/primitives.css" />
   <link rel="stylesheet" href="../../src/tokens/themes/light.css" />
   <link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
@@ -26,7 +26,7 @@
   }
 
     /* ── Reset ─────────────────────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body, #root {
   /* Match Figma's text rendering. Without these, Medium (500) renders visibly
      heavier in a browser than it does in Figma, and a designer comparing the two
@@ -43,7 +43,7 @@
       line-height: 1; display: block; user-select: none; flex-shrink: 0;
     }
 
-    /* ── Shell layout — exact from Figma node 40007205:9912 ─────────────────
+    /* ── Shell layout, exact from Figma node 40007205:9912 ─────────────────
        TopNav: fixed, full width, 56px
        SideNav: fixed, left, top 56px, 240px expanded / 72px collapsed
        Main: margin-left matches SideNav width, overflow-y scroll
@@ -115,10 +115,10 @@
       padding: 8px 0 56px;
       display: flex; flex-direction: column; gap: 6px; /* menuGap=6 */
     }
-    .nav-menu::-webkit-scrollbar { width: 4px; }
-    .nav-menu::-webkit-scrollbar-track { background: transparent; }
-    .nav-menu::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
-    .nav-menu:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); }
+    .nav-menu:-webkit-scrollbar { width: 4px; }
+    .nav-menu:-webkit-scrollbar-track { background: transparent; }
+    .nav-menu:-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
+    .nav-menu:hover:-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); }
 
     /* SectionLabel */
     .nav-section-label {
@@ -152,8 +152,8 @@
       color: var(--semantic-color-foreground-action-primary-on-subtle-rest);
       font-weight: 500;
     }
-    /* Indicator stripe — 4px at SideNav left edge */
-    .nav-item.active::before {
+    /* Indicator stripe, 4px at SideNav left edge */
+    .nav-item.active:before {
       content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
       width: 4px; height: 24px; border-radius: 0 4px 4px 0;
       background: var(--semantic-color-foreground-action-primary-on-subtle-rest);
@@ -164,7 +164,7 @@
     }
     .nav-item__label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 
-    /* Collapsed rail — icon centered, no labels */
+    /* Collapsed rail, icon centered, no labels */
     .sidenav.collapsed .nav-item {
       justify-content: center; padding: 0; gap: 0;
     }
@@ -174,7 +174,7 @@
     .sidenav.collapsed .nav-section-label {
       opacity: 0; height: 0; min-height: 0; margin: 0; padding: 0;
     }
-    .sidenav.collapsed .nav-item.active::before {
+    .sidenav.collapsed .nav-item.active:before {
       left: 0;
     }
 
@@ -186,7 +186,7 @@
       background: var(--semantic-color-foreground-static-neutral-subtle); color: var(--semantic-color-foreground-static-neutral-mono); font-size: 12px; font-weight: 500;
       padding: 4px 8px; border-radius: 4px; white-space: nowrap; pointer-events: none;
     }
-    .nav-tooltip::before {
+    .nav-tooltip:before {
       content: ''; position: absolute; right: 100%; top: 50%; transform: translateY(-50%);
       border: 4px solid transparent; border-right-color: var(--semantic-color-foreground-static-neutral-subtle);
     }
@@ -227,7 +227,7 @@
       color: var(--semantic-color-foreground-action-primary-on-subtle-rest);
       font-weight: 600;
     }
-    .page-tab.active::after {
+    .page-tab.active:after {
       content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
       height: 2px; border-radius: 2px 2px 0 0;
       background: var(--semantic-color-fill-action-primary-strong-rest);
@@ -243,7 +243,7 @@
     /* ── PageHeading (Container.PageHeading) ─────────────────────────────────
        Figma: height=84, pt=8, pb=16
        LeadingSlot: width=160, height=60
-       TrailingSlot: x=790, width=334, height=44 — two PW_Button instances
+       TrailingSlot: x=790, width=334, height=44: two PW_Button instances
     ───────────────────────────────────────────────────────────────────────── */
     .page-heading {
       display: flex; align-items: flex-start; justify-content: space-between;
@@ -260,7 +260,7 @@
     }
     .page-heading__actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
-    /* PW_Button — from button.jsx token values
+    /* PW_Button, from button.jsx token values
        Figma TrailingSlot: button1=173px (Outlined Secondary), button2=153px (Fill Primary)
     */
     .btn {
@@ -298,7 +298,7 @@
     }
     .toolbar__leading { display: flex; align-items: center; gap: 24px; flex: 1; min-width: 0; }
 
-    /* Search bar — Figma: width=400, border-radius 6px (confirmed from spec) */
+    /* Search bar, Figma: width=400, border-radius 6px (confirmed from spec) */
     .toolbar__search {
       display: flex; align-items: center; gap: 8px;
       width: 400px; min-width: 200px; max-width: 400px;
@@ -317,11 +317,11 @@
       line-height: 22px; letter-spacing: 0.1px;
       color: var(--semantic-color-foreground-static-neutral-base);
     }
-    .toolbar__search input::placeholder {
+    .toolbar__search input:placeholder {
       color: var(--semantic-color-foreground-static-neutral-base);
     }
 
-    /* FilterChips — Figma: each 60px wide, gap=8px, touch target 48px */
+    /* FilterChips, Figma: each 60px wide, gap=8px, touch target 48px */
     .filter-chips { display: flex; align-items: center; gap: 8px; }
     .filter-chip {
       display: inline-flex; align-items: center; justify-content: center;
@@ -352,7 +352,7 @@
     ───────────────────────────────────────────────────────────────────────── */
     .section { display: flex; flex-direction: column; padding: 4px 0 16px; }
 
-    /* SectionHeading — Container.SectionHeading: height=22, py=6, total=34 */
+    /* SectionHeading, Container.SectionHeading: height=22, py=6, total=34 */
     .section-heading {
       padding: 6px 0; margin-bottom: 8px;
       font-size: 14px; font-weight: 600; line-height: 22px; letter-spacing: 0.6px;
@@ -360,14 +360,14 @@
       color: var(--semantic-color-foreground-static-neutral-base);
     }
 
-    /* Card grid — Figma: 4 columns × 275px, gap=8px → total 1124px = exact content width */
+    /* Card grid, Figma: 4 columns × 275px, gap=8px → total 1124px = exact content width */
     .card-grid {
       display: grid;
       grid-template-columns: repeat(4, 275px);
       gap: 8px;
     }
 
-    /* Card — Figma: CardContainer
+    /* Card, Figma: CardContainer
        bg: Fill/Static/Neutral/Base = #ffffff
        border: 0.5px contextual.card.border-width, Stroke/Action/Secondary/Rest = #d2d2d2
        border-radius: 8px (contextual.card.cornerradius)
@@ -417,7 +417,7 @@
       overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     }
 
-    /* Badge — Slot.CardSubtitle visible in Section 2
+    /* Badge, Slot.CardSubtitle visible in Section 2
        bg: fill.accent_amethyst.light = #f4f2fa, radius=12px
        text: label.badge.small.medium 11px/500, accent-amethyst.contrast = #221e3f
     */
@@ -451,7 +451,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      *, *:before, *:after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -466,7 +466,7 @@
 
     // ═══════════════════════════════════════════════════════════════════════════
     // SHELL CONFIGURATION
-    // Change this object to customise the entire shell — module, org, nav items,
+    // Change this object to customise the entire shell, module, org, nav items,
     // page content. Nothing else needs to change.
     //
     // Agent usage example:
@@ -486,7 +486,7 @@
         campus: "Knoxville",
         bg:     "var(--semantic-color-fill-surface-chrome)",
         initials: "SH",
-        // logoUrl: "" — omit for org-name-only trigger (DS default)
+        // logoUrl: "", omit for org-name-only trigger (DS default)
       },
       user: {
         name:     "Shelby Martinez",
@@ -518,11 +518,11 @@
     };
 
     // ═══════════════════════════════════════════════════════════════════════════
-    // TOPNAV — exact code from components/top-nav/top-nav.jsx
+    // TOPNAV, exact code from components/top-nav/top-nav.jsx
     // (Import/export statements stripped; otherwise unchanged)
     // ═══════════════════════════════════════════════════════════════════════════
 
-    // Design tokens — from top-nav.jsx T constant
+    // Design tokens, from top-nav.jsx T constant
     const TN = {
       navBg:         "var(--semantic-color-fill-surface-chrome)",
       orgFill:       "rgba(160,181,230,0.04)",
@@ -552,7 +552,7 @@
 // both together: the .jsx is the source of truth.
 
 /**
- * module-icon.jsx — the twelve Amplify module marks.
+ * module-icon.jsx: the twelve Amplify module marks.
  *
  * Generated from the Figma component set Module.Icon (40006876:42134), which
  * carries Module (12) x Style (Base | Rippled) x Color (Full | Mono). This
@@ -596,8 +596,8 @@
  * brand mark rather than a surface. A semantic token would flip with the theme
  * and break the mark. See dist/README.md, "Can I use a primitive?".
  */
-/* BEGIN GENERATED module-icon — npm run sync-demo-module-icon */
-/* Generated from components/module-icon/module-icon.jsx. Do NOT edit here — edit the module and re-run. */
+/* BEGIN GENERATED module-icon, npm run sync-demo-module-icon */
+/* Generated from components/module-icon/module-icon.jsx. Do NOT edit here, edit the module and re-run. */
 const MODULE_IDENTITY = {
   "--module-accounting-base": "var(--primitive-color-saffron-200)",
   "--module-accounting-subtle": "var(--primitive-color-saffron-100)",
@@ -852,7 +852,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
 
 
 
-    // All standard UI icons — Material Symbols Rounded, FILL=0 in TopNav
+    // All standard UI icons, Material Symbols Rounded, FILL=0 in TopNav
     function Icon({ name, size=20, fill=0, color, style:extra={} }) {
       return (
         <span className="material-symbols-rounded" aria-hidden="true" style={{
@@ -1002,7 +1002,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
               </button>
             )}
 
-            {/* ModuleSwitcher — from top-nav.jsx exactly */}
+            {/* ModuleSwitcher, from top-nav.jsx exactly */}
             {(() => {
               const [hov, setHov] = useState(false);
               const showLabel = !isMobile && !isTablet;
@@ -1011,7 +1011,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                   <button onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
                     onClick={() => toggle("module")} aria-haspopup="listbox"
                     aria-expanded={openPanel==="module"}
-                    aria-label={`Switch module — ${config.module.label}`}
+                    aria-label={`Switch module, ${config.module.label}`}
                     style={{ display:"flex", alignItems:"center", maxHeight:36, minHeight:36,
                       padding:4, borderRadius:8,
                       background: openPanel==="module" ? TN.controlPressed : hov ? TN.controlHover : "transparent",
@@ -1065,7 +1065,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
               );
             })()}
 
-            {/* OrgSwitcher — from top-nav.jsx exactly */}
+            {/* OrgSwitcher, from top-nav.jsx exactly */}
             {(() => {
               const [hov, setHov] = useState(false);
               const maxW = isMobile ? 120 : 316;
@@ -1073,7 +1073,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                 <div style={{ position:"relative", padding:isMobile?"4px 2px":4, maxWidth:maxW }}>
                   <button onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
                     onClick={() => toggle("org")} aria-haspopup="true" aria-expanded={openPanel==="org"}
-                    aria-label={`Switch organisation — ${org.name}`}
+                    aria-label={`Switch organisation, ${org.name}`}
                     style={{ display:"flex", alignItems:"center", gap:4, minHeight:36, padding:isMobile?"4px 2px":4,
                       borderRadius:8,
                       background: openPanel==="org" ? TN.controlPressed : hov ? TN.controlHover : TN.orgFill,
@@ -1131,11 +1131,11 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
             })()}
           </div>
 
-          {/* Row End — exact gap=8px from Figma x-coordinates */}
+          {/* Row End, exact gap=8px from Figma x-coordinates */}
           <div style={{ display:"flex", alignItems:"center", gap:8, flexShrink:0 }}>
             <TopNavSearchBar />
 
-            {/* Actions — desktop: 2 bells, tablet+mobile: more_vert */}
+            {/* Actions, desktop: 2 bells, tablet+mobile: more_vert */}
             {(() => {
               const [h0,setH0]=useState(false);
               const [h1,setH1]=useState(false);
@@ -1172,7 +1172,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                   <button onClick={() => toggle("profile")}
                     onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
                     aria-haspopup="true" aria-expanded={openPanel==="profile"}
-                    aria-label={`Account — ${user.name}`}
+                    aria-label={`Account, ${user.name}`}
                     style={{ display:"flex", alignItems:"center", justifyContent:"center",
                       width:44, height:44,
                       background: openPanel==="profile" ? TN.controlPressed : hov ? TN.controlHover : "transparent",
@@ -1225,7 +1225,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
-    // SIDENAV — built from sidenav.jsx token values and logic
+    // SIDENAV, built from sidenav.jsx token values and logic
     // Icons: Material Symbols Rounded, FILL=1 always (spec §11)
     // ═══════════════════════════════════════════════════════════════════════════
 
@@ -1244,7 +1244,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
       sectionText:   "var(--semantic-color-foreground-static-neutral-subtle)",                     // Foreground/Static/Neutral/Base
     };
 
-    // NavHeader collapse button SVG icons — exact from sidenav.jsx
+    // NavHeader collapse button SVG icons, exact from sidenav.jsx
     const RIGHT_PANEL_OPEN = <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 1.5L2.5 10.5M10.5 6L5.5 6M5.5 6L8 3.5M5.5 6L8 8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>;
     const LEFT_PANEL_OPEN  = <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9.5 1.5L9.5 10.5M1.5 6L6.5 6M6.5 6L4 3.5M6.5 6L4 8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 
@@ -1257,7 +1257,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
         <div className={`sidenav ${collapsed ? "collapsed" : "expanded"}`}
           aria-label="Module navigation" role="navigation">
 
-          {/* NavHeader — collapse button at TOP per spec §9 (migration 2026-05-13) */}
+          {/* NavHeader, collapse button at TOP per spec §9 (migration 2026-05-13) */}
           {!isMobile && (
             <div className={`nav-header${collapsed ? " collapsed" : ""}`}>
               <span className={`nav-header__label${collapsed ? " hidden" : ""}`}>
@@ -1287,7 +1287,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                     onClick={() => setActiveId(item.id)}
                   >
                     <span className="nav-item__icon">
-                      {/* FILL=1 always for SideNav icons — spec §11 */}
+                      {/* FILL=1 always for SideNav icons, spec §11 */}
                       <span className="material-symbols-rounded" aria-hidden="true"
                         style={{
                           fontSize: 20, lineHeight:1, display:"block", userSelect:"none",
@@ -1315,7 +1315,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
     // They will become standalone DS components in future pipeline runs.
     // ═══════════════════════════════════════════════════════════════════════════
 
-    // Content data — replace with real data in production
+    // Content data, replace with real data in production
     const SECTION_1_CARDS = [
       { id:1, icon:"receipt_long", iconVariant:"accent",   title:"Outstanding Bills",   body:"12 bills totaling $24,580 awaiting approval before the end of the month." },
       { id:2, icon:"schedule",     iconVariant:"warning",  title:"Overdue Payments",    body:"3 vendor payments are past due. Oldest is 14 days overdue." },
@@ -1324,10 +1324,10 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
     ];
 
     const SECTION_2_CARDS = [
-      { id:5, icon:"description",  iconVariant:"accent",   title:"Invoice #2847",    badge:"Pending approval", badgeVariant:"default", body:"Sacred Heart Supplies — $4,200 due in 7 days." },
-      { id:6, icon:"description",  iconVariant:"warning",  title:"Invoice #2831",    badge:"Overdue",          badgeVariant:"positive", body:"Office Pro — $1,850 was due 5 days ago." },
-      { id:7, icon:"description",  iconVariant:"info",     title:"Invoice #2845",    badge:"Processing",       badgeVariant:"default", body:"Ministry Media — $8,900 payment in progress." },
-      { id:8, icon:"description",  iconVariant:"accent",   title:"Invoice #2848",    badge:"Pending approval", badgeVariant:"default", body:"Church Supplies Co — $1,200 due in 14 days." },
+      { id:5, icon:"description",  iconVariant:"accent",   title:"Invoice #2847",    badge:"Pending approval", badgeVariant:"default", body:"Sacred Heart Supplies, $4,200 due in 7 days." },
+      { id:6, icon:"description",  iconVariant:"warning",  title:"Invoice #2831",    badge:"Overdue",          badgeVariant:"positive", body:"Office Pro, $1,850 was due 5 days ago." },
+      { id:7, icon:"description",  iconVariant:"info",     title:"Invoice #2845",    badge:"Processing",       badgeVariant:"default", body:"Ministry Media, $8,900 payment in progress." },
+      { id:8, icon:"description",  iconVariant:"accent",   title:"Invoice #2848",    badge:"Pending approval", badgeVariant:"default", body:"Church Supplies Co, $1,200 due in 14 days." },
     ];
 
     function ScreenTemplate({ page, activeTab, onTabChange, activeFilter, onFilterChange }) {
@@ -1335,7 +1335,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
 
       return (
         <div className="screen">
-          {/* Tabs — Slot.PageNavigation */}
+          {/* Tabs, Slot.PageNavigation */}
           {page.tabs && page.tabs.length > 0 && (
             <div className="page-tabs" role="tablist" aria-label="Page sections">
               {page.tabs.map((tab, i) => (
@@ -1350,7 +1350,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
           )}
 
           <div className="screen-content">
-            {/* PageHeading — Container.PageHeading
+            {/* PageHeading, Container.PageHeading
                 LeadingSlot: width=160, height=60 (title + subtitle)
                 TrailingSlot: x=790, two PW_Button instances (Outlined + Filled) */}
             <div className="page-heading">
@@ -1360,7 +1360,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                   <p className="page-heading__subtitle">{page.subtitle}</p>
                 )}
               </div>
-              {/* Two buttons from Figma TrailingSlot — Outlined Secondary + Fill Primary */}
+              {/* Two buttons from Figma TrailingSlot, Outlined Secondary + Fill Primary */}
               <div className="page-heading__actions">
                 <button className="btn btn--outlined">
                   Export report
@@ -1376,12 +1376,12 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
               </div>
             </div>
 
-            {/* Toolbar — Container.ToolBar
+            {/* Toolbar, Container.ToolBar
                 Figma: Leading = SearchBar(400px) + FilterChips(264px), Trailing = empty
             */}
             <div className="toolbar" style={{ marginBottom: 16 }}>
               <div className="toolbar__leading">
-                {/* SearchBar — 400px, border-radius 6px (confirmed from Figma spec) */}
+                {/* SearchBar, 400px, border-radius 6px (confirmed from Figma spec) */}
                 <div className="toolbar__search">
                   <span className="material-symbols-rounded" aria-hidden="true"
                     style={{ fontSize:16, fontVariationSettings:"'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 20",
@@ -1409,7 +1409,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                   )}
                 </div>
 
-                {/* FilterChips — 4 chips × 60px + 8px gaps = 264px total */}
+                {/* FilterChips, 4 chips × 60px + 8px gaps = 264px total */}
                 <div className="filter-chips" role="group" aria-label="Filter options">
                   {page.toolbar.filters.map((filter, i) => (
                     <button key={i}
@@ -1421,12 +1421,12 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                   ))}
                 </div>
               </div>
-              {/* TrailingSlot intentionally empty — matches Figma */}
+              {/* TrailingSlot intentionally empty, matches Figma */}
             </div>
 
             {/* Section Container */}
             <div className="section-container">
-              {/* Section 1 — 4 cards without badge, height=116px */}
+              {/* Section 1 to 4 cards without badge, height=116px */}
               <div className="section">
                 <div className="section-heading">Overview</div>
                 <div className="card-grid">
@@ -1453,7 +1453,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                 </div>
               </div>
 
-              {/* Section 2 — 4 cards with badge, height=148px */}
+              {/* Section 2 to 4 cards with badge, height=148px */}
               <div className="section">
                 <div className="section-heading">Recent invoices</div>
                 <div className="card-grid">
@@ -1472,7 +1472,7 @@ function ModuleIcon({ module, size = VIEWBOX, color = "two-color", treatment = "
                         </div>
                         <span className="card__title">{card.title}</span>
                       </div>
-                      {/* Badge — Slot.CardSubtitle visible in Section 2 */}
+                      {/* Badge, Slot.CardSubtitle visible in Section 2 */}
                       <div>
                         <span className={`card__badge${card.badgeVariant==="positive" ? " card__badge--positive" : ""}`}>
                           {card.badge}

@@ -233,7 +233,7 @@ mangled in transit, which is why this is not really TSV despite the extension.
 Fill/Action/Primary/Strong/Rest|@Brand/450         alias, @-prefixed
 Cool Neutral/0 @ 6%|#ffffff/0.06            alpha as hex/float
 ~FLOAT|Weight/400|400                       per-row type, MIXED collections only
-Font Size/R|@Primitive: Type::Size/16       collection-qualified alias
+Font Size/R|@Primitive: Type:Size/16       collection-qualified alias
 ```
 
 Two of those spellings exist because of bugs found on 2026-09-14, and both are
@@ -242,12 +242,12 @@ worth knowing before you write a dumper:
 - **`MIXED` and the `~TYPE|` row prefix.** `#M` used to give a whole collection
   one type taken from its first variable. `Primitive: Type` is 5 STRING and 74
   FLOAT, `Semantic: Type` is 1 STRING and 40 FLOAT, and in both the first
-  variable is `Family/Brand` — a STRING. So 114 numbers were typed as strings,
+  variable is `Family/Brand`: a STRING. So 114 numbers were typed as strings,
   Style Dictionary's px transform skipped them, and the CSS read
   `letter-spacing: 0.3` and `line-height: 48`. Unitless. A browser drops the
   first and reinterprets the second as a ratio. It built clean and passed every
   checker.
-- **`@<collection>::<name>`.** A Figma variable name is unique only *within* a
+- **`@<collection>:<name>`.** A Figma variable name is unique only *within* a
   collection, and three names (`Family/Brand`, `Letter Spacing/Compact`,
   `Letter Spacing/Wide`) exist in both type collections. A bare alias to one of
   those is ambiguous; the assembler now refuses it rather than guessing.
@@ -298,9 +298,9 @@ Two workflows each owning a counter is how registries drift apart.
 
 Choosing a bump:
 
-- **patch** — token values changed, no names added or removed
-- **minor** — tokens added
-- **major** — tokens renamed or removed, which breaks consumers
+- **patch**, token values changed, no names added or removed
+- **minor**, tokens added
+- **major**, tokens renamed or removed, which breaks consumers
 
 ---
 

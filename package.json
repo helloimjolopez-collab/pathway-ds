@@ -1,7 +1,7 @@
 {
   "name": "@helloimjolopez-pathway/pathway-tokens",
   "version": "11.1.0",
-  "description": "Pathway Design System tokens — CSS custom properties, JS export, and DTCG JSON",
+  "description": "Pathway Design System tokens, CSS custom properties, JS export, and DTCG JSON",
   "license": "UNLICENSED",
   "type": "module",
   "engines": {
@@ -62,7 +62,7 @@
     "fix-tokens": "node scripts/fix-tokens.js",
     "fix-tokens-preview": "node scripts/fix-tokens.js --dry-run",
     "build-tokens": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/stamp-headers.js",
-    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/stamp-headers.js && node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js && node scripts/check-token-object-refs.js && node scripts/fix-stale-doc-hex.js --check && node scripts/check-state-distinctness.js && node scripts/check-ladder-order.js && node scripts/check-variant-distinctness.js && node scripts/check-fill-foreground-pairs.js && node scripts/check-story-yield.js && node scripts/check-motion-coverage.js && node scripts/build-dist.js && node scripts/build-index.js && node scripts/build-contract.js && npm run build-elements && npm run sync-demo-module-icon",
+    "build-dist": "node scripts/sync-motion-tokens.js && node style-dictionary.config.js && node scripts/stamp-headers.js && node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js && node scripts/check-token-object-refs.js && node scripts/fix-stale-doc-hex.js --check && node scripts/check-state-distinctness.js && node scripts/check-ladder-order.js && node scripts/check-variant-distinctness.js && node scripts/check-fill-foreground-pairs.js && node scripts/check-story-yield.js && node scripts/check-motion-coverage.js && node scripts/check-spec-stories.js && node scripts/check-code-connect.js && node scripts/build-component-index.js --check && node scripts/build-dist.js && node scripts/build-index.js && node scripts/build-contract.js && npm run build-elements && npm run sync-demo-module-icon",
     "storybook": "node style-dictionary.config.js && PATHWAY_BRAND_AXIS=1 storybook dev -p 6006",
     "build-storybook": "storybook build",
     "check-demo-tokens": "node scripts/check-demo-tokens.js",
@@ -74,7 +74,7 @@
     "check-secrets": "node scripts/check-secrets.js",
     "check-token-refs": "node scripts/check-token-refs.js",
     "check-token-names": "node scripts/check-token-names.js",
-    "check-tokens": "node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js && node scripts/check-token-object-refs.js && node scripts/check-story-yield.js && node scripts/fix-stale-doc-hex.js --check && node scripts/check-motion-coverage.js",
+    "check-tokens": "node scripts/check-demo-tokens.js && node scripts/check-token-refs.js && node scripts/check-token-names.js && node scripts/check-token-object-refs.js && node scripts/check-story-yield.js && node scripts/fix-stale-doc-hex.js --check && node scripts/check-motion-coverage.js && node scripts/build-component-index.js --check && node scripts/check-spec-stories.js && node scripts/check-code-connect.js",
     "build-elements": "esbuild components/sidenav/pathway-sidenav.js --bundle --format=esm --minify --loader:.jsx=jsx --jsx=automatic --define:process.env.NODE_ENV='\"production\"' --outfile=dist/pathway-sidenav.js",
     "check-story-yield": "node scripts/check-story-yield.js",
     "stamp-headers": "node scripts/stamp-headers.js",
@@ -85,7 +85,14 @@
     "check-token-object-refs": "node scripts/check-token-object-refs.js",
     "check-motion-coverage": "node scripts/check-motion-coverage.js",
     "sync-demo-module-icon": "node scripts/sync-demo-module-icon.js",
-    "build-storybook:brands": "PATHWAY_BRAND_AXIS=1 storybook build"
+    "build-storybook:brands": "PATHWAY_BRAND_AXIS=1 storybook build",
+    "build-component-index": "node scripts/build-component-index.js",
+    "check-component-index": "node scripts/build-component-index.js --check",
+    "check-spec-stories": "node scripts/check-spec-stories.js",
+    "check-figma-nodes": "node scripts/check-figma-nodes.js",
+    "check-stories-render": "node scripts/check-stories-render.js",
+    "verify-storybook": "storybook build --quiet && node scripts/check-stories-render.js",
+    "check-code-connect": "node scripts/check-code-connect.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.29.2",

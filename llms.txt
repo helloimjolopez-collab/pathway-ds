@@ -1,6 +1,6 @@
 # Pathway Design System
 
-> Pathway is the design system for Ministry Brands Amplify, a church management product. This repo ships React components, design tokens, runnable HTML demos, and an authoritative spec for each component. AI agents consuming this design system MUST use the components, tokens, and motion values documented here — do not invent equivalents.
+> Pathway is the design system for Ministry Brands Amplify, a church management product. This repo ships React components, design tokens, runnable HTML demos, and an authoritative spec for each component. AI agents consuming this design system MUST use the components, tokens, and motion values documented here: do not invent equivalents.
 
 ## Start here
 
@@ -10,17 +10,17 @@
 
 ## Implementation artifacts
 
-To implement any Pathway component correctly, use these — not HTML demos:
+To implement any Pathway component correctly, use these: not HTML demos:
 
 - `.jsx` module: the React component to import (e.g. `components/sidenav/sidenav.jsx`)
 - `src/tokens/`: the token contract, eight CSS files. Load `primitives.css` first, then one theme
-- `tokens/component-token-map.json`: **which CSS variable does each component element use** (card title, nav item, etc.) — eliminates guesswork
+- `tokens/component-token-map.json`: **which CSS variable does each component element use** (card title, nav item, etc.), eliminates guesswork
 - `NAME-spec.md`: rules, props, states, token names
 - One doc per component. There is no `agent-brief.md` and no per-component README: the spec first three sections are the quick answers, and its "Agent implementation rules" section is the paste-friendly brief.
 
 HTML demos (`*.html`) are visual previews for designers. Do not copy implementation from them.
 
-## Navigation shell (always use these — do not reinvent)
+## Navigation shell (always use these: do not reinvent)
 
 - [components/sidenav/sidenav-spec.md](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav-spec.md): The only SideNav doc. Links, icon library and tokens up front; then anatomy, states, accessibility, motion, responsive. Agent rules in section 18.
 - [components/sidenav/sidenav.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/sidenav/sidenav.jsx): React module with named exports (SideNav, SideNavItem, NavSectionLabel, BulletDot, ListItem, SideNavListSection, CollapseButton, etc.).
@@ -52,10 +52,10 @@ HTML demos (`*.html`) are visual previews for designers. Do not copy implementat
 
 ## Icon system
 
-Every icon in Pathway uses **Material Symbols Rounded** — a Google variable font. Rules:
+Every icon in Pathway uses **Material Symbols Rounded**: a Google variable font. Rules:
 
 - CSS class: `material-symbols-rounded`. Never `material-symbols-outlined` or `material-symbols-sharp`.
-- Icon name = the Figma layer's `data-name` attribute (e.g. `search`, `filter_alt`, `expand_more`). Read it from `get_design_context` — never guess from a description.
+- Icon name = the Figma layer's `data-name` attribute (e.g. `search`, `filter_alt`, `expand_more`). Read it from `get_design_context`: never guess from a description.
 - **Font-size tokens are unitless numbers.** `--semantic-type-...-fontsize` resolves to e.g. `16` not `16px`. Use `calc(var(...) * 1px)` in CSS.
 - **Red Hat Display is NOT tokenized.** All type tokens resolve to Red Hat Text. A `--primitive-type-family-display` token needs to be added in Figma. Until then, use Red Hat Text.
 - `FILL` axis is **per-component**: FILL=0 = outlined, FILL=1 = filled. Check the Figma component to determine which. Each component spec documents its FILL value.

@@ -1,9 +1,8 @@
 <!--
-  Pathway Component Spec — TEMPLATE
+  Pathway Component Spec, TEMPLATE
 
   Copy this file to components/<name>/<name>-spec.md and fill in every
-  section. Keep section numbers and headings exactly as they are below —
-  the `/pathway:spec-review` skill parses this structure.
+  section. Keep section numbers and headings exactly as they are below: the `/pathway:spec-review` skill parses this structure.
 
   Prompts in [square brackets] are fill-in hints. Delete them once filled.
 
@@ -11,15 +10,15 @@
   be removed before the spec is considered Reviewed.
 -->
 
-# {Component} — Pathway Design System Component Spec
+# {Component}, Pathway Design System Component Spec
 
 **Status:** `PENDING HUMAN REVIEW`
 <!--
   Valid values (in order of maturity):
-    PENDING HUMAN REVIEW   — draft (Claude-generated or early human-drafted; must not ship)
-    UNDER REVIEW           — Spec Review skill is running; conflicts being resolved
-    REVIEWED               — all conflicts resolved, human sign-off done; ready to consume
-    DEPRECATED             — no longer in the system (keep file for history)
+    PENDING HUMAN REVIEW, draft (Claude-generated or early human-drafted; must not ship)
+    UNDER REVIEW, Spec Review skill is running; conflicts being resolved
+    REVIEWED: all conflicts resolved, human sign-off done; ready to consume
+    DEPRECATED: no longer in the system (keep file for history)
 
   The pipeline skill refuses to run on anything that is not REVIEWED.
 -->
@@ -28,7 +27,7 @@ Complete implementation reference for the {Component} component. Covers anatomy,
 
 ## Links
 <!--
-  CANONICAL STRUCTURE — the Links section is ALWAYS here, at the very top of the
+  CANONICAL STRUCTURE: the Links section is ALWAYS here, at the very top of the
   spec (immediately after the overview), never as a trailing section. Readers and
   agents must reach Figma / Storybook / demo / source without scrolling a long spec.
   Fill every row. Storybook docs slug = library-{name-without-hyphens}--docs.
@@ -45,7 +44,7 @@ Complete implementation reference for the {Component} component. Covers anatomy,
 
 ## 1. Component Overview
 
-[Fill in: 2–4 paragraphs. What the component IS, what it is NOT, which problems it solves, where it fits in the system. Explicitly name the anti-patterns — "this is NOT used for X, Y, Z."]
+[Fill in: 2 to 4 paragraphs. What the component IS, what it is NOT, which problems it solves, where it fits in the system. Explicitly name the anti-patterns, "this is NOT used for X, Y, Z."]
 
 ### Figma source
 
@@ -90,7 +89,7 @@ Complete implementation reference for the {Component} component. Covers anatomy,
 
 ## 3. Design Tokens
 
-[Fill in: every colour, typography, surface, radius, shadow token this component uses. Group by category. Every row must cite a semantic token — never a raw hex, never a primitive. See sidenav-spec §3 for the pattern.]
+[Fill in: every colour, typography, surface, radius, shadow token this component uses. Group by category. Every row must cite a semantic token: never a raw hex, never a primitive. See sidenav-spec §3 for the pattern.]
 
 ### 3.1 Surface
 
@@ -100,7 +99,7 @@ Complete implementation reference for the {Component} component. Covers anatomy,
 
 ### 3.2 Fill
 
-[Repeat for fill states — Base / Hover / Active / etc.]
+[Repeat for fill states, Base / Hover / Active / etc.]
 
 ### 3.3 Text
 
@@ -108,7 +107,7 @@ Complete implementation reference for the {Component} component. Covers anatomy,
 
 ### 3.4 Icon
 
-[Repeat for icon states — if the component has icons.]
+[Repeat for icon states: if the component has icons.]
 
 ### 3.5 Geometry
 
@@ -116,17 +115,17 @@ Complete implementation reference for the {Component} component. Covers anatomy,
 
 ### 3.6 Typography
 
-[Font family, weight, size, line-height, letter-spacing — bound to a `Label/*` or `Text/*` token.]
+[Font family, weight, size, line-height, letter-spacing, bound to a `Label/*` or `Text/*` token.]
 
 ---
 
 ## 4. Layout & Spacing
 
-[Fill in: every spacing value used by the component. Flag any that are **raw** (no semantic token) as a gap. See sidenav-spec §4 — the table includes a "Semantic token" column so gaps are obvious.]
+[Fill in: every spacing value used by the component. Flag any that are **raw** (no semantic token) as a gap. See sidenav-spec §4: the table includes a "Semantic token" column so gaps are obvious.]
 
 | Value | Figma class or raw | px | Semantic token |
 |---|---|---|---|
-| [what it's used for] | `[class]` | [N] | [token path or "**None — raw value**"] |
+| [what it's used for] | `[class]` | [N] | [token path or "**None, raw value**"] |
 
 ---
 
@@ -160,7 +159,7 @@ Complete implementation reference for the {Component} component. Covers anatomy,
 
 ## 7. Sub-components / Decorations
 
-[If applicable — indicator stripes, dividers, badges, anything that sits on or next to the main element.]
+[If applicable, indicator stripes, dividers, badges, anything that sits on or next to the main element.]
 
 ---
 
@@ -175,31 +174,31 @@ Complete implementation reference for the {Component} component. Covers anatomy,
 - [widths / heights per state]
 
 ### 8.3 Transition
-- [duration / easing / properties — must cite motion rules from `docs/design-system-spec.md` §Motion]
+- [duration / easing / properties, must cite motion rules from `docs/design-system-spec.md` §Motion]
 
 ---
 
 ## 9. Interaction / Behaviour
 
-[Fill in: every interaction — click, hover, focus, keyboard, touch. What the component does on each.]
+[Fill in: every interaction: click, hover, focus, keyboard, touch. What the component does on each.]
 
 ---
 
 ## 10. Collapsed / Compact / Variant-specific State
 
-[If applicable — modes where the component renders differently (mobile, collapsed, read-only).]
+[If applicable, modes where the component renders differently (mobile, collapsed, read-only).]
 
 ---
 
 ## 11. Iconography
 
-[If applicable — what icons are used, what shape variant, size.]
+[If applicable: what icons are used, what shape variant, size.]
 
 ---
 
 ## 12. Interaction Patterns
 
-[If applicable — patterns that span multiple parts of the component (hover-safe bridges, debounce rules, keyboard sequences).]
+[If applicable, patterns that span multiple parts of the component (hover-safe bridges, debounce rules, keyboard sequences).]
 
 ---
 
@@ -209,7 +208,7 @@ Complete implementation reference for the {Component} component. Covers anatomy,
 
 ### 13.0 ARIA pattern
 
-[Which ARIA pattern this component uses — `tree`, `menu`, `status`, etc. Link to the WAI-ARIA pattern.]
+[Which ARIA pattern this component uses, `tree`, `menu`, `status`, etc. Link to the WAI-ARIA pattern.]
 
 ### 13.1 Touch & pointer targets
 
@@ -242,7 +241,7 @@ Complete implementation reference for the {Component} component. Covers anatomy,
 
 ## 14. Motion
 
-[If applicable — every animation, keyframe, duration, easing. **Must be consistent with `docs/design-system-spec.md` §Motion.** If this component needs to deviate, flag it here and justify why; the Spec Review skill will confirm the override is intentional.]
+[If applicable: every animation, keyframe, duration, easing. **Must be consistent with `docs/design-system-spec.md` §Motion.** If this component needs to deviate, flag it here and justify why; the Spec Review skill will confirm the override is intentional.]
 
 | Property | Value | Why |
 |---|---|---|
@@ -263,7 +262,7 @@ Complete implementation reference for the {Component} component. Covers anatomy,
 
 ## 16. What to pass Claude to implement this component
 
-[A short checklist of inputs the pipeline needs beyond this spec — nav items, icon mappings, sample data, anything component-specific.]
+[A short checklist of inputs the pipeline needs beyond this spec, nav items, icon mappings, sample data, anything component-specific.]
 
 ---
 
@@ -288,5 +287,5 @@ Complete implementation reference for the {Component} component. Covers anatomy,
     2. Remove every <!-- marker-comment -->
     3. Run the `/pathway:spec-review` skill and resolve every conflict it flags
     4. Confirm the Figma source URL in §1 resolves to the intended node
-    5. Verify §3 cites only semantic tokens — no raw hex, no primitives
+    5. Verify §3 cites only semantic tokens: no raw hex, no primitives
 -->

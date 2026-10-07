@@ -1,13 +1,13 @@
 # Designer's Figma Prep Checklist
 
-Complete these before handing off a component for implementation. Each item directly enables a step in the pipeline — skipping one means the agent has to guess or come back and ask you.
+Complete these before handing off a component for implementation. Each item directly enables a step in the pipeline, skipping one means the agent has to guess or come back and ask you.
 
 ## 1. Component structure
 
 - [ ] Component is published to the Figma library (not a local component)
-- [ ] Component uses Auto Layout (not absolute positioning) — enables accurate spacing extraction
+- [ ] Component uses Auto Layout (not absolute positioning), enables accurate spacing extraction
 - [ ] Component variants are organized in a **Component Set** with named properties (not loose frames)
-- [ ] Every variant property has a descriptive name (`State=Active`, `Size=Large` — not `Variant 2`)
+- [ ] Every variant property has a descriptive name (`State=Active`, `Size=Large`: not `Variant 2`)
 
 **Why it matters:** the agent uses `get_design_context` and `get_context_for_code_connect` to extract the component. Unnamed variants produce meaningless prop names in the generated code.
 
@@ -17,7 +17,7 @@ Complete these before handing off a component for implementation. Each item dire
 - [ ] All spacing values use Figma variables or are annotated with their intended token name
 - [ ] All typography uses Figma text styles bound to variables
 - [ ] Border radius, border width, and shadow values use variables where tokens exist
-- [ ] No fills reference primitive variables directly — only semantic variables
+- [ ] No fills reference primitive variables directly, only semantic variables
 
 **Why it matters:** the agent calls `get_variable_defs` to extract the component's token bindings. Missing variable bindings mean the agent must guess the token mapping or use raw hex (which violates the colour rules in CLAUDE.md §6).
 
@@ -44,11 +44,11 @@ Complete these before handing off a component for implementation. Each item dire
 - [ ] ARIA role and label are annotated for non-obvious elements
 - [ ] Colour contrast ratios are verified for all text-on-background combinations
 
-**Why it matters:** the accessibility section of the spec (§13 in sidenav-spec) cites these directly. Missing annotations mean the agent must make assumptions about focus order, ARIA roles, and contrast — which it will usually get wrong.
+**Why it matters:** the accessibility section of the spec (§13 in sidenav-spec) cites these directly. Missing annotations mean the agent must make assumptions about focus order, ARIA roles, and contrast: which it will usually get wrong.
 
 ## 6. Handoff metadata
 
-- [ ] The component's Figma **node URL** is recorded and will go into the spec's "Figma source" section. This is load-bearing — the reconciliation pipeline (CLAUDE.md §3) uses it to find the component when tokens change.
+- [ ] The component's Figma **node URL** is recorded and will go into the spec's "Figma source" section. This is load-bearing: the reconciliation pipeline (CLAUDE.md §3) uses it to find the component when tokens change.
 - [ ] Icon assets are exported as SVG or use the shared icon library
 - [ ] The component page has a title and description
 - [ ] Any known gaps or deferred decisions are listed on the component page (they'll be transferred to §11 "Gaps" in the spec)

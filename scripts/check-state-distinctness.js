@@ -1,5 +1,5 @@
 /**
- * check-state-distinctness.js — fail the build when an interaction state is
+ * check-state-distinctness.js, fail the build when an interaction state is
  * indistinguishable from another state of the same token group.
  *
  * WHY THIS EXISTS:
@@ -17,7 +17,7 @@
  *
  * A hover that paints the same colour as rest is a hover that does nothing. The
  * component is correct, the token name resolves, the contrast passes, the build
- * is clean and Storybook renders — so every existing checker was happy:
+ * is clean and Storybook renders: so every existing checker was happy:
  *
  *   check-demo-tokens        does the demo name a token that resolves?
  *   check-token-refs         does the code name a token that resolves?
@@ -128,7 +128,7 @@ if (collisions.length) {
     `\nA state that paints the same colour as another state does nothing the user\n` +
       `can see. Fix it in the FIGMA panel, not here: re-alias the later state one\n` +
       `step further along its ramp, then re-dump and rebuild. Check the whole group\n` +
-      `when you change one state's value — that is how all of these got in.\n`
+      `when you change one state's value: that is how all of these got in.\n`
   );
   process.exit(1);
 }

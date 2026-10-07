@@ -1,5 +1,5 @@
 /**
- * Checkbox — Pathway Design System
+ * Checkbox, Pathway Design System
  *
  * Importable React component module. Source of truth for the Checkbox
  * implementation; the standalone demo (checkbox.html) and the Storybook
@@ -18,21 +18,21 @@ import React, { useRef, useEffect, useState } from "react";
 // Note: some tokens in §5.3 of the spec are missing from the token file.
 // Fallbacks are used where noted and will be updated once Figma is re-synced.
 const V = {
-  // Box fill — standard checked / indeterminate
+  // Box fill, standard checked / indeterminate
   fillCheckedBase:     "var(--semantic-color-fill-action-primary-strong-rest)",
   fillCheckedHover:    "var(--semantic-color-fill-action-primary-strong-hover)",
   fillCheckedFocused:  "var(--semantic-color-fill-action-primary-strong-hover)",
   fillCheckedPressed:  "var(--semantic-color-fill-action-primary-strong-pressed)",
   fillCheckedDisabled: "var(--semantic-color-fill-action-disabled)",
 
-  // Box border — standard unchecked
+  // Box border, standard unchecked
   borderBase:     "var(--semantic-color-stroke-action-secondary-rest)",
   borderHover:    "var(--semantic-color-stroke-action-secondary-hover)",
   borderFocused:  "var(--semantic-color-stroke-action-secondary-hover)",
   borderPressed:  "var(--semantic-color-stroke-action-secondary-pressed)",
   borderDisabled: "var(--semantic-color-stroke-action-disabled)",
 
-  // Checkmark / dash icon — standard.
+  // Checkmark / dash icon, standard.
   //
   // MUST be an ON-STRONG foreground, because the box it sits in is filled with
   // fill-action-primary-strong-*. This was foreground-action-primary-ON-SUBTLE-rest,
@@ -46,34 +46,34 @@ const V = {
   // strong fill is for. Recorded in the manifest as a Figma defect.
   iconPrimary: "var(--semantic-color-foreground-action-primary-on-strong)",
 
-  // Checkmark / dash icon — error. Same fix: the error box is filled with
+  // Checkmark / dash icon: error. Same fix: the error box is filled with
   // fill-action-status-negative-strong-*, so the tick needs the on-strong
   // foreground. Was on-subtle-rest: #722121 on #b03a3a.
   iconError: "var(--semantic-color-foreground-action-status-negative-on-strong)",
 
-  // State-layer — unchecked hover / focused
+  // State-layer, unchecked hover / focused
   stateLayerUncheckedHover: "var(--semantic-color-fill-action-secondary-hover)",
 
-  // State-layer — checked hover / focused / pressed
+  // State-layer, checked hover / focused / pressed
   stateLayerCheckedHover:    "var(--semantic-color-fill-action-primary-subtle-hover)",
   stateLayerCheckedFocused:  "var(--semantic-color-fill-action-primary-subtle-hover)",
   stateLayerCheckedPressed:  "var(--semantic-color-fill-action-primary-subtle-pressed)",
 
-  // Box fill — error checked / indeterminate
+  // Box fill: error checked / indeterminate
   fillErrorBase:     "var(--semantic-color-fill-action-status-negative-strong-rest)",
   fillErrorHover:    "var(--semantic-color-fill-action-status-negative-strong-hover)",
   fillErrorFocused:  "var(--semantic-color-fill-action-status-negative-strong-hover)",
   fillErrorPressed:  "var(--semantic-color-fill-action-status-negative-strong-pressed)",
   fillErrorDisabled: "var(--semantic-color-fill-action-disabled)",
 
-  // Box border — error unchecked
+  // Box border: error unchecked
   borderErrorBase:     "var(--semantic-color-stroke-action-status-negative-rest)",
   borderErrorHover:    "var(--semantic-color-stroke-action-status-negative-hover)",
   borderErrorFocused:  "var(--semantic-color-stroke-action-status-negative-hover)",
   borderErrorPressed:  "var(--semantic-color-stroke-action-status-negative-pressed)",
   borderErrorDisabled: "var(--semantic-color-stroke-action-disabled)",
 
-  // State-layer — error hover (both unchecked and checked)
+  // State-layer: error hover (both unchecked and checked)
   stateLayerErrorHover: "var(--semantic-color-fill-action-status-negative-subtle-hover)",
 
   // Highlight.
@@ -99,25 +99,25 @@ const V = {
   labelColor: "var(--semantic-color-foreground-static-neutral-base)",
 
   // Geometry
-  // cornerradius.small = 4px — matches the 4px box radius in the Figma spec.
+  // cornerradius.small = 4px, matches the 4px box radius in the Figma spec.
   // (cornerradius.xsmall = 2px which is too small; small is the correct value.)
   //
   // NOT wrapped in calc(... * 1px). The layout tokens already carry their unit
   // (`--semantic-layout-units-cornerradius-small: 4px`), so multiplying by 1px
-  // produced calc(4px * 1px) — px times px is not a length, so the browser
+  // produced calc(4px * 1px): px times px is not a length, so the browser
   // dropped the declaration and the box rendered with square corners. Silent,
   // because an invalid value falls back to the initial one rather than erroring.
   // Style Dictionary emits layout tokens as unitless numbers, so we multiply
   // by 1px inside calc() to get a valid CSS length.
   radius:     "var(--semantic-layout-units-cornerradius-small)",
-  radiusFull: "100px",  // state-layer pill — no dedicated token, 100px safely rounds any 44px circle
+  radiusFull: "100px",  // state-layer pill: no dedicated token, 100px safely rounds any 44px circle
 };
 
 // ─── GEOMETRY ─────────────────────────────────────────────────────────────────
 export const BOX_SIZE  = { default: 18, s: 16 };
-export const TARGET_SIZE = 44;          // touch target — always 44px (WCAG 2.5.5)
+export const TARGET_SIZE = 44;          // touch target, always 44px (WCAG 2.5.5)
 export const BORDER_WIDTH = 1.5;        // px
-export const LABEL_GAP = 16;            // px — gap between state-layer and label text
+export const LABEL_GAP = 16;            // px, gap between state-layer and label text
 
 // ─── ICONS ────────────────────────────────────────────────────────────────────
 // Both icons use the same 18×18 viewBox so they scale cleanly when size="s".
@@ -166,7 +166,7 @@ export function IconDash({ color, size }) {
  * @param {boolean}  error          - Error / negative styling
  * @param {boolean}  highlight      - Brand-tinted hover/focus state-layer for selectable
  *                                   rows. Unchecked only, and no effect at rest.
- * @param {boolean}  secondary      - Secondary indeterminate (muted colour) — use with indeterminate only
+ * @param {boolean}  secondary      - Secondary indeterminate (muted colour), use with indeterminate only
  * @param {boolean}  disabled       - Non-interactive
  * @param {"default"|"s"} size      - Visual size of the control
  * @param {string}   label          - Optional visible label
@@ -198,7 +198,7 @@ export function Checkbox({
   const [focused,  setFocused]  = useState(false);
   const [pressed,  setPressed]  = useState(false);
 
-  // The indeterminate state can only be set on the DOM element — not via HTML.
+  // The indeterminate state can only be set on the DOM element: not via HTML.
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.indeterminate = indeterminate;
@@ -249,7 +249,7 @@ export function Checkbox({
   let stateLayerBg = "transparent";
   if (!disabled) {
     if (pressed) {
-      // pressed: same tint as hover — no separate pressed state-layer in spec
+      // pressed: same tint as hover: no separate pressed state-layer in spec
       stateLayerBg = (checked || indeterminate)
         ? V.stateLayerCheckedPressed
         : (error ? V.stateLayerErrorHover : V.stateLayerUncheckedHover);
@@ -318,7 +318,7 @@ export function Checkbox({
           flexShrink:       0,
         }}
       >
-        {/* Visually hidden native input — provides semantics and keyboard behaviour */}
+        {/* Visually hidden native input, provides semantics and keyboard behaviour */}
         <input
           ref={inputRef}
           type="checkbox"

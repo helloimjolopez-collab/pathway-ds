@@ -1,5 +1,5 @@
 /**
- * TopNav.Global — Pathway Design System
+ * TopNav.Global, Pathway Design System
  *
  * Importable React component module. Source of truth for the TopNav.Global
  * implementation; the standalone demo (top-nav.html) and Storybook stories
@@ -10,8 +10,9 @@
  */
 
 import React, { useState, useEffect, useRef } from "react";
+import { ActionIcon } from "../icon/action-icon.jsx";
 
-// TopNav.Search is the canonical nested search control. Import it — never
+// TopNav.Search is the canonical nested search control. Import it: never
 // reimplement it here. (See CLAUDE.md §10.1 "import, don't reinvent": the prior
 // in-file duplicate drifted to hardcoded hex and the wrong token mode.)
 import { TopNavSearch, SearchInput } from "../search/search.jsx";
@@ -28,7 +29,7 @@ import { ModuleIcon, MODULE_LABELS, MODULES } from "../module-icon/module-icon.j
 // hand-copied hex as a fallback, so rendering is unchanged if a var is unavailable;
 // values were verified against get_variable_defs on Figma node 40007067:5284.
 // Both helpers emit the MODELESS name. The mode is no longer baked into the
-// property — it comes from the nearest [data-theme] ancestor, which is why the bar
+// property: it comes from the nearest [data-theme] ancestor, which is why the bar
 // carries data-theme="midnight" and the dropdown panels carry data-theme="light".
 // SCD and SCL are kept as separate names purely to document INTENT at each call
 // site: SCD marks "this sits on the dark bar", SCL marks "this sits on a light
@@ -66,7 +67,7 @@ const SCL = TOK;   // on a light panel
 const r = (name) => `var(--responsive-layout-${name})`;
 const u = (name) => `var(--semantic-layout-units-${name})`;
 // Contextual: Layout & Units. TopNav/Height lives HERE, not in Responsive:
-// Layout, because the bar is the same height at every breakpoint — only its
+// Layout, because the bar is the same height at every breakpoint, only its
 // padding and gap change. navH used to read the height through the RESPONSIVE
 // helper, asking for a property that no emitted file declares. The two-argument
 // helper form hid it, because the reference checker skips a call it cannot
@@ -150,14 +151,14 @@ export const T = {
   orgSubText:     SCD("foreground-static-neutral-mono"),
   avatarBg:       SCD("fill-action-primary-subtle-rest"),
   avatarText:     SCD("foreground-action-primary-on-subtle-rest"),
-  // White dropdown-menu surface — tracks fill-neutral-light (now warm-neutral-0).
+  // White dropdown-menu surface, tracks fill-neutral-light (now warm-neutral-0).
   panelBg:        SCL("fill-static-neutral-faint"),
   activeItem:     SCL("fill-action-primary-subtle-rest"),
   itemText:       SCL("foreground-static-neutral-bold"),
   itemTextBase:   SCL("foreground-static-neutral-base"),
   itemMeta:       SCL("foreground-static-neutral-base"),
   signOut:        SCL("foreground-action-status-negative-on-subtle-rest"),
-  // Token gaps (no semantic token exists yet — flagged P2 in the pipeline report):
+  // Token gaps (no semantic token exists yet, flagged P2 in the pipeline report):
   panelBorder:    SCL("stroke-static-neutral-base"),
   // The dropdown panels are a LIFT, and Elevation already encodes the whole
   // shadow per theme. The two-layer rgba stack it replaces was a light-mode
@@ -249,7 +250,7 @@ export function mobileLabel(orgName, campusName) {
 // These are custom Figma-exported SVG paths. Do NOT replace with Material Symbols.
 // Source: get_design_context on TopNav.Global desktop/tablet/mobile + no-logo variant.
 
-// Module=Home, Style=Flat, Color=White — node I40007067:5241;40006803:50605;40006853:34204
+// Module=Home, Style=Flat, Color=White, node I40007067:5241;40006803:50605;40006853:34204
 /**
  * @deprecated Use `<ModuleIcon module="home" />`.
  *
@@ -265,7 +266,7 @@ export function HomeModuleIcon({ size = 22 }) {
 
 /**
  * Org avatar placeholder shown when an org has no logo on file.
- * Figma: church icon, node 40007243:73426 — positioned at inset 4.17% 8.33% 8.33% 8.33%
+ * Figma: church icon, node 40007243:73426, positioned at inset 4.17% 8.33% 8.33% 8.33%
  * within the 16px inner avatar frame.
  */
 export function OrgAvatarPlaceholder() {
@@ -402,7 +403,7 @@ export function TopNavProfile({ user, open, onToggle, mobile = false }) {
         onClick={onToggle}
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
         aria-haspopup="true" aria-expanded={open}
-        aria-label={`Account — ${user.name}`}
+        aria-label={`Account: ${user.name}`}
         style={{
           display: "flex", alignItems: "center", justifyContent: "center",
           // Figma TopNav.Profile is 48x48 with pad 4,4,4,4. This was 44 with 6.
@@ -448,8 +449,8 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
   const label = mobile ? mobileLabel(org.name, org.campus) : org.name;
   const subLabel = mobile ? null : (org.campus || null);
 
-  // Desktop/Tablet: Label/Button/S — 14px/500/20px
-  // Mobile: Label/Button/XS — 12px/500/18px (Figma annotation)
+  // Desktop/Tablet: Label/Button/S, 14px/500/20px
+  // Mobile: Label/Button/XS, 12px/500/18px (Figma annotation)
   const labelStyle = mobile
     ? { fontSize: "var(--semantic-type-font-size-xs)", fontWeight: 500, lineHeight: "var(--semantic-type-line-height-xs-single)", letterSpacing: "var(--semantic-type-letter-spacing-spacious)"}
     : { fontSize: "var(--semantic-type-font-size-s)", fontWeight: 500, lineHeight: "var(--semantic-type-line-height-s-single)", letterSpacing: "var(--semantic-type-letter-spacing-spacious)"};
@@ -461,7 +462,7 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
         onClick={onToggle}
         aria-haspopup="true" aria-expanded={open}
-        aria-label={`Switch organisation — ${org.name}${org.campus ? ", "+org.campus : ""}`}
+        aria-label={`Switch organisation: ${org.name}${org.campus ? ", "+org.campus : ""}`}
         style={{
           display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-xxtight)",
           minHeight: 36,
@@ -479,12 +480,12 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
           transition: "background var(--motion-duration-3) var(--motion-easing-standard), border-color var(--motion-duration-3) var(--motion-easing-standard)",
         }}
       >
-        {/* RowStart — org name label only. No avatar or logo displayed in the
+        {/* RowStart, org name label only. No avatar or logo displayed in the
             nav trigger per Figma (showOrgAvatar = false by default).
             If org.logoUrl is provided it is still used in the org panel below. */}
         <div style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-xxtight)",
           height: 20, padding: "0 2px" }}>
-          {/* Logo avatar — only rendered when a URL is explicitly provided */}
+          {/* Logo avatar, only rendered when a URL is explicitly provided */}
           {hasLogo && (
             <div style={{ width: L.orgAvatarSm, height: L.orgAvatarSm, padding: "var(--semantic-layout-units-padding-xxxxtight)",
               display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
@@ -563,10 +564,10 @@ export function OrgSwitcher({ org, open, onToggle, mobile = false }) {
 /**
  * ModuleSwitcher (app switcher).
  *
- *   type — "interactive" (default) | "static"   (Figma variant property "Type")
- *     "interactive": switch-module control — chevron + hover + pressed + button
+ *   type, "interactive" (default) | "static"   (Figma variant property "Type")
+ *     "interactive": switch-module control, chevron + hover + pressed + button
  *       semantics + aria-haspopup. Used in every module.
- *     "static": non-interactive current-module label — NO chevron, NO hover,
+ *     "static": non-interactive current-module label: NO chevron, NO hover,
  *       NO pressed, NOT a button. Used on the Amplify Dashboard, where the module
  *       switcher only indicates the current location (there is nowhere to switch
  *       to from the dashboard).
@@ -578,7 +579,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
   const showLabel       = breakpoint === "desktop";
   const isStatic        = type === "static";
 
-  // Icon + label — identical in both variants.
+  // Icon + label: identical in both variants.
   const inner = (
     <div style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-xxtight)",
       paddingRight: showLabel && !isStatic ? 2 : 0 }}>
@@ -589,7 +590,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
         justifyContent: "center", flexShrink: 0, color: T.monoBase }}>
         <ModuleIcon module={active.id} size={24} color="mono" />
       </div>
-      {/* Label — desktop only */}
+      {/* Label, desktop only */}
       {showLabel && (
         <span style={{ fontSize: "var(--semantic-type-font-size-s)", fontWeight: 500, lineHeight: "var(--semantic-type-line-height-s-single)",
           letterSpacing: "var(--semantic-type-letter-spacing-spacious)", whiteSpace: "nowrap", overflow: "hidden",
@@ -600,13 +601,13 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
     </div>
   );
 
-  // STATIC — Amplify Dashboard: current-module label, not a control.
+  // STATIC, Amplify Dashboard: current-module label, not a control.
   // No chevron, no hover/pressed, no button role/affordance.
   if (isStatic) {
     return (
       <div style={{ position: "relative", padding: "4px 2px" }}>
         <div
-          aria-label={`Current module — ${active.label}`}
+          aria-label={`Current module: ${active.label}`}
           style={{
             display: "flex", alignItems: "center",
             maxHeight: L.modInnerH, minHeight: L.modInnerH,
@@ -623,14 +624,14 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
     );
   }
 
-  // INTERACTIVE (default) — switch-module control.
+  // INTERACTIVE (default), switch-module control.
   return (
     <div style={{ position: "relative", padding: "4px 2px" }}>
       <button
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
         onClick={onToggle}
         aria-haspopup="listbox" aria-expanded={open}
-        aria-label={`Switch module — ${active.label}`}
+        aria-label={`Switch module: ${active.label}`}
         style={{
           display: "flex", alignItems: "center",
           maxHeight: L.modInnerH, minHeight: L.modInnerH,
@@ -638,7 +639,7 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
           // This was a uniform 4 on all four sides.
           padding: `0 0 0 ${L.modPadL}`, borderRadius: L.radius,
           background: open ? T.controlPressed : hov ? T.controlHover : "transparent",
-          // No stroke in any state — Figma's ModuleSwitcher has none, unlike the
+          // No stroke in any state, Figma's ModuleSwitcher has none, unlike the
           // org switcher next to it. Transparent rather than none so the two
           // controls keep the same box height.
           border: "1px solid transparent",
@@ -668,21 +669,21 @@ export function ModuleSwitcher({ modules, activeId, open, onToggle, breakpoint =
  * TopNav.Global component.
  *
  * Props:
- *   modules          — Array<{id, label, icon}>  (default: DEFAULT_MODULES)
- *   activeModuleId   — string
- *   org              — { id, name, campus?, initials, logoUrl?, bg? }
+ *   modules, Array<{id, label, icon}>  (default: DEFAULT_MODULES)
+ *   activeModuleId, string
+ *   org, { id, name, campus?, initials, logoUrl?, bg? }
  *                      logoUrl absent or undefined → nav trigger shows org name only
  *                      (no avatar/placeholder). logoUrl, when provided, renders the logo
  *                      in the nav trigger AND in the org-panel dropdown.
- *   user             — { name, initials, email, avatarUrl? }
- *   breakpoint       — "desktop" | "tablet" | "mobile"
- *   onModuleSelect   — (id: string) => void
- *   onOrgSelect      — () => void
- *   onSearchOpen     — () => void
- *   onSideNavToggle  — () => void  (mobile only)
- *   onNotifications  — () => void
- *   onMore           — () => void
- *   className        — string
+ *   user, { name, initials, email, avatarUrl? }
+ *   breakpoint, "desktop" | "tablet" | "mobile"
+ *   onModuleSelect, (id: string) => void
+ *   onOrgSelect, () => void
+ *   onSearchOpen, () => void
+ *   onSideNavToggle, () => void  (mobile only)
+ *   onNotifications, () => void
+ *   onMore, () => void
+ *   className, string
  */
 export function TopNav({
   modules         = DEFAULT_MODULES,
@@ -691,8 +692,8 @@ export function TopNav({
   orgs            = DEMO_ORGS,   // list shown in the OrgSwitcher "Open" dropdown panel
   user            = { name: "Jo Lopez", initials: "JL", email: "jo@sacredheart.org" },
   breakpoint      = "desktop",
-  moduleSwitcherType = "interactive",   // "interactive" | "static" (Amplify Dashboard) — Figma "Type"
-  initialOpenPanel = null,              // "module" | "org" | "profile" | null — seeds the open panel (demo/snapshot use)
+  moduleSwitcherType = "interactive",   // "interactive" | "static" (Amplify Dashboard), Figma "Type"
+  initialOpenPanel = null,              // "module" | "org" | "profile" | null, seeds the open panel (demo/snapshot use)
   onModuleSelect,
   onOrgSelect,
   onSearchOpen,
@@ -732,7 +733,7 @@ export function TopNav({
   };
 
   // Search always takes over the whole bar when open (all breakpoints), until
-  // it is closed. There is no inline-expand state — opening search overlays the
+  // it is closed. There is no inline-expand state, opening search overlays the
   // entire TopNav so it can never collide with the OrgSwitcher or other controls.
   const useTakeover = searchExpanded;
 
@@ -798,19 +799,20 @@ export function TopNav({
       {/* ── Slot.RowStart ── */}
       <div style={{ display: "flex", alignItems: "center", gap: "var(--semantic-layout-units-gap-tight)", flexShrink: 0 }}>
 
-        {/* Hamburger — mobile only */}
+        {/* SideNav.Control, mobile only. Figma set 40007082:7703: three State
+            variants wrapping an `Action Icon` at Size=Large, so a 48x48 target,
+            a 32 state layer and a 16 glyph. This was a hand-rolled button with
+            a 22px glyph and no state layer at all, which is 6px too big with
+            nothing to hover. It now uses the shared ActionIcon, so the three
+            states come from the one component the design nests. */}
         {isMobile && (
-          <button
+          <ActionIcon
+            name="menu"
+            size="Large"
+            label="Open navigation menu"
+            color={T.monoBase}
             onClick={onSideNavToggle}
-            aria-label="Open navigation menu"
-            style={{
-              display: "flex", alignItems: "center", justifyContent: "center",
-              minHeight: L.touchTarget, minWidth: L.touchTarget,
-              background: "transparent", border: "none", cursor: "pointer", borderRadius: L.radius,
-            }}
-          >
-            <Icon name="menu" size={22} style={{ color: T.monoBase }} />
-          </button>
+          />
         )}
 
         {/* ModuleSwitcher */}
@@ -823,7 +825,7 @@ export function TopNav({
           type={moduleSwitcherType}
         />
 
-        {/* Module dropdown — never opens in static mode (non-interactive) */}
+        {/* Module dropdown: never opens in static mode (non-interactive) */}
         {openPanel === "module" && moduleSwitcherType !== "static" && (
           <ul role="listbox" data-theme="light" aria-label="Switch module"
             style={{
@@ -866,7 +868,7 @@ export function TopNav({
           mobile={isMobile}
         />
 
-        {/* Org panel — the real OrgSwitcher "Open" dropdown (Figma 40007336:9453) */}
+        {/* Org panel: the real OrgSwitcher "Open" dropdown (Figma 40007336:9453) */}
         {openPanel === "org" && (
           <div style={{
             position: "absolute", top: "calc(100% + 4px)",
@@ -941,7 +943,7 @@ export function TopNav({
         )}
       </div>
 
-      {/* Full-width search takeover — shown whenever search is open, on every
+      {/* Full-width search takeover, shown whenever search is open, on every
           breakpoint. Fills the entire bar (absolute inset:0) so it can never
           collide with the OrgSwitcher.
           Exit is a BACK ARROW to the LEFT of the field, outside it. It used to
@@ -957,7 +959,7 @@ export function TopNav({
           // data-theme="light" because the takeover IS the bar, and the bar
           // resolves its chrome in light. Without it the takeover sat inside the
           // bar's own data-theme="midnight" region, where Fill/Surface/Chrome is
-          // #152343 rather than #2d4889 — so opening search visibly darkened the
+          // #152343 rather than #2d4889: so opening search visibly darkened the
           // whole bar. Measured 2026-10-02: bar rgb(45,72,137), takeover
           // rgb(21,35,67).
           data-theme="light"

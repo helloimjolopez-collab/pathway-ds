@@ -1,5 +1,5 @@
 /**
- * SideNav — Pathway Design System
+ * SideNav, Pathway Design System
  *
  * Importable React component module. Source of truth for the SideNav
  * implementation; the standalone demo (sidenav.html) and the Storybook
@@ -13,7 +13,9 @@
  * drift, and wait. Do not resolve it by fetching Figma. See CLAUDE.md 1.1.
  *
  * Spec: components/sidenav/sidenav-spec.md
- * Figma: https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003951-2927
+ * Figma: https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1375
+ *        SideNav.Container, a COMPONENT_SET. The id cited here until
+ *        2026-10-07, 40003951-2927, does not exist in the file.
  */
 
 import React, { useState, useRef } from "react";
@@ -32,7 +34,7 @@ import ReactDOM from "react-dom";
  * one theme into the bundle, so Midnight Mode could not work at all in the coded
  * component no matter what the consumer did. `t()` also returns the token id
  * unchanged when it cannot resolve a name, which emits invalid CSS that the
- * browser silently drops — so a renamed token failed as a colour that quietly
+ * browser silently drops: so a renamed token failed as a colour that quietly
  * reverted to inherited, with no error anywhere.
  *
  * Referencing the custom property instead means the cascade resolves the value,
@@ -136,7 +138,7 @@ export const L = {
   menuPadT:    u("padding-tight"),
   menuPadB:    u("padding-xxwide"),
   itemH:       u("accessibility-touch-target-aa-height"),
-  iconWrap:    24,   // no token in Figma — leading icon wrapper
+  iconWrap:    24,   // no token in Figma, leading icon wrapper
   iconInner:   16,   // Material Symbols Rounded frame size, per design-system-spec §7.2
   rowPadH:     u("padding-tight"),
   // Collapsed rail: container.rowStart's padding-right in Figma. It is what
@@ -144,8 +146,8 @@ export const L = {
   // the design.
   railIconInset: u("padding-xxtight"),
   textPad:     u("padding-xtight"),
-  childIndent: 24,   // no token in Figma — level-1 left indent
-  stripeW:     4,    // no token in Figma — indicator stripe width
+  childIndent: 24,   // no token in Figma, level-1 left indent
+  stripeW:     4,    // no token in Figma, indicator stripe width
   colPadL:     u("padding-medium"),
   colPadR:     u("padding-tight"),
   collapseGap: u("padding-xxtight"),
@@ -251,7 +253,7 @@ export function SideNavItem({
 
         <IndicatorStripe visible={showStripe} />
 
-        {/* Leading icon — Level 0 only */}
+        {/* Leading icon, Level 0 only */}
         {!isChild && item.icon && (
           <div style={{ width: L.iconWrap, height: L.iconWrap, display: "flex",
             alignItems: "center", justifyContent: "center", flexShrink: 0,
@@ -270,7 +272,7 @@ export function SideNavItem({
               ? <span className="material-symbols-rounded" aria-hidden="true"
                   style={{ fontSize: L.iconInner, lineHeight: 1, color: iconColor,
                     // display:block so the glyph is laid out as a box rather than
-                    // on a text baseline — an inline glyph in a flex-centred
+                    // on a text baseline: an inline glyph in a flex-centred
                     // parent is centred by its line box, not by its own art, so
                     // it rode high inside the 24px wrap.
                     display: "block",
@@ -311,7 +313,7 @@ export function SideNavItem({
           </p>
         </div>
 
-        {/* Chevron — groupers only, and EXPANDED ONLY.
+        {/* Chevron, groupers only, and EXPANDED ONLY.
             Figma's SideNavItem.Collapsed is indicator + Container.LeadingIcon
             and nothing else: there is no chevron in the rail. Giving it
             width 0 and max-width 0 was not enough, because the glyph still
@@ -326,7 +328,7 @@ export function SideNavItem({
             opacity: isSidebarCollapsed ? 0 : 1,
             overflow: "hidden",
             transition: "max-width var(--motion-duration-6) var(--motion-easing-emphasized), opacity var(--motion-duration-3) var(--motion-easing-standard)" }}>
-            {/* Chevron rotation matches accordion timing — --motion-duration-5 + --motion-easing-accordion */}
+            {/* Chevron rotation matches accordion timing, --motion-duration-5 + --motion-easing-accordion */}
             <div style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
               transition: "transform var(--motion-duration-5) var(--motion-easing-accordion)" }}>
               {chevronDown ? chevronDown({ size: 10, color: iconColor }) : <ChevDown size={10} color={iconColor} />}
@@ -392,7 +394,7 @@ export function SideNavTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }
 }
 
 // ─── SectionLabel ─────────────────────────────────────────────────────────────
-// Figma node 40006794-5977 — building block used in CollapsedPopover headers.
+// Figma node 40006794-5977, building block used in CollapsedPopover headers.
 // Tokens: Foreground/Static/Neutral/Base (#313131), Label/Section/Small/Semibold
 //         (11px / 600 / 16px / 0.6px letter-spacing, uppercase)
 // Padding: Padding/Tight (12px left), Padding/XTight (8px vertical)
@@ -421,7 +423,7 @@ export function CollapsedPopover({ item, onClick, anchorRect, onMouseEnter, onMo
         boxShadow: c2("--elevation-widget"),
         padding: "var(--semantic-layout-units-padding-xxtight)", minWidth: 200, pointerEvents: "auto",
         animation: "popoverIn var(--motion-duration-3) var(--motion-easing-spring) forwards" }}>
-      {/* Section label — Figma component 40006794-5977 */}
+      {/* Section label, Figma component 40006794-5977 */}
       <div style={{ borderBottom: `0.5px solid ${c("stroke-static-neutral-faint")}` }}>
         <SectionLabel label={item.label} />
       </div>
@@ -460,11 +462,11 @@ export function PopoverRow({ item, onClick, activeId }) {
 // ─── CollapseButton ───────────────────────────────────────────────────────────
 // Redesigned in Figma (2026-05-12): now uses Slot.RowStart (Module.Mark icon)
 // + Slot.RowEnd (Action Icon). The action icon uses Foreground/Action/Secondary/Rest
-// (#6b6b6b) — different from nav item icons. SVG assets fetched from Figma directly.
+// (#6b6b6b), different from nav item icons. SVG assets fetched from Figma directly.
 export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, expandIcon }) {
   const [h, setH] = useState(false);
   const labelColor = h ? T.text.navHover : T.text.navBase;
-  const actionIconColor = T.icon.actionSecondary; // var(--semantic-color-stroke-action-field-hover) — always static, no hover change
+  const actionIconColor = T.icon.actionSecondary; // var(--semantic-color-stroke-action-field-hover), always static, no hover change
   return (
     <div style={{ width: "100%" }}>
       <div style={{ height: 1, backgroundColor: T.fill.infoSubtle, marginBottom: L.collapseGap }} />
@@ -476,10 +478,10 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
           borderRadius: T.radius, backgroundColor: h ? T.fill.navHover : T.fill.navBase,
           cursor: "pointer", transition: "background-color var(--motion-duration-3) var(--motion-easing-standard)", overflow: "hidden" }}>
 
-        {/* Slot.RowStart — 4px stripe column (structural, always present) */}
+        {/* Slot.RowStart, 4px stripe column (structural, always present) */}
         <div style={{ width: L.stripeW, alignSelf: "stretch", flexShrink: 0 }} />
 
-        {/* Container.Main — label (hidden when collapsed) */}
+        {/* Container.Main, label (hidden when collapsed) */}
         <div style={{ flex: 1, paddingLeft: L.rowPadH,
           maxWidth: isSidebarCollapsed ? 0 : 200,
           opacity: isSidebarCollapsed ? 0 : 1,
@@ -493,7 +495,7 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
           </span>
         </div>
 
-        {/* Slot.RowEnd — Action Icon (right_panel_open / left_panel_open from Figma) */}
+        {/* Slot.RowEnd, Action Icon (right_panel_open / left_panel_open from Figma) */}
         <div style={{ width: 40, height: L.iconWrap, display: "flex",
           alignItems: "center", justifyContent: "center", flexShrink: 0,
           marginLeft: isSidebarCollapsed ? "auto" : 0,
@@ -516,15 +518,15 @@ export function CollapseButton({ isSidebarCollapsed, onToggle, collapseIcon, exp
 // Optional in-nav section heading. Figma: SideNav.SectionLabel (node 40006794:5975).
 // Tokens: Label/Section/Small/Semibold (11px/600/16px/0.6px), Foreground/Static/Neutral/Base (#606060)
 // Container: h-[40px], pl-[4px], pr-[4px], py-[8px]
-// In collapsed rail: hidden — replaced by a Divider (rendered by SideNav itself, see §2.3)
+// In collapsed rail: hidden, replaced by a Divider (rendered by SideNav itself, see §2.3)
 // ── NavHeader ────────────────────────────────────────────────────────────────
 // Sits at the TOP of the SideNav. 48px row with the expand/collapse action icon
 // in Slot.RowEnd (expanded) or centered (collapsed). Divider below.
 // Matches Figma "Slot.NavHeader" (node 40007331:7794).
-// Hidden on mobile (<768px) — TopNav hamburger is the sole toggle there.
+// Hidden on mobile (<768px), TopNav hamburger is the sole toggle there.
 export function NavHeader({ isSidebarCollapsed, onToggle, collapseIcon, expandIcon }) {
   const [h, setH] = useState(false);
-  const actionIconColor = T.icon.actionSecondary; // var(--semantic-color-stroke-action-field-hover) — always static
+  const actionIconColor = T.icon.actionSecondary; // var(--semantic-color-stroke-action-field-hover), always static
   return (
     <div style={{ width: "100%", flexShrink: 0 }}>
       <div onClick={onToggle} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
@@ -554,7 +556,7 @@ export function NavHeader({ isSidebarCollapsed, onToggle, collapseIcon, expandIc
           </div>
         )}
       </div>
-      {/* Divider — Stroke/Static/Neutral/Base, py-[2px] in Figma */}
+      {/* Divider, Stroke/Static/Neutral/Base, py-[2px] in Figma */}
       <div style={{ padding: "2px 0" }}>
         <div style={{ height: 1, backgroundColor: T.fill.infoSubtle }} />
       </div>
@@ -578,7 +580,7 @@ export function NavSectionLabel({ label }) {
 }
 
 // ── BulletDot ────────────────────────────────────────────────────────────────
-// 6px filled circle — leading icon for SideNavListSection's ListItem.
+// 6px filled circle, leading icon for SideNavListSection's ListItem.
 // Color cycles Base / Hover / Active just like SideNavItem icons.
 export function BulletDot({ color }) {
   return (
@@ -625,7 +627,7 @@ export function ListItem({ item, isActive, onClick }) {
 
 // ── SideNavListSection ───────────────────────────────────────────────────────
 // Figma: SideNav.ListSection (node 40007332:8034). A labelled grouping of flat
-// nav items — no icons, no children, no expand/collapse. Used for contextual
+// nav items: no icons, no children, no expand/collapse. Used for contextual
 // link lists (Recent Content, Pinned, Bookmarks). Only shown in expanded sidebar.
 export function SideNavListSection({ label, items, activeId, onNavigate }) {
   return (
@@ -734,7 +736,7 @@ export function SideNav({
           anchorRect={popoverId === item.id ? popoverRect : null}
           onPopoverEnter={onPopoverEnter} onPopoverLeave={onPopoverLeave}
           activeId={activeId} />
-        {/* Level 1 children — animated accordion. grid-template-rows 0fr→1fr at
+        {/* Level 1 children, animated accordion. grid-template-rows 0fr→1fr at
             --motion-duration-5 + --motion-easing-accordion, with inner wrapper opacity
             fade --motion-duration-4 (70ms delay on expand, no delay on collapse). */}
         {hasChildren && !collapsed && (
@@ -774,12 +776,12 @@ export function SideNav({
       paddingLeft:  collapsed ? L.navColPadH : L.navPadH,
       paddingRight: collapsed ? L.navColPadH : L.navPadH,
       boxSizing: "border-box", flexShrink: 0,
-      // Smooth-spring curve — soft personality, no overshoot.
+      // Smooth-spring curve, soft personality, no overshoot.
       transition: "width var(--motion-duration-6) var(--motion-easing-emphasized)",
       borderRight: `0.5px solid ${T.fill.infoSubtle}`,
       overflow: "hidden",   // the inner menu scrolls; the nav itself does not
     }}>
-      {/* NavHeader — TOP of nav, PINNED (flexShrink:0) so it stays visible while the
+      {/* NavHeader, TOP of nav, PINNED (flexShrink:0) so it stays visible while the
           item list scrolls beneath it. Hidden on mobile (<768px). */}
       {(!hideCollapseButton || headerEnd) && (
         <div style={{ flexShrink: 0 }}>
@@ -809,7 +811,7 @@ export function SideNav({
         </div>
       )}
 
-      {/* SideNavMenu — the ONLY scroll region, wrapped in <Scrollable> so the custom
+      {/* SideNavMenu: the ONLY scroll region, wrapped in <Scrollable> so the custom
           overlay scrollbar (identical on every OS, never affects layout/padding) handles
           overflow. flex:1 + minHeight:0 lets it shrink below content height; the pinned
           header above never moves. Applies in BOTH expanded (240px) and collapsed (72px) states. */}
@@ -817,7 +819,7 @@ export function SideNav({
         style={{ flex: 1, minHeight: 0,
           // Bleed the scroll region out to the nav's TRUE right edge so the overlay thumb
           // hugs the edge in BOTH states (the nav's border-box paddingRight would otherwise
-          // inset the thumb by 16px expanded / 12px on the 72px rail — badly off on the rail).
+          // inset the thumb by 16px expanded / 12px on the 72px rail, badly off on the rail).
           // negated through calc() because these are var() references, and negating
           // a string would produce NaN
           marginRight: neg(collapsed ? L.navColPadH : L.navPadH) }}
@@ -825,11 +827,11 @@ export function SideNav({
           paddingTop: L.menuPadT,
           // Re-add the content's right inset INSIDE the scroll view so items keep their
           // position; only the thumb moves to the edge. (Spec rule: padding on viewStyle,
-          // never on the wrapper — keeps the thumb flush on any scroll surface.)
+          // never on the wrapper, keeps the thumb flush on any scroll surface.)
           paddingRight: collapsed ? L.navColPadH : L.navPadH }}
       >
 
-        {/* Sectioned render — when `sections` prop is provided */}
+        {/* Sectioned render: when `sections` prop is provided */}
         {sections && sections.map(({ section, items: secItems }, sIdx) => (
           <div key={section} style={{ display: "flex", flexDirection: "column",
             gap: L.menuGap, flexShrink: 0 }}>
@@ -853,10 +855,10 @@ export function SideNav({
           </div>
         ))}
 
-        {/* Flat render — when only `items` is provided (backward compatibility) */}
+        {/* Flat render: when only `items` is provided (backward compatibility) */}
         {!sections && (items || []).map(renderItem)}
 
-        {/* SideNavListSection — optional. Hidden in collapsed rail. */}
+        {/* SideNavListSection, optional. Hidden in collapsed rail. */}
         {listSection && (
           <div style={{ opacity: collapsed ? 0 : 1,
             maxHeight: collapsed ? 0 : 400, overflow: "hidden",
@@ -866,16 +868,16 @@ export function SideNav({
           </div>
         )}
 
-        {/* Body slot — scrolls with the item list, so it sits INSIDE
+        {/* Body slot, scrolls with the item list, so it sits INSIDE
             Scrollable and above the spacer. Use this for content that belongs
             with the items; use `footer` for anything that must stay visible. */}
         {children && <div style={{ flexShrink: 0 }}>{children}</div>}
 
-        {/* Bottom spacer — fills remaining height */}
+        {/* Bottom spacer, fills remaining height */}
         <div style={{ flex: 1, minHeight: L.menuPadB }} />
       </Scrollable>
 
-      {/* Footer slot — OUTSIDE Scrollable and flexShrink:0, so it is pinned to
+      {/* Footer slot, OUTSIDE Scrollable and flexShrink:0, so it is pinned to
           the bottom of the nav and stays put while the list scrolls. The
           divider only appears when the slot has content, so a nav without a
           footer is unchanged. Padding drops to the rail's narrower inset when
@@ -913,7 +915,7 @@ function ChevUp({ size = 10, color }) {
 
 // ─── Collapse / Expand action icons (fetched from Figma 2026-05-12) ──────────
 //
-// PINNED 2026-09-07 — DO NOT RE-SYNC THESE TWO FROM FIGMA.
+// PINNED 2026-09-07: DO NOT RE-SYNC THESE TWO FROM FIGMA.
 //
 // The Figma SideBar Expand/Collapse component was changed after this date to a
 // different icon. Jo has explicitly rejected that change for the repo, for
@@ -926,7 +928,7 @@ function ChevUp({ size = 10, color }) {
 // by pulling Figma, and do not silently re-fetch node 40006793:3783. Ask first
 // if you think it should change.
 // ─────────────────────────────────────────────────────────────────────────────
-// right_panel_open — used on the collapse button when sidebar is EXPANDED (click to collapse)
+// right_panel_open, used on the collapse button when sidebar is EXPANDED (click to collapse)
 // Token: Foreground/Action/Secondary/Rest (#6b6b6b)
 // Figma component: SideBar Expand/Collapse, Type=Collapse, node 40006793:3783
 function RightPanelOpenIcon({ size = 12, color = T.icon.actionSecondary }) {
@@ -937,7 +939,7 @@ function RightPanelOpenIcon({ size = 12, color = T.icon.actionSecondary }) {
   );
 }
 
-// left_panel_open — used on the collapse button when sidebar is COLLAPSED (click to expand)
+// left_panel_open, used on the collapse button when sidebar is COLLAPSED (click to expand)
 // Token: Foreground/Action/Secondary/Rest (#6b6b6b)
 // Figma component: SideBar Expand/Collapse, Type=Expand, node 40006793:3783
 function LeftPanelOpenIcon({ size = 12, color = T.icon.actionSecondary }) {

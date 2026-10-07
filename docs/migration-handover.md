@@ -200,7 +200,7 @@ separate public tokens:
 `Contextual: Color` held three variables, all `NavItem/Fill/*`, and it was private.
 That was wrong twice over. A private token is invisible in a designer's library, so
 the nav item could not be styled at all; and those three values were never
-nav-specific — by inspection they serve nav rows, popover rows, open select and
+nav-specific, by inspection they serve nav rows, popover rows, open select and
 search panels, and chips.
 
 They are now **`Fill/Action/Selection/{Hover, Selected, Trail}`**, public, and the
@@ -217,8 +217,8 @@ should be warm (§3.5), and Hover and Trail resolved to the **same value** in Li
 so an open group was indistinguishable from a hovered row. Trail is now double the
 hover weight.
 
-`Selection/Selected` also works as a `::selection` background — body text measures
-15.7 to 16.3:1 on it across every surface — so there is no separate text-selection
+`Selection/Selected` also works as a `:selection` background, body text measures
+15.7 to 16.3:1 on it across every surface: so there is no separate text-selection
 token.
 
 ### 3.11 Layout gained breakpoint modes, and needed the colour treatment

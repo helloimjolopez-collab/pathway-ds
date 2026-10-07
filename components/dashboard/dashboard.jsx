@@ -1,5 +1,5 @@
 /**
- * Dashboard — the board, its toolbar, and the add-widget flow.
+ * Dashboard: the board, its toolbar, and the add-widget flow.
  *
  * SOURCE OF TRUTH for behaviour and layout is the canonical demo, read on
  * 2026-10-07 by driving it rather than looking at it:
@@ -445,6 +445,10 @@ export function Dashboard({
   onCommit,
   onRenameDashboard,
   onRefreshAll,
+  /** Called with the widget when its open_in_full icon is used. Omit and that
+   *  one icon is not drawn, which is the only one a board may genuinely not be
+   *  able to honour: a widget with no full view has nowhere to go. */
+  onOpenWidget,
 }) {
   const active = dashboards.find((d) => d.id === activeId) || dashboards[0];
   const [manage, setManage] = useState(false);
@@ -453,6 +457,12 @@ export function Dashboard({
   const [find, setFind] = useState("");
   const [dragId, setDragId] = useState(null);
   const [swapFor, setSwapFor] = useState(null);
+  // Which widget's own menu is open, and which widget was last refreshed. The
+  // second exists so the refresh icon DOES something observable in a story
+  // rather than being a decoration that proves nothing.
+  const [menuFor, setMenuFor] = useState(null);
+  const [menuAt, setMenuAt] = useState(null);
+  const [refreshed, setRefreshed] = useState(null);
 
   const all = draft ?? active?.widgets ?? [];
   const presentIds = all.map((w) => w.catalogueId);
@@ -492,6 +502,8 @@ export function Dashboard({
       const size = supported.includes(w.size) ? w.size : (entry?.defaultSize || supported[0]);
       return { id: `w${Date.now()}`, catalogueId: entryId, title: entry?.name || w.title, size };
     })),
+    /** Refresh one widget. The board owns this because the board owns the data. */
+    refresh: (id) => setRefreshed({ id, at: new Date().toLocaleTimeString() }),
     move: (fromId, toId) => mutate((ws) => {
       const a = ws.findIndex((w) => w.id === fromId), b = ws.findIndex((w) => w.id === toId);
       if (a < 0 || b < 0 || a === b) return ws;
@@ -550,10 +562,27 @@ export function Dashboard({
               key={w.id}
               title={w.title}
               size={w.size}
-              onInfo={w.onInfo}
-              onGoTo={w.onGoTo}
-              onRefresh={w.onRefresh}
-              onMenu={manage ? undefined : w.onMenu}
+              /* THE THREE HEADER ICONS ARE ALWAYS WIRED, because Figma draws
+                 all three on every one of the Widget set's six variants. This
+                 passed `w.onRefresh` and friends straight through, and the
+                 widget objects on a board do not carry handlers, so every
+                 widget on the board rendered with NO header icons at all. A
+                 board-level default is the right owner anyway: refreshing one
+                 widget, opening its full view and opening its menu are things
+                 the board knows how to do, and a widget may still override.
+                 `onInfo` was also passed and Widget has no such prop: there is
+                 no info icon in the design. */
+              onRefresh={w.onRefresh || (() => api.refresh(w.id))}
+              onGoTo={w.onGoTo || (onOpenWidget ? () => onOpenWidget(w) : undefined)}
+              onMenu={manage ? undefined : (w.onMenu || ((e) => {
+                /* ANCHOR THE MENU TO ITS TRIGGER. It first opened at a fixed
+                   top-right corner of the viewport whichever widget you
+                   clicked, which severs the one thing a menu has to say:
+                   which widget it belongs to. */
+                const r = e?.currentTarget?.getBoundingClientRect();
+                setMenuAt(r ? { right: Math.round(window.innerWidth - r.right), top: Math.round(r.bottom + 4) } : null);
+                setMenuFor(menuFor === w.id ? null : w.id);
+              }))}
               swap={{ open: swapFor === w.id, onOpen: () => setSwapFor(swapFor === w.id ? null : w.id) }}
               draggable={manage}
               onDragStart={() => setDragId(w.id)}
@@ -580,11 +609,98 @@ export function Dashboard({
         />
       )}
 
+      {/* A widget's own menu. It is the board's rather than the Widget's for
+          the same reason the swap picker is: the actions in it are board
+          actions, and the Widget does not know the catalogue or the draft. */}
+      {menuFor && !manage && (
+        <WidgetMenu
+          widget={all.find((w) => w.id === menuFor)}
+          catalogue={catalogue}
+          onResize={(size) => { if (!manage) enterManage(); api.resize(menuFor, size); setMenuFor(null); }}
+          onRemove={() => { if (!manage) enterManage(); api.remove(menuFor); setMenuFor(null); }}
+          onRefresh={() => { api.refresh(menuFor); setMenuFor(null); }}
+          at={menuAt}
+          onClose={() => setMenuFor(null)}
+        />
+      )}
+
+      {/* The refresh icon has to DO something observable, or it is a decoration
+          that proves nothing about whether it is wired. */}
+      {refreshed && (
+        <p role="status" style={{
+          margin: 0, padding: `${L.btnPadV} ${L.pagePadH}`, color: T.subtle,
+          fontSize: Y("font-size-xs"), letterSpacing: Y("letter-spacing-spacious"),
+        }}>
+          {all.find((w) => w.id === refreshed.id)?.title || "Widget"} refreshed at {refreshed.at}.
+        </p>
+      )}
+
       {addOpen && (
         <AddWidgetModal catalogue={catalogue} presentIds={presentIds}
           onAdd={(entry) => { if (!manage) enterManage(); api.add(entry); setAddOpen(false); }}
           onClose={() => setAddOpen(false)} />
       )}
+    </div>
+  );
+}
+
+/**
+ * One widget's own menu, opened by its more_vert icon.
+ *
+ * Resize lives here rather than only in manage mode because changing one
+ * widget's size is not destructive: it asks for more or less of that widget's
+ * content and nothing else moves out of authored order. Remove does go through
+ * the draft, so Cancel still puts the board back.
+ */
+function WidgetMenu({ widget, catalogue, onResize, onRemove, onRefresh, onClose, at }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose?.(); };
+    const onDown = (e) => { if (ref.current && !ref.current.contains(e.target)) onClose?.(); };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onDown);
+    return () => { document.removeEventListener("keydown", onKey); document.removeEventListener("mousedown", onDown); };
+  }, [onClose]);
+  if (!widget) return null;
+  const entry = catalogue.find((c) => c.id === widget.catalogueId);
+  const sizes = entry?.supportedSizes || SIZES;
+
+  const item = (label, onClick, danger) => (
+    <button key={label} type="button" onClick={onClick} style={{
+      display: "block", width: "100%", textAlign: "left", cursor: "pointer",
+      padding: `${L.btnPadV} ${L.modalPad}`, background: "transparent", border: "none",
+      fontFamily: "inherit", fontSize: Y("font-size-s"),
+      letterSpacing: Y("letter-spacing-spacious"),
+      color: danger ? C("foreground-static-negative-on-subtle") : T.title,
+    }}>{label}</button>
+  );
+
+  return (
+    <div ref={ref} role="menu" aria-label={`${widget.title} actions`} style={{
+      /* Positioned under its own trigger. `at` is measured from the button in
+         the click handler, because the menu is rendered by the Dashboard and
+         so is not a descendant of the Widget it belongs to. */
+      position: "fixed", zIndex: 40,
+      right: at ? Math.max(8, at.right) : L.pagePadH,
+      top: at ? at.top : L.pagePadH,
+      minWidth: 220, background: T.surface, borderRadius: L.radius,
+      border: `${L.border} solid ${T.border}`, boxShadow: "var(--elevation-lift)",
+      padding: `${L.btnPadV} 0`,
+    }}>
+      {item("Refresh this widget", onRefresh)}
+      {sizes.length > 1 && (
+        <>
+          <hr style={{ border: 0, borderTop: `${L.border} solid ${T.divider}`,
+            margin: `${L.btnPadV} 0` }} />
+          {sizes.map((sz) => item(
+            `${SIZE_LABEL?.[sz] || sz}${sz === widget.size ? " (current)" : ""}`,
+            () => onResize(sz),
+          ))}
+        </>
+      )}
+      <hr style={{ border: 0, borderTop: `${L.border} solid ${T.divider}`,
+        margin: `${L.btnPadV} 0` }} />
+      {item("Remove from this dashboard", onRemove, true)}
     </div>
   );
 }

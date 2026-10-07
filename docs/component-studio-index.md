@@ -1,10 +1,10 @@
-# Component Studio — Skill Reference Index
+# Component Studio, Skill Reference Index
 
 This file exists so the component studio skill can orient itself without crawling the repo. Read this first, then fetch the specific files you need for the phase you are in.
 
 ---
 
-## Authoritative sources — what to read and when
+## Authoritative sources: what to read and when
 
 | Domain | File in this repo | Fetch when |
 |---|---|---|
@@ -14,7 +14,7 @@ This file exists so the component studio skill can orient itself without crawlin
 | Component pipeline (Figma → repo → Storybook) | `docs/component-pipeline.md` | Handoff and audit phases |
 | Figma prep checklist | `docs/figma-prep-checklist.md` | Step 4 pre-flight |
 | Token definitions (DTCG JSON) | `tokens/pathway-design-tokens.json` | Step 3 (token table), any token lookup |
-| CSS token variables (generated) | `src/tokens/themes/light.css` + `midnight.css`, `layout.css`, `layout-contextual.css`, `type.css`, `motion.css`, `breakpoints.css` | Demo build — load all seven via `<link>` in every HTML demo |
+| CSS token variables (generated) | `src/tokens/themes/light.css` + `midnight.css`, `layout.css`, `layout-contextual.css`, `type.css`, `motion.css`, `breakpoints.css` | Demo build, load all seven via `<link>` in every HTML demo |
 | Token agent brief | `tokens/agent-brief.md` | Any session involving token questions |
 
 GitHub raw base: `https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/main/`
@@ -40,7 +40,7 @@ Pathway component demos are standalone HTML files. No npm, no build step. React 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>[ComponentName] — Pathway Demo</title>
+  <title>[ComponentName], Pathway Demo</title>
 
   <!-- Pathway design tokens -->
   <link rel="stylesheet" href="../../src/tokens/primitives.css">
@@ -55,7 +55,7 @@ Pathway component demos are standalone HTML files. No npm, no build step. React 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block">
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: var(--semantic-type-family-brand, system-ui, sans-serif);
       background: var(--semantic-color-fill-surface-canvas);
@@ -88,7 +88,7 @@ Pathway component demos are standalone HTML files. No npm, no build step. React 
 
     function MyComponent() {
       return h(Dialog.Root, null,
-        // component tree — use Pathway CSS variables for all styling
+        // component tree, use Pathway CSS variables for all styling
       );
     }
 
@@ -100,7 +100,7 @@ Pathway component demos are standalone HTML files. No npm, no build step. React 
 
 ---
 
-### Radix UI — ESM imports for all common primitives
+### Radix UI, ESM imports for all common primitives
 
 ```js
 import * as Dialog         from 'https://esm.sh/@radix-ui/react-dialog@1';
@@ -161,10 +161,10 @@ Use only Pathway CSS variables. Never hardcode a value that exists as a token.
   background: var(--semantic-color-fill-surface-canvas);
   border-radius: var(--semantic-layout-units-cornerradius-large);
   padding: var(--contextual-layout-units-card-padding-vertical) var(--contextual-layout-units-card-padding-horizontal);
-  /* No semantic shadow token exists — log raw box-shadow as design debt in §15 */
+  /* No semantic shadow token exists, log raw box-shadow as design debt in §15 */
 }
 
-/* Wrong — never hardcode */
+/* Wrong: never hardcode */
 .dialog-content {
   background: #ffffff;
   border-radius: 8px;
@@ -175,32 +175,32 @@ Use only Pathway CSS variables. Never hardcode a value that exists as a token.
 **Token naming patterns to know:**
 - Colors: `--semantic-color-light-mode-{text|fill|icon|stroke|surface}-{role}-{variant}`
 - Corner radius: `--semantic-layout-units-cornerradius-{xsmall|small|medium|large|full}`
-- Spacing: component-contextual — `--semantic-layout-units-contextual-{component}-padding-{size}-{direction}`
-- Typography: `--semantic-type-font-size-*`, `--semantic-type-line-height-*`, `--semantic-type-weight-*`, `--semantic-type-letter-spacing-*`, `--semantic-type-family-brand` (a scale, composed at the call site) — always look up the exact name in `tokens.css`, never guess
-- No shadow tokens exist — raw `box-shadow` values must be logged as design debt in §15
+- Spacing: component-contextual, `--semantic-layout-units-contextual-{component}-padding-{size}-{direction}`
+- Typography: `--semantic-type-font-size-*`, `--semantic-type-line-height-*`, `--semantic-type-weight-*`, `--semantic-type-letter-spacing-*`, `--semantic-type-family-brand` (a scale, composed at the call site), always look up the exact name in `tokens.css`, never guess
+- No shadow tokens exist, raw `box-shadow` values must be logged as design debt in §15
 
-Do not use Tailwind classes — they do not work in this environment.
+Do not use Tailwind classes: they do not work in this environment.
 
 ---
 
-### Motion — Radix data-state animations
+### Motion, Radix data-state animations
 
-Radix primitives expose `data-state` attributes (`open`/`closed`, `checked`/`unchecked`, `active`/`inactive`) for animation. Motion tokens are live in the `src/tokens/` contract — use them directly. For the full motion scale and rules see `docs/design-system-spec.md` §2.
+Radix primitives expose `data-state` attributes (`open`/`closed`, `checked`/`unchecked`, `active`/`inactive`) for animation. Motion tokens are live in the `src/tokens/` contract, use them directly. For the full motion scale and rules see `docs/design-system-spec.md` §2.
 
 ```css
-/* Overlay fade (Dialog, Drawer) — 150ms, standard easing */
+/* Overlay fade (Dialog, Drawer), 150ms, standard easing */
 .overlay[data-state="open"]  { animation: fade-in  var(--motion-duration-2) var(--motion-easing-standard); }
 .overlay[data-state="closed"] { animation: fade-out var(--motion-duration-2) var(--motion-easing-standard); }
 
-/* Panel/content scale (Dialog, Popover) — 200ms in, 150ms out */
+/* Panel/content scale (Dialog, Popover), 200ms in, 150ms out */
 .content[data-state="open"]  { animation: scale-in  var(--motion-duration-3) var(--motion-easing-spring); }
 .content[data-state="closed"] { animation: scale-out var(--motion-duration-2) var(--motion-easing-accelerate); }
 
-/* Dropdown/select panel — 300ms, spring enter */
+/* Dropdown/select panel, 300ms, spring enter */
 .dropdown[data-state="open"]  { animation: slide-in  var(--motion-duration-4) var(--motion-easing-spring); }
 .dropdown[data-state="closed"] { animation: slide-out var(--motion-duration-2) var(--motion-easing-accelerate); }
 
-/* Accordion — 380ms, accordion easing both directions */
+/* Accordion, 380ms, accordion easing both directions */
 .accordion-content[data-state="open"]  { animation: accordion-open  var(--motion-duration-5) var(--motion-easing-accordion); }
 .accordion-content[data-state="closed"] { animation: accordion-close var(--motion-duration-5) var(--motion-easing-accordion); }
 
@@ -213,12 +213,12 @@ Radix primitives expose `data-state` attributes (`open`/`closed`, `checked`/`unc
 @keyframes accordion-open  { from { height: 0; }                              to { height: var(--radix-accordion-content-height); } }
 @keyframes accordion-close { from { height: var(--radix-accordion-content-height); } to { height: 0; } }
 
-/* Chevron rotation — standard easing, never spring */
+/* Chevron rotation, standard easing, never spring */
 .chevron[data-state="open"] { transform: rotate(180deg); transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1); }
 
-/* Reduced motion — mandatory on every animated component */
+/* Reduced motion, mandatory on every animated component */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *, *:before, *:after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -255,10 +255,10 @@ Icons use Material Symbols loaded from Google Fonts. The icon renders as a text 
 }
 ```
 
-Never use custom SVGs for standard UI icons. Never guess an icon name — read it from Figma's `get_design_context` output and use the exact string.
+Never use custom SVGs for standard UI icons. Never guess an icon name, read it from Figma's `get_design_context` output and use the exact string.
 
 ---
 
 ### If the token CSS file does not resolve
 
-If `../../src/tokens/` does not resolve (path depends on where the demo file sits relative to repo root), inline the critical tokens in the `<style>` block. Extract them from `tokens/pathway-design-tokens.json`. This is a fallback only — the linked file is the source of truth.
+If `../../src/tokens/` does not resolve (path depends on where the demo file sits relative to repo root), inline the critical tokens in the `<style>` block. Extract them from `tokens/pathway-design-tokens.json`. This is a fallback only: the linked file is the source of truth.

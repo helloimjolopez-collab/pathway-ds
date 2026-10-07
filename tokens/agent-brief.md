@@ -1,8 +1,8 @@
-# Pathway Tokens — Agent Brief
+# Pathway Tokens, Agent Brief
 
 Read this **first** if you are an AI agent (Claude, Figma Make, v0, Cursor, etc.) about to invent any UI element that isn't already a documented Pathway component. This file tells you the rules for picking colours, typography, spacing, motion, and radii so the thing you build looks like it belongs to Pathway.
 
-If a documented component exists for what you're building, **use the component** — see [`../AGENTS.md`](../AGENTS.md) and [`../components/manifest.json`](../components/manifest.json).
+If a documented component exists for what you're building, **use the component**, see [`../AGENTS.md`](../AGENTS.md) and [`../components/manifest.json`](../components/manifest.json).
 
 ---
 
@@ -10,16 +10,16 @@ If a documented component exists for what you're building, **use the component**
 
 1. **Every colour you use must come from a semantic token.** Never raw hex. Never primitive tokens (`Blue/180`, `Cool-Neutral/130`, etc.). Never invented token names.
 
-2. **Semantic colour token names follow `Role / Scope / Variant / State`.** Examples: `Fill/Surface/Chrome`, `Foreground/Action/Secondary/Pressed`, `Foreground/Action/Primary/On Subtle/Hover`. Type token names follow `Category/Subcategory/Size/Weight` (e.g. `Heading/Display/XL/Bold`, `Label/Button/Base`). Layout token names follow `Category/Size` (e.g. `BorderWidth/Base`, `CornerRadius/Medium`). If you propose a name that isn't in this file, it doesn't exist — look it up.
+2. **Semantic colour token names follow `Role / Scope / Variant / State`.** Examples: `Fill/Surface/Chrome`, `Foreground/Action/Secondary/Pressed`, `Foreground/Action/Primary/On Subtle/Hover`. Type token names follow `Category/Subcategory/Size/Weight` (e.g. `Heading/Display/XL/Bold`, `Label/Button/Base`). Layout token names follow `Category/Size` (e.g. `BorderWidth/Base`, `CornerRadius/Medium`). If you propose a name that isn't in this file, it doesn't exist, look it up.
 
 3. **There are three scopes:** `Static`, `Action`, and `Contextual`.
-   - `Static` — fixed meaning across the whole product, not tied to interaction state (e.g. `Fill/Surface/Chrome = #2d4889`, `Foreground/Static/Neutral/Mono = #ffffff`).
-   - `Action` — for interactive elements; always come with states (`Base`, `Hover`, `Pressed`, `Disabled`) and variants (`Primary`, `Secondary`, `Tertiary`). Use these on buttons, links, focus rings, and interactive controls (e.g. `Fill/Action/Primary/Strong/Rest`, `Fill/Action/Primary/Strong/Hover`, `Stroke/Action/Primary/Strong/Rest`).
-   - `Contextual` — scoped to a specific component family; they may share hex values with other scopes today but are kept separate so they can diverge independently (e.g. `Fill/Action/Selection/Selected`, `Foreground/Action/Secondary/Hover`).
+   - `Static`, fixed meaning across the whole product, not tied to interaction state (e.g. `Fill/Surface/Chrome = #2d4889`, `Foreground/Static/Neutral/Mono = #ffffff`).
+   - `Action`: for interactive elements; always come with states (`Base`, `Hover`, `Pressed`, `Disabled`) and variants (`Primary`, `Secondary`, `Tertiary`). Use these on buttons, links, focus rings, and interactive controls (e.g. `Fill/Action/Primary/Strong/Rest`, `Fill/Action/Primary/Strong/Hover`, `Stroke/Action/Primary/Strong/Rest`).
+   - `Contextual`, scoped to a specific component family; they may share hex values with other scopes today but are kept separate so they can diverge independently (e.g. `Fill/Action/Selection/Selected`, `Foreground/Action/Secondary/Hover`).
 
 4. **Typography is `Red Hat Text`, weights 400/500/600/700.** No other font. No other weights. No display font.
 
-5. **Use the type scale exactly as named.** `Label/Menu/Base/Medium` is 14/500/20px/0.3px letter-spacing. If you find yourself typing arbitrary px values for type, stop — find the scale entry.
+5. **Use the type scale exactly as named.** `Label/Menu/Base/Medium` is 14/500/20px/0.3px letter-spacing. If you find yourself typing arbitrary px values for type, stop, find the scale entry.
 
 ---
 
@@ -29,17 +29,17 @@ If a documented component exists for what you're building, **use the component**
 |---|---|
 | [`pathway-design-tokens.json`](./pathway-design-tokens.json) | DTCG-format derived from Figma. **Authoritative.** Every token in production. |
 | [`figma-export/pathwaytokens.json`](./figma-export/pathwaytokens.json) | Raw Figma Variables export. Source of `pathway-design-tokens.json`. |
-| [`../src/tokens/`](../src/tokens/) | Style Dictionary CSS output — all CSS custom properties. |
+| [`../src/tokens/`](../src/tokens/) | Style Dictionary CSS output: all CSS custom properties. |
 | [`../src/tokens/tokens.js`](../src/tokens/tokens.js) | Style Dictionary JS output. |
-| **npm: `@helloimjolopez-pathway/pathway-tokens`** | **`npm install @helloimjolopez-pathway/pathway-tokens` — ships the `dist/` contract`, `dist/tokens.js`, `dist/tokens.json`.** |
-| **[the token contract (live)](https://helloimjolopez-collab.github.io/pathway-ds/tokens/)** | Directly importable CSS without npm — updated on every deploy. |
+| **npm: `@helloimjolopez-pathway/pathway-tokens`** | **`npm install @helloimjolopez-pathway/pathway-tokens`, ships the `dist/` contract`, `dist/tokens.js`, `dist/tokens.json`.** |
+| **[the token contract (live)](https://helloimjolopez-collab.github.io/pathway-ds/tokens/)** | Directly importable CSS without npm, updated on every deploy. |
 | [Storybook → Tokens](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/tokens-primitives-color--docs) | Visual swatches with hex values. |
 
-When the spec says a value, the spec wins over your training data. When the token JSON says a value, the JSON wins over the spec. Tokens flow Figma → JSON → CSS — never the other direction.
+When the spec says a value, the spec wins over your training data. When the token JSON says a value, the JSON wins over the spec. Tokens flow Figma → JSON → CSS: never the other direction.
 
 ---
 
-## Token collections — what actually exists in Figma
+## Token collections: what actually exists in Figma
 
 Pathway tokens are organised into **six Figma variable collections**. Three are primitive (raw values), three are semantic (purpose-named aliases). Always use semantic tokens in components; primitives exist only to be aliased.
 
@@ -51,18 +51,18 @@ Raw colour palettes. Higher step numbers = darker. Most palettes also have alpha
 
 | Palette | Range | Notes |
 |---------|-------|-------|
-| Cool Neutral | 0–240 | White → near-black. The main neutral. |
-| Warm Neutral | 0–980 | Warm off-white → warm near-black. |
-| Brand | 0–950 | Blue family. `500 = #2d4889` is the primary brand blue. |
-| Red | 0–210 | Negative / error. |
-| Orange | 0–210 | Danger / warning. |
-| Green | 0–190 | Positive / success. |
-| Seabreeze | 10–190 | Light blue-cyan. |
-| Lagoon | 10–190 | Teal-cyan. |
-| Jade | 10–190 | Green-teal. |
-| Amethyst | 0–180 | Purple. `30 = #dcd9ef`, `150 = #221e3f` (profile avatar). |
+| Cool Neutral | 0 to 240 | White → near-black. The main neutral. |
+| Warm Neutral | 0 to 980 | Warm off-white → warm near-black. |
+| Brand | 0 to 950 | Blue family. `500 = #2d4889` is the primary brand blue. |
+| Red | 0 to 210 | Negative / error. |
+| Orange | 0 to 210 | Danger / warning. |
+| Green | 0 to 190 | Positive / success. |
+| Seabreeze | 10 to 190 | Light blue-cyan. |
+| Lagoon | 10 to 190 | Teal-cyan. |
+| Jade | 10 to 190 | Green-teal. |
+| Amethyst | 0 to 180 | Purple. `30 = #dcd9ef`, `150 = #221e3f` (profile avatar). |
 | Saffron | 0-900 | Saffron gold easing into warm chocolate. Backs Status/Attention. |
-| Mauve | 0–200 | Pink-purple. |
+| Mauve | 0 to 200 | Pink-purple. |
 
 Primitives are **never referenced in components**. They are only aliased by semantic tokens.
 
@@ -92,7 +92,7 @@ Raw numeric values: 1, 2, 4, 6, 8, 10, 11, 12, 14, 16, 18, 20, 24, 26, 28, 32, 3
 
 Token path: `Role / Scope / Variant / State`
 
-**Roles** — what the token colours:
+**Roles**: what the token colours:
 
 | Role | Usage |
 |------|-------|
@@ -100,17 +100,17 @@ Token path: `Role / Scope / Variant / State`
 | `Fill` | Component background fills |
 | `Icon` | Icon colour |
 | `Stroke` | Borders, outlines, focus rings |
-| `Surface` | Page-level backgrounds (no Scope level — path is `Surface / Nav / Base`, `Surface / Canvas / Light`) |
-| `Scrim` | Overlay backgrounds (no Scope level — path is `Scrim / Light`, `Scrim / Subtle`, `Scrim / Base`) |
+| `Surface` | Page-level backgrounds (no Scope level, path is `Surface / Nav / Base`, `Surface / Canvas / Light`) |
+| `Scrim` | Overlay backgrounds (no Scope level, path is `Scrim / Light`, `Scrim / Subtle`, `Scrim / Base`) |
 
 **Scopes** (apply to Text, Fill, Icon, Stroke):
 
-**`Static`** — fixed value, not interaction-state dependent.
+**`Static`**, fixed value, not interaction-state dependent.
 ```
 Variants: Neutral · Brand · Info · Warning · Danger · Negative · Positive
           Accent_Amethyst · Accent_Jade · Accent_Seabreeze · Accent_Lagoon
 States:   Light · Subtle · Base · Contrast · Bold · Dark · Black
-          (not every variant has every state — check the JSON)
+          (not every variant has every state, check the JSON)
 
 Examples:
   Fill / Static / Brand / Base     → #2d4889  (TopNav, primary button)
@@ -126,7 +126,7 @@ Examples:
   Surface / Canvas / Light → #fafafa
 ```
 
-**`Action`** — interactive elements. Always have interaction states.
+**`Action`**, interactive elements. Always have interaction states.
 ```
 Variants: Primary · PrimaryInverse · Secondary · SecondaryInverse · Tertiary · TertiaryInverse
           Mono · Warning · WarningInverse · Danger · DangerInverse
@@ -145,7 +145,7 @@ Examples:
   Icon / Action / Secondary Inverse / Base → #6b6b6b
 ```
 
-**`Contextual`** — scoped to a specific component family.
+**`Contextual`**, scoped to a specific component family.
 ```
 Text / Contextual / NavItem / Base|Hover|Focused|Active|Disabled
 Fill / Contextual / NavItem / Base|Hover|Focused|Active|Trail
@@ -167,7 +167,7 @@ Examples (Light Mode):
 
 **Single mode.**
 
-**Global tokens** — `Category / Size`:
+**Global tokens**, `Category / Size`:
 
 | Category | Sizes |
 |----------|-------|
@@ -176,7 +176,7 @@ Examples (Light Mode):
 | `Gap` | XXXTight (2) · XXTight (4) · XTight (6) · Tight (8) · Medium (12) · Base (16) · Relaxed (24) · Wide (36) |
 | `Padding` | XXXTight (2) → Collosal (120), 12 steps |
 
-**Contextual tokens** — `Contextual / Component / Property / …`:
+**Contextual tokens**, `Contextual / Component / Property / …`:
 - `Contextual / Button / Gap · Padding · Border Width`
 - `Contextual / NavItem / Large / Padding · Radius · Stroke Width`
 - `Contextual / Page / Padding · Gap`
@@ -187,7 +187,7 @@ Examples (Light Mode):
 - `Contextual / Focused Element / CornerRadius · BorderWidth`
 - `Contextual / Card / Gap · Padding · Border Width · CornerRadius`
 
-**Accessibility tokens** — `Accessibility / Touch Target / Size / Dimension`:
+**Accessibility tokens**, `Accessibility / Touch Target / Size / Dimension`:
 - Optimal: 48×48px · Mobile Minimum: 44×44px · Desktop Minimum: 36×36px
 
 ---
@@ -200,29 +200,29 @@ Token path: `Category / Subcategory / Size / Weight`
 
 **`Heading`**
 ```
-Display / XL | L | Base    — Bold · Semibold     — 56 / 48 / 40px
-Page    / XL | L | Base    — Bold · Semibold     — 36 / 32 / 24px
-Section / L | Base | S | XS — Medium · Semibold · Bold — 20 / 18 / 16 / 14px
-Local   / Base | S | XS    — Semibold · Bold     — 14 / 12 / 11px
+Display / XL | L | Base, Bold · Semibold, 56 / 48 / 40px
+Page    / XL | L | Base, Bold · Semibold, 36 / 32 / 24px
+Section / L | Base | S | XS, Medium · Semibold · Bold, 20 / 18 / 16 / 14px
+Local   / Base | S | XS, Semibold · Bold, 14 / 12 / 11px
 ```
 
 **`Text`**
 ```
-Body      / Large | Base | Small | XSmall — Regular · Medium · Semibold — 18 / 16 / 14 / 12px
-Supporting / Base | Small | XSmall         — Regular · Semibold          — 12 / 11 / 10px
-Dense      / Base | Small | XSmall         — Regular · Semibold          — 12 / 11 / 10px (tight line-height)
+Body      / Large | Base | Small | XSmall, Regular · Medium · Semibold, 18 / 16 / 14 / 12px
+Supporting / Base | Small | XSmall, Regular · Semibold, 12 / 11 / 10px
+Dense      / Base | Small | XSmall, Regular · Semibold, 12 / 11 / 10px (tight line-height)
 ```
 
 **`Label`**
 ```
-Button   / Base | L | S | XS   — Medium weight          — 16 / 18 / 14 / 12px
-Input    / Base | L | S        — Regular · Medium · Semibold — 14 / 16 / 12px
-Option   / Base | L | S        — Regular · Medium · Semibold — 14 / 16 / 12px
-Tab      / Base | S            — Regular · Medium · Semibold — 14 / 12px
-Menu     / Base | L | S        — Regular · Medium           — 14 / 16 / 12px
-Progress / Base | S            — Regular · Semibold          — 14 / 12px
-Badge    / Small | Base | Large — Regular · Medium · Semibold — 11 / 12 / 14px
-Section  / Small | Base | Large — Regular · Medium · Semibold — 11 / 12 / 14px
+Button   / Base | L | S | XS, Medium weight, 16 / 18 / 14 / 12px
+Input    / Base | L | S, Regular · Medium · Semibold, 14 / 16 / 12px
+Option   / Base | L | S, Regular · Medium · Semibold, 14 / 16 / 12px
+Tab      / Base | S, Regular · Medium · Semibold, 14 / 12px
+Menu     / Base | L | S, Regular · Medium, 14 / 16 / 12px
+Progress / Base | S, Regular · Semibold, 14 / 12px
+Badge    / Small | Base | Large, Regular · Medium · Semibold, 11 / 12 / 14px
+Section  / Small | Base | Large, Regular · Medium · Semibold, 11 / 12 / 14px
 ```
 
 Specific px values: `Label/Menu/Base/Medium` = 14px / 500 / 20px line-height / 0.3px letter-spacing.
@@ -235,14 +235,14 @@ All type uses `'Red Hat Text', sans-serif`. Load via Google Fonts:
 
 ---
 
-### Motion (not a Figma variable collection — documented separately)
+### Motion (not a Figma variable collection, documented separately)
 ```
 instant   150ms   /* hover, focus, colour swaps */
 short     300ms   /* small structural moves, modal enter */
 medium    600ms   /* page transitions */
 long      900ms+  /* hero animations (rare) */
 
-/* Component-specific (registered — do NOT invent your own) */
+/* Component-specific (registered: do NOT invent your own) */
 Motion/SideNav/Panel/Width    380ms · cubic-bezier(0.32, 0.72, 0, 1)
 Motion/SideNav/Label/Fade     360ms · same curve · 200ms opacity
 Motion/SideNav/Accordion      340ms · cubic-bezier(0.22, 1, 0.36, 1)
@@ -254,7 +254,7 @@ Decelerate (enter): cubic-bezier(0, 0, 0.2, 1)
 Accelerate (exit):  cubic-bezier(0.4, 0, 0.6, 1)
 ```
 
-**Always respect `prefers-reduced-motion: reduce`** — collapse all transforms to instant opacity fades at 150ms linear.
+**Always respect `prefers-reduced-motion: reduce`**, collapse all transforms to instant opacity fades at 150ms linear.
 
 ---
 
@@ -282,7 +282,7 @@ If you find yourself reaching for a colour, size, or motion value that isn't in 
 
 ## What to do when you can't find a token
 
-1. **Search [`pathway-design-tokens.json`](./pathway-design-tokens.json) by name fragment.** Most components reference token names verbatim in their spec — the name is reachable from there.
+1. **Search [`pathway-design-tokens.json`](./pathway-design-tokens.json) by name fragment.** Most components reference token names verbatim in their spec: the name is reachable from there.
 
 2. **Search Storybook's token pages.** The Tokens section under `Semantics/` has full swatches with hex values and CSS variable names.
 
@@ -292,7 +292,7 @@ If you find yourself reaching for a colour, size, or motion value that isn't in 
 
 ---
 
-## Anti-patterns — common mistakes
+## Anti-patterns, common mistakes
 
 These are the mistakes AI agents make most often when consuming this design system. Each one looks reasonable in isolation; together they corrode the system.
 
@@ -312,7 +312,7 @@ These are the mistakes AI agents make most often when consuming this design syst
 ```css
 color: var(--primitive-color-brand-500);
 ```
-Primitives are building blocks for *the design system itself*. Components never consume them directly — they consume the semantic token that wraps the primitive. If the primitive is renamed in Figma, your component breaks. If you use the semantic, it doesn't.
+Primitives are building blocks for *the design system itself*. Components never consume them directly: they consume the semantic token that wraps the primitive. If the primitive is renamed in Figma, your component breaks. If you use the semantic, it doesn't.
 
 **✅ Semantic token**
 ```css
@@ -342,7 +342,7 @@ line-height: 22px;
 ```
 **✅ Type scale entry from the spec**
 ```
-Use `Label/Menu/Base/Medium` — that's 14/500/20px/0.3px letter-spacing.
+Use `Label/Menu/Base/Medium`: that's 14/500/20px/0.3px letter-spacing.
 ```
 
 **❌ Inter / system-ui / SF Pro**
@@ -353,7 +353,7 @@ font-family: Inter, system-ui, -apple-system, sans-serif;
 ```css
 font-family: "Red Hat Text", sans-serif;
 ```
-There is no other font in Pathway. No display font, no monospace font. If you need monospace for code, that's a real DS gap — surface it, don't invent.
+There is no other font in Pathway. No display font, no monospace font. If you need monospace for code, that's a real DS gap, surface it, don't invent.
 
 **❌ Arbitrary radius**
 ```css
@@ -361,8 +361,8 @@ border-radius: 6px;  /* or 4px, or 10px */
 ```
 **✅ Radius scale entry**
 ```css
-border-radius: 8px;   /* CornerRadius/S — almost anything */
-border-radius: 12px;  /* CornerRadius/M — cards */
+border-radius: 8px;   /* CornerRadius/S, almost anything */
+border-radius: 12px;  /* CornerRadius/M, cards */
 ```
 
 **❌ Custom motion timing**
@@ -392,6 +392,6 @@ Use real HTML semantics. `<button>` for actions. `<a>` for navigation. `<input>`
 If you catch yourself reaching for any of these anti-patterns, stop. The right move is either:
 
 - Find the real token / type entry / motion value in the spec, or
-- Surface the gap to the user: *"There's no token for `<X>` in Pathway — I'm flagging it as a DS gap rather than inventing a value."*
+- Surface the gap to the user: *"There's no token for `<X>` in Pathway, I'm flagging it as a DS gap rather than inventing a value."*
 
 A flagged gap gets fixed. A silent invention spreads.

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 /**
- * LiveTokenTable — a token reference table that RESOLVES its own values.
+ * LiveTokenTable: a token reference table that RESOLVES its own values.
  *
  * WHY THIS EXISTS: Search, TopNav, OrgSwitcher and Checkbox each carried their
  * own copy of a token table in the shape

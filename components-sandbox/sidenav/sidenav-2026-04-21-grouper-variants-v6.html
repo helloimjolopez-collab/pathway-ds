@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Platform Shell — Responsive Overlay (Prototype v6)</title>
+<title>Platform Shell, Responsive Overlay (Prototype v6)</title>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
 
   /* ── Scrollbar (side-nav) ─────────────────────────────────────────────── */
@@ -23,7 +23,7 @@
   /*                                                                          */
   /* Layout rules preventing scrollbar/nav-item overlap:                      */
   /*   1. scrollbar-gutter: stable reserves space whether or not the          */
-  /*      scrollbar is visible — no layout shift when content overflows.      */
+  /*      scrollbar is visible: no layout shift when content overflows.      */
   /*   2. Every direct child of the scroll container gets a 12px right        */
   /*      margin. This is the ACTUAL gap that keeps nav item hover/active     */
   /*      fills from visually touching the scrollbar thumb. Padding on the    */
@@ -37,20 +37,20 @@
   .pds-sidenav-scroll > * {
     margin-right: 12px;
   }
-  .pds-sidenav-scroll::-webkit-scrollbar { width: 6px; }
-  .pds-sidenav-scroll::-webkit-scrollbar-track { background: transparent; margin: 4px 0; }
-  .pds-sidenav-scroll::-webkit-scrollbar-thumb {
+  .pds-sidenav-scroll:-webkit-scrollbar { width: 6px; }
+  .pds-sidenav-scroll:-webkit-scrollbar-track { background: transparent; margin: 4px 0; }
+  .pds-sidenav-scroll:-webkit-scrollbar-thumb {
     background: rgba(17,17,17,0.08);
     border-radius: 999px;
     transition: background 0.15s ease;
   }
-  .pds-sidenav-scroll:hover::-webkit-scrollbar-thumb { background: rgba(17,17,17,0.18); }
-  .pds-sidenav-scroll::-webkit-scrollbar-thumb:hover { background: rgba(17,17,17,0.32); }
-  .pds-sidenav-scroll::-webkit-scrollbar-thumb:active { background: rgba(17,17,17,0.45); }
+  .pds-sidenav-scroll:hover:-webkit-scrollbar-thumb { background: rgba(17,17,17,0.18); }
+  .pds-sidenav-scroll:-webkit-scrollbar-thumb:hover { background: rgba(17,17,17,0.32); }
+  .pds-sidenav-scroll:-webkit-scrollbar-thumb:active { background: rgba(17,17,17,0.45); }
 
   /* Canvas scrollbar (unchanged, just included to match demo) */
-  main::-webkit-scrollbar { width: 6px; }
-  main::-webkit-scrollbar-thumb { background: rgba(17,17,17,0.08); border-radius: 999px; }
+  main:-webkit-scrollbar { width: 6px; }
+  main:-webkit-scrollbar-thumb { background: rgba(17,17,17,0.08); border-radius: 999px; }
 
   .prototype-banner {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -97,18 +97,18 @@
   /*   • TopNav hamburger hidden                                              */
   /*                                                                          */
   /* Tablet + Mobile (<1024px):                                               */
-  /*   • SideNav is overlay layout — position:fixed, hidden by default         */
+  /*   • SideNav is overlay layout, position:fixed, hidden by default         */
   /*   • Scrim appears behind overlay when open                               */
   /*   • TopNav hamburger is the sole trigger (reveal/hide overlay)           */
   /*   • In-sidenav collapse toggle hidden (no rail state)                    */
 
-  /* TopNav hamburger — Option A: only visible at <1024px */
+  /* TopNav hamburger, Option A: only visible at <1024px */
   .topnav-hamburger { display: flex; }
   @media (min-width: 1024px) {
     .topnav-hamburger { display: none; }
   }
 
-  /* In-sidenav collapse toggle — inverse: only visible at ≥1024px */
+  /* In-sidenav collapse toggle, inverse: only visible at ≥1024px */
   @media (max-width: 1023px) {
     .pds-sidenav-header-row { display: none !important; }
   }
@@ -121,11 +121,11 @@
       left: 0;
       bottom: 0;
       z-index: 100;
-      /* Hidden state (default) — slide off-screen + fade */
+      /* Hidden state (default), slide off-screen + fade */
       transform: translateX(-110%);
       opacity: 0;
       pointer-events: none;
-      /* EXIT transition — snappier, ease-in-out */
+      /* EXIT transition, snappier, ease-in-out */
       transition: transform 300ms cubic-bezier(0.4, 0, 0.6, 1),
                   opacity   220ms cubic-bezier(0.4, 0, 0.6, 1);
       will-change: transform;
@@ -134,13 +134,13 @@
       transform: translateX(0);
       opacity: 1;
       pointer-events: auto;
-      /* ENTER transition — slower, decelerate */
+      /* ENTER transition, slower, decelerate */
       transition: transform 380ms cubic-bezier(0, 0, 0.2, 1),
                   opacity   300ms cubic-bezier(0, 0, 0.2, 1);
     }
   }
 
-  /* Scrim — only rendered at <1024px, behind the overlay sidenav */
+  /* Scrim, only rendered at <1024px, behind the overlay sidenav */
   .pds-sidenav-scrim {
     display: none; /* hidden on desktop */
     position: fixed;
@@ -182,7 +182,7 @@
     font-family: 'Red Hat Text', sans-serif; font-weight: 600;
     cursor: pointer;
   }
-  .mock-whats-new::after {
+  .mock-whats-new:after {
     content: "NEW"; font-size: 10px; letter-spacing: 0.08em;
   }
 </style>
@@ -193,7 +193,7 @@
   <span>Responsive platform shell. Resize browser below 1024px to see overlay behavior. Generated 2026-04-22 by pathway-component-prototype.</span>
 </div>
 <div id="root"></div>
-<div class="mock-whats-new" title="Mock 'What's New' floating bubble — demonstrates the bottom-clearance requirement"></div>
+<div class="mock-whats-new" title="Mock 'What's New' floating bubble, demonstrates the bottom-clearance requirement"></div>
 
 <script type="text/babel">
 const { useState, useRef } = React;
@@ -213,15 +213,15 @@ const T = {
     navHover:      "#252525",
     navActive:     "#051428",
     // NEW in v4: section labels use subtle (lighter) at 11pt / 500
-    sectionLabel:  "#6b6b6b", // text.static.secondary.subtle — cool-neutral.120
+    sectionLabel:  "#6b6b6b", // text.static.secondary.subtle, cool-neutral.120
   },
   icon: {
     navBase:       "#4b4b4b",
     navHover:      "#363636",
     navActive:     "#3555a0",
     // Collapse-toggle icon (inline in header)
-    toggleIdle:    "#606060", // icon.static.neutral.subtle — cool-neutral.130
-    toggleHover:   "#252525", // text.contextual.navitem.hover — used here for the icon
+    toggleIdle:    "#606060", // icon.static.neutral.subtle, cool-neutral.130
+    toggleHover:   "#252525", // text.contextual.navitem.hover, used here for the icon
   },
   indicator: "#3555a0",
   radius:    8,
@@ -232,7 +232,7 @@ const L = {
   navPadH:     12, navPadV:     14,
   // v4: width reduced 250 → 220 to match smaller 14pt nav item text.
   // 220 accommodates "Background Checks" and "My Outstanding" (worst-case
-  // real labels) in destinations. Groupers need shorter labels — see spec
+  // real labels) in destinations. Groupers need shorter labels, see spec
   // additions doc for naming recommendations.
   navW:        220,
   navWcol:     72,
@@ -378,7 +378,7 @@ function CollapseToggle({ isSidebarCollapsed, onToggle }) {
     setTooltipVisible(false);
   };
   const handleClick = () => {
-    // Hide tooltip immediately on click — irrelevant once action is taken.
+    // Hide tooltip immediately on click, irrelevant once action is taken.
     clearTimeout(timerRef.current);
     setTooltipVisible(false);
     onToggle();
@@ -421,7 +421,7 @@ function CollapseToggle({ isSidebarCollapsed, onToggle }) {
 //     pattern for rail-state nav items, AND avoids left-edge clipping (the
 //     button is centered in a 72px container; a tooltip centered below it
 //     would extend off-screen to the left).
-// Visual style: white bg, subtle border, soft shadow — matches CollapsedTooltip.
+// Visual style: white bg, subtle border, soft shadow, matches CollapsedTooltip.
 function CollapseToggleTooltip({ label, anchorRect, toRight }) {
   const basePos = toRight
     ? {
@@ -463,7 +463,7 @@ function CollapseToggleTooltip({ label, anchorRect, toRight }) {
 // 11pt / 500 (medium) / text.static.secondary.subtle (#6b6b6b)
 // All-caps, non-interactive. Vanishes in rail, replaced by subtle divider.
 // If `withToggle` is true, render the collapse toggle icon to the right of the
-// label (reserved for the first section label — acts as the sidenav's header).
+// label (reserved for the first section label, acts as the sidenav's header).
 function SectionLabel({ label, isSidebarCollapsed, withToggle, onToggle }) {
   if (isSidebarCollapsed) {
     return (
@@ -483,7 +483,7 @@ function SectionLabel({ label, isSidebarCollapsed, withToggle, onToggle }) {
       width: "100%", cursor: "default", userSelect: "none",
     }}>
       <span style={{
-        // Typography: 11 / 500 (medium) / 16 / wide — atoms from primitive-type.*
+        // Typography: 11 / 500 (medium) / 16 / wide, atoms from primitive-type.*
         // No exact semantic match (label.dense.s has regular + semibold, not medium).
         // See spec-additions doc for the composition rationale.
         fontFamily: "'Red Hat Text',sans-serif",
@@ -738,7 +738,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, ove
   // Default behavior (v4): the collapse toggle always lives in a standalone
   // header row at the top of the sidenav, independent of any section label.
   // The older "host toggle inside first section label" pattern is a possible
-  // future variant but not the default — see spec-additions §3.3.
+  // future variant but not the default, see spec-additions §3.3.
 
   return (
     <nav className={`pds-sidenav-root${overlayOpen ? ' is-open' : ''}`}
@@ -764,7 +764,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange, ove
         // gap between nav item fills and the scrollbar thumb regardless of
         // browser scrollbar-gutter positioning quirks.
       }}>
-        {/* Header row with collapse toggle — desktop only. */}
+        {/* Header row with collapse toggle, desktop only. */}
         {/* Hidden at <1024px via .pds-sidenav-header-row CSS: on overlay     */}
         {/* breakpoints there is no rail state so the toggle serves no role. */}
         <div className="pds-sidenav-header-row">
@@ -899,7 +899,7 @@ function TopNav({ onHamburgerClick, activeModule }) {
       flexShrink: 0,
       zIndex: 50,
     }}>
-      {/* Hamburger — Option A: visible only at tablet + mobile breakpoints */}
+      {/* Hamburger, Option A: visible only at tablet + mobile breakpoints */}
       {/* (see .topnav-hamburger CSS rule). On desktop, the sidenav owns its */}
       {/* own collapse toggle (header row at top of the sidenav).            */}
       <button type="button" aria-label="Toggle navigation"
@@ -918,7 +918,7 @@ function TopNav({ onHamburgerClick, activeModule }) {
         <TopNavIcons.hamburger />
       </button>
 
-      {/* Module switcher — current module + chevron to open the switcher. */}
+      {/* Module switcher, current module + chevron to open the switcher. */}
       <button type="button" aria-label={`${activeModule} module, switch module`}
         onMouseEnter={() => setModH(true)} onMouseLeave={() => setModH(false)}
         style={{
@@ -1032,7 +1032,7 @@ function App() {
           <div style={{ maxWidth: 760, margin: "0 auto" }}>
             <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.1px",
               textTransform: "uppercase", color: "#6b6b6b", marginBottom: 8 }}>
-              Accounting — active destination
+              Accounting, active destination
             </p>
             <h1 style={{ fontSize: 32, fontWeight: 600, lineHeight: "40px",
               color: "#051428", margin: "0 0 16px" }}>
@@ -1058,10 +1058,10 @@ function App() {
                 </p>
                 <ul style={{ listStyle: "disc", paddingLeft: 18, fontSize: 13,
                   lineHeight: "20px", color: "#4b4b4b" }}>
-                  <li>Notice the <strong>TopNav has no hamburger</strong> at this (desktop) width — Option A is in effect</li>
+                  <li>Notice the <strong>TopNav has no hamburger</strong> at this (desktop) width, Option A is in effect</li>
                   <li>Resize your browser window below 1024px → the hamburger appears in the TopNav's far-left</li>
                   <li>Toggle the sidenav via the <strong>in-sidenav collapse icon</strong> at the top of the nav (desktop trigger)</li>
-                  <li>Click <strong>Accounting</strong> (module switcher) or <strong>First Baptist Church</strong> (org switcher) — visual-only in this prototype</li>
+                  <li>Click <strong>Accounting</strong> (module switcher) or <strong>First Baptist Church</strong> (org switcher), visual-only in this prototype</li>
                 </ul>
               </div>
               <div style={{ padding: "16px 20px", border: "1px solid #edf0f9",
@@ -1093,7 +1093,7 @@ function App() {
               <ul style={{ listStyle: "disc", paddingLeft: 18, fontSize: 13,
                 lineHeight: "20px", color: "#4b4b4b" }}>
                 <li><strong>Desktop (≥1024px):</strong> SideNav is push; 220px expanded / 72px rail. <strong>In-sidenav toggle is the sole trigger.</strong> TopNav hamburger hidden.</li>
-                <li><strong>Tablet (768–1023px):</strong> SideNav is overlay; no rail state. <strong>TopNav hamburger is the sole trigger</strong> (shows/hides overlay). Scrim behind. In-sidenav toggle not used here.</li>
+                <li><strong>Tablet (768 to 1023px):</strong> SideNav is overlay; no rail state. <strong>TopNav hamburger is the sole trigger</strong> (shows/hides overlay). Scrim behind. In-sidenav toggle not used here.</li>
                 <li><strong>Mobile (&lt;768px):</strong> Same as tablet. TopNav hamburger is the sole trigger. In-sidenav toggle not used.</li>
               </ul>
             </div>
@@ -1127,7 +1127,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 
 <!--
 ================================================================================
-TOKEN COVERAGE REPORT — v4 (as approved on 2026-04-21)
+TOKEN COVERAGE REPORT, v4 (as approved on 2026-04-21)
 ================================================================================
 Grounding: tokens/pathway-design-tokens.json @ 98ee386
 
@@ -1158,21 +1158,21 @@ Section label (v4 change):
 
 Collapse toggle icon (v4 new):
   icon.static.neutral.subtle           → #606060 (idle color)
-  text.contextual.navitem.hover        → #252525 (hover — reused)
+  text.contextual.navitem.hover        → #252525 (hover, reused)
   fill.contextual.navitem.hover        → #1111110a (hover background)
 
 Scrollbar (v4 new):
   primitive-color.cool-neutral.220-8   → rgba(17,17,17,0.08) (thumb rest)
   primitive-color.cool-neutral.220-20  → rgba(17,17,17,0.20) (thumb hover over rail)
   (two additional alpha values for thumb:hover and :active are NOT in the
-   primitive table — see SUBOPTIMAL below)
+   primitive table, see SUBOPTIMAL below)
 
 ── MISSING TOKENS ────────────────────────────────────────────────────────────
   1. Scrollbar thumb hover (0.32) and active (0.45) alphas have no matching
-     primitive. The token set has 220-{2,4,8,12,16,20,30,50,70} — no values
+     primitive. The token set has 220-{2,4,8,12,16,20,30,50,70}: no values
      between 20 and 50. Using raw rgba values for the hover/active jumps.
      Recommendation: add `primitive-color.cool-neutral.220-32` and
-     `220-45` (or rescale to existing 220-30 and 220-50 — small visual drift
+     `220-45` (or rescale to existing 220-30 and 220-50, small visual drift
      acceptable). Alternatively, introduce a `scrollbar.thumb.*` semantic.
 
   2. No semantic for inline icon-button size (28x28). Using raw value.
@@ -1180,7 +1180,7 @@ Scrollbar (v4 new):
      for reuse across inline icon toggles.
 
 ── SUBOPTIMAL TOKENS ─────────────────────────────────────────────────────────
-Same four from v1–v3. See
+Same four from v1 v3. See
 sidenav-2026-04-21-grouper-variants-token-recommendations.md.
 
 Plus new observation: the section label's weight 500 (medium) has no semantic

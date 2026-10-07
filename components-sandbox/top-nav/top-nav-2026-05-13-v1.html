@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TopNav.Global — Pathway Design System</title>
+<title>TopNav.Global, Pathway Design System</title>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <style>
 /* ── TOKEN VARIABLES ──────────────────────────────────────────────────────── */
-/* Inlined from src/tokens/tokens.css — dark-mode families only.             */
+/* Inlined from src/tokens/tokens.css, dark-mode families only.             */
 /* In production these are consumed from the shared token file.              */
 :root {
   /* Primitives (resolved values) */
@@ -55,30 +55,30 @@
   --primitive-color-cool-neutral-0-30: rgba(255,255,255,0.30);
   --primitive-color-cool-neutral-0-70: rgba(255,255,255,0.70);
 
-  /* Semantic — dark-mode surfaces */
+  /* Semantic, dark-mode surfaces */
   --semantic-color-dark-mode-surface-nav-base:  var(--primitive-color-cool-neutral-230); /* #0c0c0c */
   --semantic-color-dark-mode-surface-nav-light: var(--primitive-color-cool-neutral-180); /* #252525 */
 
-  /* Semantic — dark-mode fill/action */
+  /* Semantic, dark-mode fill/action */
   --semantic-color-dark-mode-fill-action-tertiary-base:    var(--primitive-color-brand-50-4);
   --semantic-color-dark-mode-fill-action-tertiary-hover:   var(--primitive-color-brand-50-8);
   --semantic-color-dark-mode-fill-action-tertiary-pressed: var(--primitive-color-brand-50-16);
   --semantic-color-dark-mode-fill-action-primaryinverse-hover:   var(--primitive-color-brand-900-16, rgba(10,18,35,0.16));
   --semantic-color-dark-mode-fill-action-primaryinverse-pressed: var(--primitive-color-cool-neutral-0-8);
 
-  /* Semantic — dark-mode stroke/action */
+  /* Semantic, dark-mode stroke/action */
   --semantic-color-dark-mode-stroke-action-tertiary-base:    var(--primitive-color-brand-50-16);
   --semantic-color-dark-mode-stroke-action-tertiary-hover:   var(--primitive-color-brand-50-20);
   --semantic-color-dark-mode-stroke-action-tertiary-pressed: var(--primitive-color-brand-50-30);
 
-  /* Semantic — dark-mode text */
+  /* Semantic, dark-mode text */
   --semantic-color-dark-mode-text-action-mono-base:    var(--primitive-color-cool-neutral-10);
   --semantic-color-dark-mode-text-action-mono-hover:   var(--primitive-color-cool-neutral-0);
   --semantic-color-dark-mode-text-action-mono-pressed: var(--primitive-color-cool-neutral-0);
   --semantic-color-dark-mode-text-action-secondary-base:   var(--primitive-color-cool-neutral-40);
   --semantic-color-dark-mode-text-action-secondary-hover:  var(--primitive-color-cool-neutral-30);
 
-  /* Semantic — dark-mode icon */
+  /* Semantic, dark-mode icon */
   --semantic-color-dark-mode-icon-action-mono-base:    var(--primitive-color-cool-neutral-10);
   --semantic-color-dark-mode-icon-action-mono-hover:   var(--primitive-color-cool-neutral-0);
   --semantic-color-dark-mode-icon-action-mono-pressed: var(--primitive-color-cool-neutral-0);
@@ -94,7 +94,7 @@
 }
 
 /* ── RESET ────────────────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; background: #0e1829; font-family: 'Red Hat Text', sans-serif; }
 button { background: none; border: none; cursor: pointer; font-family: inherit; }
 input  { font-family: inherit; }
@@ -123,7 +123,7 @@ input  { font-family: inherit; }
 .topnav {
   position: fixed; top: 0; left: 0; right: 0;
   height: 56px;
-  /* Nav surface: dark brand navy — brand-900.
+  /* Nav surface: dark brand navy, brand-900.
      NOTE: Semantic token pending: expected --semantic-color-dark-mode-fill-static-surface-nav.
      Current best match: --primitive-color-brand-900 (#0a1223).
      See top-nav-spec.md §3 gaps. */
@@ -349,7 +349,7 @@ input  { font-family: inherit; }
   font-size: 13px; font-weight: 400;
   caret-color: rgba(160,181,230,0.8);
 }
-.topnav-search__input::placeholder { color: rgba(160,181,230,0.40); }
+.topnav-search__input:placeholder { color: rgba(160,181,230,0.40); }
 .topnav-search__input:focus { outline: none; }
 .topnav-search__field:focus-within {
   border-color: rgba(160,181,230,0.35);
@@ -749,7 +749,7 @@ function OrgSwitcherTrigger({ open, onToggle, orgName, campusName, isMobile }) {
         className="nav-btn org-switcher__trigger"
         aria-haspopup="true"
         aria-expanded={open}
-        aria-label={`${orgName}${campusName ? ", " + campusName : ""} — org switcher`}
+        aria-label={`${orgName}${campusName ? ", " + campusName : ""}, org switcher`}
         onClick={onToggle}
       >
         <span className="org-switcher__avatar">{initials}</span>
@@ -962,7 +962,7 @@ function App() {
       <div className="demo-content">
         <h1>{activeItem.label}</h1>
         <p>
-          TopNav.Global demo — Pathway Design System.
+          TopNav.Global demo, Pathway Design System.
           Click the module switcher (left) to change active module.
           Click the org switcher to see the trigger state. Use search to expand the search field.
         </p>
@@ -996,7 +996,7 @@ function App() {
           <h2>Breakpoints</h2>
           <p>
             ≥1440px (Desktop): full org name + campus name, module label visible.<br/>
-            768–1439px (Tablet): same layout, slightly constrained widths.<br/>
+            768 to 1439px (Tablet): same layout, slightly constrained widths.<br/>
             &lt;768px (Mobile): hamburger appears, org name abbreviated (e.g. GCC | W), module label hidden.
           </p>
         </div>

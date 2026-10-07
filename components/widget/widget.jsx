@@ -1,5 +1,5 @@
 /**
- * Widget — the dashboard's container.
+ * Widget: the dashboard's container.
  *
  * SOURCE OF TRUTH: Figma set 40009622:39702, the Amplify section of the
  * "↳ Widget" page, read leaf by leaf on 2026-10-07. The behavioural source for
@@ -28,7 +28,9 @@
  *                                                fill Fill/Surface/Elevated,
  *                                                stroke Stroke/Static/Neutral/Base
  *
- *   header            title 20 tall  +  Slot.HoverIcons 72x36 HUG, three Action.Icon 36x36
+ *   header            Container.WidgetHeading 44 tall, HORIZONTAL, two children:
+ *                     Container.RowStart  title 20 tall + Slot.HoverIcons 72x36 HIDDEN, TWO Action.Icon
+ *                     Slot.RowEnd         THREE Action.Icon 36x36, VISIBLE at rest
  *
  * TWO THINGS THAT LOOK LIKE MISTAKES AND ARE NOT
  *
@@ -45,6 +47,7 @@
  * is used here and the gap is logged in the manifest for the file to fix.
  */
 import React, { useState } from "react";
+import { ActionIcon } from "../icon/action-icon.jsx";
 
 const C = (n) => `var(--semantic-color-${n})`;
 const U = (n) => `var(--semantic-layout-units-${n})`;
@@ -61,12 +64,7 @@ export const T = {
   innerFill:    C("fill-surface-elevated"),
   innerBorder:  C("stroke-static-neutral-base"),
   title:        C("foreground-static-neutral-bold"),
-  meta:         C("foreground-static-neutral-base"),
   // KPI number, 32px in Figma on Foreground/Static/Neutral/Strong.
-  number:       C("foreground-static-neutral-strong"),
-  iconRest:     C("foreground-action-secondary-rest"),
-  iconHover:    C("foreground-action-secondary-hover"),
-  iconBoxHover: C("fill-action-secondary-hover"),
 };
 
 export const L = {
@@ -87,9 +85,8 @@ export const L = {
   innerPadH:     U("padding-base"),          // 16
   // Glance root has 8px of bottom padding and nothing else.
   glancePadB:    U("padding-xtight"),        // 8
-  // Slot.HoverIcons is 72x36 and hugs; each Action.Icon is 36x36.
-  actionIcon:    36,
-  actionGlyph:   12,   // Figma: refresh / open_in_full / more_vert at 12x12 in a 36 box
+  // Slot.RowEnd hugs its three Action.Icons; each Action.Icon is 36x36. The
+  // separate, hidden Slot.HoverIcons is 72x36 and holds two.
   titleH:        20,
   // Figma's own min sizes, now also Contextual tokens.
   minW: {
@@ -153,52 +150,58 @@ ${spanRule(2, "  ")}  }
 @media (prefers-reduced-motion: reduce) {
   @keyframes pwWidgetIn { from { opacity: 1 } to { opacity: 1 } }
 }
+/* Slot.HoverIcons: the SECOND icon slot, beside the title. Hidden at rest and
+   revealed on hover OR keyboard focus within the widget, so it is reachable
+   without a pointer. pointer-events is off while invisible so it cannot be
+   clicked blind, which is the failure mode of an opacity-only reveal. */
+.pw-widget .pw-widget-hover-actions {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-duration-2) var(--motion-easing-standard);
+}
+.pw-widget:hover .pw-widget-hover-actions,
+.pw-widget:focus-within .pw-widget-hover-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pw-widget .pw-widget-hover-actions { transition: none }
+}
   `}</style>
 );
 
 // ─── header ───────────────────────────────────────────────────────────────────
-function ActionIcon({ name, label, onClick }) {
-  const [hov, setHov] = useState(false);
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      title={label}
-      onClick={onClick}
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      style={{
-        display: "inline-flex", alignItems: "center", justifyContent: "center",
-        // Figma Action.Icon is 36x36 fixed.
-        width: L.actionIcon, height: L.actionIcon, flexShrink: 0,
-        borderRadius: U("cornerradius-base"), border: "none", padding: 0,
-        background: hov ? T.iconBoxHover : "transparent",
-        color: hov ? T.iconHover : T.iconRest,
-        cursor: "pointer",
-        transition: `background ${M("duration-2")} ${M("easing-standard")}, color ${M("duration-2")} ${M("easing-standard")}`,
-      }}
-    >
-      <span className="material-symbols-rounded" aria-hidden="true" style={{
-        fontSize: L.actionGlyph, lineHeight: 1, display: "block",
-        fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' ${L.actionGlyph}`,
-      }}>{name}</span>
-    </button>
-  );
-}
-
+/* ActionIcon used to be a private helper right here, which is why Figma's
+   `Action Icon` set (40006794:19891, used 30 times inside this very component)
+   had no code to point at and the KPI Tile could not reuse it. It now lives in
+   components/icon/action-icon.jsx and is measured off that set. */
 /**
- * Container.WidgetHeading. 44 tall, horizontal, gap 2, with the title on the
- * left and Slot.HoverIcons on the right.
+ * Container.WidgetHeading. 44 tall, horizontal, gap 2.
  *
- * THE ICONS ARE VISIBLE AT REST. The slot is NAMED Slot.HoverIcons, and I read
- * that name as the behaviour and hid them until hover. Looking at the rendered
- * Figma component, all three are on every widget at rest. Corrected 2026-10-07.
- * The name describes where they sit, not when they appear.
+ * THERE ARE TWO ICON SLOTS, and conflating them is what went wrong twice.
+ * Walking the Figma tree on 2026-10-07 gives, inside the 566x44 header:
+ *
+ *   Container.RowStart  109x20
+ *     Heading           the title
+ *     Slot.HoverIcons   72x36, HIDDEN, TWO Action.Icon
+ *   Slot.RowEnd         433x36, THREE Action.Icon: refresh, open_in_full, more_vert
+ *
+ * So the three icons a reader sees at rest are `Slot.RowEnd`, and they are
+ * visible in all six variants as drawn. `Slot.HoverIcons` is a DIFFERENT slot:
+ * two more actions, beside the TITLE rather than at the row end, hidden, and
+ * gated by the set's `Show Hover Actions` boolean, whose default is false.
+ *
+ * The first implementation read the name `Slot.HoverIcons` as the behaviour of
+ * the visible three and hid them until hover. The correction then over-swung
+ * and claimed the slot simply held the visible three and that its name
+ * described position rather than timing. Both were wrong: there are two slots,
+ * the row-end three are always on, and the hover two are genuinely hover-only
+ * and off by default. `hoverActions` below is that second slot.
  */
 /* Exported so Figma's `Widget.Heading` component (40017333:34481) has something
    to map to. It is a BUILDING BLOCK: mapped, but no Storybook page, because it
    only ever appears nested inside a Widget. */
-export function WidgetHeading({ title, size = "detail", actions = [], swap }) {
+export function WidgetHeading({ title, size = "detail", actions = [], hoverActions = [], swap }) {
   const layered = !isFlat(size);
   return (
     <div
@@ -214,7 +217,7 @@ export function WidgetHeading({ title, size = "detail", actions = [], swap }) {
           // The title is the swap control. See swap in the props below.
           <button type="button" onClick={swap.onOpen}
             aria-haspopup="listbox" aria-expanded={!!swap.open}
-            aria-label={`${title} — swap this widget for another`}
+            aria-label={`${title}: swap this widget for another`}
             style={{
               display: "inline-flex", alignItems: "center", gap: L.headerGap,
               minWidth: 0, background: "transparent", border: "none", padding: 0,
@@ -237,15 +240,28 @@ export function WidgetHeading({ title, size = "detail", actions = [], swap }) {
             fontWeight: Y("weight-semibold"), letterSpacing: Y("letter-spacing-spacious"),
           }}>{title}</span>
         )}
+
+        {/* Slot.HoverIcons: the SECOND slot, beside the title, two icons, hidden
+            until hover or keyboard focus. Off unless a consumer passes it,
+            because the Figma boolean that gates it defaults to false. It is
+            pointer-events: none while invisible so it cannot be clicked blind. */}
+        {hoverActions.length > 0 && (
+          <div className="pw-widget-hover-actions"
+            style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+            {hoverActions.slice(0, 2).map((a) => (
+              <ActionIcon key={a.name} name={a.name} label={a.label} onClick={a.onClick} size="Small" />
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Slot.HoverIcons. Figma holds three Action.Icons in a 72x36 hug, so the
-          slot is two icons wide with the third conditional: a widget that has
-          no full view does not get a Go-to button. */}
+      {/* Slot.RowEnd: the three icons that ARE visible at rest. The third is
+          conditional, because a widget with no full view gets no expand
+          button. */}
       {actions.length > 0 && (
         <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
           {actions.map((a) => (
-            <ActionIcon key={a.name} name={a.name} label={a.label} onClick={a.onClick} />
+            <ActionIcon key={a.name} name={a.name} label={a.label} onClick={a.onClick} size="Small" />
           ))}
         </div>
       )}
@@ -262,6 +278,12 @@ export function WidgetHeading({ title, size = "detail", actions = [], swap }) {
  * @param {func}   onRefresh "Refresh". Omit to hide.
  * @param {func}   onMenu    "More actions". Omit to hide.
  * @param {object} swap      { onOpen, open } makes the title a swap control.
+ * @param {array}  hoverActions  Slot.HoverIcons: up to TWO extra actions that
+ *                           sit beside the TITLE and appear on hover or focus.
+ *                           A different slot from the three row-end icons
+ *                           above, and OFF by default, because the Figma
+ *                           boolean that gates it (`Show Hover Actions`)
+ *                           defaults to false. Shape: [{ name, label, onClick }].
  * @param {bool}   inGrid    false when the widget is not inside a dashboard
  *                           grid, so it does not claim a column span.
  */
@@ -273,6 +295,7 @@ export function Widget({
   onRefresh,
   onMenu,
   swap,
+  hoverActions = [],
   inGrid = true,
   className = "",
   style,
@@ -281,7 +304,7 @@ export function Widget({
   const layered = !isFlat(size);
   const grid = SIZE_GRID[size] || SIZE_GRID.detail;
 
-  // Figma's Slot.HoverIcons holds three. Which three depends on what the
+  // Figma's Slot.RowEnd holds three. Which three depends on what the
   // consumer wires up, in the order the design shows them.
   // EXACTLY THE THREE FIGMA DRAWS, in its order: refresh, open_in_full,
   // more_vert. There is no `info` icon on the widget: I had invented one, and
@@ -320,7 +343,8 @@ export function Widget({
       }}
       {...rest}
     >
-      <WidgetHeading title={title} size={size} actions={actions} swap={swap} />
+      <WidgetHeading title={title} size={size} actions={actions}
+        hoverActions={hoverActions} swap={swap} />
 
       {layered ? (
         /* MainContent.Slot: the inner card Detail and Explore have. */

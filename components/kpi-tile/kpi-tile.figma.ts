@@ -7,6 +7,17 @@ import figma from "figma"
 // Nine Types collapse to three SHAPES, because the numbered suffixes vary the
 // sample glyph or the sample line rather than the layout. Both are props, so
 // they do not need a variant each.
+//
+// ON LIGHT AND MIDNIGHT: this is a code snippet, not a render, so flipping the
+// mode in Figma cannot change it, and nothing is wrong when it does not. What
+// responds at runtime is that every colour resolves through a MODE-AGNOSTIC
+// token name, switched by a `data-theme` ancestor rather than by a different
+// token:
+//
+//   <div data-theme="midnight">  ...the same markup, Midnight values...
+//
+// No component names a mode. `--semantic-color-light-mode-*` is the retired
+// form and resolves to nothing. See src/tokens/themes/.
 const type = figma.selectedInstance.getEnum("Type", {
   Simple: "simple",
   "Icon 01": "icon",

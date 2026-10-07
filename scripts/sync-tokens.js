@@ -22,14 +22,14 @@
  *      when it prints.
  *   3. Tokens whose alias target doesn't exist (e.g. a semantic pointing at a
  *      primitive that was deleted in Figma) are dropped from the output with
- *      a warning. Never ask the user to fix broken aliases — the script heals
+ *      a warning. Never ask the user to fix broken aliases: the script heals
  *      them by dropping the orphan.
  *
  * Usage:  npm run sync-tokens
  */
 
 // Modes whose slugified name matches any of these are dropped entirely from
-// the derived output. Slug form — lowercase, dots/spaces → hyphens.
+// the derived output. Slug form, lowercase, dots/spaces → hyphens.
 // Dark mode is now included. See CLAUDE.md §2.1 for the full policy.
 const EXCLUDED_MODE_SLUGS = new Set([]);
 
@@ -79,7 +79,7 @@ function setNestedValue(obj, pathParts, value) {
 function processExport(data) {
   // data is an array: [ { "Collection Name": { modes: { ... } } }, ... ]
   if (!Array.isArray(data)) {
-    console.warn("Warning: Export file is not an array — skipping.");
+    console.warn("Warning: Export file is not an array, skipping.");
     return null;
   }
 
@@ -107,13 +107,13 @@ function processExport(data) {
       const modes = collectionData.modes;
 
       if (!modes || typeof modes !== "object") {
-        console.warn(`Warning: Collection "${collectionName}" has no modes — skipping.`);
+        console.warn(`Warning: Collection "${collectionName}" has no modes, skipping.`);
         continue;
       }
 
       const modeNames = Object.keys(modes);
       // isMultiMode is determined by the ORIGINAL export, not by the filtered
-      // set. This keeps CSS variable names stable — if Figma exports a
+      // set. This keeps CSS variable names stable: if Figma exports a
       // "Light Mode" + "Dark Mode" pair and we filter one out, the remaining
       // tokens still carry the mode segment (e.g. "light-mode") so downstream
       // consumers don't need to change their variable references depending on
@@ -150,8 +150,8 @@ function processExport(data) {
 /**
  * Lower-case the four token values that are CSS KEYWORDS rather than labels.
  *
- * Figma stores them capitalised — FontStyle/Italic is "Italic",
- * TextDecoration/Underline is "Underline" — because in the panel they read as
+ * Figma stores them capitalised, FontStyle/Italic is "Italic",
+ * TextDecoration/Underline is "Underline": because in the panel they read as
  * labels. Emitted verbatim they become `font-style: Italic` and
  * `text-decoration: Underline`. CSS keywords are case-insensitive so browsers
  * accept it, but strict design-system linters reject it, and a consumer was
@@ -187,7 +187,7 @@ function processTokenGroup(obj, pathSoFar, callback, aliasCtx) {
       // This is a token leaf
       const dtcgType = FIGMA_TYPE_MAP[val.$type];
       if (!dtcgType) {
-        console.warn(`Warning: Skipping "${currentPath.join("/")}" — unsupported type "${val.$type}"`);
+        console.warn(`Warning: Skipping "${currentPath.join("/")}", unsupported type "${val.$type}"`);
         continue;
       }
 
@@ -211,7 +211,7 @@ function processTokenGroup(obj, pathSoFar, callback, aliasCtx) {
 
       callback(currentPath, tokenLeaf);
     } else if (val && typeof val === "object" && !Array.isArray(val)) {
-      // Nested group — recurse
+      // Nested group, recurse
       processTokenGroup(val, currentPath, callback, aliasCtx);
     }
   }
@@ -228,7 +228,7 @@ function processTokenGroup(obj, pathSoFar, callback, aliasCtx) {
 // in place, so the run can report them together and fail.
 //
 // WHY THIS IS TRACKED SEPARATELY: an alias with no $collectionName gets emitted
-// unqualified — "{saffron.75}" instead of "{primitive-color.saffron.75}" — which
+// unqualified, "{saffron.75}" instead of "{primitive-color.saffron.75}", which
 // can never resolve, so pruneBrokenAliases silently deletes the token. It then
 // reports it as "target missing in Figma export", which is the WRONG diagnosis:
 // the target exists, the export entry is malformed. Four Status/Attention tokens
@@ -336,7 +336,7 @@ function readExistingTokens() {
  *
  * Principle: the Figma export is the source of truth. Anything not in the
  * incoming tree does not exist. We only preserve DTCG metadata ($themes,
- * $metadata) from the existing file — never token data. Deleting a variable
+ * $metadata) from the existing file: never token data. Deleting a variable
  * in Figma removes it from the derived output on the next sync.
  */
 function mirrorTokens(existing, incoming) {
@@ -350,7 +350,7 @@ function mirrorTokens(existing, incoming) {
 }
 
 // ---------------------------------------------------------------------------
-// Alias validation — drop tokens that reference non-existent targets
+// Alias validation, drop tokens that reference non-existent targets
 // ---------------------------------------------------------------------------
 
 /** Resolve a dot-separated token path within the tree. Returns the node or undefined. */
@@ -449,7 +449,7 @@ function main() {
     // The two lists record different path forms: `dropped` paths are fully
     // qualified (semantic-color.light-mode.fill...) while a malformed alias is
     // recorded from inside the collection walk (fill...). Match on suffix, or
-    // the malformed entries get double-reported — once with the wrong
+    // the malformed entries get double-reported: once with the wrong
     // diagnosis, which is the confusion this split exists to remove.
     const malformedPaths = malformedAliases.map((m) => m.path);
     const isMalformed = (p) => malformedPaths.some((m) => p === m || p.endsWith("." + m));
@@ -477,7 +477,7 @@ function main() {
     console.error(
       "\n   An alias without $collectionName is emitted unqualified and can never\n" +
         "   resolve, so the token is silently dropped from every downstream file.\n" +
-        "   This is NOT a deleted primitive — the target almost certainly exists.\n" +
+        "   This is NOT a deleted primitive: the target almost certainly exists.\n" +
         "   Fix: add \"$collectionName\": \"Primitive: Color\" (and \"$libraryName\": \"\")\n" +
         "   to each entry above in tokens/figma-export/pathwaytokens.json, then re-run.\n" +
         "   Every alias Figma itself exports carries the field; entries missing it\n" +
@@ -503,7 +503,7 @@ function main() {
   }
 
   if (unchanged) {
-    console.log("No changes detected — tokens file is already up to date.");
+    console.log("No changes detected, tokens file is already up to date.");
   } else {
     writeFileSync(OUTPUT_PATH, output, "utf-8");
     console.log(`\nTokens written to ${OUTPUT_PATH}`);

@@ -30,7 +30,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add components/sidenav/sidenav-figmamake.html
           if git diff --cached --quiet; then
-            echo "No changes — skipping commit."
+            echo "No changes, skipping commit."
           else
             git commit -m "chore: auto-sync sidenav-figmamake.html from sidenav.html [skip ci]"
             git push

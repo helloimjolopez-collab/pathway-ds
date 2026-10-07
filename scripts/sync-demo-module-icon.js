@@ -1,5 +1,5 @@
 /**
- * sync-demo-module-icon.js — keep the demos' inline ModuleIcon in step with the
+ * sync-demo-module-icon.js, keep the demos' inline ModuleIcon in step with the
  * shipped module.
  *
  * WHY THIS EXISTS
@@ -24,7 +24,7 @@ const TARGETS = [
   "components/nav-shell/nav-shell.html",
   "components/module-icon/module-icon.html",
 ];
-const BEGIN = "/* BEGIN GENERATED module-icon — npm run sync-demo-module-icon */";
+const BEGIN = "/* BEGIN GENERATED module-icon, npm run sync-demo-module-icon */";
 const END = "/* END GENERATED module-icon */";
 
 const src = readFileSync(SRC, "utf8");
@@ -85,7 +85,7 @@ if (!grad) throw new Error("EQUIP_GRADIENT not found");
 // The demo copy is the same logic as the module, written against React from the
 // CDN global rather than an import.
 const block = `${BEGIN}
-/* Generated from ${SRC}. Do NOT edit here — edit the module and re-run. */
+/* Generated from ${SRC}. Do NOT edit here, edit the module and re-run. */
 const MODULE_IDENTITY = ${identity};
 const MODULES = ${modulesList};
 const MODULE_LABELS = ${labels};

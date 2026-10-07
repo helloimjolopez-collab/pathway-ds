@@ -1,5 +1,5 @@
 /**
- * check-ladder-order.js — fail the build when a ladder's NAMES disagree with its
+ * check-ladder-order.js, fail the build when a ladder's NAMES disagree with its
  * VALUES.
  *
  * WHY THIS EXISTS:
@@ -65,7 +65,7 @@ for (const m of primitives.matchAll(/^\s*(--primitive-[a-z0-9-]+)\s*:\s*([^;]+);
 function resolve(raw, depth = 0) {
   if (depth > 8) return null;
   const v = raw.trim();
-  const ref = v.match(/^var\(\s*(--[a-z0-9-]+)\s*(?:,[^)]*)?\)$/i);
+  const ref = v.match(/^var\(\s*(--[a-z0-9-]+)\s*(?:[^)]*)?\)$/i);
   if (ref) {
     const next = primValue.get(ref[1]) ?? semValue.get(ref[1]);
     return next === undefined ? null : resolve(next, depth + 1);

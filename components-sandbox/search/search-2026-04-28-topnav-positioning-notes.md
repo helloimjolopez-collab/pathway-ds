@@ -8,7 +8,7 @@ This document records why search is placed on the right rather than centered, an
 
 ## Why right, not center
 
-### 1. The TopNav already has a structural grammar — context on the left, actions on the right
+### 1. The TopNav already has a structural grammar, context on the left, actions on the right
 
 Pathway's TopNav reads like every other modern productivity platform: brand and context on the far left (home icon → module switcher → org switcher), account anchor on the far right (avatar), tools clustered between context and account. Search is a tool. Placing it among the other tools (help, settings, notifications) keeps the left side semantically pure as "where am I" and the right side as "what can I do." Centering search would break this grammar by introducing a third zone that doesn't fit either category.
 
@@ -68,7 +68,7 @@ Search is the most important tool in the right cluster. Burying it after help/se
 
 ### B has more horizontal room when expanded
 
-At desktop the always-expanded search bar can be wider when it sits before the action cluster, because the cluster takes ~120px of fixed space to its right. Position C would be sandwiched between the action cluster and the avatar, leaving only ~50–80px before bumping into the avatar — too tight for a usable text input.
+At desktop the always-expanded search bar can be wider when it sits before the action cluster, because the cluster takes ~120px of fixed space to its right. Position C would be sandwiched between the action cluster and the avatar, leaving only ~50 to 80px before bumping into the avatar, too tight for a usable text input.
 
 ### B keeps the avatar adjacent to the user-account-related controls
 

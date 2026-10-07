@@ -1,15 +1,21 @@
 /**
- * Search — Pathway Design System (v1, search bar only)
+ * Search, Pathway Design System (v1, search bar only)
  *
  * Two named exports:
- *   SearchInput   — the base pill-shaped search bar
- *   TopNavSearch  — the nav bar wrapper (collapsed icon button + spring-expand bar)
+ *   SearchInput: the base pill-shaped search bar
+ *   TopNavSearch: the nav bar wrapper (collapsed icon button + spring-expand bar)
  *
  * Spec:   components/search/search-spec.md
- * Figma:  https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006978-23158
+ * Figma:  https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007095-4048
+ *          TopNav.Search, a COMPONENT_SET: Platform=Desktop x
+ *          State=Collapsed|Expanded|Open. The id cited here until 2026-10-07,
+ *          40006978-23158, reads as a 2594x1680 FRAME named "Frame 633379":
+ *          a layout frame, not a component. A genuinely different general
+ *          search field exists at 40006978-23446, which this repo does NOT
+ *          implement.
  *
  * v1 scope: search bar + TopNavSearch collapsed/expanded states only.
- * The Open state (results dropdown) is deferred — see spec §17.
+ * The Open state (results dropdown) is deferred, see spec §17.
  *
  * Figma nodes read before this file was generated:
  *   SearchInput (all states):  40006978-23158
@@ -24,7 +30,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 // ─── DESIGN TOKENS ─────────────────────────────────────────────────────────────
 // Every value is a semantic CSS variable. Fallbacks are the resolved values from
-// the token contract — used only when Storybook has not loaded it yet.
+// the token contract, used only when Storybook has not loaded it yet.
 export const T = {
   // THIS IS THE GLOBAL SEARCH, AND IT IS A TOP NAV COMPONENT.
   //
@@ -47,7 +53,7 @@ export const T = {
   filterActiveFill:"var(--semantic-color-fill-action-primary-subtle-rest)",
   // Icon pill hover/pressed: no semantic token resolves to the correct subtle overlay
   // on a white surface. fill.action.secondary.hover = warm-neutral-200 (#f7f5f3)
-  // which creates a visible warm cream box — wrong. Using direct rgba values as a
+  // which creates a visible warm cream box, wrong. Using direct rgba values as a
   // token gap (see search-spec.md §17).
   iconPillHover:   "var(--semantic-color-fill-action-secondary-hover)",
   iconPillPressed: "var(--semantic-color-fill-action-secondary-pressed)",
@@ -55,9 +61,9 @@ export const T = {
   disabledBg:      "var(--primitive-color-cool-neutral-10)",      // token gap §17
 
   // Bar borders
-  borderIdle:     "var(--semantic-color-stroke-static-neutral-faint)",      // #f9f7f5 — State=Expanded
+  borderIdle:     "var(--semantic-color-stroke-static-neutral-faint)",      // #f9f7f5, State=Expanded
   borderHover:    "var(--semantic-color-stroke-action-primary-strong-hover)",
-  borderActive:   "var(--semantic-color-stroke-action-primary-strong-pressed)", // #4b6ec3 — State=Open
+  borderActive:   "var(--semantic-color-stroke-action-primary-strong-pressed)", // #4b6ec3, State=Open
   borderError:    "var(--semantic-color-stroke-action-status-negative-rest)",
   borderDisabled: "var(--primitive-color-cool-neutral-25)",       // token gap §17
   divider:        "var(--semantic-color-stroke-action-secondary-rest)",
@@ -72,7 +78,7 @@ export const T = {
   iconDisabled:"var(--semantic-color-foreground-action-disabled)",
   iconError:   "var(--semantic-color-foreground-action-status-negative-on-subtle-rest)",
 
-  // TOPNAV.SEARCH — its own control, not a generic field on a nav.
+  // TOPNAV.SEARCH: its own control, not a generic field on a nav.
   //
   // It sits on the brand bar, so every part of the collapsed state is
   // Action/Ghost. Measured against Figma node 40007095:4048, Platform=Desktop:
@@ -153,7 +159,7 @@ function Icon({ name, size = L.iconSize, color, style: extra }) {
         userSelect: "none",
         color,
         // FILL=1 matches the filled Rounded variant in Figma.
-        // Figma is the source of truth — icons in the search bar use filled style.
+        // Figma is the source of truth, icons in the search bar use filled style.
         fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20",
         ...extra,
       }}
@@ -217,24 +223,24 @@ function IconPillButton({ iconName, iconSize = L.iconSize, iconColor, label, onC
 //   SEARCH INPUT
 // ═══════════════════════════════════════════════════════════════════════════════
 /**
- * SearchInput — the base pill-shaped search bar.
+ * SearchInput: the base pill-shaped search bar.
  *
  * Props:
- *   value          — controlled string value
- *   placeholder    — placeholder text (default "Search...")
- *   showFilter     — renders the trailing filter button + divider
- *   filterActive   — filter-active visual state (active border, highlighted funnel)
- *   filterBadge    — shows the dot badge on the funnel icon
- *   disabled       — disabled state (38% opacity, non-interactive)
- *   error          — error visual state
- *   onSearch       — (value) => void — fired on Enter or search icon click
- *   onFilterClick  — () => void — fired on filter button click
- *   onChange       — (value) => void — fired on every keystroke
- *   onClear        — () => void — fired when clear button clicked
- *   className      — additional class on root element
- *   id             — for label association
- *   searchIconAriaLabel — override the leading search icon button label
- *   onSearchIconClick  — when provided, REPLACES the default onSearch behaviour of the
+ *   value, controlled string value
+ *   placeholder, placeholder text (default "Search...")
+ *   showFilter, renders the trailing filter button + divider
+ *   filterActive, filter-active visual state (active border, highlighted funnel)
+ *   filterBadge, shows the dot badge on the funnel icon
+ *   disabled, disabled state (38% opacity, non-interactive)
+ *   error: error visual state
+ *   onSearch, (value) => void, fired on Enter or search icon click
+ *   onFilterClick, () => void, fired on filter button click
+ *   onChange, (value) => void, fired on every keystroke
+ *   onClear, () => void, fired when clear button clicked
+ *   className, additional class on root element
+ *   id: for label association
+ *   searchIconAriaLabel, override the leading search icon button label
+ *   onSearchIconClick: when provided, REPLACES the default onSearch behaviour of the
  *                         leading search icon button.
  *                         DEPRECATED for the expand/collapse job: the expanded bar and
  *                         TopNav's takeover both exit via a back arrow placed OUTSIDE
@@ -298,7 +304,7 @@ export function SearchInput({
   };
 
   return (
-    // Touch target — 48px, full width (or 320px when inside TopNavSearch)
+    // Touch target, 48px, full width (or 320px when inside TopNavSearch)
     <div
       className={className}
       style={{
@@ -314,7 +320,7 @@ export function SearchInput({
       onMouseEnter={() => !isDisabled && setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Pill — Container.Main */}
+      {/* Pill, Container.Main */}
       <div
         role="search"
         aria-label="Search"
@@ -333,7 +339,7 @@ export function SearchInput({
           ...getBorderStyle(),
         }}
       >
-        {/* Leading icon — search button */}
+        {/* Leading icon, search button */}
         <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
           <IconPillButton
             iconName="search"
@@ -369,7 +375,7 @@ export function SearchInput({
           }}
         />
 
-        {/* Trailing slot — cancel button (conditional) */}
+        {/* Trailing slot, cancel button (conditional) */}
         {hasValue && (
           <IconPillButton
             iconName="cancel"
@@ -379,7 +385,7 @@ export function SearchInput({
           />
         )}
 
-        {/* Trailing slot — filter wrap + badge (conditional) */}
+        {/* Trailing slot, filter wrap + badge (conditional) */}
         {showFilter && (
           <div
             style={{
@@ -391,7 +397,7 @@ export function SearchInput({
               position: "relative",
             }}
           >
-            {/* Filter pill — highlighted when filterActive */}
+            {/* Filter pill, highlighted when filterActive */}
             <div style={{ position: "relative" }}>
               <button
                 type="button"
@@ -456,11 +462,11 @@ export function SearchInput({
 //   TOP NAV SEARCH
 // ═══════════════════════════════════════════════════════════════════════════════
 /**
- * TopNavSearch — the nested search control for TopNav.Global.
+ * TopNavSearch: the nested search control for TopNav.Global.
  *
  * Canonical display name: **TopNav.Search** (exposed as `TopNav.Search` compound
  * member in top-nav.jsx; the bare identifier here is `TopNavSearch` because JS
- * identifiers can't contain a dot — same convention as TopNav.Global).
+ * identifiers can't contain a dot: same convention as TopNav.Global).
  *
  * Sits on the dark brand-blue nav surface. The COLLAPSED icon button resolves
  * through the DARK-MODE token set (inverse fill + mono icon). The EXPANDED bar is
@@ -470,18 +476,18 @@ export function SearchInput({
  *
  * Works controlled OR uncontrolled:
  *   - Controlled expand:  pass `expanded` + `onExpandChange`.
- *   - Uncontrolled (default): manages its own expanded state — just drop it in.
+ *   - Uncontrolled (default): manages its own expanded state, just drop it in.
  *   - Controlled value:   pass `searchProps.value` + `searchProps.onChange`.
  *   - Uncontrolled value (default): manages its own query string internally so it
  *     persists across collapse/expand without the parent wiring any state.
  *
  * Props:
- *   expanded       — (optional) controlled expanded state
- *   onExpandChange — (optional) (expanded: boolean) => void
- *   searchProps    — all SearchInput props forwarded (value, onChange, showFilter,
+ *   expanded, (optional) controlled expanded state
+ *   onExpandChange, (optional) (expanded: boolean) => void
+ *   searchProps: all SearchInput props forwarded (value, onChange, showFilter,
  *                    filterActive, filterBadge, onFilterClick, onSearch, ...)
- *   onSearchOpen   — (optional) fired when the bar expands (analytics / focus hook)
- *   className      — additional class on root element
+ *   onSearchOpen, (optional) fired when the bar expands (analytics / focus hook)
+ *   className, additional class on root element
  */
 // One-time keyframe for the expanded bar's leftward slide-in (self-contained).
 if (typeof document !== "undefined" && !document.getElementById("pds-topnavsearch-anim")) {
@@ -546,7 +552,7 @@ export function TopNavSearch({
   const collapse = () => {
     if (!isExpandedControlled) setExpandedState(false);
     onExpandChange?.(false);
-    // NB: query is intentionally NOT cleared — it persists across collapse/expand.
+    // NB: query is intentionally NOT cleared: it persists across collapse/expand.
     setTimeout(() => collapsedBtnRef.current?.focus(), 0);
   };
 
@@ -564,7 +570,7 @@ export function TopNavSearch({
       style={{
         // While expanded the wrapper deliberately stops being a positioning
         // context. The takeover below is absolute, so with the wrapper relative
-        // it could only ever be as wide as this 48px slot — which is how the
+        // it could only ever be as wide as this 48px slot: which is how the
         // expanded search ended up as a strip on the right-hand side of the bar
         // instead of taking the bar over. Static hands the takeover up to the
         // nav itself, which is the element that should be covered.
@@ -572,7 +578,7 @@ export function TopNavSearch({
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        // Footprint is ALWAYS the 48px collapsed slot — the expanded bar is absolutely
+        // Footprint is ALWAYS the 48px collapsed slot: the expanded bar is absolutely
         // positioned, so expanding never changes layout / never pushes sibling elements.
         width: L.touchTarget,
         height: L.touchTarget,
@@ -580,8 +586,8 @@ export function TopNavSearch({
         flexShrink: 0,
       }}
     >
-      {/* Collapsed control — perfect 32×32 circle inside the 48px touch target
-          (Figma node 40006967:20917 — Container.Icon h32 w32 rounded-full). */}
+      {/* Collapsed control, perfect 32×32 circle inside the 48px touch target
+          (Figma node 40006967:20917, Container.Icon h32 w32 rounded-full). */}
       <button
         ref={collapsedBtnRef}
         type="button"

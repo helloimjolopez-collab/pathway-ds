@@ -1,4 +1,4 @@
-# TopNavActions — Pathway Design System Component Spec
+# TopNavActions: Pathway Design System Component Spec
 
 **Status:** `PENDING HUMAN REVIEW`
 
@@ -8,11 +8,28 @@ The right-side **action-icon group** of the TopNav, with responsive overflow. Wh
 
 | Artefact | URL |
 |---|---|
-| Figma — trigger (in TopNav) | [TopNav.Global / Mobile](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6495) — the `more_vert` ellipsis is drawn here |
-| Figma — **Open menu variant** | **Does not exist yet — to be added** (see §15) |
-| Storybook | `?path=/docs/library-topnavactions--docs` *(pending — created by the pipeline run)* |
-| HTML demo | `components/top-nav-actions/top-nav-actions.html` *(pending)* |
+| Figma, trigger (in TopNav) | [TopNav.Global / Mobile](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6495): the `more_vert` ellipsis is drawn here |
+| Figma, **Open menu variant** | **Does not exist yet, to be added** (see §15) |
+| Implementation | `components/top-nav/top-nav.jsx`, exported as `TopNavActions` |
+| Code Connect | `components/top-nav-actions/top-nav-actions.figma.ts` |
+| Storybook, inline at desktop | [TopNav / Playground](?path=/story/library-topnav--playground) |
+| Storybook, collapsed | [TopNav / Tablet](?path=/story/library-topnav--tablet) and [TopNav / Mobile](?path=/story/library-topnav--mobile) |
 | Parent component | [components/top-nav/top-nav-spec.md](../top-nav/top-nav-spec.md) |
+
+**This component has no page, no story and no HTML demo of its own, by design.**
+It is a building block that only ever exists as a nested instance inside
+`TopNav`, so it is mapped for Code Connect but not given a component page. Its
+own folder holds this spec and that mapping; the code lives in `top-nav.jsx`
+beside the bar it belongs to. Earlier versions of this table promised a
+`top-nav-actions.html` and a `library-topnavactions--docs` page "pending the
+pipeline run". Neither was ever going to exist, so both rows were wrong rather
+than merely incomplete.
+
+Read from Figma 2026-10-07: node `40007082:7313` is a single COMPONENT, 132x48,
+with exactly one property, a SLOT named `Slot.Actions`, and NO variant axis. The
+collapse to `more_vert` is not a variant of this node; Figma draws it in the
+mobile TopNav variant instead, while code drives both from one `breakpoint`
+prop.
 
 ---
 
@@ -23,14 +40,14 @@ The right-side **action-icon group** of the TopNav, with responsive overflow. Wh
 
 `TopNavActions` is the cluster of **module action icons** that sits in the TopNav's RowEnd, between Search and the Profile avatar. It has two presentations driven entirely by available space:
 
-- **Inline** — every action icon shown directly on the nav bar.
-- **Collapsed** — the icons fold behind a single `more_vert` (⋮) ellipsis trigger that opens a **dropdown menu** listing the same actions (icon + label).
+- **Inline**: every action icon shown directly on the nav bar.
+- **Collapsed**: the icons fold behind a single `more_vert` (⋮) ellipsis trigger that opens a **dropdown menu** listing the same actions (icon + label).
 
 ### 1.2 What it is **not** / boundaries
 
 - **Search does not collapse into it.** Search has its own pattern (collapsed circle → expand on desktop, full-width takeover on mobile) and lifted query state. It stays a separate, fixed anchor.
 - **Profile does not collapse into it.** The avatar (account, switch-org, sign-out) is a top-task and is always directly reachable.
-- So the right cluster is always **`[search] · [action icons → ellipsis] · [profile]`** — search and profile are fixed; only this middle group flexes.
+- So the right cluster is always **`[search] · [action icons → ellipsis] · [profile]`**, search and profile are fixed; only this middle group flexes.
 - Not a generic dropdown menu primitive, not a context (right-click) menu, not a kebab on arbitrary rows. It is specifically the TopNav action overflow.
 
 ### 1.3 The collapse rule
@@ -38,7 +55,7 @@ The right-side **action-icon group** of the TopNav, with responsive overflow. Wh
 | Breakpoint | Behaviour |
 |---|---|
 | **Desktop** (≥1024px) | All action icons inline. No ellipsis. |
-| **Tablet** (768–1023px) | Ellipsis **only if > 3** action icons; otherwise inline. |
+| **Tablet** (768-1023px) | Ellipsis **only if > 3** action icons; otherwise inline. |
 | **Mobile** (<768px) | Ellipsis **if > 1** action icon. A single action stays inline. |
 
 > **IMPLEMENTATION RULE: the ellipsis is a function of count × breakpoint, not a manual toggle.**
@@ -50,8 +67,8 @@ The right-side **action-icon group** of the TopNav, with responsive overflow. Wh
 
 | To change… | Owner | Where |
 |---|---|---|
-| Trigger glyph, collapsed/open visual | Design | Figma TopNav node 40007067-6495 + this spec §3–§6 |
-| **Open menu variant** (surface, rows, states) | Design | Figma — to be added (§15) |
+| Trigger glyph, collapsed/open visual | Design | Figma TopNav node 40007067-6495 + this spec §3 §6 |
+| **Open menu variant** (surface, rows, states) | Design | Figma, to be added (§15) |
 | Collapse-rule thresholds | Design + Product | §1.3 of this spec |
 | Menu ARIA / keyboard implementation | Engineering | §10 of this spec |
 | Prop types | Engineering | §4 of this spec |
@@ -71,18 +88,18 @@ TopNavActions
 │
 └── [Collapsed]
     ├── button.pds-tna__ellipsis        48×48, more_vert (⋮, 20px), aria-haspopup="menu"
-    └── [open] div.pds-tna__menu        role="menu" — dropdown panel, right-anchored
-        ├── div.pds-tna__tapcatcher     fixed inset:0, transparent — outside-tap dismissal
-        └── button.pds-tna__item × N    role="menuitem" — icon (22px) + label (15px)
+    └── [open] div.pds-tna__menu        role="menu", dropdown panel, right-anchored
+        ├── div.pds-tna__tapcatcher     fixed inset:0, transparent, outside-tap dismissal
+        └── button.pds-tna__item × N    role="menuitem", icon (22px) + label (15px)
 ```
 
-The menu reuses the **same dropdown-panel surface** as the TopNav's ModuleSwitcher / OrgSwitcher / Profile menus (white surface, border, shadow, radius, `z-index: 300`) — it is not a new surface.
+The menu reuses the **same dropdown-panel surface** as the TopNav's ModuleSwitcher / OrgSwitcher / Profile menus (white surface, border, shadow, radius, `z-index: 300`): it is not a new surface.
 
 ---
 
 ## 4. API / Variant structure
 
-No design-time *variant* properties — Inline vs Collapsed is computed (§1.3), and Open is a runtime **state** (§5), not a prop. The surface is:
+No design-time *variant* properties, Inline vs Collapsed is computed (§1.3), and Open is a runtime **state** (§5), not a prop. The surface is:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
@@ -100,19 +117,19 @@ Open/closed is internal state (`aria-expanded` reflects it). Per `CLAUDE.md §10
 
 | State | When | Treatment |
 |---|---|---|
-| **Inline – rest** | not collapsed | icons transparent bg, `monoBase` glyph |
-| **Inline – hover** | pointer over an inline icon | bg `controlHover` |
-| **Ellipsis – rest** | collapsed, menu closed | ⋮ transparent bg, `monoBase` |
-| **Ellipsis – hover** | collapsed, hover | bg `controlHover` |
-| **Ellipsis – open** | menu open | bg `controlPressed`, `aria-expanded="true"` |
-| **Menu item – rest** | menu open | transparent, `itemText` label + `itemTextBase` icon |
-| **Menu item – hover/focus** | pointer or keyboard focus | bg `activeItem` |
+| **Inline, rest** | not collapsed | icons transparent bg, `monoBase` glyph |
+| **Inline: hover** | pointer over an inline icon | bg `controlHover` |
+| **Ellipsis, rest** | collapsed, menu closed | ⋮ transparent bg, `monoBase` |
+| **Ellipsis: hover** | collapsed, hover | bg `controlHover` |
+| **Ellipsis, open** | menu open | bg `controlPressed`, `aria-expanded="true"` |
+| **Menu item, rest** | menu open | transparent, `itemText` label + `itemTextBase` icon |
+| **Menu item: hover/focus** | pointer or keyboard focus | bg `activeItem` |
 
 ---
 
 ## 6. Design Tokens
 
-All semantic. Trigger/inline icons sit on the **dark** nav surface (dark-mode control tokens); the open menu is a **light** panel (light-mode tokens) — same split TopNav already uses.
+All semantic. Trigger/inline icons sit on the **dark** nav surface (dark-mode control tokens); the open menu is a **light** panel (light-mode tokens), same split TopNav already uses.
 
 | Element | Property | Semantic token | Resolved |
 |---|---|---|---|
@@ -128,15 +145,15 @@ All semantic. Trigger/inline icons sit on the **dark** nav surface (dark-mode co
 |---|---|---|
 | Icon / ellipsis touch target | 48×48 | `Accessibility/Touch Target` (44 min) + nav padding |
 | Icon button radius | 8 | `layout.units.cornerradius.medium` |
-| Inline glyph size | 20 | — |
+| Inline glyph size | 20 | - |
 | Menu row height | 48 | `Accessibility/Touch Target` |
-| Menu row leading icon | 22 | — |
+| Menu row leading icon | 22 | - |
 | Menu label | 15 / 500 | `Label/Menu/*` (confirm scale step in Figma) |
-| Menu width | 240 | — |
+| Menu width | 240 | - |
 | Menu offset below trigger | 4 | `layout.units.padding.xxtight` (4) |
 | Menu z-index | 300 | matches TopNav dropdowns |
 
-> **Inherited token gaps (from TopNav, already flagged P2):** the panel **border** (`rgba(45,72,137,0.12)`) and **shadow** have no semantic tokens yet. TopNavActions reuses TopNav's values, so it inherits the same gap — do not invent new ones here; close them once at the TopNav level.
+> **Inherited token gaps (from TopNav, already flagged P2):** the panel **border** (`rgba(45,72,137,0.12)`) and **shadow** have no semantic tokens yet. TopNavActions reuses TopNav's values, so it inherits the same gap: do not invent new ones here; close them once at the TopNav level.
 
 ---
 
@@ -149,7 +166,7 @@ Material Symbols Rounded, always.
 | Overflow trigger | `more_vert` (⋮) | 20 | confirm in Figma |
 | Menu rows / inline icons | per action (e.g. `notifications`, `campaign`) | 22 (menu) / 20 (inline) | confirm in Figma |
 
-> Trigger is `more_vert` (vertical ⋮) to match the TopNav Mobile Figma frame. (If the system prefers horizontal `more_horiz` (⋯), that is a one-line change — confirm.)
+> Trigger is `more_vert` (vertical ⋮) to match the TopNav Mobile Figma frame. (If the system prefers horizontal `more_horiz` (⋯), that is a one-line change, confirm.)
 
 ---
 
@@ -157,7 +174,7 @@ Material Symbols Rounded, always.
 
 - **Open:** tap/click or `Enter`/`Space` on the ⋮ opens the menu, right-anchored below the trigger; `aria-expanded` → true.
 - **Dismiss:** outside tap (a transparent full-screen tap-catcher catches touch reliably), `Escape`, or selecting an item. Focus returns to the ⋮ on Escape/select.
-- **Mobile-optimal, not mobile-first:** an anchored dropdown (consistent with the SideNav/search overlay family), **not** a bottom sheet — but tuned for touch: 48px rows, 240px width, transparent tap-catcher, **no dimming scrim**. (Rationale: these are low-priority actions and nothing else in the system uses bottom sheets; a true mobile-first pass is a future, system-wide decision.)
+- **Mobile-optimal, not mobile-first:** an anchored dropdown (consistent with the SideNav/search overlay family), **not** a bottom sheet, but tuned for touch: 48px rows, 240px width, transparent tap-catcher, **no dimming scrim**. (Rationale: these are low-priority actions and nothing else in the system uses bottom sheets; a true mobile-first pass is a future, system-wide decision.)
 - **One panel at a time:** opening this menu closes any other open TopNav panel (ModuleSwitcher/OrgSwitcher/Profile), per TopNav §5 rule.
 - **Interaction with search takeover:** when search does its mobile full-width takeover it covers the whole bar (including the ⋮); closing search restores `[search] [⋮] [profile]`. No shared slot, no conflict.
 
@@ -175,9 +192,9 @@ See the collapse rule (§1.3). The group only ever renders **inline** (desktop, 
 - **Menu:** `role="menu"`; each item `role="menuitem"`, `tabindex="-1"`, activated by click / `Enter` / `Space`.
 - **Keyboard:** `↓`/`↑` move focus between items (wrapping); `Escape` closes and returns focus to the ⋮; `Tab` closes the menu and moves on. On open, focus moves to the first item.
 - **Inline icons:** each is a `<button aria-label="{label}">` (e.g. "Notifications").
-- **Touch targets:** 48×48 trigger and inline icons; 48px menu rows — all ≥ WCAG 2.5.5 (44px).
+- **Touch targets:** 48×48 trigger and inline icons; 48px menu rows, all ≥ WCAG 2.5.5 (44px).
 - **Reduced motion:** the open animation is removed under `prefers-reduced-motion: reduce`; the menu appears instantly. Behaviour unaffected.
-- **Contrast:** ellipsis glyph `#fbfbfb` on the brand-navy nav surface, and menu label `#252525` on `#ffffff` (16.1:1) — both pass. Confirm the ellipsis-on-navy ratio in engineering.
+- **Contrast:** ellipsis glyph `#fbfbfb` on the brand-navy nav surface, and menu label `#252525` on `#ffffff` (16.1:1), both pass. Confirm the ellipsis-on-navy ratio in engineering.
 
 ### Screen-reader announcements
 
@@ -191,7 +208,7 @@ See the collapse rule (§1.3). The group only ever renders **inline** (desktop, 
 
 ## 11. Motion
 
-The menu open/close reuses the **TopNav dropdown-panel motion** (same as ModuleSwitcher/OrgSwitcher/Profile — see `top-nav-spec.md §14`): a short fade + slight scale/translate from the trigger, ~150–180ms, reduced-motion → instant. Do not give this menu a bespoke curve; it should feel identical to the other TopNav dropdowns.
+The menu open/close reuses the **TopNav dropdown-panel motion** (same as ModuleSwitcher/OrgSwitcher/Profile, see `top-nav-spec.md §14`): a short fade + slight scale/translate from the trigger, ~150-180ms, reduced-motion → instant. Do not give this menu a bespoke curve; it should feel identical to the other TopNav dropdowns.
 
 ---
 
@@ -217,7 +234,7 @@ The menu open/close reuses the **TopNav dropdown-panel motion** (same as ModuleS
 
 1. This spec.
 2. The studio demo: `components-sandbox/top-nav-actions-demo.html` (closed + open, all breakpoints, the collapse toggles).
-3. TopNav `T` theme tokens (reuse — don't redefine).
+3. TopNav `T` theme tokens (reuse: don't redefine).
 4. Material Symbols ligatures: `more_vert` + each action's icon.
 5. The Figma Open-variant once added (§15).
 
@@ -225,16 +242,16 @@ The menu open/close reuses the **TopNav dropdown-panel motion** (same as ModuleS
 
 ## 14. Constraints
 
-1. **Only action icons collapse** — never search, never profile.
+1. **Only action icons collapse**: never search, never profile.
 2. **Every action has a label** (menu row + inline `aria-label`).
-3. **Reuse the TopNav dropdown panel** surface/motion — do not invent a new menu surface.
-4. **Anchored dropdown, not a bottom sheet** — consistent with the system; revisit only in a deliberate mobile-first pass.
-5. **Collapse is computed** from count × breakpoint — not a manual prop.
+3. **Reuse the TopNav dropdown panel** surface/motion: do not invent a new menu surface.
+4. **Anchored dropdown, not a bottom sheet**, consistent with the system; revisit only in a deliberate mobile-first pass.
+5. **Collapse is computed** from count × breakpoint, not a manual prop.
 6. **Semantic tokens only.**
 
 ---
 
-## 15. Figma gaps — what to add
+## 15. Figma gaps: what to add
 
 | Gap | Priority | Notes |
 |---|---|---|
@@ -242,7 +259,7 @@ The menu open/close reuses the **TopNav dropdown-panel motion** (same as ModuleS
 | **Action labels** | HIGH | Each action icon needs a text label for its menu row (Notifications, Alerts, …). Add to the Figma actions. |
 | **Collapse-rule annotation** | MEDIUM | Document the count×breakpoint rule (§1.3) in a Figma doc frame so designers represent the right state per breakpoint. |
 | **Trigger FILL axis** | LOW | Confirm `more_vert` FILL (0 vs 1) in Figma so code matches. |
-| **Badge roll-up** | LOW (future) | If a collapsed action carries an unread badge, the ⋮ should surface a single roll-up dot. Notification badges aren't designed yet (TopNav §17) — defer with that work. |
+| **Badge roll-up** | LOW (future) | If a collapsed action carries an unread badge, the ⋮ should surface a single roll-up dot. Notification badges aren't designed yet (TopNav §17), defer with that work. |
 
 ---
 

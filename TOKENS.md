@@ -1,21 +1,21 @@
-# Pathway tokens — start here
+# Pathway tokens, start here
 
 **The colour contract is 186 names. Your full working vocabulary is 284.**
 
 This file exists at the repo root because the previous arrangement failed a real test: a
 developer went looking for "the token CSS", could not find it, and had no way to tell
-which names he was allowed to use. Everything he needed existed — three directories
+which names he was allowed to use. Everything he needed existed: three directories
 down. That is the same as not existing.
 
 ## Where the CSS is
 
-**[`src/tokens/`](src/tokens/)** — and that folder has [its own
+**[`src/tokens/`](src/tokens/)**: and that folder has [its own
 README](src/tokens/README.md) covering load order, theming, the primitives question and
 the traps. GitHub renders it inline when you browse in.
 
 There is **no `tokens.css`**. A single combined file was retired on 2026-09-03 because it
-emitted every token times every mode with the mode baked into the property name — 2,338
-custom properties — and that is the number that made this system look unadoptable. It is
+emitted every token times every mode with the mode baked into the property name, 2,338
+custom properties: and that is the number that made this system look unadoptable. It is
 not coming back.
 
 ## What to link, in this order
@@ -39,22 +39,22 @@ error**.
 
 | File | Names | May I name these? |
 |---|---|---|
-| `themes/light.css` | **186** | **Yes** — this is the colour contract |
-| `themes/midnight.css` | 186 | Yes — the *same* names, different values |
+| `themes/light.css` | **186** | **Yes**: this is the colour contract |
+| `themes/midnight.css` | 186 | Yes: the *same* names, different values |
 | `type.css` | 41 | Yes |
 | `layout.css` | 40 | Yes |
 | `motion.css` | 17 | Yes |
-| `layout-responsive.css` | 6 | Yes — the only layout tokens with media queries |
+| `layout-responsive.css` | 6 | Yes: the only layout tokens with media queries |
 | `breakpoints.css` | 5 | Yes |
 | **Working vocabulary** | **284** | |
-| `primitives.css` | 350 | **No** — but you must load it |
+| `primitives.css` | 350 | **No**: but you must load it |
 | `layout-contextual.css` | 28 | This repo's own components |
 
 Every file repeats this in **its own header**, with the count computed at build time so
 it cannot drift from the file it describes. Open any of them and the first thing you read
 is whether its properties are yours to use.
 
-The published package also ships `README.md` and `contract.json` — the latter listing
+The published package also ships `README.md` and `contract.json`: the latter listing
 every consumable name machine-readably, if you want to lint against it. Those are
 generated into `dist/`, which is not committed, so you will see them after
 `npm run build-dist` or inside the installed package.
@@ -66,7 +66,7 @@ real and it is not the contract:
 
 - **The two theme files declare the same 186 names**, once each. One name, two values,
   chosen by selector. So they count once, not twice.
-- **350 of them are primitives** — infrastructure you load and never name, the same way
+- **350 of them are primitives**, infrastructure you load and never name, the same way
   the glyphs inside a font file are not part of your type scale.
 - **26 are component metrics** used by this repo's own components.
 
@@ -99,7 +99,7 @@ cannot retune a ramp without breaking itself. It was never a rule for consumers.
 npm install @helloimjolopez-pathway/pathway-tokens
 ```
 
-NuGet: `Pathway.DesignTokens`. Each stylesheet is a named subpath export — see the
+NuGet: `Pathway.DesignTokens`. Each stylesheet is a named subpath export, see the
 [root README](README.md#using-the-tokens) for the exact import lines.
 
 **Do not rebuild tokens from the Figma export.** You would get **no motion at all and no
@@ -112,7 +112,7 @@ would also lose theming by selector and any version you could pin.
 | | |
 |---|---|
 | The CSS, with per-file guidance | [`src/tokens/README.md`](src/tokens/README.md) |
-| System-wide rules — colour, type, motion, spacing, a11y | [`docs/design-system-spec.md`](docs/design-system-spec.md) |
+| System-wide rules, colour, type, motion, spacing, a11y | [`docs/design-system-spec.md`](docs/design-system-spec.md) |
 | How Figma flows into this repo | [`docs/token-pipeline.md`](docs/token-pipeline.md) |
 | Who owns what, and the approval gates | [`docs/governance.md`](docs/governance.md) |
 | Adopting from Radzen, Blazor, Angular, older libraries | [`docs/consuming-from-any-stack.md`](docs/consuming-from-any-stack.md) |

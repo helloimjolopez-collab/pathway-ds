@@ -7,7 +7,7 @@ Generates components/sidenav/sidenav-figmamake.html from components/sidenav/side
 through the end of the annotations zone, while preserving the correct
 JSX closing tags).
 
-The cut is marker-based — stays correct as the source file grows.
+The cut is marker-based, stays correct as the source file grows.
 
 Usage:
   python3 scripts/build-component.py

@@ -3,7 +3,7 @@
     "description": "Machine-readable map: which CSS variable does each component element use. Eliminates guesswork for AI tools and design kit generators.",
     "cssVariablesIn": "src/tokens/ (8-file contract; primitives.css + one theme)",
     "lastUpdated": "2026-06-08",
-    "note": "fontsize values are unitless numbers — wrap with calc(var(...) * 1px) in CSS or hardcode px in JS"
+    "note": "fontsize values are unitless numbers, wrap with calc(var(...) * 1px) in CSS or hardcode px in JS"
   },
   "topnav": {
     "_figma": "40007067-6508",
@@ -54,7 +54,7 @@
     "label.font-weight": "--semantic-type-weight-medium (=500)"
   },
   "card": {
-    "_note": "Not yet standalone — inline in nav-shell",
+    "_note": "Not yet standalone, inline in nav-shell",
     "container.background": "--semantic-color-fill-static-neutral-faint",
     "container.border": "--semantic-color-stroke-action-secondary-rest",
     "container.border-width": "0.5px",
@@ -91,7 +91,7 @@
     "bar.border.hover": "--semantic-color-stroke-action-primary-strong-hover",
     "bar.border.focused": "--semantic-color-stroke-action-primary-strong-pressed",
     "bar.border-radius": "9999px (pill)",
-    "bar.toolbar-input-border-radius": "6px (NOT standard 8px — confirmed Figma)",
+    "bar.toolbar-input-border-radius": "6px (NOT standard 8px, confirmed Figma)",
     "input.placeholder": "--semantic-color-foreground-static-neutral-base",
     "input.value": "--semantic-color-foreground-static-neutral-bold",
     "icon.idle": "--semantic-color-foreground-action-secondary-rest",

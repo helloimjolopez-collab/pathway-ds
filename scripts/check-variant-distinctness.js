@@ -1,5 +1,5 @@
 /**
- * check-variant-distinctness.js — fail the build when a component prop stops
+ * check-variant-distinctness.js, fail the build when a component prop stops
  * doing anything.
  *
  * WHY THIS EXISTS:
@@ -51,7 +51,7 @@ import { join, extname } from "node:path";
 const verbose = process.argv.includes("--verbose");
 
 /**
- * Known-good collapses. Key is `<file>::<axis>::<context>`, value is why.
+ * Known-good collapses. Key is `<file>:<axis>:<context>`, value is why.
  *
  * The Spinner's `emphasis` collapsed on every non-neutral tone when tone
  * ladders went to one rung each. The prop is kept so existing call sites keep
@@ -60,7 +60,7 @@ const verbose = process.argv.includes("--verbose");
  * here rather than left to fail the build every time.
  */
 const ALLOWED = new Map([
-  ["spinner.css::emphasis", "A tone carries one canvas foreground since 2026-09-16; only neutral kept a ladder. Documented in spinner-spec.md 7.1.2 and Spinner.mdx."],
+  ["spinner.css:emphasis", "A tone carries one canvas foreground since 2026-09-16; only neutral kept a ladder. Documented in spinner-spec.md 7.1.2 and Spinner.mdx."],
 ]);
 
 const ROOTS = ["src/stories/Library", "components"];
@@ -128,7 +128,7 @@ for (const file of files) {
       else live++;
     }
     if (!collapsed.length) continue;
-    const allowKey = `${short}::${axis}`;
+    const allowKey = `${short}:${axis}`;
     findings.push({
       file, axis, collapsed, live,
       allowed: ALLOWED.has(allowKey),

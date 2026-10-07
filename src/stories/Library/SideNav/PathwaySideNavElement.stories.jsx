@@ -1,5 +1,5 @@
 /**
- * <pathway-sidenav> — the side nav as a custom element.
+ * <pathway-sidenav>: the side nav as a custom element.
  *
  * These stories render the CUSTOM ELEMENT, not the React component. That is the
  * point: what a Radzen, Blazor or Angular team drops into their page is this

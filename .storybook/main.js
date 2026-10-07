@@ -9,7 +9,7 @@ const config = {
   addons: [
     "@storybook/addon-webpack5-compiler-babel",
     {
-      // remark-gfm enables GitHub-flavoured markdown in MDX — notably tables.
+      // remark-gfm enables GitHub-flavoured markdown in MDX, notably tables.
       // Without it, every `| … |` table renders as raw pipes (Welcome,
       // Iconography, Scrollbar docs).
       name: "@storybook/addon-docs",
@@ -29,7 +29,7 @@ const config = {
   },
   // Serve the components/ tree at /components/* so stories can iframe each
   // component's standalone HTML demo (e.g. /components/sidenav/sidenav.html).
-  // Do not mount the repo root — storybook-static/ is a subfolder of it and
+  // Do not mount the repo root, storybook-static/ is a subfolder of it and
   // copying a folder into itself fails with EINVAL.
   staticDirs: [{ from: "../components", to: "/components" }],
   docs: {},

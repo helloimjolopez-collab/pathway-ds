@@ -28,7 +28,7 @@ import "../src/tokens/breakpoints.css";
 /**
  * Theme toggle. `themes/midnight.css` matches
  * `[data-theme="midnight"], [data-theme="dark"]`, so flipping the attribute on
- * <html> is the whole mechanism — no per-story wiring, and region theming still
+ * <html> is the whole mechanism: no per-story wiring, and region theming still
  * composes because a nested [data-theme] wrapper wins over the root.
  */
 const THEMES = {
@@ -80,9 +80,9 @@ const preview = {
     backgrounds: { disable: true },
     // Order the sidebar so the AI-agent intro is the first thing visitors see,
     // then humans drop into Tokens → Library naturally. Every real component
-    // lives under "Library" (single canonical group — no split "Components").
+    // lives under "Library" (single canonical group: no split "Components").
     // Within each component, the first story is always "Playground" (the "Try it"
-    // section), so it is the first thing shown — per docs/storybook-authoring.md.
+    // section), so it is the first thing shown, per docs/storybook-authoring.md.
     options: {
       storySort: {
         order: [

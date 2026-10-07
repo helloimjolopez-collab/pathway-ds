@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Platform Shell — SideNav + TopNav (Prototype v5)</title>
+<title>Platform Shell, SideNav + TopNav (Prototype v5)</title>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
 
   /* ── Scrollbar (side-nav) ─────────────────────────────────────────────── */
   /* Spec: thin, unobtrusive at rest, clearer on hover/scroll. Blends with   */
   /* surface.nav.light.                                                       */
-  /*   thumb (rest)  = rgba(17,17,17,0.08) — cool-neutral.220-8               */
+  /*   thumb (rest)  = rgba(17,17,17,0.08), cool-neutral.220-8               */
   /*   thumb (hover) = rgba(17,17,17,0.18)                                    */
   /* 6px width, fully rounded. Firefox uses scrollbar-width: thin.            */
   /*                                                                          */
@@ -28,20 +28,20 @@
     scrollbar-color: rgba(17,17,17,0.08) transparent;
     scrollbar-gutter: stable;
   }
-  .pds-sidenav-scroll::-webkit-scrollbar { width: 6px; }
-  .pds-sidenav-scroll::-webkit-scrollbar-track { background: transparent; margin: 4px 0; }
-  .pds-sidenav-scroll::-webkit-scrollbar-thumb {
+  .pds-sidenav-scroll:-webkit-scrollbar { width: 6px; }
+  .pds-sidenav-scroll:-webkit-scrollbar-track { background: transparent; margin: 4px 0; }
+  .pds-sidenav-scroll:-webkit-scrollbar-thumb {
     background: rgba(17,17,17,0.08);
     border-radius: 999px;
     transition: background 0.15s ease;
   }
-  .pds-sidenav-scroll:hover::-webkit-scrollbar-thumb { background: rgba(17,17,17,0.18); }
-  .pds-sidenav-scroll::-webkit-scrollbar-thumb:hover { background: rgba(17,17,17,0.32); }
-  .pds-sidenav-scroll::-webkit-scrollbar-thumb:active { background: rgba(17,17,17,0.45); }
+  .pds-sidenav-scroll:hover:-webkit-scrollbar-thumb { background: rgba(17,17,17,0.18); }
+  .pds-sidenav-scroll:-webkit-scrollbar-thumb:hover { background: rgba(17,17,17,0.32); }
+  .pds-sidenav-scroll:-webkit-scrollbar-thumb:active { background: rgba(17,17,17,0.45); }
 
   /* Canvas scrollbar (unchanged, just included to match demo) */
-  main::-webkit-scrollbar { width: 6px; }
-  main::-webkit-scrollbar-thumb { background: rgba(17,17,17,0.08); border-radius: 999px; }
+  main:-webkit-scrollbar { width: 6px; }
+  main:-webkit-scrollbar-thumb { background: rgba(17,17,17,0.08); border-radius: 999px; }
 
   .prototype-banner {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -72,7 +72,7 @@
     }
   }
 
-  /* TopNav hamburger — Option A: only shown at tablet + mobile breakpoints.  */
+  /* TopNav hamburger, Option A: only shown at tablet + mobile breakpoints.  */
   /* At desktop (≥1024px), the sidenav has its own in-sidenav collapse toggle */
   /* (see v4), so the TopNav hamburger is redundant and is hidden.            */
   .topnav-hamburger { display: flex; }
@@ -91,7 +91,7 @@
     font-family: 'Red Hat Text', sans-serif; font-weight: 600;
     cursor: pointer;
   }
-  .mock-whats-new::after {
+  .mock-whats-new:after {
     content: "NEW"; font-size: 10px; letter-spacing: 0.08em;
   }
 </style>
@@ -102,7 +102,7 @@
   <span>Platform shell: TopNav + SideNav. Generated 2026-04-22 by pathway-component-prototype. Lives in <code>components-sandbox/sidenav/</code>.</span>
 </div>
 <div id="root"></div>
-<div class="mock-whats-new" title="Mock 'What's New' floating bubble — demonstrates the bottom-clearance requirement"></div>
+<div class="mock-whats-new" title="Mock 'What's New' floating bubble, demonstrates the bottom-clearance requirement"></div>
 
 <script type="text/babel">
 const { useState, useRef } = React;
@@ -122,15 +122,15 @@ const T = {
     navHover:      "#252525",
     navActive:     "#051428",
     // NEW in v4: section labels use subtle (lighter) at 11pt / 500
-    sectionLabel:  "#6b6b6b", // text.static.secondary.subtle — cool-neutral.120
+    sectionLabel:  "#6b6b6b", // text.static.secondary.subtle, cool-neutral.120
   },
   icon: {
     navBase:       "#4b4b4b",
     navHover:      "#363636",
     navActive:     "#3555a0",
     // Collapse-toggle icon (inline in header)
-    toggleIdle:    "#606060", // icon.static.neutral.subtle — cool-neutral.130
-    toggleHover:   "#252525", // text.contextual.navitem.hover — used here for the icon
+    toggleIdle:    "#606060", // icon.static.neutral.subtle, cool-neutral.130
+    toggleHover:   "#252525", // text.contextual.navitem.hover, used here for the icon
   },
   indicator: "#3555a0",
   radius:    8,
@@ -141,7 +141,7 @@ const L = {
   navPadH:     12, navPadV:     14,
   // v4: width reduced 250 → 220 to match smaller 14pt nav item text.
   // 220 accommodates "Background Checks" and "My Outstanding" (worst-case
-  // real labels) in destinations. Groupers need shorter labels — see spec
+  // real labels) in destinations. Groupers need shorter labels, see spec
   // additions doc for naming recommendations.
   navW:        220,
   navWcol:     72,
@@ -284,7 +284,7 @@ function CollapseToggle({ isSidebarCollapsed, onToggle }) {
 // 11pt / 500 (medium) / text.static.secondary.subtle (#6b6b6b)
 // All-caps, non-interactive. Vanishes in rail, replaced by subtle divider.
 // If `withToggle` is true, render the collapse toggle icon to the right of the
-// label (reserved for the first section label — acts as the sidenav's header).
+// label (reserved for the first section label, acts as the sidenav's header).
 function SectionLabel({ label, isSidebarCollapsed, withToggle, onToggle }) {
   if (isSidebarCollapsed) {
     return (
@@ -304,7 +304,7 @@ function SectionLabel({ label, isSidebarCollapsed, withToggle, onToggle }) {
       width: "100%", cursor: "default", userSelect: "none",
     }}>
       <span style={{
-        // Typography: 11 / 500 (medium) / 16 / wide — atoms from primitive-type.*
+        // Typography: 11 / 500 (medium) / 16 / wide, atoms from primitive-type.*
         // No exact semantic match (label.dense.s has regular + semibold, not medium).
         // See spec-additions doc for the composition rationale.
         fontFamily: "'Red Hat Text',sans-serif",
@@ -559,7 +559,7 @@ function SideNav({ activeId, onNavigate, sidebarCollapsed, onCollapseChange }) {
   // Default behavior (v4): the collapse toggle always lives in a standalone
   // header row at the top of the sidenav, independent of any section label.
   // The older "host toggle inside first section label" pattern is a possible
-  // future variant but not the default — see spec-additions §3.3.
+  // future variant but not the default, see spec-additions §3.3.
 
   return (
     <nav style={{
@@ -719,7 +719,7 @@ function TopNav({ onHamburgerClick, activeModule }) {
       flexShrink: 0,
       zIndex: 50,
     }}>
-      {/* Hamburger — Option A: visible only at tablet + mobile breakpoints */}
+      {/* Hamburger, Option A: visible only at tablet + mobile breakpoints */}
       {/* (see .topnav-hamburger CSS rule). On desktop, the sidenav owns its */}
       {/* own collapse toggle (header row at top of the sidenav).            */}
       <button type="button" aria-label="Toggle navigation"
@@ -738,7 +738,7 @@ function TopNav({ onHamburgerClick, activeModule }) {
         <TopNavIcons.hamburger />
       </button>
 
-      {/* Module switcher — current module + chevron to open the switcher. */}
+      {/* Module switcher, current module + chevron to open the switcher. */}
       <button type="button" aria-label={`${activeModule} module, switch module`}
         onMouseEnter={() => setModH(true)} onMouseLeave={() => setModH(false)}
         style={{
@@ -837,7 +837,7 @@ function App() {
           <div style={{ maxWidth: 760, margin: "0 auto" }}>
             <p style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.1px",
               textTransform: "uppercase", color: "#6b6b6b", marginBottom: 8 }}>
-              Accounting — active destination
+              Accounting, active destination
             </p>
             <h1 style={{ fontSize: 32, fontWeight: 600, lineHeight: "40px",
               color: "#051428", margin: "0 0 16px" }}>
@@ -847,7 +847,7 @@ function App() {
               v5 adds the full platform shell: TopNav (global navigation,
               module switcher, account actions) above the local SideNav.
               Following Option A, the TopNav hamburger is <strong>hidden at
-              desktop</strong> (≥1024px) — the sidenav owns its own collapse
+              desktop</strong> (≥1024px): the sidenav owns its own collapse
               toggle in its header row. The hamburger appears only at tablet
               and mobile (&lt;1024px), where the sidenav becomes overlay and
               needs an always-visible trigger.
@@ -864,10 +864,10 @@ function App() {
                 </p>
                 <ul style={{ listStyle: "disc", paddingLeft: 18, fontSize: 13,
                   lineHeight: "20px", color: "#4b4b4b" }}>
-                  <li>Notice the <strong>TopNav has no hamburger</strong> at this (desktop) width — Option A is in effect</li>
+                  <li>Notice the <strong>TopNav has no hamburger</strong> at this (desktop) width, Option A is in effect</li>
                   <li>Resize your browser window below 1024px → the hamburger appears in the TopNav's far-left</li>
                   <li>Toggle the sidenav via the <strong>in-sidenav collapse icon</strong> at the top of the nav (desktop trigger)</li>
-                  <li>Click <strong>Accounting</strong> (module switcher) or <strong>First Baptist Church</strong> (org switcher) — visual-only in this prototype</li>
+                  <li>Click <strong>Accounting</strong> (module switcher) or <strong>First Baptist Church</strong> (org switcher), visual-only in this prototype</li>
                 </ul>
               </div>
               <div style={{ padding: "16px 20px", border: "1px solid #edf0f9",
@@ -898,7 +898,7 @@ function App() {
               <ul style={{ listStyle: "disc", paddingLeft: 18, fontSize: 13,
                 lineHeight: "20px", color: "#4b4b4b" }}>
                 <li><strong>Desktop (≥1024px):</strong> SideNav is push; 220px expanded / 72px rail. <strong>In-sidenav toggle is the sole trigger.</strong> TopNav hamburger hidden.</li>
-                <li><strong>Tablet (768–1023px):</strong> SideNav is overlay; no rail state. <strong>TopNav hamburger is the sole trigger</strong> (shows/hides overlay). Scrim behind. In-sidenav toggle not used here.</li>
+                <li><strong>Tablet (768 to 1023px):</strong> SideNav is overlay; no rail state. <strong>TopNav hamburger is the sole trigger</strong> (shows/hides overlay). Scrim behind. In-sidenav toggle not used here.</li>
                 <li><strong>Mobile (&lt;768px):</strong> Same as tablet. TopNav hamburger is the sole trigger. In-sidenav toggle not used.</li>
               </ul>
             </div>
@@ -932,7 +932,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 
 <!--
 ================================================================================
-TOKEN COVERAGE REPORT — v4 (as approved on 2026-04-21)
+TOKEN COVERAGE REPORT, v4 (as approved on 2026-04-21)
 ================================================================================
 Grounding: tokens/pathway-design-tokens.json @ 98ee386
 
@@ -963,21 +963,21 @@ Section label (v4 change):
 
 Collapse toggle icon (v4 new):
   icon.static.neutral.subtle           → #606060 (idle color)
-  text.contextual.navitem.hover        → #252525 (hover — reused)
+  text.contextual.navitem.hover        → #252525 (hover, reused)
   fill.contextual.navitem.hover        → #1111110a (hover background)
 
 Scrollbar (v4 new):
   primitive-color.cool-neutral.220-8   → rgba(17,17,17,0.08) (thumb rest)
   primitive-color.cool-neutral.220-20  → rgba(17,17,17,0.20) (thumb hover over rail)
   (two additional alpha values for thumb:hover and :active are NOT in the
-   primitive table — see SUBOPTIMAL below)
+   primitive table, see SUBOPTIMAL below)
 
 ── MISSING TOKENS ────────────────────────────────────────────────────────────
   1. Scrollbar thumb hover (0.32) and active (0.45) alphas have no matching
-     primitive. The token set has 220-{2,4,8,12,16,20,30,50,70} — no values
+     primitive. The token set has 220-{2,4,8,12,16,20,30,50,70}: no values
      between 20 and 50. Using raw rgba values for the hover/active jumps.
      Recommendation: add `primitive-color.cool-neutral.220-32` and
-     `220-45` (or rescale to existing 220-30 and 220-50 — small visual drift
+     `220-45` (or rescale to existing 220-30 and 220-50, small visual drift
      acceptable). Alternatively, introduce a `scrollbar.thumb.*` semantic.
 
   2. No semantic for inline icon-button size (28x28). Using raw value.
@@ -985,7 +985,7 @@ Scrollbar (v4 new):
      for reuse across inline icon toggles.
 
 ── SUBOPTIMAL TOKENS ─────────────────────────────────────────────────────────
-Same four from v1–v3. See
+Same four from v1 v3. See
 sidenav-2026-04-21-grouper-variants-token-recommendations.md.
 
 Plus new observation: the section label's weight 500 (medium) has no semantic

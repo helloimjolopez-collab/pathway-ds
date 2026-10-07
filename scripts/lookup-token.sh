@@ -51,7 +51,7 @@ if [[ -z "$PRIMITIVE_REF" || "$PRIMITIVE_REF" == "null" ]]; then
   exit 1
 fi
 
-# Strip enclosing {…} — format is "{primitive-color.foo.bar}"
+# Strip enclosing {…}, format is "{primitive-color.foo.bar}"
 PRIMITIVE_ID="${PRIMITIVE_REF#\{}"
 PRIMITIVE_ID="${PRIMITIVE_ID%\}}"
 

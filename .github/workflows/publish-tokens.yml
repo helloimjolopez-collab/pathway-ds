@@ -2,7 +2,7 @@ name: Publish pathway-tokens to npm
 
 # Triggered manually from the Actions tab, or programmatically by the
 # /pathway:tokens-sync and /pathway:component-pipeline skills.
-# Choose the version bump type — patch for token value changes,
+# Choose the version bump type, patch for token value changes,
 # minor for new tokens added, major for breaking renames.
 #
 # Flow (refactored 2026-06-12 to fix version drift):
@@ -51,7 +51,7 @@ jobs:
         run: |
           BUMP="${{ github.event.inputs.bump }}"
           PKG="@helloimjolopez-pathway/pathway-tokens"
-          # Highest version ever published — robust even if package.json on main is
+          # Highest version ever published, robust even if package.json on main is
           # stale or the `latest` dist-tag lags behind. This is the fix for the
           # 2026-06 version drift (latest regressed to 4.1.0 below an existing 5.0.0).
           CURRENT=$(npm view "$PKG" versions --json | node -e "const a=JSON.parse(require('fs').readFileSync(0));const v=Array.isArray(a)?a:[a];v.sort((x,y)=>{const A=x.split('.').map(Number),B=y.split('.').map(Number);return A[0]-B[0]||A[1]-B[1]||A[2]-B[2]});console.log(v[v.length-1])")
@@ -97,7 +97,7 @@ jobs:
 
       # Best-effort housekeeping: npm publish above is the critical step. main can
       # advance between checkout and push (deploy-storybook commits often), so this
-      # rebases-and-retries and is NON-FATAL — a failed push here must not fail the
+      # rebases-and-retries and is NON-FATAL: a failed push here must not fail the
       # run or skip the tag. Version correctness does not depend on it (the next run
       # bumps from npm's high-water mark regardless of main's package.json).
       - name: Commit version bump back to main

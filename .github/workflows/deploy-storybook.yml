@@ -1,4 +1,4 @@
-name: Deploy Storybook to GitHub Pages (legacy — retired)
+name: Deploy Storybook to GitHub Pages (legacy, retired)
 
 # RETIRED 2026-08-06. Pages now deploys via .github/workflows/deploy-pages.yml
 # (GitHub Actions Pages), which builds Storybook fresh and deploys a clean
@@ -56,7 +56,7 @@ jobs:
           mv storybook-static storybook
 
           # Expose the built token contract as standalone files under /storybook/.
-          # This used to be `cp src/tokens/tokens.css` — that file was retired on
+          # This used to be `cp src/tokens/tokens.css`: that file was retired on
           # 2026-09-03 and the copy would now fail the job outright.
           for f in primitives.css themes/light.css themes/midnight.css \
                    layout.css layout-contextual.css type.css \
@@ -65,11 +65,11 @@ jobs:
             cp "src/tokens/$f" "storybook/$f"
           done
 
-          # Stage only the storybook output — ignore derived token files and other build artifacts
+          # Stage only the storybook output, ignore derived token files and other build artifacts
           git add storybook/
 
           if git diff --cached --quiet; then
-            echo "No Storybook changes — skipping commit."
+            echo "No Storybook changes, skipping commit."
           else
             # Discard any other uncommitted changes from the build (tokens.css etc.)
             # so that the rebase/push can proceed cleanly

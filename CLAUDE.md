@@ -1,8 +1,8 @@
 # Agent instructions for `pathway-ds`
 
-Persistent rules for any AI agent working on this repository. These apply across sessions — don't wait to be told them again. If a rule here conflicts with something in a specific conversation, follow the rule here unless the user explicitly overrides it in the moment.
+Persistent rules for any AI agent working on this repository. These apply across sessions: don't wait to be told them again. If a rule here conflicts with something in a specific conversation, follow the rule here unless the user explicitly overrides it in the moment.
 
-## 1. Source of truth — who wins when sources disagree
+## 1. Source of truth, who wins when sources disagree
 
 Different layers of this system have different sources of truth. Keep them straight.
 
@@ -15,8 +15,8 @@ Different layers of this system have different sources of truth. Keep them strai
 
 **Practical implications:**
 
-- When anything under `tokens/` conflicts with what's in `src/tokens/` or `pathway-design-tokens.json` — **Figma wins.** Regenerate the derived files; never hand-edit them.
-- When anything in `components/<name>/<name>-spec.md` disagrees with what the component in Figma currently looks like — that means Figma was updated and this repo wasn't yet. Ask the user whether to pull. Don't assume either side is right.
+- When anything under `tokens/` conflicts with what's in `src/tokens/` or `pathway-design-tokens.json`, **Figma wins.** Regenerate the derived files; never hand-edit them.
+- When anything in `components/<name>/<name>-spec.md` disagrees with what the component in Figma currently looks like: that means Figma was updated and this repo wasn't yet. Ask the user whether to pull. Don't assume either side is right.
 - Never edit Figma programmatically. The Figma MCP server exposes `use_figma` and write tools; do **not** call them unless the user explicitly asks you to change Figma. Read-only tools (`get_design_context`, `get_metadata`, `get_screenshot`, `get_variable_defs`) are fine for any diagnostic.
 
 ### 1.1 SideNav follows §1 like everything else (exemption lifted 2026-09-17)
@@ -40,7 +40,7 @@ wins.**
 `<pathway-sidenav>` wraps `sidenav.jsx`, so it tracks whatever `sidenav.jsx` does.
 
 
-## 2. Token sync — how Figma flows into this repo
+## 2. Token sync, how Figma flows into this repo
 
 The pipeline, in order:
 
@@ -58,7 +58,7 @@ tokens/pathway-design-tokens.json                        │
   └──────────────────────────┬────────────────────────────┘
                              │  node style-dictionary.config.js
                              ▼
-        src/tokens/primitives.css          352 raw ramp values — REQUIRED, the themes
+        src/tokens/primitives.css          352 raw ramp values, REQUIRED, the themes
                                            reference these via var()
         src/tokens/themes/light.css        144 semantic colours, :root + [data-theme=light]
         src/tokens/themes/midnight.css     the same 144 names under [data-theme=midnight]
@@ -77,7 +77,7 @@ authenticated and absent in headless runs.
 
 **The read must be paged, and the guard must not be bypassed.** MCP responses cap
 at roughly 20KB against ~2,300 variable-mode rows, so a single read truncates
-silently at about 350 rows. That is the dangerous failure — a truncated page
+silently at about 350 rows. That is the dangerous failure: a truncated page
 yields a token file that looks plausible, is missing hundreds of tokens, and
 builds successfully. So: the first page declares the expected row total, pages
 land in `.figma-dump/*.tsv`, and `scripts/assemble-figma-export.js` **refuses to
@@ -91,8 +91,7 @@ pipeline.
 ### 2.0 The CSS outputs, and which one to consume
 
 **`tokens.css` NO LONGER EXISTS (retired 2026-09-03).** It emitted every variable
-times every mode with the mode baked into the property name — 2,338 custom properties
-— and it was the file every demo, Storybook and the npm package actually loaded. A
+times every mode with the mode baked into the property name, 2,338 custom properties, and it was the file every demo, Storybook and the npm package actually loaded. A
 developer reading it counted 2,338 tokens and reasonably concluded the system was too
 granular to adopt, even though the contract had already been cut to 327 colour names.
 Do not reinstate it. `scripts/check-demo-tokens.js` deliberately omits it from
@@ -105,7 +104,7 @@ Load these eight, in this order:
 | `primitives.css` | 352 raw ramp values | **Required, but never referenced.** The themes point at these via `var()`, so the file must load or every colour resolves to nothing. Product code must never name a `--primitive-*` (§6) |
 | `themes/light.css` + `themes/midnight.css` | 144 semantic colour names, one name per token, mode by selector | **Yes.** This is the colour contract |
 | `layout.css` | 40 layout and spacing names, single-valued | **Yes.** The spacing contract |
-| `layout-responsive.css` | 7 names that genuinely change by breakpoint: Sheet padding and top radius, TopNav padding, height and gap. Emitted with media queries. Prefix `--responsive-layout-*`, from the `Responsive: Layout` collection | **Yes.** A developer cannot derive these from a responsive grid — the grid governs columns, not the chrome's padding |
+| `layout-responsive.css` | 7 names that genuinely change by breakpoint: Sheet padding and top radius, TopNav padding, height and gap. Emitted with media queries. Prefix `--responsive-layout-*`, from the `Responsive: Layout` collection | **Yes.** A developer cannot derive these from a responsive grid: the grid governs columns, not the chrome's padding |
 | `layout-contextual.css` | 34 component metrics (Button, Card, NavItem, Selector, Field, focus ring) | Component internals. This repo's components use it; product code should not |
 | `type.css` | The 41-token type SCALE: 1 family, 13 sizes, 18 line heights, 5 weights, 4 tracking steps | **Yes.** Compose from these |
 | `motion.css` | 17 durations and easings | **Yes** |
@@ -119,12 +118,12 @@ The counts above are generated by `scripts/build-contract.js` from the emitted C
 reverted at the user's instruction. Marking a variable private in the Figma panel only
 means designers are not offered it when styling; it is NOT a statement that the value
 should be absent from the CSS. Those are different layers. Expect Style Dictionary to
-warn "filtered out token references were found" on the theme files — that is expected,
+warn "filtered out token references were found" on the theme files: that is expected,
 because the primitives they reference live in `primitives.css`, which loads alongside.
 
 **Region theming composes both ways.** `light.css` matches `:root, [data-theme="light"]`
 and `midnight.css` matches `[data-theme="midnight"], [data-theme="dark"]`. A dark island
-can sit inside a light page AND a light island inside that dark island — which top-nav
+can sit inside a light page AND a light island inside that dark island: which top-nav
 needs, being a dark bar with white dropdown panels. A component that styles a
 permanently dark region uses the MODELESS name plus a `data-theme` wrapper; it must
 never reach for a mode-qualified property name, because those no longer exist.
@@ -150,7 +149,7 @@ variable never names a face that would silently fall back.
 **Surface lives under Fill (changed 2026-09-03).** There is no top-level `Surface`
 group: it is `Fill/Surface/{Canvas, Sheet, Elevated}`, alongside `Fill/Static/Neutral`,
 `Fill/Static/Brand`, the five meaning groups and the four accents (below), plus
-`Fill/Action`. Elevated has ONE step, not Base and Medium — a header band inside
+`Fill/Action`. Elevated has ONE step, not Base and Medium: a header band inside
 an elevated widget uses `Fill/Static/Neutral` rather than a second surface step.
 
 **Static is MEANING-named, and every tone has exactly two rungs (2026-09-16).**
@@ -169,7 +168,7 @@ so Static and Action share one vocabulary:
 
 The four under `Accent` keep hue names BECAUSE they carry no meaning: the split is
 how a reader tells a semantic colour from palette. Never write
-`Fill/Static/Red` — it does not exist.
+`Fill/Static/Red`: it does not exist.
 
 Each tone has two fill rungs and two stroke rungs, `Subtle` and `Strong`, plus two
 foregrounds that name the fill they belong on:
@@ -181,7 +180,7 @@ foregrounds that name the fill they belong on:
 
 `On Subtle` is the tone's readable text and works on the canvas as well as on the
 Subtle fill, which is why one token covers both. `On Strong` is whatever reads on
-the solid fill — usually a dark rung of the same hue, sometimes the mono anchor,
+the solid fill, usually a dark rung of the same hue, sometimes the mono anchor,
 occasionally a dark neutral. It is NOT white by default: white measured 1.53:1 to
 3.09:1 on the Saffron, Green and Orange Strong fills. Naming the pairing is what
 stops an agent putting tone text on a tone block and getting 1.4:1.
@@ -212,7 +211,7 @@ across the library had nothing to bind to. Use it for a ring separating an eleme
 from a coloured or image background; against the page it is invisible by definition.
 
 `Fill/Static/Brand` keeps six rungs through `Strongest`. There is no
-`Stroke/Static/Brand` — it was built and then removed as unnecessary.
+`Stroke/Static/Brand`: it was built and then removed as unnecessary.
 
 **Strong is always the last rung.** The ladder runs lightest to heaviest and ends
 at Strong, so `Bold` is the second-heaviest, not the heaviest.
@@ -229,7 +228,7 @@ exactly what it needs and nothing more:
 
 | Region | What it is | Colour | Layout tokens | Collection |
 |---|---|---|---|---|
-| **Canvas** | the entire screen, chrome included | `Fill/Surface/Canvas` | **none** | — |
+| **Canvas** | the entire screen, chrome included | `Fill/Surface/Canvas` | **none** | - |
 | **Chrome: SideNav** | the left rail | `Fill/Static/Neutral/Mono` | `SideNav/Width/{Expanded,Collapsed}`, `SideNav/Padding/Horizontal/{Expanded,Collapsed}`, `SideNav/Padding/Vertical`, `SideNav/Gap/Vertical` | `Contextual: Layout & Units` |
 | **Chrome: TopNav** | the top bar | `Fill/Surface/Chrome` | `TopNav/Height`, `TopNav/Padding/{Horizontal,Vertical}`, `TopNav/Gap/Horizontal` | `Responsive: Layout` |
 | **Sheet** | the page itself, sitting inside the chrome | `Fill/Static/Neutral/Mono` | `Sheet/Padding/{Top,Horizontal}`, `Sheet/CornerRadius/Top` | `Responsive: Layout` |
@@ -274,9 +273,9 @@ gained Desktop/Tablet/Mobile modes, which put the breakpoint into every property
 reference and makes responsive layout impossible by selector. `layout.css` and
 `layout-contextual.css` strip the breakpoint and scope it with a media query, emitting
 only the values that actually differ. Expect a "token collisions were found" warning on
-both files — three modes collapsing onto one name IS the intent.
+both files: three modes collapsing onto one name IS the intent.
 
-### 2.1 Midnight Mode — ENABLED (2026-05-05, renamed 2026-08-28)
+### 2.1 Midnight Mode, ENABLED (2026-05-05, renamed 2026-08-28)
 
 **The dark mode is called Midnight Mode.** That is the Pathway name in the Figma
 Variables panel and in `themes/midnight.css`. Do not call it "dark mode" in any
@@ -297,7 +296,7 @@ another team should not have to learn our brand vocabulary to switch themes.
 
 ## 3. Component reconciliation after token changes
 
-When the token library changes — every time `sync-tokens.js` runs and modifies `tokens/pathway-design-tokens.json` or the CSS variable set — every component in `components/**` that references those tokens must be reconciled against Figma.
+When the token library changes: every time `sync-tokens.js` runs and modifies `tokens/pathway-design-tokens.json` or the CSS variable set: every component in `components/**` that references those tokens must be reconciled against Figma.
 
 **Principle:** the source of truth for *which tokens a component uses* is Figma, not the component's current GitHub files. If Figma says the SideNav uses `fill/contextual/navitem/base` and the repo says it uses some other token, Figma wins. If a token the repo mentions no longer exists, the fix comes from Figma.
 
@@ -309,7 +308,7 @@ When the token library changes — every time `sync-tokens.js` runs and modifies
 
 ### 3.2 Algorithm
 
-1. **Diff the token set.** Compare `tokens/pathway-design-tokens.json` at `HEAD` against its state before the sync. Classify each change: *added*, *removed*, *renamed* (a disappeared name + a new name whose value matches are probably a rename — flag as a rename candidate for the user to confirm; don't auto-rename aggressively).
+1. **Diff the token set.** Compare `tokens/pathway-design-tokens.json` at `HEAD` against its state before the sync. Classify each change: *added*, *removed*, *renamed* (a disappeared name + a new name whose value matches are probably a rename, flag as a rename candidate for the user to confirm; don't auto-rename aggressively).
 
 2. **Find components that reference changed tokens.** For each file under `components/**`, `src/stories/Library/**`, and any `src/tokens/tokens.*` consumer, grep for:
    - CSS variable names like `--semantic-color-light-mode-icon-static-neutral-base`
@@ -318,12 +317,12 @@ When the token library changes — every time `sync-tokens.js` runs and modifies
    If the mentioned token appears in the *removed* or *renamed* set, the component is a reconciliation candidate.
 
 3. **For each candidate component, fetch Figma truth.** Open the component's Figma node (see §3.4 for where its node ID lives) and call:
-   - `get_variable_defs(nodeId)` — returns every variable currently bound to that node and its descendants
-   - `get_design_context(nodeId)` — the current reference code with token bindings
+   - `get_variable_defs(nodeId)`, returns every variable currently bound to that node and its descendants
+   - `get_design_context(nodeId)`: the current reference code with token bindings
    Compare the set of tokens returned by Figma against the set the component's GitHub files reference.
 
 4. **Reconcile in this order:**
-   - If Figma's token set matches the repo's updated token set: update the component's GitHub files to use the new token names / values. Update HTML, CSS, stories, spec — all of them, together. Verify Storybook still builds.
+   - If Figma's token set matches the repo's updated token set: update the component's GitHub files to use the new token names / values. Update HTML, CSS, stories, spec: all of them, together. Verify Storybook still builds.
    - If Figma's token set *also* references a missing token (Figma itself is out of sync with the newly-updated tokens): add this component to the "needs manual attention" list (see §3.5). Do not rewrite the component to use a different token as a guess.
    - If the Figma fetch fails (node deleted, MCP error after retry): add the component to the list. Do not guess.
 
@@ -339,7 +338,7 @@ When the token library changes — every time `sync-tokens.js` runs and modifies
 
 - It does not propose alternative tokens when Figma is itself stale. Guessing at a replacement masks the real problem.
 - It does not rewrite the token file or attempt to resurrect deleted tokens. Figma is still the source of truth for tokens themselves (see §1).
-- It does not change component *behaviour* — only the specific token names, values, and examples that are now wrong. If the behaviour needs to change, that's a component update (§3.6), not a token reconciliation.
+- It does not change component *behaviour*, only the specific token names, values, and examples that are now wrong. If the behaviour needs to change, that's a component update (§3.6), not a token reconciliation.
 
 ### 3.4 Every component must expose its Figma node ID
 
@@ -358,7 +357,7 @@ Reconciliation agents extract `<fileKey>` and `<nodeId>` from the URLs with a re
 When a component can't be reconciled cleanly, emit a short block at the end of the run. Example:
 
 ```
-Reconciliation — 2 components need manual attention:
+Reconciliation, 2 components need manual attention:
 
   spinner
     file:   components/spinner/spinner-spec.md
@@ -380,29 +379,29 @@ Keep entries short. The user decides which ones to act on; your job is to surfac
 
 ### 3.6 Updating a component from Figma (unrelated to token changes)
 
-When the user says *"I changed the spinner in Figma, update GitHub"* or *"pull the new sidenav design"* — i.e. the **component itself** changed, not just its tokens — follow this flow. It's related to but distinct from §3.2 (which runs in response to token changes).
+When the user says *"I changed the spinner in Figma, update GitHub"* or *"pull the new sidenav design"*: i.e. the **component itself** changed, not just its tokens, follow this flow. It's related to but distinct from §3.2 (which runs in response to token changes).
 
 1. **Identify the Figma node.** Use the spec's Figma source section (§3.4); ask for a URL if one isn't there.
 2. **Fetch the current state** via the Figma MCP server:
-   - `get_design_context` — reference code + variable bindings
-   - `get_metadata` — structural overview for large nodes
-   - `get_screenshot` — visual reference
-   - `get_variable_defs` — resolved token values bound to the node
+   - `get_design_context`, reference code + variable bindings
+   - `get_metadata`, structural overview for large nodes
+   - `get_screenshot`, visual reference
+   - `get_variable_defs`, resolved token values bound to the node
 3. **Extract raw assets when needed.** For SVG geometry, `get_design_context` returns a `figma.com/api/mcp/asset/<uuid>` URL; `curl` it. If it 500s, retry a few times before giving up.
-4. **Diff against the current files** in `components/<name>/`. Update the HTML demo, the `-spec.md`, and any `src/stories/Library/<Name>/` files together — they must stay consistent.
+4. **Diff against the current files** in `components/<name>/`. Update the HTML demo, the `-spec.md`, and any `src/stories/Library/<Name>/` files together: they must stay consistent.
 5. **Keep the spec structure intact.** See §5 for the required spec sections.
 6. **Verify.** Rebuild Storybook locally (`npx storybook build`) before committing. A broken Storybook build blocks CI.
 
 ## 4. File layout and naming
 
-- Every component lives at `components/<name>/`. `<name>` is **lowercase kebab-case** — `sidenav`, `spinner`, `top-nav`, `date-picker`.
+- Every component lives at `components/<name>/`. `<name>` is **lowercase kebab-case**, `sidenav`, `spinner`, `top-nav`, `date-picker`.
 - Inside each component folder:
-  - `<name>.html` — self-contained React+Babel demo, mirrors the conventions in `components/sidenav/sidenav.html`
-  - `<name>-spec.md` — authoritative specification, mirrors the structure of `components/sidenav/sidenav-spec.md`
+  - `<name>.html`, self-contained React+Babel demo, mirrors the conventions in `components/sidenav/sidenav.html`
+  - `<name>-spec.md`, authoritative specification, mirrors the structure of `components/sidenav/sidenav-spec.md`
   - Optionally `<name>-figmamake.html` if the component ships an AI-codegen-friendly variant (SideNav does; Spinner doesn't need one)
 - Cross-component docs live in `docs/`. See `docs/README.md`.
-- Storybook stories for each component live at `src/stories/Library/<Name>/` (PascalCase inside `Library/` because macOS APFS is case-insensitive and collides with `src/stories/components/` — see the folder name there for why).
-- New files always follow **kebab-case, lowercase**. Never PascalCase or snake_case for file names inside `components/` or `docs/`. The Storybook `src/stories/` tree uses PascalCase folders to match the existing convention there — don't change that.
+- Storybook stories for each component live at `src/stories/Library/<Name>/` (PascalCase inside `Library/` because macOS APFS is case-insensitive and collides with `src/stories/components/`, see the folder name there for why).
+- New files always follow **kebab-case, lowercase**. Never PascalCase or snake_case for file names inside `components/` or `docs/`. The Storybook `src/stories/` tree uses PascalCase folders to match the existing convention there: don't change that.
 
 ## 5. Component specs
 
@@ -430,34 +429,34 @@ rules"** (SideNav keeps them at §18.0 for historical anchor stability).
 
 Every `<name>-spec.md` must follow the structure of `components/sidenav/sidenav-spec.md`. At minimum it has:
 
-0. **Links** (CANONICAL — always at the very top, immediately after the one-paragraph overview, **never** as a trailing section). A `## Links` table with Figma node, Storybook (`?path=/docs/library-<name>--docs`), HTML demo, and GitHub source. A reader or agent must reach every artefact without scrolling. `org-switcher` uses an equivalent top `## Resources` table — either heading is acceptable as long as it is at the top. This rule is baked into `docs/component-spec-template.md`; copy it from there.
-1. **Component Overview** — what it is, what it isn't, decision boundaries
-2. **Governance table** — "where things live" mapping (Figma nodes, this spec, token files)
-3. **Anatomy** — DOM structure, key elements
-4. **Variant system** — if the component has variants, how they compose
-5. **Token mappings** — every colour/size/motion must cite a semantic token. Never reference primitives or raw hex directly in specs.
-6. **Decision tree** — when to use / when not to use
-7. **Accessibility** — role, ARIA, keyboard, screen reader announcements, reduced motion, contrast
-8. **Motion spec** (if animated) — keyframe, duration, easing, direction, reduced-motion behaviour
-9. **HTML usage examples** — real markup, at least one minimal + one in-context
-10. **Constraints** — hard rules that must not be broken
-11. **Gaps** — known problems, flagged by priority
+0. **Links** (CANONICAL, always at the very top, immediately after the one-paragraph overview, **never** as a trailing section). A `## Links` table with Figma node, Storybook (`?path=/docs/library-<name>--docs`), HTML demo, and GitHub source. A reader or agent must reach every artefact without scrolling. `org-switcher` uses an equivalent top `## Resources` table, either heading is acceptable as long as it is at the top. This rule is baked into `docs/component-spec-template.md`; copy it from there.
+1. **Component Overview**: what it is, what it isn't, decision boundaries
+2. **Governance table**, "where things live" mapping (Figma nodes, this spec, token files)
+3. **Anatomy**, DOM structure, key elements
+4. **Variant system**: if the component has variants, how they compose
+5. **Token mappings**: every colour/size/motion must cite a semantic token. Never reference primitives or raw hex directly in specs.
+6. **Decision tree**: when to use / when not to use
+7. **Accessibility**, role, ARIA, keyboard, screen reader announcements, reduced motion, contrast
+8. **Motion spec** (if animated), keyframe, duration, easing, direction, reduced-motion behaviour
+9. **HTML usage examples**, real markup, at least one minimal + one in-context
+10. **Constraints**, hard rules that must not be broken
+11. **Gaps**, known problems, flagged by priority
 
 New components that don't yet need every section can omit, but match the depth of sidenav-spec for the ones they do include.
 
 ## 6. Colour rules for components
 
-Components resolve colour **only through semantic tokens** — never raw hex, never primitive tokens, never invented semantic names.
+Components resolve colour **only through semantic tokens**: never raw hex, never primitive tokens, never invented semantic names.
 
-- Icons (including indicators like the spinner): **`foreground.<tone>.<emphasis>`** or **`foreground.action.<role>.<state>`** — both exist as real token families in `tokens/pathway-design-tokens.json`. Any `tone` must match a real child of the family in that file. See `components/spinner/spinner-spec.md` §7.1 for the complete allowed list.
-- Text: `foreground.*` or `foreground.action.*` or `text.contextual.*` — same rule.
+- Icons (including indicators like the spinner): **`foreground.<tone>.<emphasis>`** or **`foreground.action.<role>.<state>`**, both exist as real token families in `tokens/pathway-design-tokens.json`. Any `tone` must match a real child of the family in that file. See `components/spinner/spinner-spec.md` §7.1 for the complete allowed list.
+- Text: `foreground.*` or `foreground.action.*` or `text.contextual.*`: same rule.
 - Fills, strokes, surfaces: same rule applied to the right family.
 
 **Forbidden in any component CSS or spec:**
 
-- Raw hex (`color: #3555a0`) — *always wrong*, always replace with a semantic var
-- Primitive vars (`var(--primitive-color-brand-300)`) — *always wrong*, primitives are building blocks not contracts
-- Made-up tokens (`icon/semantic/success`, `color/brand/primary`) — if the name isn't in the JSON, it doesn't exist
+- Raw hex (`color: #3555a0`), *always wrong*, always replace with a semantic var
+- Primitive vars (`var(--primitive-color-brand-300)`), *always wrong*, primitives are building blocks not contracts
+- Made-up tokens (`icon/semantic/success`, `color/brand/primary`): if the name isn't in the JSON, it doesn't exist
 
 Before writing any colour into a component, grep `tokens/pathway-design-tokens.json` to confirm the token name and family exist.
 
@@ -508,7 +507,7 @@ Per-page Pathway share on the field and selector pages, for reference:
 
 | Page | Pathway | Foreign | Pathway share |
 |---|---|---|---|
-| `↳ ❇️ Checkbox`, `↳ Search`, `↳ ❇️ Radio`, `↳ Toggle`, `↳ Input DOB`, `↳ ❇️ Scroll to Enable Checkbox` | — | 0 | 100% |
+| `↳ ❇️ Checkbox`, `↳ Search`, `↳ ❇️ Radio`, `↳ Toggle`, `↳ Input DOB`, `↳ ❇️ Scroll to Enable Checkbox` | - | 0 | 100% |
 | `↳ ❇️ Input` | 145 | 40 | 78% |
 | `↳ ToolTips & Toggle Tips` | 2 | 3 | 40% |
 | `↳ Select` | 40 | 203 | **16%** |
@@ -521,9 +520,9 @@ the page name.
 
 Three GitHub Actions live in `.github/workflows/`:
 
-1. **`sync-tokens.yml`** — fires on push to `tokens/figma-export/**`. Runs `sync-tokens.js`, commits the result.
-2. **`sync-component.yml`** — fires on push to `components/sidenav/sidenav.html`. Regenerates `sidenav-figmamake.html`.
-3. **`deploy-storybook.yml`** — fires on push to `tokens/`, `src/`, `.storybook/`, `components/`, `docs/`, or config. Runs Style Dictionary + Storybook build, commits the output to `/storybook/` on `main`, GitHub Pages serves it.
+1. **`sync-tokens.yml`**, fires on push to `tokens/figma-export/**`. Runs `sync-tokens.js`, commits the result.
+2. **`sync-component.yml`**, fires on push to `components/sidenav/sidenav.html`. Regenerates `sidenav-figmamake.html`.
+3. **`deploy-storybook.yml`**, fires on push to `tokens/`, `src/`, `.storybook/`, `components/`, `docs/`, or config. Runs Style Dictionary + Storybook build, commits the output to `/storybook/` on `main`, GitHub Pages serves it.
 
 The deployed Storybook lives at:
 
@@ -538,12 +537,12 @@ Every new component follows the sequence documented in `docs/component-pipeline.
 1. **The `.jsx` is the shared source of truth.** `components/<name>/<name>.jsx` exports the React component. Storybook stories import from it; the standalone `.html` demo inlines the same logic. When the component changes, update both.
 2. **File convention:** `<name>.jsx` + `<name>.html` + `<name>-spec.md` in `components/<name>/`. Stories at `src/stories/Library/<Name>/`.
 3. **Map Figma variants → Storybook argTypes.** Boolean props → boolean control. Enum props → select control. Number props → number control with min/max.
-4. **MDX docs follow `docs/storybook-authoring.md`** — narrative prose, Playground + Controls at the top, state matrices as live components (not tables), token rows as name/swatch/hex, accessibility section that cites the overarching spec for system-wide rules. Never bury the Playground below reference tables.
+4. **MDX docs follow `docs/storybook-authoring.md`**, narrative prose, Playground + Controls at the top, state matrices as live components (not tables), token rows as name/swatch/hex, accessibility section that cites the overarching spec for system-wide rules. Never bury the Playground below reference tables.
 5. **`components/manifest.json`** is the machine-readable component registry. Update it when adding or changing a component.
-6. **Designer prep:** the designer must complete `docs/figma-prep-checklist.md` before handoff. If they haven't, run the `/pathway:component-readiness` skill (or send them the checklist) — don't guess.
+6. **Designer prep:** the designer must complete `docs/figma-prep-checklist.md` before handoff. If they haven't, run the `/pathway:component-readiness` skill (or send them the checklist): don't guess.
 7. **The overarching design-system spec** (`docs/design-system-spec.md`) defines system-wide rules for motion, accessibility, colour, spacing, typography, naming. Every component spec inherits from it. Conflicts between a component spec and the overarching spec are resolved by the `/pathway:spec-review` skill, which requires explicit human sign-off on any deviation.
-8. **Storybook stories render the REAL component — never a reimplementation.** Stories `import` the component from `components/<name>/<name>.jsx` and render it. A thin adapter mapping flat Controls args → the component's props is fine; a parallel "mock" reimplementation of the component's markup inside the stories file is a bug (it drifts and misrepresents what ships). If a story needs a hook the component lacks (pre-opening a panel for a snapshot, etc.), add a small prop to the real component instead of forking its markup. See `docs/storybook-authoring.md` hard-rule #7.
-9. **Props mirror Figma properties — one prop per variant property, named after it.** Each Figma *variant property* (`Type`, `Size`, `Breakpoint`, …) becomes one prop of the same name; the value is the Figma value (`type="static"`, `size="XS"`). Never collapse multiple axes into a generic `variant` prop. `State` (hover/pressed/focus/disabled) is runtime, not a prop. Non-variant component properties (boolean "Show X", instance-swap, text) get their own prop named after the property. Nested-instance properties are namespaced with the nested component's name on the parent (e.g. `TopNav.moduleSwitcherType` → nested ModuleSwitcher's `type`). Every such prop must be documented with the rationale for *why* it exists (spec Properties table + Usage-by-context table; Storybook argType description + a visible story). See `docs/storybook-authoring.md` hard-rule #8.
+8. **Storybook stories render the REAL component: never a reimplementation.** Stories `import` the component from `components/<name>/<name>.jsx` and render it. A thin adapter mapping flat Controls args → the component's props is fine; a parallel "mock" reimplementation of the component's markup inside the stories file is a bug (it drifts and misrepresents what ships). If a story needs a hook the component lacks (pre-opening a panel for a snapshot, etc.), add a small prop to the real component instead of forking its markup. See `docs/storybook-authoring.md` hard-rule #7.
+9. **Props mirror Figma properties: one prop per variant property, named after it.** Each Figma *variant property* (`Type`, `Size`, `Breakpoint`, …) becomes one prop of the same name; the value is the Figma value (`type="static"`, `size="XS"`). Never collapse multiple axes into a generic `variant` prop. `State` (hover/pressed/focus/disabled) is runtime, not a prop. Non-variant component properties (boolean "Show X", instance-swap, text) get their own prop named after the property. Nested-instance properties are namespaced with the nested component's name on the parent (e.g. `TopNav.moduleSwitcherType` → nested ModuleSwitcher's `type`). Every such prop must be documented with the rationale for *why* it exists (spec Properties table + Usage-by-context table; Storybook argType description + a visible story). See `docs/storybook-authoring.md` hard-rule #8.
 
 ### 10.1 The Pathway skills
 
@@ -559,20 +558,20 @@ The component pipeline is broken into four skills so different audiences can use
 
 The Pathway skills are **installed in Claude**, not stored in this repo or in any local
 folder. Do not go looking for `SKILL.md` files on disk to determine what a skill does or
-which copy is authoritative — several stale copies exist in unrelated folders and they
+which copy is authoritative, several stale copies exist in unrelated folders and they
 have caused wrong conclusions before. Invoke the skill, or go through skill-creator.
 
-Token sync (`update-tokens`) is separate — it runs on token changes, independent of component work.
+Token sync (`update-tokens`) is separate: it runs on token changes, independent of component work.
 
 ## 11. Human review at every step
 
-**Non-negotiable principle:** every Pathway skill requires explicit human approval at every gate. Claude drafts, recommends, flags — humans decide.
+**Non-negotiable principle:** every Pathway skill requires explicit human approval at every gate. Claude drafts, recommends, flags, humans decide.
 
 ### 11.1 What this means in practice
 
 - Skills ask questions **one at a time**, never batched. If a skill realises it needs many questions, it opens with: *"I'll need to ask you ~N questions. Want the full list up front or one-by-one?"* and waits for the user's choice.
 - Skills announce each action before performing it and wait for explicit approval: *"I'm about to commit files X, Y, Z. Confirm?"*
-- Skills never auto-flip `Status: PENDING HUMAN REVIEW` to `REVIEWED`. Only the `/pathway:spec-review` skill, after walking the human through every conflict, flips the status — and only when the human has explicitly signed off on each decision.
+- Skills never auto-flip `Status: PENDING HUMAN REVIEW` to `REVIEWED`. Only the `/pathway:spec-review` skill, after walking the human through every conflict, flips the status: and only when the human has explicitly signed off on each decision.
 - The pipeline skill refuses to run on any spec that is not `Status: REVIEWED`.
 - No skill `git push`es without confirming with the user first.
 - No skill modifies a file in Figma (via `use_figma` or similar) without the user explicitly asking for a Figma write.
@@ -583,9 +582,9 @@ Any agent working on a Pathway task must preserve these gates. If you're composi
 
 ### 11.3 When the user is explicit
 
-If the user says *"just do it, don't ask me"* for a specific action, proceed with that action — their explicit permission replaces the gate. But the next gate still applies unless they've scoped the permission broadly ("do the whole thing, don't ask me").
+If the user says *"just do it, don't ask me"* for a specific action, proceed with that action, their explicit permission replaces the gate. But the next gate still applies unless they've scoped the permission broadly ("do the whole thing, don't ask me").
 
-## 12. Iconography — Material Symbols Rounded, always
+## 12. Iconography, Material Symbols Rounded, always
 
 **Every icon in Pathway uses Material Symbols Rounded.** This is non-negotiable and applies to every component, every demo, every story, every spec, and every prototype built from this system.
 
@@ -595,7 +594,7 @@ If the user says *"just do it, don't ask me"* for a specific action, proceed wit
 
 This is the canonical source for every icon name, ligature string, and preview. To find or verify an icon:
 - Browse by category at `https://github.com/google/material-design-icons/tree/master/symbols/web`
-- Each icon folder contains the Rounded variant (and others — always use Rounded)
+- Each icon folder contains the Rounded variant (and others, always use Rounded)
 - The folder name is the ligature string you put inside the `<span>` (e.g. folder `arrow_forward` → `<span class="material-symbols-rounded">arrow_forward</span>`)
 - Google's interactive search at `https://fonts.google.com/icons` lets you filter by style (set Style = Rounded) and copy the ligature name directly
 
@@ -606,17 +605,17 @@ This is the canonical source for every icon name, ligature string, and preview. 
 - **Markup:** `<span class="material-symbols-rounded">icon_name</span>`
 - **Google Fonts CDN URL:** `https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`
 - **font-family in CSS:** `'Material Symbols Rounded'`
-- **Font variation settings:** `'wght' 400, 'GRAD' 0, 'opsz' 20` — use these for every icon. **The `FILL` axis must be read from Figma per component — never assumed.** FILL=0 means outlined (hollow); FILL=1 means filled (solid). Figma is the source of truth: check how the icons look in the component's Figma node via `get_design_context` and match that fill in code. Document the correct FILL value in the component spec's iconography section.
+- **Font variation settings:** `'wght' 400, 'GRAD' 0, 'opsz' 20`, use these for every icon. **The `FILL` axis must be read from Figma per component, never assumed.** FILL=0 means outlined (hollow); FILL=1 means filled (solid). Figma is the source of truth: check how the icons look in the component's Figma node via `get_design_context` and match that fill in code. Document the correct FILL value in the component spec's iconography section.
 
 If you see `material-symbols-outlined`, `material-symbols-sharp`, or `Material Symbols Outlined` anywhere in this repo, it is a bug. Replace it with the Rounded variant.
 
-Never use Outlined, Sharp, or any other Material Symbols variant. Never use custom SVGs for standard UI icons — if it's in the Material Symbols Rounded library, use the ligature. If it's a branded asset (org logo, Amplify Home icon), use an `<img>` or inline SVG instead.
+Never use Outlined, Sharp, or any other Material Symbols variant. Never use custom SVGs for standard UI icons: if it's in the Material Symbols Rounded library, use the ligature. If it's a branded asset (org logo, Amplify Home icon), use an `<img>` or inline SVG instead.
 
-### Sizing — by the frame, never the vector
+### Sizing, by the frame, never the vector
 
 Figma nests three boxes: `Container.LeadingIcon` (e.g. 24×24, the wrapper) → `Icon.Leading` frame (e.g. 16×16, the em-box) → the visible vector inside (e.g. ~12×12, inset by the grid's built-in ~2px padding). **The icon size you implement is the *frame* (16), never the vector (~12).** Setting `font-size: 16px` reproduces the padding automatically → the visible glyph lands at ~12px, matching Figma. Setting it to the vector's ~12 ships an icon that is too small. See `docs/design-system-spec.md` §7.2 for the full model and the per-size table (L=18 / M=16 / S=14 inside 26 / 24 / 20 wrappers).
 
-For **non-font (SVG) implementations** (partner teams on older frameworks): keep the un-cropped Material Symbols SVG on its full grid (`viewBox="0 0 24 24"` or `0 -960 960 960` — never trim to content), render it at the same frame size (`width/height: 16px` for M), bake in Rounded / wght 400 / opsz 20 / correct FILL at export, and centre it in the same wrapper. Handing a team the cropped ~12px vector is a bug — it ships too small and breaks cross-icon consistency.
+For **non-font (SVG) implementations** (partner teams on older frameworks): keep the un-cropped Material Symbols SVG on its full grid (`viewBox="0 0 24 24"` or `0 -960 960 960`: never trim to content), render it at the same frame size (`width/height: 16px` for M), bake in Rounded / wght 400 / opsz 20 / correct FILL at export, and centre it in the same wrapper. Handing a team the cropped ~12px vector is a bug: it ships too small and breaks cross-icon consistency.
 
 ## 13. Things that are always wrong
 
@@ -626,9 +625,9 @@ For **non-font (SVG) implementations** (partner teams on older frameworks): keep
 - Amending a commit that's already on `origin/main`.
 - Using `rm -rf` on anything not clearly scratch.
 - Re-enabling dark-mode token imports without explicit user authorization (see §2.1).
-- **Regenerating `src/tokens/tokens.js` with any command other than `node style-dictionary.config.js`.** This is the only command whose output `resolve-tokens.js` and every Storybook story are built to consume. Any other tool — the SD CLI, `@tokens-studio/sd-transforms` directly, any other script — may produce a structurally different output that silently breaks every color, fill, text, and icon lookup across the entire system.
+- **Regenerating `src/tokens/tokens.js` with any command other than `node style-dictionary.config.js`.** This is the only command whose output `resolve-tokens.js` and every Storybook story are built to consume. Any other tool, the SD CLI, `@tokens-studio/sd-transforms` directly, any other script, may produce a structurally different output that silently breaks every color, fill, text, and icon lookup across the entire system.
 
-## 13. PRs are always merged immediately — this is a solo repo
+## 13. PRs are always merged immediately: this is a solo repo
 
 This repository has no team reviewers. A PR that is not merged is identical to nothing happening. **A PR is not "done." Merged to `main` is done.**
 
@@ -636,6 +635,6 @@ This repository has no team reviewers. A PR that is not merged is identical to n
 
 1. **Never open a PR and stop.** After `gh pr create`, always run `gh pr merge --merge --delete-branch` in the same session, immediately.
 2. **Never present a Storybook link as reflecting changes** until those changes are on `main` and CI has been triggered. If you give a Storybook URL, say explicitly whether CI has fired yet or not.
-3. **Bug fixes and doc-only changes** (no new component, no API change): push directly to `main` — no branch, no PR. One commit, one push.
+3. **Bug fixes and doc-only changes** (no new component, no API change): push directly to `main`: no branch, no PR. One commit, one push.
 4. **New components or breaking changes**: cut a branch, open a PR, then immediately merge it in the same operation. The branch exists only as a PR audit trail, not as a review gate.
-5. If you ever find yourself in a state where a branch exists, a PR is open, but `main` has not been updated — **merge it before doing anything else in that session.** Check `git branch` and `gh pr list` at session start if context is unclear.
+5. If you ever find yourself in a state where a branch exists, a PR is open, but `main` has not been updated, **merge it before doing anything else in that session.** Check `git branch` and `gh pr list` at session start if context is unclear.

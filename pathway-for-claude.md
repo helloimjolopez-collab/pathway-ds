@@ -1,4 +1,4 @@
-# Pathway Design System — Prototyping Guide for Claude
+# Pathway Design System, Prototyping Guide for Claude
 
 **Read this file fully before writing any code or design.** This is the complete reference.
 
@@ -12,12 +12,12 @@ Tokens CSS: https://raw.githubusercontent.com/helloimjolopez-collab/pathway-ds/m
 
 ---
 
-## ⛔ STOP — paste this `<head>` block FIRST, before any component
+## ⛔ STOP, paste this `<head>` block FIRST, before any component
 
 Pathway icons are a **ligature web font** (Material Symbols Rounded), not SVGs.
 Every icon in every component is `<span class="material-symbols-rounded">name</span>`.
 **If you do not load the font, those spans render as literal text** (you'll see the
-word `search` instead of a magnifying glass) — and you must **never** substitute your
+word `search` instead of a magnifying glass): and you must **never** substitute your
 own SVG paths or emoji to "fix" it. The only correct fix is loading the font below.
 
 ```html
@@ -33,14 +33,14 @@ own SVG paths or emoji to "fix" it. The only correct fix is loading the font bel
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/motion.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/breakpoints.css" />
 
-  <!-- 2. Material Symbols Rounded — REQUIRED or all icons become plain text -->
+  <!-- 2. Material Symbols Rounded, REQUIRED or all icons become plain text -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
 
   <!-- 3. Red Hat type family -->
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&family=Red+Hat+Display:wght@600&display=swap" rel="stylesheet" />
 
   <style>
-    /* Base icon class — every icon span needs this class */
+    /* Base icon class: every icon span needs this class */
     .material-symbols-rounded {
       font-variation-settings: 'wght' 400, 'GRAD' 0, 'opsz' 20;
       /* FILL is per-component: SideNav items + search = 'FILL' 1; TopNav controls = 'FILL' 0.
@@ -51,10 +51,10 @@ own SVG paths or emoji to "fix" it. The only correct fix is loading the font bel
 ```
 
 **Icon rules (non-negotiable):**
-- Use `material-symbols-rounded` — never `-outlined`, never `-sharp`.
+- Use `material-symbols-rounded`: never `-outlined`, never `-sharp`.
 - Icon name = the Material Symbols ligature (e.g. `search`, `filter_alt`, `expand_more`). Browse names at https://fonts.google.com/icons (set Style = Rounded).
-- **Never** replace an icon with a custom SVG, inline path, line drawing, or text label. If a glyph looks wrong, the font isn't loaded — fix the `<link>`, don't draw your own.
-- Branded assets (org logo, the Amplify Home icon) are the *only* exception — those use `<img>`/inline SVG.
+- **Never** replace an icon with a custom SVG, inline path, line drawing, or text label. If a glyph looks wrong, the font isn't loaded, fix the `<link>`, don't draw your own.
+- Branded assets (org logo, the Amplify Home icon) are the *only* exception: those use `<img>`/inline SVG.
 
 ---
 
@@ -84,7 +84,7 @@ own SVG paths or emoji to "fix" it. The only correct fix is loading the font bel
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/helloimjolopez-collab/pathway-ds@main/src/tokens/breakpoints.css" />
 ```
 
-Once loaded, every CSS variable below is available. Always use CSS variables — never hardcode hex values.
+Once loaded, every CSS variable below is available. Always use CSS variables: never hardcode hex values.
 
 ---
 
@@ -107,7 +107,7 @@ Every Amplify screen uses this three-zone layout:
 - Left side: ModuleSwitcher + OrgSwitcher (8px gap between them)
 - Right side: TopNavSearch + action buttons + profile avatar (8px gaps)
 - ALL text and icons on TopNav: `#fbfbfb`
-- ALL controls hover state: `rgba(10,18,35,0.16)` — no exceptions
+- ALL controls hover state: `rgba(10,18,35,0.16)`: no exceptions
 
 ### SideNav
 - Width: 240px expanded / 72px collapsed rail
@@ -127,74 +127,74 @@ Every Amplify screen uses this three-zone layout:
 | Viewport | SideNav | TopNav |
 |---|---|---|
 | ≥1024px desktop | 240px push (user can collapse to 72px) | Full labels, 2 bells |
-| 768–1023px tablet | 72px rail always | Icon only, more_vert |
+| 768 to 1023px tablet | 72px rail always | Icon only, more_vert |
 | <768px mobile | Hidden, hamburger reveals 240px overlay | Hamburger, abbreviated labels |
 
 ---
 
 ## Colour tokens
 
-Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnight.css` + `type.css` + `layout.css` + `layout-contextual.css` + `motion.css` + `breakpoints.css`) and use these CSS variables. The hex values are shown for reference — always use the variable, never the hex directly.
+Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnight.css` + `type.css` + `layout.css` + `layout-contextual.css` + `motion.css` + `breakpoints.css`) and use these CSS variables. The hex values are shown for reference, always use the variable, never the hex directly.
 
 ### Backgrounds and surfaces
 ```css
---semantic-color-fill-static-brand-base    /* #4b6ec3  — TopNav background */
---semantic-color-fill-surface-canvas      /* #fafafa  — Page background */
---semantic-color-fill-static-neutral-mono         /* #ffffff  — SideNav background */
---semantic-color-fill-static-neutral-faint /* #fefefd  — Cards, inputs, white surfaces */
+--semantic-color-fill-static-brand-base    /* #4b6ec3, TopNav background */
+--semantic-color-fill-surface-canvas      /* #fafafa, Page background */
+--semantic-color-fill-static-neutral-mono         /* #ffffff, SideNav background */
+--semantic-color-fill-static-neutral-faint /* #fefefd, Cards, inputs, white surfaces */
 ```
 
 ### Text
 ```css
---semantic-color-foreground-static-neutral-strong    /* #070707  — Page headings, card titles */
---semantic-color-foreground-static-neutral-base  /* #313131  — Body text, subtitles */
---semantic-color-foreground-static-neutral-base /* #313131 — Captions, placeholders, card body */
---semantic-color-foreground-action-primary-on-subtle-rest    /* #345499  — Active links, active tab text */
---semantic-color-foreground-action-secondary-pressed /* #070707 — Active SideNav item label */
+--semantic-color-foreground-static-neutral-strong    /* #070707, Page headings, card titles */
+--semantic-color-foreground-static-neutral-base  /* #313131, Body text, subtitles */
+--semantic-color-foreground-static-neutral-base /* #313131, Captions, placeholders, card body */
+--semantic-color-foreground-action-primary-on-subtle-rest    /* #345499, Active links, active tab text */
+--semantic-color-foreground-action-secondary-pressed /* #070707, Active SideNav item label */
 ```
 
 ### Interactive / brand
 ```css
---semantic-color-fill-action-primary-strong-rest    /* #3a5aaa  — Primary button fill, active indicators */
---semantic-color-fill-action-primary-strong-hover   /* #345499  — Primary button hover */
---semantic-color-fill-action-primary-subtle-rest   /* #eef2fb  — Active filter chip bg, active nav item bg */
---semantic-color-fill-action-selection-selected /* rgba(160,181,230,0.16) — Active nav item fill */
+--semantic-color-fill-action-primary-strong-rest    /* #3a5aaa, Primary button fill, active indicators */
+--semantic-color-fill-action-primary-strong-hover   /* #345499, Primary button hover */
+--semantic-color-fill-action-primary-subtle-rest   /* #eef2fb, Active filter chip bg, active nav item bg */
+--semantic-color-fill-action-selection-selected /* rgba(160,181,230,0.16), Active nav item fill */
 ```
 
 ### Borders and strokes
 ```css
---semantic-color-stroke-static-neutral-base         /* #e6e2dc — Dividers, SideNav border */
---semantic-color-stroke-action-secondary-rest /* #77726b — Card border (0.5px), input border */
---semantic-color-stroke-action-primary-strong-hover         /* #5475c6 — Input/search hover border */
---semantic-color-stroke-action-primary-strong-pressed       /* #6e8bd4 — Input/search focused border */
+--semantic-color-stroke-static-neutral-base         /* #e6e2dc, Dividers, SideNav border */
+--semantic-color-stroke-action-secondary-rest /* #77726b, Card border (0.5px), input border */
+--semantic-color-stroke-action-primary-strong-hover         /* #5475c6, Input/search hover border */
+--semantic-color-stroke-action-primary-strong-pressed       /* #6e8bd4, Input/search focused border */
 ```
 
 ### Icons in SideNav
 ```css
---semantic-color-foreground-action-secondary-rest   /* #3d3d3d  — Resting nav icon */
---semantic-color-foreground-action-secondary-pressed /* #070707  — Active nav icon */
+--semantic-color-foreground-action-secondary-rest   /* #3d3d3d, Resting nav icon */
+--semantic-color-foreground-action-secondary-pressed /* #070707, Active nav icon */
 ```
 
 ### Semantic accent (icon containers, badges)
 ```css
---semantic-color-fill-static-info-subtle  /* #dcd9ef — Purple icon container bg */
---semantic-color-foreground-static-info-on-subtle /* #353063 — Text on amethyst bg */
---semantic-color-fill-static-positive-subtle          /* #dff6e2 — Green icon container bg */
---semantic-color-fill-static-brand-faint              /* #eef2fb — Blue icon container bg */
---semantic-color-fill-static-attention-subtle           /* #fef2de — Warm icon container bg */
+--semantic-color-fill-static-info-subtle  /* #dcd9ef, Purple icon container bg */
+--semantic-color-foreground-static-info-on-subtle /* #353063, Text on amethyst bg */
+--semantic-color-fill-static-positive-subtle          /* #dff6e2, Green icon container bg */
+--semantic-color-fill-static-brand-faint              /* #eef2fb, Blue icon container bg */
+--semantic-color-fill-static-attention-subtle           /* #fef2de, Warm icon container bg */
 ```
 
 ### Profile avatar
 ```css
---semantic-color-fill-static-info-subtle   /* #dcd9ef — Avatar background */
---semantic-color-foreground-static-info-on-subtle /* #353063 — Avatar initials */
+--semantic-color-fill-static-info-subtle   /* #dcd9ef, Avatar background */
+--semantic-color-foreground-static-info-on-subtle /* #353063, Avatar initials */
 ```
 
 ---
 
 ## Typography
 
-**Fonts:** Red Hat Text (all UI) · Red Hat Display (H1–H3 headings only)
+**Fonts:** Red Hat Text (all UI) · Red Hat Display (H1 H3 headings only)
 
 ```html
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&family=Red+Hat+Display:wght@600&display=swap" rel="stylesheet" />
@@ -227,9 +227,9 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 <span class="material-symbols-rounded">icon_name</span>
 ```
 
-**FILL setting — changes whether icons are solid or outlined:**
-- SideNav nav items: `FILL=1` (solid/filled) — always
-- TopNav controls: `FILL=0` (outlined) — always
+**FILL setting, changes whether icons are solid or outlined:**
+- SideNav nav items: `FILL=1` (solid/filled), always
+- TopNav controls: `FILL=0` (outlined), always
 - Search bar icons: `FILL=1`
 - Content area icons in containers: `FILL=1`
 - Button icons: `FILL=0`
@@ -243,13 +243,13 @@ Load the token contract (`primitives.css` + `themes/light.css` + `themes/midnigh
 
 **Icon name = the Figma layer name.** Use the exact string shown at fonts.google.com/icons (filter to Rounded style).
 
-**Custom branded icons (NOT Material Symbols — use exactly as given):**
-- Amplify Home: custom house SVG — copy from `components/top-nav/top-nav.jsx` `HOME_ICON_PATH`
+**Custom branded icons (NOT Material Symbols, use exactly as given):**
+- Amplify Home: custom house SVG, copy from `components/top-nav/top-nav.jsx` `HOME_ICON_PATH`
 - SideNav collapse arrows: copy from `components/sidenav/sidenav.jsx`
 
 ---
 
-## Components — what exists and how to use it
+## Components: what exists and how to use it
 
 ### TopNav.Global
 **Import:** `import { TopNav, DEFAULT_MODULES } from './components/top-nav/top-nav.jsx'`
@@ -328,7 +328,7 @@ Touch target: 48×48px minimum always.
 <OrgSwitcher
   orgName="Grace Community Church"
   orgType="protestant"              // "protestant" | "catholic"
-  cityName=""                       // Catholic orgs only — show "| Knoxville"
+  cityName=""                       // Catholic orgs only, show "| Knoxville"
   open={false}
   onClick={() => {}}
   mobile={false}
@@ -381,7 +381,7 @@ Actually: Spinner is SVG-based, copy from `components/spinner/spinner.html`.
 
 ## Page content layout (ScreenTemplate)
 
-Not yet a standalone component — build inline:
+Not yet a standalone component, build inline:
 
 ```html
 <div style="padding: 12px 36px 56px; min-height: 100%;
@@ -504,13 +504,13 @@ Not yet a standalone component — build inline:
 
 ## What NOT to do (causes wrong output every time)
 
-1. **Do not hardcode hex values** — use CSS variables. `#4b6ec3` → `var(--semantic-color-fill-static-brand-base)`.
-2. **Do not use Material Icons or Material Symbols Outlined** — always Rounded. Never `material-icons` class.
-3. **Do not put the SideNav collapse button at the bottom** — it is at the top, in the NavHeader.
-4. **Do not invent new colours** — every colour you need is in the token list above.
-5. **Do not use `border-radius: 8px` on the toolbar search input** — it is `6px` (confirmed from Figma).
-6. **Do not use `rgba(160,181,230,0.16)` as the hover background for TopNav controls** — the hover is `rgba(10,18,35,0.16)`.
-7. **Do not show a logo or avatar in the OrgSwitcher by default** — it shows org name + chevron only.
-8. **Do not import from HTML demo files** — import from `.jsx` modules only.
-9. **Do not use `type="search"` on search inputs** — use `type="text" role="searchbox"` (avoids browser native clear button).
-10. **Do not rebuild what already exists** — check the component list above first.
+1. **Do not hardcode hex values**, use CSS variables. `#4b6ec3` → `var(--semantic-color-fill-static-brand-base)`.
+2. **Do not use Material Icons or Material Symbols Outlined**, always Rounded. Never `material-icons` class.
+3. **Do not put the SideNav collapse button at the bottom**: it is at the top, in the NavHeader.
+4. **Do not invent new colours**: every colour you need is in the token list above.
+5. **Do not use `border-radius: 8px` on the toolbar search input**: it is `6px` (confirmed from Figma).
+6. **Do not use `rgba(160,181,230,0.16)` as the hover background for TopNav controls**: the hover is `rgba(10,18,35,0.16)`.
+7. **Do not show a logo or avatar in the OrgSwitcher by default**: it shows org name + chevron only.
+8. **Do not import from HTML demo files**, import from `.jsx` modules only.
+9. **Do not use `type="search"` on search inputs**, use `type="text" role="searchbox"` (avoids browser native clear button).
+10. **Do not rebuild what already exists**, check the component list above first.

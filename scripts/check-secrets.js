@@ -16,7 +16,7 @@
  * a codegen tool that reads local git config can copy a secret into source at
  * any time, and a `// source=` comment is not somewhere a human looks.
  *
- * Scans tracked files only — untracked scratch files are the author's business,
+ * Scans tracked files only, untracked scratch files are the author's business,
  * and node_modules is excluded for speed.
  *
  * Usage:  node scripts/check-secrets.js
@@ -80,7 +80,7 @@ for (const file of files) {
   for (let i = 0; i < lines.length; i++) {
     for (const { name, re } of PATTERNS) {
       if (re.test(lines[i])) {
-        // Never print the match itself — that would put the secret in CI logs.
+        // Never print the match itself: that would put the secret in CI logs.
         findings.push({ file, line: i + 1, name });
       }
     }
@@ -94,7 +94,7 @@ if (findings.length) {
   }
   console.error(
     `\nThe matched text is deliberately not printed. Open each location, remove the\n` +
-    `credential, and revoke it at the provider — a secret that reached a file is\n` +
+    `credential, and revoke it at the provider: a secret that reached a file is\n` +
     `already worth rotating even if it was never pushed.\n`
   );
   process.exit(1);

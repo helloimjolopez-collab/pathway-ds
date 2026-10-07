@@ -1,5 +1,5 @@
 /**
- * stamp-headers.js — give every emitted stylesheet a header that says whether
+ * stamp-headers.js, give every emitted stylesheet a header that says whether
  * a developer may name the properties inside it.
  *
  * WHY THIS EXISTS:
@@ -12,12 +12,12 @@
  * One is a 350-value internal ramp that product code must never name; the other
  * is the 358-name colour contract. A developer opening either file had no way
  * to tell which was which, and the only place the distinction was written down
- * was CLAUDE.md §6 — a file no consumer will ever read.
+ * was CLAUDE.md §6: a file no consumer will ever read.
  *
  * That is the whole adoption problem in miniature. A developer judges a design
  * system by the first stylesheet he opens and the number of lines in it. If the
  * first file is 356 lines of raw ramp values with no explanation, the honest
- * conclusion is "this is too granular" — and he is right, because nothing told
+ * conclusion is "this is too granular": and he is right, because nothing told
  * him those 350 lines are infrastructure he never touches.
  *
  * So each file now states three things: whether it is CONTRACT or
@@ -50,7 +50,7 @@ const FILES = [
     lines: [
       "The raw colour ramps. NOT part of the token contract.",
       "",
-      "You must LOAD this file — every semantic token resolves through it, so",
+      "You must LOAD this file: every semantic token resolves through it, so",
       "without it all colour resolves to nothing and the page renders unstyled",
       "with no console error. But product code should not NAME these.",
       "",
@@ -74,7 +74,7 @@ const FILES = [
       "",
       "themes/midnight.css declares the SAME names with inverted values, so a",
       "component names a colour once and both modes resolve by selector. Never",
-      "put a mode in a property name — that form came from tokens.css, retired",
+      "put a mode in a property name: that form came from tokens.css, retired",
       "2026-09-03, and resolves to nothing.",
     ],
   },
@@ -119,7 +119,7 @@ const FILES = [
     lines: [
       "Spacing, radii and border widths. Name these freely.",
       "",
-      "Values already carry their unit, so use them directly — do NOT wrap in",
+      "Values already carry their unit, so use them directly: do NOT wrap in",
       "calc(... * 1px). That produces calc(4px * 1px), which is not a length, so",
       "the browser silently drops the declaration.",
       "",
@@ -133,7 +133,7 @@ const FILES = [
     lines: [
       "Per-component metrics (Button, Card, NavItem, Page, focus ring).",
       "",
-      "This repo's own components use these. Product code generally should not —",
+      "This repo's own components use these. Product code generally should not ",
       "prefer layout.css, which is the general spacing contract. These exist so a",
       "component's geometry can be tuned without moving the whole scale.",
     ],
@@ -144,7 +144,7 @@ const FILES = [
     lines: [
       "Durations and easings. Name these freely.",
       "",
-      "These are NOT in the Figma Variables panel — the panel has zero motion",
+      "These are NOT in the Figma Variables panel: the panel has zero motion",
       "variables. Their source of truth is docs/design-system-spec.md §2, and",
       "scripts/sync-motion-tokens.js generates this file from it.",
       "",
@@ -183,13 +183,13 @@ function build(file, count) {
   const out = [
     "/*",
     ` ${bar}`,
-    ` ${MARKER} — ${file.kind}`,
+    ` ${MARKER}, ${file.kind}`,
     ` ${bar}`,
     "",
     ...file.lines.map((l) => (l ? ` ${l}` : "")),
     "",
     ` Declares ${count} custom ${count === 1 ? "property" : "properties"}.`,
-    " Generated — do not edit. Run `npm run build-tokens`.",
+    " Generated: do not edit. Run `npm run build-tokens`.",
     ` ${bar}`,
     "*/",
     "",

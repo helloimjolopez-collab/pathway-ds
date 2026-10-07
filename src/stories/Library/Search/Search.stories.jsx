@@ -3,7 +3,9 @@
  *
  * Spec:      components/search/search-spec.md
  * HTML demo: components/search/search.html
- * Figma:     https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006978-23158
+ * Figma:     https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007095-4048
+ *            TopNav.Search, a COMPONENT_SET. The id cited here until 2026-10-07,
+ *            40006978-23158, is a layout frame rather than a component.
  *
  * v1 scope: SearchInput + TopNavSearch collapsed/expanded. Open state deferred.
  *
@@ -462,7 +464,7 @@ TokensMotion.tags = ["!dev"];
 
 // Sidebar discipline: the global search has ONE browsable page, its Playground.
 // The state matrix and the token tables are evidence for a reviewer, not pages
-// to wander into, and the bare field is a part rather than a component — so all
+// to wander into, and the bare field is a part rather than a component: so all
 // of them are reference-only. This is what stopped the page reading as a pile
 // of unfinished search variants.
 StateMatrix.tags      = ["!dev"];

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search — Pathway Design System</title>
+  <title>Search, Pathway Design System</title>
 
   <!-- Pathway tokens -->
   <link rel="stylesheet" href="../../src/tokens/primitives.css" />
@@ -25,7 +25,7 @@
   :root {
   }
 
-    *, *::before, *::after { box-sizing: border-box; }
+    *, *:before, *:after { box-sizing: border-box; }
 
     body {
   /* Match Figma's text rendering. Without these, Medium (500) renders visibly
@@ -85,7 +85,7 @@
     p.subtitle { font-size: 14px; color: var(--semantic-color-foreground-static-neutral-subtle); margin: 0 0 32px; }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      *, *:before, *:after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
       }
@@ -94,7 +94,7 @@
 </head>
 <body>
   <h1>Search</h1>
-  <p class="subtitle">v1: SearchInput + TopNavSearch. Open state deferred — see spec §17.</p>
+  <p class="subtitle">v1: SearchInput + TopNavSearch. Open state deferred, see spec §17.</p>
   <div id="root"></div>
 
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -106,7 +106,7 @@
     const T = {
       barBg:           "var(--semantic-color-fill-static-neutral-faint)",
       filterActiveFill:"var(--semantic-color-fill-action-primary-subtle-rest)",
-      iconPillHover:   "rgba(0,0,0,0.06)",   // token gap — see search-spec.md §17
+      iconPillHover:   "rgba(0,0,0,0.06)",   // token gap, see search-spec.md §17
       iconPillPressed: "rgba(0,0,0,0.10)",
       badgeFill:       "var(--semantic-color-fill-action-primary-strong-rest)",
       collapsedBtnFill:"var(--semantic-color-fill-action-ghost-rest)",
@@ -312,7 +312,7 @@
     function App() {
       return (
         <div>
-          <Demo label="IDLE — default state">
+          <Demo label="IDLE, default state">
             <Controlled />
           </Demo>
           <Demo label="WITH FILTER BUTTON">
@@ -327,7 +327,7 @@
           <Demo label="DISABLED">
             <Controlled disabled />
           </Demo>
-          <Demo label="TOPNAVSEARCH — click to expand, Esc to collapse" dark>
+          <Demo label="TOPNAVSEARCH: click to expand, Esc to collapse" dark>
             <ControlledNav />
           </Demo>
         </div>

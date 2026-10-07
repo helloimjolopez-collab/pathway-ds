@@ -1,12 +1,12 @@
 /**
- * tokenOrder.js — canonical display order for token ladders.
+ * tokenOrder.js, canonical display order for token ladders.
  *
  * WHY THIS EXISTS: the Figma Variables panel cannot be reordered. `variableIds`
  * has no setter, so there is no API call that moves a variable up a list, and
  * recreating 791 variables in the right order would break 17,875 node bindings.
  * The panel therefore shows groups in creation order, which is why
  * Foreground/Static/Neutral reads "faint, subtle, medium, contrast, bold,
- * xlight, white, light" — the two anchors and one rung added later sit at the
+ * xlight, white, light": the two anchors and one rung added later sit at the
  * bottom.
  *
  * Everything DOWNSTREAM of the panel can still be ordered, and should be. This
@@ -20,8 +20,8 @@
  */
 
 // The graded ladder, per docs/design-system-spec.md. Mono and Black are
-// inversion ANCHORS rather than rungs — they hold their value across modes
-// instead of flipping — but they still have a place on the ramp, so they are
+// inversion ANCHORS rather than rungs: they hold their value across modes
+// instead of flipping: but they still have a place on the ramp, so they are
 // ordered here and marked as anchors below for the UI to annotate.
 //
 // STRONG IS THE LAST RUNG (2026-09-15, final pass). The ladder now reads
@@ -46,7 +46,7 @@
 // carried Base before this one and needed only Bold and Strong exchanged.
 //
 // SIMPLIFIED 2026-09-14, completed 2026-09-15. Foreground/Static/Neutral used to run
-// white, xlight, faint, subtle, light, medium, contrast, bold — eight steps, two
+// white, xlight, faint, subtle, light, medium, contrast, bold, eight steps, two
 // of which (faint at cool-400 and light at cool-500) were close enough to be a
 // coin toss, and whose NAMES disagreed with their values: `subtle` sat at
 // cool-450 and `light` at cool-500, so "light" was the darker of the two.
@@ -93,7 +93,7 @@
 //
 // A NOTE ON EDITING THIS COMMENT: the list above names retired rungs on purpose.
 // A bulk rename pass hit it on 2026-09-15 and rewrote "light  Fill/Static/Brand/Light"
-// into "light  Fill/Static/Brand/Subtle", which is nonsense — the entry existed to say
+// into "light  Fill/Static/Brand/Subtle", which is nonsense: the entry existed to say
 // that Fill/Static/Brand was where `light` still lived. Prose about a retired name is
 // not a reference to it.
 // Retired names are kept in place rather than deleted: an unknown rung falls
@@ -164,7 +164,7 @@ export const GROUPS = ["static", "surface", "action", "focusring", "base"];
  * Before that they were uniformly groups, so a single GROUPS comparator worked.
  * Afterwards it did not: rankBy sends anything it does not recognise to the end
  * and then sorts alphabetically, so `negative` and `neutral` were ordered by
- * spelling rather than by meaning — the precise failure the comment on
+ * spelling rather than by meaning: the precise failure the comment on
  * strictRankBy describes, reappearing one segment to the left.
  *
  * Order: the neutrals and the meaning-bearing tones a reader looks at first,
@@ -227,7 +227,7 @@ export function rankBy(list) {
  * comparator that answers alphabetically for two names it has never heard of
  * is indistinguishable from one that ranked them, so the FIRST vocabulary
  * tried always won and the ladder was never consulted: Foreground/Static/Neutral
- * came out bold, contrast, faint, light — alphabetical, the exact disorder this
+ * came out bold, contrast, faint, light, alphabetical, the exact disorder this
  * module was written to fix.
  */
 export function strictRankBy(list) {
@@ -254,7 +254,7 @@ const strictSurface = strictRankBy(SURFACES);
 
 /**
  * Order two colour token paths against each other. Compares tier, then walks
- * every remaining segment trying each vocabulary in turn — a segment is exactly
+ * every remaining segment trying each vocabulary in turn: a segment is exactly
  * one kind of thing, so the first list that knows it wins.
  *
  * Segment 1 used to be compared separately with the non-strict GROUPS

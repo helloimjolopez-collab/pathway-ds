@@ -1,5 +1,5 @@
 /**
- * tokenize-numbers.js — replace hardcoded numeric design values with the token
+ * tokenize-numbers.js, replace hardcoded numeric design values with the token
  * that holds exactly that value.
  *
  * PROPERTY DECIDES THE FAMILY, exactly as in tokenize-chrome.js and for the

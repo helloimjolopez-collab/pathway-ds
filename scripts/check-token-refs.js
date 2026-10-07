@@ -1,5 +1,5 @@
 /**
- * check-token-refs.js — validate every token reference in source against the
+ * check-token-refs.js, validate every token reference in source against the
  * built CSS contract.
  *
  * WHY THIS EXISTS, separately from check-demo-tokens.js:
@@ -15,7 +15,7 @@
  * reported "button.html: 4 tokens, all resolved" while button.jsx carried 121
  * references to token names that no longer existed. Every one resolved to
  * nothing at runtime, and nothing failed, because an unresolved var() is not an
- * error in CSS — it just paints nothing.
+ * error in CSS: it just paints nothing.
  *
  * So this script reads each file's OWN helper definitions, expands the template
  * calls, and checks the resulting names. It does not assume what the prefixes

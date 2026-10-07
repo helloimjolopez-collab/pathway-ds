@@ -26,7 +26,7 @@ function main() {
       return;
     }
   } catch {
-    // git diff --quiet exits with 1 if there are changes — that's what we want
+    // git diff --quiet exits with 1 if there are changes: that's what we want
   }
 
   const timestamp = new Date().toISOString().replace(/\.\d{3}Z$/, "Z");

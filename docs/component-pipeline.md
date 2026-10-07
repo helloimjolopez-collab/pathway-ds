@@ -1,6 +1,6 @@
 # Component Pipeline: Figma to GitHub to Storybook
 
-How a component goes from a Figma design to a shipped, interactive Storybook page. Every component — simple or complex — follows this sequence.
+How a component goes from a Figma design to a shipped, interactive Storybook page. Every component, simple or complex, follows this sequence.
 
 ## Overview
 
@@ -15,14 +15,14 @@ Agent extracts from Figma via MCP tools
   ▼
 Three files created in components/<name>/
   │
-  │  <name>.jsx   — React component module (importable by Storybook)
-  │  <name>.html  — self-contained demo (CDN React + Babel)
-  │  <name>-spec.md — authoritative specification
+  │  <name>.jsx, React component module (importable by Storybook)
+  │  <name>.html, self-contained demo (CDN React + Babel)
+  │  <name>-spec.md, authoritative specification
   ▼
 Storybook stories created in src/stories/Library/<Name>/
   │
-  │  <Name>.stories.jsx — interactive stories with controls
-  │  <Name>.mdx         — rich docs page (spec highlights + demos)
+  │  <Name>.stories.jsx, interactive stories with controls
+  │  <Name>.mdx, rich docs page (spec highlights + demos)
   ▼
 Build, commit, push → CI deploys Storybook
 ```
@@ -49,12 +49,12 @@ src/stories/Library/<Name>/
 
 The component module at `components/<name>/<name>.jsx` is the single implementation. Rules:
 
-1. **Import only React** — no Storybook imports, no CSS file imports (consumers handle those)
-2. **Export named components** — `export function SideNav(...)`, not `export default`
-3. **Accept data as props** — navigation items, icons, active state are props, not hardcoded constants
-4. **Internal state for UI concerns** — expand/collapse, hover, popover timers
-5. **External state for application concerns** — `activeId`, `collapsed`, `onNavigate` are controlled props
-6. **Token references** — use the `T` token constants object or CSS custom properties from the `src/tokens/` contract
+1. **Import only React**: no Storybook imports, no CSS file imports (consumers handle those)
+2. **Export named components**, `export function SideNav(...)`, not `export default`
+3. **Accept data as props**, navigation items, icons, active state are props, not hardcoded constants
+4. **Internal state for UI concerns**, expand/collapse, hover, popover timers
+5. **External state for application concerns**, `activeId`, `collapsed`, `onNavigate` are controlled props
+6. **Token references**, use the `T` token constants object or CSS custom properties from the `src/tokens/` contract
 
 Both the standalone demo (`.html`) and the Storybook stories import or inline the same logic. When the component changes, both must be updated together.
 
@@ -82,11 +82,11 @@ Follow `docs/figma-prep-checklist.md`. All colours bound to semantic variables, 
 
 ### 3. Agent creates the component module
 
-`components/<name>/<name>.jsx` — extract from Figma's design context. Map Figma variant properties → React props. Map Figma variables → token constants or CSS custom properties. Include all sub-components (each as a named export).
+`components/<name>/<name>.jsx`, extract from Figma's design context. Map Figma variant properties → React props. Map Figma variables → token constants or CSS custom properties. Include all sub-components (each as a named export).
 
 ### 4. Agent creates the standalone demo
 
-`components/<name>/<name>.html` — self-contained HTML file that loads React via CDN and renders the component with sample data. Follow the pattern of `components/sidenav/sidenav.html`.
+`components/<name>/<name>.html`, self-contained HTML file that loads React via CDN and renders the component with sample data. Follow the pattern of `components/sidenav/sidenav.html`.
 
 ### 5. Agent creates Storybook stories
 

@@ -1,11 +1,11 @@
 /*
  ==========================================================================
- PATHWAY DESIGN TOKENS — INFRASTRUCTURE
+ PATHWAY DESIGN TOKENS, INFRASTRUCTURE
  ==========================================================================
 
  The raw colour ramps. NOT part of the token contract.
 
- You must LOAD this file — every semantic token resolves through it, so
+ You must LOAD this file: every semantic token resolves through it, so
  without it all colour resolves to nothing and the page renders unstyled
  with no console error. But product code should not NAME these.
 
@@ -19,7 +19,7 @@
  Nothing blocks you. It is an escape hatch with a stated cost.
 
  Declares 548 custom properties.
- Generated — do not edit. Run `npm run build-tokens`.
+ Generated: do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
 :root {

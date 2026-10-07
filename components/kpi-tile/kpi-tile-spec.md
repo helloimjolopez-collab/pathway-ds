@@ -1,4 +1,4 @@
-# KPI Tile — Pathway Design System Component Spec
+# KPI Tile: Pathway Design System Component Spec
 
 Status: REVIEWED
 Reviewed: 2026-10-07, measured against Figma
@@ -14,7 +14,8 @@ Reviewed: 2026-10-07, measured against Figma
 | _Chart mini | `40009415:27919` |
 | KPI Number | `40017333:37612` |
 | Widget.Heading | `40017333:34481` |
-| Storybook | `Library/KPI Tile` |
+| Storybook | [Library/KPI Tile](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-kpi-tile--docs) |
+| Code Connect | 6 files in `components/kpi-tile/`: `kpi-tile`, `kpi-number-trend`, `kpi-number`, `change`, `mini-chart`, `trend-comparison` |
 | Modules | `kpi-tile.jsx` the card, `kpi-number-trend.jsx` the block, `mini-chart.jsx`, `bar-chart.jsx` |
 | Widget spec | `components/widget/widget-spec.md` |
 
@@ -69,7 +70,7 @@ instance.
 
 ## 2. Component Anatomy
 
-### KpiTile, in-widget
+### KpiNumberAndTrend, the nested block
 
 ```
 root              VERTICAL, pad 0,12,0,12
@@ -78,7 +79,7 @@ root              VERTICAL, pad 0,12,0,12
     Chart.Container  VERTICAL pad 8,0,8,4, FILLs
 ```
 
-### KpiCard, standalone
+### KpiTile, the card
 
 ```
 root              r=16, Fill/Surface/Elevated, Stroke/Static/Neutral/Base
@@ -95,8 +96,8 @@ root              r=16, Fill/Surface/Elevated, Stroke/Static/Neutral/Base
 
 | Element | Token |
 |---|---|
-| KpiCard root | `Fill/Surface/Elevated` |
-| KpiCard border | `Stroke/Static/Neutral/Base` |
+| KpiTile root | `Fill/Surface/Elevated` |
+| KpiTile border | `Stroke/Static/Neutral/Base` |
 | Featured icon, up | `Fill/Static/Positive/Subtle` |
 | Featured icon, down | `Fill/Static/Negative/Subtle` |
 | Mini chart dot | `Fill/Surface/Elevated` |
@@ -148,7 +149,7 @@ change arrow 12 and 16, mini chart ring 19 and dot 11, line weight 2.
 
 ## 4. Layout & Spacing
 
-### KpiCard, by Type
+### KpiTile, by Type
 
 | Type | Width, desktop | Width, mobile | Height | Gap | Padding |
 |---|---|---|---|---|---|
@@ -168,7 +169,7 @@ the heights stay as measured.
 > Chart visibly roomier than the other two Types. Chart is therefore 144 tall
 > rather than 136. Zero gap or padding bindings remain on `Unit/20`.
 
-### KpiTile, in-widget
+### KpiNumberAndTrend, the nested block
 
 Fills its Widget. Figma's Type axis is four layouts and reduces in code to
 where the chart goes:
@@ -182,21 +183,39 @@ where the chart goes:
 
 `Trend Filter Layout` has THREE options, not two: `Stacked with KPI Number`,
 `Inline with KPI number` and `On Filter Toolbar`, mapping to `stacked`,
-`inline` and `toolbar`. `toolbar` is not the same as having no filter: the
-control exists, it just lives on the widget's toolbar, so the label is still
-needed by whoever renders that.
+`inline` and `toolbar`.
+
+**The three differ in WHICH control sits on the row, not in whether one does.**
+`stacked` and `inline` draw the trend-filter pill, above the number and on its
+row respectively. `toolbar` draws a BUTTON, `PW_Button` at Style=Outlined,
+Size=XS, Type=Secondary, which is `FilterToolbarButton` in code.
+
+> **Corrected 2026-10-07.** This section said `toolbar` meant the control
+> "lives on the widget's toolbar, so the label is still needed by whoever
+> renders that", and `KpiNumber` accordingly drew nothing for it. Walking the
+> four Glance Configurations disproves it: 02, 03 and 04 all carry
+> `Trend Filter Layout=On Filter Toolbar` **and** a `PW_Button` inside the KPI
+> Number block, above the eyebrow. The filter toolbar is a row at the top of
+> this block, not somewhere else on the widget.
 
 ### The Widget's Configuration axis
 
 It resolves entirely to props on the building block, which is why the Widget
 takes none of them.
 
-| Config | `numberStyle` | Trend filter | Chart |
-|---|---|---|---|
-| 01 | tall | stacked with the number | right |
-| 02 | wide | on the widget's toolbar | bottom |
-| 03 | tall | on the widget's toolbar | right |
-| 04 | tall | on the widget's toolbar | right, different sample line |
+Read per variant on 2026-10-07, rather than inferred.
+
+| Config | KPI N&T Type | `numberStyle` | `Show Trend Filter` | `filterLayout` | Chart |
+|---|---|---|---|---|---|
+| 01 | 01 Chart Right | tall | **Yes** | `stacked`, a trend-filter pill | Realistic 01 |
+| 02 | 02 Chart Bottom | wide | No | `toolbar`, a button | Wavy 01 |
+| 03 | 01 Chart Right | tall | No | `toolbar`, a button | Realistic 01 |
+| 04 | 01 Chart Right | tall | No | `toolbar`, a button | Wavy 05 |
+
+**01 is the only Configuration with a trend-filter pill.** The other three put
+a button on the filter toolbar row. 03 and 04 are structurally identical and
+differ only in the sample line drawn, which is why the Widget takes no
+`Configuration` prop: both the structure and the sample are props on the block.
 
 01 and 02 are genuinely distinct. 03 and 04 share a structure and differ only
 in which sample line the chart draws.
@@ -262,7 +281,29 @@ Material Symbols Rounded, `FILL 0`, `wght 400`, `opsz` matched to size.
 
 ## 14. Storybook
 
-Sidebar-visible: `Playground`, `Card types`, `Trend: direction vs sentiment`,
-`Chart shapes`.
+Sidebar-visible, matching the untagged exports in `KPITile.stories.jsx` exactly:
 
-No `StandaloneDemo` story.
+| Export | Name |
+|---|---|
+| `Playground` | Playground |
+| `Types` | Types |
+| `Breakpoints` | Breakpoints |
+| `TheBuildingBlock` | The building block it nests |
+| `ChangeTypes` | Change: all four Figma types |
+| `ChartShapes` | Mini chart: all twelve Figma shapes |
+
+Reference, `!dev`-tagged: `TokensColour` (Tokens: colour), `TokensGeometry` (Tokens: geometry and type).
+
+`Types` captions every tile with its Type and measured box. `TheBuildingBlock`
+is the only place to look at `KpiNumberAndTrend` on its own. `ChangeTypes` and
+`ChartShapes` show the two nested sets in full, which nothing did before:
+`_Change` was split across two files with Type 04 missing, and `_Chart mini`
+drew all twelve of its shapes as polylines when seven of them are beziers.
+
+No `StandaloneDemo` story and no `kpi-tile.html`. Every other component in the
+repo carries a standalone React-plus-Babel demo page, and these three do not, so
+the absence is stated rather than left as a hole: a KPI Tile, a Widget and a
+Dashboard are only meaningful on a board, and a board is what the Dashboard
+Storybook page already is. A fourth copy of that board in a static HTML file
+would be a second implementation to keep in step, which is how the specs and
+stories drifted in the first place.

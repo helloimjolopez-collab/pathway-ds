@@ -1,18 +1,18 @@
-# Pathway Design System — Design Kit Briefing
+# Pathway Design System, Design Kit Briefing
 
-**Product:** Ministry Brands Amplify — church management platform
+**Product:** Ministry Brands Amplify, church management platform
 **Design system:** Pathway
 **Figma file:** https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/
 **Storybook (live components):** https://helloimjolopez-collab.github.io/pathway-ds/storybook/
 **npm package:** `@helloimjolopez-pathway/pathway-tokens`
 
-Use this document as the reference for building any Amplify screen. Every colour, size, component, and interaction described here is already designed and coded in the system — do not invent alternatives.
+Use this document as the reference for building any Amplify screen. Every colour, size, component, and interaction described here is already designed and coded in the system: do not invent alternatives.
 
 ---
 
 ## Brand personality
 
-Pathway is a professional, accessible, and calm design system for ministry and church management. It is NOT consumer-facing social media. It handles sensitive financial, people, and communications data. The visual language is clean and structured — clear hierarchy, generous whitespace, restrained use of colour, high readability. Every screen should feel trustworthy and focused.
+Pathway is a professional, accessible, and calm design system for ministry and church management. It is NOT consumer-facing social media. It handles sensitive financial, people, and communications data. The visual language is clean and structured, clear hierarchy, generous whitespace, restrained use of colour, high readability. Every screen should feel trustworthy and focused.
 
 ---
 
@@ -32,7 +32,7 @@ Pathway is a professional, accessible, and calm design system for ministry and c
 | Role | Hex | Use |
 |---|---|---|
 | Canvas / page background | `#fafafa` | The main page background |
-| SideNav background | `#fafafa` | Same as canvas — nav blends into page |
+| SideNav background | `#fafafa` | Same as canvas, nav blends into page |
 | Card background | `#ffffff` | Cards sit above the canvas |
 | White | `#ffffff` | Search bars, input fields, modals |
 
@@ -67,7 +67,7 @@ Pathway is a professional, accessible, and calm design system for ministry and c
 | Positive / green light | `#f0faf1` | Green-tinted icon bg (success, completed, paid) |
 | Info / blue light | `#eef2fb` | Blue-tinted icon bg (information, system) |
 | Warning / orange light | `#fff8e1` | Warm-tinted icon bg (warnings, due soon) |
-| Destructive | `#c0392b` | Destructive actions (sign out, delete) — text only |
+| Destructive | `#c0392b` | Destructive actions (sign out, delete), text only |
 
 ### Profile avatar
 | Role | Hex | Use |
@@ -79,14 +79,14 @@ Pathway is a professional, accessible, and calm design system for ministry and c
 
 ## Typography
 
-**Font families:** Red Hat Text (UI, body, labels) · Red Hat Display (headings H1–H3 only)
+**Font families:** Red Hat Text (UI, body, labels) · Red Hat Display (headings H1 H3 only)
 **Both loaded from Google Fonts CDN.** 
 
 > **For Claude Design or any design tool that needs font files:** download and upload these two font families:
 > - Red Hat Text: https://fonts.google.com/specimen/Red+Hat+Text (click Download family)
 > - Red Hat Display: https://fonts.google.com/specimen/Red+Hat+Display (click Download family)
 > 
-> Both are SIL Open Font License — free for all use.
+> Both are SIL Open Font License, free for all use.
 
 ### Type scale
 
@@ -133,7 +133,7 @@ Core values used throughout the system (in px):
 |---|---|---|
 | xs | 4px | FilterChip label container, badge, small inputs |
 | small / s | 8px | Card border-radius, icon containers (32×32), buttons, nav items, module/org switcher pills |
-| medium | 8–12px | SideNav tooltip, dropdowns |
+| medium | 8 to 12px | SideNav tooltip, dropdowns |
 | full | 9999px | Search bar pill, TopNavSearch collapsed button |
 | circular | 50% | Profile avatar |
 
@@ -141,11 +141,11 @@ Core values used throughout the system (in px):
 
 ## Icons
 
-**Icon library: Material Symbols Rounded — always Rounded, never Outlined or Sharp.**
+**Icon library: Material Symbols Rounded, always Rounded, never Outlined or Sharp.**
 **Font class: `material-symbols-rounded`**
 **Google Fonts CDN:** `https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`
 
-**FILL setting — per-component rule:**
+**FILL setting, per-component rule:**
 - **SideNav nav items: FILL=1** (filled/solid icons always)
 - **TopNav controls: FILL=0** (outlined icons on dark surface)
 - **Search bar icons: FILL=1** (filled)
@@ -154,21 +154,21 @@ Core values used throughout the system (in px):
 
 **Icon size reference:**
 - Navigation icons (SideNav, TopNav): 20px
-- Button icons: 16–18px
+- Button icons: 16 to 18px
 - Card icon containers: 16px icon in 32×32px container
 - TopNav hamburger: 22px
 - Chevrons, trailing indicators: 16px
 
-**Custom SVG icons (NOT Material Symbols — do not replace):**
-- Amplify Home module icon — custom branded house/home SVG (white fill)
-- SideNav collapse/expand arrows — custom thin-line SVG (12×12px)
+**Custom SVG icons (NOT Material Symbols: do not replace):**
+- Amplify Home module icon, custom branded house/home SVG (white fill)
+- SideNav collapse/expand arrows, custom thin-line SVG (12×12px)
 
 ---
 
 ## Components
 
-### 1. NavShell — the application frame
-Every Amplify page lives inside NavShell. It is not a page — it is the container.
+### 1. NavShell: the application frame
+Every Amplify page lives inside NavShell. It is not a page: it is the container.
 
 **Structure:**
 - TopNav: fixed, 56px tall, full width, brand blue (#2d4889)
@@ -194,11 +194,11 @@ The fixed horizontal bar at the top of every page. Always brand blue. Never chan
 
 **Breakpoints:**
 - Desktop (≥1024px): full labels, 2 bells, no hamburger
-- Tablet (768–1023px): module icon only, more_vert, no hamburger
+- Tablet (768 to 1023px): module icon only, more_vert, no hamburger
 - Mobile (<768px): hamburger appears (only way to open SideNav on mobile)
 
 **Visual rules:**
-- No hardcoded colours — everything uses dark-mode tokens on the brand surface
+- No hardcoded colours, everything uses dark-mode tokens on the brand surface
 - OrgSwitcher shows org name only, no logo by default
 - All controls hover: `rgba(10,18,35,0.16)`
 
@@ -211,12 +211,12 @@ The fixed horizontal bar at the top of every page. Always brand blue. Never chan
 The left navigation panel. Shows the pages within the current module.
 
 **States:**
-- Expanded (240px): icon + label visible. Push layout — content shifts right.
+- Expanded (240px): icon + label visible. Push layout, content shifts right.
 - Collapsed rail (72px): icon only. Tooltip on hover. Push layout.
 - Hidden: mobile only. Revealed by hamburger as 240px overlay with dark scrim.
 
 **Visual rules:**
-- Background: #fafafa (blends with page — no visible contrast from canvas)
+- Background: #fafafa (blends with page: no visible contrast from canvas)
 - Right border: 1px #f6f6f6 (very subtle)
 - Active item: #eef2fb background + #3555a0 text + 4px stripe at left edge
 - Icons: Material Symbols Rounded, FILL=1 always, 20px
@@ -233,14 +233,14 @@ The left navigation panel. Shows the pages within the current module.
 Primary action trigger. Three styles, four semantic types.
 
 **Styles:**
-- Fill: solid background — strongest action. Use once per primary action per screen.
-- Outlined: border only — secondary actions adjacent to a primary.
-- Naked: no border, no background — lowest weight, tertiary actions.
+- Fill: solid background, strongest action. Use once per primary action per screen.
+- Outlined: border only, secondary actions adjacent to a primary.
+- Naked: no border, no background, lowest weight, tertiary actions.
 
 **Types (control colour):**
 - Primary (blue, default): `#4b6ec3` fill / `#3555a0` text
 - Secondary (neutral): warm neutral
-- Negative (destructive): red — delete, revoke, sign out
+- Negative (destructive): red, delete, revoke, sign out
 
 **Sizes:**
 - L: 18px label, 18px icon
@@ -250,7 +250,7 @@ Primary action trigger. Three styles, four semantic types.
 **Visual rules:**
 - Border-radius: 8px
 - Touch target: 48×48px minimum
-- Icon: Material Symbols Rounded, FILL=0, 16–18px depending on size
+- Icon: Material Symbols Rounded, FILL=0, 16 to 18px depending on size
 - Font: Label/Button/M or S
 
 **Figma:** PW_Button
@@ -321,7 +321,7 @@ Indeterminate loading indicator. Rotating 8-spoke sunburst SVG.
 
 ## Screen Template (ScreenTemplate)
 
-The content area layout used by most Amplify pages. Not yet a standalone component — compose it inline using these rules.
+The content area layout used by most Amplify pages. Not yet a standalone component, compose it inline using these rules.
 
 **Structure (top to bottom):**
 1. **Tabs** (optional): `46px tall`, border-bottom `#f6f6f6`. Active tab: `#3555a0` text + 2px indicator.
@@ -356,7 +356,7 @@ The content area layout used by most Amplify pages. Not yet a standalone compone
 
 ---
 
-## NavShell layout — pixel reference
+## NavShell layout, pixel reference
 
 For the desktop 1440px viewport (the design target):
 
@@ -387,7 +387,7 @@ Content area: 1196px
 | Breakpoint | Width | SideNav | Key changes |
 |---|---|---|---|
 | Desktop | ≥1024px | 240px expanded (user-toggleable to 72px) | Full labels, 2 bells |
-| Tablet | 768–1023px | 72px rail always | Module label hidden, more_vert |
+| Tablet | 768 to 1023px | 72px rail always | Module label hidden, more_vert |
 | Mobile | <768px | Hidden, overlay on tap | Hamburger visible, orgs abbreviated |
 
 ---
@@ -398,7 +398,7 @@ All transitions use these durations and easings. Do not use browser defaults (`e
 
 | Interaction | Duration | Easing |
 |---|---|---|
-| Hover fills, colour changes | 100–120ms | `ease-out` |
+| Hover fills, colour changes | 100 to 120ms | `ease-out` |
 | SideNav width expand/collapse | 380ms | `cubic-bezier(0.32,0.72,0,1)` |
 | OrgSwitcher dropdown | 150ms | `ease-out` |
 | TopNavSearch expand | 350ms | `cubic-bezier(0.34,1.56,0.64,1)` (spring) |
@@ -428,8 +428,8 @@ Colour contrast: text on `#fafafa` minimum 4.5:1. Text on `#2d4889` minimum 3:1.
 3. Nav items go in SideNav
 4. Page content uses ScreenTemplate structure: Tabs → PageHeading → ToolBar → Sections
 5. Cards in 4-column grid at desktop, 2-column at tablet, 1-column at mobile
-6. Use colours from the Brand/Application/Text/Interactive tables above — never invent new colours
-7. Use the type scale exactly — never use off-scale sizes
+6. Use colours from the Brand/Application/Text/Interactive tables above: never invent new colours
+7. Use the type scale exactly: never use off-scale sizes
 8. All icons: Material Symbols Rounded (check google.com/icons, set Style=Rounded)
 
 **To verify any component:**

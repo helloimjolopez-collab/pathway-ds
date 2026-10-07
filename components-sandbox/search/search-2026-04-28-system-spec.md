@@ -9,15 +9,15 @@
 ## How to use this document
 
 Reading order:
-1. **§1 Frame** — what "search" actually means in Pathway (it's four different jobs).
-2. **§2 Decision tree** — how to pick the right component for your context.
-3. **§3 Component map** — quick lookup table.
-4. **§4 Atomic decomposition** — the building blocks for the entire system. This is the Figma setup map.
-5. **§5 Search spec** and **§6 OmniSearch spec** — full anatomy, variants, states, tokens.
-6. **§7 Related components** — Combobox / MultiSelect / Autocomplete / CommandPalette / ColumnFilter / AdvancedSearch (lighter specs since they're not the focus of this iteration).
-7. **§8 Token coverage** — what tokens are needed, what exists, what's missing.
-8. **§9 Figma component recommendation** — how to structure the variants in the Figma file.
-9. **§10 Build sequence** — what to make first, what depends on what.
+1. **§1 Frame**: what "search" actually means in Pathway (it's four different jobs).
+2. **§2 Decision tree**, how to pick the right component for your context.
+3. **§3 Component map**, quick lookup table.
+4. **§4 Atomic decomposition**: the building blocks for the entire system. This is the Figma setup map.
+5. **§5 Search spec** and **§6 OmniSearch spec**, full anatomy, variants, states, tokens.
+6. **§7 Related components**, Combobox / MultiSelect / Autocomplete / CommandPalette / ColumnFilter / AdvancedSearch (lighter specs since they're not the focus of this iteration).
+7. **§8 Token coverage**: what tokens are needed, what exists, what's missing.
+8. **§9 Figma component recommendation**, how to structure the variants in the Figma file.
+9. **§10 Build sequence**: what to make first, what depends on what.
 
 ---
 
@@ -91,18 +91,18 @@ START: I need to add a "search" somewhere.
 
 | Context | Component | Recommended config |
 |---|---|---|
-| TopNav cross-platform global | `OmniSearch` | (no variants — single component) |
+| TopNav cross-platform global | `OmniSearch` | (no variants, single component) |
 | Module SideNav | `Search` | `size="s"`, `mode="filter"` |
 | Toolbar above list / table | `Search` | `size="m"`, `filters="chips"`, `mode="filter"` |
 | Form field | `Search` | `size="m"`, `withLabel`, `withHelpText`, `mode="submit"` |
 | Modal picker | `Search` | `size="m"`, `mode="typeahead"` |
 | Compact card / widget | `Search` | `size="s"`, `mode="filter"` |
-| Form: pick one option | `Combobox` | (separate component — see §7) |
-| Form: pick many + add new | `MultiSelect` | (separate component — see §7) |
-| Form: free text + suggestions | `Autocomplete` | (separate component — see §7) |
-| Cmd+K verb-driven palette | `CommandPalette` | (separate component — see §7) |
-| Per-column table filter | `ColumnFilter` | (built into `DataTable` — see §7) |
-| Complex filter screen | `AdvancedSearch` | (separate component — see §7) |
+| Form: pick one option | `Combobox` | (separate component, see §7) |
+| Form: pick many + add new | `MultiSelect` | (separate component, see §7) |
+| Form: free text + suggestions | `Autocomplete` | (separate component, see §7) |
+| Cmd+K verb-driven palette | `CommandPalette` | (separate component, see §7) |
+| Per-column table filter | `ColumnFilter` | (built into `DataTable`, see §7) |
+| Complex filter screen | `AdvancedSearch` | (separate component, see §7) |
 
 ---
 
@@ -159,7 +159,7 @@ Full components. These are what consumers reference in product designs.
 
 ### 4.4 Templates (level 3)
 
-Full screens / layouts that show organisms in context. These are the "examples" in the spec — useful for designers to copy-paste as starting points.
+Full screens / layouts that show organisms in context. These are the "examples" in the spec, useful for designers to copy-paste as starting points.
 
 | Template | Shows |
 |---|---|
@@ -172,7 +172,7 @@ Full screens / layouts that show organisms in context. These are the "examples" 
 
 ---
 
-## 5. `Search` component — full spec
+## 5. `Search` component, full spec
 
 ### 5.1 Anatomy
 
@@ -260,7 +260,7 @@ No filter UI. Just the search bar. Filtering happens upstream (e.g., toggles or 
 
 #### `filters="advanced"`
 - A small "Advanced" text link sits at the right edge of the pill (left of ClearButton when value is present).
-- Click "Advanced" opens the `AdvancedSearch` component (see §7.6) — a full-screen or side panel with:
+- Click "Advanced" opens the `AdvancedSearch` component (see §7.6): a full-screen or side panel with:
   - All filter dimensions as form rows
   - AND/OR logic between conditions
   - Saved filter sets
@@ -278,7 +278,7 @@ No filter UI. Just the search bar. Filtering happens upstream (e.g., toggles or 
 #### `mode="submit"`
 - Typing fires `onChange(value)` to update the input.
 - No filtering happens on type.
-- On Enter, fires `onSubmit(value)` — typically navigates to a results page.
+- On Enter, fires `onSubmit(value)`, typically navigates to a results page.
 - No dropdown surface from Search.
 - Best for slow searches over large datasets where live filtering is infeasible.
 
@@ -388,7 +388,7 @@ No filter UI. Just the search bar. Filtering happens upstream (e.g., toggles or 
 
 ---
 
-## 6. `OmniSearch` component — full spec
+## 6. `OmniSearch` component, full spec
 
 ### 6.1 Anatomy
 
@@ -428,7 +428,7 @@ OmniSearch (the organism)
 | `aiEnabled` | boolean | `false` | Toggles the AI section |
 | `onSuggest` | function(query) → grouped results | required | Suggestion fetcher |
 | `onSelect` | function(item) | required | Called when user picks a row |
-| `onSubmit` | function(query) | required | Called on Enter — navigate to "all results" page |
+| `onSubmit` | function(query) | required | Called on Enter, navigate to "all results" page |
 | `onAdvancedSearch` | function | optional | Called when user clicks "Advanced search →" |
 | `keyboardShortcut` | string | `"cmd+k"` | Global shortcut to open the overlay |
 
@@ -451,11 +451,11 @@ Same as `Search tone="inverse"` for the pill chrome. Dropdown surface uses stand
 
 ### 6.5 Keyboard
 
-- `Cmd+K` / `Ctrl+K` — opens overlay (mobile/tablet) or focuses inline pill (desktop)
-- `Esc` — closes overlay or clears focus
-- `↑` / `↓` — navigate suggestion rows
-- `Enter` — select highlighted row OR submit if no row highlighted
-- `Tab` — moves focus through dropdown sections in source order
+- `Cmd+K` / `Ctrl+K`, opens overlay (mobile/tablet) or focuses inline pill (desktop)
+- `Esc`, closes overlay or clears focus
+- `↑` / `↓`, navigate suggestion rows
+- `Enter`, select highlighted row OR submit if no row highlighted
+- `Tab`, moves focus through dropdown sections in source order
 
 ### 6.6 AI mode
 
@@ -483,7 +483,7 @@ These are separate components that may share atoms with `Search` but solve diffe
 - On selection, the input value renders the option's label, not the user's typed query.
 - Keyboard: Enter selects the highlighted option.
 
-**Use when:** picking a category, a country, an owner, a status — anything from a fixed set.
+**Use when:** picking a category, a country, an owner, a status, anything from a fixed set.
 
 ### 7.2 `MultiSelect`
 
@@ -501,7 +501,7 @@ These are separate components that may share atoms with `Search` but solve diffe
 
 ### 7.3 `Autocomplete`
 
-**Job:** free-text input with typeahead suggestions. Unlike Combobox, the user is NOT constrained to the list — they can submit any value.
+**Job:** free-text input with typeahead suggestions. Unlike Combobox, the user is NOT constrained to the list: they can submit any value.
 
 **Anatomy:** form-field chrome + `SearchPill` + dropdown of suggested completions.
 
@@ -551,7 +551,7 @@ These are separate components that may share atoms with `Search` but solve diffe
 
 **Triggered by:** `Search` with `filters="advanced"` clicking the "Advanced" link.
 
-**Use when:** filtering needs go beyond inline chips — saved filter sets, AND/OR logic, complex value pickers.
+**Use when:** filtering needs go beyond inline chips, saved filter sets, AND/OR logic, complex value pickers.
 
 ---
 
@@ -571,24 +571,24 @@ These are separate components that may share atoms with `Search` but solve diffe
 
 ### 8.2 Tokens used and already exist
 
-- `fill.static.surface.white` — Search default pill fill
-- `stroke.action.secondaryinverse.base` — Search default pill border
-- `text.action.secondary.base` — Search value text + leading icon
-- `text.action.secondaryinverse.base` — placeholder fallback
-- `text.static.secondary.subtle` — section labels (from SideNav v6 work)
-- `semantic-type.desktop.label.section.s.medium` — section header type
-- `label.input.base.medium` (14/500/20/wide) — Search size m input type
-- `body.base.regular` (16/400/22/wide) — Search size l input type
-- All icon families — for the icon atoms
-- All radius primitives — pill radius is 999
+- `fill.static.surface.white`, Search default pill fill
+- `stroke.action.secondaryinverse.base`, Search default pill border
+- `text.action.secondary.base`, Search value text + leading icon
+- `text.action.secondaryinverse.base`, placeholder fallback
+- `text.static.secondary.subtle`, section labels (from SideNav v6 work)
+- `semantic-type.desktop.label.section.s.medium`, section header type
+- `label.input.base.medium` (14/500/20/wide), Search size m input type
+- `body.base.regular` (16/400/22/wide), Search size l input type
+- All icon families: for the icon atoms
+- All radius primitives, pill radius is 999
 
 ### 8.3 Things to add in Figma BEFORE building these components
 
 In order:
-1. `fill.action.inverse.translucent.base` (and hover/focus) — required for inverse Search and OmniSearch
-2. `text.contextual.placeholder.base` — required for Search placeholder accessibility (current AA contrast assumes specific values; making this a token locks them in)
-3. `fill.contextual.chip.*` family — required for FilterChip when filters="chips"
-4. (Optional) `letter-spacing.caps` mid-tier primitive — already proposed in SideNav work; not required but improves all-caps types
+1. `fill.action.inverse.translucent.base` (and hover/focus), required for inverse Search and OmniSearch
+2. `text.contextual.placeholder.base`, required for Search placeholder accessibility (current AA contrast assumes specific values; making this a token locks them in)
+3. `fill.contextual.chip.*` family, required for FilterChip when filters="chips"
+4. (Optional) `letter-spacing.caps` mid-tier primitive, already proposed in SideNav work; not required but improves all-caps types
 
 Do these BEFORE running `/pathway:tokens-sync`, then sync, then build the components.
 
@@ -613,7 +613,7 @@ Applying:
 | `MultiSelect` | ONE component, variants for state, `allowCreate` |
 | `Autocomplete` | ONE component, variants for state |
 | `CommandPalette` | ONE component, variants for state |
-| `ColumnFilter` | ONE component PER column type (text / enum / date / number) — they're behaviorally different |
+| `ColumnFilter` | ONE component PER column type (text / enum / date / number): they're behaviorally different |
 | `AdvancedSearch` | ONE component (full-screen template), variants for "saved set / no saved set" |
 
 Atoms (search icon, close icon, filter chip, etc.) are their own Figma components, used as instance children inside the organisms.
@@ -622,18 +622,18 @@ Atoms (search icon, close icon, filter chip, etc.) are their own Figma component
 
 Set up `Search` with these properties:
 
-- **tone:** Variant — `default` | `inverse`
-- **size:** Variant — `s` | `m` | `l`
-- **filters:** Variant — `none` | `chips` | `advanced`
-- **mode:** Variant (informational only — affects dropdown presence) — `filter` | `submit` | `typeahead`
-- **state:** Variant — `idle` | `hover` | `focused-empty` | `with-value` | `loading` | `disabled` | `error`
+- **tone:** Variant, `default` | `inverse`
+- **size:** Variant, `s` | `m` | `l`
+- **filters:** Variant, `none` | `chips` | `advanced`
+- **mode:** Variant (informational only, affects dropdown presence), `filter` | `submit` | `typeahead`
+- **state:** Variant, `idle` | `hover` | `focused-empty` | `with-value` | `loading` | `disabled` | `error`
 - **withLabel:** Boolean
 - **withHelpText:** Boolean
 - **placeholder:** Text
 - **value:** Text (only meaningful when state="with-value")
 - **chipCount:** Number (only meaningful when filters="chips")
 
-Total raw combinations is large, but Figma allows hidden variants — only build the combinations that are realistically used. Suggested coverage:
+Total raw combinations is large, but Figma allows hidden variants, only build the combinations that are realistically used. Suggested coverage:
 - All `state` × all `tone` × `size=m` × `filters=none` × `mode=filter` × `withLabel=false` (the minimum baseline)
 - Add `size=s` and `size=l` versions of idle and with-value
 - Add `filters=chips` and `filters=advanced` versions of with-value at size=m
@@ -665,30 +665,30 @@ This matches Pathway's existing component naming (`SideNav`, `Spinner`).
 ### 10.2 Build order in Figma
 
 1. **Atoms** (in order of dependency)
-   - Icons (Search, Close, Filter, Plus, Sparkles, ChevronRight) — one-day exercise
-   - SearchInputChrome — half day
-   - FilterChip — half day
-   - SuggestionRow — half day
-   - SectionHeader — quick (reuses SideNav SectionLabel)
+   - Icons (Search, Close, Filter, Plus, Sparkles, ChevronRight): one-day exercise
+   - SearchInputChrome, half day
+   - FilterChip, half day
+   - SuggestionRow, half day
+   - SectionHeader, quick (reuses SideNav SectionLabel)
 
 2. **Molecules**
-   - SearchPill / Empty, WithValue, WithChips, WithAdvanced — half day
-   - DropdownPanel — half day
-   - LabelAndHelp — quick
+   - SearchPill / Empty, WithValue, WithChips, WithAdvanced, half day
+   - DropdownPanel, half day
+   - LabelAndHelp, quick
 
 3. **Organisms**
-   - `Search` (the component, with all variants) — full day, this is the heavy one
-   - `OmniSearch` — half day
-   - The selection components (`Combobox`, `MultiSelect`, `Autocomplete`) — one day each, but DEFER until after Search ships
-   - `CommandPalette` — defer
-   - `AdvancedSearch` — defer
+   - `Search` (the component, with all variants), full day, this is the heavy one
+   - `OmniSearch`, half day
+   - The selection components (`Combobox`, `MultiSelect`, `Autocomplete`): one day each, but DEFER until after Search ships
+   - `CommandPalette`, defer
+   - `AdvancedSearch`, defer
 
 4. **Templates**
-   - TopNav with OmniSearch — quick (extend existing TopNav design)
-   - List screen with toolbar Search — quick
-   - SideNav with Search — extend existing SideNav v6
-   - Form with Search field — quick
-   - Modal picker — quick
+   - TopNav with OmniSearch, quick (extend existing TopNav design)
+   - List screen with toolbar Search, quick
+   - SideNav with Search, extend existing SideNav v6
+   - Form with Search field, quick
+   - Modal picker, quick
 
 ### 10.3 Ship order
 
@@ -700,32 +700,32 @@ Phase 3: `Autocomplete` + `CommandPalette` + `ColumnFilter` + `AdvancedSearch` a
 
 ---
 
-## Appendix A — props quick-reference card for engineers / AI agents
+## Appendix A, props quick-reference card for engineers / AI agents
 
 If you only read one section, read this.
 
-**`Search`** — go-to component for "find content within a scope":
-- `<Search size="s" />` — sidenav search
-- `<Search size="m" filters="chips" />` — toolbar search with filterable chips
-- `<Search size="m" withLabel withHelpText />` — form field search
-- `<Search size="m" mode="typeahead" onSuggest={...} />` — modal picker search
+**`Search`**, go-to component for "find content within a scope":
+- `<Search size="s" />`, sidenav search
+- `<Search size="m" filters="chips" />`, toolbar search with filterable chips
+- `<Search size="m" withLabel withHelpText />`, form field search
+- `<Search size="m" mode="typeahead" onSuggest={...} />`, modal picker search
 
-**`OmniSearch`** — go-to component for "search across all of Amplify in the TopNav":
-- `<OmniSearch onSuggest={fetchAll} onSelect={navigate} />` — that's it, one config
+**`OmniSearch`**, go-to component for "search across all of Amplify in the TopNav":
+- `<OmniSearch onSuggest={fetchAll} onSelect={navigate} />`: that's it, one config
 
-**Anything else (selection, commands, column filters, advanced filtering)** — different component, see §7.
+**Anything else (selection, commands, column filters, advanced filtering)**, different component, see §7.
 
 ---
 
-## Appendix B — what NOT to build
+## Appendix B: what NOT to build
 
 For clarity, things that do NOT exist as components and shouldn't be added:
 
-- `TopNavSearch` — too tied to location; use `OmniSearch`.
-- `SidenavSearch` / `ToolbarSearch` / `FormSearch` — context-specific names; use `Search` with appropriate config.
-- `GlobalSearch` — naming overlaps with `OmniSearch` for the same job.
-- `SearchInput` — Pathway uses concise nouns (`SideNav`, `Spinner`); `Search` is enough.
-- `FilterBar` — that's just `Search filters="chips"`.
-- `QuickFind` — ambiguous; if it's verb-driven it's `CommandPalette`, if noun-driven it's `OmniSearch`.
+- `TopNavSearch`, too tied to location; use `OmniSearch`.
+- `SidenavSearch` / `ToolbarSearch` / `FormSearch`, context-specific names; use `Search` with appropriate config.
+- `GlobalSearch`, naming overlaps with `OmniSearch` for the same job.
+- `SearchInput`, Pathway uses concise nouns (`SideNav`, `Spinner`); `Search` is enough.
+- `FilterBar`: that's just `Search filters="chips"`.
+- `QuickFind`, ambiguous; if it's verb-driven it's `CommandPalette`, if noun-driven it's `OmniSearch`.
 
 If you want to add something to this list, add a name + reason at the bottom of this doc. The point is to keep the API surface small and findable.

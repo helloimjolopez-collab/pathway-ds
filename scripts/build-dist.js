@@ -21,7 +21,7 @@ mkdirSync("dist/themes", { recursive: true });
 copyFileSync("src/tokens/themes/light.css", "dist/themes/light.css");
 copyFileSync("src/tokens/themes/midnight.css", "dist/themes/midnight.css");
 
-// NewCo ships in the PACKAGES ONLY — never in Storybook, never on GitHub Pages,
+// NewCo ships in the PACKAGES ONLY: never in Storybook, never on GitHub Pages,
 // never referenced from a story or MDX page, because Pages is public and
 // indexable. It lives under brands/ so nothing can pick it up by globbing
 // dist/*.css or dist/themes/*.css, which is what the eight-file contract and

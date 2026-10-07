@@ -1,5 +1,5 @@
 /**
- * Button — Pathway Design System
+ * Button, Pathway Design System
  *
  * Importable React component module. Source of truth for the Button
  * implementation; the standalone demo (button.html) and the Storybook
@@ -19,8 +19,8 @@ import React, { useState, useEffect } from "react";
 //
 // SC = semantic-color         (themes/light.css + themes/midnight.css)
 // SL = semantic-layout-units  (layout.css)
-// CL = contextual-layout-units(layout-contextual.css — component metrics)
-// ST = semantic-type          (type.css — a SCALE, composed below, not composites)
+// CL = contextual-layout-units(layout-contextual.css, component metrics)
+// ST = semantic-type          (type.css: a SCALE, composed below, not composites)
 const SC = (p) => `var(--semantic-color-${p})`;
 const SL = (p) => `var(--semantic-layout-units-${p})`;
 const CL = (p) => `var(--contextual-layout-units-${p})`;
@@ -34,7 +34,7 @@ const ST = (p) => `var(--semantic-type-${p})`;
 // Fill/Action/Primary/Subtle. That group was called "Primary Dim" until
 // 2026-09-15, when the space-joined suffix was promoted to a real segment
 // because "Primary Dim" read as a tone name rather than a variant of Primary.
-// Negative moved under Status. Disabled is ONE token per tier, not one per type — a
+// Negative moved under Status. Disabled is ONE token per tier, not one per type: a
 // disabled control is the same colour whatever it would have been.
 export const FILL = {
   Fill: {
@@ -59,7 +59,7 @@ FILL.Naked = FILL.Outlined;
 // not a rename for tidiness: a button is ONE interactive surface, so its label
 // and its icon must not resolve through two ramps that can drift apart.
 //
-// On a solid fill the foreground is Mono, which has only a rest step — white
+// On a solid fill the foreground is Mono, which has only a rest step, white
 // stays white through hover and pressed, so all three states share it.
 export const FG = {
   Fill: {
@@ -160,7 +160,7 @@ const LABEL = (size, lineHeight, tracking) => ({
   lineHeight:    ST(`line-height-${lineHeight}`),
   // Tracking is NOT uniform across the sizes and the helper used to pretend it
   // was. Figma's Label/Button styles read, per size: Large 0.1, Base 0.1,
-  // Small 0.3, XSmall 0.6 — tracking OPENS UP as the type gets smaller, which is
+  // Small 0.3, XSmall 0.6, tracking OPENS UP as the type gets smaller, which is
   // what keeps a 12px label legible. It is passed in per size for that reason.
   //
   // It previously asked the SEMANTIC scale for a "compact" step, which does not
@@ -178,31 +178,31 @@ export const SIZES = {
     padV:      CL("button-padding-large-vertical"),
     iconWrap:  26,
     iconInner: 18,
-    ...LABEL("m", "m-single", "wide"),        // was Label/Button/Large — 18 / 24
+    ...LABEL("m", "m-single", "wide"),        // was Label/Button/Large, 18 / 24
   },
   M: {
     padH:      CL("button-padding-medium-horizontal"),
     padV:      CL("button-padding-medium-vertical"),
     iconWrap:  24,
     iconInner: 16,
-    ...LABEL("r", "r-single", "wide"),        // was Label/Button/Base — 16 / 22
+    ...LABEL("r", "r-single", "wide"),        // was Label/Button/Base, 16 / 22
   },
   S: {
     padH:      CL("button-padding-small-horizontal"),
     padV:      CL("button-padding-small-vertical"),
     iconWrap:  20,
     iconInner: 14,
-    ...LABEL("s", "s-single", "spacious"),        // was Label/Button/Small — 14 / 20
+    ...LABEL("s", "s-single", "spacious"),        // was Label/Button/Small, 14 / 20
   },
-  // XS — added 2026-06-11 (Figma node 40007881:21300). 44×44 touch target preserved;
+  // XS, added 2026-06-11 (Figma node 40007881:21300). 44×44 touch target preserved;
   // padding 8/6. Figma defines XS for Primary/Secondary/Negative across
-  // Fill/Outlined/Naked — NOT Tertiary (see spec §Gaps).
+  // Fill/Outlined/Naked: NOT Tertiary (see spec §Gaps).
   XS: {
     padH:      CL("button-padding-xsmall-horizontal"),
     padV:      CL("button-padding-xsmall-vertical"),
     iconWrap:  16,
     iconInner: 12,
-    ...LABEL("xs", "xs-single", "extraspacious"),      // was Label/Button/XSmall — 12 / 18
+    ...LABEL("xs", "xs-single", "extraspacious"),      // was Label/Button/XSmall, 12 / 18
   },
 };
 
@@ -265,23 +265,23 @@ export function ButtonSpinner({ size = 20 }) {
 // ─── Button ────────────────────────────────────────────────────────────────────
 /**
  * Props:
- *   buttonStyle  — "Fill" | "Outlined" | "Naked"   (default: "Fill")
- *   size         — "L" | "M" | "S" | "XS"           (default: "M")
- *   type         — "Primary" | "Secondary" | "Tertiary" | "Negative"  (default: "Primary")
- *   text         — button label                     (default: "Button")
- *   leadingIcon  — Material Symbols ligature string or React node | null
- *   trailingIcon — Material Symbols ligature string or React node | null
- *   showLeadingIcon  — bool (default: false)
- *   showTrailingIcon — bool (default: false)
- *   showText     — bool (default: true)
- *   loading      — bool — replaces content with spinner, sets aria-busy
- *   disabled     — bool — prevents interaction, sets aria-disabled
- *   forceState   — "hover"|"pressed"|"focused"|"disabled"|"loading"|null
+ *   buttonStyle, "Fill" | "Outlined" | "Naked"   (default: "Fill")
+ *   size, "L" | "M" | "S" | "XS"           (default: "M")
+ *   type, "Primary" | "Secondary" | "Tertiary" | "Negative"  (default: "Primary")
+ *   text, button label                     (default: "Button")
+ *   leadingIcon, Material Symbols ligature string or React node | null
+ *   trailingIcon, Material Symbols ligature string or React node | null
+ *   showLeadingIcon, bool (default: false)
+ *   showTrailingIcon, bool (default: false)
+ *   showText, bool (default: true)
+ *   loading, bool, replaces content with spinner, sets aria-busy
+ *   disabled, bool, prevents interaction, sets aria-disabled
+ *   forceState, "hover"|"pressed"|"focused"|"disabled"|"loading"|null
  *                  Visual-only override for Storybook StateMatrix. Does not
  *                  affect real interaction in production.
- *   onClick      — (e) => void
- *   ariaLabel    — overrides accessible name (required when showText=false)
- *   className    — extra CSS class on the outer <button>
+ *   onClick, (e) => void
+ *   ariaLabel, overrides accessible name (required when showText=false)
+ *   className, extra CSS class on the outer <button>
  */
 export function Button({
   buttonStyle = "Fill",
@@ -390,9 +390,8 @@ export function Button({
     userSelect:    "none",
   };
 
-  // Icon slot wrapper — iconWrap = outer slot size, iconInner = rendered glyph size.
-  // fontVariationSettings overrides the global opsz:24 from preview-head.html —
-  // all button icon sizes (14–18px) sit below the minimum opsz axis value (20),
+  // Icon slot wrapper, iconWrap = outer slot size, iconInner = rendered glyph size.
+  // fontVariationSettings overrides the global opsz:24 from preview-head.html, // all button icon sizes (14 to 18px) sit below the minimum opsz axis value (20),
   // so opsz:20 is the correct optical size for the tightest stroke rendering.
   const iconWrapStyle = {
     display:              "inline-flex",
@@ -407,7 +406,7 @@ export function Button({
     fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20",
   };
 
-  // Outer button element — handles the touch-target zone
+  // Outer button element, handles the touch-target zone
   const outerStyle = {
     display:          "inline-flex",
     alignItems:       "center",
@@ -449,7 +448,7 @@ export function Button({
     >
       <span style={containerStyle} aria-hidden="true" className="pw-button__container">
         {(loading || forceLoading) ? (
-          // Loading state — spinner only, no label or icons
+          // Loading state, spinner only, no label or icons
           <ButtonSpinner size={sz.iconInner * 1.2} />
         ) : (
           <>

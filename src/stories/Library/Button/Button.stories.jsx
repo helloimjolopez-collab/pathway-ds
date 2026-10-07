@@ -678,7 +678,7 @@ const SPACING_ROWS = [
   { name: "Padding - M vertical",   value: "10px", token: "--contextual-layout-units-button-padding-medium-vertical",   role: "Top + bottom padding inside Container.Main for size M" },
   { name: "Padding - S horizontal", value: "8px",  token: "--contextual-layout-units-button-padding-small-horizontal",  role: "Left + right padding inside Container.Main for size S" },
   { name: "Padding - S vertical",   value: "6px",  token: "--contextual-layout-units-button-padding-small-vertical",    role: "Top + bottom padding inside Container.Main for size S" },
-  { name: "Icon–label gap",         value: "8px",  token: "--contextual-layout-units-button-gap-horizontal",            role: "Gap between leading/trailing icon and label text" },
+  { name: "Icon to label gap",         value: "8px",  token: "--contextual-layout-units-button-gap-horizontal",            role: "Gap between leading/trailing icon and label text" },
   { name: "Border width (Outlined)",value: "0.75px",token: "--contextual-layout-units-button-borderwidth-rest",   role: "Outlined style border thickness" },
   { name: "Touch-target padding",   value: "6px",  token: "- (hardcoded)",  role: "Transparent outer padding on <button> - ensures 48×48px minimum touch target (WCAG 2.5.5)" },
   { name: "Touch target min-size",  value: "48px", token: "- (hardcoded)",  role: "Minimum interactive area enforced by outer <button> min-height + min-width" },
@@ -723,7 +723,7 @@ TokensSpacing.parameters = {
   docs: {
     description: {
       story:
-        "Padding scales across L / M / S sizes, plus the icon–label gap, border width, and touch-target " +
+        "Padding scales across L / M / S sizes, plus the icon to label gap, border width, and touch-target " +
         "floor. Grey entries have no token yet - they are hardcoded constants in button.jsx.",
     },
   },

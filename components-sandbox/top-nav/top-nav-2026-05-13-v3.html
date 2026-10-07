@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TopNav.Global — Pathway Design System</title>
+<title>TopNav.Global, Pathway Design System</title>
 
-<!-- Real Pathway token file — all colour tokens come from here, never inlined -->
+<!-- Real Pathway token file: all colour tokens come from here, never inlined -->
 <link rel="stylesheet" href="../../src/tokens/tokens.css">
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 /* ─────────────────────────────────────────────────────────────────────────────
-   TopNav.Global — v3 — built from live Figma MCP data
+   TopNav.Global, v3, built from live Figma MCP data
    Node: 40007067:6508  File: 3sw45aVcngFAmpbP6cfrXP
    ───────────────────────────────────────────────────────────────────────────── */
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height: 100vh; }
 
 /* ── DEMO WRAPPER ────────────────────────────────────────────────────────────── */
@@ -274,7 +274,7 @@ body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height:
 .tn-org__panel-name { font-size: 13px; font-weight: 500; color: #252525; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tn-org__panel-campus { font-size: 11px; color: #6b6b6b; margin-top: 1px; }
 
-/* ── TOPNAV SEARCH (Collapsed — icon button) ──────────────────────────────────── */
+/* ── TOPNAV SEARCH (Collapsed, icon button) ──────────────────────────────────── */
 /* Figma: 48x48 outer, 32px inner pill, fill primaryinverse/base, border #fbfbfb 0.75px */
 .tn-search {
   display: flex; align-items: center; justify-content: center;
@@ -430,7 +430,7 @@ body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height:
   .tn-mod__label { display: none; }
   .tn-org__label { max-width: 80px; }
 }
-/* Tablet 768–1023px */
+/* Tablet 768 to 1023px */
 @media (min-width: 768px) and (max-width: 1023px) {
   .tn-mod__label { max-width: 100px; }
   .tn-org__label { max-width: 160px; }
@@ -488,7 +488,7 @@ body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height:
 
   <!-- ── DESKTOP ─────────────────────────────────────────────────────────────── -->
   <div>
-    <div class="demo__label">Desktop — 1440px</div>
+    <div class="demo__label">Desktop, 1440px</div>
     <div class="demo__frame">
       <nav class="topnav" aria-label="Global navigation">
 
@@ -503,7 +503,7 @@ body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height:
               aria-haspopup="listbox"
               aria-expanded="false"
               aria-controls="mod-dropdown"
-              aria-label="Switch module — Amplify Home"
+              aria-label="Switch module, Amplify Home"
               onclick="toggleDropdown('mod-btn','mod-dropdown')"
             >
               <div class="tn-mod__row-start">
@@ -565,14 +565,14 @@ body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height:
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls="org-panel"
-              aria-label="Switch organisation — Sacred Heart Church-ITD | Knoxville"
+              aria-label="Switch organisation, Sacred Heart Church-ITD | Knoxville"
               onclick="toggleDropdown('org-btn','org-panel')"
             >
               <div class="tn-org__row-start">
                 <!-- Container.Avatar: 24×24, org logo image -->
                 <div class="tn-org__avatar-wrap">
                   <div class="tn-org__avatar" title="Sacred Heart Church-ITD">
-                    <!-- Real org logo from Figma — cropped as in Figma spec -->
+                    <!-- Real org logo from Figma, cropped as in Figma spec -->
                     <img
                       src="http://localhost:3845/assets/ee84d2aeac08d1f6e500afd944a44edcdf639e03.png"
                       alt="Sacred Heart Church-ITD logo"
@@ -606,7 +606,7 @@ body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height:
               </div>
               <div class="tn-org__panel-item" role="option" aria-selected="false" style="background:#3a5a9910;">
                 <div class="tn-org__panel-av" style="background:#22386b;">
-                  <!-- Fellowship org — white text logo on brand bg -->
+                  <!-- Fellowship org, white text logo on brand bg -->
                   <img src="http://localhost:3845/assets/195b8c42761b1a57ef301b6845fd1b3592bed505.svg" alt="Fellowship" style="position:absolute;width:90%;height:auto;object-fit:contain;">
                 </div>
                 <div class="tn-org__panel-names">
@@ -631,7 +631,7 @@ body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height:
         <!-- Slot.RowEnd: Search + Actions + Profile -->
         <div class="topnav__end">
 
-          <!-- TopNav.Search (Collapsed — icon button only, per Figma) -->
+          <!-- TopNav.Search (Collapsed, icon button only, per Figma) -->
           <div class="tn-search">
             <button class="tn-search__btn" aria-label="Search">
               <svg><use href="#icon-search-sm"/></svg>
@@ -668,7 +668,7 @@ body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height:
               aria-haspopup="true"
               aria-expanded="false"
               aria-controls="profile-menu"
-              aria-label="Account — Jo Lopez"
+              aria-label="Account, Jo Lopez"
               onclick="toggleDropdown('profile-btn','profile-menu')"
             >
               <div class="tn-profile__avatar">JL</div>
@@ -701,12 +701,12 @@ body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height:
 
   <!-- ── MOBILE ──────────────────────────────────────────────────────────────── -->
   <div>
-    <div class="demo__label">Mobile — 393px</div>
+    <div class="demo__label">Mobile, 393px</div>
     <div class="demo__frame demo__frame--mobile">
       <nav class="topnav topnav--mobile" aria-label="Global navigation">
 
         <div class="topnav__start">
-          <!-- SideNav.Control (hamburger) — mobile only -->
+          <!-- SideNav.Control (hamburger), mobile only -->
           <div class="tn-sidenav-ctrl" style="display:flex;">
             <div class="tn-sidenav-ctrl__btn">
               <button class="tn-sidenav-ctrl__inner" aria-label="Open navigation menu">
@@ -721,7 +721,7 @@ body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height:
 
           <!-- ModuleSwitcher: icon only (no label on mobile) -->
           <div class="tn-mod">
-            <button class="tn-mod__inner" aria-label="Switch module — Amplify Home" aria-haspopup="true" style="padding:4px;">
+            <button class="tn-mod__inner" aria-label="Switch module, Amplify Home" aria-haspopup="true" style="padding:4px;">
               <div class="tn-mod__icon-wrap">
                 <div class="tn-mod__icon-inner">
                   <svg><use href="#icon-home"/></svg>
@@ -735,7 +735,7 @@ body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height:
 
           <!-- OrgSwitcher: abbreviated label -->
           <div class="tn-org" style="max-width:160px;">
-            <button class="tn-org__inner" aria-label="Switch organisation — SHC | KNX" aria-haspopup="true" style="gap:2px;">
+            <button class="tn-org__inner" aria-label="Switch organisation, SHC | KNX" aria-haspopup="true" style="gap:2px;">
               <div class="tn-org__row-start">
                 <div class="tn-org__avatar-wrap">
                   <div class="tn-org__avatar">
@@ -771,7 +771,7 @@ body { font-family: 'Red Hat Text', sans-serif; background: #f0f2f5; min-height:
           </div>
           <!-- Profile -->
           <div class="tn-profile">
-            <button class="tn-profile__btn" aria-label="Account — Jo Lopez">
+            <button class="tn-profile__btn" aria-label="Account, Jo Lopez">
               <div class="tn-profile__avatar">JL</div>
             </button>
           </div>

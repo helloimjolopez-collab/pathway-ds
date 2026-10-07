@@ -1,4 +1,4 @@
-# TopNav.Global — Pathway Design System Component Spec
+# TopNav.Global: Pathway Design System Component Spec
 
 **Status:** `REVIEWED`
 
@@ -154,11 +154,11 @@ The profile avatar uses light-mode amethyst tokens. This is correct: the avatar 
 
 | Value | Usage | Token |
 |---|---|---|
-| `border-radius: 8px` | OrgSwitcher inner, ModuleSwitcher inner, ActionIcon inner | None — raw value (Figma-defined shape) |
-| `border-radius: 9999px` | Search pill | None — raw value (pill shape) |
-| `border-radius: 50%` | Profile avatar | None — raw value (circle) |
-| `border-radius: 4px` | Org logo avatar (small) | None — raw value |
-| `0.75px` | Search pill border width | None — raw value (Figma-specified) |
+| `border-radius: 8px` | OrgSwitcher inner, ModuleSwitcher inner, ActionIcon inner | None, raw value (Figma-defined shape) |
+| `border-radius: 9999px` | Search pill | None, raw value (pill shape) |
+| `border-radius: 50%` | Profile avatar | None, raw value (circle) |
+| `border-radius: 4px` | Org logo avatar (small) | None, raw value |
+| `0.75px` | Search pill border width | None, raw value (Figma-specified) |
 
 ### 3.7 Typography
 
@@ -192,7 +192,7 @@ All spacing values are in pixels (Figma-sourced). Where a semantic spacing token
 | 56px | Nav bar height, all breakpoints | `--responsive-layout-topnav-height` |
 | 8px | Panel and control corner radius | `--semantic-layout-units-cornerradius-base` |
 | 4px | Inner control corner radius | `--semantic-layout-units-cornerradius-small` |
-| 48px | All outer touch-target wrappers (min-h, min-w) | None — raw value |
+| 48px | All outer touch-target wrappers (min-h, min-w) | None, raw value |
 
 **These four are ONE property name each, not one per breakpoint.** TopNav is the
 chrome that genuinely changes with viewport, so its metrics live in
@@ -214,24 +214,24 @@ Three things this table used to get wrong, all corrected 2026-09-17:
 tall with `max-h-[62px]` on `Container.Main`, while the token and the
 implementation both say 56. That is a real disagreement and it is not resolved
 here, because changing it moves the whole shell. Recorded in §13.
-| 36px | Inner control height (OrgSwitcher, ModuleSwitcher) | None — raw value |
-| 4px | Inner control padding | None — raw value |
-| 4px | Gap within OrgSwitcher/ModuleSwitcher RowStart | None — raw value |
-| 32px | Profile avatar diameter | None — raw value |
-| 32px | Search pill diameter | None — raw value |
-| 24px | Org logo avatar wrapper in nav bar | None — raw value |
-| 20px | Org logo rendered size in nav bar (inside 2px padding) | None — raw value |
-| 32px | Org logo in org panel | None — raw value |
-| 16px | Chevron icon container | None — raw value |
-| 316px | OrgSwitcher max-width desktop | None — raw value |
-| 280px | Org panel dropdown width | None — raw value |
-| 243px | Module dropdown width | None — raw value |
+| 36px | Inner control height (OrgSwitcher, ModuleSwitcher) | None, raw value |
+| 4px | Inner control padding | None, raw value |
+| 4px | Gap within OrgSwitcher/ModuleSwitcher RowStart | None, raw value |
+| 32px | Profile avatar diameter | None, raw value |
+| 32px | Search pill diameter | None, raw value |
+| 24px | Org logo avatar wrapper in nav bar | None, raw value |
+| 20px | Org logo rendered size in nav bar (inside 2px padding) | None, raw value |
+| 32px | Org logo in org panel | None, raw value |
+| 16px | Chevron icon container | None, raw value |
+| 316px | OrgSwitcher max-width desktop | None, raw value |
+| 280px | Org panel dropdown width | None, raw value |
+| 243px | Module dropdown width | None, raw value |
 
 ---
 
 ## 5. Item / Variant Structure
 
-Figma ships three variants (note: "Desktop" is spelled "Destkop" in Figma — a known typo, do not fix in Figma without design sign-off):
+Figma ships three variants (note: "Desktop" is spelled "Destkop" in Figma: a known typo, do not fix in Figma without design sign-off):
 
 ### Desktop (≥1024px)
 - Full nav bar at 56px height, 16px horizontal padding.
@@ -240,7 +240,7 @@ Figma ships three variants (note: "Desktop" is spelled "Destkop" in Figma — a 
 - Search, 2 × ActionIcon, Profile visible.
 - No hamburger.
 
-### Tablet (768px–1023px)
+### Tablet (768px 1023px)
 - Nav bar 54px height, 12px horizontal padding.
 - ModuleSwitcher: icon only (no label). Chevron remains.
 - OrgSwitcher: avatar + truncated label. Max-width tightened.
@@ -253,7 +253,7 @@ Figma ships three variants (note: "Desktop" is spelled "Destkop" in Figma — a 
 - ModuleSwitcher: icon only, no label. Chevron present.
 - OrgSwitcher: avatar + abbreviated label using the AP-based abbreviation rule (see §10.2). Chevron present.
 - ActionIcons hidden (bell icons do not appear on mobile).
-- Profile avatar visible, no profile menu on mobile (deferred — see §17 Gaps).
+- Profile avatar visible, no profile menu on mobile (deferred, see §17 Gaps).
 - Search pill visible.
 
 ---
@@ -292,7 +292,7 @@ The ModuleSwitcher (app switcher) trigger shows the currently active module. In 
 **Trigger anatomy:**
 - Module icon: **24px** glyph in a 30×30 wrap (custom SVG for Home; Material Symbol for other modules)
 - Label text (desktop/tablet only): 14px / 500 / max-w 160px / ellipsis (`label-button-s`)
-- Chevron: **12px** `expand_more` glyph in a 16×16 box, rotates 180° on open — **interactive variant only**
+- Chevron: **12px** `expand_more` glyph in a 16×16 box, rotates 180° on open, **interactive variant only**
 
 #### Properties
 
@@ -300,14 +300,14 @@ The ModuleSwitcher (app switcher) trigger shows the currently active module. In 
 |---|---|---|---|---|
 | `type` | `"interactive" \| "static"` | `"interactive"` | **Type** (static \| interactive) | Whether the module switcher is a control or a static label. Exposed on `TopNav` as `moduleSwitcherType`, forwarded to the ModuleSwitcher. The OrgSwitcher has no such property. |
 
-- **`interactive`** — chevron + hover + pressed + button semantics (`aria-haspopup`, focusable); opens the app-switcher dropdown.
-- **`static`** — current-module **label only**: no chevron, no hover, no pressed, not a button.
+- **`interactive`**, chevron + hover + pressed + button semantics (`aria-haspopup`, focusable); opens the app-switcher dropdown.
+- **`static`**, current-module **label only**: no chevron, no hover, no pressed, not a button.
 
 #### Usage by context
 
 | Context | Config | Why |
 |---|---|---|
-| **Amplify Dashboard** | `moduleSwitcherType="static"` | The dashboard is the home surface — there is nowhere to switch *to* from it, so the module switcher only indicates the current location and carries no affordance. |
+| **Amplify Dashboard** | `moduleSwitcherType="static"` | The dashboard is the home surface: there is nowhere to switch *to* from it, so the module switcher only indicates the current location and carries no affordance. |
 | **All other modules** | `"interactive"` (default) | Switching between modules is the primary navigation job. |
 
 > **IMPLEMENTATION RULE:** `static` is one concept, not merely a hidden chevron. It removes the chevron **and** the hover state **and** the pressed state **and** the button role/focusability together. Never ship a static module switcher that still highlights on hover or is keyboard-focusable as a control.
@@ -317,12 +317,12 @@ The ModuleSwitcher (app switcher) trigger shows the currently active module. In 
 **Dropdown (interactive only):**
 - Width: 243px
 - Items: icon (18×18, 70% opacity base / 100% active) + label (13px/400 base, 13px/500 active)
-- Active item background: `#eef2fb` (light brand tint — token gap, see §17)
+- Active item background: `#eef2fb` (light brand tint, token gap, see §17)
 - Hover item background: `#eef2fb`
 - Border-radius: 8px outer panel, 6px per item
 - Animation: tnDropIn (see §14)
 
-> **Note:** The full open "App Switcher Dropdown" shown in Figma (15 modules, colored icons, divider, "Explore" control) is a future redesign and is **not yet in the repo/Storybook** — the dropdown documented here is the current shipped list.
+> **Note:** The full open "App Switcher Dropdown" shown in Figma (15 modules, colored icons, divider, "Explore" control) is a future redesign and is **not yet in the repo/Storybook**: the dropdown documented here is the current shipped list.
 
 ### 7.2 OrgSwitcher
 
@@ -434,10 +434,10 @@ Clicking the collapsed pill opens the search as a **full-width takeover** of the
 **with-value** (text entered):
 - Same container styling as focused-empty
 - Input text color: `#202020` (`foreground.static.neutral.bold`)
-- Trailing `cancel` (circled X) icon button: 24px container, color `#606060` — visible only when query is non-empty
-- Clicking the clear button clears the input and refocuses — it does **not** collapse the pill
+- Trailing `cancel` (circled X) icon button: 24px container, color `#606060`: visible only when query is non-empty
+- Clicking the clear button clears the input and refocuses: it does **not** collapse the pill
 
-**Collapse:** Three ways out of the takeover — the trailing **✕ close button**, the leading search icon, or pressing **Escape**. All collapse back to the pill. (Escape also closes any open dropdown panel.)
+**Collapse:** Three ways out of the takeover: the trailing **✕ close button**, the leading search icon, or pressing **Escape**. All collapse back to the pill. (Escape also closes any open dropdown panel.)
 
 #### Search takeover (overlap avoidance)
 
@@ -456,7 +456,7 @@ Two bell/notification icon buttons sit in the RowEnd slot (desktop and tablet on
 - Icon: bell SVG, fill `#fbfbfb`, positioned within the inner padded area
 - Hover: `dark-mode.fill.action.primary.subtle.hover`
 - Pressed: `dark-mode.fill.action.primary.subtle.pressed`
-- Badge / notification indicator: not yet designed — see §17
+- Badge / notification indicator: not yet designed, see §17
 
 ### 7.5 Profile trigger and menu
 
@@ -490,7 +490,7 @@ Two bell/notification icon buttons sit in the RowEnd slot (desktop and tablet on
 | Viewport | Height | px (top/bottom) | px (left/right) |
 |---|---|---|---|
 | Desktop (≥1024px) | 56px max-height | 4px | 16px |
-| Tablet (768–1023px) | 54px max-height | 4px | 12px |
+| Tablet (768-1023px) | 54px max-height | 4px | 12px |
 | Mobile (<768px) | 56px max-height | 4px | 8px |
 
 ### 8.3 Position
@@ -547,7 +547,7 @@ All org names abbreviate to **exactly three uppercase letters, no periods**.
 
 Words never initialed: articles (the, a, an), prepositions (of, in, at, for), conjunctions (and, or).
 
-**Three or more significant words** — take first letter of first three:
+**Three or more significant words**, take first letter of first three:
 
 | Full name | Abbr. | Derivation |
 |---|---|---|
@@ -557,7 +557,7 @@ Words never initialed: articles (the, a, an), prepositions (of, in, at, for), co
 | Church of the Resurrection | COR | Church + Resurrection (skip "of", "the") |
 | Fellowship Community Church | FCC | Fellowship + Community + Church |
 
-**Exactly two significant words** — double the last initial:
+**Exactly two significant words**, double the last initial:
 
 | Full name | Abbr. | Derivation |
 |---|---|---|
@@ -566,7 +566,7 @@ Words never initialed: articles (the, a, an), prepositions (of, in, at, for), co
 | Crossroads Church | CRC | Crossroads (C) + Church (C) → double last → CRC |
 | First Baptist | FBB | First (F) + Baptist (B) → double last → FBB |
 
-**One significant word** — repeat the first letter three times:
+**One significant word**, repeat the first letter three times:
 
 | Full name | Abbr. | Derivation |
 |---|---|---|
@@ -651,7 +651,7 @@ Motion: **`--motion-duration-4` + `--motion-easing-spring`** (300 ms, a whisper 
 
 ### 12.2 Chevron rotation
 
-ModuleSwitcher and OrgSwitcher chevrons rotate 180° when their panel is open. Transition: **`transform --motion-duration-4 --motion-easing-standard`** (300 ms — the system chevron rule, see design-system-spec §2.2). Reduced-motion: no rotation; leave chevron at 0°.
+ModuleSwitcher and OrgSwitcher chevrons rotate 180° when their panel is open. Transition: **`transform --motion-duration-4 --motion-easing-standard`** (300 ms: the system chevron rule, see design-system-spec §2.2). Reduced-motion: no rotation; leave chevron at 0°.
 
 ### 12.3 Single-open constraint
 
@@ -680,7 +680,7 @@ When a panel closes via Escape or click-outside, focus returns to the trigger bu
 
 ### 13.0 ARIA pattern
 
-ModuleSwitcher and OrgSwitcher both use the **Disclosure (Show/Hide)** ARIA pattern (WAI-ARIA 1.2). The trigger is a `<button>` with `aria-expanded` and `aria-controls` pointing to the panel's `id`. The panel is not a `role="menu"` — it is a list of navigable options.
+ModuleSwitcher and OrgSwitcher both use the **Disclosure (Show/Hide)** ARIA pattern (WAI-ARIA 1.2). The trigger is a `<button>` with `aria-expanded` and `aria-controls` pointing to the panel's `id`. The panel is not a `role="menu"`: it is a list of navigable options.
 
 The Profile menu uses the **Menu Button** pattern with `role="menu"` on the panel and `role="menuitem"` on each item.
 
@@ -699,7 +699,7 @@ The OrgSwitcher inner control has a minimum height of 36px but its outer wrapper
   aria-haspopup="true"
   aria-expanded="false"
   aria-controls="tn-mod-dropdown"
-  aria-label="Module: Amplify Home — switch module"
+  aria-label="Module: Amplify Home, switch module"
 >
   <!-- icon + label + chevron -->
 </button>
@@ -715,14 +715,14 @@ The OrgSwitcher inner control has a minimum height of 36px but its outer wrapper
   aria-haspopup="true"
   aria-expanded="false"
   aria-controls="tn-org-panel"
-  aria-label="Organization: Sacred Heart Church-ITD, Knoxville — switch organization"
+  aria-label="Organization: Sacred Heart Church-ITD, Knoxville, switch organization"
 >
   <!-- avatar + label + chevron -->
 </button>
 <!-- Mobile abbreviated version: -->
 <button
   class="tn-org__inner"
-  aria-label="Organization: Sacred Heart Church-ITD, Knoxville — switch organization"
+  aria-label="Organization: Sacred Heart Church-ITD, Knoxville, switch organization"
 >
   <span aria-hidden="true">SHC | KNX</span>
 </button>
@@ -740,7 +740,7 @@ The OrgSwitcher inner control has a minimum height of 36px but its outer wrapper
   class="tn-profile__btn"
   aria-haspopup="menu"
   aria-expanded="false"
-  aria-label="Profile: Jo Lopez — open profile menu"
+  aria-label="Profile: Jo Lopez, open profile menu"
 >
   <span aria-hidden="true">JL</span>
 </button>
@@ -770,14 +770,14 @@ Reduced-motion: focus styles are not animated; no change needed.
 
 | Action | Announcement |
 |---|---|
-| Focus ModuleSwitcher trigger | "Amplify Home — switch module, collapsed, button" |
+| Focus ModuleSwitcher trigger | "Amplify Home, switch module, collapsed, button" |
 | Open ModuleSwitcher | "Expanded" + panel becomes non-hidden |
-| Focus OrgSwitcher trigger | "Sacred Heart Church-ITD, Knoxville — switch organization, collapsed, button" |
+| Focus OrgSwitcher trigger | "Sacred Heart Church-ITD, Knoxville, switch organization, collapsed, button" |
 | Mobile OrgSwitcher focus | Same full name via aria-label |
 | Select a module item | Navigation occurs, page title changes |
 | Select an org item | Org context changes, page reloads with new org data |
 | Open Search | "Open search, button" |
-| Open Profile | "Profile: Jo Lopez — open profile menu, collapsed, button" |
+| Open Profile | "Profile: Jo Lopez, open profile menu, collapsed, button" |
 
 ### 13.6 Colour contrast
 
@@ -792,7 +792,7 @@ Reduced-motion: focus styles are not animated; no change needed.
 
 ## 14. Motion
 
-All motion resolves through `--motion-*` tokens (design-system-spec §2) — no hardcoded ms/curves. Values below reflect the implementation.
+All motion resolves through `--motion-*` tokens (design-system-spec §2): no hardcoded ms/curves. Values below reflect the implementation.
 
 | Property | Token | Reduced-motion |
 |---|---|---|
@@ -809,7 +809,7 @@ Motion is consistent with `docs/design-system-spec.md` §2. No deviation.
 | Viewport | Breakpoint | Key changes |
 |---|---|---|
 | Mobile | < 768px | Hamburger shown; ModuleSwitcher label hidden; OrgSwitcher abbreviated label; ActionIcons hidden; padding 8px |
-| Tablet | 768–1023px | No hamburger; ModuleSwitcher label hidden; ActionIcons shown; padding 12px |
+| Tablet | 768-1023px | No hamburger; ModuleSwitcher label hidden; ActionIcons shown; padding 12px |
 | Desktop | ≥ 1024px | Full labels; all controls; padding 16px |
 
 These are the Pathway system breakpoints from `docs/design-system-spec.md` §5.2.
@@ -845,7 +845,20 @@ These are the Pathway system breakpoints from `docs/design-system-spec.md` §5.2
 
 ## 18. Storybook
 
-Not yet in Storybook. Awaiting spec review and branch creation before pipeline runs.
+Sidebar-visible, matching the untagged exports in `TopNav.stories.jsx` exactly:
+
+| Export | Name |
+|---|---|
+| `Playground` | Playground |
+| `ModuleSwitcherVariants` | ModuleSwitcher - interactive vs static |
+| `StandaloneDemo` | StandaloneDemo |
+
+Reference, `!dev`-tagged: `Mobile`, `Tablet`, `OrgNoLogo`, `OrgPanelOpen`, `ModuleDropdownOpen`, `ProfileMenuOpen`, `SingleOrg`, `TokensFill`, `TokensStroke`, `TokensText`, `TokensIcon`, `TokensTypography`, `TokensRadius`.
+
+Deployed at `https://helloimjolopez-collab.github.io/pathway-ds/storybook/`.
+
+> Corrected 2026-10-07. This section read "Not yet in Storybook. Awaiting spec review and branch creation before pipeline runs." while the page had been live. `TopNavActions` has no page of its own: the inline form is in `Playground`, the collapse to `more_vert` in `Tablet` and `Mobile`. `npm run check-spec-stories` now fails
+> on a spec that disagrees with its stories file.
 
 ---
 
@@ -875,7 +888,7 @@ deleted 2026-09-16. One doc per component, so there is no second file to drift.
 
 6. **Profile is amethyst, always.** Background `Fill/Static/Info/Subtle` (`#dcd9ef`), text `Foreground/Static/Info/On Subtle` (`#221e3f`). Initials, not photos.
 
-7. **Search is a 32×32 circle, not a search field.** `cornerradius/full: 64px`. Click expands a dropdown/modal — the bar stays narrow at all times.
+7. **Search is a 32×32 circle, not a search field.** `cornerradius/full: 64px`. Click expands a dropdown/modal: the bar stays narrow at all times.
 
 8. **All Material Symbols Rounded, no exceptions.** Specifically: `menu`, `expand_more`, `search`, `notifications`, `more_vert`. Use Google Fonts CDN: `https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200`.
 

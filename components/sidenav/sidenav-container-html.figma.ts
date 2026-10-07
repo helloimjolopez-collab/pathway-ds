@@ -16,6 +16,13 @@
 // children itself, so a consumer never writes an item, a section label or an
 // indicator stripe by hand. Publishing child mappings would suggest otherwise.
 //
+// ON LIGHT AND MIDNIGHT: this is a code snippet, not a render, so flipping the
+// mode in Figma cannot change it. For the custom element the mode comes from a
+// `data-theme` ancestor exactly as it does in React, because the element loads
+// the same token CSS; there is no mode attribute on the tag.
+//
+//   <div data-theme="midnight"><pathway-sidenav items="..."></pathway-sidenav></div>
+//
 // Slots are the exception, and they are why that holds. `items` covers
 // everything item-SHAPED, so ten modules share one component by passing ten
 // arrays. Slots cover what it cannot express - a module-specific widget, a

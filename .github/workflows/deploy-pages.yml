@@ -3,7 +3,7 @@ name: Deploy Storybook to Pages (Actions)
 # Reliable replacement for the legacy build-from-branch Pages build, which was
 # intermittently failing ("Page build failed") because Pages tried to Jekyll-
 # process the whole repo. This builds Storybook fresh and deploys a clean,
-# curated _site artifact via the official Pages actions — no Jekyll, no flake.
+# curated _site artifact via the official Pages actions: no Jekyll, no flake.
 
 on:
   push:

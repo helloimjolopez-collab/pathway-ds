@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SideNav — Grouper Variants v2 (Prototype) — Pathway</title>
+<title>SideNav, Grouper Variants v2 (Prototype), Pathway</title>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,-25..0&display=block" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+  :-webkit-scrollbar { width: 4px; }
+  :-webkit-scrollbar-track { background: transparent; }
+  :-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
 
   .material-symbols-outlined {
     font-family: 'Material Symbols Outlined';
@@ -84,7 +84,7 @@ const T = {
     navBase:    "#fafafa",   // fill.contextual.navitem.base
     navHover:   "#1111110a", // fill.contextual.navitem.hover
     navActive:  "#3555a014", // fill.contextual.navitem.active
-    infoSubtle: "#edf0f9",   // fill.static.info.subtle — panel border-right, collapse divider
+    infoSubtle: "#edf0f9",   // fill.static.info.subtle, panel border-right, collapse divider
   },
   surface: {
     navLight: "#fafafa",     // surface.nav.light
@@ -92,14 +92,14 @@ const T = {
   text: {
     navBase:       "#363636", // text.contextual.navitem.base
     navHover:      "#252525", // text.contextual.navitem.hover
-    navActive:     "#051428", // text.contextual.navitem.active — also grouper trail-collapsed label
+    navActive:     "#051428", // text.contextual.navitem.active, also grouper trail-collapsed label
     grouperIdle:   "#4b4b4b", // text.static.secondary.base
     grouperHover:  "#363636", // text.static.secondary.bold
   },
   icon: {
     navBase:       "#4b4b4b", // icon.contextual.navitem.base
     navHover:      "#363636", // icon.contextual.navitem.hover
-    navActive:     "#3555a0", // icon.contextual.navitem.active — also grouper trail-collapsed chevron + dot
+    navActive:     "#3555a0", // icon.contextual.navitem.active, also grouper trail-collapsed chevron + dot
     grouperIdle:   "#606060", // icon.static.neutral.subtle
     grouperHover:  "#4b4b4b", // icon.static.neutral.base
   },
@@ -139,7 +139,7 @@ function MSIcon({ name, size = 16, color = "#4b4b4b" }) {
   );
 }
 
-// ─── NAV DATA (Option 2 — flattened) ──────────────────────────────────────────
+// ─── NAV DATA (Option 2, flattened) ──────────────────────────────────────────
 // Top level contains groupers only. Groupers contain destinations only.
 // Destinations are leaf items with icons and no children.
 const NAV = [
@@ -290,8 +290,8 @@ function CollapsedTooltip({ label, anchorRect, onMouseEnter, onMouseLeave }) {
 
 // ─── GrouperLabel ─────────────────────────────────────────────────────────────
 // Two variants:
-//   "default"    — static, non-interactive label.
-//   "expandable" — click toggles its destinations. Adds trail-collapsed state when
+//   "default", static, non-interactive label.
+//   "expandable": click toggles its destinations. Adds trail-collapsed state when
 //                  closed and holding the active destination.
 // Never rendered when the sidebar is railed (72px).
 function GrouperLabel({ label, variant, isExpanded, containsActive, onToggle }) {
@@ -514,7 +514,7 @@ function App() {
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em",
             textTransform: "uppercase", color: "#6b6b6b", marginBottom: 8 }}>
-            {activeGrouper ? activeGrouper.label : "No section"} — active destination
+            {activeGrouper ? activeGrouper.label : "No section"}, active destination
           </p>
           <h1 style={{ fontSize: 32, fontWeight: 600, lineHeight: "40px",
             color: "#051428", margin: "0 0 16px" }}>
@@ -539,7 +539,7 @@ function App() {
                 color: "#4b4b4b" }}>
                 <li>Trial Balance is active, ACCOUNTING is expanded.</li>
                 <li>Click <strong>ACCOUNTING</strong> to collapse it.</li>
-                <li>The label turns dark and a blue dot appears — this is trail-collapsed.</li>
+                <li>The label turns dark and a blue dot appears: this is trail-collapsed.</li>
                 <li>Click <strong>ACCOUNTING</strong> again to reopen.</li>
               </ol>
             </div>
@@ -554,7 +554,7 @@ function App() {
                 <li>Close ACCOUNTING, then click <strong>Overview</strong> in Workspace.</li>
                 <li>ACCOUNTING stays closed (no active child there anymore).</li>
                 <li>Click <strong>ACCOUNTING</strong> → still closed, but no trail dot.</li>
-                <li>Now click <strong>Reports</strong> — ACCOUNTING auto-expands.</li>
+                <li>Now click <strong>Reports</strong>, ACCOUNTING auto-expands.</li>
               </ol>
             </div>
           </div>
@@ -602,7 +602,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 
 <!--
 ================================================================================
-TOKEN COVERAGE REPORT — v2 (as approved on 2026-04-21)
+TOKEN COVERAGE REPORT, v2 (as approved on 2026-04-21)
 ================================================================================
 
 Grounding: tokens/pathway-design-tokens.json @ 98ee386
@@ -689,14 +689,13 @@ history_edu, schedule, dashboard, deployed_code, edit_note) and revert icon
 bindings to the Pathway set. Until then, this prototype should not be taken as
 an approved visual reference for production icons.
 
-Icon sizing: Material Symbols render at 16px (font-size) in this prototype —
-slightly larger than the Pathway spec's 14px target — because Material glyphs
+Icon sizing: Material Symbols render at 16px (font-size) in this prototype, slightly larger than the Pathway spec's 14px target: because Material glyphs
 lose detail below 16px. Pathway icons, being designed for 14px, would drop back
 to 14px in production with no visual cost.
 
 ── DESIGN-SYSTEM RECOMMENDATIONS ─────────────────────────────────────────────
 
-Same four as v1. No new recommendations from v2 — the new patterns (trail-
+Same four as v1. No new recommendations from v2: the new patterns (trail-
 collapsed, auto-expand) are pure behavior and reuse existing tokens.
 
 ================================================================================

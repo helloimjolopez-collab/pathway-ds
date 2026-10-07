@@ -1,9 +1,9 @@
-# Pathway design tokens — the CSS
+# Pathway design tokens: the CSS
 
 **You are in the right place.** These are the stylesheets to consume. GitHub renders
 this file automatically when you browse into this folder, so start here.
 
-Every file below is generated. Never hand-edit one — run `npm run build-tokens`.
+Every file below is generated. Never hand-edit one, run `npm run build-tokens`.
 
 ## The short version
 
@@ -27,13 +27,13 @@ is split the way it is.
 
 `primitives.css` must come first. Every semantic token resolves through it, so if it is
 missing all colour resolves to nothing and the page renders unstyled **with no console
-error** — which is a genuinely nasty way to lose an afternoon.
+error**: which is a genuinely nasty way to lose an afternoon.
 
 ## The files
 
 | File | Names | Status | Name these? |
 |---|---|---|---|
-| `primitives.css` | 350 | **Infrastructure** | **No** — but you must load it |
+| `primitives.css` | 350 | **Infrastructure** | **No**: but you must load it |
 | `themes/light.css` | 186 | **Contract** | Yes |
 | `themes/midnight.css` | 186 | **Contract** (same names as light) | Yes |
 | `type.css` | 41 | **Contract** | Yes |
@@ -43,7 +43,7 @@ error** — which is a genuinely nasty way to lose an afternoon.
 | `motion.css` | 17 | **Contract** | Yes |
 | `breakpoints.css` | 5 | **Contract** | Yes |
 
-**Your working vocabulary is 284 names** — 186 colour + 41 type + 40 layout + 17 motion
+**Your working vocabulary is 284 names**, 186 colour + 41 type + 40 layout + 17 motion
 + 6 responsive layout + 5 breakpoints. The 350 primitives are not part of it, and the 26
 component metrics are this repo's own business.
 
@@ -98,7 +98,7 @@ color: var(--semantic-color-foreground-static-neutral-bold);
 ```
 
 Set `data-theme="midnight"` on `<html>` to flip the page, or on any element to flip just
-that subtree. It composes both ways — a light island can sit inside a dark island, which
+that subtree. It composes both ways: a light island can sit inside a dark island, which
 is what a dark top bar with white dropdown panels needs.
 
 **Never put a mode in a property name.** `--semantic-color-light-mode-*` came from
@@ -107,7 +107,7 @@ is what a dark top bar with white dropdown panels needs.
 
 ## Composing type
 
-There are no composite text styles and no `.pw-type-*` classes — both retired
+There are no composite text styles and no `.pw-type-*` classes, both retired
 2026-09-03. Name five properties:
 
 ```css

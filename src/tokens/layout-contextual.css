@@ -1,16 +1,16 @@
 /*
  ==========================================================================
- PATHWAY DESIGN TOKENS — COMPONENT INTERNALS
+ PATHWAY DESIGN TOKENS, COMPONENT INTERNALS
  ==========================================================================
 
  Per-component metrics (Button, Card, NavItem, Page, focus ring).
 
- This repo's own components use these. Product code generally should not —
+ This repo's own components use these. Product code generally should not 
  prefer layout.css, which is the general spacing contract. These exist so a
  component's geometry can be tuned without moving the whole scale.
 
  Declares 37 custom properties.
- Generated — do not edit. Run `npm run build-tokens`.
+ Generated: do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
 :root {

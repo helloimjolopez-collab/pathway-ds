@@ -1,4 +1,4 @@
-# Search — Pathway Design System Component Spec
+# Search: Pathway Design System Component Spec
 
 **Status:** `REVIEWED`
 
@@ -8,8 +8,9 @@ Complete implementation reference for the Search Input and TopNavSearch componen
 
 | Artefact | URL |
 |---|---|
-| Figma — SearchInput | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006978-23158 |
-| Figma — TopNav.Search | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007095-4048 |
+| Figma, **TopNav.Search** (what this repo implements) | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007095-4048 |
+| Code Connect | `components/search/top-nav-search.figma.ts` |
+| Figma, TopNav.Search | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007095-4048 |
 | Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-search--docs |
 | HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/search/search.html |
 | GitHub source | https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/search |
@@ -19,23 +20,23 @@ Complete implementation reference for the Search Input and TopNavSearch componen
 
 ## 1. Component Overview
 
-### v1 scope — search bar only
+### v1 scope: search bar only
 
 **This release covers the search bar trigger and its states. The results dropdown / open panel is explicitly out of scope for v1 and is deferred.** The existing production dropdown remains unchanged. A future version will give the open panel its own design pass, spec, and release.
 
 | Sub-component | v1 scope | Notes |
 |---|---|---|
-| **SearchInput** — the bar itself | IN SCOPE | All states: idle, hover, focused, with-value, filter-active, disabled, error |
-| **TopNavSearch** — collapsed + expanded | IN SCOPE | Collapsed icon button + spring-expand animation |
+| **SearchInput**: the bar itself | IN SCOPE | All states: idle, hover, focused, with-value, filter-active, disabled, error |
+| **TopNavSearch**, collapsed + expanded | IN SCOPE | Collapsed icon button + spring-expand animation |
 | **Open state / results dropdown** | OUT OF SCOPE | Production dropdown unchanged. Agents building products should use [Radix UI `Combobox`](https://www.radix-ui.com/primitives/docs/components/combobox) or `Command` with Pathway tokens applied for any dropdown they need to build. |
 
 ---
 
 The **Search** family consists of two components:
 
-1. **SearchInput** — the base search bar. A pill-shaped input with a leading search icon, a free-text field, optional trailing clear button, and optional trailing filter button. Lives on light surfaces in page bodies, drawers, and command bars. Standalone or composed into TopNavSearch.
+1. **SearchInput**: the base search bar. A pill-shaped input with a leading search icon, a free-text field, optional trailing clear button, and optional trailing filter button. Lives on light surfaces in page bodies, drawers, and command bars. Standalone or composed into TopNavSearch.
 
-2. **TopNavSearch** — a wrapper that hosts SearchInput inside the top navigation bar. The component has two shipped modes: **Collapsed** (a 48×48 icon button on the dark nav surface) and **Expanded** (the full search bar slides in with a spring animation). The search icon inside the bar doubles as the collapse trigger. The Open mode (expanded plus results dropdown) is deferred — see v1 scope above.
+2. **TopNavSearch**: a wrapper that hosts SearchInput inside the top navigation bar. The component has two shipped modes: **Collapsed** (a 48×48 icon button on the dark nav surface) and **Expanded** (the full search bar slides in with a spring animation). The search icon inside the bar doubles as the collapse trigger. The Open mode (expanded plus results dropdown) is deferred, see v1 scope above.
 
 The filter button is an affordance that navigates the user to a separate filter page or panel. It is NOT a dropdown toggle. When the user returns from the filter page with filters applied, the bar enters a **filter-active** state: highlighted funnel pill, dot badge on the funnel, input still fully active.
 
@@ -43,13 +44,21 @@ The filter button is an affordance that navigates the user to a separate filter 
 - Inline filtering of a visible list (use a filter bar or chip group instead)
 - Command palettes (different pattern, different affordances)
 - Autocomplete fields in forms (use Combobox instead)
-- Global persistent state — the open/closed state of TopNavSearch is ephemeral
+- Global persistent state: the open/closed state of TopNavSearch is ephemeral
 
 ### Figma source
 
 - **File:** [Pathway Design System Master File MB 2.0](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/)
-- **SearchInput:** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006978-23158)
-- **FilterSelected state:** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007351-13533)
+- **TopNav.Search (the set this repo implements):** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007095-4048), a COMPONENT_SET, `Platform=Desktop` x `State=Collapsed|Expanded|Open`
+
+> **Corrected 2026-10-07.** This spec and the manifest both cited `40006978-23158`
+> as the SearchInput node. Reading it returns a 2594x1680 FRAME named
+> "Frame 633379": a layout frame on the general Search page, not a component.
+> A separate and genuinely different component lives at `40006978-23446`, an
+> 11-variant general search field on `State` x `Has Filter`. **This repo does not
+> implement that one** and must not be mapped to it. `SearchInput` in
+> `search.jsx` is the TopNav bar's own field, not that component.
+- **FilterSelected state:** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007351-13533), an INSTANCE showing the state, not a component
 - **TopNavSearch:** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007095-4048)
 
 ---
@@ -58,7 +67,7 @@ The filter button is an affordance that navigates the user to a separate filter 
 
 | To change… | Owner | Where |
 |---|---|---|
-| Visual appearance of any state | Design | Figma node 40006978-23158 |
+| Visual appearance of any state | Design | Figma node 40007095-4048 |
 | Filter-active state treatment | Design | Figma node 40007351-13533 |
 | TopNavSearch collapsed/expanded/open states | Design | Figma node 40007095-4048 |
 | Token assignments (colour, radius, type) | Design | §3 of this spec + Figma variable bindings |
@@ -66,7 +75,7 @@ The filter button is an affordance that navigates the user to a separate filter 
 | Prop names, types, default values | Engineering | §5 of this spec |
 | ARIA implementation detail | Engineering | §13 of this spec |
 | When to show filter-active state | Product | §9 of this spec |
-| Open state (dropdown) design | Design | Deferred — production dropdown unchanged, future v2 pass. See §17. |
+| Open state (dropdown) design | Design | Deferred, production dropdown unchanged, future v2 pass. See §17. |
 
 **Rule:** neither party signs off on the other's rows. Design owns Status, purpose,
 variants, states, token assignments, Figma setup, accessibility intent and usage
@@ -89,43 +98,42 @@ SearchInput.TouchTarget              48px height, 100% width, flex column, justi
     ├── SearchInput.LabelSlot        flex 1, min-width 0
     │   └── <input type="text">      flex 1, transparent bg, no border
     └── SearchInput.TrailingSlot     flex-shrink 0, flex row, align center
-        ├── [SearchInput.CancelBtn]  24×24px, icon-pill — shown only when input has text
+        ├── [SearchInput.CancelBtn]  24×24px, icon-pill, shown only when input has text
         └── [SearchInput.FilterWrap] border-left 0.75px divider + 4px padding-left
             └── SearchInput.FilterBtn 24×24px, icon-pill
                 └── <svg> funnel     16×16px
                 [SearchInput.Badge]  6×6px dot, absolute top-right of badge-wrap
 ```
 
-The `CancelBtn` and `FilterWrap` are conditional — see variant rules in §5.
+The `CancelBtn` and `FilterWrap` are conditional, see variant rules in §5.
 
 ### TopNavSearch
 
 ```
 TopNavSearch.Container               position relative, FIXED 48×48 footprint (never
-│                                     changes — the expanded bar is absolutely positioned)
+│                                     changes: the expanded bar is absolutely positioned)
 ├── TopNavSearch.CollapsedBtn        48×48px touch target, border-radius 12px (transparent)
-│   └── TopNavSearch.Circle          32×32px, border-radius 50% — a PERFECT CIRCLE (not a
+│   └── TopNavSearch.Circle          32×32px, border-radius 50%: a PERFECT CIRCLE (not a
 │       │                            pill/rounded-square). Fixed square so the radius always
 │       │                            yields a circle regardless of flex context.
 │       └── <svg> search             20×20px
-└── TopNavSearch.ExpandedBar         position ABSOLUTE, right:0 — anchored to the collapsed
+└── TopNavSearch.ExpandedBar         position ABSOLUTE, right:0, anchored to the collapsed
     │                                control's right edge, so it grows LEFTWARD and NEVER
     │                                pushes the elements to its right. 320px wide.
     └── SearchInput                  320px wide, all standard slots
         (search icon inside = collapse trigger)
 
-> **IMPLEMENTATION RULE (collapsed shape):** The collapsed control is a perfect circle —
-> a fixed 32×32 box with `border-radius: 50%`. Do NOT size it with `width: 100%` + a fixed
+> **IMPLEMENTATION RULE (collapsed shape):** The collapsed control is a perfect circle, > a fixed 32×32 box with `border-radius: 50%`. Do NOT size it with `width: 100%` + a fixed
 > height (that yields a rounded rectangle in a flex row).
 >
 > **IMPLEMENTATION RULE (expand direction):** The expanded bar is absolutely positioned and
 > right-anchored. Expanding must NEVER change the nav layout or push sibling elements (search
-> icon, notifications, profile) — it overlays the nav space to its left. The container's
+> icon, notifications, profile): it overlays the nav space to its left. The container's
 > in-flow footprint stays 48×48 whether collapsed or expanded.
 >
-> **RESPONSIVE — collision / full-width takeover:** On **desktop** the expanded bar is the
-> 320px right-anchored overlay (above). On **non-desktop** breakpoints — where a 320px overlay
-> would collide with the left cluster (ModuleSwitcher + OrgSwitcher) — the search instead
+> **RESPONSIVE, collision / full-width takeover:** On **desktop** the expanded bar is the
+> 320px right-anchored overlay (above). On **non-desktop** breakpoints, where a 320px overlay
+> would collide with the left cluster (ModuleSwitcher + OrgSwitcher): the search instead
 > **takes over full-width**: the SearchInput fills the entire nav bar (covering the left
 > cluster) on the brand-blue surface, with the search icon as the collapse trigger. This is
 > orchestrated by **TopNav** (the `<nav>` is the positioning context); `TopNavSearch` suppresses
@@ -150,7 +158,7 @@ TopNavSearch.Container               position relative, FIXED 48×48 footprint (
 | `fill.action.primary.subtle.rest` | `--semantic-color-fill-action-primary-subtle-rest` | rgba(160,181,230,0.08) | TopNavSearch collapsed button background (dark surface) |
 | `fill.static.brand.faint` | `--semantic-color-fill-static-brand-subtle` | #ccd7f2 | Page/demo surface |
 
-Disabled background: `Fill/Action/Disabled` (`--semantic-color-fill-action-disabled`). Resolved 2026-09-03 — the restructure added one shared Disabled per family, so the primitive fallback is gone.
+Disabled background: `Fill/Action/Disabled` (`--semantic-color-fill-action-disabled`). Resolved 2026-09-03: the restructure added one shared Disabled per family, so the primitive fallback is gone.
 
 ### 3.2 Stroke
 
@@ -159,12 +167,12 @@ Disabled background: `Fill/Action/Disabled` (`--semantic-color-fill-action-disab
 | `stroke.static.neutral.base` | `--semantic-color-stroke-static-neutral-faint` | #f9f7f5 | Default border (0.75px) |
 | `stroke.action.primary.strong.hover` | `--semantic-color-stroke-action-primary-strong-hover` | #5475c6 | Hover border (1px) |
 | `stroke.action.primary.strong.pressed` | `--semantic-color-stroke-action-primary-strong-pressed` | #4b6ec3 | Focused / with-value / filter-active border (1px) |
-| `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` | #77726b | Cancel–filter divider (0.75px) |
+| `stroke.action.secondary.rest` | `--semantic-color-stroke-action-secondary-rest` | #77726b | Cancel filter divider (0.75px) |
 | `stroke.action.status.negative.rest` | `--semantic-color-stroke-action-status-negative-rest` | #cf6e6e | Error state border (1px) |
 
 Disabled border: `Stroke/Action/Disabled` (`--semantic-color-stroke-action-disabled`). Resolved 2026-09-03, same as the background.
 
-TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` — no semantic token exists yet. See §17.
+TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)`: no semantic token exists yet. See §17.
 
 ### 3.3 Text
 
@@ -177,10 +185,10 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 
 | Semantic token | CSS variable | Resolved | Usage |
 |---|---|---|---|
-| `foreground.action.secondary.rest` | `--semantic-color-foreground-action-secondary-rest` | #3d3d3d | Search + cancel + filter icon — idle |
-| `foreground.action.secondary.hover` | `--semantic-color-foreground-action-secondary-hover` | #202020 | All icons — hover |
-| `foreground.action.disabled` | `--semantic-color-foreground-action-disabled` | #979797 | All icons — disabled |
-| `foreground.action.status.negative.on-subtle.rest` | `--semantic-color-foreground-action-status-negative-on-subtle-rest` | #722121 | Search icon — error state |
+| `foreground.action.secondary.rest` | `--semantic-color-foreground-action-secondary-rest` | #3d3d3d | Search + cancel + filter icon, idle |
+| `foreground.action.secondary.hover` | `--semantic-color-foreground-action-secondary-hover` | #202020 | All icons: hover |
+| `foreground.action.disabled` | `--semantic-color-foreground-action-disabled` | #979797 | All icons, disabled |
+| `foreground.action.status.negative.on-subtle.rest` | `--semantic-color-foreground-action-status-negative-on-subtle-rest` | #722121 | Search icon: error state |
 
 ### 3.5 Geometry
 
@@ -192,7 +200,7 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 | Default border width | `borderwidth.thin` | 0.75 | `--primitive-unit-unit-0-point-75` × 1px |
 | Active border width | `borderwidth.base` | 1 | `--primitive-unit-unit-1` × 1px |
 | Filter divider width | `borderwidth.thin` | 0.75 | same as default border |
-| Touch target height | hard-coded | 48 | none — 44px min WCAG rule + 4px nav clearance |
+| Touch target height | hard-coded | 48 | none, 44px min WCAG rule + 4px nav clearance |
 | Inner pill min-height | hard-coded | 36 | none |
 | Icon size | hard-coded | 16 | none |
 | TopNavSearch collapsed icon | hard-coded | 20 | none |
@@ -206,7 +214,7 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 | Property | Token | Resolved |
 |---|---|---|
 | Font family | `type.desktop.label.input.base.regular.fontfamily` | Red Hat Text |
-| Font weight | 400 (regular) | — |
+| Font weight | 400 (regular) | - |
 | Font size | `type.desktop.label.input.base.regular.fontsize` | 14px (via `--primitive-type-size-14`) |
 | Line height | `type.desktop.label.input.base.regular.lineheight` | 20px (via `--primitive-type-line-height-14pt-single`) |
 | Letter spacing | `type.desktop.label.input.base.regular.letterspacing` | 0.3px (via `--primitive-type-letter-spacing-wide`) |
@@ -241,21 +249,21 @@ TopNavSearch collapsed button border (dark surface): `rgba(251,251,251,0.14)` �
 | `filterBadge` | `boolean` | `false` | Shows the dot badge on the funnel (typically tied to filterActive) |
 | `disabled` | `boolean` | `false` | Disables the component |
 | `error` | `boolean` | `false` | Error visual state |
-| `onSearch` | `(value: string) => void` | — | Called on Enter or search icon click (standalone use) |
-| `onSearchIconClick` | `() => void` | — | When provided, overrides the leading search icon button's onClick. **Deprecated for the expand/collapse job.** The expanded bar and TopNav's takeover now exit via a back arrow placed outside the field, to its left, so the leading glyph is never a second exit sitting beside the trailing clear control. Still available for a genuinely different leading action. |
-| `onFilterClick` | `() => void` | — | Called when filter button tapped |
-| `onChange` | `(value: string) => void` | — | Called on every keystroke |
-| `onClear` | `() => void` | — | Called when clear (X) button tapped |
+| `onSearch` | `(value: string) => void` | - | Called on Enter or search icon click (standalone use) |
+| `onSearchIconClick` | `() => void` | - | When provided, overrides the leading search icon button's onClick. **Deprecated for the expand/collapse job.** The expanded bar and TopNav's takeover now exit via a back arrow placed outside the field, to its left, so the leading glyph is never a second exit sitting beside the trailing clear control. Still available for a genuinely different leading action. |
+| `onFilterClick` | `() => void` | - | Called when filter button tapped |
+| `onChange` | `(value: string) => void` | - | Called on every keystroke |
+| `onClear` | `() => void` | - | Called when clear (X) button tapped |
 | `className` | `string` | `""` | Additional CSS class on root |
-| `id` | `string` | — | For label association |
+| `id` | `string` | - | For label association |
 
 ### 5.2 TopNavSearch props
 
 | Prop | Type | Default | Notes |
 |---|---|---|---|
 | `expanded` | `boolean` | `false` | Controlled expanded state |
-| `onExpandChange` | `(expanded: boolean) => void` | — | Called on expand or collapse |
-| `searchProps` | `SearchInputProps` | — | All SearchInput props forwarded |
+| `onExpandChange` | `(expanded: boolean) => void` | - | Called on expand or collapse |
+| `searchProps` | `SearchInputProps` | - | All SearchInput props forwarded |
 | `className` | `string` | `""` | Additional CSS class on root |
 
 ### 5.3 Variant rules
@@ -276,17 +284,17 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 | State | Bar border | Bar bg | Icon colour | Text colour | Filter pip bg |
 |---|---|---|---|---|---|
-| **Idle** | `stroke.static.neutral.base` 0.75px | `fill.static.neutral.faint` | `foreground.action.secondary.rest` | placeholder: `foreground.static.neutral.base` | — |
-| **Hover** | `stroke.action.primary.strong.hover` 1px | `fill.static.neutral.faint` | `foreground.action.secondary.hover` | (same) | — |
-| **Focused** | `stroke.action.primary.strong.pressed` 1px | `fill.static.neutral.faint` | (same as hover) | (same) | — |
-| **With-value** | `stroke.action.primary.strong.pressed` 1px | `fill.static.neutral.faint` | (base) | `foreground.static.neutral.bold` | — |
+| **Idle** | `stroke.static.neutral.base` 0.75px | `fill.static.neutral.faint` | `foreground.action.secondary.rest` | placeholder: `foreground.static.neutral.base` | - |
+| **Hover** | `stroke.action.primary.strong.hover` 1px | `fill.static.neutral.faint` | `foreground.action.secondary.hover` | (same) | - |
+| **Focused** | `stroke.action.primary.strong.pressed` 1px | `fill.static.neutral.faint` | (same as hover) | (same) | - |
+| **With-value** | `stroke.action.primary.strong.pressed` 1px | `fill.static.neutral.faint` | (base) | `foreground.static.neutral.bold` | - |
 | **Filter-active** | `stroke.action.primary.strong.pressed` 1px | `fill.static.neutral.faint` | (base) | (placeholder or bold) | `fill.action.primary.subtle.rest` |
-| **Disabled** | primitive fallback 1px | primitive fallback | `foreground.action.disabled` | (38% opacity) | — |
-| **Error** | `stroke.action.status.negative.rest` 1px | `fill.static.neutral.faint` | `foreground.action.status.negative.on-subtle.rest` | (placeholder) | — |
+| **Disabled** | primitive fallback 1px | primitive fallback | `foreground.action.disabled` | (38% opacity) | - |
+| **Error** | `stroke.action.status.negative.rest` 1px | `fill.static.neutral.faint` | `foreground.action.status.negative.on-subtle.rest` | (placeholder) | - |
 
 ### State logic rules
 
-1. Idle is the default — no modifier.
+1. Idle is the default: no modifier.
 2. Hover applies on `mouseenter` when the field is not focused.
 3. Focused applies on `focus` and takes precedence over hover.
 4. With-value applies on `blur` when value is non-empty. Focused takes precedence when the field is active.
@@ -317,7 +325,7 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 ### Badge
 
-- Must have `aria-hidden="true"` — the badge is decorative. The accessible state is communicated via `aria-label` change on the filter button.
+- Must have `aria-hidden="true"`: the badge is decorative. The accessible state is communicated via `aria-label` change on the filter button.
 
 ---
 
@@ -340,7 +348,7 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 - Size: 48×48px outer.
 - Border-radius: 12px (`cornerradius.medium`).
 - Background: `fill.action.primary.subtle.rest` = rgba(160,181,230,0.08).
-- Border: 1.5px solid rgba(251,251,251,0.14). No semantic token — flagged in §17.
+- Border: 1.5px solid rgba(251,251,251,0.14). No semantic token, flagged in §17.
 - Icon: 20×20px search SVG, fill rgba(251,251,251,0.9).
 
 ---
@@ -368,21 +376,21 @@ States apply to the pill (`.search__inner`). All token names are semantic.
 
 ## 10. Collapsed state (TopNavSearch)
 
-The collapsed state is the default for TopNavSearch on page load. It renders a single 48×48 icon button on the dark nav surface. The button is not a toggle in the ARIA sense until the panel behind it is implemented — for now `aria-expanded` reflects whether the bar is expanded.
+The collapsed state is the default for TopNavSearch on page load. It renders a single 48×48 icon button on the dark nav surface. The button is not a toggle in the ARIA sense until the panel behind it is implemented, for now `aria-expanded` reflects whether the bar is expanded.
 
-The collapsed button is hidden (opacity 0, pointer-events none) while the bar is expanded. The transition is managed by the width animation on the bar container — the button fades out as the bar slides in.
+The collapsed button is hidden (opacity 0, pointer-events none) while the bar is expanded. The transition is managed by the width animation on the bar container: the button fades out as the bar slides in.
 
 ---
 
 ## 11. Iconography
 
-All icons use **Material Symbols Rounded** — rendered in code as font characters, not as SVG paths.
+All icons use **Material Symbols Rounded**, rendered in code as font characters, not as SVG paths.
 
 | Icon | Figma layer name | Material Symbols ligature | Size in bar | Size in collapsed btn |
 |---|---|---|---|---|
 | Search (magnifying glass) | `search` | `search` | 16×16px | 20×20px |
-| Clear (circle-X) | `cancel` | `cancel` | 16×16px | — |
-| Filter (funnel) | `filter_alt` | `filter_alt` | 16×16px | — |
+| Clear (circle-X) | `cancel` | `cancel` | 16×16px | - |
+| Filter (funnel) | `filter_alt` | `filter_alt` | 16×16px | - |
 
 **Convention:** The Figma layer name IS the ligature string. When reading this component via `get_design_context`, the icon frame's `data-name` attribute gives the exact ligature to use in code. No SVG paths. No guessing.
 
@@ -393,9 +401,9 @@ All icons use **Material Symbols Rounded** — rendered in code as font characte
 <span class="material-symbols-rounded">filter_alt</span>
 ```
 
-Font variation settings: `'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20` — Figma uses the filled Rounded variant (FILL=1). This is specific to the search bar; other components may use FILL=0.
+Font variation settings: `'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20`, Figma uses the filled Rounded variant (FILL=1). This is specific to the search bar; other components may use FILL=0.
 
-`aria-hidden="true"` on all icon spans — labels are carried by the parent button.
+`aria-hidden="true"` on all icon spans, labels are carried by the parent button.
 
 ---
 
@@ -403,7 +411,7 @@ Font variation settings: `'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20` — Figma u
 
 ### Hover-safe bridge
 
-The icon buttons (search, clear, filter) are 24×24px with 12px border-radius, centered inside the 48px touch target. Hover state on the icon pill does not require hovering the exact 16px icon — the full 24×24 button is the hover zone.
+The icon buttons (search, clear, filter) are 24×24px with 12px border-radius, centered inside the 48px touch target. Hover state on the icon pill does not require hovering the exact 16px icon: the full 24×24 button is the hover zone.
 
 ### Clear button appearance
 
@@ -425,7 +433,7 @@ SearchInput uses the [Searchbox pattern](https://www.w3.org/WAI/ARIA/apg/pattern
 
 - Touch target for the whole bar: 48×48px minimum height (WCAG 2.5.5 AAA).
 - Each icon button inside the bar: 24×24px visual, 44×44px effective (achieved by the 48px bar height + centered alignment). Engineering must confirm the effective target meets 44×44px by inspecting computed hit areas.
-- TopNavSearch collapsed button: 48×48px — meets WCAG 2.5.5 AAA.
+- TopNavSearch collapsed button: 48×48px, meets WCAG 2.5.5 AAA.
 
 ### 13.2 ARIA markup
 
@@ -492,7 +500,7 @@ SearchInput uses the [Searchbox pattern](https://www.w3.org/WAI/ARIA/apg/pattern
 
 ### 13.4 Focus styles
 
-The browser default focus ring is preserved on the input. Icon buttons use `border-radius: 12px` as the focus shape — engineering must apply a `focus-visible` outline that matches this radius (e.g. `outline: 2px solid #3555a0; outline-offset: 2px; border-radius: 12px`). The 12px radius aligns with `cornerradius.focused-element`.
+The browser default focus ring is preserved on the input. Icon buttons use `border-radius: 12px` as the focus shape, engineering must apply a `focus-visible` outline that matches this radius (e.g. `outline: 2px solid #3555a0; outline-offset: 2px; border-radius: 12px`). The 12px radius aligns with `cornerradius.focused-element`.
 
 Reduced motion: TopNavSearch expand/collapse removes the spring animation and uses a simple `opacity` fade. See §14.
 
@@ -501,8 +509,8 @@ Reduced motion: TopNavSearch expand/collapse removes the spring animation and us
 | State | Announcement |
 |---|---|
 | Bar focused | "Search, search box" (from `type="search"` + label) |
-| Filter button — idle | "Open filters, button" |
-| Filter button — filter active | "Open filters (filters active), button" |
+| Filter button, idle | "Open filters, button" |
+| Filter button, filter active | "Open filters (filters active), button" |
 | Clear button | "Clear search, button" |
 | TopNavSearch collapsed btn | "Open search, button, collapsed" (aria-expanded false) |
 | TopNavSearch expanded | "Open search, button, expanded" (aria-expanded true) |
@@ -514,7 +522,7 @@ Reduced motion: TopNavSearch expand/collapse removes the spring animation and us
 | Placeholder `#606060` on `#ffffff` | 5.74:1 | AA pass |
 | Input value `#202020` on `#ffffff` | 16.1:1 | AAA pass |
 | Search icon `#6b6b6b` on `#ffffff` | 4.61:1 | AA pass (graphic) |
-| Error border `#b03a3a` on `#ffffff` | — | Confirmed AA, TBD exact ratio |
+| Error border `#b03a3a` on `#ffffff` | - | Confirmed AA, TBD exact ratio |
 | TopNav icon `rgba(251,251,251,0.9)` on `#1b2a4a` | TBD | [Needs engineering verification] |
 
 ---
@@ -523,18 +531,18 @@ Reduced motion: TopNavSearch expand/collapse removes the spring animation and us
 
 Applies to TopNavSearch expand/collapse only.
 
-Applies to TopNavSearch expand/collapse only. All motion resolves through `--motion-*` tokens — no hardcoded ms/curves.
+Applies to TopNavSearch expand/collapse only. All motion resolves through `--motion-*` tokens: no hardcoded ms/curves.
 
 | Property | Token | Why |
 |---|---|---|
-| Expand | `--motion-duration-4` + `--motion-easing-spring` | 300 ms with a whisper of overshoot — the bar springs open (the `pwSearchExpand` keyframe). |
-| Collapse | `--motion-duration-4` + `--motion-easing-accelerate` | Same duration, clean accelerating exit — closing retreats cleanly. |
+| Expand | `--motion-duration-4` + `--motion-easing-spring` | 300 ms with a whisper of overshoot: the bar springs open (the `pwSearchExpand` keyframe). |
+| Collapse | `--motion-duration-4` + `--motion-easing-accelerate` | Same duration, clean accelerating exit, closing retreats cleanly. |
 | Animated property | `width` (0 → 336px) + `opacity` (0 → 1) | Width drives the layout shift. Opacity fades content in so it doesn't cut on. |
 | Focus delay | 120 ms after expand starts (timer, not a transition) | Enough time for the animation to start before focus moves, so the input doesn't flash. |
 | Reduced motion | opacity fade only; `width` changes instantly | `prefers-reduced-motion: reduce` via media query. |
 
 > **IMPLEMENTATION RULE: the expand uses `--motion-easing-spring`, not a strong bounce.**
-> Earlier this was a spec-locked `cubic-bezier(0.34, 1.56, 0.64, 1)` (a large overshoot past 336px). That violates the system bounce policy (overshoot capped at ~1.04; y2 ≥ 1.08 is a bug — design-system-spec §2.2). It is now the system `--motion-easing-spring` (1.04): a barely-there overshoot, easeful not bouncy. Do not reintroduce a strong-overshoot curve.
+> Earlier this was a spec-locked `cubic-bezier(0.34, 1.56, 0.64, 1)` (a large overshoot past 336px). That violates the system bounce policy (overshoot capped at ~1.04; y2 ≥ 1.08 is a bug, design-system-spec §2.2). It is now the system `--motion-easing-spring` (1.04): a barely-there overshoot, easeful not bouncy. Do not reintroduce a strong-overshoot curve.
 
 ---
 
@@ -544,7 +552,7 @@ Applies to TopNavSearch expand/collapse only. All motion resolves through `--mot
 |---|---|---|
 | ≥ 1024px (desktop) | SearchInput standalone | 320px fixed width or 100% in container |
 | ≥ 1024px (desktop) | TopNavSearch | Collapsed by default. Expands to 336px (320px bar + 8px container padding × 2) inline in the nav. |
-| < 1024px (tablet/mobile) | TopNavSearch | Same collapsed/expanded behaviour. Expanded bar may overlay nav items — caller is responsible for layout. Detailed mobile spec deferred to v2 (see §17). |
+| < 1024px (tablet/mobile) | TopNavSearch | Same collapsed/expanded behaviour. Expanded bar may overlay nav items, caller is responsible for layout. Detailed mobile spec deferred to v2 (see §17). |
 | Any | SearchInput height | Always 48px touch target, 36px visual pill. Never shrinks. |
 
 ---
@@ -552,10 +560,10 @@ Applies to TopNavSearch expand/collapse only. All motion resolves through `--mot
 ## 16. What to pass to implement this component
 
 1. This spec (all sections).
-2. The HTML demo: `components/search/search.html` — the production reference. Every state, every interaction is live and inspectable.
+2. The HTML demo: `components/search/search.html`: the production reference. Every state, every interaction is live and inspectable.
 3. Figma nodes: 40006978-23158 (base), 40007351-13533 (filter-active), 40007095-4048 (TopNavSearch).
 4. Token files: `themes/light.css` + `themes/midnight.css` (colour), `layout.css` (spacing), `type.css` (the type scale), `motion.css`, `breakpoints.css`. `tokens.css` was retired 2026-09-03.
-5. Icon ligature names: `search`, `cancel`, `filter_alt` — all Material Symbols Rounded, rendered as font characters.
+5. Icon ligature names: `search`, `cancel`, `filter_alt`, all Material Symbols Rounded, rendered as font characters.
 
 ---
 
@@ -575,16 +583,31 @@ Applies to TopNavSearch expand/collapse only. All motion resolves through `--mot
 | TopNavSearch collapsed button border token | HIGH | `rgba(251,251,251,0.14)` has no semantic token. Needs a dark-mode stroke token from design. |
 | ~~Disabled state border/bg tokens~~ | RESOLVED 2026-09-03 | Now `Fill/Action/Disabled` and `Stroke/Action/Disabled`. The restructure collapsed every per-intent disabled state onto one shared Disabled per family, which is what this gap was waiting for. |
 | TopNavSearch dark-surface icon tokens | MEDIUM | Icon fill `rgba(251,251,251,0.9)` and placeholder colour `rgba(255,255,255,0.45)` are raw values. No dark-mode semantic tokens exist for these yet. |
-| Badge dot border width | MEDIUM | The dot's white ring uses 1.5px border. `borderwidth.base` = 1px. 1.5px has no semantic token — raw value for now. |
-| Icon pill hover/pressed fill | MEDIUM | `fill.action.secondary.hover` resolves to `warm-neutral-50` (#f3f0ec) — a visible warm cream on white surfaces. Intended behavior is a subtle transparent overlay. Using `rgba(0,0,0,0.06)` and `rgba(0,0,0,0.10)` as fallbacks until a correct semantic token exists. |
+| Badge dot border width | MEDIUM | The dot's white ring uses 1.5px border. `borderwidth.base` = 1px. 1.5px has no semantic token, raw value for now. |
+| Icon pill hover/pressed fill | MEDIUM | `fill.action.secondary.hover` resolves to `warm-neutral-50` (#f3f0ec): a visible warm cream on white surfaces. Intended behavior is a subtle transparent overlay. Using `rgba(0,0,0,0.06)` and `rgba(0,0,0,0.10)` as fallbacks until a correct semantic token exists. |
 
 ---
 
 ## 18. Storybook
 
-Not yet in Storybook. The pipeline skill will generate `SearchInput.stories.jsx` and `TopNavSearch.stories.jsx` after this spec reaches `Status: REVIEWED`.
+Sidebar-visible, matching the untagged exports in `Search.stories.jsx` exactly:
 
-The HTML demo at `components/search/search.html` is the production visual reference until stories exist.
+| Export | Name |
+|---|---|
+| `StateMatrix` | StateMatrix |
+| `Playground` | Playground |
+| `TokensFill` | TokensFill |
+| `TokensStroke` | TokensStroke |
+| `TokensForeground` | TokensForeground |
+| `TokensSpacing` | TokensSpacing |
+| `TokensMotion` | TokensMotion |
+
+Reference, `!dev`-tagged: `Field`.
+
+Deployed at `https://helloimjolopez-collab.github.io/pathway-ds/storybook/`.
+
+> Corrected 2026-10-07. This section read "Not yet in Storybook" while the page had been live. It is titled `Library/Global Search (Top Nav)`, because this component is the TopNav search bar specifically and not a general search field. `npm run check-spec-stories` now fails
+> on a spec that disagrees with its stories file.
 
 ---
 
@@ -597,9 +620,9 @@ deleted 2026-09-16. One doc per component, so there is no second file to drift.
 
 ### Key rules
 
-1. `SearchInput` is controlled — always supply `value` + `onChange`.
+1. `SearchInput` is controlled, always supply `value` + `onChange`.
 2. `TopNavSearch` is specifically for TopNav. Do not use it as a generic expandable search.
 3. The expanded `TopNavSearch` bar exits via a **back arrow outside the field, to its left** (`aria-label="Back"`, calls `collapse()`). Do **not** wire the exit onto the field's leading search glyph, and do not put a close control to the field's right: the field's own trailing clear control is already there, and two similar glyphs inches apart, one discarding the query and the other discarding the whole search, is the confusion this replaced. TopNav's full-bar takeover uses the identical affordance, so there is one way out of search everywhere.
 4. Escape key collapses `TopNavSearch`. This is already implemented in the component.
-5. The input uses `type="text" role="searchbox"` — not `type="search"` (which triggers browser native clear button).
+5. The input uses `type="text" role="searchbox"`, not `type="search"` (which triggers browser native clear button).
 6. v1: Open state (dropdown results) is deferred. Use Radix `Combobox` for that.

@@ -1,5 +1,5 @@
 /**
- * check-token-names.js — validate token names written as PROSE.
+ * check-token-names.js, validate token names written as PROSE.
  *
  * WHY THIS EXISTS, separately from the other two checkers:
  *
@@ -10,7 +10,7 @@
  *
  * The third case is the one that survives longest, because prose does not run.
  * A spec, an MDX docs page, or an agent brief can name a token that was deleted
- * a year ago and nothing complains — but a developer reading it, or an agent
+ * a year ago and nothing complains: but a developer reading it, or an agent
  * generating code from it, will faithfully reproduce a name that resolves to
  * nothing. That is worse than a broken build.
  *
@@ -89,6 +89,22 @@ const NAME_RE = new RegExp(
   "\\b(?:" + TIERS + ")(?:\\/" + SEG + "){1,4}", "g"
 );
 
+/**
+ * Is this match inside a file path rather than a token name?
+ *
+ * A token name is Tier/Segment, and a path is segment/segment too, so the
+ * regex cannot tell them apart on its own. What distinguishes them is the
+ * surrounding characters: a path has a lowercase directory or a file extension
+ * somewhere in the same run of non-space text.
+ */
+function isInsidePath(txt, index) {
+  let a = index, b = index;
+  while (a > 0 && !/[\s"'`(,|]/.test(txt[a - 1])) a--;
+  while (b < txt.length && !/[\s"'`),|]/.test(txt[b])) b++;
+  const run = txt.slice(a, b);
+  return /\.(jsx?|tsx?|mdx?|html|css|json|js)$/.test(run) || /(^|\/)[a-z][a-z0-9-]*\//.test(run);
+}
+
 function liveNames() {
   if (!existsSync(THEME_CSS)) {
     console.error(`${THEME_CSS} not found. Run \`node style-dictionary.config.js\` first.`);
@@ -131,7 +147,7 @@ const { full, groups } = liveNames();
 // WHY IT WAS ADDED (2026-09-10): a sweep found 165 distinct dash-form names in
 // .md and .mdx that no longer resolve, including a line in
 // docs/design-system-spec.md §4.2 instructing every component to target
-// `--semantic-color-light-mode-*` — a form retired on 2026-09-03 that resolves
+// `--semantic-color-light-mode-*`: a form retired on 2026-09-03 that resolves
 // to nothing. That is the overarching spec every component spec inherits from,
 // so the single worst place for it to be wrong, and nothing was looking:
 //   check-demo-tokens  scans HTML demos only
@@ -187,8 +203,8 @@ const liveProps = liveProperties();
 //
 // That ambiguity is not hypothetical. The migration that cleared these
 // initially rewrote `T.icon.actionSecondary` to `T.foreground.actionSecondary`
-// in four files — a runtime TypeError, because the object has no `foreground`
-// key — by matching `icon.action` inside it. Hence the word boundary at the end
+// in four files: a runtime TypeError, because the object has no `foreground`
+// key, by matching `icon.action` inside it. Hence the word boundary at the end
 // of the segment as well as the start.
 const DOT_GROUPS = new Set(["static", "action", "surface", "focusring", "contextual"]);
 const DOT_RE = /\b(?:fill|foreground|stroke|scrim|text|icon|surface)\.[a-z0-9-]+(?:\.[a-z0-9-]+)*\b/g;
@@ -216,7 +232,7 @@ const RETIRED_DOT_EXAMPLES = new Set([
   // 2026-09-15 (positionally: old Subtle -> Dim, old Medium -> Subtle), so every
   // `*.medium` rung outside Neutral and Brand is retired. CLAUDE.md §3.5's
   // sample reconciliation report quotes this one as its example of a stale
-  // name, and a bulk rename "fixed" it into a live name — which destroys the
+  // name, and a bulk rename "fixed" it into a live name: which destroys the
   // example, because the whole point of that block is to show a name that does
   // NOT resolve.
   "foreground.static.accent.jade.medium",
@@ -313,7 +329,7 @@ const RETIRED_EXAMPLES = new Set([
 // about retired names into false ones by rewriting them.
 //
 // So a name belongs here when a document names it in order to say it is gone.
-// It does NOT belong here to silence a genuine stale reference — if it starts
+// It does NOT belong here to silence a genuine stale reference: if it starts
 // turning up in documents that USE it rather than discuss it, the reference is
 // the bug, not the check.
 const RETIRED_SLASH_EXAMPLES = new Set([
@@ -406,6 +422,13 @@ for (const file of files) {
 
   for (const m of txt.matchAll(NAME_RE)) {
     const name = m[0].replace(/[\s-]+$/, "");
+    // A FILE PATH IS NOT A TOKEN NAME. The slash form is Tier/Segment/Segment,
+    // and `src/stories/Library/Icon/Icon.stories.jsx` matches it from `Icon`
+    // onwards. On 2026-10-07 that reported `Icon/Icon` as a stale token the
+    // moment an Icon component existed, and `Button/Icon/Avatar` out of a
+    // sentence listing a variant axis. Both were prose, and a checker that
+    // cries wolf on a path is one people learn to ignore.
+    if (isInsidePath(txt, m.index)) { skipped++; continue; }
     if (TYPE_STYLE.test(name) || ALLOW.has(name) || RETIRED_SLASH_EXAMPLES.has(name)) { skipped++; continue; }
     scanned++;
     if (isLive(name)) { valid++; continue; }

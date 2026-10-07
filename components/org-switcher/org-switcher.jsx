@@ -1,5 +1,5 @@
 /**
- * OrgSwitcher — Pathway Design System (v1, trigger only)
+ * OrgSwitcher, Pathway Design System (v1, trigger only)
  *
  * Trigger button that lives in the brand-blue top nav and shows the active
  * organisation. Catholic orgs render a second container after the org name
@@ -12,16 +12,16 @@
  *   Base    Desktop  40006819:14581
  *   Hover   Desktop  40006819:14582
  *   Pressed Desktop  40006933:15754
- *   Open    Desktop  40007336:9453    (Open variant — used only for the chevron rotation)
+ *   Open    Desktop  40007336:9453    (Open variant, used only for the chevron rotation)
  *   Base    Mobile   40006820:14757
  *   Hover   Mobile   40006820:14772
  *   Pressed Mobile   40006933:15766
  *   Open    Mobile   40007336:17470
  *
  * Figma annotations on the desktop label:
- *   • Container.OrgLabel             — "Text truncates if going beyond 248pt"
- *   • Container.OrgName              — "Text Truncates if frame going beyond 170pt"
- *   • Container.CityName.Catholic    — "Catholic orgs only. NOT a suborg name."
+ *   • Container.OrgLabel, "Text truncates if going beyond 248pt"
+ *   • Container.OrgName, "Text Truncates if frame going beyond 170pt"
+ *   • Container.CityName.Catholic, "Catholic orgs only. NOT a suborg name."
  *
  * The placeholder icon (when no org logo on file) is the church/building SVG
  * at Figma node 40007243:73426. Never replace with text initials.
@@ -41,7 +41,7 @@ const CHURCH_ICON_PATH =
 
 // ─── DESIGN TOKENS (dark mode) ────────────────────────────────────────────────
 // Every value is a semantic token name. Fallbacks are the resolved Figma values
-// — they're never used at runtime when Storybook loads the token contract, but they
+//: they're never used at runtime when Storybook loads the token contract, but they
 // keep the file readable on its own.
 const T = {
   // ACTION/GHOST, the whole way through. This component sits on the brand bar,
@@ -53,7 +53,7 @@ const T = {
   // Reported 2026-10-02 and measured against Figma node 40006819:14583.
   //
   // THE REST STATE HAS NO FILL. Figma's State=Base, Type=Desktop has no fill on
-  // Container.Main at all — only the stroke. The fill appears on Hover
+  // Container.Main at all, only the stroke. The fill appears on Hover
   // (#b6c6ec @16%) and deepens on Pressed and Open (#22386b @70%). fillBase is
   // kept as a name so the call site still reads in three states, but it is
   // transparent on purpose.
@@ -62,16 +62,16 @@ const T = {
   fillPressed: "var(--semantic-color-fill-action-ghost-pressed)",
 
   // Avatar placeholder background (when no logo on file). The avatar is the one
-  // element on this bar that is NOT ghost — it is a filled identity chip — so it
+  // element on this bar that is NOT ghost, it is a filled identity chip, so it
   // takes Action/Primary/Subtle.
   fillAvatarPlaceholder: "var(--semantic-color-fill-action-primary-subtle-rest)",
 
-  // Borders — Stroke/Action/Ghost at 36 / 50 / 70 percent.
+  // Borders, Stroke/Action/Ghost at 36 / 50 / 70 percent.
   strokeBase:    "var(--semantic-color-stroke-action-ghost-rest)",
   strokeHover:   "var(--semantic-color-stroke-action-ghost-hover)",
   strokePressed: "var(--semantic-color-stroke-action-ghost-pressed)",
 
-  // Text — org name. Ghost has no weight axis, so emphasis is font-weight at the
+  // Text, org name. Ghost has no weight axis, so emphasis is font-weight at the
   // call site rather than a bolder colour token.
   textBase:    "var(--semantic-color-foreground-action-ghost-rest)",
   textHover:   "var(--semantic-color-foreground-action-ghost-hover)",
@@ -172,7 +172,7 @@ function TriggerAvatar({ logoUrl, size, borderColor }) {
 }
 
 // ─── TYPOGRAPHY ──────────────────────────────────────────────────────────────
-// Label/Button/S — used on both desktop and mobile per Figma. The primitive
+// Label/Button/S, used on both desktop and mobile per Figma. The primitive
 // values in the raw token JSON are unitless (e.g. lineheight=20, not 20px), which
 // breaks CSS inline `lineHeight: var(...)` because 20 is interpreted as a
 // multiplier. So raw px values are used here, with the token names captured
@@ -190,24 +190,24 @@ const TYPE_S = {
 };
 
 // ═════════════════════════════════════════════════════════════════════════════
-//   ORG SWITCHER — TRIGGER (v1)
+//   ORG SWITCHER, TRIGGER (v1)
 // ═════════════════════════════════════════════════════════════════════════════
 //
 // Props
-//   orgName   — full organisation name. Truncates with ellipsis at 180px
+//   orgName, full organisation name. Truncates with ellipsis at 180px
 //               desktop / 50px mobile.
-//   orgType   — "protestant" (default) | "catholic". Catholic-only gate
+//   orgType, "protestant" (default) | "catholic". Catholic-only gate
 //               for the CityName container (spec §0.1). Even if a cityName
 //               string is supplied, Protestant orgs render no city container.
-//   cityName  — city/diocese name. Catholic orgs only.
-//   logoUrl   — org logo image URL. When provided the logo avatar renders.
-//               When absent no avatar is shown — org name only (Figma default:
+//   cityName, city/diocese name. Catholic orgs only.
+//   logoUrl, org logo image URL. When provided the logo avatar renders.
+//               When absent no avatar is shown, org name only (Figma default:
 //               showOrgAvatar = false). The church placeholder is NOT shown.
-//   open      — controlled open state. Flips the chevron rotation and applies
+//   open, controlled open state. Flips the chevron rotation and applies
 //               pressed-state styling. The caller renders any panel above.
-//   onClick   — () => void — fired when the trigger is activated.
-//   disabled  — true for single-org users. Renders inert at 50% opacity.
-//   mobile    — force the mobile compact display regardless of viewport.
+//   onClick, () => void, fired when the trigger is activated.
+//   disabled, true for single-org users. Renders inert at 50% opacity.
+//   mobile, force the mobile compact display regardless of viewport.
 
 export function OrgSwitcher({
   orgName    = "Organisation",
@@ -225,7 +225,7 @@ export function OrgSwitcher({
   const [isMobile, setIsMobile] = useState(mobile === true);
 
   // Viewport detection. When `mobile` is explicitly true or false, that value
-  // wins — useful for Storybook stories where the iframe width is artificial.
+  // wins, useful for Storybook stories where the iframe width is artificial.
   // When `mobile` is undefined, fall back to (max-width: 767px) media query.
   useEffect(() => {
     if (mobile === true)  { setIsMobile(true);  return; }
@@ -244,14 +244,14 @@ export function OrgSwitcher({
   const text   = isActive ? T.textPressed   : hovered ? T.textHover   : T.textBase;
   const icon   = isActive ? T.iconPressed   : hovered ? T.iconHover   : T.iconBase;
 
-  // CityName visibility — Catholic orgs ONLY (spec §0.1).
+  // CityName visibility, Catholic orgs ONLY (spec §0.1).
   const showCityName = orgType === "catholic" && Boolean(cityName);
 
   const ariaLabel = showCityName
     ? `Current organisation: ${orgName}, ${cityName}. Activate to switch.`
     : `Current organisation: ${orgName}. Activate to switch.`;
 
-  // Avatar size from Figma — Container.Avatar size-24 desktop, h-full (=20) mobile
+  // Avatar size from Figma, Container.Avatar size-24 desktop, h-full (=20) mobile
   const AVATAR_SZ = isMobile ? 20 : 24;
 
   return (
@@ -278,7 +278,7 @@ export function OrgSwitcher({
         width: isMobile ? 108 : "fit-content",
       }}
     >
-      {/* Container.Main — the pill button */}
+      {/* Container.Main: the pill button */}
       <button
         type="button"
         disabled={disabled}
@@ -301,7 +301,7 @@ export function OrgSwitcher({
           background: disabled ? T.fillBase : fill,
           opacity: disabled ? 0.5 : 1,
           cursor: disabled ? "not-allowed" : "pointer",
-          // Figma: Container.Main — pl-12px pr-6px py-4px (Padding/Medium, XTight, XXTight)
+          // Figma: Container.Main, pl-12px pr-6px py-4px (Padding/Medium, XTight, XXTight)
           paddingLeft: "var(--semantic-layout-units-padding-tight)",
           paddingRight: "var(--semantic-layout-units-padding-xxtight)",
           paddingTop:    T.pXxtight,
@@ -320,7 +320,7 @@ export function OrgSwitcher({
         }}
         onBlur={e => (e.currentTarget.style.outline = "none")}
       >
-        {/* Intermediate wrapper around RowStart — `flex flex-row items-center
+        {/* Intermediate wrapper around RowStart, `flex flex-row items-center
             self-stretch` per Figma desktop. Lets the row vertically fill the
             button content area on desktop. */}
         <div style={{ display: "flex", flexDirection: "row", alignItems: "center", alignSelf: "stretch", flexShrink: 0 }}>
@@ -335,17 +335,17 @@ export function OrgSwitcher({
               : { height: "100%" }),
           }}>
             {/* Avatar only rendered when a logo URL is explicitly provided.
-                The church placeholder is no longer shown by default — per Figma
+                The church placeholder is no longer shown by default, per Figma
                 the OrgSwitcher shows org name only (showOrgAvatar = false). */}
             {logoUrl && <TriggerAvatar logoUrl={logoUrl} size={AVATAR_SZ} borderColor={stroke} />}
 
-            {/* Container.OrgLabel — DESKTOP ONLY (annotation: truncates at 248pt) */}
+            {/* Container.OrgLabel, DESKTOP ONLY (annotation: truncates at 248pt) */}
             {!isMobile && (
               <div style={{
                 display: "flex", alignItems: "center", height: "100%",
                 maxWidth: 248, flexShrink: 0, minWidth: 0,
               }}>
-                {/* Container.OrgName — content-sized, max-w 180.
+                {/* Container.OrgName, content-sized, max-w 180.
                     Annotation: "Text Truncates if frame going beyond 170pt"
                     Figma autolayout class is max-w-[180px] (treat 180 as the
                     cap; "170pt" annotation is the design intent).
@@ -367,10 +367,10 @@ export function OrgSwitcher({
                   </p>
                 </div>
 
-                {/* Container.CityName.Catholic — Catholic orgs ONLY (spec §0.1).
+                {/* Container.CityName.Catholic, Catholic orgs ONLY (spec §0.1).
                     Figma annotation: "Catholic orgs only. NOT a suborg name."
                     The 6px left padding gives the pipe visual breathing room
-                    from the OrgName — Figma renders this gap via the
+                    from the OrgName, Figma renders this gap via the
                     OrgLabel autolayout, but with overflow:hidden + nowrap on
                     the inner <p>, leading whitespace inside the <p> is
                     unreliable across browsers. Use padding instead. */}
@@ -396,9 +396,9 @@ export function OrgSwitcher({
               </div>
             )}
 
-            {/* Container.Label — MOBILE ONLY (Figma 40007067:13273).
+            {/* Container.Label, MOBILE ONLY (Figma 40007067:13273).
                 Fixed w-50, holds the truncated full org name. Typography is
-                Label/Button/S — same scale as desktop. */}
+                Label/Button/S: same scale as desktop. */}
             {isMobile && (
               <div style={{
                 display: "flex", alignItems: "center", height: "100%",
@@ -420,13 +420,13 @@ export function OrgSwitcher({
           </div>
         </div>
 
-        {/* Container.RowEnd — p-2 (xxxtight) around the trailing icon */}
+        {/* Container.RowEnd, p-2 (xxxtight) around the trailing icon */}
         <div style={{
           display: "flex", alignItems: "center", justifyContent: "center",
           padding: T.pXxxtight,
           flexShrink: 0,
         }}>
-          {/* Container.IconTrailing — size-16, p-2, holds the chevron */}
+          {/* Container.IconTrailing, size-16, p-2, holds the chevron */}
           <div style={{
             boxSizing: "border-box",
             display: "flex", alignItems: "center", justifyContent: "center",
@@ -444,19 +444,18 @@ export function OrgSwitcher({
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-//   ORG SWITCHER PANEL  (the "Open" state — dropdown, Figma node 40007336:9453)
+//   ORG SWITCHER PANEL  (the "Open" state, dropdown, Figma node 40007336:9453)
 // ═══════════════════════════════════════════════════════════════════════════════
 // Implemented from the Figma Open/Desktop variant. Two deliberate deviations from
 // the raw Figma export, both Figma-side artifacts:
-//   1. Font is Red Hat Text (the DS font, CLAUDE.md §6) — Figma reported
+//   1. Font is Red Hat Text (the DS font, CLAUDE.md §6), Figma reported
 //      "Google Sans Flex", which is not a Pathway font.
-//   2. Panel text/border/icon use LIGHT-mode tokens — the Figma node bound
+//   2. Panel text/border/icon use LIGHT-mode tokens: the Figma node bound
 //      DARK-mode tokens onto a white surface (e.g. a search border of
 //      rgba(255,255,255,0.16) that is invisible on white). Corrected for contrast.
 // Icons are Material Symbols Rounded (Figma used Font Awesome for the chevron).
 
-// Ministry Brands module colours (Figma "Module Colors/*"). Not yet tokenised —
-// flagged as a token gap in org-switcher-spec §Gaps.
+// Ministry Brands module colours (Figma "Module Colors/*"). Not yet tokenised, // flagged as a token gap in org-switcher-spec §Gaps.
 export const ORG_MODULES = [
   { key: "people",         color: "#877EC8", icon: "group" },
   { key: "giving",         color: "#4BA8CB", icon: "volunteer_activism" },
@@ -524,7 +523,7 @@ function OrgRow({ org, active, onSelect }) {
         transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
       }}
     >
-      {/* Logo tile — org initials on brand fill (falls back from a logo image) */}
+      {/* Logo tile, org initials on brand fill (falls back from a logo image) */}
       <div style={{
         width: 44, height: 44, borderRadius: 6, flexShrink: 0, background: PANEL_T.logoBg,
         display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
@@ -548,16 +547,16 @@ function OrgRow({ org, active, onSelect }) {
 }
 
 /**
- * OrgSwitcherPanel — the dropdown shown when the OrgSwitcher trigger is open.
+ * OrgSwitcherPanel: the dropdown shown when the OrgSwitcher trigger is open.
  * Caller positions it (e.g. absolutely under the trigger). Trigger-only
  * OrgSwitcher stays separate; compose the two per the Figma Open variant.
  *
  * Props:
- *   orgs         — [{ id, name, initials, logoUrl? }]  (default DEMO_ORGS)
- *   activeOrgId  — id of the current org (highlighted row)
- *   query        — controlled search string
- *   onQueryChange, onSearch, onSelect — callbacks
- *   style        — extra styles on the panel (positioning)
+ *   orgs, [{ id, name, initials, logoUrl? }]  (default DEMO_ORGS)
+ *   activeOrgId, id of the current org (highlighted row)
+ *   query, controlled search string
+ *   onQueryChange, onSearch, onSelect, callbacks
+ *   style, extra styles on the panel (positioning)
  */
 export function OrgSwitcherPanel({
   orgs = DEMO_ORGS, activeOrgId, query = "", onQueryChange, onSearch, onSelect, style,

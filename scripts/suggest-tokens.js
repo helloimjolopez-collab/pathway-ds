@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * suggest-tokens.js — map a hard-coded colour back to the token that already
+ * suggest-tokens.js, map a hard-coded colour back to the token that already
  * holds that value.
  *
  * WHY THIS EXISTS
@@ -147,7 +147,7 @@ for (const file of files) {
   if (!edits.length) continue;
   const exact = edits.filter((e) => e.token && e.d <= MAX_DE);
   const loose = edits.filter((e) => !e.token || e.d > MAX_DE);
-  console.log(`\n${file}  —  ${exact.length} exact, ${loose.length} need a decision`);
+  console.log(`\n${file}, ${exact.length} exact, ${loose.length} need a decision`);
   for (const e of exact) console.log(`   EXACT dE${e.d.toFixed(2)}  ${e.raw.padEnd(24)} -> var(${e.token})`);
   for (const e of loose.slice(0, 8))
     console.log(

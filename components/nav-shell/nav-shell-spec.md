@@ -1,4 +1,4 @@
-# NavShell — Pathway Design System Component Spec
+# NavShell: Pathway Design System Component Spec
 
 **Status:** `PENDING HUMAN REVIEW`
 
@@ -11,13 +11,26 @@ Complete implementation reference for the Ministry Brands Amplify navigation she
 
 | Artefact | URL |
 |---|---|
-| Figma (ScreenTemplate) | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40006538-43236 |
+| Figma (ScreenTemplate, the SET) | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40009709-26016 |
 | Figma (TopNav) | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40007067-6508 |
-| Figma (SideNav) | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40003951-2927 |
-| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-navshell--docs (pending) |
+| Figma (SideNav.Container) | https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1375 |
+| Storybook | https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-navshell--docs |
 | HTML demo | https://helloimjolopez-collab.github.io/pathway-ds/components/nav-shell/nav-shell.html |
 
 ---
+
+> **Three of these links were wrong until 2026-10-07.** `40006538-43236` is a
+> VARIANT of the ScreenTemplate set, not the set, so it could not be read for
+> properties; the set is `40009709-26016`, three variants on `Breakpoint`
+> (Desktop/Tablet/Breakpoint3) with two SLOT properties and one boolean.
+> `40003951-2927` **does not exist in the file at all**; the SideNav set is
+> `40004059-1375`, `SideNav.Container`. The Storybook link was marked
+> "(pending)" while the page was live.
+>
+> Note that ScreenTemplate sits on the `↳ ❇️ Page Template` Figma page. The
+> PageTemplate *component* was removed from this repo because its
+> implementation was wrong, and NavShell was kept. NavShell corresponds to the
+> composition rather than to a module: there is no `nav-shell.jsx`.
 
 ## Section index
 
@@ -42,11 +55,11 @@ Complete implementation reference for the Ministry Brands Amplify navigation she
 
 ## 1. Purpose
 
-The NavShell is the fixed application frame that wraps every page in Ministry Brands Amplify. It is not a page — it is the container that every page lives inside. Its three jobs:
+The NavShell is the fixed application frame that wraps every page in Ministry Brands Amplify. It is not a page: it is the container that every page lives inside. Its three jobs:
 
-1. **Identity and context** — always tells the user which module (ModuleSwitcher), which organisation (OrgSwitcher), and which sub-section (SideNav) they are in.
-2. **Navigation** — provides access to all modules (TopNav), all pages within the current module (SideNav), and system-level actions (search, notifications, profile).
-3. **Layout** — defines the stable three-zone layout (TopNav + SideNav + Content) that every module shares. This predictability is what makes the product feel like a system rather than a collection of pages.
+1. **Identity and context**, always tells the user which module (ModuleSwitcher), which organisation (OrgSwitcher), and which sub-section (SideNav) they are in.
+2. **Navigation**, provides access to all modules (TopNav), all pages within the current module (SideNav), and system-level actions (search, notifications, profile).
+3. **Layout**, defines the stable three-zone layout (TopNav + SideNav + Content) that every module shares. This predictability is what makes the product feel like a system rather than a collection of pages.
 
 The NavShell never changes between pages. The SideNav items change per module. The content area changes per page. Everything else is constant.
 
@@ -94,7 +107,7 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 
 ## 3. Design tokens
 
-### TopNav surface (dark mode — brand blue)
+### TopNav surface (dark mode: brand blue)
 
 | Token | CSS variable | Resolved | Usage |
 |---|---|---|---|
@@ -182,16 +195,16 @@ The three zones are always present. Their dimensions change at breakpoints (see 
 
 | Breakpoint | Width | SideNav state | Content margin | TopNav changes |
 |---|---|---|---|---|
-| **Desktop** | ≥1024px | Expanded (240px) or Collapsed (84px rail) — user controls | 240px or 84px | Full labels, 2× notification bells |
-| **Tablet** | 768–1023px | Always collapsed rail (84px, no labels) | 84px fixed | Module label hidden, bells → more_vert |
+| **Desktop** | ≥1024px | Expanded (240px) or Collapsed (84px rail), user controls | 240px or 84px | Full labels, 2× notification bells |
+| **Tablet** | 768-1023px | Always collapsed rail (84px, no labels) | 84px fixed | Module label hidden, bells → more_vert |
 | **Mobile** | <768px | Hidden by default, overlay on hamburger tap | 0 | Hamburger visible, org label abbreviated, initials 11px |
 
 ### Desktop SideNav states
 
 The desktop SideNav has two user-controlled states:
 
-- **Expanded (240px):** labels + icons visible. Push layout — content area shifts right.
-- **Collapsed (84px):** icons only, labels hidden. Tooltip shown on hover. Push layout — content shifts to 84px.
+- **Expanded (240px):** labels + icons visible. Push layout, content area shifts right.
+- **Collapsed (84px):** icons only, labels hidden. Tooltip shown on hover. Push layout, content shifts to 84px.
 
 The user can toggle between these by clicking the collapse button at the bottom of the SideNav, or the `left_panel_close` / `right_panel_close` icon in the nav header.
 
@@ -210,8 +223,8 @@ The NavShell is composed from these existing DS components. Each has its own spe
 
 | Component | Role | Spec | Module |
 |---|---|---|---|
-| `TopNav` | Fixed top bar — module + org + search + profile | `components/top-nav/top-nav-spec.md` | `components/top-nav/top-nav.jsx` |
-| `SideNav` | Left navigation rail — module page nav | `components/sidenav/sidenav-spec.md` | `components/sidenav/sidenav.jsx` |
+| `TopNav` | Fixed top bar, module + org + search + profile | `components/top-nav/top-nav-spec.md` | `components/top-nav/top-nav.jsx` |
+| `SideNav` | Left navigation rail, module page nav | `components/sidenav/sidenav-spec.md` | `components/sidenav/sidenav.jsx` |
 | `SearchInput` / `TopNavSearch` | Search trigger inside TopNav | `components/search/search-spec.md` | `components/search/search.jsx` |
 | `OrgSwitcher` | Org name trigger inside TopNav | `components/org-switcher/org-switcher-spec.md` | `components/org-switcher/org-switcher.jsx` |
 
@@ -223,7 +236,7 @@ The **ScreenTemplate** content area (PageHeading, ToolBar, FilterChips, Tabs, Ca
 
 The ScreenTemplate fills the Shell.Main scrollable area. It is composed from four zones stacked vertically.
 
-### 7.1 Slot.PageNavigation — Tabs
+### 7.1 Slot.PageNavigation: Tabs
 
 Optional. When present, renders above the PageHeading.
 
@@ -235,9 +248,9 @@ Optional. When present, renders above the PageHeading.
 
 ### 7.2 PageHeading
 
-- **Title:** `heading.page.base.semibold` — 24px / 600 / 30px line-height / 0.1px tracking
+- **Title:** `heading.page.base.semibold`, 24px / 600 / 30px line-height / 0.1px tracking
   - Color: `foreground.static.neutral.bold` = #202020
-- **Subtitle:** `text.body.base.regular` — 16px / 400 / 22px / 0.1px tracking
+- **Subtitle:** `text.body.base.regular`, 16px / 400 / 22px / 0.1px tracking
   - Color: `foreground.static.neutral.base` = #313131
 - **Padding:** top 8px, bottom 16px, gap 8px between title and subtitle
 - **Trailing actions slot:** right-aligned, contains action buttons (Button DS component)
@@ -249,13 +262,13 @@ Stacks vertically at 8px gap. Default: one row.
 **Leading slot:**
 - Search bar: max-width 400px, min-width 200px, height 36px
   - Border: 0.75px `stroke.action.secondary.rest` = #b0aaa2
-  - **Border-radius: 6px** (NOT 8px — confirmed from Figma)
+  - **Border-radius: 6px** (NOT 8px, confirmed from Figma)
   - Padding: 8px horizontal
   - Search icon: 16×16, `foreground.action.secondary.rest` = #3d3d3d
 - FilterChips: inline row, gap 4px, each chip min-height 48px
   - Resting: transparent background, `foreground.action.secondary.rest` = #3d3d3d, font 12px/500
   - Active: `fill.action.primary.subtle.rest` = #eef2fb, `foreground.action.primary.on-subtle.rest` = #3555a0, font-weight 600
-  - Border-radius: 4px (`border-radius.xs`) — NOT 8px
+  - Border-radius: 4px (`border-radius.xs`), NOT 8px
 
 **Trailing slot:** action buttons (right-aligned)
 
@@ -329,7 +342,7 @@ All content-level customisation happens through `SHELL_CONFIG` at the top of the
 
 ```javascript
 const SHELL_CONFIG = {
-  // REQUIRED — the active module
+  // REQUIRED: the active module
   module: {
     id:       "giving",                // unique string
     label:    "Amplify Giving",        // display name in TopNav
@@ -337,22 +350,22 @@ const SHELL_CONFIG = {
     isCustom: false,                   // true ONLY for Amplify Home (uses custom SVG)
   },
 
-  // REQUIRED — the active organisation
+  // REQUIRED: the active organisation
   org: {
     name:   "NorthPoint Church",
     campus: "Atlanta",                 // empty string if no campus
     // logoUrl: "https://..."          // omit for default no-logo behavior
   },
 
-  // REQUIRED — the logged-in user (for profile avatar)
+  // REQUIRED: the logged-in user (for profile avatar)
   user: {
     name:     "Jo Lopez",
-    initials: "JL",                    // 2–3 chars, derived from name
+    initials: "JL",                    // 2-3 chars, derived from name
     email:    "jo@northpoint.org",
   },
 
-  // REQUIRED — the SideNav navigation items
-  // Order matters — items appear in this exact order
+  // REQUIRED: the SideNav navigation items
+  // Order matters, items appear in this exact order
   navItems: [
     {
       id:           "home",            // unique string
@@ -373,7 +386,7 @@ const SHELL_CONFIG = {
     },
   ],
 
-  // REQUIRED — the current page content
+  // REQUIRED: the current page content
   page: {
     title:     "Teams",
     subtitle:  "Manage your ministry teams and volunteers",
@@ -396,7 +409,7 @@ const SHELL_CONFIG = {
 - The Amplify Home module icon is a custom branded SVG (not a Material Symbol). Use `HomeModuleIcon` component. Do NOT replace it with `home` ligature.
 - All other module icons use Material Symbols Rounded.
 
-### 9.3 Layout rules — never break these
+### 9.3 Layout rules: never break these
 
 1. The TopNav is always `position: fixed; top: 0; z-index: 100; height: 60px`. Never change height.
 2. The SideNav is always `position: fixed; top: 60px; left: 0; bottom: 0`. Never absolute.
@@ -404,14 +417,14 @@ const SHELL_CONFIG = {
 4. At mobile (<768px), margin-left is 0 and the SideNav is an overlay (z-index > 50).
 5. The SideNav uses width transitions, never display:none. States: 240px (expanded), 84px (collapsed), 0px (mobile hidden).
 
-### 9.4 Breakpoint behaviour — exactly as designed
+### 9.4 Breakpoint behaviour: exactly as designed
 
 **Desktop (≥1024px):**
 - SideNav: 240px expanded OR 84px collapsed (user toggles)
 - TopNav: full module label, 2× notification bells, no hamburger
 - Content: margin-left matches SideNav width
 
-**Tablet (768–1023px):**
+**Tablet (768-1023px):**
 - SideNav: always 84px rail (no labels, no collapse button action)
 - TopNav: module icon only (label hidden), bells → more_vert, no hamburger
 - Content: margin-left always 84px
@@ -431,13 +444,13 @@ On mobile, the org trigger shows abbreviated text. The rules:
 
 ### 9.6 What to never do
 
-- Never hardcode `#4b6ec3` — always use `var(--semantic-color-fill-static-brand-base, #4b6ec3)`.
-- Never hardcode `#fafafa` — always use `var(--semantic-color-fill-surface-canvas, #fafafa)`.
-- Never use `display: none` on the SideNav for any state — use `width: 0` with `overflow: hidden`.
-- Never set `border-radius: 8px` on the ToolBar search input — it is 6px (confirmed from Figma).
-- Never put `overflow: hidden` on Shell.Main — the content area must scroll.
+- Never hardcode `#4b6ec3`, always use `var(--semantic-color-fill-static-brand-base, #4b6ec3)`.
+- Never hardcode `#fafafa`, always use `var(--semantic-color-fill-surface-canvas, #fafafa)`.
+- Never use `display: none` on the SideNav for any state, use `width: 0` with `overflow: hidden`.
+- Never set `border-radius: 8px` on the ToolBar search input: it is 6px (confirmed from Figma).
+- Never put `overflow: hidden` on Shell.Main: the content area must scroll.
 - Never show a logo or avatar in the OrgSwitcher nav trigger unless `logoUrl` is explicitly provided.
-- Never use `Material Icons` (outdated) — always `Material Symbols Rounded`.
+- Never use `Material Icons` (outdated), always `Material Symbols Rounded`.
 
 ### 9.7 Common implementation prompt template
 
@@ -517,7 +530,7 @@ Detailed per-breakpoint layout values (pixel-accurate from Figma and implementat
 Collapsed rail: SideNav = 84px, Shell.Main = (100vw-84px)
 ```
 
-### Tablet (768–1023px)
+### Tablet (768-1023px)
 
 ```
 ┌── TopNav: 100vw × 60px ─────────────────────────────────────────┐
@@ -544,7 +557,7 @@ Scrim: rgba(0,0,0,0.32), covers full content area below TopNav
 
 ## 13. Figma gaps and deferred decisions
 
-### ScreenTemplate sub-components — future standalone DS components
+### ScreenTemplate sub-components: future standalone DS components
 
 These are implemented inline in `nav-shell.html`. Each will get its own pipeline run:
 
@@ -562,14 +575,32 @@ These are implemented inline in `nav-shell.html`. Each will get its own pipeline
 
 | Gap | Priority | Notes |
 |---|---|---|
-| ToolBar search border-radius 6px | MEDIUM | Not a standard token value. `cornerradius.medium` = 8px, `cornerradius.xs` = 4px. 6px is a raw value — no token. Flag for Figma to add as a contextual token. |
+| ToolBar search border-radius 6px | MEDIUM | Not a standard token value. `cornerradius.medium` = 8px, `cornerradius.xs` = 4px. 6px is a raw value: no token. Flag for Figma to add as a contextual token. |
 | `contextual.page.*` tokens not in token file | HIGH | Figma uses `--contextual/page/padding/horizontal`, etc. These are not in `tokens/pathway-design-tokens.json`. Raw values used as fallbacks. |
-| `contextual.card.*` tokens not in token file | HIGH | Same issue — raw fallback values used. |
+| `contextual.card.*` tokens not in token file | HIGH | Same issue, raw fallback values used. |
 | `contextual.toolbar.*` tokens not in token file | MEDIUM | Same issue. |
-| Mobile ScreenTemplate padding | LOW | Reduced to `px:16 pt:8` on mobile — no explicit Figma spec. Current values are reasonable defaults. |
+| Mobile ScreenTemplate padding | LOW | Reduced to `px:16 pt:8` on mobile: no explicit Figma spec. Current values are reasonable defaults. |
 
 ---
 
+
+## 14. Storybook
+
+Sidebar-visible, matching the untagged exports in `NavShell.stories.jsx` exactly:
+
+| Export | Name |
+|---|---|
+| `Desktop` | Desktop |
+| `Tablet` | Tablet |
+
+Reference, `!dev`-tagged: `Mobile`, `CustomModule`.
+
+The SideNav widths come from `SideNav/Width/{Expanded,Collapsed}`, 256 and 84. Hard-coded 220 and 72 cropped the rail inside the shell.
+
+> Added 2026-10-07. This spec had no Storybook section at all, so nothing
+> told a reader that 4 stories existed or what they covered.
+
+---
 
 ## Agent implementation rules
 
@@ -577,7 +608,7 @@ For any agent implementing this component: Figma Make, Lovable, v0, Claude,
 Cursor, Copilot or equivalent. Folded in from the separate `agent-brief.md`,
 deleted 2026-09-16. One doc per component, so there is no second file to drift.
 
-### Import the real modules — do not reimplement
+### Import the real modules: do not reimplement
 
 ```javascript
 import { TopNav, DEFAULT_MODULES } from './components/top-nav/top-nav.jsx';
@@ -588,7 +619,7 @@ Do not write fresh CSS for TopNav or SideNav. Import them. Fresh CSS will be wro
 
 ---
 
-### Customisation — change only these values
+### Customisation: change only these values
 
 ```javascript
 // Module

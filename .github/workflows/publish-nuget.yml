@@ -5,7 +5,7 @@ name: Publish Pathway.DesignTokens to NuGet
 #
 # Version comes from package.json, which the npm publish workflow already bumps
 # from npm's high-water mark. Reading it here rather than bumping independently
-# is what keeps the two registries in lockstep — two workflows each owning their
+# is what keeps the two registries in lockstep: two workflows each owning their
 # own counter is how versions drift apart.
 #
 # Run this AFTER "Publish pathway-tokens to npm" so package.json already carries

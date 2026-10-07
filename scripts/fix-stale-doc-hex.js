@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * fix-stale-doc-hex.js — correct hex values quoted in prose that no longer match
+ * fix-stale-doc-hex.js, correct hex values quoted in prose that no longer match
  * the token they claim to document.
  *
  * WHY THIS EXISTS
@@ -105,7 +105,7 @@ if (check && fixed > 0) {
   process.exitCode = 1;
 }
 if (ambiguous.length) {
-  console.log(`\nNOT TOUCHED — line names more than one token, so which the hex describes is ambiguous (${ambiguous.length}):`);
+  console.log(`\nNOT TOUCHED, line names more than one token, so which the hex describes is ambiguous (${ambiguous.length}):`);
   for (const a of ambiguous.slice(0, 12)) console.log("  " + a);
   if (ambiguous.length > 12) console.log(`  … ${ambiguous.length - 12} more`);
 }

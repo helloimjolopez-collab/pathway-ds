@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SideNav — Section Labels (Prototype v3) — Pathway</title>
+<title>SideNav, Section Labels (Prototype v3), Pathway</title>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+  :-webkit-scrollbar { width: 4px; }
+  :-webkit-scrollbar-track { background: transparent; }
+  :-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
 
   .prototype-banner {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -66,7 +66,7 @@ const T = {
     navHover:   "#1111110a", // fill.contextual.navitem.hover
     navActive:  "#3555a014", // fill.contextual.navitem.active
     navTrail:   "#11111105", // fill.contextual.navitem.trail
-    infoSubtle: "#edf0f9",   // fill.static.info.subtle — borders, dividers, rail section break
+    infoSubtle: "#edf0f9",   // fill.static.info.subtle, borders, dividers, rail section break
   },
   surface: { navLight: "#fafafa" },   // surface.nav.light
   text: {
@@ -100,7 +100,7 @@ const L = {
   railDividerMarginV: 12,
 };
 
-// ─── ICONS (Pathway Figma icons — fill-style, 14×14 viewBox) ──────────────────
+// ─── ICONS (Pathway Figma icons, fill-style, 14×14 viewBox) ──────────────────
 const IC = {
   apps: ({size=14, color="#4b4b4b"}) => (
     <svg width={size} height={size} viewBox="0 0 14 14" fill="none"><path fill={color} d="M0.514063 13.4859C0.171354 13.1432 0 12.7313 0 12.25C0 11.7687 0.171354 11.3568 0.514063 11.0141C0.856771 10.6714 1.26875 10.5 1.75 10.5C2.23125 10.5 2.64323 10.6714 2.98594 11.0141C3.32865 11.3568 3.5 11.7687 3.5 12.25C3.5 12.7313 3.32865 13.1432 2.98594 13.4859C2.64323 13.8286 2.23125 14 1.75 14C1.26875 14 0.856771 13.8286 0.514063 13.4859ZM5.76406 13.4859C5.42135 13.1432 5.25 12.7313 5.25 12.25C5.25 11.7687 5.42135 11.3568 5.76406 11.0141C6.10677 10.6714 6.51875 10.5 7 10.5C7.48125 10.5 7.89323 10.6714 8.23594 11.0141C8.57865 11.3568 8.75 11.7687 8.75 12.25C8.75 12.7313 8.57865 13.1432 8.23594 13.4859C7.89323 13.8286 7.48125 14 7 14C6.51875 14 6.10677 13.8286 5.76406 13.4859ZM11.0141 13.4859C10.6714 13.1432 10.5 12.7313 10.5 12.25C10.5 11.7687 10.6714 11.3568 11.0141 11.0141C11.3568 10.6714 11.7687 10.5 12.25 10.5C12.7313 10.5 13.1432 10.6714 13.4859 11.0141C13.8286 11.3568 14 11.7687 14 12.25C14 12.7313 13.8286 13.1432 13.4859 13.4859C13.1432 13.8286 12.7313 14 12.25 14C11.7687 14 11.3568 13.8286 11.0141 13.4859ZM0.514063 8.23594C0.171354 7.89323 0 7.48125 0 7C0 6.51875 0.171354 6.10677 0.514063 5.76406C0.856771 5.42135 1.26875 5.25 1.75 5.25C2.23125 5.25 2.64323 5.42135 2.98594 5.76406C3.32865 6.10677 3.5 6.51875 3.5 7C3.5 7.48125 3.32865 7.89323 2.98594 8.23594C2.64323 8.57865 2.23125 8.75 1.75 8.75C1.26875 8.75 0.856771 8.57865 0.514063 8.23594ZM5.76406 8.23594C5.42135 7.89323 5.25 7.48125 5.25 7C5.25 6.51875 5.42135 6.10677 5.76406 5.76406C6.10677 5.42135 6.51875 5.25 7 5.25C7.48125 5.25 7.89323 5.42135 8.23594 5.76406C8.57865 6.10677 8.75 6.51875 8.75 7C8.75 7.48125 8.57865 7.89323 8.23594 8.23594C7.89323 8.57865 7.48125 8.75 7 8.75C6.51875 8.75 6.10677 8.57865 5.76406 8.23594ZM11.0141 8.23594C10.6714 7.89323 10.5 7.48125 10.5 7C10.5 6.51875 10.6714 6.10677 11.0141 5.76406C11.3568 5.42135 11.7687 5.25 12.25 5.25C12.7313 5.25 13.1432 5.42135 13.4859 5.76406C13.8286 6.10677 14 6.51875 14 7C14 7.48125 13.8286 7.89323 13.4859 8.23594C13.1432 8.57865 12.7313 8.75 12.25 8.75C11.7687 8.75 11.3568 8.57865 11.0141 8.23594ZM0.514063 2.98594C0.171354 2.64323 0 2.23125 0 1.75C0 1.26875 0.171354 0.856771 0.514063 0.514063C0.856771 0.171354 1.26875 0 1.75 0C2.23125 0 2.64323 0.171354 2.98594 0.514063C3.32865 0.856771 3.5 1.26875 3.5 1.75C3.5 2.23125 3.32865 2.64323 2.98594 2.98594C2.64323 3.32865 2.23125 3.5 1.75 3.5C1.26875 3.5 0.856771 3.32865 0.514063 2.98594ZM5.76406 2.98594C5.42135 2.64323 5.25 2.23125 5.25 1.75C5.25 1.26875 5.42135 0.856771 5.76406 0.514063C6.10677 0.171354 6.51875 0 7 0C7.48125 0 7.89323 0.171354 8.23594 0.514063C8.57865 0.856771 8.75 1.26875 8.75 1.75C8.75 2.23125 8.57865 2.64323 8.23594 2.98594C7.89323 3.32865 7.48125 3.5 7 3.5C6.51875 3.5 6.10677 3.32865 5.76406 2.98594ZM11.0141 2.98594C10.6714 2.64323 10.5 2.23125 10.5 1.75C10.5 1.26875 10.6714 0.856771 11.0141 0.514063C11.3568 0.171354 11.7687 0 12.25 0C12.7313 0 13.1432 0.171354 13.4859 0.514063C13.8286 0.856771 14 1.26875 14 1.75C14 2.23125 13.8286 2.64323 13.4859 2.98594C13.1432 3.32865 12.7313 3.5 12.25 3.5C11.7687 3.5 11.3568 3.32865 11.0141 2.98594Z"/></svg>
@@ -187,7 +187,7 @@ function IndicatorStripe({ visible }) {
   );
 }
 
-// ─── SectionLabel (NEW — the only thing this prototype adds) ──────────────────
+// ─── SectionLabel (NEW: the only thing this prototype adds) ──────────────────
 // Non-interactive. All caps, muted, compact. Vanishes in rail and leaves a thin
 // divider in its place so sectioning survives the 72px collapsed state.
 function SectionLabel({ label, isSidebarCollapsed }) {
@@ -573,10 +573,9 @@ function App() {
           </h1>
           <p style={{ fontSize: 14, lineHeight: "22px", color: "#4b4b4b", marginBottom: 32 }}>
             v3 is additive: today's SideNav is preserved unchanged. One new element
-            type — <strong>SectionLabel</strong> — lets modules opt in to lightweight
-            section headings (WORKSPACE / ACCOUNTING / SUPPORT here). Everything else
-            — groupers with icons, chevrons, indented children, trail states, rail
-            flyouts — is exactly as spec'd today.
+            type, <strong>SectionLabel</strong>, lets modules opt in to lightweight
+            section headings (WORKSPACE / ACCOUNTING / SUPPORT here). Everything else, groupers with icons, chevrons, indented children, trail states, rail
+            flyouts: is exactly as spec'd today.
           </p>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
@@ -590,7 +589,7 @@ function App() {
                 lineHeight: "20px", color: "#4b4b4b" }}>
                 <li>Click <strong>Applications</strong> or <strong>Modify</strong> to expand their children (unchanged grouper behavior)</li>
                 <li>Click <strong>Trial Balance</strong>, <strong>Enter</strong>, or <strong>Help</strong> to navigate</li>
-                <li>Collapse the sidebar (bottom-left arrow) — section labels become thin dividers</li>
+                <li>Collapse the sidebar (bottom-left arrow), section labels become thin dividers</li>
                 <li>In the rail, hover a grouper to see the flyout (existing behavior)</li>
               </ul>
             </div>
@@ -605,7 +604,7 @@ function App() {
                 <li>New <strong>SectionLabel</strong> element: all-caps 12pt, muted, non-interactive</li>
                 <li>SectionLabel → thin divider in rail (preserves sectioning)</li>
                 <li>Nav item text dropped 16pt → <strong>14pt</strong> (denser, more scannable)</li>
-                <li>Everything else unchanged — no new grouper behaviors, no restructured tree</li>
+                <li>Everything else unchanged: no new grouper behaviors, no restructured tree</li>
               </ul>
             </div>
           </div>
@@ -637,7 +636,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 
 <!--
 ================================================================================
-TOKEN COVERAGE REPORT — v3 (as approved on 2026-04-21)
+TOKEN COVERAGE REPORT, v3 (as approved on 2026-04-21)
 ================================================================================
 
 Grounding: tokens/pathway-design-tokens.json @ 98ee386
@@ -660,9 +659,9 @@ All existing SideNav tokens (unchanged):
   primitive-color.brand.300 (indicator stripe)
   Component radius: 8
 
-NEW — SectionLabel:
+NEW, SectionLabel:
   text.static.secondary.base           → #4b4b4b   (label idle color)
-  fill.static.info.subtle              → #edf0f9   (rail divider — reused from
+  fill.static.info.subtle              → #edf0f9   (rail divider, reused from
                                                    component border)
   primitive-type.family.brand          → Red Hat Text
   primitive-type.size.12               → 12
@@ -676,13 +675,13 @@ NEW — SectionLabel:
   primitive-unit.unit.16               → 16  (section top margin)
   primitive-unit.unit.4                → 4   (section bottom margin)
 
-CHANGED — Nav item typography (and CollapseButton label):
+CHANGED, Nav item typography (and CollapseButton label):
   Was:  primitive-type.size.16 / primitive-type.weight.500 /
         primitive-type.line-height.16pt.single = 22 / letter-spacing 0.02
   Now:  primitive-type.size.14 / primitive-type.weight.500 /
         primitive-type.line-height.14pt.single = 20 / letter-spacing 0.02
   Composed reference: close to semantic-type.desktop.label.button.s
-  (14 / 500 / 20 / wide) — though we use letterSpacing 0.02 to match the
+  (14 / 500 / 20 / wide): though we use letterSpacing 0.02 to match the
   existing SideNav's hand-tuned tracking rather than the wide token.
 
 ── MISSING TOKENS ────────────────────────────────────────────────────────────
@@ -703,7 +702,7 @@ sidenav-2026-04-21-grouper-variants-token-recommendations.md.
   4. SectionLabel row height has no atomic token; composed from spacing.
 
   NEW (v3):
-  5. Nav item label letter-spacing is 0.02px — does not match any existing
+  5. Nav item label letter-spacing is 0.02px, does not match any existing
      letter-spacing primitive (compact -0.01, standard 0, wide 0.1). This is
      pre-existing in production sidenav.html; flagged here for completeness.
      Suggest either retuning existing nav item tracking to `compact` or

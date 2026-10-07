@@ -2,7 +2,7 @@ import tokens from "../../tokens/tokens.js";
 import { TYPE_SIZES, DENSITIES, WEIGHTS, TRACKING, rankBy } from "./tokenOrder.js";
 
 /**
- * SemanticTypography — renders the `Semantic: Type` SCALE.
+ * SemanticTypography, renders the `Semantic: Type` SCALE.
  *
  * WHY THIS WAS REWRITTEN (2026-09-09): the previous version took a `mode`
  * argument ("desktop" / "mobile") and grouped tokens into composite steps by
@@ -16,7 +16,7 @@ import { TYPE_SIZES, DENSITIES, WEIGHTS, TRACKING, rankBy } from "./tokenOrder.j
  *     live only as Figma text styles now; code composes from the scale.
  *
  * That failure was invisible to every token checker in the repo, because those
- * verify that a token NAME resolves and this file names none — it iterates.
+ * verify that a token NAME resolves and this file names none: it iterates.
  * A generator that finds nothing and renders an empty div passes a name check,
  * passes the build, and ships a blank page. `scripts/check-story-yield.js`
  * exists to close that hole; see its header.
@@ -82,7 +82,7 @@ export function createSemanticTypography() {
   if (families.length) {
     const s = section(
       `Family (${families.length})`,
-      "One family. Pathway does not ship a second face, so a component never chooses a family — it names this token."
+      "One family. Pathway does not ship a second face, so a component never chooses a family: it names this token."
     );
     s.appendChild(
       table(

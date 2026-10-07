@@ -50,7 +50,7 @@ import React, { useState, useEffect } from "react";
 // If you are an agent reading this: use these imports. Do not reimplement.
 import { TopNav, DEFAULT_MODULES } from "../../../../components/top-nav/top-nav.jsx";
 import { SideNav } from "../../../../components/sidenav/sidenav.jsx";
-// Canonical SideNav demo data — the SAME sections (real icons, groupers,
+// Canonical SideNav demo data: the SAME sections (real icons, groupers,
 // children) the SideNav's own stories use. NavShell must render the real
 // SideNav, not a hand-rolled flat list, so it imports this directly.
 import { NAV_SECTIONS } from "../SideNav/sidenavDemoData.jsx";
@@ -329,7 +329,7 @@ export const Tablet = {
     docs: {
       description: {
         story:
-          "Tablet (768–1023px): SideNav always 72px icon-only rail. " +
+          "Tablet (768 to 1023px): SideNav always 72px icon-only rail. " +
           "Module label hidden, action buttons collapse to more_vert.",
       },
     },

@@ -7,7 +7,7 @@ How a Pathway component must look in Figma so that:
 - AI agents (Figma Make, Cursor, v0, Lovable) can interpret it correctly.
 - Designers across the org produce consistently-built components.
 
-**Source-of-truth boundary.** The component spec MD in GitHub (`components/<name>/<name>-spec.md`) owns all **content** — anatomy, governance, motion, accessibility, dos/don'ts, responsiveness, AI-agent integration. This doc only covers Figma's **containers and conventions** — what frames must exist, what layers must be named, how tokens must be applied, how variants must be declared. Content references back to the spec, never duplicated.
+**Source-of-truth boundary.** The component spec MD in GitHub (`components/<name>/<name>-spec.md`) owns all **content**, anatomy, governance, motion, accessibility, dos/don'ts, responsiveness, AI-agent integration. This doc only covers Figma's **containers and conventions**: what frames must exist, what layers must be named, how tokens must be applied, how variants must be declared. Content references back to the spec, never duplicated.
 
 For the spec content structure itself, see `docs/component-spec-template.md`. For prep checks before handoff, see `docs/figma-prep-checklist.md`. This doc is upstream of both.
 
@@ -19,14 +19,14 @@ Every component lives on its own dedicated Figma page in the master file. The pa
 
 | # | Section | Required | Purpose |
 |---|---|---|---|
-| 1 | `<Name> Instances - Interaction` | Yes | Live interactive examples — real-world usage states with annotation labels |
+| 1 | `<Name> Instances - Interaction` | Yes | Live interactive examples, real-world usage states with annotation labels |
 | 2 | `<Name> Components` | Yes | Master component + all variants laid out for inspection |
-| 3 | `<Name> Documentation` | Yes | Visual summary — references spec §1–§14 |
-| 4 | `<Name> Governance` | Yes | Where-things-live map — references spec §1.1 |
-| 5 | `<Name> Responsiveness` | Yes | Responsive variants + breakpoint behaviour — references spec §16 |
+| 3 | `<Name> Documentation` | Yes | Visual summary, references spec §1 §14 |
+| 4 | `<Name> Governance` | Yes | Where-things-live map, references spec §1.1 |
+| 5 | `<Name> Responsiveness` | Yes | Responsive variants + breakpoint behaviour, references spec §16 |
 | 6 | `FigmaMake Playground` | Optional | Sandbox frame for AI codegen iteration |
 
-Sections must be **Figma sections** (not regular frames) so they appear in the layers panel as collapsible separators. Section names match exactly — including the dash and spacing — so extraction tooling can find them by string match.
+Sections must be **Figma sections** (not regular frames) so they appear in the layers panel as collapsible separators. Section names match exactly, including the dash and spacing, so extraction tooling can find them by string match.
 
 ### 1.1 Section ordering
 
@@ -62,13 +62,13 @@ These names appear on every component page and must match exactly:
 | `Description` | The long-form prose text node | Inside `Text Container`, below `Title Container` |
 | `Source of truth` | The "see spec §X" reference text node | Top of `Description` or its own small frame |
 
-Doc, Governance, and Responsiveness sections all share this nesting. Instances and Components sections do not — see §3.
+Doc, Governance, and Responsiveness sections all share this nesting. Instances and Components sections do not, see §3.
 
 ### 2.2 Component layer names
 
 Inside the `<Name> Components` section, the master component frame must be named exactly `<Name>` (PascalCase, e.g. `SideNav`, `Spinner`, `TopNav`).
 
-Sub-component frames are named `<Name>.<SubComponent>` — dot-separated PascalCase. SideNav uses:
+Sub-component frames are named `<Name>.<SubComponent>`, dot-separated PascalCase. SideNav uses:
 
 - `SideNav.Container` (the master)
 - `SideNav.Item` (sub)
@@ -89,9 +89,9 @@ Layout: Push | Overlay
 Sidebar: Expanded | Collapsed | Hidden
 ```
 
-Compound values use hyphens (e.g. `Trail-Expanded`) — never spaces, never underscores in the value. The property name itself is single-word PascalCase.
+Compound values use hyphens (e.g. `Trail-Expanded`): never spaces, never underscores in the value. The property name itself is single-word PascalCase.
 
-**Boolean properties** are named as a yes/no question without a verb: `Disabled`, `Loading`, `Hidden` — not `IsDisabled`, `HasLoading`.
+**Boolean properties** are named as a yes/no question without a verb: `Disabled`, `Loading`, `Hidden`: not `IsDisabled`, `HasLoading`.
 
 **Instance-swap properties** are named after the slot: `Icon`, `LeadingIcon`, `TrailingControl`. Match the slot's anatomical name.
 
@@ -102,10 +102,10 @@ Common mistakes that break Studio + the pipeline:
 - ❌ Auto-generated names left in (`Frame 47`, `Group 1073714265`, `Rectangle 12`)
 - ❌ Casing drift (`sidenav.container` instead of `SideNav.Container`)
 - ❌ Spaces where dots/hyphens are required (`SideNav Container` instead of `SideNav.Container`)
-- ❌ Renaming a slot from `Description` to `Body` or `Text Block` — the literal name `Description` is what extraction looks for
+- ❌ Renaming a slot from `Description` to `Body` or `Text Block`: the literal name `Description` is what extraction looks for
 - ❌ Variant property values with mixed casing (`Active`, `active`, `ACTIVE` all in the same property set)
 
-Run the readiness audit before declaring done — it flags these.
+Run the readiness audit before declaring done: it flags these.
 
 ---
 
@@ -117,9 +117,9 @@ Live examples showing real states. Mix `instance` nodes (component instances) wi
 
 **Required content:**
 
-- One instance per documented state (Base, Hover, Active, Trail-Expanded, Trail-Collapsed for SideNav-class components — copy the state list from your component's spec §6 State Matrix)
-- Text label above or beside each instance naming the state (`Hover (Main Item)`, `Active (Grouper)`, `Hover Popover` — match the state name from the spec exactly)
-- Instances of every responsive state (Expanded, Collapsed, Overlay-open, Hidden if applicable) — at the actual viewport width they apply to
+- One instance per documented state (Base, Hover, Active, Trail-Expanded, Trail-Collapsed for SideNav-class components, copy the state list from your component's spec §6 State Matrix)
+- Text label above or beside each instance naming the state (`Hover (Main Item)`, `Active (Grouper)`, `Hover Popover`, match the state name from the spec exactly)
+- Instances of every responsive state (Expanded, Collapsed, Overlay-open, Hidden if applicable), at the actual viewport width they apply to
 - For groupers/parents: at least one instance showing children, one showing collapsed-with-active-child trail state
 
 **Layer naming:** the master component instances retain their auto-generated `<Name>.Container` instance names (Figma manages this). Annotation labels are plain `text` nodes whose name matches the state being annotated.
@@ -139,7 +139,7 @@ The component definition itself, plus variant grids. Visual layout, no required 
 
 ### 3.3 `<Name> Documentation`
 
-Visual summary of the component. Content surfaces a digest of spec §1–§14. The detailed spec lives in the MD; this section is for designers browsing Figma.
+Visual summary of the component. Content surfaces a digest of spec §1 §14. The detailed spec lives in the MD; this section is for designers browsing Figma.
 
 **Required structure:**
 
@@ -162,7 +162,7 @@ Source of truth: components/<name>/<name>-spec.md
 This Figma section is a visual summary. The spec is authoritative.
 ```
 
-**Content guidance:** keep it short. 200–400 words covering: what the component is, when to use it, when not to use it, key anatomy. Not a duplicate of spec §2 — a digest.
+**Content guidance:** keep it short. 200 to 400 words covering: what the component is, when to use it, when not to use it, key anatomy. Not a duplicate of spec §2: a digest.
 
 ### 3.4 `<Name> Governance`
 
@@ -174,7 +174,7 @@ Same nesting as Documentation. Surfaces spec §1.1 Governance: where things live
 - A "How to change something" callout: "If you need to change X, the owner is Y, edit it at Z." Mirrors the table semantically.
 - A small note: `Source of truth: components/<name>/<name>-spec.md §1.1`
 
-This is the only section where designers can copy the spec table verbatim into Figma — because the table itself is short and the source is explicitly cross-referenced.
+This is the only section where designers can copy the spec table verbatim into Figma: because the table itself is short and the source is explicitly cross-referenced.
 
 ### 3.5 `<Name> Responsiveness`
 
@@ -183,7 +183,7 @@ REQUIRED. Even if your component has trivial responsive behaviour, this section 
 **Required content:**
 
 - A breakpoint table (or text block) listing the four standard Pathway breakpoints (393 / 768 / 1024 / 1440px) and the component's behaviour at each
-- Visual examples of the component at each breakpoint where behaviour differs (e.g. SideNav shows Push at ≥1024px, Overlay at <1024px, Hidden at <768px — three frames)
+- Visual examples of the component at each breakpoint where behaviour differs (e.g. SideNav shows Push at ≥1024px, Overlay at <1024px, Hidden at <768px: three frames)
 - Annotation text near each viewport frame naming the breakpoint and behaviour
 - A reference to spec §16 at the top: `Source of truth: components/<name>/<name>-spec.md §16`
 
@@ -191,7 +191,7 @@ If the component is genuinely viewport-agnostic (e.g. an icon, a chip, a token),
 
 ### 3.6 `FigmaMake Playground` (optional)
 
-A frame (not a section — a frame) for design-side iteration with Figma Make or other AI codegen tools.
+A frame (not a section: a frame) for design-side iteration with Figma Make or other AI codegen tools.
 
 **Purpose:** lets the designer ask Figma Make / AI to generate variations or extensions without polluting the canonical sections.
 
@@ -224,10 +224,10 @@ The rule from `CLAUDE.md` §6 is absolute: **components resolve colour only thro
 
 ### 4.2 When a token doesn't exist
 
-Some properties have no semantic token yet — most often spacing, container padding, stripe widths. The rule:
+Some properties have no semantic token yet, most often spacing, container padding, stripe widths. The rule:
 
-1. **Use the raw value in Figma** (e.g. enter `12` for padding) — Figma allows unbound numeric values.
-2. **Document the gap in spec §15** — name the property, propose a token name (`Spacing/Nav/ContainerPaddingH`), set priority (HIGH/MEDIUM/LOW).
+1. **Use the raw value in Figma** (e.g. enter `12` for padding), Figma allows unbound numeric values.
+2. **Document the gap in spec §15**, name the property, propose a token name (`Spacing/Nav/ContainerPaddingH`), set priority (HIGH/MEDIUM/LOW).
 3. **Do not invent a token in Figma to fill the gap.** Ad-hoc tokens proliferate and are worse than a documented gap.
 
 The SideNav spec §15 has 6 such gaps documented. They are tracked, not silently ignored.
@@ -263,7 +263,7 @@ Every component must declare at minimum:
 - Variants for every state in the spec's State Matrix (§6)
 - Variants for every responsive mode if behaviour changes structurally (Push/Overlay/Hidden, Expanded/Collapsed)
 
-Optional but recommended: variants for size scales, colour modes, density modes — driven by the spec.
+Optional but recommended: variants for size scales, colour modes, density modes, driven by the spec.
 
 ---
 
@@ -283,7 +283,7 @@ Annotations use the design system's text styles (`Body/S/Regular`, `Label/Small/
 
 ### 6.3 What annotations don't do
 
-Annotations don't replace the spec. If you find yourself writing more than ~50 words in a single annotation, that content belongs in the spec MD. Annotations are short, glanceable cues — not embedded documentation.
+Annotations don't replace the spec. If you find yourself writing more than ~50 words in a single annotation, that content belongs in the spec MD. Annotations are short, glanceable cues: not embedded documentation.
 
 ---
 
@@ -295,11 +295,11 @@ Doc/governance/responsiveness sections share canonical widths so the master file
 |---|---|
 | Documentation `Main Container` | 2311 px |
 | Governance `Main Container` | 2311 px |
-| Responsiveness section | 4202 px (wider — accommodates side-by-side viewport frames) |
+| Responsiveness section | 4202 px (wider, accommodates side-by-side viewport frames) |
 | Components section | 3649 px |
 | Instances - Interaction | 4269 px |
 
-These are guidelines, not hard requirements — components with very different visual weight (e.g. an icon vs. a sidenav) will need different widths. The rule is: keep the four doc-style sections (Documentation, Governance) at ~2311 px so they read as the same visual class. Responsiveness can be wider if your component has many viewports.
+These are guidelines, not hard requirements, components with very different visual weight (e.g. an icon vs. a sidenav) will need different widths. The rule is: keep the four doc-style sections (Documentation, Governance) at ~2311 px so they read as the same visual class. Responsiveness can be wider if your component has many viewports.
 
 Heights are determined by content; let auto-layout grow vertically.
 
@@ -307,16 +307,16 @@ Heights are determined by content; let auto-layout grow vertically.
 
 ## 8. The two demos in the repo
 
-These are not Figma artifacts — they live in the repo. Understanding them matters because Studio coaches designers about both.
+These are not Figma artifacts: they live in the repo. Understanding them matters because Studio coaches designers about both.
 
 | File | Purpose | Authored by | Synced how |
 |---|---|---|---|
-| `components/<name>/<name>.html` | The full demo with annotation panel (the human-facing showcase) | Pipeline (generated) — designer never edits | Manually committed by pipeline |
+| `components/<name>/<name>.html` | The full demo with annotation panel (the human-facing showcase) | Pipeline (generated), designer never edits | Manually committed by pipeline |
 | `components/<name>/<name>-figmamake.html` | The annotation-stripped demo for AI codegen tools | Auto-derived from `<name>.html` | `.github/workflows/sync-component.yml` regenerates on every push to `<name>.html` |
 
 The designer's job in Figma never includes authoring either of these files. They are pipeline outputs.
 
-The Figma `FigmaMake Playground` frame (§3.6) is a separate concern — it's an in-Figma sandbox for design-side AI experimentation.
+The Figma `FigmaMake Playground` frame (§3.6) is a separate concern: it's an in-Figma sandbox for design-side AI experimentation.
 
 ---
 
@@ -347,7 +347,7 @@ The audit produces a report classifying issues as P0 (blocks pipeline), P1 (shou
 Use this as the at-a-glance checklist when prepping a component for handoff. Studio enforces every point.
 
 ```
-COMPONENT FIGMA PAGE — STRUCTURAL CHECKLIST
+COMPONENT FIGMA PAGE, STRUCTURAL CHECKLIST
 
 Sections (all five required, in order):
   [ ] <Name> Instances - Interaction

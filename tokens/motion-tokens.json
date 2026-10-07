@@ -9,7 +9,7 @@
       "2": {
         "$type": "duration",
         "$value": "150ms",
-        "$description": "Hover fills, small opacity fades, colour transitions — the most common micro-interaction timing"
+        "$description": "Hover fills, small opacity fades, colour transitions: the most common micro-interaction timing"
       },
       "3": {
         "$type": "duration",
@@ -49,7 +49,7 @@
       "loop-fast": {
         "$type": "duration",
         "$value": "750ms",
-        "$description": "Tighter loop for embedded/inline contexts (in-button spinner — faster reads as more responsive feedback)"
+        "$description": "Tighter loop for embedded/inline contexts (in-button spinner, faster reads as more responsive feedback)"
       }
     },
     "easing": {
@@ -61,7 +61,7 @@
           0.2,
           1
         ],
-        "$description": "Most transitions — enters AND exits. Smooth, no overshoot. Default for colour, fill, opacity, focus rings."
+        "$description": "Most transitions, enters AND exits. Smooth, no overshoot. Default for colour, fill, opacity, focus rings."
       },
       "spring": {
         "$type": "cubicBezier",
@@ -71,7 +71,7 @@
           0.64,
           1
         ],
-        "$description": "Signature Pathway curve. Interactive element entrances: dropdown/popover panel opens. A whisper of overshoot (y2=1.04) — easeful, only *ever so slightly* alive. Softened 2026-06-08 from 1.08, which read as too bouncy. Not for chevrons — see chevron rule below."
+        "$description": "Signature Pathway curve. Interactive element entrances: dropdown/popover panel opens. A whisper of overshoot (y2=1.04), easeful, only *ever so slightly* alive. Softened 2026-06-08 from 1.08, which read as too bouncy. Not for chevrons, see chevron rule below."
       },
       "decelerate": {
         "$type": "cubicBezier",
@@ -81,7 +81,7 @@
           0.2,
           1
         ],
-        "$description": "Enters where the element should glide in smoothly — overlay panels, popovers, anything appearing from outside. Pure ease-out, no bounce."
+        "$description": "Enters where the element should glide in smoothly: overlay panels, popovers, anything appearing from outside. Pure ease-out, no bounce."
       },
       "accelerate": {
         "$type": "cubicBezier",
@@ -91,7 +91,7 @@
           1,
           1
         ],
-        "$description": "Exits where the element leaves cleanly — dismissing overlays, scaling down."
+        "$description": "Exits where the element leaves cleanly, dismissing overlays, scaling down."
       },
       "emphasized": {
         "$type": "cubicBezier",
@@ -111,7 +111,7 @@
           0.68,
           1
         ],
-        "$description": "Accordion settle — content reveal/hide, chevron rotation. The gentlest overshoot in the system (y2=1.03). Softened 2026-06-08 from 0.22,1.12,0.36,1, which was visibly bouncy."
+        "$description": "Accordion settle, content reveal/hide, chevron rotation. The gentlest overshoot in the system (y2=1.03). Softened 2026-06-08 from 0.22,1.12,0.36,1, which was visibly bouncy."
       },
       "linear": {
         "$type": "cubicBezier",

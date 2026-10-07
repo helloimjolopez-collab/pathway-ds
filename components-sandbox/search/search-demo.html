@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search — Pathway Component Demo</title>
+  <title>Search, Pathway Component Demo</title>
   <link rel="stylesheet" href="http://localhost:7890/src/tokens/tokens.css">
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -28,7 +28,7 @@
     }
 
     /* ── Page ───────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: var(--semantic-color-light-mode-fill-static-info-light);
@@ -144,7 +144,7 @@
       border-color: var(--semantic-color-light-mode-stroke-action-primary-inverse-pressed);
     }
 
-    /* Disabled — opacity on the outer touch target */
+    /* Disabled, opacity on the outer touch target */
     .search--disabled {
       opacity: 0.38;
     }
@@ -167,7 +167,7 @@
       flex-shrink: 0;
     }
 
-    /* Icon button — 24×24 outer, 12px corner (focused-element token) */
+    /* Icon button, 24×24 outer, 12px corner (focused-element token) */
     .search__icon-btn {
       width: 24px;
       height: 24px;
@@ -182,7 +182,7 @@
       flex-shrink: 0;
     }
 
-    /* Inner pill — full circle, 4px padding */
+    /* Inner pill, full circle, 4px padding */
     .icon-pill {
       width: 100%;
       height: 100%;
@@ -201,7 +201,7 @@
       background: var(--semantic-color-light-mode-fill-action-secondaryinverse-pressed);
     }
 
-    /* Icon SVG — 16×16 */
+    /* Icon SVG, 16×16 */
     .search__icon-btn svg {
       width: 16px;
       height: 16px;
@@ -244,7 +244,7 @@
       color: var(--semantic-color-light-mode-text-static-secondary-bold); /* #202020 */
     }
 
-    .search__input::placeholder {
+    .search__input:placeholder {
       color: var(--semantic-color-light-mode-text-static-secondary-subtle); /* #606060 */
     }
 
@@ -300,7 +300,7 @@
       display: block;
     }
 
-    /* Filter wrapper — left border divider + 4px padding */
+    /* Filter wrapper, left border divider + 4px padding */
     .search__filter-wrap {
       display: flex;
       align-items: center;
@@ -356,7 +356,7 @@
       background: var(--semantic-color-light-mode-fill-action-tertiary-base); /* #eef2fb */
     }
 
-    /* Badge container — wraps filter btn, positions dot */
+    /* Badge container, wraps filter btn, positions dot */
     .search__badge-wrap {
       position: relative;
       display: flex;
@@ -442,7 +442,7 @@
     Open in Chrome
   </a>
 
-  <p class="page-title">Search — Component States</p>
+  <p class="page-title">Search, Component States</p>
 
   <!-- ── Column headers ────────────────────────────────────── -->
   <div style="display:flex; gap:40px; margin-bottom:8px; padding-left:112px;">
@@ -614,7 +614,7 @@
         </div>
 
         <!-- With-value / Has filter -->
-        <!-- Layout: [search] [input] [cancel — no divider] [| funnel — with divider] -->
+        <!-- Layout: [search] [input] [cancel, no divider] [| funnel, with divider] -->
         <div class="search search--with-value">
           <div class="search__inner">
             <div class="search__lead">
@@ -741,7 +741,7 @@
   <hr class="section-divider">
 
   <!-- ── Filter-active state (new addition) ───────────────── -->
-  <p class="section-label">Filter Active — new states (not yet in Figma)</p>
+  <p class="section-label">Filter Active, new states (not yet in Figma)</p>
 
   <div style="display:flex; gap:40px; margin-bottom:48px;">
 
@@ -813,7 +813,7 @@
   <hr class="section-divider">
 
   <!-- ── Interactive demo ─────────────────────────────────── -->
-  <p class="section-label">Interactive — try it</p>
+  <p class="section-label">Interactive, try it</p>
 
   <div style="margin-bottom: 48px;">
 
@@ -874,7 +874,7 @@
           </div>
         </div>
       </div>
-      <span class="demo-note" id="note-b">Has filter — tap funnel to toggle filter-active state</span>
+      <span class="demo-note" id="note-b">Has filter, tap funnel to toggle filter-active state</span>
     </div>
 
   </div>
@@ -910,7 +910,7 @@
   <hr class="section-divider">
 
   <!-- ── TopNav Search (Figma 40007095-4048) ─────────────── -->
-  <p class="section-label">TopNav Search — collapsed / expanded / open</p>
+  <p class="section-label">TopNav Search, collapsed / expanded / open</p>
 
   <!-- States reference row -->
   <div style="display:flex; gap:40px; margin-bottom:40px; align-items:flex-start; flex-wrap:wrap;">
@@ -934,7 +934,7 @@
 
     <!-- Expanded (idle) -->
     <div>
-      <p style="font-size:11px; color:var(--semantic-color-light-mode-text-static-secondary-subtle); margin-bottom:12px; letter-spacing:0.04em;">Expanded — idle</p>
+      <p style="font-size:11px; color:var(--semantic-color-light-mode-text-static-secondary-subtle); margin-bottom:12px; letter-spacing:0.04em;">Expanded, idle</p>
       <div style="background:#1b2a4a; border-radius:12px; padding:8px; display:inline-flex; align-items:center; gap:4px;">
         <div class="search" style="width:320px;">
           <div class="search__inner" style="background:rgba(255,255,255,0.06); border-color:rgba(251,251,251,0.14); border-width:1.5px;">
@@ -982,14 +982,14 @@
             </button>
           </div>
         </div>
-        <!-- Dropdown indicator (placeholder — open state TBD) -->
+        <!-- Dropdown indicator (placeholder, open state TBD) -->
         <div style="position:absolute; top:calc(100% - 4px); left:8px; right:8px;
                     background:white; border-radius:12px; padding:12px 16px;
                     box-shadow:0 8px 24px rgba(0,0,0,0.18); z-index:10;">
           <p style="font-size:11px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase;
                     color:var(--semantic-color-light-mode-text-static-secondary-subtle); margin-bottom:8px;">Results panel</p>
           <p style="font-size:12px; color:var(--semantic-color-light-mode-text-static-secondary-subtle); font-style:italic;">
-            Open state TBD — dropdown design not yet spec'd
+            Open state TBD, dropdown design not yet spec'd
           </p>
         </div>
       </div>
@@ -998,7 +998,7 @@
   </div>
 
   <!-- Interactive TopNav Search -->
-  <p class="section-label" style="margin-top:32px;">TopNav Search — interactive (tap the icon to expand / collapse)</p>
+  <p class="section-label" style="margin-top:32px;">TopNav Search, interactive (tap the icon to expand / collapse)</p>
 
   <div style="background:#1b2a4a; border-radius:16px; padding:16px 20px; display:flex;
               align-items:center; gap:12px; margin-bottom:48px; overflow:hidden;">
@@ -1010,7 +1010,7 @@
 
     <div style="flex:1;"></div>
 
-    <!-- TopNav search container — animates width -->
+    <!-- TopNav search container, animates width -->
     <div id="topnav-wrap" style="display:flex; align-items:center; overflow:hidden;">
 
       <!-- Collapsed button (visible when collapsed) -->
@@ -1125,7 +1125,7 @@
       let filterActive = false;
 
       function updateCancel() {
-        /* Clear shows whenever there is text — regardless of filter state */
+        /* Clear shows whenever there is text, regardless of filter state */
         cancel.style.display = input.value.length > 0 ? '' : 'none';
       }
 
@@ -1147,11 +1147,11 @@
           bar.classList.add('search--filter-active');
           bar.classList.remove('search--focused', 'search--with-value', 'search--hover');
           badge.style.display = 'block';
-          note.textContent = 'Filter active — blue border, funnel highlighted, input still active. Tap funnel to clear.';
+          note.textContent = 'Filter active, blue border, funnel highlighted, input still active. Tap funnel to clear.';
         } else {
           bar.classList.remove('search--filter-active');
           badge.style.display = 'none';
-          note.textContent = 'Has filter — tap funnel to toggle filter-active state';
+          note.textContent = 'Has filter, tap funnel to toggle filter-active state';
           updateCancel();
           input.focus();
         }
@@ -1195,7 +1195,7 @@
       collapse.addEventListener('click', e => {
         e.stopPropagation();
         close();
-        /* Input value is preserved — it stays in input.value */
+        /* Input value is preserved: it stays in input.value */
       });
 
       input.addEventListener('input', () => {

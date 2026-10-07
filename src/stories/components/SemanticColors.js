@@ -2,7 +2,7 @@ import tokens from "../../tokens/tokens.js";
 import { compareColorPaths, ANCHORS, TIERS, rankBy } from "./tokenOrder.js";
 
 /**
- * SemanticColors — renders the 326-name colour contract for one mode.
+ * SemanticColors, renders the 326-name colour contract for one mode.
  *
  * WHY THIS WAS REWRITTEN (2026-09-09):
  *
@@ -22,7 +22,7 @@ import { compareColorPaths, ANCHORS, TIERS, rankBy } from "./tokenOrder.js";
  *
  * The mode argument is the token path segment, so it is "light-mode" or
  * "midnight-mode" and nothing else. An unknown mode renders a loud message
- * rather than an empty page — a blank page is how this file hid a rename for
+ * rather than an empty page: a blank page is how this file hid a rename for
  * a fortnight.
  */
 
@@ -227,8 +227,7 @@ export function createSemanticColors(mode) {
         }
         r.appendChild(meta);
 
-        // Badges: anchor status, and contrast for foreground tokens only —
-        // a contrast number on a Fill token would invite reading it as a text
+        // Badges: anchor status, and contrast for foreground tokens only, // a contrast number on a Fill token would invite reading it as a text
         // ratio, which it is not.
         const badges = el("div", "flex:0 0 118px; display:flex; gap:6px; justify-content:flex-end;");
         if (ANCHORS.has(leaf)) {

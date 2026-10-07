@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Search — TopNav (Position C locked, switcher refinements) — Prototype v2</title>
+<title>Search, TopNav (Position C locked, switcher refinements), Prototype v2</title>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body, #root { height: 100%; background: #fafafa; font-family: 'Red Hat Text', sans-serif; }
 
   .prototype-banner {
@@ -25,15 +25,15 @@
     padding: 2px 6px; border-radius: 3px;
   }
 
-  /* Search input placeholder — explicit opacity for accessibility.
+  /* Search input placeholder, explicit opacity for accessibility.
      Browser default (~0.54) drops below WCAG AA on the translucent fill.
      Using 0.85 to clear AA (~5:1 contrast on the effective background). */
-  .pds-search-input::placeholder {
+  .pds-search-input:placeholder {
     color: rgba(255, 255, 255, 0.85);
     opacity: 1;
   }
-  .pds-search-input::-webkit-input-placeholder { color: rgba(255,255,255,0.85); }
-  .pds-search-input::-moz-placeholder         { color: rgba(255,255,255,0.85); opacity: 1; }
+  .pds-search-input:-webkit-input-placeholder { color: rgba(255,255,255,0.85); }
+  .pds-search-input:-moz-placeholder         { color: rgba(255,255,255,0.85); opacity: 1; }
   .pds-search-input:-ms-input-placeholder     { color: rgba(255,255,255,0.85); }
 
   /* Hamburger ONLY at <1024px. On desktop the SideNav handles its own
@@ -44,11 +44,11 @@
   }
 
   /* Responsive TopNav. Staged hiding to match user's Figma:
-     • ≥768px (tablet+): everything visible — module + org switcher + action
+     • ≥768px (tablet+): everything visible, module + org switcher + action
        cluster + module-specific action + avatar.
      • <768px (mobile): hide org switcher + divider. Action cluster condenses
        to a single overflow "⋮" icon.
-     • <480px (small mobile): hide the module label too — leaving hamburger,
+     • <480px (small mobile): hide the module label too, leaving hamburger,
        module icon, search trigger, overflow, and avatar. */
   @media (max-width: 767px) {
     .pds-topnav .topnav-org-switcher       { display: none !important; }
@@ -64,7 +64,7 @@
 
   /* Search visibility based on breakpoint:
      • ≥1024px (desktop): always-expanded inline search bar visible.
-       The icon trigger is hidden — search is always reachable directly.
+       The icon trigger is hidden, search is always reachable directly.
      • <1024px (tablet + mobile): only the search icon visible.
        Tapping it opens a full-screen overlay. The expanded inline bar
        is hidden because it doesn't fit the narrower TopNav. */
@@ -149,7 +149,7 @@ const Icons = {
       <path d="M6.5 15c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5" stroke="#fff" strokeWidth="1.4" opacity="0.85"/>
     </svg>
   ),
-  // Solid white home icon — no surrounding box (matches Figma module switcher).
+  // Solid white home icon: no surrounding box (matches Figma module switcher).
   home: ({size=20, color="#fff"}) => (
     <svg width={size} height={size} viewBox="0 0 20 20" fill="none">
       <path d="M3 9.5L10 3.5L17 9.5V16.5C17 17.0523 16.5523 17.5 16 17.5H12.5V12.5H7.5V17.5H4C3.44772 17.5 3 17.0523 3 16.5V9.5Z"
@@ -178,7 +178,7 @@ function ActionIconButton({ children, ariaLabel }) {
   );
 }
 
-// ─── Search trigger (mobile/tablet only — collapsed icon) ─────────────────────
+// ─── Search trigger (mobile/tablet only, collapsed icon) ─────────────────────
 // At <1024px the search bar collapses to this icon. Visually distinct from
 // the generic action icons (help/settings/bell): circular pill shape with
 // always-visible translucent fill. Reads as "shrunken search bar" rather
@@ -230,10 +230,10 @@ function OverflowIconButton() {
   );
 }
 
-// ─── Search bar (always-expanded — desktop) ───────────────────────────────────
+// ─── Search bar (always-expanded, desktop) ───────────────────────────────────
 // At ≥1024px the search bar is always visible inline in the TopNav at the
 // chosen position. Locally controls input value so the clear (X) button
-// shows only when there's text to clear. The X inside clears text — to
+// shows only when there's text to clear. The X inside clears text, to
 // "close" the search there's nothing to close on desktop; it's just an
 // always-available input. Pattern: Slack, Linear, GitHub.
 function SearchBarExpanded({ width = "100%", maxWidth = 480 }) {
@@ -324,7 +324,7 @@ function TopNavDemo({ position, onMobileSearchOpen }) {
       overflow: "hidden",
       minWidth: 0,
     }}>
-      {/* LEFT cluster — always visible, always anchored.
+      {/* LEFT cluster, always visible, always anchored.
           Hamburger only at <1024px (handled by .topnav-hamburger CSS).
           Module switcher: solid home icon + label + chevron, NO surrounding box.
           Org switcher: small initials tile + chevron (matches Figma "GC" pattern). */}
@@ -379,7 +379,7 @@ function TopNavDemo({ position, onMobileSearchOpen }) {
         <div style={{ flex: 1 }} />
       )}
 
-      {/* RIGHT cluster — varies by position */}
+      {/* RIGHT cluster, varies by position */}
       <div style={{
         display: "flex", alignItems: "center", gap: 8,
         flexShrink: 0, paddingLeft: isCenter ? 0 : 16,
@@ -496,7 +496,7 @@ function MobileSearchOverlay({ onClose }) {
         </p>
         <p>This is the surface where typeahead results, recent searches, AI
           suggestions, and the advanced search link will live. Content is
-          stubbed for now — we'll design it in the next iteration.</p>
+          stubbed for now: we'll design it in the next iteration.</p>
         <p style={{ marginTop: 16 }}>
           Tap the back arrow or press Escape to dismiss.
         </p>
@@ -521,7 +521,7 @@ function App() {
     <div style={{ padding: 32, maxWidth: 1280, margin: "0 auto",
       fontFamily: "'Red Hat Text', sans-serif" }}>
       <h1 style={{ fontSize: 24, fontWeight: 600, color: "#051428", marginBottom: 8 }}>
-        TopNav with Search — position locked (left of action icons)
+        TopNav with Search, position locked (left of action icons)
       </h1>
       <p style={{ fontSize: 14, color: "#4b4b4b", lineHeight: "22px", marginBottom: 24 }}>
         Position B selected: the always-expanded search bar (desktop) or magnifying-
@@ -559,7 +559,7 @@ function App() {
         <strong style={{ fontWeight: 600 }}>About the search bar fill:</strong> the
         translucent rgba(255,255,255,0.16) used here is primitive
         <code style={{ fontFamily: "monospace", padding: "0 4px" }}>cool-neutral.0-16</code>.
-        Pathway has no semantic token for an inverse-translucent fill yet — flagged
+        Pathway has no semantic token for an inverse-translucent fill yet, flagged
         in the coverage report at the bottom of this file. When the Search component
         ships, Figma should add a <code style={{ fontFamily: "monospace" }}>Fill/Action/Inverse/Translucent</code>
         semantic that resolves to this primitive.
@@ -578,8 +578,8 @@ function App() {
           <li><strong>Hamburger</strong> hidden on desktop (≥1024px), only visible at &lt;1024px where the SideNav becomes overlay</li>
           <li><strong>Module switcher</strong> uses a solid white home icon + "Amplify Home" + chevron, no surrounding box (matches your Figma)</li>
           <li><strong>Org switcher</strong> uses a small yellow initials tile ("GC") + chevron (matches your Figma's secondary-context pattern)</li>
-          <li><strong>Collapsed search icon</strong> is a circular pill with the always-visible translucent fill — visually distinct from the squared-off action icons (help/settings/bell) but still reads as a button</li>
-          <li><strong>Position B only</strong> — search sits left of the action cluster (between org switcher and help/settings/bell). Comparison rows for A and C dropped now that you've locked in the placement</li>
+          <li><strong>Collapsed search icon</strong> is a circular pill with the always-visible translucent fill, visually distinct from the squared-off action icons (help/settings/bell) but still reads as a button</li>
+          <li><strong>Position B only</strong>, search sits left of the action cluster (between org switcher and help/settings/bell). Comparison rows for A and C dropped now that you've locked in the placement</li>
         </ul>
       </div>
 
@@ -593,7 +593,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 
 <!--
 ================================================================================
-TOKEN COVERAGE REPORT — Search TopNav positioning exploration (2026-04-28)
+TOKEN COVERAGE REPORT, Search TopNav positioning exploration (2026-04-28)
 ================================================================================
 Grounding: tokens/pathway-design-tokens.json (current main).
 
@@ -607,9 +607,9 @@ prototype will be built with full token coverage.
 TopNav (already used in production / SideNav v6 prototype):
   Brand Colors/Dark Cerulean (#0f3e80)         → TopNav background
   primitive-color.cool-neutral.0 (#ffffff)     → Text and icon strokes on TopNav
-  Action icon button hover (rgba 255,255,255,0.12) — existing usage; this is
+  Action icon button hover (rgba 255,255,255,0.12), existing usage; this is
     primitive cool-neutral.0-12-equivalent (Pathway uses 0-8 / 0-16 etc; the
-    0.12 here is between primitives — see suboptimal note)
+    0.12 here is between primitives, see suboptimal note)
 
 Typography (existing primitives):
   primitive-type.family.brand                 → Red Hat Text
@@ -619,7 +619,7 @@ Typography (existing primitives):
   primitive-type.letter-spacing.wide (0.1)
 
 ── MISSING TOKENS ────────────────────────────────────────────────────────────
-  1. Search bar inverse-translucent fill — used for the expanded search bar
+  1. Search bar inverse-translucent fill, used for the expanded search bar
      background on the dark TopNav. Currently there is no semantic token for
      this. Used primitive `cool-neutral.0-16` (rgba 255,255,255,0.16) as a
      PROTOTYPE-ONLY exception, flagged here.
@@ -628,7 +628,7 @@ Typography (existing primitives):
        Fill/Action/Inverse/Translucent → resolves to primitive cool-neutral.0-16
      Rationale: matches the existing translucent search variants seen in
      the user's Figma source (node 40006888:7695). The current Figma binds
-     have no Fill semantic on those nodes — they appear to use raw values.
+     have no Fill semantic on those nodes: they appear to use raw values.
 
 ── SUBOPTIMAL TOKENS ─────────────────────────────────────────────────────────
   1. Action icon hover opacity (0.12) is between primitives 0-8 (0.08) and

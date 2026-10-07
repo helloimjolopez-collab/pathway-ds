@@ -64,7 +64,7 @@ const REPLACEMENT_CSS = [
 const defined = new Set();
 for (const f of REPLACEMENT_CSS) {
   const p = `src/tokens/${f}`;
-  if (!existsSync(p)) { console.error(`missing replacement output: ${p} — run the build first`); process.exit(2); }
+  if (!existsSync(p)) { console.error(`missing replacement output: ${p}, run the build first`); process.exit(2); }
   for (const line of readFileSync(p, "utf-8").split("\n")) {
     const m = line.match(/^\s*--([a-z0-9-]+)\s*:/);
     if (m) defined.add(m[1]);
@@ -140,11 +140,11 @@ const section = (label, map, note) => {
   for (const [k, v] of [...map].sort()) console.log(`    ${typeof v === "number" ? String(v).padStart(4) : ""}  ${k}`);
   console.log(`    ${note}`);
 };
-section("NEEDS HAND WORK — dark-region styling by name", needsHand.dark,
+section("NEEDS HAND WORK, dark-region styling by name", needsHand.dark,
   "Wrap the region in [data-theme=\"midnight\"] and use the modeless name.");
-section("NEEDS HAND WORK — type as custom properties", needsHand.type,
+section("NEEDS HAND WORK, type as custom properties", needsHand.type,
   "Replace the five declarations with one .pw-type-* class.");
-section("UNRESOLVED — no modeless equivalent exists", needsHand.unresolved,
+section("UNRESOLVED: no modeless equivalent exists", needsHand.unresolved,
   "These are genuinely missing from the contract; do not invent a replacement.");
 
 if (needsHand.dark.size || needsHand.type.size || needsHand.unresolved.size) {

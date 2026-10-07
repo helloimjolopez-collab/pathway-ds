@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spinner — Pathway Design System</title>
+<title>Spinner, Pathway Design System</title>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -21,14 +21,14 @@
 <style>
   :root {
 
-    /* Semantic foreground.* — the ONLY colour tokens the spinner is permitted
+    /* Semantic foreground.*: the ONLY colour tokens the spinner is permitted
        to resolve against. Each variable aliases a primitive above; the spinner
        never reads a primitive directly and never accepts a raw hex.           */
 
 
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *:before, *:after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body, #root {
   /* Match Figma's text rendering. Without these, Medium (500) renders visibly
      heavier in a browser than it does in Figma, and a designer comparing the two
@@ -39,9 +39,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility; height: 100%; background: var(--semantic-color-fill-surface-canvas); font-family: 'Red Hat Text', sans-serif; }
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+  :-webkit-scrollbar { width: 4px; }
+  :-webkit-scrollbar-track { background: transparent; }
+  :-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
 
   /* ── MOTION ────────────────────────────────────────────────────────────────
      Spec §6 Motion. One keyframe, reused for every instance regardless of size.
@@ -57,7 +57,7 @@
      from the foreground.static family. There is no `color` prop, no currentColor
      fallback from arbitrary parents, and no raw hex input. Valid tones and
      emphases are enumerated in §7.1 and §2.1; attempting any other value
-     resolves to `unset` (visually broken — surfaces the bug immediately).
+     resolves to `unset` (visually broken, surfaces the bug immediately).
   */
   .pds-spinner {
     --pds-spinner-size: 1em;
@@ -72,7 +72,7 @@
        the [data-tone]/[data-emphasis] selectors below. Strokes inherit it. */
   }
 
-  /* Token binding — every valid combination is an explicit rule. Enumerating
+  /* Token binding: every valid combination is an explicit rule. Enumerating
      them (rather than constructing a var name from attributes with CSS
      concatenation, which CSS can't do) guarantees only valid tones work.    */
   .pds-spinner[data-tone="neutral"][data-emphasis="light"]    { color: var(--semantic-color-foreground-static-neutral-faint); }
@@ -203,7 +203,7 @@
 <script type="text/babel">
 const { useState } = React;
 
-// ─── PATHWAY DESIGN SYSTEM — Spinner paths (from Figma) ───────────────────────
+// ─── PATHWAY DESIGN SYSTEM, Spinner paths (from Figma) ───────────────────────
 // Source: Figma file 3sw45aVcngFAmpbP6cfrXP, node 40006622:50003
 //   component variant: style = "progress-activity"
 //   inner asset:       node 40006622:50026 "progress-activity-animated"
@@ -213,17 +213,17 @@ const { useState } = React;
 // opacity ladder (1.00 → 0.12) breaks the 8-fold rotational symmetry so
 // that rotating the whole SVG produces a visible "head + fading trail".
 const SPINNER_SPOKES = [
-  { d: "M6 1V3",             opacity: 1.00 },  // 12 o'clock — leading head
+  { d: "M6 1V3",             opacity: 1.00 },  // 12 o'clock, leading head
   { d: "M8.1 3.9L9.55 2.45", opacity: 0.87 },  //  1:30
   { d: "M9 6H11",            opacity: 0.75 },  //  3 o'clock
   { d: "M8.1 8.1L9.55 9.55", opacity: 0.62 },  //  4:30
   { d: "M6 9V11",            opacity: 0.50 },  //  6 o'clock
   { d: "M2.45 9.55L3.9 8.1", opacity: 0.37 },  //  7:30
   { d: "M1 6H3",             opacity: 0.25 },  //  9 o'clock
-  { d: "M2.45 2.45L3.9 3.9", opacity: 0.12 },  // 10:30 — fading tail
+  { d: "M2.45 2.45L3.9 3.9", opacity: 0.12 },  // 10:30, fading tail
 ];
 
-// ─── Allowed token enumerations — single source of truth for the colour API ──
+// ─── Allowed token enumerations, single source of truth for the colour API ──
 // These arrays MUST stay in sync with the semantic `foreground.static` family in
 // tokens/pathway-design-tokens.json. If you add a tone or emphasis there,
 // add it here AND in the [data-tone]/[data-emphasis] CSS block above.
@@ -243,22 +243,22 @@ const EMPHASES = ["light", "subtle", "base", "contrast", "bold"];
 
 // ─── SPINNER ──────────────────────────────────────────────────────────────────
 // Props:
-//   style     — variant name. Currently only "progress-activity".
-//   size      — any CSS length. Defaults to 1em.
-//   tone      — one of TONES. Defaults to "neutral".
-//   emphasis  — one of EMPHASES. Defaults to "base".
-//   label     — accessible name. Defaults to "Loading".
+//   style, variant name. Currently only "progress-activity".
+//   size, any CSS length. Defaults to 1em.
+//   tone: one of TONES. Defaults to "neutral".
+//   emphasis: one of EMPHASES. Defaults to "base".
+//   label, accessible name. Defaults to "Loading".
 //
 // Colour is resolved via [data-tone][data-emphasis] CSS selectors that map
 // to var(--semantic-color-foreground-{tone}-{emphasis}). There
 // is NO `color` prop and NO currentColor inheritance from arbitrary parents
-// — callers must pick a semantic token from the fixed list.
+//, callers must pick a semantic token from the fixed list.
 function Spinner({ style: styleVariant = "progress-activity",
                    size, tone = "neutral", emphasis = "base", label = "Loading" }) {
   const spokes = styleVariant === "progress-activity" ? SPINNER_SPOKES : null;
   if (!spokes) return null;
 
-  // Defensive guard — invalid tone/emphasis values are surfaced loudly in the
+  // Defensive guard, invalid tone/emphasis values are surfaced loudly in the
   // console rather than silently rendering as `color: unset`.
   if (!TONES.includes(tone)) {
     console.error(`[Spinner] Invalid tone "${tone}". Allowed: ${TONES.join(", ")}`);
@@ -307,7 +307,7 @@ function App() {
 
       {/* ── Fluid pixel scaling ─────────────────────────────────────────── */}
       <section className="demo-section">
-        <p className="demo-section-label">Fluid pixel scaling — tone=&quot;neutral&quot;, emphasis=&quot;base&quot;</p>
+        <p className="demo-section-label">Fluid pixel scaling, tone=&quot;neutral&quot;, emphasis=&quot;base&quot;</p>
         <div className="demo-row">
           {pxSizes.map(px => (
             <div key={px} className="demo-cell">
@@ -349,7 +349,7 @@ function App() {
 
       {/* ── All tones at emphasis="base" ────────────────────────────────── */}
       <section className="demo-section">
-        <p className="demo-section-label">Tones — all 10 families, emphasis=&quot;base&quot;</p>
+        <p className="demo-section-label">Tones: all 10 families, emphasis=&quot;base&quot;</p>
         <div className="demo-row">
           {TONES.map(tone => (
             <div key={tone} className="demo-cell">
@@ -363,7 +363,7 @@ function App() {
 
       {/* ── Emphasis ladder for one tone ────────────────────────────────── */}
       <section className="demo-section">
-        <p className="demo-section-label">Emphasis ladder — tone=&quot;brand&quot;</p>
+        <p className="demo-section-label">Emphasis ladder, tone=&quot;brand&quot;</p>
         <div className="demo-row">
           {EMPHASES.map(emphasis => (
             <div key={emphasis} className="demo-cell">
@@ -414,7 +414,7 @@ function App() {
         <p className="demo-sub" style={{ margin:0 }}>
           The spinner rejects: raw hex strings, primitive tokens (e.g. <code>primitive-color-brand-300</code>),
           invented semantic tokens (e.g. <code>semantic-success</code>), and any token outside <code>foreground.*</code>.
-          The <code>color</code> prop does not exist — use <code>tone</code> + <code>emphasis</code>.
+          The <code>color</code> prop does not exist, use <code>tone</code> + <code>emphasis</code>.
         </p>
       </section>
     </div>

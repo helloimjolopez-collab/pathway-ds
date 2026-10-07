@@ -11,6 +11,17 @@ import figma from "figma"
 // prop, and the snippet falls back to the component's own default rather than
 // emitting a prop value that does not exist in button.jsx. Cleaning them up is a
 // Figma-side fix; see the note in button-spec.md.
+//
+// ON LIGHT AND MIDNIGHT: this is a code snippet, not a render, so flipping the
+// mode in Figma cannot change it, and nothing is wrong when it does not. What
+// responds at runtime is that every colour resolves through a MODE-AGNOSTIC
+// token name, switched by a `data-theme` ancestor rather than by a different
+// token:
+//
+//   <div data-theme="midnight">  ...the same markup, Midnight values...
+//
+// No component names a mode. `--semantic-color-light-mode-*` is the retired
+// form and resolves to nothing. See src/tokens/themes/.
 const buttonStyle = figma.selectedInstance.getEnum("Style", {
   Fill: "Fill",
   Outlined: "Outlined",

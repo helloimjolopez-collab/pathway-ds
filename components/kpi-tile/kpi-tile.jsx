@@ -1,5 +1,5 @@
 /**
- * KPI Tile — the card.
+ * KPI Tile: the card.
  *
  * SOURCE OF TRUTH: Figma `KPI Tiles`, set 40009415:27750, 18 variants on
  * Type x Breakpoint, read and LOOKED AT on 2026-10-07.
@@ -40,6 +40,7 @@
  * and reproduced rather than unified, because unifying them is a design call.
  */
 import React from "react";
+import { Change } from "./kpi-number-trend.jsx";
 
 const C = (n) => `var(--semantic-color-${n})`;
 const U = (n) => `var(--semantic-layout-units-${n})`;
@@ -51,9 +52,6 @@ export const T = {
   headingSoft: C("foreground-static-neutral-base"),
   headingHard: C("foreground-static-neutral-strong"),
   number:      C("foreground-static-neutral-strong"),
-  badgeFill:   C("fill-surface-elevated"),
-  badgeBorder: C("stroke-static-neutral-base"),
-  badgeText:   C("foreground-static-neutral-strong"),
   menu:        C("foreground-static-neutral-base"),
   iconUpFill:  C("fill-static-positive-subtle"),
   iconUpGlyph: C("foreground-static-positive-on-subtle"),
@@ -73,14 +71,6 @@ export const L = {
   featuredIcon: 48,
   featuredGlyph: 24,
   menuIcon:    20,
-  badgeRadius: U("cornerradius-xsmall"),   // 2 is the nearest rung to Figma's 6
-  badgeGap:    U("gap-xxtight"),           // 4
-  badgePadV:   U("padding-xxxtight"),      // 4
-  badgePadL:   U("padding-xtight"),        // 8
-  badgePadR:   U("padding-tight"),         // 12
-  badgeArrow:  12,
-  widthDesktop: 388,
-  widthMobile:  343,
 };
 
 /** Figma's nine Types, reduced to the three SHAPES they describe. The numbered
@@ -95,23 +85,15 @@ const Glyph = ({ name, size, color }) => (
 );
 
 /**
- * The bordered trend chip this set uses. Neutral text, not a trend colour.
- * See the note at the top of the file.
+ * The bordered trend chip this set uses: Figma `_Change` **Type 03**.
+ *
+ * IT IS NOT A SECOND COMPONENT ANY MORE. This was a parallel implementation of
+ * one of `_Change`'s four Types, which is how the set ended up split across two
+ * files with Type 04 missing entirely. It now delegates, so there is one
+ * implementation of the Figma set and this name stays valid for callers.
  */
-export function ChangeChip({ value, direction = "up" }) {
-  return (
-    <span style={{
-      display: "inline-flex", alignItems: "center", gap: L.badgeGap, flexShrink: 0,
-      padding: `${L.badgePadV} ${L.badgePadR} ${L.badgePadV} ${L.badgePadL}`,
-      background: T.badgeFill, color: T.badgeText,
-      border: `${L.border} solid ${T.badgeBorder}`, borderRadius: L.badgeRadius,
-      fontSize: Y("font-size-s"), lineHeight: Y("line-height-s-single"),
-      letterSpacing: Y("letter-spacing-spacious"), whiteSpace: "nowrap",
-    }}>
-      <Glyph name={direction === "up" ? "north_east" : "south_east"} size={L.badgeArrow} />
-      {value}
-    </span>
-  );
+export function ChangeChip({ value, direction = "up", favourable }) {
+  return <Change type="03" value={value} direction={direction} favourable={favourable} />;
 }
 
 /**

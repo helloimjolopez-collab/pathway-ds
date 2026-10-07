@@ -5,7 +5,7 @@
  *
  * One-time migration of component token references onto the 2026-09-03 semantic
  * restructure. Run once, commit, done. Per CLAUDE.md §2, a one-time data
- * migration must NEVER be baked into the recurring sync — a repeating rewrite
+ * migration must NEVER be baked into the recurring sync: a repeating rewrite
  * masks real broken state once the migration is complete.
  *
  * WHY THIS IS A SCRIPT AND NOT A SED
@@ -57,7 +57,7 @@ if (!defined.size) {
  * `light-mode-` / `dark-mode-` segment. The mode segment is deliberately left
  * alone: tokens.css still emits the mode-in-name form, so keeping it means this
  * migration changes NAMES ONLY and no demo changes appearance. Moving off
- * tokens.css onto the themes files is a separate, behavioural change — it needs a
+ * tokens.css onto the themes files is a separate, behavioural change: it needs a
  * [data-theme] wrapper for the dark regions (CLAUDE.md §2.0), which a blind
  * string edit cannot do correctly.
  */
@@ -114,7 +114,7 @@ const RULES = [
 
   // ── The Action/Mono group is GONE (deleted 2026-09-15) ──
   // It never had real states: only Rest existed, and its value was Cool
-  // Neutral/0 in both modes — identical to Foreground/Static/Neutral/Mono, which is
+  // Neutral/0 in both modes: identical to Foreground/Static/Neutral/Mono, which is
   // where a white-on-fill foreground belongs. The 269 nodes and 1 paint style
   // still on it were rebound before the delete, and because the two resolved to
   // the same #ffffff in both modes the rebind changed nothing on screen.
@@ -232,10 +232,10 @@ for (const file of files) {
     if (name.startsWith("primitive-color-")) {
       // The ramps were respaced, so an old slot number has no mechanical
       // equivalent. And per CLAUDE.md §6 a primitive reference is always wrong in
-      // a component or spec regardless — it needs a semantic token, which is a
+      // a component or spec regardless: it needs a semantic token, which is a
       // judgement call per instance, not a rename.
       if (!unresolved.has(name)) unresolved.set(name, new Set());
-      unresolved.get(name).add(`${file}  (primitive — needs a semantic token)`);
+      unresolved.get(name).add(`${file}  (primitive, needs a semantic token)`);
       continue;
     }
     const to = migrateName(name);

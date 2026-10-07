@@ -1,7 +1,7 @@
 import React, { useId } from "react";
 
 /**
- * module-icon.jsx — the twelve Amplify module marks.
+ * module-icon.jsx: the twelve Amplify module marks.
  *
  * FIGMA
  * Component set `Module.Icon` 40006876:42134, three variant axes:

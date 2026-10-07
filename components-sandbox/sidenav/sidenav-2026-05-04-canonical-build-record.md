@@ -1,22 +1,22 @@
-# SideNav — Canonical Build Record
+# SideNav, Canonical Build Record
 
 **Date:** 2026-05-04
 **Component:** `sidenav`
-**Purpose:** A full, replicable record of how the SideNav iteration was built end-to-end in this codebase — what got created, where it lives, why each artifact exists, the order of operations, and the systems that audit and maintain it. Use this as the template for any future component build in Pathway, or as a reference for replicating the same workflow in another design system.
+**Purpose:** A full, replicable record of how the SideNav iteration was built end-to-end in this codebase: what got created, where it lives, why each artifact exists, the order of operations, and the systems that audit and maintain it. Use this as the template for any future component build in Pathway, or as a reference for replicating the same workflow in another design system.
 
 ---
 
-## Section 1 — One-page summary
+## Section 1: One-page summary
 
 The SideNav iteration that ran in this session was a **prototype-and-handover** loop, not a production build. The actual production component (`components/sidenav/`) was created earlier by a `pathway:component-pipeline --mode=create` run; this session iterated *new* design decisions in the sandbox, captured them in a pre-spec document, and produced a baton (the pipeline-handover doc) for a future session to ship through `pathway:tokens-sync` → `pathway:spec-review` → `pathway:component-pipeline --mode=update`.
 
 The skills you invoke in this loop, in order:
 
-1. `/pathway:component-prototype` — sketch in `components-sandbox/`. **(used in this session)**
+1. `/pathway:component-prototype`, sketch in `components-sandbox/`. **(used in this session)**
 2. *(designer adds new tokens + variants in Figma)*
-3. `/pathway:tokens-sync` (a.k.a. `/update-tokens`) — pull new tokens from Figma. **(planned next)**
-4. `/pathway:spec-review` — walk every new rule into `<name>-spec.md`, flip Status to `REVIEWED`. **(planned next)**
-5. `/pathway:component-pipeline --mode=update` — regenerate all derived artifacts, commit, push. **(planned next)**
+3. `/pathway:tokens-sync` (a.k.a. `/update-tokens`), pull new tokens from Figma. **(planned next)**
+4. `/pathway:spec-review`, walk every new rule into `<name>-spec.md`, flip Status to `REVIEWED`. **(planned next)**
+5. `/pathway:component-pipeline --mode=update`, regenerate all derived artifacts, commit, push. **(planned next)**
 
 Hard invariants that govern the whole loop:
 
@@ -25,12 +25,12 @@ Hard invariants that govern the whole loop:
 - **Only spec-review flips `Status:` to `REVIEWED`.**
 - **The pipeline refuses any spec whose Status is not REVIEWED.**
 - **Figma is source of truth for tokens and visual design.** Repo is source of truth for implementation, specs, stories, MDX docs.
-- **The `### Figma source` block in every spec is load-bearing** — regex-parsed by reconciliation.
+- **The `### Figma source` block in every spec is load-bearing**, regex-parsed by reconciliation.
 - **`components/manifest.json`** is the AI-readable registry; it is updated on every pipeline run.
 
 ---
 
-## Section 2 — File layout (the canonical surface area of a Pathway component)
+## Section 2, File layout (the canonical surface area of a Pathway component)
 
 For a component called `<name>`, these are the files that will exist when it is fully shipped. Use this as a checklist when replicating.
 
@@ -61,7 +61,7 @@ For a component called `<name>`, these are the files that will exist when it is 
 
 | File pattern | Role |
 |---|---|
-| `<name>-YYYY-MM-DD-<theme>-vN.html` | Versioned exploration files. Each iteration is a *new file*, not an overwrite — kept as the design log. Only the latest `vN` is the canonical prototype. Includes a yellow `prototype-banner` so it can never be confused for production. |
+| `<name>-YYYY-MM-DD-<theme>-vN.html` | Versioned exploration files. Each iteration is a *new file*, not an overwrite, kept as the design log. Only the latest `vN` is the canonical prototype. Includes a yellow `prototype-banner` so it can never be confused for production. |
 | `<name>-YYYY-MM-DD-<theme>-token-recommendations.md` | Architecture-fit analysis for tokens the prototype wished it had. Each recommendation rated `matches` / `contradicts` against the existing token structure. |
 | `<name>-YYYY-MM-DD-<theme>-spec-additions.md` | Pre-spec doc. Every spec-worthy decision in the structure the production spec will absorb. **The input to `/pathway:spec-review`.** |
 | `<name>-YYYY-MM-DD-pipeline-handover.md` | Final baton. Sequence of skills + file-by-file delta + open decisions + verification checklist. |
@@ -70,11 +70,11 @@ After ship, sandbox contents are moved by hand to `components-sandbox/<name>/arc
 
 ---
 
-## Section 3 — Why there are *three* HTML files per component (the demo taxonomy)
+## Section 3: Why there are *three* HTML files per component (the demo taxonomy)
 
-This is the question the team always asks. The three layers are not redundant — each does a different job:
+This is the question the team always asks. The three layers are not redundant: each does a different job:
 
-### Layer A — Sandbox prototype (`components-sandbox/<name>/<name>-YYYY-MM-DD-<theme>-vN.html`)
+### Layer A, Sandbox prototype (`components-sandbox/<name>/<name>-YYYY-MM-DD-<theme>-vN.html`)
 - **Purpose:** explore an idea *before* Figma. Real tokens, but the design isn't committed.
 - **Created by:** `/pathway:component-prototype`.
 - **Lifecycle:** versioned v1, v2, v3… as the design evolves through user feedback. Older versions kept as decision provenance.
@@ -82,12 +82,12 @@ This is the question the team always asks. The three layers are not redundant �
 - **Banner:** every prototype HTML has a yellow `prototype-banner`.
 - **Forbidden:** linking to a sandbox file from docs, specs, or Storybook.
 
-### Layer B — Production demo (`components/<name>/<name>.html`)
+### Layer B, Production demo (`components/<name>/<name>.html`)
 - **Purpose:** the canonical, hand-authored, full-screen, self-contained reference implementation. Loaded via CDN React + Babel so it can be opened in a browser without a build.
 - **Created by:** `/pathway:component-pipeline --mode=create` (initial) or `--mode=update` (iteration).
 - **Used by:** the Storybook `StandaloneDemo` story iframes this; designers and engineers open it directly to feel the component.
 
-### Layer C — AI-codegen variant (`components/<name>/<name>-figmamake.html`)
+### Layer C, AI-codegen variant (`components/<name>/<name>-figmamake.html`)
 - **Purpose:** the same React demo, stripped of the inline Component Documentation panel. Optimized for tools like Figma Make to ingest as a clean code reference.
 - **Created by:** `sync-component.yml` GitHub Action → `scripts/build-component.py`.
 - **Optional:** spinner doesn't have one; SideNav does.
@@ -96,7 +96,7 @@ So the three demos map to **sketch (sandbox) → ship (production) → autogener
 
 ---
 
-## Section 4 — The artifacts this session produced (for SideNav specifically)
+## Section 4: The artifacts this session produced (for SideNav specifically)
 
 All in `components-sandbox/sidenav/`:
 
@@ -106,17 +106,17 @@ All in `components-sandbox/sidenav/`:
 | `sidenav-2026-04-21-grouper-variants-v2.html` | Switched to Material Symbols icons (user request). Continued grouper exploration. |
 | `sidenav-2026-04-21-grouper-variants-v3.html` | **Pivot.** Title changes from "Grouper Variants" to "Section Labels". Restored today's grouper structure unchanged; added a non-interactive `SectionLabel` element. |
 | `sidenav-2026-04-21-grouper-variants-v4.html` | Inline `CollapseToggle` inside the sidenav (replaces the old bottom `CollapseButton`, fixing the §15.8 design debt where it scrolled out of view). 11pt-uppercase / 14pt-nav-item typography settled. |
-| `sidenav-2026-04-21-grouper-variants-v5.html` | Full *Platform Shell* (SideNav + TopNav). Hamburger placement decided ("Option A": only at <1024px). Width reduced 250→220. First scrollbar-overlap fix attempt (paddingRight) — failed. |
+| `sidenav-2026-04-21-grouper-variants-v5.html` | Full *Platform Shell* (SideNav + TopNav). Hamburger placement decided ("Option A": only at <1024px). Width reduced 250→220. First scrollbar-overlap fix attempt (paddingRight), failed. |
 | `sidenav-2026-04-21-grouper-variants-v6.html` | **Canonical prototype.** Full responsive overlay (`position: fixed` at <1024px, scrim, asymmetric enter/exit motion). Scrollbar fix: `margin-right: 12px` on scroll-container children. CollapseToggle hover tooltip. 96px bottom scroll clearance. |
 | `sidenav-2026-04-21-grouper-variants-token-recommendations.md` | 4 token recommendations: dedicated section-label color, dedicated typography semantic, mid-tier letter-spacing primitive, compact-row height semantic. Each rated `matches` / `contradicts`. |
 | `sidenav-2026-04-21-grouper-variants-spec-additions.md` | Pre-spec doc. §1 Section Label, §2 Nav item typography, §3 CollapseToggle, §4 Width reduction, §5 Scrollbar spec, §6 Bottom clearance, §6b TopNav hamburger, §6c Responsive overlay, §7 Rules summary, §8 Out of scope, §9 Promotion path. |
 | `sidenav-2026-04-21-pipeline-handover.md` | TL;DR · Read first · Figma source · Sequence (tokens-sync → spec-review → component-pipeline --mode=update with file-by-file delta) · Open decisions · Verification checklist · Provenance · Do-not-skip. |
 
-The production files (`components/sidenav/sidenav.{jsx,html,-figmamake.html,-spec.md}`, the Storybook trio, the manifest entry) **were not modified in this session** — they are the prior shipped state and will be regenerated when the handover sequence runs.
+The production files (`components/sidenav/sidenav.{jsx,html,-figmamake.html,-spec.md}`, the Storybook trio, the manifest entry) **were not modified in this session**: they are the prior shipped state and will be regenerated when the handover sequence runs.
 
 ---
 
-## Section 5 — Order of operations (the actual narrative)
+## Section 5, Order of operations (the actual narrative)
 
 1. **Open with `/pathway:component-prototype`** and a goal sentence. Skill grounds in existing component, reads `<name>.jsx` + `<name>-spec.md`.
 2. **Two clarifying questions, one at a time.** Scope ("start from current sidenav") + fidelity ("fully interactive, real tokens").
@@ -130,11 +130,11 @@ The production files (`components/sidenav/sidenav.{jsx,html,-figmamake.html,-spe
 10. **Handover doc written**: `<name>-YYYY-MM-DD-pipeline-handover.md`. This is the baton for the next session.
 11. *(Session ends. The next session runs the three handover skills.)*
 
-Each step is gated by explicit human approval — there is no batching of decisions, no auto-commit, no auto-promotion.
+Each step is gated by explicit human approval: there is no batching of decisions, no auto-commit, no auto-promotion.
 
 ---
 
-## Section 6 — Audit, sync, and drift systems
+## Section 6, Audit, sync, and drift systems
 
 These are the systems that keep components in lockstep with tokens and Figma:
 
@@ -148,26 +148,26 @@ These are the systems that keep components in lockstep with tokens and Figma:
 | **Component figmamake sync (CI)** | `.github/workflows/sync-component.yml` | Triggers on push to `components/<name>/<name>.html`. Runs `scripts/build-component.py` to regenerate `<name>-figmamake.html`. |
 | **Component build** | `scripts/build-component.py` | Strips Component Documentation section out of `<name>.html` to make `<name>-figmamake.html`. |
 | **Storybook deploy (CI)** | `.github/workflows/deploy-storybook.yml` | Triggers on push to `tokens/`, `src/`, `.storybook/`, `components/`, `docs/`, `style-dictionary.config.js`, `package.json`. Runs Style Dictionary + Storybook build, commits to `/storybook/` on main. GitHub Pages serves it. |
-| **Component reconciliation** | Specified in `CLAUDE.md` §3 — agent behavior, not a script | After every token sync that adds/removes/renames a token, the agent diffs the token set, finds components that reference changed tokens, fetches Figma truth via MCP, reconciles repo → Figma, reports unresolved items. The `### Figma source` block in each spec is load-bearing — regex-parsed by this routine. |
+| **Component reconciliation** | Specified in `CLAUDE.md` §3, agent behavior, not a script | After every token sync that adds/removes/renames a token, the agent diffs the token set, finds components that reference changed tokens, fetches Figma truth via MCP, reconciles repo → Figma, reports unresolved items. The `### Figma source` block in each spec is load-bearing, regex-parsed by this routine. |
 
 **There is no skill that runs reconciliation automatically.** It is run on user request after a `tokens-sync`, or as part of the pipeline.
 
 ---
 
-## Section 7 — Governing docs (the templates to copy when replicating)
+## Section 7, Governing docs (the templates to copy when replicating)
 
 These already exist in the repo and are the source of truth for the rules:
 
-- `CLAUDE.md` — agent instructions. §1 (sources of truth), §3 (component reconciliation after token changes), §4 (file layout), §5 (component spec required structure), §6 (color rules — semantic tokens only), §10 (the four-skill component pipeline table), §11 (human review at every gate).
-- `docs/component-pipeline.md` — Figma → GitHub → Storybook flow, step-by-step.
-- `docs/component-spec-template.md` — the copy-this template for new component specs. Section-by-section prompts. Valid `Status:` values. Required `### Figma source` URL format.
-- `docs/storybook-authoring.md` — MDX docs page rules. Playground at top, controls anchored to demos, state matrices as live components (not tables), token rows as name/swatch/hex, accessibility cites overarching spec. Hard rules + forbidden patterns.
-- `docs/figma-prep-checklist.md` — what designers complete before handoff. 6 sections (component structure, variables, states, responsive, accessibility, handoff metadata) with "why it matters" notes.
-- `docs/design-system-spec.md` — the overarching spec every component spec inherits from. 10 sections (sources of truth, motion, accessibility, color, spacing, typography, naming, documentation, human review, gaps).
+- `CLAUDE.md`, agent instructions. §1 (sources of truth), §3 (component reconciliation after token changes), §4 (file layout), §5 (component spec required structure), §6 (color rules, semantic tokens only), §10 (the four-skill component pipeline table), §11 (human review at every gate).
+- `docs/component-pipeline.md`, Figma → GitHub → Storybook flow, step-by-step.
+- `docs/component-spec-template.md`: the copy-this template for new component specs. Section-by-section prompts. Valid `Status:` values. Required `### Figma source` URL format.
+- `docs/storybook-authoring.md`, MDX docs page rules. Playground at top, controls anchored to demos, state matrices as live components (not tables), token rows as name/swatch/hex, accessibility cites overarching spec. Hard rules + forbidden patterns.
+- `docs/figma-prep-checklist.md`: what designers complete before handoff. 6 sections (component structure, variables, states, responsive, accessibility, handoff metadata) with "why it matters" notes.
+- `docs/design-system-spec.md`: the overarching spec every component spec inherits from. 10 sections (sources of truth, motion, accessibility, color, spacing, typography, naming, documentation, human review, gaps).
 
 ---
 
-## Section 8 — Maintenance loop (going forward)
+## Section 8, Maintenance loop (going forward)
 
 The pattern this session established, reduced to a checklist:
 
@@ -182,20 +182,20 @@ The pattern this session established, reduced to a checklist:
 
 ---
 
-## Section 9 — Open decisions on the SideNav at compaction time
+## Section 9, Open decisions on the SideNav at compaction time
 
 For continuity, these are the unresolved items in `sidenav-2026-04-21-pipeline-handover.md` that the next session must close before the pipeline can run:
 
-1. Focus trap library choice for the <1024px overlay (WCAG 2.4.3 — required for ship).
-2. Escape key dismisses overlay — confirm pattern.
-3. Swipe-to-dismiss gesture on mobile — defer or include.
-4. Scrim color token — accept primitive mismatch or add `fill.static.scrim.base` semantic.
-5. Scrollbar thumb opacity values 0.32 / 0.45 — add primitives, rescale, or new semantic family.
+1. Focus trap library choice for the <1024px overlay (WCAG 2.4.3, required for ship).
+2. Escape key dismisses overlay, confirm pattern.
+3. Swipe-to-dismiss gesture on mobile, defer or include.
+4. Scrim color token, accept primitive mismatch or add `fill.static.scrim.base` semantic.
+5. Scrollbar thumb opacity values 0.32 / 0.45, add primitives, rescale, or new semantic family.
 6. Whether Figma's `$description` field made it through the export.
 
 ---
 
-## Section 10 — Replication checklist (for a new component, in any design system that adopts this workflow)
+## Section 10, Replication checklist (for a new component, in any design system that adopts this workflow)
 
 Copy this section as a new-component starter list:
 

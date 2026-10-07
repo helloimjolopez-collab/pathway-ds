@@ -1,11 +1,11 @@
 /*
  ==========================================================================
- PATHWAY DESIGN TOKENS — CONTRACT
+ PATHWAY DESIGN TOKENS, CONTRACT
  ==========================================================================
 
  Spacing, radii and border widths. Name these freely.
 
- Values already carry their unit, so use them directly — do NOT wrap in
+ Values already carry their unit, so use them directly: do NOT wrap in
  calc(... * 1px). That produces calc(4px * 1px), which is not a length, so
  the browser silently drops the declaration.
 
@@ -13,7 +13,7 @@
  putting the breakpoint in the property name, so one name works responsively.
 
  Declares 76 custom properties.
- Generated — do not edit. Run `npm run build-tokens`.
+ Generated: do not edit. Run `npm run build-tokens`.
  ==========================================================================
 */
 :root {

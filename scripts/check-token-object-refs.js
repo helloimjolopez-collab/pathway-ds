@@ -1,5 +1,5 @@
 /**
- * check-token-object-refs.js — fail the build when a component reads a key that
+ * check-token-object-refs.js, fail the build when a component reads a key that
  * its token object does not have.
  *
  * WHY THIS EXISTS
@@ -69,11 +69,11 @@ const all = ROOTS.flatMap((r) => files(r));
 const sources = new Map(all.map((p) => [p, readFileSync(p, "utf8")]));
 
 // Where each object is DECLARED, so an importer can be resolved back to it.
-const declared = new Map(); // "path::name" -> Set(keys)
+const declared = new Map(); // "path:name" -> Set(keys)
 for (const [p, src] of sources) {
   for (const name of ["T", "L", "ST", "SCROLL"]) {
     const k = objectKeys(src, name);
-    if (k && k.size) declared.set(`${p}::${name}`, k);
+    if (k && k.size) declared.set(`${p}:${name}`, k);
   }
 }
 
@@ -83,7 +83,7 @@ for (const [p, src] of sources) {
   // otherwise follow the relative import it was named in.
   const origin = new Map();
   for (const name of ["T", "L", "ST", "SCROLL"]) {
-    if (declared.has(`${p}::${name}`)) { origin.set(name, `${p}::${name}`); continue; }
+    if (declared.has(`${p}:${name}`)) { origin.set(name, `${p}:${name}`); continue; }
     for (const im of src.matchAll(/import\s*\{([^}]+)\}\s*from\s*["']([^"']+)["']/g)) {
       const names = im[1].split(",").map((s) => s.trim().split(/\s+as\s+/).pop());
       if (!names.includes(name)) continue;
@@ -91,7 +91,7 @@ for (const [p, src] of sources) {
       const target = resolvePath(dirname(p), im[2]);
       for (const cand of [target, target + ".jsx", target + ".js"]) {
         const rel = cand.replace(process.cwd() + "/", "");
-        if (declared.has(`${rel}::${name}`)) { origin.set(name, `${rel}::${name}`); break; }
+        if (declared.has(`${rel}:${name}`)) { origin.set(name, `${rel}:${name}`); break; }
       }
     }
   }
@@ -103,7 +103,7 @@ for (const [p, src] of sources) {
       if (keys.has(prop) || seen.has(prop)) continue;
       seen.add(prop);
       const line = src.slice(0, m.index).split("\n").length;
-      problems.push({ p, line, name, prop, keys: [...keys].sort(), from: key.split("::")[0] });
+      problems.push({ p, line, name, prop, keys: [...keys].sort(), from: key.split(":")[0] });
     }
   }
 }

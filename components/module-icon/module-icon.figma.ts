@@ -6,6 +6,17 @@ import figma from "figma"
 
 // The twelve Amplify module marks. One component set, three variant axes:
 // Module, Style and Color.
+//
+// ON LIGHT AND MIDNIGHT: this is a code snippet, not a render, so flipping the
+// mode in Figma cannot change it, and nothing is wrong when it does not. What
+// responds at runtime is that every colour resolves through a MODE-AGNOSTIC
+// token name, switched by a `data-theme` ancestor rather than by a different
+// token:
+//
+//   <div data-theme="midnight">  ...the same markup, Midnight values...
+//
+// No component names a mode. `--semantic-color-light-mode-*` is the retired
+// form and resolves to nothing. See src/tokens/themes/.
 
 const module_ = figma.selectedInstance.getEnum("Module", {
   People: "people",

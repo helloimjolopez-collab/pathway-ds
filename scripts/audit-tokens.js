@@ -305,9 +305,9 @@ function main() {
     }
     const countsStr = parity.modes.map((m) => `${m}: ${parity.counts[m]}`).join(", ");
     if (parity.mismatches.length === 0) {
-      console.log(`  ✓ ${label}: ${countsStr} — perfectly matched`);
+      console.log(`  ✓ ${label}: ${countsStr}, perfectly matched`);
     } else {
-      console.log(`  ✗ ${label}: ${countsStr} — ${parity.mismatches.length} mismatches:`);
+      console.log(`  ✗ ${label}: ${countsStr}, ${parity.mismatches.length} mismatches:`);
       for (const m of parity.mismatches.slice(0, 5)) {
         console.log(`      ${m}`);
       }

@@ -1,7 +1,7 @@
 import React from "react";
 
 /**
- * spinner.jsx — the React module Spinner never had, with NewCo's ring loader.
+ * spinner.jsx: the React module Spinner never had, with NewCo's ring loader.
  *
  * WHY THIS EXISTS
  * Spinner shipped as HTML/SVG/CSS only; the manifest said a .jsx wrapper was on

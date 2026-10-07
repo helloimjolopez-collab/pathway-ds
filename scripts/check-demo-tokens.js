@@ -30,7 +30,7 @@
  * WHY RULE 4 EXISTS
  * `tokens/resolve-tokens.js` returns the token id UNCHANGED when it cannot
  * resolve a name. So `t("Text/Contextual/NavItem/Base")` on a renamed token
- * emits `color: "Text/Contextual/NavItem/Base"` — invalid CSS that the browser
+ * emits `color: "Text/Contextual/NavItem/Base"`, invalid CSS that the browser
  * silently drops, leaving the element with an inherited colour and no error
  * anywhere. On 2026-09-02 the shipped sidenav had been doing exactly that for
  * nine tokens after the Text/Icon tiers were merged into Foreground, and rules
@@ -61,7 +61,7 @@ import { join, basename } from "node:path";
  * restructure. `foreground-action-secondary-*` are real and current.
  * `fill-contextual-navitem-*` moved to the private Contextual: Color collection
  * and will change prefix. `foreground-action-secondary-inverse-rest` is gone
- * entirely — that one is a component fix, not a sync fix.
+ * entirely: that one is a component fix, not a sync fix.
  */
 const PENDING_SYNC = new Set([
   // Emptied 2026-09-03 by the post-restructure sync. Anything that fails now is
@@ -72,7 +72,7 @@ const PENDING_SYNC = new Set([
 // The contract a demo must load. tokens.css is deliberately NOT here: it emitted
 // every variable times every mode (2,338 properties) and was retired 2026-09-03.
 // Leaving it out of CSS_SOURCES is what makes this script enforce the new contract
-// — a name that exists only in the legacy file now fails instead of passing.
+//: a name that exists only in the legacy file now fails instead of passing.
 const CONTRACT_CSS = [
   // primitives.css FIRST and REQUIRED: the theme files reference primitives via
   // var(), so without it every colour resolves to nothing. Inlining was tried and
@@ -91,7 +91,7 @@ const TOKENS_CSS = "src/tokens/themes/light.css";
 const TOKEN_DECL = /^\s*--(?:semantic|primitive|motion)-[a-z0-9-]+\s*:/;
 const REAL_LINK = /<link[^>]*themes\/light\.css/;
 const VAR_USE = /var\(--((?:semantic|primitive|motion)-[a-z0-9-]+)/g;
-// t("Fill/Contextual/NavItem/Hover") — a slash is required, so this cannot match
+// t("Fill/Contextual/NavItem/Hover"): a slash is required, so this cannot match
 // an unrelated one-argument function that happens to be called t.
 const T_CALL = /\bt\(\s*["']([A-Za-z0-9 _&]+(?:\/[A-Za-z0-9 _&%.]+)+)["']/g;
 
@@ -100,7 +100,7 @@ const T_CALL = /\bt\(\s*["']([A-Za-z0-9 _&]+(?:\/[A-Za-z0-9 _&%.]+)+)["']/g;
 //   u("padding-base", 16)               -> var(--semantic-layout-units-…, 16px)
 // These MUST be checked explicitly. They assemble the name by interpolation, so
 // the VAR_USE regex only ever sees the literal prefix "--semantic-color-" and
-// skips it as a runtime-built name — meaning a typo or a renamed token would sail
+// skips it as a runtime-built name, meaning a typo or a renamed token would sail
 // straight through rules 1 to 3.
 const HELPER_CALL = /\b([cu])\(\s*["']([a-z0-9-]+)["']/g;
 const HELPER_PREFIX = { c: "semantic-color-", u: "semantic-layout-units-" };
@@ -161,7 +161,7 @@ for (const file of demos) {
   const problems = [];
 
   if (!REAL_LINK.test(src)) {
-    problems.push("no <link> to src/tokens/themes/light.css — this demo has no tokens at all");
+    problems.push("no <link> to src/tokens/themes/light.css: this demo has no tokens at all");
   }
 
   const inlined = src.split("\n").filter((l) => TOKEN_DECL.test(l));
@@ -183,7 +183,7 @@ for (const file of demos) {
   }
   if (pending.length) {
     warnings.push(
-      `${basename(file)}: ${pending.length} token(s) awaiting the next sync — ` +
+      `${basename(file)}: ${pending.length} token(s) awaiting the next sync, ` +
       `${pending.slice(0, 3).join(", ")}${pending.length > 3 ? ", …" : ""}`
     );
   }

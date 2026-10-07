@@ -17,7 +17,7 @@ Complete implementation reference for the Checkbox component. Covers anatomy, de
 
 ## 1. Component Overview
 
-`Checkbox` is a selection-control component used for **multi-select scenarios** — when the user can pick zero or more independent options from a set. It is NOT used for single-select (use Radio), nor for binary on/off mode switches (use Toggle unless the setting is part of a form submission, in which case Checkbox is correct).
+`Checkbox` is a selection-control component used for **multi-select scenarios**: when the user can pick zero or more independent options from a set. It is NOT used for single-select (use Radio), nor for binary on/off mode switches (use Toggle unless the setting is part of a form submission, in which case Checkbox is correct).
 
 ### Figma source
 - **File:** [Pathway Design System Master File MB 2.0](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/)
@@ -52,10 +52,10 @@ Complete implementation reference for the Checkbox component. Covers anatomy, de
 ## 2. Anatomy
 
 ```
-Checkbox (root — 44×44px touch target)
-├── state-layer (44×44px, rounded-full — holds hover/focus ring)
+Checkbox (root, 44×44px touch target)
+├── state-layer (44×44px, rounded-full: holds hover/focus ring)
 │   └── container (18×18px, 4px radius, 1.5px border)
-│       └── icon (checkmark SVG or indeterminate dash — visible when checked/indeterminate)
+│       └── icon (checkmark SVG or indeterminate dash: visible when checked/indeterminate)
 └── label (optional, 14pt Red Hat Text Regular, line-height 20px)
 ```
 
@@ -81,13 +81,13 @@ The touch target is always 44×44px regardless of visual size (WCAG 2.5.5).
 | `error` | `boolean` | `false` | Error/negative styling |
 | `highlight` | `boolean` | `false` | Highlight background on the state-layer |
 | `secondary` | `boolean` | `false` | Secondary indeterminate variant (muted colour) |
-| `disabled` | `boolean` | `false` | Disabled — non-interactive |
+| `disabled` | `boolean` | `false` | Disabled, non-interactive |
 | `size` | `"default" \| "s"` | `"default"` | Visual size of the control |
-| `label` | `string` | — | Optional visible label |
-| `onChange` | `(checked: boolean) => void` | — | Called on user interaction |
-| `id` | `string` | — | For `<label htmlFor>` association |
-| `name` | `string` | — | For form grouping |
-| `value` | `string` | — | Form value |
+| `label` | `string` | - | Optional visible label |
+| `onChange` | `(checked: boolean) => void` | - | Called on user interaction |
+| `id` | `string` | - | For `<label htmlFor>` association |
+| `name` | `string` | - | For form grouping |
+| `value` | `string` | - | Form value |
 | `className` | `string` | `""` | Additional CSS class on the root |
 
 ### 3.2 Type matrix (from Figma)
@@ -96,19 +96,19 @@ The touch target is always 44×44px regardless of visual size (WCAG 2.5.5).
 |---|---|---|---|---|---|
 | Unselected | false | false | false | false | false |
 | Selected | true | false | false | false | false |
-| Indeterminate | — | true | false | false | false |
+| Indeterminate | - | true | false | false | false |
 | Error Unselected | false | false | true | false | false |
 | Error Selected | true | false | true | false | false |
-| Error Indeterminate | — | true | true | false | false |
+| Error Indeterminate | - | true | true | false | false |
 | Highlight Unselected | false | false | false | true | false |
-| Highlight Hovered | (hover state) | — | false | true | false |
-| Hhighlight Focused | (focus state) | — | false | true | false |
-| Hhighlight Pressed | (pressed state) | — | false | true | false |
-| Secondary Indeterminate | — | true | false | false | true |
+| Highlight Hovered | (hover state) | - | false | true | false |
+| Hhighlight Focused | (focus state) | - | false | true | false |
+| Hhighlight Pressed | (pressed state) | - | false | true | false |
+| Secondary Indeterminate | - | true | false | false | true |
 
-> **Note:** Figma names "Hhighlight Focused" and "Hhighlight Pressed" have a double-h — this is a Figma typo, not an intentional variant. The implementation treats them as `highlight + focused` and `highlight + pressed` states.
+> **Note:** Figma names "Hhighlight Focused" and "Hhighlight Pressed" have a double-h: this is a Figma typo, not an intentional variant. The implementation treats them as `highlight + focused` and `highlight + pressed` states.
 
-> **[TBD — needs user]:** What is the `Secondary Indeterminate` variant used for? It appears to be a muted/secondary colour indeterminate state. Confirm intended use case before shipping.
+> **[TBD, needs user]:** What is the `Secondary Indeterminate` variant used for? It appears to be a muted/secondary colour indeterminate state. Confirm intended use case before shipping.
 
 ---
 
@@ -128,11 +128,11 @@ Hover, focus, and pressed states show on the **state-layer** (44×44px backgroun
 
 ## 5. Token mappings
 
-### 5.1 Standard (primary) — unchecked / checked
+### 5.1 Standard (primary): unchecked / checked
 
 | Element | State | Token | CSS variable |
 |---|---|---|---|
-| Box fill | All unchecked | transparent | — |
+| Box fill | All unchecked | transparent | - |
 | Box fill | Checked / Indeterminate | `fill.action.primary.strong.rest` | `--semantic-color-fill-action-primary-strong-rest` |
 | Box fill | Checked hover | `fill.action.primary.strong.hover` | `--semantic-color-fill-action-primary-strong-hover` |
 | Box fill | Checked focused | `fill.action.primary.strong.hover` | `--semantic-color-fill-action-primary-strong-hover` |
@@ -153,7 +153,7 @@ Hover, focus, and pressed states show on the **state-layer** (44×44px backgroun
 | Label text | All | `foreground.static.neutral.base` | `--semantic-color-foreground-static-neutral-base` |
 | Border radius | Box | `cornerradius.xsmall` | `--semantic-layout-units-cornerradius-xsmall` |
 
-### 5.2 Error (negative) — error unchecked / error checked
+### 5.2 Error (negative): error unchecked / error checked
 
 | Element | State | Token |
 |---|---|---|
@@ -171,7 +171,7 @@ Hover, focus, and pressed states show on the **state-layer** (44×44px backgroun
 | State-layer | Error unchecked hover | `fill.action.status.negative.subtle.hover` |
 | State-layer | Error checked hover | `fill.action.status.negative.subtle.hover` |
 
-### 5.3 Token gaps — CLOSED (2026-09-11)
+### 5.3 Token gaps: CLOSED (2026-09-11)
 
 This section used to list eight tokens as "not yet in `pathway-design-tokens.json`",
 each with a nearest-available fallback. **Every one of them now exists.** The token
@@ -187,7 +187,7 @@ rework of 2026-09-03 closed the whole list, and most of it was never really a ga
 | `border-width.m` = 1.5px | `--semantic-layout-units-borderwidth-medium` **is** 1.5px. The component no longer needs to hardcode it |
 
 Nothing in this component is on a fallback any more. If a future gap appears, list it
-here with the Figma value and the interim token, and raise it in Figma — never patch a
+here with the Figma value and the interim token, and raise it in Figma: never patch a
 derived file.
 
 ---
@@ -228,7 +228,7 @@ The `highlight` prop adds a tinted background on the state-layer even in the res
 
 The `secondary` prop combined with `indeterminate` renders a muted indeterminate state. The icon appears to use secondary/muted colour rather than primary.
 
-> **[TBD — needs user]:** Confirm the exact token for the secondary indeterminate icon and fill. Figma node `40002991:2784` represents this variant. Add the token if it's missing.
+> **[TBD, needs user]:** Confirm the exact token for the secondary indeterminate icon and fill. Figma node `40002991:2784` represents this variant. Add the token if it's missing.
 
 ---
 
@@ -253,7 +253,7 @@ Checkboxes are NOT navigated with arrow keys (that is Radio's pattern). Each che
 ### Focus ring
 Visible focus ring on the state-layer (44×44px). Uses the `Focused State-Error` effect from Figma for error checkboxes: `box-shadow: 0 0 0 3px rgba(170, 54, 54, 0.1)`.
 
-Standard focused state: browser default outline or design system focus ring — uses `stroke.action.secondary.hover` on the box border (focused states share the hover color; the focus ring is a separate visual effect).
+Standard focused state: browser default outline or design system focus ring: uses `stroke.action.secondary.hover` on the box border (focused states share the hover color; the focus ring is a separate visual effect).
 
 ### Screen reader announcements
 | State | Announcement |
@@ -276,7 +276,7 @@ Standard focused state: browser default outline or design system focus ring — 
 
 ## 10. Motion
 
-No animation on the checkmark itself — it appears immediately on state change. Transitions use `--motion-*` tokens: the state-layer background fades with `--motion-duration-3` + `--motion-easing-standard`; the box fill/border with `--motion-duration-2` + `--motion-easing-decelerate`.
+No animation on the checkmark itself: it appears immediately on state change. Transitions use `--motion-*` tokens: the state-layer background fades with `--motion-duration-3` + `--motion-easing-standard`; the box fill/border with `--motion-duration-2` + `--motion-easing-decelerate`.
 
 Reduced motion: no change needed (no animation to remove).
 
@@ -285,7 +285,7 @@ Reduced motion: no change needed (no animation to remove).
 ## 11. Constraints
 
 - Never use raw hex. Every colour must be a semantic token CSS variable.
-- The indeterminate state must use `aria-checked="mixed"` — not `false` and not `true`.
+- The indeterminate state must use `aria-checked="mixed"`, not `false` and not `true`.
 - Touch target must always be 44×44px. Do not reduce for size=S.
 - Error state requires an associated error message via `aria-describedby` in production use.
 - Disabled checkboxes must still be accessible to screen readers (do not use `aria-hidden`).
@@ -334,6 +334,25 @@ Reduced motion: no change needed (no animation to remove).
 
 ---
 
+## 14. Storybook
+
+Sidebar-visible, matching the untagged exports in `Checkbox.stories.jsx` exactly:
+
+| Export | Name |
+|---|---|
+| `StateMatrix` | StateMatrix |
+| `SelectAllPattern` | SelectAllPattern |
+| `ErrorWithMessage` | ErrorWithMessage |
+| `HighlightVariant` | HighlightVariant |
+| `Sizes` | Sizes |
+
+The Highlight variant is a HOVER AND FOCUS swap, from `#f3f0ec` to `#e2e9f7`, not a resting tint. Figma has no resting state layer for it.
+
+> Added 2026-10-07. This spec had no Storybook section at all, so nothing
+> told a reader that 5 stories existed or what they covered.
+
+---
+
 ## Agent implementation rules
 
 For any agent implementing this component: Figma Make, Lovable, v0, Claude,
@@ -342,7 +361,7 @@ deleted 2026-09-16. One doc per component, so there is no second file to drift.
 
 ### The 5 rules an AI agent must not skip
 
-1. **Three checked states exist:** `unchecked`, `checked`, and `indeterminate` (the parent-of-a-mixed-selection state). Don't omit indeterminate — it appears in any tree/list checkbox.
+1. **Three checked states exist:** `unchecked`, `checked`, and `indeterminate` (the parent-of-a-mixed-selection state). Don't omit indeterminate: it appears in any tree/list checkbox.
 
 2. **All four interaction states must be implemented:** base, hover, focus, disabled. Plus the three checked states above = 12 combinations. The spec has the full matrix.
 

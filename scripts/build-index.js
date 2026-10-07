@@ -1,5 +1,5 @@
 /**
- * build-index.js — write a single CSS entry point per brand.
+ * build-index.js, write a single CSS entry point per brand.
  *
  * WHY THIS EXISTS
  * The contract is nine files that must load in a specific order, and the first
@@ -43,7 +43,7 @@ const PATHWAY_ORDER = [
 
 // Same shape, brand-scoped. These redefine the SAME property names under
 // [data-brand="newco"], so they layer on top of the Pathway contract rather
-// than replacing it — which is why primitives comes first here too.
+// than replacing it: which is why primitives comes first here too.
 const NEWCO_ORDER = [
   "primitives.css",
   "themes/light.css",
@@ -56,7 +56,7 @@ function render(title, order) {
     `/*\n` +
     ` ${title}\n` +
     ` @imports every token file in load order (primitives first, so the themes that\n` +
-    ` reference it resolve). Generated — do not edit. Run \`npm run build-dist\`.\n` +
+    ` reference it resolve). Generated: do not edit. Run \`npm run build-dist\`.\n` +
     `*/\n` +
     order.map((f) => `@import "./${f}";`).join("\n") +
     "\n"
@@ -64,11 +64,11 @@ function render(title, order) {
 }
 
 const targets = [
-  ["src/tokens/index.css", "Pathway design tokens — single entry point.", PATHWAY_ORDER],
-  ["dist/index.css", "Pathway design tokens — single entry point.", PATHWAY_ORDER],
+  ["src/tokens/index.css", "Pathway design tokens, single entry point.", PATHWAY_ORDER],
+  ["dist/index.css", "Pathway design tokens, single entry point.", PATHWAY_ORDER],
   [
     "dist/brands/newco/index.css",
-    "NewCo brand layer — single entry point. Load AFTER the Pathway index and set data-brand=\"newco\".",
+    "NewCo brand layer, single entry point. Load AFTER the Pathway index and set data-brand=\"newco\".",
     NEWCO_ORDER,
   ],
 ];

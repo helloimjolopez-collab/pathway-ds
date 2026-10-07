@@ -16,7 +16,7 @@
     PACKAGE ID IS A PLACEHOLDER
     Pathway.DesignTokens stands in until the org account name is settled. The id
     appears in the URL consumers reference (_content/<id>/…), so renaming it later
-    is a breaking change for them — change it before the first publish, not after.
+    is a breaking change for them, change it before the first publish, not after.
 
     VERSION
     Passed in by .github/workflows/publish-nuget.yml, read from package.json, so

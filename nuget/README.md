@@ -8,7 +8,7 @@ hand-copied fork that drifts.
 There is no C# in this package. It is CSS and JSON.
 
 **The colour contract is 358 names; the full working vocabulary is 460.** Adding up
-every declaration in the package gives ~1,200 — that is not the contract. The
+every declaration in the package gives ~1,200: that is not the contract. The
 difference is that `primitives.css` ships but is never named, and the two themes share
 one name set rather than each having their own. `contract.json` lists every consumable
 name if you want to check against it.
@@ -72,7 +72,7 @@ Set `data-theme` on `<html>` or any wrapper element. Every
 Pathway's vocabulary to switch themes.
 
 Because theming is done by selector rather than by name, a single element can
-opt into the opposite theme — useful for a dark top bar on an otherwise light
+opt into the opposite theme, useful for a dark top bar on an otherwise light
 page:
 
 ```html
@@ -85,7 +85,7 @@ page:
 |---|---|
 | `themes/light.css`, `themes/midnight.css` | Every semantic colour, one name per token, resolved by selector. **This is the colour contract.** |
 | `type.css` | The 41-token type scale. Compose font-family, size, weight, line-height and tracking at the call site |
-| `primitives.css` | Raw ramp values. Building blocks, not a contract — do not reference these directly |
+| `primitives.css` | Raw ramp values. Building blocks, not a contract: do not reference these directly |
 | ~~`tokens.css`~~ | Removed 2026-09-03. Load `primitives.css` plus one theme file instead |
 | `tokens.json` | DTCG JSON, for tooling |
 
