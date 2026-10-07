@@ -23,11 +23,15 @@
  *     Change             fs 14   Stroke/Static/Positive/Strong  when positive
  *                                Stroke/Static/Negative/Strong  when negative
  *
- * THE TREND COLOUR IS A STROKE TOKEN USED AS A FILL. That is Figma's choice,
- * not a slip in this file: _Change's text and its arrow vector both bind
- * Stroke/Static/{Positive,Negative}/Strong. It is reproduced rather than
- * "corrected" to a foreground token, because the component should match the
- * design, and the oddity is logged in the manifest for the file to decide on.
+ * THE TREND COLOUR WAS A STROKE TOKEN USED AS A TEXT FILL, in Figma and
+ * therefore here. Fixed in Figma on 2026-10-07, 10 fills across the 8 _Change
+ * variants moved onto Foreground/Static/{Positive,Negative}/On Subtle, with the
+ * genuine strokes elsewhere left alone: the mini chart's Line vectors really do
+ * stroke with Stroke/Static/Positive/Strong and were not touched.
+ *
+ * It was not only a tier violation. #358d4b on the white card measures 4.15:1,
+ * under the 4.5 floor for 14px text, so positive trends were failing contrast.
+ * The foreground tokens measure 13.62:1 and 10.74:1.
  *
  * FAVOURABLE IS NOT THE SAME AS UP. A rising figure is good for income and bad
  * for expenses, so direction and sentiment are separate props: `direction`
@@ -44,9 +48,14 @@ export const T = {
   eyebrow:   C("foreground-static-neutral-subtle"),
   number:    C("foreground-static-neutral-strong"),
   caption:   C("foreground-static-neutral-base"),
-  // Figma binds STROKE tokens here. See the note above.
-  up:        C("stroke-static-positive-strong"),
-  down:      C("stroke-static-negative-strong"),
+  // Trend colour. These were Stroke/Static/{Positive,Negative}/Strong, because
+  // that is what Figma bound as the TEXT fill. Fixed in Figma on 2026-10-07
+  // rather than reproduced: a text fill belongs to the Foreground tier, and the
+  // positive one also failed contrast at 4.15:1 on the card against a 4.5 floor
+  // for 14px text. Foreground/Static/Positive/On Subtle measures 13.62:1 and
+  // the negative one 10.74:1.
+  up:        C("foreground-static-positive-on-subtle"),
+  down:      C("foreground-static-negative-on-subtle"),
   neutral:   C("foreground-static-neutral-base"),
   filterBorder: C("stroke-action-secondary-rest"),
 };

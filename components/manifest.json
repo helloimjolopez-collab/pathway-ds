@@ -1129,8 +1129,9 @@
         "grid": "demo measured at 1600 and 800: 12/8/4 cols, 48px rows, 16px gap, flow row. glance=kpi 3x3, detail=wide 6x8, explore=xwide 12x9, band=full x3"
       },
       "figmaBlocker": "THE SET REPORTS ERRORS IN FIGMA. 40009622:39702 has a new Configuration axis (01/02/03) and TWO variants both named 'Size=Glance, Configuration=01', a duplicate combination. Figma itself refuses to return componentPropertyDefinitions for the set. Code Connect cannot map a set in that state, so the Widget mapping is held until the duplicate is removed or renamed. Read-only here: the fix is in the file.",
-      "figmaGap": "Detail and Explore root fill is an unbound #fefefd. That value is Fill/Static/Neutral/Faint, so the component uses the token and the binding is missing in Figma.",
-      "codeConnect": null
+      "codeConnect": null,
+      "figmaFixed": "Detail and Explore root fills were unbound #fefefd; bound to Fill/Static/Neutral/Faint in Figma on 2026-10-07.",
+      "spec": "components/widget/widget-spec.md"
     },
     "kpi-tile": {
       "displayName": "KPI Tile",
@@ -1163,7 +1164,35 @@
         "change": "55x20, gap 6 outer / 2 inner, icon 16, fs 14; arrow_upward|arrow_downward on Type 01, moving on Type 02",
         "filterControl": "26 tall pill, r=8, Stroke/Action/Secondary/Rest"
       },
-      "figmaNote": "_Change binds STROKE tokens as text fills: Stroke/Static/Positive/Strong and Stroke/Static/Negative/Strong. Reproduced rather than swapped for a foreground token, because the component should match the design. Worth a decision in the file.",
+      "codeConnect": null,
+      "figmaFixed": "_Change bound Stroke/Static/{Positive,Negative}/Strong as TEXT fills, a tier violation that also failed contrast: #358d4b on the white card is 4.15:1 against a 4.5 floor for 14px text. Fixed in Figma on 2026-10-07, 10 fills across the 8 variants moved to Foreground/Static/{Positive,Negative}/On Subtle, measuring 13.62:1 and 10.74:1. The mini chart's Line vectors genuinely stroke with Stroke/Static/Positive/Strong and were left alone.",
+      "spec": "components/kpi-tile/kpi-tile-spec.md",
+      "modules": [
+        "components/kpi-tile/kpi-tile.jsx",
+        "components/kpi-tile/mini-chart.jsx"
+      ]
+    },
+    "dashboard": {
+      "displayName": "Dashboard",
+      "module": "components/dashboard/dashboard.jsx",
+      "spec": "components/dashboard/dashboard-spec.md",
+      "stories": "src/stories/Library/Dashboard/Dashboard.stories.jsx",
+      "exports": [
+        "Dashboard",
+        "AddWidgetModal",
+        "WidgetFinder",
+        "DashboardSelector",
+        "Button"
+      ],
+      "figma": null,
+      "demo": "https://helloimjolopez-collab.github.io/design-sandbox/phase-2/Widget%20Container%20Demo/",
+      "measured": {
+        "grid": "12 cols desktop / 8 tablet / 4 mobile, 48px auto-rows, 16px gap, grid-auto-flow ROW",
+        "toolbar": "Find a widget, Add widget, Refresh all and Manage; the first three need no manage mode",
+        "addDialog": "900x660, role=dialog aria-modal, 186px category rail + gallery, grid/list toggle, 'Added (n)' hidden at zero",
+        "card": "app badge + name + description + Add button; whole card role=button tabindex=0"
+      },
+      "note": "No Figma component exists for the dashboard; the canonical demo is the behavioural source of truth and was read by driving it. Verified 2026-10-07: grid and all four spans equal to the demo, dialog 900x660 with a 186 rail, and the add flow taking the board from 4 widgets to 5.",
       "codeConnect": null
     }
   }
