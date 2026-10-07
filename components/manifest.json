@@ -1105,6 +1105,66 @@
         "spec": "component 132x48 horizontal gap 0; Action Icon 44x44 x3; Container.Icon 28x28 r=8 with no rest fill, Fill/Action/Ghost/Hover on hover and Fill/Action/Ghost/Pressed on press; glyph 14x14 on Foreground/Action/Ghost/Rest going to /Hover."
       },
       "codeConnect": null
+    },
+    "widget": {
+      "displayName": "Widget",
+      "module": "components/widget/widget.jsx",
+      "stories": "src/stories/Library/Widget/Widget.stories.jsx",
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "page": "40009415:21911",
+        "section": "Amplify",
+        "nodeId": "40009622:39702",
+        "newcoMirror": "40016737:144022"
+      },
+      "demo": "https://helloimjolopez-collab.github.io/design-sandbox/phase-2/Widget%20Container%20Demo/",
+      "measured": {
+        "glance": "275x176, minW 275, minH 176, pad 0,0,8,0, flat, Fill/Surface/Elevated",
+        "detail": "566x416, minW 515, layered",
+        "explore": "1148x416, minW 1050, layered",
+        "root": "r=16, stroke Stroke/Static/Neutral/Base",
+        "header": "Container.WidgetHeading 44 tall, gap 2; pad 0,8,0,12 on Glance and 0,6,0,16 on Detail/Explore",
+        "inner": "MainContent.Slot VERTICAL gap 8, pad 12,16,12,16, own fill + stroke; Glance has none",
+        "hoverIcons": "Slot.HoverIcons 72x36 hug, three Action.Icon 36x36",
+        "grid": "demo measured at 1600 and 800: 12/8/4 cols, 48px rows, 16px gap, flow row. glance=kpi 3x3, detail=wide 6x8, explore=xwide 12x9, band=full x3"
+      },
+      "figmaBlocker": "THE SET REPORTS ERRORS IN FIGMA. 40009622:39702 has a new Configuration axis (01/02/03) and TWO variants both named 'Size=Glance, Configuration=01', a duplicate combination. Figma itself refuses to return componentPropertyDefinitions for the set. Code Connect cannot map a set in that state, so the Widget mapping is held until the duplicate is removed or renamed. Read-only here: the fix is in the file.",
+      "figmaGap": "Detail and Explore root fill is an unbound #fefefd. That value is Fill/Static/Neutral/Faint, so the component uses the token and the binding is missing in Figma.",
+      "codeConnect": null
+    },
+    "kpi-tile": {
+      "displayName": "KPI Tile",
+      "module": "components/kpi-tile/kpi-tile.jsx",
+      "exports": [
+        "KpiTile",
+        "KpiNumber",
+        "Change",
+        "TrendFilter",
+        "CHANGE_TYPES"
+      ],
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "page": "40009862:10309",
+        "section": "KPI Tile Components",
+        "sets": {
+          "KPI Number & Trend": "40017320:247",
+          "KPI Tiles": "40009415:27750",
+          "_Chart mini": "40009415:27919",
+          "_Change": "40009415:28112",
+          "KPI Number": "40017333:37612",
+          "Widget.Heading": "40017333:34481",
+          "trend.comparisoncontrol": "40017320:361"
+        }
+      },
+      "measured": {
+        "numberAndTrend": "VERTICAL pad 0,12,0,12; Chart & Trend HORIZONTAL gap 24; Chart.Container pad 8,0,8,4",
+        "eyebrow": "fs 10, Foreground/Static/Neutral/Subtle",
+        "number": "fs 32, Foreground/Static/Neutral/Strong",
+        "change": "55x20, gap 6 outer / 2 inner, icon 16, fs 14; arrow_upward|arrow_downward on Type 01, moving on Type 02",
+        "filterControl": "26 tall pill, r=8, Stroke/Action/Secondary/Rest"
+      },
+      "figmaNote": "_Change binds STROKE tokens as text fills: Stroke/Static/Positive/Strong and Stroke/Static/Negative/Strong. Reproduced rather than swapped for a foreground token, because the component should match the design. Worth a decision in the file.",
+      "codeConnect": null
     }
   }
 }
