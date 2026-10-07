@@ -15,24 +15,47 @@ Reviewed: 2026-10-07, measured against Figma
 | KPI Number | `40017333:37612` |
 | Widget.Heading | `40017333:34481` |
 | Storybook | `Library/KPI Tile` |
-| Modules | `kpi-tile.jsx`, `kpi-card.jsx`, `mini-chart.jsx` |
+| Modules | `kpi-tile.jsx` the card, `kpi-number-trend.jsx` the block, `mini-chart.jsx`, `bar-chart.jsx` |
 | Widget spec | `components/widget/widget-spec.md` |
 
 ## 1. Component Overview
 
-**There are two KPI tiles and they are not interchangeable.**
+**A KPI Tile is a card.** All 18 Figma variants have their own surface, border,
+radius and padding. It is a component in its own right, with a Storybook page.
 
-| Component | Figma | What it is |
-|---|---|---|
-| `KpiTile` | `KPI Number & Trend` `40017320:247` | Goes INSIDE a Widget. No card of its own, because the Widget is the card. |
-| `KpiCard` | `KPI Tiles` `40009415:27750` | IS a card. Own surface, border, radius, padding. Used outside the grid. |
+**The cardless thing is a building block, not a tile.** `KPI Number & Trend` is
+the eyebrow, the figure, its trend and optionally a sparkline. It has no card
+and it is nested inside things that do:
 
-They look alike. Putting the wrong one inside a Widget gives a card inside a
-card inside a card; putting the wrong one on a page gives a tile with no edges.
-Separate files, so the import says which you meant.
+| Nested in | What that is |
+|---|---|
+| KPI Tile | the card, this spec |
+| Widget | the dashboard container, `widget-spec.md` |
 
-Supporting parts: `Change` and `ChangeChip` for the trend, `MiniChart` for the
-sparkline.
+A KPI Tile and a Widget are two different components that happen to share that
+block. They are not two framings of one thing.
+
+> **Corrected 2026-10-07.** An earlier version of this had the building block
+> named `KpiTile` and described as "the KPI tile that goes inside a widget,
+> which has no card because the widget is the card". Both halves were wrong. The
+> files are now `kpi-tile.jsx` for the card and `kpi-number-trend.jsx` for the
+> block.
+
+### Which things get a Storybook page
+
+| Figma component | Repo | Page | Mapped |
+|---|---|---|---|
+| KPI Tiles `40009415:27750` | `KpiTile` | yes | yes |
+| KPI Number & Trend `40017320:247` | `KpiNumberAndTrend` | no | yes |
+| KPI Number `40017333:37612` | `KpiNumber` | no | yes |
+| _Change `40009415:28112` | `Change` | no | yes |
+| _Chart mini `40009415:27919` | `MiniChart` | no | yes |
+| trend.comparisoncontrol `40017320:361` | maps to `Change` | no | yes |
+| Widget.Heading `40017333:34481` | `WidgetHeading` | no | yes |
+
+Anything that is a component in Figma gets a Code Connect mapping. A building
+block does not earn a page of its own, because it only ever appears as a nested
+instance.
 
 ## 1.1 Governance: where things live
 
@@ -77,6 +100,13 @@ root              r=16, Fill/Surface/Elevated, Stroke/Static/Neutral/Base
 | Featured icon, up | `Fill/Static/Positive/Subtle` |
 | Featured icon, down | `Fill/Static/Negative/Subtle` |
 | Mini chart dot | `Fill/Surface/Elevated` |
+| Bar chart series | `Fill/Chart/Sequential/07`, `/09`, `/11` |
+
+Charts use the dedicated `Fill/Chart/Sequential/01` to `/15` ramp, a
+fifteen-step violet scale, not the brand ramp. Figma's Widget bars bind `/09`
+(`#a198d4`) and `/11` (`#b9b3e0`). The first implementation used
+`Fill/Static/Brand/*`, which is the blue brand, so the bars came out navy where
+the design is violet.
 
 ### 3.3 Text
 
@@ -143,14 +173,33 @@ the heights stay as measured.
 Fills its Widget. Figma's Type axis is four layouts and reduces in code to
 where the chart goes:
 
-| Figma Type | `layout` |
-|---|---|
-| 01 Chart Right | `right` |
-| 03 Chart Right | `right` |
-| 02 Chart Bottom | `bottom` |
-| 04 No Chart | omit `chart` |
+| Figma Type | `layout` | `numberStyle` |
+|---|---|---|
+| 01 Chart Right | `right` | `tall` |
+| 03 Chart Right | `right` | `tall` |
+| 02 Chart Bottom | `bottom` | `wide` |
+| 04 No Chart | omit `chart` | `tall` |
 
-01 and 03 differ in the number's own size, not in the layout.
+`Trend Filter Layout` has THREE options, not two: `Stacked with KPI Number`,
+`Inline with KPI number` and `On Filter Toolbar`, mapping to `stacked`,
+`inline` and `toolbar`. `toolbar` is not the same as having no filter: the
+control exists, it just lives on the widget's toolbar, so the label is still
+needed by whoever renders that.
+
+### The Widget's Configuration axis
+
+It resolves entirely to props on the building block, which is why the Widget
+takes none of them.
+
+| Config | `numberStyle` | Trend filter | Chart |
+|---|---|---|---|
+| 01 | tall | stacked with the number | right |
+| 02 | wide | on the widget's toolbar | bottom |
+| 03 | tall | on the widget's toolbar | right |
+| 04 | tall | on the widget's toolbar | right, different sample line |
+
+01 and 02 are genuinely distinct. 03 and 04 share a structure and differ only
+in which sample line the chart draws.
 
 ## 5. Item / Variant Structure
 

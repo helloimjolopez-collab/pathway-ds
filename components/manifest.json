@@ -1128,25 +1128,31 @@
         "hoverIcons": "Slot.HoverIcons 72x36 hug, three Action.Icon 36x36",
         "grid": "demo measured at 1600 and 800: 12/8/4 cols, 48px rows, 16px gap, flow row. glance=kpi 3x3, detail=wide 6x8, explore=xwide 12x9, band=full x3"
       },
-      "codeConnect": "components/widget/widget.figma.ts",
+      "codeConnect": [
+        "components/widget/widget.figma.ts",
+        "components/widget/widget-heading.figma.ts"
+      ],
       "figmaFixed": "Detail and Explore root fills were unbound #fefefd; bound to Fill/Static/Neutral/Faint in Figma on 2026-10-07.",
       "spec": "components/widget/widget-spec.md",
       "figmaResolved": "The duplicate Size=Glance, Configuration=01 variant was removed on 2026-10-07. The set now reports Size=[Glance|Detail|Explore] and Configuration=[01|02|03|04] cleanly.",
-      "configurationAxis": "NOT mapped to a prop, deliberately. Configuration does not change the container at all: every variant has the identical widget and differs only in the variant of the nested KPI Number & Trend instance. 01 is Chart Right with no filters, 02 is Chart Bottom with filters, and 03 and 04 are currently identical to 01. In code that content is children, so there is no prop to map to. Worth a look in the file: three of the four options render the same."
+      "headerIcons": "refresh, open_in_full and more_vert at 12px in 36px boxes, VISIBLE AT REST. The Figma slot is named Slot.HoverIcons and that name was first read as the behaviour; the rendered component shows all three at all times.",
+      "configurationAxis": "Resolves to props on the nested KPI Number & Trend, not to anything on the container, which is why the Widget maps Size only. 01 is tall with the filter stacked and the chart right; 02 is wide with the filter on the toolbar and the chart bottom; 03 and 04 share a structure and differ only in the sample line. An earlier note claimed 01, 03 and 04 render identically, which was wrong: that comparison looked at the nested instance variant and not at its content."
     },
     "kpi-tile": {
       "displayName": "KPI Tile",
       "module": "components/kpi-tile/kpi-tile.jsx",
       "exports": [
         "KpiTile",
+        "ChangeChip",
+        "KPI_TILE_TYPES",
+        "KpiNumberAndTrend",
         "KpiNumber",
         "Change",
         "TrendFilter",
-        "KpiCard",
-        "ChangeChip",
-        "KPI_CARD_TYPES",
         "MiniChart",
-        "SAMPLE_SERIES"
+        "SAMPLE_SERIES",
+        "BarChart",
+        "SAMPLE_STACKS"
       ],
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
@@ -1171,18 +1177,23 @@
       },
       "codeConnect": [
         "components/kpi-tile/kpi-tile.figma.ts",
+        "components/kpi-tile/kpi-number-trend.figma.ts",
+        "components/kpi-tile/kpi-number.figma.ts",
         "components/kpi-tile/change.figma.ts",
-        "components/kpi-tile/kpi-card.figma.ts"
+        "components/kpi-tile/mini-chart.figma.ts",
+        "components/kpi-tile/trend-comparison.figma.ts"
       ],
       "figmaFixed": "_Change bound Stroke/Static/{Positive,Negative}/Strong as TEXT fills, a tier violation that also failed contrast: #358d4b on the white card is 4.15:1 against a 4.5 floor for 14px text. Fixed in Figma on 2026-10-07, 10 fills across the 8 variants moved to Foreground/Static/{Positive,Negative}/On Subtle, measuring 13.62:1 and 10.74:1. The mini chart's Line vectors genuinely stroke with Stroke/Static/Positive/Strong and were left alone. ALSO: 19 gap and padding bindings across KPI Tiles pointed straight at the Unit/20 PRIMITIVE, the same defect class as the Unit/10 bindings. There is no semantic rung at 20, the ladder goes 16 then 24, so all 19 were rebound on 2026-10-07 to Padding/Relaxed and Gap/Relaxed, both 24, the nearest rung that keeps Chart roomier than the other Types. Chart is now 144 tall rather than 136. Zero gap or padding bindings remain on Unit/20.",
       "spec": "components/kpi-tile/kpi-tile-spec.md",
       "modules": [
         "components/kpi-tile/kpi-tile.jsx",
-        "components/kpi-tile/kpi-card.jsx",
-        "components/kpi-tile/mini-chart.jsx"
+        "components/kpi-tile/kpi-number-trend.jsx",
+        "components/kpi-tile/mini-chart.jsx",
+        "components/kpi-tile/bar-chart.jsx"
       ],
       "stories": "src/stories/Library/KPITile/KPITile.stories.jsx",
-      "twoTiles": "There are TWO KPI tiles and they are not interchangeable. KpiTile is KPI Number & Trend 40017320:247 and goes INSIDE a Widget with no card of its own, because the Widget is the card. KpiCard is KPI Tiles 40009415:27750 and IS a card, with its own surface, border, radius and padding, used outside the grid. Separate files so the import says which you meant."
+      "model": "A KPI Tile IS a card: all 18 variants have their own surface, border, radius and padding, and it gets a Storybook page. The cardless thing is KPI Number & Trend, a BUILDING BLOCK nested inside both a KPI Tile and a Widget, which is mapped but has no page. A KPI Tile and a Widget are two different components that share that block, not two framings of one thing. Corrected 2026-10-07: the block was previously named KpiTile and wrongly described as a cardless tile.",
+      "buildingBlocks": "Mapped, no Storybook page, because each only appears as a nested instance: KpiNumberAndTrend 40017320:247, KpiNumber 40017333:37612, Change 40009415:28112, MiniChart 40009415:27919, TrendComparisonControl 40017320:361, WidgetHeading 40017333:34481."
     },
     "dashboard": {
       "displayName": "Dashboard",

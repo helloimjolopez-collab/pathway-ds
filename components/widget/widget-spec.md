@@ -179,19 +179,20 @@ larger chart, or a wide table.
 
 ## 6. State Matrix
 
-| State | Root | Hover icons |
+| State | Root | Header icons |
 |---|---|---|
-| Rest | as above | hidden, still occupying their width |
-| Hover | unchanged | revealed |
-| Focus within | unchanged | revealed |
+| Rest | as above | **visible** |
+| Hover | unchanged | visible |
 | Manage | dashed outline, grab cursor | menu suppressed |
-| Dragging | 50% opacity | revealed |
+| Dragging | 50% opacity | visible |
 
 ### State logic rules
 
-The hover icons are revealed on hover **and on keyboard focus within**, so the
-set is reachable without a pointer. They keep their width in both states, so
-revealing them never reflows the title.
+**The header icons are visible at rest.** The Figma slot is named
+`Slot.HoverIcons` and the first implementation read that name as the behaviour
+and hid them until hover. Looking at the rendered component, all three are on
+every widget at all times: the name describes where they sit, not when they
+appear. Corrected 2026-10-07.
 
 ## 7. Sub-components / Decorations
 
@@ -238,13 +239,17 @@ None. The widget has no collapsed state; depth is chosen by size.
 Material Symbols Rounded throughout, `FILL 0`, `wght 400`, `opsz` matched to
 the font size.
 
+Exactly three actions, in Figma's order, at 12px in 36px boxes.
+
 | Action | Ligature |
 |---|---|
-| About this widget | `info` |
-| Go to the full view | `open_in_new` |
 | Refresh | `refresh` |
+| Open the full view | `open_in_full` |
 | More actions | `more_vert` |
 | Swap chevron | `expand_more` |
+
+There is no `info` icon on the widget; an earlier version invented one, and used
+`open_in_new` where Figma has `open_in_full`.
 
 ## 12. Interaction Patterns
 

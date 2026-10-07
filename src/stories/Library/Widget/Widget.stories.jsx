@@ -1,53 +1,57 @@
 /**
- * Widget.
+ * Widget — the dashboard container.
  *
- * Built from Figma set 40009622:39702, Amplify section of the "↳ Widget" page,
- * read 2026-10-07. The grid spans come from the canonical demo:
- * https://helloimjolopez-collab.github.io/design-sandbox/phase-2/Widget%20Container%20Demo/
+ * Built from Figma set 40009622:39702 and checked against the rendered
+ * component rather than only its measurements, which is what this page
+ * previously failed at: it filled the content area with a dashed box captioned
+ * "chart", and Figma's Detail and Explore are mostly chart by area.
  */
 import React from "react";
-import {
-  Widget, WidgetKeyframes, SIZES, SIZE_LABEL, SIZE_GRID, isFlat, L,
-} from "../../../../components/widget/widget.jsx";
-import { KpiTile, Change } from "../../../../components/kpi-tile/kpi-tile.jsx";
+import { Widget, WidgetKeyframes, SIZES, SIZE_LABEL, isFlat } from "../../../../components/widget/widget.jsx";
+import { KpiNumberAndTrend, Change } from "../../../../components/kpi-tile/kpi-number-trend.jsx";
+import { MiniChart, SAMPLE_SERIES } from "../../../../components/kpi-tile/mini-chart.jsx";
+import { BarChart, SAMPLE_STACKS } from "../../../../components/kpi-tile/bar-chart.jsx";
 
 const U = (n) => `var(--semantic-layout-units-${n})`;
 
-/** A stand-in for a chart, so the container can be judged without one. */
-const ChartBox = ({ label = "chart" }) => (
-  <div style={{
-    flex: 1, minHeight: 60, display: "flex", alignItems: "center", justifyContent: "center",
-    background: "var(--semantic-color-fill-static-neutral-base)",
-    border: "1px dashed var(--semantic-color-stroke-static-neutral-base)",
-    borderRadius: "var(--semantic-layout-units-cornerradius-base)",
-    color: "var(--semantic-color-foreground-static-neutral-subtle)",
-    fontSize: "var(--semantic-type-font-size-xs)",
-  }}>{label}</div>
-);
-
-const kpi = (
-  <KpiTile
-    eyebrow="Views per month"
-    value="2,000"
-    change={<Change value="100%" direction="up" note="vs previous yr" />}
-    chart={<ChartBox label="mini chart" />}
-  />
-);
-
-const grid = (children) => (
+const board = (children, cols = 12) => (
   <div className="pw-dashboard-grid" style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(var(--pw-dash-cols, 12), minmax(0, 1fr))",
+    display: "grid", gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
     gridAutoRows: "48px", gridAutoFlow: "row", gap: U("gap-base"),
     alignContent: "start", padding: U("padding-relaxed"),
     background: "var(--semantic-color-fill-surface-canvas)",
   }}>
     <WidgetKeyframes />
-    <style>{`:root{--pw-dash-cols:4}
-@media(min-width:768px){:root{--pw-dash-cols:8}}
-@media(min-width:1024px){:root{--pw-dash-cols:12}}`}</style>
+    <style>{`.pw-dashboard-grid{--pw-widget-cols-glance:3;--pw-widget-cols-detail:6;--pw-widget-cols-explore:12;--pw-widget-cols-band:12}`}</style>
     {children}
   </div>
+);
+
+/** Glance: the number and a sparkline beside it, which is what Figma shows. */
+const glanceBody = (series = "wavy-01", dir = "up", fav) => (
+  <KpiNumberAndTrend
+    eyebrow="Views per month" value="2,000"
+    change={<Change value="100%" direction={dir} favourable={fav} note="vs last month" />}
+    chart={<MiniChart series={SAMPLE_SERIES[series]} direction={dir} favourable={fav} />}
+  />
+);
+
+/** Detail and Explore: the number row above, then the chart filling the rest. */
+const layeredBody = (explore = false) => (
+  <>
+    <KpiNumberAndTrend
+      numberStyle="wide" eyebrow={null} value="2,000"
+      change={<Change value="100%" direction="up" note="vs last month" />}
+    />
+    {explore ? (
+      <div style={{ display: "flex", gap: U("gap-base"), flex: 1, minHeight: 0 }}>
+        <BarChart stacks={SAMPLE_STACKS} label="Active users by month" />
+        <BarChart stacks={SAMPLE_STACKS} axes label="Active users by month and series" />
+      </div>
+    ) : (
+      <BarChart stacks={SAMPLE_STACKS} label="Active users by month" />
+    )}
+  </>
 );
 
 export default {
@@ -56,33 +60,35 @@ export default {
   parameters: {
     layout: "fullscreen",
     docs: { description: { component:
-      "The dashboard's container. Three sizes from Figma, and the size is DEPTH " +
-      "rather than scale: Detail and Explore are the same height, 416, and " +
-      "differ only in width, 566 against 1148. Glance is flat; Detail and " +
-      "Explore carry an inner card, which is what the layered look is. " +
-      "Minimum widths are Figma's own: 275, 515, 1050." } },
+      "The dashboard's container. SIZE IS DEPTH, NOT SCALE: a bigger size asks " +
+      "for more content rather than enlarging the same content. Detail and " +
+      "Explore are the SAME height, 416, and differ only in width, 566 against " +
+      "1148, so depth here is horizontal. Glance is flat; the other two carry " +
+      "an inner card. The three header actions are visible at rest." } },
   },
 };
 
-/** The three sizes in one board, at their real spans. */
+/** The three sizes on one board, as they appear on a dashboard. */
 export const Playground = {
-  render: () => grid(
-    SIZES.map((size) => (
-      <Widget key={size} title={`${SIZE_LABEL[size]} widget`} size={size}
-        onInfo={() => {}} onGoTo={() => {}} onRefresh={() => {}} onMenu={() => {}}>
-        {isFlat(size) ? kpi : (
-          <>
-            <KpiTile eyebrow="Views per month" value="2,000"
-              change={<Change value="100%" direction="up" note="vs previous yr" />} />
-            <ChartBox label={`${SIZE_LABEL[size]} chart area`} />
-          </>
-        )}
+  render: () => board(
+    <>
+      <Widget title="Widget Heading" size="glance"
+        onRefresh={() => {}} onGoTo={() => {}} onMenu={() => {}}>
+        {glanceBody()}
       </Widget>
-    ))
+      <Widget title="Widget Heading" size="detail"
+        onRefresh={() => {}} onGoTo={() => {}} onMenu={() => {}}>
+        {layeredBody()}
+      </Widget>
+      <Widget title="Widget Heading" size="explore"
+        onRefresh={() => {}} onGoTo={() => {}} onMenu={() => {}}>
+        {layeredBody(true)}
+      </Widget>
+    </>
   ),
 };
 
-/** Every size with its measured geometry stated, so drift is visible. */
+/** Each size at its exact Figma box, with the numbers stated. */
 export const SizeLadder = {
   name: "Size ladder",
   render: () => (
@@ -90,27 +96,18 @@ export const SizeLadder = {
       gap: U("gap-relaxed"), background: "var(--semantic-color-fill-surface-canvas)" }}>
       <WidgetKeyframes />
       {[
-        ["glance",  "275x176, minW 275, minH 176, flat, spans 3 cols x 3 rows"],
-        ["detail",  "566x416, minW 515, layered, spans 6 cols x 8 rows"],
-        ["explore", "1148x416, minW 1050, layered, spans 12 cols x 9 rows"],
-      ].map(([size, note]) => (
+        ["glance",  275,  176, "275x176, minW 275, minH 176, flat, 3 cols x 3 rows"],
+        ["detail",  566,  416, "566x416, minW 515, layered, 6 cols x 8 rows"],
+        ["explore", 1148, 416, "1148x416, minW 1050, layered, 12 cols x 9 rows"],
+      ].map(([size, w, h, note]) => (
         <div key={size} style={{ display: "flex", flexDirection: "column", gap: U("gap-tight") }}>
           <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
             color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>{note}</code>
-          <div style={{ display: "flex" }}>
-            <Widget title={SIZE_LABEL[size]} size={size} inGrid={false}
-              onInfo={() => {}} onRefresh={() => {}}
-              style={{ width: size === "glance" ? 275 : size === "detail" ? 566 : 1148,
-                height: size === "glance" ? 176 : 416 }}>
-              {isFlat(size) ? kpi : (
-                <>
-                  <KpiTile eyebrow="Views per month" value="2,000"
-                    change={<Change value="100%" direction="up" />} />
-                  <ChartBox />
-                </>
-              )}
-            </Widget>
-          </div>
+          <Widget title="Widget Heading" size={size} inGrid={false}
+            onRefresh={() => {}} onGoTo={() => {}} onMenu={() => {}}
+            style={{ width: w, height: h }}>
+            {isFlat(size) ? glanceBody() : layeredBody(size === "explore")}
+          </Widget>
         </div>
       ))}
     </div>
@@ -118,63 +115,77 @@ export const SizeLadder = {
 };
 
 /**
- * The title as a swap control, which is what the demo puts there. Rename is
- * deliberately not on the title: a renamed widget shows the same data under a
- * different name, which is not what clicking a title asks for.
+ * The four Glance Configurations from Figma. They are not four framings of one
+ * thing: 01 stacks the filter with the number, 02 is a Wide number with the
+ * chart beneath, and 03 and 04 share a structure and differ only in the sample
+ * line they draw.
  */
-export const TitleIsSwap = {
-  name: "Title is a swap control",
-  render: () => grid(
-    <Widget title="Financial KPIs" size="detail"
-      swap={{ open: false, onOpen: () => {} }}
-      onInfo={() => {}} onRefresh={() => {}} onMenu={() => {}}>
-      <KpiTile eyebrow="Total income" value="$1,284,500"
-        change={<Change value="6.2%" direction="up" note="vs previous yr" />} />
-      <ChartBox />
-    </Widget>
-  ),
-};
-
-/**
- * Favourable is not the same as up. Rising costs are bad, so direction and
- * sentiment are separate props; collapsing them paints rising costs green.
- */
-export const TrendDirectionVersusSentiment = {
-  name: "Trend: direction vs sentiment",
-  render: () => grid(
-    [
-      ["Total income",   "up",   true,  "6.2%"],
-      ["Total expenses", "up",   false, "4.1%"],
-      ["Net income",     "down", false, "2.3%"],
-    ].map(([label, dir, fav, pct]) => (
-      <Widget key={label} title={label} size="glance" onInfo={() => {}}>
-        <KpiTile eyebrow={label} value="$1,097,800"
-          change={<Change value={pct} direction={dir} favourable={fav} note="vs previous yr" />} />
-      </Widget>
-    ))
+export const GlanceConfigurations = {
+  name: "Glance configurations",
+  render: () => board(
+    <>
+      {[
+        ["01", "stacked", "tall",  "right",  "realistic-01"],
+        ["02", "toolbar", "wide",  "bottom", "wavy-01"],
+        ["03", "toolbar", "tall",  "right",  "realistic-01"],
+        ["04", "toolbar", "tall",  "right",  "wavy-05"],
+      ].map(([cfg, filterLayout, numberStyle, layout, series]) => (
+        <Widget key={cfg} title="Widget Heading" size="glance"
+          onRefresh={() => {}} onGoTo={() => {}} onMenu={() => {}}>
+          <KpiNumberAndTrend
+            eyebrow="Views per month" value="2,000"
+            numberStyle={numberStyle} layout={layout}
+            filter="Button" filterLayout={filterLayout}
+            change={<Change value="100%" direction="up" note="vs last month" />}
+            chart={<MiniChart series={SAMPLE_SERIES[series] || SAMPLE_SERIES["wavy-01"]} direction="up" />}
+          />
+        </Widget>
+      ))}
+    </>
   ),
   parameters: { docs: { description: { story:
-    "Income up is green. Expenses up is red, same arrow. Net income down is " +
-    "red. The arrow follows `direction`, the colour follows `favourable`." } } },
+    "Configuration is a property of the CONTENT, not of the container, which " +
+    "is why the Widget takes no such prop and this story varies the nested " +
+    "block instead: numberStyle, filterLayout and layout between them express " +
+    "all four rows." } } },
+};
+
+/** The arrow follows direction; the colour follows sentiment. */
+export const TrendDirectionVersusSentiment = {
+  name: "Trend: direction vs sentiment",
+  render: () => board(
+    <>
+      <Widget title="Total income" size="glance" onRefresh={() => {}}>
+        {glanceBody("wavy-01", "up", true)}
+      </Widget>
+      <Widget title="Total expenses" size="glance" onRefresh={() => {}}>
+        {glanceBody("wavy-02", "up", false)}
+      </Widget>
+      <Widget title="Net income" size="glance" onRefresh={() => {}}>
+        {glanceBody("realistic-03", "down", false)}
+      </Widget>
+    </>
+  ),
+  parameters: { docs: { description: { story:
+    "Income up is green. Expenses up is red, same arrow. Collapsing direction " +
+    "and sentiment into one prop paints rising costs green." } } },
 };
 
 /** Not every widget wires every action; the slot takes what it is given. */
 export const HeaderActions = {
   name: "Header actions",
   tags: ["!dev"],
-  render: () => grid(
+  render: () => board(
     <>
-      <Widget title="All four actions" size="glance"
-        onInfo={() => {}} onGoTo={() => {}} onRefresh={() => {}} onMenu={() => {}}>
-        {kpi}
-      </Widget>
-      <Widget title="Refresh only" size="glance" onRefresh={() => {}}>{kpi}</Widget>
-      <Widget title="No actions" size="glance">{kpi}</Widget>
+      <Widget title="All three" size="glance"
+        onRefresh={() => {}} onGoTo={() => {}} onMenu={() => {}}>{glanceBody()}</Widget>
+      <Widget title="Refresh only" size="glance" onRefresh={() => {}}>{glanceBody()}</Widget>
+      <Widget title="None" size="glance">{glanceBody()}</Widget>
     </>
   ),
   parameters: { docs: { description: { story:
-    "Figma's Slot.HoverIcons is a 72x36 hug holding three 36px Action.Icons, " +
-    "so the set is conditional by design. They are revealed on hover and on " +
-    "keyboard focus within, and hold their width either way so the title does " +
-    "not reflow when they appear." } } },
+    "Figma draws refresh, open_in_full and more_vert at 12px in 36px boxes, " +
+    "and they are VISIBLE AT REST. The slot is named Slot.HoverIcons and I " +
+    "first read that name as the behaviour and hid them until hover; the name " +
+    "describes where they sit, not when they appear." } } },
 };

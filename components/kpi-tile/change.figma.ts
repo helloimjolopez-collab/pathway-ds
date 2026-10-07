@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP?node-id=40009415-28112
-// source=https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/kpi-tile/kpi-tile.jsx
+// source=https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/kpi-tile/kpi-number-trend.jsx
 // component=Change
 
 import figma from "figma"
@@ -26,7 +26,7 @@ const glyphType = figma.selectedInstance.getEnum("Type", {
 
 export default {
   id: "Change",
-  imports: ['import { Change } from "./kpi-tile.jsx";'],
+  imports: ['import { Change } from "./kpi-number-trend.jsx";'],
   example: figma.code`<Change
   value="100%"${figma.helpers.react.renderProp("direction", direction)}${figma.helpers.react.renderProp(
     "glyphType",

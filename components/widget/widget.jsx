@@ -89,7 +89,7 @@ export const L = {
   glancePadB:    U("padding-xtight"),        // 8
   // Slot.HoverIcons is 72x36 and hugs; each Action.Icon is 36x36.
   actionIcon:    36,
-  actionGlyph:   20,
+  actionGlyph:   12,   // Figma: refresh / open_in_full / more_vert at 12x12 in a 36 box
   titleH:        20,
   // Figma's own min sizes, now also Contextual tokens.
   minW: {
@@ -190,23 +190,18 @@ function ActionIcon({ name, label, onClick }) {
  * Container.WidgetHeading. 44 tall, horizontal, gap 2, with the title on the
  * left and Slot.HoverIcons on the right.
  *
- * The icons are REVEALED rather than always present: Figma names the slot
- * Slot.HoverIcons, and three 36px buttons on every widget of a twelve-widget
- * board is a wall of chrome. They are shown on hover and on keyboard focus
- * within, so the set is reachable without a pointer, and the slot keeps its
- * width either way so the title does not reflow when they appear.
+ * THE ICONS ARE VISIBLE AT REST. The slot is NAMED Slot.HoverIcons, and I read
+ * that name as the behaviour and hid them until hover. Looking at the rendered
+ * Figma component, all three are on every widget at rest. Corrected 2026-10-07.
+ * The name describes where they sit, not when they appear.
  */
-function WidgetHeading({ title, size, actions, swap }) {
-  const [hov, setHov] = useState(false);
-  const [focusWithin, setFocusWithin] = useState(false);
-  const revealed = hov || focusWithin;
+/* Exported so Figma's `Widget.Heading` component (40017333:34481) has something
+   to map to. It is a BUILDING BLOCK: mapped, but no Storybook page, because it
+   only ever appears nested inside a Widget. */
+export function WidgetHeading({ title, size = "detail", actions = [], swap }) {
   const layered = !isFlat(size);
   return (
     <div
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      onFocus={() => setFocusWithin(true)}
-      onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setFocusWithin(false); }}
       style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
         gap: L.headerGap, height: L.headerH, flex: "0 0 auto", boxSizing: "border-box",
@@ -248,14 +243,7 @@ function WidgetHeading({ title, size, actions, swap }) {
           slot is two icons wide with the third conditional: a widget that has
           no full view does not get a Go-to button. */}
       {actions.length > 0 && (
-        <div style={{
-          display: "flex", alignItems: "center", flexShrink: 0,
-          opacity: revealed ? 1 : 0,
-          // Kept in the layout at all times so revealing them never reflows the
-          // title, and hidden from the pointer when invisible.
-          pointerEvents: revealed ? "auto" : "none",
-          transition: `opacity ${M("duration-2")} ${M("easing-standard")}`,
-        }}>
+        <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
           {actions.map((a) => (
             <ActionIcon key={a.name} name={a.name} label={a.label} onClick={a.onClick} />
           ))}
@@ -270,8 +258,7 @@ function WidgetHeading({ title, size, actions, swap }) {
  * @param {string} title     Widget heading.
  * @param {"glance"|"detail"|"explore"|"band"} size
  * @param {node}   children  The widget's content: a KPI tile, a chart, a table.
- * @param {func}   onInfo    "About this widget". Omit to hide.
- * @param {func}   onGoTo    "Go to the full view". Omit to hide.
+ * @param {func}   onGoTo    "Open the full view". Omit to hide.
  * @param {func}   onRefresh "Refresh". Omit to hide.
  * @param {func}   onMenu    "More actions". Omit to hide.
  * @param {object} swap      { onOpen, open } makes the title a swap control.
@@ -282,7 +269,6 @@ export function Widget({
   title,
   size = "detail",
   children,
-  onInfo,
   onGoTo,
   onRefresh,
   onMenu,
@@ -297,11 +283,13 @@ export function Widget({
 
   // Figma's Slot.HoverIcons holds three. Which three depends on what the
   // consumer wires up, in the order the design shows them.
+  // EXACTLY THE THREE FIGMA DRAWS, in its order: refresh, open_in_full,
+  // more_vert. There is no `info` icon on the widget: I had invented one, and
+  // `open_in_new` was the wrong ligature for the expand action.
   const actions = [
-    onInfo    && { name: "info",         label: "About this widget", onClick: onInfo },
-    onGoTo    && { name: "open_in_new",  label: "Go to the full view", onClick: onGoTo },
-    onRefresh && { name: "refresh",      label: "Refresh", onClick: onRefresh },
-    onMenu    && { name: "more_vert",    label: "More actions", onClick: onMenu },
+    onRefresh && { name: "refresh",       label: "Refresh", onClick: onRefresh },
+    onGoTo    && { name: "open_in_full",  label: "Open the full view", onClick: onGoTo },
+    onMenu    && { name: "more_vert",     label: "More actions", onClick: onMenu },
   ].filter(Boolean);
 
   return (

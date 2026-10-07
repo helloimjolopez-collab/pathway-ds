@@ -65,13 +65,17 @@ export const SAMPLE_SERIES = {
  * @param {boolean} favourable   Whether the movement is good. Defaults to
  *                               up-is-good, which is wrong for costs.
  * @param {boolean} markerBothEnds  Figma's Straight variant marks both ends.
- * @param {boolean} area         Fill under the line, as the Background group does.
+ * @param {boolean} markers      Figma's `Marker(s)` boolean. False draws the
+ *                               line with no end marker at all.
+ * @param {boolean} area         Figma's `Background` boolean: the fill under
+ *                               the line.
  */
 export function MiniChart({
   series = SAMPLE_SERIES["wavy-01"],
   direction = "up",
   favourable,
   markerBothEnds = false,
+  markers = true,
   area = true,
   label,
   className = "",
@@ -92,7 +96,7 @@ export function MiniChart({
   const line = pts.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(2)},${y(v).toFixed(2)}`).join(" ");
   const areaPath = `${line} L${x(pts.length - 1).toFixed(2)},${L.vbH} L${x(0).toFixed(2)},${L.vbH} Z`;
 
-  const marks = markerBothEnds ? [0, pts.length - 1] : [pts.length - 1];
+  const marks = !markers ? [] : (markerBothEnds ? [0, pts.length - 1] : [pts.length - 1]);
 
   const svg = (
     <svg
@@ -142,7 +146,7 @@ export function MiniChart({
      The marker is therefore an HTML element positioned over the chart by
      PERCENTAGE and sized in PIXELS, so it stays a circle at Figma's own 19 and
      11 whatever the box does. */
-  const markers = marks.map((i) => {
+  const markerEls = marks.map((i) => {
     const leftPct = (x(i) / L.vbW) * 100;
     const topPct  = (y(pts[i]) / L.vbH) * 100;
     return (
@@ -171,7 +175,7 @@ export function MiniChart({
       minHeight: 0, ...style,
     }}>
       {svg}
-      {markers}
+      {markerEls}
     </span>
   );
 }
