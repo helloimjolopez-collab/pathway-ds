@@ -302,6 +302,12 @@ Two things came out of reading the paths rather than assuming:
   the width, with the line carrying on past it to the right edge. `Straight`
   carries TWO markers and `Layers` carries NONE.
 
+**`Layers` is a different drawing, not another line.** It is 128x56 rather than
+112x56 and holds TWO vectors, both FILLED at opacity 0.10 with no stroke at all
+and no `Marker` frame: two translucent areas overlapping. Drawing it as a
+stroked line with an end marker was three things wrong at once. `SAMPLE_LAYERS`
+holds both edges and the `layers` prop draws them.
+
 The one place the code departs from the file is the line's stroke, which uses
 `vectorEffect="non-scaling-stroke"` so it stays 2px at any box size. Figma's 2
 is relative to a 112x56 artboard and would scale to 4 in a chart rendered at

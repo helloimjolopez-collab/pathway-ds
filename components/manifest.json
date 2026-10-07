@@ -1204,6 +1204,7 @@
       "module": "components/kpi-tile/kpi-tile.jsx",
       "exports": [
         "BarChart",
+        "CHANGE_TYPES",
         "Change",
         "ChangeChip",
         "FilterToolbarButton",
@@ -1212,9 +1213,13 @@
         "KpiNumberAndTrend",
         "KpiTile",
         "MiniChart",
+        "SAMPLE_LAYERS",
+        "SAMPLE_MARKERS",
         "SAMPLE_SERIES",
         "SAMPLE_STACKS",
-        "TrendFilter"
+        "SMOOTH_TYPES",
+        "TrendFilter",
+        "curveFor"
       ],
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
@@ -1237,7 +1242,7 @@
         "change": "_Change is ONE set with FOUR types: 01 arrow_upward/arrow_downward 55x20 naked; 02 moving/trending_down 55x20 naked; 03 north_east/south_east in a 73x28 bordered pill r=6 with the GLYPH in the trend and the text Neutral/Strong; 04 a 52x16 tinted Badge r=12 on Fill/Static/{tone}/Subtle with its Subtle stroke. Trend.ComparisonControl (40017320:361) is a SIBLING of all four: fs 10 text plus an expand_more at 12. Glance uses type 04, Detail and Explore use type 02.",
         "filterControl": "26 tall pill, r=8, Stroke/Action/Secondary/Rest",
         "barChart": "Each column is THREE OVERLAPPING bands, each running to the baseline with a rounded cap, in TWO alternating colours: Series 1 and 3 bind Fill/Chart/Sequential/09 and Series 2 binds /11. Measured from one Bar: a 27x286 wrapper holding a 27x243 Bars frame with vectors 27x243@0, 27x179@64 and 27x115@128. Bar width 27, gap 8, 15 bars in a 526 chart. The previous version drew three flat boxes in three colours with a 2px radius on the topmost only.",
-        "miniChart": "SAMPLE_SERIES is the REAL Figma geometry: each of the twelve arrays is the Chart.Line path of one variant of 40009415:27919, flattened and sampled at 40 x positions in its 112x56 space, extracted 2026-10-07 from vectorPaths[0].data. It held eight hand-written points before, so every chart was a blocky stand-in; Realistic 01 has 83 points and Wavy 03 has 133. Curve is read from whether the path uses C commands, because Realistic 01 is a bezier while 02 and 03 are polylines. SAMPLE_MARKERS holds each shape's real marker index, 50% to 82% of the width with the line running past it; Straight has two markers and Layers none. Line 2px round cap, area 0.10 masked by a vertical fade, ring 19 at 0.20, dot 11 on Fill/Surface/Elevated at full opacity."
+        "miniChart": "SAMPLE_SERIES is the REAL Figma geometry: each of the twelve arrays is the Chart.Line path of one variant of 40009415:27919, flattened and sampled at 40 x positions in its 112x56 space, extracted 2026-10-07 from vectorPaths[0].data. It held eight hand-written points before, so every chart was a blocky stand-in; Realistic 01 has 83 points and Wavy 03 has 133. Curve is read from whether the path uses C commands, because Realistic 01 is a bezier while 02 and 03 are polylines. SAMPLE_MARKERS holds each shape's real marker index, 50% to 82% of the width with the line running past it; Straight has two markers and Layers none. Line 2px round cap, area 0.10 masked by a vertical fade, ring 19 at 0.20, dot 11 on Fill/Surface/Elevated at full opacity. Layers is a DIFFERENT drawing: 128x56 with TWO vectors both filled at 0.10, no stroke and no Marker frame, so SAMPLE_LAYERS holds both edges and the `layers` prop draws them. It was being drawn as a stroked line with an end marker, three things wrong."
       },
       "codeConnect": [
         "components/kpi-tile/change.figma.ts",

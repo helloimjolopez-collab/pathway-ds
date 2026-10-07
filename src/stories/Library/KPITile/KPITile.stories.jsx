@@ -7,7 +7,7 @@
  */
 import React from "react";
 import { KpiTile, ChangeChip, KPI_TILE_TYPES } from "../../../../components/kpi-tile/kpi-tile.jsx";
-import { MiniChart, SAMPLE_SERIES, SAMPLE_MARKERS, curveFor } from "../../../../components/kpi-tile/mini-chart.jsx";
+import { MiniChart, SAMPLE_SERIES, SAMPLE_MARKERS, SAMPLE_LAYERS, curveFor } from "../../../../components/kpi-tile/mini-chart.jsx";
 import { KpiNumberAndTrend, Change, CHANGE_TYPES } from "../../../../components/kpi-tile/kpi-number-trend.jsx";
 import { TokenTables } from "../_shared/TokenTable.jsx";
 
@@ -302,7 +302,7 @@ export const ChartShapes = {
       background: "var(--semantic-color-fill-surface-elevated)" }}>
       {Object.keys(SAMPLE_SERIES).map((k) => (
         <div key={k}>
-          {caption(`${k} \u00b7 ${curveFor(k)}`)}
+          {caption(`${k} \u00b7 ${curveFor(k)} \u00b7 marker ${SAMPLE_MARKERS[k].join(", ") || "none"}`)}
           <div style={{ display: "flex", gap: U("gap-base") }}>
             {["up", "down"].map((d) => (
               <div key={d} style={{ width: 112, height: 56 }}>
@@ -313,6 +313,18 @@ export const ChartShapes = {
           </div>
         </div>
       ))}
+      {/* Layers is the twelfth type and a DIFFERENT drawing: 128x56, two
+          translucent areas at 0.10, no stroke and no marker. */}
+      <div>
+        {caption("layers \u00b7 two filled areas \u00b7 no line, no marker")}
+        <div style={{ display: "flex", gap: U("gap-base") }}>
+          {["up", "down"].map((d) => (
+            <div key={d} style={{ width: 128, height: 56 }}>
+              <MiniChart layers={SAMPLE_LAYERS} direction={d} />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   ),
   parameters: { docs: { description: { story:

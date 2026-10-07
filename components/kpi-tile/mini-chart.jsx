@@ -146,12 +146,6 @@ export const SAMPLE_SERIES = {
     24.7, 24.1, 23.5, 22.9, 24.8, 27.9, 31.1, 34.2, 37.3, 40.4, 43.5, 46.6,
     49.8, 52.9, 56
   ],
-  "layers": [
-    10.2, 10.5, 11.5, 12.8, 14.6, 16.8, 19.4, 22.2, 25.3, 28.6, 32, 35.3,
-    38.4, 41.1, 43.3, 44.6, 45.1, 44.5, 42.9, 40.6, 37.9, 34.9, 32, 29.3,
-    27.1, 25.5, 24.7, 24.4, 24.8, 25.7, 27.1, 29, 31.4, 34.1, 37.2, 40.6,
-    44.2, 48, 40.3, 0
-  ],
 };
 
 /**
@@ -169,6 +163,31 @@ export const SAMPLE_SERIES = {
  * last point, because that is the sparkline convention and what a KPI tile
  * wants.
  */
+/**
+ * `Layers` is a DIFFERENT DRAWING, not another line, which is why it sat in
+ * SAMPLE_SERIES looking wrong. Reading `Type=Layers, Trend=Positive`: it is
+ * 128x56 rather than 112x56 and holds TWO vectors, `Chart.Line.Primary` and
+ * `Chart.Line.Secondary`, both FILLED at opacity 0.10 with **no stroke at all**
+ * and **no Marker frame**. So it is two translucent areas overlapping, and
+ * drawing it as a stroked line with a marker was three things wrong at once.
+ *
+ * Both edges sampled at 40 x positions from their own paths on 2026-10-07.
+ */
+export const SAMPLE_LAYERS = {
+  primary: [
+    10.6, 11.8, 12.7, 15.1, 18, 19.7, 23.4, 25.3, 30.2, 32.7, 36.3, 39.6,
+    42.3, 43.4, 44.8, 45.1, 45.1, 45.1, 44.8, 43.3, 41.7, 38.6, 36.3, 33,
+    30.2, 27.9, 26.3, 24.9, 26.3, 27.3, 29.9, 31.5, 35, 38.8, 40.8, 44.6,
+    49.6, 51, 56, 56
+  ],
+  secondary: [
+    18.2, 18.2, 17, 14.8, 12.8, 10.6, 9.6, 8.8, 8.3, 8.6, 10.2, 11.5, 13,
+    15.7, 17.8, 20, 23.6, 26, 29.7, 32, 34.3, 37.3, 39.1, 40.6, 41.8, 42.8,
+    43.9, 44, 44, 44, 43.9, 43.5, 42.8, 41.8, 40.6, 38.5, 36.7, 34, 31.9,
+    29.3
+  ],
+};
+
 export const SAMPLE_MARKERS = {
   "wavy-01": [32],                     // Figma 82%
   "wavy-02": [25],                     // Figma 65%
@@ -181,7 +200,6 @@ export const SAMPLE_MARKERS = {
   "realistic-02": [20],                // Figma 50%
   "realistic-03": [25],                // Figma 65%
   "straight": [28, 11],                    // Figma 73%, 27%
-  "layers": [],                      // Figma no marker
 };
 
 /**
@@ -190,7 +208,7 @@ export const SAMPLE_MARKERS = {
  * smooth and Realistic 02 and 03 are not, so the family name does not predict
  * it: guessing from the name would have got one of the three wrong.
  */
-export const SMOOTH_TYPES = new Set(["layers", "realistic-01", "wavy-01", "wavy-02", "wavy-03", "wavy-04", "wavy-05", "wavy-06", "wavy-07"]);
+export const SMOOTH_TYPES = new Set(["realistic-01", "wavy-01", "wavy-02", "wavy-03", "wavy-04", "wavy-05", "wavy-06", "wavy-07"]);
 
 /** The curve a named sample uses, so a story never has to say it twice. */
 export const curveFor = (name) => (SMOOTH_TYPES.has(name) ? "smooth" : "linear");
@@ -225,6 +243,13 @@ export function MiniChart({
   markers = true,
   area = true,
   curve = "linear",
+  /**
+   * Figma's `Layers` type: two translucent AREAS with no line and no marker.
+   * Pass `SAMPLE_LAYERS` or any {primary, secondary} pair. When set, `series`
+   * is ignored, because this is a different drawing rather than a variation of
+   * the line.
+   */
+  layers,
   label,
   className = "",
   style,
@@ -232,6 +257,33 @@ export function MiniChart({
   const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
   const good = favourable === undefined ? direction === "up" : favourable;
   const colour = direction === "flat" ? T.flat : (good ? T.up : T.down);
+
+  // Figma's Layers type, drawn before anything else because it shares none of
+  // the line's parts: no stroke, no marker, two filled areas at 0.10.
+  if (layers) {
+    const edge = (vals) => {
+      const n = vals.length;
+      const xs = (i) => (i / Math.max(1, n - 1)) * L.vbW;
+      const ys = (v) => L.vbH - (v / L.vbH) * L.vbH;
+      const d = vals.map((v, i) => `${i ? "L" : "M"}${xs(i).toFixed(2)},${ys(v).toFixed(2)}`).join(" ");
+      return `${d} L${L.vbW},${L.vbH} L0,${L.vbH} Z`;
+    };
+    return (
+      <span className={`pw-mini-chart-wrap ${className}`} style={{
+        position: "relative", display: "block", width: "100%", height: "100%",
+        minHeight: 0, ...style,
+      }}>
+        <svg className="pw-mini-chart" viewBox={`0 0 ${L.vbW} ${L.vbH}`}
+          preserveAspectRatio="none"
+          role={label ? "img" : "presentation"} aria-label={label || undefined}
+          aria-hidden={label ? undefined : true}
+          style={{ display: "block", width: "100%", height: "100%" }}>
+          <path d={edge(layers.primary)} fill={colour} fillOpacity={L.areaOpacity} />
+          <path d={edge(layers.secondary)} fill={colour} fillOpacity={L.areaOpacity} />
+        </svg>
+      </span>
+    );
+  }
 
   const pts = series.length ? series : [0, 0];
   const min = Math.min(...pts), max = Math.max(...pts);
