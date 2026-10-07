@@ -1,7 +1,9 @@
 /**
  * Dashboard.
  *
- * Behaviour and layout measured off the canonical demo on 2026-10-07:
+ * The grid follows Figma's Pathway Grid (12 columns, gutter 16, inside the
+ * SheetContainer and Sheet padding). Behaviour is measured off the canonical
+ * demo on 2026-10-07:
  * https://helloimjolopez-collab.github.io/design-sandbox/phase-2/Widget%20Container%20Demo/
  *
  * The catalogue below mirrors the demo's own: an app badge, a category, and a
@@ -162,9 +164,12 @@ export default {
   parameters: {
     layout: "fullscreen",
     docs: { description: { component:
-      "The board, its toolbar and the add-widget flow, measured off the " +
-      "canonical demo. 12 columns at desktop, 8 at tablet, 4 on mobile, 48px " +
-      "rows, 16px gap, and grid-auto-flow ROW so authored order is kept. " +
+      "The board, its toolbar and the add-widget flow. The grid is Figma's " +
+      "Pathway Grid: 12 columns with a 16 gutter, inset by the SheetContainer " +
+      "and Sheet padding (56 each side at desktop). Columns follow the grid's " +
+      "own width: 12 from 1050, 8 from 720, 4 below. Glance spans 4 of 12, and " +
+      "3 of 12 once the grid reaches 1148, where 3 columns clear its 275 " +
+      "minimum. 48px rows and grid-auto-flow ROW so authored order is kept. " +
       "Find a widget, Add widget and Refresh all are all available without " +
       "entering manage mode; manage keeps the destructive half, which is " +
       "rearranging, resizing and removing." } },
@@ -172,6 +177,33 @@ export default {
 };
 
 export const Playground = { render: () => <Host /> };
+
+/* Figma's ScreenTemplate is the screen less its 256 side nav. Rendering the
+   board at exactly that width reproduces Figma's two measured grids, so the
+   spans can be checked against the file: 1184 gives a 1072 grid, 1664 a 1552. */
+const AtScreen = ({ width }) => (
+  <div style={{ width, maxWidth: "100%", overflow: "hidden" }}>
+    <Host />
+  </div>
+);
+
+export const FigmaGrid1440 = {
+  name: "Figma grid, 1440 screen",
+  render: () => <AtScreen width={1184} />,
+  parameters: { docs: { description: { story:
+    "Figma ScreenTemplate 40010514:6808: a 1440 screen less the 256 side nav, " +
+    "which leaves a 1072 grid. Glance spans 4 of 12 (346.67), because 3 of 12 " +
+    "would be 256, under Widget/MinWidth/Glance. Detail is 6 of 12 (528)." } } },
+};
+
+export const FigmaGrid1920 = {
+  name: "Figma grid, 1920 screen",
+  render: () => <AtScreen width={1664} />,
+  parameters: { docs: { description: { story:
+    "Figma ScreenTemplate 40010482:8492: a 1920 screen less the 256 side nav, " +
+    "which leaves a 1552 grid. Past 1148, 3 columns clear 275, so Glance spans " +
+    "3 of 12 (376) and four fit to a row." } } },
+};
 
 export const AddWidgetFlow = {
   name: "Add widget flow",
@@ -240,13 +272,17 @@ export const TokensGeometry = {
   render: () => (
     <TokenTables groups={[
       { title: "The grid",
-        note: "The grid itself is not tokenised and should not be: 12/8/4 columns, " +
-              "48px auto-rows and a 16px gap were measured off the canonical demo, " +
-              "which owns how the board behaves. The gap is the one value that comes " +
-              "from a token, because it is ordinary spacing.",
+        note: "The grid is Figma's Pathway Grid, 12 columns with a 16 gutter. Its " +
+              "inset and gap come from tokens; its breakpoints come from the " +
+              "Widget/MinWidth tokens (1050 for 12 columns, 1148 for a 3-column " +
+              "Glance). Column counts and 48px auto-rows are component metrics.",
         rows: [
           ["--semantic-layout-units-gap-base", "Grid gap, 16"],
-          ["--semantic-layout-units-padding-relaxed", "Board padding"],
+          ["--responsive-layout-sheetcontainer-padding-horizontal", "Board inset, screen container part, 24"],
+          ["--responsive-layout-sheet-padding-horizontal", "Board inset, sheet part, 32"],
+          ["--responsive-layout-sheetcontainer-padding-top", "Board top inset, screen container part, 16"],
+          ["--responsive-layout-sheet-padding-top", "Board top inset, sheet part, 16"],
+          ["--responsive-layout-sheet-padding-bottom", "Board bottom inset, 56"],
           ["--semantic-layout-units-cornerradius-large", "Dialog radius"],
           ["--semantic-layout-units-cornerradius-base", "Card and control radius"],
           ["--semantic-layout-units-cornerradius-small", "Badge radius"],
