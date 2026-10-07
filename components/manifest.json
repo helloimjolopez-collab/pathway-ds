@@ -1142,7 +1142,11 @@
         "KpiNumber",
         "Change",
         "TrendFilter",
-        "CHANGE_TYPES"
+        "KpiCard",
+        "ChangeChip",
+        "KPI_CARD_TYPES",
+        "MiniChart",
+        "SAMPLE_SERIES"
       ],
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
@@ -1167,14 +1171,18 @@
       },
       "codeConnect": [
         "components/kpi-tile/kpi-tile.figma.ts",
-        "components/kpi-tile/change.figma.ts"
+        "components/kpi-tile/change.figma.ts",
+        "components/kpi-tile/kpi-card.figma.ts"
       ],
-      "figmaFixed": "_Change bound Stroke/Static/{Positive,Negative}/Strong as TEXT fills, a tier violation that also failed contrast: #358d4b on the white card is 4.15:1 against a 4.5 floor for 14px text. Fixed in Figma on 2026-10-07, 10 fills across the 8 variants moved to Foreground/Static/{Positive,Negative}/On Subtle, measuring 13.62:1 and 10.74:1. The mini chart's Line vectors genuinely stroke with Stroke/Static/Positive/Strong and were left alone.",
+      "figmaFixed": "_Change bound Stroke/Static/{Positive,Negative}/Strong as TEXT fills, a tier violation that also failed contrast: #358d4b on the white card is 4.15:1 against a 4.5 floor for 14px text. Fixed in Figma on 2026-10-07, 10 fills across the 8 variants moved to Foreground/Static/{Positive,Negative}/On Subtle, measuring 13.62:1 and 10.74:1. The mini chart's Line vectors genuinely stroke with Stroke/Static/Positive/Strong and were left alone. ALSO: 19 gap and padding bindings across KPI Tiles pointed straight at the Unit/20 PRIMITIVE, the same defect class as the Unit/10 bindings. There is no semantic rung at 20, the ladder goes 16 then 24, so all 19 were rebound on 2026-10-07 to Padding/Relaxed and Gap/Relaxed, both 24, the nearest rung that keeps Chart roomier than the other Types. Chart is now 144 tall rather than 136. Zero gap or padding bindings remain on Unit/20.",
       "spec": "components/kpi-tile/kpi-tile-spec.md",
       "modules": [
         "components/kpi-tile/kpi-tile.jsx",
+        "components/kpi-tile/kpi-card.jsx",
         "components/kpi-tile/mini-chart.jsx"
-      ]
+      ],
+      "stories": "src/stories/Library/KPITile/KPITile.stories.jsx",
+      "twoTiles": "There are TWO KPI tiles and they are not interchangeable. KpiTile is KPI Number & Trend 40017320:247 and goes INSIDE a Widget with no card of its own, because the Widget is the card. KpiCard is KPI Tiles 40009415:27750 and IS a card, with its own surface, border, radius and padding, used outside the grid. Separate files so the import says which you meant."
     },
     "dashboard": {
       "displayName": "Dashboard",
