@@ -108,10 +108,10 @@ export const L = {
   // PopoverMenu.Item: 40 tall, pad 6,14,6,14, label gap 4 with an 8 inset.
   itemH:       40,
   itemPadV:    U("padding-xxtight"),
-  // Figma's item pad is 6,14,6,14 and 14 IS NOT A RUNG: the ladder goes 12
-  // then 16. Mapped to Padding/Tight, 12, the nearest, rather than inventing a
-  // token. Same call as the nineteen Unit/20 gap bindings in the KPI Tiles.
-  itemPadH:    U("padding-tight"),
+  // Figma's item pad is 6,14,6,14, and 14 IS a rung: Padding/Medium. This read
+  // Padding/Tight, 12, under a comment asserting the ladder went 12 then 16,
+  // which is the gap ladder and not the padding ladder. Corrected 2026-10-08.
+  itemPadH:    U("padding-medium"),
   itemInset:   U("padding-xtight"),
   gap:         U("gap-xxtight"),
   // Menu.Divider: pad 6,0,6,0.

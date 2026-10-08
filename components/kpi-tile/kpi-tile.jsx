@@ -53,7 +53,7 @@
  * target fails WCAG 2.5.5.
  */
 import React, { useState } from "react";
-import { Change } from "./kpi-number-trend.jsx";
+import { Change, KpiNumberAndTrend } from "./kpi-number-trend.jsx";
 import { MiniChart, SAMPLE_SERIES, SAMPLE_LAYERS, SAMPLE_MARKERS, curveFor } from "./mini-chart.jsx";
 import { FeaturedIcon } from "../icon/featured-icon.jsx";
 import { Dropdown, DropdownItem, DropdownDivider } from "../dropdown/dropdown.jsx";
@@ -120,10 +120,24 @@ export const L = {
   gapTight:    U("gap-xxxtight"),           // 2
   gapRow:      U("gap-tight"),              // 8
   gapBase:     U("gap-base"),               // 16
-  gapIconHead: U("gap-tight"),              // 12 on Chart 02, see note
+  /* Chart 02 puts 12 between its Featured icon and its heading where Icon 02
+     puts 16. Measured on both, 2026-10-08: this pointed at Gap/Tight, 8, and
+     the comment beside it claimed 12, so the value and the note disagreed and
+     the note was the correct one. */
+  gapIconHead: U("gap-medium"),             // 12, Chart 02 only
   gapRelaxed:  U("gap-relaxed"),            // 24
+  gapNone:     0,                           // Chart 04, which has one child
   numberGap12: U("padding-tight"),          // 12, Chart 01's Number and badge
+  padCompact:  U("padding-tight"),          // 12, Chart 03's side inset
+  padRelaxed:  U("padding-relaxed"),        // 24
+  padHeadTop:  U("padding-medium"),         // 14, Chart 04's heading wrapper
+  padHeadBottom: U("padding-tight"),        // 12, the same wrapper
+  /* 44x44, the one measurement in this file that is NOT a token: it is the
+     minimum touch target, which is an accessibility floor rather than a
+     spacing decision, and Pathway has no token for it. Figma inset it by 8
+     from the tile's top-right corner, which the next line keeps. */
   touchTarget: 44,
+  touchInset:  U("padding-xtight"),         // 8
 };
 
 /**
@@ -170,10 +184,16 @@ export const KPI_TILE_SPECS = {
                 icon: { size: "lg", type: "modern", glyph: "visibility" },
                 iconBesideHeading: true, numberInline: true,
                 chart: { w: 128, h: 56, layers: true } },
-  "chart-03": { h: 144, hMobile: 144, dir: "column", pad: "pad", gap: "gapChart03",
+  /* Chart 03's gap named `gapChart03`, which was never defined in `L`, so it
+     resolved to undefined and the tile rendered with NO gap where Figma has 24.
+     A missing key in a lookup table fails silently in CSS, so
+     `scripts/check-component-tables.js` now asserts every key resolves. */
+  "chart-03": { h: 144, hMobile: 144, dir: "column", pad: "pad", gap: "gapRelaxed",
                 heading: "soft", change: "02", icon: null,
                 chart: { w: 100, h: 52, layers: true }, compact: true },
-  "chart-04": { h: 244, hMobile: 244, dir: "column", pad: "pad", gap: "gapTight",
+  /* Chart 04 has ONE child, the inner card, so Figma's gap is 0 rather than a
+     rung. Named as zero instead of borrowing a 2 that nothing can see. */
+  "chart-04": { h: 244, hMobile: 244, dir: "column", pad: "pad", gap: "gapNone",
                 heading: "hardBold", change: "02", note: true, icon: null,
                 chart: { w: null, h: 56, series: "realistic-03" }, innerCard: true },
 };
@@ -274,7 +294,7 @@ export function KpiTile({
      heights hold. */
   const menuEl = onMenu !== false && (
     <span style={{
-      position: "absolute", top: 0, right: 0,
+      position: "absolute", top: L.touchInset, right: L.touchInset,
       width: L.touchTarget, height: L.touchTarget,
       display: "flex", alignItems: "center", justifyContent: "center",
     }}>
@@ -293,15 +313,32 @@ export function KpiTile({
       {numberEl}{changeEl}
     </span>
   ) : s.numberInline ? (
-    // Chart 02: Number and _Change on ONE row, gap 8.
-    <span style={{ display: "flex", alignItems: "center", gap: L.gapRow, minWidth: 0 }}>
+    // Chart 02: Number and _Change on ONE row, gap 8, cross align MIN. The
+    // change sits at the number's TOP edge here, not its middle, which is the
+    // one place in the nine that does that.
+    <span style={{ display: "flex", alignItems: "flex-start", gap: L.gapRow, minWidth: 0 }}>
       {numberEl}{changeEl}
     </span>
   ) : (
+    /* THE CHANGE IS PUSHED TO THE ROW'S FAR RIGHT on four of the nine, and
+       this row read as "number, gap, change" until 2026-10-08, which put the
+       chip hard against the number on all of them. Measured on the set:
+
+         type      row main align        cross    gap
+         Simple    MIN, Number grow=1    MAX      16
+         Icon 01   MIN, Number grow=1    MAX      16
+         Icon 03   SPACE_BETWEEN         CENTER   16
+         Icon 04   SPACE_BETWEEN         CENTER   16
+         Chart 04  MIN                   CENTER   12
+
+       A growing Number and SPACE_BETWEEN put the chip in the same place, so
+       both are expressed as space-between. Chart 04 is the only one of the
+       five that genuinely keeps the chip beside the number, and it does not
+       come through here: it builds its own row inside the inner card. So the
+       four that reach this branch are exactly the four that push right. */
     <span style={{
-      display: "flex", gap: L.gapBase, minWidth: 0,
-      // Simple and Icon 01 align the change to the number's BASELINE edge
-      // (align=MAX); Icon 03, Icon 04 and Chart 04 centre it.
+      display: "flex", minWidth: 0, gap: L.gapBase,
+      justifyContent: "space-between",
       alignItems: t === "simple" || t === "icon-01" ? "flex-end" : "center",
     }}>
       {numberEl}{changeEl}
@@ -322,7 +359,8 @@ export function KpiTile({
     body = (
       <>
         <span style={{ display: "flex", alignItems: "center",
-          padding: `14px ${24}px 12px`, boxSizing: "border-box" }}>
+          padding: `${L.padHeadTop} ${L.padRelaxed} ${L.padHeadBottom}`,
+          boxSizing: "border-box" }}>
           {headingEl}
         </span>
         <span style={{
@@ -340,17 +378,18 @@ export function KpiTile({
       </>
     );
   } else if (s.compact) {
-    // Chart 03: the nested KPI Number & Trend block, H gap 24, chart right.
+    // Chart 03 does not hand-roll a number row: Figma nests a real
+    // `KPI Number & Trend` instance here, Type=03 Chart Right, With Filter
+    // Controls?=No. Composing the component rather than redrawing its parts is
+    // the difference between a tile that inherits every later fix to that block
+    // and one that quietly diverges from it.
     body = (
       <>
         {headingEl}
-        <span style={{ display: "flex", alignItems: "center", gap: L.gapRelaxed,
-          padding: `0 ${12}px`, boxSizing: "border-box", minWidth: 0 }}>
-          <span style={{ display: "flex", flexDirection: "column", gap: L.gapTight,
-            flex: 1, minWidth: 0 }}>
-            {numberRow}
-          </span>
-          <span style={{ padding: `8px 0 8px 12px`, flexShrink: 0 }}>{chartEl}</span>
+        <span style={{ display: "flex", padding: `0 ${L.padCompact}`,
+          boxSizing: "border-box", minWidth: 0 }}>
+          <KpiNumberAndTrend value={value} change={changeEl} chart={chartEl}
+            layout="right" numberStyle="wide" />
         </span>
       </>
     );
