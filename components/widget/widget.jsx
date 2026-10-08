@@ -124,10 +124,10 @@ export const SIZE_LABEL = { glance: "Glance", detail: "Detail", explore: "Explor
  *             reach Widget/MinWidth/Glance (275). Below it, 3 of 12 is too
  *             narrow (256 on Figma's 1440 grid), which is why Glance is 4.
  *
- * Rows are the board's 48px auto-rows with a 16px gap, so a span of n rows is
- * 64n - 16 tall. Figma's 176 (Glance) is 3 rows and its 560 (the tall Explore
- * at 1920) is 9. Its 416 (Detail and Explore) is 6.75 rows and does not fit
- * the 48px model, so the row counts below are unchanged until that is decided.
+ * Rows are 8px with the 16px gap, so a span of n rows is 24n - 16 tall. That
+ * is the unit that draws the Widget component set's heights exactly: Glance
+ * 176 is 8 rows, Detail and Explore 416 are 18. (48px rows could not: 416 is
+ * 6.75 of them.)
  *
  * `band` is the demo's full-width strip at 3 rows, which is what holds a row
  * of KPI tiles under one heading. It is not in SIZES because it is not a Figma
@@ -139,10 +139,10 @@ export const GRID_COLS = [4, 8, 12, 12];
 export const GRID_TEMPLATE = "repeat(var(--pw-dash-cols), minmax(0, 1fr))";
 
 export const SIZE_GRID = {
-  glance:  { cols: [4, 4, 4, 3],    rows: 3 },
-  detail:  { cols: [4, 8, 6, 6],    rows: 8 },
-  explore: { cols: [4, 8, 12, 12],  rows: 9 },
-  band:    { cols: [4, 8, 12, 12],  rows: 3 },
+  glance:  { cols: [4, 4, 4, 3],    rows: 8 },
+  detail:  { cols: [4, 8, 6, 6],    rows: 18 },
+  explore: { cols: [4, 8, 12, 12],  rows: 18 },
+  band:    { cols: [4, 8, 12, 12],  rows: 8 },
 };
 
 /** Glance is flat: no inner card. Everything else layers. */

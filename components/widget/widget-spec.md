@@ -54,7 +54,8 @@ Set `40009622:39702`, six variants on two axes, `Size` and `Configuration`.
 | Token values | Design | Figma Variables panel |
 | Size ladder and min widths | Design | Figma, mirrored in `SIZE_GRID` and the Contextual tokens |
 | Grid spans | Design | Figma's Pathway Grid (Widget page ScreenTemplates), mirrored in `SIZE_GRID` |
-| Rows and flow | Design | The canonical demo, mirrored in `SIZE_GRID` |
+| Row heights | Design | Figma, the component set's 176 and 416, mirrored in `SIZE_GRID` |
+| Flow | Design | The canonical demo |
 | State logic, slots, a11y | Engineering | `components/widget/widget.jsx` |
 | Content inside a widget | Consumer | passed as `children` |
 
@@ -169,14 +170,15 @@ with breakpoints from the Widget/MinWidth tokens:
 |---|---|---|---|---|
 | Columns | 4 | 8 | 12 | 12 |
 
-Auto-rows 48px, gap 16px, `grid-auto-flow: row`.
+Auto-rows 8px, gap 16px, `grid-auto-flow: row`. A span of n rows is 24n - 16
+tall, which draws Figma's 176 and 416 exactly.
 
 | Size | Demo name | 4 cols | 8 cols | 12 cols | 12 cols, grid ≥ 1148 | Rows |
 |---|---|---|---|---|---|---|
-| glance | kpi | 4 | 4 | 4 | 3 | 3 |
-| detail | wide | 4 | 8 | 6 | 6 | 8 |
-| explore | xwide | 4 | 8 | 12 | 12 | 9 |
-| band | band | 4 | 8 | 12 | 12 | 3 |
+| glance | kpi | 4 | 4 | 4 | 3 | 8 (176) |
+| detail | wide | 4 | 8 | 6 | 6 | 18 (416) |
+| explore | xwide | 4 | 8 | 12 | 12 | 18 (416) |
+| band | band | 4 | 8 | 12 | 12 | 8 (176) |
 
 **Glance is 4 of 12 until the grid reaches 1148.** At 3 of 12 on Figma's 1440
 grid it would be 256 wide, under its own 275 minimum. 1148 is where 3 columns

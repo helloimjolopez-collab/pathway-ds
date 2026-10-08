@@ -31,7 +31,7 @@ const board = (children) => (
     <WidgetKeyframes />
     <div className="pw-dashboard-grid" style={{
       display: "grid", gridTemplateColumns: GRID_TEMPLATE,
-      gridAutoRows: "48px", gridAutoFlow: "row", gap: U("gap-base"), alignContent: "start",
+      gridAutoRows: "8px", gridAutoFlow: "row", gap: U("gap-base"), alignContent: "start",
     }}>
       {children}
     </div>
@@ -115,9 +115,9 @@ export const SizeLadder = {
       gap: U("gap-relaxed"), background: "var(--semantic-color-fill-surface-canvas)" }}>
       <WidgetKeyframes />
       {[
-        ["glance",  275,  176, "275x176, minW 275, minH 176, flat, 4 of 12 cols (3 once the grid is 1148+) x 3 rows"],
-        ["detail",  566,  416, "566x416, minW 515, layered, 6 cols x 8 rows"],
-        ["explore", 1148, 416, "1148x416, minW 1050, layered, 12 cols x 9 rows"],
+        ["glance",  275,  176, "275x176, minW 275, minH 176, flat, 4 of 12 cols (3 once the grid is 1148+) x 8 rows"],
+        ["detail",  566,  416, "566x416, minW 515, layered, 6 cols x 18 rows"],
+        ["explore", 1148, 416, "1148x416, minW 1050, layered, 12 cols x 18 rows"],
       ].map(([size, w, h, note]) => (
         <div key={size} style={{ display: "flex", flexDirection: "column", gap: U("gap-tight") }}>
           <code style={{ fontSize: "var(--semantic-type-font-size-xs)",

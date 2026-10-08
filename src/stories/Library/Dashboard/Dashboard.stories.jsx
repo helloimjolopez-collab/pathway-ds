@@ -169,7 +169,8 @@ export default {
       "and Sheet padding (56 each side at desktop). Columns follow the grid's " +
       "own width: 12 from 1050, 8 from 720, 4 below. Glance spans 4 of 12, and " +
       "3 of 12 once the grid reaches 1148, where 3 columns clear its 275 " +
-      "minimum. 48px rows and grid-auto-flow ROW so authored order is kept. " +
+      "minimum. 8px rows draw Figma's 176 and 416 heights exactly, and " +
+      "grid-auto-flow ROW keeps authored order. " +
       "Find a widget, Add widget and Refresh all are all available without " +
       "entering manage mode; manage keeps the destructive half, which is " +
       "rearranging, resizing and removing." } },
@@ -275,7 +276,7 @@ export const TokensGeometry = {
         note: "The grid is Figma's Pathway Grid, 12 columns with a 16 gutter. Its " +
               "inset and gap come from tokens; its breakpoints come from the " +
               "Widget/MinWidth tokens (1050 for 12 columns, 1148 for a 3-column " +
-              "Glance). Column counts and 48px auto-rows are component metrics.",
+              "Glance). Column counts and 8px auto-rows are component metrics.",
         rows: [
           ["--semantic-layout-units-gap-base", "Grid gap, 16"],
           ["--responsive-layout-sheetcontainer-padding-horizontal", "Board inset, screen container part, 24"],

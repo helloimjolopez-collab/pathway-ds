@@ -15,7 +15,8 @@
  *                  side and 16 + 16 = 32 on top at desktop, responsive below
  *   columns        4, 8 from a 720 grid, 12 from a 1050 grid, read off the
  *                  grid's own width by a container query, not the viewport
- *   48px auto-rows, 16px gap
+ *   8px auto-rows, 16px gap: a span of n rows is 24n - 16, which draws
+ *                  Figma's 176 and 416 exactly
  *   grid-auto-flow: ROW, not row dense
  *
  * `dense` is the tempting choice and it is wrong. It backfills holes by pulling
@@ -76,7 +77,7 @@ export const T = {
 };
 
 export const L = {
-  rowUnit:      48,
+  rowUnit:      8,
   gap:          U("gap-base"),        // 16
   pagePadH:     U("padding-relaxed"),
   // The page inset is the ScreenTemplate's padding plus the Sheet's, so the
@@ -560,7 +561,7 @@ export function Dashboard({
         )}
       </div>
 
-      {/* THE GRID. 12 / 8 / 4 columns by its own width, 48px rows, 16px gap, authored order. */}
+      {/* THE GRID. 12 / 8 / 4 columns by its own width, 8px rows, 16px gap, authored order. */}
       <div className="pw-dashboard-grid" style={{
         display: "grid",
         gridTemplateColumns: GRID_TEMPLATE,

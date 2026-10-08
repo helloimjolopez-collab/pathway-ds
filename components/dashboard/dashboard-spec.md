@@ -33,7 +33,8 @@ columns, gutter 16, inside the screen container and sheet padding. The
 | To change… | Owner | Where |
 |---|---|---|
 | Grid columns, gutter, inset, per-size spans | Design | Figma's Pathway Grid, mirrored in `SIZE_GRID` and `dashboard.jsx` |
-| Rows and flow | Design | the demo, mirrored in `SIZE_GRID` |
+| Row heights | Design | the Figma Widget component set (176, 416), mirrored in `SIZE_GRID` |
+| Flow | Design | the demo, mirrored in `dashboard.jsx` |
 | Add-widget flow and dialog | Design | the demo |
 | Catalogue entries | Consumer | the `catalogue` prop |
 | Widget content | Consumer | `renderWidget` |
@@ -53,7 +54,7 @@ page                      Fill/Surface/Canvas
     Refresh all           only when onRefreshAll is supplied
     Manage                enters manage mode
   .pw-dashboard           inset = SheetContainer + Sheet padding, container
-  .pw-dashboard-grid      12 / 8 / 4 columns by grid width, 48px rows, 16px gap, flow row
+  .pw-dashboard-grid      12 / 8 / 4 columns by grid width, 8px rows, 16px gap, flow row
     Widget                one per entry, spans from SIZE_GRID
 ```
 
@@ -138,24 +139,24 @@ Widget/MinWidth token:
 | ≥ 1050 | 12 | `Widget/MinWidth/Explore`; a 6-column Detail also clears its 515 here |
 | ≥ 1148 | 12, Glance at 3 | 3 columns reach `Widget/MinWidth/Glance`, 275 |
 
-Auto-rows 48px, gap 16px, `grid-auto-flow: row`, `align-content: start`.
+Auto-rows 8px, gap 16px, `grid-auto-flow: row`, `align-content: start`.
 
 | Size | 4 cols | 8 cols | 12 cols | 12 cols, grid ≥ 1148 | Rows |
 |---|---|---|---|---|---|
-| glance | 4 | 4 | 4 | 3 | 3 |
-| detail | 4 | 8 | 6 | 6 | 8 |
-| explore | 4 | 8 | 12 | 12 | 9 |
-| band | 4 | 8 | 12 | 12 | 3 |
+| glance | 4 | 4 | 4 | 3 | 8 (176) |
+| detail | 4 | 8 | 6 | 6 | 18 (416) |
+| explore | 4 | 8 | 12 | 12 | 18 (416) |
+| band | 4 | 8 | 12 | 12 | 8 (176) |
 
 **Why Glance is 4 of 12 at 1440.** On Figma's 1440 grid, 3 of 12 is 256 wide,
 below `Widget/MinWidth/Glance` (275). It only drops to 3 once 3 columns can
 reach 275, which is a 1148 grid; Figma's 1920 grid (1552) is past that and
 fits four Glance widgets to a row.
 
-**Rows.** A span of n rows is 64n - 16 tall. Figma's Glance (176) is 3 rows and
-its tall Explore at 1920 (560) is 9. Its Detail and Explore (416) are 6.75
-rows, which the 48px model cannot draw, so row counts are unchanged pending a
-decision. The 1440 template's 221.87 Glance height is the 275x176 component
+**Rows.** A span of n rows is 24n - 16 tall, so the board draws the Widget
+component set's heights exactly: Glance 176 (8 rows), Detail and Explore 416
+(18 rows). The old 48px rows could not (416 is 6.75 of them), and gave Detail
+496 and Explore 560. The 1440 template's 221.87 Glance height is the 275x176 component
 stretched to 346.67 at the same aspect ratio, not a grid value.
 
 `row`, not `row dense`. See the Widget spec §4 for why.
