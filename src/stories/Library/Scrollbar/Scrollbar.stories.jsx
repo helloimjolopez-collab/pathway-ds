@@ -43,9 +43,16 @@ export default {
 };
 
 export const Playground = {
-  render: () => (
-    <Frame>
-      <Scrollable style={{ height: "100%" }}><Rows n={40} /></Scrollable>
+  args: { rows: 40, height: 320 },
+  argTypes: {
+    rows: { name: "Rows of content", control: { type: "range", min: 1, max: 120, step: 1 },
+      description: "Drop it to 3 and the thumb disappears: with nothing to scroll there is nothing to draw, and the content does not shift because the bar never took layout space." },
+    height: { name: "Frame height", control: { type: "range", min: 120, max: 600, step: 20 },
+      description: "The thumb is proportional to the content, floored at a minimum so it stays grabbable in a very long list." },
+  },
+  render: (a) => (
+    <Frame h={a.height}>
+      <Scrollable style={{ height: "100%" }}><Rows n={a.rows} /></Scrollable>
     </Frame>
   ),
   parameters: { docs: { description: { story: "Hover the frame (or scroll) - the slim semitransparent thumb fades in, overlaying the content's right edge. It takes no layout width." } } },

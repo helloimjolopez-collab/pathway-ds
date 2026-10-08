@@ -473,3 +473,39 @@ TokensStroke.tags     = ["!dev"];
 TokensForeground.tags = ["!dev"];
 TokensSpacing.tags    = ["!dev"];
 TokensMotion.tags     = ["!dev"];
+
+/**
+ * The nav bar search, which `Search.mdx` has linked to since it was written and
+ * which did not exist until 2026-10-08: the page rendered an empty block where
+ * this canvas belongs, and `storybook build` stayed green throughout.
+ * `scripts/check-mdx-refs.js` now fails on that class of hole.
+ */
+export const TopNavSearchStory = {
+  name: "TopNavSearch",
+  args: { breakpoint: "desktop", expanded: undefined },
+  argTypes: {
+    breakpoint: { name: "Breakpoint", control: "inline-radio",
+      options: ["desktop", "tablet", "mobile"],
+      description: "Below desktop, TopNav renders a full-width takeover rather than the 320px bar." },
+    expanded: { name: "Expanded", control: "inline-radio", options: [undefined, true, false],
+      description: "Leave unset to let the component own it, which is how TopNav uses it." },
+  },
+  render: (a) => (
+    <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 16,
+      background: "var(--semantic-color-fill-surface-canvas)" }}>
+      <span style={{ fontFamily: "'Red Hat Text',sans-serif", fontSize: 13, maxWidth: 620,
+        color: "var(--semantic-color-foreground-static-neutral-base)" }}>
+        Collapsed it is an icon; expanded it is a 320px field. Click it, then press
+        Escape: focus returns to the collapsed trigger rather than being dropped,
+        which is the part that is easy to lose when this is rebuilt inside a nav.
+      </span>
+      <div style={{ display: "flex", justifyContent: "flex-end",
+        background: "var(--semantic-color-fill-surface-elevated)",
+        border: "1px solid var(--semantic-color-stroke-static-neutral-base)",
+        borderRadius: 8, padding: 8 }}>
+        <TopNavSearch breakpoint={a.breakpoint} expanded={a.expanded}
+          onExpandChange={() => {}} />
+      </div>
+    </div>
+  ),
+};

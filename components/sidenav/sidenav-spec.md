@@ -15,7 +15,7 @@ the questions you have in the first thirty seconds.
 | Artefact | URL |
 |---|---|
 | **Figma, design system master file** | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) |
-| **Figma, SideNav component set** | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1374) |
+| **Figma, SideNav component set** | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1375) |
 | **Live HTML demo** | [Open demo](https://helloimjolopez-collab.github.io/pathway-ds/components/sidenav/sidenav.html) |
 | **Storybook (deployed)** | [Open Storybook](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-sidenav--docs) |
 | **GitHub, component source** | [components/sidenav/](https://github.com/helloimjolopez-collab/pathway-ds/tree/main/components/sidenav) |
@@ -352,7 +352,7 @@ The component supports two layout states: **expanded** (250px wide, icons and la
 
 ### Figma source
 - **File:** [Pathway Design System Master File MB 2.0](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/)
-- **SideNav component:** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1374)
+- **SideNav component:** [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1375)
 
 ---
 
@@ -362,7 +362,7 @@ Use this table when you need to find or change something. Every row points to th
 
 | To change… | Owner | Where |
 |---|---|---|
-| SideNav item colours, typography, spacing tokens | Figma: SideNav component | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1374) |
+| SideNav item colours, typography, spacing tokens | Figma: SideNav component | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40004059-1375) |
 | Primitive or semantic token values (colours, radii, shadows) | Figma: Variables panel | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/) |
 | Popover visual design (surface, border, shadow, typography) | Figma: PopoverMenu component | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40005913-152988) |
 | Popover animation (duration, easing, reduced-motion) | Figma: PopoverMenu component page | [Open in Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40005913-152988) |

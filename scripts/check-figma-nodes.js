@@ -76,5 +76,45 @@ for (const id of ids) {
   for (const w of where.slice(0, 3)) console.log(`    ${w.file}:${w.line}`);
 }
 console.log(`\n${expectSet} of them are cited as a set and must resolve to a COMPONENT_SET.`);
-console.log("\nTo verify, read these ids through the Figma MCP and compare types:");
-console.log("  node scripts/check-figma-nodes.js --list");
+
+/**
+ * VERIFIED TYPES, read through the Figma Plugin API. This script cannot reach
+ * Figma itself, so the read is done by hand and the ANSWER is recorded here.
+ * That turns a standing question into a check: a new id cited as a set, or an
+ * id whose recorded type no longer matches what it is cited as, fails the run
+ * instead of printing a reminder that nobody acts on.
+ *
+ * Re-verify with:
+ *   node scripts/check-figma-nodes.js --list
+ * then read those ids through the Figma MCP and update this map.
+ */
+const VERIFIED = {
+  "40004059:1375": { type: "COMPONENT_SET", name: "SideNav.Container", on: "2026-10-08" },
+  "40007095:4048": { type: "COMPONENT_SET", name: "TopNav.Search",     on: "2026-10-08" },
+  "40009415:27750": { type: "COMPONENT_SET", name: "KPI Tiles",        on: "2026-10-08" },
+  "40009709:26016": { type: "COMPONENT_SET", name: "ScreenTemplate",   on: "2026-10-08" },
+  // Cited as a set until 2026-10-08, when the read showed it is the Mode=Base
+  // VARIANT of 40004059:1375. The three citations in sidenav-spec.md were
+  // repointed at the set, which is what they claimed to be.
+  "40004059:1374": { type: "COMPONENT", name: "Mode=Base", on: "2026-10-08" },
+};
+
+let failures = 0;
+for (const id of ids) {
+  const wantsSet = cites.get(id).some((w) => EXPECT_SET.test(w.text));
+  if (!wantsSet) continue;
+  const v = VERIFIED[id];
+  if (!v) {
+    console.log(`\n  UNVERIFIED  ${id} is cited as a component set and has never been read.`);
+    failures++;
+  } else if (v.type !== "COMPONENT_SET") {
+    console.log(`\n  WRONG TYPE  ${id} is cited as a component set but is a ${v.type} ("${v.name}").`);
+    failures++;
+  }
+}
+
+if (failures) {
+  console.log(`\n${failures} id(s) cited as a component set are unverified or wrong.`);
+  process.exit(1);
+}
+console.log(`${expectSet} verified as COMPONENT_SET through the Figma API; see VERIFIED in this file.`);

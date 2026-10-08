@@ -594,23 +594,29 @@ Sidebar-visible, matching the untagged exports in `Search.stories.jsx` exactly:
 
 | Export | Name |
 |---|---|
-| `StateMatrix` | StateMatrix |
 | `Playground` | Playground |
+| `TopNavSearchStory` | TopNavSearch |
+
+Reference, `!dev`-tagged:
+
+| Export | Name |
+|---|---|
+| `Field` | Field |
+| `StateMatrix` | StateMatrix |
 | `TokensFill` | TokensFill |
 | `TokensStroke` | TokensStroke |
 | `TokensForeground` | TokensForeground |
 | `TokensSpacing` | TokensSpacing |
 | `TokensMotion` | TokensMotion |
 
-Reference, `!dev`-tagged: `Field`.
+Every token row resolves its name against the live document rather than
+restating a hex, so a row reads `unresolved` only when the token itself is
+wrong.
 
-Deployed at `https://helloimjolopez-collab.github.io/pathway-ds/storybook/`.
-
-> Corrected 2026-10-07. This section read "Not yet in Storybook" while the page had been live. It is titled `Library/Global Search (Top Nav)`, because this component is the TopNav search bar specifically and not a general search field. `npm run check-spec-stories` now fails
-> on a spec that disagrees with its stories file.
-
----
-
+`TopNavSearchStory` was added 2026-10-08. `Search.mdx` had linked to it since the
+page was written and the story did not exist, so the page rendered an empty block
+there while `storybook build` stayed green. `scripts/check-mdx-refs.js` now fails
+on that class of hole.
 
 ## Agent implementation rules
 
