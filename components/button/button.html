@@ -266,7 +266,11 @@ function Button({ buttonStyle = "Fill", size = "M", type = "Primary", text = "Bu
 
   return (
     <button type="button" onClick={!isDisabled ? onClick : undefined}
-      disabled={isDisabled} aria-label={ariaLabel || (showText ? undefined : text)}
+      disabled={isDisabled}
+      {/* Falls back to `text` when there is no visible text to read: icon-only,
+          and loading, where the content is replaced by a spinner. Matches
+          button.jsx, corrected 2026-10-08. */}
+      aria-label={ariaLabel || (showText && !loading ? undefined : text)}
       aria-busy={loading || undefined}
       onMouseEnter={() => !isDisabled && setHovered(true)}
       onMouseLeave={() => { setHovered(false); setPressed(false); }}

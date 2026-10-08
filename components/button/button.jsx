@@ -428,7 +428,26 @@ export function Button({
       type="button"
       onClick={!isDisabled ? onClick : undefined}
       disabled={isDisabled}
-      aria-label={ariaLabel || (showText ? undefined : text)}
+      /* EVERY LABELLED BUTTON ANNOUNCED AS JUST "button" until 2026-10-08.
+         This read `ariaLabel || (showText ? undefined : text)`, on the
+         reasonable-sounding rule that a button showing its text does not need
+         a label because the text IS the name. That is true of an ordinary
+         button and was false here: the text sits inside
+         `pw-button__container`, which carried `aria-hidden="true"`, so the
+         name computation skipped it and the only named case was the
+         icon-only one, which is backwards.
+
+         The container's `aria-hidden` has been removed rather than patched
+         around, because the accessible name should come from the visible text:
+         that way it cannot drift from it, and it satisfies WCAG 2.5.3 Label in
+         Name without the caller doing anything. The icon spans carry their own
+         `aria-hidden`, so the ligature text ("add") was never the reason.
+
+         `text` is still used as the label in the two cases where there is no
+         visible text to read: icon-only, and loading, where the content is
+         replaced by a spinner. */
+      aria-label={ariaLabel
+        || (showText && !(loading || forceLoading) ? undefined : text)}
       aria-busy={(loading || forceLoading) || undefined}
       aria-disabled={isDisabled || undefined}
       onMouseEnter={() => !isDisabled && setHovered(true)}
@@ -446,7 +465,7 @@ export function Button({
       className={className}
       style={outerStyle}
     >
-      <span style={containerStyle} aria-hidden="true" className="pw-button__container">
+      <span style={containerStyle} className="pw-button__container">
         {(loading || forceLoading) ? (
           // Loading state, spinner only, no label or icons
           <ButtonSpinner size={sz.iconInner * 1.2} />

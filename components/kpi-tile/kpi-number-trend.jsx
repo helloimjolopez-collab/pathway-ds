@@ -92,6 +92,10 @@ export const L = {
   // Trend.ComparisonControl: gap 3, chevron 12.
   compareGap:     U("gap-xxxtight"),
   compareChevron: 12,
+  /* 4 above and below, which takes a 16px line to a 24px target and is
+     cancelled by a matching negative margin so the layout does not move.
+     Padding/XXXTight is exactly 4. */
+  comparePadV:    U("padding-xxxtight"),
   border:      "var(--semantic-layout-units-borderwidth-base)",
   filterH:    26,
   filterPadV: U("padding-xxxtight"), // 4
@@ -193,14 +197,33 @@ export function Change({
    * 03 and 04 returned early, so the Glance widget showed a tinted "100%" pill
    * with no "vs last month" beside it where Figma shows both.
    */
+  /* TWO ACCESSIBILITY FIXES, 2026-10-08, both found by reading the rendered
+     button rather than the code.
+
+     Its accessible name was its own visible text, "vs last month", which says
+     what the comparison IS and not that the control changes it. A screen
+     reader announced "vs last month, button" and nothing else. So it carries
+     an explicit label naming the action, plus a `title` for the same reason
+     the header actions have one: a chevron on its own does not say what it
+     opens.
+
+     And its hit area was 77x16, because the text is 10px. WCAG 2.5.8 puts the
+     floor at 24x24. The vertical padding takes it to 24 and the matching
+     negative margin cancels the layout effect, so nothing moves: the same
+     technique Button uses for its 48px target around a smaller surface. */
   const comparison = !note ? null : onCompareClick ? (
-    <button type="button" onClick={onCompareClick} style={{
-      display: "inline-flex", alignItems: "center", gap: L.compareGap,
-      background: "transparent", border: "none", padding: 0, cursor: "pointer",
-      fontFamily: "inherit", color: T.caption, whiteSpace: "nowrap",
-      fontSize: Y("font-size-xxxs"), lineHeight: Y("line-height-xxs-single"),
-      letterSpacing: Y("letter-spacing-spacious"),
-    }}>
+    <button type="button" onClick={onCompareClick}
+      aria-label={`Change the comparison period, currently ${note}`}
+      aria-haspopup="menu"
+      title={`Change the comparison period, currently ${note}`}
+      style={{
+        display: "inline-flex", alignItems: "center", gap: L.compareGap,
+        background: "transparent", border: "none", cursor: "pointer",
+        padding: `${L.comparePadV} 0`, margin: `-${L.comparePadV} 0`,
+        fontFamily: "inherit", color: T.caption, whiteSpace: "nowrap",
+        fontSize: Y("font-size-xxxs"), lineHeight: Y("line-height-xxs-single"),
+        letterSpacing: Y("letter-spacing-spacious"),
+      }}>
       {note}
       <span className="material-symbols-rounded" aria-hidden="true" style={{
         fontSize: L.compareChevron, lineHeight: 1, display: "block",
