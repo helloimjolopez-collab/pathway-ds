@@ -220,11 +220,16 @@ export function KpiTile({
   icon,
   onMenu,
   menuItems,
+  /** Opens the menu on mount. For a docs story that has to SHOW the open
+   *  state: the State matrix claimed to and rendered a closed menu, because
+   *  there was no way in. Not for application code, which should let the user
+   *  open it. */
+  defaultMenuOpen = false,
   className = "",
   style,
   ...rest
 }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(defaultMenuOpen);
   const t = KPI_TILE_SPECS[type] ? type : (LEGACY_TYPE[type] || "simple");
   const s = KPI_TILE_SPECS[t];
   const mobile = breakpoint === "mobile";
@@ -295,10 +300,13 @@ export function KpiTile({
   const menuEl = onMenu !== false && (
     <span style={{
       position: "absolute", top: L.touchInset, right: L.touchInset,
-      width: L.touchTarget, height: L.touchTarget,
-      display: "flex", alignItems: "center", justifyContent: "center",
+      display: "flex",
     }}>
-      <Dropdown type="icon" label="More actions" open={menuOpen}
+      {/* The span positions; the BUTTON is the 44x44 target. It used to be a
+          44x44 span around a 20x20 button, so only the middle 20px of the
+          corner responded. */}
+      <Dropdown type="icon" label="More actions" targetSize={L.touchTarget}
+        open={menuOpen}
         onOpenChange={(v) => { setMenuOpen(v); if (v) onMenu?.(); }}>
         {items}
       </Dropdown>

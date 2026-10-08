@@ -161,7 +161,7 @@ export const StateMatrix = {
         "The three trigger types, closed and open. Open is a Figma variant, not a " +
         "CSS state, which is why it is a prop on this component and can be driven " +
         "from a story.")}
-      <div style={{ display: "grid", gridTemplateColumns: "120px 1fr 1fr",
+      <div style={{ display: "grid", gridTemplateColumns: "120px 260px 260px",
         alignItems: "start", gap: U("gap-relaxed") }}>
         <span />
         <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
@@ -173,7 +173,20 @@ export const StateMatrix = {
             <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
               color: "var(--semantic-color-foreground-static-neutral-bold)" }}>{t}</code>
             {[false, true].map((open) => (
-              <span key={String(open)} style={{ display: "inline-flex", minHeight: open ? 220 : 44 }}>
+              /* RESERVE the panel's height with a margin, never with minHeight
+                 on this wrapper: the trigger stretches to its parent's height,
+                 so a 220 minHeight made the Button trigger 220 tall and put the
+                 panel 176px below where it belongs. The panel is absolute, so a
+                 margin keeps the rows apart without touching it.
+
+                 A braced JSX comment does not work in this position: it is an
+                 expression container, and an arrow function's expression body
+                 is not JSX until the element starts. Nor can this comment
+                 QUOTE one, because the closing delimiter inside the quote ends
+                 the block comment three lines early, which is how this file
+                 failed to parse once already. */
+              <span key={String(open)} style={{ display: "inline-flex",
+                alignItems: "flex-start", marginBottom: open ? 280 : 0 }}>
                 <Dropdown type={t} open={open} onOpenChange={() => {}}
                   label="More actions" text="Actions" initials="JL">
                   {items}

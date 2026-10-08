@@ -91,11 +91,12 @@
     "check-spec-stories": "node scripts/check-spec-stories.js",
     "check-figma-nodes": "node scripts/check-figma-nodes.js",
     "check-stories-render": "node scripts/check-stories-render.js",
-    "verify-storybook": "storybook build --quiet && node scripts/check-stories-render.js && node scripts/check-mdx-refs.js && node scripts/check-accessible-names.js",
+    "verify-storybook": "node scripts/check-syntax.js && storybook build --quiet && node scripts/check-stories-render.js && node scripts/check-mdx-refs.js && node scripts/check-accessible-names.js",
     "check-code-connect": "node scripts/check-code-connect.js",
     "check-mdx-refs": "node scripts/check-mdx-refs.js",
     "check-component-tables": "node scripts/check-component-tables.js",
-    "check-accessible-names": "node scripts/check-accessible-names.js"
+    "check-accessible-names": "node scripts/check-accessible-names.js",
+    "check-syntax": "node scripts/check-syntax.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.29.2",

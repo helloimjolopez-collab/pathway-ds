@@ -213,6 +213,13 @@ export function Dropdown({
   text,
   initials,
   icon = "more_vert",
+  /* The Icon trigger's HIT AREA, which is not its glyph. Figma draws a bare
+     20px glyph and puts a 44x44 `TouchTarget` frame around it; the frame is
+     there to be the target. Rendering only the glyph gave a 20x20 button,
+     under both Figma's 44 and WCAG 2.5.8's 24 floor, and the 44x44 wrapper the
+     KPI Tile drew around it was a plain span that swallowed nothing.
+     Found 2026-10-08 by measuring the rendered button. */
+  targetSize = 44,
   align = "end",
   className = "",
   style,
@@ -282,16 +289,17 @@ export function Dropdown({
       </button>
     );
   } else {
-    /* Figma's Icon type is a BARE 20px glyph: no box, no fill, no border. So
-       this is not an ActionIcon, which carries a 36px target and a state
-       layer. It is the glyph alone, in a 20px button, which is what the KPI
-       tile's top-right control is. */
+    /* Figma's Icon type DRAWS a bare 20px glyph: no box, no fill, no border.
+       So this is not an ActionIcon, which carries a visible state layer. But
+       the drawing and the target are different things: the glyph stays 20 and
+       the button is `targetSize`, which is the 44x44 TouchTarget every KPI
+       tile variant carries around it. */
     trigger = (
-      <button type="button" {...shared} aria-label={label}
+      <button type="button" {...shared} aria-label={label} title={label}
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
         style={{
           display: "inline-flex", alignItems: "center", justifyContent: "center",
-          width: L.iconBox, height: L.iconBox, padding: 0, flexShrink: 0,
+          width: targetSize, height: targetSize, padding: 0, flexShrink: 0,
           background: "transparent", border: "none", cursor: "pointer",
           color: hov || open ? T.triggerHover : T.trigger,
           transition: `color ${M("duration-2")} ${M("easing-standard")}`,

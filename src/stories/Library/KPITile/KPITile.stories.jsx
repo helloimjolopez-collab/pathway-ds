@@ -170,25 +170,30 @@ export const StateMatrix = {
     <>
       {caption(
         "The dropdown is the only interactive element the design gives this card. " +
-        "Its states belong to the Dropdown and Action Icon components, shown here " +
-        "in place so the 44x44 target and the 20x20 glyph can be checked against " +
-        "the card's corner.")}
+        "Its states belong to the Dropdown component, shown in place so the corner " +
+        "can be checked: the BUTTON is the 44x44 target and the glyph inside it is " +
+        "20, which is what Figma's TouchTarget frame means. It was a 44x44 span " +
+        "around a 20x20 button until 2026-10-08, so only the middle 20px of the " +
+        "corner responded.")}
       <div style={{ display: "flex", gap: U("gap-relaxed"), flexWrap: "wrap" }}>
         {[["Menu closed", false], ["Menu open", true]].map(([label, open]) => (
           <div key={label} style={{ display: "flex", flexDirection: "column",
             gap: U("gap-xxtight") }}>
             <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
               color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>{label}</code>
-            <div style={{ width: 388 }}>
+            {/* The open panel is absolutely positioned, so the row it sits in
+                reserves height for it rather than letting it cover the next
+                card. */}
+            <div style={{ width: 388, marginBottom: open ? 180 : 0 }}>
               <KpiTile type="simple" heading="Views 24 hours" value="2,000"
                 changeValue="100%" direction="up"
+                defaultMenuOpen={open}
                 menuItems={<>
                   <DropdownItem label="Open the full view" icon="open_in_full" />
                   <DropdownItem label="Refresh" icon="refresh" />
                   <DropdownDivider />
                   <DropdownItem label="Remove from this dashboard" danger />
-                </>}
-                key={open ? "open" : "closed"} />
+                </>} />
             </div>
           </div>
         ))}
