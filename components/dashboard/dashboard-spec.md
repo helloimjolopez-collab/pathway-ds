@@ -217,6 +217,15 @@ Authored order is what the grid renders, so reordering is reordering the array.
 Refresh all fans out to every widget's own refresh. Individual refresh is a
 widget-level action.
 
+## 10. Collapsed / Compact / Variant-specific State
+
+None. A dashboard has no collapsed state. What looks like one is MANAGE MODE,
+which is a mode rather than a state: it is entered deliberately, it swaps the
+toolbar, and it holds a draft so Cancel puts the board back. See §9.
+
+The board does respond to width, but that is the grid reflowing from 12 columns
+to 8 to 4, not a variant. See the Widget spec's flex grid section.
+
 ## 11. Iconography
 
 | Action | Ligature |
@@ -231,6 +240,16 @@ widget-level action.
 | List view | `view_list` |
 | Selected | `check` |
 | Find | `search` |
+
+## 12. Interaction Patterns
+
+Standard Pathway patterns only, plus §9. Two parts delegate their behaviour
+rather than reimplementing it:
+
+- The widget menu is `Dropdown`, so Escape, click-outside and the ARIA wiring
+  come from `components/dropdown/dropdown-spec.md` §9.
+- The add-widget dialog follows Pathway's own modal conventions: focus trapped,
+  Escape closes, body scroll locked while open.
 
 ## 13. Accessibility
 

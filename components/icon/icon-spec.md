@@ -45,13 +45,21 @@ The name you write is the folder name in that repo and the name shown in that
 catalogue. Nothing is fetched per icon, which is the appeal: the font carries
 every glyph, so adding an icon costs nothing.
 
-### The three components
+### The four components
 
 | Component | Figma | What it is |
 |---|---|---|
 | `Icon` | the Iconography page | The primitive. A glyph, a size, a FILL. No box, no background, no interaction |
-| `ActionIcon` | `Action Icon` | An icon-only CONTROL with a state layer. Nested 30x in the Widget set |
-| `DisplayIcon` | `DisplayIcon` | A decorative icon in a tinted circle, for alerts and empty states |
+| `ActionIcon` | `Action Icon` `40006794:19891` | An icon-only CONTROL with a state layer. Nested 30x in the Widget set |
+| `DisplayIcon` | `DisplayIcon` `40006522:26547` | A decorative icon in a tinted ROUNDED SQUARE, r=8, for alerts and empty states |
+| `FeaturedIcon` | `FeaturedIcon` `40017444:140408` | The large badge a KPI tile puts above its number, at 40 and 48. Two types: a tinted circle and a white chip |
+
+**`FeaturedIcon` replaces a foreign component.** KPI Tiles nested
+`Featured icon` `40003806:3550` ten times, a remote third-party component that
+could not be Code Connected from this repo. The Pathway set was built on
+2026-10-08, and every one of the seven raw hexes in the four variants the tile
+used already matched an existing Pathway token exactly, so it is the same
+drawing on the tokens it was already the colour of. See §3.4.
 
 `IconBox` also exists, which is `Icon` inside Figma's alignment wrapper. Most
 layouts want the bare `Icon`.
@@ -107,11 +115,29 @@ That bug shipped in the Widget header once and again in the TopNav's
 
 ### DisplayIcon, measured 2026-10-07
 
+Container radius is **8 on all 21 variants**: a rounded square, not a circle.
+
 | Size | box | glyph |
 |---|---|---|
 | Small | 24x24 | 12 |
 | Medium | 32x32 | 16 |
 | Large | 40x40 | 20 |
+
+### FeaturedIcon, measured 2026-10-08
+
+| Type | Shape | Size | box | glyph |
+|---|---|---|---|---|
+| Outline | circle | lg | 48x48 | 24 |
+| Outline | circle | md | 40x40 | 20 |
+| Modern | rounded square, r=8 | lg | 48x48 | 24 |
+| Modern | rounded square, r=8 | md | 40x40 | 20 |
+
+**Outline's fill and stroke are the SAME hex at `sw=8` in the source**, so the
+ring draws nothing and the shape is a flat tinted circle. Reproduced as a solid
+circle rather than copying a stroke in the fill's own colour.
+
+**Modern is not tone-coloured.** It is a white chip, so it exists only at
+`Color=Neutral` rather than as seven identical variants.
 
 ## 3. Design Tokens
 
@@ -162,6 +188,33 @@ Negative is Red, Severe is Orange, so Danger takes Severe.
 > the file**. The table above is this repo's mapping, derived from the tone
 > names. The Figma side needs binding before the two can be said to agree.
 
+### 3.4 FeaturedIcon
+
+`Outline` uses the same tone table as DisplayIcon, so the two cannot disagree.
+`Modern` is neutral:
+
+| Element | Token |
+|---|---|
+| Chip surface | `Fill/Surface/Elevated` |
+| Chip border | `Stroke/Static/Neutral/Base`, 1px, inside |
+| Chip glyph | `Foreground/Static/Neutral/Base` |
+| Chip shadow | `--elevation-widget`. See the departures below |
+
+**Two deliberate departures from the source component:**
+
+- The **Positive glyph takes `On Subtle`**, not the `On Strong` the foreign
+  component used. `On Strong` is the foreground for a SOLID fill and this glyph
+  sits on a Subtle one, so the exact-hex match would have been a pairing
+  violation. `On Subtle` measures 11.94:1 on that tint against `On Strong`'s
+  15.4:1, so both clear AAA and the difference is invisible at 24px. It also
+  makes Positive consistent with Info, which was already both an exact match
+  AND the correct pairing.
+- **Modern's shadow** is `0 1 2 rgba(10,13,18,0.05)` plus two inner shadows in
+  the source. Pathway's smallest elevation token is `--elevation-widget`,
+  `0 2 8 -2`, so there is no exact match and the inner shadows have no token at
+  all. The nearest existing token is used and the inner shadows are dropped:
+  they are an Untitled UI flourish, not a Pathway treatment.
+
 ## 4. Layout & Spacing
 
 See §2. The per-size table for the system as a whole, L=18 / M=16 / S=14 inside
@@ -176,7 +229,7 @@ State at runtime. `DisplayIcon` has Size and Color.
 
 | State | `Icon` | `ActionIcon` | `DisplayIcon` |
 |---|---|---|---|
-| Rest | glyph only | transparent layer, Rest glyph | tinted circle |
+| Rest | glyph only | transparent layer, Rest glyph | tinted rounded square |
 | Hover | nothing: it is not interactive | layer takes Hover fill, glyph Hover | nothing |
 | Pressed | nothing | layer takes Pressed fill, glyph Pressed | nothing |
 | Disabled | nothing | 50% opacity, no pointer | nothing |
@@ -192,7 +245,9 @@ in for a consumer who has not loaded it in their own head.
 ## 8. Container / Surface
 
 `Icon` has no surface. `ActionIcon`'s surface is its state layer. `DisplayIcon`'s
-is a full circle in the tone's Subtle fill.
+is a ROUNDED SQUARE at r=8 in the tone's Subtle fill, which is what Figma draws
+on all 21 variants. The code drew a full circle until 2026-10-08; only
+`FeaturedIcon`'s Outline type is round.
 
 ## 9. Interaction / Behaviour
 

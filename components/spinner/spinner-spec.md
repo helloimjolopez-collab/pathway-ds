@@ -652,6 +652,13 @@ Hard rules. Breaking any of these breaks the component's contract.
 
 ---
 
+> **This spec numbers its own sections 1 to 12, not the template's 1 to 14.**
+> The numbering predates `docs/component-spec-template.md` and is internally
+> consistent: Accessibility is §8 and Storybook is §12. It is left alone because
+> renumbering would break every anchor that links into it, and the content is
+> all present. Noted so the gap is a decision rather than something to find
+> again.
+
 ## 12. Storybook
 
 Sidebar-visible, matching the untagged exports in `Spinner.stories.jsx` exactly:

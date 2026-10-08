@@ -83,12 +83,16 @@ root              VERTICAL, pad 0,12,0,12
 
 ```
 root              r=16, Fill/Surface/Elevated, Stroke/Static/Neutral/Base
-  Dropdown        20x20 dots-vertical, top right, absolutely placed
-  Featured icon   48x48 r=28, Icon types only
+  Dropdown        20x20, top right, absolutely placed.  COMPONENT, see §7
+  FeaturedIcon    48x48 circle, Icon types only.        COMPONENT, see §7
   Heading         fs 14
   Number row      HORIZONTAL gap 16: number + change
   Chart           Chart types only, beside the number
 ```
+
+**Two of those are Pathway components, not parts this file draws.** Until
+2026-10-08 the tile drew private copies of both AND Figma nested FOREIGN
+components for them. See §7.
 
 ## 3. Design Tokens
 
@@ -98,8 +102,8 @@ root              r=16, Fill/Surface/Elevated, Stroke/Static/Neutral/Base
 |---|---|
 | KpiTile root | `Fill/Surface/Elevated` |
 | KpiTile border | `Stroke/Static/Neutral/Base` |
-| Featured icon, up | `Fill/Static/Positive/Subtle` |
-| Featured icon, down | `Fill/Static/Negative/Subtle` |
+| FeaturedIcon, up | `Fill/Static/Positive/Subtle`, via `FeaturedIcon` `color="Positive"` |
+| FeaturedIcon, down | `Fill/Static/Negative/Subtle`, via `color="Negative"` |
 | Mini chart dot | `Fill/Surface/Elevated` |
 | Bar chart series | `Fill/Chart/Sequential/07`, `/09`, `/11` |
 
@@ -144,7 +148,8 @@ them is a design decision.
 | Change outer gap | `Gap/XTight` | 6 |
 | Change inner gap | `Gap/XXXTight` | 2 |
 
-Component metrics, not tokens: featured icon 48 at glyph 24, menu icon 20,
+Component metrics, not tokens: the featured icon is 48 at glyph 24 and the menu
+trigger 20, both owned by their own components now (§7); and
 change arrow 12 and 16, mini chart ring 19 and dot 11, line weight 2.
 
 ## 4. Layout & Spacing
@@ -238,6 +243,57 @@ of shapes. Straight carries two markers, one at each end.
 No interactive states on the tiles themselves. The menu control and the period
 filter are buttons and take the standard Pathway states.
 
+## 7. Sub-components / Decorations
+
+| Part | Component | Figma |
+|---|---|---|
+| The number and its trend | `kpi-number-trend.jsx` | `KPI Number & Trend` `40017320:247` |
+| The trend indicator | `Change`, all four types | `_Change` `40009415:28112` |
+| The sparkline | `mini-chart.jsx` | `_Chart mini` `40009415:27919` |
+| The bar chart | `bar-chart.jsx` | `_Chart data` `40009417:13029` |
+| **The featured icon** | **`components/icon/featured-icon.jsx`** | **`FeaturedIcon` `40017444:140408`** |
+| **The menu trigger** | **`components/dropdown/dropdown.jsx`** | **`PopoverMenu` `40005568:4207`** |
+
+### The last two were foreign, and this file also had private copies
+
+Worth stating plainly because it is the kind of thing that stays hidden:
+
+- Figma's KPI Tiles set nests `Featured icon` `40003806:3550` **ten times** and
+  `Dropdown` `40003188:9930` **eighteen times**. Both are remote third-party
+  components, from the same library as the `↳ Select` page in CLAUDE.md §8.1.
+  Neither can be Code Connected from this repo, because a mapping publishes
+  into the file that OWNS the component. So roughly a third of what this tile
+  is made of belonged to another design system and was unreachable.
+- Meanwhile `kpi-tile.jsx` drew its own private versions of both, so nothing
+  else in the library could reuse them either.
+
+Both are Pathway components as of 2026-10-08 and this tile imports them. The
+featured icon's seven colours already matched Pathway tokens exactly, so
+nothing was repainted. The menu needed nothing new built at all: Pathway's
+`↳ ❇️ Menu` page had a complete `PopoverMenu` that no code had ever
+implemented.
+
+> **Still open in Figma.** The KPI Tiles SET still nests the foreign instances.
+> The code no longer does. Swapping those 28 instances is an edit to a shared
+> component set, so it is a design decision rather than a mapping one.
+
+## 8. Container / Surface
+
+The tile IS the container: every one of the 18 variants carries its own
+surface, border, radius and padding. That is the whole distinction between a
+KPI Tile and the building block it nests, which has none of those and takes
+them from whatever nests it.
+
+| Type | box | radius | padding | gap |
+|---|---|---|---|---|
+| Simple | 388x90 | 16 | 16 | 2 |
+| Icon | 388x158 | 16 | 16 | 24 |
+| Chart | 388x144 | 16 | 24 | 8 |
+
+Mobile is 343 wide rather than 388; heights do not change. The tile is fluid
+and fills its column, so those widths are the Figma frames rather than
+constraints in code.
+
 ## 9. Interaction / Behaviour
 
 ### 9.1 Favourable is not the same as up
@@ -254,6 +310,12 @@ inside it stretches. Figma's 19px ring came out a wide ellipse in a 700px
 widget. The marker is an HTML element positioned by percentage and sized in
 pixels, so it stays circular at Figma's own 19 and 11 whatever the box does.
 
+## 10. Collapsed / Compact / Variant-specific State
+
+None. A KPI Tile has no collapsed state: the three Types are chosen by the
+consumer, not toggled at runtime, and `Breakpoint` is a width rather than a
+state.
+
 ## 11. Iconography
 
 Material Symbols Rounded, `FILL 0`, `wght 400`, `opsz` matched to size.
@@ -268,6 +330,13 @@ Material Symbols Rounded, `FILL 0`, `wght 400`, `opsz` matched to size.
 | Chip, down | `south_east` |
 | Featured icon, default | `trending_up` |
 | Menu | `more_vert` |
+
+## 12. Interaction Patterns
+
+Standard Pathway patterns only. The one interactive part is the menu trigger,
+whose behaviour belongs to `Dropdown`: Escape closes, a click outside closes,
+and the trigger carries `aria-haspopup`, `aria-expanded` and `aria-controls`.
+See `components/dropdown/dropdown-spec.md` §9.
 
 ## 13. Accessibility
 
