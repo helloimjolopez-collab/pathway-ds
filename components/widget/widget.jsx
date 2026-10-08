@@ -103,33 +103,54 @@ export const SIZES = ["glance", "detail", "explore"];
 export const SIZE_LABEL = { glance: "Glance", detail: "Detail", explore: "Explore" };
 
 /**
- * GRID SPANS, measured off the canonical demo at 1600px and again at 800px.
- * The board is 12 columns at desktop, 8 at tablet, 4 on mobile, with 48px
- * auto-rows, a 16px gap and `grid-auto-flow: row` so authored order is kept.
+ * GRID SPANS, measured off Figma: the Widget page's ScreenTemplates
+ * (40010514:6808 at 1440, 40010482:8492 at 1920), whose Container.Screen.Main
+ * carries the Pathway Grid: 12 columns, gutter 16, inside the SheetContainer
+ * and Sheet padding.
  *
- *   demo size   desktop(12)   tablet(8)   rows
- *   kpi         span 3        span 4      3
- *   wide        span 6        span 8      8
- *   xwide       span 12       span 8      9
- *   band        full          full        3
+ *   Figma screen   grid    glance          detail        explore
+ *   1440           1072    4 of 12 (347)   6 of 12 (528) 12 of 12
+ *   1920           1552    3 of 12 (376)   6 of 12       12 of 12
  *
- * glance maps to the demo's kpi, detail to wide, explore to xwide. `band` is
- * the demo's full-width strip at 3 rows, which is what holds a row of KPI tiles
- * under one heading. It is not in SIZES because it is not a Figma widget size;
- * a consumer opts into it through supportedSizes.
+ * Breakpoints are the GRID's own width, read by a container query on the
+ * `.pw-dashboard` wrapper, not the viewport, because the grid is what has to
+ * hold the widgets. Each one comes from a Widget/MinWidth token:
+ *
+ *   < 720     4 columns
+ *   >= 720    8 columns
+ *   >= 1050   12 columns. Widget/MinWidth/Explore, and the width at which a
+ *             6-column Detail also clears its 515.
+ *   >= 1148   12 columns, Glance drops to 3: the width at which 3 columns
+ *             reach Widget/MinWidth/Glance (275). Below it, 3 of 12 is too
+ *             narrow (256 on Figma's 1440 grid), which is why Glance is 4.
+ *
+ * Rows are 8px with the 16px gap, so a span of n rows is 24n - 16 tall. That
+ * is the unit that draws the Widget component set's heights exactly: Glance
+ * 176 is 8 rows, Detail and Explore 416 are 18. (48px rows could not: 416 is
+ * 6.75 of them.)
+ *
+ * `band` is the demo's full-width strip at 3 rows, which is what holds a row
+ * of KPI tiles under one heading. It is not in SIZES because it is not a Figma
+ * widget size; a consumer opts into it through supportedSizes.
  */
+export const GRID_BREAKPOINTS = [0, 720, 1050, 1148];
+export const GRID_COLS = [4, 8, 12, 12];
+/** The board's columns, set per breakpoint by WidgetKeyframes. */
+export const GRID_TEMPLATE = "repeat(var(--pw-dash-cols), minmax(0, 1fr))";
+
 export const SIZE_GRID = {
-  glance:  { cols: [4, 4, 3],  rows: 3 },
-  detail:  { cols: [4, 8, 6],  rows: 8 },
-  explore: { cols: [4, 8, 12], rows: 9 },
-  band:    { cols: [4, 8, 12], rows: 3 },
+  glance:  { cols: [4, 4, 4, 3],    rows: 8 },
+  detail:  { cols: [4, 8, 6, 6],    rows: 18 },
+  explore: { cols: [4, 8, 12, 12],  rows: 18 },
+  band:    { cols: [4, 8, 12, 12],  rows: 8 },
 };
 
 /** Glance is flat: no inner card. Everything else layers. */
 export const isFlat = (size) => size === "glance" || size === "band";
 
-/** Emits one --pw-widget-cols-<size> per entry, for one breakpoint. */
+/** The column count and one --pw-widget-cols-<size> per entry, for one breakpoint. */
 const spanRule = (bp, indent = "") =>
+  `${indent}  --pw-dash-cols: ${GRID_COLS[bp]};\n` +
   Object.entries(SIZE_GRID)
     .map(([size, g]) => `${indent}  --pw-widget-cols-${size}: ${g.cols[bp]};\n`)
     .join("");
@@ -138,14 +159,10 @@ export const WidgetKeyframes = () => (
   <style>{`
 .pw-dashboard-grid {
 ${spanRule(0)}}
-@media (min-width: 768px) {
+${GRID_BREAKPOINTS.slice(1).map((w, i) => `@container pw-dashboard (min-width: ${w}px) {
   .pw-dashboard-grid {
-${spanRule(1, "  ")}  }
-}
-@media (min-width: 1024px) {
-  .pw-dashboard-grid {
-${spanRule(2, "  ")}  }
-}
+${spanRule(i + 1, "  ")}  }
+}`).join("\n")}
 @keyframes pwWidgetIn { from { opacity: 0 } to { opacity: 1 } }
 @media (prefers-reduced-motion: reduce) {
   @keyframes pwWidgetIn { from { opacity: 1 } to { opacity: 1 } }

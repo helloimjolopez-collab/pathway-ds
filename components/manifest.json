@@ -1185,7 +1185,7 @@
         "header": "Container.WidgetHeading 44 tall, gap 2; pad 0,8,0,12 on Glance and 0,6,0,16 on Detail/Explore",
         "inner": "MainContent.Slot VERTICAL gap 8, pad 12,16,12,16, own fill + stroke; Glance has none",
         "hoverIcons": "Slot.HoverIcons 72x36 hug, three Action.Icon 36x36",
-        "grid": "demo measured at 1600 and 800: 12/8/4 cols, 48px rows, 16px gap, flow row. glance=kpi 3x3, detail=wide 6x8, explore=xwide 12x9, band=full x3"
+        "grid": "Figma Pathway Grid (ScreenTemplates 40010514:6808 at 1440, 40010482:8492 at 1920): 12 cols, gutter 16, inset SheetContainer+Sheet padding (56 sides, 32 top). Cols by grid width: 4, 8 from 720, 12 from 1050. glance=kpi 4 of 12 (3 of 12 from a 1148 grid) x8 rows (176), detail=wide 6x18 (416), explore=xwide 12x18 (416), band=full x8 (176). 8px rows, 16px gap, flow row"
       },
       "codeConnect": [
         "components/widget/widget.figma.ts",
@@ -1284,7 +1284,7 @@
       "figma": null,
       "demo": "https://helloimjolopez-collab.github.io/design-sandbox/phase-2/Widget%20Container%20Demo/",
       "measured": {
-        "grid": "12 cols desktop / 8 tablet / 4 mobile, 48px auto-rows, 16px gap, grid-auto-flow ROW",
+        "grid": "Figma Pathway Grid: 12 cols from a 1050 grid, 8 from 720, 4 below; inset SheetContainer+Sheet padding; 8px auto-rows, 16px gap, grid-auto-flow ROW",
         "toolbar": "Find a widget, Add widget, Refresh all and Manage; the first three need no manage mode",
         "addDialog": "900x660, role=dialog aria-modal, 186px category rail + gallery, grid/list toggle, 'Added (n)' hidden at zero",
         "card": "app badge + name + description + Add button; whole card role=button tabindex=0"

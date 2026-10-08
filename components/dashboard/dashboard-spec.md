@@ -1,7 +1,7 @@
 # Dashboard: Pathway Design System Component Spec
 
 Status: REVIEWED
-Reviewed: 2026-10-07, measured by driving the canonical demo
+Reviewed: 2026-10-07, measured by driving the canonical demo; grid re-measured off Figma the same day
 
 ## Links
 
@@ -9,6 +9,7 @@ Reviewed: 2026-10-07, measured by driving the canonical demo
 |---|---|
 | Canonical demo | https://helloimjolopez-collab.github.io/design-sandbox/phase-2/Widget%20Container%20Demo/ |
 | Figma, widgets | `3sw45aVcngFAmpbP6cfrXP` node `40009622:39702` |
+| Figma, grid | `3sw45aVcngFAmpbP6cfrXP` ScreenTemplate `40010514:6808` (1440) and `40010482:8492` (1920), Widget page |
 | Storybook | [Library/Dashboard](https://helloimjolopez-collab.github.io/pathway-ds/storybook/?path=/docs/library-dashboard--docs) |
 | Code Connect | none, and that is a gap: no Figma component exists for the dashboard, so there is nothing to map to. See the note below. |
 | Component module | `components/dashboard/dashboard.jsx` |
@@ -22,22 +23,24 @@ It owns no content: the host passes `renderWidget`.
 
 ### Figma source
 
-There is no Figma component for the dashboard. Its behavioural source of truth
-is the demo, read by driving it rather than looking at it. Every number in this
-spec was measured from the running page.
+There is no Figma component for the dashboard, but there is a Figma grid. The
+**layout** follows the Pathway Grid on the Widget page's ScreenTemplates: 12
+columns, gutter 16, inside the screen container and sheet padding. The
+**behaviour** follows the demo, read by driving it rather than looking at it.
 
 ## 1.1 Governance: where things live
 
 | To change… | Owner | Where |
 |---|---|---|
-| Grid columns, rows, gap, flow | Design | the demo, mirrored in `dashboard.jsx` |
-| Per-size spans | Design | the demo, mirrored in `SIZE_GRID` |
+| Grid columns, gutter, inset, per-size spans | Design | Figma's Pathway Grid, mirrored in `SIZE_GRID` and `dashboard.jsx` |
+| Row heights | Design | the Figma Widget component set (176, 416), mirrored in `SIZE_GRID` |
+| Flow | Design | the demo, mirrored in `dashboard.jsx` |
 | Add-widget flow and dialog | Design | the demo |
 | Catalogue entries | Consumer | the `catalogue` prop |
 | Widget content | Consumer | `renderWidget` |
 | Draft, commit, cancel semantics | Engineering | `dashboard.jsx` |
 
-Rule: the demo owns the flow. Where this repo differs from it, the difference is
+Rule: Figma owns the grid and the demo owns the flow. Where this repo differs from either, the difference is
 a defect in this repo unless recorded here as deliberate.
 
 ## 2. Component Anatomy
@@ -50,7 +53,8 @@ page                      Fill/Surface/Canvas
     Add widget            opens the dialog
     Refresh all           only when onRefreshAll is supplied
     Manage                enters manage mode
-  .pw-dashboard-grid      12 / 8 / 4 columns, 48px rows, 16px gap, flow row
+  .pw-dashboard           inset = SheetContainer + Sheet padding, container
+  .pw-dashboard-grid      12 / 8 / 4 columns by grid width, 8px rows, 16px gap, flow row
     Widget                one per entry, spans from SIZE_GRID
 ```
 
@@ -103,18 +107,57 @@ component metrics, not tokens.
 
 ### The grid
 
-| | Desktop ≥1024 | Tablet ≥768 | Mobile <768 |
-|---|---|---|---|
-| Columns | 12 | 8 | 4 |
+The grid is Figma's **Pathway Grid**, on `Container.Screen.Main` in the Widget
+page's ScreenTemplates (`40010514:6808` at 1440, `40010482:8492` and
+`40010514:11390` at 1920): 12 columns, gutter 16, set to match the screen
+container padding and the sheet padding. The board's content box is that grid.
 
-Auto-rows 48px, gap 16px, `grid-auto-flow: row`, `align-content: start`.
+| Inset | Tokens | Desktop |
+|---|---|---|
+| Sides | `SheetContainer/Padding/Horizontal` + `Sheet/Padding/Horizontal` | 24 + 32 = 56 |
+| Top | `SheetContainer/Padding/Top` + `Sheet/Padding/Top` | 16 + 16 = 32 |
+| Bottom | `Sheet/Padding/Bottom` | 56 |
 
-| Size | Desktop | Tablet | Mobile | Rows |
+Both are responsive tokens, so the inset steps down below 1024 and 768 the
+way Figma's does.
+
+Measured in Figma:
+
+| Figma screen | Grid | Glance | Detail | Explore |
 |---|---|---|---|---|
-| glance | 3 | 4 | 4 | 3 |
-| detail | 6 | 8 | 4 | 8 |
-| explore | 12 | 8 | 4 | 9 |
-| band | 12 | 8 | 4 | 3 |
+| 1440 | 1072 | 4 of 12, 346.67 | 6 of 12, 528 | 12 of 12, 1072 |
+| 1920 | 1552 | 3 of 12, 376 | 6 of 12, 768 | 12 of 12, 1552 |
+
+Columns follow the **grid's own width**, read by a container query on the
+`.pw-dashboard` wrapper, not the viewport. Each breakpoint comes from a
+Widget/MinWidth token:
+
+| Grid width | Columns | Why |
+|---|---|---|
+| < 720 | 4 | |
+| ≥ 720 | 8 | |
+| ≥ 1050 | 12 | `Widget/MinWidth/Explore`; a 6-column Detail also clears its 515 here |
+| ≥ 1148 | 12, Glance at 3 | 3 columns reach `Widget/MinWidth/Glance`, 275 |
+
+Auto-rows 8px, gap 16px, `grid-auto-flow: row`, `align-content: start`.
+
+| Size | 4 cols | 8 cols | 12 cols | 12 cols, grid ≥ 1148 | Rows |
+|---|---|---|---|---|---|
+| glance | 4 | 4 | 4 | 3 | 8 (176) |
+| detail | 4 | 8 | 6 | 6 | 18 (416) |
+| explore | 4 | 8 | 12 | 12 | 18 (416) |
+| band | 4 | 8 | 12 | 12 | 8 (176) |
+
+**Why Glance is 4 of 12 at 1440.** On Figma's 1440 grid, 3 of 12 is 256 wide,
+below `Widget/MinWidth/Glance` (275). It only drops to 3 once 3 columns can
+reach 275, which is a 1148 grid; Figma's 1920 grid (1552) is past that and
+fits four Glance widgets to a row.
+
+**Rows.** A span of n rows is 24n - 16 tall, so the board draws the Widget
+component set's heights exactly: Glance 176 (8 rows), Detail and Explore 416
+(18 rows). The old 48px rows could not (416 is 6.75 of them), and gave Detail
+496 and Explore 560. The 1440 template's 221.87 Glance height is the 275x176 component
+stretched to 346.67 at the same aspect ratio, not a grid value.
 
 `row`, not `row dense`. See the Widget spec §4 for why.
 
@@ -253,6 +296,8 @@ exactly:
 | Export | Name |
 |---|---|
 | `Playground` | Playground |
+| `FigmaGrid1440` | Figma grid, 1440 screen |
+| `FigmaGrid1920` | Figma grid, 1920 screen |
 | `AddWidgetFlow` | Add widget flow |
 | `SwapAndManage` | Swap and manage |
 

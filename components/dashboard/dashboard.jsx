@@ -1,13 +1,22 @@
 /**
  * Dashboard: the board, its toolbar, and the add-widget flow.
  *
- * SOURCE OF TRUTH for behaviour and layout is the canonical demo, read on
- * 2026-10-07 by driving it rather than looking at it:
+ * SOURCE OF TRUTH for the GRID is Figma: the Pathway Grid on the Widget page's
+ * ScreenTemplates (40010514:6808 at 1440, 40010482:8492 at 1920), 12 columns,
+ * gutter 16, inside the SheetContainer and Sheet padding. The spans and
+ * breakpoints live in SIZE_GRID in widget.jsx, with the measurements.
+ *
+ * SOURCE OF TRUTH for BEHAVIOUR is the canonical demo, read on 2026-10-07 by
+ * driving it rather than looking at it:
  * https://helloimjolopez-collab.github.io/design-sandbox/phase-2/Widget%20Container%20Demo/
  *
- * MEASURED GRID
- *   12 columns at desktop, 8 at tablet, 4 on mobile
- *   48px auto-rows, 16px gap
+ * GRID
+ *   page inset     SheetContainer/Padding + Sheet/Padding: 24 + 32 = 56 each
+ *                  side and 16 + 16 = 32 on top at desktop, responsive below
+ *   columns        4, 8 from a 720 grid, 12 from a 1050 grid, read off the
+ *                  grid's own width by a container query, not the viewport
+ *   8px auto-rows, 16px gap: a span of n rows is 24n - 16, which draws
+ *                  Figma's 176 and 416 exactly
  *   grid-auto-flow: ROW, not row dense
  *
  * `dense` is the tempting choice and it is wrong. It backfills holes by pulling
@@ -36,10 +45,11 @@
  * exist" is the modal. They were one control once and it was the wrong one.
  */
 import React, { useState, useMemo, useRef, useEffect, useId } from "react";
-import { Widget, WidgetKeyframes, SIZES, SIZE_LABEL, SIZE_GRID } from "../widget/widget.jsx";
+import { Widget, WidgetKeyframes, SIZES, SIZE_LABEL, SIZE_GRID, GRID_TEMPLATE } from "../widget/widget.jsx";
 
 const C = (n) => `var(--semantic-color-${n})`;
 const U = (n) => `var(--semantic-layout-units-${n})`;
+const R = (n) => `var(--responsive-layout-${n})`;
 const Y = (n) => `var(--semantic-type-${n})`;
 const M = (n) => `var(--motion-${n})`;
 
@@ -67,10 +77,15 @@ export const T = {
 };
 
 export const L = {
-  rowUnit:      48,
+  rowUnit:      8,
   gap:          U("gap-base"),        // 16
-  pagePadV:     U("padding-tight"),
   pagePadH:     U("padding-relaxed"),
+  // The page inset is the ScreenTemplate's padding plus the Sheet's, so the
+  // board's content box IS Figma's Pathway Grid. Responsive tokens, so it
+  // steps down with the breakpoints the way Figma's does.
+  insetTop:     `calc(${R("sheetcontainer-padding-top")} + ${R("sheet-padding-top")})`,
+  insetH:       `calc(${R("sheetcontainer-padding-horizontal")} + ${R("sheet-padding-horizontal")})`,
+  insetBottom:  R("sheet-padding-bottom"),
   toolbarGap:   U("gap-tight"),
   toolbarMinH:  44,
   radius:       U("cornerradius-base"),
@@ -514,13 +529,12 @@ export function Dashboard({
   if (!active) return null;
 
   return (
-    <div style={{ background: T.canvas, minHeight: "100%",
-      padding: `${L.pagePadV} ${L.pagePadH}`, display: "flex", flexDirection: "column",
-      gap: U("gap-base") }}>
+    <div className="pw-dashboard" style={{ background: T.canvas, minHeight: "100%",
+      padding: `${L.insetTop} ${L.insetH} ${L.insetBottom}`, display: "flex", flexDirection: "column",
+      gap: U("gap-base"),
+      // The grid's breakpoints query this box, whose content width is the grid's.
+      containerType: "inline-size", containerName: "pw-dashboard" }}>
       <WidgetKeyframes />
-      <style>{`:root{--pw-dash-cols:4}
-@media(min-width:768px){:root{--pw-dash-cols:8}}
-@media(min-width:1024px){:root{--pw-dash-cols:12}}`}</style>
 
       {/* TOOLBAR. Find, Add and Refresh all are available without manage mode,
           which is how the demo works. Manage keeps what belongs to it: the
@@ -547,10 +561,10 @@ export function Dashboard({
         )}
       </div>
 
-      {/* THE GRID. 12 / 8 / 4 columns, 48px rows, 16px gap, authored order. */}
+      {/* THE GRID. 12 / 8 / 4 columns by its own width, 8px rows, 16px gap, authored order. */}
       <div className="pw-dashboard-grid" style={{
         display: "grid",
-        gridTemplateColumns: "repeat(var(--pw-dash-cols), minmax(0, 1fr))",
+        gridTemplateColumns: GRID_TEMPLATE,
         gridAutoRows: `${L.rowUnit}px`,
         gridAutoFlow: "row",
         gap: L.gap, alignContent: "start",

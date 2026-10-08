@@ -53,11 +53,13 @@ Set `40009622:39702`, six variants on two axes, `Size` and `Configuration`.
 | Visual design, anatomy, variants | Design | Figma `40009622:39702` |
 | Token values | Design | Figma Variables panel |
 | Size ladder and min widths | Design | Figma, mirrored in `SIZE_GRID` and the Contextual tokens |
-| Grid spans and flow | Design | The canonical demo, mirrored in `SIZE_GRID` |
+| Grid spans | Design | Figma's Pathway Grid (Widget page ScreenTemplates), mirrored in `SIZE_GRID` |
+| Row heights | Design | Figma, the component set's 176 and 416, mirrored in `SIZE_GRID` |
+| Flow | Design | The canonical demo |
 | State logic, slots, a11y | Engineering | `components/widget/widget.jsx` |
 | Content inside a widget | Consumer | passed as `children` |
 
-Rule: Figma owns what a widget looks like, the demo owns how the board behaves,
+Rule: Figma owns what a widget looks like and the grid it sits on, the demo owns how the board behaves,
 and this repo owns neither. Where they disagree, the disagreement is recorded
 here rather than resolved silently.
 
@@ -151,21 +153,37 @@ the board.
 
 ### The flex grid
 
-Measured off the demo at 1600px and again at 800px.
+Measured off Figma's Pathway Grid: the Widget page's ScreenTemplates at 1440
+(`40010514:6808`) and 1920 (`40010482:8492`), 12 columns, gutter 16, inside
+the screen container and sheet padding. The Dashboard spec §4 has the inset
+tokens and every measurement.
 
-| | Desktop | Tablet | Mobile |
-|---|---|---|---|
-| Columns | 12 | 8 | 4 |
-| Breakpoint | ≥1024 | ≥768 | <768 |
+| Figma screen | Grid | Glance | Detail | Explore |
+|---|---|---|---|---|
+| 1440 | 1072 | 4 of 12, 346.67 | 6 of 12, 528 | 12 of 12 |
+| 1920 | 1552 | 3 of 12, 376 | 6 of 12, 768 | 12 of 12 |
 
-Auto-rows 48px, gap 16px, `grid-auto-flow: row`.
+Columns follow the grid's own width (a container query on `.pw-dashboard`),
+with breakpoints from the Widget/MinWidth tokens:
 
-| Size | Demo name | Desktop cols | Tablet cols | Mobile cols | Rows |
-|---|---|---|---|---|---|
-| glance | kpi | 3 | 4 | 4 | 3 |
-| detail | wide | 6 | 8 | 4 | 8 |
-| explore | xwide | 12 | 8 | 4 | 9 |
-| band | band | 12 | 8 | 4 | 3 |
+| Grid width | < 720 | ≥ 720 | ≥ 1050 | ≥ 1148 |
+|---|---|---|---|---|
+| Columns | 4 | 8 | 12 | 12 |
+
+Auto-rows 8px, gap 16px, `grid-auto-flow: row`. A span of n rows is 24n - 16
+tall, which draws Figma's 176 and 416 exactly.
+
+| Size | Demo name | 4 cols | 8 cols | 12 cols | 12 cols, grid ≥ 1148 | Rows |
+|---|---|---|---|---|---|---|
+| glance | kpi | 4 | 4 | 4 | 3 | 8 (176) |
+| detail | wide | 4 | 8 | 6 | 6 | 18 (416) |
+| explore | xwide | 4 | 8 | 12 | 12 | 18 (416) |
+| band | band | 4 | 8 | 12 | 12 | 8 (176) |
+
+**Glance is 4 of 12 until the grid reaches 1148.** At 3 of 12 on Figma's 1440
+grid it would be 256 wide, under its own 275 minimum. 1148 is where 3 columns
+reach 275, and it is also the grid the Widget component set is drawn on
+(Glance 275 = 3 columns, Detail 566 = 6, Explore 1148 = 12).
 
 **`row`, not `row dense`.** Dense backfills holes by pulling later widgets up
 into them, so the board silently reorders itself and a widget placed third can

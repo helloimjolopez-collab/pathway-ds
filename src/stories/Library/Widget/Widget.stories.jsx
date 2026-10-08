@@ -7,7 +7,7 @@
  * "chart", and Figma's Detail and Explore are mostly chart by area.
  */
 import React from "react";
-import { Widget, WidgetKeyframes, SIZES, SIZE_LABEL, isFlat } from "../../../../components/widget/widget.jsx";
+import { Widget, WidgetKeyframes, SIZES, SIZE_LABEL, isFlat, GRID_TEMPLATE } from "../../../../components/widget/widget.jsx";
 import { KpiNumberAndTrend, Change } from "../../../../components/kpi-tile/kpi-number-trend.jsx";
 import { MiniChart, SAMPLE_SERIES, SAMPLE_MARKERS, curveFor } from "../../../../components/kpi-tile/mini-chart.jsx";
 import { BarChart, SAMPLE_STACKS } from "../../../../components/kpi-tile/bar-chart.jsx";
@@ -15,16 +15,26 @@ import { TokenTables } from "../_shared/TokenTable.jsx";
 
 const U = (n) => `var(--semantic-layout-units-${n})`;
 
-const board = (children, cols = 12) => (
-  <div className="pw-dashboard-grid" style={{
-    display: "grid", gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
-    gridAutoRows: "48px", gridAutoFlow: "row", gap: U("gap-base"),
-    alignContent: "start", padding: U("padding-relaxed"),
+const R = (n) => `var(--responsive-layout-${n})`;
+
+/* The same board the Dashboard draws: Figma's Pathway Grid inside the
+   SheetContainer and Sheet inset, with columns and spans read off the grid's
+   own width by WidgetKeyframes. A fixed 12-column board here would show spans
+   no real screen produces. */
+const board = (children) => (
+  <div className="pw-dashboard" style={{
+    containerType: "inline-size", containerName: "pw-dashboard",
+    padding: `calc(${R("sheetcontainer-padding-top")} + ${R("sheet-padding-top")}) ` +
+      `calc(${R("sheetcontainer-padding-horizontal")} + ${R("sheet-padding-horizontal")})`,
     background: "var(--semantic-color-fill-surface-canvas)",
   }}>
     <WidgetKeyframes />
-    <style>{`.pw-dashboard-grid{--pw-widget-cols-glance:3;--pw-widget-cols-detail:6;--pw-widget-cols-explore:12;--pw-widget-cols-band:12}`}</style>
-    {children}
+    <div className="pw-dashboard-grid" style={{
+      display: "grid", gridTemplateColumns: GRID_TEMPLATE,
+      gridAutoRows: "8px", gridAutoFlow: "row", gap: U("gap-base"), alignContent: "start",
+    }}>
+      {children}
+    </div>
   </div>
 );
 
@@ -116,9 +126,9 @@ export const SizeLadder = {
       gap: U("gap-relaxed"), background: "var(--semantic-color-fill-surface-canvas)" }}>
       <WidgetKeyframes />
       {[
-        ["glance",  275,  176, "275x176, minW 275, minH 176, flat, 3 cols x 3 rows"],
-        ["detail",  566,  416, "566x416, minW 515, layered, 6 cols x 8 rows"],
-        ["explore", 1148, 416, "1148x416, minW 1050, layered, 12 cols x 9 rows"],
+        ["glance",  275,  176, "275x176, minW 275, minH 176, flat, 4 of 12 cols (3 once the grid is 1148+) x 8 rows"],
+        ["detail",  566,  416, "566x416, minW 515, layered, 6 cols x 18 rows"],
+        ["explore", 1148, 416, "1148x416, minW 1050, layered, 12 cols x 18 rows"],
       ].map(([size, w, h, note]) => (
         <div key={size} style={{ display: "flex", flexDirection: "column", gap: U("gap-tight") }}>
           <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
