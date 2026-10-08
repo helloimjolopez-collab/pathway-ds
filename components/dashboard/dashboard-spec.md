@@ -266,23 +266,21 @@ rather than reimplementing it:
 
 ## 14. Storybook
 
-Sidebar-visible, matching the untagged exports in `Dashboard.stories.jsx`
-exactly:
+Sidebar-visible, matching the untagged exports in `Dashboard.stories.jsx` exactly:
 
 | Export | Name |
 |---|---|
 | `Playground` | Playground |
 | `AddWidgetFlow` | Add widget flow |
 | `SwapAndManage` | Swap and manage |
+| `ThePattern` | The pattern: every flow |
 
-Reference, `!dev`-tagged: `TokensColour` (Tokens: colour) and `TokensGeometry`
-(Tokens: geometry and motion).
+Reference, `!dev`-tagged: `TokensColour` (Tokens: colour), `TokensGeometry` (Tokens: geometry and motion).
 
-The board in every story puts `KpiNumberAndTrend` and a real bar chart inside
-its widgets, never a `KpiTile`: a KPI Tile is itself a card, so a KPI Tile
-inside a widget would be a card inside a card inside a card.
+`ThePattern` is the page to open to answer "how does a dashboard work": it
+names every flow beside the affordance that drives it, over a live board.
+Nothing in that table describes something unbuilt.
 
-No `StandaloneDemo` story and no `dashboard.html`. The canonical demo linked at
-the top of this spec is the behavioural source of truth and already serves that
-purpose, so a static copy in this repo would be a second implementation to keep
-in step. Widget and KPI Tile omit theirs for the same reason.
+The board in every story puts `KpiNumberAndTrend` and a real chart inside its
+widgets, never a `KpiTile`: a KPI Tile is itself a card, so a KPI Tile inside a
+widget would be a card inside a card inside a card.

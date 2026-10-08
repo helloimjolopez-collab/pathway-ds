@@ -278,3 +278,59 @@ export const TokensGeometry = {
     ]} />
   ),
 };
+
+
+/**
+ * THE WHOLE PATTERN, with every flow named and the affordance that drives it.
+ *
+ * The other stories each show one thing. This one is the page to open to
+ * answer "how does a dashboard work", which is the question the library was
+ * missing an answer to: the flex grid, switching, renaming, saving, and the
+ * five things you can do to a widget.
+ */
+export const ThePattern = {
+  name: "The pattern: every flow",
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      <div style={{ padding: `${U("padding-tight")} ${U("padding-relaxed")}`,
+        background: "var(--semantic-color-fill-surface-elevated)",
+        borderBottom: "1px solid var(--semantic-color-stroke-static-neutral-faint)" }}>
+        <table style={{ borderCollapse: "collapse", fontFamily: "'Red Hat Text', sans-serif",
+          fontSize: "var(--semantic-type-font-size-xs)" }}>
+          <tbody>
+            {[
+              ["The flex grid", "12 columns at desktop, 8 at tablet, 4 on mobile. 48px rows, 16px gap, grid-auto-flow ROW so authored order is kept. Resize the preview to see it reflow."],
+              ["Switch dashboard", "The chevron beside the name. The System one is marked and cannot be renamed."],
+              ["Rename, and save", "Manage, then click the name. Done commits, Cancel puts the board back: every edit goes through a draft."],
+              ["Add a widget", "Add widget. A 900x660 dialog, a 186px category rail, a card per entry. Available without entering manage mode."],
+              ["Find a widget", "Find a widget filters the board by title. Presentational only, so it can never become an edit."],
+              ["Refresh", "Refresh all on the toolbar, or Refresh this widget in a widget's menu."],
+              ["Swap a widget", "Click a widget's TITLE. It exchanges that widget for another in the same slot, keeping its position."],
+              ["Resize a widget", "A widget's more_vert menu lists the sizes its catalogue entry supports, with the current one marked."],
+              ["Duplicate a widget", "The same menu. The copy lands directly after the original, not at the bottom."],
+              ["Delete a widget", "The same menu, last and in the negative tone."],
+              ["Move a widget", "Manage, then drag. Dragging is the one flow that needs manage mode, because it is the only one you can do by accident."],
+            ].map(([flow, how]) => (
+              <tr key={flow}>
+                <td style={{ padding: "3px 16px 3px 0", whiteSpace: "nowrap", verticalAlign: "top",
+                  fontWeight: "var(--semantic-type-weight-semibold)",
+                  color: "var(--semantic-color-foreground-static-neutral-bold)" }}>{flow}</td>
+                <td style={{ padding: "3px 0", color: "var(--semantic-color-foreground-static-neutral-base)" }}>{how}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div style={{ flex: 1, minHeight: 0, overflow: "auto" }}>
+        <Host />
+      </div>
+    </div>
+  ),
+  parameters: { docs: { description: { story:
+    "Every flow is live here: nothing in the table is a description of " +
+    "something unbuilt. MANAGE MODE holds the destructive half, which is " +
+    "dragging, and it keeps a DRAFT so Cancel genuinely reverts. Everything " +
+    "non-destructive, which is finding, adding, refreshing, swapping, " +
+    "resizing and duplicating, works without entering it, because making " +
+    "someone enter a mode to add a widget is friction with nothing behind it." } } },
+};

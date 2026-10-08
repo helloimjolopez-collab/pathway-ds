@@ -499,6 +499,19 @@ export function Dashboard({
       const size = supported.includes(w.size) ? w.size : (entry?.defaultSize || supported[0]);
       return { id: `w${Date.now()}`, catalogueId: entryId, title: entry?.name || w.title, size };
     })),
+    /**
+     * Duplicate a widget, placed DIRECTLY AFTER the one it copies rather than
+     * appended, because a copy that appears at the bottom of a long board
+     * reads as a new widget rather than a duplicate. A new id is minted, so
+     * any per-widget state keyed on the old one stays with the original.
+     */
+    duplicate: (id) => mutate((ws) => {
+      const i = ws.findIndex((w) => w.id === id);
+      if (i < 0) return ws;
+      const next = [...ws];
+      next.splice(i + 1, 0, { ...ws[i], id: `w${Date.now()}` });
+      return next;
+    }),
     /** Refresh one widget. The board owns this because the board owns the data. */
     refresh: (id) => setRefreshed({ id, at: new Date().toLocaleTimeString() }),
     move: (fromId, toId) => mutate((ws) => {
@@ -614,6 +627,7 @@ export function Dashboard({
           widget={all.find((w) => w.id === menuFor)}
           catalogue={catalogue}
           onResize={(size) => { if (!manage) enterManage(); api.resize(menuFor, size); setMenuFor(null); }}
+          onDuplicate={() => { if (!manage) enterManage(); api.duplicate(menuFor); setMenuFor(null); }}
           onRemove={() => { if (!manage) enterManage(); api.remove(menuFor); setMenuFor(null); }}
           onRefresh={() => { api.refresh(menuFor); setMenuFor(null); }}
           at={menuAt}
@@ -649,7 +663,7 @@ export function Dashboard({
  * content and nothing else moves out of authored order. Remove does go through
  * the draft, so Cancel still puts the board back.
  */
-function WidgetMenu({ widget, catalogue, onResize, onRemove, onRefresh, onClose, at }) {
+function WidgetMenu({ widget, catalogue, onResize, onDuplicate, onRemove, onRefresh, onClose, at }) {
   const ref = useRef(null);
   useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape") onClose?.(); };
@@ -697,6 +711,7 @@ function WidgetMenu({ widget, catalogue, onResize, onRemove, onRefresh, onClose,
       )}
       <hr style={{ border: 0, borderTop: `${L.border} solid ${T.divider}`,
         margin: `${L.btnPadV} 0` }} />
+      {item("Duplicate", onDuplicate)}
       {item("Remove from this dashboard", onRemove, true)}
     </div>
   );
