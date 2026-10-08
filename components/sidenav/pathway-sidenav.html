@@ -5,14 +5,14 @@
 <title>&lt;pathway-sidenav&gt;, framework-agnostic custom element</title>
 
 <!-- 1. THE TOKEN CONTRACT. primitives.css first: the themes reference it via var(). -->
-<link rel="stylesheet" href="../../src/tokens/primitives.css" />
-<link rel="stylesheet" href="../../src/tokens/themes/light.css" />
-<link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
-<link rel="stylesheet" href="../../src/tokens/type.css" />
-<link rel="stylesheet" href="../../src/tokens/layout.css" />
-<link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
-<link rel="stylesheet" href="../../src/tokens/layout-responsive.css" />
-<link rel="stylesheet" href="../../src/tokens/motion.css" />
+<link rel="stylesheet" href="../_demo/tokens/primitives.css" />
+<link rel="stylesheet" href="../_demo/tokens/themes/light.css" />
+<link rel="stylesheet" href="../_demo/tokens/themes/midnight.css" />
+<link rel="stylesheet" href="../_demo/tokens/type.css" />
+<link rel="stylesheet" href="../_demo/tokens/layout.css" />
+<link rel="stylesheet" href="../_demo/tokens/layout-contextual.css" />
+<link rel="stylesheet" href="../_demo/tokens/layout-responsive.css" />
+<link rel="stylesheet" href="../_demo/tokens/motion.css" />
 
 <!-- 2. FONTS. Document-scoped, so they reach inside the shadow root. -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -236,7 +236,7 @@ nav.addEventListener("pathway-collapse-change", e =&gt; e.detail.collapsed);</pr
   </main>
 </div>
 
-<script type="module" src="../../dist/pathway-sidenav.js"></script>
+<script type="module" src="../_demo/pathway-sidenav.js"></script>
 <script type="module">
   const toggle = document.getElementById("hostile-toggle");
   toggle.addEventListener("click", () => {

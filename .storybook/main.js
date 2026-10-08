@@ -31,6 +31,15 @@ const config = {
   // component's standalone HTML demo (e.g. /components/sidenav/sidenav.html).
   // Do not mount the repo root, storybook-static/ is a subfolder of it and
   // copying a folder into itself fails with EINVAL.
+  //
+  // AND DO NOT MOUNT src/tokens HERE, however tempting. Every standalone demo
+  // links `../../src/tokens/...`, so mounting it at /src/tokens would make
+  // those iframes resolve, which they currently do not. It would also copy
+  // primitives-newco.css, layout-contextual-newco.css, tokens-newco.js and
+  // both newco themes into a build that deploys to public, indexable Pages:
+  // staticDirs takes a directory, not a file list. The generated demos link
+  // `../_demo/tokens/` instead, which scripts/build-demos.js fills with the
+  // nine public files only. See the note at the top of that script.
   staticDirs: [{ from: "../components", to: "/components" }],
   docs: {},
   // THE BRAND AXIS IS OPT-IN AT BUILD TIME, and that is a privacy control, not
