@@ -9,7 +9,7 @@
  */
 import React, { useState } from "react";
 import { Dashboard } from "../../../../components/dashboard/dashboard.jsx";
-import { WidgetKeyframes, SIZES } from "../../../../components/widget/widget.jsx";
+import { WidgetKeyframes, SIZE_GRID } from "../../../../components/widget/widget.jsx";
 // The dashboard puts the BUILDING BLOCK inside its widgets, not a KPI Tile: a
 // KPI Tile is itself a card, and a card inside a widget would be a card inside
 // a card inside a card.
@@ -199,95 +199,304 @@ export const SwapAndManage = {
 
 // ─── Tokens ───────────────────────────────────────────────────────────────────
 
-export const TokensColour = {
-  name: "Tokens: colour",
-  tags: ["!dev"],
+/**
+ * The board has four states, and they are states of the BOARD rather than of
+ * any one widget: viewing, managing, mid-drag, and empty. Managing is the only
+ * one that changes what the widgets themselves look like, because a card you
+ * can pick up has to say so.
+ */
+export const StateMatrix = {
+  name: "State matrix",
   render: () => (
-    <TokenTables groups={[
-      { title: "Board and toolbar",
-        rows: [
-          ["--semantic-color-fill-surface-canvas", "The page behind the board"],
-          ["--semantic-color-fill-surface-elevated", "Toolbar controls, the dialog, and every card in the gallery"],
-          ["--semantic-color-stroke-static-neutral-base", "Control and card borders"],
-          ["--semantic-color-stroke-static-neutral-faint", "Rail and section dividers"],
-          ["--semantic-color-foreground-static-neutral-bold", "Dashboard name, dialog title, card names"],
-          ["--semantic-color-foreground-static-neutral-base", "Card descriptions"],
-          ["--semantic-color-foreground-static-neutral-subtle", "Category labels and counts"],
-        ] },
-      { title: "Buttons",
-        rows: [
-          ["--semantic-color-fill-action-primary-strong-rest", "Add widget, at rest"],
-          ["--semantic-color-fill-action-primary-strong-hover", "Add widget, on hover"],
-          ["--semantic-color-stroke-action-primary-strong-rest", "Add widget border"],
-          ["--semantic-color-foreground-action-primary-on-strong", "Add widget label. NOT the mono anchor: that measured 3.04:1 in Midnight"],
-          ["--semantic-color-fill-action-primary-subtle-rest", "Selected category in the rail"],
-          ["--semantic-color-foreground-action-primary-on-subtle-rest", "Selected category label"],
-          ["--semantic-color-fill-action-secondary-hover", "Quiet controls on hover"],
-        ] },
-      { title: "App badge and overlay",
-        rows: [
-          ["--semantic-color-fill-static-brand-subtle", "App badge on a gallery card"],
-          ["--semantic-color-foreground-static-brand-on-subtle", "App badge initials"],
-          ["--semantic-color-scrim-base", "The dialog's backdrop"],
-          ["--semantic-color-fill-surface-overlay", "The dialog's own surface"],
-        ] },
-    ]} />
+    <div style={{ padding: U("padding-relaxed"), display: "flex", flexDirection: "column",
+      gap: U("gap-relaxed"), background: "var(--semantic-color-fill-surface-canvas)" }}>
+      <WidgetKeyframes />
+      {[
+        ["Viewing",
+         "Each widget shows its own header actions. The board's own controls are " +
+         "the switcher, Refresh all and Manage."],
+        ["Managing",
+         "Every widget gets a dashed outline and a grab cursor, its per-widget menu " +
+         "is replaced by the manage menu, and Save and Cancel appear. Nothing is " +
+         "written until Save: Cancel restores the draft from the committed board."],
+        ["Dragging",
+         "The card being moved drops to 50% so the gap it came from stays readable, " +
+         "and the slot it would land in is outlined. Nothing tweens: a transition on " +
+         "a dragged card lags the pointer."],
+        ["Empty",
+         "A board with no widgets is not an error, it is the first thing a new user " +
+         "sees, so it offers Add widget rather than explaining itself."],
+      ].map(([label, why]) => (
+        <div key={label} style={{ display: "flex", flexDirection: "column", gap: U("gap-xxtight") }}>
+          <code style={{ fontSize: "var(--semantic-type-font-size-xs)", fontWeight: 600,
+            color: "var(--semantic-color-foreground-static-neutral-bold)" }}>{label}</code>
+          <span style={{ fontSize: "var(--semantic-type-font-size-xs)", maxWidth: 820,
+            color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>{why}</span>
+        </div>
+      ))}
+      <p style={{ margin: 0, maxWidth: 820, fontSize: "var(--semantic-type-font-size-s)",
+        color: "var(--semantic-color-foreground-static-neutral-base)" }}>
+        All four are reachable from the Playground above rather than mocked here,
+        because a mocked drag proves nothing. Press Manage, pick a card up, drop it,
+        then Cancel and watch the board come back.
+      </p>
+      <Host />
+    </div>
   ),
 };
-
-export const TokensGeometry = {
-  name: "Tokens: geometry and motion",
-  tags: ["!dev"],
-  render: () => (
-    <TokenTables groups={[
-      { title: "The grid",
-        note: "The grid itself is not tokenised and should not be: 12/8/4 columns, " +
-              "48px auto-rows and a 16px gap were measured off the canonical demo, " +
-              "which owns how the board behaves. The gap is the one value that comes " +
-              "from a token, because it is ordinary spacing.",
-        rows: [
-          ["--semantic-layout-units-gap-base", "Grid gap, 16"],
-          ["--semantic-layout-units-padding-relaxed", "Board padding"],
-          ["--semantic-layout-units-cornerradius-large", "Dialog radius"],
-          ["--semantic-layout-units-cornerradius-base", "Card and control radius"],
-          ["--semantic-layout-units-cornerradius-small", "Badge radius"],
-          ["--semantic-layout-units-borderwidth-base", "Every border, 1"],
-          ["--semantic-layout-units-padding-wide", "Dialog header and footer"],
-          ["--semantic-layout-units-padding-base", "Card padding"],
-          ["--semantic-layout-units-padding-tight", "Control padding"],
-          ["--semantic-layout-units-padding-xxxxtight", "The tightest inset, on the icon controls"],
-        ] },
-      { title: "Type",
-        rows: [
-          ["--semantic-type-font-size-xl", "Dialog title"],
-          ["--semantic-type-font-size-m", "Dashboard name"],
-          ["--semantic-type-font-size-s", "Control labels and card names"],
-          ["--semantic-type-font-size-xs", "Card descriptions"],
-          ["--semantic-type-font-size-xxs", "Category counts"],
-          ["--semantic-type-weight-bold", "Dialog title"],
-          ["--semantic-type-weight-semibold", "Card names and control labels"],
-          ["--semantic-type-letter-spacing-spacious", "Body text"],
-          ["--semantic-type-letter-spacing-extraspacious", "The uppercase category headings"],
-        ] },
-      { title: "Elevation and motion",
-        rows: [
-          ["--elevation-lift", "The add-widget dialog"],
-          ["--motion-duration-2", "Control hover, card hover, dialog entrance"],
-          ["--motion-easing-standard", "All of the above"],
-        ] },
-    ]} />
-  ),
-};
-
 
 /**
- * THE WHOLE PATTERN, with every flow named and the affordance that drives it.
- *
- * The other stories each show one thing. This one is the page to open to
- * answer "how does a dashboard work", which is the question the library was
- * missing an answer to: the flex grid, switching, renaming, saving, and the
- * five things you can do to a widget.
+ * The smallest unit of a dashboard is one slot in the grid. Its two numbers,
+ * span and rows, are what every size on the ladder resolves to, and they are
+ * the reason a widget cannot be dragged into a space that will not hold it.
  */
+export const ElementExplorer = {
+  name: "Element explorer",
+  args: { size: "detail", columns: 12 },
+  argTypes: {
+    size: { name: "Widget size", control: "inline-radio", options: Object.keys(SIZE_GRID) },
+    columns: { name: "Board columns at this breakpoint",
+      control: "inline-radio", options: [12, 8, 4] },
+  },
+  render: (a) => {
+    // SIZE_GRID.cols is indexed by BREAKPOINT, mobile first: [4, 8, 12].
+    const spec = SIZE_GRID[a.size];
+    const bp = { 4: 0, 8: 1, 12: 2 }[a.columns];
+    const span = Math.min(spec.cols[bp], a.columns);
+    return (
+      <div style={{ padding: U("padding-relaxed"), fontFamily: "'Red Hat Text',sans-serif",
+        background: "var(--semantic-color-fill-surface-canvas)" }}>
+        <code style={{ display: "block", marginBottom: U("gap-tight"),
+          fontSize: "var(--semantic-type-font-size-xs)",
+          color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>
+          {`${a.size} \u2192 span ${span} of ${a.columns} \u00b7 ${spec.rows} rows \u00b7 48px auto-rows \u00b7 16px gap`}
+        </code>
+        <div style={{ display: "grid", gridTemplateColumns: `repeat(${a.columns}, 1fr)`,
+          gridAutoRows: 48, gap: U("gap-base") }}>
+          {Array.from({ length: a.columns }).map((_, i) => (
+            <span key={i} style={{ gridColumn: "span 1", gridRow: "span 1",
+              border: "1px dashed var(--semantic-color-stroke-static-neutral-faint)",
+              borderRadius: 4 }} />
+          ))}
+          <span style={{ gridColumn: `span ${span}`, gridRow: `span ${spec.rows}`,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            background: "var(--semantic-color-fill-action-primary-subtle-rest)",
+            color: "var(--semantic-color-foreground-action-primary-on-subtle-rest)",
+            border: "1px solid var(--semantic-color-stroke-action-primary-strong-rest)",
+            borderRadius: "var(--semantic-layout-units-cornerradius-base)",
+            fontSize: "var(--semantic-type-font-size-s)", fontWeight: 600 }}>
+            {a.size}
+          </span>
+        </div>
+        <p style={{ maxWidth: 760, fontSize: "var(--semantic-type-font-size-s)",
+          color: "var(--semantic-color-foreground-static-neutral-base)" }}>
+          Drop the column count to 4 and watch Explore stop being wide: the span is
+          clamped to the board, which is what stops a widget from overflowing a
+          phone instead of reflowing on it.
+        </p>
+      </div>
+    );
+  },
+};
+
+export const TokensFill = {
+  name: "Tokens: fill",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Fill",
+        note: "The board sits on the canvas surface so the widgets on it read as " +
+              "elevated. The dialog takes the overlay surface and the scrim behind " +
+              "it, which is the only place this component dims anything.",
+        rows: [
+          ["--semantic-color-fill-surface-canvas",
+           "The page behind the board"],
+          ["--semantic-color-fill-surface-elevated",
+           "Toolbar controls, the dialog, and every card in the gallery"],
+          ["--semantic-color-fill-action-primary-strong-rest",
+           "Add widget, at rest"],
+          ["--semantic-color-fill-action-primary-strong-hover",
+           "Add widget, on hover"],
+          ["--semantic-color-fill-action-primary-subtle-rest",
+           "Selected category in the rail"],
+          ["--semantic-color-fill-action-secondary-hover",
+           "Quiet controls on hover"],
+          ["--semantic-color-fill-static-brand-subtle",
+           "App badge on a gallery card"],
+          ["--semantic-color-scrim-base",
+           "The dialog's backdrop"],
+          ["--semantic-color-fill-surface-overlay",
+           "The dialog's own surface"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensStroke = {
+  name: "Tokens: stroke",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Stroke",
+        note: "Base on controls and cards, Faint on the rail and section dividers. " +
+              "The two are one step apart and the difference is what keeps the rail " +
+              "from competing with the cards.",
+        rows: [
+          ["--semantic-color-stroke-static-neutral-base",
+           "Control and card borders"],
+          ["--semantic-color-stroke-static-neutral-faint",
+           "Rail and section dividers"],
+          ["--semantic-color-stroke-action-primary-strong-rest",
+           "Add widget border"],
+          ["--semantic-layout-units-borderwidth-base",
+           "Every border, 1"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensText = {
+  name: "Tokens: text",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Text",
+        note: "Add widget's label is Foreground/Action/Primary/On Strong, NOT the " +
+              "mono anchor: the anchor measured 3.04:1 against the strong fill in " +
+              "Midnight.",
+        rows: [
+          ["--semantic-color-foreground-static-neutral-bold",
+           "Dashboard name, dialog title, card names"],
+          ["--semantic-color-foreground-static-neutral-base",
+           "Card descriptions"],
+          ["--semantic-color-foreground-static-neutral-subtle",
+           "Category labels and counts"],
+          ["--semantic-color-foreground-action-primary-on-strong",
+           "Add widget label. NOT the mono anchor: that measured 3.04:1 in " +
+           "Midnight"],
+          ["--semantic-color-foreground-action-primary-on-subtle-rest",
+           "Selected category label"],
+          ["--semantic-color-foreground-static-brand-on-subtle",
+           "App badge initials"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensTypography = {
+  name: "Tokens: typography",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Typography",
+        note: "The dashboard name is the only type this component sets directly. " +
+              "Everything else is inside a Widget, a Button or a card.",
+        rows: [
+          ["--semantic-type-font-size-xl",
+           "Dialog title"],
+          ["--semantic-type-font-size-m",
+           "Dashboard name"],
+          ["--semantic-type-font-size-s",
+           "Control labels and card names"],
+          ["--semantic-type-font-size-xs",
+           "Card descriptions"],
+          ["--semantic-type-font-size-xxs",
+           "Category counts"],
+          ["--semantic-type-weight-bold",
+           "Dialog title"],
+          ["--semantic-type-weight-semibold",
+           "Card names and control labels"],
+          ["--semantic-type-letter-spacing-spacious",
+           "Body text"],
+          ["--semantic-type-letter-spacing-extraspacious",
+           "The uppercase category headings"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensSpacing = {
+  name: "Tokens: spacing",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Spacing",
+        note: "The grid itself is not tokenised and should not be: 12/8/4 columns, " +
+              "48px auto-rows and a 16px gap were measured off the canonical demo, " +
+              "which owns how the board behaves. The gap is the one value that " +
+              "comes from a token, because it is ordinary spacing.",
+        rows: [
+          ["--semantic-layout-units-gap-base",
+           "Grid gap, 16"],
+          ["--semantic-layout-units-padding-relaxed",
+           "Board padding"],
+          ["--semantic-layout-units-padding-wide",
+           "Dialog header and footer"],
+          ["--semantic-layout-units-padding-base",
+           "Card padding"],
+          ["--semantic-layout-units-padding-tight",
+           "Control padding"],
+          ["--semantic-layout-units-padding-xxxxtight",
+           "The tightest inset, on the icon controls"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensRadius = {
+  name: "Tokens: radius",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Radius",
+        note: "Large on the dialog, Base on cards and controls, Small on the app " +
+              "badge.",
+        rows: [
+          ["--semantic-layout-units-cornerradius-large",
+           "Dialog radius"],
+          ["--semantic-layout-units-cornerradius-base",
+           "Card and control radius"],
+          ["--semantic-layout-units-cornerradius-small",
+           "Badge radius"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensMotion = {
+  name: "Tokens: motion",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Motion",
+        note: "Suppressed under prefers-reduced-motion. Dragging does not animate: " +
+              "a tween on a dragged card lags the pointer.",
+        rows: [
+          ["--motion-duration-2",
+           "Control hover, card hover, dialog entrance"],
+          ["--motion-easing-standard",
+           "All of the above"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensElevation = {
+  name: "Tokens: elevation",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Elevation",
+        note: "Elevation is a shadow token, not a colour. The dialog is the only " +
+              "thing on the board that lifts.",
+        rows: [
+          ["--elevation-lift",
+           "The add-widget dialog"],
+        ] },
+    ]} />
+  ),
+};
+
 export const ThePattern = {
   name: "The pattern: every flow",
   render: () => (

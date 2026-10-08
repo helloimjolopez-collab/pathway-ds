@@ -10,6 +10,7 @@ import { KpiTile, ChangeChip, KPI_TILE_TYPES, KPI_TILE_SPECS } from "../../../..
 import { MiniChart, SAMPLE_SERIES, SAMPLE_MARKERS, SAMPLE_LAYERS, curveFor } from "../../../../components/kpi-tile/mini-chart.jsx";
 import { KpiNumberAndTrend, Change, CHANGE_TYPES } from "../../../../components/kpi-tile/kpi-number-trend.jsx";
 import { TokenTables } from "../_shared/TokenTable.jsx";
+import { Dropdown, DropdownItem, DropdownDivider } from "../../../../components/dropdown/dropdown.jsx";
 
 const U = (n) => `var(--semantic-layout-units-${n})`;
 const page = (children) => (
@@ -156,90 +157,279 @@ export const TheBuildingBlock = {
 
 // ─── Tokens ───────────────────────────────────────────────────────────────────
 
-export const TokensColour = {
-  name: "Tokens: colour",
-  tags: ["!dev"],
-  render: () => (
-    <TokenTables groups={[
-      { title: "Card",
-        rows: [
-          ["--semantic-color-fill-surface-elevated", "Card surface, and the chip's own fill"],
-          ["--semantic-color-stroke-static-neutral-base", "Card border, and the chip's border"],
-          ["--semantic-color-foreground-static-neutral-base", "Heading on Simple and Icon"],
-          ["--semantic-color-foreground-static-neutral-strong", "Heading on Chart, the number, and the chip's text"],
-          ["--semantic-color-foreground-static-neutral-subtle", "Eyebrow in the nested block"],
-        ] },
-      { title: "Featured icon and trend",
-        note: "Direction and sentiment are separate in the building block's Change: " +
-              "the arrow follows direction, the colour follows whether the move is " +
-              "favourable. Collapsing them into one prop paints rising costs green.",
-        rows: [
-          ["--semantic-color-fill-static-positive-subtle", "Featured icon circle, favourable"],
-          ["--semantic-color-fill-static-negative-subtle", "Featured icon circle, unfavourable"],
-          ["--semantic-color-foreground-static-positive-on-subtle", "Favourable trend text and arrow"],
-          ["--semantic-color-foreground-static-negative-on-subtle", "Unfavourable trend text and arrow"],
-          ["--semantic-color-stroke-static-positive-strong", "The mini chart's LINE vector only, which genuinely strokes with this"],
-          ["--semantic-color-stroke-static-negative-strong", "The same, falling"],
-          ["--semantic-color-stroke-action-secondary-rest", "Trend filter pill border"],
-        ] },
-      { title: "Chart ramp",
-        note: "The bar chart uses the dedicated fifteen-step chart ramp, not the blue " +
-              "brand ramp. The bars are categories, so nothing in them is good or bad. " +
-              "An earlier version bound Fill/Static/Brand and came out navy where the " +
-              "design is violet.",
-        rows: [
-          ["--semantic-color-fill-chart-sequential-07", "Bottom series in a stacked bar"],
-          ["--semantic-color-fill-chart-sequential-09", "Middle series, bound in Figma"],
-          ["--semantic-color-fill-chart-sequential-11", "Top series, bound in Figma"],
-        ] },
-    ]} />
+/**
+ * THE CARD ITSELF HAS NO HOVER OR PRESSED STATE, and that is a finding rather
+ * than an omission: the Figma set's axes are Type, Breakpoint, Dropdown icon
+ * and Featured icon, and there is no state axis on any of the nine. What every
+ * variant DOES carry is a 44x44 TouchTarget inset 8 from the top-right corner
+ * with a 20x20 Dropdown centred in it, so the tile's interaction is that menu.
+ */
+export const StateMatrix = {
+  name: "State matrix",
+  render: () => page(
+    <>
+      {caption(
+        "The dropdown is the only interactive element the design gives this card. " +
+        "Its states belong to the Dropdown and Action Icon components, shown here " +
+        "in place so the 44x44 target and the 20x20 glyph can be checked against " +
+        "the card's corner.")}
+      <div style={{ display: "flex", gap: U("gap-relaxed"), flexWrap: "wrap" }}>
+        {[["Menu closed", false], ["Menu open", true]].map(([label, open]) => (
+          <div key={label} style={{ display: "flex", flexDirection: "column",
+            gap: U("gap-xxtight") }}>
+            <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
+              color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>{label}</code>
+            <div style={{ width: 388 }}>
+              <KpiTile type="simple" heading="Views 24 hours" value="2,000"
+                changeValue="100%" direction="up"
+                menuItems={<>
+                  <DropdownItem label="Open the full view" icon="open_in_full" />
+                  <DropdownItem label="Refresh" icon="refresh" />
+                  <DropdownDivider />
+                  <DropdownItem label="Remove from this dashboard" danger />
+                </>}
+                key={open ? "open" : "closed"} />
+            </div>
+          </div>
+        ))}
+      </div>
+      {caption(
+        "With the dropdown suppressed, which is what Figma's `Dropdown icon=false` " +
+        "gives a tile placed somewhere a menu would have nothing to do.")}
+      <div style={{ width: 388 }}>
+        <KpiTile type="simple" heading="Views 24 hours" value="2,000"
+          changeValue="100%" direction="up" onMenu={false} />
+      </div>
+      {caption("Both breakpoints, side by side. Mobile is not a narrower desktop: " +
+               "Icon 04 goes from 96 tall and horizontal to 146 and stacked.")}
+      <div style={{ display: "flex", gap: U("gap-relaxed"), alignItems: "flex-start" }}>
+        <div style={{ width: 388 }}>
+          <KpiTile type="icon-04" breakpoint="desktop" heading="Views 24 hours"
+            value="2,000" changeValue="100%" direction="up" />
+        </div>
+        <div style={{ width: 240 }}>
+          <KpiTile type="icon-04" breakpoint="mobile" heading="Views 24 hours"
+            value="2,000" changeValue="100%" direction="up" />
+        </div>
+      </div>
+    </>
   ),
+  parameters: { docs: { description: { story:
+    "Hover and press the dropdown. The state layer is 28x28 at r=8 inside a " +
+    "44x44 target, and it fills with Fill/Action/Primary/Subtle, a light blue " +
+    "rather than the neutral grey this shipped with until 2026-10-08." } } },
 };
-
-export const TokensGeometry = {
-  name: "Tokens: geometry and type",
-  tags: ["!dev"],
-  render: () => (
-    <TokenTables groups={[
-      { title: "Radius, border and spacing",
-        note: "Icon's gap and Chart's padding read 20 in Figma, and 20 is not a rung: " +
-              "the ladder goes 16 then 24. Nineteen bindings across the set pointed " +
-              "straight at the Unit/20 primitive and were rebound to Relaxed, 24, on " +
-              "2026-10-07, which is why Chart is 144 tall rather than 136.",
-        rows: [
-          ["--semantic-layout-units-cornerradius-xlarge", "Card radius, 16"],
-          ["--semantic-layout-units-cornerradius-base", "Chip radius"],
-          ["--semantic-layout-units-cornerradius-xsmall", "Bar cap radius"],
-          ["--semantic-layout-units-borderwidth-base", "Card, chip and axis line, 1"],
-          ["--semantic-layout-units-padding-base", "Simple and Icon padding, 16"],
-          ["--semantic-layout-units-padding-relaxed", "Chart padding, 24"],
-          ["--semantic-layout-units-gap-relaxed", "Icon gap, 24"],
-          ["--semantic-layout-units-gap-base", "Number row gap, 16"],
-          ["--semantic-layout-units-gap-tight", "Chart gap, 8"],
-          ["--semantic-layout-units-gap-xxxtight", "Simple gap, 2"],
-        ] },
-      { title: "Type",
-        rows: [
-          ["--semantic-type-font-size-xxl", "The number, 32"],
-          ["--semantic-type-font-size-s", "Heading and chip, 14"],
-          ["--semantic-type-font-size-xxxs", "Eyebrow, 10"],
-          ["--semantic-type-font-size-xxs", "Chart axis and legend labels"],
-          ["--semantic-type-weight-bold", "The number"],
-          ["--semantic-type-line-height-xxl-single", "The number"],
-          ["--semantic-type-letter-spacing-spacious", "Heading, chip and labels"],
-          ["--semantic-type-letter-spacing-wide", "Eyebrow"],
-        ] },
-    ]} />
-  ),
-};
-
 
 /**
- * Figma `_Change` 40009415:28112, all FOUR Types and both Trends, against the
- * measurements. This story exists because the set was split across two files
- * with Type 04 missing entirely, so nothing in Storybook showed what the
- * component is supposed to be.
+ * The smallest unit of this component is the Change chip, which is where
+ * direction and sentiment are kept apart. Isolating it with its own controls is
+ * the only way to see that a falling cost is Positive.
  */
+export const ElementExplorer = {
+  name: "Element explorer",
+  args: { value: "100%", direction: "up", favourable: true, type: "03", note: "vs last month" },
+  argTypes: {
+    value: { name: "Value", control: "text" },
+    direction: { name: "Direction, which the ARROW follows",
+      control: "inline-radio", options: ["up", "down"] },
+    favourable: { name: "Favourable, which the COLOUR follows", control: "boolean" },
+    type: { name: "Figma Change type", control: "inline-radio", options: CHANGE_TYPES },
+    note: { name: "Note beside the chip", control: "text" },
+  },
+  render: (a) => page(
+    <>
+      {caption(
+        `Type ${a.type}. 01 and 02 are naked, 03 is a bordered pill at r=6, 04 is a ` +
+        "tinted badge at r=12. 01 draws arrow_upward/arrow_downward; 02 draws " +
+        "moving/trending_down, which is a different glyph pair and not a weight " +
+        "variant of the first.")}
+      <div style={{ display: "inline-flex", alignItems: "center",
+        outline: "1px dashed var(--semantic-color-stroke-static-neutral-base)",
+        alignSelf: "flex-start", padding: 2 }}>
+        <Change value={a.value} direction={a.direction} favourable={a.favourable}
+          type={a.type} note={a.note} />
+      </div>
+      {caption(
+        "Set Direction to down and leave Favourable on, which is a cost that fell: " +
+        "the arrow points down and the colour stays positive. Collapsing the two " +
+        "props into one paints every rising number green.")}
+    </>
+  ),
+};
+
+export const TokensFill = {
+  name: "Tokens: fill",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Fill",
+        note: "The chart ramp is the dedicated fifteen-step sequential ramp, not " +
+              "the blue brand ramp: the bars are categories, so nothing in them is " +
+              "good or bad. An earlier version bound Fill/Static/Brand and came out " +
+              "navy where the design is violet.",
+        rows: [
+          ["--semantic-color-fill-surface-elevated",
+           "Card surface, and the chip's own fill"],
+          ["--semantic-color-fill-static-positive-subtle",
+           "Featured icon circle, favourable"],
+          ["--semantic-color-fill-static-negative-subtle",
+           "Featured icon circle, unfavourable"],
+          ["--semantic-color-fill-chart-sequential-07",
+           "Bottom series in a stacked bar"],
+          ["--semantic-color-fill-chart-sequential-09",
+           "Middle series, bound in Figma"],
+          ["--semantic-color-fill-chart-sequential-11",
+           "Top series, bound in Figma"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensStroke = {
+  name: "Tokens: stroke",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Stroke",
+        note: "The mini chart's LINE genuinely strokes with " +
+              "Stroke/Static/Positive/Strong, so it belongs here rather than under " +
+              "fill. The axis line and the card border are both Base width.",
+        rows: [
+          ["--semantic-color-stroke-static-neutral-base",
+           "Card border, and the chip's border"],
+          ["--semantic-color-stroke-static-positive-strong",
+           "The mini chart's LINE vector only, which genuinely strokes with this"],
+          ["--semantic-color-stroke-static-negative-strong",
+           "The same, falling"],
+          ["--semantic-color-stroke-action-secondary-rest",
+           "Trend filter pill border"],
+          ["--semantic-layout-units-borderwidth-base",
+           "Card, chip and axis line, 1"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensText = {
+  name: "Tokens: text",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Text",
+        note: "Four heading treatments across the nine types share three foreground " +
+              "tokens. The number is always Strong.",
+        rows: [
+          ["--semantic-color-foreground-static-neutral-strong",
+           "Heading on Chart, the number, and the chip's text"],
+          ["--semantic-color-foreground-static-neutral-subtle",
+           "Eyebrow in the nested block"],
+          ["--semantic-color-foreground-static-positive-on-subtle",
+           "Favourable trend text and arrow"],
+          ["--semantic-color-foreground-static-negative-on-subtle",
+           "Unfavourable trend text and arrow"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensIcon = {
+  name: "Tokens: icon",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Icon",
+        note: "Featured Icon paints the glyph with the on-subtle foreground of its " +
+              "own tone, so a Positive circle gets Positive text. Type icon-01 " +
+              "overrides that to on-strong, which is the one place the pair is " +
+              "deliberately broken.",
+        rows: [
+          ["--semantic-color-foreground-static-neutral-base",
+           "Heading on Simple and Icon"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensTypography = {
+  name: "Tokens: typography",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Typography",
+        note: "The number is 32 at weight 600. It has no line-height token: the " +
+              "ladder goes 30, 40, 44, and the design is 36, so the implementation " +
+              "names that as a gap rather than rounding to a rung that would move " +
+              "the card's height.",
+        rows: [
+          ["--semantic-type-font-size-xxl",
+           "The number, 32"],
+          ["--semantic-type-font-size-s",
+           "Heading and chip, 14"],
+          ["--semantic-type-font-size-xxxs",
+           "Eyebrow, 10"],
+          ["--semantic-type-font-size-xxs",
+           "Chart axis and legend labels"],
+          ["--semantic-type-weight-bold",
+           "The number"],
+          ["--semantic-type-line-height-xxl-single",
+           "The number"],
+          ["--semantic-type-letter-spacing-spacious",
+           "Heading, chip and labels"],
+          ["--semantic-type-letter-spacing-wide",
+           "Eyebrow"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensSpacing = {
+  name: "Tokens: spacing",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Spacing",
+        note: "Icon's gap and Chart's padding read 20 in Figma, and 20 is not a " +
+              "rung: the ladder goes 16 then 24. Nineteen bindings across the set " +
+              "pointed straight at the Unit/20 primitive and were rebound to " +
+              "Relaxed, 24, on 2026-10-07, which is why Chart is 144 tall rather " +
+              "than 136.",
+        rows: [
+          ["--semantic-layout-units-padding-base",
+           "Simple and Icon padding, 16"],
+          ["--semantic-layout-units-padding-relaxed",
+           "Chart padding, 24"],
+          ["--semantic-layout-units-gap-relaxed",
+           "Icon gap, 24"],
+          ["--semantic-layout-units-gap-base",
+           "Number row gap, 16"],
+          ["--semantic-layout-units-gap-tight",
+           "Chart gap, 8"],
+          ["--semantic-layout-units-gap-xxxtight",
+           "Simple gap, 2"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensRadius = {
+  name: "Tokens: radius",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Radius",
+        note: "XLarge on the card, Base on the chip, XSmall on the bar caps.",
+        rows: [
+          ["--semantic-layout-units-cornerradius-xlarge",
+           "Card radius, 16"],
+          ["--semantic-layout-units-cornerradius-base",
+           "Chip radius"],
+          ["--semantic-layout-units-cornerradius-xsmall",
+           "Bar cap radius"],
+        ] },
+    ]} />
+  ),
+};
+
 export const ChangeTypes = {
   name: "Change: all four Figma types",
   render: () => (

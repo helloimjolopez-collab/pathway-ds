@@ -1,0 +1,150 @@
+import { Meta, Title, Canvas, Controls } from "@storybook/blocks";
+import * as Stories from "./Dashboard.stories.jsx";
+
+<Meta of={Stories} />
+
+<Title />
+
+### Resources
+
+- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/dashboard/dashboard-spec.md)**
+- 🎨 **Figma**: none. This is a pattern, not a published component, and the grid
+  behaviour was measured off the canonical accounting dashboard demo, which owns
+  how the board behaves. That demo is not edited from here.
+- 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/dashboard/dashboard.jsx)**
+- 🧩 **[Widget](/?path=/docs/library-widget--docs)**, the unit this arranges
+
+---
+
+A Dashboard is the board: a flex grid of widgets, a switcher for moving between
+saved boards, and an edit mode for arranging them. It owns position, size and
+membership. It owns nothing about what is inside any widget.
+
+The editing model is a **draft**. Pressing Manage copies the committed board into
+a draft, every move, resize, duplicate and removal is applied to that draft, and
+nothing is written until Save. Cancel throws the draft away and the board comes
+back as it was. Committing each change as it happens is simpler to build and
+wrong to use: a user who drags four widgets and then changes their mind has no way
+back, and an autosaving board cannot distinguish a deliberate layout from a
+mis-drop.
+
+The grid itself is deliberately not tokenised. Twelve columns at desktop, eight at
+tablet, four on mobile, 48px auto-rows and `grid-auto-flow: row` so authored order
+is kept. Those are the canonical demo's numbers and they belong to the board's
+behaviour rather than to the spacing system. The 16px gap is the one value that
+comes from a token, because it is ordinary spacing.
+
+---
+
+## Try it
+
+<Canvas of={Stories.Playground} />
+
+This is the whole thing, live. Press Manage, drag a card, resize one from its
+menu, duplicate it, remove it, rename the board, switch boards, then Cancel and
+watch the board return. Every flow below is reachable from this one story rather
+than mocked separately.
+
+<Canvas of={Stories.ThePattern} />
+
+---
+
+## Anatomy
+
+```
+Dashboard
+├── toolbar
+│   ├── DashboardSelector         name button (rename) + chevron (switch)
+│   ├── Refresh all
+│   └── Manage  /  Save + Cancel
+├── board                         CSS grid, 12/8/4 cols, 48px rows, 16px gap
+│   └── Widget                    one per member, spanning cols x rows
+│       └── WidgetMenu            Refresh, the size ladder, Duplicate, Remove
+└── AddWidgetModal
+    ├── WidgetFinder rail         categories, with counts
+    └── gallery                   one card per catalogue entry
+```
+
+The name and the chevron are two separate controls on one trigger. The name
+renames the board in place; the chevron opens the switcher. They were one control
+once, and a user trying to switch boards kept starting a rename.
+
+`Duplicate` inserts the copy **immediately after the original** rather than
+appending it to the end. A duplicate that lands at the bottom of a long board
+looks like nothing happened.
+
+---
+
+## States
+
+<Canvas of={Stories.StateMatrix} />
+
+Manage mode is the only state that changes the widgets themselves, because a card
+you can pick up has to say so: a dashed outline and a grab cursor. The card being
+dragged drops to 50% so the gap it came from stays readable. Nothing tweens
+during a drag, because a transition on a dragged card lags the pointer and the
+card appears to stick.
+
+---
+
+## Explore a single unit
+
+<Canvas of={Stories.ElementExplorer} />
+<Controls of={Stories.ElementExplorer} />
+
+One slot. Its two numbers, span and rows, are what every size on the ladder
+resolves to, and they are why a widget cannot be dropped into a space that will
+not hold it. Drop the column count to 4 and watch Explore stop being wide: the
+span is clamped to the board, which is what makes a widget reflow on a phone
+instead of overflowing it.
+
+---
+
+## Token mappings
+
+<Canvas of={Stories.TokensFill} />
+<Canvas of={Stories.TokensStroke} />
+<Canvas of={Stories.TokensText} />
+<Canvas of={Stories.TokensTypography} />
+<Canvas of={Stories.TokensSpacing} />
+<Canvas of={Stories.TokensRadius} />
+<Canvas of={Stories.TokensMotion} />
+<Canvas of={Stories.TokensElevation} />
+
+One row is worth reading twice. `Add widget`'s label is
+`Foreground/Action/Primary/On Strong` and not the mono anchor, because the anchor
+measured 3.04:1 against the strong fill in Midnight Mode, below the 4.5:1 floor.
+
+---
+
+## Responsive behaviour
+
+| Breakpoint | Columns | What changes |
+|---|---|---|
+| Desktop | 12 | Full ladder. Explore spans the board. |
+| Tablet | 8 | Detail and Explore both span 8, so they stop being distinguishable by width and differ only in height. |
+| Mobile | 4 | Every size spans 4. The board becomes a single column and authored order is the reading order. |
+
+Row counts never change, so a board gets taller rather than denser as it narrows.
+The add-widget dialog goes full-bleed below tablet: a 212-wide rail beside a
+gallery does not fit in 375px, and a rail that scrolls horizontally is worse than
+a rail that becomes a row of chips.
+
+---
+
+## Accessibility
+
+| Concern | Behaviour |
+|---|---|
+| Dragging | Pointer-driven. The same moves are available from each widget's menu, so arranging a board never requires a drag. |
+| Switcher | A `<button>` with `aria-expanded`, and the list is a `menu` with `menuitem` children. |
+| Rename | A real `<input>` with an `aria-label`, committed on Enter or blur and abandoned on Escape. |
+| Dialog | Focus moves into it on open and returns to the trigger on close. Escape closes. The scrim is inert to pointer events that are not a dismiss. |
+| Manage mode | Announced by the Save and Cancel controls appearing, not by the outline alone. |
+
+---
+
+## Full specification
+
+The authoritative spec lives at
+[`components/dashboard/dashboard-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/dashboard/dashboard-spec.md).

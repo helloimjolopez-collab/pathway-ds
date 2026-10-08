@@ -1,0 +1,140 @@
+import { Meta, Title, Canvas, Controls } from "@storybook/blocks";
+import * as Stories from "./Dropdown.stories.jsx";
+
+<Meta of={Stories} />
+
+<Title />
+
+### Resources
+
+- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/dropdown/dropdown-spec.md)**
+- 🎨 **[Figma: PopoverMenu](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40005568-4207)**, node `40005568:4207`, page `↳ ❇️ Menu`
+- 🎨 Sets: **PopoverMenu** `40005568:4207`, **PopoverMenu.Item**, **Menu.Divider**
+- 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/dropdown/dropdown.jsx)**
+
+---
+
+A trigger and the menu it opens. Three trigger types, matching Figma's axis: an
+icon, a button, and an avatar. The panel is Pathway's own `PopoverMenu`.
+
+This component exists because a foreign dropdown had been nested inside the KPI
+tiles and the widget headers. The panel's measurements are not invented: panel
+212 wide at pad 8 and r=8, item 40 tall at pad 6 and 14, label gap 4 at an 8
+inset, taken from `PopoverMenu` and `PopoverMenu.Item`.
+
+`Open` is a Figma variant, which means it is a prop here rather than a CSS state.
+That is what lets a story render an open menu for a screenshot without faking the
+markup, and it is why the component accepts both a controlled `open` and an
+uncontrolled default.
+
+---
+
+## Try it
+
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+
+---
+
+## Anatomy
+
+```
+Dropdown
+├── trigger                 icon 20x20 | button | avatar 28
+└── panel                   212 min, pad 8, r=8, --elevation-sheet
+    ├── DropdownItem        40 tall, pad 6/14, r=8
+    │   ├── leading glyph   14 in a 20 box, optional
+    │   ├── label          14/500
+    │   └── note           10, optional, trailing
+    └── DropdownDivider    1px rule, pad 6 above and below
+```
+
+The item's horizontal padding is **14**, `Padding/Medium`. It read 12 until
+2026-10-08 under a comment asserting that 14 was not on the ladder. That is true
+of the gap ladder, which goes 12 then 16, and not of the padding ladder, which
+has a Medium rung at exactly 14.
+
+An item's hover changes its label and its fill together, within one token family:
+`Foreground/Action/Secondary/Rest` to `/Hover`, with
+`Fill/Action/Selection/Hover` behind it. A selection token rather than an action
+one, because the row is a choice and not a button.
+
+---
+
+## States
+
+<Canvas of={Stories.StateMatrix} />
+
+Two things have states and they are separate components in Figma: the trigger,
+whose `Open` axis is a variant, and the item, whose hover is its own. Treating
+the panel's hover as a state of the trigger is how a menu ends up highlighting
+the wrong row.
+
+A checked row adds a leading check **without moving the label**, because a label
+that shifts on selection reads as a different item. A disabled row does not take
+the hover fill and is not focusable, so keyboard navigation skips it rather than
+landing somewhere nothing can be chosen.
+
+<Canvas of={Stories.Types} />
+<Canvas of={Stories.Open} />
+
+---
+
+## Explore a single unit
+
+<Canvas of={Stories.ElementExplorer} />
+<Controls of={Stories.ElementExplorer} />
+
+---
+
+## Token mappings
+
+<Canvas of={Stories.TokensFill} />
+<Canvas of={Stories.TokensStroke} />
+<Canvas of={Stories.TokensText} />
+<Canvas of={Stories.TokensTypography} />
+<Canvas of={Stories.TokensSpacing} />
+<Canvas of={Stories.TokensRadius} />
+<Canvas of={Stories.TokensElevation} />
+
+One gap is recorded rather than closed. Figma draws the panel with `0 4 16 -2`
+and Pathway's nearest token is `--elevation-sheet` at `0 4 32 -8`: the same
+offset with a softer blur. Used rather than inventing a token.
+
+---
+
+## In context
+
+<Canvas of={Stories.InACard} />
+
+The panel is an elevated surface rather than an overlay one, because it is
+anchored to its trigger and does not dim what is behind it. Inside a card, that
+means it sits on the card rather than over the page.
+
+---
+
+## Responsive behaviour
+
+The panel is 212 at every width and aligns to its trigger's end edge by default,
+flipping to the start edge when 212 would overflow the viewport. It does not
+become a sheet on mobile: a menu of three or four actions is faster to hit where
+the user's finger already is than at the bottom of the screen.
+
+---
+
+## Accessibility
+
+| Concern | Behaviour |
+|---|---|
+| Trigger | `<button>` with `aria-haspopup="menu"` and `aria-expanded`. |
+| Panel | `role="menu"`, items are `role="menuitem"`, checkable items carry `aria-checked`. |
+| Keyboard | Enter or Space opens, Escape closes and returns focus to the trigger, Tab moves through items in authored order. |
+| Disabled items | `disabled`, so they are skipped rather than focusable and inert. |
+| Destructive items | Named by their label, not by colour alone. "Remove from this dashboard" reads the same without the red. |
+
+---
+
+## Full specification
+
+The authoritative spec lives at
+[`components/dropdown/dropdown-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/dropdown/dropdown-spec.md).

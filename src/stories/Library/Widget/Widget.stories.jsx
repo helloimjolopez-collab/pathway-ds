@@ -12,6 +12,7 @@ import { KpiNumberAndTrend, Change } from "../../../../components/kpi-tile/kpi-n
 import { MiniChart, SAMPLE_SERIES, SAMPLE_MARKERS, curveFor } from "../../../../components/kpi-tile/mini-chart.jsx";
 import { BarChart, SAMPLE_STACKS } from "../../../../components/kpi-tile/bar-chart.jsx";
 import { TokenTables } from "../_shared/TokenTable.jsx";
+import { ActionIcon, ACTION_ICON_SIZES } from "../../../../components/icon/action-icon.jsx";
 
 const U = (n) => `var(--semantic-layout-units-${n})`;
 
@@ -278,73 +279,273 @@ export const HeaderActions = {
 // row is wrong only if the token is. A hand-copied hex in a story is a second
 // source of truth that nothing checks.
 
-export const TokensColour = {
-  name: "Tokens: colour",
+/**
+ * Every state the widget and its header have, rendered live rather than
+ * described, with the tokens that drive each one named beneath it.
+ */
+export const StateMatrix = {
+  name: "State matrix",
+  render: () => (
+    <div style={{ padding: U("padding-relaxed"), display: "flex", flexDirection: "column",
+      gap: U("gap-relaxed"), background: "var(--semantic-color-fill-surface-canvas)" }}>
+      <WidgetKeyframes />
+      {[
+        ["Rest", "the three row-end icons are VISIBLE, the hover pair is not", {}],
+        ["Manage", "dashed outline and a grab cursor; the per-widget menu is suppressed",
+          { style: { outline: "1px dashed var(--semantic-color-stroke-static-neutral-base)",
+            outlineOffset: 2, cursor: "grab" }, onMenu: undefined }],
+        ["Dragging", "50% opacity, so the slot it came from stays readable",
+          { style: { opacity: 0.5, outline: "1px dashed var(--semantic-color-stroke-static-neutral-base)",
+            outlineOffset: 2, cursor: "grabbing" } }],
+      ].map(([label, why, props]) => (
+        <div key={label} style={{ display: "flex", flexDirection: "column", gap: U("gap-xxtight") }}>
+          <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
+            color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>
+            {label} · {why}
+          </code>
+          <div style={{ width: 275 }}>
+            <Widget title="Widget Heading" size="glance" inGrid={false}
+              onRefresh={() => {}} onGoTo={() => {}} onMenu={() => {}} {...props}>
+              {glanceBody()}
+            </Widget>
+          </div>
+        </div>
+      ))}
+      <div>
+        <code style={{ display: "block", marginBottom: U("gap-xxtight"),
+          fontSize: "var(--semantic-type-font-size-xs)",
+          color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>
+          The header actions, each state side by side. Hover and press them to confirm.
+        </code>
+        <div style={{ display: "flex", gap: U("gap-base"), alignItems: "center",
+          background: "var(--semantic-color-fill-surface-elevated)",
+          border: "0.5px solid var(--semantic-color-stroke-static-neutral-base)",
+          borderRadius: U("cornerradius-xlarge"), padding: U("padding-xxtight") }}>
+          <ActionIcon name="refresh" size="Base" label="Refresh" onClick={() => {}} />
+          <ActionIcon name="open_in_full" size="Base" label="Open the full view" onClick={() => {}} />
+          <ActionIcon name="more_vert" size="Base" label="More actions" onClick={() => {}} />
+          <ActionIcon name="more_vert" size="Base" label="Disabled" disabled />
+        </div>
+      </div>
+    </div>
+  ),
+  parameters: { docs: { description: { story:
+    "The header action icons are Size=Base: a 44x44 target, a 28x28 state " +
+    "layer at r=8 and a 14px glyph. THE STATE LAYER IS WHERE THE FILL GOES, " +
+    "not the target, and it is Fill/Action/Primary/Subtle on hover and " +
+    "pressed, which is a light blue rather than the neutral grey this " +
+    "component used until 2026-10-08. Every icon carries both an aria-label " +
+    "and a title, so hovering one says what it does." } } },
+};
+
+/**
+ * The smallest unit with its own controls: one header action icon, isolated
+ * from the widget so its size, glyph and states can be driven directly.
+ */
+export const ElementExplorer = {
+  name: "Element explorer",
+  args: { name: "refresh", size: "Base", label: "Refresh", disabled: false },
+  argTypes: {
+    name: { name: "Glyph", control: "select",
+      options: ["refresh", "open_in_full", "more_vert", "push_pin", "download", "expand_more"] },
+    size: { name: "Action Icon size", control: "inline-radio",
+      options: Object.keys(ACTION_ICON_SIZES) },
+    label: { name: "Accessible name and tooltip", control: "text" },
+    disabled: { name: "Disabled", control: "boolean" },
+  },
+  render: (a) => (
+    <div style={{ padding: U("padding-relaxed"), display: "flex", flexDirection: "column",
+      gap: U("gap-base"), background: "var(--semantic-color-fill-surface-elevated)" }}>
+      <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
+        color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>
+        {`${a.size} \u00b7 ${ACTION_ICON_SIZES[a.size].box} target \u00b7 ${ACTION_ICON_SIZES[a.size].layer} layer \u00b7 ${ACTION_ICON_SIZES[a.size].glyph} glyph`}
+      </code>
+      <div style={{ display: "inline-flex",
+        outline: "1px dashed var(--semantic-color-stroke-static-neutral-base)", alignSelf: "flex-start" }}>
+        <ActionIcon name={a.name} size={a.size} label={a.label}
+          disabled={a.disabled} onClick={() => {}} />
+      </div>
+      <span style={{ fontSize: "var(--semantic-type-font-size-xs)",
+        color: "var(--semantic-color-foreground-static-neutral-base)", maxWidth: 520 }}>
+        The dashed box is the TARGET. The state layer inside it is smaller, and
+        the fill belongs on the layer: painting the target gives a hover box
+        visibly bigger than the design, which shipped twice.
+      </span>
+    </div>
+  ),
+};
+
+export const TokensFill = {
+  name: "Tokens: fill",
   tags: ["!dev"],
   render: () => (
     <TokenTables groups={[
-      { title: "Surface and stroke",
+      { title: "Fill",
         note: "Glance takes the elevated surface and has no inner card. Detail and " +
               "Explore take the faint neutral on the root with an elevated inner " +
               "card, which is what makes them a card inside a card. The root fill " +
               "on those two was an unbound #fefefd in Figma until 2026-10-07.",
         rows: [
-          ["--semantic-color-fill-surface-elevated", "Root on Glance, and the inner MainContent.Slot on Detail and Explore"],
-          ["--semantic-color-fill-static-neutral-faint", "Root on Detail and Explore"],
-          ["--semantic-color-stroke-static-neutral-base", "Root border, and the inner card's border"],
-        ] },
-      { title: "Heading and actions",
-        rows: [
-          ["--semantic-color-foreground-static-neutral-bold", "Widget heading"],
-          ["--semantic-color-foreground-static-neutral-strong", "Swap trigger label when the title is interactive"],
-          ["--semantic-color-foreground-static-neutral-base", "Caption and meta text in the content slot"],
-          ["--semantic-color-foreground-action-secondary-rest", "Header action glyph at rest"],
-          ["--semantic-color-foreground-action-secondary-hover", "Header action glyph on hover"],
-          ["--semantic-color-fill-action-secondary-hover", "Header action box on hover"],
+          ["--semantic-color-fill-surface-elevated",
+           "Root on Glance, and the inner MainContent.Slot on Detail and Explore"],
+          ["--semantic-color-fill-static-neutral-faint",
+           "Root on Detail and Explore"],
+          ["--semantic-color-fill-action-secondary-hover",
+           "Header action box on hover"],
         ] },
     ]} />
   ),
 };
 
-export const TokensGeometry = {
-  name: "Tokens: geometry and motion",
+export const TokensStroke = {
+  name: "Tokens: stroke",
   tags: ["!dev"],
   render: () => (
     <TokenTables groups={[
-      { title: "Radius, border and spacing",
+      { title: "Stroke",
+        note: "One stroke token does both borders, and the width is XThin, 0.5, not " +
+              "Base. Figma draws it INSIDE, which takes no layout space, so the " +
+              "implementation uses an inset box-shadow rather than a CSS border: a " +
+              "border would push the content in by a pixel on every edge.",
         rows: [
-          ["--semantic-layout-units-cornerradius-xlarge", "Root radius, 16"],
-          ["--semantic-layout-units-cornerradius-base", "Inner card radius"],
-          ["--semantic-layout-units-borderwidth-base", "Root and inner card border, 1"],
-          ["--semantic-layout-units-gap-xxxtight", "Header gap, 2"],
-          ["--semantic-layout-units-gap-tight", "Content slot gap, 8"],
-          ["--semantic-layout-units-padding-tight", "Inner card vertical padding, 12"],
-          ["--semantic-layout-units-padding-base", "Inner card horizontal padding, 16"],
-          ["--semantic-layout-units-padding-xtight", "Header left padding on the layered sizes"],
-          ["--semantic-layout-units-padding-xxtight", "Header right padding"],
+          ["--semantic-color-stroke-static-neutral-base",
+           "Root border, and the inner card's border"],
+          ["--semantic-layout-units-borderwidth-base",
+           "Root and inner card border, 1"],
         ] },
-      { title: "Minimum widths",
-        note: "These are Contextual tokens rather than component constants, because " +
-              "a widget squeezed below the width its content needs is the failure " +
-              "the size ladder exists to prevent. They were added for this component.",
+    ]} />
+  ),
+};
+
+export const TokensText = {
+  name: "Tokens: text",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Text",
+        note: "Bold for the heading, Strong for the swap trigger when the title is " +
+              "interactive, Base for anything in the content slot.",
         rows: [
-          ["--contextual-layout-units-widget-minwidth-glance", "Glance, 275"],
-          ["--contextual-layout-units-widget-minwidth-detail", "Detail, 515"],
-          ["--contextual-layout-units-widget-minwidth-explore", "Explore, 1050"],
+          ["--semantic-color-foreground-static-neutral-bold",
+           "Widget heading"],
+          ["--semantic-color-foreground-static-neutral-strong",
+           "Swap trigger label when the title is interactive"],
+          ["--semantic-color-foreground-static-neutral-base",
+           "Caption and meta text in the content slot"],
         ] },
-      { title: "Type",
+    ]} />
+  ),
+};
+
+export const TokensIcon = {
+  name: "Tokens: icon",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Icon",
+        note: "The header actions are Action/Secondary for the glyph and " +
+              "Action/Primary/Subtle for the state layer behind it. Those are " +
+              "deliberately different families: the glyph is a quiet control, the " +
+              "layer is a primary-tinted wash.",
         rows: [
-          ["--semantic-type-font-size-s", "Heading"],
-          ["--semantic-type-weight-semibold", "Heading"],
-          ["--semantic-type-line-height-s-single", "Heading"],
-          ["--semantic-type-letter-spacing-spacious", "Heading"],
+          ["--semantic-color-foreground-action-secondary-rest",
+           "Header action glyph at rest"],
+          ["--semantic-color-foreground-action-secondary-hover",
+           "Header action glyph on hover"],
         ] },
+    ]} />
+  ),
+};
+
+export const TokensTypography = {
+  name: "Tokens: typography",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Typography",
+        note: "One style, Heading/Content/XSmall/Semibold, for the widget heading. " +
+              "Nothing else in the chrome sets type.",
+        rows: [
+          ["--semantic-type-font-size-s",
+           "Heading"],
+          ["--semantic-type-weight-semibold",
+           "Heading"],
+          ["--semantic-type-line-height-s-single",
+           "Heading"],
+          ["--semantic-type-letter-spacing-spacious",
+           "Heading"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensSpacing = {
+  name: "Tokens: spacing",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Spacing",
+        note: "Every value here is a rung on the ladder. The three minimum widths " +
+              "are Contextual rather than component constants, because a widget " +
+              "squeezed below the width its content needs is the failure the size " +
+              "ladder exists to prevent.",
+        rows: [
+          ["--semantic-layout-units-gap-xxxtight",
+           "Header gap, 2"],
+          ["--semantic-layout-units-gap-tight",
+           "Content slot gap, 8"],
+          ["--semantic-layout-units-padding-tight",
+           "Inner card vertical padding, 12"],
+          ["--semantic-layout-units-padding-base",
+           "Inner card horizontal padding, 16"],
+          ["--semantic-layout-units-padding-xtight",
+           "Header left padding on the layered sizes"],
+          ["--semantic-layout-units-padding-xxtight",
+           "Header right padding"],
+          ["--contextual-layout-units-widget-minwidth-glance",
+           "Glance, 275"],
+          ["--contextual-layout-units-widget-minwidth-detail",
+           "Detail, 515"],
+          ["--contextual-layout-units-widget-minwidth-explore",
+           "Explore, 1050"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensRadius = {
+  name: "Tokens: radius",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Radius",
+        note: "XLarge, 16, on the root. The inner card is Large, 12, and ONLY on " +
+              "its top two corners, because its bottom edge meets the widget's own " +
+              "bottom padding.",
+        rows: [
+          ["--semantic-layout-units-cornerradius-xlarge",
+           "Root radius, 16"],
+          ["--semantic-layout-units-cornerradius-base",
+           "Inner card radius"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensMotion = {
+  name: "Tokens: motion",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
       { title: "Motion",
         note: "Suppressed under prefers-reduced-motion.",
         rows: [
-          ["--motion-duration-2", "Action icon colour and fill on hover"],
-          ["--motion-duration-3", "Widget opacity fade in"],
-          ["--motion-easing-standard", "Both"],
+          ["--motion-duration-2",
+           "Action icon colour and fill on hover"],
+          ["--motion-duration-3",
+           "Widget opacity fade in"],
+          ["--motion-easing-standard",
+           "Both"],
         ] },
     ]} />
   ),

@@ -1,0 +1,138 @@
+import { Meta, Title, Canvas, Controls } from "@storybook/blocks";
+import * as Stories from "./BarChart.stories.jsx";
+
+<Meta of={Stories} />
+
+<Title />
+
+### Resources
+
+- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/kpi-tile/bar-chart-spec.md)**
+- 🎨 **[Figma: _Chart data](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40009417-13029)**, node `40009417:13029`, 18 variants
+- 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/kpi-tile/bar-chart.jsx)**
+- 🧩 **[Mini Chart](/?path=/docs/library-mini-chart--docs)**, the Line types from the same Figma set
+- 🧩 **[Widget](/?path=/docs/library-widget--docs)**, what a Detail or Explore size fills with
+
+---
+
+The columns a Detail or Explore widget fills with. One Figma set holds both this
+and Mini Chart: the Bar types map here, the Line types map there.
+
+**The three bands in a column overlap.** Each band runs from the baseline to its
+own total and has a rounded top, so the one above shows as a cap above the one
+below. Drawn as stacked segments instead, each sitting on top of the last, the
+middle band is a floating block with a rounded top in mid-air and the bottom band
+loses its curve entirely.
+
+**Two colours alternate, not three.** The ramp steps are `09` and `11`, with `07`
+available for a third series. They come from the dedicated fifteen-step chart
+ramp and not from the blue brand ramp, because the bars are categories and
+nothing in them is good or bad. An earlier version bound `Fill/Static/Brand` and
+came out navy where the design is violet.
+
+---
+
+## Try it
+
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+
+---
+
+## Anatomy
+
+```
+BarChart
+├── y title            rotated, 18 wide
+├── plot
+│   └── column         one per stack, gap = Gap/Tight
+│       ├── band 07    baseline to total, r=8 top
+│       ├── band 09    baseline to its own total, r=8 top
+│       └── band 11    baseline to its own total, r=8 top
+├── axis line          1px, bottom
+├── x title
+└── legend             one swatch per named series
+```
+
+The cap radius is 8 and it is applied to the top corners only. A zero-height band
+with a radius on it draws a 1px sliver with a curve that cannot fit, which is
+visible as a smear along the axis; the implementation drops the radius below the
+height that can carry it.
+
+Axis titles are props rather than always-on, because the same chart is used at
+112px wide inside a KPI tile, where a rotated y title is wider than the plot.
+
+---
+
+## States
+
+<Canvas of={Stories.StateMatrix} />
+
+A chart's states are its data's states. Each of the five shown here drew wrong at
+some point: a single column stretched to the full width, a single series lost the
+alternating ramp, a zero column drew the smear described above, and an empty
+series drew an axis with nothing against it.
+
+---
+
+## Explore a single unit
+
+<Canvas of={Stories.ElementExplorer} />
+<Controls of={Stories.ElementExplorer} />
+
+One column, with its three band values as controls. Set band 11 below band 09 and
+it disappears behind it rather than reordering: the bands are drawn in a fixed
+order and each runs to the baseline, which is the overlap, seen at the only size
+where it is unambiguous.
+
+<Canvas of={Stories.AxesAndTitles} />
+
+The axis line, the legend and the two titles are props rather than always-on,
+because the same component renders at 112px wide inside a KPI tile, where a
+rotated y title is wider than the plot it labels.
+
+---
+
+## Token mappings
+
+<Canvas of={Stories.TokensFill} />
+<Canvas of={Stories.TokensStroke} />
+<Canvas of={Stories.TokensText} />
+
+---
+
+## In context
+
+<Canvas of={Stories.InContext} />
+
+Inside a Detail widget and an Explore widget, at the heights those give it. A
+chart judged at its story's own size tells you nothing about the size it ships
+at.
+
+---
+
+## Responsive behaviour
+
+The plot fills its container on both axes and the column gap is a token rather
+than a percentage, so a narrower chart gets narrower columns and keeps its
+rhythm. Below roughly 240px the axis titles should be dropped by the parent: the
+component does not drop them itself, because only the parent knows whether the
+information is available elsewhere on the card.
+
+---
+
+## Accessibility
+
+| Concern | Behaviour |
+|---|---|
+| The plot | `aria-hidden="true"`, with the chart's own `label` prop announced in its place. |
+| Series identity | Carried by the legend's text, not by colour alone. |
+| Contrast | The three ramp steps are chosen for separation against each other as well as against the surface, which is why they are not three steps in a row. |
+| Reduced motion | Nothing animates. |
+
+---
+
+## Full specification
+
+The authoritative spec lives at
+[`components/kpi-tile/bar-chart-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/kpi-tile/bar-chart-spec.md).

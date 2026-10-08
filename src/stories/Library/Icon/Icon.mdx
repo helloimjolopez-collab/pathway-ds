@@ -1,0 +1,142 @@
+import { Meta, Title, Canvas, Controls } from "@storybook/blocks";
+import * as Stories from "./Icon.stories.jsx";
+
+<Meta of={Stories} />
+
+<Title />
+
+### Resources
+
+- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/icon/icon-spec.md)**
+- 🎨 **[Figma: Iconography page](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=48-1153)**, node `48:1153`
+- 🎨 Sets: **Action Icon** `40006794:19891`, **DisplayIcon** `40006522:26547`, **Featured icon** (built 2026-10-07), **Button Icon** `1884:5171`
+- 💻 **[icon.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/icon/icon.jsx)** · **[action-icon.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/icon/action-icon.jsx)** · **[display-icon.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/icon/display-icon.jsx)** · **[featured-icon.jsx](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/icon/featured-icon.jsx)**
+- 🔤 **Font: [Material Symbols Rounded](https://fonts.google.com/icons?icon.style=Rounded)**, served from `fonts.googleapis.com`. One variable font, not a file per glyph.
+
+---
+
+Pathway does not ship icon assets. It ships one component that renders a glyph
+from **Material Symbols Rounded**, a single variable font with four axes, plus
+three wrappers that Figma nests around it: `ActionIcon` for a control,
+`DisplayIcon` for a labelled marker, `FeaturedIcon` for a KPI tile's tone badge.
+
+The font being variable rather than a set of SVGs is the thing to understand
+first. There is no `trending_up.svg` to import and no sprite sheet to maintain.
+`FILL`, `wght`, `GRAD` and `opsz` are font-variation settings, so an icon's
+weight can match the text beside it, and adding a glyph costs nothing because it
+is already in the file.
+
+`opsz` is not a free axis. It must track the glyph's own pixel size, or the font
+renders strokes tuned for a different size and the icon reads thin at 14 and
+heavy at 26. The component sets it and does not expose it.
+
+---
+
+## Try it
+
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+
+---
+
+## Anatomy
+
+```
+Icon          a <span> with the font loaded, nothing around it
+IconBox       Icon centred in a FRAME, which is what "size" means
+ActionIcon    target  >  state layer  >  IconBox        a control
+DisplayIcon   rounded square, r=8, with a border         a marker
+FeaturedIcon  tinted circle                              a tone badge
+```
+
+**Size is the frame, not the drawing.** Pathway's three sizes are L 18/26, M
+16/24 and S 14/20, read as glyph-inside-frame. Setting an icon to 24 and getting
+a 24px drawing makes it look a size too big next to everything else, because
+everything else is a 24 frame holding a 20 glyph.
+
+<Canvas of={Stories.SizeIsTheFrame} />
+
+**The fill goes on the state layer.** An `ActionIcon` is three nested boxes: a
+target sized for the pointer, a smaller state layer that takes the hover and
+pressed fills, and the glyph. Small is 36/24/12, Base is 44/28/14, Large is
+48/32/16. Painting the target instead gives a hover box visibly larger than the
+design, which shipped twice.
+
+---
+
+## States
+
+<Canvas of={Stories.StateMatrix} />
+
+Only `ActionIcon` has states. `Icon` inherits whatever colour its parent sets,
+and `DisplayIcon` and `FeaturedIcon` are decorative containers with axes rather
+than states. Hover takes `Fill/Action/Primary/Subtle/Hover` with
+`Foreground/Action/Secondary/Hover` on the glyph; pressed takes the Pressed pair.
+Both are a light blue, not the neutral grey this component used until 2026-10-08.
+
+<Canvas of={Stories.TheFillAxis} />
+
+---
+
+## Explore a single unit
+
+<Canvas of={Stories.ElementExplorer} />
+<Controls of={Stories.ElementExplorer} />
+
+The dashed box is the frame. This is the only place the four axes move
+independently, which is how you can see that `FILL` is a real axis and not two
+different glyphs.
+
+---
+
+## The three wrappers
+
+<Canvas of={Stories.ActionIcons} />
+<Canvas of={Stories.DisplayIcons} />
+<Canvas of={Stories.FeaturedIcons} />
+
+`FeaturedIcon` did not exist in this repo until 2026-10-07: the KPI tiles were
+using a foreign component for it. `DisplayIcon` is a rounded square at
+`CornerRadius/Base`, not a circle, and its forty-two colour bindings live on the
+`Container` frame and on the `_shape` vector inside the nested glyph instance.
+Checking the variant and the instance reported them as unbound, which is how this
+page once claimed the Color axis had no tokens.
+
+---
+
+## Token mappings
+
+<Canvas of={Stories.TokensFill} />
+<Canvas of={Stories.TokensIcon} />
+<Canvas of={Stories.TokensRadius} />
+
+There is no `TokensText` here, and that is correct rather than missing: every
+foreground token in this component paints a glyph, so they are all listed under
+icon. The glyph is a font, so it takes a foreground and never a fill.
+
+---
+
+## Responsive behaviour
+
+Icons do not respond to the viewport. They respond to the component around them,
+which passes a size. A component that changes its own size at a breakpoint
+changes the icon's size with it, so there is nothing for this component to
+decide.
+
+---
+
+## Accessibility
+
+| Concern | Behaviour |
+|---|---|
+| Decorative icons | `aria-hidden="true"`. A glyph beside its own label must not be announced twice. |
+| `ActionIcon` | A real `<button>` with `aria-label` and `title`, so it announces and also says what it does on hover. |
+| Target size | 36 minimum, 44 for anything a finger reaches. Small is for dense desktop tables only. |
+| Font not loaded | The glyph name renders as text rather than as a blank box, which is ugly and legible rather than silent. |
+
+---
+
+## Full specification
+
+The authoritative spec lives at
+[`components/icon/icon-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/icon/icon-spec.md).

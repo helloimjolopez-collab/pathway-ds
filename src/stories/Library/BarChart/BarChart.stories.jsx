@@ -69,8 +69,42 @@ export const Playground = {
 };
 
 /** The parts, one at a time. */
+/**
+ * ONE COLUMN, with its three band values as controls. This is the level the
+ * overlap is visible at: the bands are drawn in a fixed order and each runs to
+ * the baseline, so setting the middle value above the top one hides the top
+ * band rather than reordering them.
+ */
 export const ElementExplorer = {
   name: "Element explorer",
+  args: { a: 40, b: 70, c: 95, axes: false, height: 220 },
+  argTypes: {
+    a: { name: "Band 07, drawn first", control: { type: "range", min: 0, max: 100 } },
+    b: { name: "Band 09, drawn second", control: { type: "range", min: 0, max: 100 } },
+    c: { name: "Band 11, drawn last and so on top", control: { type: "range", min: 0, max: 100 } },
+    axes: { name: "Axis line and legend", control: "boolean" },
+    height: { name: "Container height", control: { type: "range", min: 60, max: 320, step: 20 } },
+  },
+  render: (a) => page(
+    <>
+      {caption(
+        `07=${a.a} 09=${a.b} 11=${a.c}. Each band runs from the baseline to its own ` +
+        "value with a rounded top, so the taller ones cap the shorter ones. Drop " +
+        "band 11 below band 09 and it disappears behind it: that is the overlap, " +
+        "and it is why these are not stacked segments.")}
+      <div style={{ height: a.height, width: 72, display: "flex" }}>
+        <BarChart stacks={[[a.a, a.b, a.c]]} axes={a.axes} label="One column" />
+      </div>
+      {caption(
+        "Set one value to 0 and the cap radius goes with it. An 8px radius on a " +
+        "1px band draws a curve that cannot fit, which shows as a smear along the " +
+        "axis, so the radius is dropped below the height that can carry it.")}
+    </>
+  ),
+};
+
+export const AxesAndTitles = {
+  name: "Axes and titles",
   render: () => page(
     <>
       {[
@@ -130,24 +164,107 @@ export const InContext = {
     "526-wide chart, which is what the Detail variant measures." } } },
 };
 
-export const TokensColour = {
-  name: "Tokens: colour",
+/**
+ * A chart's states are its DATA's states, not a pointer's. These four are the
+ * ones that break a chart drawn naively: one column, one series, a zero, and
+ * nothing at all.
+ */
+export const StateMatrix = {
+  name: "State matrix",
+  render: () => page(
+    <>
+      {caption(
+        "Each of these drew wrong at some point. A single column stretched to the " +
+        "full width, a single series lost the alternating ramp, a zero column drew " +
+        "a 1px sliver with a 8px cap radius on it, and no data drew an axis with " +
+        "nothing against it.")}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)",
+        gap: U("gap-relaxed") }}>
+        {[
+          ["Full, fifteen columns", SAMPLE_STACKS],
+          ["One column", [SAMPLE_STACKS[0]]],
+          ["One series", SAMPLE_STACKS.map((c) => [c[0]])],
+          ["A zero in the middle", SAMPLE_STACKS.map((c, i) => (i === 7 ? [0, 0, 0] : c))],
+        ].map(([label, stacks]) => (
+          <div key={label} style={{ display: "flex", flexDirection: "column",
+            gap: U("gap-xxtight") }}>
+            <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
+              color: "var(--semantic-color-foreground-static-neutral-bold)" }}>{label}</code>
+            <div style={{ height: 180,
+              background: "var(--semantic-color-fill-surface-elevated)",
+              border: "1px solid var(--semantic-color-stroke-static-neutral-base)",
+              borderRadius: "var(--semantic-layout-units-cornerradius-base)",
+              padding: U("padding-base"), boxSizing: "border-box" }}>
+              <BarChart stacks={stacks} axes yTitle="Amount" xTitle="Month" />
+            </div>
+          </div>
+        ))}
+        <div style={{ display: "flex", flexDirection: "column", gap: U("gap-xxtight") }}>
+          <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
+            color: "var(--semantic-color-foreground-static-neutral-bold)" }}>No data</code>
+          <div style={{ height: 180,
+            background: "var(--semantic-color-fill-surface-elevated)",
+            border: "1px solid var(--semantic-color-stroke-static-neutral-base)",
+            borderRadius: "var(--semantic-layout-units-cornerradius-base)",
+            padding: U("padding-base"), boxSizing: "border-box" }}>
+            <BarChart stacks={[]} axes yTitle="Amount" xTitle="Month" />
+          </div>
+        </div>
+      </div>
+      {caption(
+        "The bands in a column OVERLAP and each one runs to the baseline, which is " +
+        "why the lightest reads as a cap rather than a segment. Drawn as stacked " +
+        "segments instead, the middle series is a floating block.")}
+    </>
+  ),
+};
+
+export const TokensFill = {
+  name: "Tokens: fill",
   tags: ["!dev"],
   render: () => (
     <TokenTables groups={[
-      { title: "The bars",
-        note: "TWO colours, alternating. Series 1 and Series 3 are the same step, "
-            + "which is what Figma binds; a third distinct step was this component's "
-            + "invention and made a two-tone chart read as three-tone.",
+      { title: "Fill",
+        note: "Two alternating ramp steps, 09 and 11, with 07 for a third series. " +
+              "The three bands in a column OVERLAP and each runs to the baseline, " +
+              "which is why the lightest one reads as a cap rather than a segment.",
         rows: [
-          ["--semantic-color-fill-chart-sequential-09", "Series 1 and Series 3"],
-          ["--semantic-color-fill-chart-sequential-11", "Series 2"],
+          ["--semantic-color-fill-chart-sequential-09",
+           "Series 1 and Series 3"],
+          ["--semantic-color-fill-chart-sequential-11",
+           "Series 2"],
         ] },
-      { title: "Axes and legend",
+    ]} />
+  ),
+};
+
+export const TokensStroke = {
+  name: "Tokens: stroke",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Stroke",
+        note: "The axis line only.",
         rows: [
-          ["--semantic-color-stroke-static-neutral-faint", "The baseline"],
-          ["--semantic-color-foreground-static-neutral-subtle", "Tick values, month labels and both axis titles"],
-          ["--semantic-color-foreground-static-neutral-base", "Legend labels"],
+          ["--semantic-color-stroke-static-neutral-faint",
+           "The baseline"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensText = {
+  name: "Tokens: text",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Text",
+        note: "Axis and legend labels.",
+        rows: [
+          ["--semantic-color-foreground-static-neutral-subtle",
+           "Tick values, month labels and both axis titles"],
+          ["--semantic-color-foreground-static-neutral-base",
+           "Legend labels"],
         ] },
     ]} />
   ),

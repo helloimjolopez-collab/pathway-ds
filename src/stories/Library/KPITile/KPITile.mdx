@@ -1,0 +1,149 @@
+import { Meta, Title, Canvas, Controls } from "@storybook/blocks";
+import * as Stories from "./KPITile.stories.jsx";
+
+<Meta of={Stories} />
+
+<Title />
+
+### Resources
+
+- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/kpi-tile/kpi-tile-spec.md)**
+- 🎨 **[Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40009415-27750)**, set `KPI Tiles` `40009415:27750`
+- 🎨 **[KPI Number & Trend](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40017320-247)**, `40017320:247`, the block three of the types nest
+- 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/kpi-tile/kpi-tile.jsx)**
+- 🧩 **[Mini Chart](/?path=/docs/library-mini-chart--docs)** and **[Bar Chart](/?path=/docs/library-bar-chart--docs)**, the two chart components it composes
+
+---
+
+A KPI Tile states one number and says whether that number is good news. It is the
+smallest complete unit of a dashboard: a heading, a figure, a change against some
+baseline, and optionally an icon or a sparkline to give the figure shape.
+
+There are **nine types**, not three. `Simple`, `Icon 01` to `Icon 04` and
+`Chart 01` to `Chart 04` are different layouts with different measured heights,
+different heading treatments and different internal gaps, and the set does not
+reduce. An earlier version collapsed them into Simple, Icon and Chart, which
+matched three of the nine and quietly rendered the other six as the wrong picture.
+The nine are kept as a data table in the module rather than as nine branches of
+JSX, so a wrong one is visible beside its neighbours.
+
+Direction and sentiment are separate props. The arrow follows `direction`; the
+colour follows `favourable`. A cost that fell is `direction="down"` and
+`favourable`, and it is green. Collapsing them into one value paints every rising
+number green, which is wrong for expenses, overdue balances and headcount against
+budget.
+
+---
+
+## Try it
+
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+
+---
+
+## Anatomy
+
+```
+KpiTile                              r=16, pad 16 (Chart 01 pad 24)
+├── Heading                          one of FOUR treatments, see below
+├── Featured icon                    types Icon 01..04, Chart 02 only
+├── number row                       value + Change, arranged per type
+├── chart                            MiniChart or BarChart, Chart 01..04
+├── TouchTarget                      44x44, absolute, inset 8 from top-right
+│   └── Dropdown                     20x20, centred in the target
+└── (Chart 04 only) inner card       Elevated on Faint, r=12, pad 24
+```
+
+The four heading treatments are real and measured, not a rounding of one style:
+
+| Treatment | Size / weight / colour | Types |
+|---|---|---|
+| soft | 14 / 500 / Neutral Base | Simple, Icon 01, Icon 03, Icon 04, Chart 03 |
+| hard | 14 / 500 / Neutral Strong | Chart 01 |
+| hardBold | 14 / 600 / Neutral Strong | Chart 04 |
+| big | 16 / 600 / Neutral Strong | Icon 02, Chart 02 |
+
+`Chart 03` does not hand-roll its number row. Figma nests a real
+`KPI Number & Trend` instance there, `Type=03 Chart Right`, so the implementation
+composes that component. Redrawing its parts instead gives a tile that stops
+inheriting every later fix to the block it is supposed to be made of.
+
+The `TouchTarget` is the one measurement in this component that is not a token.
+44x44 is an accessibility floor rather than a spacing decision, and Pathway has no
+token for it. Its 8px inset from the corner is `Padding/XTight`.
+
+---
+
+## States
+
+<Canvas of={Stories.StateMatrix} />
+
+The card has no hover or pressed state, and that is a finding rather than an
+omission. The Figma set's axes are `Type`, `Breakpoint`, `Dropdown icon` and
+`Featured icon`; there is no state axis on any of the nine variants. What every
+variant carries is the touch target and the dropdown inside it, so the tile's
+interaction is that menu, and its states belong to Dropdown and Action Icon.
+
+---
+
+## Explore a single unit
+
+<Canvas of={Stories.ElementExplorer} />
+<Controls of={Stories.ElementExplorer} />
+
+Four Change types, matching Figma's `_Change`. 01 and 02 are naked, 03 is a
+bordered pill at r=6, 04 is a tinted badge at r=12. 01 draws
+`arrow_upward`/`arrow_downward` and 02 draws `moving`/`trending_down`, which is a
+different glyph pair rather than a weight variant of the first.
+
+<Canvas of={Stories.ChangeTypes} />
+
+---
+
+## Token mappings
+
+<Canvas of={Stories.TokensFill} />
+<Canvas of={Stories.TokensStroke} />
+<Canvas of={Stories.TokensText} />
+<Canvas of={Stories.TokensIcon} />
+<Canvas of={Stories.TokensTypography} />
+<Canvas of={Stories.TokensSpacing} />
+<Canvas of={Stories.TokensRadius} />
+
+Two gaps in the token set are recorded rather than papered over. The number's
+line height is 36 and the ladder goes 30, 40, 44, so the implementation names the
+gap instead of rounding to 40, which would make the text 4px taller than the
+design and move every card's height. And nineteen bindings across the set pointed
+straight at the `Unit/20` primitive, which is not a rung on the spacing ladder;
+those were rebound to `Relaxed`, 24, on 2026-10-07, which is why Chart is 144 tall
+rather than 136.
+
+---
+
+## Responsive behaviour
+
+<Canvas of={Stories.Breakpoints} />
+
+Mobile is not a narrower desktop. `Icon 04` goes from 96 tall and horizontal to
+146 and stacked, and seven of the nine types change height. The `breakpoint` prop
+is Figma's own axis and is passed rather than inferred, because a tile does not
+know whether the board placed it in a narrow column or on a phone.
+
+---
+
+## Accessibility
+
+| Concern | Behaviour |
+|---|---|
+| The figure | Plain text in reading order: heading, then value, then change. The change is not announced as a decoration. |
+| Direction | Carried by the glyph AND the sign in the value, never by colour alone, so a red-green colour deficiency does not remove the meaning. |
+| The menu | A 44x44 target around a 20x20 glyph, with `aria-label`, `aria-haspopup` and `aria-expanded` from the Dropdown component. |
+| Heading level | None. The tile uses a plain element and the board owns the heading level. |
+
+---
+
+## Full specification
+
+The authoritative spec lives at
+[`components/kpi-tile/kpi-tile-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/kpi-tile/kpi-tile-spec.md).

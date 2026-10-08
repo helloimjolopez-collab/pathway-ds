@@ -1,0 +1,172 @@
+import { Meta, Title, Canvas, Controls } from "@storybook/blocks";
+import * as Stories from "./Widget.stories.jsx";
+
+<Meta of={Stories} />
+
+<Title />
+
+### Resources
+
+- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/widget/widget-spec.md)**
+- 🎨 **[Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40009622-39702)**, node `40009622:39702`, page `40009415:21911`
+- 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/widget/widget.jsx)**
+- 🧩 **[Dashboard](/?path=/docs/library-dashboard--docs)**, the board these sit on
+- 🧩 **[KPI Tile](/?path=/docs/library-kpi-tile--docs)**, the most common thing to put inside one
+
+---
+
+A Widget is a titled container that a dashboard owns and a user arranges. It gives
+its content a surface, a heading, a set of header actions, and a declared size, and
+it gives the board something it can move, resize, duplicate and remove without
+knowing anything about what is inside.
+
+The size is the whole design. `glance`, `detail` and `explore` are not three
+widths, they are three different pictures: Glance is flat with no inner card,
+Detail and Explore layer an elevated card inside a faint root, and each size
+resolves to a column span and a row count on the board's grid. A widget asked to
+render at a size its content cannot fill looks broken in a way no amount of
+responsive CSS fixes, which is why the three minimum widths are tokens and why the
+board clamps rather than overflows.
+
+What it is not: a card. A card is a layout primitive you reach for freely. A widget
+is a unit of a dashboard, it carries a header it did not ask for, and it assumes
+something above it is managing its position. If you want a surface with a title and
+nothing else, use the surface tokens directly.
+
+---
+
+## Try it
+
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+
+The `size` control is a real resize, not a label swap. Move it and watch the inner
+card appear between Glance and Detail, and the span and row count in the caption
+change with it.
+
+---
+
+## Anatomy
+
+```
+Widget                                   root, r=16, 0.5 stroke INSIDE
+├── Container.WidgetHeading              44 tall, horizontal, gap 2
+│   ├── Heading                          14/600, Neutral/Bold
+│   ├── Slot.HoverIcons                  revealed on hover or focus-within
+│   └── Slot.RowEnd5                     up to 3 Action Icons, Size=Base
+└── MainContent.Slot                     the content
+```
+
+Two things in that tree are easy to get wrong and both were.
+
+The root's stroke is **0.5, not 1**. It was `BorderWidth/Base` until 2026-10-08,
+so every widget's border rendered at twice the design's weight, which on an
+1148px Explore card is the most visible line on the board. Figma does not bind
+the weight to a variable, so 0.5 is a raw value there and `BorderWidth/XThin`
+matches it exactly.
+
+Figma draws it INSIDE, which takes no layout space. A CSS `border` on a
+`border-box` element does not change the outer size either, but it does eat into
+the padding box, so content starts 0.5px further in than the design puts it.
+That is sub-pixel and the root uses a real border; the KPI Tile's inner card
+uses an inset `box-shadow` instead, because there the ring is 1px on a surface
+whose height is measured.
+
+The inner card is rounded on its **top two corners only**, at Large, 12. Its
+bottom edge meets the widget's own bottom padding, so rounding it there would put
+a visible notch between two surfaces that are meant to meet. A uniform radius
+shipped first and that notch is what gave it away.
+
+The header is 44 tall regardless of size, and the actions inside it are Action
+Icons at `Size=Base`: a 44x44 target, a 28x28 state layer, a 14px glyph. The
+target fills the header's height, which is why the header cannot be shorter.
+
+---
+
+## States
+
+<Canvas of={Stories.StateMatrix} />
+
+A widget has no hover state of its own. What hovers is its header actions, and
+what the board adds in Manage mode is an outline and a cursor. That separation is
+deliberate: a whole-card hover competes with the hover on the three controls in
+its corner, and users then cannot tell what is about to happen.
+
+The header actions reveal in two tiers. `Slot.RowEnd5` is always visible.
+`Slot.HoverIcons` appears on `:hover` or `:focus-within`, so a keyboard user
+reaches it by tabbing rather than never. Every action carries both an
+`aria-label` and a `title`, so hovering one says what it does instead of leaving
+the reader to guess from a glyph.
+
+<Canvas of={Stories.HeaderActions} />
+
+---
+
+## Explore a single unit
+
+<Canvas of={Stories.ElementExplorer} />
+<Controls of={Stories.ElementExplorer} />
+
+The dashed box is the touch target. The state layer inside it is smaller, and the
+fill belongs on the layer. Painting the target instead gives a hover box visibly
+bigger than the design, which shipped twice before this story existed to make it
+obvious.
+
+---
+
+## Token mappings
+
+<Canvas of={Stories.TokensFill} />
+<Canvas of={Stories.TokensStroke} />
+<Canvas of={Stories.TokensText} />
+<Canvas of={Stories.TokensIcon} />
+<Canvas of={Stories.TokensTypography} />
+<Canvas of={Stories.TokensSpacing} />
+<Canvas of={Stories.TokensRadius} />
+<Canvas of={Stories.TokensMotion} />
+
+Each row resolves its token against the live document rather than quoting a hex
+from the spec, so a row is wrong only when the token itself is wrong. The three
+`--contextual-layout-units-widget-minwidth-*` values are the only tokens this
+component introduced, and they are Contextual rather than component constants
+because a squeezed widget is the failure the size ladder exists to prevent.
+
+---
+
+## Responsive behaviour
+
+<Canvas of={Stories.SizeLadder} />
+
+| Breakpoint | Columns | Glance | Detail | Explore | Band |
+|---|---|---|---|---|---|
+| Desktop | 12 | span 3 | span 6 | span 12 | span 12 |
+| Tablet | 8 | span 4 | span 8 | span 8 | span 8 |
+| Mobile | 4 | span 4 | span 4 | span 4 | span 4 |
+
+Row counts do not change with the breakpoint: Glance is 3 rows, Detail 8, Explore
+9, Band 3, at every width. A widget gets narrower and keeps its height, because
+the content inside it is a number and a chart and neither reflows into fewer
+rows usefully.
+
+---
+
+## Accessibility
+
+| Concern | Behaviour |
+|---|---|
+| Heading | A plain element, not an `h*`. The board owns the heading level, because a widget does not know its own depth in the page. |
+| Header actions | `<button>` with `aria-label` and `title`. Reachable by Tab in authored order. |
+| Hover-revealed actions | Revealed by `:focus-within` as well as `:hover`, so they are reachable without a pointer. |
+| Swap trigger | When `swap` is set the title becomes a `<button>`, so it announces as one rather than as text that happens to respond. |
+| Motion | The opacity fade and the action-icon transition are both suppressed under `prefers-reduced-motion: reduce`. |
+
+System-wide rules for focus rings, contrast floors and target sizes are in
+[`docs/design-system-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/docs/design-system-spec.md)
+and are not restated here.
+
+---
+
+## Full specification
+
+The authoritative spec lives at
+[`components/widget/widget-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/widget/widget-spec.md).

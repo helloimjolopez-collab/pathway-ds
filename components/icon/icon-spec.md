@@ -300,15 +300,30 @@ Sidebar-visible, matching the untagged exports in `Icon.stories.jsx` exactly:
 
 | Export | Name |
 |---|---|
-| `Playground` | arrow_forward |
+| `Playground` | The FILL axis |
 | `TheFillAxis` | The FILL axis |
 | `SizeIsTheFrame` | Size is the frame, not the vector |
 | `ActionIcons` | ActionIcon: the three sizes and their states |
 | `DisplayIcons` | DisplayIcon: every size and colour |
+| `StateMatrix` | State matrix |
+| `ElementExplorer` | Element explorer |
 | `FeaturedIcons` | FeaturedIcon: the two Figma types |
 
-Reference, `!dev`-tagged: `TokensColour` (Tokens: colour).
+Reference, `!dev`-tagged:
 
-No `StandaloneDemo` story and no `icon.html`: an icon on its own page proves
-nothing a story does not, and a fourth copy of the font link is a fourth thing
-to keep in step.
+| Export | Name |
+|---|---|
+| `TokensFill` | Tokens: fill |
+| `TokensIcon` | Tokens: icon |
+| `TokensRadius` | Tokens: radius |
+
+Every token row resolves its name against the live document rather than
+restating a hex, so a row reads `unresolved` only when the token itself is
+wrong.
+
+There is no `TokensText` story, and that is correct rather than missing: every
+foreground token in this component paints a glyph, so they are all listed under
+`TokensIcon`.
+
+The `.mdx` page follows `docs/storybook-authoring.md` and was added 2026-10-08,
+along with `StateMatrix` and `ElementExplorer`.

@@ -270,17 +270,32 @@ Sidebar-visible, matching the untagged exports in `Dashboard.stories.jsx` exactl
 
 | Export | Name |
 |---|---|
-| `Playground` | Playground |
+| `Playground` | Add widget flow |
 | `AddWidgetFlow` | Add widget flow |
 | `SwapAndManage` | Swap and manage |
+| `StateMatrix` | State matrix |
+| `ElementExplorer` | Element explorer |
 | `ThePattern` | The pattern: every flow |
 
-Reference, `!dev`-tagged: `TokensColour` (Tokens: colour), `TokensGeometry` (Tokens: geometry and motion).
+Reference, `!dev`-tagged:
 
-`ThePattern` is the page to open to answer "how does a dashboard work": it
-names every flow beside the affordance that drives it, over a live board.
-Nothing in that table describes something unbuilt.
+| Export | Name |
+|---|---|
+| `TokensFill` | Tokens: fill |
+| `TokensStroke` | Tokens: stroke |
+| `TokensText` | Tokens: text |
+| `TokensTypography` | Tokens: typography |
+| `TokensSpacing` | Tokens: spacing |
+| `TokensRadius` | Tokens: radius |
+| `TokensMotion` | Tokens: motion |
+| `TokensElevation` | Tokens: elevation |
 
-The board in every story puts `KpiNumberAndTrend` and a real chart inside its
-widgets, never a `KpiTile`: a KPI Tile is itself a card, so a KPI Tile inside a
-widget would be a card inside a card inside a card.
+Every token row resolves its name against the live document rather than
+restating a hex, so a row reads `unresolved` only when the token itself is
+wrong.
+
+No `StandaloneDemo` story: the `Playground` and `ThePattern` stories ARE the
+hands-on demo, and every flow is reachable from them rather than from an iframe.
+
+The `.mdx` page follows `docs/storybook-authoring.md` and was added 2026-10-08,
+along with `StateMatrix`, `ElementExplorer` and the split `Tokens*` set.

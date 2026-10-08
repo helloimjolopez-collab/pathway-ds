@@ -419,25 +419,34 @@ Sidebar-visible, matching the untagged exports in `KPITile.stories.jsx` exactly:
 
 | Export | Name |
 |---|---|
-| `Playground` | Playground |
-| `Types` | Types |
-| `Breakpoints` | Breakpoints |
+| `Playground` | All nine types |
+| `Types` | All nine types |
+| `Breakpoints` | The building block it nests |
 | `TheBuildingBlock` | The building block it nests |
+| `StateMatrix` | State matrix |
+| `ElementExplorer` | Element explorer |
 | `ChangeTypes` | Change: all four Figma types |
 | `ChartShapes` | Mini chart: all twelve Figma shapes |
 
-Reference, `!dev`-tagged: `TokensColour` (Tokens: colour), `TokensGeometry` (Tokens: geometry and type).
+Reference, `!dev`-tagged:
 
-`Types` captions every tile with its Type and measured box. `TheBuildingBlock`
-is the only place to look at `KpiNumberAndTrend` on its own. `ChangeTypes` and
-`ChartShapes` show the two nested sets in full, which nothing did before:
-`_Change` was split across two files with Type 04 missing, and `_Chart mini`
-drew all twelve of its shapes as polylines when seven of them are beziers.
+| Export | Name |
+|---|---|
+| `TokensFill` | Tokens: fill |
+| `TokensStroke` | Tokens: stroke |
+| `TokensText` | Tokens: text |
+| `TokensIcon` | Tokens: icon |
+| `TokensTypography` | Tokens: typography |
+| `TokensSpacing` | Tokens: spacing |
+| `TokensRadius` | Tokens: radius |
 
-No `StandaloneDemo` story and no `kpi-tile.html`. Every other component in the
-repo carries a standalone React-plus-Babel demo page, and these three do not, so
-the absence is stated rather than left as a hole: a KPI Tile, a Widget and a
-Dashboard are only meaningful on a board, and a board is what the Dashboard
-Storybook page already is. A fourth copy of that board in a static HTML file
-would be a second implementation to keep in step, which is how the specs and
-stories drifted in the first place.
+Every token row resolves its name against the live document rather than
+restating a hex, so a row reads `unresolved` only when the token itself is
+wrong.
+
+No `StandaloneDemo` story: a tile is demonstrated on the Dashboard page, in the
+board that sizes it.
+
+The `.mdx` page follows `docs/storybook-authoring.md` and was added 2026-10-08,
+along with `StateMatrix`, `ElementExplorer` and the split `Tokens*` set that
+replaced a lumped `TokensColour` and `TokensGeometry` pair.

@@ -203,19 +203,38 @@ export const InContext = {
     "what the first version of this component shipped." } } },
 };
 
-export const TokensColour = {
-  name: "Tokens: colour",
+export const TokensFill = {
+  name: "Tokens: fill",
   tags: ["!dev"],
   render: () => (
     <TokenTables groups={[
-      { title: "Line and area",
-        note: "The line and the area are the SAME token: the area is that colour at "
-            + "0.10, masked by a vertical fade. The ring is the same again at 0.20.",
+      { title: "Fill",
+        note: "The area under a layered shape. Its opacity is 10%, applied to the " +
+              "fill and not to the group: nested opacity multiplies, so a group at " +
+              "20% with a child at 50% can never reach the designed value.",
         rows: [
-          ["--semantic-color-stroke-static-positive-strong", "Line, area and marker when the move is favourable"],
-          ["--semantic-color-stroke-static-negative-strong", "The same when it is not"],
-          ["--semantic-color-stroke-static-neutral-base", "direction=flat"],
-          ["--semantic-color-fill-surface-elevated", "The marker's 11px dot"],
+          ["--semantic-color-fill-surface-elevated",
+           "The marker's 11px dot"],
+        ] },
+    ]} />
+  ),
+};
+
+export const TokensStroke = {
+  name: "Tokens: stroke",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Stroke",
+        note: "The line and the marker ring. Positive and Negative here are " +
+              "sentiment, not direction: a falling cost line is Positive.",
+        rows: [
+          ["--semantic-color-stroke-static-positive-strong",
+           "Line, area and marker when the move is favourable"],
+          ["--semantic-color-stroke-static-negative-strong",
+           "The same when it is not"],
+          ["--semantic-color-stroke-static-neutral-base",
+           "direction=flat"],
         ] },
     ]} />
   ),

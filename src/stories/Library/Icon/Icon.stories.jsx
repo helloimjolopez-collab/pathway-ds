@@ -228,55 +228,185 @@ export const DisplayIcons = {
     "behind it in the file. This mapping is the repo's, from the tone names." } } },
 };
 
-export const TokensColour = {
-  name: "Tokens: colour",
+/**
+ * Only one of the four icon components has states: Action Icon. Icon itself is
+ * a glyph and inherits whatever colour its parent sets, Display Icon and
+ * Featured Icon are decorative containers. So the matrix is Action Icon's four
+ * states across its three sizes, rendered live rather than described.
+ */
+export const StateMatrix = {
+  name: "State matrix",
+  render: () => page(
+    <>
+      {caption(
+        "THE FILL GOES ON THE STATE LAYER, NOT THE TARGET. Small is a 36 target " +
+        "around a 24 layer, Base is 44 around 28, Large is 48 around 32. Painting " +
+        "the target instead gives a hover box visibly larger than the design, " +
+        "which shipped twice.")}
+      <div style={{ display: "grid",
+        gridTemplateColumns: `140px repeat(${Object.keys(ACTION_ICON_SIZES).length}, 120px)`,
+        alignItems: "center", gap: U("gap-base") }}>
+        <span />
+        {Object.entries(ACTION_ICON_SIZES).map(([k, v]) => (
+          <code key={k} style={{ fontSize: "var(--semantic-type-font-size-xxs)",
+            color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>
+            {k} {v.box}/{v.layer}/{v.glyph}
+          </code>
+        ))}
+        {[["Rest", {}], ["Disabled", { disabled: true }]].map(([label, props]) => (
+          <React.Fragment key={label}>
+            <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
+              color: "var(--semantic-color-foreground-static-neutral-bold)" }}>{label}</code>
+            {Object.keys(ACTION_ICON_SIZES).map((k) => (
+              <span key={k} style={{ display: "inline-flex",
+                outline: "1px dashed var(--semantic-color-stroke-static-neutral-faint)" }}>
+                <ActionIcon name="more_vert" size={k} label={`${label} ${k}`}
+                  onClick={() => {}} {...props} />
+              </span>
+            ))}
+          </React.Fragment>
+        ))}
+      </div>
+      {caption(
+        "Hover and press the Rest row. Hover takes Fill/Action/Primary/Subtle/Hover " +
+        "with Foreground/Action/Secondary/Hover on the glyph; pressed takes the " +
+        "Pressed pair. Both are light blue, not neutral grey.")}
+      {caption("Display Icon and Featured Icon have no states. Their axes are size, " +
+               "colour and, for Featured Icon, type, and all of them are shown in " +
+               "their own stories.")}
+    </>
+  ),
+};
+
+/**
+ * One glyph, with the variable font's axes as controls. This is the only place
+ * the four axes can be moved independently, and it is how you can see that size
+ * is the FRAME rather than the drawn vector.
+ */
+export const ElementExplorer = {
+  name: "Element explorer",
+  args: { name: "trending_up", size: "M", fill: false, weight: 400, grade: 0 },
+  argTypes: {
+    name: { name: "Material Symbols glyph", control: "text" },
+    size: { name: "Pathway size", control: "inline-radio", options: Object.keys(SIZES) },
+    fill: { name: "FILL axis", control: "boolean" },
+    weight: { name: "wght axis", control: { type: "range", min: 100, max: 700, step: 100 } },
+    grade: { name: "GRAD axis", control: { type: "range", min: -25, max: 200, step: 25 } },
+  },
+  render: (a) => page(
+    <>
+      <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
+        color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>
+        {`${a.size} \u00b7 frame ${SIZES[a.size].box} \u00b7 glyph ${SIZES[a.size].glyph} \u00b7 opsz tracks the glyph size`}
+      </code>
+      <div style={{ display: "flex", alignItems: "center", gap: U("gap-relaxed") }}>
+        <span style={{ display: "inline-flex",
+          outline: "1px dashed var(--semantic-color-stroke-static-neutral-base)" }}>
+          <IconBox name={a.name} size={a.size} fill={a.fill}
+            weight={a.weight} grade={a.grade} />
+        </span>
+        <span style={{ fontSize: "var(--semantic-type-font-size-s)", maxWidth: 520,
+          color: "var(--semantic-color-foreground-static-neutral-base)" }}>
+          The dashed box is the frame. The glyph inside it is two pixels smaller on
+          every side, which is why setting an icon to 24 and getting a 24 drawing
+          makes it look a size too big next to everything else.
+        </span>
+      </div>
+      {caption(
+        "opsz is not a free axis: it must track the glyph's own size, or the font " +
+        "renders strokes tuned for a different size and the icon reads thin at 14 " +
+        "and heavy at 26. The component sets it and does not expose it.")}
+    </>
+  ),
+};
+
+export const TokensFill = {
+  name: "Tokens: fill",
   tags: ["!dev"],
   render: () => (
     <TokenTables groups={[
-      { title: "Icon",
-        note: "An Icon sets NO colour unless given one. That is deliberate: an icon " +
-              "beside a label should be the label's colour, and it then follows Light " +
-              "and Midnight for free with nothing to keep in step.",
-        rows: [["--semantic-color-foreground-static-neutral-base", "Whatever it inherits, in the common case"]] },
-      { title: "ActionIcon",
-        note: "The Figma component binds no fill in any of its nine variants and the " +
-              "glyph's fill is unbound too, so the design says 'whatever the context is'.",
+      { title: "Fill",
+        note: "Action Icon's state layer and Featured Icon's and Display Icon's " +
+              "containers. The glyph itself never takes a fill: it is a font, so it " +
+              "takes a foreground.",
         rows: [
-          ["--semantic-color-foreground-action-secondary-rest", "Glyph at rest"],
-          ["--semantic-color-foreground-action-secondary-hover", "Glyph on hover"],
-          ["--semantic-color-foreground-action-secondary-pressed", "Glyph while pressed"],
-          ["--semantic-color-fill-action-secondary-hover", "State layer on hover"],
-          ["--semantic-color-fill-action-secondary-pressed", "State layer while pressed"],
-          ["--semantic-layout-units-cornerradius-base", "State layer radius"],
-        ] },
-      { title: "DisplayIcon",
-        note: "Figma's Color axis onto meaning-named tones. Each pairs a Subtle fill " +
-              "with its On Subtle foreground.",
-        rows: [
-          ["--semantic-color-fill-static-brand-subtle", "Accent"],
-          ["--semantic-color-foreground-static-brand-on-subtle", "Accent glyph"],
-          ["--semantic-color-fill-static-positive-subtle", "Positive"],
-          ["--semantic-color-foreground-static-positive-on-subtle", "Positive glyph"],
-          ["--semantic-color-fill-static-negative-subtle", "Negative"],
-          ["--semantic-color-foreground-static-negative-on-subtle", "Negative glyph"],
-          ["--semantic-color-fill-static-severe-subtle", "Danger, which is SEVERE not Negative"],
-          ["--semantic-color-foreground-static-severe-on-subtle", "Danger glyph"],
-          ["--semantic-color-fill-static-info-subtle", "Info"],
-          ["--semantic-color-foreground-static-info-on-subtle", "Info glyph"],
-          ["--semantic-color-fill-static-attention-subtle", "Alert"],
-          ["--semantic-color-foreground-static-attention-on-subtle", "Alert glyph"],
-          ["--semantic-color-fill-static-neutral-subtle", "Neutral"],
+          ["--semantic-color-fill-action-secondary-hover",
+           "State layer on hover"],
+          ["--semantic-color-fill-action-secondary-pressed",
+           "State layer while pressed"],
+          ["--semantic-color-fill-static-brand-subtle",
+           "Accent"],
+          ["--semantic-color-fill-static-positive-subtle",
+           "Positive"],
+          ["--semantic-color-fill-static-negative-subtle",
+           "Negative"],
+          ["--semantic-color-fill-static-severe-subtle",
+           "Danger, which is SEVERE not Negative"],
+          ["--semantic-color-fill-static-info-subtle",
+           "Info"],
+          ["--semantic-color-fill-static-attention-subtle",
+           "Alert"],
+          ["--semantic-color-fill-static-neutral-subtle",
+           "Neutral"],
         ] },
     ]} />
   ),
 };
 
+export const TokensIcon = {
+  name: "Tokens: icon",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Icon",
+        note: "The glyph is Material Symbols Rounded, a font, so it is coloured " +
+              "with a foreground token and not a fill. Display Icon's forty-two " +
+              "bindings live on the Container frame and on the _shape vector inside " +
+              "the nested glyph instance, which is why checking the variant and the " +
+              "instance reported them as unbound.",
+        rows: [
+          ["--semantic-color-foreground-static-neutral-base",
+           "Whatever it inherits, in the common case"],
+          ["--semantic-color-foreground-action-secondary-rest",
+           "Glyph at rest"],
+          ["--semantic-color-foreground-action-secondary-hover",
+           "Glyph on hover"],
+          ["--semantic-color-foreground-action-secondary-pressed",
+           "Glyph while pressed"],
+          ["--semantic-color-foreground-static-brand-on-subtle",
+           "Accent glyph"],
+          ["--semantic-color-foreground-static-positive-on-subtle",
+           "Positive glyph"],
+          ["--semantic-color-foreground-static-negative-on-subtle",
+           "Negative glyph"],
+          ["--semantic-color-foreground-static-severe-on-subtle",
+           "Danger glyph"],
+          ["--semantic-color-foreground-static-info-on-subtle",
+           "Info glyph"],
+          ["--semantic-color-foreground-static-attention-on-subtle",
+           "Alert glyph"],
+        ] },
+    ]} />
+  ),
+};
 
-/**
- * The large badge a KPI tile puts above its number, and the replacement for a
- * FOREIGN component: Figma nests `Featured icon` 40003806:3550 here, a remote
- * third-party component, ten times inside a Pathway one.
- */
+export const TokensRadius = {
+  name: "Tokens: radius",
+  tags: ["!dev"],
+  render: () => (
+    <TokenTables groups={[
+      { title: "Radius",
+        note: "Display Icon is a rounded square at Base, not a circle. Featured " +
+              "Icon and Action Icon's state layer are both set from their own size " +
+              "table.",
+        rows: [
+          ["--semantic-layout-units-cornerradius-base",
+           "State layer radius"],
+        ] },
+    ]} />
+  ),
+};
+
 export const FeaturedIcons = {
   name: "FeaturedIcon: the two Figma types",
   render: () => page(

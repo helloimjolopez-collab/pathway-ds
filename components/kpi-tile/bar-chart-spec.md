@@ -169,17 +169,29 @@ None.
 
 ## 14. Storybook
 
-Sidebar-visible, matching the untagged exports in `BarChart.stories.jsx`
-exactly:
+Sidebar-visible, matching the untagged exports in `BarChart.stories.jsx` exactly:
 
 | Export | Name |
 |---|---|
-| `Playground` | Playground |
+| `Playground` | Element explorer |
 | `ElementExplorer` | Element explorer |
+| `AxesAndTitles` | Axes and titles |
 | `InContext` | The sizes its consumers use |
+| `StateMatrix` | State matrix |
 
-Reference, `!dev`-tagged: `TokensColour` (Tokens: colour).
+Reference, `!dev`-tagged:
 
-The Element explorer's single magnified column is the one to look at: it shows
-the three overlapping bands and their caps, which is what a row of fifteen
-hides.
+| Export | Name |
+|---|---|
+| `TokensFill` | Tokens: fill |
+| `TokensStroke` | Tokens: stroke |
+| `TokensText` | Tokens: text |
+
+Every token row resolves its name against the live document rather than
+restating a hex, so a row reads `unresolved` only when the token itself is
+wrong.
+
+The `.mdx` page follows `docs/storybook-authoring.md` and was added 2026-10-08.
+`ElementExplorer` was a static showcase with no controls, which the docs page
+described as having them; it is now one column with its three band values as
+controls, and the showcase moved to `AxesAndTitles`.

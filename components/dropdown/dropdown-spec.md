@@ -218,16 +218,34 @@ Standard Pathway patterns only, plus §9.
 
 ## 14. Storybook
 
-Sidebar-visible, matching the untagged exports in `Dropdown.stories.jsx`
-exactly:
+Sidebar-visible, matching the untagged exports in `Dropdown.stories.jsx` exactly:
 
 | Export | Name |
 |---|---|
 | `Playground` | Playground |
-| `Types` | Types |
+| `Types` | Open: the panel |
 | `Open` | Open: the panel |
 | `InACard` | In a card, where a KPI tile puts it |
+| `StateMatrix` | State matrix |
+| `ElementExplorer` | Element explorer |
 
-No `StandaloneDemo` story and no `dropdown.html`: a menu is only meaningful on
-the surface that opens it, and the KPI Tile and Dashboard pages both show it in
-place.
+Reference, `!dev`-tagged:
+
+| Export | Name |
+|---|---|
+| `TokensFill` | Tokens: fill |
+| `TokensStroke` | Tokens: stroke |
+| `TokensText` | Tokens: text |
+| `TokensTypography` | Tokens: typography |
+| `TokensSpacing` | Tokens: spacing |
+| `TokensRadius` | Tokens: radius |
+| `TokensElevation` | Tokens: elevation |
+
+Every token row resolves its name against the live document rather than
+restating a hex, so a row reads `unresolved` only when the token itself is
+wrong.
+
+The `.mdx` page follows `docs/storybook-authoring.md` and was added 2026-10-08,
+along with `StateMatrix`, `ElementExplorer` and the whole `Tokens*` set, which
+did not exist: this component shipped with no token listing at all, so a reader
+could see the menu and not the contract behind it.

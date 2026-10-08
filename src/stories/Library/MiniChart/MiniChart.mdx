@@ -1,0 +1,135 @@
+import { Meta, Title, Canvas, Controls } from "@storybook/blocks";
+import * as Stories from "./MiniChart.stories.jsx";
+
+<Meta of={Stories} />
+
+<Title />
+
+### Resources
+
+- 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/kpi-tile/mini-chart-spec.md)**
+- 🎨 **[Figma: _Chart mini](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40009415-27919)**, node `40009415:27919`, 24 variants
+- 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/kpi-tile/mini-chart.jsx)**
+- 🧩 **[KPI Tile](/?path=/docs/library-kpi-tile--docs)**, where four of the nine types put one
+
+---
+
+The sparkline. A shape that gives a single number some history, small enough to
+sit beside the number rather than under a heading of its own.
+
+It is its own component page so that it can be found and composed with. It was
+previously reachable only through KPI Tile, which meant anyone building a new
+component had no way to know it existed.
+
+**The shapes are real paths, not generated noise.** Figma draws twelve shapes and
+seven of them are beziers. Sampling each at forty points and drawing the result
+as a polyline gives a line with visible corners where the design has a curve: the
+version that shipped first was described, accurately, as looking like sperm on
+steroids. The implementation reads the `C` commands out of the Figma path to
+decide which shapes are smooth, and smooths those with a Catmull-Rom spline
+converted to cubic beziers at 1/6 tension, which passes through every sampled
+point instead of near them.
+
+---
+
+## Try it
+
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+
+---
+
+## Anatomy
+
+```
+MiniChart
+├── svg                      preserveAspectRatio="none", so it stretches
+│   ├── area                 layered shapes only, fill at 10%
+│   └── line                 stroke, sentiment-coloured
+└── marker                   TWO HTML siblings, positioned in %
+    ├── ring                 stroke at 20%
+    └── dot                  solid
+```
+
+The marker is HTML rather than SVG for a reason that is not stylistic.
+`preserveAspectRatio="none"` is what lets one path fill any box, and it stretches
+circles into ellipses along with everything else. So the marker is positioned by
+percentage and sized in pixels, outside the stretched coordinate space.
+
+The ring and the dot are **siblings, not nested**. Nested opacity multiplies and
+clamps at 1, so a dot inside a 20% ring can never reach full colour no matter
+what opacity it is given. That is why the marker looked washed out at every size
+before this was separated.
+
+---
+
+## States
+
+<Canvas of={Stories.StateMatrix} />
+
+A sparkline has no pointer states. What varies is its data and its sentiment, and
+the states worth checking are the ones that break a line drawn naively: a flat
+series, a single point, a shape that goes below its own start, and a layered
+shape where the area has to render without a stroke or a marker.
+
+<Canvas of={Stories.Shapes} />
+
+All twelve shapes, each labelled with whether it is smooth. Compare any smooth
+one against its polyline and the difference is the whole reason this component
+was rebuilt.
+
+---
+
+## Explore a single unit
+
+<Canvas of={Stories.ElementExplorer} />
+<Controls of={Stories.ElementExplorer} />
+
+---
+
+## Token mappings
+
+<Canvas of={Stories.TokensFill} />
+<Canvas of={Stories.TokensStroke} />
+
+Positive and Negative here are **sentiment, not direction**. A falling cost line
+is Positive and is green while pointing down. The component takes `favourable`
+separately from the shape for exactly this reason.
+
+The area's 10% and the ring's 20% are applied to the fill and the stroke, never
+to a wrapping group, for the nesting reason above.
+
+---
+
+## In context
+
+<Canvas of={Stories.InContext} />
+
+At the sizes it is actually used, which is the only honest way to judge a
+sparkline. 112x56 in Chart 01, 128x56 in Chart 02, 100x52 in Chart 03, and full
+width at 56 in Chart 04.
+
+---
+
+## Responsive behaviour
+
+The SVG stretches to its container on both axes, which is the point: a widget
+that gets wider gets more line rather than more whitespace. The marker's size
+does not scale, so it stays a readable dot at every width.
+
+---
+
+## Accessibility
+
+| Concern | Behaviour |
+|---|---|
+| The shape | `aria-hidden="true"`. The number beside it carries the meaning, and a sparkline read aloud is noise. |
+| Colour | Sentiment is also carried by the sign on the number and by the Change glyph, so the line's colour is never the only signal. |
+| Reduced motion | Nothing animates, so there is nothing to suppress. |
+
+---
+
+## Full specification
+
+The authoritative spec lives at
+[`components/kpi-tile/mini-chart-spec.md`](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/kpi-tile/mini-chart-spec.md).

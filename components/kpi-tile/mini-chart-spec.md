@@ -174,18 +174,29 @@ None.
 
 ## 14. Storybook
 
-Sidebar-visible, matching the untagged exports in `MiniChart.stories.jsx`
-exactly:
+Sidebar-visible, matching the untagged exports in `MiniChart.stories.jsx` exactly:
 
 | Export | Name |
 |---|---|
-| `Playground` | Playground |
+| `Playground` | Element explorer |
 | `ElementExplorer` | Element explorer |
 | `StateMatrix` | State matrix |
 | `Shapes` | All twelve Figma shapes |
 | `InContext` | The sizes its consumers use |
 
-Reference, `!dev`-tagged: `TokensColour` (Tokens: colour).
+Reference, `!dev`-tagged:
 
-No `StandaloneDemo` and no `mini-chart.html`: the Playground resizes the box,
-which is the only thing a standalone page would add.
+| Export | Name |
+|---|---|
+| `TokensFill` | Tokens: fill |
+| `TokensStroke` | Tokens: stroke |
+
+Every token row resolves its name against the live document rather than
+restating a hex, so a row reads `unresolved` only when the token itself is
+wrong.
+
+No `StandaloneDemo` story: a sparkline is judged at the sizes it ships at, which
+is what `InContext` renders.
+
+The `.mdx` page follows `docs/storybook-authoring.md` and was added 2026-10-08,
+with `TokensColour` split into `TokensFill` and `TokensStroke`.

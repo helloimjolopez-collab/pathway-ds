@@ -310,11 +310,31 @@ Sidebar-visible, matching the untagged exports in `Widget.stories.jsx` exactly:
 | `GlanceConfigurations` | Glance configurations |
 | `TrendDirectionVersusSentiment` | Trend: direction vs sentiment |
 | `HeaderActions` | Header actions: two slots |
+| `StateMatrix` | State matrix |
+| `ElementExplorer` | Element explorer |
 
-Reference, `!dev`-tagged: `TokensColour` (Tokens: colour) and `TokensGeometry`
-(Tokens: geometry and motion). Both resolve every token name against the live
-document rather than restating a hex, so a row reads `unresolved` only when the
-token itself is wrong.
+Reference, `!dev`-tagged:
 
-No `StandaloneDemo` story, and no `widget.html`: the Widget is only meaningful
-on a board, so the Dashboard page is where it is demonstrated in context.
+| Export | Name |
+|---|---|
+| `TokensFill` | Tokens: fill |
+| `TokensStroke` | Tokens: stroke |
+| `TokensText` | Tokens: text |
+| `TokensIcon` | Tokens: icon |
+| `TokensTypography` | Tokens: typography |
+| `TokensSpacing` | Tokens: spacing |
+| `TokensRadius` | Tokens: radius |
+| `TokensMotion` | Tokens: motion |
+
+Every token row resolves its name against the live document rather than
+restating a hex, so a row reads `unresolved` only when the token itself is
+wrong.
+
+No `StandaloneDemo` story and no `widget.html`: a Widget is only meaningful on a
+board, so the Dashboard page is where it is demonstrated in context.
+
+The `.mdx` page follows `docs/storybook-authoring.md`: Resources, prose, Try it,
+Anatomy, States, Explore a single unit, Token mappings, Responsive behaviour,
+Accessibility, Full specification. Added 2026-10-08, with the split `Tokens*`
+set replacing a lumped `TokensColour` and `TokensGeometry` pair, so this page
+carries the same structure as Button and SideNav.
