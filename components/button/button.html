@@ -11,15 +11,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
   <!-- Pathway tokens: the real built CSS. Never inline a hand-copied subset -->
-  <link rel="stylesheet" href="../../src/tokens/primitives.css" />
-  <link rel="stylesheet" href="../../src/tokens/themes/light.css" />
-  <link rel="stylesheet" href="../../src/tokens/themes/midnight.css" />
-  <link rel="stylesheet" href="../../src/tokens/layout.css" />
-  <link rel="stylesheet" href="../../src/tokens/layout-contextual.css" />
-  <link rel="stylesheet" href="../../src/tokens/layout-responsive.css" />
-  <link rel="stylesheet" href="../../src/tokens/type.css" />
-  <link rel="stylesheet" href="../../src/tokens/motion.css" />
-  <link rel="stylesheet" href="../../src/tokens/breakpoints.css" />
+  <link rel="stylesheet" href="../_demo/tokens/primitives.css" />
+  <link rel="stylesheet" href="../_demo/tokens/themes/light.css" />
+  <link rel="stylesheet" href="../_demo/tokens/themes/midnight.css" />
+  <link rel="stylesheet" href="../_demo/tokens/layout.css" />
+  <link rel="stylesheet" href="../_demo/tokens/layout-contextual.css" />
+  <link rel="stylesheet" href="../_demo/tokens/layout-responsive.css" />
+  <link rel="stylesheet" href="../_demo/tokens/type.css" />
+  <link rel="stylesheet" href="../_demo/tokens/motion.css" />
+  <link rel="stylesheet" href="../_demo/tokens/breakpoints.css" />
 <style>
 
   /* ── Spinner animation ── */
@@ -267,9 +267,10 @@ function Button({ buttonStyle = "Fill", size = "M", type = "Primary", text = "Bu
   return (
     <button type="button" onClick={!isDisabled ? onClick : undefined}
       disabled={isDisabled}
-      {/* Falls back to `text` when there is no visible text to read: icon-only,
-          and loading, where the content is replaced by a spinner. Matches
-          button.jsx, corrected 2026-10-08. */}
+      // Falls back to `text` when there is no visible text to read: icon-only,
+      // and loading, where the content is replaced by a spinner. Matches
+      // button.jsx, corrected 2026-10-08. A braced comment does not work in
+      // attribute position, which is how this page shipped broken for an hour.
       aria-label={ariaLabel || (showText && !loading ? undefined : text)}
       aria-busy={loading || undefined}
       onMouseEnter={() => !isDisabled && setHovered(true)}
