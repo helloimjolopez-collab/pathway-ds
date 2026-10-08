@@ -156,6 +156,23 @@ Row counts do not change with the breakpoint: Glance is 3 rows, Detail 8, Explor
 the content inside it is a number and a chart and neither reflows into fewer
 rows usefully.
 
+**Two consequences of that, both measured rather than predicted.**
+
+A Glance is 275 wide, and that constrains the FIGURE. Figma's Chart Right puts
+`KPI Number` on HUG and `Chart.Container` on FILL, which is what the component
+implements, so the chart is the flexible item. A ten-character value at 32px
+takes 180 of the 227 available and the chart shrinks to a few pixels, rendering
+as a lone marker dot. Nothing is broken; a Glance holds a short figure, and a
+long one belongs in Detail.
+
+And content taller than a widget's rows used to be thrown away. Both content
+slots were `overflow: hidden` on an element the board sizes to a fixed row span:
+at 390px the Financial KPIs band's slot was 123px tall holding 302px of content,
+because a 3-up KPI grid becomes a 1-up stack while the band stays 3 rows. 179px
+of a board's numbers went missing with no indication. The slots now scroll, with
+the same overlay scrollbar SideNav uses. Whether a band should instead GROW at
+mobile is a change to the board's layout contract and is not settled here.
+
 ---
 
 ## Accessibility

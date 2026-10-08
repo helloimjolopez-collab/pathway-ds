@@ -15,19 +15,33 @@ const SIZES = Object.keys(SIZE_GRID);
 
 const body = (size) => {
   if (isFlat(size)) {
+    /* A GLANCE IS 275 WIDE AND THAT CONSTRAINS THE NUMBER, not the component.
+       Figma's own Chart Right has KPI Number HUG at 152 and Chart.Container
+       FILL at 111 inside 287, which is what this implements. Put "$4,948,850"
+       there instead, 32px and ten characters wide, and the number takes 180 of
+       the 227 available: the chart is the flexible item, so it shrinks to 4px
+       and renders as a lone marker dot. That is the content not fitting, not
+       the layout misbehaving, and it is the reason a Glance shows a short
+       figure with its trend and leaves the long one to Detail. */
     return (
-      <KpiNumberAndTrend value="$4,948,850" numberStyle="wide"
-        change={<Change value="1.8%" direction="up" type="02" note="vs previous period" />} />
+      <KpiNumberAndTrend
+        eyebrow="Undeposited" value="$3,940"
+        change={<Change value="1.8%" direction="up" type="02" note="vs last week" />}
+        chart={<MiniChart d={SAMPLE_SERIES["realistic-01"]} curve={curveFor("realistic-01")}
+          markerIndex={SAMPLE_MARKERS["realistic-01"]} favourable />} />
     );
   }
   return (
     <>
       <KpiNumberAndTrend value="$4,948,850" numberStyle="wide"
         change={<Change value="1.8%" direction="up" type="02" note="vs previous period" />} />
-      {size === "explore"
-        ? <BarChart stacks={SAMPLE_STACKS} axes yTitle="Amount" xTitle="Month" />
-        : <MiniChart d={SAMPLE_SERIES["realistic-01"]} curve={curveFor("realistic-01")}
-            markerIndex={SAMPLE_MARKERS["realistic-01"]} favourable />}
+      {/* A MINI CHART DOES NOT BELONG IN A DETAIL OR EXPLORE WIDGET. It stretches
+          to its container on both axes by design, which is what lets one path
+          fill a 112x56 slot in a KPI tile, and the same property blows it up to
+          a 560x300 sparkline here. Detail and Explore get the full chart; the
+          mini chart stays in Glance, where it is the size it was drawn at. */}
+      <BarChart stacks={size === "explore" ? SAMPLE_STACKS : SAMPLE_STACKS.slice(0, 8)}
+        axes yTitle="Amount" xTitle="Month" />
     </>
   );
 };
@@ -64,12 +78,24 @@ function App() {
         </div>
         <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
           color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>
-          {`${size} · span ${g.cols[2]} of 12 at desktop, ${g.cols[1]} of 8 at tablet, ${g.cols[0]} of 4 on mobile · ${g.rows} rows · ${isFlat(size) ? "flat" : "layered"}`}
+          {`${size} · span ${g.cols[2]} of 12 at desktop, ${g.cols[1]} of 8 at tablet, ${g.cols[0]} of 4 on mobile · ${g.rows} rows = ${g.rows * 48 + (g.rows - 1) * 16}px · ${isFlat(size) ? "flat" : "layered"}`}
         </code>
-        <Widget title="Bank Balances" size={size} inGrid={false}
-          onRefresh={() => {}} onGoTo={() => {}} onMenu={() => {}}>
-          {body(size)}
-        </Widget>
+        {/* A REAL `.pw-dashboard-grid`, not a widget with a hand-set height.
+            Outside a board a widget hugs its content and spans nothing, so the
+            first version of this demo showed Detail 290px tall and full width
+            under a caption reading "span 6 of 12": the numbers were right and
+            the picture contradicted them. In the grid the widget sizes itself
+            from the same `--pw-widget-cols-*` variables and row counts the
+            Dashboard uses, and the breakpoints in `WidgetKeyframes` move the
+            span, so the caption and the drawing cannot disagree. */}
+        <div className="pw-dashboard-grid" style={{
+          display: "grid", gridTemplateColumns: "repeat(12, 1fr)",
+          gridAutoRows: 48, gap: U("gap-base"), alignItems: "stretch" }}>
+          <Widget title="Bank Balances" size={size}
+            onRefresh={() => {}} onGoTo={() => {}} onMenu={() => {}}>
+            {body(size)}
+          </Widget>
+        </div>
       </div>
     </DemoChrome>
   );
