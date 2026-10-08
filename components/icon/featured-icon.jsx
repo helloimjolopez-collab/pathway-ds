@@ -106,6 +106,14 @@ export const L = {
  *                       circle and takes `color`; `modern` is the white chip
  *                       and ignores it, because it is not tone-coloured.
  * @param {keyof FEATURED_ICON_COLORS} color  Only meaningful for `outline`.
+ * @param {string} glyphColor  Override the glyph colour with a semantic token's
+ *                       var(). Needed because Figma is NOT consistent here: the
+ *                       KPI Tile's Icon 01 binds its glyph to
+ *                       Foreground/Static/Positive/On STRONG while Icon 02 binds
+ *                       Info/On Subtle, for the same Light outline type. Rather
+ *                       than silently normalise one of them, the component
+ *                       defaults to the correct On Subtle pairing and the call
+ *                       site can say when the file differs.
  * @param {string} label  Omit for a decorative badge, which is the common case:
  *                       a featured icon sits above a heading that already says
  *                       what it means.
@@ -115,6 +123,7 @@ export function FeaturedIcon({
   size = "lg",
   type = "outline",
   color = "Positive",
+  glyphColor,
   fill = 1,
   label,
   className = "",
@@ -136,7 +145,7 @@ export function FeaturedIcon({
         width: s.box, height: s.box, flexShrink: 0, boxSizing: "border-box",
         borderRadius: modern ? L.chip : L.circle,
         background: modern ? T.chipFill : tone.fill,
-        color: modern ? T.chipGlyph : tone.fg,
+        color: glyphColor || (modern ? T.chipGlyph : tone.fg),
         // Modern's 1px border is INSIDE-aligned in Figma, which border-box
         // reproduces: the chip stays 48, the border eats into it.
         border: modern ? `${L.border} solid ${T.chipBorder}` : "none",

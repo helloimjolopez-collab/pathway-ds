@@ -7,7 +7,7 @@
  * "chart", and Figma's Detail and Explore are mostly chart by area.
  */
 import React from "react";
-import { Widget, WidgetKeyframes, SIZES, SIZE_LABEL, isFlat } from "../../../../components/widget/widget.jsx";
+import { Widget, WidgetKeyframes, SIZES, SIZE_LABEL, SIZE_GRID, isFlat } from "../../../../components/widget/widget.jsx";
 import { KpiNumberAndTrend, Change } from "../../../../components/kpi-tile/kpi-number-trend.jsx";
 import { MiniChart, SAMPLE_SERIES, SAMPLE_MARKERS, curveFor } from "../../../../components/kpi-tile/mini-chart.jsx";
 import { BarChart, SAMPLE_STACKS } from "../../../../components/kpi-tile/bar-chart.jsx";
@@ -84,31 +84,65 @@ export default {
       "for more content rather than enlarging the same content. Detail and " +
       "Explore are the SAME height, 416, and differ only in width, 566 against " +
       "1148, so depth here is horizontal. Glance is flat; the other two carry " +
-      "an inner card. The three header actions are visible at rest." } },
+      "an inner card rounded on its TOP corners only. Every border is 0.5px, " +
+      "not 1. The three header actions are Size=Base, a 44px target with a 28px " +
+      "state layer, and are visible at rest." } },
+  },
+  argTypes: {
+    size: { name: "Size", control: "inline-radio", options: SIZES,
+      description: "Figma's Size axis. RESIZE THE WIDGET with this: it changes "
+        + "the grid span, the min width and whether there is an inner card." },
+    title: { name: "Title", control: "text" },
+    onRefresh: { name: "Refresh action", control: "boolean" },
+    onGoTo: { name: "Open full view action", control: "boolean" },
+    onMenu: { name: "More actions", control: "boolean" },
+    swap: { name: "Title is a swap control", control: "boolean" },
+    manage: { name: "Manage mode", control: "boolean" },
+  },
+};
+
+/**
+ * THE PLAYGROUND RESIZES. `size` is a real control, so the widget can be taken
+ * through Glance, Detail, Explore and the board's full-width band without
+ * leaving the page, and the caption states what changes each time.
+ *
+ * It used to render all three sizes at once with no controls, so there was
+ * nothing to drive and no Detail to inspect on its own.
+ */
+export const Playground = {
+  args: { size: "detail", title: "Widget Heading", onRefresh: true, onGoTo: true,
+    onMenu: true, swap: false, manage: false },
+  render: (a) => {
+    const g = SIZE_GRID[a.size] || SIZE_GRID.detail;
+    return board(
+      <>
+        <div style={{ gridColumn: "1 / -1" }}>
+          <code style={{ fontSize: "var(--semantic-type-font-size-xs)",
+            color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>
+            {`size="${a.size}" \u00b7 ${g.cols[2]} of 12 columns \u00b7 ${g.rows} rows `}
+            {`\u00b7 ${isFlat(a.size) ? "FLAT, no inner card" : "layered, inner card rounded top only"}`}
+          </code>
+        </div>
+        <Widget
+          title={a.title}
+          size={a.size}
+          onRefresh={a.onRefresh ? () => {} : undefined}
+          onGoTo={a.onGoTo ? () => {} : undefined}
+          onMenu={a.onMenu ? () => {} : undefined}
+          swap={a.swap ? { onOpen: () => {}, open: false } : undefined}
+          style={a.manage ? {
+            outline: "1px dashed var(--semantic-color-stroke-static-neutral-base)",
+            outlineOffset: 2, cursor: "grab",
+          } : undefined}
+        >
+          {isFlat(a.size) ? glanceBody() : layeredBody(a.size === "explore")}
+        </Widget>
+      </>
+    );
   },
 };
 
 /** The three sizes on one board, as they appear on a dashboard. */
-export const Playground = {
-  render: () => board(
-    <>
-      <Widget title="Widget Heading" size="glance"
-        onRefresh={() => {}} onGoTo={() => {}} onMenu={() => {}}>
-        {glanceBody()}
-      </Widget>
-      <Widget title="Widget Heading" size="detail"
-        onRefresh={() => {}} onGoTo={() => {}} onMenu={() => {}}>
-        {layeredBody()}
-      </Widget>
-      <Widget title="Widget Heading" size="explore"
-        onRefresh={() => {}} onGoTo={() => {}} onMenu={() => {}}>
-        {layeredBody(true)}
-      </Widget>
-    </>
-  ),
-};
-
-/** Each size at its exact Figma box, with the numbers stated. */
 export const SizeLadder = {
   name: "Size ladder",
   render: () => (

@@ -11,9 +11,21 @@
  * layer, and the glyph is the frame size an `<Icon>` takes:
  *
  *   Size    box     Container.Icon   glyph
- *   Small   36x36        24x24        12
- *   Base    44x44        28x28        14
- *   Large   48x48        32x32        16
+ *   Small   36x36        24x24 r=8     12
+ *   Base    44x44        28x28 r=8     14
+ *   Large   48x48        32x32 r=8     16
+ *
+ * STATE TOKENS, read off all six state variants 2026-10-08.
+ *
+ * The state layer's fill:
+ *   Default    none
+ *   Hover      `Fill/Action/Primary/Subtle/Hover`
+ *   Pressed    `Fill/Action/Primary/Subtle/Pressed`
+ *
+ * The glyph's colour:
+ *   Default    `Foreground/Action/Secondary/Rest`
+ *   Hover      `Foreground/Action/Secondary/Hover`
+ *   Pressed    `Foreground/Action/Secondary/Pressed`
  *
  * `State` is Default / Hover / Pressed and is runtime, never a prop.
  * `Icon` is an INSTANCE_SWAP, which in code is the `name` prop: any Material
@@ -48,8 +60,14 @@ export const T = {
   rest:       C("foreground-action-secondary-rest"),
   hover:      C("foreground-action-secondary-hover"),
   pressed:    C("foreground-action-secondary-pressed"),
-  layerHover: C("fill-action-secondary-hover"),
-  layerPress: C("fill-action-secondary-pressed"),
+  /* THE STATE LAYER IS ACTION/PRIMARY/SUBTLE, NOT ACTION/SECONDARY.
+     Read off the set's six state variants on 2026-10-08: Hover binds
+     Fill/Action/Primary/Subtle/Hover and Pressed binds /Pressed. This file used
+     the SECONDARY family, which is a neutral grey, where the design is a light
+     blue. That is the single most visible token error in the component, because
+     the hover state is the only thing the layer is for. */
+  layerHover: C("fill-action-primary-subtle-hover"),
+  layerPress: C("fill-action-primary-subtle-pressed"),
 };
 
 /**

@@ -68,8 +68,17 @@ export const T = {
 };
 
 export const L = {
-  radius:        U("cornerradius-xlarge"),   // 16
-  border:        U("borderwidth-base"),
+  radius:        U("cornerradius-xlarge"),   // 16, bound to CornerRadius/XLarge
+  /* 0.5, NOT 1. Measured on every variant 2026-10-08: the root and the
+     MainContent.Slot both stroke at 0.5 INSIDE. This was borderwidth-base, 1px,
+     so every widget border rendered at twice the design's weight, which on a
+     1148px Explore card is the most visible line on the board.
+     BorderWidth/XThin is exactly 0.5. Note Figma does not BIND the weight to a
+     variable, so 0.5 is a raw value there; the token matches it exactly. */
+  border:        U("borderwidth-xthin"),
+  /* MainContent.Slot is rounded on its TOP corners only: 12,12,0,0. It was a
+     uniform 8 here, which is both the wrong radius and the wrong shape. */
+  innerRadiusTop: U("cornerradius-large"),
   headerH:       44,
   headerGap:     U("gap-xxxtight"),          // 2
   // Header padding differs by size. Glance 0,8,0,12; Detail and Explore 0,6,0,16.
@@ -85,8 +94,11 @@ export const L = {
   innerPadH:     U("padding-base"),          // 16
   // Glance root has 8px of bottom padding and nothing else.
   glancePadB:    U("padding-xtight"),        // 8
-  // Slot.RowEnd hugs its three Action.Icons; each Action.Icon is 36x36. The
-  // separate, hidden Slot.HoverIcons is 72x36 and holds two.
+  // Slot.RowEnd hugs its three Action.Icons. They are Size=BASE: a 44x44
+  // target, a 28x28 state layer at r=8 and a 14px glyph. They were Size=Small
+  // (36/24/12) until the design changed on 2026-10-08, and 44 is also the WCAG
+  // 2.5.5 minimum, so the change fixed a target that was 8px short.
+  // The separate, hidden Slot.HoverIcons is 72x36 and holds two.
   titleH:        20,
   // Figma's own min sizes, now also Contextual tokens.
   minW: {
@@ -249,7 +261,7 @@ export function WidgetHeading({ title, size = "detail", actions = [], hoverActio
           <div className="pw-widget-hover-actions"
             style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
             {hoverActions.slice(0, 2).map((a) => (
-              <ActionIcon key={a.name} name={a.name} label={a.label} onClick={a.onClick} size="Small" />
+              <ActionIcon key={a.name} name={a.name} label={a.label} onClick={a.onClick} size="Base" />
             ))}
           </div>
         )}
@@ -261,7 +273,7 @@ export function WidgetHeading({ title, size = "detail", actions = [], hoverActio
       {actions.length > 0 && (
         <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
           {actions.map((a) => (
-            <ActionIcon key={a.name} name={a.name} label={a.label} onClick={a.onClick} size="Small" />
+            <ActionIcon key={a.name} name={a.name} label={a.label} onClick={a.onClick} size="Base" />
           ))}
         </div>
       )}
@@ -354,6 +366,10 @@ export function Widget({
           padding: `${L.innerPadV} ${L.innerPadH}`,
           background: T.innerFill,
           border: `${L.border} solid ${T.innerBorder}`,
+          /* Rounded at the TOP only, which is what the slot's per-corner radii
+             say: 12, 12, 0, 0. Its bottom edge meets the card's own bottom. */
+          borderTopLeftRadius: L.innerRadiusTop,
+          borderTopRightRadius: L.innerRadiusTop,
           boxSizing: "border-box",
           overflow: "hidden",
         }}>

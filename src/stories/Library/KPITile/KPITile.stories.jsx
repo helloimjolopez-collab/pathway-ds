@@ -6,7 +6,7 @@
  * page of its own because it only ever appears nested.
  */
 import React from "react";
-import { KpiTile, ChangeChip, KPI_TILE_TYPES } from "../../../../components/kpi-tile/kpi-tile.jsx";
+import { KpiTile, ChangeChip, KPI_TILE_TYPES, KPI_TILE_SPECS } from "../../../../components/kpi-tile/kpi-tile.jsx";
 import { MiniChart, SAMPLE_SERIES, SAMPLE_MARKERS, SAMPLE_LAYERS, curveFor } from "../../../../components/kpi-tile/mini-chart.jsx";
 import { KpiNumberAndTrend, Change, CHANGE_TYPES } from "../../../../components/kpi-tile/kpi-number-trend.jsx";
 import { TokenTables } from "../_shared/TokenTable.jsx";
@@ -17,6 +17,14 @@ const page = (children) => (
     display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(388px, 388px))",
     gap: U("gap-base"), alignItems: "start" }}>{children}</div>
 );
+/** Captions every example with its measured box, so the page states what it
+    is showing rather than leaving it to be inferred. */
+const caption = (text) => (
+  <code style={{ display: "block", marginBottom: U("gap-xxtight"),
+    fontSize: "var(--semantic-type-font-size-xs)",
+    color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>{text}</code>
+);
+
 const chart = (s = "wavy-01", dir = "up") => (
   <MiniChart series={SAMPLE_SERIES[s]} direction={dir} curve={curveFor(s)} />
 );
@@ -27,115 +35,94 @@ export default {
   parameters: {
     layout: "fullscreen",
     docs: { description: { component:
-      "The KPI card. Nine Figma Types collapse to three shapes here, because " +
-      "the numbered suffixes vary the sample glyph or line rather than the " +
-      "layout, and both are props. Simple 388x90, Icon 388x158, Chart 388x144. " +
-      "Breakpoint is a width, 388 and 343, and the tile is fluid, so it fills " +
-      "whatever column it is given." } },
+      "THE NINE FIGMA TYPES ARE NINE LAYOUTS, not three shapes. They differ in " +
+      "root direction, padding, gap, heading weight, which _Change type they " +
+      "carry, which featured icon, which chart, and their height: 90, 96, 144, " +
+      "160, 162 and 244. Chart 04 is a card inside a card. The number is " +
+      "weight 600 on every variant. Breakpoint is a WIDTH, 388 or 343, and the " +
+      "tile is fluid, so it fills whatever column it is given." } },
   },
   argTypes: {
-    type: { name: "Type", control: "inline-radio", options: KPI_TILE_TYPES },
+    type: { name: "Type", control: "select", options: KPI_TILE_TYPES },
+    breakpoint: { name: "Breakpoint", control: "inline-radio", options: ["desktop", "mobile"] },
     heading: { name: "Heading", control: "text" },
     value: { name: "Value", control: "text" },
-    icon: { name: "Featured icon (Icon type)", control: "text" },
+    changeValue: { name: "Change value", control: "text" },
+    note: { name: "Comparison note", control: "text" },
     direction: { name: "Direction", control: "inline-radio", options: ["up", "down"] },
+    favourable: { name: "Favourable (colour)", control: "inline-radio", options: [true, false, undefined] },
+    icon: { name: "Featured icon override", control: "text" },
   },
 };
 
 export const Playground = {
-  args: { type: "chart", heading: "Views 24 hours", value: "2,000",
-    icon: "trending_up", direction: "up" },
+  args: { type: "chart-01", breakpoint: "desktop", heading: "Views 24 hours",
+    value: "2,000", changeValue: "100%", note: "vs last month", direction: "up" },
   render: (a) => page(
-    <KpiTile {...a}
-      change={<ChangeChip value="100%" direction={a.direction} />}
-      chart={chart("wavy-01", a.direction)}
-      onMenu={() => {}} />
-  ),
-};
-
-/**
- * All three shapes, each captioned with its Type and its measured box. An
- * unlabelled grid of six cards tells a reader nothing about which Type each one
- * is, which is the only question this story exists to answer.
- */
-const caption = (text) => (
-  <code style={{ display: "block", marginBottom: U("gap-xxtight"),
-    fontSize: "var(--semantic-type-font-size-xs)",
-    color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>{text}</code>
-);
-
-export const Types = {
-  render: () => page(
-    <>
-      <div>
-        {caption('type="simple" · 388x90 · gap 2 · pad 16')}
-        <KpiTile type="simple" heading="Views 24 hours" value="2,000"
-          change={<ChangeChip value="100%" direction="up" />} onMenu={() => {}} />
-      </div>
-      <div>
-        {caption('type="icon" · 388x158 · gap 24 · pad 16 · featured icon 48 r=28')}
-        <KpiTile type="icon" heading="Views 24 hours" value="2,000" icon="trending_up"
-          change={<ChangeChip value="100%" direction="up" />} onMenu={() => {}} />
-      </div>
-      <div>
-        {caption('type="chart" · 388x144 · gap 8 · pad 24 · heading Neutral/Strong')}
-        <KpiTile type="chart" heading="Views 24 hours" value="2,000"
-          change={<ChangeChip value="100%" direction="up" />}
-          chart={chart("wavy-01")} onMenu={() => {}} />
-      </div>
-      <div>
-        {caption('type="icon" · a down arrow, read as unfavourable')}
-        <KpiTile type="icon" heading="Overdrawn accounts" value="2" icon="visibility"
-          direction="down"
-          change={<ChangeChip value="100%" direction="down" />} onMenu={() => {}} />
-      </div>
-      <div>
-        {caption('type="chart" · a real measurement series')}
-        <KpiTile type="chart" heading="Giving this month" value="$48,210"
-          change={<ChangeChip value="12.4%" direction="up" />}
-          chart={chart("realistic-01")} onMenu={() => {}} />
-      </div>
-      <div>
-        {caption('type="chart" · the chip is NEUTRAL here, never a trend colour')}
-        <KpiTile type="chart" heading="Expenses" value="$1,097,800"
-          change={<ChangeChip value="4.1%" direction="up" />}
-          chart={chart("realistic-03", "down")} onMenu={() => {}} />
-      </div>
-    </>
-  ),
-  parameters: { docs: { description: { story:
-    "Nine Figma Types collapse to three shapes, because the numbered suffixes " +
-    "vary the sample glyph or the sample line rather than the layout, and both " +
-    "of those are props. Note that this set's chip takes " +
-    "Foreground/Static/Neutral/Strong, so the trend reads as neutral chrome on " +
-    "a tile and as colour inside a widget. That is measured from Figma and " +
-    "reproduced rather than unified, because unifying them is a design call." } } },
-};
-
-/** Mobile is 343 rather than 388. Heights do not change. */
-export const Breakpoints = {
-  render: () => (
-    <div style={{ padding: U("padding-relaxed"), display: "flex", gap: U("gap-base"),
-      alignItems: "flex-start", background: "var(--semantic-color-fill-surface-canvas)" }}>
-      <div style={{ width: 388 }}>
-        <KpiTile type="chart" heading="Desktop, 388" value="2,000"
-          change={<ChangeChip value="100%" direction="up" />} chart={chart()} onMenu={() => {}} />
-      </div>
-      <div style={{ width: 343 }}>
-        <KpiTile type="chart" heading="Mobile, 343" value="2,000"
-          change={<ChangeChip value="100%" direction="up" />} chart={chart()} onMenu={() => {}} />
-      </div>
+    <div>
+      {caption(`type="${a.type}" \u00b7 ${a.breakpoint}`)}
+      <KpiTile {...a} onMenu={() => {}} />
     </div>
   ),
 };
 
+export const Types = {
+  name: "All nine types",
+  render: () => page(
+    <>
+      {[
+        ["simple",   "388x90 \u00b7 V pad16 gap2 \u00b7 heading 14/500 Base \u00b7 _Change 03"],
+        ["icon-01",  "388x162 \u00b7 V gap24 \u00b7 lg Light outline, Positive, glyph On STRONG \u00b7 _Change 03"],
+        ["icon-02",  "388x162 \u00b7 icon BESIDE a 16/600 heading \u00b7 bolt on Info \u00b7 _Change 01"],
+        ["icon-03",  "388x162 \u00b7 lg MODERN chip above \u00b7 heading 14/500 Base \u00b7 _Change 02"],
+        ["icon-04",  "388x96 \u00b7 root is HORIZONTAL \u00b7 md Modern chip \u00b7 _Change 03"],
+        ["chart-01", "388x144 \u00b7 pad 24, the only one \u00b7 heading Strong \u00b7 112x56 Realistic 01"],
+        ["chart-02", "388x160 \u00b7 eye in a Modern chip \u00b7 number and change INLINE \u00b7 128x56 Layers"],
+        ["chart-03", "388x144 \u00b7 the nested KPI Number & Trend block \u00b7 100x52 Layers"],
+        ["chart-04", "388x244 \u00b7 A CARD INSIDE A CARD: root on Neutral/Faint, inner r=12 Elevated"],
+      ].map(([t, note]) => (
+        <div key={t}>
+          {caption(`type="${t}" \u00b7 ${note}`)}
+          <KpiTile type={t} onMenu={() => {}} />
+        </div>
+      ))}
+    </>
+  ),
+  parameters: { docs: { description: { story:
+    "Six different heights: 90, 96, 144, 160, 162 and 244. A component with " +
+    "three shapes cannot express that, which is what this file had until " +
+    "2026-10-08. Note that the NUMBER is weight 600 on every variant, not 700, " +
+    "and that Figma is inconsistent about the featured icon's glyph: Icon 01 " +
+    "binds Positive/On STRONG while Icon 02 binds Info/On Subtle, for the same " +
+    "Light outline type on a Subtle fill. Reproduced rather than normalised, " +
+    "because Figma owns the visual design." } } },
+};
+
 /**
- * The building block, on its own, so the relationship is visible rather than
- * only described. `KpiNumberAndTrend` has NO card: no surface, no border, no
- * radius. It gets those from whatever nests it, which is either a KPI Tile or a
- * Widget. It has no component page of its own because it never appears alone in
- * a product; this story is the only place to look at it.
+ * Breakpoint is a WIDTH, 388 or 343, and the heights differ per type too:
+ * Icon 01 is 162 on desktop and 154 on mobile, Chart 01 is 144 and 138.
  */
+export const Breakpoints = {
+  render: () => (
+    <div style={{ padding: U("padding-relaxed"), display: "flex", gap: U("gap-relaxed"),
+      alignItems: "flex-start", background: "var(--semantic-color-fill-surface-canvas)" }}>
+      {[["desktop", 388], ["mobile", 343]].map(([bp, w]) => (
+        <div key={bp} style={{ display: "flex", flexDirection: "column", gap: U("gap-base") }}>
+          {caption(`${bp} \u00b7 ${w} wide`)}
+          {["icon-01", "chart-01", "simple"].map((t) => (
+            <div key={t} style={{ width: w }}>
+              <KpiTile type={t} breakpoint={bp} onMenu={() => {}} />
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  ),
+  parameters: { docs: { description: { story:
+    "The tile is FLUID and fills its column, so these widths are the Figma " +
+    "frames rather than constraints in the component. The wrapper sets them." } } },
+};
+
 export const TheBuildingBlock = {
   name: "The building block it nests",
   render: () => (

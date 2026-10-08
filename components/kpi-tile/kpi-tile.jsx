@@ -2,215 +2,393 @@
  * KPI Tile: the card.
  *
  * SOURCE OF TRUTH: Figma `KPI Tiles`, set 40009415:27750, 18 variants on
- * Type x Breakpoint, read and LOOKED AT on 2026-10-07.
+ * Type x Breakpoint. Every one of the nine desktop variants was walked and
+ * measured on 2026-10-08.
  *
- * A KPI TILE IS ALWAYS A CARD. Every one of the 18 variants has its own
- * surface, border, radius and padding. There is no cardless KPI tile: the
- * cardless thing is `KPI Number & Trend`, which is a building block this tile
- * nests, and which a Widget nests too. A KPI Tile and a Widget are two
- * different components that happen to share that block; they are not two
- * framings of one thing.
+ * THE NINE TYPES ARE NINE LAYOUTS, NOT THREE SHAPES. The previous version of
+ * this file collapsed them into `simple | icon | chart` on the reasoning that
+ * the numbered suffixes only varied the sample glyph or line. That was wrong,
+ * and it is the reason the page looked nothing like the design. They differ in
+ * root direction, padding, gap, heading weight, which change type they carry,
+ * which featured icon, which chart, and their height:
  *
- * MEASURED
- *   root          r=16, Fill/Surface/Elevated, Stroke/Static/Neutral/Base
- *                 desktop 388 wide, mobile 343
- *   Simple        90 tall,  gap 2,  pad 16
- *   Icon 01-04   158 tall,  gap 24, pad 16
- *   Chart 01-04  144 tall,  gap 8,  pad 24
+ *   Type       box       root   pad  gap  heading           change  chart
+ *   Simple     388x90    V      16   2    14/500 Base       03      none
+ *   Icon 01    388x162   V      16   24   14/500 Base       03      none
+ *   Icon 02    388x162   V      16   24   16/600 Strong     01      none
+ *   Icon 03    388x162   V      16   24   14/500 Base       02      none
+ *   Icon 04    388x96    H      16   16   14/500 Base       03      none
+ *   Chart 01   388x144   V      24   8    14/500 Strong     01      112x56 Realistic 01
+ *   Chart 02   388x160   V      16   24   16/600 Strong     02      128x56 Layers
+ *   Chart 03   388x144   V      16   24   14/500 Base       block   100x52 Layers
+ *   Chart 04   388x244   V      16   2    14/600 Strong     02      308x56 Realistic 03
  *
- *   Heading       fs 14. Foreground/Static/Neutral/BASE on Simple and Icon,
- *                 /STRONG on Chart. That is the design, not a slip.
- *   Number        fs 32, Foreground/Static/Neutral/Strong
- *   Number row    HORIZONTAL gap 16
- *   Featured icon 48x48, r=28, Fill/Static/Positive/Subtle
- *   Dropdown      20x20 more_vert, top right
+ * SIX DIFFERENT HEIGHTS: 90, 96, 144, 160, 162, 244. A component with three
+ * shapes cannot express that.
  *
- * The Icon gap and the Chart padding read 20 at first, and 20 is not a rung:
- * the ladder goes 16 then 24. Nineteen bindings across the set pointed a gap or
- * a padding straight at the Unit/20 PRIMITIVE, the same defect as the Unit/10
- * ones. All nineteen were rebound in Figma on 2026-10-07 to Padding/Relaxed and
- * Gap/Relaxed, both 24, the nearest rung that keeps Chart roomier than the other
- * two Types. Chart is therefore 144 tall rather than 136.
+ * CHART 04 IS A CARD INSIDE A CARD. Its root fills with
+ * `Fill/Static/Neutral/Faint` rather than Elevated, and holds an inner
+ * `Content` frame at r=12 on `Fill/Surface/Elevated` with its own border. The
+ * same pattern the Widget's Detail and Explore sizes use.
  *
- * THE CHIP HERE IS NOT THE PILL IN THE BUILDING BLOCK. This set's `_Change` is
- * a bordered chip: 73x28, r=6, pad 4,12,4,8, gap 4, Fill/Surface/Elevated with
- * Stroke/Static/Neutral/Base, and its text takes
- * Foreground/Static/Neutral/STRONG rather than a trend colour. So the trend
- * reads as neutral chrome on the tile and as colour inside a widget. Measured,
- * and reproduced rather than unified, because unifying them is a design call.
+ * THE NUMBER IS WEIGHT 600, NOT 700. Measured on all nine. The previous version
+ * used `weight-bold`, 700.
+ *
+ * THE FEATURED ICONS ARE FOUR DIFFERENT ONES:
+ *   Icon 01   lg Light outline, Positive tint, `trending_up`
+ *   Icon 02   lg Light outline, Info tint, `bolt`
+ *   Icon 03   lg Modern, `trending_up`
+ *   Icon 04   md Modern, `trending_up`
+ *   Chart 02  lg Modern, `visibility`
+ *
+ * AND FIGMA IS INCONSISTENT ABOUT THEIR GLYPH COLOUR, which is recorded rather
+ * than normalised: Icon 01 binds `Foreground/Static/Positive/On STRONG` while
+ * Icon 02 binds `Info/On Subtle`, for the same Light outline type on a Subtle
+ * fill. On Strong is the foreground for a SOLID fill, so Icon 01's binding is a
+ * pairing oddity in the file. It is reproduced because Figma owns the visual
+ * design, and flagged in the spec.
+ *
+ * EVERY VARIANT CARRIES A 44x44 `TouchTarget`, which is the menu trigger's
+ * accessible hit area around a 20px glyph. Reproduced, because a 20px tap
+ * target fails WCAG 2.5.5.
  */
 import React, { useState } from "react";
 import { Change } from "./kpi-number-trend.jsx";
+import { MiniChart, SAMPLE_SERIES, SAMPLE_LAYERS, SAMPLE_MARKERS, curveFor } from "./mini-chart.jsx";
 import { FeaturedIcon } from "../icon/featured-icon.jsx";
-import { Dropdown, DropdownItem } from "../dropdown/dropdown.jsx";
+import { Dropdown, DropdownItem, DropdownDivider } from "../dropdown/dropdown.jsx";
 
 const C = (n) => `var(--semantic-color-${n})`;
 const U = (n) => `var(--semantic-layout-units-${n})`;
 const Y = (n) => `var(--semantic-type-${n})`;
 
 export const T = {
-  surface:     C("fill-surface-elevated"),
-  border:      C("stroke-static-neutral-base"),
-  headingSoft: C("foreground-static-neutral-base"),
-  headingHard: C("foreground-static-neutral-strong"),
-  number:      C("foreground-static-neutral-strong"),
+  surface:      C("fill-surface-elevated"),
+  border:       C("stroke-static-neutral-base"),
+  // Chart 04's root, which is the outer half of a card inside a card.
+  surfaceFaint: C("fill-static-neutral-faint"),
+  headingSoft:  C("foreground-static-neutral-base"),
+  headingHard:  C("foreground-static-neutral-strong"),
+  number:       C("foreground-static-neutral-strong"),
+  note:         C("foreground-static-neutral-base"),
+  // Icon 01's glyph, which Figma binds to On STRONG rather than On Subtle.
+  positiveOnStrong: C("foreground-static-positive-on-strong"),
 };
 
 export const L = {
-  radius:      U("cornerradius-xlarge"),   // 16
-  border:      U("borderwidth-base"),
-  padSimple:   U("padding-base"),          // 16, Simple and Icon
-  padChart:    U("padding-relaxed"),       // 24, Chart. Was 20, see the note above.
-  gapSimple:   U("gap-xxxtight"),          // 2
-  gapIcon:     U("gap-relaxed"),           // 24. Was 20, see the note above.
-  gapChart:    U("gap-tight"),             // 8
-  numberRowGap:U("gap-base"),              // 16
+  radius:      U("cornerradius-xlarge"),   // 16 on every variant
+  innerRadius: U("cornerradius-large"),     // 12, Chart 04's Content frame
+  border:      "var(--semantic-layout-units-borderwidth-base)",
+  pad:         U("padding-base"),           // 16 everywhere except Chart 01
+  padChart01:  U("padding-relaxed"),        // 24
+  gapTight:    U("gap-xxxtight"),           // 2
+  gapRow:      U("gap-tight"),              // 8
+  gapNumber:   U("gap-tight"),              // 8, Change and text
+  gapBase:     U("gap-base"),               // 16
+  gapIconHead: U("gap-tight"),              // 12 on Chart 02, see note
+  gapRelaxed:  U("gap-relaxed"),            // 24
+  gapChart03:  U("gap-relaxed"),            // 24
+  numberGap12: U("padding-tight"),          // 12, Chart 01's Number and badge
+  menuGlyph:   20,
+  touchTarget: 44,
 };
 
-/** Figma's nine Types, reduced to the three SHAPES they describe. The numbered
- *  suffixes vary the sample glyph or line, which are props, not layouts. */
-export const KPI_TILE_TYPES = ["simple", "icon", "chart"];
-
 /**
- * The bordered trend chip this set uses: Figma `_Change` **Type 03**.
- *
- * IT IS NOT A SECOND COMPONENT ANY MORE. This was a parallel implementation of
- * one of `_Change`'s four Types, which is how the set ended up split across two
- * files with Type 04 missing entirely. It now delegates, so there is one
- * implementation of the Figma set and this name stays valid for callers.
+ * Every type's layout, measured. Kept as DATA rather than nine branches of JSX
+ * so the differences are readable side by side and a wrong one is visible.
  */
-export function ChangeChip({ value, direction = "up", favourable }) {
-  return <Change type="03" value={value} direction={direction} favourable={favourable} />;
-}
+export const KPI_TILE_TYPES = [
+  "simple", "icon-01", "icon-02", "icon-03", "icon-04",
+  "chart-01", "chart-02", "chart-03", "chart-04",
+];
+
+/** The old three-value prop still works, mapped to its nearest real type. */
+const LEGACY_TYPE = { simple: "simple", icon: "icon-01", chart: "chart-01" };
+
+export const KPI_TILE_SPECS = {
+  "simple":   { h: 90,  hMobile: 90,  dir: "column", pad: "pad", gap: "gapTight",
+                heading: "soft", change: "03", icon: null, chart: null },
+  "icon-01":  { h: 162, hMobile: 154, dir: "column", pad: "pad", gap: "gapRelaxed",
+                heading: "soft", change: "03", icon: { size: "lg", type: "outline",
+                  color: "Positive", glyph: "trending_up", glyphColor: T.positiveOnStrong },
+                chart: null, iconAbove: true },
+  "icon-02":  { h: 162, hMobile: 154, dir: "column", pad: "pad", gap: "gapRelaxed",
+                heading: "big", change: "01", note: true,
+                icon: { size: "lg", type: "outline", color: "Accent", glyph: "bolt" },
+                chart: null, iconBesideHeading: true },
+  "icon-03":  { h: 162, hMobile: 154, dir: "column", pad: "pad", gap: "gapRelaxed",
+                heading: "soft", change: "02", note: true,
+                icon: { size: "lg", type: "modern", glyph: "trending_up" },
+                chart: null, iconAbove: true },
+  "icon-04":  { h: 96,  hMobile: 146, dir: "row", pad: "pad", gap: "gapBase",
+                heading: "soft", change: "03",
+                icon: { size: "md", type: "modern", glyph: "trending_up" },
+                chart: null },
+  "chart-01": { h: 144, hMobile: 138, dir: "column", pad: "padChart01", gap: "gapRow",
+                heading: "hard", change: "01", note: true, icon: null,
+                chart: { w: 112, h: 56, series: "realistic-01" } },
+  "chart-02": { h: 160, hMobile: 152, dir: "column", pad: "pad", gap: "gapRelaxed",
+                heading: "big", change: "02",
+                icon: { size: "lg", type: "modern", glyph: "visibility" },
+                iconBesideHeading: true, numberInline: true,
+                chart: { w: 128, h: 56, layers: true } },
+  "chart-03": { h: 144, hMobile: 144, dir: "column", pad: "pad", gap: "gapChart03",
+                heading: "soft", change: "02", icon: null,
+                chart: { w: 100, h: 52, layers: true }, compact: true },
+  "chart-04": { h: 244, hMobile: 244, dir: "column", pad: "pad", gap: "gapTight",
+                heading: "hardBold", change: "02", note: true, icon: null,
+                chart: { w: null, h: 56, series: "realistic-03" }, innerCard: true },
+};
 
 /**
- * @param {"simple"|"icon"|"chart"} type   Figma's Type axis.
- * @param {string}  heading
- * @param {string}  value
- * @param {node}    change   A <ChangeChip>, or anything.
- * @param {node}    chart    Only drawn when type is "chart".
- * @param {string}  icon     Material ligature. Only drawn when type is "icon".
- * @param {"up"|"down"} direction  Tints the featured icon.
- * @param {func}    onMenu   Draws the dots-vertical control when supplied.
+ * @param {keyof KPI_TILE_SPECS} type   Figma's Type axis, all nine values.
+ *                              `simple`, `icon` and `chart` still map to the
+ *                              nearest real type for existing callers.
+ * @param {"desktop"|"mobile"} breakpoint  Figma's Breakpoint axis: a WIDTH of
+ *                              388 or 343. The tile is fluid and fills its
+ *                              column, so this only drives the height.
+ * @param {node} menuItems      The menu's entries. A tile with a trigger that
+ *                              opens nothing is a dead control.
  */
 export function KpiTile({
   type = "simple",
-  heading,
-  value,
-  change,
-  chart,
-  icon = "trending_up",
+  breakpoint = "desktop",
+  heading = "Views 24 hours",
+  value = "2,000",
+  changeValue = "100%",
   direction = "up",
+  favourable,
+  note = "vs last month",
+  icon,
   onMenu,
-  /** The menu's entries. Omit and the control still opens, with the one entry
-   *  every tile has: a tile with a menu that opens nothing is a dead control. */
   menuItems,
   className = "",
   style,
+  ...rest
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const isChart = type === "chart";
-  const isIcon = type === "icon";
-  const pad = isChart ? L.padChart : L.padSimple;
-  const gap = isChart ? L.gapChart : isIcon ? L.gapIcon : L.gapSimple;
+  const t = KPI_TILE_SPECS[type] ? type : (LEGACY_TYPE[type] || "simple");
+  const s = KPI_TILE_SPECS[t];
+  const mobile = breakpoint === "mobile";
 
-  /* A menu that opens nothing is a dead control, so a tile given `onMenu` but
-     no `menuItems` gets the one entry every tile has. */
   const items = menuItems || (
-    <DropdownItem label="Open the full view" onSelect={() => setMenuOpen(false)} />
+    <>
+      <DropdownItem label="Open the full view" icon="open_in_full" onSelect={() => setMenuOpen(false)} />
+      <DropdownItem label="Refresh" icon="refresh" onSelect={() => setMenuOpen(false)} />
+      <DropdownDivider />
+      <DropdownItem label="Remove from this dashboard" danger onSelect={() => setMenuOpen(false)} />
+    </>
   );
 
+  /* The heading. Four treatments across the nine types, measured:
+       soft      14 / 500 / Neutral Base     Simple, Icon 01, Icon 03, Chart 03
+       hard      14 / 500 / Neutral Strong   Chart 01
+       hardBold  14 / 600 / Neutral Strong   Chart 04
+       big       16 / 600 / Neutral Strong   Icon 02, Chart 02  */
   const headingEl = (
     <span style={{
-      // Chart uses the STRONG heading, Simple and Icon use BASE. Measured.
-      color: isChart ? T.headingHard : T.headingSoft,
-      fontSize: Y("font-size-s"), lineHeight: Y("line-height-s-single"),
+      color: s.heading === "soft" ? T.headingSoft : T.headingHard,
+      fontSize: s.heading === "big" ? Y("font-size-m") : Y("font-size-s"),
+      lineHeight: s.heading === "big" ? Y("line-height-m-single") : Y("line-height-s-single"),
+      fontWeight: s.heading === "soft" || s.heading === "hard"
+        ? Y("weight-medium") : Y("weight-semibold"),
       letterSpacing: Y("letter-spacing-spacious"),
-      whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+      whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0,
     }}>{heading}</span>
   );
 
+  // fs 32, weight 600. Measured on all nine; it was 700 here until 2026-10-08.
   const numberEl = (
     <span style={{
-      color: T.number, whiteSpace: "nowrap",
+      color: T.number, whiteSpace: "nowrap", flexShrink: 0,
       fontSize: Y("font-size-xxl"), lineHeight: Y("line-height-xxl-single"),
-      fontWeight: Y("weight-bold"), letterSpacing: Y("letter-spacing-wide"),
+      fontWeight: Y("weight-semibold"), letterSpacing: Y("letter-spacing-wide"),
     }}>{value}</span>
   );
 
-  return (
-    <div className={`pw-kpi-tile ${className}`} data-type={type} style={{
-      position: "relative",
-      display: "flex", flexDirection: "column", gap,
-      padding: pad, boxSizing: "border-box",
-      background: T.surface, border: `${L.border} solid ${T.border}`,
-      borderRadius: L.radius, minWidth: 0,
-      ...style,
-    }}>
-      {/* THE DROPDOWN AND THE FEATURED ICON ARE PATHWAY COMPONENTS NOW.
-          Figma nests two FOREIGN ones here, both from a third-party library:
-          `Dropdown` 40003188:9930 eighteen times and `Featured icon`
-          40003806:3550 ten times. Neither can be Code Connected from this repo,
-          because a mapping publishes into the file that owns the component, so
-          a third of what this tile is made of was unreachable.
-          This file also drew its own private copies of both, which is the other
-          half of the same problem: nothing else could reuse them.
-          They are `components/dropdown/dropdown.jsx` and
-          `components/icon/featured-icon.jsx`, measured off those nodes. */}
-      {onMenu && (
-        <span style={{ position: "absolute", top: pad, right: pad }}>
-          <Dropdown
-            type="icon"
-            label="More actions"
-            open={menuOpen}
-            onOpenChange={(v) => { setMenuOpen(v); if (v) onMenu?.(); }}
-          >
-            {items}
-          </Dropdown>
-        </span>
-      )}
+  const changeEl = (
+    <Change type={s.change} value={changeValue} direction={direction}
+      favourable={favourable} note={s.note ? note : undefined} />
+  );
 
-      {isIcon && (
-        /* Featured icon. Figma's variants here are Type=Light outline at
-           Size=lg, so the tinted circle at 48. `direction` picks the tone,
-           which is what this set uses it for. */
-        <FeaturedIcon
-          name={icon}
-          size="lg"
-          type="outline"
-          color={direction === "up" ? "Positive" : "Negative"}
-        />
-      )}
+  const iconEl = s.icon && (
+    <FeaturedIcon
+      name={icon || s.icon.glyph}
+      size={s.icon.size}
+      type={s.icon.type}
+      color={s.icon.color || "Neutral"}
+      glyphColor={s.icon.glyphColor}
+    />
+  );
 
-      {isChart ? (
-        <>
-          {headingEl}
-          {/* Number and chart: HORIZONTAL gap 16, the number column then the chart. */}
-          <div style={{ display: "flex", alignItems: "center", gap: L.numberRowGap,
-            minWidth: 0, flex: 1 }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: U("gap-medium"),
-              minWidth: 0 }}>
-              {numberEl}
-              {change}
-            </div>
-            {chart && <div style={{ flex: 1, minWidth: 0, height: 56 }}>{chart}</div>}
-          </div>
-        </>
-      ) : (
-        <>
-          {/* Icon groups its heading and number together under the featured icon;
-              Simple stacks them directly. Both end with the number row. */}
-          <div style={{ display: "flex", flexDirection: "column", gap: L.gapSimple, minWidth: 0 }}>
-            {headingEl}
-            <div style={{ display: "flex", alignItems: "center", gap: L.numberRowGap, minWidth: 0 }}>
-              {numberEl}
-              {change}
-            </div>
-          </div>
-        </>
-      )}
+  const chartEl = s.chart && (
+    <div style={{ width: s.chart.w || "100%", height: s.chart.h, flexShrink: 0 }}>
+      {s.chart.layers
+        ? <MiniChart layers={SAMPLE_LAYERS} direction={direction} favourable={favourable} />
+        : <MiniChart series={SAMPLE_SERIES[s.chart.series]} direction={direction}
+            favourable={favourable} curve={curveFor(s.chart.series)}
+            markerIndex={SAMPLE_MARKERS[s.chart.series]} />}
     </div>
   );
+
+  /* Dropdown: 20x20 inside a 44x44 TouchTarget, which every variant carries.
+     Absolute, so it never takes part in the stack's gap and the nine measured
+     heights hold. */
+  const menuEl = onMenu !== false && (
+    <span style={{
+      position: "absolute", top: 0, right: 0,
+      width: L.touchTarget, height: L.touchTarget,
+      display: "flex", alignItems: "center", justifyContent: "center",
+    }}>
+      <Dropdown type="icon" label="More actions" open={menuOpen}
+        onOpenChange={(v) => { setMenuOpen(v); if (v) onMenu?.(); }}>
+        {items}
+      </Dropdown>
+    </span>
+  );
+
+  // The number row, which differs per type.
+  const numberRow = s.numberInline ? (
+    // Chart 02: Number and _Change on ONE row, gap 8.
+    <span style={{ display: "flex", alignItems: "center", gap: L.gapRow, minWidth: 0 }}>
+      {numberEl}{changeEl}
+    </span>
+  ) : (
+    <span style={{
+      display: "flex", gap: L.gapBase, minWidth: 0,
+      // Simple and Icon 01 align the change to the number's BASELINE edge
+      // (align=MAX); Icon 03, Icon 04 and Chart 04 centre it.
+      alignItems: t === "simple" || t === "icon-01" ? "flex-end" : "center",
+    }}>
+      {numberEl}{changeEl}
+    </span>
+  );
+
+  const headingBlock = s.iconBesideHeading ? (
+    <span style={{ display: "flex", alignItems: "center",
+      gap: t === "chart-02" ? L.gapIconHead : L.gapBase, minWidth: 0 }}>
+      {iconEl}{headingEl}
+    </span>
+  ) : headingEl;
+
+  let body;
+  if (s.innerCard) {
+    // Chart 04: a card inside a card. Root on Neutral/Faint, inner Content on
+    // Elevated at r=12 with its own border, pad 24, gap 24.
+    body = (
+      <>
+        <span style={{ display: "flex", alignItems: "center",
+          padding: `14px ${24}px 12px`, boxSizing: "border-box" }}>
+          {headingEl}
+        </span>
+        <span style={{
+          display: "flex", flexDirection: "column", gap: L.gapRelaxed,
+          padding: L.padChart01, boxSizing: "border-box",
+          background: T.surface, border: `${L.border} solid ${T.border}`,
+          borderRadius: L.innerRadius, position: "relative",
+        }}>
+          <span style={{ display: "flex", alignItems: "center", gap: L.numberGap12, minWidth: 0 }}>
+            {numberEl}{changeEl}
+          </span>
+          {chartEl}
+          {menuEl}
+        </span>
+      </>
+    );
+  } else if (s.compact) {
+    // Chart 03: the nested KPI Number & Trend block, H gap 24, chart right.
+    body = (
+      <>
+        {headingEl}
+        <span style={{ display: "flex", alignItems: "center", gap: L.gapRelaxed,
+          padding: `0 ${12}px`, boxSizing: "border-box", minWidth: 0 }}>
+          <span style={{ display: "flex", flexDirection: "column", gap: L.gapTight,
+            flex: 1, minWidth: 0 }}>
+            {numberRow}
+          </span>
+          <span style={{ padding: `8px 0 8px 12px`, flexShrink: 0 }}>{chartEl}</span>
+        </span>
+      </>
+    );
+  } else if (s.chart) {
+    // Chart 01 and Chart 02: heading, then a row of number-block and chart.
+    body = (
+      <>
+        {headingBlock}
+        <span style={{ display: "flex", alignItems: "flex-end", gap: L.gapBase, minWidth: 0 }}>
+          <span style={{ display: "flex", flexDirection: "column",
+            gap: t === "chart-01" ? L.numberGap12 : L.gapRow, flex: 1, minWidth: 0 }}>
+            {numberRow}
+          </span>
+          {chartEl}
+        </span>
+      </>
+    );
+  } else if (s.dir === "row") {
+    // Icon 04: the icon beside a vertical heading-and-number block, gap 8.
+    body = (
+      <>
+        {iconEl}
+        <span style={{ display: "flex", flexDirection: "column", gap: L.gapRow,
+          flex: 1, minWidth: 0 }}>
+          {headingEl}{numberRow}
+        </span>
+      </>
+    );
+  } else if (s.iconAbove) {
+    // Icon 01 and Icon 03: the icon, then heading-and-number at gap 2.
+    body = (
+      <>
+        {iconEl}
+        <span style={{ display: "flex", flexDirection: "column", gap: L.gapTight, minWidth: 0 }}>
+          {headingEl}{numberRow}
+        </span>
+      </>
+    );
+  } else if (s.iconBesideHeading) {
+    // Icon 02: icon beside a bold heading, then number and change at gap 2.
+    body = (
+      <>
+        {headingBlock}
+        <span style={{ display: "flex", flexDirection: "column", gap: L.gapTight, minWidth: 0 }}>
+          {numberEl}{changeEl}
+        </span>
+      </>
+    );
+  } else {
+    // Simple.
+    body = <>{headingEl}{numberRow}</>;
+  }
+
+  return (
+    <div
+      className={`pw-kpi-tile ${className}`}
+      data-type={t}
+      data-breakpoint={breakpoint}
+      style={{
+        position: "relative", boxSizing: "border-box",
+        display: "flex", flexDirection: s.dir,
+        gap: L[s.gap], padding: s.innerCard ? L.pad : L[s.pad],
+        minHeight: mobile ? s.hMobile : s.h,
+        background: s.innerCard ? T.surfaceFaint : T.surface,
+        border: `${L.border} solid ${T.border}`,
+        borderRadius: L.radius,
+        ...style,
+      }}
+      {...rest}
+    >
+      {body}
+      {!s.innerCard && menuEl}
+    </div>
+  );
+}
+
+/**
+ * Figma `_Change` Type 03, the bordered chip. Delegates, so there is one
+ * implementation of the `_Change` set.
+ */
+export function ChangeChip({ value, direction = "up", favourable }) {
+  return <Change type="03" value={value} direction={direction} favourable={favourable} />;
 }
 
 export default KpiTile;

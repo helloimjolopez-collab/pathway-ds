@@ -1396,6 +1396,59 @@
         "components/dropdown/popover-menu-item.figma.ts",
         "components/dropdown/popover-menu.figma.ts"
       ]
+    },
+    "mini-chart": {
+      "displayName": "Mini Chart",
+      "description": "The sparkline. Its own component page so it can be found and composed with.",
+      "module": "components/kpi-tile/mini-chart.jsx",
+      "spec": "components/kpi-tile/mini-chart-spec.md",
+      "stories": "src/stories/Library/MiniChart/MiniChart.stories.jsx",
+      "exports": [
+        "MiniChart",
+        "SAMPLE_SERIES",
+        "SAMPLE_MARKERS",
+        "SAMPLE_LAYERS",
+        "SMOOTH_TYPES",
+        "curveFor",
+        "T",
+        "L"
+      ],
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40009415:27919",
+        "setName": "_Chart mini",
+        "variants": 24
+      },
+      "codeConnect": [
+        "components/kpi-tile/mini-chart.figma.ts"
+      ],
+      "note": "Given its own Storybook page on 2026-10-08. It was only visible inside the KPI Tile page, so a consumer could not find it, drive it or compose with it, even though Figma nests it in the KPI Tiles set, the Widget set and the KPI Number & Trend block."
+    },
+    "bar-chart": {
+      "displayName": "Bar Chart",
+      "description": "The stacked bars a Detail or Explore widget fills with.",
+      "module": "components/kpi-tile/bar-chart.jsx",
+      "spec": "components/kpi-tile/bar-chart-spec.md",
+      "stories": "src/stories/Library/BarChart/BarChart.stories.jsx",
+      "exports": [
+        "BarChart",
+        "SAMPLE_STACKS",
+        "T",
+        "L"
+      ],
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40009417:13029",
+        "setName": "_Chart data",
+        "variants": 18,
+        "note": "One Figma set, two components: the Bar types map here and the Line types map to Mini Chart, because they are two different drawings with different APIs."
+      },
+      "codeConnect": [
+        "components/kpi-tile/chart-data.figma.ts",
+        "components/kpi-tile/legend.figma.ts",
+        "components/kpi-tile/x-axis.figma.ts"
+      ],
+      "note": "Given its own Storybook page on 2026-10-08, same reason as Mini Chart."
     }
   },
   "codeConnectCoverage": "components/code-connect-coverage.md"
