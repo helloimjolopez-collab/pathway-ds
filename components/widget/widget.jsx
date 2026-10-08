@@ -46,6 +46,7 @@
  * is an unbound #fefefd. That value is Fill/Static/Neutral/Faint, so the token
  * is used here and the gap is logged in the manifest for the file to fix.
  */
+import { Scrollable } from "../scrollbar/scrollbar.jsx";
 import React, { useState } from "react";
 import { ActionIcon } from "../icon/action-icon.jsx";
 
@@ -358,12 +359,30 @@ export function Widget({
       <WidgetHeading title={title} size={size} actions={actions}
         hoverActions={hoverActions} swap={swap} />
 
+      {/* CONTENT TALLER THAN THE WIDGET'S ROWS USED TO BE THROWN AWAY. Both
+          slots were `overflow: hidden` on an element the board sizes to a fixed
+          row span, so anything that did not fit was simply not drawn and
+          nothing said so. Measured on 2026-10-08 in the standalone demo at the
+          mobile breakpoint: the Financial KPIs band's slot was 123px tall
+          holding 302px of content, because a 3-up KPI grid becomes a 1-up stack
+          at 390px while the band stays 3 rows. 179px of a board's numbers went
+          missing silently.
+
+          Now it scrolls, using Pathway's own overlay scrollbar, the same
+          component SideNav composes. The thumb takes no layout space and
+          appears only when there is something to scroll, so a widget whose
+          content fits looks exactly as it did.
+
+          THIS KEEPS THE DATA, IT DOES NOT SETTLE THE DESIGN QUESTION. Whether a
+          band should instead GROW at mobile, rather than scroll inside a fixed
+          three rows, is a change to the board's layout contract (rows are fixed
+          at every breakpoint, see the spec) and belongs to whoever owns that
+          contract. Scrolling is the fix for losing content; growing would be a
+          different decision. */}
       {layered ? (
         /* MainContent.Slot: the inner card Detail and Explore have. */
         <div style={{
           display: "flex", flexDirection: "column", flex: 1, minHeight: 0,
-          gap: L.innerGap,
-          padding: `${L.innerPadV} ${L.innerPadH}`,
           background: T.innerFill,
           border: `${L.border} solid ${T.innerBorder}`,
           /* Rounded at the TOP only, which is what the slot's per-corner radii
@@ -373,15 +392,25 @@ export function Widget({
           boxSizing: "border-box",
           overflow: "hidden",
         }}>
-          {children}
+          <Scrollable style={{ flex: 1, minHeight: 0 }}
+            viewStyle={{ display: "flex", flexDirection: "column",
+              gap: L.innerGap,
+              padding: `${L.innerPadV} ${L.innerPadH}`,
+              boxSizing: "border-box" }}>
+            {children}
+          </Scrollable>
         </div>
       ) : (
         /* Glance is flat: content sits directly on the card with a 12px inset. */
         <div style={{
           display: "flex", flexDirection: "column", flex: 1, minHeight: 0,
-          padding: `0 ${L.glancePadH}`, boxSizing: "border-box", overflow: "hidden",
+          boxSizing: "border-box", overflow: "hidden",
         }}>
-          {children}
+          <Scrollable style={{ flex: 1, minHeight: 0 }}
+            viewStyle={{ display: "flex", flexDirection: "column",
+              padding: `0 ${L.glancePadH}`, boxSizing: "border-box" }}>
+            {children}
+          </Scrollable>
         </div>
       )}
     </div>
