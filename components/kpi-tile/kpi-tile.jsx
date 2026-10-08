@@ -70,26 +70,59 @@ export const T = {
   headingSoft:  C("foreground-static-neutral-base"),
   headingHard:  C("foreground-static-neutral-strong"),
   number:       C("foreground-static-neutral-strong"),
-  note:         C("foreground-static-neutral-base"),
   // Icon 01's glyph, which Figma binds to On STRONG rather than On Subtle.
   positiveOnStrong: C("foreground-static-positive-on-strong"),
 };
 
+/**
+ * THE NUMBER'S LINE HEIGHT HAS NO TOKEN, and that is a gap in the type scale
+ * rather than a choice here.
+ *
+ * Figma's `Number` is the text style `❇️ Heading/Page/Large/Semibold`: Red Hat
+ * Text SemiBold, fs 32, **line height 36px**, letter spacing 0.1. Three of
+ * those four have tokens: `font-size-xxl` is 32, `weight-semibold` is 600 and
+ * `letter-spacing-wide` is 0.1. The line height does NOT: the ladder goes
+ * `xl-single` 30, `xxl-single` 40, `xxxl-single` 44, so there is no 36.
+ *
+ * Using 40, the nearest, makes the text 4px taller than the design, and the
+ * tile's own height is measured: Simple is exactly 90, which is 32 of padding
+ * plus a 20 heading plus a 2 gap plus a 36 number. Rounding the line height up
+ * breaks all six measured heights at once.
+ *
+ * So this is a raw 36 with the gap named, rather than a wrong token or an
+ * invented one. The fix belongs in the Figma Variables panel: a
+ * `line-height/xxl-tight` rung at 36. Recorded in the spec's gaps.
+ */
+const NUMBER_LINE_HEIGHT = "36px";
+
+/**
+ * FIGMA'S INSIDE STROKE DOES NOT PARTICIPATE IN LAYOUT, and a CSS `border`
+ * does, which is worth 2px on every tile.
+ *
+ * The tile's stroke is 1px at `strokeAlign: INSIDE`, so in Figma the frame is
+ * exactly 90 tall: 32 of padding plus a 20 heading plus a 2 gap plus a 36
+ * number, with the stroke painted inside that. With a CSS border and
+ * `box-sizing: border-box`, `minHeight: 90` becomes a floor of
+ * border + padding + content, so the tile grew to 92 and all six measured
+ * heights were wrong by the same 2.
+ *
+ * An inset ring paints in exactly the same place and takes no space, which is
+ * what INSIDE means. Modelled rather than worked around, so the measured
+ * heights hold without touching the padding.
+ */
+const insetRing = (colour, width = 1) => `inset 0 0 0 ${width}px ${colour}`;
+
 export const L = {
   radius:      U("cornerradius-xlarge"),   // 16 on every variant
   innerRadius: U("cornerradius-large"),     // 12, Chart 04's Content frame
-  border:      "var(--semantic-layout-units-borderwidth-base)",
   pad:         U("padding-base"),           // 16 everywhere except Chart 01
   padChart01:  U("padding-relaxed"),        // 24
   gapTight:    U("gap-xxxtight"),           // 2
   gapRow:      U("gap-tight"),              // 8
-  gapNumber:   U("gap-tight"),              // 8, Change and text
   gapBase:     U("gap-base"),               // 16
   gapIconHead: U("gap-tight"),              // 12 on Chart 02, see note
   gapRelaxed:  U("gap-relaxed"),            // 24
-  gapChart03:  U("gap-relaxed"),            // 24
   numberGap12: U("padding-tight"),          // 12, Chart 01's Number and badge
-  menuGlyph:   20,
   touchTarget: 44,
 };
 
@@ -124,8 +157,13 @@ export const KPI_TILE_SPECS = {
                 heading: "soft", change: "03",
                 icon: { size: "md", type: "modern", glyph: "trending_up" },
                 chart: null },
+  /* Chart 01 is the only type whose `Number and badge` is VERTICAL: 212x68 at
+     gap 12, with the Number on its own row and the change plus its note
+     below. Every other type puts them side by side, and doing that here
+     squeezed the note until "vs last month" truncated to "vs last m...". */
   "chart-01": { h: 144, hMobile: 138, dir: "column", pad: "padChart01", gap: "gapRow",
                 heading: "hard", change: "01", note: true, icon: null,
+                numberStacked: true,
                 chart: { w: 112, h: 56, series: "realistic-01" } },
   "chart-02": { h: 160, hMobile: 152, dir: "column", pad: "pad", gap: "gapRelaxed",
                 heading: "big", change: "02",
@@ -201,7 +239,7 @@ export function KpiTile({
   const numberEl = (
     <span style={{
       color: T.number, whiteSpace: "nowrap", flexShrink: 0,
-      fontSize: Y("font-size-xxl"), lineHeight: Y("line-height-xxl-single"),
+      fontSize: Y("font-size-xxl"), lineHeight: NUMBER_LINE_HEIGHT,
       fontWeight: Y("weight-semibold"), letterSpacing: Y("letter-spacing-wide"),
     }}>{value}</span>
   );
@@ -248,7 +286,13 @@ export function KpiTile({
   );
 
   // The number row, which differs per type.
-  const numberRow = s.numberInline ? (
+  const numberRow = s.numberStacked ? (
+    // Chart 01: Number above, change and note below, gap 12.
+    <span style={{ display: "flex", flexDirection: "column",
+      gap: L.numberGap12, minWidth: 0 }}>
+      {numberEl}{changeEl}
+    </span>
+  ) : s.numberInline ? (
     // Chart 02: Number and _Change on ONE row, gap 8.
     <span style={{ display: "flex", alignItems: "center", gap: L.gapRow, minWidth: 0 }}>
       {numberEl}{changeEl}
@@ -284,7 +328,7 @@ export function KpiTile({
         <span style={{
           display: "flex", flexDirection: "column", gap: L.gapRelaxed,
           padding: L.padChart01, boxSizing: "border-box",
-          background: T.surface, border: `${L.border} solid ${T.border}`,
+          background: T.surface, boxShadow: insetRing(T.border),
           borderRadius: L.innerRadius, position: "relative",
         }}>
           <span style={{ display: "flex", alignItems: "center", gap: L.numberGap12, minWidth: 0 }}>
@@ -371,7 +415,7 @@ export function KpiTile({
         gap: L[s.gap], padding: s.innerCard ? L.pad : L[s.pad],
         minHeight: mobile ? s.hMobile : s.h,
         background: s.innerCard ? T.surfaceFaint : T.surface,
-        border: `${L.border} solid ${T.border}`,
+        boxShadow: insetRing(T.border),
         borderRadius: L.radius,
         ...style,
       }}

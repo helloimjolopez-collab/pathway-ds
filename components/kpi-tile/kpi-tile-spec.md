@@ -383,6 +383,36 @@ is relative to a 112x56 artboard and would scale to 4 in a chart rendered at
 double that, which is too heavy for a sparkline. Recorded here because it is a
 deliberate departure rather than a mismatch.
 
+## 13.2 Two measured findings worth acting on
+
+### The number's line height has no token
+
+Figma's `Number` is the text style `❇️ Heading/Page/Large/Semibold`: Red Hat
+Text SemiBold, fs 32, **line height 36px**, letter spacing 0.1. Three of those
+four have tokens. `font-size-xxl` is 32, `weight-semibold` is 600 and
+`letter-spacing-wide` is 0.1. **The line height does not**: the ladder runs
+`xl-single` 30, `xxl-single` 40, `xxxl-single` 44, so there is no 36.
+
+Using 40, the nearest, made the text 4px taller than the design and broke all
+six measured tile heights at once, because the tile's height is derived: Simple
+is exactly 32 of padding plus a 20 heading plus a 2 gap plus a 36 number.
+
+The component therefore uses a raw `36px` with the gap named in the code. **The
+fix belongs in the Figma Variables panel**: a `line-height/xxl-tight` rung at
+36, after which this becomes a token reference like everything else.
+
+### Figma's INSIDE stroke does not participate in layout
+
+The tile's stroke is 1px at `strokeAlign: INSIDE`, so the Figma frame is
+exactly 90 tall with the stroke painted inside it. A CSS `border` with
+`box-sizing: border-box` makes `minHeight: 90` a floor of
+border plus padding plus content, so every tile came out 2px too tall and
+Chart 04, which has two rings, 4px.
+
+The component paints the ring with `box-shadow: inset 0 0 0 1px`, which lands
+in the same place and takes no space. All nine heights then match Figma
+exactly: 90, 96, 144, 144, 160, 162, 162, 162, 244.
+
 ## 14. Storybook
 
 Sidebar-visible, matching the untagged exports in `KPITile.stories.jsx` exactly:
