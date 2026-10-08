@@ -1,5 +1,5 @@
 /**
- * check-stories-render.js — load every built story in headless Chrome and fail
+ * check-stories-render.js: load every built story in headless Chrome and fail
  * if any of them renders nothing.
  *
  * WHY `storybook build` IS NOT ENOUGH. A module-level ReferenceError in a CSF

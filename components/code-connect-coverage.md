@@ -122,24 +122,37 @@ implementation that did not match Figma and had to be deleted.
 Nothing here is an oversight. Each is a decision, and each would be wrong to
 map as things stand.
 
-### Foreign components, not Pathway's
+### Foreign components: two replaced, three remaining
 
-These are nested inside Pathway components but come from a remote third-party
-library, almost certainly Untitled UI, the same source as the `↳ Select` page
-in CLAUDE.md §8.1. They cannot be mapped from this repo, because a mapping
-publishes into the file that owns the component.
+**Replaced 2026-10-08.** Two of these were nested inside Pathway components and
+are now Pathway components, so the code no longer depends on a third-party
+library for a third of what a KPI Tile is made of.
 
-| Figma | Node | Nested in | Evidence |
+| Was | Is now | How |
+|---|---|---|
+| `Featured icon` `40003806:3550`, 10x in KPI Tiles | **`FeaturedIcon` `40017444:140408`** plus `components/icon/featured-icon.jsx` | Built in the Pathway file. Every one of the seven raw hexes in the four used variants matched an existing Pathway token EXACTLY, distance 0 in RGB, so it is the same drawing on the tokens it was already the colour of |
+| `Dropdown` `40003188:9930`, 18x in KPI Tiles | **Pathway's own `PopoverMenu` `40005568:4207`** plus `components/dropdown/dropdown.jsx` | Nothing new was built. The `↳ ❇️ Menu` page already had a complete Pathway menu and no code had ever implemented it |
+
+**The Dropdown one is worth reading twice.** The foreign trigger walked to a
+single 20x20 `dots-vertical` instance: no box, no fill, no border. So the
+trigger was never the hard part, since Pathway already had `ActionIcon`. What
+was missing was the menu, and Pathway already had that too. Meanwhile
+`dashboard.jsx` had a private `WidgetMenu`, the KPI Tiles used the foreign
+component's `Open=True` half, and the first version of `dropdown.jsx` invented a
+third panel: three implementations of a component the design system owned.
+
+**Still foreign.** These remain, and each is a decision rather than an
+oversight.
+
+| Figma | Node | Nested in | Why it stays |
 |---|---|---|---|
-| Featured icon | `40003806:3550` | KPI Tiles, 10x | 84 variants, `Color: Brand/Gray/Error/Warning/Success` and `Type: Light/Glass/Modern neue`. Pathway has no `Gray` or `Error` tone; the names are Static/Neutral and Static/Negative |
-| Dropdown | `40003188:9930` | KPI Tiles, 18x | remote. `Type` is Button, Icon or Avatar |
-| Org Dropdown_V4 | `40007336:10275` | Org Switcher, 2x | remote |
-| `add`, `search`, `expand_more`, `expand_less`, `moving` | various | everywhere | remote glyph components. In code these are a `name` string on `<Icon>`, so there is nothing per glyph to map. `icon.figma.ts` carries the explanation |
+| Org Dropdown_V4 | `40007336:10275` | Org Switcher, 2x | The open panel, which the owner has said is out of scope for now |
+| `add`, `search`, `expand_more`, `expand_less`, `moving` | various | everywhere | Remote GLYPH components. In code these are a `name` string on `<Icon>`, so there is nothing per glyph to map. `icon.figma.ts` carries the explanation |
 
-**This is a real finding, not a technicality.** The KPI Tile's featured icon and
-its dropdown are foreign components inside a Pathway component. Either they get
-rebuilt as Pathway components or the tile stops using them. Until then the tile
-is not fully ours.
+**One thing the code fixed and Figma has not.** The CODE no longer uses either
+replaced component, but the Figma KPI Tiles set still nests the foreign
+instances: 10 Featured icons and 18 Dropdowns. Swapping those is a change to a
+shared component set, which is a design decision rather than a mapping one.
 
 ### Deliberately not implemented in this repo
 
@@ -166,7 +179,35 @@ Connect itself all passed:
 3. **The chart axis titles** did not exist in code. Figma draws `_Y-axis label`
    and `_X-axis label` on the Explore variant; the chart had ticks and month
    labels but nothing saying what was measured.
-4. **DisplayIcon's Color axis has no tokens behind it in Figma.** The variant
-   binds no fill and the nested glyph's fill is unbound, so the seven colours
-   are unbound in the file. The code's mapping is this repo's, derived from the
-   tone names, and the Figma side needs binding.
+4. **DisplayIcon's bindings, and a claim of mine that was wrong.** The first
+   report said its Color axis had NO tokens behind it. That was incorrect: the
+   bindings live on the `Container` frame and on the `_shape` vector INSIDE the
+   glyph instance, not on the variant or the instance, so checking those two
+   nodes concludes it is unbound when it is not.
+
+   Reading all 21 variants found the real defects, all fixed in the file on
+   2026-10-08:
+
+   - Only **4 of 21** glyphs were bound. The other 17 were raw fills.
+   - Two of those four used **hue-named** tokens,
+     `Foreground/Static/Amethyst/Bold` and `Foreground/Static/Green/Bold`,
+     which the semantic tier forbids and which are not even in the local
+     variable set any more.
+   - `Neutral` drew `Fill/Action/Secondary/Hover`: an **Action** token on a
+     decorative element with no states.
+   - `Info` drew `Fill/Static/Brand/Faint`, and Faint has no paired `On Subtle`
+     foreground, so the pairing the token set guarantees did not exist for it.
+   - Every `Container` carried a paint **style** as well as a variable, which is
+     two sources of truth for one colour.
+
+   All 42 bindings now use the meaning-named `Subtle` with its `On Subtle`
+   foreground, the styles are cleared, and each `Color` keeps the hue it already
+   rendered: `Accent` is amethyst and `Info` is brand, which is the file's own
+   history rather than something to tidy silently.
+
+5. **Six private icon helpers, now one.** `top-nav`, `search`, `org-switcher`,
+   `dashboard` and `kpi-tile` each carried a local `Icon` or `Glyph`, which is
+   why the Figma icon components had nothing importable to point at. Removing
+   them fixed two real defects: `top-nav.jsx` hardcoded `opsz 20` whatever the
+   size, so its 11, 12 and 14px glyphs all drew too light, and
+   `org-switcher.jsx` set no font axes at all.

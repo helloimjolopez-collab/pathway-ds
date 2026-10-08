@@ -36,6 +36,7 @@
  * exist" is the modal. They were one control once and it was the wrong one.
  */
 import React, { useState, useMemo, useRef, useEffect, useId } from "react";
+import { Icon } from "../icon/icon.jsx";
 import { Widget, WidgetKeyframes, SIZES, SIZE_LABEL, SIZE_GRID } from "../widget/widget.jsx";
 
 const C = (n) => `var(--semantic-color-${n})`;
@@ -91,13 +92,9 @@ export const L = {
   finderPadL:   U("padding-wide"),
 };
 
-const Glyph = ({ name, size = 20, color }) => (
-  <span className="material-symbols-rounded" aria-hidden="true" style={{
-    fontSize: size, lineHeight: 1, display: "block", color,
-    fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' ${size}`,
-  }}>{name}</span>
-);
-
+/* The icon primitive, imported rather than redeclared. This file carried its
+   own `Glyph` helper, one of six private copies across the library, which is
+   why Figma's icon components had no importable code to point at. */
 export function Button({ children, tone = "naked", icon, onClick, disabled,
   ariaExpanded, ariaHasPopup, style }) {
   const [hov, setHov] = useState(false);
@@ -120,7 +117,7 @@ export function Button({ children, tone = "naked", icon, onClick, disabled,
         transition: `background ${M("duration-2")} ${M("easing-standard")}, color ${M("duration-2")} ${M("easing-standard")}`,
         ...style,
       }}>
-      {icon && <Glyph name={icon} size={18} />}
+      {icon && <Icon name={icon} size={18} />}
       {children}
     </button>
   );
@@ -137,7 +134,7 @@ export function WidgetFinder({ value, onChange }) {
   return (
     <div style={{ position: "relative", display: "inline-flex", alignItems: "center" }}>
       <span style={{ position: "absolute", left: L.finderInset, pointerEvents: "none", color: T.subtle }}>
-        <Glyph name="search" size={L.finderIcon} />
+        <Icon name="search" size={L.finderIcon} />
       </span>
       <input type="search" value={value} onChange={(e) => onChange(e.target.value)}
         placeholder="Find a widget" aria-label="Find a widget"
@@ -153,7 +150,7 @@ export function WidgetFinder({ value, onChange }) {
         <button type="button" aria-label="Clear widget search" onClick={() => onChange("")}
           style={{ position: "absolute", right: L.finderInset, background: "transparent",
             border: "none", padding: 0, cursor: "pointer", color: T.subtle, display: "flex" }}>
-          <Glyph name="close" size={L.finderIcon} />
+          <Icon name="close" size={L.finderIcon} />
         </button>
       )}
     </div>
@@ -194,7 +191,7 @@ export function DashboardSelector({ dashboard, dashboards, editing, onRename, on
         aria-label="Switch dashboard" onClick={() => setOpen(v => !v)}
         style={{ background: "transparent", border: "none", cursor: "pointer",
           color: T.body, display: "flex", padding: U("padding-xxxxtight") }}>
-        <Glyph name="expand_more" size={18} />
+        <Icon name="expand_more" size={18} />
       </button>
       {open && (
         <div role="listbox" aria-label="Dashboards" style={{
@@ -211,7 +208,7 @@ export function DashboardSelector({ dashboard, dashboards, editing, onRename, on
                 border: "none", borderRadius: L.radius, cursor: "pointer", textAlign: "left",
                 color: T.title, fontFamily: "inherit", fontSize: Y("font-size-s") }}>
               <span style={{ width: 18, display: "inline-flex" }}>
-                {d.id === dashboard.id && <Glyph name="check" size={18} />}
+                {d.id === dashboard.id && <Icon name="check" size={18} />}
               </span>
               <span style={{ flex: 1, minWidth: 0 }}>{d.name}</span>
               {d.isDefault && <span style={{ color: T.subtle, fontSize: Y("font-size-xxs") }}>Default</span>}
@@ -323,13 +320,13 @@ export function AddWidgetModal({ catalogue, presentIds = [], onAdd, onClose }) {
           <span id={titleId} style={{ display: "inline-flex", alignItems: "center",
             gap: U("gap-xtight"), color: T.title,
             fontSize: Y("font-size-m"), fontWeight: Y("weight-semibold") }}>
-            <Glyph name="dashboard_customize" size={19} color={T.subtle} />
+            <Icon name="dashboard_customize" size={19} color={T.subtle} />
             Add widget
           </span>
           <button type="button" aria-label="Close" onClick={onClose}
             style={{ background: "transparent", border: "none", cursor: "pointer",
               color: T.body, display: "flex", padding: U("padding-xxtight") }}>
-            <Glyph name="close" size={20} />
+            <Icon name="close" size={20} />
           </button>
         </div>
 
@@ -361,7 +358,7 @@ export function AddWidgetModal({ catalogue, presentIds = [], onAdd, onClose }) {
                     background: view === v ? T.selectedFill : "transparent",
                     color: view === v ? T.selectedFg : T.body,
                     border: "none", cursor: "pointer" }}>
-                  <Glyph name={icon} size={18} />
+                  <Icon name={icon} size={18} />
                 </button>
               ))}
             </div>
@@ -752,7 +749,7 @@ function SwapSheet({ options, currentId, onPick, onClose }) {
                   cursor: current ? "default" : "pointer", color: T.title,
                   fontFamily: "inherit", fontSize: Y("font-size-xs") }}>
                 <span style={{ width: 18, flexShrink: 0, display: "inline-flex" }}>
-                  {current && <Glyph name="check" size={18} />}
+                  {current && <Icon name="check" size={18} />}
                 </span>
                 <span style={{ flex: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis",
                   whiteSpace: "nowrap" }}>{o.name}</span>

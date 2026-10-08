@@ -1267,7 +1267,8 @@
       "model": "A KPI Tile IS a card: all 18 variants have their own surface, border, radius and padding, and it gets a Storybook page. The cardless thing is KPI Number & Trend, a BUILDING BLOCK nested inside both a KPI Tile and a Widget, which is mapped but has no page. A KPI Tile and a Widget are two different components that share that block, not two framings of one thing. Corrected 2026-10-07: the block was previously named KpiTile and wrongly described as a cardless tile.",
       "buildingBlocks": "Mapped, no Storybook page, because each only appears as a nested instance: KpiNumberAndTrend 40017320:247, KpiNumber 40017333:37612, Change 40009415:28112, MiniChart 40009415:27919, TrendComparisonControl 40017320:361, WidgetHeading 40017333:34481.",
       "demoHtml": null,
-      "demoHtmlNote": "No standalone .html demo, deliberately. Every older component carries one; Widget, KPI Tile and Dashboard do not, because all three are only meaningful on a board and the Dashboard Storybook page plus the canonical demo already are one. A static copy would be a second implementation to keep in step."
+      "demoHtmlNote": "No standalone .html demo, deliberately. Every older component carries one; Widget, KPI Tile and Dashboard do not, because all three are only meaningful on a board and the Dashboard Storybook page plus the canonical demo already are one. A static copy would be a second implementation to keep in step.",
+      "note": " 2026-10-08: the tile's two FOREIGN nested components are replaced by Pathway ones in code. The featured icon is components/icon/featured-icon.jsx and the dropdown is components/dropdown/dropdown.jsx. This file also drew private copies of both, so nothing else could reuse them. The Figma KPI Tiles set still nests the foreign instances; swapping them is a change to a shared component set and a design decision."
     },
     "dashboard": {
       "displayName": "Dashboard",
@@ -1300,24 +1301,29 @@
       "modules": [
         "components/icon/icon.jsx",
         "components/icon/action-icon.jsx",
-        "components/icon/display-icon.jsx"
+        "components/icon/display-icon.jsx",
+        "components/icon/featured-icon.jsx"
       ],
       "module": "components/icon/icon.jsx",
       "spec": "components/icon/icon-spec.md",
       "stories": "src/stories/Library/Icon/Icon.stories.jsx",
       "exports": [
+        "ACTION_ICON_SIZES",
+        "AXES",
+        "ActionIcon",
+        "DISPLAY_ICON_COLORS",
+        "DISPLAY_ICON_SIZES",
+        "DisplayIcon",
+        "FEATURED_ICON_COLORS",
+        "FEATURED_ICON_SIZES",
+        "FEATURED_ICON_TYPES",
+        "FeaturedIcon",
+        "ICON_SOURCES",
         "Icon",
         "IconBox",
         "IconFont",
-        "SIZES",
-        "AXES",
         "MATERIAL_SYMBOLS_HREF",
-        "ICON_SOURCES",
-        "ActionIcon",
-        "ACTION_ICON_SIZES",
-        "DisplayIcon",
-        "DISPLAY_ICON_SIZES",
-        "DISPLAY_ICON_COLORS"
+        "SIZES"
       ],
       "figma": {
         "fileKey": "3sw45aVcngFAmpbP6cfrXP",
@@ -1326,7 +1332,8 @@
         "sets": {
           "Action Icon": "40006794:19891",
           "DisplayIcon": "40006522:26547",
-          "Button Icon": "1884:5171"
+          "Button Icon": "1884:5171",
+          "FeaturedIcon": "40017444:140408"
         }
       },
       "font": {
@@ -1346,10 +1353,49 @@
       "codeConnect": [
         "components/icon/action-icon.figma.ts",
         "components/icon/display-icon.figma.ts",
+        "components/icon/featured-icon.figma.ts",
         "components/icon/icon.figma.ts"
       ],
-      "gaps": "DisplayIcon's Color axis has NO tokens behind it in Figma: the variant binds no fill and the nested glyph's fill is unbound, so the seven colours are unbound in the file. The code's mapping is derived from the tone names and the Figma side needs binding. Also: the glyph components nested in Pathway components (add, search, expand_more, expand_less, moving) are REMOTE library components, so there is nothing per glyph to map; in code they are a name string.",
-      "note": "Created 2026-10-07 because every Figma icon component had NO code to point at: Code Connect listed them with no path and no link, and six components each carried a private Icon or Glyph helper that nothing could import. ActionIcon moved here out of widget.jsx, where it was private despite being nested 30 times in that very Figma set."
+      "gaps": "Modern's shadow has no exact token: Figma is 0 1 2 plus two inner shadows, and --elevation-widget (0 2 8 -2) is the nearest. The inner shadows are dropped as an Untitled UI flourish. The Positive glyph takes On Subtle rather than the exact-hex On Strong, because On Strong is for a solid fill and this sits on a Subtle one; 11.94:1 against 15.4:1, both AAA. The glyph components nested in Pathway components (add, search, expand_more, expand_less, moving) are REMOTE, so there is nothing per glyph to map; in code they are a name string.",
+      "note": "Created 2026-10-07 because every Figma icon component had NO code to point at: Code Connect listed them with no path and no link, and six components each carried a private Icon or Glyph helper that nothing could import. ActionIcon moved here out of widget.jsx, where it was private despite being nested 30 times in that very Figma set.",
+      "figmaFixed": "DisplayIcon was bound in the file on 2026-10-08. An earlier report claimed its Color axis had NO tokens, which was WRONG: the bindings live on the Container frame and on the _shape vector inside the glyph instance, not on the variant or the instance, so a reader checking those two nodes concludes it is unbound. The real defects, found by reading all 21 variants: only 4 of 21 glyphs were bound; two of those used HUE-NAMED tokens (Foreground/Static/Amethyst/Bold and /Green/Bold, neither of which is even in the local variable set any more); Neutral drew Fill/Action/Secondary/Hover, an ACTION token on a decorative element; Info drew Fill/Static/Brand/Faint, and Faint has no paired On Subtle foreground; and every Container carried a paint STYLE as well as a variable. All 42 bindings now use the meaning-named Subtle/On Subtle pairing, the styles are cleared, and each Color keeps the hue it already rendered: Accent is amethyst (Info) and Info is brand, which is the file's own history.",
+      "figmaCreated": "FeaturedIcon 40017444:140408 was created in the Pathway file on 2026-10-08 to replace the FOREIGN Featured icon 40003806:3550, a remote third-party component nested 10 times in KPI Tiles. 16 variants on Type (Outline | Modern) x Size (lg 48/glyph 24 | md 40/glyph 20) x Color (7 tones, Outline only). Every one of the seven raw hexes in the four variants the KPI Tile used matched an existing Pathway token EXACTLY, so it is the same drawing on the tokens it was already the colour of."
+    },
+    "dropdown": {
+      "displayName": "Dropdown",
+      "description": "A trigger and the menu it opens. Replaces a foreign component and finally implements Pathway's own PopoverMenu.",
+      "module": "components/dropdown/dropdown.jsx",
+      "spec": "components/dropdown/dropdown-spec.md",
+      "stories": "src/stories/Library/Dropdown/Dropdown.stories.jsx",
+      "exports": [
+        "Dropdown",
+        "DropdownItem",
+        "DropdownDivider",
+        "DROPDOWN_TYPES",
+        "T",
+        "L"
+      ],
+      "figma": {
+        "fileKey": "3sw45aVcngFAmpbP6cfrXP",
+        "nodeId": "40005568:4207",
+        "setName": "PopoverMenu",
+        "page": "↳ ❇️ Menu",
+        "sets": {
+          "PopoverMenu": "40005568:4207",
+          "PopoverMenu.Item": "40005568:4191",
+          "PopoverMenu.SectionLabel": "40005748:20503",
+          "Menu.Divider": "40006377:69269"
+        },
+        "replaces": "40003188:9930, a REMOTE third-party Dropdown nested 18 times in KPI Tiles"
+      },
+      "measured": "Panel 212 wide, VERTICAL, pad 8, r=8, Fill/Surface/Elevated with Stroke/Static/Neutral/Base and a 0 4 16 -2 shadow at a0.08; inner Menu slot VERTICAL gap 8 pad 6. Item 200x40 HORIZONTAL pad 6,14,6,14 r=8, label fs 14, Label Wrapper gap 4 with an 8 inset, leading icon a 20 box holding a 14 glyph. Item label is an ACTION foreground: Base Foreground/Action/Secondary/Rest on Fill/Surface/Elevated, Hover /Hover on Fill/Action/SELECTION/Hover. Divider a line on Stroke/Static/Neutral/Base with 6 above and below. The Icon trigger is 20x20 with a 20 glyph and nothing around it.",
+      "note": "Pathway ALREADY HAD this menu and nothing had implemented it. dashboard.jsx grew a private WidgetMenu, KPI Tiles used a foreign component's Open=True half, and the first version of dropdown.jsx invented a third panel: three implementations of a component the system owned. The foreign trigger was a bare 20px glyph, so the trigger was never the hard part.",
+      "gaps": "Panel shadow has no exact token (Figma 0 4 16 -2, nearest --elevation-sheet 0 4 32 -8). PopoverMenu.SectionLabel 40005748:20503 is unimplemented: nothing groups items under a heading yet. PopoverMenu.Item's State=Active is unimplemented, no consumer. The foreign Dropdown is still nested in the Figma KPI Tiles set; the CODE no longer uses it, and swapping those 18 instances is a change to a shared component set and a design decision.",
+      "codeConnect": [
+        "components/dropdown/menu-divider.figma.ts",
+        "components/dropdown/popover-menu-item.figma.ts",
+        "components/dropdown/popover-menu.figma.ts"
+      ]
     }
   },
   "codeConnectCoverage": "components/code-connect-coverage.md"

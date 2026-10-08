@@ -27,6 +27,7 @@
  */
 
 import React, { useState, useEffect, useRef } from "react";
+import { Icon } from "../icon/icon.jsx";
 
 // ─── DESIGN TOKENS ─────────────────────────────────────────────────────────────
 // Every value is a semantic CSS variable. Fallbacks are the resolved values from
@@ -147,27 +148,11 @@ const TYPE_INPUT = {
 // ─── ICON HELPER ───────────────────────────────────────────────────────────────
 // Material Symbols Rounded. Ligature name read from Figma data-name attribute.
 // Font loaded by Storybook preview-head.html and by the standalone HTML demo.
-function Icon({ name, size = L.iconSize, color, style: extra }) {
-  return (
-    <span
-      className="material-symbols-rounded"
-      aria-hidden="true"
-      style={{
-        fontSize: size,
-        lineHeight: 1,
-        display: "block",
-        userSelect: "none",
-        color,
-        // FILL=1 matches the filled Rounded variant in Figma.
-        // Figma is the source of truth, icons in the search bar use filled style.
-        fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20",
-        ...extra,
-      }}
-    >
-      {name}
-    </span>
-  );
-}
+/* Icon is imported, not redeclared. The copy that used to live here baked in
+   FILL=1, which is correct for this component and WRONG as a default: FILL is
+   read from Figma per component and the TopNav search bar happens to use the
+   filled variant. Every call site here passes fill={1} so the axis is visible
+   at the point of use rather than hidden in a local helper. */
 
 // ─── ICON PILL BUTTON ──────────────────────────────────────────────────────────
 // 24×24px button with 64px-radius icon pill inside. Hover/pressed via state.
@@ -213,7 +198,7 @@ function IconPillButton({ iconName, iconSize = L.iconSize, iconColor, label, onC
           transition: "background var(--motion-duration-2) var(--motion-easing-standard)",
         }}
       >
-        <Icon name={iconName} size={iconSize} color={iconColor} />
+        <Icon name={iconName} size={iconSize} color={iconColor} fill={1} />
       </div>
     </button>
   );
@@ -429,7 +414,7 @@ export function SearchInput({
                     padding: L.iconPillPad,
                   }}
                 >
-                  <Icon name="filter_alt" size={L.iconSize} color={iconColor} />
+                  <Icon name="filter_alt" size={L.iconSize} color={iconColor} fill={1} />
                 </div>
               </button>
 
@@ -684,7 +669,7 @@ export function TopNavSearch({
               borderRadius: L.iconBtnRadius, color: T.navIconFill,
             }}
           >
-            <Icon name="arrow_back" size={L.exitGlyph} color={T.navIconFill} />
+            <Icon name="arrow_back" size={L.exitGlyph} color={T.navIconFill} fill={1} />
           </button>
           <div style={{ flex: 1, minWidth: 0 }}>
             <SearchInput

@@ -39,8 +39,10 @@
  * reads as neutral chrome on the tile and as colour inside a widget. Measured,
  * and reproduced rather than unified, because unifying them is a design call.
  */
-import React from "react";
+import React, { useState } from "react";
 import { Change } from "./kpi-number-trend.jsx";
+import { FeaturedIcon } from "../icon/featured-icon.jsx";
+import { Dropdown, DropdownItem } from "../dropdown/dropdown.jsx";
 
 const C = (n) => `var(--semantic-color-${n})`;
 const U = (n) => `var(--semantic-layout-units-${n})`;
@@ -52,11 +54,6 @@ export const T = {
   headingSoft: C("foreground-static-neutral-base"),
   headingHard: C("foreground-static-neutral-strong"),
   number:      C("foreground-static-neutral-strong"),
-  menu:        C("foreground-static-neutral-base"),
-  iconUpFill:  C("fill-static-positive-subtle"),
-  iconUpGlyph: C("foreground-static-positive-on-subtle"),
-  iconDownFill:  C("fill-static-negative-subtle"),
-  iconDownGlyph: C("foreground-static-negative-on-subtle"),
 };
 
 export const L = {
@@ -68,21 +65,11 @@ export const L = {
   gapIcon:     U("gap-relaxed"),           // 24. Was 20, see the note above.
   gapChart:    U("gap-tight"),             // 8
   numberRowGap:U("gap-base"),              // 16
-  featuredIcon: 48,
-  featuredGlyph: 24,
-  menuIcon:    20,
 };
 
 /** Figma's nine Types, reduced to the three SHAPES they describe. The numbered
  *  suffixes vary the sample glyph or line, which are props, not layouts. */
 export const KPI_TILE_TYPES = ["simple", "icon", "chart"];
-
-const Glyph = ({ name, size, color }) => (
-  <span className="material-symbols-rounded" aria-hidden="true" style={{
-    fontSize: size, lineHeight: 1, display: "block", color,
-    fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' ${size}`,
-  }}>{name}</span>
-);
 
 /**
  * The bordered trend chip this set uses: Figma `_Change` **Type 03**.
@@ -115,13 +102,23 @@ export function KpiTile({
   icon = "trending_up",
   direction = "up",
   onMenu,
+  /** The menu's entries. Omit and the control still opens, with the one entry
+   *  every tile has: a tile with a menu that opens nothing is a dead control. */
+  menuItems,
   className = "",
   style,
 }) {
+  const [menuOpen, setMenuOpen] = useState(false);
   const isChart = type === "chart";
   const isIcon = type === "icon";
   const pad = isChart ? L.padChart : L.padSimple;
   const gap = isChart ? L.gapChart : isIcon ? L.gapIcon : L.gapSimple;
+
+  /* A menu that opens nothing is a dead control, so a tile given `onMenu` but
+     no `menuItems` gets the one entry every tile has. */
+  const items = menuItems || (
+    <DropdownItem label="Open the full view" onSelect={() => setMenuOpen(false)} />
+  );
 
   const headingEl = (
     <span style={{
@@ -150,30 +147,39 @@ export function KpiTile({
       borderRadius: L.radius, minWidth: 0,
       ...style,
     }}>
-      {/* Dropdown: 20x20 dots-vertical in the top right. Absolute, so it never
-          takes part in the stack's gap and the three Types keep their measured
-          heights of 90, 158 and 136. */}
+      {/* THE DROPDOWN AND THE FEATURED ICON ARE PATHWAY COMPONENTS NOW.
+          Figma nests two FOREIGN ones here, both from a third-party library:
+          `Dropdown` 40003188:9930 eighteen times and `Featured icon`
+          40003806:3550 ten times. Neither can be Code Connected from this repo,
+          because a mapping publishes into the file that owns the component, so
+          a third of what this tile is made of was unreachable.
+          This file also drew its own private copies of both, which is the other
+          half of the same problem: nothing else could reuse them.
+          They are `components/dropdown/dropdown.jsx` and
+          `components/icon/featured-icon.jsx`, measured off those nodes. */}
       {onMenu && (
-        <button type="button" aria-label="More actions" onClick={onMenu} style={{
-          position: "absolute", top: pad, right: pad,
-          display: "flex", background: "transparent", border: "none",
-          padding: 0, cursor: "pointer", color: T.menu,
-        }}>
-          <Glyph name="more_vert" size={L.menuIcon} />
-        </button>
+        <span style={{ position: "absolute", top: pad, right: pad }}>
+          <Dropdown
+            type="icon"
+            label="More actions"
+            open={menuOpen}
+            onOpenChange={(v) => { setMenuOpen(v); if (v) onMenu?.(); }}
+          >
+            {items}
+          </Dropdown>
+        </span>
       )}
 
       {isIcon && (
-        /* Featured icon: 48x48 at r=28, tinted by direction. */
-        <span style={{
-          width: L.featuredIcon, height: L.featuredIcon, borderRadius: "50%",
-          display: "inline-flex", alignItems: "center", justifyContent: "center",
-          flexShrink: 0,
-          background: direction === "up" ? T.iconUpFill : T.iconDownFill,
-        }}>
-          <Glyph name={icon} size={L.featuredGlyph}
-            color={direction === "up" ? T.iconUpGlyph : T.iconDownGlyph} />
-        </span>
+        /* Featured icon. Figma's variants here are Type=Light outline at
+           Size=lg, so the tinted circle at 48. `direction` picks the tone,
+           which is what this set uses it for. */
+        <FeaturedIcon
+          name={icon}
+          size="lg"
+          type="outline"
+          color={direction === "up" ? "Positive" : "Negative"}
+        />
       )}
 
       {isChart ? (

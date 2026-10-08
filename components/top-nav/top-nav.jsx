@@ -11,6 +11,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { ActionIcon } from "../icon/action-icon.jsx";
+import { Icon } from "../icon/icon.jsx";
 
 // TopNav.Search is the canonical nested search control. Import it: never
 // reimplement it here. (See CLAUDE.md §10.1 "import, don't reinvent": the prior
@@ -285,22 +286,14 @@ export function OrgAvatarPlaceholder() {
 
 // ─── MATERIAL SYMBOL HELPER ────────────────────────────────────────────────────
 // Used for all icons EXCEPT the custom Figma SVGs above.
-function Icon({ name, size = 20, style: extraStyle }) {
-  return (
-    <span
-      className="material-symbols-rounded"
-      style={{
-        fontSize: size, lineHeight: 1, display: "block",
-        userSelect: "none",
-        fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20",
-        ...extraStyle,
-      }}
-      aria-hidden="true"
-    >
-      {name}
-    </span>
-  );
-}
+/* Icon is imported, not redeclared, and that fixes a real defect rather than
+   just removing duplication.
+   The copy that used to live here hardcoded `'opsz' 20` no matter what `size`
+   was. This file draws glyphs at 11, 12, 14 and 22, so every one of them
+   except the 20s rendered at the wrong optical size: a 12px chevron at opsz 20
+   draws visibly too light, which is exactly the defect that shipped in the
+   collapsed SideNav rail and was fixed there months ago. The shared component
+   tracks opsz to the frame size. */
 
 // ─── MODULE DATA ───────────────────────────────────────────────────────────────
 /**

@@ -333,6 +333,13 @@ const RETIRED_EXAMPLES = new Set([
 // turning up in documents that USE it rather than discuss it, the reference is
 // the bug, not the check.
 const RETIRED_SLASH_EXAMPLES = new Set([
+  // Both gone from the local variable set, and both named by display-icon.jsx
+  // and the icon spec in order to say so: the DisplayIcon glyphs were bound to
+  // these HUE-NAMED tokens, which the semantic tier forbids, and were rebound
+  // to the meaning-named On Subtle pairings on 2026-10-08. The sentences are
+  // about their absence, so modernising the names would make them false.
+  "Foreground/Static/Amethyst/Bold",
+  "Foreground/Static/Green/Bold",
   // Deleted 2026-09-14. A brand-coloured foreground now exists only as an
   // action foreground (the naked primary button). The spinner's CSS, spec and
   // MDX all name the group to explain why `tone="brand"` lost its ramp.

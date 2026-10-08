@@ -245,11 +245,12 @@ Sidebar-visible, matching the untagged exports in `Icon.stories.jsx` exactly:
 
 | Export | Name |
 |---|---|
-| `Playground` | Playground |
+| `Playground` | arrow_forward |
 | `TheFillAxis` | The FILL axis |
 | `SizeIsTheFrame` | Size is the frame, not the vector |
 | `ActionIcons` | ActionIcon: the three sizes and their states |
 | `DisplayIcons` | DisplayIcon: every size and colour |
+| `FeaturedIcons` | FeaturedIcon: the two Figma types |
 
 Reference, `!dev`-tagged: `TokensColour` (Tokens: colour).
 

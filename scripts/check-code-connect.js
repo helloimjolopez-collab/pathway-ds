@@ -1,5 +1,5 @@
 /**
- * check-code-connect.js — verify what Code Connect itself never checks.
+ * check-code-connect.js: verify what Code Connect itself never checks.
  *
  * WHY. Code Connect publishes a code snippet to a Figma component and verifies
  * NOTHING about it: not a token value, not a measurement, not a prop name, not

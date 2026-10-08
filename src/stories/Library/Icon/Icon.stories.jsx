@@ -10,6 +10,7 @@ import React from "react";
 import { Icon, IconBox, SIZES, MATERIAL_SYMBOLS_HREF, ICON_SOURCES } from "../../../../components/icon/icon.jsx";
 import { ActionIcon, ACTION_ICON_SIZES } from "../../../../components/icon/action-icon.jsx";
 import { DisplayIcon, DISPLAY_ICON_SIZES, DISPLAY_ICON_COLORS } from "../../../../components/icon/display-icon.jsx";
+import { FeaturedIcon, FEATURED_ICON_SIZES, FEATURED_ICON_COLORS } from "../../../../components/icon/featured-icon.jsx";
 import { TokenTables } from "../_shared/TokenTable.jsx";
 
 const U = (n) => `var(--semantic-layout-units-${n})`;
@@ -268,4 +269,64 @@ export const TokensColour = {
         ] },
     ]} />
   ),
+};
+
+
+/**
+ * The large badge a KPI tile puts above its number, and the replacement for a
+ * FOREIGN component: Figma nests `Featured icon` 40003806:3550 here, a remote
+ * third-party component, ten times inside a Pathway one.
+ */
+export const FeaturedIcons = {
+  name: "FeaturedIcon: the two Figma types",
+  render: () => page(
+    <>
+      <div>
+        {caption("type=\"outline\" \u00b7 a tinted circle \u00b7 lg 48 / glyph 24, md 40 / glyph 20")}
+        <div style={{ display: "flex", alignItems: "center", gap: U("gap-base"), flexWrap: "wrap" }}>
+          {Object.keys(FEATURED_ICON_COLORS).map((c) => (
+            <div key={c} style={{ textAlign: "center" }}>
+              <FeaturedIcon name="trending_up" size="lg" type="outline" color={c} />
+              <code style={{ display: "block", marginTop: 4,
+                fontSize: "var(--semantic-type-font-size-xxs)",
+                color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>{c}</code>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        {caption('type="modern" \u00b7 a white chip, NOT tone-coloured \u00b7 r=8, 1px border, shadow')}
+        <div style={{ display: "flex", alignItems: "center", gap: U("gap-base") }}>
+          {Object.entries(FEATURED_ICON_SIZES).map(([k, v]) => (
+            <div key={k} style={{ textAlign: "center" }}>
+              <FeaturedIcon name="trending_up" size={k} type="modern" />
+              <code style={{ display: "block", marginTop: 4,
+                fontSize: "var(--semantic-type-font-size-xxs)",
+                color: "var(--semantic-color-foreground-static-neutral-subtle)" }}>
+                {k}: {v.box} / glyph {v.glyph}
+              </code>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        {caption("The two variants the KPI Tile actually nests, side by side")}
+        <div style={{ display: "flex", alignItems: "center", gap: U("gap-base") }}>
+          <FeaturedIcon name="trending_up" size="lg" type="outline" color="Positive" />
+          <FeaturedIcon name="bolt" size="lg" type="outline" color="Accent" />
+          <FeaturedIcon name="trending_up" size="lg" type="modern" />
+          <FeaturedIcon name="trending_up" size="md" type="modern" />
+        </div>
+      </div>
+    </>
+  ),
+  parameters: { docs: { description: { story:
+    "EVERY COLOUR HERE WAS ALREADY A PATHWAY COLOUR. All seven raw hexes in " +
+    "the foreign component's four used variants match an existing semantic " +
+    "token exactly, distance 0 in RGB, so this is the same drawing on the " +
+    "tokens it was already the colour of. Two departures: the Positive glyph " +
+    "takes On Subtle rather than the On Strong the foreign component used, " +
+    "because On Strong is for a solid fill and this sits on a Subtle one; and " +
+    "the chip's shadow uses --elevation-widget, the nearest Pathway token to " +
+    "Figma's 0 1 2, since no exact one exists." } } },
 };

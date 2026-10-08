@@ -33,6 +33,7 @@
  */
 
 import React, { useState, useEffect } from "react";
+import { Icon } from "../icon/icon.jsx";
 
 // ─── CHURCH PLACEHOLDER ICON ──────────────────────────────────────────────────
 // Figma node 40007243:73426. Used when the org has no logo image on file.
@@ -95,17 +96,10 @@ const T = {
 // Material Symbols Rounded. Pathway uses Material Symbols for all icons
 // (CLAUDE.md icon rules). The font is loaded by the Storybook preview-head
 // and by the standalone HTML demo.
-function Icon({ name, size = 20, style }) {
-  return (
-    <span
-      className="material-symbols-rounded"
-      aria-hidden="true"
-      style={{ fontSize: size, lineHeight: 1, display: "block", userSelect: "none", ...style }}
-    >
-      {name}
-    </span>
-  );
-}
+/* Icon is imported, not redeclared. The copy that used to live here set NO
+   fontVariationSettings at all, so every glyph in this component rendered at
+   the font's default axes rather than Pathway's FILL 0 / wght 400 / GRAD 0 with
+   opsz matched to the size. The shared component sets them. */
 
 // ─── CHURCH PLACEHOLDER (no-logo state) ───────────────────────────────────────
 // Renders inside the avatar frame at Figma's specified inset (4.17% top,

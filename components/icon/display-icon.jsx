@@ -25,16 +25,39 @@
  * pairing the token set guarantees and `check-fill-foreground-pairs` asserts.
  * Reaching for a Strong fill here would put tone text on a tone block.
  *
- * ONE MEASURED GAP, recorded rather than invented: the component binds no fill
- * on the variant and the nested glyph's fill is unbound, so neither the circle
- * colour nor the glyph colour is bound to a variable in Figma. The Color axis
- * therefore has no token behind it in the file. The mapping below is this
- * repo's, derived from the tone names, and the Figma side needs binding.
+ * THE TOKENS BELOW ARE READ BACK FROM FIGMA, not derived from the names.
+ *
+ * What was there before, and what it took to find it: the variant itself has no
+ * fill and the nested glyph instance has no fill, so a reader checking those two
+ * nodes concludes the Color axis is unbound. It is not: the bindings live on the
+ * `Container` frame and on the `_shape` vector INSIDE the glyph instance. A
+ * first pass reported "no tokens at all", which was wrong.
+ *
+ * The real defects, found by reading all 21 variants on 2026-10-08 and fixed in
+ * the file the same day:
+ *
+ *   - Only 4 of 21 glyphs were bound. The other 17 were raw fills.
+ *   - Two of those 4 used HUE-NAMED tokens, `Foreground/Static/Amethyst/Bold`
+ *     and `Foreground/Static/Green/Bold`, which the semantic tier forbids and
+ *     which are not even in the local variable set any more.
+ *   - `Neutral` drew `Fill/Action/Secondary/Hover`: an ACTION token on a
+ *     decorative element that has no states.
+ *   - `Info` drew `Fill/Static/Brand/Faint`, and Faint has no paired On Subtle
+ *     foreground, so the pairing the token set guarantees did not exist for it.
+ *   - Every Container carried a paint STYLE as well as a variable, which is two
+ *     sources of truth for one colour. The styles were cleared.
  */
 import React from "react";
 import { Icon } from "./icon.jsx";
 
 const C = (n) => `var(--semantic-color-${n})`;
+
+const U = (n) => `var(--semantic-layout-units-${n})`;
+
+export const L = {
+  // Figma: Container cornerRadius 8 on all 21 variants.
+  radius: U("cornerradius-base"),
+};
 
 export const DISPLAY_ICON_SIZES = {
   Small:  { box: 24, glyph: 12 },
@@ -42,15 +65,32 @@ export const DISPLAY_ICON_SIZES = {
   Large:  { box: 40, glyph: 20 },
 };
 
-/** Figma's Color axis, onto the meaning-named tone groups. */
+/**
+ * Figma's Color axis, read back from the file after binding on 2026-10-08.
+ *
+ * EACH VALUE KEEPS THE HUE IT ALREADY RENDERED. The names are not a clean map
+ * onto the tone groups and that is the file's own history, not something to
+ * tidy here: `Accent` resolves to INFO (amethyst) and `Info` resolves to BRAND.
+ * Repointing either would repaint a variant rather than fix a mapping, so the
+ * binding kept the hue and fixed only the tier and the pairing.
+ *
+ * An earlier version of this file guessed Accent to Brand and Info to Info,
+ * which is those two swapped, so a consumer asking for Accent got blue where
+ * the design is amethyst.
+ */
 export const DISPLAY_ICON_COLORS = {
-  Accent:   { fill: C("fill-static-brand-subtle"),     fg: C("foreground-static-brand-on-subtle") },
+  // Accent is amethyst, which is the Info tone in the token set.
+  Accent:   { fill: C("fill-static-info-subtle"),      fg: C("foreground-static-info-on-subtle") },
   Positive: { fill: C("fill-static-positive-subtle"),  fg: C("foreground-static-positive-on-subtle") },
   Negative: { fill: C("fill-static-negative-subtle"),  fg: C("foreground-static-negative-on-subtle") },
+  // Danger is Severe (orange), a different tone from Negative (red). Both are
+  // in the Figma axis, so they must stay different here too.
   Danger:   { fill: C("fill-static-severe-subtle"),    fg: C("foreground-static-severe-on-subtle") },
-  Neutral:  { fill: C("fill-static-neutral-subtle"),   fg: C("foreground-static-neutral-base") },
-  Info:     { fill: C("fill-static-info-subtle"),      fg: C("foreground-static-info-on-subtle") },
   Alert:    { fill: C("fill-static-attention-subtle"), fg: C("foreground-static-attention-on-subtle") },
+  // Neutral has no On Subtle rung, so its foreground is Base.
+  Neutral:  { fill: C("fill-static-neutral-subtle"),   fg: C("foreground-static-neutral-base") },
+  // Info is the BRAND blue in this component, not the Info tone.
+  Info:     { fill: C("fill-static-brand-subtle"),     fg: C("foreground-static-brand-on-subtle") },
 };
 
 /**
@@ -80,7 +120,11 @@ export function DisplayIcon({
       data-color={color}
       style={{
         display: "inline-flex", alignItems: "center", justifyContent: "center",
-        width: s.box, height: s.box, flexShrink: 0, borderRadius: "50%",
+        width: s.box, height: s.box, flexShrink: 0,
+        /* r=8 ON EVERY VARIANT, a rounded square. This drew a full circle, which
+           is a different shape: Figma's Container corner radius is 8 at all
+           three sizes, and only the Featured icon's Light outline type is round. */
+        borderRadius: L.radius,
         background: tone.fill, color: tone.fg, ...style,
       }}
       {...rest}
