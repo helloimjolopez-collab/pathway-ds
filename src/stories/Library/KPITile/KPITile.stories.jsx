@@ -517,3 +517,28 @@ export const ChartShapes = {
     "Layers paths are beziers and its Realistic paths are polylines, and " +
     "drawing all twelve as polylines made every Wavy look like a Realistic." } } },
 };
+
+/**
+ * The generated standalone demo. Unlike the eight hand-written ones, this page
+ * BUNDLES the real module, so it cannot fall behind the component: see
+ * scripts/build-demos.js. The width buttons in it load the page as an inner
+ * frame at that width, which is the only way its media queries see it.
+ */
+export const StandaloneDemo = () => (
+  <iframe
+    src="/components/kpi-tile/kpi-tile.html"
+    title="KPI Tile standalone demo"
+    style={{ width: "100%", height: 760, border: "none",
+      borderRadius: "var(--semantic-layout-units-cornerradius-base)",
+      boxShadow: "var(--elevation-widget)" }}
+  />
+);
+StandaloneDemo.parameters = {
+  docs: { description: { story:
+    "`components/kpi-tile/kpi-tile.html`, generated from " +
+    "`components/kpi-tile/kpi-tile-demo.jsx` by `npm run build-demos`. Resize the " +
+    "Storybook panel, or use the widths inside the page: those load it as an " +
+    "inner frame so the breakpoints actually fire, which narrowing an element " +
+    "does not do." } },
+  layout: "fullscreen",
+};

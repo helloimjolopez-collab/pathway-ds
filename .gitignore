@@ -15,3 +15,13 @@ Library/Application Support/pathway-token-sync.sh
 # Built Storybook. Pages deploys a fresh artifact via deploy-pages.yml;
 # committing the build put 14MB of stale output on main per push.
 storybook/
+
+# Standalone-demo build output, emitted by scripts/build-demos.js during
+# build-dist and regenerated in CI before the Pages artifact is assembled.
+# The generated .html pages ARE committed, because they are small and are the
+# published URLs; the bundles are 175 to 210kb each and would churn in every
+# diff that touches a component, which is the same reason storybook/ was
+# removed from the repo.
+components/*/*-demo.js
+components/_demo/tokens/
+components/_demo/pathway-sidenav.js

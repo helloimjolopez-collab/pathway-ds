@@ -543,3 +543,28 @@ export const ThePattern = {
     "resizing and duplicating, works without entering it, because making " +
     "someone enter a mode to add a widget is friction with nothing behind it." } } },
 };
+
+/**
+ * The generated standalone demo. Unlike the eight hand-written ones, this page
+ * BUNDLES the real module, so it cannot fall behind the component: see
+ * scripts/build-demos.js. The width buttons in it load the page as an inner
+ * frame at that width, which is the only way its media queries see it.
+ */
+export const StandaloneDemo = () => (
+  <iframe
+    src="/components/dashboard/dashboard.html"
+    title="Dashboard standalone demo"
+    style={{ width: "100%", height: 760, border: "none",
+      borderRadius: "var(--semantic-layout-units-cornerradius-base)",
+      boxShadow: "var(--elevation-widget)" }}
+  />
+);
+StandaloneDemo.parameters = {
+  docs: { description: { story:
+    "`components/dashboard/dashboard.html`, generated from " +
+    "`components/dashboard/dashboard-demo.jsx` by `npm run build-demos`. Resize the " +
+    "Storybook panel, or use the widths inside the page: those load it as an " +
+    "inner frame so the breakpoints actually fire, which narrowing an element " +
+    "does not do." } },
+  layout: "fullscreen",
+};

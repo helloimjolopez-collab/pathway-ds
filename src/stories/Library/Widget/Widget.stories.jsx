@@ -550,3 +550,28 @@ export const TokensMotion = {
     ]} />
   ),
 };
+
+/**
+ * The generated standalone demo. Unlike the eight hand-written ones, this page
+ * BUNDLES the real module, so it cannot fall behind the component: see
+ * scripts/build-demos.js. The width buttons in it load the page as an inner
+ * frame at that width, which is the only way its media queries see it.
+ */
+export const StandaloneDemo = () => (
+  <iframe
+    src="/components/widget/widget.html"
+    title="Widget standalone demo"
+    style={{ width: "100%", height: 760, border: "none",
+      borderRadius: "var(--semantic-layout-units-cornerradius-base)",
+      boxShadow: "var(--elevation-widget)" }}
+  />
+);
+StandaloneDemo.parameters = {
+  docs: { description: { story:
+    "`components/widget/widget.html`, generated from " +
+    "`components/widget/widget-demo.jsx` by `npm run build-demos`. Resize the " +
+    "Storybook panel, or use the widths inside the page: those load it as an " +
+    "inner frame so the breakpoints actually fire, which narrowing an element " +
+    "does not do." } },
+  layout: "fullscreen",
+};

@@ -238,6 +238,7 @@ In `check-tokens`, additionally:
 |---|---|
 | `build-component-index --check` | the component table above out of step with the manifest, and a Storybook link in it that is not in the build |
 | `check-spec-stories` | a spec whose Storybook section names a story that does not exist, or omits one that does |
+| `check-demo-links` | a standalone demo linking a stylesheet or script that is not served where the page is served. All twelve demos linked `../../src/tokens/*.css`, which resolves in the repo and NOWHERE ELSE: the built Storybook mounts `components/` only, and Pages copies `components/` while putting the token contract at `/tokens/`. Verified against the live site on 2026-10-08, `/src/tokens/primitives.css` was 404. Every `StandaloneDemo` story and every published demo URL had been loading nine 404s and rendering on fallback colours rather than Pathway's. `pathway-sidenav.html` was worse: it loaded `../../dist/pathway-sidenav.js`, which is gitignored and never published, so that page had no script at all and rendered nothing. |
 | `check-component-tables` | a component that keeps its measurements as data naming a key its lookup object does not define. `KPI_TILE_SPECS` named `gapChart03`, `L` had no such key, so the value was undefined, React dropped the style and CSS fell back to no gap. Nothing threw and no story was blank. |
 
 And the ones that need a built Storybook, so they are their own command,
@@ -267,6 +268,15 @@ inside `pw-button__container`, which carried `aria-hidden="true"`, so the name
 computation skipped it. The only named case was the icon-only one, which is
 backwards. Fixed by removing that `aria-hidden` rather than adding a label, so
 the name comes from the visible text and cannot drift from it.
+
+**Standalone demos are generated now, for the three newest components.**
+`scripts/build-demos.js` bundles the real module with esbuild and writes the
+page around it, so Widget, KPI Tile and Dashboard have a hands-on resize demo
+that cannot fall behind the component. The twelve older demos are hand-written
+and each says, at the top of its script block, "Mirrors `<name>.jsx` exactly.
+Keep the two in step": a second implementation of a shipped component, kept
+correct by memory. Converting them is a separate job. Their token links were
+repointed at `components/_demo/tokens/` so they at least render.
 
 **What is NOT checked, and why it matters.**
 

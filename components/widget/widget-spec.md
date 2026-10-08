@@ -312,6 +312,7 @@ Sidebar-visible, matching the untagged exports in `Widget.stories.jsx` exactly:
 | `HeaderActions` | Header actions: two slots |
 | `StateMatrix` | State matrix |
 | `ElementExplorer` | Element explorer |
+| `StandaloneDemo` | StandaloneDemo |
 
 Reference, `!dev`-tagged:
 
@@ -330,8 +331,11 @@ Every token row resolves its name against the live document rather than
 restating a hex, so a row reads `unresolved` only when the token itself is
 wrong.
 
-No `StandaloneDemo` story and no `widget.html`: a Widget is only meaningful on a
-board, so the Dashboard page is where it is demonstrated in context.
+`StandaloneDemo` iframes `components/widget/widget.html`, which is GENERATED
+from `components/widget/widget-demo.jsx` by `npm run build-demos`: esbuild
+bundles the real module, so the demo cannot fall behind the component. The eight
+older demos are hand-written and each says "Mirrors <name>.jsx exactly. Keep the
+two in step" at the top of its script block.
 
 The `.mdx` page follows `docs/storybook-authoring.md`: Resources, prose, Try it,
 Anatomy, States, Explore a single unit, Token mappings, Responsive behaviour,

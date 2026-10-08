@@ -427,6 +427,7 @@ Sidebar-visible, matching the untagged exports in `KPITile.stories.jsx` exactly:
 | `ElementExplorer` | Element explorer |
 | `ChangeTypes` | Change: all four Figma types |
 | `ChartShapes` | Mini chart: all twelve Figma shapes |
+| `StandaloneDemo` | StandaloneDemo |
 
 Reference, `!dev`-tagged:
 
@@ -444,8 +445,9 @@ Every token row resolves its name against the live document rather than
 restating a hex, so a row reads `unresolved` only when the token itself is
 wrong.
 
-No `StandaloneDemo` story: a tile is demonstrated on the Dashboard page, in the
-board that sizes it.
+`StandaloneDemo` iframes `components/kpi-tile/kpi-tile.html`, generated from
+`kpi-tile-demo.jsx` by `npm run build-demos`. It shows all nine types at both
+breakpoints, in Light and Midnight.
 
 The `.mdx` page follows `docs/storybook-authoring.md` and was added 2026-10-08,
 along with `StateMatrix`, `ElementExplorer` and the split `Tokens*` set that

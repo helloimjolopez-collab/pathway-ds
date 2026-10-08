@@ -276,6 +276,7 @@ Sidebar-visible, matching the untagged exports in `Dashboard.stories.jsx` exactl
 | `StateMatrix` | State matrix |
 | `ElementExplorer` | Element explorer |
 | `ThePattern` | The pattern: every flow |
+| `StandaloneDemo` | StandaloneDemo |
 
 Reference, `!dev`-tagged:
 
@@ -294,8 +295,9 @@ Every token row resolves its name against the live document rather than
 restating a hex, so a row reads `unresolved` only when the token itself is
 wrong.
 
-No `StandaloneDemo` story: the `Playground` and `ThePattern` stories ARE the
-hands-on demo, and every flow is reachable from them rather than from an iframe.
+`StandaloneDemo` iframes `components/dashboard/dashboard.html`, generated from
+`dashboard-demo.jsx` by `npm run build-demos`. A board is the thing you most
+want to drag a real window across, so of the three it most needed one.
 
 The `.mdx` page follows `docs/storybook-authoring.md` and was added 2026-10-08,
 along with `StateMatrix`, `ElementExplorer` and the split `Tokens*` set.

@@ -7,6 +7,7 @@ import * as Stories from "./Widget.stories.jsx";
 
 ### Resources
 
+- 🖼️ **[Live HTML demo](https://helloimjolopez-collab.github.io/pathway-ds/components/widget/widget.html)**, generated from the real module
 - 📄 **[Spec](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/widget/widget-spec.md)**
 - 🎨 **[Figma](https://www.figma.com/design/3sw45aVcngFAmpbP6cfrXP/?node-id=40009622-39702)**, node `40009622:39702`, page `40009415:21911`
 - 💻 **[React module](https://github.com/helloimjolopez-collab/pathway-ds/blob/main/components/widget/widget.jsx)**
@@ -134,6 +135,13 @@ because a squeezed widget is the failure the size ladder exists to prevent.
 ---
 
 ## Responsive behaviour
+
+<Canvas of={Stories.StandaloneDemo} />
+
+The page's own width buttons load it as an inner frame at that width, so the
+breakpoints actually fire. Narrowing an element does not do that: Pathway's
+responsiveness is media queries on the viewport, and the first version of this
+demo showed a 390px-wide board still dividing itself into 12 columns.
 
 <Canvas of={Stories.SizeLadder} />
 
