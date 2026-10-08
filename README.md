@@ -238,13 +238,17 @@ In `check-tokens`, additionally:
 |---|---|
 | `build-component-index --check` | the component table above out of step with the manifest, and a Storybook link in it that is not in the build |
 | `check-spec-stories` | a spec whose Storybook section names a story that does not exist, or omits one that does |
+| `check-component-tables` | a component that keeps its measurements as data naming a key its lookup object does not define. `KPI_TILE_SPECS` named `gapChart03`, `L` had no such key, so the value was undefined, React dropped the style and CSS fell back to no gap. Nothing threw and no story was blank. |
 
-And one that needs a built Storybook, so it is its own command,
+And the ones that need a built Storybook, so they are their own command,
 `npm run verify-storybook`:
 
 | Check | What it catches |
 |---|---|
+| `check-syntax` | a component or story file that does not parse. Redundant with the build and worth it anyway: it parses all 54 files in about a second, where the build takes three minutes and reports the same error as a WARN line far above the failure |
 | `check-stories-render` | a story that renders NOTHING while the build stays green |
+| `check-mdx-refs` | a docs page referencing a story that does not exist, which renders an empty block, and a `<Controls>` pointed at a story with no argTypes, which renders an empty table under a heading promising controls |
+| `check-accessible-names` | a button with no accessible name, resolved the way a browser does: `aria-label`, `aria-labelledby`, text content with `aria-hidden` subtrees removed, then `title` |
 
 **That last one matters more than it sounds.** A module-level error in a CSF
 file blanks every story in that file and webpack compiles it happily. It has
@@ -254,6 +258,15 @@ blanked more, and `useState` used without being imported blanked the Widget
 Glance configurations story. The check loads all 107 stories in headless Chrome
 and fails on an empty root. It was verified by breaking a story on purpose: the
 build reported no errors and the check reported the blank page.
+
+**`check-accessible-names` found 101 on its first run,** all of them Buttons.
+Every labelled Pathway Button announced as just "button": `aria-label` was set
+only when `showText` was false, on the rule that a button showing its text does
+not need a label. True of an ordinary button, false here, because the text sat
+inside `pw-button__container`, which carried `aria-hidden="true"`, so the name
+computation skipped it. The only named case was the icon-only one, which is
+backwards. Fixed by removing that `aria-hidden` rather than adding a label, so
+the name comes from the visible text and cannot drift from it.
 
 **What is NOT checked, and why it matters.**
 

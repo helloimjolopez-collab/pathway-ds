@@ -172,3 +172,35 @@ Other stories are welcome (showcase, real-context placements, reduced-motion) bu
 - `src/stories/Library/Spinner/Spinner.mdx`, atom-level, same pattern scaled down
 
 Both of these were hand-authored to this standard; copy their structure and tone for new components.
+
+## What enforces this
+
+These rules were prose only until 2026-10-08, and every one of them had been
+broken somewhere without any build going red. Four scripts now check the parts
+that can be checked mechanically. The rest still needs a reader.
+
+| Script | What it fails on |
+|---|---|
+| `check-syntax.js` | Any component or story file that does not parse. Parses all 54 in about a second, where `storybook build` takes three minutes and reports the same error as a WARN far above the failure. |
+| `check-stories-render.js` | A story whose root renders nothing. A module-level error blanks every story in its file while the build stays green. |
+| `check-mdx-refs.js` | An `of={Stories.X}` naming a story that does not exist, which renders an empty block. And a `<Controls>` pointed at a story with no argTypes, which renders an empty table under a heading promising controls: worse than omitting the section, because it reads as "this component has no props". |
+| `check-spec-stories.js` | A spec's Storybook section and its stories file disagreeing about which stories exist. |
+| `check-accessible-names.js` | A button with no accessible name. Resolves it the way a browser does: `aria-label`, `aria-labelledby`, text content with `aria-hidden` subtrees removed, then `title`. Found 101 on its first run. |
+
+`npm run verify-storybook` runs the first four plus the build. The accessible
+name sweep launches a browser per story, so it is the slow one.
+
+### What is still only prose
+
+Nothing checks whether a page's claims are TRUE. Two examples from the same
+sitting, both of which every script above passed:
+
+- Widget's Anatomy section said the root used an inset `box-shadow` because
+  Figma's inside stroke takes no layout space. The root used a CSS border. The
+  sentence was wrong, not the code.
+- KPI Tile's State matrix labelled a tile "Menu open" and rendered a closed
+  menu, because the component had no way to open one from outside. The story
+  drew something, so the render check passed.
+
+Both were found by looking at the rendered page beside the Figma frame. That is
+the only check for this class, and it has to be done by a person.
